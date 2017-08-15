@@ -1,0 +1,74 @@
+buildscript {
+    ext.kotlin_version = '1.1.4'
+
+    repositories {
+        jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.20"
+    }
+}
+
+group = 'pl.treksoft'
+version = '0.0.1-SNAPSHOT'
+
+apply plugin: 'kotlin2js'
+apply plugin: 'org.jetbrains.kotlin.frontend'
+
+repositories {
+    jcenter()
+    maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version" // for now only compile configuration is supported
+    compile "com.github.snabbdom:snabbdom-kotlin:0.1.0"
+}
+
+kotlinFrontend {
+    npm {
+        dependency "style-loader"
+        dependency ("snabbdom", "0.7.0")
+        devDependency("karma")
+    }
+
+    webpackBundle {
+        bundleName = "main"
+        contentPath = file('src/main/web')
+    }
+
+    define "PRODUCTION", false
+
+//    rollupBundle {
+//        bundleName = "rolledUp"
+//    }
+
+//    allBundles {
+//        /* set properties for all bundles */
+//    }
+
+//    bundle("someBundler") {
+//        ....
+//    }
+}
+
+compileKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
+    kotlinOptions.sourceMap = true
+    kotlinOptions.moduleKind = 'commonjs'
+    kotlinOptions.main = "call"
+}
+
+compileTestKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.outputFile = "$project.buildDir.path/js-tests/${project.name}-tests.js"
+    kotlinOptions.sourceMap = true
+    kotlinOptions.moduleKind = 'commonjs'
+//    kotlinOptions.moduleName = project.name + "-test"
+    kotlinOptions.main = "call"
+}
