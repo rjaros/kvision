@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.1.4'
+    ext.kotlin_version = '1.1.4-3'
 
     repositories {
         jcenter()
@@ -21,18 +21,34 @@ apply plugin: 'org.jetbrains.kotlin.frontend'
 repositories {
     jcenter()
     maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
+    maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version" // for now only compile configuration is supported
     compile "com.github.snabbdom:snabbdom-kotlin:0.1.0"
+    compile "pl.treksoft:navigo-kotlin:0.0.1"
+
 }
 
 kotlinFrontend {
     npm {
+        dependency "jquery"
+        dependency "bootstrap"
+        dependency "css-loader"
         dependency "style-loader"
-        dependency ("snabbdom", "0.7.0")
+        dependency "less"
+        dependency "less-loader"
+        dependency "imports-loader"
+        dependency "bootstrap-webpack"
+        dependency "font-awesome"
+        dependency("font-awesome-webpack", "0.0.5-beta.2")
+        dependency "file-loader"
+        dependency "url-loader"
+        dependency("snabbdom", "0.6.9")
+        dependency "snabbdom-virtualize"
+        dependency "navigo"
         devDependency("karma")
     }
 
@@ -43,17 +59,6 @@ kotlinFrontend {
 
     define "PRODUCTION", false
 
-//    rollupBundle {
-//        bundleName = "rolledUp"
-//    }
-
-//    allBundles {
-//        /* set properties for all bundles */
-//    }
-
-//    bundle("someBundler") {
-//        ....
-//    }
 }
 
 compileKotlin2Js {
@@ -61,7 +66,6 @@ compileKotlin2Js {
     kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
     kotlinOptions.sourceMap = true
     kotlinOptions.moduleKind = 'commonjs'
-    kotlinOptions.main = "call"
 }
 
 compileTestKotlin2Js {
@@ -69,6 +73,14 @@ compileTestKotlin2Js {
     kotlinOptions.outputFile = "$project.buildDir.path/js-tests/${project.name}-tests.js"
     kotlinOptions.sourceMap = true
     kotlinOptions.moduleKind = 'commonjs'
-//    kotlinOptions.moduleName = project.name + "-test"
-    kotlinOptions.main = "call"
+}
+
+task copyResources(type: Copy) {
+    from "src/main/assets"
+    into file(buildDir.path + "/js")
+}
+
+afterEvaluate {
+    tasks.getByName("webpack-bundle") { dependsOn(copyResources) }
+    tasks.getByName("webpack-run") { dependsOn(copyResources) }
 }

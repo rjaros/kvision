@@ -26,15 +26,10 @@ fun main(args: Array<String>) {
 }
 
 fun start(state: dynamic): ApplicationBase? {
-    if (document.body?.hasClass("kvision") ?: false) {
-        val application = MainApplication()
-
-        @Suppress("UnsafeCastFromDynamic")
-        application.start(state?.appState ?: emptyMap())
-
-        return application
-    } else {
-        return null
-    }
+    if (document.getElementById("showcase") == null) return null
+    val application = Showcase()
+    @Suppress("UnsafeCastFromDynamic")
+    application.start(state?.appState ?: emptyMap())
+    return application
 }
 
