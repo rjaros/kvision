@@ -9,7 +9,7 @@ class WidgetSpec : WSpec {
 
     @Test
     fun render() {
-        runW { widget, element ->
+        runW { widget, _ ->
             widget.addCssClass("testClass")
             widget.title = "test_title"
             val vnode = widget.render()
@@ -33,7 +33,7 @@ class WidgetSpec : WSpec {
 
     @Test
     fun hide() {
-        runW { widget, element ->
+        runW { widget, _ ->
             widget.hide()
             val element = document.getElementById("test_id")
             assertTrue("Hidden element should not be accessible") { element == null }
@@ -42,7 +42,7 @@ class WidgetSpec : WSpec {
 
     @Test
     fun show() {
-        runW { widget, element ->
+        runW { widget, _ ->
             widget.hide()
             widget.show()
             val element = document.getElementById("test_id")
@@ -71,7 +71,7 @@ class WidgetSpec : WSpec {
 
     @Test
     fun setEventListener() {
-        runW { widget, element ->
+        runW { widget, _ ->
             widget.setEventListener { click = { _ -> } }
             assertTrue("Element should have an event listener") { widget.listeners.size == 1 }
         }
@@ -79,7 +79,7 @@ class WidgetSpec : WSpec {
 
     @Test
     fun removeEventListener() {
-        runW { widget, element ->
+        runW { widget, _ ->
             widget.setEventListener { click = { _ -> } }
             widget.removeEventListeners()
             assertTrue("Element should not have any event listener") { widget.listeners.size == 0 }
