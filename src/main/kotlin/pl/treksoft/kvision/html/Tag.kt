@@ -17,7 +17,22 @@ enum class TAG(val tagName: String) {
     ADDRESS("address"),
     BLOCKQUOTE("blockquote"),
     FOOTER("footer"),
-    PRE("pre")
+    PRE("pre"),
+
+    MARK("mark"),
+    DEL("del"),
+    S("s"),
+    INS("ins"),
+    U("u"),
+    SMALL("small"),
+    STRONG("strong"),
+    EM("em"),
+    CITE("cite"),
+    CODE("code"),
+    KBD("kbd"),
+    VAR("var"),
+    SAMP("samp"),
+    SPAN("span")
 }
 
 enum class ALIGN(val className: String) {

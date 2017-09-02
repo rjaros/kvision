@@ -31,7 +31,7 @@ class Showcase : ApplicationBase() {
         val p = Tag(TAG.P, "To jest prawo", align = ALIGN.RIGHT)
         p.title = "Tytuł"
         root.add(p)
-        val del = InTag(INTAG.DEL, "To jest deleted")
+        val del = Tag(TAG.DEL, "To jest deleted")
         root.add(del)
 
         val list = ListTag(LIST.DL_HORIZ, listOf("abc", "de<b>fdasdasdasddasd</b>tdasdas", "Dasdsada", "dasdasdads"), true)
