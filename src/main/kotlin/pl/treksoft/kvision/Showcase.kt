@@ -25,8 +25,15 @@ class Showcase : ApplicationBase() {
         label.hide()
         label.show()
 
-        val dd = DropDown("Dropdown", listOf("DAsdasd asdasdas das", "dasdasd asdasdas das"), "flag")
+        val link = Link("test", "http://www.google.pl")
+        link.add(Tag(TAG.P, "Cośtam"))
+        root.add(link)
+
+        val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)
+
+        val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def"), "flag")
+        root.add(dd2)
 
         val p = Tag(TAG.P, "To jest prawo", align = ALIGN.RIGHT)
         p.title = "Tytuł"
@@ -36,6 +43,12 @@ class Showcase : ApplicationBase() {
 
         val list = ListTag(LIST.DL_HORIZ, listOf("abc", "de<b>fdasdasdasddasd</b>tdasdas", "Dasdsada", "dasdasdads"), true)
         root.add(list)
+
+        val list2 = ListTag(LIST.OL, null)
+        list2.add(Tag(TAG.H4, "ABC"))
+        list2.add(Button("To jest button"))
+        list2.add(Image(Img("kotlin.png")))
+        root.add(list2)
 
         val img = Image(Img("kotlin.png"), "Image", true, IMAGE_SHAPE.ROUNDED)
         root.add(img)

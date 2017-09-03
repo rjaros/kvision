@@ -3,7 +3,7 @@ package pl.treksoft.kvision.core
 import com.github.snabbdom.VNode
 
 open class Container(classes: Set<String> = setOf()) : Widget(classes) {
-    private val children: MutableList<Widget> = mutableListOf()
+    protected val children: MutableList<Widget> = mutableListOf()
 
     override fun render(): VNode {
         return kvh("div", childrenVNodes())
@@ -16,6 +16,12 @@ open class Container(classes: Set<String> = setOf()) : Widget(classes) {
     open fun add(child: Widget) {
         children.add(child)
         child.parent = this
+        refresh()
+    }
+
+    open fun addAll(children: List<Widget>) {
+        this.children.addAll(children)
+        children.map { it.parent = this }
         refresh()
     }
 

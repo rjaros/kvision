@@ -1,8 +1,8 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.KVManager
-import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
 enum class TAG(val tagName: String) {
@@ -44,7 +44,7 @@ enum class ALIGN(val className: String) {
     NOWRAP("text-nowrap")
 }
 
-open class Tag(type: TAG, text: String, rich: Boolean = false, align: ALIGN = ALIGN.NONE, classes: Set<String> = setOf()) : Widget(classes) {
+open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN = ALIGN.NONE, classes: Set<String> = setOf()) : Container(classes) {
     var type = type
         set(value) {
             field = value
@@ -67,10 +67,14 @@ open class Tag(type: TAG, text: String, rich: Boolean = false, align: ALIGN = AL
         }
 
     override fun render(): VNode {
-        if (rich) {
-            return kvh(type.tagName, arrayOf(KVManager.virtualize("<span>$text</span>")))
+        if (text != null) {
+            if (rich) {
+                return kvh(type.tagName, arrayOf(KVManager.virtualize("<span>$text</span>")) + childrenVNodes())
+            } else {
+                return kvh(type.tagName, arrayOf(text) + childrenVNodes())
+            }
         } else {
-            return kvh(type.tagName, arrayOf(text))
+            return kvh(type.tagName, childrenVNodes())
         }
     }
 

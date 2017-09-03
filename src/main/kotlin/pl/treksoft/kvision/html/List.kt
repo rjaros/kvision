@@ -1,7 +1,9 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import com.github.snabbdom.array
 import com.github.snabbdom.h
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -15,7 +17,7 @@ enum class LIST(val tagName: String) {
     DL_HORIZ("dl")
 }
 
-open class ListTag(type: LIST, elements: List<String>, rich: Boolean = false, classes: Set<String> = setOf()) : Widget(classes) {
+open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = false, classes: Set<String> = setOf()) : Container(classes) {
     var type = type
         set(value) {
             field = value
@@ -33,11 +35,24 @@ open class ListTag(type: LIST, elements: List<String>, rich: Boolean = false, cl
         }
 
     override fun render(): VNode {
-        val children = when (type) {
-            LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> elements.map { el -> element("li", el, rich) }
-            LIST.DL, LIST.DL_HORIZ -> elements.mapIndexed { index, el -> element(if (index % 2 == 0) "dt" else "dd", el, rich) }
-        }.toTypedArray()
-        return kvh(type.tagName, children)
+        val childrenElements = when (type) {
+            LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> elements?.map { el -> element("li", el, rich) }
+            LIST.DL, LIST.DL_HORIZ -> elements?.mapIndexed { index, el -> element(if (index % 2 == 0) "dt" else "dd", el, rich) }
+        }?.toTypedArray()
+        if (childrenElements != null) {
+            return kvh(type.tagName, childrenElements + childrenVNodes())
+        } else {
+            return kvh(type.tagName, childrenVNodes())
+        }
+    }
+
+    override fun childrenVNodes(): Array<VNode> {
+        val childrenElements = children.filter { it.visible }
+        val res = when (type) {
+            LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> childrenElements.map { v -> h("li", arrayOf(v.render())) }
+            LIST.DL, LIST.DL_HORIZ -> childrenElements.mapIndexed { index, v -> h(if (index % 2 == 0) "dt" else "dd", arrayOf(v.render())) }
+        }
+        return res.toTypedArray()
     }
 
     private fun element(name: String, value: String, rich: Boolean): VNode {
