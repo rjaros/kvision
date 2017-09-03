@@ -23,7 +23,7 @@ open class DropDown(text: String, elements: List<StringPair>, icon: String? = nu
             when (it.second) {
                 DD.HEADER.POS -> Tag(TAG.LI, it.first, classes = setOf("dropdown-header"))
                 DD.SEPARATOR.POS -> {
-                    val tag = Tag(TAG.LI, classes = setOf("divider"))
+                    val tag = Tag(TAG.LI, it.first, classes = setOf("divider"))
                     tag.role = "separator"
                     tag
                 }
