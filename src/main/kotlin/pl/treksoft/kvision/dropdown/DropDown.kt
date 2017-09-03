@@ -5,15 +5,36 @@ import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.snabbdom.StringPair
 
+enum class DD(val POS: String) {
+    HEADER("DD#HEADER"),
+    DISABLED("DD#DISABLED"),
+    SEPARATOR("DD#SEPARATOR")
+}
+
 open class DropDown(text: String, elements: List<StringPair>, icon: String? = null, style: BUTTON_STYLE = BUTTON_STYLE.DEFAULT, size: BUTTON_SIZE? = null,
-                    block: Boolean = false, disabled: Boolean = false, image: ResString? = null, classes: Set<String> = setOf()) : Container(classes) {
+                    block: Boolean = false, disabled: Boolean = false, image: ResString? = null, dropup: Boolean = false, classes: Set<String> = setOf()) : Container(classes) {
     val idc = "kv_dropdown_" + counter
     val button: DropDownButton = DropDownButton(idc, text, icon, style, size, block, disabled, image, setOf("dropdown"))
     val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
-        this.addCssClass("dropdown")
-        val children = elements.map { Link(it.first, it.second) }
+        this.addCssClass(if (dropup) "dropup" else "dropdown")
+        val children = elements.map {
+            when (it.second) {
+                DD.HEADER.POS -> Tag(TAG.LI, it.first, classes = setOf("dropdown-header"))
+                DD.SEPARATOR.POS -> {
+                    val tag = Tag(TAG.LI, classes = setOf("divider"))
+                    tag.role = "separator"
+                    tag
+                }
+                DD.DISABLED.POS -> {
+                    val tag = Tag(TAG.LI, classes = setOf("disabled"))
+                    tag.add(Link(it.first, "#"))
+                    tag
+                }
+                else -> Link(it.first, it.second)
+            }
+        }
         list.addAll(children)
         this.add(button)
         this.add(list)

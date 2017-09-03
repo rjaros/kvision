@@ -20,4 +20,15 @@ class DropDownSpec : DomSpec {
         }
     }
 
+    @Test
+    fun render_DropUp() {
+        run {
+            val root = Root("test")
+            val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag", dropup = true)
+            root.add(dd)
+            val element = document.getElementById("test")
+            assertEquals("<div class=\"dropup\"><button class=\"dropdown btn btn-default\" id=\"kv_dropdown_1\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"kv_dropdown_1\"><li><a href=\"#!/x\">abc</a></li><li><a href=\"#!/y\">def</a></li></ul></div>", element?.innerHTML, "Should render correct drop down")
+        }
+    }
+
 }

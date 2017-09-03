@@ -5,6 +5,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Img
 import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.H1
@@ -32,7 +33,8 @@ class Showcase : ApplicationBase() {
         val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)
 
-        val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def"), "flag")
+        val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.POS, "Header" to HEADER.POS, "Separtatorek" to SEPARATOR.POS
+        ), "flag", dropup = true)
         root.add(dd2)
 
         val p = Tag(TAG.P, "To jest prawo", align = ALIGN.RIGHT)

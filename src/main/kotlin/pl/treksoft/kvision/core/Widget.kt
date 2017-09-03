@@ -29,6 +29,11 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
             field = value
             refresh()
         }
+    var role: String? = null
+        set(value) {
+            field = value
+            refresh()
+        }
 
     internal open fun render(): VNode {
         return kvh("div")
@@ -67,6 +72,9 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         }
         if (title != null) {
             snattrs.add("title" to title.orEmpty())
+        }
+        if (role != null) {
+            snattrs.add("role" to role.orEmpty())
         }
         return snattrs
     }

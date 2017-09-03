@@ -1,11 +1,9 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
-import com.github.snabbdom.array
 import com.github.snabbdom.h
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.KVManager
-import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
 enum class LIST(val tagName: String) {
@@ -49,8 +47,20 @@ open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = f
     override fun childrenVNodes(): Array<VNode> {
         val childrenElements = children.filter { it.visible }
         val res = when (type) {
-            LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> childrenElements.map { v -> h("li", arrayOf(v.render())) }
-            LIST.DL, LIST.DL_HORIZ -> childrenElements.mapIndexed { index, v -> h(if (index % 2 == 0) "dt" else "dd", arrayOf(v.render())) }
+            LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> childrenElements.map { v ->
+                if (v is Tag && v.type == TAG.LI) {
+                    v.render()
+                } else {
+                    h("li", arrayOf(v.render()))
+                }
+            }
+            LIST.DL, LIST.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
+                if (v is Tag && v.type == TAG.LI) {
+                    v.render()
+                } else {
+                    h(if (index % 2 == 0) "dt" else "dd", arrayOf(v.render()))
+                }
+            }
         }
         return res.toTypedArray()
     }

@@ -32,7 +32,8 @@ enum class TAG(val tagName: String) {
     KBD("kbd"),
     VAR("var"),
     SAMP("samp"),
-    SPAN("span")
+    SPAN("span"),
+    LI("li")
 }
 
 enum class ALIGN(val className: String) {
