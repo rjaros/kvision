@@ -16,8 +16,8 @@ class KVManagerSpec : DomSpec {
     fun patch_ById() {
         run {
             val vnode = h("span", snOpt {
-                attrs = snAttrs("id" to "test_new")
-                style = snStyle("fontWeight" to "bold", "fontStyle" to "italic")
+                attrs = snAttrs(listOf("id" to "test_new"))
+                style = snStyle(listOf("fontWeight" to "bold", "fontStyle" to "italic"))
             })
             KVManager.patch("test", vnode)
             assertTrue("Original container should not exist") { document.getElementById("test") == null }
@@ -29,13 +29,13 @@ class KVManagerSpec : DomSpec {
     fun patch_ByVnode() {
         run {
             val vnode1 = h("span", snOpt {
-                attrs = snAttrs("id" to "test2")
-                style = snStyle("fontWeight" to "bold", "fontStyle" to "italic")
+                attrs = snAttrs(listOf("id" to "test2"))
+                style = snStyle(listOf("fontWeight" to "bold", "fontStyle" to "italic"))
             })
             val vnode2 = KVManager.patch("test", vnode1)
             val vnode3 = h("span", snOpt {
-                attrs = snAttrs("id" to "test3")
-                style = snStyle("fontWeight" to "bold", "fontStyle" to "italic")
+                attrs = snAttrs(listOf("id" to "test3"))
+                style = snStyle(listOf("fontWeight" to "bold", "fontStyle" to "italic"))
             })
             KVManager.patch(vnode2, vnode3)
             assertTrue("First container should not exist") { document.getElementById("test") == null }

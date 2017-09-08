@@ -6,13 +6,14 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
-enum class IMAGE_SHAPE(val className: String) {
+enum class IMAGESHAPE(val className: String) {
     ROUNDED("img-rounded"),
     CIRCLE("img-circle"),
     THUMBNAIL("img-thumbnail")
 }
 
-open class Image(src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGE_SHAPE? = null, centered: Boolean = false, classes: Set<String> = setOf()) : Widget(classes) {
+open class Image(src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGESHAPE? = null,
+                 centered: Boolean = false, classes: Set<String> = setOf()) : Widget(classes) {
     var src = src
         set(value) {
             field = value

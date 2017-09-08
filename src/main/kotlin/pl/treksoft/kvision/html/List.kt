@@ -15,7 +15,8 @@ enum class LIST(val tagName: String) {
     DL_HORIZ("dl")
 }
 
-open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = false, classes: Set<String> = setOf()) : Container(classes) {
+open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = false,
+                   classes: Set<String> = setOf()) : Container(classes) {
     var type = type
         set(value) {
             field = value
@@ -35,7 +36,9 @@ open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = f
     override fun render(): VNode {
         val childrenElements = when (type) {
             LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> elements?.map { el -> element("li", el, rich) }
-            LIST.DL, LIST.DL_HORIZ -> elements?.mapIndexed { index, el -> element(if (index % 2 == 0) "dt" else "dd", el, rich) }
+            LIST.DL, LIST.DL_HORIZ -> elements?.mapIndexed { index, el ->
+                element(if (index % 2 == 0) "dt" else "dd", el, rich)
+            }
         }?.toTypedArray()
         if (childrenElements != null) {
             return kvh(type.tagName, childrenElements + childrenVNodes())

@@ -1,16 +1,24 @@
 package pl.treksoft.kvision.core
 
-import com.github.snabbdom.*
+import com.github.snabbdom.Snabbdom
+import com.github.snabbdom.VNode
+import com.github.snabbdom.attributesModule
+import com.github.snabbdom.classModule
+import com.github.snabbdom.datasetModule
+import com.github.snabbdom.eventListenersModule
+import com.github.snabbdom.propsModule
+import com.github.snabbdom.styleModule
 import pl.treksoft.kvision.require
 import pl.treksoft.kvision.routing.routing
 import kotlin.browser.document
 import kotlin.dom.clear
 
 object KVManager {
-    private val bootstrap_webpack = require("bootstrap-webpack")
-    private val font_awesome_webpack = require("font-awesome-webpack")
+    private val bootstrapWebpack = require("bootstrap-webpack")
+    private val fontAwesomeWebpack = require("font-awesome-webpack")
 
-    private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule, eventListenersModule, datasetModule))
+    private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,
+            eventListenersModule, datasetModule))
     private val sdVirtualize = require("snabbdom-virtualize/strings").default
 
     internal fun patch(id: String, vnode: VNode): VNode {

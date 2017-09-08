@@ -5,6 +5,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
+@Suppress("EnumNaming")
 enum class TAG(val tagName: String) {
     H1("h1"),
     H2("h2"),
@@ -45,7 +46,8 @@ enum class ALIGN(val className: String) {
     NOWRAP("text-nowrap")
 }
 
-open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN = ALIGN.NONE, classes: Set<String> = setOf()) : Container(classes) {
+open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN = ALIGN.NONE,
+               classes: Set<String> = setOf()) : Container(classes) {
     var type = type
         set(value) {
             field = value
@@ -68,15 +70,16 @@ open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: AL
         }
 
     override fun render(): VNode {
-        if (text != null) {
+        val ret = if (text != null) {
             if (rich) {
-                return kvh(type.tagName, arrayOf(KVManager.virtualize("<span>$text</span>")) + childrenVNodes())
+                kvh(type.tagName, arrayOf(KVManager.virtualize("<span>$text</span>")) + childrenVNodes())
             } else {
-                return kvh(type.tagName, arrayOf(text) + childrenVNodes())
+                kvh(type.tagName, arrayOf(text) + childrenVNodes())
             }
         } else {
-            return kvh(type.tagName, childrenVNodes())
+            kvh(type.tagName, childrenVNodes())
         }
+        return ret
     }
 
     override fun getSnClass(): List<StringBoolPair> {

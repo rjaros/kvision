@@ -1,11 +1,18 @@
 package pl.treksoft.kvision.core
 
-import com.github.snabbdom.On
 import com.github.snabbdom.VNode
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.h
-import pl.treksoft.kvision.snabbdom.*
+import pl.treksoft.kvision.snabbdom.on
+import pl.treksoft.kvision.snabbdom.SnOn
+import pl.treksoft.kvision.snabbdom.StringBoolPair
+import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.snabbdom.snAttrs
+import pl.treksoft.kvision.snabbdom.snClasses
+import pl.treksoft.kvision.snabbdom.snOpt
+import pl.treksoft.kvision.snabbdom.snStyle
 
+@Suppress("TooManyFunctions")
 open class Widget(classes: Set<String> = setOf()) : KVObject {
 
     val classes = classes.toMutableSet()
@@ -49,9 +56,9 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
 
     protected open fun getSnOpt(): VNodeData {
         return snOpt {
-            attrs = snAttrs(* getSnAttrs().toTypedArray())
-            style = snStyle(* getSnStyle().toTypedArray())
-            `class` = snClasses(* getSnClass().toTypedArray())
+            attrs = snAttrs(getSnAttrs())
+            style = snStyle(getSnStyle())
+            `class` = snClasses(getSnClass())
             on = getSnOn()
         }
     }
@@ -79,8 +86,8 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         return snattrs
     }
 
-    protected open fun getSnOn(): On {
-        val handlers = On(this)
+    protected open fun getSnOn(): com.github.snabbdom.On {
+        val handlers = on(this)
         listeners.forEach { on -> (handlers::apply)(on) }
         return handlers
     }

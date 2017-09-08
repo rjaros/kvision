@@ -7,7 +7,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
-enum class BUTTON_STYLE(val className: String) {
+enum class BUTTONSTYLE(val className: String) {
     DEFAULT("btn-default"),
     PRIMARY("btn-primary"),
     SUCCESS("btn-success"),
@@ -17,14 +17,15 @@ enum class BUTTON_STYLE(val className: String) {
     LINK("btn-link")
 }
 
-enum class BUTTON_SIZE(val className: String) {
+enum class BUTTONSIZE(val className: String) {
     LARGE("btn-lg"),
     SMALL("btn-sm"),
     XSMALL("btn-xs")
 }
 
-open class Button(text: String, icon: String? = null, style: BUTTON_STYLE = BUTTON_STYLE.DEFAULT, size: BUTTON_SIZE? = null,
-                  block: Boolean = false, disabled: Boolean = false, image: ResString? = null, classes: Set<String> = setOf()) : Widget(classes) {
+open class Button(text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
+                  size: BUTTONSIZE? = null, block: Boolean = false, disabled: Boolean = false,
+                  image: ResString? = null, classes: Set<String> = setOf()) : Widget(classes) {
     var text = text
         set(value) {
             field = value

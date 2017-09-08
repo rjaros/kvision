@@ -33,7 +33,8 @@ class Showcase : ApplicationBase() {
         val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)
 
-        val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.POS, "Header" to HEADER.POS, "Separtatorek" to SEPARATOR.POS
+        val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.POS,
+                "Header" to HEADER.POS, "Separtatorek" to SEPARATOR.POS
         ), "flag", dropup = true)
         root.add(dd2)
 
@@ -43,7 +44,8 @@ class Showcase : ApplicationBase() {
         val del = Tag(TAG.DEL, "To jest deleted")
         root.add(del)
 
-        val list = ListTag(LIST.DL_HORIZ, listOf("abc", "de<b>fdasdasdasddasd</b>tdasdas", "Dasdsada", "dasdasdads"), true)
+        val list = ListTag(LIST.DL_HORIZ, listOf("abc", "de<b>fdasdasdasddasd</b>tdasdas", "Dasdsada",
+                "dasdasdads"), true)
         root.add(list)
 
         val list2 = ListTag(LIST.OL, null)
@@ -52,15 +54,15 @@ class Showcase : ApplicationBase() {
         list2.add(Image(Img("kotlin.png")))
         root.add(list2)
 
-        val img = Image(Img("kotlin.png"), "Image", true, IMAGE_SHAPE.ROUNDED)
+        val img = Image(Img("kotlin.png"), "Image", true, IMAGESHAPE.ROUNDED)
         root.add(img)
 
-        val button = Button("To jest przycisk FA", "fa-flag", BUTTON_STYLE.DANGER)
+        val button = Button("To jest przycisk FA", "fa-flag", BUTTONSTYLE.DANGER)
         button.setEventListener<Button> {
             click = { _ -> println(self.text) }
         }
         root.add(button)
-        val button2 = Button("To jest przycisk", "flag", BUTTON_STYLE.DANGER)
+        val button2 = Button("To jest przycisk", "flag", BUTTONSTYLE.DANGER)
         button2.setEventListener {
             click = { e ->
                 println("2" + e)

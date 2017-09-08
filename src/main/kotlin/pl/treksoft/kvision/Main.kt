@@ -1,7 +1,6 @@
 package pl.treksoft.kvision
 
-import kotlin.browser.*
-import kotlin.dom.*
+import kotlin.browser.document
 
 fun main(args: Array<String>) {
     var application: ApplicationBase? = null

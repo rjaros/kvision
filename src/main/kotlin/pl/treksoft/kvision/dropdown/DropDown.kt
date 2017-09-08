@@ -2,7 +2,14 @@ package pl.treksoft.kvision.dropdown
 
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.html.*
+import pl.treksoft.kvision.html.BUTTONSIZE
+import pl.treksoft.kvision.html.BUTTONSTYLE
+import pl.treksoft.kvision.html.Button
+import pl.treksoft.kvision.html.LIST
+import pl.treksoft.kvision.html.Link
+import pl.treksoft.kvision.html.ListTag
+import pl.treksoft.kvision.html.TAG
+import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.snabbdom.StringPair
 
 enum class DD(val POS: String) {
@@ -11,10 +18,13 @@ enum class DD(val POS: String) {
     SEPARATOR("DD#SEPARATOR")
 }
 
-open class DropDown(text: String, elements: List<StringPair>, icon: String? = null, style: BUTTON_STYLE = BUTTON_STYLE.DEFAULT, size: BUTTON_SIZE? = null,
-                    block: Boolean = false, disabled: Boolean = false, image: ResString? = null, dropup: Boolean = false, classes: Set<String> = setOf()) : Container(classes) {
+open class DropDown(text: String, elements: List<StringPair>, icon: String? = null,
+                    style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, size: BUTTONSIZE? = null,
+                    block: Boolean = false, disabled: Boolean = false, image: ResString? = null,
+                    dropup: Boolean = false, classes: Set<String> = setOf()) : Container(classes) {
     val idc = "kv_dropdown_" + counter
-    val button: DropDownButton = DropDownButton(idc, text, icon, style, size, block, disabled, image, setOf("dropdown"))
+    val button: DropDownButton = DropDownButton(idc, text, icon, style, size, block,
+            disabled, image, setOf("dropdown"))
     val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
@@ -46,8 +56,9 @@ open class DropDown(text: String, elements: List<StringPair>, icon: String? = nu
     }
 }
 
-open class DropDownButton(id: String, text: String, icon: String? = null, style: BUTTON_STYLE = BUTTON_STYLE.DEFAULT, size: BUTTON_SIZE? = null,
-                          block: Boolean = false, disabled: Boolean = false, image: ResString? = null, classes: Set<String> = setOf()) :
+open class DropDownButton(id: String, text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
+                          size: BUTTONSIZE? = null, block: Boolean = false, disabled: Boolean = false,
+                          image: ResString? = null, classes: Set<String> = setOf()) :
         Button(text, icon, style, size, block, disabled, image, classes) {
 
     init {
@@ -55,11 +66,13 @@ open class DropDownButton(id: String, text: String, icon: String? = null, style:
     }
 
     override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + listOf("data-toggle" to "dropdown", "aria-haspopup" to "true", "aria-expanded" to "false")
+        return super.getSnAttrs() + listOf("data-toggle" to "dropdown", "aria-haspopup" to "true",
+                "aria-expanded" to "false")
     }
 }
 
-open class DropDownListTag(val ariaId: String, classes: Set<String> = setOf()) : ListTag(LIST.UL, null, false, classes) {
+open class DropDownListTag(val ariaId: String, classes: Set<String> = setOf()) : ListTag(LIST.UL, null,
+        false, classes) {
     override fun getSnAttrs(): List<StringPair> {
         return super.getSnAttrs() + listOf("aria-labelledby" to ariaId)
     }
