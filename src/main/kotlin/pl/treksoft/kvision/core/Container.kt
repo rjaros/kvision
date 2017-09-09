@@ -35,4 +35,5 @@ open class Container(classes: Set<String> = setOf()) : Widget(classes) {
         children.removeAt(index).clearParent()
         refresh()
     }
+
 }

@@ -1,5 +1,7 @@
 package pl.treksoft.kvision.dropdown
 
+import com.github.snabbdom.VNode
+import org.w3c.dom.CustomEvent
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.html.BUTTONSIZE
@@ -11,6 +13,7 @@ import pl.treksoft.kvision.html.ListTag
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.snabbdom.obj
 
 enum class DD(val POS: String) {
     HEADER("DD#HEADER"),
@@ -45,6 +48,12 @@ open class DropDown(text: String, elements: List<StringPair>, icon: String? = nu
                 else -> Link(it.first, it.second)
             }
         }
+        button.setEventListener {
+            click = {
+                list.getElementJQueryD().dropdown("toggle")
+            }
+        }
+
         list.addAll(children)
         this.add(button)
         this.add(list)
@@ -53,6 +62,29 @@ open class DropDown(text: String, elements: List<StringPair>, icon: String? = nu
 
     companion object {
         var counter = 0
+    }
+
+    override fun afterInsert(node: VNode) {
+        this.getElementJQuery()?.on("show.bs.dropdown", { e, _ ->
+            val event = CustomEvent("showBsDropdown", obj({ detail = button }))
+            this.getElement()?.dispatchEvent(event) as Any
+        })
+        this.getElementJQuery()?.on("shown.bs.dropdown", { e, _ ->
+            val event = CustomEvent("shownBsDropdown", obj({ detail = button }))
+            this.getElement()?.dispatchEvent(event) as Any
+        })
+        this.getElementJQuery()?.on("hide.bs.dropdown", { e, _ ->
+            val event = CustomEvent("hideBsDropdown", obj({ detail = button }))
+            this.getElement()?.dispatchEvent(event) as Any
+        })
+        this.getElementJQuery()?.on("hidden.bs.dropdown", { e, _ ->
+            val event = CustomEvent("hiddenBsDropdown", obj({ detail = button }))
+            this.getElement()?.dispatchEvent(event) as Any
+        })
+    }
+
+    open fun toggle() {
+        list.getElementJQueryD().dropdown("toggle")
     }
 }
 

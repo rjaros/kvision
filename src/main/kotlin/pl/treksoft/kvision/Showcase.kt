@@ -3,7 +3,6 @@ package pl.treksoft.kvision
 import pl.treksoft.kvision.basic.Label
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Img
-import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
@@ -32,11 +31,21 @@ class Showcase : ApplicationBase() {
 
         val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)
+        dd.setEventListener<Button> {
+            showBsDropdown = { e -> println("show" + (e.detail)?.text) }
+            shownBsDropdown = { e -> println("shown" + e.detail) }
+            hideBsDropdown = { e -> println("hide" + e.detail) }
+            hiddenBsDropdown = { e -> println("hidden" + e.detail) }
+        }
 
         val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.POS,
                 "Header" to HEADER.POS, "Separtatorek" to SEPARATOR.POS
         ), "flag", dropup = true)
         root.add(dd2)
+        dd2.setEventListener<Button> {
+            hideBsDropdown = { e -> println("hide" + e.detail) }
+            hiddenBsDropdown = { e -> println("hidden" + e.detail) }
+        }
 
         val p = Tag(TAG.P, "To jest prawo", align = ALIGN.RIGHT)
         p.title = "Tytuł"
@@ -65,6 +74,7 @@ class Showcase : ApplicationBase() {
         val button2 = Button("To jest przycisk", "flag", BUTTONSTYLE.DANGER)
         button2.setEventListener {
             click = { e ->
+                dd.hide()
                 println("2" + e)
                 button.setEventListener {
                     click = null
@@ -75,6 +85,7 @@ class Showcase : ApplicationBase() {
         val button3 = Button("To jest przycisk IMG", image = Img("kotlin.png"))
         button3.setEventListener {
             click = { e ->
+                dd.show()
                 println("3" + e)
                 button.setEventListener<Button> {
                     click = { _ -> println(self.text) }
@@ -89,6 +100,8 @@ class Showcase : ApplicationBase() {
                 .on("/abc", { -> println("abc") })
                 .on("/test", { -> println("test") })
                 .resolve()
+
+//        jQuery(document).off(".data-api")
 
 //        routing.on(RegExp("/abc/def/(.*)/(.*)/(.*)"), { x,y,z,u,v -> println(x) })
 
@@ -113,7 +126,6 @@ class Showcase : ApplicationBase() {
     }
 
     override fun dispose(): Map<String, Any> {
-        KVManager.shutdown()
         return mapOf<String, Any>()
     }
 }

@@ -1,5 +1,6 @@
 package pl.treksoft.kvision
 
+import pl.treksoft.kvision.core.KVManager
 import kotlin.browser.document
 
 fun main(args: Array<String>) {
@@ -10,6 +11,7 @@ fun main(args: Array<String>) {
 
         hot.dispose { data ->
             data.appState = application?.dispose()
+            KVManager.shutdown()
             application = null
         }
 
@@ -19,6 +21,7 @@ fun main(args: Array<String>) {
     if (document.body != null) {
         application = start(state)
     } else {
+        KVManager.init()
         application = null
         document.addEventListener("DOMContentLoaded", { application = start(state) })
     }

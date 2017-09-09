@@ -4,10 +4,10 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
 class Root(id: String, private val fluid: Boolean = false) : Container() {
-    private var vnode: VNode = render()
+    private var rootVnode: VNode = render()
 
     init {
-        vnode = KVManager.patch(id, this.render())
+        rootVnode = KVManager.patch(id, this.render())
         this.id = id
     }
 
@@ -21,7 +21,7 @@ class Root(id: String, private val fluid: Boolean = false) : Container() {
     }
 
     override fun refresh() {
-        vnode = KVManager.patch(vnode, render())
+        rootVnode = KVManager.patch(rootVnode, render())
     }
 
 }

@@ -7,6 +7,7 @@ import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class DropDownSpec : DomSpec {
 
@@ -65,4 +66,20 @@ class DropDownSpec : DomSpec {
         }
     }
 
+    @Test
+    fun toggle() {
+        run {
+            val root = Root("test")
+            val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
+            root.add(dd)
+            val classes = dd.getElementJQuery()?.attr("class")
+            assertTrue("Dropdown is hidden before toggle") { classes?.contains("open") == false }
+            dd.toggle()
+            val classes2 = dd.getElementJQuery()?.attr("class")
+            assertTrue("Dropdown is visible after toggle") { classes2?.contains("open") == true }
+            dd.toggle()
+            val classes3 = dd.getElementJQuery()?.attr("class")
+            assertTrue("Dropdown is hidden after second toggle") { classes3?.contains("open") == false }
+        }
+    }
 }

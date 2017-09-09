@@ -86,4 +86,21 @@ class WidgetSpec : WSpec {
         }
     }
 
+    @Test
+    fun getElement() {
+        runW { widget, element ->
+            val e = widget.getElement()
+            assertTrue("Should return correct dom element") { e == element }
+        }
+    }
+
+    @Test
+    fun getElementJQuery() {
+        runW { widget, element ->
+            val j = widget.getElementJQuery()
+            assertTrue("Should return correct jQuery object") { j != null }
+            val e = j?.get()?.get(0)
+            assertTrue("Should return correct dom element from jQuery object") { e == element }
+        }
+    }
 }

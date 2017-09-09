@@ -3,10 +3,14 @@ package pl.treksoft.kvision.core
 import com.github.snabbdom.VNode
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.h
-import pl.treksoft.kvision.snabbdom.on
+import org.w3c.dom.Node
+import pl.treksoft.jquery.JQuery
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.snabbdom.hooks
+import pl.treksoft.kvision.snabbdom.on
 import pl.treksoft.kvision.snabbdom.snAttrs
 import pl.treksoft.kvision.snabbdom.snClasses
 import pl.treksoft.kvision.snabbdom.snOpt
@@ -42,6 +46,8 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
             refresh()
         }
 
+    private var vnode: VNode? = null
+
     internal open fun render(): VNode {
         return kvh("div")
     }
@@ -60,6 +66,7 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
             style = snStyle(getSnStyle())
             `class` = snClasses(getSnClass())
             on = getSnOn()
+            hook = getSnHooks()
         }
     }
 
@@ -86,10 +93,29 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         return snattrs
     }
 
-    protected open fun getSnOn(): com.github.snabbdom.On {
-        val handlers = on(this)
-        listeners.forEach { on -> (handlers::apply)(on) }
-        return handlers
+    protected open fun getSnOn(): com.github.snabbdom.On? {
+        if (listeners.size > 0) {
+            val handlers = on(this)
+            listeners.forEach { l -> (handlers::apply)(l) }
+            return handlers
+        } else {
+            return null
+        }
+    }
+
+    protected open fun getSnHooks(): com.github.snabbdom.Hooks? {
+        val hooks = hooks()
+        hooks.apply {
+            insert = { v ->
+                vnode = v
+                afterInsert(v)
+            }
+            postpatch = { ov, v ->
+                vnode = v
+                if (ov.elm !== v.elm) afterInsert(v)
+            }
+        }
+        return hooks
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -126,11 +152,26 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         refresh()
     }
 
+    open fun getElement(): Node? {
+        return this.vnode?.elm
+    }
+
+    open fun getElementJQuery(): JQuery? {
+        return getElement()?.let { jQuery(it) }
+    }
+
+    open fun getElementJQueryD(): dynamic {
+        return getElement()?.let { jQuery(it).asDynamic() }
+    }
+
     internal fun clearParent() {
         this.parent = null
     }
 
     protected open fun refresh() {
         this.parent?.refresh()
+    }
+
+    protected open fun afterInsert(node: VNode) {
     }
 }

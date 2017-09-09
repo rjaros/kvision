@@ -8,6 +8,7 @@ import com.github.snabbdom.datasetModule
 import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.require
 import pl.treksoft.kvision.routing.routing
 import kotlin.browser.document
@@ -34,6 +35,10 @@ object KVManager {
     @Suppress("UnsafeCastFromDynamic")
     internal fun virtualize(html: String): VNode {
         return sdVirtualize(html)
+    }
+
+    fun init() {
+        jQuery(document).off(".data-api")
     }
 
     fun shutdown() {
