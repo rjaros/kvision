@@ -65,19 +65,19 @@ open class DropDown(text: String, elements: List<StringPair>, icon: String? = nu
     }
 
     override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("show.bs.dropdown", { e, _ ->
+        this.getElementJQuery()?.on("show.bs.dropdown", { _, _ ->
             val event = CustomEvent("showBsDropdown", obj({ detail = button }))
             this.getElement()?.dispatchEvent(event) as Any
         })
-        this.getElementJQuery()?.on("shown.bs.dropdown", { e, _ ->
+        this.getElementJQuery()?.on("shown.bs.dropdown", { _, _ ->
             val event = CustomEvent("shownBsDropdown", obj({ detail = button }))
             this.getElement()?.dispatchEvent(event) as Any
         })
-        this.getElementJQuery()?.on("hide.bs.dropdown", { e, _ ->
+        this.getElementJQuery()?.on("hide.bs.dropdown", { _, _ ->
             val event = CustomEvent("hideBsDropdown", obj({ detail = button }))
             this.getElement()?.dispatchEvent(event) as Any
         })
-        this.getElementJQuery()?.on("hidden.bs.dropdown", { e, _ ->
+        this.getElementJQuery()?.on("hidden.bs.dropdown", { _, _ ->
             val event = CustomEvent("hiddenBsDropdown", obj({ detail = button }))
             this.getElement()?.dispatchEvent(event) as Any
         })
