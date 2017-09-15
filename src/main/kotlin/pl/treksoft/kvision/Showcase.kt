@@ -79,6 +79,7 @@ class Showcase : ApplicationBase() {
                 println(self.text)
                 dd3.text = "Zmiana"
                 dd3.style = BUTTONSTYLE.WARNING
+                dd3.disabled = true
             }
         }
         root.add(button)

@@ -81,7 +81,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
     init {
         button.setEventListener {
             click = {
-                toggle()
+                if (!button.disabled) toggle()
             }
         }
 
