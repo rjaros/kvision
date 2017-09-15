@@ -13,10 +13,14 @@ open class Container(classes: Set<String> = setOf()) : Widget(classes) {
         return children.filter { it.visible }.map { it.render() }.toTypedArray()
     }
 
-    open fun add(child: Widget) {
+    protected fun addInternal(child: Widget) {
         children.add(child)
         child.parent = this
         refresh()
+    }
+
+    open fun add(child: Widget) {
+        addInternal(child)
     }
 
     open fun addAll(children: List<Widget>) {
@@ -33,6 +37,12 @@ open class Container(classes: Set<String> = setOf()) : Widget(classes) {
 
     open fun removeAt(index: Int) {
         children.removeAt(index).clearParent()
+        refresh()
+    }
+
+    open fun removeAll() {
+        children.map { it.clearParent() }
+        children.clear()
         refresh()
     }
 

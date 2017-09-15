@@ -47,6 +47,13 @@ class Showcase : ApplicationBase() {
             hiddenBsDropdown = { e -> println("hidden" + e.detail) }
         }
 
+        val dd3 = DropDown("Dropdown3", icon = "file")
+        dd3.add(Tag(TAG.H4, "ABC"))
+        dd3.add(Button("To jest button"))
+        dd3.add(Image(Img("kotlin.png")))
+        root.add(dd3)
+
+
         val p = Tag(TAG.P, "To jest prawo", align = ALIGN.RIGHT)
         p.title = "Tytuł"
         root.add(p)
@@ -68,7 +75,11 @@ class Showcase : ApplicationBase() {
 
         val button = Button("To jest przycisk FA", "fa-flag", BUTTONSTYLE.DANGER)
         button.setEventListener<Button> {
-            click = { _ -> println(self.text) }
+            click = { _ ->
+                println(self.text)
+                dd3.text = "Zmiana"
+                dd3.style = BUTTONSTYLE.WARNING
+            }
         }
         root.add(button)
         val button2 = Button("To jest przycisk", "flag", BUTTONSTYLE.DANGER)

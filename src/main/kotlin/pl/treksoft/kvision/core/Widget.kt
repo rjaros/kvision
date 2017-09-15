@@ -27,8 +27,9 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
 
     var visible: Boolean = true
         set(value) {
+            val oldField = field
             field = value
-            refresh()
+            if (oldField != field) refresh()
         }
     var title: String? = null
         set(value) {
