@@ -115,6 +115,10 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
                 vnode = v
                 if (ov.elm !== v.elm) afterInsert(v)
             }
+            destroy = { _ ->
+                vnode = null
+                afterDestroy()
+            }
         }
         return hooks
     }
@@ -174,5 +178,8 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
     }
 
     protected open fun afterInsert(node: VNode) {
+    }
+
+    protected open fun afterDestroy() {
     }
 }
