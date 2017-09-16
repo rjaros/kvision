@@ -24,4 +24,8 @@ class Root(id: String, private val fluid: Boolean = false) : Container() {
         rootVnode = KVManager.patch(rootVnode, render())
     }
 
+    override fun getRoot(): Root? {
+        return this
+    }
+
 }

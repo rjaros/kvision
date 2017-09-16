@@ -182,4 +182,8 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
 
     protected open fun afterDestroy() {
     }
+
+    internal open fun getRoot(): Root? {
+        return this.parent?.getRoot()
+    }
 }

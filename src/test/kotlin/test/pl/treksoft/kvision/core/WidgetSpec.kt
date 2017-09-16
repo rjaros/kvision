@@ -1,5 +1,7 @@
 package test.pl.treksoft.kvision.core
 
+import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.core.Widget
 import test.pl.treksoft.kvision.WSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -101,6 +103,17 @@ class WidgetSpec : WSpec {
             assertTrue("Should return correct jQuery object") { j != null }
             val e = j?.get()?.get(0)
             assertTrue("Should return correct dom element from jQuery object") { e == element }
+        }
+    }
+
+    @Test
+    fun getRoot() {
+        run {
+            val root = Root("test")
+            val widget = Widget()
+            root.add(widget)
+            val r = widget.getRoot()
+            assertTrue("Should return correct root element") { r == root }
         }
     }
 }
