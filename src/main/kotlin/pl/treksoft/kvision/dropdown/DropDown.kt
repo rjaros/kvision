@@ -74,9 +74,9 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         }
 
     private val idc = "kv_dropdown_" + counter
-    protected val button: DropDownButton = DropDownButton(idc, text, icon, style, size, block,
+    internal val button: DropDownButton = DropDownButton(idc, text, icon, style, size, block,
             disabled, image, setOf("dropdown"))
-    protected val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
+    internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
         button.setEventListener {

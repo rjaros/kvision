@@ -20,12 +20,12 @@ interface TestSpec {
 interface DomSpec : TestSpec {
 
     override fun beforeTest() {
-        val fixture = "<div style=\"display: none\"><div id=\"test\"></div></div>"
+        val fixture = "<div style=\"display: none\" id=\"pretest\"><div id=\"test\"></div></div>"
         document.body?.insertAdjacentHTML("afterbegin", fixture)
     }
 
     override fun afterTest() {
-        val div = document.getElementById("test")
+        val div = document.getElementById("pretest")
         div?.remove()
     }
 
