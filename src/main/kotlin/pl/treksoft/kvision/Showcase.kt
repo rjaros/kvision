@@ -8,7 +8,12 @@ import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.H1
+import pl.treksoft.kvision.modal.Alert
+import pl.treksoft.kvision.modal.Confirm
+import pl.treksoft.kvision.modal.MODALSIZE
+import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.routing.routing
+import kotlin.browser.window
 
 class Showcase : ApplicationBase() {
 
@@ -73,6 +78,11 @@ class Showcase : ApplicationBase() {
         val img = Image(Img("kotlin.png"), "Image", true, IMAGESHAPE.ROUNDED)
         root.add(img)
 
+        val modal = Modal("Test okienka")
+        modal.add(Tag(TAG.H4, "ABC"))
+        modal.add(Image(Img("kotlin.png")))
+        modal.addButton(Button("To jest button"))
+
         val button = Button("To jest przycisk FA", "fa-flag", BUTTONSTYLE.DANGER)
         button.setEventListener<Button> {
             click = { _ ->
@@ -80,9 +90,24 @@ class Showcase : ApplicationBase() {
                 dd3.text = "Zmiana"
                 dd3.style = BUTTONSTYLE.WARNING
                 dd3.disabled = true
+                modal.show()
+                window.setTimeout({
+                    modal.size = MODALSIZE.SMALL
+                    modal.animation = false
+                }, 2000)
             }
         }
         root.add(button)
+
+        fun alerts() {
+            Alert.show("This is alert", "A text of the <b>alert</b>", true) {
+                println("abc")
+                Alert.show("This is alert 2", "A text of the <b>alert</b> 2", true) {
+                    println("def")
+                }
+            }
+        }
+
         val button2 = Button("To jest przycisk", "flag", BUTTONSTYLE.DANGER)
         button2.setEventListener {
             click = { e ->
@@ -91,17 +116,20 @@ class Showcase : ApplicationBase() {
                 button.setEventListener {
                     click = null
                 }
+                alerts()
             }
         }
         root.add(button2)
         val button3 = Button("To jest przycisk IMG", image = Img("kotlin.png"))
         button3.setEventListener {
             click = { e ->
-                dd.show()
-                println("3" + e)
-                button.setEventListener<Button> {
-                    click = { _ -> println(self.text) }
-                    dblclick = { e -> println("111" + e) }
+                Confirm.show("Pytanie", "Czy na pewno chcesz kliknąć przycisk?", noCallback = { println("no") }) {
+                    dd.show()
+                    println("3" + e)
+                    button.setEventListener<Button> {
+                        click = { _ -> println(self.text) }
+                        dblclick = { e -> println("111" + e) }
+                    }
                 }
             }
         }
@@ -112,7 +140,6 @@ class Showcase : ApplicationBase() {
                 .on("/abc", { -> println("abc") })
                 .on("/test", { -> println("test") })
                 .resolve()
-
 //        jQuery(document).off(".data-api")
 
 //        routing.on(RegExp("/abc/def/(.*)/(.*)/(.*)"), { x,y,z,u,v -> println(x) })

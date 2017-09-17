@@ -19,6 +19,7 @@ enum class TAG(val tagName: String) {
     BLOCKQUOTE("blockquote"),
     FOOTER("footer"),
     PRE("pre"),
+    DIV("div"),
 
     MARK("mark"),
     DEL("del"),

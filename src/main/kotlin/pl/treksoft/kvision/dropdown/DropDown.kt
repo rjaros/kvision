@@ -73,10 +73,10 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
             refresh()
         }
 
-    val idc = "kv_dropdown_" + counter
-    val button: DropDownButton = DropDownButton(idc, text, icon, style, size, block,
+    private val idc = "kv_dropdown_" + counter
+    protected val button: DropDownButton = DropDownButton(idc, text, icon, style, size, block,
             disabled, image, setOf("dropdown"))
-    val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
+    protected val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
         button.setEventListener {

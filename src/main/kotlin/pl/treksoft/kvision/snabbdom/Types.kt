@@ -30,6 +30,10 @@ interface BtOn : On {
     var shownBsDropdown: ((DropDownEvent) -> kotlin.Unit)?
     var hideBsDropdown: ((DropDownEvent) -> kotlin.Unit)?
     var hiddenBsDropdown: ((DropDownEvent) -> kotlin.Unit)?
+    var showBsModal: ((CustomEvent) -> kotlin.Unit)?
+    var shownBsModal: ((CustomEvent) -> kotlin.Unit)?
+    var hideBsModal: ((CustomEvent) -> kotlin.Unit)?
+    var hiddenBsModal: ((CustomEvent) -> kotlin.Unit)?
 }
 
 interface SnOn<T> : BtOn {
