@@ -36,10 +36,13 @@ class Showcase : ApplicationBase() {
 
         val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)
-        dd.setEventListener<Button> {
-            showBsDropdown = { e -> println("show" + (e.detail)?.text) }
+        dd.setEventListener<DropDown> {
+            showBsDropdown = { e -> println("show" + (e.detail)) }
             shownBsDropdown = { e -> println("shown" + e.detail) }
-            hideBsDropdown = { e -> println("hide" + e.detail) }
+            hideBsDropdown = { e ->
+                println("hide" + e.detail)
+                e.detail.preventDefault()
+            }
             hiddenBsDropdown = { e -> println("hidden" + e.detail) }
         }
 
@@ -47,7 +50,7 @@ class Showcase : ApplicationBase() {
                 "Header" to HEADER.POS, "Separtatorek" to SEPARATOR.POS
         ), "flag", dropup = true)
         root.add(dd2)
-        dd2.setEventListener<Button> {
+        dd2.setEventListener<DropDown> {
             hideBsDropdown = { e -> println("hide" + e.detail) }
             hiddenBsDropdown = { e -> println("hidden" + e.detail) }
         }
@@ -82,7 +85,9 @@ class Showcase : ApplicationBase() {
         modal.add(Tag(TAG.H4, "ABC"))
         modal.add(Image(Img("kotlin.png")))
         modal.addButton(Button("To jest button"))
-
+/*        modal.setEventListener<Modal> {
+            hideBsModal = { e -> e.detail.preventDefault() }
+        }*/
         val button = Button("To jest przycisk FA", "fa-flag", BUTTONSTYLE.DANGER)
         button.setEventListener<Button> {
             click = { _ ->

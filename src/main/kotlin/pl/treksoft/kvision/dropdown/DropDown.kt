@@ -131,21 +131,21 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("show.bs.dropdown", { _, _ ->
-            val event = CustomEvent("showBsDropdown", obj({ detail = button }))
+        this.getElementJQuery()?.on("show.bs.dropdown", { e, _ ->
+            val event = CustomEvent("showBsDropdown", obj({ detail = e }))
             this.getElement()?.dispatchEvent(event)
         })
-        this.getElementJQuery()?.on("shown.bs.dropdown", { _, _ ->
-            val event = CustomEvent("shownBsDropdown", obj({ detail = button }))
+        this.getElementJQuery()?.on("shown.bs.dropdown", { e, _ ->
+            val event = CustomEvent("shownBsDropdown", obj({ detail = e }))
             this.getElement()?.dispatchEvent(event)
         })
-        this.getElementJQuery()?.on("hide.bs.dropdown", { _, _ ->
-            val event = CustomEvent("hideBsDropdown", obj({ detail = button }))
+        this.getElementJQuery()?.on("hide.bs.dropdown", { e, _ ->
+            val event = CustomEvent("hideBsDropdown", obj({ detail = e }))
             this.getElement()?.dispatchEvent(event)
         })
-        this.getElementJQuery()?.on("hidden.bs.dropdown", { _, _ ->
+        this.getElementJQuery()?.on("hidden.bs.dropdown", { e, _ ->
             list.visible = false
-            val event = CustomEvent("hiddenBsDropdown", obj({ detail = button }))
+            val event = CustomEvent("hiddenBsDropdown", obj({ detail = e }))
             this.getElement()?.dispatchEvent(event)
         })
     }
@@ -161,7 +161,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
 
     open fun toggle() {
         if (list.visible)
-            list.hide()
+            list.hideInternal()
         else
             list.show()
     }
@@ -199,14 +199,14 @@ open class DropDownListTag(private val ariaId: String, classes: Set<String> = se
     }
 
     @Suppress("UnsafeCastFromDynamic")
-    private fun showInternal() {
+    internal fun showInternal() {
         if (getElementJQueryD()?.`is`(":hidden")) {
             getElementJQueryD()?.dropdown("toggle")
         }
     }
 
     @Suppress("UnsafeCastFromDynamic")
-    private fun hideInternal() {
+    internal fun hideInternal() {
         if (!getElementJQueryD()?.`is`(":hidden")) {
             getElementJQueryD()?.dropdown("toggle")
         }

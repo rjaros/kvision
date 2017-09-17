@@ -132,21 +132,21 @@ open class Modal(caption: String? = null, closeButton: Boolean = true,
             keyboard = escape
             backdrop = if (escape) "true" else "static"
         })
-        this.getElementJQuery()?.on("show.bs.modal", { _, _ ->
-            val event = CustomEvent("showBsModal")
+        this.getElementJQuery()?.on("show.bs.modal", { e, _ ->
+            val event = CustomEvent("showBsModal", obj({ detail = e }))
             this.getElement()?.dispatchEvent(event)
         })
-        this.getElementJQuery()?.on("shown.bs.modal", { _, _ ->
-            val event = CustomEvent("shownBsModal")
+        this.getElementJQuery()?.on("shown.bs.modal", { e, _ ->
+            val event = CustomEvent("shownBsModal", obj({ detail = e }))
             this.getElement()?.dispatchEvent(event)
         })
-        this.getElementJQuery()?.on("hide.bs.modal", { _, _ ->
-            val event = CustomEvent("hideBsModal")
+        this.getElementJQuery()?.on("hide.bs.modal", { e, _ ->
+            val event = CustomEvent("hideBsModal", obj({ detail = e }))
             this.getElement()?.dispatchEvent(event)
         })
-        this.getElementJQuery()?.on("hidden.bs.modal", { _, _ ->
+        this.getElementJQuery()?.on("hidden.bs.modal", { e, _ ->
             this.visible = false
-            val event = CustomEvent("hiddenBsModal")
+            val event = CustomEvent("hiddenBsModal", obj({ detail = e }))
             this.getElement()?.dispatchEvent(event)
         })
     }

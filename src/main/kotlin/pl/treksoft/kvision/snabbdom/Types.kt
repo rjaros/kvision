@@ -9,8 +9,8 @@ import com.github.snabbdom.VNodeData
 import com.github.snabbdom.VNodeStyle
 import org.w3c.dom.CustomEvent
 import org.w3c.dom.CustomEventInit
+import pl.treksoft.jquery.JQueryEventObject
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.html.Button
 
 external class Object
 
@@ -21,19 +21,19 @@ fun obj(init: dynamic.() -> Unit): dynamic {
 @Suppress("UnsafeCastFromDynamic")
 private fun vNodeData(): VNodeData = js("({})")
 
-class DropDownEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, eventInitDict) {
-    override val detail: Button? = null
+class KvEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, eventInitDict) {
+    override val detail: JQueryEventObject = obj({})
 }
 
 interface BtOn : On {
-    var showBsDropdown: ((DropDownEvent) -> kotlin.Unit)?
-    var shownBsDropdown: ((DropDownEvent) -> kotlin.Unit)?
-    var hideBsDropdown: ((DropDownEvent) -> kotlin.Unit)?
-    var hiddenBsDropdown: ((DropDownEvent) -> kotlin.Unit)?
-    var showBsModal: ((CustomEvent) -> kotlin.Unit)?
-    var shownBsModal: ((CustomEvent) -> kotlin.Unit)?
-    var hideBsModal: ((CustomEvent) -> kotlin.Unit)?
-    var hiddenBsModal: ((CustomEvent) -> kotlin.Unit)?
+    var showBsDropdown: ((KvEvent) -> kotlin.Unit)?
+    var shownBsDropdown: ((KvEvent) -> kotlin.Unit)?
+    var hideBsDropdown: ((KvEvent) -> kotlin.Unit)?
+    var hiddenBsDropdown: ((KvEvent) -> kotlin.Unit)?
+    var showBsModal: ((KvEvent) -> kotlin.Unit)?
+    var shownBsModal: ((KvEvent) -> kotlin.Unit)?
+    var hideBsModal: ((KvEvent) -> kotlin.Unit)?
+    var hiddenBsModal: ((KvEvent) -> kotlin.Unit)?
 }
 
 interface SnOn<T> : BtOn {
