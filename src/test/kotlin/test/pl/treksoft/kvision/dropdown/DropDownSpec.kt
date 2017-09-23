@@ -84,9 +84,6 @@ class DropDownSpec : DomSpec {
             assertTrue("Dropdown is visible after toggle") { classes?.contains("open") == true }
             val menu2 = dd.list.getElementJQuery()
             assertTrue("Dropdown menu is rendered after toggle") { menu2 != null }
-            dd.toggle()
-            val menu3 = dd.list.getElementJQuery()
-            assertTrue("Dropdown menu is not rendered after second toggle") { menu3 == null }
         }
     }
 }
