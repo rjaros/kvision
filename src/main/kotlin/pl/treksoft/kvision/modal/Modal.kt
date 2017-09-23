@@ -87,28 +87,34 @@ open class Modal(caption: String? = null, closeButton: Boolean = true,
         }
     }
 
-    override fun add(child: Widget) {
+    override fun add(child: Widget): Container {
         body.add(child)
+        return this
     }
 
-    override fun addAll(children: List<Widget>) {
+    override fun addAll(children: List<Widget>): Container {
         body.addAll(children)
+        return this
     }
 
-    open fun addButton(button: Button) {
+    open fun addButton(button: Button): Modal {
         footer.add(button)
+        return this
     }
 
-    open fun removeButton(button: Button) {
+    open fun removeButton(button: Button): Modal {
         footer.remove(button)
+        return this
     }
 
-    open fun removeButtonAt(index: Int) {
+    open fun removeButtonAt(index: Int): Modal {
         footer.removeAt(index)
+        return this
     }
 
-    open fun removeAllButtons() {
+    open fun removeAllButtons(): Modal {
         footer.removeAll()
+        return this
     }
 
     override fun getSnAttrs(): List<StringPair> {
@@ -151,9 +157,9 @@ open class Modal(caption: String? = null, closeButton: Boolean = true,
         })
     }
 
-    override fun hide() {
+    override fun hide(): Widget {
         if (visible) hideInternal()
-        super.hide()
+        return super.hide()
     }
 
     open fun toggle() {

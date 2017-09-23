@@ -124,37 +124,44 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
     }
 
     @Suppress("UNCHECKED_CAST")
-    open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit) {
+    open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Widget {
         listeners.add(block as SnOn<Widget>.() -> Unit)
         refresh()
+        return this
     }
 
-    open fun setEventListener(block: SnOn<Widget>.() -> Unit) {
+    open fun setEventListener(block: SnOn<Widget>.() -> Unit): Widget {
         listeners.add(block)
         refresh()
+        return this
     }
 
-    open fun removeEventListeners() {
+    open fun removeEventListeners(): Widget {
         listeners.clear()
         refresh()
+        return this
     }
 
-    open fun show() {
+    open fun show(): Widget {
         visible = true
+        return this
     }
 
-    open fun hide() {
+    open fun hide(): Widget {
         visible = false
+        return this
     }
 
-    open fun addCssClass(css: String) {
+    open fun addCssClass(css: String): Widget {
         this.classes.add(css)
         refresh()
+        return this
     }
 
-    open fun removeCssClass(css: String) {
+    open fun removeCssClass(css: String): Widget {
         this.classes.remove(css)
         refresh()
+        return this
     }
 
     open fun getElement(): Node? {
@@ -169,12 +176,14 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         return getElement()?.let { jQuery(it).asDynamic() }
     }
 
-    internal fun clearParent() {
+    internal fun clearParent(): Widget {
         this.parent = null
+        return this
     }
 
-    protected open fun refresh() {
+    protected open fun refresh(): Widget {
         this.parent?.refresh()
+        return this
     }
 
     protected open fun afterInsert(node: VNode) {

@@ -33,8 +33,9 @@ class Root(id: String, private val fluid: Boolean = false) : Container() {
         return super.getSnClass() + (css to true)
     }
 
-    override fun refresh() {
+    override fun refresh(): Widget {
         rootVnode = KVManager.patch(rootVnode, render())
+        return this
     }
 
     override fun getRoot(): Root? {

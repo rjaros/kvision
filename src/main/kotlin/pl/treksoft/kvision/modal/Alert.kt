@@ -1,5 +1,6 @@
 package pl.treksoft.kvision.modal
 
+import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.ALIGN
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.html.Button
@@ -38,9 +39,10 @@ open class Alert(caption: String? = null, text: String? = null, rich: Boolean = 
         this.addButton(okButton)
     }
 
-    override fun hide() {
+    override fun hide(): Widget {
         super.hide()
         this.callback?.invoke()
+        return this
     }
 
     companion object {

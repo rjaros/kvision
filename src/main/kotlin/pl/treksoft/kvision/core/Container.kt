@@ -13,37 +13,42 @@ open class Container(classes: Set<String> = setOf()) : Widget(classes) {
         return children.filter { it.visible }.map { it.render() }.toTypedArray()
     }
 
-    protected fun addInternal(child: Widget) {
+    protected fun addInternal(child: Widget): Container {
         children.add(child)
         child.parent = this
         refresh()
+        return this
     }
 
-    open fun add(child: Widget) {
-        addInternal(child)
+    open fun add(child: Widget): Container {
+        return addInternal(child)
     }
 
-    open fun addAll(children: List<Widget>) {
+    open fun addAll(children: List<Widget>): Container {
         this.children.addAll(children)
         children.map { it.parent = this }
         refresh()
+        return this
     }
 
-    open fun remove(child: Widget) {
+    open fun remove(child: Widget): Container {
         children.remove(child)
         child.clearParent()
         refresh()
+        return this
     }
 
-    open fun removeAt(index: Int) {
+    open fun removeAt(index: Int): Container {
         children.removeAt(index).clearParent()
         refresh()
+        return this
     }
 
-    open fun removeAll() {
+    open fun removeAll(): Container {
         children.map { it.clearParent() }
         children.clear()
         refresh()
+        return this
     }
 
 }

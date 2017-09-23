@@ -96,12 +96,14 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         var counter = 0
     }
 
-    override fun add(child: Widget) {
+    override fun add(child: Widget): Container {
         list.add(child)
+        return this
     }
 
-    override fun addAll(children: List<Widget>) {
+    override fun addAll(children: List<Widget>): Container {
         list.addAll(children)
+        return this
     }
 
     private fun setChildrenFromElements() {
@@ -189,9 +191,9 @@ open class DropDownListTag(private val ariaId: String, classes: Set<String> = se
         return super.getSnAttrs() + listOf("aria-labelledby" to ariaId)
     }
 
-    override fun hide() {
+    override fun hide(): Widget {
         if (visible) hideInternal()
-        super.hide()
+        return super.hide()
     }
 
     override fun afterInsert(node: VNode) {
