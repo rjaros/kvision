@@ -52,6 +52,7 @@ kotlinFrontend {
         dependency("snabbdom", "0.6.9")
         dependency "snabbdom-virtualize"
         dependency "navigo"
+        dependency "jquery-resizable-dom"
         devDependency("karma")
     }
 

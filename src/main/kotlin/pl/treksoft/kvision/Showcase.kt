@@ -10,10 +10,11 @@ import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.H1
 import pl.treksoft.kvision.modal.Alert
 import pl.treksoft.kvision.modal.Confirm
-import pl.treksoft.kvision.modal.MODALSIZE
 import pl.treksoft.kvision.modal.Modal
+import pl.treksoft.kvision.panel.DIRECTION
+import pl.treksoft.kvision.panel.SplitPanel
 import pl.treksoft.kvision.routing.routing
-import kotlin.browser.window
+import pl.treksoft.kvision.tabs.Tabs
 
 class Showcase : ApplicationBase() {
 
@@ -46,8 +47,8 @@ class Showcase : ApplicationBase() {
             hiddenBsDropdown = { e -> println("hidden" + e.detail) }
         }
 
-        val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.POS,
-                "Header" to HEADER.POS, "Separtatorek" to SEPARATOR.POS
+        val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.type,
+                "Header" to HEADER.type, "Separtatorek" to SEPARATOR.type
         ), "flag", dropup = true)
         root.add(dd2)
         dd2.setEventListener<DropDown> {
@@ -61,6 +62,27 @@ class Showcase : ApplicationBase() {
         dd3.add(Image(Img("kotlin.png")))
         root.add(dd3)
 
+        val tabs2 = Tabs()
+        tabs2.addTab("XXX", Label("XXX"), "fa-flag")
+        tabs2.addTab("YYY", Label("YYY"), "fa-flag")
+
+        val tabs = Tabs()
+        tabs.addTab("Test zakładki", Label("test zakładki"), "fa-flag")
+        tabs.addTab("Test zakładki2", Label("test zakładki2"))
+        tabs.addTab("Test zakładki3", tabs2, "fa-bars")
+
+        val split = SplitPanel()
+        split.add(tabs)
+
+        val split2 = SplitPanel(DIRECTION.HORIZONTAL)
+        split2.add(Tag(TAG.DIV, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus.\n" +
+                "\n" +
+                "Proin porttitor diam id massa eleifend aliquet. Morbi nec erat porttitor, placerat lorem et, dignissim lectus. Cras ultricies posuere arcu, et pharetra dui laoreet in. Sed nec ipsum in sapien vestibulum maximus eu id nunc. Ut finibus aliquam nisi id vehicula. Phasellus sodales lobortis orci, non interdum risus dignissim quis. Proin bibendum consectetur diam nec mattis. Suspendisse dictum vulputate metus at tincidunt."))
+        split2.add(Tag(TAG.DIV, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus.\n" +
+                "\n" +
+                "Proin porttitor diam id massa eleifend aliquet. Morbi nec erat porttitor, placerat lorem et, dignissim lectus. Cras ultricies posuere arcu, et pharetra dui laoreet in. Sed nec ipsum in sapien vestibulum maximus eu id nunc. Ut finibus aliquam nisi id vehicula. Phasellus sodales lobortis orci, non interdum risus dignissim quis. Proin bibendum consectetur diam nec mattis. Suspendisse dictum vulputate metus at tincidunt."))
+        split.add(split2)
+        root.add(split)
 
         val p = Tag(TAG.P, "To jest prawo", align = ALIGN.RIGHT)
         p.title = "Tytuł"
@@ -95,11 +117,16 @@ class Showcase : ApplicationBase() {
                 dd3.text = "Zmiana"
                 dd3.style = BUTTONSTYLE.WARNING
                 dd3.disabled = true
-                modal.show()
+/*                modal.show()
                 window.setTimeout({
                     modal.size = MODALSIZE.SMALL
                     modal.animation = false
-                }, 2000)
+                }, 2000)*/
+                if (split.visible) {
+                    split.hide()
+                } else {
+                    split.show()
+                }
             }
         }
         root.add(button)

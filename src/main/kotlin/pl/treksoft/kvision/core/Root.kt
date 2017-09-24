@@ -4,7 +4,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
-class Root(id: String, private val fluid: Boolean = false) : Container() {
+class Root(id: String, private val fluid: Boolean = true) : Container() {
     private val modals: MutableList<Modal> = mutableListOf()
     private var rootVnode: VNode = render()
 

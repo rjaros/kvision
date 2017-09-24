@@ -8,19 +8,23 @@ import com.github.snabbdom.datasetModule
 import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
+import org.w3c.dom.Node
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.require
 import pl.treksoft.kvision.routing.routing
+import pl.treksoft.kvision.snabbdom.obj
 import kotlin.browser.document
 import kotlin.dom.clear
 
 object KVManager {
     private val bootstrapWebpack = require("bootstrap-webpack")
     private val fontAwesomeWebpack = require("font-awesome-webpack")
+    private val resizable = require("jquery-resizable-dom")
 
     private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,
             eventListenersModule, datasetModule))
     private val sdVirtualize = require("snabbdom-virtualize/strings").default
+    private val splitCss = require("./css/style.css")
 
     internal fun patch(id: String, vnode: VNode): VNode {
         val container = document.getElementById(id)

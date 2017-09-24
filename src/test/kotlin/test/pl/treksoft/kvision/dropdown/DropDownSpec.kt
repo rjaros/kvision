@@ -39,7 +39,7 @@ class DropDownSpec : DomSpec {
     fun render_HeaderElement() {
         run {
             val root = Root("test")
-            val dd = DropDown("Dropdown", listOf("abc" to DD.HEADER.POS), "flag")
+            val dd = DropDown("Dropdown", listOf("abc" to DD.HEADER.type), "flag")
             root.add(dd)
             dd.toggle()
             val element = document.getElementById("test")
@@ -51,7 +51,7 @@ class DropDownSpec : DomSpec {
     fun render_SeparatorElement() {
         run {
             val root = Root("test")
-            val dd = DropDown("Dropdown", listOf("abc" to DD.SEPARATOR.POS), "flag")
+            val dd = DropDown("Dropdown", listOf("abc" to DD.SEPARATOR.type), "flag")
             root.add(dd)
             dd.toggle()
             val element = document.getElementById("test")
@@ -63,7 +63,7 @@ class DropDownSpec : DomSpec {
     fun render_DisabledElement() {
         run {
             val root = Root("test")
-            val dd = DropDown("Dropdown", listOf("abc" to DD.DISABLED.POS), "flag")
+            val dd = DropDown("Dropdown", listOf("abc" to DD.DISABLED.type), "flag")
             root.add(dd)
             dd.toggle()
             val element = document.getElementById("test")

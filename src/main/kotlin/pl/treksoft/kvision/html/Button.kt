@@ -1,7 +1,6 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -63,17 +62,7 @@ open class Button(text: String, icon: String? = null, style: BUTTONSTYLE = BUTTO
         }
 
     override fun render(): VNode {
-        val t = if (icon != null) {
-            if (icon?.startsWith("fa-") == true) {
-                arrayOf(KVManager.virtualize("<i class='fa $icon fa-lg'></i>"), " " + text)
-            } else {
-                arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " " + text)
-            }
-        } else if (image != null) {
-            arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " " + text)
-        } else {
-            arrayOf(text)
-        }
+        val t = createLabelWithIcon(text, icon, image)
         return kvh("button", t)
     }
 

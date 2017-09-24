@@ -46,6 +46,16 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
             field = value
             refresh()
         }
+    var width: Int? = null
+        set(value) {
+            field = value
+            refresh()
+        }
+    var height: Int? = null
+        set(value) {
+            field = value
+            refresh()
+        }
 
     private var vnode: VNode? = null
 
@@ -72,7 +82,14 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
     }
 
     protected open fun getSnStyle(): List<StringPair> {
-        return listOf()
+        val snstyle = mutableListOf<StringPair>()
+        if (width != null) {
+            snstyle.add("width" to width.toString() + "px")
+        }
+        if (height != null) {
+            snstyle.add("height" to height.toString() + "px")
+        }
+        return snstyle
     }
 
     protected open fun getSnClass(): List<StringBoolPair> {
@@ -194,5 +211,20 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
 
     internal open fun getRoot(): Root? {
         return this.parent?.getRoot()
+    }
+
+    protected open fun createLabelWithIcon(label: String, icon: String? = null,
+                                           image: ResString? = null): Array<out Any> {
+        return if (icon != null) {
+            if (icon.startsWith("fa-") == true) {
+                arrayOf(KVManager.virtualize("<i class='fa $icon fa-lg'></i>"), " " + label)
+            } else {
+                arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " " + label)
+            }
+        } else if (image != null) {
+            arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " " + label)
+        } else {
+            arrayOf(label)
+        }
     }
 }

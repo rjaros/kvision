@@ -17,7 +17,7 @@ import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 import pl.treksoft.kvision.snabbdom.obj
 
-enum class DD(val POS: String) {
+enum class DD(val type: String) {
     HEADER("DD#HEADER"),
     DISABLED("DD#DISABLED"),
     SEPARATOR("DD#SEPARATOR")
@@ -111,13 +111,13 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         if (elems != null) {
             val c = elems.map {
                 when (it.second) {
-                    DD.HEADER.POS -> Tag(TAG.LI, it.first, classes = setOf("dropdown-header"))
-                    DD.SEPARATOR.POS -> {
+                    DD.HEADER.type -> Tag(TAG.LI, it.first, classes = setOf("dropdown-header"))
+                    DD.SEPARATOR.type -> {
                         val tag = Tag(TAG.LI, it.first, classes = setOf("divider"))
                         tag.role = "separator"
                         tag
                     }
-                    DD.DISABLED.POS -> {
+                    DD.DISABLED.type -> {
                         val tag = Tag(TAG.LI, classes = setOf("disabled"))
                         tag.add(Link(it.first, "#"))
                         tag
