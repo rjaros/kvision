@@ -3,6 +3,7 @@ package pl.treksoft.kvision.core
 import com.github.snabbdom.VNode
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.h
+import org.w3c.dom.CustomEventInit
 import org.w3c.dom.Node
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
@@ -226,5 +227,10 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         } else {
             arrayOf(label)
         }
+    }
+
+    internal open fun dispatchEvent(type: String, eventInitDict: CustomEventInit): Boolean? {
+        val event = org.w3c.dom.CustomEvent(type, eventInitDict)
+        return this.getElement()?.dispatchEvent(event)
     }
 }

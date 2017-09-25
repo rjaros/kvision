@@ -2,6 +2,7 @@ package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
+import pl.treksoft.jquery.JQueryEventObject
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -17,19 +18,28 @@ open class SplitPanel(val direction: DIRECTION = DIRECTION.VERTICAL,
 
     internal val splitter = Splitter(this, direction)
 
+    @Suppress("UnsafeCastFromDynamic")
     internal fun afterInsertSplitter() {
         if (children.size == 2) {
             val horizontal = direction == DIRECTION.HORIZONTAL
+            val self = this
             children[0].getElementJQueryD().resizable(obj {
                 handleSelector = "#" + splitter.id
                 resizeWidth = !horizontal
                 resizeHeight = horizontal
-                onDragEnd = { _: dynamic, el: JQuery, _: dynamic ->
+                onDrag = lok@ { e: JQueryEventObject, _: JQuery, newWidth: Int, newHeight: Int, _: dynamic ->
+                    e.asDynamic()["newWidth"] = newWidth
+                    e.asDynamic()["newHeight"] = newHeight
+                    self.dispatchEvent("dragSplitPanel", obj({ detail = e }))
+                    return@lok !e.isDefaultPrevented()
+                }
+                onDragEnd = { e: JQueryEventObject, el: JQuery, _: dynamic ->
                     if (horizontal) {
                         children[0].height = el.height().toInt()
                     } else {
                         children[0].width = el.width().toInt()
                     }
+                    self.dispatchEvent("dragEndSplitPanel", obj({ detail = e }))
                 }
             })
         }

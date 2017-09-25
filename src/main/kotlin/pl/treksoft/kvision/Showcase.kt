@@ -83,6 +83,13 @@ class Showcase : ApplicationBase() {
                 "Proin porttitor diam id massa eleifend aliquet. Morbi nec erat porttitor, placerat lorem et, dignissim lectus. Cras ultricies posuere arcu, et pharetra dui laoreet in. Sed nec ipsum in sapien vestibulum maximus eu id nunc. Ut finibus aliquam nisi id vehicula. Phasellus sodales lobortis orci, non interdum risus dignissim quis. Proin bibendum consectetur diam nec mattis. Suspendisse dictum vulputate metus at tincidunt."))
         split.add(split2)
         root.add(split)
+        split.setEventListener<SplitPanel> {
+            dragSplitPanel = { e ->
+                if ((e.detail.asDynamic()).newWidth > 400) {
+                    e.detail.preventDefault()
+                }
+            }
+        }
 
         val p = Tag(TAG.P, "To jest prawo", align = ALIGN.RIGHT)
         p.title = "Tytuł"

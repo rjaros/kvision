@@ -34,6 +34,8 @@ interface BtOn : On {
     var shownBsModal: ((KvEvent) -> kotlin.Unit)?
     var hideBsModal: ((KvEvent) -> kotlin.Unit)?
     var hiddenBsModal: ((KvEvent) -> kotlin.Unit)?
+    var dragSplitPanel: ((KvEvent) -> kotlin.Unit)?
+    var dragEndSplitPanel: ((KvEvent) -> kotlin.Unit)?
 }
 
 interface SnOn<T> : BtOn {
