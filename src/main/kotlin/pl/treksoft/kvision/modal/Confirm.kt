@@ -26,14 +26,14 @@ open class Confirm(caption: String? = null, text: String? = null, rich: Boolean 
         set(value) {
             content.align = value
         }
-    var cancelVisible = cancelVisible
+    private var cancelVisible = cancelVisible
         set(value) {
             field = value
             refreshCancelButton()
         }
 
-    val content = Tag(TAG.SPAN, text, rich, align)
-    val cancelButton = Button("Cancel", "remove")
+    private val content = Tag(TAG.SPAN, text, rich, align)
+    private val cancelButton = Button("Cancel", "remove")
 
     init {
         body.add(content)

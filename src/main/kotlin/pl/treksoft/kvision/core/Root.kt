@@ -46,10 +46,10 @@ class Root(id: String, private val fluid: Boolean = true) : Container() {
         private val roots: MutableList<Root> = mutableListOf()
 
         internal fun getLastRoot(): Root? {
-            if (roots.size > 0)
-                return roots[roots.size - 1]
+            return if (roots.size > 0)
+                roots[roots.size - 1]
             else
-                return null
+                null
         }
     }
 }

@@ -26,7 +26,7 @@ open class Alert(caption: String? = null, text: String? = null, rich: Boolean = 
             content.align = value
         }
 
-    val content = Tag(TAG.SPAN, text, rich, align)
+    private val content = Tag(TAG.SPAN, text, rich, align)
 
     init {
         body.add(content)

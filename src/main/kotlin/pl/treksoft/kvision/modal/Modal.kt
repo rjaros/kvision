@@ -1,7 +1,6 @@
 package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.CustomEvent
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.core.Widget
@@ -20,15 +19,15 @@ enum class MODALSIZE(val className: String) {
 
 @Suppress("TooManyFunctions")
 open class Modal(caption: String? = null, closeButton: Boolean = true,
-                 size: MODALSIZE? = null, animation: Boolean = true, val escape: Boolean = true,
+                 size: MODALSIZE? = null, animation: Boolean = true, private val escape: Boolean = true,
                  classes: Set<String> = setOf()) : Container(classes) {
-    var caption
+    private var caption
         get() = captionTag.text
         set(value) {
             captionTag.text = value
             checkHeaderVisibility()
         }
-    var closeButton
+    private var closeButton
         get() = closeIcon.visible
         set(value) {
             closeIcon.visible = value
@@ -39,18 +38,18 @@ open class Modal(caption: String? = null, closeButton: Boolean = true,
         set(value) {
             dialog.size = value
         }
-    var animation = animation
+    private var animation = animation
         set(value) {
             field = value
             refresh()
         }
 
-    protected val dialog = ModalDialog(size)
-    protected val header = Container(setOf("modal-header"))
+    private val dialog = ModalDialog(size)
+    private val header = Container(setOf("modal-header"))
     protected val closeIcon = CloseIcon()
-    protected val captionTag = Tag(TAG.H4, caption, classes = setOf("modal-title"))
+    private val captionTag = Tag(TAG.H4, caption, classes = setOf("modal-title"))
     protected val body = Container(setOf("modal-body"))
-    protected val footer = Container(setOf("modal-footer"))
+    private val footer = Container(setOf("modal-footer"))
 
     init {
         this.hide()
@@ -73,6 +72,7 @@ open class Modal(caption: String? = null, closeButton: Boolean = true,
         content.add(footer)
         val root = Root.getLastRoot()
         if (root != null) {
+            @Suppress("LeakingThis")
             root.addModal(this)
         } else {
             println("At least one Root object is required to create a modal!")

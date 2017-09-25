@@ -113,12 +113,12 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
     }
 
     protected open fun getSnOn(): com.github.snabbdom.On? {
-        if (listeners.size > 0) {
+        return if (listeners.size > 0) {
             val handlers = on(this)
             listeners.forEach { l -> (handlers::apply)(l) }
-            return handlers
+            handlers
         } else {
-            return null
+            null
         }
     }
 
@@ -217,7 +217,7 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
     protected open fun createLabelWithIcon(label: String, icon: String? = null,
                                            image: ResString? = null): Array<out Any> {
         return if (icon != null) {
-            if (icon.startsWith("fa-") == true) {
+            if (icon.startsWith("fa-")) {
                 arrayOf(KVManager.virtualize("<i class='fa $icon fa-lg'></i>"), " " + label)
             } else {
                 arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " " + label)

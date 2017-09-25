@@ -14,27 +14,27 @@ enum class IMAGESHAPE(val className: String) {
 
 open class Image(src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGESHAPE? = null,
                  centered: Boolean = false, classes: Set<String> = setOf()) : Widget(classes) {
-    var src = src
+    private var src = src
         set(value) {
             field = value
             refresh()
         }
-    var alt = alt
+    private var alt = alt
         set(value) {
             field = value
             refresh()
         }
-    var responsive = responsive
+    private var responsive = responsive
         set(value) {
             field = value
             refresh()
         }
-    var shape = shape
+    private var shape = shape
         set(value) {
             field = value
             refresh()
         }
-    var centered = centered
+    private var centered = centered
         set(value) {
             field = value
             refresh()

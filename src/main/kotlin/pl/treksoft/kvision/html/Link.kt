@@ -7,22 +7,22 @@ import pl.treksoft.kvision.snabbdom.StringPair
 
 open class Link(label: String, url: String, icon: String? = null, image: ResString? = null,
                 classes: Set<String> = setOf()) : Container(classes) {
-    var label = label
+    private var label = label
         set(value) {
             field = value
             refresh()
         }
-    var url = url
+    private var url = url
         set(value) {
             field = value
             refresh()
         }
-    var icon = icon
+    private var icon = icon
         set(value) {
             field = value
             refresh()
         }
-    var image = image
+    private var image = image
         set(value) {
             field = value
             refresh()

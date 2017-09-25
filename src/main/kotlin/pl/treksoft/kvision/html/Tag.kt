@@ -73,7 +73,7 @@ open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: AL
         }
 
     override fun render(): VNode {
-        val ret = if (text != null) {
+        return if (text != null) {
             if (rich) {
                 kvh(type.tagName, arrayOf(KVManager.virtualize("<span>$text</span>")) + childrenVNodes())
             } else {
@@ -82,7 +82,6 @@ open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: AL
         } else {
             kvh(type.tagName, childrenVNodes())
         }
-        return ret
     }
 
     override fun getSnClass(): List<StringBoolPair> {

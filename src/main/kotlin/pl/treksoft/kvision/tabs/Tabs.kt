@@ -9,9 +9,9 @@ import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.StackPanel
 
 open class Tabs : Container(setOf()) {
-    internal var nav = Tag(TAG.UL, classes = setOf("nav", "nav-tabs"))
-    internal var content = StackPanel(false)
-    var activeIndex
+    private var nav = Tag(TAG.UL, classes = setOf("nav", "nav-tabs"))
+    private var content = StackPanel(false)
+    private var activeIndex
         get() = content.activeIndex
         set(value) {
             content.activeIndex = value

@@ -13,10 +13,11 @@ enum class DIRECTION(val dir: String) {
     VERTICAL("vertical")
 }
 
-open class SplitPanel(val direction: DIRECTION = DIRECTION.VERTICAL,
+open class SplitPanel(private val direction: DIRECTION = DIRECTION.VERTICAL,
                       classes: Set<String> = setOf()) : Container(classes + ("splitpanel-" + direction.dir)) {
 
-    internal val splitter = Splitter(this, direction)
+    @Suppress("LeakingThis")
+    private val splitter = Splitter(this, direction)
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun afterInsertSplitter() {
@@ -54,7 +55,7 @@ open class SplitPanel(val direction: DIRECTION = DIRECTION.VERTICAL,
     }
 }
 
-class Splitter(val splitPanel: SplitPanel, direction: DIRECTION) : Tag(TAG.DIV,
+class Splitter(private val splitPanel: SplitPanel, direction: DIRECTION) : Tag(TAG.DIV,
         classes = setOf("splitter-" + direction.dir)) {
     private val idc = "kv_splitter_" + counter
 

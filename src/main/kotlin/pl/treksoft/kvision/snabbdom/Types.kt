@@ -21,6 +21,7 @@ fun obj(init: dynamic.() -> Unit): dynamic {
 @Suppress("UnsafeCastFromDynamic")
 private fun vNodeData(): VNodeData = js("({})")
 
+@Suppress("UnsafeCastFromDynamic")
 class KvEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, eventInitDict) {
     override val detail: JQueryEventObject = obj({})
 }

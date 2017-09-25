@@ -175,9 +175,9 @@ class Showcase : ApplicationBase() {
         root.add(button3)
 
         println("init routing")
-        routing.on({ -> println("root") })
-                .on("/abc", { -> println("abc") })
-                .on("/test", { -> println("test") })
+        routing.on({ _ -> println("root") })
+                .on("/abc", { _ -> println("abc") })
+                .on("/test", { _ -> println("test") })
                 .resolve()
 //        jQuery(document).off(".data-api")
 
@@ -204,6 +204,6 @@ class Showcase : ApplicationBase() {
     }
 
     override fun dispose(): Map<String, Any> {
-        return mapOf<String, Any>()
+        return mapOf()
     }
 }

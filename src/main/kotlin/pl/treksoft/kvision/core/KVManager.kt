@@ -8,11 +8,9 @@ import com.github.snabbdom.datasetModule
 import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
-import org.w3c.dom.Node
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.require
 import pl.treksoft.kvision.routing.routing
-import pl.treksoft.kvision.snabbdom.obj
 import kotlin.browser.document
 import kotlin.dom.clear
 

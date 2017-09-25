@@ -1,7 +1,6 @@
 package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.CustomEvent
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.Widget
@@ -32,7 +31,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         set(value) {
             button.text = value
         }
-    var elements = elements
+    private var elements = elements
         set(value) {
             field = elements
             setChildrenFromElements()
@@ -67,7 +66,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         set(value) {
             button.image = value
         }
-    var dropup = dropup
+    private var dropup = dropup
         set(value) {
             field = value
             refresh()
@@ -197,7 +196,7 @@ open class DropDownListTag(private val ariaId: String, classes: Set<String> = se
     }
 
     @Suppress("UnsafeCastFromDynamic")
-    internal fun showInternal() {
+    private fun showInternal() {
         if (getElementJQueryD()?.`is`(":hidden")) {
             getElementJQueryD()?.dropdown("toggle")
         }

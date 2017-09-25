@@ -22,12 +22,12 @@ open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = f
             field = value
             refresh()
         }
-    var elements = elements
+    private var elements = elements
         set(value) {
             field = value
             refresh()
         }
-    var rich = rich
+    private var rich = rich
         set(value) {
             field = value
             refresh()
@@ -40,10 +40,10 @@ open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = f
                 element(if (index % 2 == 0) "dt" else "dd", el, rich)
             }
         }?.toTypedArray()
-        if (childrenElements != null) {
-            return kvh(type.tagName, childrenElements + childrenVNodes())
+        return if (childrenElements != null) {
+            kvh(type.tagName, childrenElements + childrenVNodes())
         } else {
-            return kvh(type.tagName, childrenVNodes())
+            kvh(type.tagName, childrenVNodes())
         }
     }
 
@@ -69,21 +69,20 @@ open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = f
     }
 
     private fun element(name: String, value: String, rich: Boolean): VNode {
-        if (rich) {
-            return h(name, arrayOf(KVManager.virtualize("<span>$value</span>")))
+        return if (rich) {
+            h(name, arrayOf(KVManager.virtualize("<span>$value</span>")))
         } else {
-            return h(name, value)
+            h(name, value)
         }
     }
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
-        if (type == LIST.UNSTYLED) {
-            cl.add("list-unstyled" to true)
-        } else if (type == LIST.INLINE) {
-            cl.add("list-inline" to true)
-        } else if (type == LIST.DL_HORIZ) {
-            cl.add("dl-horizontal" to true)
+        @Suppress("NON_EXHAUSTIVE_WHEN")
+        when (type) {
+            LIST.UNSTYLED -> cl.add("list-unstyled" to true)
+            LIST.INLINE -> cl.add("list-inline" to true)
+            LIST.DL_HORIZ -> cl.add("dl-horizontal" to true)
         }
         return cl
     }
