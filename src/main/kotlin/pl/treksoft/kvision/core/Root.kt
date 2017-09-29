@@ -4,7 +4,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
-class Root(id: String, private val fluid: Boolean = true) : Container() {
+class Root(id: String, private val fixed: Boolean = false) : Container() {
     private val modals: MutableList<Modal> = mutableListOf()
     private var rootVnode: VNode = render()
 
@@ -29,7 +29,7 @@ class Root(id: String, private val fluid: Boolean = true) : Container() {
     }
 
     override fun getSnClass(): List<StringBoolPair> {
-        val css = if (fluid) "container-fluid" else "container"
+        val css = if (!fixed) "container-fluid" else "container"
         return super.getSnClass() + (css to true)
     }
 
