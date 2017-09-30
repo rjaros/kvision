@@ -82,4 +82,38 @@ class ContainerSpec : DomSpec {
             assertTrue("Container renders children") { elem1 == null && elem2 != null }
         }
     }
+    @Test
+    fun removeAll() {
+        run {
+            val root = Root("test")
+            val container = Container()
+            val child1 = Widget()
+            child1.id = "child1"
+            val child2 = Widget()
+            child2.id = "child2"
+            container.add(child1)
+            container.add(child2)
+            root.add(container)
+            container.removeAll()
+            val elem1 = document.getElementById("child1")
+            val elem2 = document.getElementById("child2")
+            assertTrue("Children are not rendered") { elem1 == null && elem2 == null }
+        }
+    }
+    @Test
+    fun getChildren() {
+        run {
+            val root = Root("test")
+            val container = Container()
+            val child1 = Widget()
+            child1.id = "child1"
+            val child2 = Widget()
+            child2.id = "child2"
+            container.add(child1)
+            container.add(child2)
+            root.add(container)
+            val childern = container.getChildren()
+            assertTrue("Returns children of current element") { childern.size == 2 }
+        }
+    }
 }

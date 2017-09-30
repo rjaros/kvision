@@ -22,7 +22,7 @@ object KVManager {
     private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,
             eventListenersModule, datasetModule))
     private val sdVirtualize = require("snabbdom-virtualize/strings").default
-    private val splitCss = require("./css/style.css")
+    private val styleCss = require("./css/style.css")
 
     internal fun patch(id: String, vnode: VNode): VNode {
         val container = document.getElementById(id)

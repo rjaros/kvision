@@ -11,7 +11,7 @@ import pl.treksoft.kvision.panel.StackPanel
 open class Tabs : Container(setOf()) {
     private var nav = Tag(TAG.UL, classes = setOf("nav", "nav-tabs"))
     private var content = StackPanel(false)
-    private var activeIndex
+    var activeIndex
         get() = content.activeIndex
         set(value) {
             content.activeIndex = value
@@ -47,4 +47,10 @@ open class Tabs : Container(setOf()) {
         return this
     }
 
+    open fun removeTab(index: Int): Tabs {
+        nav.removeAt(index)
+        content.removeAt(index)
+        activeIndex = content.activeIndex
+        return this
+    }
 }

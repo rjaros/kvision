@@ -18,14 +18,14 @@ class Root(id: String, private val fixed: Boolean = false) : Container() {
         return kvh("div#" + id, childrenVNodes() + modalsVNodes())
     }
 
-    private fun modalsVNodes(): Array<VNode> {
-        return modals.filter { it.visible }.map { it.render() }.toTypedArray()
-    }
-
     internal fun addModal(modal: Modal) {
         modals.add(modal)
         modal.parent = this
         refresh()
+    }
+
+    private fun modalsVNodes(): Array<VNode> {
+        return modals.filter { it.visible }.map { it.render() }.toTypedArray()
     }
 
     override fun getSnClass(): List<StringBoolPair> {

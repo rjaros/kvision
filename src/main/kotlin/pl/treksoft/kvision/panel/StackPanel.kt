@@ -23,12 +23,14 @@ open class StackPanel(private val activateLast: Boolean = true,
     override fun add(child: Widget): Container {
         super.add(child)
         if (activateLast) activeIndex = children.size - 1
+        else if (activeIndex == -1) activeIndex = 0
         return this
     }
 
     override fun addAll(children: List<Widget>): Container {
         super.addAll(children)
         if (activateLast) activeIndex = this.children.size - 1
+        else if (activeIndex == -1) activeIndex = 0
         return this
     }
 

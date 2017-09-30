@@ -18,8 +18,8 @@ class ModalSpec : DomSpec {
             val modal = Modal("Modal")
             modal.show()
             val content = document.getElementById("test")?.let { jQuery(it).find(".modal-title").html() }
-            modal.hide()
             assertEquals("Modal", content, "Should render correct modal")
+            modal.hide()
         }
     }
 
@@ -34,6 +34,7 @@ class ModalSpec : DomSpec {
             modal.toggle()
             val content2 = document.getElementById("test")?.let { jQuery(it).find(".modal-title").html() }
             assertNull(content2, "Should hide modal after second toggle")
+            modal.hide()
         }
     }
 
