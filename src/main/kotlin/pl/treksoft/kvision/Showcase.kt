@@ -13,6 +13,7 @@ import pl.treksoft.kvision.modal.Alert
 import pl.treksoft.kvision.modal.Confirm
 import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.panel.DIRECTION
+import pl.treksoft.kvision.panel.GRIDTYPE
 import pl.treksoft.kvision.panel.GridPanel
 import pl.treksoft.kvision.panel.HPanel
 import pl.treksoft.kvision.panel.SplitPanel
@@ -114,7 +115,7 @@ class Showcase : ApplicationBase() {
         val img = Image(Img("kotlin.png"), "Image", true, IMAGESHAPE.ROUNDED)
         root.add(img)
 
-        val grid = GridPanel(align = ALIGN.RIGHT)
+        val grid = GridPanel(gridtype = GRIDTYPE.DSG, align = ALIGN.RIGHT)
         grid.add(Tag(DIV, "0,0"), 0, 0)
         grid.add(Tag(DIV, "1,1"), 1, 1)
         grid.add(Tag(DIV, "2,2"), 2, 2)

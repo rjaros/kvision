@@ -3,6 +3,7 @@ package pl.treksoft.kvision.panel
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.ALIGN
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -27,7 +28,7 @@ internal data class WidgetParam(val widget: Widget, val size: Int, val offset: I
 open class GridPanel(private val gridtype: GRIDTYPE = GRIDTYPE.BOOTSTRAP, private val gridsize: GRIDSIZE = GRIDSIZE.MD,
                      protected var rows: Int = 0, protected var cols: Int = 0, align: ALIGN = ALIGN.NONE,
                      classes: Set<String> = setOf()) : Container(classes) {
-    var align = align
+    private var align = align
         set(value) {
             field = value
             refresh()
@@ -97,7 +98,8 @@ open class GridPanel(private val gridtype: GRIDTYPE = GRIDTYPE.BOOTSTRAP, privat
             if (row != null) {
                 for (j in 0 until cols) {
                     val wp = row[j]
-                    val widget = wp?.widget?.addCssClass("dsgcol") ?: Tag(TAG.DIV, classes = setOf("dsgcol"))
+                    val widget = wp?.widget?.let { WidgetWrapper(it, setOf("dsgcol")) } ?:
+                            Tag(TAG.DIV, classes = setOf("dsgcol"))
                     widget.widthPercent = num
                     if (align != ALIGN.NONE) {
                         widget.addCssClass(align.className)
@@ -121,8 +123,9 @@ open class GridPanel(private val gridtype: GRIDTYPE = GRIDTYPE.BOOTSTRAP, privat
                 for (j in 0 until cols) {
                     val wp = row[j]
                     if (auto) {
-                        val widget = wp?.widget?.addCssClass("col-" + gridsize.size + "-" + num) ?:
-                                Tag(TAG.DIV, classes = setOf("col-" + gridsize.size + "-" + num))
+                        val widget = wp?.widget?.let {
+                            WidgetWrapper(it, setOf("col-" + gridsize.size + "-" + num))
+                        } ?: Tag(TAG.DIV, classes = setOf("col-" + gridsize.size + "-" + num))
                         if (align != ALIGN.NONE) {
                             widget.addCssClass(align.className)
                         }
@@ -130,14 +133,14 @@ open class GridPanel(private val gridtype: GRIDTYPE = GRIDTYPE.BOOTSTRAP, privat
                     } else {
                         if (wp != null) {
                             val s = if (wp.size > 0) wp.size else num
-                            wp.widget.addCssClass("col-" + gridsize.size + "-" + s)
+                            val widget = WidgetWrapper(wp.widget, setOf("col-" + gridsize.size + "-" + s))
                             if (wp.offset > 0) {
-                                wp.widget.addCssClass("col-" + gridsize.size + "-offset-" + wp.offset)
+                                widget.addCssClass("col-" + gridsize.size + "-offset-" + wp.offset)
                             }
                             if (align != ALIGN.NONE) {
-                                wp.widget.addCssClass(align.className)
+                                widget.addCssClass(align.className)
                             }
-                            rowContainer.add(wp.widget)
+                            rowContainer.add(widget)
                         }
                     }
                 }

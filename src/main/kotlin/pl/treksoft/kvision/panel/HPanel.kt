@@ -3,6 +3,7 @@ package pl.treksoft.kvision.panel
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.ALIGN
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -21,7 +22,8 @@ open class HPanel(align: ALIGN = ALIGN.NONE, classes: Set<String> = setOf()) : G
         if (row != null) {
             for (j in 0 until cols) {
                 val wp = row[j]
-                val widget = wp?.widget?.addCssClass("dsgcolf") ?: Tag(TAG.DIV, classes = setOf("dsgcolf"))
+                val widget = wp?.widget?.let { WidgetWrapper(it, setOf("dsgcolf")) } ?:
+                        Tag(TAG.DIV, classes = setOf("dsgcolf"))
                 rowContainer.add(widget)
             }
         }
