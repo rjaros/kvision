@@ -1,4 +1,4 @@
-package pl.treksoft.kvision.tabs
+package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
@@ -6,9 +6,8 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
-import pl.treksoft.kvision.panel.StackPanel
 
-open class Tabs : Container(setOf()) {
+open class TabPanel : Container(setOf()) {
     private var nav = Tag(TAG.UL, classes = setOf("nav", "nav-tabs"))
     private var content = StackPanel(false)
     var activeIndex
@@ -27,7 +26,7 @@ open class Tabs : Container(setOf()) {
     }
 
     open fun addTab(title: String, panel: Widget, icon: String? = null,
-                    image: ResString? = null): Tabs {
+                    image: ResString? = null): TabPanel {
         val tag = Tag(TAG.LI)
         tag.role = "presentation"
         tag.add(Link(title, "#", icon, image))
@@ -47,7 +46,7 @@ open class Tabs : Container(setOf()) {
         return this
     }
 
-    open fun removeTab(index: Int): Tabs {
+    open fun removeTab(index: Int): TabPanel {
         nav.removeAt(index)
         content.removeAt(index)
         activeIndex = content.activeIndex

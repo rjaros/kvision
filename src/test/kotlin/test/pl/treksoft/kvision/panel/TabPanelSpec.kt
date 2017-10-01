@@ -1,20 +1,20 @@
-package test.pl.treksoft.kvision.tabs
+package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.basic.Label
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.tabs.Tabs
+import pl.treksoft.kvision.panel.TabPanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TabsSpec : DomSpec {
+class TabPanelSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test")
-            val tabs = Tabs()
+            val tabs = TabPanel()
             root.add(tabs)
             val label1 = Label("abc")
             val label2 = Label("def")
@@ -29,7 +29,7 @@ class TabsSpec : DomSpec {
     fun setActiveIndex() {
         run {
             val root = Root("test")
-            val tabs = Tabs()
+            val tabs = TabPanel()
             root.add(tabs)
             val label1 = Label("abc")
             val label2 = Label("def")
@@ -45,7 +45,7 @@ class TabsSpec : DomSpec {
     fun removeTab() {
         run {
             val root = Root("test")
-            val tabs = Tabs()
+            val tabs = TabPanel()
             root.add(tabs)
             val label1 = Label("abc")
             val label2 = Label("def")

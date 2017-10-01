@@ -52,3 +52,36 @@
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAICAQAAADdTl4aAAAAIElEQVQoz2MwrTD9TxFsZ7jPcV+IIsjFQAUw6hFqegQA+xzRHT2p7pEAAAAASUVORK5CYII=') center center no-repeat #cecece;
   cursor: row-resize;
 }
+
+/* Dead Simple Grid (c) 2015 Vladimir Agafonkin */
+
+.dsgrow .dsgrow { margin:  0 -1.5em; }
+.dsgcol      { padding: 0  1.5em; }
+.dsgcolf      { padding: 0  1.5em; }
+
+.dsgrow:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media only screen {
+
+.dsgcol {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+.dsgcol::before {
+   content: "\200B";
+}
+
+.dsgcolf {
+    float: left;
+    box-sizing: border-box;
+}
+.dsgcolf::before {
+   content: "\200B";
+}
+
+}

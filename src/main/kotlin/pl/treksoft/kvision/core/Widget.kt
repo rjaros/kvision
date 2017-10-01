@@ -52,6 +52,11 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
             field = value
             refresh()
         }
+    var widthPercent: Int? = null
+        set(value) {
+            field = value
+            refresh()
+        }
     var height: Int? = null
         set(value) {
             field = value
@@ -86,6 +91,8 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         val snstyle = mutableListOf<StringPair>()
         if (width != null) {
             snstyle.add("width" to width.toString() + "px")
+        } else if (widthPercent != null) {
+            snstyle.add("width" to widthPercent.toString() + "%")
         }
         if (height != null) {
             snstyle.add("height" to height.toString() + "px")
