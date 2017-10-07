@@ -107,11 +107,6 @@ open class Modal(caption: String? = null, closeButton: Boolean = true,
         return this
     }
 
-    open fun removeButtonAt(index: Int): Modal {
-        footer.removeAt(index)
-        return this
-    }
-
     open fun removeAllButtons(): Modal {
         footer.removeAll()
         return this

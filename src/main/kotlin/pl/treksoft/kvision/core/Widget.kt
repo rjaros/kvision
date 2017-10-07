@@ -26,7 +26,7 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
     var parent: Widget? = null
         internal set
 
-    var visible: Boolean = true
+    open var visible: Boolean = true
         set(value) {
             val oldField = field
             field = value
@@ -65,7 +65,17 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
 
     private var vnode: VNode? = null
 
-    internal open fun render(): VNode {
+    private var snAttrsCache: List<StringPair>? = null
+    private var snStyleCache: List<StringPair>? = null
+    private var snClassCache: List<StringBoolPair>? = null
+    private var snOnCache: com.github.snabbdom.On? = null
+    private var snHooksCache: com.github.snabbdom.Hooks? = null
+
+    internal open fun renderVNode(): VNode {
+        return render()
+    }
+
+    protected open fun render(): VNode {
         return kvh("div")
     }
 
@@ -77,14 +87,54 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         return h(s, getSnOpt(), children)
     }
 
-    protected open fun getSnOpt(): VNodeData {
+    private fun getSnOpt(): VNodeData {
         return snOpt {
-            attrs = snAttrs(getSnAttrs())
-            style = snStyle(getSnStyle())
-            `class` = snClasses(getSnClass())
-            on = getSnOn()
-            hook = getSnHooks()
+            attrs = snAttrs(getSnAttrsInternal())
+            style = snStyle(getSnStyleInternal())
+            `class` = snClasses(getSnClassInternal())
+            on = getSnOnInternal()
+            hook = getSnHooksInternal()
         }
+    }
+
+    private fun getSnAttrsInternal(): List<StringPair> {
+        return snAttrsCache ?: {
+            val s = getSnAttrs()
+            snAttrsCache = s
+            s
+        }()
+    }
+
+    private fun getSnStyleInternal(): List<StringPair> {
+        return snStyleCache ?: {
+            val s = getSnStyle()
+            snStyleCache = s
+            s
+        }()
+    }
+
+    private fun getSnClassInternal(): List<StringBoolPair> {
+        return snClassCache ?: {
+            val s = getSnClass()
+            snClassCache = s
+            s
+        }()
+    }
+
+    private fun getSnOnInternal(): com.github.snabbdom.On? {
+        return snOnCache ?: {
+            val s = getSnOn()
+            snOnCache = s
+            s
+        }()
+    }
+
+    private fun getSnHooksInternal(): com.github.snabbdom.Hooks? {
+        return snHooksCache ?: {
+            val s = getSnHooks()
+            snHooksCache = s
+            s
+        }()
     }
 
     protected open fun getSnStyle(): List<StringPair> {
@@ -206,8 +256,13 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         return this
     }
 
-    protected open fun refresh(): Widget {
-        this.parent?.refresh()
+    protected fun refresh(): Widget {
+        snAttrsCache = null
+        snStyleCache = null
+        snClassCache = null
+        snOnCache = null
+        snHooksCache = null
+        getRoot()?.reRender()
         return this
     }
 
@@ -239,5 +294,8 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
     internal open fun dispatchEvent(type: String, eventInitDict: CustomEventInit): Boolean? {
         val event = org.w3c.dom.CustomEvent(type, eventInitDict)
         return this.getElement()?.dispatchEvent(event)
+    }
+
+    open fun dispose() {
     }
 }

@@ -10,7 +10,7 @@ open class Container(classes: Set<String> = setOf()) : Widget(classes) {
     }
 
     protected open fun childrenVNodes(): Array<VNode> {
-        return children.filter { it.visible }.map { it.render() }.toTypedArray()
+        return children.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
     }
 
     protected fun addInternal(child: Widget): Container {
@@ -32,15 +32,10 @@ open class Container(classes: Set<String> = setOf()) : Widget(classes) {
     }
 
     open fun remove(child: Widget): Container {
-        children.remove(child)
-        child.clearParent()
-        refresh()
-        return this
-    }
-
-    open fun removeAt(index: Int): Container {
-        children.removeAt(index).clearParent()
-        refresh()
+        if (children.remove(child)) {
+            child.clearParent()
+            refresh()
+        }
         return this
     }
 
@@ -53,5 +48,10 @@ open class Container(classes: Set<String> = setOf()) : Widget(classes) {
 
     open fun getChildren(): List<Widget> {
         return ArrayList(children)
+    }
+
+    override fun dispose() {
+        children.forEach { it.dispose() }
+        removeAll()
     }
 }

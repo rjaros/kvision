@@ -6,10 +6,10 @@ import pl.treksoft.kvision.snabbdom.StringBoolPair
 
 class Root(id: String, private val fixed: Boolean = false) : Container() {
     private val modals: MutableList<Modal> = mutableListOf()
-    private var rootVnode: VNode = render()
+    private var rootVnode: VNode = renderVNode()
 
     init {
-        rootVnode = KVManager.patch(id, this.render())
+        rootVnode = KVManager.patch(id, this.renderVNode())
         this.id = id
         roots.add(this)
     }
@@ -25,7 +25,7 @@ class Root(id: String, private val fixed: Boolean = false) : Container() {
     }
 
     private fun modalsVNodes(): Array<VNode> {
-        return modals.filter { it.visible }.map { it.render() }.toTypedArray()
+        return modals.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
     }
 
     override fun getSnClass(): List<StringBoolPair> {
@@ -33,8 +33,8 @@ class Root(id: String, private val fixed: Boolean = false) : Container() {
         return super.getSnClass() + (css to true)
     }
 
-    override fun refresh(): Widget {
-        rootVnode = KVManager.patch(rootVnode, render())
+    internal fun reRender(): Root {
+        rootVnode = KVManager.patch(rootVnode, renderVNode())
         return this
     }
 

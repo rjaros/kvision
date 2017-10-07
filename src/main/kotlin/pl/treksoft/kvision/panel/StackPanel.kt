@@ -14,7 +14,7 @@ open class StackPanel(private val activateLast: Boolean = true,
 
     override fun childrenVNodes(): Array<VNode> {
         return if (activeIndex >= 0 && activeIndex < children.size) {
-            arrayOf(children[activeIndex].render())
+            arrayOf(children[activeIndex].renderVNode())
         } else {
             arrayOf()
         }
@@ -36,12 +36,6 @@ open class StackPanel(private val activateLast: Boolean = true,
 
     override fun remove(child: Widget): Container {
         super.remove(child)
-        if (activeIndex > children.size - 1) activeIndex = children.size - 1
-        return this
-    }
-
-    override fun removeAt(index: Int): Container {
-        super.removeAt(index)
         if (activeIndex > children.size - 1) activeIndex = children.size - 1
         return this
     }

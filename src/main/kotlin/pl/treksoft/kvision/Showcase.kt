@@ -12,19 +12,14 @@ import pl.treksoft.kvision.html.TAG.H1
 import pl.treksoft.kvision.modal.Alert
 import pl.treksoft.kvision.modal.Confirm
 import pl.treksoft.kvision.modal.Modal
-import pl.treksoft.kvision.panel.DIRECTION
-import pl.treksoft.kvision.panel.GRIDTYPE
-import pl.treksoft.kvision.panel.GridPanel
-import pl.treksoft.kvision.panel.HPanel
-import pl.treksoft.kvision.panel.SplitPanel
-import pl.treksoft.kvision.panel.TabPanel
-import pl.treksoft.kvision.panel.VPanel
+import pl.treksoft.kvision.panel.*
 import pl.treksoft.kvision.routing.routing
 
 class Showcase : ApplicationBase() {
 
     override fun start(state: Map<String, Any>) {
         val root = Root("showcase")
+
         val container = Container(setOf("abc", "def"))
         val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, ALIGN.NONE, classes = setOf("test", "test2"))
         container.add(h1)
@@ -74,7 +69,7 @@ class Showcase : ApplicationBase() {
         val tabs = TabPanel()
         tabs.addTab("Test zakładki", Label("test zakładki"), "fa-flag")
         tabs.addTab("Test zakładki2", Label("test zakładki2"))
-        tabs.addTab("Test zakładki3", tabs2, "fa-bars")
+//        tabs.addTab("Test zakładki3", tabs2, "fa-bars")
 
         val split = SplitPanel()
         split.add(tabs)
@@ -115,30 +110,65 @@ class Showcase : ApplicationBase() {
         val img = Image(Img("kotlin.png"), "Image", true, IMAGESHAPE.ROUNDED)
         root.add(img)
 
-        val grid = GridPanel(gridtype = GRIDTYPE.DSG, align = ALIGN.RIGHT)
+        val grid = ResponsiveGridPanel(align = ALIGN.RIGHT)
         grid.add(Tag(DIV, "0,0"), 0, 0)
         grid.add(Tag(DIV, "1,1"), 1, 1)
         grid.add(Tag(DIV, "2,2"), 2, 2)
-        grid.add(Tag(DIV, "3,3"), 3, 3)
         root.add(grid)
 
-        val grid2 = GridPanel(align = ALIGN.CENTER)
+        val grid2 = ResponsiveGridPanel(align = ALIGN.CENTER)
         grid2.add(Tag(DIV, "0,0"), 0, 0, 8)
         grid2.add(Tag(DIV, "0,1"), 0, 1, 4)
         grid2.add(Tag(DIV, "1,1"), 1, 1, 8, 4)
         root.add(grid2)
 
-        val hPanel = HPanel(align = ALIGN.RIGHT)
-        hPanel.add(Label("1"))
-        hPanel.add(Label("2"))
-        hPanel.add(Label("3"))
+        val flexPanel = FlexPanel(FLEXDIR.ROW)
+        flexPanel.add(Label("1"), 3, 1)
+        flexPanel.add(Label("2"), 2, 2)
+        flexPanel.add(Label("3"), 1, 1)
+        flexPanel.add(tabs2, 4, 1)
+        root.add(flexPanel)
+
+        val hPanel = HPanel(FLEXJUSTIFY.CENTER)
+        hPanel.add(Label("h1"), basis = 10)
+        hPanel.add(Label("h2"), basis = 20)
+        hPanel.add(Label("h3"), basis = 10)
         root.add(hPanel)
 
-        val vPanel = VPanel(align = ALIGN.CENTER)
-        vPanel.add(Label("1"))
-        vPanel.add(Label("2"))
-        vPanel.add(Label("3"))
+        val vPanel = VPanel(alignItems = FLEXALIGNITEMS.CENTER)
+        vPanel.add(Label("h1"), basis = 10)
+        vPanel.add(Label("h2"), basis = 20)
+        vPanel.add(Label("h3"), basis = 10)
         root.add(vPanel)
+
+        val grid3 = GridPanel(templateColumns = "1fr 1fr 1fr")
+        grid3.add(Label("hh1"))
+        grid3.add(Label("hh2"))
+        grid3.add(Label("hh3"))
+        grid3.add(Label("hh4"))
+        root.add(grid3)
+
+        val grid4 = GridPanel(justifyItems = GRIDJUSTIFY.CENTER)
+        grid4.add(Label("hh1"), 1, 1)
+        grid4.add(Label("hh2"), 2, 2)
+        grid4.add(Label("hh3"), 3, 3)
+        grid4.add(Label("hh4"), 4, 4)
+        root.add(grid4)
+
+        val dock = DockPanel()
+        dock.add(Label("left<br/>left", rich = true), SIDE.LEFT)
+        dock.add(Label("right"), SIDE.RIGHT)
+        dock.add(Label("up"), SIDE.UP)
+        dock.add(Label("down"), SIDE.DOWN)
+        dock.add(Label("center"), SIDE.CENTER)
+//        root.add(dock)
+
+        val pa = HPanel(alignItems = FLEXALIGNITEMS.FLEXEND)
+        pa.add(Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus."),3)
+        pa.add(Image(Img("kotlin.png")),1)
+        pa.add(dock,2,alignSelf = FLEXALIGNITEMS.FLEXSTART)
+        dock.width = 400
+        root.add(pa)
 
         val modal = Modal("Test okienka")
         modal.add(Tag(TAG.H4, "ABC"))

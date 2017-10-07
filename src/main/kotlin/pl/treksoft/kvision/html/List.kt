@@ -52,16 +52,16 @@ open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = f
         val res = when (type) {
             LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> childrenElements.map { v ->
                 if (v is Tag && v.type == TAG.LI) {
-                    v.render()
+                    v.renderVNode()
                 } else {
-                    h("li", arrayOf(v.render()))
+                    h("li", arrayOf(v.renderVNode()))
                 }
             }
             LIST.DL, LIST.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
                 if (v is Tag && v.type == TAG.LI) {
-                    v.render()
+                    v.renderVNode()
                 } else {
-                    h(if (index % 2 == 0) "dt" else "dd", arrayOf(v.render()))
+                    h(if (index % 2 == 0) "dt" else "dd", arrayOf(v.renderVNode()))
                 }
             }
         }

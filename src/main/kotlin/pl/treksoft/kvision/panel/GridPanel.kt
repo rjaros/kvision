@@ -1,152 +1,226 @@
 package pl.treksoft.kvision.panel
 
-import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
-import pl.treksoft.kvision.html.ALIGN
-import pl.treksoft.kvision.html.TAG
-import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.snabbdom.StringPair
 
-enum class GRIDTYPE {
-    BOOTSTRAP,
-    DSG
+enum class GRIDJUSTIFY(val justify: String) {
+    START("start"),
+    END("end"),
+    CENTER("center"),
+    STRETCH("stretch")
 }
 
-enum class GRIDSIZE(val size: String) {
-    XS("xs"),
-    SM("sm"),
-    MD("md"),
-    LG("lg")
+enum class GRIDALIGN(val align: String) {
+    START("start"),
+    END("end"),
+    CENTER("center"),
+    STRETCH("stretch")
 }
 
-const val FULLPERCENT = 100
-const val MAX_COLUMNS = 12
+enum class GRIDJUSTIFYCONTENT(val justifyContent: String) {
+    START("start"),
+    END("end"),
+    CENTER("center"),
+    STRETCH("stretch"),
+    SPACEAROUND("space-around"),
+    SPACEBETWEEN("space-between"),
+    SPACEEVENLY("space-evenly")
+}
 
-internal data class WidgetParam(val widget: Widget, val size: Int, val offset: Int)
+enum class GRIDALIGNCONTENT(val alignContent: String) {
+    START("start"),
+    END("end"),
+    CENTER("center"),
+    STRETCH("stretch"),
+    SPACEAROUND("space-around"),
+    SPACEBETWEEN("space-between"),
+    SPACEEVENLY("space-evenly")
+}
 
-open class GridPanel(private val gridtype: GRIDTYPE = GRIDTYPE.BOOTSTRAP, private val gridsize: GRIDSIZE = GRIDSIZE.MD,
-                     protected var rows: Int = 0, protected var cols: Int = 0, align: ALIGN = ALIGN.NONE,
-                     classes: Set<String> = setOf()) : Container(classes) {
-    private var align = align
+enum class GRIDFLOW(val flow: String) {
+    ROW("row"),
+    COLUMN("column"),
+    ROWDENSE("row dense"),
+    COLUMNDENSE("column dense")
+}
+
+open class GridPanel(autoColumns: String? = null, autoRows: String? = null, autoFlow: GRIDFLOW? = null,
+                     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
+                     columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
+                     alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
+                     alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf()) : Container(classes) {
+    var autoColumns = autoColumns
+        set(value) {
+            field = value
+            refresh()
+        }
+    var autoRows = autoRows
+        set(value) {
+            field = value
+            refresh()
+        }
+    var autoFlow = autoFlow
+        set(value) {
+            field = value
+            refresh()
+        }
+    var templateColumns = templateColumns
+        set(value) {
+            field = value
+            refresh()
+        }
+    var templateRows = templateRows
+        set(value) {
+            field = value
+            refresh()
+        }
+    var templateAreas = templateAreas
+        set(value) {
+            field = value
+            refresh()
+        }
+    var columnGap = columnGap
+        set(value) {
+            field = value
+            refresh()
+        }
+    var rowGap = rowGap
+        set(value) {
+            field = value
+            refresh()
+        }
+    var justifyItems = justifyItems
+        set(value) {
+            field = value
+            refresh()
+        }
+    var alignItems = alignItems
+        set(value) {
+            field = value
+            refresh()
+        }
+    var justifyContent = justifyContent
+        set(value) {
+            field = value
+            refresh()
+        }
+    var alignContent = alignContent
         set(value) {
             field = value
             refresh()
         }
 
-    internal val map = mutableMapOf<Int, MutableMap<Int, WidgetParam>>()
-    private var auto: Boolean = true
-
-    open fun add(child: Widget, row: Int, col: Int, size: Int = 0, offset: Int = 0): Container {
-        val cRow = if (row < 0) 0 else row
-        val cCol = if (col < 0) 0 else col
-        if (row > rows - 1) rows = cRow + 1
-        if (col > cols - 1) cols = cCol + 1
-        map.getOrPut(cRow, { mutableMapOf() }).put(cCol, WidgetParam(child, size, offset))
-        if (size > 0 || offset > 0) auto = false
-        return this
+    @Suppress("LongParameterList")
+    fun add(child: Widget, columnStart: Int? = null, rowStart: Int? = null,
+            columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: GRIDJUSTIFY? = null,
+            alignSelf: GRIDALIGN? = null, classes: Set<String> = setOf()): Container {
+        return addInternal(GridWrapper(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf,
+                alignSelf, classes))
     }
 
     override fun add(child: Widget): Container {
-        return this.add(child, 0, this.cols)
+        return add(child, null, null)
     }
 
     override fun addAll(children: List<Widget>): Container {
-        children.forEach { this.add(it) }
+        children.forEach { add(it, null, null) }
         return this
     }
 
     override fun remove(child: Widget): Container {
-        for (i in 0 until rows) {
-            val row = map[i]
-            if (row != null) {
-                for (j in 0 until cols) {
-                    val wp = row[j]
-                    if (wp != null) {
-                        if (wp.widget == child) row.remove(j)
-                    }
-                }
-            }
+        children.find { (it as GridWrapper).delegate == child }?.let {
+            super.remove(it)
+            it.dispose()
         }
         return this
     }
 
-    open fun removeAt(row: Int, col: Int): Container {
-        map[row]?.remove(col)
+    override fun removeAll(): Container {
+        children.map {
+            it.clearParent()
+            it.dispose()
+        }
+        children.clear()
+        refresh()
         return this
     }
 
-    override fun removeAt(index: Int): Container {
-        return this.removeAt(0, index)
+    @Suppress("ComplexMethod")
+    override fun getSnStyle(): List<StringPair> {
+        val snstyle = super.getSnStyle().toMutableList()
+        snstyle.add("display" to "grid")
+        autoColumns?.let {
+            snstyle.add("grid-auto-columns" to it)
+        }
+        autoRows?.let {
+            snstyle.add("grid-auto-rows" to it)
+        }
+        autoFlow?.let {
+            snstyle.add("grid-auto-flow" to it.flow)
+        }
+        templateColumns?.let {
+            snstyle.add("grid-template-columns" to it)
+        }
+        templateRows?.let {
+            snstyle.add("grid-template-rows" to it)
+        }
+        templateAreas?.let {
+            snstyle.add("grid-template-areas" to it.joinToString("\n"))
+        }
+        columnGap?.let {
+            snstyle.add("grid-column-gap" to "${it}px")
+        }
+        rowGap?.let {
+            snstyle.add("grid-row-gap" to "${it}px")
+        }
+        justifyItems?.let {
+            snstyle.add("justify-items" to it.justify)
+        }
+        alignItems?.let {
+            snstyle.add("align-items" to it.align)
+        }
+        justifyContent?.let {
+            snstyle.add("justify-content" to it.justifyContent)
+        }
+        alignContent?.let {
+            snstyle.add("align-content" to it.alignContent)
+        }
+        return snstyle
+    }
+}
+
+class GridWrapper(delegate: Widget, private val columnStart: Int? = null, private val rowStart: Int? = null,
+                  private val columnEnd: String? = null, private val rowEnd: String? = null,
+                  private val area: String? = null, private val justifySelf: GRIDJUSTIFY? = null,
+                  private val alignSelf: GRIDALIGN? = null,
+                  classes: Set<String> = setOf()) : WidgetWrapper(delegate, classes) {
+
+    override fun getSnStyle(): List<StringPair> {
+        val snstyle = super.getSnStyle().toMutableList()
+        columnStart?.let {
+            snstyle.add("grid-column-start" to "$it")
+        }
+        rowStart?.let {
+            snstyle.add("grid-row-start" to "$it")
+        }
+        columnEnd?.let {
+            snstyle.add("grid-column-end" to it)
+        }
+        rowEnd?.let {
+            snstyle.add("grid-row-end" to it)
+        }
+        area?.let {
+            snstyle.add("grid-area" to it)
+        }
+        justifySelf?.let {
+            snstyle.add("justify-self" to it.justify)
+        }
+        alignSelf?.let {
+            snstyle.add("align-self" to it.align)
+        }
+        return snstyle
     }
 
-    override fun childrenVNodes(): Array<VNode> {
-        return if (gridtype == GRIDTYPE.BOOTSTRAP) {
-            childrenVNodesBts()
-        } else {
-            childrenVNodesDsg()
-        }
-    }
-
-    @Suppress("NestedBlockDepth", "LoopToCallChain")
-    protected open fun childrenVNodesDsg(): Array<VNode> {
-        val ret = mutableListOf<VNode>()
-        val num = FULLPERCENT / cols
-        for (i in 0 until rows) {
-            val rowContainer = Container(setOf("dsgrow"))
-            val row = map[i]
-            if (row != null) {
-                for (j in 0 until cols) {
-                    val wp = row[j]
-                    val widget = wp?.widget?.let { WidgetWrapper(it, setOf("dsgcol")) } ?:
-                            Tag(TAG.DIV, classes = setOf("dsgcol"))
-                    widget.widthPercent = num
-                    if (align != ALIGN.NONE) {
-                        widget.addCssClass(align.className)
-                    }
-                    rowContainer.add(widget)
-                }
-            }
-            ret.add(rowContainer.render())
-        }
-        return ret.toTypedArray()
-    }
-
-    @Suppress("NestedBlockDepth", "LoopToCallChain")
-    private fun childrenVNodesBts(): Array<VNode> {
-        val ret = mutableListOf<VNode>()
-        val num = MAX_COLUMNS / cols
-        for (i in 0 until rows) {
-            val rowContainer = Container(setOf("row"))
-            val row = map[i]
-            if (row != null) {
-                for (j in 0 until cols) {
-                    val wp = row[j]
-                    if (auto) {
-                        val widget = wp?.widget?.let {
-                            WidgetWrapper(it, setOf("col-" + gridsize.size + "-" + num))
-                        } ?: Tag(TAG.DIV, classes = setOf("col-" + gridsize.size + "-" + num))
-                        if (align != ALIGN.NONE) {
-                            widget.addCssClass(align.className)
-                        }
-                        rowContainer.add(widget)
-                    } else {
-                        if (wp != null) {
-                            val s = if (wp.size > 0) wp.size else num
-                            val widget = WidgetWrapper(wp.widget, setOf("col-" + gridsize.size + "-" + s))
-                            if (wp.offset > 0) {
-                                widget.addCssClass("col-" + gridsize.size + "-offset-" + wp.offset)
-                            }
-                            if (align != ALIGN.NONE) {
-                                widget.addCssClass(align.className)
-                            }
-                            rowContainer.add(widget)
-                        }
-                    }
-                }
-            }
-            ret.add(rowContainer.render())
-        }
-        return ret.toTypedArray()
-    }
 }

@@ -48,7 +48,7 @@ open class SplitPanel(private val direction: DIRECTION = DIRECTION.VERTICAL,
 
     override fun childrenVNodes(): Array<VNode> {
         return if (children.size == 2) {
-            arrayOf(children[0].render(), splitter.render(), children[1].render())
+            arrayOf(children[0].renderVNode(), splitter.renderVNode(), children[1].renderVNode())
         } else {
             arrayOf()
         }

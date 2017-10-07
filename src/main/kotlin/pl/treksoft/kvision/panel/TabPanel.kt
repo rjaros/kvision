@@ -47,8 +47,8 @@ open class TabPanel : Container(setOf()) {
     }
 
     open fun removeTab(index: Int): TabPanel {
-        nav.removeAt(index)
-        content.removeAt(index)
+        nav.remove(nav.children[index])
+        content.remove(content.children[index])
         activeIndex = content.activeIndex
         return this
     }

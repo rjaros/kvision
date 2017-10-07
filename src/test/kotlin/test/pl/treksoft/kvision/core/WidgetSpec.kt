@@ -10,11 +10,11 @@ import kotlin.test.assertTrue
 class WidgetSpec : WSpec {
 
     @Test
-    fun render() {
+    fun renderVNode() {
         runW { widget, _ ->
             widget.addCssClass("testClass")
             widget.title = "test_title"
-            val vnode = widget.render()
+            val vnode = widget.renderVNode()
             assertTrue("VNode has correct class attribute") { vnode.data.`class`.testClass == true }
             assertTrue("VNode has correct id attribute") { vnode.data.attrs.id == "test_id" }
             assertTrue("VNode has correct title attribute") { vnode.data.attrs.title == "test_title" }
