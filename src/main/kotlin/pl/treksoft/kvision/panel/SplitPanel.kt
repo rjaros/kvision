@@ -4,6 +4,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.JQueryEventObject
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.snabbdom.obj
@@ -23,6 +24,7 @@ open class SplitPanel(private val direction: DIRECTION = DIRECTION.VERTICAL,
     internal fun afterInsertSplitter() {
         if (children.size == 2) {
             val horizontal = direction == DIRECTION.HORIZONTAL
+            val px = UNIT.px
             val self = this
             children[0].getElementJQueryD().resizable(obj {
                 handleSelector = "#" + splitter.id
@@ -36,9 +38,9 @@ open class SplitPanel(private val direction: DIRECTION = DIRECTION.VERTICAL,
                 }
                 onDragEnd = { e: JQueryEventObject, el: JQuery, _: dynamic ->
                     if (horizontal) {
-                        children[0].height = el.height().toInt()
+                        children[0].height = el.height().toInt() to px
                     } else {
-                        children[0].width = el.width().toInt()
+                        children[0].width = el.width().toInt() to px
                     }
                     self.dispatchEvent("dragEndSplitPanel", obj({ detail = e }))
                 }

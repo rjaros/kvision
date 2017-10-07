@@ -41,7 +41,6 @@ enum class TAG(val tagName: String) {
 }
 
 enum class ALIGN(val className: String) {
-    NONE(""),
     LEFT("text-left"),
     CENTER("text-center"),
     RIGHT("text-right"),
@@ -49,7 +48,7 @@ enum class ALIGN(val className: String) {
     NOWRAP("text-nowrap")
 }
 
-open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN = ALIGN.NONE,
+open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN? = null,
                classes: Set<String> = setOf()) : Container(classes) {
     var type = type
         set(value) {
@@ -86,8 +85,8 @@ open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: AL
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
-        if (align != ALIGN.NONE) {
-            cl.add(align.className to true)
+        align?.let {
+            cl.add(it.className to true)
         }
         return cl
     }

@@ -47,17 +47,12 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
             field = value
             refresh()
         }
-    var width: Int? = null
+    var width: Length? = null
         set(value) {
             field = value
             refresh()
         }
-    var widthPercent: Int? = null
-        set(value) {
-            field = value
-            refresh()
-        }
-    var height: Int? = null
+    var height: Length? = null
         set(value) {
             field = value
             refresh()
@@ -139,13 +134,11 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
 
     protected open fun getSnStyle(): List<StringPair> {
         val snstyle = mutableListOf<StringPair>()
-        if (width != null) {
-            snstyle.add("width" to width.toString() + "px")
-        } else if (widthPercent != null) {
-            snstyle.add("width" to widthPercent.toString() + "%")
+        width?.let {
+            snstyle.add("width" to it.first.toString() + it.second.unit)
         }
-        if (height != null) {
-            snstyle.add("height" to height.toString() + "px")
+        height?.let {
+            snstyle.add("height" to it.first.toString() + it.second.unit)
         }
         return snstyle
     }
@@ -157,14 +150,14 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
 
     protected open fun getSnAttrs(): List<StringPair> {
         val snattrs = mutableListOf<StringPair>()
-        if (id != null) {
-            snattrs.add("id" to id.orEmpty())
+        id?.let {
+            snattrs.add("id" to it)
         }
-        if (title != null) {
-            snattrs.add("title" to title.orEmpty())
+        title?.let {
+            snattrs.add("title" to it)
         }
-        if (role != null) {
-            snattrs.add("role" to role.orEmpty())
+        role?.let {
+            snattrs.add("role" to it)
         }
         return snattrs
     }

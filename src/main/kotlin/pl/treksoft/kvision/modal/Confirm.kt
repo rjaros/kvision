@@ -7,7 +7,7 @@ import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 
 open class Confirm(caption: String? = null, text: String? = null, rich: Boolean = false,
-                   align: ALIGN = ALIGN.NONE, size: MODALSIZE? = null, animation: Boolean = true,
+                   align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
                    cancelVisible: Boolean = false,
                    private val noCallback: (() -> Unit)? = null,
                    private val yesCallback: (() -> Unit)? = null) : Modal(caption, false, size, animation, false) {
@@ -75,7 +75,7 @@ open class Confirm(caption: String? = null, text: String? = null, rich: Boolean 
     companion object {
         @Suppress("LongParameterList")
         fun show(caption: String? = null, text: String? = null, rich: Boolean = false,
-                 align: ALIGN = ALIGN.NONE, size: MODALSIZE? = null, animation: Boolean = true,
+                 align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
                  cancelVisible: Boolean = false,
                  noCallback: (() -> Unit)? = null, yesCallback: (() -> Unit)? = null) {
             Confirm(caption, text, rich, align, size, animation, cancelVisible, noCallback, yesCallback).show()

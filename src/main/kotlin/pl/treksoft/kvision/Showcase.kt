@@ -4,6 +4,7 @@ import pl.treksoft.kvision.basic.Label
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Img
 import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.html.*
@@ -21,7 +22,7 @@ class Showcase : ApplicationBase() {
         val root = Root("showcase")
 
         val container = Container(setOf("abc", "def"))
-        val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, ALIGN.NONE, classes = setOf("test", "test2"))
+        val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, null, classes = setOf("test", "test2"))
         container.add(h1)
         val label = Label("KVLabel1")
         container.add(label)
@@ -167,7 +168,7 @@ class Showcase : ApplicationBase() {
         pa.add(Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus."),3)
         pa.add(Image(Img("kotlin.png")),1)
         pa.add(dock,2,alignSelf = FLEXALIGNITEMS.FLEXSTART)
-        dock.width = 400
+        dock.width = 400 to UNIT.px
         root.add(pa)
 
         val modal = Modal("Test okienka")

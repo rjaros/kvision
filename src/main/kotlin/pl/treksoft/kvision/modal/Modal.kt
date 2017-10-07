@@ -180,8 +180,8 @@ open class ModalDialog(size: MODALSIZE?) : Container(setOf("modal-dialog")) {
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
-        if (size != null) {
-            cl.add(size?.className.orEmpty() to true)
+        size?.let {
+            cl.add(it.className to true)
         }
         return cl
     }

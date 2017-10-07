@@ -124,7 +124,6 @@ open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify
         alignContent?.let {
             snstyle.add("align-content" to it.alignContent)
         }
-        println("abc")
         return snstyle
     }
 }

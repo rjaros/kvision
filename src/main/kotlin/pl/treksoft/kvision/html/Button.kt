@@ -70,8 +70,8 @@ open class Button(text: String, icon: String? = null, style: BUTTONSTYLE = BUTTO
         val cl = super.getSnClass().toMutableList()
         cl.add("btn" to true)
         cl.add(style.className to true)
-        if (size != null) {
-            cl.add(size?.className.orEmpty() to true)
+        size?.let {
+            cl.add(it.className to true)
         }
         if (block) {
             cl.add("btn-block" to true)

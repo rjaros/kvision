@@ -19,7 +19,7 @@ const val MAX_COLUMNS = 12
 internal data class WidgetParam(val widget: Widget, val size: Int, val offset: Int)
 
 open class ResponsiveGridPanel(private val gridsize: GRIDSIZE = GRIDSIZE.MD,
-                               private var rows: Int = 0, private var cols: Int = 0, align: ALIGN = ALIGN.NONE,
+                               private var rows: Int = 0, private var cols: Int = 0, align: ALIGN? = null,
                                classes: Set<String> = setOf()) : Container(classes) {
     protected var align = align
         set(value) {
@@ -87,8 +87,8 @@ open class ResponsiveGridPanel(private val gridsize: GRIDSIZE = GRIDSIZE.MD,
                         val widget = wp?.widget?.let {
                             WidgetWrapper(it, setOf("col-" + gridsize.size + "-" + num))
                         } ?: Tag(TAG.DIV, classes = setOf("col-" + gridsize.size + "-" + num))
-                        if (align != ALIGN.NONE) {
-                            widget.addCssClass(align.className)
+                        align?.let {
+                            widget.addCssClass(it.className)
                         }
                         rowContainer.add(widget)
                     } else {
@@ -98,8 +98,8 @@ open class ResponsiveGridPanel(private val gridsize: GRIDSIZE = GRIDSIZE.MD,
                             if (wp.offset > 0) {
                                 widget.addCssClass("col-" + gridsize.size + "-offset-" + wp.offset)
                             }
-                            if (align != ALIGN.NONE) {
-                                widget.addCssClass(align.className)
+                            align?.let {
+                                widget.addCssClass(it.className)
                             }
                             rowContainer.add(widget)
                         }

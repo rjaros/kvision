@@ -47,7 +47,9 @@ open class Image(src: ResString, alt: String? = null, responsive: Boolean = fals
     override fun getSnAttrs(): List<StringPair> {
         val pr = super.getSnAttrs().toMutableList()
         pr.add("src" to src)
-        if (alt != null) pr.add("alt" to alt.orEmpty())
+        alt?.let {
+            pr.add("alt" to it)
+        }
         return pr
     }
 
@@ -59,8 +61,8 @@ open class Image(src: ResString, alt: String? = null, responsive: Boolean = fals
         if (centered) {
             cl.add("center-block" to true)
         }
-        if (shape != null) {
-            cl.add(shape?.className.orEmpty() to true)
+        shape?.let {
+            cl.add(it.className to true)
         }
         return cl
     }
