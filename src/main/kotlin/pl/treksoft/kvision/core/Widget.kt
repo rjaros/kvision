@@ -18,7 +18,7 @@ import pl.treksoft.kvision.snabbdom.snOpt
 import pl.treksoft.kvision.snabbdom.snStyle
 
 @Suppress("TooManyFunctions")
-open class Widget(classes: Set<String> = setOf()) : KVObject {
+open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     val classes = classes.toMutableSet()
     val listeners = mutableListOf<SnOn<Widget>.() -> Unit>()
@@ -47,21 +47,10 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
             field = value
             refresh()
         }
-    var width: Length? = null
-        set(value) {
-            field = value
-            refresh()
-        }
-    var height: Length? = null
-        set(value) {
-            field = value
-            refresh()
-        }
 
     private var vnode: VNode? = null
 
     private var snAttrsCache: List<StringPair>? = null
-    private var snStyleCache: List<StringPair>? = null
     private var snClassCache: List<StringBoolPair>? = null
     private var snOnCache: com.github.snabbdom.On? = null
     private var snHooksCache: com.github.snabbdom.Hooks? = null
@@ -100,14 +89,6 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         }()
     }
 
-    private fun getSnStyleInternal(): List<StringPair> {
-        return snStyleCache ?: {
-            val s = getSnStyle()
-            snStyleCache = s
-            s
-        }()
-    }
-
     private fun getSnClassInternal(): List<StringBoolPair> {
         return snClassCache ?: {
             val s = getSnClass()
@@ -132,21 +113,9 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         }()
     }
 
-    protected open fun getSnStyle(): List<StringPair> {
-        val snstyle = mutableListOf<StringPair>()
-        width?.let {
-            snstyle.add("width" to it.first.toString() + it.second.unit)
-        }
-        height?.let {
-            snstyle.add("height" to it.first.toString() + it.second.unit)
-        }
-        return snstyle
-    }
-
     protected open fun getSnClass(): List<StringBoolPair> {
         return classes.map { c -> c to true } + if (visible) listOf() else listOf("hidden" to true)
     }
-
 
     protected open fun getSnAttrs(): List<StringPair> {
         val snattrs = mutableListOf<StringPair>()
@@ -249,9 +218,9 @@ open class Widget(classes: Set<String> = setOf()) : KVObject {
         return this
     }
 
-    protected fun refresh(): Widget {
+    override fun refresh(): Widget {
+        super.refresh()
         snAttrsCache = null
-        snStyleCache = null
         snClassCache = null
         snOnCache = null
         snHooksCache = null

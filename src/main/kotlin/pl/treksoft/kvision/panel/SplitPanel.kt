@@ -4,7 +4,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.JQueryEventObject
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.UNIT
+import pl.treksoft.kvision.css.UNIT
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.snabbdom.obj

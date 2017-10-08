@@ -1,7 +1,7 @@
 package test.pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.core.UNIT
+import pl.treksoft.kvision.css.UNIT
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
 import test.pl.treksoft.kvision.DomSpec
