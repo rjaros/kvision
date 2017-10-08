@@ -175,7 +175,7 @@ class Showcase : ApplicationBase() {
         dock.add(Label("up"), SIDE.UP)
         dock.add(Label("down"), SIDE.DOWN)
         dock.add(Label("center"), SIDE.CENTER)
-        dock.border = Border(7.px(), BORDERSTYLE.INSET, 0xdddddd)
+        dock.border = Border(7.px(), BORDERSTYLE.INSET, COLOR.DARKVIOLET)
 //        root.add(dock)
 
         val pa = HPanel(alignItems = FLEXALIGNITEMS.FLEXEND)
