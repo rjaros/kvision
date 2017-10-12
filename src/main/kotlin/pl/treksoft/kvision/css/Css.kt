@@ -1,5 +1,6 @@
 package pl.treksoft.kvision.css
 
+import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.utils.Utils
 
 @Suppress("EnumNaming", "EnumEntryName")
@@ -181,6 +182,36 @@ enum class COLOR(val color: String) {
     YELLOWGREEN("yellowgreen")
 }
 
+enum class BGSIZE(val size: String) {
+    COVER("cover"),
+    CONTAIN("contain")
+}
+
+enum class BGREPEAT(val repeat: String) {
+    REPEAT("repeat"),
+    REPEATX("repeat-x"),
+    REPEATY("repeat-y"),
+    NOREPEAT("no-repeat")
+}
+
+enum class BGATTACH(val attachment: String) {
+    SCROLL("scroll"),
+    FIXED("fixed"),
+    LOCAL("local")
+}
+
+enum class BGORIGIN(val origin: String) {
+    PADDING("padding-box"),
+    BORDER("border-box"),
+    CONTENT("content-box")
+}
+
+enum class BGCLIP(val clip: String) {
+    PADDING("padding-box"),
+    BORDER("border-box"),
+    CONTENT("content-box")
+}
+
 class Border private constructor(private val width: CssSize? = null, private val style: BORDERSTYLE? = null,
                                  private val color: String? = null) {
     constructor(width: CssSize? = null, style: BORDERSTYLE? = null) : this(width, style, null)
@@ -193,6 +224,68 @@ class Border private constructor(private val width: CssSize? = null, private val
         val w = width?.let {
             it.first.toString() + it.second.unit
         }
-        return w.orEmpty() + " " + style?.borderStyle.orEmpty() + " " + color.orEmpty()
+        return w.orEmpty() + " " + (style?.borderStyle).orEmpty() + " " + color.orEmpty()
+    }
+}
+
+class Color private constructor(private val color: String? = null) {
+    constructor(color: Int) : this("#" + Utils.intToHexString(color))
+    constructor(color: COLOR) : this(color.color)
+
+    fun asString(): String {
+        return color.orEmpty()
+    }
+}
+
+class Background private constructor(private val color: String? = null, private val image: ResString? = null,
+                                     private val positionX: CssSize? = null, private val positionY: CssSize? = null,
+                                     private val sizeX: CssSize? = null, private val sizeY: CssSize? = null,
+                                     private val size: BGSIZE? = null, private val repeat: BGREPEAT? = null,
+                                     private val origin: BGORIGIN? = null, private val clip: BGCLIP? = null,
+                                     private val attachment: BGATTACH? = null) {
+    constructor(image: ResString? = null, positionX: CssSize? = null, positionY: CssSize? = null,
+                sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
+                repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
+                attachment: BGATTACH? = null) : this(null,
+            image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment)
+
+    constructor(color: Int, image: ResString? = null, positionX: CssSize? = null,
+                positionY: CssSize? = null,
+                sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
+                repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
+                attachment: BGATTACH? = null) : this("#" +
+            Utils.intToHexString(color), image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip,
+            attachment)
+
+    constructor(color: COLOR, image: ResString? = null, positionX: CssSize? = null,
+                positionY: CssSize? = null, sizeX: CssSize? = null, sizeY: CssSize? = null,
+                size: BGSIZE? = null, repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
+                attachment: BGATTACH? = null) : this(color.color, image,
+            positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment)
+
+    fun asString(): String {
+        val img = image?.let {
+            "url($image)"
+        }
+        val posX = positionX?.let {
+            it.first.toString() + it.second.unit
+        }
+        val posY = positionY?.let {
+            it.first.toString() + it.second.unit
+        }
+        val sX = sizeX?.let {
+            it.first.toString() + it.second.unit
+        }
+        val sY = sizeY?.let {
+            it.first.toString() + it.second.unit
+        }
+        return color.orEmpty() + " " + img.orEmpty() + " " + posX.orEmpty() + " " + posY.orEmpty() +
+                if (sX != null || sY != null || size != null) {
+                    (if (posX != null || posY != null) " / " else " 0px 0px / ") +
+                            sX.orEmpty() + " " + sY.orEmpty() + " " + (size?.size).orEmpty()
+                } else {
+                    ""
+                } + " " + (repeat?.repeat).orEmpty() + " " + (origin?.origin).orEmpty() + " " +
+                (clip?.clip).orEmpty() + " " + (attachment?.attachment).orEmpty()
     }
 }

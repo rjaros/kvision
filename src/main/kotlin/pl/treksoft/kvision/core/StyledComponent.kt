@@ -1,6 +1,9 @@
 package pl.treksoft.kvision.core
 
+import pl.treksoft.kvision.css.Background
 import pl.treksoft.kvision.css.Border
+import pl.treksoft.kvision.css.COLOR
+import pl.treksoft.kvision.css.Color
 import pl.treksoft.kvision.css.CssSize
 import pl.treksoft.kvision.snabbdom.StringPair
 
@@ -111,6 +114,32 @@ abstract class StyledComponent : KVObject {
             field = value
             refresh()
         }
+    var color: Color? = null
+        set(value) {
+            field = value
+            refresh()
+        }
+    var colorHex: Int?
+        get() = null
+        set(value) {
+            color = if (value != null) Color(value) else null
+        }
+    var colorName: COLOR?
+        get() = null
+        set(value) {
+            color = if (value != null) Color(value) else null
+        }
+    var opacity: Double? = null
+        set(value) {
+            field = value
+            refresh()
+        }
+    var background: Background? = null
+        set(value) {
+            field = value
+            refresh()
+        }
+
 
     private var snStyleCache: List<StringPair>? = null
 
@@ -127,7 +156,7 @@ abstract class StyledComponent : KVObject {
         }()
     }
 
-    @Suppress("ComplexMethod")
+    @Suppress("ComplexMethod", "LongMethod")
     protected open fun getSnStyle(): List<StringPair> {
         val snstyle = mutableListOf<StringPair>()
         width?.let {
@@ -192,6 +221,15 @@ abstract class StyledComponent : KVObject {
         }
         paddingLeft?.let {
             snstyle.add("padding-left" to it.first.toString() + it.second.unit)
+        }
+        color?.let {
+            snstyle.add("color" to it.asString())
+        }
+        opacity?.let {
+            snstyle.add("opacity" to it.toString())
+        }
+        background?.let {
+            snstyle.add("background" to it.asString())
         }
         return snstyle
     }

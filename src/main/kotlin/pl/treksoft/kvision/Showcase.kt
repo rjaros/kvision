@@ -4,7 +4,11 @@ import pl.treksoft.kvision.basic.Label
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Img
 import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.css.BGATTACH
+import pl.treksoft.kvision.css.BGREPEAT
+import pl.treksoft.kvision.css.BGSIZE
 import pl.treksoft.kvision.css.BORDERSTYLE
+import pl.treksoft.kvision.css.Background
 import pl.treksoft.kvision.css.Border
 import pl.treksoft.kvision.css.COLOR
 import pl.treksoft.kvision.dropdown.DD.*
@@ -17,6 +21,7 @@ import pl.treksoft.kvision.modal.Confirm
 import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.panel.*
 import pl.treksoft.kvision.routing.routing
+import pl.treksoft.kvision.utils.perc
 import pl.treksoft.kvision.utils.px
 
 class Showcase : ApplicationBase() {
@@ -122,6 +127,7 @@ class Showcase : ApplicationBase() {
         root.add(list2)
 
         val img = Image(Img("kotlin.png"), "Image", true, IMAGESHAPE.ROUNDED)
+        img.opacity = 0.5
         root.add(img)
 
         val grid = ResponsiveGridPanel(align = ALIGN.RIGHT)
@@ -156,6 +162,8 @@ class Showcase : ApplicationBase() {
         root.add(vPanel)
 
         val grid3 = GridPanel(templateColumns = "1fr 1fr 1fr")
+        grid3.background = Background(0xCCCCCC, Img("kotlin.png"), 50.perc(), 50.perc(), size = BGSIZE.CONTAIN,
+                repeat = BGREPEAT.NOREPEAT, attachment = BGATTACH.FIXED)
         grid3.add(Label("hh1"))
         grid3.add(Label("hh2"))
         grid3.add(Label("hh3"))
@@ -163,6 +171,7 @@ class Showcase : ApplicationBase() {
         root.add(grid3)
 
         val grid4 = GridPanel(justifyItems = GRIDJUSTIFY.CENTER)
+        grid4.colorHex = 0x00ff00
         grid4.add(Label("hh1"), 1, 1)
         grid4.add(Label("hh2"), 2, 2)
         grid4.add(Label("hh3"), 3, 3)
@@ -170,6 +179,7 @@ class Showcase : ApplicationBase() {
         root.add(grid4)
 
         val dock = DockPanel()
+        dock.colorName = COLOR.AQUA
         dock.add(Label("left<br/>left", rich = true), SIDE.LEFT)
         dock.add(Label("right"), SIDE.RIGHT)
         dock.add(Label("up"), SIDE.UP)
@@ -196,6 +206,7 @@ class Showcase : ApplicationBase() {
         button.setEventListener<Button> {
             click = { _ ->
                 println(self.text)
+                grid4.colorHex = 0xff0000
                 dd3.text = "Zmiana"
                 dd3.style = BUTTONSTYLE.WARNING
                 dd3.disabled = true

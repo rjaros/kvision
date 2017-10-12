@@ -30,7 +30,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version" // for now only compile configuration is supported
-    compile "com.github.snabbdom:snabbdom-kotlin:0.1.0"
+    compile "com.github.snabbdom:snabbdom-kotlin:0.1.1"
     compile "pl.treksoft:navigo-kotlin:0.0.1"
     compile "pl.treksoft:jquery-kotlin:0.0.2"
 }
