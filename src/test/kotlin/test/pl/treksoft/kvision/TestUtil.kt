@@ -18,6 +18,16 @@ interface TestSpec {
     }
 }
 
+interface SimpleSpec : TestSpec {
+
+    override fun beforeTest() {
+    }
+
+    override fun afterTest() {
+    }
+
+}
+
 interface DomSpec : TestSpec {
 
     override fun beforeTest() {
