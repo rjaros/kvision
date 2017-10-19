@@ -18,6 +18,7 @@ object KVManager {
     private val bootstrapWebpack = require("bootstrap-webpack")
     private val fontAwesomeWebpack = require("font-awesome-webpack")
     private val resizable = require("jquery-resizable-dom")
+    private val awesomeBootstrapCheckbox = require("awesome-bootstrap-checkbox")
 
     private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,
             eventListenersModule, datasetModule))

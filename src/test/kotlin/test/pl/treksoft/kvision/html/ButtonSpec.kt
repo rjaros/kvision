@@ -15,7 +15,9 @@ class ButtonSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val button = Button("Cancel", "fa-bars", BUTTONSTYLE.PRIMARY, BUTTONSIZE.LARGE, true)
+            val button = Button("Cancel", "fa-bars", BUTTONSTYLE.PRIMARY)
+            button.size = BUTTONSIZE.LARGE
+            button.block = true
             root.add(button)
             val element = document.getElementById("test")
             assertEquals("<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\"><i class=\"fa fa-bars fa-lg\"></i> Cancel</button>", element?.innerHTML, "Should render correct html button")

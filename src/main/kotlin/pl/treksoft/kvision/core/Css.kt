@@ -1,6 +1,5 @@
-package pl.treksoft.kvision.css
+package pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.utils.Utils
 
 @Suppress("EnumNaming", "EnumEntryName")

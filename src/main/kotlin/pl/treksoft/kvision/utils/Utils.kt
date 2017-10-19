@@ -1,8 +1,8 @@
 @file:Suppress("TooManyFunctions")
 package pl.treksoft.kvision.utils
 
-import pl.treksoft.kvision.css.CssSize
-import pl.treksoft.kvision.css.UNIT
+import pl.treksoft.kvision.core.CssSize
+import pl.treksoft.kvision.core.UNIT
 
 fun Int.px(): CssSize = Pair(this, UNIT.px)
 fun Int.em(): CssSize = Pair(this, UNIT.em)

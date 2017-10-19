@@ -4,7 +4,6 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.html.BUTTONSIZE
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.LIST
@@ -23,8 +22,7 @@ enum class DD(val type: String) {
 }
 
 open class DropDown(text: String, elements: List<StringPair>? = null, icon: String? = null,
-                    style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, size: BUTTONSIZE? = null,
-                    block: Boolean = false, disabled: Boolean = false, image: ResString? = null,
+                    style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false, image: ResString? = null,
                     dropup: Boolean = false, classes: Set<String> = setOf()) : Container(classes) {
     var text
         get() = button.text
@@ -73,7 +71,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         }
 
     private val idc = "kv_dropdown_" + counter
-    internal val button: DropDownButton = DropDownButton(idc, text, icon, style, size, block,
+    internal val button: DropDownButton = DropDownButton(idc, text, icon, style,
             disabled, image, setOf("dropdown"))
     internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
@@ -165,9 +163,9 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
 }
 
 open class DropDownButton(id: String, text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
-                          size: BUTTONSIZE? = null, block: Boolean = false, disabled: Boolean = false,
+                          disabled: Boolean = false,
                           image: ResString? = null, classes: Set<String> = setOf()) :
-        Button(text, icon, style, size, block, disabled, image, classes) {
+        Button(text, icon, style, disabled, image, classes) {
 
     init {
         this.id = id

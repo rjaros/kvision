@@ -23,8 +23,8 @@ enum class BUTTONSIZE(val className: String) {
 }
 
 open class Button(text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
-                  size: BUTTONSIZE? = null, block: Boolean = false, disabled: Boolean = false,
-                  image: ResString? = null, classes: Set<String> = setOf()) : Widget(classes) {
+                  disabled: Boolean = false, image: ResString? = null,
+                  classes: Set<String> = setOf()) : Widget(classes) {
     var text = text
         set(value) {
             field = value
@@ -40,22 +40,23 @@ open class Button(text: String, icon: String? = null, style: BUTTONSTYLE = BUTTO
             field = value
             refresh()
         }
-    var size = size
-        set(value) {
-            field = value
-            refresh()
-        }
-    var block = block
-        set(value) {
-            field = value
-            refresh()
-        }
     var disabled = disabled
         set(value) {
             field = value
             refresh()
         }
     var image = image
+        set(value) {
+            field = value
+            refresh()
+        }
+
+    var size: BUTTONSIZE? = null
+        set(value) {
+            field = value
+            refresh()
+        }
+    var block = false
         set(value) {
             field = value
             refresh()

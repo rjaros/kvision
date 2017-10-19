@@ -22,6 +22,7 @@ enum class TAG(val tagName: String) {
     UL("ul"),
     OL("ol"),
     DIV("div"),
+    LABEL("label"),
 
     MARK("mark"),
     DEL("del"),

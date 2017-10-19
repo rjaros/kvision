@@ -1,18 +1,15 @@
 package pl.treksoft.kvision
 
 import pl.treksoft.kvision.basic.Label
-import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.Img
-import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.css.BGATTACH
-import pl.treksoft.kvision.css.BGREPEAT
-import pl.treksoft.kvision.css.BGSIZE
-import pl.treksoft.kvision.css.BORDERSTYLE
-import pl.treksoft.kvision.css.Background
-import pl.treksoft.kvision.css.Border
-import pl.treksoft.kvision.css.COLOR
+import pl.treksoft.kvision.core.*
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
+import pl.treksoft.kvision.form.CHECKBOXSTYLE
+import pl.treksoft.kvision.form.CheckBox
+import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.TEXTINPUTTYPE
+import pl.treksoft.kvision.form.Text
+import pl.treksoft.kvision.form.TextInput
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.DIV
 import pl.treksoft.kvision.html.TAG.H1
@@ -43,6 +40,37 @@ class Showcase : ApplicationBase() {
         val link = Link("test", "http://www.google.pl")
         link.add(Tag(TAG.P, "Cośtam"))
         root.add(link)
+
+        val textField = TextInput(placeholder = "Wprowadź hasło ...", value = "abc")
+        root.add(textField)
+        textField.setEventListener<TextInput> {
+            input = { e ->
+                println("i" + self.value)
+            }
+            change = { e ->
+                println("c" + self.value)
+            }
+        }
+        val passwordField = TextInput(TEXTINPUTTYPE.PASSWORD)
+        root.add(passwordField)
+
+        val textField2 = TextInput(placeholder = "Disabled")
+        textField2.disabled = true
+        textField2.size = INPUTSIZE.LARGE
+        root.add(textField2)
+
+        val checkbox = CheckBox(true, label = "Kliknij aby <b>przetestować</b>", rich = true, circled = true,
+                style = CHECKBOXSTYLE.DANGER)
+        root.add(checkbox)
+        checkbox.setEventListener<CheckBox> {
+            click = { e ->
+                println("click" + self.value)
+            }
+            change = { e -> println("change" + self.value) }
+        }
+
+        val text = Text(placeholder = "Pole formularza", maxlength = 5, label = "To jest pole")
+        root.add(text)
 
         val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)
@@ -206,6 +234,8 @@ class Showcase : ApplicationBase() {
         button.setEventListener<Button> {
             click = { _ ->
                 println(self.text)
+                println(textField.value)
+                println(checkbox.value)
                 grid4.colorHex = 0xff0000
                 dd3.text = "Zmiana"
                 dd3.style = BUTTONSTYLE.WARNING

@@ -49,6 +49,7 @@ kotlinFrontend {
         dependency("font-awesome-webpack", "0.0.5-beta.2")
         dependency "file-loader"
         dependency "url-loader"
+        dependency("awesome-bootstrap-checkbox", "0.3.7")
         dependency("snabbdom", "0.6.9")
         dependency "snabbdom-virtualize"
         dependency "navigo"

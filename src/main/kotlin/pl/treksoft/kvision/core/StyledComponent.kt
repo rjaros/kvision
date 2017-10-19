@@ -1,10 +1,5 @@
 package pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.css.Background
-import pl.treksoft.kvision.css.Border
-import pl.treksoft.kvision.css.COLOR
-import pl.treksoft.kvision.css.Color
-import pl.treksoft.kvision.css.CssSize
 import pl.treksoft.kvision.snabbdom.StringPair
 
 abstract class StyledComponent : KVObject {
