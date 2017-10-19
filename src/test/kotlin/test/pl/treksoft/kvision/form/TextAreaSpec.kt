@@ -1,24 +1,24 @@
 package test.pl.treksoft.kvision.form
 
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.form.Text
+import pl.treksoft.kvision.form.TextArea
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TextSpec : DomSpec {
+class TextAreaSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test")
-            val ti = Text(placeholder = "place", value = "abc", name = "name",
+            val ti = TextArea(cols = 5, rows = 2, placeholder = "place", value = "abc", name = "name",
                     maxlength = 15, disabled = true, label = "Label")
             root.add(ti)
             val element = document.getElementById("test")
             val id = ti.input.id
-            assertEquals("<div class=\"form-group\"><label for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"\" type=\"text\" value=\"abc\"></div>", element?.innerHTML, "Should render correct input form field")
+            assertEquals("<div class=\"form-group\"><label for=\"$id\">Label</label><textarea class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"\" cols=\"5\" rows=\"2\">abc</textarea></div>", element?.innerHTML, "Should render correct input form field")
         }
     }
 

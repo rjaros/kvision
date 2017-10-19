@@ -94,6 +94,11 @@ open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBO
         return this
     }
 
+    override fun removeEventListeners(): Widget {
+        input.removeEventListeners()
+        return this
+    }
+
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         style?.let {

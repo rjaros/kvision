@@ -99,6 +99,11 @@ open class Radio(value: Boolean = false, extraValue: String? = null, name: Strin
         return this
     }
 
+    override fun removeEventListeners(): Widget {
+        input.removeEventListeners()
+        return this
+    }
+
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (!squared) {

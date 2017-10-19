@@ -4,14 +4,7 @@ import pl.treksoft.kvision.basic.Label
 import pl.treksoft.kvision.core.*
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
-import pl.treksoft.kvision.form.CHECKBOXSTYLE
-import pl.treksoft.kvision.form.CheckBox
-import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.form.RADIOSTYLE
-import pl.treksoft.kvision.form.Radio
-import pl.treksoft.kvision.form.TEXTINPUTTYPE
-import pl.treksoft.kvision.form.Text
-import pl.treksoft.kvision.form.TextInput
+import pl.treksoft.kvision.form.*
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.DIV
 import pl.treksoft.kvision.html.TAG.H1
@@ -89,6 +82,20 @@ class Showcase : ApplicationBase() {
 
         val text = Text(placeholder = "Pole formularza", maxlength = 5, label = "To jest pole")
         root.add(text)
+
+        val textareainput = TextAreaInput(cols = 5, rows = 2, placeholder = "...", value = "To jest tekst\nTo jest <b>te</b></textarea>kst2")
+        root.add(textareainput)
+
+        val textarea = TextArea(cols = 5, rows = 2, placeholder = "...", value = "To jest tekst\nTo jest <b>te</b></textarea>kst2", label = "Pole długie")
+        root.add(textarea)
+        textarea.setEventListener<TextArea> {
+            input = { e ->
+                println("ta i" + self.value)
+            }
+            change = { e ->
+                println("ta c" + self.value)
+            }
+        }
 
         val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)
