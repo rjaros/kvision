@@ -24,7 +24,7 @@ class TagSpec : DomSpec {
     }
 
     @Test
-    fun render_Rich() {
+    fun renderRich() {
         run {
             val root = Root("test")
             val tag = Tag(TAG.H1, "This is <b>h1</b>", rich = true, align = ALIGN.RIGHT)
@@ -35,7 +35,7 @@ class TagSpec : DomSpec {
     }
 
     @Test
-    fun render_AsContainer() {
+    fun renderAsContainer() {
         run {
             val root = Root("test")
             val tag = Tag(TAG.P, align = ALIGN.RIGHT)

@@ -5,18 +5,18 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
-enum class CHECKBOXSTYLE(val className: String) {
-    DEFAULT("checkbox-default"),
-    PRIMARY("checkbox-primary"),
-    SUCCESS("checkbox-success"),
-    INFO("checkbox-info"),
-    WARNING("checkbox-warning"),
-    DANGER("checkbox-danger"),
+enum class RADIOSTYLE(val className: String) {
+    DEFAULT("radio-default"),
+    PRIMARY("radio-primary"),
+    SUCCESS("radio-success"),
+    INFO("radio-info"),
+    WARNING("radio-warning"),
+    DANGER("radio-danger"),
 }
 
-open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBOXSTYLE? = null,
-                    circled: Boolean = false, inline: Boolean = false, disabled: Boolean = false,
-                    label: String? = null, rich: Boolean = false) : Container(setOf("checkbox")), BoolFormField {
+open class Radio(value: Boolean = false, extraValue: String? = null, name: String? = null, style: RADIOSTYLE? = null,
+                 squared: Boolean = false, inline: Boolean = false, disabled: Boolean = false,
+                 label: String? = null, rich: Boolean = false) : Container(), BoolFormField {
 
     override var value
         get() = input.value
@@ -27,6 +27,11 @@ open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBO
         get() = input.startValue
         set(value) {
             input.startValue = value
+        }
+    var extraValue
+        get() = input.extraValue
+        set(value) {
+            input.extraValue = value
         }
     var name
         get() = input.name
@@ -53,7 +58,7 @@ open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBO
             field = value
             refresh()
         }
-    var circled = circled
+    var squared = squared
         set(value) {
             field = value
             refresh()
@@ -69,8 +74,8 @@ open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBO
             input.size = value
         }
 
-    private val idc = "kv_form_checkbox_" + counter
-    val input: CheckBoxInput = CheckBoxInput(CHECKINPUTTYPE.CHECKBOX, value, name, disabled, idc, null, setOf("styled"))
+    private val idc = "kv_form_radio_" + counter
+    val input: CheckBoxInput = CheckBoxInput(CHECKINPUTTYPE.RADIO, value, name, disabled, idc, extraValue)
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {
@@ -96,14 +101,22 @@ open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBO
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
-        style?.let {
-            cl.add(it.className to true)
-        }
-        if (circled) {
-            cl.add("checkbox-circle" to true)
-        }
-        if (inline) {
-            cl.add("checkbox-inline" to true)
+        if (!squared) {
+            cl.add("radio" to true)
+            style?.let {
+                cl.add(it.className to true)
+            }
+            if (inline) {
+                cl.add("radio-inline" to true)
+            }
+        } else {
+            cl.add("checkbox" to true)
+            style?.let {
+                cl.add(it.className.replace("radio", "checkbox") to true)
+            }
+            if (inline) {
+                cl.add("checkbox-inline" to true)
+            }
         }
         return cl
     }

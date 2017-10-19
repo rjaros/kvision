@@ -13,7 +13,7 @@ import kotlin.test.assertTrue
 class KVManagerSpec : DomSpec {
 
     @Test
-    fun patch_ById() {
+    fun patchById() {
         run {
             val vnode = h("span", snOpt {
                 attrs = snAttrs(listOf("id" to "test_new"))
@@ -26,7 +26,7 @@ class KVManagerSpec : DomSpec {
     }
 
     @Test
-    fun patch_ByVnode() {
+    fun patchByVnode() {
         run {
             val vnode1 = h("span", snOpt {
                 attrs = snAttrs(listOf("id" to "test2"))

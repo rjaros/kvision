@@ -22,7 +22,7 @@ class WidgetSpec : WSpec {
     }
 
     @Test
-    fun render_ToDom() {
+    fun renderToDom() {
         runW { widget, element ->
             widget.addCssClass("testClass")
             widget.title = "test_title"

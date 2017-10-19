@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 class ListSpec : DomSpec {
 
     @Test
-    fun render_Elements() {
+    fun renderElements() {
         run {
             val root = Root("test")
             val list = ListTag(LIST.DL_HORIZ, listOf("a1", "a2", "b1", "b2"))
@@ -24,7 +24,7 @@ class ListSpec : DomSpec {
     }
 
     @Test
-    fun render_AsContainer() {
+    fun renderAsContainer() {
         run {
             val root = Root("test")
             val list = ListTag(LIST.UL)

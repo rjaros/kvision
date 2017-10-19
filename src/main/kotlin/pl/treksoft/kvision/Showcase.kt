@@ -7,6 +7,8 @@ import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.form.CHECKBOXSTYLE
 import pl.treksoft.kvision.form.CheckBox
 import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.RADIOSTYLE
+import pl.treksoft.kvision.form.Radio
 import pl.treksoft.kvision.form.TEXTINPUTTYPE
 import pl.treksoft.kvision.form.Text
 import pl.treksoft.kvision.form.TextInput
@@ -67,6 +69,22 @@ class Showcase : ApplicationBase() {
                 println("click" + self.value)
             }
             change = { e -> println("change" + self.value) }
+        }
+
+        val radio = Radio(true, name = "radios", label = "Opcja 1", inline = true,
+                style = RADIOSTYLE.DANGER, extraValue = "o1")
+        val radio2 = Radio(false, name = "radios", label = "Opcja 2", rich = true, inline = true,
+                style = RADIOSTYLE.WARNING, extraValue = "o2")
+        val radio3 = Radio(false, name = "radios", label = "Opcja 3", inline = true,
+                style = RADIOSTYLE.PRIMARY, squared = true, extraValue = "o3")
+        root.add(radio)
+        root.add(radio2)
+        root.add(radio3)
+        radio.setEventListener<CheckBox> {
+            click = { e ->
+                println("rclick" + self.value)
+            }
+            change = { e -> println("rchange" + self.value) }
         }
 
         val text = Text(placeholder = "Pole formularza", maxlength = 5, label = "To jest pole")

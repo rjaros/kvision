@@ -25,7 +25,7 @@ class DropDownSpec : DomSpec {
     }
 
     @Test
-    fun render_DropUp() {
+    fun renderDropUp() {
         run {
             val root = Root("test")
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag", dropup = true)
@@ -38,7 +38,7 @@ class DropDownSpec : DomSpec {
     }
 
     @Test
-    fun render_HeaderElement() {
+    fun renderHeaderElement() {
         run {
             val root = Root("test")
             val dd = DropDown("Dropdown", listOf("abc" to DD.HEADER.type), "flag")
@@ -51,7 +51,7 @@ class DropDownSpec : DomSpec {
     }
 
     @Test
-    fun render_SeparatorElement() {
+    fun renderSeparatorElement() {
         run {
             val root = Root("test")
             val dd = DropDown("Dropdown", listOf("abc" to DD.SEPARATOR.type), "flag")
@@ -64,7 +64,7 @@ class DropDownSpec : DomSpec {
     }
 
     @Test
-    fun render_DisabledElement() {
+    fun renderDisabledElement() {
         run {
             val root = Root("test")
             val dd = DropDown("Dropdown", listOf("abc" to DD.DISABLED.type), "flag")

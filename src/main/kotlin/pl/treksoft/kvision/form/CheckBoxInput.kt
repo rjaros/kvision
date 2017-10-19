@@ -5,8 +5,14 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
-open class CheckBoxInput(override var value: Boolean = false,
+enum class CHECKINPUTTYPE(val type: String) {
+    CHECKBOX("checkbox"),
+    RADIO("radio")
+}
+
+open class CheckBoxInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override var value: Boolean = false,
                          name: String? = null, disabled: Boolean = false, id: String? = null,
+                         extraValue: String? = null,
                          classes: Set<String> = setOf()) : Widget(classes), BoolFormField {
 
     init {
@@ -20,12 +26,22 @@ open class CheckBoxInput(override var value: Boolean = false,
             this.value = value
             refresh()
         }
+    var type: CHECKINPUTTYPE = type
+        set(value) {
+            field = value
+            refresh()
+        }
     var name: String? = name
         set(value) {
             field = value
             refresh()
         }
     override var disabled: Boolean = disabled
+        set(value) {
+            field = value
+            refresh()
+        }
+    var extraValue: String? = extraValue
         set(value) {
             field = value
             refresh()
@@ -50,7 +66,7 @@ open class CheckBoxInput(override var value: Boolean = false,
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
-        sn.add("type" to "checkbox")
+        sn.add("type" to type.type)
         if (startValue) {
             sn.add("checked" to "true")
         }
@@ -59,6 +75,9 @@ open class CheckBoxInput(override var value: Boolean = false,
         }
         if (disabled) {
             sn.add("disabled" to "true")
+        }
+        extraValue?.let {
+            sn.add("value" to it)
         }
         return sn
     }
