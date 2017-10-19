@@ -75,7 +75,7 @@ open class Radio(value: Boolean = false, extraValue: String? = null, name: Strin
         }
 
     private val idc = "kv_form_radio_" + counter
-    val input: CheckBoxInput = CheckBoxInput(CHECKINPUTTYPE.RADIO, value, name, disabled, idc, extraValue)
+    val input: CheckInput = CheckInput(CHECKINPUTTYPE.RADIO, value, name, disabled, idc, extraValue)
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {

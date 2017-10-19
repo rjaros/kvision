@@ -10,10 +10,10 @@ enum class CHECKINPUTTYPE(val type: String) {
     RADIO("radio")
 }
 
-open class CheckBoxInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override var value: Boolean = false,
-                         name: String? = null, disabled: Boolean = false, id: String? = null,
-                         extraValue: String? = null,
-                         classes: Set<String> = setOf()) : Widget(classes), BoolFormField {
+open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override var value: Boolean = false,
+                      name: String? = null, disabled: Boolean = false, id: String? = null,
+                      extraValue: String? = null,
+                      classes: Set<String> = setOf()) : Widget(classes), BoolFormField {
 
     init {
         this.id = id

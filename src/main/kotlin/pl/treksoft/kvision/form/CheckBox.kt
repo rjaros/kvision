@@ -70,7 +70,7 @@ open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBO
         }
 
     private val idc = "kv_form_checkbox_" + counter
-    val input: CheckBoxInput = CheckBoxInput(CHECKINPUTTYPE.CHECKBOX, value, name, disabled, idc, null, setOf("styled"))
+    val input: CheckInput = CheckInput(CHECKINPUTTYPE.CHECKBOX, value, name, disabled, idc, null, setOf("styled"))
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {
