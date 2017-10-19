@@ -64,7 +64,6 @@ abstract class AbstractTextInput(placeholder: String? = null,
         return cl
     }
 
-    @Suppress("ComplexMethod")
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
         placeholder?.let {

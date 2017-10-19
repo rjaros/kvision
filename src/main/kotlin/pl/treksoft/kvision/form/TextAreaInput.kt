@@ -30,7 +30,6 @@ class TextAreaInput(cols: Int? = null, rows: Int? = null, placeholder: String? =
         } ?: kvh("textarea")
     }
 
-    @Suppress("ComplexMethod")
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
         cols?.let {

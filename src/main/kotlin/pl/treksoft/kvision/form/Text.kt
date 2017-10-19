@@ -16,7 +16,7 @@ open class Text(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, placeholder: String? =
             input.autocomplete = value
         }
 
-    override final val input: TextInput = TextInput(type, placeholder, value, name, maxlength, disabled, idc)
+    final override val input: TextInput = TextInput(type, placeholder, value, name, maxlength, disabled, idc)
 
     init {
         this.addInternal(input)

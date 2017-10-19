@@ -20,7 +20,8 @@ open class TextArea(cols: Int? = null, rows: Int? = null, placeholder: String? =
             input.wrapHard = value
         }
 
-    override final val input: TextAreaInput = TextAreaInput(cols, rows, placeholder, value, name, maxlength, disabled, idc)
+    final override val input: TextAreaInput = TextAreaInput(cols, rows, placeholder, value, name, maxlength,
+            disabled, idc)
 
     init {
         this.addInternal(input)
