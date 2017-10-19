@@ -236,6 +236,7 @@ class Showcase : ApplicationBase() {
                 println(self.text)
                 println(textField.value)
                 println(checkbox.value)
+                textField2.disabled = false
                 grid4.colorHex = 0xff0000
                 dd3.text = "Zmiana"
                 dd3.style = BUTTONSTYLE.WARNING

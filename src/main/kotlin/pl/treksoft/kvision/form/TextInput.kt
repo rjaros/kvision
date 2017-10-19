@@ -118,7 +118,7 @@ class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, placeholder: String? =
             }
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            sn.add("disabled" to "true")
         }
         return sn
     }

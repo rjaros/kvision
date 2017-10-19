@@ -18,7 +18,7 @@ open class SplitPanel(private val direction: DIRECTION = DIRECTION.VERTICAL,
                       classes: Set<String> = setOf()) : Container(classes + ("splitpanel-" + direction.dir)) {
 
     @Suppress("LeakingThis")
-    private val splitter = Splitter(this, direction)
+    internal val splitter = Splitter(this, direction)
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun afterInsertSplitter() {

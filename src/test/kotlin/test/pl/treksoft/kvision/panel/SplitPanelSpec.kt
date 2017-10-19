@@ -26,7 +26,8 @@ class SplitPanelSpec : DomSpec {
             splitPanel.add(label1)
             splitPanel.add(label2)
             val element = document.getElementById("test")
-            assertEquals("<div class=\"splitpanel-vertical\"><span class=\"resizable\">abc</span><div class=\"splitter-vertical\" id=\"kv_splitter_0\" style=\"touch-action: none;\"></div><span>def</span></div>", element?.innerHTML, "Should render correct split panel")
+            val id = splitPanel.splitter.id
+            assertEquals("<div class=\"splitpanel-vertical\"><span class=\"resizable\">abc</span><div class=\"splitter-vertical\" id=\"$id\" style=\"touch-action: none;\"></div><span>def</span></div>", element?.innerHTML, "Should render correct split panel")
         }
     }
 }

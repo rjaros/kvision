@@ -52,13 +52,13 @@ open class CheckBoxInput(override var value: Boolean = false,
         val sn = super.getSnAttrs().toMutableList()
         sn.add("type" to "checkbox")
         if (startValue) {
-            sn.add("checked" to "checked")
+            sn.add("checked" to "true")
         }
         name?.let {
             sn.add("name" to it)
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            sn.add("disabled" to "true")
         }
         return sn
     }
