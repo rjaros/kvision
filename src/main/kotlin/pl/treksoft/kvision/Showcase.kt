@@ -1,10 +1,27 @@
 package pl.treksoft.kvision
 
+import com.lightningkite.kotlin.observable.list.observableListOf
 import pl.treksoft.kvision.basic.Label
-import pl.treksoft.kvision.core.*
+import pl.treksoft.kvision.core.BGATTACH
+import pl.treksoft.kvision.core.BGREPEAT
+import pl.treksoft.kvision.core.BGSIZE
+import pl.treksoft.kvision.core.BORDERSTYLE
+import pl.treksoft.kvision.core.Background
+import pl.treksoft.kvision.core.Border
+import pl.treksoft.kvision.core.COLOR
+import pl.treksoft.kvision.core.Img
+import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.data.DataComponent
+import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
-import pl.treksoft.kvision.form.*
+import pl.treksoft.kvision.form.CheckBox
+import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.TEXTINPUTTYPE
+import pl.treksoft.kvision.form.Text
+import pl.treksoft.kvision.form.TextArea
+import pl.treksoft.kvision.form.TextAreaInput
+import pl.treksoft.kvision.form.TextInput
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.DIV
 import pl.treksoft.kvision.html.TAG.H1
@@ -21,7 +38,51 @@ class Showcase : ApplicationBase() {
     override fun start(state: Map<String, Any>) {
         val root = Root("showcase")
 
-        val container = Container(setOf("abc", "def"))
+        class Model(p: Boolean, t: String) : DataComponent() {
+            var p: Boolean by obs(p)
+            var t: String by obs(t)
+        }
+
+        val model = observableListOf(Model(true, "Pierwszy"), Model(false, "Drugi"), Model(false, "Trzeci"))
+        val datac = DataContainer(model, { element, index ->
+            CheckBox(value = element.p,
+                    label = if (element.p) "<b>" + (index + 1) + " " + element.t + "</b>" else element.t,
+                    rich = true).setEventListener<CheckBox>({
+                click = {
+                    element.p = self.value
+                }
+            })
+        })
+        root.add(datac)
+
+        val mbutton = Button("Pokaż wartości").setEventListener<Button> {
+            click = {
+                println(model.collection)
+            }
+            dblclick = {
+                model.add(Model(true, "XXX"))
+            }
+        }
+        root.add(mbutton)
+        val mbutton2 = Button("Zaznacz").setEventListener<Button> {
+            click = {
+                model.forEach { it.p = true }
+            }
+            dblclick = {
+                model.forEach { it.p = false }
+            }
+        }
+        root.add(mbutton2)
+        val textField = TextInput(placeholder = "Wprowadź hasło ...", value = "abc")
+        val mbutton3 = Button("Ukryj/Pokaż").setEventListener<Button> {
+            click = {
+                if (datac.visible) datac.hide() else datac.show()
+                if (textField.visible) textField.hide() else textField.show()
+            }
+        }
+        root.add(mbutton3)
+
+        val container = SimplePanel(setOf("abc", "def"))
         val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, null, classes = setOf("test", "test2"))
         container.add(h1)
         val label = Label("KVLabel1")
@@ -36,7 +97,6 @@ class Showcase : ApplicationBase() {
         link.add(Tag(TAG.P, "Cośtam"))
         root.add(link)
 
-        val textField = TextInput(placeholder = "Wprowadź hasło ...", value = "abc")
         root.add(textField)
         textField.setEventListener<TextInput> {
             input = { e ->
@@ -54,7 +114,7 @@ class Showcase : ApplicationBase() {
         textField2.size = INPUTSIZE.LARGE
         root.add(textField2)
 
-        val checkbox = CheckBox(true, label = "Kliknij aby <b>przetestować</b>", rich = true, circled = true,
+/*        val checkbox = CheckBox(true, label = "Kliknij aby <b>przetestować</b>", rich = true, circled = true,
                 style = CHECKBOXSTYLE.DANGER)
         root.add(checkbox)
         checkbox.setEventListener<CheckBox> {
@@ -62,9 +122,9 @@ class Showcase : ApplicationBase() {
                 println("click" + self.value)
             }
             change = { e -> println("change" + self.value) }
-        }
+        }*/
 
-        val radio = Radio(true, name = "radios", label = "Opcja 1", inline = true,
+/*        val radio = Radio(true, name = "radios", label = "Opcja 1", inline = true,
                 style = RADIOSTYLE.DANGER, extraValue = "o1")
         val radio2 = Radio(false, name = "radios", label = "Opcja 2", rich = true, inline = true,
                 style = RADIOSTYLE.WARNING, extraValue = "o2")
@@ -78,7 +138,7 @@ class Showcase : ApplicationBase() {
                 println("rclick" + self.value)
             }
             change = { e -> println("rchange" + self.value) }
-        }
+        }*/
 
         val text = Text(placeholder = "Pole formularza", maxlength = 5, label = "To jest pole")
         root.add(text)
@@ -258,9 +318,10 @@ class Showcase : ApplicationBase() {
         val button = Button("To jest przycisk FA", "fa-flag", BUTTONSTYLE.DANGER)
         button.setEventListener<Button> {
             click = { _ ->
+                println(model.collection)
                 println(self.text)
                 println(textField.value)
-                println(checkbox.value)
+//                println(checkbox.value)
                 textField2.disabled = false
                 grid4.colorHex = 0xff0000
                 dd3.text = "Zmiana"
@@ -340,7 +401,7 @@ class Showcase : ApplicationBase() {
                     props = snProps("href" to "/foo", "target" to "_blank")
                 }, "I\'ll take you places!")
         ))
-        val v = patch(container, vnode)
+        val v = patch(child, vnode)
         val vnode2 = virtualize("<a href='/top' target='_top'>Test2</a>")
         patch(v, vnode2)*/
     }

@@ -1,11 +1,10 @@
 package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 
 open class StackPanel(private val activateLast: Boolean = true,
-                      classes: Set<String> = setOf()) : Container(classes) {
+                      classes: Set<String> = setOf()) : SimplePanel(classes) {
     var activeIndex = -1
         set(value) {
             field = value
@@ -20,27 +19,27 @@ open class StackPanel(private val activateLast: Boolean = true,
         }
     }
 
-    override fun add(child: Widget): Container {
+    override fun add(child: Widget): StackPanel {
         super.add(child)
         if (activateLast) activeIndex = children.size - 1
         else if (activeIndex == -1) activeIndex = 0
         return this
     }
 
-    override fun addAll(children: List<Widget>): Container {
+    override fun addAll(children: List<Widget>): StackPanel {
         super.addAll(children)
         if (activateLast) activeIndex = this.children.size - 1
         else if (activeIndex == -1) activeIndex = 0
         return this
     }
 
-    override fun remove(child: Widget): Container {
+    override fun remove(child: Widget): StackPanel {
         super.remove(child)
         if (activeIndex > children.size - 1) activeIndex = children.size - 1
         return this
     }
 
-    override fun removeAll(): Container {
+    override fun removeAll(): StackPanel {
         super.removeAll()
         if (activeIndex > children.size - 1) activeIndex = children.size - 1
         return this

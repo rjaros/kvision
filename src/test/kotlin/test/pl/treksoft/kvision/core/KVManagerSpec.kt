@@ -20,8 +20,8 @@ class KVManagerSpec : DomSpec {
                 style = snStyle(listOf("fontWeight" to "bold", "fontStyle" to "italic"))
             })
             KVManager.patch("test", vnode)
-            assertTrue("Original container should not exist") { document.getElementById("test") == null }
-            assertTrue("New container should exist") { document.getElementById("test_new") != null }
+            assertTrue("Original child should not exist") { document.getElementById("test") == null }
+            assertTrue("New child should exist") { document.getElementById("test_new") != null }
         }
     }
 
@@ -38,9 +38,9 @@ class KVManagerSpec : DomSpec {
                 style = snStyle(listOf("fontWeight" to "bold", "fontStyle" to "italic"))
             })
             KVManager.patch(vnode2, vnode3)
-            assertTrue("First container should not exist") { document.getElementById("test") == null }
-            assertTrue("Second container should not exist") { document.getElementById("test2") == null }
-            assertTrue("Third container should exist") { document.getElementById("test3") != null }
+            assertTrue("First child should not exist") { document.getElementById("test") == null }
+            assertTrue("Second child should not exist") { document.getElementById("test2") == null }
+            assertTrue("Third child should exist") { document.getElementById("test3") != null }
         }
     }
 
@@ -49,10 +49,10 @@ class KVManagerSpec : DomSpec {
         run {
             val node = KVManager.virtualize("<div id=\"virtual\"><p>Virtual node</p></div>")
             KVManager.patch("test", node)
-            assertTrue("Original container should not exist") { document.getElementById("test") == null }
+            assertTrue("Original child should not exist") { document.getElementById("test") == null }
             val v = document.getElementById("virtual")
-            assertTrue("New container should exist") { v != null }
-            assertTrue("New container should have one child") { v?.children?.length == 1 }
+            assertTrue("New child should exist") { v != null }
+            assertTrue("New child should have one child") { v?.children?.length == 1 }
         }
     }
 }

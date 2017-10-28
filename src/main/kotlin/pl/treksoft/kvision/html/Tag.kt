@@ -1,7 +1,7 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
@@ -50,7 +50,7 @@ enum class ALIGN(val className: String) {
 }
 
 open class Tag(type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN? = null,
-               classes: Set<String> = setOf()) : Container(classes) {
+               classes: Set<String> = setOf()) : SimplePanel(classes) {
     var type = type
         set(value) {
             field = value

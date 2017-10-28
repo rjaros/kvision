@@ -1,6 +1,6 @@
 package test.pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.core.Widget
 import test.pl.treksoft.kvision.DomSpec
@@ -14,7 +14,7 @@ class ContainerSpec : DomSpec {
     fun add() {
         run {
             val root = Root("test")
-            val container = Container()
+            val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
             val child2 = Widget()
@@ -24,7 +24,7 @@ class ContainerSpec : DomSpec {
             root.add(container)
             val elem1 = document.getElementById("child1")
             val elem2 = document.getElementById("child2")
-            assertTrue("Container renders children") { elem1 != null && elem2 != null }
+            assertTrue("SimplePanel renders children") { elem1 != null && elem2 != null }
         }
     }
 
@@ -32,7 +32,7 @@ class ContainerSpec : DomSpec {
     fun addAll() {
         run {
             val root = Root("test")
-            val container = Container()
+            val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
             val child2 = Widget()
@@ -41,7 +41,7 @@ class ContainerSpec : DomSpec {
             root.add(container)
             val elem1 = document.getElementById("child1")
             val elem2 = document.getElementById("child2")
-            assertTrue("Container renders children") { elem1 != null && elem2 != null }
+            assertTrue("SimplePanel renders children") { elem1 != null && elem2 != null }
         }
     }
 
@@ -49,7 +49,7 @@ class ContainerSpec : DomSpec {
     fun remove() {
         run {
             val root = Root("test")
-            val container = Container()
+            val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
             val child2 = Widget()
@@ -60,7 +60,7 @@ class ContainerSpec : DomSpec {
             container.remove(child2)
             val elem1 = document.getElementById("child1")
             val elem2 = document.getElementById("child2")
-            assertTrue("Container renders children") { elem1 != null && elem2 == null }
+            assertTrue("SimplePanel renders children") { elem1 != null && elem2 == null }
         }
     }
 
@@ -68,7 +68,7 @@ class ContainerSpec : DomSpec {
     fun removeAll() {
         run {
             val root = Root("test")
-            val container = Container()
+            val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
             val child2 = Widget()
@@ -86,7 +86,7 @@ class ContainerSpec : DomSpec {
     fun getChildren() {
         run {
             val root = Root("test")
-            val container = Container()
+            val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
             val child2 = Widget()

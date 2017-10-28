@@ -2,11 +2,14 @@ package pl.treksoft.kvision.core
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.modal.Modal
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
-class Root(id: String, private val fixed: Boolean = false) : Container() {
+class Root(id: String, private val fixed: Boolean = false) : SimplePanel() {
     private val modals: MutableList<Modal> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
+
+    internal var renderDisabled = false
 
     init {
         rootVnode = KVManager.patch(id, this.renderVNode())
@@ -34,7 +37,9 @@ class Root(id: String, private val fixed: Boolean = false) : Container() {
     }
 
     internal fun reRender(): Root {
-        rootVnode = KVManager.patch(rootVnode, renderVNode())
+        if (!renderDisabled) {
+            rootVnode = KVManager.patch(rootVnode, renderVNode())
+        }
         return this
     }
 

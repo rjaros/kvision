@@ -25,6 +25,7 @@ repositories {
     jcenter()
     maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
     maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
+    maven { url = "./libs" }
 }
 
 dependencies {
@@ -33,6 +34,7 @@ dependencies {
     compile "com.github.snabbdom:snabbdom-kotlin:0.1.1"
     compile "pl.treksoft:navigo-kotlin:0.0.1"
     compile "pl.treksoft:jquery-kotlin:0.0.2"
+    compile "obs:kotlin-observable:0.0.1"
 }
 
 kotlinFrontend {

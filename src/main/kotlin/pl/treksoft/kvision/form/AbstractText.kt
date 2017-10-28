@@ -1,11 +1,11 @@
 package pl.treksoft.kvision.form
 
-import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.SnOn
 
 abstract class AbstractText(label: String? = null, rich: Boolean = false) :
-        Container(setOf("form-group")), StringFormField {
+        SimplePanel(setOf("form-group")), StringFormField {
 
     override var value
         get() = input.value

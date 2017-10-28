@@ -3,7 +3,6 @@ package pl.treksoft.kvision.panel
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.JQueryEventObject
-import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -15,7 +14,7 @@ enum class DIRECTION(val dir: String) {
 }
 
 open class SplitPanel(private val direction: DIRECTION = DIRECTION.VERTICAL,
-                      classes: Set<String> = setOf()) : Container(classes + ("splitpanel-" + direction.dir)) {
+                      classes: Set<String> = setOf()) : SimplePanel(classes + ("splitpanel-" + direction.dir)) {
 
     @Suppress("LeakingThis")
     internal val splitter = Splitter(this, direction)

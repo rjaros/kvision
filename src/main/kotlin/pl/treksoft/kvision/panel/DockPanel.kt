@@ -1,6 +1,5 @@
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 
 enum class SIDE {
@@ -11,7 +10,7 @@ enum class SIDE {
     DOWN
 }
 
-open class DockPanel(classes: Set<String> = setOf()) : Container(classes = classes) {
+open class DockPanel(classes: Set<String> = setOf()) : SimplePanel(classes = classes) {
     protected var left: Widget? = null
     protected var center: Widget? = null
     protected var right: Widget? = null
@@ -59,16 +58,16 @@ open class DockPanel(classes: Set<String> = setOf()) : Container(classes = class
         return this
     }
 
-    override fun add(child: Widget): Container {
+    override fun add(child: Widget): DockPanel {
         return this.add(child, SIDE.CENTER)
     }
 
-    override fun addAll(children: List<Widget>): Container {
+    override fun addAll(children: List<Widget>): DockPanel {
         children.forEach { this.add(it) }
         return this
     }
 
-    override fun remove(child: Widget): Container {
+    override fun remove(child: Widget): DockPanel {
         if (child == left) removeAt(SIDE.LEFT)
         if (child == center) removeAt(SIDE.CENTER)
         if (child == right) removeAt(SIDE.RIGHT)
@@ -77,7 +76,7 @@ open class DockPanel(classes: Set<String> = setOf()) : Container(classes = class
         return this
     }
 
-    open fun removeAt(position: SIDE): Container {
+    open fun removeAt(position: SIDE): DockPanel {
         when (position) {
             SIDE.UP -> {
                 up?.let { mainContainer.remove(it) }
@@ -103,7 +102,7 @@ open class DockPanel(classes: Set<String> = setOf()) : Container(classes = class
         return this
     }
 
-    override fun removeAll(): Container {
+    override fun removeAll(): DockPanel {
         removeAt(SIDE.LEFT)
         removeAt(SIDE.CENTER)
         removeAt(SIDE.RIGHT)

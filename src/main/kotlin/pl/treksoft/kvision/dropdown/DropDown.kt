@@ -1,7 +1,7 @@
 package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.BUTTONSTYLE
@@ -23,7 +23,7 @@ enum class DD(val type: String) {
 
 open class DropDown(text: String, elements: List<StringPair>? = null, icon: String? = null,
                     style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false, image: ResString? = null,
-                    dropup: Boolean = false, classes: Set<String> = setOf()) : Container(classes) {
+                    dropup: Boolean = false, classes: Set<String> = setOf()) : SimplePanel(classes) {
     var text
         get() = button.text
         set(value) {
@@ -93,12 +93,12 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         var counter = 0
     }
 
-    override fun add(child: Widget): Container {
+    override fun add(child: Widget): SimplePanel {
         list.add(child)
         return this
     }
 
-    override fun addAll(children: List<Widget>): Container {
+    override fun addAll(children: List<Widget>): SimplePanel {
         list.addAll(children)
         return this
     }

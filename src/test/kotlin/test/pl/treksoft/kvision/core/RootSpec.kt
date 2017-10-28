@@ -14,7 +14,7 @@ class RootSpec : DomSpec {
         run {
             Root("test")
             val rootElem = document.getElementById("test")
-            assertTrue("Standard root container has correct css class") { rootElem?.className == "container-fluid" }
+            assertTrue("Standard root child has correct css class") { rootElem?.className == "container-fluid" }
         }
     }
 
@@ -23,7 +23,7 @@ class RootSpec : DomSpec {
         run {
             Root("test", fixed = true)
             val rootElem = document.getElementById("test")
-            assertTrue("Fluid root container has correct css class") { rootElem?.className == "container" }
+            assertTrue("Fluid root child has correct css class") { rootElem?.className == "container" }
         }
     }
 

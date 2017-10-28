@@ -17,6 +17,16 @@ open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override v
 
     init {
         this.id = id
+        this.setInternalEventListener {
+            click = {
+                val v = getElementJQuery()?.prop("checked") as Boolean?
+                value = (v == true)
+            }
+            change = {
+                val v = getElementJQuery()?.prop("checked") as Boolean?
+                value = (v == true)
+            }
+        }
     }
 
     @Suppress("LeakingThis")
@@ -83,15 +93,17 @@ open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override v
     }
 
     override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("change", { _, _ ->
-            val v = getElementJQuery()?.prop("checked") as Boolean?
-            value = (v == true)
-            true
-        })
-        this.getElementJQuery()?.on("click", { _, _ ->
-            val v = getElementJQuery()?.prop("checked") as Boolean?
-            value = (v == true)
-            true
-        })
+        refreshCheckedState()
+    }
+
+    override fun afterPostpatch(node: VNode) {
+        refreshCheckedState()
+    }
+
+    private fun refreshCheckedState() {
+        val v = getElementJQuery()?.prop("checked") as Boolean?
+        if (this.value != v) {
+            getElementJQuery()?.prop("checked", this.value)
+        }
     }
 }

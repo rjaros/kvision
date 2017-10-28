@@ -1,15 +1,12 @@
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 
-open class TabPanel : Container(setOf()) {
-    private var nav = Tag(TAG.UL, classes = setOf("nav", "nav-tabs"))
-    private var content = StackPanel(false)
+open class TabPanel : SimplePanel(setOf()) {
     var activeIndex
         get() = content.activeIndex
         set(value) {
@@ -20,9 +17,12 @@ open class TabPanel : Container(setOf()) {
             }
         }
 
+    private var nav = Tag(TAG.UL, classes = setOf("nav", "nav-tabs"))
+    private var content = StackPanel(false)
+
     init {
-        this.add(nav)
-        this.add(content)
+        this.addInternal(nav)
+        this.addInternal(content)
     }
 
     open fun addTab(title: String, panel: Widget, icon: String? = null,
@@ -50,6 +50,27 @@ open class TabPanel : Container(setOf()) {
         nav.remove(nav.children[index])
         content.remove(content.children[index])
         activeIndex = content.activeIndex
+        return this
+    }
+
+    override fun add(child: Widget): TabPanel {
+        return addTab("", child)
+    }
+
+    override fun addAll(children: List<Widget>): TabPanel {
+        children.forEach { add(it) }
+        return this
+    }
+
+    override fun remove(child: Widget): TabPanel {
+        val index = content.children.indexOf(child)
+        return removeTab(index)
+    }
+
+    override fun removeAll(): TabPanel {
+        content.removeAll()
+        nav.removeAll()
+        refresh()
         return this
     }
 }

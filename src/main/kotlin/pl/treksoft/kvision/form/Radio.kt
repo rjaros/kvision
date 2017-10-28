@@ -1,6 +1,6 @@
 package pl.treksoft.kvision.form
 
-import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -16,7 +16,7 @@ enum class RADIOSTYLE(val className: String) {
 
 open class Radio(value: Boolean = false, extraValue: String? = null, name: String? = null, style: RADIOSTYLE? = null,
                  squared: Boolean = false, inline: Boolean = false, disabled: Boolean = false,
-                 label: String? = null, rich: Boolean = false) : Container(), BoolFormField {
+                 label: String? = null, rich: Boolean = false) : SimplePanel(), BoolFormField {
 
     override var value
         get() = input.value

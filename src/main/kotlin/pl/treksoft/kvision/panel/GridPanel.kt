@@ -1,6 +1,5 @@
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.snabbdom.StringPair
@@ -50,7 +49,7 @@ open class GridPanel(autoColumns: String? = null, autoRows: String? = null, auto
                      templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
                      columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
                      alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
-                     alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf()) : Container(classes) {
+                     alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf()) : SimplePanel(classes) {
     var autoColumns = autoColumns
         set(value) {
             field = value
@@ -115,21 +114,21 @@ open class GridPanel(autoColumns: String? = null, autoRows: String? = null, auto
     @Suppress("LongParameterList")
     fun add(child: Widget, columnStart: Int? = null, rowStart: Int? = null,
             columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: GRIDJUSTIFY? = null,
-            alignSelf: GRIDALIGN? = null, classes: Set<String> = setOf()): Container {
-        return addInternal(GridWrapper(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf,
-                alignSelf, classes))
+            alignSelf: GRIDALIGN? = null, classes: Set<String> = setOf()): GridPanel {
+        addInternal(GridWrapper(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, classes))
+        return this
     }
 
-    override fun add(child: Widget): Container {
+    override fun add(child: Widget): GridPanel {
         return add(child, null, null)
     }
 
-    override fun addAll(children: List<Widget>): Container {
+    override fun addAll(children: List<Widget>): GridPanel {
         children.forEach { add(it, null, null) }
         return this
     }
 
-    override fun remove(child: Widget): Container {
+    override fun remove(child: Widget): GridPanel {
         children.find { (it as GridWrapper).delegate == child }?.let {
             super.remove(it)
             it.dispose()
@@ -137,7 +136,7 @@ open class GridPanel(autoColumns: String? = null, autoRows: String? = null, auto
         return this
     }
 
-    override fun removeAll(): Container {
+    override fun removeAll(): GridPanel {
         children.map {
             it.clearParent()
             it.dispose()

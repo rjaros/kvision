@@ -1,6 +1,5 @@
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.snabbdom.StringPair
@@ -46,7 +45,7 @@ enum class FLEXALIGNCONTENT(val alignContent: String) {
 
 open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
                      alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
-                     classes: Set<String> = setOf()) : Container(classes) {
+                     classes: Set<String> = setOf()) : SimplePanel(classes) {
     var direction = direction
         set(value) {
             field = value
@@ -75,20 +74,21 @@ open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify
 
     @Suppress("LongParameterList")
     fun add(child: Widget, order: Int? = null, grow: Int? = null, shrink: Int? = null,
-            basis: Int? = null, alignSelf: FLEXALIGNITEMS? = null, classes: Set<String> = setOf()): Container {
-        return addInternal(FlexWrapper(child, order, grow, shrink, basis, alignSelf, classes))
+            basis: Int? = null, alignSelf: FLEXALIGNITEMS? = null, classes: Set<String> = setOf()): FlexPanel {
+        addInternal(FlexWrapper(child, order, grow, shrink, basis, alignSelf, classes))
+        return this
     }
 
-    override fun add(child: Widget): Container {
+    override fun add(child: Widget): FlexPanel {
         return add(child, null)
     }
 
-    override fun addAll(children: List<Widget>): Container {
+    override fun addAll(children: List<Widget>): FlexPanel {
         children.forEach { add(it, null) }
         return this
     }
 
-    override fun remove(child: Widget): Container {
+    override fun remove(child: Widget): FlexPanel {
         children.find { (it as FlexWrapper).delegate == child }?.let {
             super.remove(it)
             it.dispose()
@@ -96,7 +96,7 @@ open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify
         return this
     }
 
-    override fun removeAll(): Container {
+    override fun removeAll(): FlexPanel {
         children.map {
             it.clearParent()
             it.dispose()

@@ -2,7 +2,7 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
-import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
@@ -16,7 +16,7 @@ enum class LIST(val tagName: String) {
 }
 
 open class ListTag(type: LIST, elements: List<String>? = null, rich: Boolean = false,
-                   classes: Set<String> = setOf()) : Container(classes) {
+                   classes: Set<String> = setOf()) : SimplePanel(classes) {
     var type = type
         set(value) {
             field = value

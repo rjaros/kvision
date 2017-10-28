@@ -17,11 +17,12 @@ import pl.treksoft.kvision.snabbdom.snClasses
 import pl.treksoft.kvision.snabbdom.snOpt
 import pl.treksoft.kvision.snabbdom.snStyle
 
-@Suppress("TooManyFunctions")
+@Suppress("TooManyFunctions", "LargeClass")
 open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
-    val classes = classes.toMutableSet()
-    val listeners = mutableListOf<SnOn<Widget>.() -> Unit>()
+    internal val classes = classes.toMutableSet()
+    internal val internalListeners = mutableListOf<SnOn<Widget>.() -> Unit>()
+    internal val listeners = mutableListOf<SnOn<Widget>.() -> Unit>()
 
     var parent: Widget? = null
         internal set
@@ -55,7 +56,15 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     private var snOnCache: com.github.snabbdom.On? = null
     private var snHooksCache: com.github.snabbdom.Hooks? = null
 
-    internal open fun renderVNode(): VNode {
+    protected fun <T> singleRender(block: () -> T): T {
+        getRoot()?.renderDisabled = true
+        val t = block()
+        getRoot()?.renderDisabled = false
+        getRoot()?.reRender()
+        return t
+    }
+
+    open fun renderVNode(): VNode {
         return render()
     }
 
@@ -132,9 +141,47 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     }
 
     protected open fun getSnOn(): com.github.snabbdom.On? {
-        return if (listeners.size > 0) {
+        return if (internalListeners.size > 0 || listeners.size > 0) {
+            val internalHandlers = on(this)
+            internalListeners.forEach { l -> (internalHandlers::apply)(l) }
             val handlers = on(this)
             listeners.forEach { l -> (handlers::apply)(l) }
+            if (internalHandlers.click != null) {
+                if (handlers.click == null) {
+                    handlers.click = internalHandlers.click
+                } else {
+                    val intc = internalHandlers.click
+                    val c = handlers.click
+                    handlers.click = { e ->
+                        intc?.invoke(e)
+                        c?.invoke(e)
+                    }
+                }
+            }
+            if (internalHandlers.change != null) {
+                if (handlers.change == null) {
+                    handlers.change = internalHandlers.change
+                } else {
+                    val intc = internalHandlers.change
+                    val c = handlers.change
+                    handlers.change = { e ->
+                        intc?.invoke(e)
+                        c?.invoke(e)
+                    }
+                }
+            }
+            if (internalHandlers.input != null) {
+                if (handlers.input == null) {
+                    handlers.input = internalHandlers.input
+                } else {
+                    val intc = internalHandlers.input
+                    val c = handlers.input
+                    handlers.input = { e ->
+                        intc?.invoke(e)
+                        c?.invoke(e)
+                    }
+                }
+            }
             handlers
         } else {
             null
@@ -144,13 +191,21 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     protected open fun getSnHooks(): com.github.snabbdom.Hooks? {
         val hooks = hooks()
         hooks.apply {
+            create = { _, v ->
+                vnode = v
+                afterCreate(v)
+            }
             insert = { v ->
                 vnode = v
                 afterInsert(v)
             }
             postpatch = { ov, v ->
                 vnode = v
-                if (ov.elm !== v.elm) afterInsert(v)
+                if (ov.elm !== v.elm) {
+                    afterInsert(v)
+                } else {
+                    afterPostpatch(v)
+                }
             }
             destroy = { _ ->
                 vnode = null
@@ -158,6 +213,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
             }
         }
         return hooks
+    }
+
+    protected fun setInternalEventListener(block: SnOn<Widget>.() -> Unit): Widget {
+        internalListeners.add(block)
+        refresh()
+        return this
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -228,7 +289,13 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this
     }
 
+    protected open fun afterCreate(node: VNode) {
+    }
+
     protected open fun afterInsert(node: VNode) {
+    }
+
+    protected open fun afterPostpatch(node: VNode) {
     }
 
     protected open fun afterDestroy() {

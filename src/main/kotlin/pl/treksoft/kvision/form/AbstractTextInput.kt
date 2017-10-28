@@ -1,16 +1,25 @@
 package pl.treksoft.kvision.form
 
-import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
 abstract class AbstractTextInput(placeholder: String? = null,
-                override var value: String? = null, name: String? = null, maxlength: Int? = null,
-                disabled: Boolean = false, id: String? = null,
-                classes: Set<String> = setOf()) : Widget(classes + "form-control"), StringFormField {
+                                 override var value: String? = null, name: String? = null, maxlength: Int? = null,
+                                 disabled: Boolean = false, id: String? = null,
+                                 classes: Set<String> = setOf()) : Widget(classes + "form-control"), StringFormField {
     init {
         this.id = id
+        this.setInternalEventListener {
+            input = {
+                val v = getElementJQuery()?.`val`() as String?
+                if (v != null && v.isNotEmpty()) {
+                    value = v
+                } else {
+                    value = null
+                }
+            }
+        }
     }
 
     @Suppress("LeakingThis")
@@ -89,16 +98,5 @@ abstract class AbstractTextInput(placeholder: String? = null,
             sn.add("disabled" to "true")
         }
         return sn
-    }
-
-    override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("input", { _, _ ->
-            val v = getElementJQuery()?.`val`() as String?
-            if (v != null && v.isNotEmpty()) {
-                value = v
-            } else {
-                value = null
-            }
-        })
     }
 }

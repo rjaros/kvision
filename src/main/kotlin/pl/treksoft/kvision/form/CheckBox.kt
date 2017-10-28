@@ -1,6 +1,6 @@
 package pl.treksoft.kvision.form
 
-import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -16,7 +16,7 @@ enum class CHECKBOXSTYLE(val className: String) {
 
 open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBOXSTYLE? = null,
                     circled: Boolean = false, inline: Boolean = false, disabled: Boolean = false,
-                    label: String? = null, rich: Boolean = false) : Container(setOf("checkbox")), BoolFormField {
+                    label: String? = null, rich: Boolean = false) : SimplePanel(setOf("checkbox")), BoolFormField {
 
     override var value
         get() = input.value
