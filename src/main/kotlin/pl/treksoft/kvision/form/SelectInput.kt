@@ -144,6 +144,7 @@ class SelectInput(options: List<StringPair>? = null, override var value: String?
         return cl
     }
 
+    @Suppress("ComplexMethod")
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
         name?.let {

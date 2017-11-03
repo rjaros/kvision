@@ -45,15 +45,19 @@ open class SelectOption(value: String? = null, label: String? = null, subtext: S
         }
 
     override fun render(): VNode {
-        return kvh("option", arrayOf(label ?: value))
+        return if (!divider) {
+            kvh("option", arrayOf(label ?: value))
+        } else {
+            kvh("option")
+        }
     }
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
-        value?.let {
-            sn.add("value" to it)
-        }
         if (!divider) {
+            value?.let {
+                sn.add("value" to it)
+            }
             subtext?.let {
                 sn.add("data-subtext" to it)
             }
