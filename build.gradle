@@ -52,6 +52,8 @@ kotlinFrontend {
         dependency "file-loader"
         dependency "url-loader"
         dependency("awesome-bootstrap-checkbox", "0.3.7")
+        dependency "bootstrap-select"
+        dependency "ajax-bootstrap-select"
         dependency("snabbdom", "0.6.9")
         dependency "snabbdom-virtualize"
         dependency "navigo"

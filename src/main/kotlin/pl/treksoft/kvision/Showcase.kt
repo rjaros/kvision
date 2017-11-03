@@ -2,26 +2,12 @@ package pl.treksoft.kvision
 
 import com.lightningkite.kotlin.observable.list.observableListOf
 import pl.treksoft.kvision.basic.Label
-import pl.treksoft.kvision.core.BGATTACH
-import pl.treksoft.kvision.core.BGREPEAT
-import pl.treksoft.kvision.core.BGSIZE
-import pl.treksoft.kvision.core.BORDERSTYLE
-import pl.treksoft.kvision.core.Background
-import pl.treksoft.kvision.core.Border
-import pl.treksoft.kvision.core.COLOR
-import pl.treksoft.kvision.core.Img
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.core.*
 import pl.treksoft.kvision.data.DataComponent
 import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
-import pl.treksoft.kvision.form.CheckBox
-import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.form.TEXTINPUTTYPE
-import pl.treksoft.kvision.form.Text
-import pl.treksoft.kvision.form.TextArea
-import pl.treksoft.kvision.form.TextAreaInput
-import pl.treksoft.kvision.form.TextInput
+import pl.treksoft.kvision.form.*
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.DIV
 import pl.treksoft.kvision.html.TAG.H1
@@ -73,7 +59,7 @@ class Showcase : ApplicationBase() {
             }
         }
         root.add(mbutton2)
-        val textField = TextInput(placeholder = "Wprowadź hasło ...", value = "abc")
+        val textField = TextInput(value = "abc").apply { placeholder = "Wprowadź hasło ..." }
         val mbutton3 = Button("Ukryj/Pokaż").setEventListener<Button> {
             click = {
                 if (datac.visible) datac.hide() else datac.show()
@@ -81,6 +67,45 @@ class Showcase : ApplicationBase() {
             }
         }
         root.add(mbutton3)
+
+        val select = SelectInput(listOf("klucz1" to "Klucz 1", "klucz2" to "Klucz 2"), "klucz2,klucz1", multiple = true)
+        root.add(select)
+
+        val mbuttons = Button("Select").setEventListener<Button> {
+            click = {
+                println(select.value)
+            }
+        }
+        root.add(mbuttons)
+
+        val select2 = SelectInput(value = "klucz1")
+        select2.add(SelectOption("klucz0", "Klucz 0", "Subtext 0", "flag"))
+        select2.add(SelectOption(divider = true))
+        select2.add(SelectOption("klucz1", "Klucz 1", "Subtext 1", "fa-flag"))
+        select2.add(SelectOption("klucz2", "Klucz 2", disabled = true))
+        root.add(select2)
+
+        val select3 = SelectInput().apply {
+            placeholder = "Wybierz opcje"
+            emptyOption = true
+            liveSearch = true
+            style = BUTTONSTYLE.WARNING
+            selectWidthType = SELECTWIDTHTYPE.FIT
+        }
+        select3.add(SelectOptGroup("Opcje pierwsze", listOf("k" to "Opcja pierwsza 1", "m" to "Opcja pierwsza 2")))
+        val sopt = SelectOptGroup("Opcje drugie", maxOptions = 2)
+        sopt.add(SelectOption("a", "Opcja druga 1", "Subtext 1"))
+        sopt.add(SelectOption("b", "Opcja druga 2"))
+        sopt.add(SelectOption("c", "Opcja druga 3").apply { color = Color(COLOR.RED) })
+        select3.add(sopt)
+        root.add(select3)
+
+        val mbuttons3 = Button("Select").setEventListener<Button> {
+            click = {
+                println(select3.value)
+            }
+        }
+        root.add(mbuttons3)
 
         val container = SimplePanel(setOf("abc", "def"))
         val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, null, classes = setOf("test", "test2"))
@@ -109,7 +134,7 @@ class Showcase : ApplicationBase() {
         val passwordField = TextInput(TEXTINPUTTYPE.PASSWORD)
         root.add(passwordField)
 
-        val textField2 = TextInput(placeholder = "Disabled")
+        val textField2 = TextInput().apply { placeholder = "Disabled" }
         textField2.disabled = true
         textField2.size = INPUTSIZE.LARGE
         root.add(textField2)
@@ -140,13 +165,20 @@ class Showcase : ApplicationBase() {
             change = { e -> println("rchange" + self.value) }
         }*/
 
-        val text = Text(placeholder = "Pole formularza", maxlength = 5, label = "To jest pole")
+        val text = Text(label = "To jest pole").apply {
+            placeholder = "Pole formularza"
+            maxlength = 5
+        }
         root.add(text)
 
-        val textareainput = TextAreaInput(cols = 5, rows = 2, placeholder = "...", value = "To jest tekst\nTo jest <b>te</b></textarea>kst2")
+        val textareainput = TextAreaInput(cols = 5, rows = 2, value = "To jest tekst\nTo jest <b>te</b></textarea>kst2").apply {
+            placeholder = "..."
+        }
         root.add(textareainput)
 
-        val textarea = TextArea(cols = 5, rows = 2, placeholder = "...", value = "To jest tekst\nTo jest <b>te</b></textarea>kst2", label = "Pole długie")
+        val textarea = TextArea(cols = 5, rows = 2, value = "To jest tekst\nTo jest <b>te</b></textarea>kst2", label = "Pole długie").apply {
+            placeholder = "..."
+        }
         root.add(textarea)
         textarea.setEventListener<TextArea> {
             input = { e ->
@@ -171,12 +203,20 @@ class Showcase : ApplicationBase() {
 
         val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.type,
                 "Header" to HEADER.type, "Separtatorek" to SEPARATOR.type
-        ), "flag", dropup = true)
+        ), "flag").apply { dropup = true }
         root.add(dd2)
         dd2.setEventListener<DropDown> {
             hideBsDropdown = { e -> println("hide" + e.detail) }
             hiddenBsDropdown = { e -> println("hidden" + e.detail) }
         }
+
+        val ddbutton = Button("Toggle").setEventListener<Button> {
+            click = {
+                console.log("x")
+                dd2.toggle()
+            }
+        }
+        root.add(ddbutton)
 
         val dd3 = DropDown("Dropdown3", icon = "file")
         dd3.add(Tag(TAG.H4, "ABC"))
@@ -362,7 +402,7 @@ class Showcase : ApplicationBase() {
             }
         }
         root.add(button2)
-        val button3 = Button("To jest przycisk IMG", image = Img("kotlin.png"))
+        val button3 = Button("To jest przycisk IMG").apply { image = Img("kotlin.png") }
         button3.setEventListener {
             click = { e ->
                 Confirm.show("Pytanie", "Czy na pewno chcesz kliknąć przycisk?", noCallback = { println("no") }) {
