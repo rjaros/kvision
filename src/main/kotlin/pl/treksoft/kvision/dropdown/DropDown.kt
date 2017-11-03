@@ -97,6 +97,21 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         return this
     }
 
+    override fun remove(child: Widget): SimplePanel {
+        list.remove(child)
+        return this
+    }
+
+    override fun removeAll(): SimplePanel {
+        list.removeAll()
+        return this
+    }
+
+    override fun getChildren(): List<Widget> {
+        return list.getChildren()
+    }
+
+
     private fun setChildrenFromElements() {
         list.removeAll()
         elements?.let { elems ->

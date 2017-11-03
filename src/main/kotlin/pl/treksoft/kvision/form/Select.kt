@@ -119,4 +119,28 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
         input.removeEventListeners()
         return this
     }
+
+    override fun add(child: Widget): SimplePanel {
+        input.add(child)
+        return this
+    }
+
+    override fun addAll(children: List<Widget>): SimplePanel {
+        input.addAll(children)
+        return this
+    }
+
+    override fun remove(child: Widget): SimplePanel {
+        input.remove(child)
+        return this
+    }
+
+    override fun removeAll(): SimplePanel {
+        input.removeAll()
+        return this
+    }
+
+    override fun getChildren(): List<Widget> {
+        return input.getChildren()
+    }
 }

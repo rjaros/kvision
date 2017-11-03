@@ -7,8 +7,8 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.VPanel
 
 class DataContainer<M : DataComponent, C : Widget>(val model: ObservableList<M>,
-                                                        private val binding: (M, Int) -> C,
-                                                        private val child: Container = VPanel()) :
+                                                   private val binding: (M, Int) -> C,
+                                                   private val child: Container = VPanel()) :
         Widget(setOf()), Container, DataUpdatable {
 
     override var visible
@@ -26,19 +26,23 @@ class DataContainer<M : DataComponent, C : Widget>(val model: ObservableList<M>,
     }
 
     override fun add(child: Widget): Container {
-        return this.child.add(child)
+        this.child.add(child)
+        return this
     }
 
     override fun addAll(children: List<Widget>): Container {
-        return this.child.addAll(children)
+        this.child.addAll(children)
+        return this
     }
 
     override fun remove(child: Widget): Container {
-        return this.child.remove(child)
+        this.child.remove(child)
+        return this
     }
 
     override fun removeAll(): Container {
-        return this.child.removeAll()
+        this.child.removeAll()
+        return this
     }
 
     override fun getChildren(): List<Widget> {
