@@ -107,6 +107,9 @@ class Showcase : ApplicationBase() {
         }
         root.add(mbuttons3)
 
+        val select5 = Select(listOf("a" to "Pierwsza", "b" to "Druga"), "a", label = "Lista wyboru")
+        root.add(select5)
+
         val container = SimplePanel(setOf("abc", "def"))
         val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, null, classes = setOf("test", "test2"))
         container.add(h1)

@@ -17,7 +17,7 @@ enum class SELECTWIDTHTYPE(val value: String) {
 class SelectInput(options: List<StringPair>? = null, override var value: String? = null,
                   multiple: Boolean = false, classes: Set<String> = setOf()) : SimplePanel(classes), StringFormField {
 
-    private var options = options
+    internal var options = options
         set(value) {
             field = value
             setChildrenFromOptions()
