@@ -4,12 +4,9 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
-abstract class AbstractTextInput(placeholder: String? = null,
-                                 override var value: String? = null, name: String? = null, maxlength: Int? = null,
-                                 disabled: Boolean = false, id: String? = null,
+abstract class AbstractTextInput(override var value: String? = null,
                                  classes: Set<String> = setOf()) : Widget(classes + "form-control"), StringFormField {
     init {
-        this.id = id
         this.setInternalEventListener {
             input = {
                 val v = getElementJQuery()?.`val`() as String?
@@ -29,22 +26,22 @@ abstract class AbstractTextInput(placeholder: String? = null,
             this.value = value
             refresh()
         }
-    var placeholder: String? = placeholder
+    var placeholder: String? = null
         set(value) {
             field = value
             refresh()
         }
-    var name: String? = name
+    var name: String? = null
         set(value) {
             field = value
             refresh()
         }
-    var maxlength: Int? = maxlength
+    var maxlength: Int? = null
         set(value) {
             field = value
             refresh()
         }
-    override var disabled: Boolean = disabled
+    override var disabled: Boolean = false
         set(value) {
             field = value
             refresh()

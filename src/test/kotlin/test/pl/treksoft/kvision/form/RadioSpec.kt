@@ -1,8 +1,6 @@
 package test.pl.treksoft.kvision.form
 
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.form.CHECKBOXSTYLE
-import pl.treksoft.kvision.form.CheckBox
 import pl.treksoft.kvision.form.RADIOSTYLE
 import pl.treksoft.kvision.form.Radio
 import test.pl.treksoft.kvision.DomSpec
@@ -16,8 +14,12 @@ class RadioSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val ci = Radio(value = true, name = "name", style = RADIOSTYLE.DANGER, disabled = true,
-                    inline = true, label = "Label", extraValue = "abc")
+            val ci = Radio(value = true, label = "Label", extraValue = "abc").apply {
+                name = "name"
+                style = RADIOSTYLE.DANGER
+                disabled = true
+                inline = true
+            }
             root.add(ci)
             val element = document.getElementById("test")
             val id = ci.input.id

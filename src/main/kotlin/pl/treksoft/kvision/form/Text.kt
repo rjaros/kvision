@@ -1,9 +1,8 @@
 package pl.treksoft.kvision.form
 
 
-open class Text(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, placeholder: String? = null, value: String? = null,
-                name: String? = null, maxlength: Int? = null, label: String? = null, rich: Boolean = false,
-                disabled: Boolean = false) : AbstractText(label, rich) {
+open class Text(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,
+                label: String? = null, rich: Boolean = false) : AbstractText(label, rich) {
 
     var type
         get() = input.type
@@ -16,7 +15,7 @@ open class Text(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, placeholder: String? =
             input.autocomplete = value
         }
 
-    final override val input: TextInput = TextInput(type, placeholder, value, name, maxlength, disabled, idc)
+    final override val input: TextInput = TextInput(type, value).apply { id = idc }
 
     init {
         this.addInternal(input)

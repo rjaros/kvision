@@ -2,7 +2,6 @@ package test.pl.treksoft.kvision.form
 
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.form.Password
-import pl.treksoft.kvision.form.Text
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -14,8 +13,12 @@ class PasswordSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val ti = Password(placeholder = "place", value = "abc", name = "name",
-                    maxlength = 15, disabled = true, label = "Label")
+            val ti = Password(value = "abc", label = "Label").apply {
+                placeholder = "place"
+                name = "name"
+                maxlength = 15
+                disabled = true
+            }
             root.add(ti)
             val element = document.getElementById("test")
             val id = ti.input.id

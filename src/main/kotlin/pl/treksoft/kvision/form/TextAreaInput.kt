@@ -3,10 +3,8 @@ package pl.treksoft.kvision.form
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.snabbdom.StringPair
 
-class TextAreaInput(cols: Int? = null, rows: Int? = null, placeholder: String? = null,
-                    value: String? = null, name: String? = null, maxlength: Int? = null,
-                    disabled: Boolean = false, id: String? = null, classes: Set<String> = setOf()) :
-        AbstractTextInput(placeholder, value, name, maxlength, disabled, id, classes) {
+class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = null, classes: Set<String> = setOf()) :
+        AbstractTextInput(value, classes) {
 
     var cols: Int? = cols
         set(value) {

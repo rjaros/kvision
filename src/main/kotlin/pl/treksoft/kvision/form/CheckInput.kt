@@ -11,12 +11,9 @@ enum class CHECKINPUTTYPE(val type: String) {
 }
 
 open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override var value: Boolean = false,
-                      name: String? = null, disabled: Boolean = false, id: String? = null,
-                      extraValue: String? = null,
                       classes: Set<String> = setOf()) : Widget(classes), BoolFormField {
 
     init {
-        this.id = id
         this.setInternalEventListener {
             click = {
                 val v = getElementJQuery()?.prop("checked") as Boolean?
@@ -41,17 +38,17 @@ open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override v
             field = value
             refresh()
         }
-    var name: String? = name
+    var name: String? = null
         set(value) {
             field = value
             refresh()
         }
-    override var disabled: Boolean = disabled
+    override var disabled: Boolean = false
         set(value) {
             field = value
             refresh()
         }
-    var extraValue: String? = extraValue
+    var extraValue: String? = null
         set(value) {
             field = value
             refresh()

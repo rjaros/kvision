@@ -1,7 +1,7 @@
 package pl.treksoft.kvision.form
 
-import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
@@ -14,9 +14,8 @@ enum class CHECKBOXSTYLE(val className: String) {
     DANGER("checkbox-danger"),
 }
 
-open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBOXSTYLE? = null,
-                    circled: Boolean = false, inline: Boolean = false, disabled: Boolean = false,
-                    label: String? = null, rich: Boolean = false) : SimplePanel(setOf("checkbox")), BoolFormField {
+open class CheckBox(value: Boolean = false, label: String? = null,
+                    rich: Boolean = false) : SimplePanel(setOf("checkbox")), BoolFormField {
 
     override var value
         get() = input.value
@@ -48,17 +47,17 @@ open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBO
         set(value) {
             flabel.rich = value
         }
-    var style = style
+    var style: CHECKBOXSTYLE? = null
         set(value) {
             field = value
             refresh()
         }
-    var circled = circled
+    var circled: Boolean = false
         set(value) {
             field = value
             refresh()
         }
-    var inline = inline
+    var inline: Boolean = false
         set(value) {
             field = value
             refresh()
@@ -70,7 +69,7 @@ open class CheckBox(value: Boolean = false, name: String? = null, style: CHECKBO
         }
 
     private val idc = "kv_form_checkbox_" + counter
-    val input: CheckInput = CheckInput(CHECKINPUTTYPE.CHECKBOX, value, name, disabled, idc, null, setOf("styled"))
+    val input: CheckInput = CheckInput(CHECKINPUTTYPE.CHECKBOX, value, setOf("styled")).apply { id = idc }
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {

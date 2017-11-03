@@ -1,6 +1,6 @@
 package pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.utils.Utils
+import pl.treksoft.kvision.utils.toHexString
 
 @Suppress("EnumNaming", "EnumEntryName")
 enum class UNIT(val unit: String) {
@@ -215,7 +215,7 @@ class Border private constructor(private val width: CssSize? = null, private val
                                  private val color: String? = null) {
     constructor(width: CssSize? = null, style: BORDERSTYLE? = null) : this(width, style, null)
     constructor(width: CssSize? = null, style: BORDERSTYLE? = null, color: Int) : this(width, style,
-            "#" + Utils.intToHexString(color))
+            "#" + color.toHexString())
 
     constructor(width: CssSize? = null, style: BORDERSTYLE? = null, color: COLOR) : this(width, style, color.color)
 
@@ -228,7 +228,7 @@ class Border private constructor(private val width: CssSize? = null, private val
 }
 
 class Color private constructor(private val color: String? = null) {
-    constructor(color: Int) : this("#" + Utils.intToHexString(color))
+    constructor(color: Int) : this("#" + color.toHexString())
     constructor(color: COLOR) : this(color.color)
 
     fun asString(): String {
@@ -253,7 +253,7 @@ class Background private constructor(private val color: String? = null, private 
                 sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
                 repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
                 attachment: BGATTACH? = null) : this("#" +
-            Utils.intToHexString(color), image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip,
+            color.toHexString(), image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip,
             attachment)
 
     constructor(color: COLOR, image: ResString? = null, positionX: CssSize? = null,

@@ -8,7 +8,6 @@ import com.github.snabbdom.datasetModule
 import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
-import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.require
 import pl.treksoft.kvision.routing.routing
 import kotlin.browser.document
@@ -19,6 +18,9 @@ object KVManager {
     private val fontAwesomeWebpack = require("font-awesome-webpack")
     private val resizable = require("jquery-resizable-dom")
     private val awesomeBootstrapCheckbox = require("awesome-bootstrap-checkbox")
+    private val bootstrapSelectCss = require("bootstrap-select/dist/css/bootstrap-select.min.css")
+    private val bootstrapSelect = require("bootstrap-select")
+    private val bootstrapSelectI18n = require("./js/bootstrap-select-i18n.min.js")
 
     private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,
             eventListenersModule, datasetModule))
@@ -41,7 +43,6 @@ object KVManager {
     }
 
     fun init() {
-        jQuery(document).off(".data-api")
     }
 
     fun shutdown() {

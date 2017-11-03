@@ -13,8 +13,12 @@ class TextSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val ti = Text(placeholder = "place", value = "abc", name = "name",
-                    maxlength = 15, disabled = true, label = "Label")
+            val ti = Text(value = "abc", label = "Label").apply {
+                placeholder = "place"
+                name = "name"
+                maxlength = 15
+                disabled = true
+            }
             root.add(ti)
             val element = document.getElementById("test")
             val id = ti.input.id

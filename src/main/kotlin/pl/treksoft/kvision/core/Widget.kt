@@ -215,6 +215,13 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return hooks
     }
 
+    @Suppress("UNCHECKED_CAST")
+    protected fun <T : Widget> setInternalEventListener(block: SnOn<T>.() -> Unit): Widget {
+        internalListeners.add(block as SnOn<Widget>.() -> Unit)
+        refresh()
+        return this
+    }
+
     protected fun setInternalEventListener(block: SnOn<Widget>.() -> Unit): Widget {
         internalListeners.add(block)
         refresh()

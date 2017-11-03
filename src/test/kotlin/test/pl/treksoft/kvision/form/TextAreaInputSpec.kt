@@ -13,8 +13,13 @@ class TextAreaInputSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val ti = TextAreaInput(cols = 5, rows = 2, placeholder = "place", value = "abc", name = "name",
-                    maxlength = 15, id = "idti", disabled = true)
+            val ti = TextAreaInput(cols = 5, rows = 2, value = "abc").apply {
+                placeholder = "place"
+                name = "name"
+                maxlength = 15
+                id = "idti"
+                disabled = true
+            }
             root.add(ti)
             val element = document.getElementById("test")
             assertEquals("<textarea class=\"form-control\" id=\"idti\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"\" cols=\"5\" rows=\"2\">abc</textarea>", element?.innerHTML, "Should render correct input field")

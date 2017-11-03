@@ -14,8 +14,13 @@ class CheckBoxSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val ci = CheckBox(value = true, name = "name", style = CHECKBOXSTYLE.DANGER, disabled = true, circled = true,
-                    inline = true, label = "Label")
+            val ci = CheckBox(value = true, label = "Label").apply {
+                name = "name"
+                style = CHECKBOXSTYLE.DANGER
+                disabled = true
+                circled = true
+                inline = true
+            }
             root.add(ci)
             val element = document.getElementById("test")
             val id = ci.input.id

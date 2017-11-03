@@ -1,8 +1,6 @@
 package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.html.Button
@@ -11,9 +9,11 @@ import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.ListTag
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 import pl.treksoft.kvision.snabbdom.obj
+import kotlin.browser.window
 
 enum class DD(val type: String) {
     HEADER("DD#HEADER"),
@@ -22,8 +22,8 @@ enum class DD(val type: String) {
 }
 
 open class DropDown(text: String, elements: List<StringPair>? = null, icon: String? = null,
-                    style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false, image: ResString? = null,
-                    dropup: Boolean = false, classes: Set<String> = setOf()) : SimplePanel(classes) {
+                    style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false,
+                    classes: Set<String> = setOf()) : SimplePanel(classes) {
     var text
         get() = button.text
         set(value) {
@@ -31,7 +31,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         }
     private var elements = elements
         set(value) {
-            field = elements
+            field = value
             setChildrenFromElements()
         }
     var icon
@@ -64,7 +64,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         set(value) {
             button.image = value
         }
-    private var dropup = dropup
+    var dropup = false
         set(value) {
             field = value
             refresh()
@@ -72,16 +72,10 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
 
     private val idc = "kv_dropdown_" + counter
     internal val button: DropDownButton = DropDownButton(idc, text, icon, style,
-            disabled, image, setOf("dropdown"))
+            disabled, setOf("dropdown"))
     internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
-        button.setEventListener {
-            click = {
-                if (!button.disabled) toggle()
-            }
-        }
-
         list.hide()
         setChildrenFromElements()
         this.addInternal(button)
@@ -104,8 +98,8 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
     }
 
     private fun setChildrenFromElements() {
-        val elems = elements
-        if (elems != null) {
+        list.removeAll()
+        elements?.let { elems ->
             val c = elems.map {
                 when (it.second) {
                     DD.HEADER.type -> Tag(TAG.LI, it.first, classes = setOf("dropdown-header"))
@@ -123,14 +117,13 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
                 }
             }
             list.addAll(c)
-        } else {
-            list.removeAll()
         }
     }
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         this.getElementJQuery()?.on("show.bs.dropdown", { e, _ ->
+            if (!list.visible) list.visible = true
             this.dispatchEvent("showBsDropdown", obj({ detail = e }))
         })
         this.getElementJQuery()?.on("shown.bs.dropdown", { e, _ ->
@@ -140,7 +133,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
             this.dispatchEvent("hideBsDropdown", obj({ detail = e }))
         })
         this.getElementJQuery()?.on("hidden.bs.dropdown", { e, _ ->
-            list.visible = false
+            if (list.visible) list.visible = false
             this.dispatchEvent("hiddenBsDropdown", obj({ detail = e }))
         })
     }
@@ -155,17 +148,18 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
     }
 
     open fun toggle() {
-        if (list.visible)
-            list.hideInternal()
-        else
-            list.show()
+        if (this.list.visible) {
+            this.list.getElementJQueryD()?.dropdown("toggle")
+        } else {
+            this.list.visible = true
+            window.setTimeout({ this.list.getElementJQueryD()?.dropdown("toggle") }, 0)
+        }
     }
 }
 
 open class DropDownButton(id: String, text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
-                          disabled: Boolean = false,
-                          image: ResString? = null, classes: Set<String> = setOf()) :
-        Button(text, icon, style, disabled, image, classes) {
+                          disabled: Boolean = false, classes: Set<String> = setOf()) :
+        Button(text, icon, style, disabled, classes) {
 
     init {
         this.id = id
@@ -182,28 +176,5 @@ open class DropDownListTag(private val ariaId: String, classes: Set<String> = se
 
     override fun getSnAttrs(): List<StringPair> {
         return super.getSnAttrs() + listOf("aria-labelledby" to ariaId)
-    }
-
-    override fun hide(): Widget {
-        if (visible) hideInternal()
-        return super.hide()
-    }
-
-    override fun afterInsert(node: VNode) {
-        if (visible) showInternal()
-    }
-
-    @Suppress("UnsafeCastFromDynamic")
-    private fun showInternal() {
-        if (getElementJQueryD()?.`is`(":hidden")) {
-            getElementJQueryD()?.dropdown("toggle")
-        }
-    }
-
-    @Suppress("UnsafeCastFromDynamic")
-    internal fun hideInternal() {
-        if (!getElementJQueryD()?.`is`(":hidden")) {
-            getElementJQueryD()?.dropdown("toggle")
-        }
     }
 }

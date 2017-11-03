@@ -1,7 +1,7 @@
 package pl.treksoft.kvision.form
 
-import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
@@ -14,9 +14,8 @@ enum class RADIOSTYLE(val className: String) {
     DANGER("radio-danger"),
 }
 
-open class Radio(value: Boolean = false, extraValue: String? = null, name: String? = null, style: RADIOSTYLE? = null,
-                 squared: Boolean = false, inline: Boolean = false, disabled: Boolean = false,
-                 label: String? = null, rich: Boolean = false) : SimplePanel(), BoolFormField {
+open class Radio(value: Boolean = false, extraValue: String? = null, label: String? = null,
+                 rich: Boolean = false) : SimplePanel(), BoolFormField {
 
     override var value
         get() = input.value
@@ -53,17 +52,17 @@ open class Radio(value: Boolean = false, extraValue: String? = null, name: Strin
         set(value) {
             flabel.rich = value
         }
-    var style = style
+    var style: RADIOSTYLE? = null
         set(value) {
             field = value
             refresh()
         }
-    var squared = squared
+    var squared: Boolean = false
         set(value) {
             field = value
             refresh()
         }
-    var inline = inline
+    var inline: Boolean = false
         set(value) {
             field = value
             refresh()
@@ -75,7 +74,10 @@ open class Radio(value: Boolean = false, extraValue: String? = null, name: Strin
         }
 
     private val idc = "kv_form_radio_" + counter
-    val input: CheckInput = CheckInput(CHECKINPUTTYPE.RADIO, value, name, disabled, idc, extraValue)
+    val input: CheckInput = CheckInput(CHECKINPUTTYPE.RADIO, value).apply {
+        this.id = idc
+        this.extraValue = extraValue
+    }
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {

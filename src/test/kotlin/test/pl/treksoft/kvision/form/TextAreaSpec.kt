@@ -13,8 +13,12 @@ class TextAreaSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val ti = TextArea(cols = 5, rows = 2, placeholder = "place", value = "abc", name = "name",
-                    maxlength = 15, disabled = true, label = "Label")
+            val ti = TextArea(cols = 5, rows = 2, value = "abc", label = "Label").apply {
+                placeholder = "place"
+                name = "name"
+                maxlength = 15
+                disabled = true
+            }
             root.add(ti)
             val element = document.getElementById("test")
             val id = ti.input.id
