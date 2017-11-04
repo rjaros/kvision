@@ -96,6 +96,8 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
 
     init {
         this.addInternal(flabel)
+        @Suppress("LeakingThis")
+        input.eventTarget = this
         this.addInternal(input)
         counter++
     }

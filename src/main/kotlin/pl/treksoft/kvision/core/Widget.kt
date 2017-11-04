@@ -48,6 +48,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
             field = value
             refresh()
         }
+    internal var eventTarget: Widget? = null
 
     private var vnode: VNode? = null
 
@@ -144,7 +145,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return if (internalListeners.size > 0 || listeners.size > 0) {
             val internalHandlers = on(this)
             internalListeners.forEach { l -> (internalHandlers::apply)(l) }
-            val handlers = on(this)
+            val handlers = on(eventTarget ?: this)
             listeners.forEach { l -> (handlers::apply)(l) }
             if (internalHandlers.click != null) {
                 if (handlers.click == null) {

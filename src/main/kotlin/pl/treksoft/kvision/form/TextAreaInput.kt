@@ -23,7 +23,7 @@ class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = null,
         }
 
     override fun render(): VNode {
-        return value?.let {
+        return startValue?.let {
             kvh("textarea", arrayOf(it))
         } ?: kvh("textarea")
     }

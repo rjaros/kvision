@@ -2,10 +2,12 @@ package pl.treksoft.kvision.form
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.CssSize
+import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.snabbdom.obj
 
 private val _aKVNULL = "#kvnull"
 
@@ -14,13 +16,20 @@ enum class SELECTWIDTHTYPE(val value: String) {
     FIT("fit")
 }
 
-class SelectInput(options: List<StringPair>? = null, override var value: String? = null,
+class SelectInput(options: List<StringPair>? = null, value: String? = null,
                   multiple: Boolean = false, classes: Set<String> = setOf()) : SimplePanel(classes), StringFormField {
 
     internal var options = options
         set(value) {
             field = value
             setChildrenFromOptions()
+        }
+
+    @Suppress("LeakingThis")
+    override var value: String? = value
+        set(value) {
+            field = value
+            refreshState()
         }
 
     @Suppress("LeakingThis")
@@ -122,17 +131,42 @@ class SelectInput(options: List<StringPair>? = null, override var value: String?
         return kvh("select", childrenVNodes())
     }
 
+    override fun add(child: Widget): SimplePanel {
+        super.add(child)
+        refreshSelectInput()
+        return this
+    }
+
+    override fun addAll(children: List<Widget>): SimplePanel {
+        super.addAll(children)
+        refreshSelectInput()
+        return this
+    }
+
+    override fun remove(child: Widget): SimplePanel {
+        super.remove(child)
+        refreshSelectInput()
+        return this
+    }
+
+    override fun removeAll(): SimplePanel {
+        super.removeAll()
+        refreshSelectInput()
+        return this
+    }
+
     private fun setChildrenFromOptions() {
-        this.removeAll()
+        super.removeAll()
         if (emptyOption) {
-            this.add(SelectOption(_aKVNULL, ""))
+            super.add(SelectOption(_aKVNULL, ""))
         }
         options?.let {
             val c = it.map {
                 SelectOption(it.first, it.second)
             }
-            this.addAll(c)
+            super.addAll(c)
         }
+        this.refreshSelectInput()
     }
 
     override fun getSnClass(): List<StringBoolPair> {
@@ -142,6 +176,11 @@ class SelectInput(options: List<StringPair>? = null, override var value: String?
             cl.add(it.className to true)
         }
         return cl
+    }
+
+    fun refreshSelectInput() {
+        getElementJQueryD()?.selectpicker("refresh")
+        refreshState()
     }
 
     @Suppress("ComplexMethod")
@@ -193,12 +232,43 @@ class SelectInput(options: List<StringPair>? = null, override var value: String?
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.selectpicker("render")
+        this.getElementJQuery()?.on("show.bs.select", { e, _ ->
+            this.dispatchEvent("showBsSelect", obj({ detail = e }))
+        })
+        this.getElementJQuery()?.on("shown.bs.select", { e, _ ->
+            this.dispatchEvent("shownBsSelect", obj({ detail = e }))
+        })
+        this.getElementJQuery()?.on("hide.bs.select", { e, _ ->
+            this.dispatchEvent("hideBsSelect", obj({ detail = e }))
+        })
+        this.getElementJQuery()?.on("hidden.bs.select", { e, _ ->
+            this.dispatchEvent("hiddenBsSelect", obj({ detail = e }))
+        })
+        this.getElementJQuery()?.on("loaded.bs.select", { e, _ ->
+            this.dispatchEvent("loadedBsSelect", obj({ detail = e }))
+        })
+        this.getElementJQuery()?.on("rendered.bs.select", { e, _ ->
+            this.dispatchEvent("renderedBsSelect", obj({ detail = e }))
+        })
+        this.getElementJQuery()?.on("refreshed.bs.select", { e, _ ->
+            this.dispatchEvent("refreshedBsSelect", obj({ detail = e }))
+        })
+        this.getElementJQueryD()?.on("changed.bs.select", { e, cIndex: Int ->
+            e["clickedIndex"] = cIndex
+            this.dispatchEvent("changedBsSelect", obj({ detail = e }))
+        })
+        refreshState()
+    }
+
+    @Suppress("UnsafeCastFromDynamic")
+    private fun refreshState() {
         value?.let {
             if (multiple) {
                 getElementJQueryD()?.selectpicker("val", it.split(",").toTypedArray())
             } else {
                 getElementJQueryD()?.selectpicker("val", it)
             }
-        }
+        } ?: getElementJQueryD()?.selectpicker("val", null)
     }
+
 }

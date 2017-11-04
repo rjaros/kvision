@@ -10,22 +10,26 @@ enum class CHECKINPUTTYPE(val type: String) {
     RADIO("radio")
 }
 
-open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override var value: Boolean = false,
+open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boolean = false,
                       classes: Set<String> = setOf()) : Widget(classes), BoolFormField {
 
     init {
-        this.setInternalEventListener {
+        this.setInternalEventListener<CheckInput> {
             click = {
                 val v = getElementJQuery()?.prop("checked") as Boolean?
-                value = (v == true)
+                self.value = (v == true)
             }
             change = {
                 val v = getElementJQuery()?.prop("checked") as Boolean?
-                value = (v == true)
+                self.value = (v == true)
             }
         }
     }
-
+    override var value: Boolean = value
+        set(value) {
+            field = value
+            refreshState()
+        }
     @Suppress("LeakingThis")
     var startValue: Boolean = value
         set(value) {
@@ -90,14 +94,14 @@ open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, override v
     }
 
     override fun afterInsert(node: VNode) {
-        refreshCheckedState()
+        refreshState()
     }
 
     override fun afterPostpatch(node: VNode) {
-        refreshCheckedState()
+        refreshState()
     }
 
-    private fun refreshCheckedState() {
+    private fun refreshState() {
         val v = getElementJQuery()?.prop("checked") as Boolean?
         if (this.value != v) {
             getElementJQuery()?.prop("checked", this.value)

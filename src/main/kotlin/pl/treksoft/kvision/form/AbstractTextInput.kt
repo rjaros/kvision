@@ -4,21 +4,27 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
-abstract class AbstractTextInput(override var value: String? = null,
+abstract class AbstractTextInput(value: String? = null,
                                  classes: Set<String> = setOf()) : Widget(classes + "form-control"), StringFormField {
+
     init {
-        this.setInternalEventListener {
+        this.setInternalEventListener<AbstractTextInput> {
             input = {
                 val v = getElementJQuery()?.`val`() as String?
                 if (v != null && v.isNotEmpty()) {
-                    value = v
+                    self.value = v
                 } else {
-                    value = null
+                    self.value = null
                 }
             }
         }
     }
 
+    override var value: String? = value
+        set(value) {
+            field = value
+            refreshState()
+        }
     @Suppress("LeakingThis")
     var startValue: String? = value
         set(value) {
@@ -95,5 +101,11 @@ abstract class AbstractTextInput(override var value: String? = null,
             sn.add("disabled" to "true")
         }
         return sn
+    }
+
+    private fun refreshState() {
+        value?.let {
+            getElementJQuery()?.`val`(it)
+        } ?: getElementJQueryD()?.`val`(null)
     }
 }

@@ -81,6 +81,8 @@ open class Radio(value: Boolean = false, extraValue: String? = null, label: Stri
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {
+        @Suppress("LeakingThis")
+        input.eventTarget = this
         this.addInternal(input)
         this.addInternal(flabel)
         counter++

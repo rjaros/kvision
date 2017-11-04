@@ -22,6 +22,8 @@ open class TextArea(cols: Int? = null, rows: Int? = null, value: String? = null,
     final override val input: TextAreaInput = TextAreaInput(cols, rows, value).apply { id = idc }
 
     init {
+        @Suppress("LeakingThis")
+        input.eventTarget = this
         this.addInternal(input)
     }
 }

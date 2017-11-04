@@ -73,6 +73,8 @@ open class CheckBox(value: Boolean = false, label: String? = null,
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {
+        @Suppress("LeakingThis")
+        input.eventTarget = this
         this.addInternal(input)
         this.addInternal(flabel)
         counter++

@@ -110,10 +110,50 @@ class Showcase : ApplicationBase() {
         val select5 = Select(listOf("a" to "Pierwsza", "b" to "Druga"), "a", label = "Lista wyboru")
         root.add(select5)
 
-        val select6 = Select(label = "Lista wyboru 2")
+        val text = Text(label = "To jest pole").apply {
+            placeholder = "Pole formularza"
+            maxlength = 5
+        }
+
+        val select6 = Select(label = "Lista wyboru 2", value = "b")
         select6.add(SelectOption("a", "Opcja 1"))
         select6.add(SelectOption("b", "Opcja 2"))
         select6.add(SelectOption("c", "Opcja 3"))
+        select6.setEventListener<Select> {
+            showBsSelect = { e ->
+                println("show")
+            }
+            shownBsSelect = { e ->
+                println("shown")
+            }
+            hideBsSelect = { e ->
+                println("hide")
+                e.detail.preventDefault()
+            }
+            hiddenBsSelect = { e ->
+                println("hidden")
+            }
+            renderedBsSelect= { e ->
+                println("rendered")
+            }
+            refreshedBsSelect = { e ->
+                println("refreshed")
+            }
+            loadedBsSelect= { e ->
+                println("loaded")
+            }
+            changedBsSelect = { e ->
+                println(e.detail.clickedIndex)
+                if (e.detail.clickedIndex == 0) {
+                    self.options = listOf("x" to "x", "y" to "y", "z" to "z")
+                    self.value = "y"
+                    text.value = "ole"
+                    textField.value = "ole2"
+                } else {
+                    self.add(SelectOption("x", "XXX"))
+                }
+            }
+        }
         root.add(select6)
 
         val container = SimplePanel(setOf("abc", "def"))
@@ -148,15 +188,14 @@ class Showcase : ApplicationBase() {
         textField2.size = INPUTSIZE.LARGE
         root.add(textField2)
 
-/*        val checkbox = CheckBox(true, label = "Kliknij aby <b>przetestować</b>", rich = true, circled = true,
-                style = CHECKBOXSTYLE.DANGER)
+        val checkbox = CheckBox(true, label = "Kliknij aby <b>przetestować</b>", rich = true)
         root.add(checkbox)
         checkbox.setEventListener<CheckBox> {
             click = { e ->
                 println("click" + self.value)
             }
             change = { e -> println("change" + self.value) }
-        }*/
+        }
 
 /*        val radio = Radio(true, name = "radios", label = "Opcja 1", inline = true,
                 style = RADIOSTYLE.DANGER, extraValue = "o1")
@@ -173,11 +212,6 @@ class Showcase : ApplicationBase() {
             }
             change = { e -> println("rchange" + self.value) }
         }*/
-
-        val text = Text(label = "To jest pole").apply {
-            placeholder = "Pole formularza"
-            maxlength = 5
-        }
         root.add(text)
 
         val textareainput = TextAreaInput(cols = 5, rows = 2, value = "To jest tekst\nTo jest <b>te</b></textarea>kst2").apply {
@@ -223,6 +257,7 @@ class Showcase : ApplicationBase() {
             click = {
                 console.log("x")
                 dd2.toggle()
+                checkbox.value = true
             }
         }
         root.add(ddbutton)

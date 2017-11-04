@@ -21,9 +21,13 @@ fun obj(init: dynamic.() -> Unit): dynamic {
 @Suppress("UnsafeCastFromDynamic")
 private fun vNodeData(): VNodeData = js("({})")
 
+interface KvJQueryEventObject : JQueryEventObject {
+    val clickedIndex: Int
+}
+
 @Suppress("UnsafeCastFromDynamic")
 class KvEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, eventInitDict) {
-    override val detail: JQueryEventObject = obj({})
+    override val detail: KvJQueryEventObject = obj({})
 }
 
 interface BtOn : On {
@@ -37,6 +41,14 @@ interface BtOn : On {
     var hiddenBsModal: ((KvEvent) -> kotlin.Unit)?
     var dragSplitPanel: ((KvEvent) -> kotlin.Unit)?
     var dragEndSplitPanel: ((KvEvent) -> kotlin.Unit)?
+    var showBsSelect: ((KvEvent) -> kotlin.Unit)?
+    var shownBsSelect: ((KvEvent) -> kotlin.Unit)?
+    var hideBsSelect: ((KvEvent) -> kotlin.Unit)?
+    var hiddenBsSelect: ((KvEvent) -> kotlin.Unit)?
+    var loadedBsSelect: ((KvEvent) -> kotlin.Unit)?
+    var renderedBsSelect: ((KvEvent) -> kotlin.Unit)?
+    var refreshedBsSelect: ((KvEvent) -> kotlin.Unit)?
+    var changedBsSelect: ((KvEvent) -> kotlin.Unit)?
 }
 
 interface SnOn<T> : BtOn {

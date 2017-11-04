@@ -18,6 +18,8 @@ open class Text(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,
     final override val input: TextInput = TextInput(type, value).apply { id = idc }
 
     init {
+        @Suppress("LeakingThis")
+        input.eventTarget = this
         this.addInternal(input)
     }
 }
