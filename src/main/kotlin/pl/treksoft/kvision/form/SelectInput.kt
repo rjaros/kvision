@@ -16,7 +16,7 @@ enum class SELECTWIDTHTYPE(val value: String) {
     FIT("fit")
 }
 
-class SelectInput(options: List<StringPair>? = null, value: String? = null,
+open class SelectInput(options: List<StringPair>? = null, value: String? = null,
                   multiple: Boolean = false, classes: Set<String> = setOf()) : SimplePanel(classes), StringFormField {
 
     internal var options = options
@@ -167,6 +167,18 @@ class SelectInput(options: List<StringPair>? = null, value: String? = null,
             super.addAll(c)
         }
         this.refreshSelectInput()
+    }
+
+    open fun showOptions() {
+        getElementJQueryD()?.selectpicker("show")
+    }
+
+    open fun hideOptions() {
+        getElementJQueryD()?.selectpicker("hide")
+    }
+
+    open fun toggleOptions() {
+        getElementJQueryD()?.selectpicker("toggle")
     }
 
     override fun getSnClass(): List<StringBoolPair> {

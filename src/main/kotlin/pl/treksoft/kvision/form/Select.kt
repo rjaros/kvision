@@ -145,4 +145,16 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
     override fun getChildren(): List<Widget> {
         return input.getChildren()
     }
+
+    open fun showOptions() {
+        input.showOptions()
+    }
+
+    open fun hideOptions() {
+        input.hideOptions()
+    }
+
+    open fun toggleOptions() {
+        input.toggleOptions()
+    }
 }

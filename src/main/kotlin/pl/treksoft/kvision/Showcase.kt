@@ -103,6 +103,7 @@ class Showcase : ApplicationBase() {
         val mbuttons3 = Button("Select").setEventListener<Button> {
             click = {
                 println(select3.value)
+                select3.toggleOptions()
             }
         }
         root.add(mbuttons3)
