@@ -8,7 +8,7 @@ enum class TEXTINPUTTYPE(val type: String) {
     PASSWORD("password")
 }
 
-class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null, classes: Set<String> = setOf()) :
+open class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null, classes: Set<String> = setOf()) :
         AbstractTextInput(value, classes) {
 
     var type: TEXTINPUTTYPE = type
