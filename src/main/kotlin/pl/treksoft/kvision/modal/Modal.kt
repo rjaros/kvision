@@ -1,13 +1,13 @@
 package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.helpers.CloseIcon
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 import pl.treksoft.kvision.snabbdom.obj
@@ -134,17 +134,17 @@ open class Modal(caption: String? = null, closeButton: Boolean = true,
             backdrop = if (escape) "true" else "static"
         })
         this.getElementJQuery()?.on("show.bs.modal", { e, _ ->
-            this.dispatchEvent("showBsModal", obj({ detail = e }))
+            this.dispatchEvent("showBsModal", obj { detail = e })
         })
         this.getElementJQuery()?.on("shown.bs.modal", { e, _ ->
-            this.dispatchEvent("shownBsModal", obj({ detail = e }))
+            this.dispatchEvent("shownBsModal", obj { detail = e })
         })
         this.getElementJQuery()?.on("hide.bs.modal", { e, _ ->
-            this.dispatchEvent("hideBsModal", obj({ detail = e }))
+            this.dispatchEvent("hideBsModal", obj { detail = e })
         })
         this.getElementJQuery()?.on("hidden.bs.modal", { e, _ ->
             this.visible = false
-            this.dispatchEvent("hiddenBsModal", obj({ detail = e }))
+            this.dispatchEvent("hiddenBsModal", obj { detail = e })
         })
     }
 

@@ -139,17 +139,17 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
     override fun afterInsert(node: VNode) {
         this.getElementJQuery()?.on("show.bs.dropdown", { e, _ ->
             if (!list.visible) list.visible = true
-            this.dispatchEvent("showBsDropdown", obj({ detail = e }))
+            this.dispatchEvent("showBsDropdown", obj { detail = e })
         })
         this.getElementJQuery()?.on("shown.bs.dropdown", { e, _ ->
-            this.dispatchEvent("shownBsDropdown", obj({ detail = e }))
+            this.dispatchEvent("shownBsDropdown", obj { detail = e })
         })
         this.getElementJQuery()?.on("hide.bs.dropdown", { e, _ ->
-            this.dispatchEvent("hideBsDropdown", obj({ detail = e }))
+            this.dispatchEvent("hideBsDropdown", obj { detail = e })
         })
         this.getElementJQuery()?.on("hidden.bs.dropdown", { e, _ ->
             if (list.visible) list.visible = false
-            this.dispatchEvent("hiddenBsDropdown", obj({ detail = e }))
+            this.dispatchEvent("hiddenBsDropdown", obj { detail = e })
         })
     }
 

@@ -27,7 +27,7 @@ interface KvJQueryEventObject : JQueryEventObject {
 
 @Suppress("UnsafeCastFromDynamic")
 class KvEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, eventInitDict) {
-    override val detail: KvJQueryEventObject = obj({})
+    override val detail: KvJQueryEventObject = obj {}
 }
 
 interface BtOn : On {

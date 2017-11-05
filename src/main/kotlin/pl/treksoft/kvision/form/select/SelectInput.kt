@@ -1,8 +1,10 @@
-package pl.treksoft.kvision.form
+package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.StringFormField
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -17,7 +19,8 @@ enum class SELECTWIDTHTYPE(val value: String) {
 }
 
 open class SelectInput(options: List<StringPair>? = null, value: String? = null,
-                  multiple: Boolean = false, classes: Set<String> = setOf()) : SimplePanel(classes), StringFormField {
+                       multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
+                       classes: Set<String> = setOf()) : SimplePanel(classes), StringFormField {
 
     internal var options = options
         set(value) {
@@ -47,6 +50,12 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
     var multiple: Boolean = multiple
         set(value) {
             field = value
+            refresh()
+        }
+    var ajaxOptions: AjaxOptions? = ajaxOptions
+        set(value) {
+            field = value
+            if (value != null) liveSearch = true
             refresh()
         }
     var maxOptions: Int? = null
@@ -243,31 +252,34 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
-        getElementJQueryD()?.selectpicker("render")
+        ajaxOptions?.let {
+            getElementJQueryD()?.selectpicker("render").ajaxSelectPicker(it.toJs())
+        } ?: getElementJQueryD()?.selectpicker("render")
+
         this.getElementJQuery()?.on("show.bs.select", { e, _ ->
-            this.dispatchEvent("showBsSelect", obj({ detail = e }))
+            this.dispatchEvent("showBsSelect", obj { detail = e })
         })
         this.getElementJQuery()?.on("shown.bs.select", { e, _ ->
-            this.dispatchEvent("shownBsSelect", obj({ detail = e }))
+            this.dispatchEvent("shownBsSelect", obj { detail = e })
         })
         this.getElementJQuery()?.on("hide.bs.select", { e, _ ->
-            this.dispatchEvent("hideBsSelect", obj({ detail = e }))
+            this.dispatchEvent("hideBsSelect", obj { detail = e })
         })
         this.getElementJQuery()?.on("hidden.bs.select", { e, _ ->
-            this.dispatchEvent("hiddenBsSelect", obj({ detail = e }))
+            this.dispatchEvent("hiddenBsSelect", obj { detail = e })
         })
         this.getElementJQuery()?.on("loaded.bs.select", { e, _ ->
-            this.dispatchEvent("loadedBsSelect", obj({ detail = e }))
+            this.dispatchEvent("loadedBsSelect", obj { detail = e })
         })
         this.getElementJQuery()?.on("rendered.bs.select", { e, _ ->
-            this.dispatchEvent("renderedBsSelect", obj({ detail = e }))
+            this.dispatchEvent("renderedBsSelect", obj { detail = e })
         })
         this.getElementJQuery()?.on("refreshed.bs.select", { e, _ ->
-            this.dispatchEvent("refreshedBsSelect", obj({ detail = e }))
+            this.dispatchEvent("refreshedBsSelect", obj { detail = e })
         })
         this.getElementJQueryD()?.on("changed.bs.select", { e, cIndex: Int ->
             e["clickedIndex"] = cIndex
-            this.dispatchEvent("changedBsSelect", obj({ detail = e }))
+            this.dispatchEvent("changedBsSelect", obj { detail = e })
         })
         refreshState()
     }

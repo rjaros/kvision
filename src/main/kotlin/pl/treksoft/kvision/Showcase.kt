@@ -7,7 +7,19 @@ import pl.treksoft.kvision.data.DataComponent
 import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
-import pl.treksoft.kvision.form.*
+import pl.treksoft.kvision.form.CheckBox
+import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.TEXTINPUTTYPE
+import pl.treksoft.kvision.form.Text
+import pl.treksoft.kvision.form.TextArea
+import pl.treksoft.kvision.form.TextAreaInput
+import pl.treksoft.kvision.form.TextInput
+import pl.treksoft.kvision.form.select.AjaxOptions
+import pl.treksoft.kvision.form.select.SELECTWIDTHTYPE
+import pl.treksoft.kvision.form.select.Select
+import pl.treksoft.kvision.form.select.SelectInput
+import pl.treksoft.kvision.form.select.SelectOptGroup
+import pl.treksoft.kvision.form.select.SelectOption
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.DIV
 import pl.treksoft.kvision.html.TAG.H1
@@ -16,6 +28,7 @@ import pl.treksoft.kvision.modal.Confirm
 import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.panel.*
 import pl.treksoft.kvision.routing.routing
+import pl.treksoft.kvision.snabbdom.obj
 import pl.treksoft.kvision.utils.perc
 import pl.treksoft.kvision.utils.px
 
@@ -134,13 +147,13 @@ class Showcase : ApplicationBase() {
             hiddenBsSelect = { e ->
                 println("hidden")
             }
-            renderedBsSelect= { e ->
+            renderedBsSelect = { e ->
                 println("rendered")
             }
             refreshedBsSelect = { e ->
                 println("refreshed")
             }
-            loadedBsSelect= { e ->
+            loadedBsSelect = { e ->
                 println("loaded")
             }
             changedBsSelect = { e ->
@@ -156,6 +169,23 @@ class Showcase : ApplicationBase() {
             }
         }
         root.add(select6)
+
+        val select7 = SelectInput().apply {
+            ajaxOptions = AjaxOptions("https://api.github.com/search/repositories", processData = {
+                it.items.map { item ->
+                    obj {
+                        this.value = item.id
+                        this.text = item.name
+                        this.data = obj {
+                            this.subtext = item.owner.login
+                        }
+                    }
+                }
+            }, processParams = obj {
+                q = "{{{q}}}"
+            })
+        }
+        root.add(select7)
 
         val container = SimplePanel(setOf("abc", "def"))
         val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, null, classes = setOf("test", "test2"))

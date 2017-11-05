@@ -32,7 +32,7 @@ open class SplitPanel(private val direction: DIRECTION = DIRECTION.VERTICAL,
                 onDrag = lok@ { e: JQueryEventObject, _: JQuery, newWidth: Int, newHeight: Int, _: dynamic ->
                     e.asDynamic()["newWidth"] = newWidth
                     e.asDynamic()["newHeight"] = newHeight
-                    self.dispatchEvent("dragSplitPanel", obj({ detail = e }))
+                    self.dispatchEvent("dragSplitPanel", obj { detail = e })
                     return@lok !e.isDefaultPrevented()
                 }
                 onDragEnd = { e: JQueryEventObject, el: JQuery, _: dynamic ->
@@ -41,7 +41,7 @@ open class SplitPanel(private val direction: DIRECTION = DIRECTION.VERTICAL,
                     } else {
                         children[0].width = el.width().toInt() to px
                     }
-                    self.dispatchEvent("dragEndSplitPanel", obj({ detail = e }))
+                    self.dispatchEvent("dragEndSplitPanel", obj { detail = e })
                 }
             })
         }

@@ -1,6 +1,8 @@
-package pl.treksoft.kvision.form
+package pl.treksoft.kvision.form.select
 
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.FieldLabel
+import pl.treksoft.kvision.form.StringFormField
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringPair
@@ -91,7 +93,7 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
         }
 
     private val idc = "kv_form_select_" + counter
-    val input: SelectInput = SelectInput(options, value, multiple, setOf("form-control")).apply { id = idc }
+    val input: SelectInput = SelectInput(options, value, multiple, null, setOf("form-control")).apply { id = idc }
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {

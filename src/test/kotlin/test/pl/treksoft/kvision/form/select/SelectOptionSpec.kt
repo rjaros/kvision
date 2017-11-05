@@ -1,8 +1,7 @@
-package test.pl.treksoft.kvision.form
+package test.pl.treksoft.kvision.form.select
 
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.form.Password
-import pl.treksoft.kvision.form.SelectOption
+import pl.treksoft.kvision.form.select.SelectOption
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test

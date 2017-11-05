@@ -1,8 +1,8 @@
-package test.pl.treksoft.kvision.form
+package test.pl.treksoft.kvision.form.select
 
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.form.SELECTWIDTHTYPE
-import pl.treksoft.kvision.form.SelectInput
+import pl.treksoft.kvision.form.select.SELECTWIDTHTYPE
+import pl.treksoft.kvision.form.select.SelectInput
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test

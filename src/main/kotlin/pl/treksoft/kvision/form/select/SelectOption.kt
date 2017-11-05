@@ -1,4 +1,4 @@
-package pl.treksoft.kvision.form
+package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
