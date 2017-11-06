@@ -1,5 +1,7 @@
 package pl.treksoft.kvision.form.select
 
+import pl.treksoft.kvision.core.KVManager.AJAX_REQUEST_DELAY
+import pl.treksoft.kvision.core.KVManager.KVNULL
 import pl.treksoft.kvision.snabbdom.obj
 
 enum class HttpType(val type: String) {
@@ -20,17 +22,38 @@ data class AjaxOptions(val url: String, val processData: (dynamic) -> dynamic,
                        val dataType: DataType = DataType.JSON, val minLength: Int = 0,
                        val cache: Boolean = true, val clearOnEmpty: Boolean = true, val clearOnError: Boolean = true,
                        val emptyRequest: Boolean = false, val preserveSelected: Boolean = true,
-                       val requestDelay: Int = 300, val restoreOnError: Boolean = false)
+                       val requestDelay: Int = AJAX_REQUEST_DELAY, val restoreOnError: Boolean = false)
 
-fun AjaxOptions.toJs(): dynamic {
+fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
+    val procData = { data: dynamic ->
+        val processedData = this.processData(data)
+        if (emptyOption) {
+            val ret = mutableListOf(obj {
+                this.value = KVNULL
+                this.text = ""
+            })
+            @Suppress("UnsafeCastFromDynamic")
+            ret.addAll((processedData as Array<dynamic>).asList())
+            ret.toTypedArray()
+        } else {
+            processedData
+        }
+    }
     return obj {
         this.ajax = obj {
             this.url = url
             this.type = httpType.type
+            this.dataType = dataType.type
             this.data = processParams
         }
-        this.preprocessData = processData
+        this.preprocessData = procData
+        this.minLength = minLength
+        this.cache = cache
+        this.clearOnEmpty = clearOnEmpty
+        this.clearOnError = clearOnError
+        this.emptyRequest = emptyRequest
+        this.preserveSelected = preserveSelected
+        this.requestDelay = requestDelay
+        this.restoreOnError = restoreOnError
     }
 }
-
-data class AjaxData(val value: String, val text: String? = null)

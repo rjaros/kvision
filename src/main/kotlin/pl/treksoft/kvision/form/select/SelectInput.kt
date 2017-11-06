@@ -2,6 +2,7 @@ package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.CssSize
+import pl.treksoft.kvision.core.KVManager.KVNULL
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.form.StringFormField
@@ -11,13 +12,12 @@ import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 import pl.treksoft.kvision.snabbdom.obj
 
-private val _aKVNULL = "#kvnull"
-
 enum class SELECTWIDTHTYPE(val value: String) {
     AUTO("auto"),
     FIT("fit")
 }
 
+@Suppress("TooManyFunctions")
 open class SelectInput(options: List<StringPair>? = null, value: String? = null,
                        multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
                        classes: Set<String> = setOf()) : SimplePanel(classes), StringFormField {
@@ -125,7 +125,7 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
                         }
                     } else {
                         val vs = it as String
-                        if (_aKVNULL == vs) {
+                        if (KVNULL == vs) {
                             null
                         } else {
                             vs
@@ -165,15 +165,17 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
     }
 
     private fun setChildrenFromOptions() {
-        super.removeAll()
-        if (emptyOption) {
-            super.add(SelectOption(_aKVNULL, ""))
-        }
-        options?.let {
-            val c = it.map {
-                SelectOption(it.first, it.second)
+        if (ajaxOptions == null) {
+            super.removeAll()
+            if (emptyOption) {
+                super.add(SelectOption(KVNULL, ""))
             }
-            super.addAll(c)
+            options?.let {
+                val c = it.map {
+                    SelectOption(it.first, it.second)
+                }
+                super.addAll(c)
+            }
         }
         this.refreshSelectInput()
     }
@@ -188,6 +190,10 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
 
     open fun toggleOptions() {
         getElementJQueryD()?.selectpicker("toggle")
+    }
+
+    open fun deselect() {
+        getElementJQueryD()?.selectpicker("deselectAll")
     }
 
     override fun getSnClass(): List<StringBoolPair> {
@@ -253,7 +259,7 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         ajaxOptions?.let {
-            getElementJQueryD()?.selectpicker("render").ajaxSelectPicker(it.toJs())
+            getElementJQueryD()?.selectpicker("render").ajaxSelectPicker(it.toJs(emptyOption))
         } ?: getElementJQueryD()?.selectpicker("render")
 
         this.getElementJQuery()?.on("show.bs.select", { e, _ ->

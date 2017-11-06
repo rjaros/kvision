@@ -187,6 +187,36 @@ class Showcase : ApplicationBase() {
         }
         root.add(select7)
 
+        val select8 = Select(label = "Wybierz repozytorium").apply {
+            emptyOption = true
+            ajaxOptions = AjaxOptions("https://api.github.com/search/repositories", processData = {
+                it.items.map { item ->
+                    obj {
+                        this.value = item.id
+                        this.text = item.name
+                        this.data = obj {
+                            this.subtext = item.owner.login
+                        }
+                    }
+                }
+            }, processParams = obj {
+                q = "{{{q}}}"
+            }, minLength = 3, requestDelay = 1000)
+            setEventListener<Select> {
+                change = { _ ->
+                    println(self.value)
+                }
+            }
+        }
+        root.add(select8)
+        val mbuttons8 = Button("Sprawdz repozytorium").setEventListener<Button> {
+            click = {
+                println(select8.value)
+                select8.value = null
+            }
+        }
+        root.add(mbuttons8)
+
         val container = SimplePanel(setOf("abc", "def"))
         val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, null, classes = setOf("test", "test2"))
         container.add(h1)

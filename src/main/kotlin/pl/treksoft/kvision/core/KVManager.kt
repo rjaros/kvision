@@ -14,6 +14,9 @@ import kotlin.browser.document
 import kotlin.dom.clear
 
 object KVManager {
+    internal const val AJAX_REQUEST_DELAY = 300
+    internal const val KVNULL = "#kvnull"
+
     private val bootstrapWebpack = require("bootstrap-webpack")
     private val fontAwesomeWebpack = require("font-awesome-webpack")
     private val resizable = require("jquery-resizable-dom")
@@ -23,6 +26,7 @@ object KVManager {
     private val bootstrapSelectI18n = require("./js/bootstrap-select-i18n.min.js")
     private val bootstrapSelectAjaxCss = require("ajax-bootstrap-select/dist/css/ajax-bootstrap-select.min.css")
     private val bootstrapSelectAjax = require("ajax-bootstrap-select/dist/js/ajax-bootstrap-select.min.js")
+    private val bootstrapSelectAjaxI18n = require("./js/ajax-bootstrap-select.pl-PL.js")
 
     private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,
             eventListenersModule, datasetModule))

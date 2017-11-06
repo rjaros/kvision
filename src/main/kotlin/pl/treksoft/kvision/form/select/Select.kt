@@ -7,8 +7,9 @@ import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringPair
 
+@Suppress("TooManyFunctions")
 open class Select(options: List<StringPair>? = null, value: String? = null,
-                  multiple: Boolean = false, label: String? = null,
+                  multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
                   rich: Boolean = false) : SimplePanel(setOf("form-group")), StringFormField {
 
     var options
@@ -35,6 +36,11 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
         get() = input.multiple
         set(value) {
             input.multiple = value
+        }
+    var ajaxOptions
+        get() = input.ajaxOptions
+        set(value) {
+            input.ajaxOptions = value
         }
     var maxOptions
         get() = input.maxOptions
@@ -93,7 +99,8 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
         }
 
     private val idc = "kv_form_select_" + counter
-    val input: SelectInput = SelectInput(options, value, multiple, null, setOf("form-control")).apply { id = idc }
+    val input: SelectInput = SelectInput(options, value, multiple, ajaxOptions,
+            setOf("form-control")).apply { id = idc }
     val flabel: FieldLabel = FieldLabel(idc, label, rich)
 
     init {
@@ -158,5 +165,9 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
 
     open fun toggleOptions() {
         input.toggleOptions()
+    }
+
+    open fun deselect() {
+        input.deselect()
     }
 }
