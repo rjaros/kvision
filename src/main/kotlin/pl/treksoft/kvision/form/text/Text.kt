@@ -1,4 +1,4 @@
-package pl.treksoft.kvision.form
+package pl.treksoft.kvision.form.text
 
 
 open class Text(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,

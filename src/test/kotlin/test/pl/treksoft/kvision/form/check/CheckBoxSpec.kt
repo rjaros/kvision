@@ -1,8 +1,8 @@
-package test.pl.treksoft.kvision.form
+package test.pl.treksoft.kvision.form.check
 
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.form.CHECKBOXSTYLE
-import pl.treksoft.kvision.form.CheckBox
+import pl.treksoft.kvision.form.check.CHECKBOXSTYLE
+import pl.treksoft.kvision.form.check.CheckBox
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test

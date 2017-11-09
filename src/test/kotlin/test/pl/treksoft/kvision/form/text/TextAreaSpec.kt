@@ -1,7 +1,7 @@
-package test.pl.treksoft.kvision.form
+package test.pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.form.TextArea
+import pl.treksoft.kvision.form.text.TextArea
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test

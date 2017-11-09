@@ -1,4 +1,4 @@
-package pl.treksoft.kvision.form
+package pl.treksoft.kvision.form.text
 
 open class TextArea(cols: Int? = null, rows: Int? = null, value: String? = null,
                     label: String? = null, rich: Boolean = false) : AbstractText(label, rich) {

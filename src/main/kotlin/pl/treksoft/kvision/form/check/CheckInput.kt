@@ -1,7 +1,9 @@
-package pl.treksoft.kvision.form
+package pl.treksoft.kvision.form.check
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.BoolFormField
+import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 

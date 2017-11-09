@@ -1,6 +1,8 @@
-package pl.treksoft.kvision.form
+package pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.StringFormField
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 

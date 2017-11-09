@@ -1,7 +1,9 @@
-package pl.treksoft.kvision.form
+package pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.FieldLabel
+import pl.treksoft.kvision.form.StringFormField
 import pl.treksoft.kvision.snabbdom.SnOn
 
 abstract class AbstractText(label: String? = null, rich: Boolean = false) :
