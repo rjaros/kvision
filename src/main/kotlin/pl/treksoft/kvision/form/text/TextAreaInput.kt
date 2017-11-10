@@ -4,7 +4,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.snabbdom.StringPair
 
 open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = null, classes: Set<String> = setOf()) :
-        AbstractTextInput(value, classes) {
+        AbstractTextInput(value, classes + "form-control") {
 
     var cols: Int? = cols
         set(value) {

@@ -7,17 +7,12 @@ import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
 abstract class AbstractTextInput(value: String? = null,
-                                 classes: Set<String> = setOf()) : Widget(classes + "form-control"), StringFormField {
+                                 classes: Set<String> = setOf()) : Widget(classes), StringFormField {
 
     init {
         this.setInternalEventListener<AbstractTextInput> {
             input = {
-                val v = getElementJQuery()?.`val`() as String?
-                if (v != null && v.isNotEmpty()) {
-                    self.value = v
-                } else {
-                    self.value = null
-                }
+                self.changeValue()
             }
         }
     }
@@ -105,9 +100,18 @@ abstract class AbstractTextInput(value: String? = null,
         return sn
     }
 
-    private fun refreshState() {
+    protected open fun refreshState() {
         value?.let {
             getElementJQuery()?.`val`(it)
         } ?: getElementJQueryD()?.`val`(null)
+    }
+
+    protected open fun changeValue() {
+        val v = getElementJQuery()?.`val`() as String?
+        if (v != null && v.isNotEmpty()) {
+            this.value = v
+        } else {
+            this.value = null
+        }
     }
 }

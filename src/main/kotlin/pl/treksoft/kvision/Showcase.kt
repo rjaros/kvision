@@ -7,19 +7,20 @@ import pl.treksoft.kvision.data.DataComponent
 import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
-import pl.treksoft.kvision.form.check.CheckBox
 import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.form.text.TEXTINPUTTYPE
-import pl.treksoft.kvision.form.text.Text
-import pl.treksoft.kvision.form.text.TextArea
-import pl.treksoft.kvision.form.text.TextAreaInput
-import pl.treksoft.kvision.form.text.TextInput
+import pl.treksoft.kvision.form.check.CheckBox
 import pl.treksoft.kvision.form.select.AjaxOptions
 import pl.treksoft.kvision.form.select.SELECTWIDTHTYPE
 import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.form.select.SelectInput
 import pl.treksoft.kvision.form.select.SelectOptGroup
 import pl.treksoft.kvision.form.select.SelectOption
+import pl.treksoft.kvision.form.text.RichText
+import pl.treksoft.kvision.form.text.TEXTINPUTTYPE
+import pl.treksoft.kvision.form.text.Text
+import pl.treksoft.kvision.form.text.TextArea
+import pl.treksoft.kvision.form.text.TextAreaInput
+import pl.treksoft.kvision.form.text.TextInput
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.DIV
 import pl.treksoft.kvision.html.TAG.H1
@@ -216,6 +217,25 @@ class Showcase : ApplicationBase() {
             }
         }
         root.add(mbuttons8)
+
+        val htmlArea = RichText("test<b>Boldzik</b>", "Pole html").apply {
+            size = INPUTSIZE.SMALL
+            placeholder = "Wprowadź rich text"
+            width = 50.perc()
+            inputHeight = 200.px()
+        }
+        root.add(htmlArea)
+        htmlArea.setEventListener<RichText> {
+            change = {
+                console.log(self.value)
+            }
+        }
+        val mbuttons9 = Button("Sprawdz html").setEventListener<Button> {
+            click = {
+                println(htmlArea.value)
+            }
+        }
+        root.add(mbuttons9)
 
         val container = SimplePanel(setOf("abc", "def"))
         val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, null, classes = setOf("test", "test2"))
@@ -481,6 +501,11 @@ class Showcase : ApplicationBase() {
                     split.hide()
                 } else {
                     split.show()
+                }
+                if (htmlArea.visible) {
+                    htmlArea.hide()
+                } else {
+                    htmlArea.show()
                 }
             }
         }

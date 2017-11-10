@@ -27,6 +27,8 @@ object KVManager {
     private val bootstrapSelectAjaxCss = require("ajax-bootstrap-select/dist/css/ajax-bootstrap-select.min.css")
     private val bootstrapSelectAjax = require("ajax-bootstrap-select/dist/js/ajax-bootstrap-select.min.js")
     private val bootstrapSelectAjaxI18n = require("./js/ajax-bootstrap-select.pl-PL.js")
+    private val trixCss = require("trix/dist/trix.css")
+    private val trix = require("trix")
 
     private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,
             eventListenersModule, datasetModule))
