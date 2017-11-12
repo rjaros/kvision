@@ -49,6 +49,9 @@ interface BtOn : On {
     var renderedBsSelect: ((KvEvent) -> kotlin.Unit)?
     var refreshedBsSelect: ((KvEvent) -> kotlin.Unit)?
     var changedBsSelect: ((KvEvent) -> kotlin.Unit)?
+    var changeDate: ((KvEvent) -> kotlin.Unit)?
+    var showBsDateTime: ((KvEvent) -> kotlin.Unit)?
+    var hideBsDateTime: ((KvEvent) -> kotlin.Unit)?
 }
 
 interface SnOn<T> : BtOn {

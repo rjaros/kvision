@@ -3,7 +3,9 @@
 package pl.treksoft.kvision.utils
 
 import pl.treksoft.kvision.core.CssSize
+import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.core.UNIT
+import kotlin.js.Date
 
 fun Int.px(): CssSize = Pair(this, UNIT.px)
 fun Int.em(): CssSize = Pair(this, UNIT.em)
@@ -33,4 +35,14 @@ fun Int.toHexString(): String {
         num = num shr 4
     }
     return result
+}
+
+@Suppress("UnsafeCastFromDynamic")
+fun String.toDateF(format: String = "YYYY-MM-DD HH:mm:ss"): Date {
+    return KVManager.fecha.parse(this, format)
+}
+
+@Suppress("UnsafeCastFromDynamic")
+fun Date.toStringF(format: String = "YYYY-MM-DD HH:mm:ss"): String {
+    return KVManager.fecha.format(this, format)
 }

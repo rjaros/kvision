@@ -55,6 +55,8 @@ kotlinFrontend {
         dependency "bootstrap-select"
         dependency "ajax-bootstrap-select"
         dependency "trix"
+        dependency "fecha"
+        dependency "bootstrap-datetime-picker"
         dependency("snabbdom", "0.6.9")
         dependency "snabbdom-virtualize"
         dependency "navigo"

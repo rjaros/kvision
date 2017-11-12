@@ -29,6 +29,9 @@ object KVManager {
     private val bootstrapSelectAjaxI18n = require("./js/ajax-bootstrap-select.pl-PL.js")
     private val trixCss = require("trix/dist/trix.css")
     private val trix = require("trix")
+    private val bootstrapDateTimePickerCss = require("bootstrap-datetime-picker/css/bootstrap-datetimepicker.min.css")
+    private val bootstrapDateTimePicker = require("bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js")
+    internal val fecha = require("fecha")
 
     private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,
             eventListenersModule, datasetModule))

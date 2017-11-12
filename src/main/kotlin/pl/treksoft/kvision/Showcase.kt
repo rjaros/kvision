@@ -21,6 +21,8 @@ import pl.treksoft.kvision.form.text.Text
 import pl.treksoft.kvision.form.text.TextArea
 import pl.treksoft.kvision.form.text.TextAreaInput
 import pl.treksoft.kvision.form.text.TextInput
+import pl.treksoft.kvision.form.time.DateTime
+import pl.treksoft.kvision.form.time.DateTimeInput
 import pl.treksoft.kvision.html.*
 import pl.treksoft.kvision.html.TAG.DIV
 import pl.treksoft.kvision.html.TAG.H1
@@ -32,6 +34,8 @@ import pl.treksoft.kvision.routing.routing
 import pl.treksoft.kvision.snabbdom.obj
 import pl.treksoft.kvision.utils.perc
 import pl.treksoft.kvision.utils.px
+import pl.treksoft.kvision.utils.toDateF
+import kotlin.js.Date
 
 class Showcase : ApplicationBase() {
 
@@ -236,6 +240,57 @@ class Showcase : ApplicationBase() {
             }
         }
         root.add(mbuttons9)
+
+        val date = DateTimeInput().apply {
+            placeholder = "Wprowadź datę"
+            size = INPUTSIZE.LARGE
+            todayBtn = true
+            showMeridian = true
+            daysOfWeekDisabled = arrayOf(0, 6)
+
+        }
+        root.add(date)
+
+        val date2 = DateTimeInput(Date(), format = "DD-MM-YY").apply {
+            disabled = true
+        }
+        root.add(date2)
+
+        val date3 = DateTimeInput(Date(), format = "DD-MM-YYYY hh:mm A").apply {
+            readonly = true
+            showMeridian = true
+        }
+        root.add(date3)
+
+        val date4 = DateTime(Date(), format = "HH:mm", label = "Wprowadź datę wpływu")
+        date4.setEventListener<DateTime> {
+            showBsDateTime = {
+                println("show dt")
+            }
+            hideBsDateTime = {
+                println("hide dt")
+            }
+        }
+        root.add(date4)
+
+        val mbuttons10 = Button("Sprawdz daty").setEventListener<Button> {
+            click = {
+                println(date.value)
+                println(date.getValueAsString())
+                println(date2.value)
+                println(date2.getValueAsString())
+                println(date3.value)
+                println(date3.getValueAsString())
+                println(date4.value)
+                println(date4.getValueAsString())
+                date.value = "2017-01-16".toDateF("YYYY-MM-DD")
+                date.showPopup()
+                date.weekStart = 1
+                date4.format = "mm:HH"
+                date4.disabled = !date4.disabled
+            }
+        }
+        root.add(mbuttons10)
 
         val container = SimplePanel(setOf("abc", "def"))
         val h1 = Tag(H1, "To jest <i>test pisania</i> tekstu", false, null, classes = setOf("test", "test2"))
