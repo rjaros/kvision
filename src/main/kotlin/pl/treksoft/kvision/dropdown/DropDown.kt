@@ -1,7 +1,7 @@
 package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.LIST
@@ -87,17 +87,17 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         var counter = 0
     }
 
-    override fun add(child: Widget): SimplePanel {
+    override fun add(child: Component): SimplePanel {
         list.add(child)
         return this
     }
 
-    override fun addAll(children: List<Widget>): SimplePanel {
+    override fun addAll(children: List<Component>): SimplePanel {
         list.addAll(children)
         return this
     }
 
-    override fun remove(child: Widget): SimplePanel {
+    override fun remove(child: Component): SimplePanel {
         list.remove(child)
         return this
     }
@@ -107,7 +107,7 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         return this
     }
 
-    override fun getChildren(): List<Widget> {
+    override fun getChildren(): List<Component> {
         return list.getChildren()
     }
 

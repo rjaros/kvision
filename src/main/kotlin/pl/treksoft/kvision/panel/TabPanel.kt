@@ -1,7 +1,7 @@
 package pl.treksoft.kvision.panel
 
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -25,7 +25,7 @@ open class TabPanel : SimplePanel(setOf()) {
         this.addInternal(content)
     }
 
-    open fun addTab(title: String, panel: Widget, icon: String? = null,
+    open fun addTab(title: String, panel: Component, icon: String? = null,
                     image: ResString? = null): TabPanel {
         val tag = Tag(TAG.LI)
         tag.role = "presentation"
@@ -53,16 +53,16 @@ open class TabPanel : SimplePanel(setOf()) {
         return this
     }
 
-    override fun add(child: Widget): TabPanel {
+    override fun add(child: Component): TabPanel {
         return addTab("", child)
     }
 
-    override fun addAll(children: List<Widget>): TabPanel {
+    override fun addAll(children: List<Component>): TabPanel {
         children.forEach { add(it) }
         return this
     }
 
-    override fun remove(child: Widget): TabPanel {
+    override fun remove(child: Component): TabPanel {
         val index = content.children.indexOf(child)
         return removeTab(index)
     }

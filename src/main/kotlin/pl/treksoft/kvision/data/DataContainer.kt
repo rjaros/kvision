@@ -3,6 +3,7 @@ package pl.treksoft.kvision.data
 import com.github.snabbdom.VNode
 import com.lightningkite.kotlin.observable.list.ObservableList
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.VPanel
 
@@ -25,17 +26,17 @@ class DataContainer<M : DataComponent, C : Widget>(val model: ObservableList<M>,
         update()
     }
 
-    override fun add(child: Widget): Container {
+    override fun add(child: Component): Container {
         this.child.add(child)
         return this
     }
 
-    override fun addAll(children: List<Widget>): Container {
+    override fun addAll(children: List<Component>): Container {
         this.child.addAll(children)
         return this
     }
 
-    override fun remove(child: Widget): Container {
+    override fun remove(child: Component): Container {
         this.child.remove(child)
         return this
     }
@@ -45,7 +46,7 @@ class DataContainer<M : DataComponent, C : Widget>(val model: ObservableList<M>,
         return this
     }
 
-    override fun getChildren(): List<Widget> {
+    override fun getChildren(): List<Component> {
         return this.child.getChildren()
     }
 

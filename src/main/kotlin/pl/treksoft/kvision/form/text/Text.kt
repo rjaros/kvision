@@ -21,5 +21,6 @@ open class Text(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addInternal(input)
+        this.addInternal(validationInfo)
     }
 }

@@ -1,6 +1,6 @@
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.Component
 
 enum class SIDE {
     LEFT,
@@ -11,11 +11,11 @@ enum class SIDE {
 }
 
 open class DockPanel(classes: Set<String> = setOf()) : SimplePanel(classes = classes) {
-    protected var left: Widget? = null
-    protected var center: Widget? = null
-    protected var right: Widget? = null
-    protected var up: Widget? = null
-    protected var down: Widget? = null
+    protected var left: Component? = null
+    protected var center: Component? = null
+    protected var right: Component? = null
+    protected var up: Component? = null
+    protected var down: Component? = null
 
     protected val mainContainer = FlexPanel(direction = FLEXDIR.COLUMN, justify = FLEXJUSTIFY.SPACEBETWEEN,
             alignItems = FLEXALIGNITEMS.STRETCH)
@@ -27,7 +27,7 @@ open class DockPanel(classes: Set<String> = setOf()) : SimplePanel(classes = cla
     }
 
     @Suppress("MagicNumber")
-    open fun add(widget: Widget, position: SIDE): DockPanel {
+    open fun add(widget: Component, position: SIDE): DockPanel {
         when (position) {
             SIDE.UP -> {
                 up?.let { mainContainer.remove(it) }
@@ -58,16 +58,16 @@ open class DockPanel(classes: Set<String> = setOf()) : SimplePanel(classes = cla
         return this
     }
 
-    override fun add(child: Widget): DockPanel {
+    override fun add(child: Component): DockPanel {
         return this.add(child, SIDE.CENTER)
     }
 
-    override fun addAll(children: List<Widget>): DockPanel {
+    override fun addAll(children: List<Component>): DockPanel {
         children.forEach { this.add(it) }
         return this
     }
 
-    override fun remove(child: Widget): DockPanel {
+    override fun remove(child: Component): DockPanel {
         if (child == left) removeAt(SIDE.LEFT)
         if (child == center) removeAt(SIDE.CENTER)
         if (child == right) removeAt(SIDE.RIGHT)

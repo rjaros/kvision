@@ -1,16 +1,19 @@
 package pl.treksoft.kvision.form.select
 
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
-import pl.treksoft.kvision.form.StringFormField
+import pl.treksoft.kvision.form.HelpBlock
+import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.SnOn
+import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
 @Suppress("TooManyFunctions")
 open class Select(options: List<StringPair>? = null, value: String? = null,
                   multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
-                  rich: Boolean = false) : SimplePanel(setOf("form-group")), StringFormField {
+                  rich: Boolean = false) : SimplePanel(setOf("form-group")), StringFormControl {
 
     var options
         get() = input.options
@@ -99,20 +102,30 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
         }
 
     private val idc = "kv_form_select_" + counter
-    val input: SelectInput = SelectInput(options, value, multiple, ajaxOptions,
+    final override val input: SelectInput = SelectInput(options, value, multiple, ajaxOptions,
             setOf("form-control")).apply { id = idc }
-    val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
     init {
-        this.addInternal(flabel)
         @Suppress("LeakingThis")
         input.eventTarget = this
+        this.addInternal(flabel)
         this.addInternal(input)
+        this.addInternal(validationInfo)
         counter++
     }
 
     companion object {
         var counter = 0
+    }
+
+    override fun getSnClass(): List<StringBoolPair> {
+        val cl = super.getSnClass().toMutableList()
+        if (validatorError != null) {
+            cl.add("has-error" to true)
+        }
+        return cl
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -131,17 +144,17 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
         return this
     }
 
-    override fun add(child: Widget): SimplePanel {
+    override fun add(child: Component): SimplePanel {
         input.add(child)
         return this
     }
 
-    override fun addAll(children: List<Widget>): SimplePanel {
+    override fun addAll(children: List<Component>): SimplePanel {
         input.addAll(children)
         return this
     }
 
-    override fun remove(child: Widget): SimplePanel {
+    override fun remove(child: Component): SimplePanel {
         input.remove(child)
         return this
     }
@@ -151,7 +164,7 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
         return this
     }
 
-    override fun getChildren(): List<Widget> {
+    override fun getChildren(): List<Component> {
         return input.getChildren()
     }
 

@@ -23,11 +23,11 @@ class RadioSpec : DomSpec {
             root.add(ci)
             val element = document.getElementById("test")
             val id = ci.input.id
-            assertEquals("<div class=\"radio radio-danger radio-inline\"><input id=\"$id\" type=\"radio\" checked=\"\" name=\"name\" disabled=\"\" value=\"abc\"><label for=\"$id\">Label</label></div>", element?.innerHTML, "Should render correct radio button form field")
+            assertEquals("<div class=\"radio radio-danger radio-inline\"><input id=\"$id\" type=\"radio\" checked=\"\" name=\"name\" disabled=\"\" value=\"abc\"><label for=\"$id\">Label</label></div>", element?.innerHTML, "Should render correct radio button form control")
             ci.style = RADIOSTYLE.INFO
             ci.squared = true
             ci.inline = false
-            assertEquals("<div class=\"checkbox checkbox-info\"><input id=\"$id\" type=\"radio\" checked=\"\" name=\"name\" disabled=\"\" value=\"abc\"><label for=\"$id\">Label</label></div>", element?.innerHTML, "Should render correct radio button form field")
+            assertEquals("<div class=\"checkbox checkbox-info\"><input id=\"$id\" type=\"radio\" checked=\"\" name=\"name\" disabled=\"\" value=\"abc\"><label for=\"$id\">Label</label></div>", element?.innerHTML, "Should render correct radio button form control")
         }
     }
 

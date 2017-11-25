@@ -21,13 +21,13 @@ import pl.treksoft.kvision.snabbdom.snStyle
 open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     internal val classes = classes.toMutableSet()
+    internal val surroundingClasses: MutableSet<String> = mutableSetOf()
     internal val internalListeners = mutableListOf<SnOn<Widget>.() -> Unit>()
     internal val listeners = mutableListOf<SnOn<Widget>.() -> Unit>()
 
-    var parent: Widget? = null
-        internal set
+    override var parent: Component? = null
 
-    open var visible: Boolean = true
+    override var visible: Boolean = true
         set(value) {
             val oldField = field
             field = value
@@ -65,8 +65,15 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return t
     }
 
-    open fun renderVNode(): VNode {
-        return render()
+    override fun renderVNode(): VNode {
+        return if (surroundingClasses.isEmpty()) {
+            render()
+        } else {
+            val opt = snOpt {
+                `class` = snClasses(surroundingClasses.map { c -> c to true })
+            }
+            h("div", opt, arrayOf(render()))
+        }
     }
 
     protected open fun render(): VNode {
@@ -258,31 +265,43 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this
     }
 
-    open fun addCssClass(css: String): Widget {
+    override fun addCssClass(css: String): Widget {
         this.classes.add(css)
         refresh()
         return this
     }
 
-    open fun removeCssClass(css: String): Widget {
+    override fun removeCssClass(css: String): Widget {
         this.classes.remove(css)
         refresh()
         return this
     }
 
-    open fun getElement(): Node? {
+    override fun addSurroundingCssClass(css: String): Widget {
+        this.surroundingClasses.add(css)
+        refresh()
+        return this
+    }
+
+    override fun removeSurroundingCssClass(css: String): Widget {
+        this.surroundingClasses.remove(css)
+        refresh()
+        return this
+    }
+
+    override fun getElement(): Node? {
         return this.vnode?.elm
     }
 
-    open fun getElementJQuery(): JQuery? {
+    override fun getElementJQuery(): JQuery? {
         return getElement()?.let { jQuery(it) }
     }
 
-    open fun getElementJQueryD(): dynamic {
+    override fun getElementJQueryD(): dynamic {
         return getElement()?.let { jQuery(it).asDynamic() }
     }
 
-    internal fun clearParent(): Widget {
+    override fun clearParent(): Widget {
         this.parent = null
         return this
     }
@@ -309,7 +328,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     protected open fun afterDestroy() {
     }
 
-    internal open fun getRoot(): Root? {
+    override fun getRoot(): Root? {
         return this.parent?.getRoot()
     }
 
@@ -333,6 +352,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this.getElement()?.dispatchEvent(event)
     }
 
-    open fun dispose() {
+    override fun dispose() {
     }
 }

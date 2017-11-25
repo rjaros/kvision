@@ -3,9 +3,8 @@ package pl.treksoft.kvision.form.select
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.KVManager.KVNULL
-import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.form.StringFormField
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -20,7 +19,7 @@ enum class SELECTWIDTHTYPE(val value: String) {
 @Suppress("TooManyFunctions")
 open class SelectInput(options: List<StringPair>? = null, value: String? = null,
                        multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-                       classes: Set<String> = setOf()) : SimplePanel(classes), StringFormField {
+                       classes: Set<String> = setOf()) : SimplePanel(classes) {
 
     internal var options = options
         set(value) {
@@ -28,14 +27,12 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
             setChildrenFromOptions()
         }
 
-    @Suppress("LeakingThis")
-    override var value: String? = value
+    var value: String? = value
         set(value) {
             field = value
             refreshState()
         }
 
-    @Suppress("LeakingThis")
     var startValue: String? = value
         set(value) {
             field = value
@@ -93,7 +90,7 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
             field = value
             setChildrenFromOptions()
         }
-    override var disabled: Boolean = false
+    var disabled: Boolean = false
         set(value) {
             field = value
             refresh()
@@ -103,7 +100,7 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
             field = value
             refresh()
         }
-    override var size: INPUTSIZE? = null
+    var size: INPUTSIZE? = null
         set(value) {
             field = value
             refresh()
@@ -140,19 +137,19 @@ open class SelectInput(options: List<StringPair>? = null, value: String? = null,
         return kvh("select", childrenVNodes())
     }
 
-    override fun add(child: Widget): SimplePanel {
+    override fun add(child: Component): SimplePanel {
         super.add(child)
         refreshSelectInput()
         return this
     }
 
-    override fun addAll(children: List<Widget>): SimplePanel {
+    override fun addAll(children: List<Component>): SimplePanel {
         super.addAll(children)
         refreshSelectInput()
         return this
     }
 
-    override fun remove(child: Widget): SimplePanel {
+    override fun remove(child: Component): SimplePanel {
         super.remove(child)
         refreshSelectInput()
         return this

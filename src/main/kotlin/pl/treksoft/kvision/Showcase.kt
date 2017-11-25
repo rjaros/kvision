@@ -7,14 +7,21 @@ import pl.treksoft.kvision.data.DataComponent
 import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.dropdown.DD.*
 import pl.treksoft.kvision.dropdown.DropDown
+import pl.treksoft.kvision.form.Form
+import pl.treksoft.kvision.form.FormPanel
 import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.bool
 import pl.treksoft.kvision.form.check.CheckBox
+import pl.treksoft.kvision.form.check.Radio
+import pl.treksoft.kvision.form.date
 import pl.treksoft.kvision.form.select.AjaxOptions
 import pl.treksoft.kvision.form.select.SELECTWIDTHTYPE
 import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.form.select.SelectInput
 import pl.treksoft.kvision.form.select.SelectOptGroup
 import pl.treksoft.kvision.form.select.SelectOption
+import pl.treksoft.kvision.form.string
+import pl.treksoft.kvision.form.text.Password
 import pl.treksoft.kvision.form.text.RichText
 import pl.treksoft.kvision.form.text.TEXTINPUTTYPE
 import pl.treksoft.kvision.form.text.Text
@@ -40,6 +47,35 @@ import kotlin.js.Date
 class Showcase : ApplicationBase() {
 
     override fun start(state: Map<String, Any>) {
+        data class DataForm(val a: String?, val b: Boolean?, val c: Date?)
+
+        val f = DataForm("ala", true, Date())
+        val form = Form {
+            DataForm(it.string("a"), it.bool("b"), it.date("c"))
+        }
+        form.add("a", Text())
+        form.add("b", CheckBox())
+        form.add("c", DateTime())
+        form.setData(f)
+        val ret = form.getData()
+        console.log(ret)
+
+        class DataFormMap(val map: Map<String, Any?>) {
+            val name: String by map
+            val age: Date     by map
+        }
+
+        val fm = DataFormMap(mapOf("name" to "Ala", "age" to Date()))
+        val formm = Form {
+            DataFormMap(it)
+        }
+        formm.add("name", Text())
+        formm.add("age", DateTime())
+        formm.setData(fm)
+        val retm = formm.getData()
+        console.log(retm.name)
+        console.log(retm.age)
+
         val root = Root("showcase")
 
         class Model(p: Boolean, t: String) : DataComponent() {
@@ -286,6 +322,7 @@ class Showcase : ApplicationBase() {
                 date.value = "2017-01-16".toDateF("YYYY-MM-DD")
                 date.showPopup()
                 date.weekStart = 1
+                date4.value = null
                 date4.format = "mm:HH"
                 date4.disabled = !date4.disabled
             }
@@ -367,6 +404,58 @@ class Showcase : ApplicationBase() {
                 println("ta c" + self.value)
             }
         }
+
+        class Formularz(val map: Map<String, Any?>) {
+            val text: String? by map
+            val password: String? by map
+            val textarea: String? by map
+            val richtext: String? by map
+            val data: Date? by map
+            val checkbox: Boolean by map
+            val radio: Boolean by map
+            val select: String? by map
+        }
+
+        val formPanel = FormPanel() {
+            Formularz(it)
+        }.apply {
+            add("text", Text(label = "Tekst"), required = true, validatorMessage = { "Wprowadź tylko cyfry" }) {
+                it.getValue()?.matches("^[0-9]+$")
+            }
+            add("password", Password(label = "Hasło"), required = true,
+                    validatorMessage = { "Wprowadź co najmniej 5 znaków" }) {
+                (it.getValue()?.length ?: 0) >= 5
+            }
+            add("textarea", TextArea(label = "Obszar"), required = true)
+            add("richtext", RichText(label = "Obszar WYSIWYG"), required = true)
+            add("data", DateTime(format = "YYYY-MM-DD", label = "Data"), required = true)
+            add("checkbox", CheckBox(label = "Checkbox")) { it.getValue() }
+            add("radio", Radio(label = "Radiobutton")) { it.getValue() }
+            add("select", Select(options = listOf("a" to "Pierwsza opcja", "b" to "Druga opcja"),
+                    label = "Wybierz opcje").apply {
+                //                selectWidthType = SELECTWIDTHTYPE.FIT
+                emptyOption = true
+            }, required = true)
+
+            validator = {
+                var result = it["text"] == it["textarea"]
+                if (!result) {
+                    it.getControl("text")?.validatorError = "Niezgodne dane"
+                    it.getControl("textarea")?.validatorError = "Niezgodne dane"
+                }
+                result
+            }
+            validatorMessage = { "Pole Tekst i Obszar muszą być takie same!" }
+        }
+        root.add(formPanel)
+        val formButton = Button("Pokaż dane").setEventListener<Button> {
+            click = {
+                console.log(formPanel.validate())
+                console.log(formPanel.getData().map.toString())
+//                formPanel.setData(Formularz(mapOf("zazn" to false, "select" to "a")))
+            }
+        }
+        formPanel.add(formButton)
 
         val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)

@@ -1,8 +1,9 @@
 package pl.treksoft.kvision.form.check
 
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.BoolFormField
+import pl.treksoft.kvision.form.BoolFormControl
 import pl.treksoft.kvision.form.FieldLabel
+import pl.treksoft.kvision.form.HelpBlock
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -17,7 +18,7 @@ enum class RADIOSTYLE(val className: String) {
 }
 
 open class Radio(value: Boolean = false, extraValue: String? = null, label: String? = null,
-                 rich: Boolean = false) : SimplePanel(), BoolFormField {
+                 rich: Boolean = false) : SimplePanel(), BoolFormControl {
 
     override var value
         get() = input.value
@@ -76,17 +77,19 @@ open class Radio(value: Boolean = false, extraValue: String? = null, label: Stri
         }
 
     private val idc = "kv_form_radio_" + counter
-    val input: CheckInput = CheckInput(CHECKINPUTTYPE.RADIO, value).apply {
+    final override val input: CheckInput = CheckInput(CHECKINPUTTYPE.RADIO, value).apply {
         this.id = idc
         this.extraValue = extraValue
     }
-    val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf())
+    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addInternal(input)
         this.addInternal(flabel)
+        this.addInternal(validationInfo)
         counter++
     }
 
@@ -128,6 +131,9 @@ open class Radio(value: Boolean = false, extraValue: String? = null, label: Stri
             if (inline) {
                 cl.add("checkbox-inline" to true)
             }
+        }
+        if (validatorError != null) {
+            cl.add("has-error" to true)
         }
         return cl
     }

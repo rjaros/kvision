@@ -2,7 +2,7 @@ package pl.treksoft.kvision.core
 
 import com.github.snabbdom.VNode
 
-open class WidgetWrapper(internal var delegate: Widget?, classes: Set<String> = setOf()) : Widget(classes) {
+open class WidgetWrapper(internal var delegate: Component?, classes: Set<String> = setOf()) : Widget(classes) {
 
     override var visible
         get() = delegate?.visible == true

@@ -1,6 +1,7 @@
 package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.helpers.CloseIcon
@@ -87,12 +88,12 @@ open class Modal(caption: String? = null, closeButton: Boolean = true,
         }
     }
 
-    override fun add(child: Widget): SimplePanel {
+    override fun add(child: Component): SimplePanel {
         body.add(child)
         return this
     }
 
-    override fun addAll(children: List<Widget>): SimplePanel {
+    override fun addAll(children: List<Component>): SimplePanel {
         body.addAll(children)
         return this
     }

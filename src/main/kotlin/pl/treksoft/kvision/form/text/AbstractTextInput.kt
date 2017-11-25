@@ -2,12 +2,11 @@ package pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.form.StringFormField
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
 abstract class AbstractTextInput(value: String? = null,
-                                 classes: Set<String> = setOf()) : Widget(classes), StringFormField {
+                                 classes: Set<String> = setOf()) : Widget(classes) {
 
     init {
         this.setInternalEventListener<AbstractTextInput> {
@@ -17,12 +16,11 @@ abstract class AbstractTextInput(value: String? = null,
         }
     }
 
-    override var value: String? = value
+    var value: String? = value
         set(value) {
             field = value
             refreshState()
         }
-    @Suppress("LeakingThis")
     var startValue: String? = value
         set(value) {
             field = value
@@ -44,7 +42,7 @@ abstract class AbstractTextInput(value: String? = null,
             field = value
             refresh()
         }
-    override var disabled: Boolean = false
+    var disabled: Boolean = false
         set(value) {
             field = value
             refresh()
@@ -59,7 +57,7 @@ abstract class AbstractTextInput(value: String? = null,
             field = value
             refresh()
         }
-    override var size: INPUTSIZE? = null
+    var size: INPUTSIZE? = null
         set(value) {
             field = value
             refresh()

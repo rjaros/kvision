@@ -3,12 +3,12 @@ package pl.treksoft.kvision.core
 import com.github.snabbdom.VNode
 
 interface Container {
-    var parent: Widget?
+    var parent: Component?
     var visible: Boolean
     fun renderVNode(): VNode
-    fun add(child: Widget): Container
-    fun addAll(children: List<Widget>): Container
-    fun remove(child: Widget): Container
+    fun add(child: Component): Container
+    fun addAll(children: List<Component>): Container
+    fun remove(child: Component): Container
     fun removeAll(): Container
-    fun getChildren(): List<Widget>
+    fun getChildren(): List<Component>
 }

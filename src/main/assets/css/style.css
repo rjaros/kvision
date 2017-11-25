@@ -60,3 +60,28 @@
 trix-toolbar .trix-button-group {
   margin-bottom: 3px;
 }
+
+.form-inline .form-group {
+  margin-right:6px;
+}
+
+.form-inline .checkbox, .form-inline .radio {
+  margin-right:6px;
+}
+
+.form-inline .form-group .form-control {
+  margin-left:6px;
+}
+
+.form-horizontal .checkbox, .form-horizontal .radio {
+  padding-left: 25px;
+}
+
+.form-inline .form-group trix-editor.form-control {
+  margin-left: 0px;
+  width: 100%;
+}
+
+.form-inline .form-group, .form-inline .control-label {
+  vertical-align: top;
+}

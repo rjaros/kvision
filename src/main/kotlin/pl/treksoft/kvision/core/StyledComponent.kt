@@ -2,9 +2,9 @@ package pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.snabbdom.StringPair
 
-abstract class StyledComponent : KVObject {
+abstract class StyledComponent : Component {
 
-    var width: CssSize? = null
+    override var width: CssSize? = null
         set(value) {
             field = value
             refresh()
@@ -19,7 +19,7 @@ abstract class StyledComponent : KVObject {
             field = value
             refresh()
         }
-    var height: CssSize? = null
+    override var height: CssSize? = null
         set(value) {
             field = value
             refresh()
@@ -138,7 +138,7 @@ abstract class StyledComponent : KVObject {
 
     private var snStyleCache: List<StringPair>? = null
 
-    protected open fun refresh(): StyledComponent {
+    open fun refresh(): StyledComponent {
         snStyleCache = null
         return this
     }

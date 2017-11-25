@@ -1,6 +1,6 @@
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.snabbdom.StringPair
 
@@ -112,23 +112,23 @@ open class GridPanel(autoColumns: String? = null, autoRows: String? = null, auto
         }
 
     @Suppress("LongParameterList")
-    fun add(child: Widget, columnStart: Int? = null, rowStart: Int? = null,
+    fun add(child: Component, columnStart: Int? = null, rowStart: Int? = null,
             columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: GRIDJUSTIFY? = null,
             alignSelf: GRIDALIGN? = null, classes: Set<String> = setOf()): GridPanel {
         addInternal(GridWrapper(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, classes))
         return this
     }
 
-    override fun add(child: Widget): GridPanel {
+    override fun add(child: Component): GridPanel {
         return add(child, null, null)
     }
 
-    override fun addAll(children: List<Widget>): GridPanel {
+    override fun addAll(children: List<Component>): GridPanel {
         children.forEach { add(it, null, null) }
         return this
     }
 
-    override fun remove(child: Widget): GridPanel {
+    override fun remove(child: Component): GridPanel {
         children.find { (it as GridWrapper).delegate == child }?.let {
             super.remove(it)
             it.dispose()
@@ -190,7 +190,7 @@ open class GridPanel(autoColumns: String? = null, autoRows: String? = null, auto
     }
 }
 
-class GridWrapper(delegate: Widget, private val columnStart: Int? = null, private val rowStart: Int? = null,
+class GridWrapper(delegate: Component, private val columnStart: Int? = null, private val rowStart: Int? = null,
                   private val columnEnd: String? = null, private val rowEnd: String? = null,
                   private val area: String? = null, private val justifySelf: GRIDJUSTIFY? = null,
                   private val alignSelf: GRIDALIGN? = null,

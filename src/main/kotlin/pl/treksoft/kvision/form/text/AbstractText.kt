@@ -2,12 +2,14 @@ package pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
-import pl.treksoft.kvision.form.StringFormField
+import pl.treksoft.kvision.form.HelpBlock
+import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.SnOn
+import pl.treksoft.kvision.snabbdom.StringBoolPair
 
 abstract class AbstractText(label: String? = null, rich: Boolean = false) :
-        SimplePanel(setOf("form-group")), StringFormField {
+        SimplePanel(setOf("form-group")), StringFormControl {
 
     override var value
         get() = input.value
@@ -66,8 +68,9 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         }
 
     protected val idc = "kv_form_text_" + counter
-    internal abstract val input: AbstractTextInput
-    internal val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    abstract override val input: AbstractTextInput
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
     init {
         this.addInternal(flabel)
@@ -76,6 +79,14 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
 
     companion object {
         var counter = 0
+    }
+
+    override fun getSnClass(): List<StringBoolPair> {
+        val cl = super.getSnClass().toMutableList()
+        if (validatorError != null) {
+            cl.add("has-error" to true)
+        }
+        return cl
     }
 
     @Suppress("UNCHECKED_CAST")

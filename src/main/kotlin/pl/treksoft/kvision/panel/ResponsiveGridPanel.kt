@@ -1,6 +1,6 @@
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.ALIGN
 import pl.treksoft.kvision.html.TAG
@@ -15,7 +15,7 @@ enum class GRIDSIZE(val size: String) {
 
 const val MAX_COLUMNS = 12
 
-internal data class WidgetParam(val widget: Widget, val size: Int, val offset: Int)
+internal data class WidgetParam(val widget: Component, val size: Int, val offset: Int)
 
 open class ResponsiveGridPanel(private val gridsize: GRIDSIZE = GRIDSIZE.MD,
                                private var rows: Int = 0, private var cols: Int = 0, align: ALIGN? = null,
@@ -29,7 +29,7 @@ open class ResponsiveGridPanel(private val gridsize: GRIDSIZE = GRIDSIZE.MD,
     internal val map = mutableMapOf<Int, MutableMap<Int, WidgetParam>>()
     private var auto: Boolean = true
 
-    open fun add(child: Widget, row: Int, col: Int, size: Int = 0, offset: Int = 0): ResponsiveGridPanel {
+    open fun add(child: Component, row: Int, col: Int, size: Int = 0, offset: Int = 0): ResponsiveGridPanel {
         val cRow = if (row < 0) 0 else row
         val cCol = if (col < 0) 0 else col
         if (row > rows - 1) rows = cRow + 1
@@ -40,17 +40,17 @@ open class ResponsiveGridPanel(private val gridsize: GRIDSIZE = GRIDSIZE.MD,
         return this
     }
 
-    override fun add(child: Widget): ResponsiveGridPanel {
+    override fun add(child: Component): ResponsiveGridPanel {
         return this.add(child, 0, this.cols)
     }
 
-    override fun addAll(children: List<Widget>): ResponsiveGridPanel {
+    override fun addAll(children: List<Component>): ResponsiveGridPanel {
         children.forEach { this.add(it) }
         return this
     }
 
     @Suppress("NestedBlockDepth")
-    override fun remove(child: Widget): ResponsiveGridPanel {
+    override fun remove(child: Component): ResponsiveGridPanel {
         for (i in 0 until rows) {
             val row = map[i]
             if (row != null) {

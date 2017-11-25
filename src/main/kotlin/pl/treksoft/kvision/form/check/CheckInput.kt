@@ -2,7 +2,6 @@ package pl.treksoft.kvision.form.check
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.BoolFormField
 import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
@@ -13,7 +12,7 @@ enum class CHECKINPUTTYPE(val type: String) {
 }
 
 open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boolean = false,
-                      classes: Set<String> = setOf()) : Widget(classes), BoolFormField {
+                      classes: Set<String> = setOf()) : Widget(classes) {
 
     init {
         this.setInternalEventListener<CheckInput> {
@@ -27,12 +26,12 @@ open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boo
             }
         }
     }
-    override var value: Boolean = value
+
+    var value: Boolean = value
         set(value) {
             field = value
             refreshState()
         }
-    @Suppress("LeakingThis")
     var startValue: Boolean = value
         set(value) {
             field = value
@@ -49,7 +48,7 @@ open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boo
             field = value
             refresh()
         }
-    override var disabled: Boolean = false
+    var disabled: Boolean = false
         set(value) {
             field = value
             refresh()
@@ -59,7 +58,7 @@ open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boo
             field = value
             refresh()
         }
-    override var size: INPUTSIZE? = null
+    var size: INPUTSIZE? = null
         set(value) {
             field = value
             refresh()

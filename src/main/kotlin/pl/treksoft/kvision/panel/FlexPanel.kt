@@ -1,6 +1,6 @@
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.snabbdom.StringPair
 
@@ -73,22 +73,22 @@ open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify
         }
 
     @Suppress("LongParameterList")
-    fun add(child: Widget, order: Int? = null, grow: Int? = null, shrink: Int? = null,
+    fun add(child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
             basis: Int? = null, alignSelf: FLEXALIGNITEMS? = null, classes: Set<String> = setOf()): FlexPanel {
         addInternal(FlexWrapper(child, order, grow, shrink, basis, alignSelf, classes))
         return this
     }
 
-    override fun add(child: Widget): FlexPanel {
+    override fun add(child: Component): FlexPanel {
         return add(child, null)
     }
 
-    override fun addAll(children: List<Widget>): FlexPanel {
+    override fun addAll(children: List<Component>): FlexPanel {
         children.forEach { add(it, null) }
         return this
     }
 
-    override fun remove(child: Widget): FlexPanel {
+    override fun remove(child: Component): FlexPanel {
         children.find { (it as FlexWrapper).delegate == child }?.let {
             super.remove(it)
             it.dispose()
@@ -128,7 +128,7 @@ open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify
     }
 }
 
-class FlexWrapper(delegate: Widget, private val order: Int? = null, private val grow: Int? = null,
+class FlexWrapper(delegate: Component, private val order: Int? = null, private val grow: Int? = null,
                   private val shrink: Int? = null, private val basis: Int? = null,
                   private val alignSelf: FLEXALIGNITEMS? = null,
                   classes: Set<String> = setOf()) : WidgetWrapper(delegate, classes) {

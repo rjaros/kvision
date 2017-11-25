@@ -1,14 +1,16 @@
 package pl.treksoft.kvision.form.time
 
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.DateFormField
+import pl.treksoft.kvision.form.DateFormControl
 import pl.treksoft.kvision.form.FieldLabel
+import pl.treksoft.kvision.form.HelpBlock
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.SnOn
+import pl.treksoft.kvision.snabbdom.StringBoolPair
 import kotlin.js.Date
 
 open class DateTime(value: Date? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
-                    rich: Boolean = false) : SimplePanel(setOf("form-group")), DateFormField {
+                    rich: Boolean = false) : SimplePanel(setOf("form-group")), DateFormControl {
 
     override var value
         get() = input.value
@@ -97,19 +99,29 @@ open class DateTime(value: Date? = null, format: String = "YYYY-MM-DD HH:mm", la
         }
 
     protected val idc = "kv_form_time_" + counter
-    internal val input: DateTimeInput = DateTimeInput(value, format).apply { id = idc }
-    internal val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val input: DateTimeInput = DateTimeInput(value, format).apply { id = idc }
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
     init {
-        this.addInternal(flabel)
         @Suppress("LeakingThis")
         input.eventTarget = this
+        this.addInternal(flabel)
         this.addInternal(input)
+        this.addInternal(validationInfo)
         counter++
     }
 
     companion object {
         var counter = 0
+    }
+
+    override fun getSnClass(): List<StringBoolPair> {
+        val cl = super.getSnClass().toMutableList()
+        if (validatorError != null) {
+            cl.add("has-error" to true)
+        }
+        return cl
     }
 
     @Suppress("UNCHECKED_CAST")

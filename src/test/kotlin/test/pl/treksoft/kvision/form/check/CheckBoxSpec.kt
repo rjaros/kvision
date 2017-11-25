@@ -24,11 +24,11 @@ class CheckBoxSpec : DomSpec {
             root.add(ci)
             val element = document.getElementById("test")
             val id = ci.input.id
-            assertEquals("<div class=\"checkbox checkbox-danger checkbox-circle checkbox-inline\"><input class=\"styled\" id=\"$id\" type=\"checkbox\" checked=\"\" name=\"name\" disabled=\"\"><label for=\"$id\">Label</label></div>", element?.innerHTML, "Should render correct checkbox form field")
+            assertEquals("<div class=\"checkbox checkbox-danger checkbox-circle checkbox-inline\"><input class=\"styled\" id=\"$id\" type=\"checkbox\" checked=\"\" name=\"name\" disabled=\"\"><label for=\"$id\">Label</label></div>", element?.innerHTML, "Should render correct checkbox form control")
             ci.style = CHECKBOXSTYLE.INFO
             ci.circled = false
             ci.inline = false
-            assertEquals("<div class=\"checkbox checkbox-info\"><input class=\"styled\" id=\"$id\" type=\"checkbox\" checked=\"\" name=\"name\" disabled=\"\"><label for=\"$id\">Label</label></div>", element?.innerHTML, "Should render correct checkbox form field")
+            assertEquals("<div class=\"checkbox checkbox-info\"><input class=\"styled\" id=\"$id\" type=\"checkbox\" checked=\"\" name=\"name\" disabled=\"\"><label for=\"$id\">Label</label></div>", element?.innerHTML, "Should render correct checkbox form control")
         }
     }
 

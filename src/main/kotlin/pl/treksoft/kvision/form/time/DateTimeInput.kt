@@ -2,7 +2,6 @@ package pl.treksoft.kvision.form.time
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.DateFormField
 import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
@@ -16,7 +15,7 @@ const val MAX_VIEW = 4
 
 @Suppress("TooManyFunctions")
 open class DateTimeInput(value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
-                         classes: Set<String> = setOf()) : Widget(classes + "form-control"), DateFormField {
+                         classes: Set<String> = setOf()) : Widget(classes + "form-control") {
 
 
     init {
@@ -27,7 +26,7 @@ open class DateTimeInput(value: Date? = null, format: String = "YYYY-MM-DD HH:mm
         }
     }
 
-    override var value: Date? = value
+    var value: Date? = value
         set(value) {
             field = value
             refreshState()
@@ -47,7 +46,7 @@ open class DateTimeInput(value: Date? = null, format: String = "YYYY-MM-DD HH:mm
             field = value
             refresh()
         }
-    override var disabled: Boolean = false
+    var disabled: Boolean = false
         set(value) {
             field = value
             refresh()
@@ -62,7 +61,7 @@ open class DateTimeInput(value: Date? = null, format: String = "YYYY-MM-DD HH:mm
             field = value
             refresh()
         }
-    override var size: INPUTSIZE? = null
+    var size: INPUTSIZE? = null
         set(value) {
             field = value
             refresh()
@@ -147,7 +146,10 @@ open class DateTimeInput(value: Date? = null, format: String = "YYYY-MM-DD HH:mm
     protected open fun refreshState() {
         value?.let {
             getElementJQueryD()?.datetimepicker("update", it)
-        } ?: getElementJQueryD()?.datetimepicker("update", null)
+        } ?: run {
+            getElementJQueryD()?.`val`(null)
+            getElementJQueryD()?.datetimepicker("update", null)
+        }
     }
 
     protected open fun refreshDatePicker() {
@@ -212,7 +214,7 @@ open class DateTimeInput(value: Date? = null, format: String = "YYYY-MM-DD HH:mm
         })
     }
 
-    override fun getValueAsString(): String? {
+    fun getValueAsString(): String? {
         return value?.toStringF(format)
     }
 

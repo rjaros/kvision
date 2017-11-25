@@ -25,5 +25,6 @@ open class TextArea(cols: Int? = null, rows: Int? = null, value: String? = null,
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addInternal(input)
+        this.addInternal(validationInfo)
     }
 }

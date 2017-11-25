@@ -15,5 +15,6 @@ open class RichText(value: String? = null,
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addInternal(input)
+        this.addInternal(validationInfo)
     }
 }
