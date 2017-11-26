@@ -92,6 +92,14 @@ open class FormPanel<K>(private val type: FORMTYPE? = null, classes: Set<String>
         return this
     }
 
+    open fun getControl(key: String): FormControl? {
+        return form.getControl(key)
+    }
+
+    operator fun get(key: String): Any? {
+        return getControl(key)?.getValue()
+    }
+
     open fun setData(data: K) {
         form.setData(data)
     }

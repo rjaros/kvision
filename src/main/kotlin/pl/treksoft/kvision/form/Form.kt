@@ -56,7 +56,7 @@ open class Form<K>(private val panel: FormPanel<K>? = null, private val modelFac
 
     open fun getData(): K {
         val map = fields.entries.associateBy({ it.key }, { it.value.getValue() })
-        return modelFactory(map)
+        return modelFactory(map.withDefault { null })
     }
 
     open fun validate(): Boolean {
