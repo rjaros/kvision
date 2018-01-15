@@ -85,3 +85,24 @@ trix-toolbar .trix-button-group {
 .form-inline .form-group, .form-inline .control-label {
   vertical-align: top;
 }
+
+.bootstrap-touchspin .input-group-btn-vertical> .input-sm {
+  padding: 7px 10px;
+  height: 6px;
+}
+
+.bootstrap-touchspin .input-group-btn-vertical> .input-lg {
+  height: 24px;
+}
+
+.kv-spinner-btn-none .input-group-btn-vertical {
+  display: none;
+}
+
+.kv-spinner-btn-none .form-control {
+  border-radius: 4px !important;
+}
+
+.kv-spinner-btn-vertical .form-control {
+  border-radius: 4px 0px 0px 4px !important;
+}

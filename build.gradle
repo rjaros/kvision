@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.1.61'
+    ext.kotlin_version = '1.2.10'
 
     repositories {
         jcenter()
@@ -57,6 +57,7 @@ kotlinFrontend {
         dependency "trix"
         dependency "fecha"
         dependency "bootstrap-datetime-picker"
+        dependency "bootstrap-touchspin"
         dependency("snabbdom", "0.6.9")
         dependency "snabbdom-virtualize"
         dependency "navigo"

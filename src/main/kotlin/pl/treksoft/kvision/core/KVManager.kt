@@ -31,6 +31,8 @@ object KVManager {
     private val trix = require("trix")
     private val bootstrapDateTimePickerCss = require("bootstrap-datetime-picker/css/bootstrap-datetimepicker.min.css")
     private val bootstrapDateTimePicker = require("bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js")
+    private val bootstrapTouchspinCss = require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")
+    private val bootstrapTouchspin = require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js")
     internal val fecha = require("fecha")
 
     private val sdPatch = Snabbdom.init(arrayOf(classModule, attributesModule, propsModule, styleModule,

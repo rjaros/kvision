@@ -48,6 +48,11 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
             field = value
             refresh()
         }
+    var surroundingSpan: Boolean = false
+        set(value) {
+            field = value
+            refresh()
+        }
     internal var eventTarget: Widget? = null
 
     private var vnode: VNode? = null
@@ -67,12 +72,20 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     override fun renderVNode(): VNode {
         return if (surroundingClasses.isEmpty()) {
-            render()
+            if (surroundingSpan) {
+                h("span", arrayOf(render()))
+            } else {
+                render()
+            }
         } else {
             val opt = snOpt {
                 `class` = snClasses(surroundingClasses.map { c -> c to true })
             }
-            h("div", opt, arrayOf(render()))
+            if (surroundingSpan) {
+                h("div", opt, arrayOf(h("span", arrayOf(render()))))
+            } else {
+                h("div", opt, arrayOf(render()))
+            }
         }
     }
 
@@ -263,6 +276,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     open fun hide(): Widget {
         visible = false
         return this
+    }
+
+    open fun toggleVisible(): Widget {
+        return if (visible) hide() else show()
     }
 
     override fun addCssClass(css: String): Widget {

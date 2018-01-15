@@ -20,6 +20,9 @@ import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.form.select.SelectInput
 import pl.treksoft.kvision.form.select.SelectOptGroup
 import pl.treksoft.kvision.form.select.SelectOption
+import pl.treksoft.kvision.form.spinner.FORCETYPE
+import pl.treksoft.kvision.form.spinner.Spinner
+import pl.treksoft.kvision.form.spinner.SpinnerInput
 import pl.treksoft.kvision.form.string
 import pl.treksoft.kvision.form.text.Password
 import pl.treksoft.kvision.form.text.RichText
@@ -414,6 +417,7 @@ class Showcase : ApplicationBase() {
             val checkbox: Boolean by map
             val radio: Boolean by map
             val select: String? by map
+            val spinner: Double? by map
         }
 
         val formPanel = FormPanel() {
@@ -436,6 +440,7 @@ class Showcase : ApplicationBase() {
                 //                selectWidthType = SELECTWIDTHTYPE.FIT
                 emptyOption = true
             }, required = true)
+            add("spinner", Spinner(label = "Spinner"), required = true)
 
             validator = {
                 var result = it["text"] == it["textarea"]
@@ -448,14 +453,38 @@ class Showcase : ApplicationBase() {
             validatorMessage = { "Pole Tekst i Obszar muszą być takie same!" }
         }
         root.add(formPanel)
+        val spinner = SpinnerInput(15.05, min = -100000, max = 100000, decimals = 4, forceType = FORCETYPE.ROUND, step = 0.0001).apply {
+            size = INPUTSIZE.LARGE
+        }
+        val ttt = TextInput(value = "abc").apply {
+            size = INPUTSIZE.LARGE
+        }
+        spinner.setEventListener<SpinnerInput> {
+            onMinBsSpinner = { e ->
+                console.log(e)
+            }
+            onMaxBsSpinner = { e ->
+                console.log(e)
+            }
+        }
         val formButton = Button("Pokaż dane").setEventListener<Button> {
             click = {
                 console.log(formPanel.validate())
                 console.log(formPanel.getData().map.toString())
 //                formPanel.setData(Formularz(mapOf("zazn" to false, "select" to "a")))
+                spinner.toggleVisible()
+                spinner.max = spinner.max.plus(2)
+                ttt.toggleVisible()
             }
         }
         formPanel.add(formButton)
+        spinner.setEventListener<SpinnerInput> {
+            change = {
+                console.log(spinner.value)
+            }
+        }
+        root.add(spinner)
+        root.add(ttt)
 
         val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
         root.add(dd)

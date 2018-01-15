@@ -1,5 +1,6 @@
 package pl.treksoft.kvision.form.text
 
+import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -96,6 +97,10 @@ abstract class AbstractTextInput(value: String? = null,
             sn.add("disabled" to "true")
         }
         return sn
+    }
+
+    override fun afterInsert(node: VNode) {
+        refreshState()
     }
 
     protected open fun refreshState() {
