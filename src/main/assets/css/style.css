@@ -106,3 +106,11 @@ trix-toolbar .trix-button-group {
 .kv-spinner-btn-vertical .form-control {
   border-radius: 4px 0px 0px 4px !important;
 }
+
+.kv-radiogroup .radio {
+  margin-top: -5px;
+}
+
+.kv-radiogroup-inline label {
+  margin-right: 10px;
+}

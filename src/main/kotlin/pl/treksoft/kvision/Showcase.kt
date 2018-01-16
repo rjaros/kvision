@@ -13,6 +13,7 @@ import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.form.bool
 import pl.treksoft.kvision.form.check.CheckBox
 import pl.treksoft.kvision.form.check.Radio
+import pl.treksoft.kvision.form.check.RadioGroup
 import pl.treksoft.kvision.form.date
 import pl.treksoft.kvision.form.select.AjaxOptions
 import pl.treksoft.kvision.form.select.SELECTWIDTHTYPE
@@ -63,7 +64,7 @@ class Showcase : ApplicationBase() {
         val ret = form.getData()
         console.log(ret)
 
-        class DataFormMap(val map: Map<String, Any?>) {
+        class DataFormMap(map: Map<String, Any?>) {
             val name: String by map
             val age: Date     by map
         }
@@ -164,6 +165,24 @@ class Showcase : ApplicationBase() {
             }
         }
         root.add(mbuttons3)
+
+        val rg = RadioGroup(listOf("o1" to "Pierwsza opcja", "o2" to "Druga opcja"), label = "Radio buttony")
+        root.add(rg)
+        val rgbutton = Button("Sprawdź radio").setEventListener<Button> {
+            click = {
+                println(rg.value)
+            }
+        }
+        root.add(rgbutton)
+        val rg2button = Button("Ustaw radio").setEventListener<Button> {
+            click = {
+                rg.value = "o2"
+            }
+            dblclick = {
+                rg.value = null
+            }
+        }
+        root.add(rg2button)
 
         val select5 = Select(listOf("a" to "Pierwsza", "b" to "Druga"), "a", label = "Lista wyboru")
         root.add(select5)
@@ -418,9 +437,10 @@ class Showcase : ApplicationBase() {
             val radio: Boolean by map
             val select: String? by map
             val spinner: Double? by map
+            val radiogroup: String? by map
         }
 
-        val formPanel = FormPanel() {
+        val formPanel = FormPanel {
             Formularz(it)
         }.apply {
             add("text", Text(label = "Tekst"), required = true, validatorMessage = { "Wprowadź tylko cyfry" }) {
@@ -441,9 +461,11 @@ class Showcase : ApplicationBase() {
                 emptyOption = true
             }, required = true)
             add("spinner", Spinner(label = "Spinner"), required = true)
+            add("radiogroup", RadioGroup(listOf("o1" to "Pierwsza opcja", "o2" to "Druga opcja"),
+                    inline = true, label = "Radio group"), required = true)
 
             validator = {
-                var result = it["text"] == it["textarea"]
+                val result = it["text"] == it["textarea"]
                 if (!result) {
                     it.getControl("text")?.validatorError = "Niezgodne dane"
                     it.getControl("textarea")?.validatorError = "Niezgodne dane"
@@ -469,9 +491,10 @@ class Showcase : ApplicationBase() {
         }
         val formButton = Button("Pokaż dane").setEventListener<Button> {
             click = {
+                formPanel.getControl("radiogroup")?.disabled = true
                 console.log(formPanel.validate())
                 console.log(formPanel.getData().map.toString())
-//                formPanel.setData(Formularz(mapOf("zazn" to false, "select" to "a")))
+                formPanel.setData(Formularz(mapOf("checkbox" to false, "select" to "a", "radiogroup" to "o2")))
                 spinner.toggleVisible()
                 spinner.max = spinner.max.plus(2)
                 ttt.toggleVisible()
