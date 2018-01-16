@@ -462,7 +462,13 @@ class Showcase : ApplicationBase() {
             }, required = true)
             add("spinner", Spinner(label = "Spinner"), required = true)
             add("radiogroup", RadioGroup(listOf("o1" to "Pierwsza opcja", "o2" to "Druga opcja"),
-                    inline = true, label = "Radio group"), required = true)
+                    inline = true, label = "Radio group").apply {
+                setEventListener<RadioGroup> {
+                    change = { e ->
+                        println(self.value)
+                    }
+                }
+            }, required = true)
 
             validator = {
                 val result = it["text"] == it["textarea"]

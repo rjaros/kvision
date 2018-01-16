@@ -55,7 +55,6 @@ open class RadioGroup(options: List<StringPair>? = null, value: String? = null, 
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
     init {
-        @Suppress("LeakingThis")
         setChildrenFromOptions()
         counter++
     }
@@ -103,8 +102,9 @@ open class RadioGroup(options: List<StringPair>? = null, value: String? = null, 
                 Radio(false, extraValue = it.first, label = it.second).apply {
                     inline = tinline
                     name = tidc
+                    eventTarget = this@RadioGroup
                     setEventListener<Radio> {
-                        change = {
+                        change = { e ->
                             this@RadioGroup.value = self.extraValue
                         }
                     }

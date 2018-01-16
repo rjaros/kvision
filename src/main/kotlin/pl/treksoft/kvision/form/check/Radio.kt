@@ -86,7 +86,7 @@ open class Radio(value: Boolean = false, extraValue: String? = null, label: Stri
 
     init {
         @Suppress("LeakingThis")
-        input.eventTarget = this
+        input.eventTarget = this.eventTarget ?: this
         this.addInternal(input)
         this.addInternal(flabel)
         this.addInternal(validationInfo)
