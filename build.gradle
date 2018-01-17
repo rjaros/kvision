@@ -9,7 +9,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.23"
+        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.26"
         classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC5-5"
     }
 }
@@ -25,7 +25,6 @@ repositories {
     jcenter()
     maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
     maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
-    maven { url = "./libs" }
 }
 
 dependencies {
@@ -34,7 +33,7 @@ dependencies {
     compile "com.github.snabbdom:snabbdom-kotlin:0.1.1"
     compile "pl.treksoft:navigo-kotlin:0.0.1"
     compile "pl.treksoft:jquery-kotlin:0.0.2"
-    compile "obs:kotlin-observable:0.0.1"
+    compile "pl.treksoft:kotlin-observable-js:0.0.2"
 }
 
 kotlinFrontend {
