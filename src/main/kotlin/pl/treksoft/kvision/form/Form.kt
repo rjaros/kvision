@@ -20,8 +20,8 @@ open class Form<K>(private val panel: FormPanel<K>? = null, private val modelFac
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        this.fields.put(key, control)
-        this.fieldsParams.put(key, FieldParams(required, validatorMessage, validator))
+        this.fields[key] = control
+        this.fieldsParams[key] = FieldParams(required, validatorMessage, validator)
         return this
     }
 
