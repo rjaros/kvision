@@ -6,8 +6,10 @@ import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
-abstract class AbstractTextInput(value: String? = null,
-                                 classes: Set<String> = setOf()) : Widget(classes) {
+abstract class AbstractTextInput(
+    value: String? = null,
+    classes: Set<String> = setOf()
+) : Widget(classes) {
 
     init {
         this.setInternalEventListener<AbstractTextInput> {

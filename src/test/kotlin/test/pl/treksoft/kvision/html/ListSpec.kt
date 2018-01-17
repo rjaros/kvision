@@ -19,7 +19,11 @@ class ListSpec : DomSpec {
             val list = ListTag(LIST.DL_HORIZ, listOf("a1", "a2", "b1", "b2"))
             root.add(list)
             val element = document.getElementById("test")
-            assertEquals("<dl class=\"dl-horizontal\"><dt>a1</dt><dd>a2</dd><dt>b1</dt><dd>b2</dd></dl>", element?.innerHTML, "Should render correct html list")
+            assertEquals(
+                "<dl class=\"dl-horizontal\"><dt>a1</dt><dd>a2</dd><dt>b1</dt><dd>b2</dd></dl>",
+                element?.innerHTML,
+                "Should render correct html list"
+            )
         }
     }
 
@@ -32,7 +36,11 @@ class ListSpec : DomSpec {
             list.add(Tag(TAG.DEL, "del"))
             root.add(list)
             val element = document.getElementById("test")
-            assertEquals("<ul><li><pre>pre</pre></li><li><del>del</del></li></ul>", element?.innerHTML, "Should render correct html list")
+            assertEquals(
+                "<ul><li><pre>pre</pre></li><li><del>del</del></li></ul>",
+                element?.innerHTML,
+                "Should render correct html list"
+            )
         }
     }
 

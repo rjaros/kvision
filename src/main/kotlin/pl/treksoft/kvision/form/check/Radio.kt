@@ -17,8 +17,10 @@ enum class RADIOSTYLE(val className: String) {
     DANGER("radio-danger"),
 }
 
-open class Radio(value: Boolean = false, extraValue: String? = null, label: String? = null,
-                 rich: Boolean = false) : SimplePanel(), BoolFormControl {
+open class Radio(
+    value: Boolean = false, extraValue: String? = null, label: String? = null,
+    rich: Boolean = false
+) : SimplePanel(), BoolFormControl {
 
     override var value
         get() = input.value

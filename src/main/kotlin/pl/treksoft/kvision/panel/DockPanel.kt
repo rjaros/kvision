@@ -17,8 +17,10 @@ open class DockPanel(classes: Set<String> = setOf()) : SimplePanel(classes = cla
     protected var up: Component? = null
     protected var down: Component? = null
 
-    protected val mainContainer = FlexPanel(direction = FLEXDIR.COLUMN, justify = FLEXJUSTIFY.SPACEBETWEEN,
-            alignItems = FLEXALIGNITEMS.STRETCH)
+    protected val mainContainer = FlexPanel(
+        direction = FLEXDIR.COLUMN, justify = FLEXJUSTIFY.SPACEBETWEEN,
+        alignItems = FLEXALIGNITEMS.STRETCH
+    )
     protected val subContainer = FlexPanel(justify = FLEXJUSTIFY.SPACEBETWEEN, alignItems = FLEXALIGNITEMS.CENTER)
 
     init {

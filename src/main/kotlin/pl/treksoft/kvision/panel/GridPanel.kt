@@ -45,11 +45,13 @@ enum class GRIDFLOW(val flow: String) {
     COLUMNDENSE("column dense")
 }
 
-open class GridPanel(autoColumns: String? = null, autoRows: String? = null, autoFlow: GRIDFLOW? = null,
-                     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
-                     columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
-                     alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
-                     alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class GridPanel(
+    autoColumns: String? = null, autoRows: String? = null, autoFlow: GRIDFLOW? = null,
+    templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
+    columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
+    alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
+    alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf()
+) : SimplePanel(classes) {
     var autoColumns = autoColumns
         set(value) {
             field = value
@@ -112,9 +114,11 @@ open class GridPanel(autoColumns: String? = null, autoRows: String? = null, auto
         }
 
     @Suppress("LongParameterList")
-    fun add(child: Component, columnStart: Int? = null, rowStart: Int? = null,
-            columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: GRIDJUSTIFY? = null,
-            alignSelf: GRIDALIGN? = null, classes: Set<String> = setOf()): GridPanel {
+    fun add(
+        child: Component, columnStart: Int? = null, rowStart: Int? = null,
+        columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: GRIDJUSTIFY? = null,
+        alignSelf: GRIDALIGN? = null, classes: Set<String> = setOf()
+    ): GridPanel {
         addInternal(GridWrapper(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, classes))
         return this
     }
@@ -190,11 +194,13 @@ open class GridPanel(autoColumns: String? = null, autoRows: String? = null, auto
     }
 }
 
-class GridWrapper(delegate: Component, private val columnStart: Int? = null, private val rowStart: Int? = null,
-                  private val columnEnd: String? = null, private val rowEnd: String? = null,
-                  private val area: String? = null, private val justifySelf: GRIDJUSTIFY? = null,
-                  private val alignSelf: GRIDALIGN? = null,
-                  classes: Set<String> = setOf()) : WidgetWrapper(delegate, classes) {
+class GridWrapper(
+    delegate: Component, private val columnStart: Int? = null, private val rowStart: Int? = null,
+    private val columnEnd: String? = null, private val rowEnd: String? = null,
+    private val area: String? = null, private val justifySelf: GRIDJUSTIFY? = null,
+    private val alignSelf: GRIDALIGN? = null,
+    classes: Set<String> = setOf()
+) : WidgetWrapper(delegate, classes) {
 
     override fun getSnStyle(): List<StringPair> {
         val snstyle = super.getSnStyle().toMutableList()

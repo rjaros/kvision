@@ -16,11 +16,23 @@ class SelectOptionSpec : DomSpec {
             val selectOption = SelectOption("testValue", "testLabel")
             root.add(selectOption)
             val element = document.getElementById("test")
-            assertEquals("<option value=\"testValue\">testLabel</option>", element?.innerHTML, "Should render correct select option")
+            assertEquals(
+                "<option value=\"testValue\">testLabel</option>",
+                element?.innerHTML,
+                "Should render correct select option"
+            )
             selectOption.icon = "fa-flag"
-            assertEquals("<option value=\"testValue\" data-icon=\"fa fa-flag\">testLabel</option>", element?.innerHTML, "Should render correct select option with icon")
+            assertEquals(
+                "<option value=\"testValue\" data-icon=\"fa fa-flag\">testLabel</option>",
+                element?.innerHTML,
+                "Should render correct select option with icon"
+            )
             selectOption.divider = true
-            assertEquals("<option data-divider=\"true\"></option>", element?.innerHTML, "Should render correct divider option")
+            assertEquals(
+                "<option data-divider=\"true\"></option>",
+                element?.innerHTML,
+                "Should render correct divider option"
+            )
         }
     }
 

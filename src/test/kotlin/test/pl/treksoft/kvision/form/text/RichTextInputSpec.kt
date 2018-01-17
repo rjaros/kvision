@@ -21,7 +21,11 @@ class RichTextInputSpec : DomSpec {
             root.add(hai)
             val id = document.getElementById("test")?.let { jQuery(it).find("trix-editor").attr("trix-id") } ?: "0"
             val content = document.getElementById("test")?.let { jQuery(it).find("trix-editor")[0]?.outerHTML }
-            assertEquals("<trix-editor contenteditable=\"\" class=\"form-control trix-control\" id=\"idti\" placeholder=\"place\" trix-id=\"$id\" input=\"trix-input-$id\" toolbar=\"trix-toolbar-$id\"></trix-editor>", content, "Should render correct html area control")
+            assertEquals(
+                "<trix-editor contenteditable=\"\" class=\"form-control trix-control\" id=\"idti\" placeholder=\"place\" trix-id=\"$id\" input=\"trix-input-$id\" toolbar=\"trix-toolbar-$id\"></trix-editor>",
+                content,
+                "Should render correct html area control"
+            )
         }
     }
 

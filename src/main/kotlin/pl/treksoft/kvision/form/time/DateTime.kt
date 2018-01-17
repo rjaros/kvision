@@ -9,8 +9,10 @@ import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import kotlin.js.Date
 
-open class DateTime(value: Date? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
-                    rich: Boolean = false) : SimplePanel(setOf("form-group")), DateFormControl {
+open class DateTime(
+    value: Date? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
+    rich: Boolean = false
+) : SimplePanel(setOf("form-group")), DateFormControl {
 
     override var value
         get() = input.value

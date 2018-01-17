@@ -21,9 +21,11 @@ enum class DD(val type: String) {
     SEPARATOR("DD#SEPARATOR")
 }
 
-open class DropDown(text: String, elements: List<StringPair>? = null, icon: String? = null,
-                    style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false,
-                    classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class DropDown(
+    text: String, elements: List<StringPair>? = null, icon: String? = null,
+    style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false,
+    classes: Set<String> = setOf()
+) : SimplePanel(classes) {
     var text
         get() = button.text
         set(value) {
@@ -71,8 +73,10 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
         }
 
     private val idc = "kv_dropdown_" + counter
-    internal val button: DropDownButton = DropDownButton(idc, text, icon, style,
-            disabled, setOf("dropdown"))
+    internal val button: DropDownButton = DropDownButton(
+        idc, text, icon, style,
+        disabled, setOf("dropdown")
+    )
     internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
@@ -172,22 +176,28 @@ open class DropDown(text: String, elements: List<StringPair>? = null, icon: Stri
     }
 }
 
-open class DropDownButton(id: String, text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
-                          disabled: Boolean = false, classes: Set<String> = setOf()) :
-        Button(text, icon, style, disabled, classes) {
+open class DropDownButton(
+    id: String, text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
+    disabled: Boolean = false, classes: Set<String> = setOf()
+) :
+    Button(text, icon, style, disabled, classes) {
 
     init {
         this.id = id
     }
 
     override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + listOf("data-toggle" to "dropdown", "aria-haspopup" to "true",
-                "aria-expanded" to "false")
+        return super.getSnAttrs() + listOf(
+            "data-toggle" to "dropdown", "aria-haspopup" to "true",
+            "aria-expanded" to "false"
+        )
     }
 }
 
-open class DropDownListTag(private val ariaId: String, classes: Set<String> = setOf()) : ListTag(LIST.UL, null,
-        false, classes) {
+open class DropDownListTag(private val ariaId: String, classes: Set<String> = setOf()) : ListTag(
+    LIST.UL, null,
+    false, classes
+) {
 
     override fun getSnAttrs(): List<StringPair> {
         return super.getSnAttrs() + listOf("aria-labelledby" to ariaId)

@@ -21,7 +21,11 @@ class DateTimeInputSpec : DomSpec {
             }
             root.add(dti)
             val value = dti.getElementJQuery()?.`val`()
-            assertEquals(data.toStringF(dti.format), value, "Should render date time input with correctly formatted value")
+            assertEquals(
+                data.toStringF(dti.format),
+                value,
+                "Should render date time input with correctly formatted value"
+            )
         }
     }
 

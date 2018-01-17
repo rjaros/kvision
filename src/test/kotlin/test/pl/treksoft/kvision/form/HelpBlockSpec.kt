@@ -16,7 +16,11 @@ class HelpBlockSpec : DomSpec {
             val fl = HelpBlock("Form Error")
             root.add(fl)
             val element = document.getElementById("test")
-            assertEquals("<span class=\"help-block small\">Form Error</span>", element?.innerHTML, "Should render correct help block")
+            assertEquals(
+                "<span class=\"help-block small\">Form Error</span>",
+                element?.innerHTML,
+                "Should render correct help block"
+            )
         }
     }
 

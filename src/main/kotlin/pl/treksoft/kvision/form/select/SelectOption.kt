@@ -4,9 +4,11 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringPair
 
-open class SelectOption(value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
-                        divider: Boolean = false, disabled: Boolean = false,
-                        classes: Set<String> = setOf()) : Widget(classes) {
+open class SelectOption(
+    value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
+    divider: Boolean = false, disabled: Boolean = false,
+    classes: Set<String> = setOf()
+) : Widget(classes) {
 
     var value: String? = value
         set(value) {

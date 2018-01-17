@@ -19,9 +19,11 @@ enum class MODALSIZE(val className: String) {
 }
 
 @Suppress("TooManyFunctions")
-open class Modal(caption: String? = null, closeButton: Boolean = true,
-                 size: MODALSIZE? = null, animation: Boolean = true, private val escape: Boolean = true,
-                 classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class Modal(
+    caption: String? = null, closeButton: Boolean = true,
+    size: MODALSIZE? = null, animation: Boolean = true, private val escape: Boolean = true,
+    classes: Set<String> = setOf()
+) : SimplePanel(classes) {
     private var caption
         get() = captionTag.text
         set(value) {

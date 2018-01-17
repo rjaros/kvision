@@ -1,8 +1,10 @@
 package pl.treksoft.kvision.form.text
 
 
-open class Text(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,
-                label: String? = null, rich: Boolean = false) : AbstractText(label, rich) {
+open class Text(
+    type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,
+    label: String? = null, rich: Boolean = false
+) : AbstractText(label, rich) {
 
     var type
         get() = input.type

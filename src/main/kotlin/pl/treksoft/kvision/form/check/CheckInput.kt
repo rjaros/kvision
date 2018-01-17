@@ -11,8 +11,10 @@ enum class CHECKINPUTTYPE(val type: String) {
     RADIO("radio")
 }
 
-open class CheckInput(type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boolean = false,
-                      classes: Set<String> = setOf()) : Widget(classes) {
+open class CheckInput(
+    type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boolean = false,
+    classes: Set<String> = setOf()
+) : Widget(classes) {
 
     init {
         this.setInternalEventListener<CheckInput> {

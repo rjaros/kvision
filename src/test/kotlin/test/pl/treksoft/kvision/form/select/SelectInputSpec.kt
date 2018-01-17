@@ -22,7 +22,10 @@ class SelectInputSpec : DomSpec {
             }
             root.add(selectInput)
             val element = document.getElementById("test")
-            assertTrue(true == element?.innerHTML?.endsWith("<select class=\"selectpicker\" multiple=\"\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select></div>"), "Should render correct select input")
+            assertTrue(
+                true == element?.innerHTML?.endsWith("<select class=\"selectpicker\" multiple=\"\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select></div>"),
+                "Should render correct select input"
+            )
         }
     }
 

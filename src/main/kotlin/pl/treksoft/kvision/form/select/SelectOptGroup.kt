@@ -4,8 +4,10 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringPair
 
-open class SelectOptGroup(label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
-                     disabled: Boolean = false, classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class SelectOptGroup(
+    label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
+    disabled: Boolean = false, classes: Set<String> = setOf()
+) : SimplePanel(classes) {
 
     var label: String = label
         set(value) {

@@ -22,8 +22,10 @@ enum class BUTTONSIZE(val className: String) {
     XSMALL("btn-xs")
 }
 
-open class Button(text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
-                  disabled: Boolean = false, classes: Set<String> = setOf()) : Widget(classes) {
+open class Button(
+    text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
+    disabled: Boolean = false, classes: Set<String> = setOf()
+) : Widget(classes) {
     var text = text
         set(value) {
             field = value

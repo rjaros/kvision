@@ -7,9 +7,11 @@ import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 
-open class Alert(caption: String? = null, text: String? = null, rich: Boolean = false,
-                 align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
-                 private val callback: (() -> Unit)? = null) : Modal(caption, true, size, animation) {
+open class Alert(
+    caption: String? = null, text: String? = null, rich: Boolean = false,
+    align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
+    private val callback: (() -> Unit)? = null
+) : Modal(caption, true, size, animation) {
     var text
         get() = content.text
         set(value) {
@@ -47,9 +49,11 @@ open class Alert(caption: String? = null, text: String? = null, rich: Boolean = 
 
     companion object {
         @Suppress("LongParameterList")
-        fun show(caption: String? = null, text: String? = null, rich: Boolean = false,
-                 align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
-                 callback: (() -> Unit)? = null) {
+        fun show(
+            caption: String? = null, text: String? = null, rich: Boolean = false,
+            align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
+            callback: (() -> Unit)? = null
+        ) {
             Alert(caption, text, rich, align, size, animation, callback).show()
         }
     }

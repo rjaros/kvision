@@ -36,7 +36,11 @@ class StackPanelSpec : DomSpec {
             stackPanel.add(label1)
             stackPanel.add(label2)
             val element = document.getElementById("test")
-            assertEquals("<div><span>abc</span></div>", element?.innerHTML, "Should render correct stack panel with activateLast = false")
+            assertEquals(
+                "<div><span>abc</span></div>",
+                element?.innerHTML,
+                "Should render correct stack panel with activateLast = false"
+            )
         }
     }
 

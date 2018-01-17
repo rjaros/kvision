@@ -10,9 +10,11 @@ import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
-open class RadioGroup(options: List<StringPair>? = null, value: String? = null, inline: Boolean = false,
-                      label: String? = null,
-                      rich: Boolean = false) : SimplePanel(setOf("form-group")), StringFormControl {
+open class RadioGroup(
+    options: List<StringPair>? = null, value: String? = null, inline: Boolean = false,
+    label: String? = null,
+    rich: Boolean = false
+) : SimplePanel(setOf("form-group")), StringFormControl {
 
     internal var options = options
         set(value) {

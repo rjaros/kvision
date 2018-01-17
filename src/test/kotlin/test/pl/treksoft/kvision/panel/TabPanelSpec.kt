@@ -21,7 +21,11 @@ class TabPanelSpec : DomSpec {
             tabs.addTab("ABC", label1)
             tabs.addTab("DEF", label2)
             val element = document.getElementById("test")
-            assertEquals("<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"active\"><a href=\"#\">ABC</a></li><li role=\"presentation\"><a href=\"#\">DEF</a></li></ul><div><span>abc</span></div></div>", element?.innerHTML, "Should render correct tabs")
+            assertEquals(
+                "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"active\"><a href=\"#\">ABC</a></li><li role=\"presentation\"><a href=\"#\">DEF</a></li></ul><div><span>abc</span></div></div>",
+                element?.innerHTML,
+                "Should render correct tabs"
+            )
         }
     }
 
@@ -37,7 +41,11 @@ class TabPanelSpec : DomSpec {
             tabs.addTab("DEF", label2)
             tabs.activeIndex = 1
             val element = document.getElementById("test")
-            assertEquals("<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"\"><a href=\"#\">ABC</a></li><li role=\"presentation\" class=\"active\"><a href=\"#\">DEF</a></li></ul><div><span>def</span></div></div>", element?.innerHTML, "Should change selected tab")
+            assertEquals(
+                "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"\"><a href=\"#\">ABC</a></li><li role=\"presentation\" class=\"active\"><a href=\"#\">DEF</a></li></ul><div><span>def</span></div></div>",
+                element?.innerHTML,
+                "Should change selected tab"
+            )
         }
     }
 
@@ -54,7 +62,11 @@ class TabPanelSpec : DomSpec {
             tabs.activeIndex = 1
             tabs.removeTab(1)
             val element = document.getElementById("test")
-            assertEquals("<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"active\"><a href=\"#\">ABC</a></li></ul><div><span>abc</span></div></div>", element?.innerHTML, "Should remove tab")
+            assertEquals(
+                "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"active\"><a href=\"#\">ABC</a></li></ul><div><span>abc</span></div></div>",
+                element?.innerHTML,
+                "Should remove tab"
+            )
         }
     }
 }

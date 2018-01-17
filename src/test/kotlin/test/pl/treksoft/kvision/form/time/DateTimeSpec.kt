@@ -25,9 +25,17 @@ class DateTimeSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ti.input.id
             val datastr = data.toStringF(ti.format)
-            assertEquals("<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"text\" placeholder=\"place\" name=\"name\" disabled=\"\" value=\"$datastr\"></div>", element?.innerHTML, "Should render correct date time input form control")
+            assertEquals(
+                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"text\" placeholder=\"place\" name=\"name\" disabled=\"\" value=\"$datastr\"></div>",
+                element?.innerHTML,
+                "Should render correct date time input form control"
+            )
             ti.validatorError = "Validation Error"
-            assertEquals("<div class=\"form-group has-error\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"text\" placeholder=\"place\" name=\"name\" disabled=\"\" value=\"$datastr\"><span class=\"help-block small\">Validation Error</span></div>", element?.innerHTML, "Should render correct date time input form control with validation error")
+            assertEquals(
+                "<div class=\"form-group has-error\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"text\" placeholder=\"place\" name=\"name\" disabled=\"\" value=\"$datastr\"><span class=\"help-block small\">Validation Error</span></div>",
+                element?.innerHTML,
+                "Should render correct date time input form control with validation error"
+            )
         }
     }
 

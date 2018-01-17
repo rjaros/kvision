@@ -12,8 +12,10 @@ enum class IMAGESHAPE(val className: String) {
     THUMBNAIL("img-thumbnail")
 }
 
-open class Image(src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGESHAPE? = null,
-                 centered: Boolean = false, classes: Set<String> = setOf()) : Widget(classes) {
+open class Image(
+    src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGESHAPE? = null,
+    centered: Boolean = false, classes: Set<String> = setOf()
+) : Widget(classes) {
     internal var src = src
         set(value) {
             field = value

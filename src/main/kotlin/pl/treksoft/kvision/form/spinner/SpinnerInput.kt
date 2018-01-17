@@ -25,10 +25,12 @@ const val DEFAULT_STEP = 1.0
 const val DEFAULT_MAX = 100
 
 @Suppress("TooManyFunctions")
-open class SpinnerInput(value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
-                        decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
-                        forceType: FORCETYPE = FORCETYPE.NONE,
-                        classes: Set<String> = setOf()) : Widget(classes + "form-control") {
+open class SpinnerInput(
+    value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
+    decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
+    forceType: FORCETYPE = FORCETYPE.NONE,
+    classes: Set<String> = setOf()
+) : Widget(classes + "form-control") {
 
     init {
         this.addSurroundingCssClass("input-group")

@@ -21,7 +21,11 @@ class CheckInputSpec : DomSpec {
             }
             root.add(ci)
             val element = document.getElementById("test")
-            assertEquals("<input id=\"idti\" type=\"checkbox\" checked=\"\" name=\"name\" disabled=\"\">", element?.innerHTML, "Should render correct checkbox control")
+            assertEquals(
+                "<input id=\"idti\" type=\"checkbox\" checked=\"\" name=\"name\" disabled=\"\">",
+                element?.innerHTML,
+                "Should render correct checkbox control"
+            )
         }
     }
 
@@ -36,7 +40,11 @@ class CheckInputSpec : DomSpec {
             }
             root.add(ci)
             val element = document.getElementById("test")
-            assertEquals("<input id=\"idti\" type=\"radio\" checked=\"\" name=\"name\" value=\"abc\">", element?.innerHTML, "Should render correct radio button control")
+            assertEquals(
+                "<input id=\"idti\" type=\"radio\" checked=\"\" name=\"name\" value=\"abc\">",
+                element?.innerHTML,
+                "Should render correct radio button control"
+            )
         }
     }
 

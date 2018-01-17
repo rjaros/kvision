@@ -1,8 +1,8 @@
 package test.pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.SimplePanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -82,6 +82,7 @@ class ContainerSpec : DomSpec {
             assertTrue("Children are not rendered") { elem1 == null && elem2 == null }
         }
     }
+
     @Test
     fun getChildren() {
         run {

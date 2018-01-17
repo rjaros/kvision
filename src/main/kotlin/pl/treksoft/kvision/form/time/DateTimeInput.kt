@@ -14,8 +14,10 @@ const val DEFAULT_MINUTE_STEP = 5
 const val MAX_VIEW = 4
 
 @Suppress("TooManyFunctions")
-open class DateTimeInput(value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
-                         classes: Set<String> = setOf()) : Widget(classes + "form-control") {
+open class DateTimeInput(
+    value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
+    classes: Set<String> = setOf()
+) : Widget(classes + "form-control") {
 
 
     init {
@@ -221,8 +223,8 @@ open class DateTimeInput(value: Date? = null, format: String = "YYYY-MM-DD HH:mm
     companion object {
         private fun String.toDatePickerFormat(): String {
             return this.replace("YY", "yy").replace("m", "i").replace("MMMM", "{----}").replace("MMM", "{---}")
-                    .replace("M", "m").replace("{----}", "MM").replace("{---}", "M").replace("H", "{-}")
-                    .replace("h", "H").replace("{-}", "h").replace("D", "d").replace("a", "p").replace("A", "P")
+                .replace("M", "m").replace("{----}", "MM").replace("{---}", "M").replace("H", "{-}")
+                .replace("h", "H").replace("{-}", "h").replace("D", "d").replace("a", "p").replace("A", "P")
         }
     }
 }

@@ -349,8 +349,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this.parent?.getRoot()
     }
 
-    protected open fun createLabelWithIcon(label: String, icon: String? = null,
-                                           image: ResString? = null): Array<out Any> {
+    protected open fun createLabelWithIcon(
+        label: String, icon: String? = null,
+        image: ResString? = null
+    ): Array<out Any> {
         return if (icon != null) {
             if (icon.startsWith("fa-")) {
                 arrayOf(KVManager.virtualize("<i class='fa $icon fa-lg'></i>"), " " + label)

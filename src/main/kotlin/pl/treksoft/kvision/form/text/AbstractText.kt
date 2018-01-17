@@ -9,7 +9,7 @@ import pl.treksoft.kvision.snabbdom.SnOn
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 
 abstract class AbstractText(label: String? = null, rich: Boolean = false) :
-        SimplePanel(setOf("form-group")), StringFormControl {
+    SimplePanel(setOf("form-group")), StringFormControl {
 
     override var value
         get() = input.value

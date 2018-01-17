@@ -17,8 +17,10 @@ enum class CHECKBOXSTYLE(val className: String) {
     DANGER("checkbox-danger"),
 }
 
-open class CheckBox(value: Boolean = false, label: String? = null,
-                    rich: Boolean = false) : SimplePanel(setOf("checkbox")), BoolFormControl {
+open class CheckBox(
+    value: Boolean = false, label: String? = null,
+    rich: Boolean = false
+) : SimplePanel(setOf("checkbox")), BoolFormControl {
 
     override var value
         get() = input.value
@@ -72,8 +74,10 @@ open class CheckBox(value: Boolean = false, label: String? = null,
         }
 
     private val idc = "kv_form_checkbox_" + counter
-    final override val input: CheckInput = CheckInput(CHECKINPUTTYPE.CHECKBOX, value,
-            setOf("styled")).apply { id = idc }
+    final override val input: CheckInput = CheckInput(
+        CHECKINPUTTYPE.CHECKBOX, value,
+        setOf("styled")
+    ).apply { id = idc }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf())
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 

@@ -17,12 +17,14 @@ enum class DataType(val type: String) {
     SCRIPT("script")
 }
 
-data class AjaxOptions(val url: String, val processData: (dynamic) -> dynamic,
-                       val processParams: dynamic = null, val httpType: HttpType = HttpType.GET,
-                       val dataType: DataType = DataType.JSON, val minLength: Int = 0,
-                       val cache: Boolean = true, val clearOnEmpty: Boolean = true, val clearOnError: Boolean = true,
-                       val emptyRequest: Boolean = false, val preserveSelected: Boolean = true,
-                       val requestDelay: Int = AJAX_REQUEST_DELAY, val restoreOnError: Boolean = false)
+data class AjaxOptions(
+    val url: String, val processData: (dynamic) -> dynamic,
+    val processParams: dynamic = null, val httpType: HttpType = HttpType.GET,
+    val dataType: DataType = DataType.JSON, val minLength: Int = 0,
+    val cache: Boolean = true, val clearOnEmpty: Boolean = true, val clearOnError: Boolean = true,
+    val emptyRequest: Boolean = false, val preserveSelected: Boolean = true,
+    val requestDelay: Int = AJAX_REQUEST_DELAY, val restoreOnError: Boolean = false
+)
 
 fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
     val procData = { data: dynamic ->

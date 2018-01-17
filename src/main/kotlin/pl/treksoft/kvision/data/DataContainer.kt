@@ -2,15 +2,17 @@ package pl.treksoft.kvision.data
 
 import com.github.snabbdom.VNode
 import com.lightningkite.kotlin.observable.list.ObservableList
-import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.VPanel
 
-class DataContainer<M : DataComponent, C : Widget>(val model: ObservableList<M>,
-                                                   private val binding: (M, Int) -> C,
-                                                   private val child: Container = VPanel()) :
-        Widget(setOf()), Container, DataUpdatable {
+class DataContainer<M : DataComponent, C : Widget>(
+    val model: ObservableList<M>,
+    private val binding: (M, Int) -> C,
+    private val child: Container = VPanel()
+) :
+    Widget(setOf()), Container, DataUpdatable {
 
     override var visible
         get() = child.visible

@@ -22,7 +22,11 @@ class FlexPanelSpec : DomSpec {
             flexPanel.add(Label("def"), 2)
             flexPanel.add(Label("ghi"), 3)
             val element = document.getElementById("test")
-            assertEquals("<div style=\"display: flex; flex-direction: row-reverse; justify-content: space-evenly;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>", element?.innerHTML, "Should render correct flex panel")
+            assertEquals(
+                "<div style=\"display: flex; flex-direction: row-reverse; justify-content: space-evenly;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",
+                element?.innerHTML,
+                "Should render correct flex panel"
+            )
         }
     }
 }

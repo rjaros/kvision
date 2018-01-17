@@ -25,8 +25,10 @@ open class TabPanel : SimplePanel(setOf()) {
         this.addInternal(content)
     }
 
-    open fun addTab(title: String, panel: Component, icon: String? = null,
-                    image: ResString? = null): TabPanel {
+    open fun addTab(
+        title: String, panel: Component, icon: String? = null,
+        image: ResString? = null
+    ): TabPanel {
         val tag = Tag(TAG.LI)
         tag.role = "presentation"
         tag.add(Link(title, "#", icon, image))

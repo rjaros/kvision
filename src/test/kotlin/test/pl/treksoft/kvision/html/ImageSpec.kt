@@ -19,7 +19,11 @@ class ImageSpec : DomSpec {
             val image = Image(res, "Image", true, IMAGESHAPE.ROUNDED, true)
             root.add(image)
             val element = document.getElementById("test")
-            assertEquals("<img class=\"img-responsive center-block img-rounded\" src=\"$res\" alt=\"Image\">", element?.innerHTML, "Should render correct html image")
+            assertEquals(
+                "<img class=\"img-responsive center-block img-rounded\" src=\"$res\" alt=\"Image\">",
+                element?.innerHTML,
+                "Should render correct html image"
+            )
         }
     }
 

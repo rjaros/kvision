@@ -23,7 +23,11 @@ class DockPanelSpec : DomSpec {
             dockPanel.add(Label("jkl"), SIDE.LEFT)
             dockPanel.add(Label("mno"), SIDE.CENTER)
             val element = document.getElementById("test")
-            assertEquals("<div><div style=\"display: flex; flex-direction: column; justify-content: space-between; align-items: stretch;\"><div style=\"order: 2;\"><div style=\"display: flex; justify-content: space-between; align-items: center;\"><div style=\"order: 3;\"><span>def</span></div><div style=\"order: 1;\"><span>jkl</span></div><div style=\"order: 2;\"><span>mno</span></div></div></div><div style=\"order: 1; align-self: center;\"><span>abc</span></div><div style=\"order: 3; align-self: center;\"><span>ghi</span></div></div></div>", element?.innerHTML, "Should render correct dock panel")
+            assertEquals(
+                "<div><div style=\"display: flex; flex-direction: column; justify-content: space-between; align-items: stretch;\"><div style=\"order: 2;\"><div style=\"display: flex; justify-content: space-between; align-items: center;\"><div style=\"order: 3;\"><span>def</span></div><div style=\"order: 1;\"><span>jkl</span></div><div style=\"order: 2;\"><span>mno</span></div></div></div><div style=\"order: 1; align-self: center;\"><span>abc</span></div><div style=\"order: 3; align-self: center;\"><span>ghi</span></div></div></div>",
+                element?.innerHTML,
+                "Should render correct dock panel"
+            )
         }
     }
 }

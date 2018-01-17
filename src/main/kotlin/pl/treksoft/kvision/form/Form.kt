@@ -2,9 +2,11 @@ package pl.treksoft.kvision.form
 
 import kotlin.js.Date
 
-data class FieldParams<in F : FormControl>(val required: Boolean = false,
-                                           val validatorMessage: ((F) -> String?)? = null,
-                                           val validator: ((F) -> Boolean?)? = null)
+data class FieldParams<in F : FormControl>(
+    val required: Boolean = false,
+    val validatorMessage: ((F) -> String?)? = null,
+    val validator: ((F) -> Boolean?)? = null
+)
 
 open class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory: (Map<String, Any?>) -> K) {
 
@@ -13,9 +15,11 @@ open class Form<K>(private val panel: FormPanel<K>? = null, private val modelFac
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
 
-    open fun <C : FormControl> add(key: String, control: C, required: Boolean = false,
-                                   validatorMessage: ((C) -> String?)? = null,
-                                   validator: ((C) -> Boolean?)? = null): Form<K> {
+    open fun <C : FormControl> add(
+        key: String, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): Form<K> {
         this.fields.put(key, control)
         this.fieldsParams.put(key, FieldParams(required, validatorMessage, validator))
         return this

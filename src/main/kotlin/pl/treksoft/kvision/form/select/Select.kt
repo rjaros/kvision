@@ -11,9 +11,11 @@ import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 
 @Suppress("TooManyFunctions")
-open class Select(options: List<StringPair>? = null, value: String? = null,
-                  multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
-                  rich: Boolean = false) : SimplePanel(setOf("form-group")), StringFormControl {
+open class Select(
+    options: List<StringPair>? = null, value: String? = null,
+    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
+    rich: Boolean = false
+) : SimplePanel(setOf("form-group")), StringFormControl {
 
     var options
         get() = input.options
@@ -102,8 +104,10 @@ open class Select(options: List<StringPair>? = null, value: String? = null,
         }
 
     private val idc = "kv_form_select_" + counter
-    final override val input: SelectInput = SelectInput(options, value, multiple, ajaxOptions,
-            setOf("form-control")).apply { id = idc }
+    final override val input: SelectInput = SelectInput(
+        options, value, multiple, ajaxOptions,
+        setOf("form-control")
+    ).apply { id = idc }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 

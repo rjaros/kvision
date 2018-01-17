@@ -16,7 +16,11 @@ class LinkSpec : DomSpec {
             val link = Link("Google", "http://www.google.com")
             root.add(link)
             val element = document.getElementById("test")
-            assertEquals("<a href=\"http://www.google.com\">Google</a>", element?.innerHTML, "Should render correct html link")
+            assertEquals(
+                "<a href=\"http://www.google.com\">Google</a>",
+                element?.innerHTML,
+                "Should render correct html link"
+            )
         }
     }
 

@@ -20,7 +20,11 @@ class ButtonSpec : DomSpec {
             button.block = true
             root.add(button)
             val element = document.getElementById("test")
-            assertEquals("<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\"><i class=\"fa fa-bars fa-lg\"></i> Cancel</button>", element?.innerHTML, "Should render correct html button")
+            assertEquals(
+                "<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\"><i class=\"fa fa-bars fa-lg\"></i> Cancel</button>",
+                element?.innerHTML,
+                "Should render correct html button"
+            )
         }
     }
 

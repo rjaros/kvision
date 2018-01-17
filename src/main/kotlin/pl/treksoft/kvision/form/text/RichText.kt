@@ -1,7 +1,9 @@
 package pl.treksoft.kvision.form.text
 
-open class RichText(value: String? = null,
-                    label: String? = null, rich: Boolean = false) : AbstractText(label, rich) {
+open class RichText(
+    value: String? = null,
+    label: String? = null, rich: Boolean = false
+) : AbstractText(label, rich) {
 
     var inputHeight
         get() = input.height

@@ -21,7 +21,11 @@ class VPanelSpec : DomSpec {
             vPanel.add(Label("def"), 2)
             vPanel.add(Label("ghi"), 3)
             val element = document.getElementById("test")
-            assertEquals("<div style=\"display: flex; flex-direction: column; justify-content: space-between;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>", element?.innerHTML, "Should render correct vertical panel")
+            assertEquals(
+                "<div style=\"display: flex; flex-direction: column; justify-content: space-between;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",
+                element?.innerHTML,
+                "Should render correct vertical panel"
+            )
         }
     }
 }

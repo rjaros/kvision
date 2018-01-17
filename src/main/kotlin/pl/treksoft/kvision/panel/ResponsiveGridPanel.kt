@@ -17,9 +17,11 @@ const val MAX_COLUMNS = 12
 
 internal data class WidgetParam(val widget: Component, val size: Int, val offset: Int)
 
-open class ResponsiveGridPanel(private val gridsize: GRIDSIZE = GRIDSIZE.MD,
-                               private var rows: Int = 0, private var cols: Int = 0, align: ALIGN? = null,
-                               classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class ResponsiveGridPanel(
+    private val gridsize: GRIDSIZE = GRIDSIZE.MD,
+    private var rows: Int = 0, private var cols: Int = 0, align: ALIGN? = null,
+    classes: Set<String> = setOf()
+) : SimplePanel(classes) {
     protected var align = align
         set(value) {
             field = value

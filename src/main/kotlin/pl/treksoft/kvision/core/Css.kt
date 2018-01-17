@@ -211,11 +211,15 @@ enum class BGCLIP(val clip: String) {
     CONTENT("content-box")
 }
 
-class Border private constructor(private val width: CssSize? = null, private val style: BORDERSTYLE? = null,
-                                 private val color: String? = null) {
+class Border private constructor(
+    private val width: CssSize? = null, private val style: BORDERSTYLE? = null,
+    private val color: String? = null
+) {
     constructor(width: CssSize? = null, style: BORDERSTYLE? = null) : this(width, style, null)
-    constructor(width: CssSize? = null, style: BORDERSTYLE? = null, color: Int) : this(width, style,
-            "#" + color.toHexString())
+    constructor(width: CssSize? = null, style: BORDERSTYLE? = null, color: Int) : this(
+        width, style,
+        "#" + color.toHexString()
+    )
 
     constructor(width: CssSize? = null, style: BORDERSTYLE? = null, color: COLOR) : this(width, style, color.color)
 
@@ -236,31 +240,45 @@ class Color private constructor(private val color: String? = null) {
     }
 }
 
-class Background private constructor(private val color: String? = null, private val image: ResString? = null,
-                                     private val positionX: CssSize? = null, private val positionY: CssSize? = null,
-                                     private val sizeX: CssSize? = null, private val sizeY: CssSize? = null,
-                                     private val size: BGSIZE? = null, private val repeat: BGREPEAT? = null,
-                                     private val origin: BGORIGIN? = null, private val clip: BGCLIP? = null,
-                                     private val attachment: BGATTACH? = null) {
-    constructor(image: ResString? = null, positionX: CssSize? = null, positionY: CssSize? = null,
-                sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
-                repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
-                attachment: BGATTACH? = null) : this(null,
-            image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment)
+class Background private constructor(
+    private val color: String? = null, private val image: ResString? = null,
+    private val positionX: CssSize? = null, private val positionY: CssSize? = null,
+    private val sizeX: CssSize? = null, private val sizeY: CssSize? = null,
+    private val size: BGSIZE? = null, private val repeat: BGREPEAT? = null,
+    private val origin: BGORIGIN? = null, private val clip: BGCLIP? = null,
+    private val attachment: BGATTACH? = null
+) {
+    constructor(
+        image: ResString? = null, positionX: CssSize? = null, positionY: CssSize? = null,
+        sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
+        repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
+        attachment: BGATTACH? = null
+    ) : this(
+        null,
+        image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment
+    )
 
-    constructor(color: Int, image: ResString? = null, positionX: CssSize? = null,
-                positionY: CssSize? = null,
-                sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
-                repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
-                attachment: BGATTACH? = null) : this("#" +
-            color.toHexString(), image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip,
-            attachment)
+    constructor(
+        color: Int, image: ResString? = null, positionX: CssSize? = null,
+        positionY: CssSize? = null,
+        sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
+        repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
+        attachment: BGATTACH? = null
+    ) : this(
+        "#" +
+                color.toHexString(), image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip,
+        attachment
+    )
 
-    constructor(color: COLOR, image: ResString? = null, positionX: CssSize? = null,
-                positionY: CssSize? = null, sizeX: CssSize? = null, sizeY: CssSize? = null,
-                size: BGSIZE? = null, repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
-                attachment: BGATTACH? = null) : this(color.color, image,
-            positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment)
+    constructor(
+        color: COLOR, image: ResString? = null, positionX: CssSize? = null,
+        positionY: CssSize? = null, sizeX: CssSize? = null, sizeY: CssSize? = null,
+        size: BGSIZE? = null, repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
+        attachment: BGATTACH? = null
+    ) : this(
+        color.color, image,
+        positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment
+    )
 
     fun asString(): String {
         val img = image?.let {

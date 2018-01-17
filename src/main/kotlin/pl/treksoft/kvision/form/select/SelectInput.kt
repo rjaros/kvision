@@ -1,9 +1,9 @@
 package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.KVManager.KVNULL
-import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.panel.SimplePanel
@@ -17,9 +17,11 @@ enum class SELECTWIDTHTYPE(val value: String) {
 }
 
 @Suppress("TooManyFunctions")
-open class SelectInput(options: List<StringPair>? = null, value: String? = null,
-                       multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-                       classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class SelectInput(
+    options: List<StringPair>? = null, value: String? = null,
+    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
+    classes: Set<String> = setOf()
+) : SimplePanel(classes) {
 
     internal var options = options
         set(value) {

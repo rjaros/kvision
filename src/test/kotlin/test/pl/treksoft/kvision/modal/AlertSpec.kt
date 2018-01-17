@@ -24,7 +24,11 @@ class AlertSpec : DomSpec {
             val body = document.getElementById("test")?.let { jQuery(it).find(".modal-body").html() }
             assertEquals("<span>Alert content</span>", body, "Should render alert window with correct content")
             val footer = document.getElementById("test")?.let { jQuery(it).find(".modal-footer").html() }
-            assertEquals("<button class=\"btn btn-primary\" type=\"button\"><span class=\"glyphicon glyphicon-ok\"></span> OK</button>", footer, "Should render alert window with correct footer")
+            assertEquals(
+                "<button class=\"btn btn-primary\" type=\"button\"><span class=\"glyphicon glyphicon-ok\"></span> OK</button>",
+                footer,
+                "Should render alert window with correct footer"
+            )
             val button = document.getElementById("test")?.let { jQuery(it).find(".modal-footer").find("button") }
             button?.click()
             val alert2 = document.getElementById("test")?.let { jQuery(it).find(".modal")[0] }

@@ -13,8 +13,10 @@ enum class FORMTYPE(val formType: String) {
     HORIZONTAL("form-horizontal")
 }
 
-open class FormPanel<K>(private val type: FORMTYPE? = null, classes: Set<String> = setOf(),
-                        modelFactory: (Map<String, Any?>) -> K) : SimplePanel(classes) {
+open class FormPanel<K>(
+    private val type: FORMTYPE? = null, classes: Set<String> = setOf(),
+    modelFactory: (Map<String, Any?>) -> K
+) : SimplePanel(classes) {
 
     var validatorMessage
         get() = form.validatorMessage
@@ -58,9 +60,11 @@ open class FormPanel<K>(private val type: FORMTYPE? = null, classes: Set<String>
         return cl
     }
 
-    open fun <C : FormControl> add(key: String, control: C, required: Boolean = false,
-                                   validatorMessage: ((C) -> String?)? = null,
-                                   validator: ((C) -> Boolean?)? = null): FormPanel<K> {
+    open fun <C : FormControl> add(
+        key: String, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): FormPanel<K> {
         if (type == FORMTYPE.HORIZONTAL) {
             if (control is CheckBox || control is Radio) {
                 control.addCssClass("col-sm-offset-2")

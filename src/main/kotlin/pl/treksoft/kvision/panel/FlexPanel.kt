@@ -43,9 +43,11 @@ enum class FLEXALIGNCONTENT(val alignContent: String) {
     STRETCH("stretch")
 }
 
-open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
-                     alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
-                     classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class FlexPanel(
+    direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
+    alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
+    classes: Set<String> = setOf()
+) : SimplePanel(classes) {
     var direction = direction
         set(value) {
             field = value
@@ -73,8 +75,10 @@ open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify
         }
 
     @Suppress("LongParameterList")
-    fun add(child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
-            basis: Int? = null, alignSelf: FLEXALIGNITEMS? = null, classes: Set<String> = setOf()): FlexPanel {
+    fun add(
+        child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
+        basis: Int? = null, alignSelf: FLEXALIGNITEMS? = null, classes: Set<String> = setOf()
+    ): FlexPanel {
         addInternal(FlexWrapper(child, order, grow, shrink, basis, alignSelf, classes))
         return this
     }
@@ -128,10 +132,12 @@ open class FlexPanel(direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify
     }
 }
 
-class FlexWrapper(delegate: Component, private val order: Int? = null, private val grow: Int? = null,
-                  private val shrink: Int? = null, private val basis: Int? = null,
-                  private val alignSelf: FLEXALIGNITEMS? = null,
-                  classes: Set<String> = setOf()) : WidgetWrapper(delegate, classes) {
+class FlexWrapper(
+    delegate: Component, private val order: Int? = null, private val grow: Int? = null,
+    private val shrink: Int? = null, private val basis: Int? = null,
+    private val alignSelf: FLEXALIGNITEMS? = null,
+    classes: Set<String> = setOf()
+) : WidgetWrapper(delegate, classes) {
 
     override fun getSnStyle(): List<StringPair> {
         val snstyle = super.getSnStyle().toMutableList()

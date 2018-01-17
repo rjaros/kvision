@@ -6,7 +6,7 @@ import pl.treksoft.kvision.snabbdom.StringPair
 import kotlin.browser.document
 
 open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) :
-        AbstractTextInput(value, classes + "form-control" + "trix-control") {
+    AbstractTextInput(value, classes + "form-control" + "trix-control") {
 
     private var trixId: String? = null
 

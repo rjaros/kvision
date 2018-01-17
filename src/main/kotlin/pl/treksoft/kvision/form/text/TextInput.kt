@@ -9,7 +9,7 @@ enum class TEXTINPUTTYPE(val type: String) {
 }
 
 open class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null, classes: Set<String> = setOf()) :
-        AbstractTextInput(value, classes + "form-control") {
+    AbstractTextInput(value, classes + "form-control") {
 
     var type: TEXTINPUTTYPE = type
         set(value) {

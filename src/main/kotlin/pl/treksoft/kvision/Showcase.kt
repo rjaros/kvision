@@ -89,9 +89,11 @@ class Showcase : ApplicationBase() {
 
         val model = observableListOf(Model(true, "Pierwszy"), Model(false, "Drugi"), Model(false, "Trzeci"))
         val datac = DataContainer(model, { element, index ->
-            CheckBox(value = element.p,
-                    label = if (element.p) "<b>" + (index + 1) + " " + element.t + "</b>" else element.t,
-                    rich = true).setEventListener<CheckBox>({
+            CheckBox(
+                value = element.p,
+                label = if (element.p) "<b>" + (index + 1) + " " + element.t + "</b>" else element.t,
+                rich = true
+            ).setEventListener<CheckBox>({
                 click = {
                     element.p = self.value
                 }
@@ -409,12 +411,18 @@ class Showcase : ApplicationBase() {
         }*/
         root.add(text)
 
-        val textareainput = TextAreaInput(cols = 5, rows = 2, value = "To jest tekst\nTo jest <b>te</b></textarea>kst2").apply {
-            placeholder = "..."
-        }
+        val textareainput =
+            TextAreaInput(cols = 5, rows = 2, value = "To jest tekst\nTo jest <b>te</b></textarea>kst2").apply {
+                placeholder = "..."
+            }
         root.add(textareainput)
 
-        val textarea = TextArea(cols = 5, rows = 2, value = "To jest tekst\nTo jest <b>te</b></textarea>kst2", label = "Pole długie").apply {
+        val textarea = TextArea(
+            cols = 5,
+            rows = 2,
+            value = "To jest tekst\nTo jest <b>te</b></textarea>kst2",
+            label = "Pole długie"
+        ).apply {
             placeholder = "..."
         }
         root.add(textarea)
@@ -447,7 +455,7 @@ class Showcase : ApplicationBase() {
                 it.getValue()?.matches("^[0-9]+$")
             }
             add("password", Password(label = "Hasło"), required = true,
-                    validatorMessage = { "Wprowadź co najmniej 5 znaków" }) {
+                validatorMessage = { "Wprowadź co najmniej 5 znaków" }) {
                 (it.getValue()?.length ?: 0) >= 5
             }
             add("textarea", TextArea(label = "Obszar"), required = true)
@@ -455,20 +463,26 @@ class Showcase : ApplicationBase() {
             add("data", DateTime(format = "YYYY-MM-DD", label = "Data"), required = true)
             add("checkbox", CheckBox(label = "Checkbox")) { it.getValue() }
             add("radio", Radio(label = "Radiobutton")) { it.getValue() }
-            add("select", Select(options = listOf("a" to "Pierwsza opcja", "b" to "Druga opcja"),
-                    label = "Wybierz opcje").apply {
+            add("select", Select(
+                options = listOf("a" to "Pierwsza opcja", "b" to "Druga opcja"),
+                label = "Wybierz opcje"
+            ).apply {
                 //                selectWidthType = SELECTWIDTHTYPE.FIT
                 emptyOption = true
-            }, required = true)
+            }, required = true
+            )
             add("spinner", Spinner(label = "Spinner"), required = true)
-            add("radiogroup", RadioGroup(listOf("o1" to "Pierwsza opcja", "o2" to "Druga opcja"),
-                    inline = true, label = "Radio group").apply {
+            add("radiogroup", RadioGroup(
+                listOf("o1" to "Pierwsza opcja", "o2" to "Druga opcja"),
+                inline = true, label = "Radio group"
+            ).apply {
                 setEventListener<RadioGroup> {
                     change = { e ->
                         println(self.value)
                     }
                 }
-            }, required = true)
+            }, required = true
+            )
 
             validator = {
                 val result = it["text"] == it["textarea"]
@@ -481,7 +495,14 @@ class Showcase : ApplicationBase() {
             validatorMessage = { "Pole Tekst i Obszar muszą być takie same!" }
         }
         root.add(formPanel)
-        val spinner = SpinnerInput(15.05, min = -100000, max = 100000, decimals = 4, forceType = FORCETYPE.ROUND, step = 0.0001).apply {
+        val spinner = SpinnerInput(
+            15.05,
+            min = -100000,
+            max = 100000,
+            decimals = 4,
+            forceType = FORCETYPE.ROUND,
+            step = 0.0001
+        ).apply {
             size = INPUTSIZE.LARGE
         }
         val ttt = TextInput(value = "abc").apply {
@@ -527,9 +548,12 @@ class Showcase : ApplicationBase() {
             hiddenBsDropdown = { e -> println("hidden" + e.detail) }
         }
 
-        val dd2 = DropDown("Dropdown2", listOf("abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.type,
+        val dd2 = DropDown(
+            "Dropdown2", listOf(
+                "abc" to "#!/abc", "def" to "#!/def", "xyz" to DISABLED.type,
                 "Header" to HEADER.type, "Separtatorek" to SEPARATOR.type
-        ), "flag").apply { dropup = true }
+            ), "flag"
+        ).apply { dropup = true }
         root.add(dd2)
         dd2.setEventListener<DropDown> {
             hideBsDropdown = { e -> println("hide" + e.detail) }
@@ -564,14 +588,20 @@ class Showcase : ApplicationBase() {
         split.add(tabs)
 
         val split2 = SplitPanel(DIRECTION.HORIZONTAL)
-        val t1 = Tag(TAG.DIV, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus.\n" +
-                "\n" +
-                "Proin porttitor diam id massa eleifend aliquet. Morbi nec erat porttitor, placerat lorem et, dignissim lectus. Cras ultricies posuere arcu, et pharetra dui laoreet in. Sed nec ipsum in sapien vestibulum maximus eu id nunc. Ut finibus aliquam nisi id vehicula. Phasellus sodales lobortis orci, non interdum risus dignissim quis. Proin bibendum consectetur diam nec mattis. Suspendisse dictum vulputate metus at tincidunt.")
+        val t1 = Tag(
+            TAG.DIV,
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus.\n" +
+                    "\n" +
+                    "Proin porttitor diam id massa eleifend aliquet. Morbi nec erat porttitor, placerat lorem et, dignissim lectus. Cras ultricies posuere arcu, et pharetra dui laoreet in. Sed nec ipsum in sapien vestibulum maximus eu id nunc. Ut finibus aliquam nisi id vehicula. Phasellus sodales lobortis orci, non interdum risus dignissim quis. Proin bibendum consectetur diam nec mattis. Suspendisse dictum vulputate metus at tincidunt."
+        )
         t1.padding = 5.px()
         split2.add(t1)
-        val t2 = Tag(TAG.DIV, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus.\n" +
-                "\n" +
-                "Proin porttitor diam id massa eleifend aliquet. Morbi nec erat porttitor, placerat lorem et, dignissim lectus. Cras ultricies posuere arcu, et pharetra dui laoreet in. Sed nec ipsum in sapien vestibulum maximus eu id nunc. Ut finibus aliquam nisi id vehicula. Phasellus sodales lobortis orci, non interdum risus dignissim quis. Proin bibendum consectetur diam nec mattis. Suspendisse dictum vulputate metus at tincidunt.")
+        val t2 = Tag(
+            TAG.DIV,
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus.\n" +
+                    "\n" +
+                    "Proin porttitor diam id massa eleifend aliquet. Morbi nec erat porttitor, placerat lorem et, dignissim lectus. Cras ultricies posuere arcu, et pharetra dui laoreet in. Sed nec ipsum in sapien vestibulum maximus eu id nunc. Ut finibus aliquam nisi id vehicula. Phasellus sodales lobortis orci, non interdum risus dignissim quis. Proin bibendum consectetur diam nec mattis. Suspendisse dictum vulputate metus at tincidunt."
+        )
         t2.padding = 10.px()
         split2.add(t2)
         split.add(split2)
@@ -596,8 +626,12 @@ class Showcase : ApplicationBase() {
         val del = Tag(TAG.DEL, "To jest deleted")
         root.add(del)
 
-        val list = ListTag(LIST.DL_HORIZ, listOf("abc", "de<b>fdasdasdasddasd</b>tdasdas", "Dasdsada",
-                "dasdasdads"), true)
+        val list = ListTag(
+            LIST.DL_HORIZ, listOf(
+                "abc", "de<b>fdasdasdasddasd</b>tdasdas", "Dasdsada",
+                "dasdasdads"
+            ), true
+        )
         root.add(list)
 
         val list2 = ListTag(LIST.OL, null)
@@ -642,8 +676,10 @@ class Showcase : ApplicationBase() {
         root.add(vPanel)
 
         val grid3 = GridPanel(templateColumns = "1fr 1fr 1fr")
-        grid3.background = Background(0xCCCCCC, Img("kotlin.png"), 50.perc(), 50.perc(), size = BGSIZE.CONTAIN,
-                repeat = BGREPEAT.NOREPEAT, attachment = BGATTACH.FIXED)
+        grid3.background = Background(
+            0xCCCCCC, Img("kotlin.png"), 50.perc(), 50.perc(), size = BGSIZE.CONTAIN,
+            repeat = BGREPEAT.NOREPEAT, attachment = BGATTACH.FIXED
+        )
         grid3.add(Label("hh1"))
         grid3.add(Label("hh2"))
         grid3.add(Label("hh3"))
@@ -669,7 +705,10 @@ class Showcase : ApplicationBase() {
 //        root.add(dock)
 
         val pa = HPanel(alignItems = FLEXALIGNITEMS.FLEXEND)
-        pa.add(Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus."), 3)
+        pa.add(
+            Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec fringilla turpis, vel molestie dolor. Vestibulum ut ex eget orci porta gravida eu sit amet tortor. Suspendisse vel fermentum purus, vel ornare tellus. Vivamus dictum, risus non viverra venenatis, magna mi pharetra purus, nec dignissim risus tortor a sem. Donec tincidunt dui ut eros laoreet consectetur. Nam dapibus vestibulum sem, eget accumsan ex vestibulum ac. Curabitur ac mi sit amet eros sodales dictum. Sed at felis at nunc aliquam finibus. Vestibulum lorem nulla, dictum ac libero non, mattis dictum nisl. Aenean semper lorem turpis. Praesent pellentesque ligula est, viverra molestie leo imperdiet ut. Nam vitae hendrerit justo. Nullam tincidunt et nibh ac volutpat. Aliquam vulputate mi aliquam fermentum rhoncus."),
+            3
+        )
         pa.add(Image(Img("kotlin.png")), 1)
         pa.add(dock, 2, alignSelf = FLEXALIGNITEMS.FLEXSTART)
         dock.width = 400.px()
@@ -751,9 +790,9 @@ class Showcase : ApplicationBase() {
 
         println("init routing")
         routing.on({ _ -> println("root") })
-                .on("/abc", { _ -> println("abc") })
-                .on("/test", { _ -> println("test") })
-                .resolve()
+            .on("/abc", { _ -> println("abc") })
+            .on("/test", { _ -> println("test") })
+            .resolve()
 //        jQuery(document).off(".data-api")
 
 //        routing.on(RegExp("/abc/def/(.*)/(.*)/(.*)"), { x,y,z,u,v -> println(x) })

@@ -3,8 +3,10 @@ package pl.treksoft.kvision.panel
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
 
-open class StackPanel(private val activateLast: Boolean = true,
-                      classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class StackPanel(
+    private val activateLast: Boolean = true,
+    classes: Set<String> = setOf()
+) : SimplePanel(classes) {
     var activeIndex = -1
         set(value) {
             field = value

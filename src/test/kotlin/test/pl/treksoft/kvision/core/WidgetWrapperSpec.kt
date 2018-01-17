@@ -20,7 +20,11 @@ class WidgetWrapperSpec : DomSpec {
             wrapper.width = 100 to UNIT.em
             root.add(wrapper)
             val element = document.getElementById("test")
-            assertEquals("<div style=\"width: 100em;\"><div></div></div>", element?.innerHTML, "Should render widget inside custom wrapper")
+            assertEquals(
+                "<div style=\"width: 100em;\"><div></div></div>",
+                element?.innerHTML,
+                "Should render widget inside custom wrapper"
+            )
             widget.hide()
             assertEquals("", element?.innerHTML, "Should not render wrapper when widget is hidden")
         }

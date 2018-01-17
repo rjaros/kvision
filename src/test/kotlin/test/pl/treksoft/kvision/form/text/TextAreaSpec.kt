@@ -22,7 +22,11 @@ class TextAreaSpec : DomSpec {
             root.add(ti)
             val element = document.getElementById("test")
             val id = ti.input.id
-            assertEquals("<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><textarea class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"\" cols=\"5\" rows=\"2\">abc</textarea></div>", element?.innerHTML, "Should render correct input form control")
+            assertEquals(
+                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><textarea class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"\" cols=\"5\" rows=\"2\">abc</textarea></div>",
+                element?.innerHTML,
+                "Should render correct input form control"
+            )
         }
     }
 
