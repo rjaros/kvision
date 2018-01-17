@@ -104,7 +104,7 @@ open class RadioGroup(options: List<StringPair>? = null, value: String? = null, 
                     name = tidc
                     eventTarget = this@RadioGroup
                     setEventListener<Radio> {
-                        change = { e ->
+                        change = {
                             this@RadioGroup.value = self.extraValue
                         }
                     }
