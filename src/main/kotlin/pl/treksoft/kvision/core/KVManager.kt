@@ -26,8 +26,8 @@ object KVManager {
     private val bootstrapSelectI18n = require("./js/bootstrap-select-i18n.min.js")
     private val bootstrapSelectAjaxCss = require("ajax-bootstrap-select/dist/css/ajax-bootstrap-select.min.css")
     private val bootstrapSelectAjax = require("ajax-bootstrap-select/dist/js/ajax-bootstrap-select.min.js")
-    private val bootstrapSelectAjaxI18n =
-        require("ajax-bootstrap-select/dist/js/locale/ajax-bootstrap-select.pl-PL.min.js")
+//    private val bootstrapSelectAjaxI18n =
+//        require("ajax-bootstrap-select/dist/js/locale/ajax-bootstrap-select.pl-PL.min.js")
     private val trixCss = require("trix/dist/trix.css")
     private val trix = require("trix")
     private val bootstrapDateTimePickerCss = require("bootstrap-datetime-picker/css/bootstrap-datetimepicker.min.css")

@@ -1,10 +1,10 @@
 package test.pl.treksoft.kvision.html
 
-import pl.treksoft.kvision.core.Img
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.html.IMAGESHAPE
 import pl.treksoft.kvision.html.Image
 import test.pl.treksoft.kvision.DomSpec
+import test.pl.treksoft.kvision.require
 import kotlin.browser.document
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -15,7 +15,7 @@ class ImageSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val res = Img("kotlin.png")
+            val res = require("./img/placeholder.png")
             val image = Image(res, "Image", true, IMAGESHAPE.ROUNDED, true)
             root.add(image)
             val element = document.getElementById("test")

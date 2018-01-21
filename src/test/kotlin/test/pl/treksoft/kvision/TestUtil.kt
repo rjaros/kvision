@@ -58,3 +58,5 @@ interface WSpec : DomSpec {
     }
 
 }
+
+external fun require(name: String): dynamic

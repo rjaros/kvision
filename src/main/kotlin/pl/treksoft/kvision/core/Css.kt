@@ -2,6 +2,8 @@ package pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.utils.toHexString
 
+typealias ResString = String
+
 @Suppress("EnumNaming", "EnumEntryName")
 enum class UNIT(val unit: String) {
     px("px"),
