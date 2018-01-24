@@ -1,8 +1,10 @@
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.StyledComponent
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.utils.px
 
 enum class FLEXDIR(val dir: String) {
     ROW("row"),
@@ -46,11 +48,12 @@ enum class FLEXALIGNCONTENT(val alignContent: String) {
 open class FlexPanel(
     direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
     alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
-    classes: Set<String> = setOf()
+    spacing: Int? = null, classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
     var direction = direction
         set(value) {
             field = value
+            refreshSpacing()
             refresh()
         }
     var wrap = wrap
@@ -73,14 +76,41 @@ open class FlexPanel(
             field = value
             refresh()
         }
+    var spacing = spacing
+        set(value) {
+            field = value
+            refreshSpacing()
+            refresh()
+        }
 
     @Suppress("LongParameterList")
     fun add(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
         basis: Int? = null, alignSelf: FLEXALIGNITEMS? = null, classes: Set<String> = setOf()
     ): FlexPanel {
-        addInternal(FlexWrapper(child, order, grow, shrink, basis, alignSelf, classes))
+        val wrapper = FlexWrapper(child, order, grow, shrink, basis, alignSelf, classes)
+        addInternal(applySpacing(wrapper))
         return this
+    }
+
+    private fun refreshSpacing() {
+        getChildren().filterIsInstance<StyledComponent>().map { applySpacing(it) }
+    }
+
+    private fun applySpacing(wrapper: StyledComponent): StyledComponent {
+        wrapper.marginTop = null
+        wrapper.marginRight = null
+        wrapper.marginBottom = null
+        wrapper.marginLeft = null
+        spacing?.let {
+            when (direction) {
+                FLEXDIR.COLUMN -> wrapper.marginBottom = it.px()
+                FLEXDIR.ROWREV -> wrapper.marginLeft = it.px()
+                FLEXDIR.COLUMNREV -> wrapper.marginTop = it.px()
+                else -> wrapper.marginRight = it.px()
+            }
+        }
+        return wrapper
     }
 
     override fun add(child: Component): FlexPanel {

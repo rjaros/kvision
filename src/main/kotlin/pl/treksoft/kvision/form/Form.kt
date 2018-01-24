@@ -1,6 +1,7 @@
 package pl.treksoft.kvision.form
 
 import kotlin.js.Date
+import kotlin.js.Json
 
 data class FieldParams<in F : FormControl>(
     val required: Boolean = false,
@@ -58,9 +59,17 @@ open class Form<K>(private val panel: FormPanel<K>? = null, private val modelFac
         }
     }
 
+    open fun clearData() {
+        fields.forEach { it.value.setValue(null) }
+    }
+
     open fun getData(): K {
         val map = fields.entries.associateBy({ it.key }, { it.value.getValue() })
         return modelFactory(map.withDefault { null })
+    }
+
+    open fun getDataJson(): Json {
+        return fields.entries.associateBy({ it.key }, { it.value.getValue() }).asJson()
     }
 
     open fun validate(): Boolean {
@@ -98,3 +107,8 @@ fun Map<String, Any?>.string(key: String): String? = this[key] as? String
 fun Map<String, Any?>.number(key: String): Number? = this[key] as? Number
 fun Map<String, Any?>.bool(key: String): Boolean? = this[key] as? Boolean
 fun Map<String, Any?>.date(key: String): Date? = this[key] as? Date
+
+fun Map<String, Any?>.asJson(): Json {
+    val array = this.entries.map { it.component1() to it.component2() }.toTypedArray()
+    return kotlin.js.json(*array)
+}

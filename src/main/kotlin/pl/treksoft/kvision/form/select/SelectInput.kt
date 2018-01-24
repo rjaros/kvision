@@ -114,23 +114,27 @@ open class SelectInput(
             change = {
                 val v = getElementJQuery()?.`val`()
                 self.value = v?.let {
-                    if (self.multiple) {
-                        @Suppress("UNCHECKED_CAST")
-                        val arr = it as? Array<String>
-                        if (arr != null && arr.isNotEmpty()) {
-                            arr.joinToString()
-                        } else {
-                            null
-                        }
-                    } else {
-                        val vs = it as String
-                        if (KVNULL == vs) {
-                            null
-                        } else {
-                            vs
-                        }
-                    }
+                    calculateValue(it)
                 }
+            }
+        }
+    }
+
+    private fun calculateValue(v: Any): String? {
+        return if (this.multiple) {
+            @Suppress("UNCHECKED_CAST")
+            val arr = v as? Array<String>
+            if (arr != null && arr.isNotEmpty()) {
+                arr.joinToString()
+            } else {
+                null
+            }
+        } else {
+            val vs = v as String
+            if (KVNULL == vs || vs.length == 0) {
+                null
+            } else {
+                vs
             }
         }
     }

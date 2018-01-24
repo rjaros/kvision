@@ -1,5 +1,6 @@
 package pl.treksoft.kvision.form.select
 
+import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.kvision.core.KVManager.AJAX_REQUEST_DELAY
 import pl.treksoft.kvision.core.KVManager.KVNULL
 import pl.treksoft.kvision.snabbdom.obj
@@ -18,11 +19,11 @@ enum class DataType(val type: String) {
 }
 
 data class AjaxOptions(
-    val url: String, val processData: (dynamic) -> dynamic,
+    val url: String, val processData: (dynamic) -> dynamic, val beforeSend: ((JQueryXHR) -> dynamic)? = null,
     val processParams: dynamic = null, val httpType: HttpType = HttpType.GET,
     val dataType: DataType = DataType.JSON, val minLength: Int = 0,
     val cache: Boolean = true, val clearOnEmpty: Boolean = true, val clearOnError: Boolean = true,
-    val emptyRequest: Boolean = false, val preserveSelected: Boolean = true,
+    val emptyRequest: Boolean = false,
     val requestDelay: Int = AJAX_REQUEST_DELAY, val restoreOnError: Boolean = false
 )
 
@@ -47,6 +48,7 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
             this.type = httpType.type
             this.dataType = dataType.type
             this.data = processParams
+            this.beforeSend = beforeSend
         }
         this.preprocessData = procData
         this.minLength = minLength
@@ -54,7 +56,7 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
         this.clearOnEmpty = clearOnEmpty
         this.clearOnError = clearOnError
         this.emptyRequest = emptyRequest
-        this.preserveSelected = preserveSelected
+        this.preserveSelected = false
         this.requestDelay = requestDelay
         this.restoreOnError = restoreOnError
     }
