@@ -131,7 +131,7 @@ open class SelectInput(
             }
         } else {
             val vs = v as String
-            if (KVNULL == vs || vs.length == 0) {
+            if (KVNULL == vs || vs.isEmpty()) {
                 null
             } else {
                 vs

@@ -14,7 +14,6 @@ import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 import pl.treksoft.kvision.snabbdom.obj
-import kotlin.browser.window
 
 enum class DD(val type: String) {
     HEADER("DD#HEADER"),
