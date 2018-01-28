@@ -355,7 +355,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     ): Array<out Any> {
         return if (icon != null) {
             if (icon.startsWith("fa-")) {
-                arrayOf(KVManager.virtualize("<i class='fa $icon fa-lg'></i>"), " " + label)
+                arrayOf(KVManager.virtualize("<i class='fa $icon'></i>"), " " + label)
             } else {
                 arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " " + label)
             }
