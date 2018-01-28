@@ -2,6 +2,7 @@ package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.LIST
@@ -71,6 +72,12 @@ open class DropDown(
             field = value
             refresh()
         }
+    override var width: CssSize?
+        get() = super.width
+        set(value) {
+            super.width = value
+            button.width = value
+        }
 
     private val idc = "kv_dropdown_" + counter
     internal val button: DropDownButton = DropDownButton(
@@ -80,7 +87,6 @@ open class DropDown(
     internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
-        list.hide()
         setChildrenFromElements()
         this.addInternal(button)
         this.addInternal(list)
@@ -142,7 +148,6 @@ open class DropDown(
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         this.getElementJQuery()?.on("show.bs.dropdown", { e, _ ->
-            if (!list.visible) list.visible = true
             this.dispatchEvent("showBsDropdown", obj { detail = e })
         })
         this.getElementJQuery()?.on("shown.bs.dropdown", { e, _ ->
@@ -152,7 +157,6 @@ open class DropDown(
             this.dispatchEvent("hideBsDropdown", obj { detail = e })
         })
         this.getElementJQuery()?.on("hidden.bs.dropdown", { e, _ ->
-            if (list.visible) list.visible = false
             this.dispatchEvent("hiddenBsDropdown", obj { detail = e })
         })
     }
@@ -167,12 +171,7 @@ open class DropDown(
     }
 
     open fun toggle() {
-        if (this.list.visible) {
-            this.list.getElementJQueryD()?.dropdown("toggle")
-        } else {
-            this.list.visible = true
-            window.setTimeout({ this.list.getElementJQueryD()?.dropdown("toggle") }, 0)
-        }
+        this.list.getElementJQueryD()?.dropdown("toggle")
     }
 }
 
