@@ -63,7 +63,7 @@ class TabPanelSpec : DomSpec {
             tabs.removeTab(1)
             val element = document.getElementById("test")
             assertEquals(
-                "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"active\"><a href=\"#\">ABC</a></li></ul><div><span>abc</span></div></div>",
+                "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"\"><a href=\"#\">ABC</a></li></ul><div><span>abc</span></div></div>",
                 element?.innerHTML,
                 "Should remove tab"
             )

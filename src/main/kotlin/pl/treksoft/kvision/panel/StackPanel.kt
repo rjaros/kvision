@@ -2,6 +2,7 @@ package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.routing.routing
 
 open class StackPanel(
     private val activateLast: Boolean = true,
@@ -19,6 +20,13 @@ open class StackPanel(
         } else {
             arrayOf()
         }
+    }
+
+    open fun add(panel: Component, route: String): StackPanel {
+        add(panel)
+        val currentIndex = children.size - 1
+        routing.on(route, { _ -> activeIndex = currentIndex }).resolve()
+        return this
     }
 
     override fun add(child: Component): StackPanel {

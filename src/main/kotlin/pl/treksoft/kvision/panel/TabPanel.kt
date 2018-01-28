@@ -5,15 +5,20 @@ import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.routing.routing
 
 open class TabPanel : SimplePanel(setOf()) {
     var activeIndex
         get() = content.activeIndex
         set(value) {
-            content.activeIndex = value
-            nav.children.forEach { it.removeCssClass("active") }
-            if (content.activeIndex >= 0 && content.activeIndex <= nav.children.size) {
-                nav.children[content.activeIndex].addCssClass("active")
+            if (content.activeIndex != value) {
+                content.activeIndex = value
+                nav.children.forEach {
+                    it.removeCssClass("active")
+                }
+                if (content.activeIndex >= 0 && content.activeIndex <= nav.children.size) {
+                    nav.children[content.activeIndex].addCssClass("active")
+                }
             }
         }
 
@@ -27,7 +32,7 @@ open class TabPanel : SimplePanel(setOf()) {
 
     open fun addTab(
         title: String, panel: Component, icon: String? = null,
-        image: ResString? = null
+        image: ResString? = null, route: String? = null
     ): TabPanel {
         val tag = Tag(TAG.LI)
         tag.role = "presentation"
@@ -37,6 +42,9 @@ open class TabPanel : SimplePanel(setOf()) {
             click = { e ->
                 activeIndex = index
                 e.preventDefault()
+                if (route != null) {
+                    routing.navigate(route)
+                }
             }
         }
         nav.add(tag)
@@ -45,6 +53,9 @@ open class TabPanel : SimplePanel(setOf()) {
             activeIndex = 0
         }
         content.add(panel)
+        if (route != null) {
+            routing.on(route, { _ -> activeIndex = index }).resolve()
+        }
         return this
     }
 
