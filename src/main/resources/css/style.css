@@ -114,3 +114,7 @@ trix-toolbar .trix-button-group {
 .kv-radiogroup-inline label {
   margin-right: 10px;
 }
+
+.kv-radio-checkbox {
+  padding-left: 7px;
+}

@@ -32,7 +32,7 @@ class RadioSpec : DomSpec {
             ci.squared = true
             ci.inline = false
             assertEquals(
-                "<div class=\"checkbox checkbox-info\"><input id=\"$id\" type=\"radio\" checked=\"\" name=\"name\" disabled=\"\" value=\"abc\"><label for=\"$id\">Label</label></div>",
+                "<div class=\"checkbox kv-radio-checkbox checkbox-info\"><input id=\"$id\" type=\"radio\" checked=\"\" name=\"name\" disabled=\"\" value=\"abc\"><label for=\"$id\">Label</label></div>",
                 element?.innerHTML,
                 "Should render correct radio button form control"
             )

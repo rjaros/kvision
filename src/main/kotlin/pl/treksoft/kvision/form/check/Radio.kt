@@ -18,7 +18,7 @@ enum class RADIOSTYLE(val className: String) {
 }
 
 open class Radio(
-    value: Boolean = false, extraValue: String? = null, label: String? = null,
+    value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(), BoolFormControl {
 
@@ -82,6 +82,7 @@ open class Radio(
     final override val input: CheckInput = CheckInput(CHECKINPUTTYPE.RADIO, value).apply {
         this.id = idc
         this.extraValue = extraValue
+        this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf())
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
@@ -127,6 +128,7 @@ open class Radio(
             }
         } else {
             cl.add("checkbox" to true)
+            cl.add("kv-radio-checkbox" to true)
             style?.let {
                 cl.add(it.className.replace("radio", "checkbox") to true)
             }
