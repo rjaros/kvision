@@ -1,6 +1,7 @@
 package pl.treksoft.kvision.form.check
 
 import com.github.snabbdom.VNode
+import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -109,5 +110,14 @@ open class CheckInput(
         if (this.value != v) {
             getElementJQuery()?.prop("checked", this.value)
         }
+    }
+
+    open fun onClick(handler: CheckInput.(MouseEvent) -> Unit): CheckInput {
+        this.setEventListener<CheckInput> {
+            click = { e ->
+                self.handler(e)
+            }
+        }
+        return this
     }
 }

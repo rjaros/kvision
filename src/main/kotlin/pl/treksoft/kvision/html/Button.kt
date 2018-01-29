@@ -1,6 +1,7 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.snabbdom.StringBoolPair
@@ -87,4 +88,12 @@ open class Button(
         return super.getSnAttrs() + ("type" to "button")
     }
 
+    open fun onClick(handler: Button.(MouseEvent) -> Unit): Button {
+        this.setEventListener<Button> {
+            click = { e ->
+                self.handler(e)
+            }
+        }
+        return this
+    }
 }

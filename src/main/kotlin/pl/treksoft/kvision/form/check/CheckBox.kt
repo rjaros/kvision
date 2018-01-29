@@ -1,5 +1,6 @@
 package pl.treksoft.kvision.form.check
 
+import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.BoolFormControl
 import pl.treksoft.kvision.form.FieldLabel
@@ -125,5 +126,14 @@ open class CheckBox(
             cl.add("has-error" to true)
         }
         return cl
+    }
+
+    open fun onClick(handler: CheckBox.(MouseEvent) -> Unit): CheckBox {
+        this.setEventListener<CheckBox> {
+            click = { e ->
+                self.handler(e)
+            }
+        }
+        return this
     }
 }
