@@ -6,6 +6,7 @@ import pl.treksoft.kvision.form.check.RADIOSTYLE
 import pl.treksoft.kvision.form.check.Radio
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.html.Button
+import pl.treksoft.kvision.panel.FLEXWRAP
 import pl.treksoft.kvision.panel.HPanel
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.panel.VPanel
@@ -14,7 +15,7 @@ import pl.treksoft.kvision.utils.px
 class ButtonsTab : SimplePanel() {
     init {
         this.marginTop = 10.px()
-        val mainPanel = HPanel(spacing = 100)
+        val mainPanel = HPanel(wrap = FLEXWRAP.WRAP, spacing = 100)
         val buttonsPanel = VPanel(spacing = 7)
         buttonsPanel.add(Button("Default button", style = BUTTONSTYLE.DEFAULT).apply { width = 200.px() })
         buttonsPanel.add(Button("Primary button", style = BUTTONSTYLE.PRIMARY).apply { width = 200.px() })

@@ -7,9 +7,7 @@ import pl.treksoft.kvision.form.check.CHECKBOXSTYLE
 import pl.treksoft.kvision.form.check.CheckBox
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.html.Button
-import pl.treksoft.kvision.panel.FLEXDIR
 import pl.treksoft.kvision.panel.FLEXWRAP
-import pl.treksoft.kvision.panel.FlexPanel
 import pl.treksoft.kvision.panel.HPanel
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.panel.VPanel
@@ -51,10 +49,10 @@ class DataTab : SimplePanel() {
                     list[index].checked = this.value
                 }
             }
-        }, child = FlexPanel(FLEXDIR.ROW, spacing = 10, wrap = FLEXWRAP.WRAP))
+        }, child = HPanel(spacing = 10, wrap = FLEXWRAP.WRAP))
         panel.add(dataContainer)
 
-        val butPanel = HPanel(spacing = 10)
+        val butPanel = HPanel(spacing = 10, wrap = FLEXWRAP.WRAP)
         butPanel.add(Button("Add December", style = BUTTONSTYLE.SUCCESS).onClick {
             list.add(DataModel(true, "December"))
         })
