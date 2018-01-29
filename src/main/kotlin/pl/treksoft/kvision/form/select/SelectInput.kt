@@ -10,6 +10,7 @@ import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.snabbdom.StringBoolPair
 import pl.treksoft.kvision.snabbdom.StringPair
 import pl.treksoft.kvision.snabbdom.obj
+import pl.treksoft.kvision.utils.asString
 
 enum class SELECTWIDTHTYPE(val value: String) {
     AUTO("auto"),
@@ -254,7 +255,7 @@ open class SelectInput(
         selectWidthType?.let {
             sn.add("data-width" to it.value)
         } ?: selectWidth?.let {
-            sn.add("data-width" to it.first.toString() + it.second.unit)
+            sn.add("data-width" to it.asString())
         }
         return sn
     }

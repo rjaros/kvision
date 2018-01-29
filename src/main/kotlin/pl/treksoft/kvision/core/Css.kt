@@ -1,5 +1,6 @@
 package pl.treksoft.kvision.core
 
+import pl.treksoft.kvision.utils.asString
 import pl.treksoft.kvision.utils.toHexString
 
 typealias ResString = String
@@ -19,7 +20,8 @@ enum class UNIT(val unit: String) {
     vh("vh"),
     vmin("vmin"),
     vmax("vmax"),
-    perc("%")
+    perc("%"),
+    auto("auto")
 }
 
 typealias CssSize = Pair<Int, UNIT>
@@ -226,9 +228,7 @@ class Border private constructor(
     constructor(width: CssSize? = null, style: BORDERSTYLE? = null, color: COLOR) : this(width, style, color.color)
 
     fun asString(): String {
-        val w = width?.let {
-            it.first.toString() + it.second.unit
-        }
+        val w = width?.asString()
         return w.orEmpty() + " " + (style?.borderStyle).orEmpty() + " " + color.orEmpty()
     }
 }
@@ -286,18 +286,10 @@ class Background private constructor(
         val img = image?.let {
             "url($image)"
         }
-        val posX = positionX?.let {
-            it.first.toString() + it.second.unit
-        }
-        val posY = positionY?.let {
-            it.first.toString() + it.second.unit
-        }
-        val sX = sizeX?.let {
-            it.first.toString() + it.second.unit
-        }
-        val sY = sizeY?.let {
-            it.first.toString() + it.second.unit
-        }
+        val posX = positionX?.asString()
+        val posY = positionY?.asString()
+        val sX = sizeX?.asString()
+        val sY = sizeY?.asString()
         return color.orEmpty() + " " + img.orEmpty() + " " + posX.orEmpty() + " " + posY.orEmpty() +
                 if (sX != null || sY != null || size != null) {
                     (if (posX != null || posY != null) " / " else " 0px 0px / ") +

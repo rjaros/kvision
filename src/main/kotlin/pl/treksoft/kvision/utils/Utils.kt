@@ -23,6 +23,15 @@ fun Int.vh(): CssSize = Pair(this, UNIT.vh)
 fun Int.vw(): CssSize = Pair(this, UNIT.vw)
 fun Int.vmin(): CssSize = Pair(this, UNIT.vmin)
 fun Int.vmax(): CssSize = Pair(this, UNIT.vmax)
+fun auto(): CssSize = Pair(0, UNIT.auto)
+
+fun CssSize.asString(): String {
+    return if (this.second != UNIT.auto) {
+        this.first.toString() + this.second.unit
+    } else {
+        "auto"
+    }
+}
 
 private val hex = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f")
 

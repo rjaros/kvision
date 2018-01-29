@@ -1,6 +1,7 @@
 package pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.utils.asString
 
 abstract class StyledComponent : Component {
 
@@ -155,22 +156,22 @@ abstract class StyledComponent : Component {
     protected open fun getSnStyle(): List<StringPair> {
         val snstyle = mutableListOf<StringPair>()
         width?.let {
-            snstyle.add("width" to it.first.toString() + it.second.unit)
+            snstyle.add("width" to it.asString())
         }
         minWidth?.let {
-            snstyle.add("min-width" to it.first.toString() + it.second.unit)
+            snstyle.add("min-width" to it.asString())
         }
         maxWidth?.let {
-            snstyle.add("max-width" to it.first.toString() + it.second.unit)
+            snstyle.add("max-width" to it.asString())
         }
         height?.let {
-            snstyle.add("height" to it.first.toString() + it.second.unit)
+            snstyle.add("height" to it.asString())
         }
         minHeight?.let {
-            snstyle.add("min-height" to it.first.toString() + it.second.unit)
+            snstyle.add("min-height" to it.asString())
         }
         maxHeight?.let {
-            snstyle.add("max-height" to it.first.toString() + it.second.unit)
+            snstyle.add("max-height" to it.asString())
         }
         border?.let {
             snstyle.add("border" to it.asString())
@@ -188,34 +189,34 @@ abstract class StyledComponent : Component {
             snstyle.add("border-left" to it.asString())
         }
         margin?.let {
-            snstyle.add("margin" to it.first.toString() + it.second.unit)
+            snstyle.add("margin" to it.asString())
         }
         marginTop?.let {
-            snstyle.add("margin-top" to it.first.toString() + it.second.unit)
+            snstyle.add("margin-top" to it.asString())
         }
         marginRight?.let {
-            snstyle.add("margin-right" to it.first.toString() + it.second.unit)
+            snstyle.add("margin-right" to it.asString())
         }
         marginBottom?.let {
-            snstyle.add("margin-bottom" to it.first.toString() + it.second.unit)
+            snstyle.add("margin-bottom" to it.asString())
         }
         marginLeft?.let {
-            snstyle.add("margin-left" to it.first.toString() + it.second.unit)
+            snstyle.add("margin-left" to it.asString())
         }
         padding?.let {
-            snstyle.add("padding" to it.first.toString() + it.second.unit)
+            snstyle.add("padding" to it.asString())
         }
         paddingTop?.let {
-            snstyle.add("padding-top" to it.first.toString() + it.second.unit)
+            snstyle.add("padding-top" to it.asString())
         }
         paddingRight?.let {
-            snstyle.add("padding-right" to it.first.toString() + it.second.unit)
+            snstyle.add("padding-right" to it.asString())
         }
         paddingBottom?.let {
-            snstyle.add("padding-bottom" to it.first.toString() + it.second.unit)
+            snstyle.add("padding-bottom" to it.asString())
         }
         paddingLeft?.let {
-            snstyle.add("padding-left" to it.first.toString() + it.second.unit)
+            snstyle.add("padding-left" to it.asString())
         }
         color?.let {
             snstyle.add("color" to it.asString())

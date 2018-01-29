@@ -56,7 +56,7 @@ class DataContainer<M : DataComponent, C : Widget>(
         return this.child.renderVNode()
     }
 
-    open fun get(index: Int) = model[index]
+    fun get(index: Int) = model[index]
 
     override fun update() {
         model.forEach { it.container = this }
