@@ -22,7 +22,7 @@ class AlertSpec : DomSpec {
             val title = document.getElementById("test")?.let { jQuery(it).find(".modal-title").html() }
             assertEquals("Alert caption", title, "Should render alert window with correct caption")
             val body = document.getElementById("test")?.let { jQuery(it).find(".modal-body").html() }
-            assertEquals("<span>Alert content</span>", body, "Should render alert window with correct content")
+            assertEquals("<div>Alert content</div>", body, "Should render alert window with correct content")
             val footer = document.getElementById("test")?.let { jQuery(it).find(".modal-footer").html() }
             assertEquals(
                 "<button class=\"btn btn-primary\" type=\"button\"><span class=\"glyphicon glyphicon-ok\"></span> OK</button>",

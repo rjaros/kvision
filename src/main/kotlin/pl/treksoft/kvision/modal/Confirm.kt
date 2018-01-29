@@ -34,7 +34,7 @@ open class Confirm(
             refreshCancelButton()
         }
 
-    private val content = Tag(TAG.SPAN, text, rich, align)
+    private val content = Tag(TAG.DIV, text, rich, align)
     private val cancelButton = Button("Cancel", "remove")
 
     init {

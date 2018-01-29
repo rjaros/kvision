@@ -28,7 +28,7 @@ open class Alert(
             content.align = value
         }
 
-    private val content = Tag(TAG.SPAN, text, rich, align)
+    private val content = Tag(TAG.DIV, text, rich, align)
 
     init {
         body.add(content)

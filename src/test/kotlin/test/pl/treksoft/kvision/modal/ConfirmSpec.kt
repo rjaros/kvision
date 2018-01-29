@@ -22,7 +22,7 @@ class ConfirmSpec : DomSpec {
             val title = document.getElementById("test")?.let { jQuery(it).find(".modal-title").html() }
             assertEquals("Confirm caption", title, "Should render confirm window with correct caption")
             val body = document.getElementById("test")?.let { jQuery(it).find(".modal-body").html() }
-            assertEquals("<span>Confirm content</span>", body, "Should render confirm window with correct content")
+            assertEquals("<div>Confirm content</div>", body, "Should render confirm window with correct content")
             val buttons = document.getElementById("test")?.let { jQuery(it).find(".modal-footer").find("button") }
             assertEquals(2, buttons?.length, "Should render confirm window with two buttons")
             val button = document.getElementById("test")?.let { jQuery(it).find(".modal-footer").find("button")[0] }
