@@ -9,7 +9,7 @@ import pl.treksoft.kvision.panel.VPanel
 
 class DataContainer<M : DataComponent, C : Widget>(
     val model: ObservableList<M>,
-    private val binding: (M, Int) -> C,
+    private val binding: (Int) -> C,
     private val child: Container = VPanel()
 ) :
     Widget(setOf()), Container, DataUpdatable {
@@ -56,11 +56,13 @@ class DataContainer<M : DataComponent, C : Widget>(
         return this.child.renderVNode()
     }
 
+    open fun get(index: Int) = model[index]
+
     override fun update() {
         model.forEach { it.container = this }
         singleRender {
             child.removeAll()
-            child.addAll(model.mapIndexed { index, m -> binding(m, index) })
+            child.addAll(model.mapIndexed { index, _ -> binding(index) })
         }
     }
 
