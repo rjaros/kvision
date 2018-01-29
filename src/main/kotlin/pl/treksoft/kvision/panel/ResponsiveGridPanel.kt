@@ -31,7 +31,7 @@ open class ResponsiveGridPanel(
     internal val map = mutableMapOf<Int, MutableMap<Int, WidgetParam>>()
     private var auto: Boolean = true
 
-    open fun add(child: Component, row: Int, col: Int, size: Int = 0, offset: Int = 0): ResponsiveGridPanel {
+    open fun add(child: Component, col: Int, row: Int, size: Int = 0, offset: Int = 0): ResponsiveGridPanel {
         val cRow = if (row < 0) 0 else row
         val cCol = if (col < 0) 0 else col
         if (row > rows - 1) rows = cRow + 1
@@ -43,7 +43,7 @@ open class ResponsiveGridPanel(
     }
 
     override fun add(child: Component): ResponsiveGridPanel {
-        return this.add(child, 0, this.cols)
+        return this.add(child, this.cols, 0)
     }
 
     override fun addAll(children: List<Component>): ResponsiveGridPanel {
@@ -68,7 +68,7 @@ open class ResponsiveGridPanel(
         return this
     }
 
-    open fun removeAt(row: Int, col: Int): ResponsiveGridPanel {
+    open fun removeAt(col: Int, row: Int): ResponsiveGridPanel {
         map[row]?.remove(col)
         refreshRowContainers()
         return this
