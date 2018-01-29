@@ -110,5 +110,6 @@ fun Map<String, Any?>.date(key: String): Date? = this[key] as? Date
 
 fun Map<String, Any?>.asJson(): Json {
     val array = this.entries.map { it.component1() to it.component2() }.toTypedArray()
+    @Suppress("SpreadOperator")
     return kotlin.js.json(*array)
 }
