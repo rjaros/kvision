@@ -2,3 +2,4 @@
 build/
 out/
 *.iml
+/refresh.sh
