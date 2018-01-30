@@ -17,6 +17,8 @@ enum class TAG(val tagName: String) {
     ABBR("abbr"),
     ADDRESS("address"),
     BLOCKQUOTE("blockquote"),
+    SECTION("section"),
+    HEADER("header"),
     FOOTER("footer"),
     PRE("pre"),
     UL("ul"),
@@ -79,7 +81,7 @@ open class Tag(
             if (rich) {
                 kvh(type.tagName, arrayOf(KVManager.virtualize("<span>$text</span>")) + childrenVNodes())
             } else {
-                kvh(type.tagName, arrayOf(text) + childrenVNodes())
+                kvh(type.tagName, childrenVNodes() + arrayOf(text))
             }
         } else {
             kvh(type.tagName, childrenVNodes())
