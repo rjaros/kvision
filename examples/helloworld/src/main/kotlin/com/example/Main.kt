@@ -23,6 +23,7 @@ fun main(args: Array<String>) {
     }
 
     if (document.body != null) {
+        KVManager.start()
         application = start(state)
     } else {
         KVManager.init()

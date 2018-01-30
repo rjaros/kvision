@@ -9,15 +9,23 @@ import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
 import pl.treksoft.kvision.require
+import pl.treksoft.kvision.routing.Routing
 import pl.treksoft.kvision.routing.routing
 import kotlin.browser.document
 import kotlin.dom.clear
+
+external val kvBootstrap: Boolean?
 
 object KVManager {
     internal const val AJAX_REQUEST_DELAY = 300
     internal const val KVNULL = "#kvnull"
 
-    private val bootstrapWebpack = require("bootstrap-webpack")
+    @Suppress("UnsafeCastFromDynamic")
+    private val bootstrapWebpack = if (js("typeof KV_NO_BOOTSTRAP_CSS !== 'undefined'")) {
+        require("bootstrap-webpack!./js/bootstrap.config.js")
+    } else {
+        require("bootstrap-webpack")
+    }
     private val fontAwesomeWebpack = require("font-awesome-webpack")
     private val resizable = require("jquery-resizable-dom")
     private val awesomeBootstrapCheckbox = require("awesome-bootstrap-checkbox")
@@ -26,7 +34,7 @@ object KVManager {
     private val bootstrapSelectI18n = require("./js/bootstrap-select-i18n.min.js")
     private val bootstrapSelectAjaxCss = require("ajax-bootstrap-select/dist/css/ajax-bootstrap-select.min.css")
     private val bootstrapSelectAjax = require("ajax-bootstrap-select/dist/js/ajax-bootstrap-select.min.js")
-//    private val bootstrapSelectAjaxI18n =
+    //    private val bootstrapSelectAjaxI18n =
 //        require("ajax-bootstrap-select/dist/js/locale/ajax-bootstrap-select.pl-PL.min.js")
     private val trixCss = require("trix/dist/trix.css")
     private val trix = require("trix")
@@ -61,6 +69,10 @@ object KVManager {
     }
 
     fun init() {
+    }
+
+    fun start() {
+        routing = Routing()
     }
 
     fun shutdown() {

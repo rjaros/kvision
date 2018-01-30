@@ -4,4 +4,4 @@ import pl.treksoft.navigo.Navigo
 
 open class Routing : Navigo(null, true, "#!")
 
-val routing = Routing()
+var routing = Routing()
