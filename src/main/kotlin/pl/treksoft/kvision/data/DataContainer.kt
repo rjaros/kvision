@@ -20,6 +20,8 @@ class DataContainer<M : DataComponent, C : Widget>(
             child.visible = value
         }
 
+    internal var onUpdateHandler: (() -> Unit)? = null
+
     init {
         child.parent = this
         model.onUpdate += { _ ->
@@ -64,6 +66,16 @@ class DataContainer<M : DataComponent, C : Widget>(
             child.removeAll()
             child.addAll(model.mapIndexed { index, _ -> binding(index) })
         }
+        onUpdateHandler?.invoke()
     }
 
+    fun onUpdate(handler: () -> Unit): DataContainer<M, C> {
+        onUpdateHandler = handler
+        return this
+    }
+
+    fun clearOnUpdate(): DataContainer<M, C> {
+        onUpdateHandler = null
+        return this
+    }
 }

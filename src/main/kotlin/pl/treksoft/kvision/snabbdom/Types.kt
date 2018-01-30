@@ -54,6 +54,7 @@ interface BtOn : On {
     var hideBsDateTime: ((KvEvent) -> kotlin.Unit)?
     var onMinBsSpinner: ((KvEvent) -> kotlin.Unit)?
     var onMaxBsSpinner: ((KvEvent) -> kotlin.Unit)?
+    var updateModel: ((KvEvent) -> kotlin.Unit)?
 }
 
 interface SnOn<T> : BtOn {
