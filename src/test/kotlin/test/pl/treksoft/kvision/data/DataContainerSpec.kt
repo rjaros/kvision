@@ -3,7 +3,7 @@ package test.pl.treksoft.kvision.data
 import com.lightningkite.kotlin.observable.list.observableListOf
 import pl.treksoft.kvision.basic.Label
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.data.DataComponent
+import pl.treksoft.kvision.data.BaseDataComponent
 import pl.treksoft.kvision.data.DataContainer
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -17,7 +17,7 @@ class DataContainerSpec : DomSpec {
         run {
             val root = Root("test")
 
-            class Model(value: String) : DataComponent() {
+            class Model(value: String) : BaseDataComponent() {
                 var value: String by obs(value)
             }
 
