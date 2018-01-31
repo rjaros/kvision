@@ -1,11 +1,14 @@
 package com.example
 
 import com.lightningkite.kotlin.observable.list.observableListOf
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JSON
+import kotlinx.serialization.list
 import org.w3c.dom.get
 import org.w3c.dom.set
 import pl.treksoft.kvision.ApplicationBase
 import pl.treksoft.kvision.core.Root
-import pl.treksoft.kvision.data.DataComponent
+import pl.treksoft.kvision.data.BaseDataComponent
 import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.check.CHECKINPUTTYPE
@@ -23,13 +26,18 @@ import kotlin.browser.localStorage
 const val ENTER_KEY = 13
 const val ESCAPE_KEY = 27
 
-class Todo(completed: Boolean, title: String, hidden: Boolean) : DataComponent() {
-    var completed: Boolean by obs(completed)
-    var title: String by obs(title)
+@Serializable
+open class BaseTodo(open var completed: Boolean, open var title: String) : BaseDataComponent()
+
+class Todo(completed: Boolean, title: String, hidden: Boolean) : BaseTodo(completed, title) {
+    constructor(base: BaseTodo) : this(base.completed, base.title, false)
+
+    override var completed: Boolean by obs(completed)
+    override var title: String by obs(title)
     var hidden: Boolean by obs(hidden)
 }
 
-enum class LISTMODE {
+enum class TODOMODE {
     ALL,
     ACTIVE,
     COMPLETED
@@ -57,7 +65,7 @@ class Todomvc : ApplicationBase() {
     private val itemsLeftTag = Tag(TAG.SPAN, " items left", classes = setOf("todo-count")).apply {
         add(countTag)
     }
-    private var mode: LISTMODE = LISTMODE.ALL
+    private var mode: TODOMODE = TODOMODE.ALL
 
     private val header = genHeader()
     private val main = genMain()
@@ -80,17 +88,12 @@ class Todomvc : ApplicationBase() {
 
     private fun loadModel() {
         localStorage.get("todos-kvision")?.let {
-            JSON.parse<Array<dynamic>>(it).map { Todo(it.completed, it.title, false) }.forEach {
-                model.add(it)
-            }
+            JSON.parse(BaseTodo.serializer().list, it).map { model.add(Todo(it)) }
         }
     }
 
     private fun saveModel() {
-        val jsonString = model.map {
-            val array = listOf("title" to it.title, "completed" to it.completed).toTypedArray()
-            JSON.stringify(kotlin.js.json(*array))
-        }.toString()
+        val jsonString = JSON.indented.stringify(BaseTodo.serializer().list, model.toList())
         localStorage.set("todos-kvision", jsonString)
     }
 
@@ -110,7 +113,7 @@ class Todomvc : ApplicationBase() {
     }
 
     private fun all() {
-        this.mode = LISTMODE.ALL
+        this.mode = TODOMODE.ALL
         this.allLink.addCssClass("selected")
         this.activeLink.removeCssClass("selected")
         this.completedLink.removeCssClass("selected")
@@ -118,7 +121,7 @@ class Todomvc : ApplicationBase() {
     }
 
     private fun active() {
-        this.mode = LISTMODE.ACTIVE
+        this.mode = TODOMODE.ACTIVE
         this.allLink.removeCssClass("selected")
         this.activeLink.addCssClass("selected")
         this.completedLink.removeCssClass("selected")
@@ -126,7 +129,7 @@ class Todomvc : ApplicationBase() {
     }
 
     private fun completed() {
-        this.mode = LISTMODE.COMPLETED
+        this.mode = TODOMODE.COMPLETED
         this.allLink.removeCssClass("selected")
         this.activeLink.removeCssClass("selected")
         this.completedLink.addCssClass("selected")
@@ -154,7 +157,7 @@ class Todomvc : ApplicationBase() {
     private fun addTodo(value: String?) {
         val v = value?.trim() ?: ""
         if (v.isNotEmpty()) {
-            model.add(Todo(false, v, mode == LISTMODE.COMPLETED))
+            model.add(Todo(false, v, mode == TODOMODE.COMPLETED))
         }
     }
 
@@ -183,7 +186,7 @@ class Todomvc : ApplicationBase() {
                         ).onClick {
                             model[index].completed = this.value
                             model[index].hidden =
-                                    mode == LISTMODE.ACTIVE && this.value || mode == LISTMODE.COMPLETED && !this.value
+                                    mode == TODOMODE.ACTIVE && this.value || mode == TODOMODE.COMPLETED && !this.value
                         })
                         add(Tag(TAG.LABEL, model[index].title).apply {
                             setEventListener<Tag> {

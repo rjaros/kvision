@@ -1,7 +1,7 @@
 package com.example
 
 import com.lightningkite.kotlin.observable.list.observableListOf
-import pl.treksoft.kvision.data.DataComponent
+import pl.treksoft.kvision.data.BaseDataComponent
 import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.form.check.CHECKBOXSTYLE
 import pl.treksoft.kvision.form.check.CheckBox
@@ -20,7 +20,7 @@ class DataTab : SimplePanel() {
 
         val panel = VPanel(spacing = 5)
 
-        class DataModel(checked: Boolean, text: String) : DataComponent() {
+        class DataModel(checked: Boolean, text: String) : BaseDataComponent() {
             var checked: Boolean by obs(checked)
             var text: String by obs(text)
         }

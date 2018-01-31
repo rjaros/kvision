@@ -1,5 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.2.21'
+    ext.serialization_version = '0.4'
     ext.production = (findProperty('prod') ?: 'false') == 'true'
     ext.npmdeps = new URL("file:///home/rjaros/git/kvision/npm.dependencies").getText()
 
@@ -7,23 +8,27 @@ buildscript {
         jcenter()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
     }
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.26"
         classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC6-2"
+        classpath "org.jetbrains.kotlinx:kotlinx-gradle-serialization-plugin:$serialization_version"
     }
 }
 
 apply plugin: 'kotlin2js'
+apply plugin: 'kotlinx-serialization'
 apply plugin: 'org.jetbrains.kotlin.frontend'
 apply plugin: "io.gitlab.arturbosch.detekt"
 
 repositories {
     jcenter()
-    maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
-    maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
+    maven { url 'https://kotlin.bintray.com/kotlinx' }
+    maven { url 'https://dl.bintray.com/gbaldeck/kotlin' }
+    maven { url 'https://dl.bintray.com/rjaros/kotlin' }
     maven {
 	url "file:///home/rjaros/kotlin/mvn/"
     }
@@ -31,6 +36,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serialization_version"
     compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version" // for now only compile configuration is supported
     compile "pl.treksoft:kvision:0.0.1"
 }
