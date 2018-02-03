@@ -1,4 +1,4 @@
-package pl.treksoft.kvision.basic
+package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag

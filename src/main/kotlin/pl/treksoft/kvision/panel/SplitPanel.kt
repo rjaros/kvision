@@ -3,6 +3,7 @@ package pl.treksoft.kvision.panel
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.JQueryEventObject
+import pl.treksoft.kvision.core.StyledComponent
 import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -39,9 +40,9 @@ open class SplitPanel(
                 }
                 onDragEnd = { e: JQueryEventObject, el: JQuery, _: dynamic ->
                     if (horizontal) {
-                        children[0].height = el.height().toInt() to px
+                        (children[0] as? StyledComponent)?.height = el.height().toInt() to px
                     } else {
-                        children[0].width = el.width().toInt() to px
+                        (children[0] as? StyledComponent)?.width = el.width().toInt() to px
                     }
                     self.dispatchEvent("dragEndSplitPanel", obj { detail = e })
                 }

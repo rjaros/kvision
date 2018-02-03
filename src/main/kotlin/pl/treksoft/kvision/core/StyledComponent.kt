@@ -5,7 +5,7 @@ import pl.treksoft.kvision.utils.asString
 
 abstract class StyledComponent : Component {
 
-    override var width: CssSize? = null
+    open var width: CssSize? = null
         set(value) {
             field = value
             refresh()
@@ -20,7 +20,7 @@ abstract class StyledComponent : Component {
             field = value
             refresh()
         }
-    override var height: CssSize? = null
+    var height: CssSize? = null
         set(value) {
             field = value
             refresh()

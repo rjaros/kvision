@@ -1,7 +1,7 @@
 package test.pl.treksoft.kvision.data
 
 import com.lightningkite.kotlin.observable.list.observableListOf
-import pl.treksoft.kvision.basic.Label
+import pl.treksoft.kvision.html.Label
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.data.BaseDataComponent
 import pl.treksoft.kvision.data.DataContainer

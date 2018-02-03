@@ -8,8 +8,6 @@ import pl.treksoft.jquery.JQuery
 interface Component {
     var parent: Component?
     var visible: Boolean
-    var width: CssSize?
-    var height: CssSize?
 
     fun addCssClass(css: String): Widget
     fun removeCssClass(css: String): Widget

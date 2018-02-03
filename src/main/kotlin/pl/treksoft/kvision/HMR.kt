@@ -1,11 +1,23 @@
+/**
+ * @author Robert Jaros
+ */
 package pl.treksoft.kvision
 
+/**
+ * Helper variable for Hot Module Replacement (HMR).
+ */
 external val module: Module
 
+/**
+ * Helper interface for Hot Module Replacement (HMR).
+ */
 external interface Module {
     val hot: Hot?
 }
 
+/**
+ * Helper interface for Hot Module Replacement (HMR).
+ */
 external interface Hot {
     val data: dynamic
 
@@ -16,4 +28,7 @@ external interface Hot {
     fun dispose(callback: (data: dynamic) -> Unit)
 }
 
+/**
+ * External function for loading CommonJS modules.
+ */
 external fun require(name: String): dynamic

@@ -1,6 +1,6 @@
 package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.basic.Label
+import pl.treksoft.kvision.html.Label
 import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.panel.FLEXJUSTIFY
 import pl.treksoft.kvision.panel.HPanel

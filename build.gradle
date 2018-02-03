@@ -1,5 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.2.21'
+    ext.dokka_version = '0.9.16-eap-3'
     ext.production = (findProperty('prod') ?: 'false') == 'true'
     ext.npmdeps = new File("npm.dependencies").getText()
 
@@ -7,12 +8,14 @@ buildscript {
         jcenter()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://bintray.com/kotlin/kotlin-eap/dokka' }
     }
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.26"
         classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC6-2"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
     }
 }
 
@@ -21,9 +24,14 @@ plugins {
     id "com.jfrog.bintray" version "1.7.3"
 }
 
-apply plugin: 'kotlin2js'
+if (!project.gradle.startParameter.taskNames.contains("dokka")) {
+    apply plugin: 'kotlin2js'
+} else {
+    apply plugin: 'kotlin'
+}
 apply plugin: 'org.jetbrains.kotlin.frontend'
 apply plugin: "io.gitlab.arturbosch.detekt"
+apply plugin: 'org.jetbrains.dokka'
 
 group = 'pl.treksoft'
 version = '0.0.1'
@@ -35,8 +43,13 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version" // for now only compile configuration is supported
+    if (!project.gradle.startParameter.taskNames.contains("dokka")) {
+        compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+        compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version" // for now only compile configuration is supported
+    } else {
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+        compile "org.jetbrains.kotlin:kotlin-test:$kotlin_version" // for now only compile configuration is supported
+    }
     compile "com.github.snabbdom:snabbdom-kotlin:0.1.1"
     compile "pl.treksoft:navigo-kotlin:0.0.2"
     compile "pl.treksoft:jquery-kotlin:0.0.3"
@@ -62,16 +75,16 @@ kotlinFrontend {
 }
 
 task cleanLibs(type: Delete) {
-  delete 'build/js', 'build/libs'
+    delete 'build/js', 'build/libs'
 }
 
-if (project.gradle.startParameter.taskNames.contains("jar")){
+if (project.gradle.startParameter.taskNames.contains("jar")) {
     compileKotlin2Js.dependsOn 'cleanLibs'
 }
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    excludes = [ "package.json" ]
+    excludes = ["package.json"]
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -88,18 +101,30 @@ detekt {
     }
 }
 
-compileKotlin2Js {
-    kotlinOptions.metaInfo = true
-    kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
-    kotlinOptions.sourceMap = !production
-    kotlinOptions.moduleKind = 'commonjs'
+dokka {
+    includes = ['Module.md']
+    classpath = [new File("dokka/kvision-dokka-helper.jar")]
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/kdoc"
+    impliedPlatforms = ["JS"]
 }
 
-compileTestKotlin2Js {
-    kotlinOptions.metaInfo = true
-    kotlinOptions.outputFile = "$project.buildDir.path/js-tests/${project.name}-tests.js"
-    kotlinOptions.sourceMap = !production
-    kotlinOptions.moduleKind = 'commonjs'
+if (!project.gradle.startParameter.taskNames.contains("dokka")) {
+
+    compileKotlin2Js {
+        kotlinOptions.metaInfo = true
+        kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
+        kotlinOptions.sourceMap = !production
+        kotlinOptions.moduleKind = 'commonjs'
+    }
+
+    compileTestKotlin2Js {
+        kotlinOptions.metaInfo = true
+        kotlinOptions.outputFile = "$project.buildDir.path/js-tests/${project.name}-tests.js"
+        kotlinOptions.sourceMap = !production
+        kotlinOptions.moduleKind = 'commonjs'
+    }
+
 }
 
 task copyResources(type: Copy) {
@@ -112,9 +137,11 @@ task copyResourcesForTests(type: Copy) {
     into file(buildDir.path + "/js-tests/")
 }
 
-afterEvaluate {
-    tasks.getByName("webpack-bundle") { dependsOn(copyResources) }
-    tasks.getByName("webpack-run") { dependsOn(copyResources, copyResourcesForTests) }
+if (!project.gradle.startParameter.taskNames.contains("dokka")) {
+    afterEvaluate {
+        tasks.getByName("webpack-bundle") { dependsOn(copyResources) }
+        tasks.getByName("webpack-run") { dependsOn(copyResources, copyResourcesForTests) }
+    }
 }
 
 publishing {
@@ -148,7 +175,7 @@ bintray {
         vcsUrl = "https://github.com/rjaros/${project.name}.git"
         version {
             name = "${project.version}"
-            desc = 'Object oriented Web UI framework for Kotlin.'
+            desc = 'Object oriented Web UI framework for Kotlin/JS'
             released = new Date()
         }
     }
