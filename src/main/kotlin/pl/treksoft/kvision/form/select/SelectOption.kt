@@ -2,7 +2,7 @@ package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 
 open class SelectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,

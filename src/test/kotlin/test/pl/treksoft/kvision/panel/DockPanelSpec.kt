@@ -1,7 +1,7 @@
 package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.html.Label
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.DockPanel
 import pl.treksoft.kvision.panel.SIDE
 import test.pl.treksoft.kvision.DomSpec

@@ -1,4 +1,4 @@
-package pl.treksoft.kvision.snabbdom
+package pl.treksoft.kvision.utils
 
 import com.github.snabbdom.Attrs
 import com.github.snabbdom.Classes
@@ -10,6 +10,8 @@ import com.github.snabbdom.VNodeStyle
 import org.w3c.dom.CustomEvent
 import org.w3c.dom.CustomEventInit
 import pl.treksoft.jquery.JQueryEventObject
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 
 external class Object
@@ -74,9 +76,6 @@ internal fun on(widget: Widget): SnOn<Widget> {
 internal fun hooks(): Hooks {
     return js("({})")
 }
-
-typealias StringPair = Pair<String, String>
-typealias StringBoolPair = Pair<String, Boolean>
 
 @Suppress("UnsafeCastFromDynamic")
 fun snStyle(pairs: List<StringPair>): VNodeStyle {

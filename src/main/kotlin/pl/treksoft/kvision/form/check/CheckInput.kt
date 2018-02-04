@@ -4,8 +4,8 @@ import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 
 enum class CHECKINPUTTYPE(val type: String) {
     CHECKBOX("checkbox"),

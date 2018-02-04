@@ -1,6 +1,6 @@
 package test.pl.treksoft.kvision.form.spinner
 
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.form.spinner.SpinnerInput
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.test.Test

@@ -7,8 +7,8 @@ import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 
 open class RadioGroup(
     options: List<StringPair>? = null, value: String? = null, inline: Boolean = false,

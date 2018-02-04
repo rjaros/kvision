@@ -1,6 +1,6 @@
 package test.pl.treksoft.kvision.form.check
 
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.form.check.CHECKBOXSTYLE
 import pl.treksoft.kvision.form.check.CheckBox
 import test.pl.treksoft.kvision.DomSpec

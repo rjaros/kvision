@@ -1,6 +1,6 @@
 package test.pl.treksoft.kvision.dropdown
 
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.dropdown.DD
 import pl.treksoft.kvision.dropdown.DropDown
 import test.pl.treksoft.kvision.DomSpec

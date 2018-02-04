@@ -1,9 +1,9 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.KVManager
+import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringBoolPair
+import pl.treksoft.kvision.core.StringBoolPair
 
 @Suppress("EnumNaming")
 enum class TAG(val tagName: String) {

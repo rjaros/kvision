@@ -7,7 +7,7 @@ import pl.treksoft.kvision.core.StyledComponent
 import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
-import pl.treksoft.kvision.snabbdom.obj
+import pl.treksoft.kvision.utils.obj
 
 enum class DIRECTION(val dir: String) {
     HORIZONTAL("horizontal"),

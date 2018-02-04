@@ -2,16 +2,15 @@ package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
-import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.helpers.CloseIcon
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
-import pl.treksoft.kvision.snabbdom.obj
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.utils.obj
 
 enum class MODALSIZE(val className: String) {
     LARGE("modal-lg"),

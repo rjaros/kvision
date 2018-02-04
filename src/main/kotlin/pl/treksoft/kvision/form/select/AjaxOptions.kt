@@ -1,9 +1,9 @@
 package pl.treksoft.kvision.form.select
 
 import pl.treksoft.jquery.JQueryXHR
-import pl.treksoft.kvision.core.KVManager.AJAX_REQUEST_DELAY
-import pl.treksoft.kvision.core.KVManager.KVNULL
-import pl.treksoft.kvision.snabbdom.obj
+import pl.treksoft.kvision.KVManager.AJAX_REQUEST_DELAY
+import pl.treksoft.kvision.KVManager.KVNULL
+import pl.treksoft.kvision.utils.obj
 
 enum class HttpType(val type: String) {
     GET("GET"),

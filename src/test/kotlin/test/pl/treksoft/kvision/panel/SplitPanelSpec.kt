@@ -1,7 +1,7 @@
 package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.html.Label
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.DIRECTION
 import pl.treksoft.kvision.panel.SplitPanel
 import test.pl.treksoft.kvision.DomSpec

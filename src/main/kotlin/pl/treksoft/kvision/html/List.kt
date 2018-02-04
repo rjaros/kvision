@@ -2,9 +2,9 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
-import pl.treksoft.kvision.core.KVManager
+import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringBoolPair
+import pl.treksoft.kvision.core.StringBoolPair
 
 enum class LIST(val tagName: String) {
     UL("ul"),

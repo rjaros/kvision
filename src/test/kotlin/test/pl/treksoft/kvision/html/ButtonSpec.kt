@@ -1,6 +1,6 @@
 package test.pl.treksoft.kvision.html
 
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.html.BUTTONSIZE
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.html.Button

@@ -2,7 +2,7 @@ package pl.treksoft.kvision.form
 
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 
 open class FieldLabel(
     internal val forId: String, text: String? = null, rich: Boolean = false,

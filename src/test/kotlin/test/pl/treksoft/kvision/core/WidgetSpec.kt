@@ -1,7 +1,7 @@
 package test.pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.WSpec
 import kotlin.browser.document
 import kotlin.test.Test

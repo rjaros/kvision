@@ -2,7 +2,7 @@ package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.WidgetWrapper
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 
 enum class GRIDJUSTIFY(val justify: String) {
     START("start"),

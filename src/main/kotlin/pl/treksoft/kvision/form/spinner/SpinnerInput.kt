@@ -4,9 +4,9 @@ import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
-import pl.treksoft.kvision.snabbdom.obj
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.utils.obj
 
 enum class BUTTONSTYPE {
     NONE,

@@ -3,8 +3,6 @@ package pl.treksoft.kvision.core
 import pl.treksoft.kvision.utils.asString
 import pl.treksoft.kvision.utils.toHexString
 
-typealias ResString = String
-
 @Suppress("EnumNaming", "EnumEntryName")
 enum class UNIT(val unit: String) {
     px("px"),
@@ -23,8 +21,6 @@ enum class UNIT(val unit: String) {
     perc("%"),
     auto("auto")
 }
-
-typealias CssSize = Pair<Int, UNIT>
 
 enum class BORDERSTYLE(val borderStyle: String) {
     NONE("none"),

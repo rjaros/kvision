@@ -5,8 +5,8 @@ import pl.treksoft.kvision.form.DateFormControl
 import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.HelpBlock
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.SnOn
-import pl.treksoft.kvision.snabbdom.StringBoolPair
+import pl.treksoft.kvision.utils.SnOn
+import pl.treksoft.kvision.core.StringBoolPair
 import kotlin.js.Date
 
 open class DateTime(

@@ -1,7 +1,7 @@
-package test.pl.treksoft.kvision.core
+package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.Root
 import pl.treksoft.kvision.modal.Modal
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test

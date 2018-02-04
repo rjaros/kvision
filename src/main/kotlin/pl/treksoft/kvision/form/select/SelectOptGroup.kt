@@ -2,7 +2,7 @@ package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 
 open class SelectOptGroup(
     label: String, options: List<StringPair>? = null, maxOptions: Int? = null,

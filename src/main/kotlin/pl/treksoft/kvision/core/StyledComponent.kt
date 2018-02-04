@@ -1,6 +1,5 @@
 package pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.snabbdom.StringPair
 import pl.treksoft.kvision.utils.asString
 
 abstract class StyledComponent : Component {

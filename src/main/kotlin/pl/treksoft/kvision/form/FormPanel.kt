@@ -6,7 +6,7 @@ import pl.treksoft.kvision.form.check.Radio
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringBoolPair
+import pl.treksoft.kvision.core.StringBoolPair
 import kotlin.js.Json
 
 enum class FORMTYPE(val formType: String) {

@@ -2,7 +2,7 @@ package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 import kotlin.browser.document
 
 open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) :

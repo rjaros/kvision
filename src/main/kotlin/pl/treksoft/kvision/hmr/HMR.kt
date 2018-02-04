@@ -1,7 +1,7 @@
 /**
  * @author Robert Jaros
  */
-package pl.treksoft.kvision
+package pl.treksoft.kvision.hmr
 
 /**
  * Helper variable for Hot Module Replacement (HMR).
@@ -27,8 +27,3 @@ external interface Hot {
 
     fun dispose(callback: (data: dynamic) -> Unit)
 }
-
-/**
- * External function for loading CommonJS modules.
- */
-external fun require(name: String): dynamic

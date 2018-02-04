@@ -7,15 +7,15 @@ import org.w3c.dom.CustomEventInit
 import org.w3c.dom.Node
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.snabbdom.SnOn
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
-import pl.treksoft.kvision.snabbdom.hooks
-import pl.treksoft.kvision.snabbdom.on
-import pl.treksoft.kvision.snabbdom.snAttrs
-import pl.treksoft.kvision.snabbdom.snClasses
-import pl.treksoft.kvision.snabbdom.snOpt
-import pl.treksoft.kvision.snabbdom.snStyle
+import pl.treksoft.kvision.KVManager
+import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.utils.SnOn
+import pl.treksoft.kvision.utils.hooks
+import pl.treksoft.kvision.utils.on
+import pl.treksoft.kvision.utils.snAttrs
+import pl.treksoft.kvision.utils.snClasses
+import pl.treksoft.kvision.utils.snOpt
+import pl.treksoft.kvision.utils.snStyle
 
 @Suppress("TooManyFunctions", "LargeClass")
 open class Widget(classes: Set<String> = setOf()) : StyledComponent() {

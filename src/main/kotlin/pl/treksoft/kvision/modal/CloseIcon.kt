@@ -1,10 +1,10 @@
-package pl.treksoft.kvision.helpers
+package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.KVManager
+import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 
 open class CloseIcon(classes: Set<String> = setOf()) : Widget(classes) {
 

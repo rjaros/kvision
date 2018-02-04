@@ -3,8 +3,8 @@ package pl.treksoft.kvision.html
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 
 enum class IMAGESHAPE(val className: String) {
     ROUNDED("img-rounded"),

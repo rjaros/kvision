@@ -1,9 +1,9 @@
-package pl.treksoft.kvision.core
+package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.modal.Modal
-import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringBoolPair
+import pl.treksoft.kvision.core.StringBoolPair
 
 class Root(id: String, private val fixed: Boolean = false) : SimplePanel() {
     private val modals: MutableList<Modal> = mutableListOf()

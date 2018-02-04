@@ -3,9 +3,9 @@ package pl.treksoft.kvision.form.time
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
-import pl.treksoft.kvision.snabbdom.obj
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.toDateF
 import pl.treksoft.kvision.utils.toStringF
 import kotlin.js.Date

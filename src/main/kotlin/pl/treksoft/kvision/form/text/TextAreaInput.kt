@@ -1,7 +1,7 @@
 package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 
 open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = null, classes: Set<String> = setOf()) :
     AbstractTextInput(value, classes + "form-control") {

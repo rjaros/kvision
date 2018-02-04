@@ -5,8 +5,8 @@ import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.HelpBlock
 import pl.treksoft.kvision.form.NumberFormControl
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.SnOn
-import pl.treksoft.kvision.snabbdom.StringBoolPair
+import pl.treksoft.kvision.utils.SnOn
+import pl.treksoft.kvision.core.StringBoolPair
 
 open class Spinner(
     value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,

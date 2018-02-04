@@ -3,13 +3,13 @@ package pl.treksoft.kvision.form.select
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.core.KVManager.KVNULL
+import pl.treksoft.kvision.KVManager.KVNULL
 import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
-import pl.treksoft.kvision.snabbdom.obj
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.asString
 
 enum class SELECTWIDTHTYPE(val value: String) {

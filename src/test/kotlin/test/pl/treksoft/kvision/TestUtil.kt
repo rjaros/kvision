@@ -2,7 +2,7 @@ package test.pl.treksoft.kvision
 
 import org.w3c.dom.Element
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.core.Widget
 import kotlin.browser.document
 

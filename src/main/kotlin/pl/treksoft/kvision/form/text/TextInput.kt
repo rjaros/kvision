@@ -1,7 +1,7 @@
 package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 
 enum class TEXTINPUTTYPE(val type: String) {
     TEXT("text"),

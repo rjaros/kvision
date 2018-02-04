@@ -1,6 +1,6 @@
 package test.pl.treksoft.kvision.form.time
 
-import pl.treksoft.kvision.core.Root
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.form.time.DateTime
 import pl.treksoft.kvision.utils.toStringF
 import test.pl.treksoft.kvision.DomSpec

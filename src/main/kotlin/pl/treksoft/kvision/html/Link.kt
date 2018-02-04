@@ -3,7 +3,7 @@ package pl.treksoft.kvision.html
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 
 open class Link(
     label: String, url: String, icon: String? = null, image: ResString? = null,

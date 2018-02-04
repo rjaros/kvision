@@ -2,8 +2,8 @@
 
 package pl.treksoft.kvision.utils
 
+import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.core.KVManager
 import pl.treksoft.kvision.core.UNIT
 import kotlin.js.Date
 

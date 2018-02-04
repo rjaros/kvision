@@ -1,11 +1,10 @@
-package test.pl.treksoft.kvision.core
+package test.pl.treksoft.kvision
 
 import com.github.snabbdom.h
-import pl.treksoft.kvision.core.KVManager
-import pl.treksoft.kvision.snabbdom.snAttrs
-import pl.treksoft.kvision.snabbdom.snOpt
-import pl.treksoft.kvision.snabbdom.snStyle
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.KVManager
+import pl.treksoft.kvision.utils.snAttrs
+import pl.treksoft.kvision.utils.snOpt
+import pl.treksoft.kvision.utils.snStyle
 import kotlin.browser.document
 import kotlin.test.Test
 import kotlin.test.assertTrue

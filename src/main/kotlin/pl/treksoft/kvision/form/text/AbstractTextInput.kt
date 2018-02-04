@@ -3,8 +3,8 @@ package pl.treksoft.kvision.form.text
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.snabbdom.StringBoolPair
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 
 abstract class AbstractTextInput(
     value: String? = null,

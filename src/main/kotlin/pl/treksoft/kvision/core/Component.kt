@@ -3,8 +3,8 @@ package pl.treksoft.kvision.core
 import com.github.snabbdom.VNode
 import org.w3c.dom.Node
 import pl.treksoft.jquery.JQuery
+import pl.treksoft.kvision.panel.Root
 
-@Suppress("TooManyFunctions")
 interface Component {
     var parent: Component?
     var visible: Boolean

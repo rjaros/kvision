@@ -3,7 +3,7 @@ package pl.treksoft.kvision.panel
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.StyledComponent
 import pl.treksoft.kvision.core.WidgetWrapper
-import pl.treksoft.kvision.snabbdom.StringPair
+import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.utils.px
 
 enum class FLEXDIR(val dir: String) {
