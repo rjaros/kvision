@@ -89,8 +89,8 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
     }
 
     override fun afterDestroy() {
-        document.getElementById("trix-input-" + trixId)?.remove()
-        document.getElementById("trix-toolbar-" + trixId)?.remove()
+        document.getElementById("trix-input-" + trixId)?.let { jQuery(it).remove() }
+        document.getElementById("trix-toolbar-" + trixId)?.let { jQuery(it).remove() }
         trixId = null
     }
 

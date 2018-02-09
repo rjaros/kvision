@@ -23,8 +23,8 @@ package test.pl.treksoft.kvision
 
 import org.w3c.dom.Element
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.Root
 import kotlin.browser.document
 
 interface TestSpec {
@@ -59,7 +59,7 @@ interface DomSpec : TestSpec {
 
     override fun afterTest() {
         val div = document.getElementById("pretest")
-        div?.remove()
+        div?.let { jQuery(it).remove() }
         jQuery(`object` = ".modal-backdrop").remove()
     }
 
