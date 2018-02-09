@@ -1,0 +1,178 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Container - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.core</a>&nbsp;/&nbsp;<a href="./index.html">Container</a><br/>
+<br/>
+<h1>Container</h1>
+<code><span class="keyword">interface </span><span class="identifier">Container</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Base interface for all containers.</p>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-component/parent.html">parent</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">?</span></code>
+<p>Parent of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-component/visible.html">visible</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Visibility state of the current component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Container$add(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Container</span></a></code>
+<p>Adds given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-all.html">addAll</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Container$addAll(kotlin.collections.List((pl.treksoft.kvision.core.Component)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Container</span></a></code>
+<p>Adds a list of components to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-children.html">getChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of children of the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Container$remove(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Container</span></a></code>
+<p>Removes given component from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-all.html">removeAll</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Container</span></a></code>
+<p>Removes all children from the current container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-component/add-css-class.html">addCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given value to the set of CSS classes generated in html code of current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-component/add-surrounding-css-class.html">addSurroundingCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-component/get-element.html">getElement</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElement</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">?</span></code>
+<p>Returns DOM element bound to the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-component/get-element-j-query.html">getElementJQuery</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQuery</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">JQuery</span><span class="symbol">?</span></code>
+<p>Returns JQuery element bound to the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-component/get-element-j-query-d.html">getElementJQueryD</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQueryD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
+<p>Returns JQuery element bound to the current component as a <em>dynamic</em> type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-component/remove-css-class.html">removeCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given value from the set of CSS classes generated in html code of current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-component/remove-surrounding-css-class.html">removeSurroundingCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.data/-data-container/index.html">DataContainer</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">DataContainer</span><span class="symbol">&lt;</span><span class="identifier">M</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.data/-data-component.html"><span class="identifier">DataComponent</span></a><span class="symbol">, </span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.data/-data-updatable/index.html"><span class="identifier">DataUpdatable</span></a></code>
+<p>A container class with support for observable data model.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html">SimplePanel</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SimplePanel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Container</span></a></code>
+<p>Basic container class, rendered as a DIV element with all children directly within.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

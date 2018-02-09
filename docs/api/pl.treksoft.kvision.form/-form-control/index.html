@@ -1,0 +1,237 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>FormControl - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.form</a>&nbsp;/&nbsp;<a href="./index.html">FormControl</a><br/>
+<br/>
+<h1>FormControl</h1>
+<code><span class="keyword">interface </span><span class="identifier">FormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Base interface of a form control.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="disabled.html">disabled</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">disabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if the field is disabled.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="flabel.html">flabel</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">flabel</span><span class="symbol">: </span><a href="../-field-label/index.html"><span class="identifier">FieldLabel</span></a></code>
+<p>Form field label.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="input.html">input</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">input</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a></code>
+<p>The actual input component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="size.html">size</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../-i-n-p-u-t-s-i-z-e/index.html"><span class="identifier">INPUTSIZE</span></a><span class="symbol">?</span></code>
+<p>Input control size.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validation-info.html">validationInfo</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">validationInfo</span><span class="symbol">: </span><a href="../-help-block/index.html"><span class="identifier">HelpBlock</span></a></code>
+<p>Validation info component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validator-error.html">validatorError</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">validatorError</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Validator error message.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/parent.html">parent</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">?</span></code>
+<p>Parent of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/visible.html">visible</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Visibility state of the current component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-value.html">getValue</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getValue</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code>
+<p>Returns the value of the control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-value-as-string.html">getValueAsString</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getValueAsString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns the value of the control as a String.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-value.html">setValue</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setValue</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormControl$setValue(kotlin.Any)/v">v</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the value of the control.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/add-css-class.html">addCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given value to the set of CSS classes generated in html code of current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/add-surrounding-css-class.html">addSurroundingCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/get-element.html">getElement</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElement</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">?</span></code>
+<p>Returns DOM element bound to the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/get-element-j-query.html">getElementJQuery</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQuery</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">JQuery</span><span class="symbol">?</span></code>
+<p>Returns JQuery element bound to the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/get-element-j-query-d.html">getElementJQueryD</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQueryD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
+<p>Returns JQuery element bound to the current component as a <em>dynamic</em> type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/remove-css-class.html">removeCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given value from the set of CSS classes generated in html code of current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-component/remove-surrounding-css-class.html">removeSurroundingCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-bool-form-control/index.html">BoolFormControl</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">BoolFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">FormControl</span></a></code>
+<p>Base interface of a form control with a boolean value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-date-form-control/index.html">DateFormControl</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">DateFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">FormControl</span></a></code>
+<p>Base interface of a form control with a date value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-number-form-control/index.html">NumberFormControl</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">NumberFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">FormControl</span></a></code>
+<p>Base interface of a form control with a numeric value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-string-form-control/index.html">StringFormControl</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">StringFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">FormControl</span></a></code>
+<p>Base interface of a form control with a text value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

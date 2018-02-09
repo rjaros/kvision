@@ -1,0 +1,367 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>DateTime - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.form.time</a>&nbsp;/&nbsp;<a href="./index.html">DateTime</a><br/>
+<br/>
+<h1>DateTime</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DateTime</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-date-form-control/index.html"><span class="identifier">DateFormControl</span></a></code>
+<p>Form field date/time chooser component.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">DateTime</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.time.DateTime$<init>(kotlin.js.Date, kotlin.String, kotlin.String, kotlin.Boolean)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time.DateTime$<init>(kotlin.js.Date, kotlin.String, kotlin.String, kotlin.Boolean)/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;"YYYY-MM-DD HH:mm"<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time.DateTime$<init>(kotlin.js.Date, kotlin.String, kotlin.String, kotlin.Boolean)/label">label</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time.DateTime$<init>(kotlin.js.Date, kotlin.String, kotlin.String, kotlin.Boolean)/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="autofocus.html">autofocus</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autofocus</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the date/time input is automatically focused.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="clear-btn.html">clearBtn</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">clearBtn</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if <em>Clear</em> button should be visible.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="days-of-week-disabled.html">daysOfWeekDisabled</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">daysOfWeekDisabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span></code>
+<p>Days of the week that should be disabled. Multiple values should be comma separated.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="disabled.html">disabled</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">disabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if the field is disabled.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="flabel.html">flabel</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">flabel</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-field-label/index.html"><span class="identifier">FieldLabel</span></a></code>
+<p>Form field label.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="format.html">format</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">format</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Date/time format.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="input.html">input</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">input</span><span class="symbol">: </span><a href="../-date-time-input/index.html"><span class="identifier">DateTimeInput</span></a></code>
+<p>The actual input component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="label.html">label</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">label</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The label text bound to the input element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="minute-step.html">minuteStep</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">minuteStep</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>The increment used to build the hour view.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="name.html">name</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The name attribute of the generated HTML input element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="placeholder.html">placeholder</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">placeholder</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The placeholder for the date/time input.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="readonly.html">readonly</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">readonly</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the date/time input is read-only.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="rich.html">rich</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">rich</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if <a href="label.html">label</a> can contain HTML code.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="show-meridian.html">showMeridian</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">showMeridian</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if meridian views are visible in day and hour views.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="size.html">size</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-i-n-p-u-t-s-i-z-e/index.html"><span class="identifier">INPUTSIZE</span></a><span class="symbol">?</span></code>
+<p>Input control size.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="today-btn.html">todayBtn</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">todayBtn</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if <em>Today</em> button should be visible.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="today-highlight.html">todayHighlight</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">todayHighlight</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if the current day should be highlighted.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validation-info.html">validationInfo</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">validationInfo</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-help-block/index.html"><span class="identifier">HelpBlock</span></a></code>
+<p>Validation info component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="value.html">value</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">value</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span></code>
+<p>Date/time input value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="week-start.html">weekStart</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">weekStart</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Day of the week start. 0 (Sunday) to 6 (Saturday).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-sn-class.html">getSnClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns list of CSS class names for current widget in the form of a List.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-value-as-string.html">getValueAsString</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getValueAsString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns the value of the control as a String.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="hide-popup.html">hidePopup</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hidePopup</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Hides date/time chooser popup.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-event-listeners.html">removeEventListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeEventListeners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Removes all event listeners from current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-event-listener.html">setEventListener</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.time.DateTime$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.form.time.DateTime.setEventListener.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><a href="set-event-listener.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets an event listener for current widget, keeping the actual type of component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.time.DateTime$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.core.Widget)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets an event listener for current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="show-popup.html">showPopup</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">showPopup</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Open date/time chooser popup.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$add(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add-all.html">addAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addAll(kotlin.collections.List((pl.treksoft.kvision.core.Component)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds a list of components to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add-internal.html">addInternal</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addInternal</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addInternal(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Protected and final method to add given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/children-v-nodes.html">childrenVNodes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">childrenVNodes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">VNode</span><span class="symbol">&gt;</span></code>
+<p>Returns the array of the children Snabbdom vnodes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/get-children.html">getChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of children of the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.form/-date-form-control/get-value.html">getValue</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getValue</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span></code>
+<p>Returns the value of the control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$remove(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes given component from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/remove-all.html">removeAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes all children from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
+<p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.form/-date-form-control/set-value.html">setValue</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setValue</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.DateFormControl$setValue(kotlin.Any)/v">v</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the value of the control.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
