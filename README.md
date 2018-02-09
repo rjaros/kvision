@@ -55,4 +55,4 @@ built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Re
 
 ## API documentation
 
-Full API documentation is available at [...](...).
+Full API documentation is available at [https://rjaros.github.io/kvision/api/](https://rjaros.github.io/kvision/api/).
