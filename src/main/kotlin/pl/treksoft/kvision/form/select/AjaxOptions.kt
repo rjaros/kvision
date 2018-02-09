@@ -107,7 +107,7 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
     return obj {
         this.ajax = obj {
             this.url = url
-            this.type = HTTPTYPE.type
+            this.type = httpType.type
             this.dataType = dataType.type
             this.data = data
             this.beforeSend = beforeSend
