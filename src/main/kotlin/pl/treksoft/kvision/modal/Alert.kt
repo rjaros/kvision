@@ -83,7 +83,7 @@ open class Alert(
             }
         }
         this.addButton(okButton)
-        this.setInternalEventListener {
+        this.setEventListener {
             keydown = { e ->
                 if (e.keyCode == ENTER_KEY) {
                     hide()
