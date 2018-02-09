@@ -19,26 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package pl.treksoft.kvision.core
+package pl.treksoft.kvision.utils
 
-        /**
-         * This type is used for accessing resources with CommonJS **require** function.
-         *
-         * e.g. require("./img/picture.png")
-         */
-typealias ResString = String
-
-        /**
-         * Helper type used to define CSS style attributes.
-         */
-typealias StringPair = Pair<String, String>
-
-        /**
-         * Helper type used to define CSS classes.
-         */
-typealias StringBoolPair = Pair<String, Boolean>
-
-        /**
-         * This type is used for defining CSS dimensions (width, heights, margins, paddings, etc.).
-         */
-typealias CssSize = Pair<Int, UNIT>
+/**
+ * Keycode of the ENTER key.
+ */
+const val ENTER_KEY = 13
+/**
+ * Keycode of the ESC key.
+ */
+const val ESC_KEY = 27

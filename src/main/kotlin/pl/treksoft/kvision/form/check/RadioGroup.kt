@@ -1,5 +1,28 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.form.check
 
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.HelpBlock
@@ -7,27 +30,47 @@ import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.core.StringBoolPair
-import pl.treksoft.kvision.core.StringPair
 
+/**
+ * The form field component rendered as a group of HTML *input type="radio"* elements with the same name attribute.
+ *
+ * The radio group can be populated directly from *options* parameter or manually by adding
+ * [Radio] components to the container.
+ *
+ * @constructor
+ * @param options an optional list of options (label to value pairs) for the group
+ * @param value selected option
+ * @param inline determines if the options are rendered inline
+ * @param label label text of the options group
+ * @param rich determines if [label] can contain HTML code
+ */
 open class RadioGroup(
     options: List<StringPair>? = null, value: String? = null, inline: Boolean = false,
     label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(setOf("form-group")), StringFormControl {
 
-    internal var options = options
+    /**
+     * A list of options (label to value pairs) for the group.
+     */
+    var options = options
         set(value) {
             field = value
             setChildrenFromOptions()
         }
 
+    /**
+     * A value of the selected option.
+     */
     override var value = value
         set(value) {
             field = value
             setValueToChildren(value)
         }
 
+    /**
+     * Determines if the options are rendered inline.
+     */
     var inline: Boolean = inline
         set(value) {
             field = value
@@ -39,11 +82,17 @@ open class RadioGroup(
         set(value) {
             setDisabledToChildren(value)
         }
+    /**
+     * The label text of the options group.
+     */
     var label
         get() = flabel.text
         set(value) {
             flabel.text = value
         }
+    /**
+     * Determines if [label] can contain HTML code.
+     */
     var rich
         get() = flabel.rich
         set(value) {
@@ -62,7 +111,7 @@ open class RadioGroup(
     }
 
     companion object {
-        var counter = 0
+        internal var counter = 0
     }
 
     override fun getSnClass(): List<StringBoolPair> {

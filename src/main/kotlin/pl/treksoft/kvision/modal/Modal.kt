@@ -1,46 +1,94 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.core.StringBoolPair
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.utils.obj
 
+/**
+ * Modal window sizes.
+ */
 enum class MODALSIZE(val className: String) {
     LARGE("modal-lg"),
     SMALL("modal-sm")
 }
 
+/**
+ * Configurable modal window based on Bootstrap modal.
+ *
+ * @constructor
+ * @param caption window title
+ * @param closeButton determines if Close button is visible
+ * @param size modal window size
+ * @param animation determines if animations are used
+ * @param escape determines if dialog can be closed with Esc key
+ * @param classes a set of CSS class names
+ */
 @Suppress("TooManyFunctions")
 open class Modal(
     caption: String? = null, closeButton: Boolean = true,
     size: MODALSIZE? = null, animation: Boolean = true, private val escape: Boolean = true,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
-    private var caption
+
+    /**
+     * Window content text.
+     */
+    var caption
         get() = captionTag.text
         set(value) {
             captionTag.text = value
             checkHeaderVisibility()
         }
-    private var closeButton
+    /**
+     * Determines if Close button is visible.
+     */
+    var closeButton
         get() = closeIcon.visible
         set(value) {
             closeIcon.visible = value
             checkHeaderVisibility()
         }
+    /**
+     * Window size.
+     */
     var size
         get() = dialog.size
         set(value) {
             dialog.size = value
         }
-    private var animation = animation
+    /**
+     * Determines if animations are used.
+     */
+    var animation = animation
         set(value) {
             field = value
             refresh()
@@ -48,8 +96,16 @@ open class Modal(
 
     private val dialog = ModalDialog(size)
     private val header = SimplePanel(setOf("modal-header"))
+    /**
+     * @suppress
+     * Internal property.
+     */
     protected val closeIcon = CloseIcon()
     private val captionTag = Tag(TAG.H4, caption, classes = setOf("modal-title"))
+    /**
+     * @suppress
+     * Internal property.
+     */
     protected val body = SimplePanel(setOf("modal-body"))
     private val footer = SimplePanel(setOf("modal-footer"))
 
@@ -99,16 +155,30 @@ open class Modal(
         return this
     }
 
+    /**
+     * Adds given button to the bottom section of dialog window.
+     * @param button a [Button] component
+     * @return this modal
+     */
     open fun addButton(button: Button): Modal {
         footer.add(button)
         return this
     }
 
+    /**
+     * Removes given button from the bottom section of dialog window.
+     * @param button a [Button] component
+     * @return this modal
+     */
     open fun removeButton(button: Button): Modal {
         footer.remove(button)
         return this
     }
 
+    /**
+     * Removes all buttons from the bottom section of dialog window.
+     * @return this modal
+     */
     open fun removeAllButtons(): Modal {
         footer.removeAll()
         return this
@@ -155,6 +225,9 @@ open class Modal(
         return super.hide()
     }
 
+    /**
+     * Toggle modal window visibility.
+     */
     open fun toggle() {
         if (visible)
             hide()
@@ -173,7 +246,17 @@ open class Modal(
     }
 }
 
-open class ModalDialog(size: MODALSIZE?) : SimplePanel(setOf("modal-dialog")) {
+/**
+ * Internal helper class for modal content.
+ *
+ * @constructor
+ * @param size modal window size
+ */
+internal class ModalDialog(size: MODALSIZE?) : SimplePanel(setOf("modal-dialog")) {
+
+    /**
+     * Modal window size.
+     */
     var size = size
         set(value) {
             field = value

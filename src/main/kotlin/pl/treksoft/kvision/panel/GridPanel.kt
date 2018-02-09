@@ -1,24 +1,54 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
-import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.WidgetWrapper
 
-enum class GRIDJUSTIFY(val justify: String) {
+/**
+ * CSS grid justification options.
+ */
+enum class GRIDJUSTIFY(internal val justify: String) {
     START("start"),
     END("end"),
     CENTER("center"),
     STRETCH("stretch")
 }
 
-enum class GRIDALIGN(val align: String) {
+/**
+ * CSS grid alignment options.
+ */
+enum class GRIDALIGN(internal val align: String) {
     START("start"),
     END("end"),
     CENTER("center"),
     STRETCH("stretch")
 }
 
-enum class GRIDJUSTIFYCONTENT(val justifyContent: String) {
+/**
+ * CSS grid content justification options.
+ */
+enum class GRIDJUSTIFYCONTENT(internal val justifyContent: String) {
     START("start"),
     END("end"),
     CENTER("center"),
@@ -28,7 +58,10 @@ enum class GRIDJUSTIFYCONTENT(val justifyContent: String) {
     SPACEEVENLY("space-evenly")
 }
 
-enum class GRIDALIGNCONTENT(val alignContent: String) {
+/**
+ * CSS grid content alignment options.
+ */
+enum class GRIDALIGNCONTENT(internal val alignContent: String) {
     START("start"),
     END("end"),
     CENTER("center"),
@@ -38,13 +71,34 @@ enum class GRIDALIGNCONTENT(val alignContent: String) {
     SPACEEVENLY("space-evenly")
 }
 
-enum class GRIDFLOW(val flow: String) {
+/**
+ * CSS grid flow options.
+ */
+enum class GRIDFLOW(internal val flow: String) {
     ROW("row"),
     COLUMN("column"),
     ROWDENSE("row dense"),
     COLUMNDENSE("column dense")
 }
 
+/**
+ * The container with CSS grid layout support.
+ *
+ * @constructor
+ * @param autoColumns grid auto columns
+ * @param autoRows grid auto rows
+ * @param autoFlow grid auto flow
+ * @param templateColumns grid columns template
+ * @param templateRows grid rows template
+ * @param templateAreas grid areas template
+ * @param columnGap grid column gap
+ * @param rowGap grid row gap
+ * @param justifyItems grid items justification
+ * @param alignItems grid items alignment
+ * @param justifyContent flexbox content justification
+ * @param alignContent flexbox content alignment
+ * @param classes a set of CSS class names
+ */
 open class GridPanel(
     autoColumns: String? = null, autoRows: String? = null, autoFlow: GRIDFLOW? = null,
     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
@@ -52,67 +106,117 @@ open class GridPanel(
     alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
     alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
+
+    /**
+     * CSS grid auto columns.
+     */
     var autoColumns = autoColumns
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid auto rows.
+     */
     var autoRows = autoRows
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid auto flow.
+     */
     var autoFlow = autoFlow
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid columns template.
+     */
     var templateColumns = templateColumns
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid rows template.
+     */
     var templateRows = templateRows
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid areas template.
+     */
     var templateAreas = templateAreas
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid column gap.
+     */
     var columnGap = columnGap
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid row gap.
+     */
     var rowGap = rowGap
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid items justification.
+     */
     var justifyItems = justifyItems
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid items alignment.
+     */
     var alignItems = alignItems
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid content justification.
+     */
     var justifyContent = justifyContent
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS grid content alignment.
+     */
     var alignContent = alignContent
         set(value) {
             field = value
             refresh()
         }
 
+    /**
+     * Adds a component to the grid container.
+     * @param child child component
+     * @param columnStart number of starting column
+     * @param rowStart number of starting row
+     * @param columnEnd number of ending column
+     * @param rowEnd number of ending row
+     * @param area grid area
+     * @param justifySelf child self justification
+     * @param alignSelf child self alignment
+     * @param classes a set of CSS class names
+     * @return current container
+     */
     @Suppress("LongParameterList")
     fun add(
         child: Component, columnStart: Int? = null, rowStart: Int? = null,
@@ -133,7 +237,7 @@ open class GridPanel(
     }
 
     override fun remove(child: Component): GridPanel {
-        children.find { (it as GridWrapper).delegate == child }?.let {
+        children.find { (it as GridWrapper).wrapped == child }?.let {
             super.remove(it)
             it.dispose()
         }

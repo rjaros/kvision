@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.data
 
 import com.github.snabbdom.VNode
@@ -7,8 +28,18 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.VPanel
 
-class DataContainer<M : DataComponent, C : Widget>(
-    val model: ObservableList<M>,
+/**
+ * A container class with support for observable data model.
+ *
+ * @constructor Creates DataContainer bound to given data model.
+ * @param M base data model type
+ * @param C base component type
+ * @param model data model of type *ObservableList<M>*
+ * @param binding a function which creates component C from data model at given index
+ * @param child internal container (defaults to [VPanel])
+ */
+class DataContainer<M : DataComponent, C : Component>(
+    private val model: ObservableList<M>,
     private val binding: (Int) -> C,
     private val child: Container = VPanel()
 ) :
@@ -58,8 +89,9 @@ class DataContainer<M : DataComponent, C : Widget>(
         return this.child.renderVNode()
     }
 
-    fun get(index: Int): M = model[index]
-
+    /**
+     * Updates view from the current data model state.
+     */
     override fun update() {
         model.forEach { it.container = this }
         singleRender {
@@ -69,11 +101,20 @@ class DataContainer<M : DataComponent, C : Widget>(
         onUpdateHandler?.invoke()
     }
 
+    /**
+     * Sets a notification handler called after every update.
+     * @param handler notification handler
+     * @return current container
+     */
     fun onUpdate(handler: () -> Unit): DataContainer<M, C> {
         onUpdateHandler = handler
         return this
     }
 
+    /**
+     * Clears notification handler.
+     * @return current container
+     */
     fun clearOnUpdate(): DataContainer<M, C> {
         onUpdateHandler = null
         return this

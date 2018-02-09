@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
@@ -6,31 +27,57 @@ import pl.treksoft.kvision.html.ALIGN
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 
-enum class GRIDSIZE(val size: String) {
+/**
+ * Bootstrap grid sizes.
+ */
+enum class GRIDSIZE(internal val size: String) {
     XS("xs"),
     SM("sm"),
     MD("md"),
     LG("lg")
 }
 
-const val MAX_COLUMNS = 12
+internal const val MAX_COLUMNS = 12
 
 internal data class WidgetParam(val widget: Component, val size: Int, val offset: Int)
 
+/**
+ * The container with support for Bootstrap responsive grid layout.
+ *
+ * @constructor
+ * @param gridsize grid size
+ * @param rows number of rows
+ * @param cols number of columns
+ * @param align text align of grid cells
+ * @param classes a set of CSS class names
+ */
 open class ResponsiveGridPanel(
     private val gridsize: GRIDSIZE = GRIDSIZE.MD,
     private var rows: Int = 0, private var cols: Int = 0, align: ALIGN? = null,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
-    protected var align = align
+
+    /**
+     * Text align of grid cells.
+     */
+    var align = align
         set(value) {
             field = value
-            refresh()
+            refreshRowContainers()
         }
 
     internal val map = mutableMapOf<Int, MutableMap<Int, WidgetParam>>()
     private var auto: Boolean = true
 
+    /**
+     * Adds child component to the grid.
+     * @param child child component
+     * @param col column number
+     * @param row row number
+     * @param size cell size (colspan)
+     * @param offset cell offset
+     * @return this container
+     */
     open fun add(child: Component, col: Int, row: Int, size: Int = 0, offset: Int = 0): ResponsiveGridPanel {
         val cRow = if (row < 0) 0 else row
         val cCol = if (col < 0) 0 else col
@@ -68,6 +115,12 @@ open class ResponsiveGridPanel(
         return this
     }
 
+    /**
+     * Removes child component at given location (column, row).
+     * @param col column number
+     * @param row row number
+     * @return this container
+     */
     open fun removeAt(col: Int, row: Int): ResponsiveGridPanel {
         map[row]?.remove(col)
         refreshRowContainers()
@@ -75,7 +128,7 @@ open class ResponsiveGridPanel(
     }
 
     @Suppress("ComplexMethod", "NestedBlockDepth")
-    protected open fun refreshRowContainers() {
+    private fun refreshRowContainers() {
         singleRender {
             clearRowContainers()
             val num = MAX_COLUMNS / cols

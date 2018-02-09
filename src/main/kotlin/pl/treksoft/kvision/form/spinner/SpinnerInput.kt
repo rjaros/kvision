@@ -1,29 +1,69 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.form.spinner
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
-import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.utils.obj
 
+/**
+ * Spinner buttons layout types.
+ */
 enum class BUTTONSTYPE {
     NONE,
     HORIZONTAL,
     VERTICAL
 }
 
-enum class FORCETYPE(val value: String) {
+/**
+ * Spinner force rounding types.
+ */
+enum class FORCETYPE(internal val value: String) {
     NONE("none"),
     ROUND("round"),
     FLOOR("floor"),
     CEIL("cail")
 }
 
-const val DEFAULT_STEP = 1.0
-const val DEFAULT_MAX = 100
+internal const val DEFAULT_STEP = 1.0
+internal const val DEFAULT_MAX = 100
 
+/**
+ * The basic component for spinner control.
+ *
+ * @constructor
+ * @param value spinner value
+ * @param min minimal value (default 0)
+ * @param max maximal value (default 100)
+ * @param step step value (default 1)
+ * @param decimals number of decimal digits (default 0)
+ * @param buttonsType spinner buttons type
+ * @param forceType spinner force rounding type
+ * @param classes a set of CSS class names
+ */
 @Suppress("TooManyFunctions")
 open class SpinnerInput(
     value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
@@ -53,72 +93,117 @@ open class SpinnerInput(
         }
     }
 
+    /**
+     * Spinner value.
+     */
     var value: Number? = value
         set(value) {
             field = value
             refreshState()
         }
+    /**
+     * The value attribute of the generated HTML input element.
+     *
+     * This value is placed directly in generated HTML code, while the [value] property is dynamically
+     * bound to the spinner input value.
+     */
     var startValue: Number? = value
         set(value) {
             field = value
             this.value = value
             refresh()
         }
+    /**
+     * Minimal value.
+     */
     var min: Int = min
         set(value) {
             field = value
             refreshSpinner()
         }
+    /**
+     * Maximal value.
+     */
     var max: Int = max
         set(value) {
             field = value
             refreshSpinner()
         }
+    /**
+     * Step value.
+     */
     var step: Double = step
         set(value) {
             field = value
             refreshSpinner()
         }
+    /**
+     * Number of decimal digits value.
+     */
     var decimals: Int = decimals
         set(value) {
             field = value
             refreshSpinner()
         }
+    /**
+     * Spinner buttons type.
+     */
     var buttonsType: BUTTONSTYPE = buttonsType
         set(value) {
             field = value
             refreshSpinner()
         }
+    /**
+     * Spinner force rounding type.
+     */
     var forceType: FORCETYPE = forceType
         set(value) {
             field = value
             refreshSpinner()
         }
+    /**
+     * The placeholder for the spinner input.
+     */
     var placeholder: String? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * The name attribute of the generated HTML input element.
+     */
     var name: String? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * Determines if the field is disabled.
+     */
     var disabled: Boolean = false
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * Determines if the spinner is automatically focused.
+     */
     var autofocus: Boolean? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * Determines if the spinner is read-only.
+     */
     var readonly: Boolean? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * The size of the input.
+     */
     var size: INPUTSIZE? = null
         set(value) {
             field = value
@@ -128,7 +213,7 @@ open class SpinnerInput(
     private var siblings: JQuery? = null
 
     override fun render(): VNode {
-        return kvh("input")
+        return render("input")
     }
 
     override fun getSnClass(): List<StringBoolPair> {
@@ -206,15 +291,25 @@ open class SpinnerInput(
         siblings = null
     }
 
+    /**
+     * Returns the value of the spinner as a String.
+     * @return value as a String
+     */
     fun getValueAsString(): String? {
         return value?.toString()
     }
 
+    /**
+     * Change value in plus.
+     */
     fun spinUp(): SpinnerInput {
         getElementJQueryD()?.trigger("touchspin.uponce")
         return this
     }
 
+    /**
+     * Change value in minus.
+     */
     fun spinDown(): SpinnerInput {
         getElementJQueryD()?.trigger("touchspin.downonce")
         return this

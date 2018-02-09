@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.utils
 
 import com.github.snabbdom.Attrs
@@ -14,8 +35,14 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 
+/**
+ * JavaScript Object type
+ */
 external class Object
 
+/**
+ * Helper function for creating JavaScript objects.
+ */
 fun obj(init: dynamic.() -> Unit): dynamic {
     return (Object()).apply(init)
 }
@@ -23,15 +50,26 @@ fun obj(init: dynamic.() -> Unit): dynamic {
 @Suppress("UnsafeCastFromDynamic")
 private fun vNodeData(): VNodeData = js("({})")
 
+/**
+ * @suppress
+ * Internal interface.
+ */
 interface KvJQueryEventObject : JQueryEventObject {
     val clickedIndex: Int
 }
 
+/**
+ * Helper class for defining custom events.
+ */
 @Suppress("UnsafeCastFromDynamic")
 class KvEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, eventInitDict) {
     override val detail: KvJQueryEventObject = obj {}
 }
 
+/**
+ * @suppress
+ * Internal interface.
+ */
 interface BtOn : On {
     var showBsDropdown: ((KvEvent) -> kotlin.Unit)?
     var shownBsDropdown: ((KvEvent) -> kotlin.Unit)?
@@ -59,10 +97,17 @@ interface BtOn : On {
     var updateModel: ((KvEvent) -> kotlin.Unit)?
 }
 
+/**
+ * @suppress
+ * Internal interface.
+ */
 interface SnOn<T> : BtOn {
     var self: T
 }
 
+/**
+ * Helper function for creating object parameters for Snabbdom.
+ */
 fun snOpt(block: VNodeData.() -> Unit) = (vNodeData()::apply)(block)
 
 @Suppress("UnsafeCastFromDynamic")
@@ -77,6 +122,9 @@ internal fun hooks(): Hooks {
     return js("({})")
 }
 
+/**
+ * Helper function for creating style parameters for Snabbdom.
+ */
 @Suppress("UnsafeCastFromDynamic")
 fun snStyle(pairs: List<StringPair>): VNodeStyle {
     return obj {
@@ -84,6 +132,9 @@ fun snStyle(pairs: List<StringPair>): VNodeStyle {
     }
 }
 
+/**
+ * Helper function for creating properties parameters for Snabbdom.
+ */
 @Suppress("UnsafeCastFromDynamic")
 fun snProps(pairs: List<StringPair>): Props {
     return obj {
@@ -91,6 +142,9 @@ fun snProps(pairs: List<StringPair>): Props {
     }
 }
 
+/**
+ * Helper function for creating classes parameters for Snabbdom.
+ */
 @Suppress("UnsafeCastFromDynamic")
 fun snClasses(pairs: List<StringBoolPair>): Classes {
     return obj {
@@ -98,6 +152,9 @@ fun snClasses(pairs: List<StringBoolPair>): Classes {
     }
 }
 
+/**
+ * Helper function for creating attributes parameters for Snabbdom.
+ */
 @Suppress("UnsafeCastFromDynamic")
 fun snAttrs(pairs: List<StringPair>): Attrs {
     return obj {

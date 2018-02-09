@@ -1,22 +1,59 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.KVManager.KVNULL
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.KVManager.KVNULL
+import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.INPUTSIZE
 import pl.treksoft.kvision.html.BUTTONSTYLE
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.core.StringBoolPair
-import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.asString
+import pl.treksoft.kvision.utils.obj
 
-enum class SELECTWIDTHTYPE(val value: String) {
+/**
+ * Select width types. See [Bootstrap Select width](http://silviomoreto.github.io/bootstrap-select/examples/#width).
+ */
+enum class SELECTWIDTHTYPE(internal val value: String) {
     AUTO("auto"),
     FIT("fit")
 }
 
+/**
+ * The basic component for Select control.
+ *
+ * The select control can be populated directly from *options* parameter or manually by adding
+ * [SelectOption] or [SelectOptGroup] components to the container.
+ *
+ * @constructor
+ * @param options an optional list of options (label to value pairs) for the select control
+ * @param value selected value
+ * @param multiple allows multiple value selection (multiple values are comma delimited)
+ * @param ajaxOptions additional options for remote (AJAX) data source
+ * @param classes a set of CSS class names
+ */
 @Suppress("TooManyFunctions")
 open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
@@ -24,85 +61,122 @@ open class SelectInput(
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
 
+    /**
+     * A list of options (label to value pairs) for the select control.
+     */
     internal var options = options
         set(value) {
             field = value
             setChildrenFromOptions()
         }
-
+    /**
+     * A value of the selected option.
+     */
     var value: String? = value
         set(value) {
             field = value
             refreshState()
         }
-
-    var startValue: String? = value
-        set(value) {
-            field = value
-            this.value = value
-            refresh()
-        }
+    /**
+     * The name attribute of the generated HTML select element.
+     */
     var name: String? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * Determines if multiple value selection is allowed.
+     */
     var multiple: Boolean = multiple
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * Additional options for remote (AJAX) data source.
+     */
     var ajaxOptions: AjaxOptions? = ajaxOptions
         set(value) {
             field = value
             if (value != null) liveSearch = true
             refresh()
         }
+    /**
+     * Maximal number of selected options.
+     */
     var maxOptions: Int? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * Determines if live search is available.
+     */
     var liveSearch: Boolean = false
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * The placeholder for the select control.
+     */
     var placeholder: String? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * The style of the select control.
+     */
     var style: BUTTONSTYLE? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * The width of the select control.
+     */
     var selectWidth: CssSize? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * The width type of the select control.
+     */
     var selectWidthType: SELECTWIDTHTYPE? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * Determines if an empty option is automatically generated.
+     */
     var emptyOption: Boolean = false
         set(value) {
             field = value
             setChildrenFromOptions()
         }
+    /**
+     * Determines if the field is disabled.
+     */
     var disabled: Boolean = false
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * Determines if the select is automatically focused.
+     */
     var autofocus: Boolean? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * The size of the input.
+     */
     var size: INPUTSIZE? = null
         set(value) {
             field = value
@@ -141,7 +215,7 @@ open class SelectInput(
     }
 
     override fun render(): VNode {
-        return kvh("select", childrenVNodes())
+        return render("select", childrenVNodes())
     }
 
     override fun add(child: Component): SimplePanel {
@@ -184,20 +258,25 @@ open class SelectInput(
         this.refreshSelectInput()
     }
 
+    /**
+     * Opens dropdown with options.
+     */
     open fun showOptions() {
         getElementJQueryD()?.selectpicker("show")
     }
 
+    /**
+     * Hides dropdown with options.
+     */
     open fun hideOptions() {
         getElementJQueryD()?.selectpicker("hide")
     }
 
+    /**
+     * Toggles visibility of dropdown with options.
+     */
     open fun toggleOptions() {
         getElementJQueryD()?.selectpicker("toggle")
-    }
-
-    open fun deselect() {
-        getElementJQueryD()?.selectpicker("deselectAll")
     }
 
     override fun getSnClass(): List<StringBoolPair> {
@@ -209,7 +288,7 @@ open class SelectInput(
         return cl
     }
 
-    fun refreshSelectInput() {
+    private fun refreshSelectInput() {
         getElementJQueryD()?.selectpicker("refresh")
         refreshState()
     }

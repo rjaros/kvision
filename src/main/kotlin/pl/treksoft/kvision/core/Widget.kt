@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.core
 
 import com.github.snabbdom.VNode
@@ -17,6 +38,14 @@ import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
 import pl.treksoft.kvision.utils.snStyle
 
+/**
+ * Base widget class. The parent of all component classes.
+ *
+ * A simple widget is rendered as HTML DIV element.
+ *
+ * @constructor Creates basic Widget with given CSS class names.
+ * @param classes Set of CSS class names
+ */
 @Suppress("TooManyFunctions", "LargeClass")
 open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
@@ -33,22 +62,31 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
             field = value
             if (oldField != field) refresh()
         }
+    /**
+     * A title attribute of generated HTML element.
+     */
     var title: String? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * An ID attribute of generated HTML element.
+     */
     var id: String? = null
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * A role attribute of generated HTML element.
+     */
     var role: String? = null
         set(value) {
             field = value
             refresh()
         }
-    var surroundingSpan: Boolean = false
+    internal var surroundingSpan: Boolean = false
         set(value) {
             field = value
             refresh()
@@ -62,7 +100,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     private var snOnCache: com.github.snabbdom.On? = null
     private var snHooksCache: com.github.snabbdom.Hooks? = null
 
-    protected fun <T> singleRender(block: () -> T): T {
+    internal fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true
         val t = block()
         getRoot()?.renderDisabled = false
@@ -89,18 +127,38 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         }
     }
 
+    /**
+     * Renders current component as a Snabbdom vnode.
+     * @return Snabbdom vnode
+     */
     protected open fun render(): VNode {
-        return kvh("div")
+        return render("div")
     }
 
-    protected open fun kvh(s: String): VNode {
-        return h(s, getSnOpt())
+    /**
+     * Renders current component as a Snabbdom vnode.
+     * @param elementName HTML element name
+     * @return Snabbdom vnode
+     */
+    protected open fun render(elementName: String): VNode {
+        return h(elementName, getSnOpt())
     }
 
-    protected open fun kvh(s: String, children: Array<dynamic>): VNode {
-        return h(s, getSnOpt(), children)
+    /**
+     * Renders current component as a Snabbdom vnode.
+     * @param elementName HTML element name
+     * @param children array of children nodes
+     * @return Snabbdom vnode
+     */
+    protected open fun render(elementName: String, children: Array<dynamic>): VNode {
+        return h(elementName, getSnOpt(), children)
     }
 
+    /**
+     * Generates VNodeData to creating Snabbdom VNode.
+     *
+     * Optimizes creating process by keeping configuration attributes in a cache.
+     */
     private fun getSnOpt(): VNodeData {
         return snOpt {
             attrs = snAttrs(getSnAttrsInternal())
@@ -143,10 +201,18 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         }()
     }
 
+    /**
+     * Returns list of CSS class names for current widget in the form of a List<StringBoolPair>.
+     * @return list of CSS class names
+     */
     protected open fun getSnClass(): List<StringBoolPair> {
         return classes.map { c -> c to true } + if (visible) listOf() else listOf("hidden" to true)
     }
 
+    /**
+     * Returns list of element attributes in the form of a List<StringPair>.
+     * @return list of element attributes
+     */
     protected open fun getSnAttrs(): List<StringPair> {
         val snattrs = mutableListOf<StringPair>()
         id?.let {
@@ -161,6 +227,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return snattrs
     }
 
+    /**
+     * Returns list of event handlers in the form of a Snabbdom *On* object.
+     * @return list of event handlers
+     */
     protected open fun getSnOn(): com.github.snabbdom.On? {
         return if (internalListeners.size > 0 || listeners.size > 0) {
             val internalHandlers = on(this)
@@ -209,6 +279,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         }
     }
 
+    /**
+     * Returns list of hooks in the form of a Snabbdom *Hooks* object.
+     * @return list of hooks
+     */
     protected open fun getSnHooks(): com.github.snabbdom.Hooks? {
         val hooks = hooks()
         hooks.apply {
@@ -236,6 +310,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return hooks
     }
 
+    /**
+     * @suppress
+     * Internal function
+     */
     @Suppress("UNCHECKED_CAST")
     protected fun <T : Widget> setInternalEventListener(block: SnOn<T>.() -> Unit): Widget {
         internalListeners.add(block as SnOn<Widget>.() -> Unit)
@@ -243,12 +321,31 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this
     }
 
+    /**
+     * @suppress
+     * Internal function
+     */
     protected fun setInternalEventListener(block: SnOn<Widget>.() -> Unit): Widget {
         internalListeners.add(block)
         refresh()
         return this
     }
 
+    /**
+     * Sets an event listener for current widget, keeping the actual type of component.
+     * @param T widget type
+     * @param block event handler
+     * @return current widget
+     *
+     * Example:
+     *
+     *      button.setEventListener<Button> {
+     *          dblclick = {
+     *              Alert.show("Button double clicked!")
+     *              // self is of type Button here
+     *          }
+     *      }
+     */
     @Suppress("UNCHECKED_CAST")
     open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Widget {
         listeners.add(block as SnOn<Widget>.() -> Unit)
@@ -256,28 +353,58 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this
     }
 
+    /**
+     * Sets an event listener for current widget.
+     * @param block event handler
+     * @return current widget
+     *
+     * Example:
+     *
+     *      button.setEventListener {
+     *          dblclick = {
+     *              Alert.show("Button double clicked!")
+     *              // self is of type Widget here
+     *          }
+     *      }
+     */
     open fun setEventListener(block: SnOn<Widget>.() -> Unit): Widget {
         listeners.add(block)
         refresh()
         return this
     }
 
+    /**
+     * Removes all event listeners from current widget.
+     * @return current widget
+     */
     open fun removeEventListeners(): Widget {
         listeners.clear()
         refresh()
         return this
     }
 
+    /**
+     * Makes current widget visible.
+     * @return current widget
+     */
     open fun show(): Widget {
         visible = true
         return this
     }
 
+    /**
+     * Makes current widget invisible.
+     * @return current widget
+     */
     open fun hide(): Widget {
         visible = false
         return this
     }
 
+    /**
+     * Toggles visibility of current widget.
+     * @return current widget
+     */
     open fun toggleVisible(): Widget {
         return if (visible) hide() else show()
     }
@@ -333,15 +460,27 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this
     }
 
+    /**
+     * Method called after creating Snabbdom vnode.
+     */
     protected open fun afterCreate(node: VNode) {
     }
 
+    /**
+     * Method called after inserting Snabbdom vnode into the DOM.
+     */
     protected open fun afterInsert(node: VNode) {
     }
 
+    /**
+     * Method called after updating Snabbdom vnode.
+     */
     protected open fun afterPostpatch(node: VNode) {
     }
 
+    /**
+     * Method called after destroying Snabbdom vnode.
+     */
     protected open fun afterDestroy() {
     }
 
@@ -349,6 +488,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this.parent?.getRoot()
     }
 
+    /**
+     * @suppress
+     * Internal function
+     */
     protected open fun createLabelWithIcon(
         label: String, icon: String? = null,
         image: ResString? = null

@@ -1,12 +1,37 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
 import pl.treksoft.kvision.KVManager
-import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.panel.SimplePanel
 
-enum class LIST(val tagName: String) {
+/**
+ * HTML list types.
+ */
+enum class LISTTYPE(internal val tagName: String) {
     UL("ul"),
     OL("ol"),
     UNSTYLED("ul"),
@@ -15,21 +40,42 @@ enum class LIST(val tagName: String) {
     DL_HORIZ("dl")
 }
 
+/**
+ * HTML list component.
+ *
+ * The list component can be populated directly from *elements* parameter or manually by adding
+ * any [Component] to the container.
+ *
+ * @constructor
+ * @param type list type
+ * @param elements optional list of elements
+ * @param rich determines if [elements] can contain HTML code
+ * @param classes a set of CSS class names
+ */
 open class ListTag(
-    type: LIST, elements: List<String>? = null, rich: Boolean = false,
+    type: LISTTYPE, elements: List<String>? = null, rich: Boolean = false,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
+    /**
+     * List type.
+     */
     var type = type
         set(value) {
             field = value
             refresh()
         }
-    private var elements = elements
+    /**
+     * List of elements.
+     */
+    var elements = elements
         set(value) {
             field = value
             refresh()
         }
-    private var rich = rich
+    /**
+     * Determines if [elements] can contain HTML code.
+     */
+    var rich = rich
         set(value) {
             field = value
             refresh()
@@ -37,29 +83,31 @@ open class ListTag(
 
     override fun render(): VNode {
         val childrenElements = when (type) {
-            LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> elements?.map { el -> element("li", el, rich) }
-            LIST.DL, LIST.DL_HORIZ -> elements?.mapIndexed { index, el ->
+            LISTTYPE.UL, LISTTYPE.OL, LISTTYPE.UNSTYLED, LISTTYPE.INLINE -> elements?.map { el ->
+                element("li", el, rich)
+            }
+            LISTTYPE.DL, LISTTYPE.DL_HORIZ -> elements?.mapIndexed { index, el ->
                 element(if (index % 2 == 0) "dt" else "dd", el, rich)
             }
         }?.toTypedArray()
         return if (childrenElements != null) {
-            kvh(type.tagName, childrenElements + childrenVNodes())
+            render(type.tagName, childrenElements + childrenVNodes())
         } else {
-            kvh(type.tagName, childrenVNodes())
+            render(type.tagName, childrenVNodes())
         }
     }
 
     override fun childrenVNodes(): Array<VNode> {
         val childrenElements = children.filter { it.visible }
         val res = when (type) {
-            LIST.UL, LIST.OL, LIST.UNSTYLED, LIST.INLINE -> childrenElements.map { v ->
+            LISTTYPE.UL, LISTTYPE.OL, LISTTYPE.UNSTYLED, LISTTYPE.INLINE -> childrenElements.map { v ->
                 if (v is Tag && v.type == TAG.LI) {
                     v.renderVNode()
                 } else {
                     h("li", arrayOf(v.renderVNode()))
                 }
             }
-            LIST.DL, LIST.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
+            LISTTYPE.DL, LISTTYPE.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
                 if (v is Tag && v.type == TAG.LI) {
                     v.renderVNode()
                 } else {
@@ -82,9 +130,9 @@ open class ListTag(
         val cl = super.getSnClass().toMutableList()
         @Suppress("NON_EXHAUSTIVE_WHEN")
         when (type) {
-            LIST.UNSTYLED -> cl.add("list-unstyled" to true)
-            LIST.INLINE -> cl.add("list-inline" to true)
-            LIST.DL_HORIZ -> cl.add("dl-horizontal" to true)
+            LISTTYPE.UNSTYLED -> cl.add("list-unstyled" to true)
+            LISTTYPE.INLINE -> cl.add("list-inline" to true)
+            LISTTYPE.DL_HORIZ -> cl.add("dl-horizontal" to true)
         }
         return cl
     }

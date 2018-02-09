@@ -13,7 +13,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.26"
+        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.27"
         classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC6-2"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
     }
@@ -106,6 +106,7 @@ dokka {
     classpath = [new File("dokka/kvision-dokka-helper.jar")]
     outputFormat = 'html'
     outputDirectory = "$buildDir/kdoc"
+    reportUndocumented = false
     impliedPlatforms = ["JS"]
 }
 
@@ -140,7 +141,8 @@ task copyResourcesForTests(type: Copy) {
 if (!project.gradle.startParameter.taskNames.contains("dokka")) {
     afterEvaluate {
         tasks.getByName("webpack-bundle") { dependsOn(copyResources) }
-        tasks.getByName("webpack-run") { dependsOn(copyResources, copyResourcesForTests) }
+        tasks.getByName("webpack-run") { dependsOn(copyResources) }
+        tasks.getByName("karma-start") { dependsOn(copyResources, copyResourcesForTests) }
     }
 }
 

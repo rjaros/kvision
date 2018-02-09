@@ -1,25 +1,55 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.StyledComponent
 import pl.treksoft.kvision.core.WidgetWrapper
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.utils.px
 
-enum class FLEXDIR(val dir: String) {
+/**
+ * CSS flexbox directions.
+ */
+enum class FLEXDIR(internal val dir: String) {
     ROW("row"),
     ROWREV("row-reverse"),
     COLUMN("column"),
     COLUMNREV("column-reverse")
 }
 
-enum class FLEXWRAP(val wrap: String) {
+/**
+ * CSS flexbox wrap modes.
+ */
+enum class FLEXWRAP(internal val wrap: String) {
     NOWRAP("nowrap"),
     WRAP("wrap"),
     WRAPREV("wrap-reverse")
 }
 
-enum class FLEXJUSTIFY(val justify: String) {
+/**
+ * CSS flexbox justification options.
+ */
+enum class FLEXJUSTIFY(internal val justify: String) {
     FLEXSTART("flex-start"),
     FLEXEND("flex-end"),
     CENTER("center"),
@@ -28,7 +58,10 @@ enum class FLEXJUSTIFY(val justify: String) {
     SPACEEVENLY("space-evenly")
 }
 
-enum class FLEXALIGNITEMS(val alignItems: String) {
+/**
+ * CSS flexbox alignments options.
+ */
+enum class FLEXALIGNITEMS(internal val alignItems: String) {
     FLEXSTART("flex-start"),
     FLEXEND("flex-end"),
     CENTER("center"),
@@ -36,7 +69,10 @@ enum class FLEXALIGNITEMS(val alignItems: String) {
     STRETCH("stretch")
 }
 
-enum class FLEXALIGNCONTENT(val alignContent: String) {
+/**
+ * CSS flexbox content alignment options.
+ */
+enum class FLEXALIGNCONTENT(internal val alignContent: String) {
     FLEXSTART("flex-start"),
     FLEXEND("flex-end"),
     CENTER("center"),
@@ -45,37 +81,68 @@ enum class FLEXALIGNCONTENT(val alignContent: String) {
     STRETCH("stretch")
 }
 
+/**
+ * The container with CSS flexbox layout support.
+ *
+ * @constructor
+ * @param direction flexbox direction
+ * @param wrap flexbox wrap
+ * @param justify flexbox content justification
+ * @param alignItems flexbox items alignment
+ * @param alignContent flexbox content alignment
+ * @param spacing spacing between columns/rows
+ * @param classes a set of CSS class names
+ */
 open class FlexPanel(
     direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
     alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
     spacing: Int? = null, classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
+
+    /**
+     * CSS flexbox direction.
+     */
     var direction = direction
         set(value) {
             field = value
             refreshSpacing()
             refresh()
         }
+    /**
+     * CSS flexbox wrap mode.
+     */
     var wrap = wrap
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS flexbox content justification.
+     */
     var justify = justify
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS flexbox items alignment.
+     */
     var alignItems = alignItems
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * CSS flexbox content alignment.
+     */
     var alignContent = alignContent
         set(value) {
             field = value
             refresh()
         }
+    /**
+     * The spacing between columns/rows.
+     */
     var spacing = spacing
         set(value) {
             field = value
@@ -83,6 +150,16 @@ open class FlexPanel(
             refresh()
         }
 
+    /**
+     * Adds a component to the flexbox container.
+     * @param child child component
+     * @param order child flexbox ordering
+     * @param grow child flexbox grow
+     * @param shrink child flexbox shrink
+     * @param basis child flexbox basis
+     * @param alignSelf child self alignment
+     * @param classes a set of CSS class names
+     */
     @Suppress("LongParameterList")
     fun add(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
@@ -123,7 +200,7 @@ open class FlexPanel(
     }
 
     override fun remove(child: Component): FlexPanel {
-        children.find { (it as FlexWrapper).delegate == child }?.let {
+        children.find { (it as FlexWrapper).wrapped == child }?.let {
             super.remove(it)
             it.dispose()
         }
@@ -162,7 +239,10 @@ open class FlexPanel(
     }
 }
 
-class FlexWrapper(
+/**
+ * Helper class form CSS flexbox layout.
+ */
+internal class FlexWrapper(
     delegate: Component, private val order: Int? = null, private val grow: Int? = null,
     private val shrink: Int? = null, private val basis: Int? = null,
     private val alignSelf: FLEXALIGNITEMS? = null,

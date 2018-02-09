@@ -1,45 +1,91 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.Widget
 
+/**
+ * The helper component for adding options to [Select] or [SelectOptGroup].
+ *
+ * @constructor
+ * @param value the value of the option
+ * @param label the label of the option
+ * @param subtext the small subtext after the label of the option
+ * @param icon the icon before the label of the option
+ * @param divider renders this option as a divider
+ * @param disabled renders a disabled option
+ * @param classes a set of CSS class names
+ */
 open class SelectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false,
     classes: Set<String> = setOf()
 ) : Widget(classes) {
 
+    /**
+     * The value of the option.
+     */
     var value: String? = value
         set(value) {
             field = value
             refresh()
         }
-
+    /**
+     * The label of the option.
+     */
     var label: String? = label
         set(value) {
             field = value
             refresh()
         }
-
+    /**
+     * The subtext after the label of the option.
+     */
     var subtext: String? = subtext
         set(value) {
             field = value
             refresh()
         }
-
+    /**
+     * The icon before the label of the option.
+     */
     var icon: String? = icon
         set(value) {
             field = value
             refresh()
         }
-
+    /**
+     * Determines if the option should be rendered as divider.
+     */
     var divider: Boolean = divider
         set(value) {
             field = value
             refresh()
         }
-
+    /**
+     * Determines if the option should be disabled.
+     */
     var disabled: Boolean = disabled
         set(value) {
             field = value
@@ -48,9 +94,9 @@ open class SelectOption(
 
     override fun render(): VNode {
         return if (!divider) {
-            kvh("option", arrayOf(label ?: value))
+            render("option", arrayOf(label ?: value))
         } else {
-            kvh("option")
+            render("option")
         }
     }
 
