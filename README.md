@@ -49,9 +49,92 @@ built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Re
         
 4. Open [http://localhost:8088/](http://localhost:8088/) in your browser.
 
-## Tutorial
+## Usage samples
 
-{{TBD}}
+### Hello world
+
+        val root = Root("root")
+        val label = Label("Hello world!")
+        root.add(label)
+
+### Basic components interactions
+
+##### Simple, explicit way
+
+        val root = Root("root")
+        val panel = HPanel(spacing = 20, alignItems = FLEXALIGNITEMS.CENTER)
+        val label = Label("Not yet clicked.")
+        panel.add(label)
+        var count = 0
+        val button = Button("Click me")
+        button.onClick {
+            count++
+            label.text = "You clicked the button $count times."
+        }
+        panel.add(button)
+        root.add(panel)
+
+##### Using Kotlin language features
+
+        Root("root").add(
+            HPanel(spacing = 20, alignItems = FLEXALIGNITEMS.CENTER).apply {
+                val label = Label("Not yet clicked.").also { add(it) }
+                var count = 0
+                add(Button("Click me").onClick {
+                    label.text = "You clicked the button ${++count} times."
+                })
+            }
+        )
+
+### Tab panel with JavaScript routing
+
+        val firstPanel = Tag(TAG.DIV, "First")
+        val secondPanel = Tag(TAG.DIV, "Second")
+        val thirdPanel = Tag(TAG.DIV, "Third")
+
+        Root("root").add(TabPanel().apply {
+            addTab("First", firstPanel, route = "/first")
+            addTab("Second", secondPanel, route = "/second")
+            addTab("Third", thirdPanel, route = "/third")
+        })
+
+### Type safe forms
+
+        data class Model(val username: String?, val password: String?)
+
+        Root("root").add(FormPanel {
+            Model(it.string("username"), it.string("password"))
+        }.apply {
+            add("username", Text(label = "Username"), required = true)
+            add("password", Password(label = "Password"), required = true)
+            add(Button("OK").onClick {
+                val data: Data = this@apply.getData()
+                println("Username: ${data.username}")
+                println("Password: ${data.password}")
+            })
+        })
+        
+### Data binding with observable data model
+
+        class Data(text: String) : BaseDataComponent() {
+            var text: String by obs(text)
+        }
+        val model = observableListOf(
+            Data("One"),
+            Data("Two"),
+            Data("Three")
+        )
+        Root("root").add(DataContainer(model, { index ->
+            Label(model[index].text)
+        }, child = HPanel(spacing = 10, wrap = FLEXWRAP.WRAP)))
+
+        launch { // Kotlin coroutines
+            while (true) {
+                delay(1000)
+                model.reverse()
+            }
+        }
+
 
 ## API documentation
 
