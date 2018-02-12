@@ -98,13 +98,14 @@ enum class GRIDFLOW(internal val flow: String) {
  * @param justifyContent flexbox content justification
  * @param alignContent flexbox content alignment
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class GridPanel(
     autoColumns: String? = null, autoRows: String? = null, autoFlow: GRIDFLOW? = null,
     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
     alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
-    alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf()
+    alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -203,6 +204,11 @@ open class GridPanel(
             field = value
             refresh()
         }
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     /**
      * Adds a component to the grid container.

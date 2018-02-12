@@ -47,14 +47,20 @@ enum class DIRECTION(internal val dir: String) {
  * @constructor
  * @param direction direction of the splitter
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class SplitPanel(
     private val direction: DIRECTION = DIRECTION.VERTICAL,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
 ) : SimplePanel(classes + ("splitpanel-" + direction.dir)) {
 
     @Suppress("LeakingThis")
     internal val splitter = Splitter(this, direction)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun afterInsertSplitter() {

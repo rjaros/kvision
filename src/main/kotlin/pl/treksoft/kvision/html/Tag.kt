@@ -87,10 +87,11 @@ enum class ALIGN(val className: String) {
  * @param rich determines if [text] can contain HTML code
  * @param align text align
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class Tag(
     type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN? = null,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -125,6 +126,11 @@ open class Tag(
             field = value
             refresh()
         }
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return if (text != null) {

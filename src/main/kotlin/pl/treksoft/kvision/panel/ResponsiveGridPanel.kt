@@ -50,11 +50,12 @@ internal data class WidgetParam(val widget: Component, val size: Int, val offset
  * @param cols number of columns
  * @param align text align of grid cells
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class ResponsiveGridPanel(
     private val gridsize: GRIDSIZE = GRIDSIZE.MD,
     private var rows: Int = 0, private var cols: Int = 0, align: ALIGN? = null,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -68,6 +69,11 @@ open class ResponsiveGridPanel(
 
     internal val map = mutableMapOf<Int, MutableMap<Int, WidgetParam>>()
     private var auto: Boolean = true
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     /**
      * Adds child component to the grid.

@@ -51,10 +51,11 @@ enum class LISTTYPE(internal val tagName: String) {
  * @param elements optional list of elements
  * @param rich determines if [elements] can contain HTML code
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class ListTag(
     type: LISTTYPE, elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null
 ) : SimplePanel(classes) {
     /**
      * List type.
@@ -80,6 +81,11 @@ open class ListTag(
             field = value
             refresh()
         }
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         val childrenElements = when (type) {

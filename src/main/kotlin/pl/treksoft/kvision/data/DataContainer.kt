@@ -37,11 +37,13 @@ import pl.treksoft.kvision.panel.VPanel
  * @param model data model of type *ObservableList<M>*
  * @param binding a function which creates component C from data model at given index
  * @param child internal container (defaults to [VPanel])
+ * @param init an initializer extension function
  */
 class DataContainer<M : DataComponent, C : Component>(
     private val model: ObservableList<M>,
     private val binding: (Int) -> C,
-    private val child: Container = VPanel()
+    private val child: Container = VPanel(),
+    init: (DataContainer<M, C>.() -> Unit)? = null
 ) :
     Widget(setOf()), Container, DataUpdatable {
 
@@ -59,6 +61,8 @@ class DataContainer<M : DataComponent, C : Component>(
             update()
         }
         update()
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun add(child: Component): Container {

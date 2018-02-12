@@ -51,12 +51,13 @@ enum class MODALSIZE(val className: String) {
  * @param animation determines if animations are used
  * @param escape determines if dialog can be closed with Esc key
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class Modal(
     caption: String? = null, closeButton: Boolean = true,
     size: MODALSIZE? = null, animation: Boolean = true, private val escape: Boolean = true,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (Modal.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -135,6 +136,8 @@ open class Modal(
         } else {
             println("At least one Root object is required to create a modal!")
         }
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     private fun checkHeaderVisibility() {

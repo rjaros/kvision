@@ -35,8 +35,9 @@ import pl.treksoft.kvision.routing.routing
  *
  * @constructor
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
-open class TabPanel(classes: Set<String> = setOf()) : SimplePanel(classes) {
+open class TabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)? = null) : SimplePanel(classes) {
 
     /**
      * The index of active (visible) tab.
@@ -61,6 +62,9 @@ open class TabPanel(classes: Set<String> = setOf()) : SimplePanel(classes) {
     init {
         this.addInternal(nav)
         this.addInternal(content)
+
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     /**

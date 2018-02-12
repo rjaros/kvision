@@ -33,10 +33,11 @@ import pl.treksoft.kvision.routing.routing
  * @constructor
  * @param activateLast determines if added component is automatically activated (default true)
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class StackPanel(
     private val activateLast: Boolean = true,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (StackPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -47,6 +48,11 @@ open class StackPanel(
             field = value
             refresh()
         }
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun childrenVNodes(): Array<VNode> {
         return if (activeIndex >= 0 && activeIndex < children.size) {

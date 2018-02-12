@@ -31,9 +31,16 @@ import pl.treksoft.kvision.core.Widget
  *
  * @constructor
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
-open class SimplePanel(classes: Set<String> = setOf()) : Widget(classes), Container {
+open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> Unit)? = null) : Widget(classes),
+    Container {
     internal val children: MutableList<Component> = mutableListOf()
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return render("div", childrenVNodes())

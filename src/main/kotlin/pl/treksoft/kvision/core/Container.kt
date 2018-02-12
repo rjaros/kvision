@@ -40,6 +40,15 @@ interface Container : Component {
     fun addAll(children: List<Component>): Container
 
     /**
+     * Operator function for adding children in a DSL style.
+     * @param child children components
+     * @return current container
+     */
+    operator fun invoke(vararg children: Component): Container {
+        return addAll(children.asList())
+    }
+
+    /**
      * Removes given component from the current container.
      * @param child child component
      * @return current container

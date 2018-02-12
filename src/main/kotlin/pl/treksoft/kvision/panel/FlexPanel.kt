@@ -92,11 +92,12 @@ enum class FLEXALIGNCONTENT(internal val alignContent: String) {
  * @param alignContent flexbox content alignment
  * @param spacing spacing between columns/rows
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class FlexPanel(
     direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
     alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
-    spacing: Int? = null, classes: Set<String> = setOf()
+    spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -149,6 +150,11 @@ open class FlexPanel(
             refreshSpacing()
             refresh()
         }
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     /**
      * Adds a component to the flexbox container.

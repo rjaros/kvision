@@ -37,8 +37,9 @@ import pl.treksoft.kvision.modal.Modal
  * @param id ID attribute of element in the main HTML file
  * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
  * otherwise it's rendered with "container" class (default is false)
+ * @param init an initializer extension function
  */
-class Root(id: String, private val fixed: Boolean = false) : SimplePanel() {
+class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Unit)? = null) : SimplePanel() {
     private val modals: MutableList<Modal> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
 
@@ -48,6 +49,8 @@ class Root(id: String, private val fixed: Boolean = false) : SimplePanel() {
         rootVnode = KVManager.patch(id, this.renderVNode())
         this.id = id
         roots.add(this)
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun render(): VNode {

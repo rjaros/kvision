@@ -39,8 +39,10 @@ enum class SIDE {
  *
  * @constructor
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
-open class DockPanel(classes: Set<String> = setOf()) : SimplePanel(classes = classes) {
+open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit)? = null) :
+    SimplePanel(classes = classes) {
     /**
      * @suppress
      * Internal property.
@@ -84,6 +86,8 @@ open class DockPanel(classes: Set<String> = setOf()) : SimplePanel(classes = cla
     init {
         this.addInternal(mainContainer)
         mainContainer.add(subContainer, 2)
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     /**

@@ -31,11 +31,18 @@ package pl.treksoft.kvision.panel
  * @param alignItems flexbox items alignment
  * @param spacing spacing between columns/rows
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class VPanel(
     justify: FLEXJUSTIFY? = null, alignItems: FLEXALIGNITEMS? = null, spacing: Int? = null,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
 ) : FlexPanel(
     FLEXDIR.COLUMN,
     null, justify, alignItems, null, spacing, classes
-)
+) {
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+}
+
