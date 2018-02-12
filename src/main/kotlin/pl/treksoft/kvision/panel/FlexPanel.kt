@@ -244,6 +244,23 @@ open class FlexPanel(
         }
         return snstyle
     }
+
+    companion object {
+        /**
+         * DSL builder extension function.
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.flexPanel(
+            direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
+            alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
+            spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
+        ): FlexPanel {
+            val flexPanel = FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes, init)
+            this.add(flexPanel)
+            return flexPanel
+        }
+    }
 }
 
 /**
@@ -274,22 +291,5 @@ internal class FlexWrapper(
             snstyle.add("align-self" to it.alignItems)
         }
         return snstyle
-    }
-
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.flexPanel(
-            direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
-            alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
-            spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
-        ): FlexPanel {
-            val flexPanel = FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes, init)
-            this.add(flexPanel)
-            return flexPanel
-        }
     }
 }
