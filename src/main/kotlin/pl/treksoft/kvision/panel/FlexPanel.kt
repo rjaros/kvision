@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.StyledComponent
 import pl.treksoft.kvision.core.WidgetWrapper
@@ -275,4 +276,18 @@ internal class FlexWrapper(
         return snstyle
     }
 
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.flexPanel(
+            direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
+            alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
+            spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
+        ) {
+            this.add(FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes, init))
+        }
+    }
 }

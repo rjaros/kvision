@@ -23,6 +23,7 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManager
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.panel.SimplePanel
 
@@ -150,5 +151,19 @@ open class Tag(
             cl.add(it.className to true)
         }
         return cl
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.tag(
+            type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN? = null,
+            classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
+        ) {
+            this.add(Tag(type, text, rich, align, classes, init))
+        }
     }
 }

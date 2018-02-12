@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.time
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
@@ -308,6 +309,18 @@ open class DateTimeInput(
             return this.replace("YY", "yy").replace("m", "i").replace("MMMM", "{----}").replace("MMM", "{---}")
                 .replace("M", "m").replace("{----}", "MM").replace("{---}", "M").replace("H", "{-}")
                 .replace("h", "H").replace("{-}", "h").replace("D", "d").replace("a", "p").replace("A", "P")
+        }
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.dateTimeInput(
+            value: Date? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
+            init: (DateTimeInput.() -> Unit)? = null
+        ) {
+            this.add(DateTimeInput(value, format, classes).apply { init?.invoke(this) })
         }
     }
 }

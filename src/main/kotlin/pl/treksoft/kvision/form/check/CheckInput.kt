@@ -23,6 +23,7 @@ package pl.treksoft.kvision.form.check
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
@@ -178,5 +179,19 @@ open class CheckInput(
             }
         }
         return this
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.checkInput(
+            type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boolean = false,
+            classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
+        ) {
+            this.add(CheckInput(type, value, classes).apply { init?.invoke(this) })
+        }
     }
 }

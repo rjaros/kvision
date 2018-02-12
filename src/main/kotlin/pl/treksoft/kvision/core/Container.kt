@@ -41,7 +41,7 @@ interface Container : Component {
 
     /**
      * Operator function for adding children in a DSL style.
-     * @param child children components
+     * @param children children components
      * @return current container
      */
     operator fun invoke(vararg children: Component): Container {

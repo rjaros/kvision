@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 
 /**
  * Dock layout directions.
@@ -184,5 +185,16 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
         removeAt(SIDE.UP)
         removeAt(SIDE.DOWN)
         return this
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.dockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit)? = null) {
+            this.add(DockPanel(classes, init))
+        }
     }
 }

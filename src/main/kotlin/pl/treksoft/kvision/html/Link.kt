@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
@@ -80,5 +81,19 @@ open class Link(
 
     override fun getSnAttrs(): List<StringPair> {
         return super.getSnAttrs() + ("href" to url)
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.link(
+            label: String, url: String, icon: String? = null, image: ResString? = null,
+            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+        ) {
+            this.add(Link(label, url, icon, image, classes).apply { init?.invoke(this) })
+        }
     }
 }

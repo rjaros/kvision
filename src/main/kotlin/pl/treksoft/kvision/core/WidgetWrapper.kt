@@ -54,4 +54,18 @@ open class WidgetWrapper(internal var wrapped: Component?, classes: Set<String> 
         wrapped = null
     }
 
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.widgetWrapper(
+            wrapped: Component?,
+            classes: Set<String> = setOf(),
+            init: (WidgetWrapper.() -> Unit)? = null
+        ) {
+            this.add(WidgetWrapper(wrapped, classes).apply { init?.invoke(this) })
+        }
+    }
 }

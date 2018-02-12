@@ -123,4 +123,20 @@ class DataContainer<M : DataComponent, C : Component>(
         onUpdateHandler = null
         return this
     }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun <M : DataComponent, C : Component> Container.dataContainer(
+            model: ObservableList<M>,
+            binding: (Int) -> C,
+            child: Container = VPanel(),
+            init: (DataContainer<M, C>.() -> Unit)? = null
+        ) {
+            this.add(DataContainer(model, binding, child, init))
+        }
+    }
 }

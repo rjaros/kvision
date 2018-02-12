@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.panel
 
+import pl.treksoft.kvision.core.Container
+
 /**
  * The container with horizontal layout.
  *
@@ -44,5 +46,23 @@ open class HPanel(
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.hPanel(
+            wrap: FLEXWRAP? = null,
+            justify: FLEXJUSTIFY? = null,
+            alignItems: FLEXALIGNITEMS? = null,
+            spacing: Int? = null,
+            classes: Set<String> = setOf(),
+            init: (HPanel.() -> Unit)? = null
+        ) {
+            this.add(HPanel(wrap, justify, alignItems, spacing, classes, init))
+        }
     }
 }

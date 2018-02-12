@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form.check
 
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
@@ -110,10 +111,6 @@ open class RadioGroup(
         counter++
     }
 
-    companion object {
-        internal var counter = 0
-    }
-
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (validatorError != null) {
@@ -166,4 +163,19 @@ open class RadioGroup(
         this.addInternal(validationInfo)
     }
 
+    companion object {
+        internal var counter = 0
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.radioGroup(
+            options: List<StringPair>? = null, value: String? = null, inline: Boolean = false,
+            label: String? = null, rich: Boolean = false, init: (RadioGroup.() -> Unit)? = null
+        ) {
+            this.add(RadioGroup(options, value, inline, label, rich).apply { init?.invoke(this) })
+        }
+    }
 }

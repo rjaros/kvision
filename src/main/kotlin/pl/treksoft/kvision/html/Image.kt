@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
@@ -117,5 +118,19 @@ open class Image(
             cl.add(it.className to true)
         }
         return cl
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.image(
+            src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGESHAPE? = null,
+            centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null
+        ) {
+            this.add(Image(src, alt, responsive, shape, centered, classes).apply { init?.invoke(this) })
+        }
     }
 }

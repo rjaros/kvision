@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.ALIGN
 import pl.treksoft.kvision.html.TAG
@@ -175,5 +176,20 @@ open class ResponsiveGridPanel(
     private fun clearRowContainers() {
         children.forEach { it.dispose() }
         removeAll()
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.responsiveGridPanel(
+            gridsize: GRIDSIZE = GRIDSIZE.MD,
+            rows: Int = 0, cols: Int = 0, align: ALIGN? = null,
+            classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
+        ) {
+            this.add(ResponsiveGridPanel(gridsize, rows, cols, align, classes, init))
+        }
     }
 }

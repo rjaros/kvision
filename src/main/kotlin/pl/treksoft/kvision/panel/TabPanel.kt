@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.TAG
@@ -134,5 +135,16 @@ open class TabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)?
         nav.removeAll()
         refresh()
         return this
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.tabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)? = null) {
+            this.add(TabPanel(classes, init))
+        }
     }
 }

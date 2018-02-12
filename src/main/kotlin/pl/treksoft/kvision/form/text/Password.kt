@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.form.text
 
+import pl.treksoft.kvision.core.Container
+
 /**
  * Form field password component.
  *
@@ -32,4 +34,17 @@ package pl.treksoft.kvision.form.text
 open class Password(value: String? = null, label: String? = null, rich: Boolean = false) : Text(
     TEXTINPUTTYPE.PASSWORD,
     value, label, rich
-)
+) {
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.password(
+            value: String? = null, label: String? = null, rich: Boolean = false, init: (Password.() -> Unit)? = null
+        ) {
+            this.add(Password(value, label, rich).apply { init?.invoke(this) })
+        }
+    }
+}

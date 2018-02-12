@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import com.github.snabbdom.h
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.panel.SimplePanel
 
@@ -141,5 +142,19 @@ open class ListTag(
             LISTTYPE.DL_HORIZ -> cl.add("dl-horizontal" to true)
         }
         return cl
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.listTag(
+            type: LISTTYPE, elements: List<String>? = null, rich: Boolean = false,
+            classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null
+        ) {
+            this.add(ListTag(type, elements, rich, classes, init))
+        }
     }
 }

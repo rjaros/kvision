@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.form.text
 
+import pl.treksoft.kvision.core.Container
+
 /**
  * Form field rich text component.
  *
@@ -50,5 +52,18 @@ open class RichText(
         input.eventTarget = this
         this.addInternal(input)
         this.addInternal(validationInfo)
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.richText(
+            value: String? = null, label: String? = null, rich: Boolean = false, init: (RichText.() -> Unit)? = null
+        ) {
+            this.add(RichText(value, label, rich).apply { init?.invoke(this) })
+        }
     }
 }

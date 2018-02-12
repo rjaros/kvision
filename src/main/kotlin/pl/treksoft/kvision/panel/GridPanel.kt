@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.WidgetWrapper
 
@@ -301,6 +302,28 @@ open class GridPanel(
             snstyle.add("align-content" to it.alignContent)
         }
         return snstyle
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.gridPanel(
+            autoColumns: String? = null, autoRows: String? = null, autoFlow: GRIDFLOW? = null,
+            templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
+            columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
+            alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
+            alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
+        ) {
+            this.add(
+                GridPanel(
+                    autoColumns, autoRows, autoFlow, templateColumns, templateRows, templateAreas,
+                    columnGap, rowGap, justifyItems, alignItems, justifyContent, alignContent, classes, init
+                )
+            )
+        }
     }
 }
 

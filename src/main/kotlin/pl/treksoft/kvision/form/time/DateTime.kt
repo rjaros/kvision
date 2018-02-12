@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form.time
 
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.DateFormControl
@@ -189,10 +190,6 @@ open class DateTime(
         counter++
     }
 
-    companion object {
-        internal var counter = 0
-    }
-
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (validatorError != null) {
@@ -233,5 +230,21 @@ open class DateTime(
 
     override fun getValueAsString(): String? {
         return input.getValueAsString()
+    }
+
+    companion object {
+        internal var counter = 0
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.dateTime(
+            value: Date? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
+            rich: Boolean = false, init: (DateTime.() -> Unit)? = null
+        ) {
+            this.add(DateTime(value, format, label, rich).apply { init?.invoke(this) })
+        }
     }
 }

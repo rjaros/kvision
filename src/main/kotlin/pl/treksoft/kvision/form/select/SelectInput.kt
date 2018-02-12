@@ -24,6 +24,7 @@ package pl.treksoft.kvision.form.select
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManager.KVNULL
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
@@ -384,4 +385,19 @@ open class SelectInput(
         } ?: getElementJQueryD()?.selectpicker("val", null)
     }
 
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.selectInput(
+            options: List<StringPair>? = null, value: String? = null,
+            multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
+            classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
+        ) {
+            this.add(SelectInput(options, value, multiple, ajaxOptions, classes).apply { init?.invoke(this) })
+        }
+    }
 }

@@ -23,6 +23,7 @@ package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import kotlin.browser.document
 
@@ -107,5 +108,18 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
 
     override fun changeValue() {
         // disabled parent class functionality
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.richTextInput(
+            value: String? = null, classes: Set<String> = setOf(), init: (RichTextInput.() -> Unit)? = null
+        ) {
+            this.add(RichTextInput(value, classes).apply { init?.invoke(this) })
+        }
     }
 }

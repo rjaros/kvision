@@ -23,6 +23,7 @@ package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.routing.routing
 
 /**
@@ -99,5 +100,18 @@ open class StackPanel(
         super.removeAll()
         if (activeIndex > children.size - 1) activeIndex = children.size - 1
         return this
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.stackPanel(
+            activateLast: Boolean = true, classes: Set<String> = setOf(), init: (StackPanel.() -> Unit)? = null
+        ) {
+            this.add(StackPanel(activateLast, classes, init))
+        }
     }
 }

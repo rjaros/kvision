@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form.spinner
 
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
@@ -191,10 +192,6 @@ open class Spinner(
         counter++
     }
 
-    companion object {
-        internal var counter = 0
-    }
-
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (validatorError != null) {
@@ -237,5 +234,27 @@ open class Spinner(
     open fun spinDown(): Spinner {
         input.spinDown()
         return this
+    }
+
+    companion object {
+        internal var counter = 0
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.spinner(
+            value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
+            decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
+            forceType: FORCETYPE = FORCETYPE.NONE, label: String? = null,
+            rich: Boolean = false, init: (Spinner.() -> Unit)? = null
+        ) {
+            this.add(Spinner(value, min, max, step, decimals, buttonsType, forceType, label, rich).apply {
+                init?.invoke(
+                    this
+                )
+            })
+        }
     }
 }

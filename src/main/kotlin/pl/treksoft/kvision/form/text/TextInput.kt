@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 
 /**
@@ -83,5 +84,19 @@ open class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = 
             }
         }
         return sn
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.textInput(
+            type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null, classes: Set<String> = setOf(),
+            init: (TextInput.() -> Unit)? = null
+        ) {
+            this.add(TextInput(type, value, classes).apply { init?.invoke(this) })
+        }
     }
 }

@@ -24,6 +24,7 @@ package pl.treksoft.kvision.panel
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.JQueryEventObject
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StyledComponent
 import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.html.TAG
@@ -95,6 +96,20 @@ open class SplitPanel(
             arrayOf(children[0].renderVNode(), splitter.renderVNode(), children[1].renderVNode())
         } else {
             arrayOf()
+        }
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.splitPanel(
+            direction: DIRECTION = DIRECTION.VERTICAL,
+            classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
+        ) {
+            this.add(SplitPanel(direction, classes, init))
         }
     }
 }

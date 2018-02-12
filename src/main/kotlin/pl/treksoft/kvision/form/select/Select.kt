@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.select
 
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
@@ -200,10 +201,6 @@ open class Select(
         counter++
     }
 
-    companion object {
-        internal var counter = 0
-    }
-
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (validatorError != null) {
@@ -271,5 +268,22 @@ open class Select(
      */
     open fun toggleOptions() {
         input.toggleOptions()
+    }
+
+    companion object {
+        internal var counter = 0
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.select(
+            options: List<StringPair>? = null, value: String? = null,
+            multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
+            rich: Boolean = false, init: (Select.() -> Unit)? = null
+        ) {
+            this.add(Select(options, value, multiple, ajaxOptions, label, rich).apply { init?.invoke(this) })
+        }
     }
 }

@@ -23,6 +23,7 @@ package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
@@ -154,10 +155,6 @@ open class DropDown(
         counter++
     }
 
-    companion object {
-        internal var counter = 0
-    }
-
     override fun add(child: Component): SimplePanel {
         list.add(child)
         return this
@@ -236,6 +233,23 @@ open class DropDown(
      */
     open fun toggle() {
         this.list.getElementJQueryD()?.dropdown("toggle")
+    }
+
+    companion object {
+        internal var counter = 0
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.dropDown(
+            text: String, elements: List<StringPair>? = null, icon: String? = null,
+            style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false,
+            classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
+        ) {
+            this.add(DropDown(text, elements, icon, style, disabled, classes).apply { init?.invoke(this) })
+        }
     }
 }
 

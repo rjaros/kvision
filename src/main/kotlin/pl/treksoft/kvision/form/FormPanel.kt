@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.form.check.CheckBox
 import pl.treksoft.kvision.form.check.Radio
@@ -213,5 +214,21 @@ open class FormPanel<K>(
      */
     open fun validate(): Boolean {
         return form.validate()
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun <K> Container.formPanel(
+            type: FORMTYPE? = null, classes: Set<String> = setOf(),
+            modelFactory: (Map<String, Any?>) -> K
+        ): FormPanel<K> {
+            val panel = FormPanel(type, classes, modelFactory)
+            this.add(panel)
+            return panel
+        }
     }
 }

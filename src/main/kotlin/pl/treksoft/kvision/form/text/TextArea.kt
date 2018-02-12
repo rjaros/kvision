@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.form.text
 
+import pl.treksoft.kvision.core.Container
+
 /**
  * Form field textarea component.
  *
@@ -68,5 +70,19 @@ open class TextArea(
         input.eventTarget = this
         this.addInternal(input)
         this.addInternal(validationInfo)
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.textArea(
+            cols: Int? = null, rows: Int? = null, value: String? = null,
+            label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
+        ) {
+            this.add(TextArea(cols, rows, value, label, rich).apply { init?.invoke(this) })
+        }
     }
 }

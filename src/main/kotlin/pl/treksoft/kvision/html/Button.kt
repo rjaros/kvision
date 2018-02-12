@@ -23,6 +23,7 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
@@ -157,5 +158,19 @@ open class Button(
             }
         }
         return this
+    }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.button(
+            text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
+            disabled: Boolean = false, classes: Set<String> = setOf(), init: (Button.() -> Unit)? = null
+        ) {
+            this.add(Button(text, icon, style, disabled, classes).apply { init?.invoke(this) })
+        }
     }
 }

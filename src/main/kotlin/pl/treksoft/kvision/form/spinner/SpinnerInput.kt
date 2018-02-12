@@ -23,6 +23,7 @@ package pl.treksoft.kvision.form.spinner
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
@@ -334,6 +335,28 @@ open class SpinnerInput(
             this.decimals = decimals
             this.verticalbuttons = verticalbuttons
             this.forcestepdivisibility = forceType.value
+        }
+    }
+
+    companion object {
+        internal var counter = 0
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.spinnerInput(
+            value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
+            decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
+            forceType: FORCETYPE = FORCETYPE.NONE, classes: Set<String> = setOf(),
+            init: (SpinnerInput.() -> Unit)? = null
+        ) {
+            this.add(SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, classes).apply {
+                init?.invoke(
+                    this
+                )
+            })
         }
     }
 }

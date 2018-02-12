@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.check
 
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.BoolFormControl
@@ -164,10 +165,6 @@ open class Radio(
         counter++
     }
 
-    companion object {
-        internal var counter = 0
-    }
-
     @Suppress("UNCHECKED_CAST")
     override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Widget {
         input.setEventListener(block)
@@ -220,5 +217,21 @@ open class Radio(
             }
         }
         return this
+    }
+
+    companion object {
+        internal var counter = 0
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.radio(
+            value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
+            rich: Boolean = false, init: (Radio.() -> Unit)? = null
+        ) {
+            this.add(Radio(value, extraValue, name, label, rich).apply { init?.invoke(this) })
+        }
     }
 }

@@ -516,4 +516,15 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     override fun dispose() {
     }
+
+    companion object {
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.widget(classes: Set<String> = setOf(), init: (Widget.() -> Unit)? = null) {
+            this.add(Widget(classes).apply { init?.invoke(this) })
+        }
+    }
 }

@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.check
 
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.BoolFormControl
@@ -153,10 +154,6 @@ open class CheckBox(
         counter++
     }
 
-    companion object {
-        internal var counter = 0
-    }
-
     @Suppress("UNCHECKED_CAST")
     override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Widget {
         input.setEventListener(block)
@@ -200,5 +197,21 @@ open class CheckBox(
             }
         }
         return this
+    }
+
+    companion object {
+        internal var counter = 0
+
+        /**
+         * DSL builder extension function
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.checkBox(
+            value: Boolean = false, label: String? = null,
+            rich: Boolean = false, init: (CheckBox.() -> Unit)? = null
+        ) {
+            this.add(CheckBox(value, label, rich).apply { init?.invoke(this) })
+        }
     }
 }
