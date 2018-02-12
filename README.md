@@ -18,6 +18,7 @@ This design is quite similar to many non-web UI programming libraries including 
 ## Features
 
 - 100% type safe and fully compiled dev environment.
+- Type safe DSL builders.
 - Based on [Bootstrap](https://getbootstrap.com/) styles, typography and components.
 - Utilizes [Snabbdom](https://github.com/snabbdom/snabbdom) fast virtual DOM implementation.
 - Integrates with libraries and components from [Font awesome](https://fontawesome.com/), [Bootstrap Select](https://github.com/silviomoreto/bootstrap-select) (with [AJAX](https://github.com/truckingsim/Ajax-Bootstrap-Select) extension),
@@ -85,6 +86,20 @@ built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Re
                 })
             }
         )
+
+##### Using type safe DSL builders
+
+        Root("root") {
+            hPanel(spacing = 20, alignItems = FLEXALIGNITEMS.CENTER) {
+                val label = label("Not yet clicked.")
+                var count = 0
+                button("Click me") {
+                    onClick {
+                        label.text = "You clicked the button ${++count} times."
+                    }
+                }
+            }
+        }
 
 ### Tab panel with JavaScript routing
 
