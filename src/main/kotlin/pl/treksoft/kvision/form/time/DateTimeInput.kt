@@ -312,15 +312,17 @@ open class DateTimeInput(
         }
 
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.dateTimeInput(
             value: Date? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
             init: (DateTimeInput.() -> Unit)? = null
-        ) {
-            this.add(DateTimeInput(value, format, classes).apply { init?.invoke(this) })
+        ): DateTimeInput {
+            val dateTimeInput = DateTimeInput(value, format, classes).apply { init?.invoke(this) }
+            this.add(dateTimeInput)
+            return dateTimeInput
         }
     }
 }

@@ -74,15 +74,17 @@ open class TextArea(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.textArea(
             cols: Int? = null, rows: Int? = null, value: String? = null,
             label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
-        ) {
-            this.add(TextArea(cols, rows, value, label, rich).apply { init?.invoke(this) })
+        ): TextArea {
+            val textArea = TextArea(cols, rows, value, label, rich).apply { init?.invoke(this) }
+            this.add(textArea)
+            return textArea
         }
     }
 }

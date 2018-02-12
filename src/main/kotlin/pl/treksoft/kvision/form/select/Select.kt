@@ -274,7 +274,7 @@ open class Select(
         internal var counter = 0
 
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -282,8 +282,10 @@ open class Select(
             options: List<StringPair>? = null, value: String? = null,
             multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
             rich: Boolean = false, init: (Select.() -> Unit)? = null
-        ) {
-            this.add(Select(options, value, multiple, ajaxOptions, label, rich).apply { init?.invoke(this) })
+        ): Select {
+            val select = Select(options, value, multiple, ajaxOptions, label, rich).apply { init?.invoke(this) }
+            this.add(select)
+            return select
         }
     }
 }

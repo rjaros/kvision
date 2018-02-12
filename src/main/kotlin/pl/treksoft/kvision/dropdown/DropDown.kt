@@ -239,7 +239,7 @@ open class DropDown(
         internal var counter = 0
 
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -247,8 +247,10 @@ open class DropDown(
             text: String, elements: List<StringPair>? = null, icon: String? = null,
             style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false,
             classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
-        ) {
-            this.add(DropDown(text, elements, icon, style, disabled, classes).apply { init?.invoke(this) })
+        ): DropDown {
+            val dropDown = DropDown(text, elements, icon, style, disabled, classes).apply { init?.invoke(this) }
+            this.add(dropDown)
+            return dropDown
         }
     }
 }

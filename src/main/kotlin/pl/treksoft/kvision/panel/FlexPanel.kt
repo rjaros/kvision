@@ -278,7 +278,7 @@ internal class FlexWrapper(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -286,8 +286,10 @@ internal class FlexWrapper(
             direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
             alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
             spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
-        ) {
-            this.add(FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes, init))
+        ): FlexPanel {
+            val flexPanel = FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes, init)
+            this.add(flexPanel)
+            return flexPanel
         }
     }
 }

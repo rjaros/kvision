@@ -180,7 +180,7 @@ open class ResponsiveGridPanel(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -188,8 +188,10 @@ open class ResponsiveGridPanel(
             gridsize: GRIDSIZE = GRIDSIZE.MD,
             rows: Int = 0, cols: Int = 0, align: ALIGN? = null,
             classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
-        ) {
-            this.add(ResponsiveGridPanel(gridsize, rows, cols, align, classes, init))
+        ): ResponsiveGridPanel {
+            val responsiveGridPanel = ResponsiveGridPanel(gridsize, rows, cols, align, classes, init)
+            this.add(responsiveGridPanel)
+            return responsiveGridPanel
         }
     }
 }

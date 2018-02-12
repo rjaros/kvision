@@ -126,7 +126,7 @@ class DataContainer<M : DataComponent, C : Component>(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -135,8 +135,10 @@ class DataContainer<M : DataComponent, C : Component>(
             binding: (Int) -> C,
             child: Container = VPanel(),
             init: (DataContainer<M, C>.() -> Unit)? = null
-        ) {
-            this.add(DataContainer(model, binding, child, init))
+        ): DataContainer<M, C> {
+            val dataContainer = DataContainer(model, binding, child, init)
+            this.add(dataContainer)
+            return dataContainer
         }
     }
 }

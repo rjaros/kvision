@@ -122,15 +122,17 @@ open class Image(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.image(
             src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGESHAPE? = null,
             centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null
-        ) {
-            this.add(Image(src, alt, responsive, shape, centered, classes).apply { init?.invoke(this) })
+        ): Image {
+            val image = Image(src, alt, responsive, shape, centered, classes).apply { init?.invoke(this) }
+            this.add(image)
+            return image
         }
     }
 }

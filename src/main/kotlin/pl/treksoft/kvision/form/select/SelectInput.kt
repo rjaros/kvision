@@ -388,7 +388,7 @@ open class SelectInput(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -396,8 +396,10 @@ open class SelectInput(
             options: List<StringPair>? = null, value: String? = null,
             multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
             classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
-        ) {
-            this.add(SelectInput(options, value, multiple, ajaxOptions, classes).apply { init?.invoke(this) })
+        ): SelectInput {
+            val selectInput = SelectInput(options, value, multiple, ajaxOptions, classes).apply { init?.invoke(this) }
+            this.add(selectInput)
+            return selectInput
         }
     }
 }

@@ -88,15 +88,17 @@ open class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = 
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.textInput(
             type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null, classes: Set<String> = setOf(),
             init: (TextInput.() -> Unit)? = null
-        ) {
-            this.add(TextInput(type, value, classes).apply { init?.invoke(this) })
+        ): TextInput {
+            val textInput = TextInput(type, value, classes).apply { init?.invoke(this) }
+            this.add(textInput)
+            return textInput
         }
     }
 }

@@ -56,14 +56,16 @@ open class RichText(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.richText(
             value: String? = null, label: String? = null, rich: Boolean = false, init: (RichText.() -> Unit)? = null
-        ) {
-            this.add(RichText(value, label, rich).apply { init?.invoke(this) })
+        ): RichText {
+            val richText = RichText(value, label, rich).apply { init?.invoke(this) }
+            this.add(richText)
+            return richText
         }
     }
 }

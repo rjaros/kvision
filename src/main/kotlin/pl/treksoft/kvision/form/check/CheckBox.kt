@@ -203,15 +203,17 @@ open class CheckBox(
         internal var counter = 0
 
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.checkBox(
             value: Boolean = false, label: String? = null,
             rich: Boolean = false, init: (CheckBox.() -> Unit)? = null
-        ) {
-            this.add(CheckBox(value, label, rich).apply { init?.invoke(this) })
+        ): CheckBox {
+            val checkBox = CheckBox(value, label, rich).apply { init?.invoke(this) }
+            this.add(checkBox)
+            return checkBox
         }
     }
 }

@@ -112,14 +112,16 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.richTextInput(
             value: String? = null, classes: Set<String> = setOf(), init: (RichTextInput.() -> Unit)? = null
-        ) {
-            this.add(RichTextInput(value, classes).apply { init?.invoke(this) })
+        ): RichTextInput {
+            val richTextInput = RichTextInput(value, classes).apply { init?.invoke(this) }
+            this.add(richTextInput)
+            return richTextInput
         }
     }
 }

@@ -37,14 +37,16 @@ open class Password(value: String? = null, label: String? = null, rich: Boolean 
 ) {
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.password(
             value: String? = null, label: String? = null, rich: Boolean = false, init: (Password.() -> Unit)? = null
-        ) {
-            this.add(Password(value, label, rich).apply { init?.invoke(this) })
+        ): Password {
+            val password = Password(value, label, rich).apply { init?.invoke(this) }
+            this.add(password)
+            return password
         }
     }
 }

@@ -104,14 +104,16 @@ open class StackPanel(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.stackPanel(
             activateLast: Boolean = true, classes: Set<String> = setOf(), init: (StackPanel.() -> Unit)? = null
-        ) {
-            this.add(StackPanel(activateLast, classes, init))
+        ): StackPanel {
+            val stackPanel = StackPanel(activateLast, classes, init)
+            this.add(stackPanel)
+            return stackPanel
         }
     }
 }

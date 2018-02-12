@@ -306,7 +306,7 @@ open class GridPanel(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -316,13 +316,13 @@ open class GridPanel(
             columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
             alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
             alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
-        ) {
-            this.add(
-                GridPanel(
-                    autoColumns, autoRows, autoFlow, templateColumns, templateRows, templateAreas,
-                    columnGap, rowGap, justifyItems, alignItems, justifyContent, alignContent, classes, init
-                )
+        ): GridPanel {
+            val gridPanel = GridPanel(
+                autoColumns, autoRows, autoFlow, templateColumns, templateRows, templateAreas,
+                columnGap, rowGap, justifyItems, alignItems, justifyContent, alignContent, classes, init
             )
+            this.add(gridPanel)
+            return gridPanel
         }
     }
 }

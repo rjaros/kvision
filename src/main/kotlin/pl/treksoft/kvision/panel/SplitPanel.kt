@@ -101,15 +101,17 @@ open class SplitPanel(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.splitPanel(
             direction: DIRECTION = DIRECTION.VERTICAL,
             classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
-        ) {
-            this.add(SplitPanel(direction, classes, init))
+        ): SplitPanel {
+            val splitPanel = SplitPanel(direction, classes, init)
+            this.add(splitPanel)
+            return splitPanel
         }
     }
 }

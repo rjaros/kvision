@@ -240,7 +240,7 @@ open class Spinner(
         internal var counter = 0
 
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -249,12 +249,14 @@ open class Spinner(
             decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
             forceType: FORCETYPE = FORCETYPE.NONE, label: String? = null,
             rich: Boolean = false, init: (Spinner.() -> Unit)? = null
-        ) {
-            this.add(Spinner(value, min, max, step, decimals, buttonsType, forceType, label, rich).apply {
+        ): Spinner {
+            val spinner = Spinner(value, min, max, step, decimals, buttonsType, forceType, label, rich).apply {
                 init?.invoke(
                     this
                 )
-            })
+            }
+            this.add(spinner)
+            return spinner
         }
     }
 }

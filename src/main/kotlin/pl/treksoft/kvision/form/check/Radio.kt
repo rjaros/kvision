@@ -223,15 +223,17 @@ open class Radio(
         internal var counter = 0
 
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.radio(
             value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
             rich: Boolean = false, init: (Radio.() -> Unit)? = null
-        ) {
-            this.add(Radio(value, extraValue, name, label, rich).apply { init?.invoke(this) })
+        ): Radio {
+            val radio = Radio(value, extraValue, name, label, rich).apply { init?.invoke(this) }
+            this.add(radio)
+            return radio
         }
     }
 }

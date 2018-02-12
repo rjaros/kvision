@@ -189,12 +189,14 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun Container.dockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit)? = null) {
-            this.add(DockPanel(classes, init))
+        fun Container.dockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit)? = null): DockPanel {
+            val dockPanel = DockPanel(classes, init)
+            this.add(dockPanel)
+            return dockPanel
         }
     }
 }

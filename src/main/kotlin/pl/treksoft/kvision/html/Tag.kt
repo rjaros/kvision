@@ -155,15 +155,17 @@ open class Tag(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.tag(
             type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN? = null,
             classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
-        ) {
-            this.add(Tag(type, text, rich, align, classes, init))
+        ): Tag {
+            val tag = Tag(type, text, rich, align, classes, init)
+            this.add(tag)
+            return tag
         }
     }
 }

@@ -167,15 +167,17 @@ open class RadioGroup(
         internal var counter = 0
 
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.radioGroup(
             options: List<StringPair>? = null, value: String? = null, inline: Boolean = false,
             label: String? = null, rich: Boolean = false, init: (RadioGroup.() -> Unit)? = null
-        ) {
-            this.add(RadioGroup(options, value, inline, label, rich).apply { init?.invoke(this) })
+        ): RadioGroup {
+            val radioGroup = RadioGroup(options, value, inline, label, rich).apply { init?.invoke(this) }
+            this.add(radioGroup)
+            return radioGroup
         }
     }
 }

@@ -85,15 +85,17 @@ open class Link(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.link(
             label: String, url: String, icon: String? = null, image: ResString? = null,
             classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
-        ) {
-            this.add(Link(label, url, icon, image, classes).apply { init?.invoke(this) })
+        ): Link {
+            val link = Link(label, url, icon, image, classes).apply { init?.invoke(this) }
+            this.add(link)
+            return link
         }
     }
 }

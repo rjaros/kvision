@@ -33,14 +33,16 @@ import pl.treksoft.kvision.core.Container
 open class Label(text: String, rich: Boolean = false) : Tag(TAG.SPAN, text, rich) {
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.label(
             text: String, rich: Boolean = false, init: (Label.() -> Unit)? = null
-        ) {
-            this.add(Label(text, rich).apply { init?.invoke(this) })
+        ): Label {
+            val label = Label(text, rich).apply { init?.invoke(this) }
+            this.add(label)
+            return label
         }
     }
 }

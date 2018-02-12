@@ -50,7 +50,7 @@ open class HPanel(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -61,8 +61,10 @@ open class HPanel(
             spacing: Int? = null,
             classes: Set<String> = setOf(),
             init: (HPanel.() -> Unit)? = null
-        ) {
-            this.add(HPanel(wrap, justify, alignItems, spacing, classes, init))
+        ): HPanel {
+            val hpanel = HPanel(wrap, justify, alignItems, spacing, classes, init)
+            this.add(hpanel)
+            return hpanel
         }
     }
 }

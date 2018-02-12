@@ -49,16 +49,17 @@ open class VPanel(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.vPanel(
             justify: FLEXJUSTIFY? = null, alignItems: FLEXALIGNITEMS? = null, spacing: Int? = null,
             classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
-        ) {
-            this.add(VPanel(justify, alignItems, spacing, classes, init))
+        ): VPanel {
+            val vpanel = VPanel(justify, alignItems, spacing, classes, init)
+            this.add(vpanel)
+            return vpanel
         }
     }
 }
-

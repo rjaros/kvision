@@ -183,15 +183,17 @@ open class CheckInput(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.checkInput(
             type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boolean = false,
             classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
-        ) {
-            this.add(CheckInput(type, value, classes).apply { init?.invoke(this) })
+        ): CheckInput {
+            val checkInput = CheckInput(type, value, classes).apply { init?.invoke(this) }
+            this.add(checkInput)
+            return checkInput
         }
     }
 }

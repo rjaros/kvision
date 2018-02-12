@@ -236,15 +236,17 @@ open class DateTime(
         internal var counter = 0
 
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.dateTime(
             value: Date? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
             rich: Boolean = false, init: (DateTime.() -> Unit)? = null
-        ) {
-            this.add(DateTime(value, format, label, rich).apply { init?.invoke(this) })
+        ): DateTime {
+            val dateTime = DateTime(value, format, label, rich).apply { init?.invoke(this) }
+            this.add(dateTime)
+            return dateTime
         }
     }
 }

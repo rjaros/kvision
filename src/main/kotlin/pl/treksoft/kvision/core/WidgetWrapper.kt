@@ -56,7 +56,7 @@ open class WidgetWrapper(internal var wrapped: Component?, classes: Set<String> 
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
@@ -64,8 +64,10 @@ open class WidgetWrapper(internal var wrapped: Component?, classes: Set<String> 
             wrapped: Component?,
             classes: Set<String> = setOf(),
             init: (WidgetWrapper.() -> Unit)? = null
-        ) {
-            this.add(WidgetWrapper(wrapped, classes).apply { init?.invoke(this) })
+        ): WidgetWrapper {
+            val widgetWrapper = WidgetWrapper(wrapped, classes).apply { init?.invoke(this) }
+            this.add(widgetWrapper)
+            return widgetWrapper
         }
     }
 }

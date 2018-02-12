@@ -139,12 +139,14 @@ open class TabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)?
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun Container.tabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)? = null) {
-            this.add(TabPanel(classes, init))
+        fun Container.tabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)? = null): TabPanel {
+            val tabPanel = TabPanel(classes, init)
+            this.add(tabPanel)
+            return tabPanel
         }
     }
 }

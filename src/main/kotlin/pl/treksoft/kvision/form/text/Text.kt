@@ -65,15 +65,17 @@ open class Text(
 
     companion object {
         /**
-         * DSL builder extension function
+         * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.text(
             type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,
             label: String? = null, rich: Boolean = false, init: (Text.() -> Unit)? = null
-        ) {
-            this.add(Text(type, value, label, rich).apply { init?.invoke(this) })
+        ): Text {
+            val text = Text(type, value, label, rich).apply { init?.invoke(this) }
+            this.add(text)
+            return text
         }
     }
 }
