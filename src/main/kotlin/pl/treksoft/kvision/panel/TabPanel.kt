@@ -51,7 +51,7 @@ open class TabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)?
                 nav.children.forEach {
                     it.removeCssClass("active")
                 }
-                if (content.activeIndex >= 0 && content.activeIndex <= nav.children.size) {
+                if (content.activeIndex in nav.children.indices) {
                     nav.children[content.activeIndex].addCssClass("active")
                 }
             }

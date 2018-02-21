@@ -41,6 +41,7 @@ external fun require(name: String): dynamic
 /**
  * Internal singleton object which initializes and configures KVision framework.
  */
+@Suppress("EmptyCatchBlock")
 internal object KVManager {
     internal const val AJAX_REQUEST_DELAY = 300
     internal const val KVNULL = "#kvnull"
@@ -77,8 +78,6 @@ internal object KVManager {
         require("ajax-bootstrap-select/dist/js/ajax-bootstrap-select.min.js")
     } catch (e: Throwable) {
     }
-    //    private val bootstrapSelectAjaxI18n =
-//        require("ajax-bootstrap-select/dist/js/locale/ajax-bootstrap-select.pl-PL.min.js")
     private val trixCss = try {
         require("trix/dist/trix.css")
     } catch (e: Throwable) {

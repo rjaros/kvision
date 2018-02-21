@@ -56,7 +56,7 @@ open class StackPanel(
     }
 
     override fun childrenVNodes(): Array<VNode> {
-        return if (activeIndex >= 0 && activeIndex < children.size) {
+        return if (activeIndex in children.indices) {
             arrayOf(children[activeIndex].renderVNode())
         } else {
             arrayOf()

@@ -133,7 +133,7 @@ open class RadioGroup(
     }
 
     private fun getDisabledFromChildren(): Boolean {
-        return getChildren().filterIsInstance<Radio>().map { it.disabled }.firstOrNull() ?: false
+        return getChildren().filterIsInstance<Radio>().firstOrNull()?.disabled ?: false
     }
 
     private fun setDisabledToChildren(disabled: Boolean) {
