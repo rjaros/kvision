@@ -34,7 +34,7 @@ apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: 'org.jetbrains.dokka'
 
 group = 'pl.treksoft'
-version = '0.0.3'
+version = '0.0.4'
 
 repositories {
     jcenter()
@@ -58,6 +58,20 @@ dependencies {
 
 kotlinFrontend {
     npm {
+        dependency("css-loader")
+        dependency("style-loader")
+        dependency("less")
+        dependency("less-loader")
+        dependency("imports-loader")
+        dependency("uglifyjs-webpack-plugin")
+        dependency("file-loader")
+        dependency("url-loader")
+        dependency("jquery", "3.3.1")
+        dependency("fecha", "2.3.2")
+        dependency("snabbdom", "0.6.9")
+        dependency("snabbdom-virtualize", "0.7.0")
+        dependency("navigo", "7.0.0")
+        dependency("jquery-resizable-dom", "0.26.0")
         npmdeps.eachLine { line ->
             def (name, version) = line.tokenize(" ")
             dependency(name, version)

@@ -45,37 +45,67 @@ internal object KVManager {
     internal const val AJAX_REQUEST_DELAY = 300
     internal const val KVNULL = "#kvnull"
 
-    @Suppress("UnsafeCastFromDynamic")
-    private val bootstrapWebpack = if (js("typeof KV_NO_BOOTSTRAP_CSS !== 'undefined'")) {
-        require("bootstrap-webpack!./js/bootstrap.config.js")
-    } else {
+    private val bootstrapWebpack = try {
         require("bootstrap-webpack")
+    } catch (e: Throwable) {
     }
-    private val fontAwesomeWebpack = require("font-awesome-webpack")
-    private val resizable = require("jquery-resizable-dom")
-    private val awesomeBootstrapCheckbox = require("awesome-bootstrap-checkbox")
-    private val bootstrapSelectCss =
+    private val fontAwesomeWebpack = try {
+        require("font-awesome-webpack")
+    } catch (e: Throwable) {
+    }
+    private val awesomeBootstrapCheckbox = try {
+        require("awesome-bootstrap-checkbox")
+    } catch (e: Throwable) {
+    }
+    private val bootstrapSelectCss = try {
         require("bootstrap-select/dist/css/bootstrap-select.min.css")
-    private val bootstrapSelect = require("bootstrap-select")
-    private val bootstrapSelectI18n = require("./js/bootstrap-select-i18n.min.js")
-    private val bootstrapSelectAjaxCss =
+    } catch (e: Throwable) {
+    }
+    private val bootstrapSelect = try {
+        require("bootstrap-select/dist/js/bootstrap-select.min.js")
+    } catch (e: Throwable) {
+    }
+    private val bootstrapSelectI18n = try {
+        require("./js/bootstrap-select-i18n.min.js")
+    } catch (e: Throwable) {
+    }
+    private val bootstrapSelectAjaxCss = try {
         require("ajax-bootstrap-select/dist/css/ajax-bootstrap-select.min.css")
-    private val bootstrapSelectAjax =
+    } catch (e: Throwable) {
+    }
+    private val bootstrapSelectAjax = try {
         require("ajax-bootstrap-select/dist/js/ajax-bootstrap-select.min.js")
+    } catch (e: Throwable) {
+    }
     //    private val bootstrapSelectAjaxI18n =
 //        require("ajax-bootstrap-select/dist/js/locale/ajax-bootstrap-select.pl-PL.min.js")
-    private val trixCss = require("trix/dist/trix.css")
-    private val trix = require("trix")
-    private val bootstrapDateTimePickerCss =
+    private val trixCss = try {
+        require("trix/dist/trix.css")
+    } catch (e: Throwable) {
+    }
+    private val trix = try {
+        require("trix")
+    } catch (e: Throwable) {
+    }
+    private val bootstrapDateTimePickerCss = try {
         require("bootstrap-datetime-picker/css/bootstrap-datetimepicker.min.css")
-    private val bootstrapDateTimePicker =
+    } catch (e: Throwable) {
+    }
+    private val bootstrapDateTimePicker = try {
         require("bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js")
-    private val bootstrapTouchspinCss =
+    } catch (e: Throwable) {
+    }
+    private val bootstrapTouchspinCss = try {
         require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")
-    private val bootstrapTouchspin =
+    } catch (e: Throwable) {
+    }
+    private val bootstrapTouchspin = try {
         require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js")
-    internal val fecha = require("fecha")
+    } catch (e: Throwable) {
+    }
 
+    private val resizable = require("jquery-resizable-dom")
+    internal val fecha = require("fecha")
     private val sdPatch = Snabbdom.init(
         arrayOf(
             classModule, attributesModule, propsModule, styleModule,
