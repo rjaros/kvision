@@ -28,11 +28,14 @@ This design is quite similar to many non-web UI programming libraries including 
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
 - Data binding support for [observable](https://github.com/rjaros/kotlin-observable-js) data model.
 - Ready to explore [KVision examples](https://github.com/rjaros/kvision-examples) are available,
-built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/).
+built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
+[Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).
 - [Karma](https://karma-runner.github.io/) testing framework support.
 - IDE support (IntelliJ IDEA Community Edition).
 
 ## Getting started
+
+#### Development
 
 1. Download [KVision examples](https://github.com/rjaros/kvision-examples) from GitHub:
 
@@ -49,6 +52,17 @@ built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Re
         gradlew.bat -t run                                  (on Windows)
         
 4. Open [http://localhost:8088/](http://localhost:8088/) in your browser.
+
+5. Play with the code and see your changes immediately in the browser.
+
+#### Production
+
+To build complete application optimized for production run:
+
+        ./gradlew -Pprod=true distZip                       (on Linux)
+        gradlew.bat -Pprod=true distZip                     (on Windows)
+        
+Application package will be saved as build/distributions/showcase.zip.
 
 ## Usage samples
 
