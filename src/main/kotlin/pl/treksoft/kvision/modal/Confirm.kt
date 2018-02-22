@@ -75,11 +75,7 @@ open class Confirm(
     /**
      * Determines if Cancel button is visible.
      */
-    var cancelVisible = cancelVisible
-        set(value) {
-            field = value
-            refreshCancelButton()
-        }
+    var cancelVisible by refreshOnUpdate(cancelVisible, { refreshCancelButton() })
 
     private val content = Tag(TAG.DIV, text, rich, align)
     private val cancelButton = Button("Cancel", "remove")

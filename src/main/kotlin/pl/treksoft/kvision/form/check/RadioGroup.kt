@@ -54,29 +54,17 @@ open class RadioGroup(
     /**
      * A list of options (label to value pairs) for the group.
      */
-    var options = options
-        set(value) {
-            field = value
-            setChildrenFromOptions()
-        }
+    var options by refreshOnUpdate(options, { setChildrenFromOptions() })
 
     /**
      * A value of the selected option.
      */
-    override var value = value
-        set(value) {
-            field = value
-            setValueToChildren(value)
-        }
+    override var value by refreshOnUpdate(value, { setValueToChildren(it) })
 
     /**
      * Determines if the options are rendered inline.
      */
-    var inline: Boolean = inline
-        set(value) {
-            field = value
-            refresh()
-        }
+    var inline by refreshOnUpdate(inline)
 
     override var disabled
         get() = getDisabledFromChildren()

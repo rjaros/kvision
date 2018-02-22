@@ -44,35 +44,19 @@ open class Link(
     /**
      * Link label.
      */
-    var label = label
-        set(value) {
-            field = value
-            refresh()
-        }
+    var label by refreshOnUpdate(label)
     /**
      * Link URL address.
      */
-    var url = url
-        set(value) {
-            field = value
-            refresh()
-        }
+    var url by refreshOnUpdate(url)
     /**
      * Link icon.
      */
-    var icon = icon
-        set(value) {
-            field = value
-            refresh()
-        }
+    var icon by refreshOnUpdate(icon)
     /**
      * Link image.
      */
-    var image = image
-        set(value) {
-            field = value
-            refresh()
-        }
+    var image by refreshOnUpdate(image)
 
     override fun render(): VNode {
         val t = createLabelWithIcon(label, icon, image)

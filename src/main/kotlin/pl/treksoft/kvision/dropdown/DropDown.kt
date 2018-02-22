@@ -70,11 +70,7 @@ open class DropDown(
         set(value) {
             button.text = value
         }
-    private var elements = elements
-        set(value) {
-            field = value
-            setChildrenFromElements()
-        }
+    private var elements by refreshOnUpdate(elements, { setChildrenFromElements() })
     /**
      * The icon of the dropdown button.
      */
@@ -126,11 +122,7 @@ open class DropDown(
     /**
      * Determines if the dropdown is showing upwards.
      */
-    var dropup = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var dropup by refreshOnUpdate(false)
     /**
      * Width of the dropdown button.
      */

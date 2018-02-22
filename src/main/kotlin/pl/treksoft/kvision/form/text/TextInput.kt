@@ -52,19 +52,11 @@ open class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = 
     /**
      * Text input type.
      */
-    var type: TEXTINPUTTYPE = type
-        set(value) {
-            field = value
-            refresh()
-        }
+    var type by refreshOnUpdate(type)
     /**
      * Determines if autocomplete is enabled for the input element.
      */
-    var autocomplete: Boolean? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var autocomplete: Boolean? by refreshOnUpdate()
 
     override fun render(): VNode {
         return render("input")

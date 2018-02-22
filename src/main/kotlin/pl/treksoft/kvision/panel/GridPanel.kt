@@ -112,99 +112,51 @@ open class GridPanel(
     /**
      * CSS grid auto columns.
      */
-    var autoColumns = autoColumns
-        set(value) {
-            field = value
-            refresh()
-        }
+    var autoColumns by refreshOnUpdate(autoColumns)
     /**
      * CSS grid auto rows.
      */
-    var autoRows = autoRows
-        set(value) {
-            field = value
-            refresh()
-        }
+    var autoRows by refreshOnUpdate(autoRows)
     /**
      * CSS grid auto flow.
      */
-    var autoFlow = autoFlow
-        set(value) {
-            field = value
-            refresh()
-        }
+    var autoFlow by refreshOnUpdate(autoFlow)
     /**
      * CSS grid columns template.
      */
-    var templateColumns = templateColumns
-        set(value) {
-            field = value
-            refresh()
-        }
+    var templateColumns by refreshOnUpdate(templateColumns)
     /**
      * CSS grid rows template.
      */
-    var templateRows = templateRows
-        set(value) {
-            field = value
-            refresh()
-        }
+    var templateRows by refreshOnUpdate(templateRows)
     /**
      * CSS grid areas template.
      */
-    var templateAreas = templateAreas
-        set(value) {
-            field = value
-            refresh()
-        }
+    var templateAreas by refreshOnUpdate(templateAreas)
     /**
      * CSS grid column gap.
      */
-    var columnGap = columnGap
-        set(value) {
-            field = value
-            refresh()
-        }
+    var columnGap by refreshOnUpdate(columnGap)
     /**
      * CSS grid row gap.
      */
-    var rowGap = rowGap
-        set(value) {
-            field = value
-            refresh()
-        }
+    var rowGap by refreshOnUpdate(rowGap)
     /**
      * CSS grid items justification.
      */
-    var justifyItems = justifyItems
-        set(value) {
-            field = value
-            refresh()
-        }
+    var justifyItems by refreshOnUpdate(justifyItems)
     /**
      * CSS grid items alignment.
      */
-    var alignItems = alignItems
-        set(value) {
-            field = value
-            refresh()
-        }
+    var alignItems by refreshOnUpdate(alignItems)
     /**
      * CSS grid content justification.
      */
-    var justifyContent = justifyContent
-        set(value) {
-            field = value
-            refresh()
-        }
+    var justifyContent by refreshOnUpdate(justifyContent)
     /**
      * CSS grid content alignment.
      */
-    var alignContent = alignContent
-        set(value) {
-            field = value
-            refresh()
-        }
+    var alignContent by refreshOnUpdate(alignContent)
 
     init {
         @Suppress("LeakingThis")

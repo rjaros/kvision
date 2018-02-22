@@ -50,79 +50,42 @@ abstract class AbstractTextInput(
     /**
      * Text input value.
      */
-    var value: String? = value
-        set(value) {
-            field = value
-            refreshState()
-        }
+    var value by refreshOnUpdate(value, { refreshState() })
     /**
      * The value attribute of the generated HTML input element.
      *
      * This value is placed directly in generated HTML code, while the [value] property is dynamically
      * bound to the text input value.
      */
-    var startValue: String? = value
-        set(value) {
-            field = value
-            this.value = value
-            refresh()
-        }
+    var startValue by refreshOnUpdate(value, { this.value = it; refresh() })
     /**
      * The placeholder for the text input.
      */
-    var placeholder: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var placeholder: String? by refreshOnUpdate()
     /**
      * The name attribute of the generated HTML input element.
      */
-    var name: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var name: String? by refreshOnUpdate()
     /**
      * Maximal length of the text input value.
      */
-    var maxlength: Int? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var maxlength: Int? by refreshOnUpdate()
     /**
      * Determines if the field is disabled.
      */
-    var disabled: Boolean = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var disabled by refreshOnUpdate(false)
     /**
      * Determines if the text input is automatically focused.
      */
-    var autofocus: Boolean? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var autofocus: Boolean? by refreshOnUpdate()
     /**
      * Determines if the text input is read-only.
      */
-    var readonly: Boolean? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var readonly: Boolean? by refreshOnUpdate()
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var size: INPUTSIZE? by refreshOnUpdate()
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()

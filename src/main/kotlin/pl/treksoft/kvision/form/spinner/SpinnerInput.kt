@@ -97,119 +97,62 @@ open class SpinnerInput(
     /**
      * Spinner value.
      */
-    var value: Number? = value
-        set(value) {
-            field = value
-            refreshState()
-        }
+    var value by refreshOnUpdate(value, { refreshState() })
     /**
      * The value attribute of the generated HTML input element.
      *
      * This value is placed directly in generated HTML code, while the [value] property is dynamically
      * bound to the spinner input value.
      */
-    var startValue: Number? = value
-        set(value) {
-            field = value
-            this.value = value
-            refresh()
-        }
+    var startValue by refreshOnUpdate(value, { this.value = it; refresh() })
     /**
      * Minimal value.
      */
-    var min: Int = min
-        set(value) {
-            field = value
-            refreshSpinner()
-        }
+    var min by refreshOnUpdate(min, { refreshSpinner() })
     /**
      * Maximal value.
      */
-    var max: Int = max
-        set(value) {
-            field = value
-            refreshSpinner()
-        }
+    var max by refreshOnUpdate(max, { refreshSpinner() })
     /**
      * Step value.
      */
-    var step: Double = step
-        set(value) {
-            field = value
-            refreshSpinner()
-        }
+    var step by refreshOnUpdate(step, { refreshSpinner() })
     /**
      * Number of decimal digits value.
      */
-    var decimals: Int = decimals
-        set(value) {
-            field = value
-            refreshSpinner()
-        }
+    var decimals by refreshOnUpdate(decimals, { refreshSpinner() })
     /**
      * Spinner buttons type.
      */
-    var buttonsType: BUTTONSTYPE = buttonsType
-        set(value) {
-            field = value
-            refreshSpinner()
-        }
+    var buttonsType by refreshOnUpdate(buttonsType, { refreshSpinner() })
     /**
      * Spinner force rounding type.
      */
-    var forceType: FORCETYPE = forceType
-        set(value) {
-            field = value
-            refreshSpinner()
-        }
+    var forceType by refreshOnUpdate(forceType, { refreshSpinner() })
     /**
      * The placeholder for the spinner input.
      */
-    var placeholder: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var placeholder: String? by refreshOnUpdate()
     /**
      * The name attribute of the generated HTML input element.
      */
-    var name: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var name: String? by refreshOnUpdate()
     /**
      * Determines if the field is disabled.
      */
-    var disabled: Boolean = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var disabled by refreshOnUpdate(false)
     /**
      * Determines if the spinner is automatically focused.
      */
-    var autofocus: Boolean? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var autofocus: Boolean? by refreshOnUpdate()
     /**
      * Determines if the spinner is read-only.
      */
-    var readonly: Boolean? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var readonly: Boolean? by refreshOnUpdate()
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var size: INPUTSIZE? by refreshOnUpdate()
 
     private var siblings: JQuery? = null
 

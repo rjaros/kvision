@@ -98,35 +98,19 @@ open class Tag(
     /**
      * Tag type.
      */
-    var type = type
-        set(value) {
-            field = value
-            refresh()
-        }
+    var type by refreshOnUpdate(type)
     /**
      * Text content of the tag.
      */
-    var text = text
-        set(value) {
-            field = value
-            refresh()
-        }
+    var text by refreshOnUpdate(text)
     /**
      * Determines if [text] can contain HTML code.
      */
-    var rich = rich
-        set(value) {
-            field = value
-            refresh()
-        }
+    var rich by refreshOnUpdate(rich)
     /**
      * Text align.
      */
-    var align = align
-        set(value) {
-            field = value
-            refresh()
-        }
+    var align by refreshOnUpdate(align)
 
     init {
         @Suppress("LeakingThis")

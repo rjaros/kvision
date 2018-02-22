@@ -62,11 +62,7 @@ open class ResponsiveGridPanel(
     /**
      * Text align of grid cells.
      */
-    var align = align
-        set(value) {
-            field = value
-            refreshRowContainers()
-        }
+    var align by refreshOnUpdate(align, { refreshRowContainers() })
 
     internal val map = mutableMapOf<Int, MutableMap<Int, WidgetParam>>()
     private var auto: Boolean = true

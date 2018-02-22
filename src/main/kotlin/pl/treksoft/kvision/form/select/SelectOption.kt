@@ -46,51 +46,27 @@ open class SelectOption(
     /**
      * The value of the option.
      */
-    var value: String? = value
-        set(value) {
-            field = value
-            refresh()
-        }
+    var value by refreshOnUpdate(value)
     /**
      * The label of the option.
      */
-    var label: String? = label
-        set(value) {
-            field = value
-            refresh()
-        }
+    var label by refreshOnUpdate(label)
     /**
      * The subtext after the label of the option.
      */
-    var subtext: String? = subtext
-        set(value) {
-            field = value
-            refresh()
-        }
+    var subtext by refreshOnUpdate(subtext)
     /**
      * The icon before the label of the option.
      */
-    var icon: String? = icon
-        set(value) {
-            field = value
-            refresh()
-        }
+    var icon by refreshOnUpdate(icon)
     /**
      * Determines if the option should be rendered as divider.
      */
-    var divider: Boolean = divider
-        set(value) {
-            field = value
-            refresh()
-        }
+    var divider by refreshOnUpdate(divider)
     /**
      * Determines if the option should be disabled.
      */
-    var disabled: Boolean = disabled
-        set(value) {
-            field = value
-            refresh()
-        }
+    var disabled by refreshOnUpdate(disabled)
 
     override fun render(): VNode {
         return if (!divider) {

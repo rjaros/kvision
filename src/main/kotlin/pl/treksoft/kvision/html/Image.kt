@@ -55,43 +55,23 @@ open class Image(
     /**
      * URL of the image.
      */
-    var src = src
-        set(value) {
-            field = value
-            refresh()
-        }
+    var src by refreshOnUpdate(src)
     /**
      * The alternative text of the image.
      */
-    var alt = alt
-        set(value) {
-            field = value
-            refresh()
-        }
+    var alt by refreshOnUpdate(alt)
     /**
      * Determines if the image is rendered as responsive.
      */
-    var responsive = responsive
-        set(value) {
-            field = value
-            refresh()
-        }
+    var responsive by refreshOnUpdate(responsive)
     /**
      * The shape of the image.
      */
-    var shape = shape
-        set(value) {
-            field = value
-            refresh()
-        }
+    var shape by refreshOnUpdate(shape)
     /**
      * Determines if the image is rendered as centered.
      */
-    var centered = centered
-        set(value) {
-            field = value
-            refresh()
-        }
+    var centered by refreshOnUpdate(centered)
 
     override fun render(): VNode {
         return render("img")

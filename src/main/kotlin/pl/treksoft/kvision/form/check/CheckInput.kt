@@ -66,63 +66,34 @@ open class CheckInput(
     /**
      * The selection state of the input.
      */
-    var value: Boolean = value
-        set(value) {
-            field = value
-            refreshState()
-        }
+    var value by refreshOnUpdate(value, { refreshState() })
     /**
      * The value attribute of the generated HTML input element.
      *
      * This value is placed directly in generated HTML code, while the [value] property is dynamically
      * bound to the input selection state.
      */
-    var startValue: Boolean = value
-        set(value) {
-            field = value
-            this.value = value
-            refresh()
-        }
+    var startValue by refreshOnUpdate(value, { this.value = it; refresh() })
     /**
      * The type of the generated HTML input element.
      */
-    var type: CHECKINPUTTYPE = type
-        set(value) {
-            field = value
-            refresh()
-        }
+    var type by refreshOnUpdate(type)
     /**
      * The name attribute of the generated HTML input element.
      */
-    var name: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var name: String? by refreshOnUpdate()
     /**
      * Determines if the field is disabled.
      */
-    var disabled: Boolean = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var disabled by refreshOnUpdate(false)
     /**
      * The additional String value used for the radio button group.
      */
-    var extraValue: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var extraValue: String? by refreshOnUpdate()
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var size: INPUTSIZE? by refreshOnUpdate()
 
     override fun render(): VNode {
         return render("input")

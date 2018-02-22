@@ -65,124 +65,68 @@ open class SelectInput(
     /**
      * A list of options (label to value pairs) for the select control.
      */
-    internal var options = options
-        set(value) {
-            field = value
-            setChildrenFromOptions()
-        }
+    internal var options by refreshOnUpdate(options, { setChildrenFromOptions() })
     /**
      * A value of the selected option.
      */
-    var value: String? = value
-        set(value) {
-            field = value
-            refreshState()
-        }
+    var value by refreshOnUpdate(value, { refreshState() })
     /**
      * The name attribute of the generated HTML select element.
      */
-    var name: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var name: String? by refreshOnUpdate()
     /**
      * Determines if multiple value selection is allowed.
      */
-    var multiple: Boolean = multiple
-        set(value) {
-            field = value
-            refresh()
-        }
+    var multiple by refreshOnUpdate(multiple)
     /**
      * Additional options for remote (AJAX) data source.
      */
-    var ajaxOptions: AjaxOptions? = ajaxOptions
-        set(value) {
-            field = value
-            if (value != null) liveSearch = true
-            refresh()
+    var ajaxOptions by refreshOnUpdate(ajaxOptions, {
+        if (it != null) {
+            liveSearch = true
         }
+        refresh()
+    })
     /**
      * Maximal number of selected options.
      */
-    var maxOptions: Int? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var maxOptions: Int? by refreshOnUpdate()
     /**
      * Determines if live search is available.
      */
-    var liveSearch: Boolean = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var liveSearch by refreshOnUpdate(false)
     /**
      * The placeholder for the select control.
      */
-    var placeholder: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var placeholder: String? by refreshOnUpdate()
     /**
      * The style of the select control.
      */
-    var style: BUTTONSTYLE? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var style: BUTTONSTYLE? by refreshOnUpdate()
     /**
      * The width of the select control.
      */
-    var selectWidth: CssSize? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var selectWidth: CssSize? by refreshOnUpdate()
     /**
      * The width type of the select control.
      */
-    var selectWidthType: SELECTWIDTHTYPE? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var selectWidthType: SELECTWIDTHTYPE? by refreshOnUpdate()
     /**
      * Determines if an empty option is automatically generated.
      */
-    var emptyOption: Boolean = false
-        set(value) {
-            field = value
-            setChildrenFromOptions()
-        }
+    var emptyOption by refreshOnUpdate(false, { setChildrenFromOptions() })
     /**
      * Determines if the field is disabled.
      */
-    var disabled: Boolean = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var disabled by refreshOnUpdate(false)
     /**
      * Determines if the select is automatically focused.
      */
-    var autofocus: Boolean? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var autofocus: Boolean? by refreshOnUpdate()
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var size: INPUTSIZE? by refreshOnUpdate()
 
     init {
         setChildrenFromOptions()

@@ -61,27 +61,15 @@ open class ListTag(
     /**
      * List type.
      */
-    var type = type
-        set(value) {
-            field = value
-            refresh()
-        }
+    var type by refreshOnUpdate(type)
     /**
      * List of elements.
      */
-    var elements = elements
-        set(value) {
-            field = value
-            refresh()
-        }
+    var elements by refreshOnUpdate(elements)
     /**
      * Determines if [elements] can contain HTML code.
      */
-    var rich = rich
-        set(value) {
-            field = value
-            refresh()
-        }
+    var rich by refreshOnUpdate(rich)
 
     init {
         @Suppress("LeakingThis")

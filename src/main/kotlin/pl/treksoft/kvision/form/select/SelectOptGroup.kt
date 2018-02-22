@@ -45,35 +45,19 @@ open class SelectOptGroup(
     /**
      * A label for the group.
      */
-    var label: String = label
-        set(value) {
-            field = value
-            refresh()
-        }
+    var label by refreshOnUpdate(label)
     /**
      * A list of options (label to value pairs) for the group.
      */
-    var options = options
-        set(value) {
-            field = value
-            setChildrenFromOptions()
-        }
+    var options by refreshOnUpdate(options, { setChildrenFromOptions() })
     /**
      * Maximal number of selected options in the group.
      */
-    var maxOptions: Int? = maxOptions
-        set(value) {
-            field = value
-            refresh()
-        }
+    var maxOptions by refreshOnUpdate(maxOptions)
     /**
      * Determines if the group is disabled.
      */
-    var disabled: Boolean = disabled
-        set(value) {
-            field = value
-            refresh()
-        }
+    var disabled by refreshOnUpdate(disabled)
 
     init {
         setChildrenFromOptions()

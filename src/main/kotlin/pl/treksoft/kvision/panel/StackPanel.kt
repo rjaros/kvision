@@ -44,11 +44,7 @@ open class StackPanel(
     /**
      * The index of active (visible) child.
      */
-    var activeIndex = -1
-        set(value) {
-            field = value
-            refresh()
-        }
+    var activeIndex by refreshOnUpdate(-1)
 
     init {
         @Suppress("LeakingThis")

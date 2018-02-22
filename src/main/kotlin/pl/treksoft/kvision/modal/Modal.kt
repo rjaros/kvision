@@ -89,11 +89,7 @@ open class Modal(
     /**
      * Determines if animations are used.
      */
-    var animation = animation
-        set(value) {
-            field = value
-            refresh()
-        }
+    var animation by refreshOnUpdate(animation)
 
     private val dialog = ModalDialog(size)
     private val header = SimplePanel(setOf("modal-header"))
@@ -260,11 +256,7 @@ internal class ModalDialog(size: MODALSIZE?) : SimplePanel(setOf("modal-dialog")
     /**
      * Modal window size.
      */
-    var size = size
-        set(value) {
-            field = value
-            refresh()
-        }
+    var size by refreshOnUpdate(size)
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()

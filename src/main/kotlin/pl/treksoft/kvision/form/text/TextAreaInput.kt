@@ -40,27 +40,15 @@ open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = 
     /**
      * Number of columns.
      */
-    var cols: Int? = cols
-        set(value) {
-            field = value
-            refresh()
-        }
+    var cols by refreshOnUpdate(cols)
     /**
      * Number of rows.
      */
-    var rows: Int? = rows
-        set(value) {
-            field = value
-            refresh()
-        }
+    var rows by refreshOnUpdate(rows)
     /**
      * Determines if hard wrapping is enabled for the textarea element.
      */
-    var wrapHard: Boolean = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var wrapHard by refreshOnUpdate(false)
 
     override fun render(): VNode {
         return startValue?.let {

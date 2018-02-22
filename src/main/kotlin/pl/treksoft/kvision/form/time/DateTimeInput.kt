@@ -60,123 +60,63 @@ open class DateTimeInput(
     /**
      * Date/time input value.
      */
-    var value: Date? = value
-        set(value) {
-            field = value
-            refreshState()
-        }
+    var value by refreshOnUpdate(value, { refreshState() })
     /**
      * Date/time format.
      */
-    var format: String = format
-        set(value) {
-            field = value
-            refreshDatePicker()
-        }
+    var format by refreshOnUpdate(format, { refreshDatePicker() })
     /**
      * The placeholder for the date/time input.
      */
-    var placeholder: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var placeholder: String? by refreshOnUpdate()
     /**
      * The name attribute of the generated HTML input element.
      */
-    var name: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var name: String? by refreshOnUpdate()
     /**
      * Determines if the field is disabled.
      */
-    var disabled: Boolean = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var disabled by refreshOnUpdate(false)
     /**
      * Determines if the text input is automatically focused.
      */
-    var autofocus: Boolean? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var autofocus: Boolean? by refreshOnUpdate()
     /**
      * Determines if the date/time input is read-only.
      */
-    var readonly: Boolean? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var readonly: Boolean? by refreshOnUpdate()
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var size: INPUTSIZE? by refreshOnUpdate()
     /**
      * Day of the week start. 0 (Sunday) to 6 (Saturday).
      */
-    var weekStart: Int = 0
-        set(value) {
-            field = value
-            refreshDatePicker()
-        }
+    var weekStart by refreshOnUpdate(0, { refreshDatePicker() })
     /**
      * Days of the week that should be disabled. Multiple values should be comma separated.
      */
-    var daysOfWeekDisabled: Array<Int> = arrayOf()
-        set(value) {
-            field = value
-            refreshDatePicker()
-        }
+    var daysOfWeekDisabled by refreshOnUpdate(arrayOf<Int>(), { refreshDatePicker() })
     /**
      * Determines if *Clear* button should be visible.
      */
-    var clearBtn: Boolean = true
-        set(value) {
-            field = value
-            refreshDatePicker()
-        }
+    var clearBtn by refreshOnUpdate(true, { refreshDatePicker() })
     /**
      * Determines if *Today* button should be visible.
      */
-    var todayBtn: Boolean = false
-        set(value) {
-            field = value
-            refreshDatePicker()
-        }
+    var todayBtn by refreshOnUpdate(false, { refreshDatePicker() })
     /**
      * Determines if the current day should be highlighted.
      */
-    var todayHighlight: Boolean = false
-        set(value) {
-            field = value
-            refreshDatePicker()
-        }
+    var todayHighlight by refreshOnUpdate(false, { refreshDatePicker() })
     /**
      * The increment used to build the hour view.
      */
-    var minuteStep: Int = DEFAULT_MINUTE_STEP
-        set(value) {
-            field = value
-            refreshDatePicker()
-        }
+    var minuteStep by refreshOnUpdate(DEFAULT_MINUTE_STEP, { refreshDatePicker() })
     /**
      * Determines if meridian views are visible in day and hour views.
      */
-    var showMeridian: Boolean = false
-        set(value) {
-            field = value
-            refreshDatePicker()
-        }
+    var showMeridian by refreshOnUpdate(false, { refreshDatePicker() })
 
     override fun render(): VNode {
         return render("input")

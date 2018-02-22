@@ -69,59 +69,31 @@ open class Button(
     /**
      * Button label.
      */
-    var text = text
-        set(value) {
-            field = value
-            refresh()
-        }
+    var text by refreshOnUpdate(text)
     /**
      * Button icon.
      */
-    var icon = icon
-        set(value) {
-            field = value
-            refresh()
-        }
+    var icon by refreshOnUpdate(icon)
     /**
      * Button style.
      */
-    var style = style
-        set(value) {
-            field = value
-            refresh()
-        }
+    var style by refreshOnUpdate(style)
     /**
      * Determines if button is disabled.
      */
-    var disabled = disabled
-        set(value) {
-            field = value
-            refresh()
-        }
+    var disabled by refreshOnUpdate(disabled)
     /**
      * Button image.
      */
-    var image: ResString? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var image: ResString? by refreshOnUpdate()
     /**
      * Button size.
      */
-    var size: BUTTONSIZE? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var size: BUTTONSIZE? by refreshOnUpdate()
     /**
      * Determines if the button takes all the space horizontally.
      */
-    var block = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var block by refreshOnUpdate(false)
 
     override fun render(): VNode {
         val t = createLabelWithIcon(text, icon, image)

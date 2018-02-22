@@ -65,32 +65,18 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     /**
      * A title attribute of generated HTML element.
      */
-    var title: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var title: String? by refreshOnUpdate()
     /**
      * An ID attribute of generated HTML element.
      */
-    var id: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
+    var id: String? by refreshOnUpdate()
     /**
      * A role attribute of generated HTML element.
      */
-    var role: String? = null
-        set(value) {
-            field = value
-            refresh()
-        }
-    internal var surroundingSpan: Boolean = false
-        set(value) {
-            field = value
-            refresh()
-        }
+    var role: String? by refreshOnUpdate()
+
+    internal var surroundingSpan by refreshOnUpdate(false)
+
     internal var eventTarget: Widget? = null
 
     private var vnode: VNode? = null
