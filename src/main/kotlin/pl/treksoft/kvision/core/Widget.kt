@@ -289,8 +289,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
                 }
             }
             destroy = { _ ->
-                vnode = null
                 afterDestroy()
+                vnode = null
+                vnode
             }
         }
         return hooks

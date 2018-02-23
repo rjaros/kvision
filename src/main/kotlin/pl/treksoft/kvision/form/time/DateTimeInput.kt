@@ -215,6 +215,10 @@ open class DateTimeInput(
         }
     }
 
+    override fun afterDestroy() {
+        getElementJQueryD()?.datetimepicker("remove")
+    }
+
     private fun initDateTimePicker() {
         val datePickerFormat = format.toDatePickerFormat()
         val minView = if (format.contains("HH") || format.contains("mm")) 0 else 2
