@@ -162,10 +162,10 @@ open class FlexPanel(
         wrapper.marginLeft = null
         spacing?.let {
             when (direction) {
-                FLEXDIR.COLUMN -> wrapper.marginBottom = it.px()
-                FLEXDIR.ROWREV -> wrapper.marginLeft = it.px()
-                FLEXDIR.COLUMNREV -> wrapper.marginTop = it.px()
-                else -> wrapper.marginRight = it.px()
+                FLEXDIR.COLUMN -> wrapper.marginBottom = it.px
+                FLEXDIR.ROWREV -> wrapper.marginLeft = it.px
+                FLEXDIR.COLUMNREV -> wrapper.marginTop = it.px
+                else -> wrapper.marginRight = it.px
             }
         }
         return wrapper

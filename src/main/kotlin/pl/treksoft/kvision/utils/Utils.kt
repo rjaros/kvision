@@ -29,80 +29,122 @@ import pl.treksoft.kvision.core.UNIT
 import kotlin.js.Date
 
 /**
- * Extension function to convert Int to CSS px units.
+ * Extension property to convert Int to CSS px units.
  */
-fun Int.px(): CssSize = Pair(this, UNIT.px)
+val Int.px: CssSize
+    get() {
+        return Pair(this, UNIT.px)
+    }
 
 /**
- * Extension function to convert Int to CSS em units.
+ * Extension property to convert Int to CSS em units.
  */
-fun Int.em(): CssSize = Pair(this, UNIT.em)
+val Int.em: CssSize
+    get() {
+        return Pair(this, UNIT.em)
+    }
 
 /**
- * Extension function to convert Int to CSS pt units.
+ * Extension property to convert Int to CSS pt units.
  */
-fun Int.pt(): CssSize = Pair(this, UNIT.pt)
+val Int.pt: CssSize
+    get() {
+        return Pair(this, UNIT.pt)
+    }
 
 /**
- * Extension function to convert Int to CSS percent units.
+ * Extension property to convert Int to CSS percent units.
  */
-fun Int.perc(): CssSize = Pair(this, UNIT.perc)
+val Int.perc: CssSize
+    get() {
+        return Pair(this, UNIT.perc)
+    }
 
 /**
- * Extension function to convert Int to CSS rem units.
+ * Extension property to convert Int to CSS rem units.
  */
-fun Int.rem(): CssSize = Pair(this, UNIT.rem)
+val Int.rem: CssSize
+    get() {
+        return Pair(this, UNIT.rem)
+    }
 
 /**
- * Extension function to convert Int to CSS ch units.
+ * Extension property to convert Int to CSS ch units.
  */
-fun Int.ch(): CssSize = Pair(this, UNIT.ch)
+val Int.ch: CssSize
+    get() {
+        return Pair(this, UNIT.ch)
+    }
 
 /**
- * Extension function to convert Int to CSS cm units.
+ * Extension property to convert Int to CSS cm units.
  */
-fun Int.cm(): CssSize = Pair(this, UNIT.cm)
+val Int.cm: CssSize
+    get() {
+        return Pair(this, UNIT.cm)
+    }
 
 /**
- * Extension function to convert Int to CSS mm units.
+ * Extension property to convert Int to CSS mm units.
  */
-fun Int.mm(): CssSize = Pair(this, UNIT.mm)
+val Int.mm: CssSize
+    get() {
+        return Pair(this, UNIT.mm)
+    }
 
 /**
- * Extension function to convert Int to CSS in units.
+ * Extension property to convert Int to CSS in units.
  */
 @Suppress("FunctionNaming")
-fun Int.`in`(): CssSize = Pair(this, UNIT.`in`)
+val Int.`in`: CssSize
+    get() {
+        return Pair(this, UNIT.`in`)
+    }
 
 /**
- * Extension function to convert Int to CSS pc units.
+ * Extension property to convert Int to CSS pc units.
  */
-fun Int.pc(): CssSize = Pair(this, UNIT.pc)
+val Int.pc: CssSize
+    get() {
+        return Pair(this, UNIT.pc)
+    }
 
 /**
- * Extension function to convert Int to CSS vh units.
+ * Extension property to convert Int to CSS vh units.
  */
-fun Int.vh(): CssSize = Pair(this, UNIT.vh)
+val Int.vh: CssSize
+    get() {
+        return Pair(this, UNIT.vh)
+    }
 
 /**
- * Extension function to convert Int to CSS vw units.
+ * Extension property to convert Int to CSS vw units.
  */
-fun Int.vw(): CssSize = Pair(this, UNIT.vw)
+val Int.vw: CssSize
+    get() {
+        return Pair(this, UNIT.vw)
+    }
 
 /**
- * Extension function to convert Int to CSS vmin units.
+ * Extension property to convert Int to CSS vmin units.
  */
-fun Int.vmin(): CssSize = Pair(this, UNIT.vmin)
+val Int.vmin: CssSize
+    get() {
+        return Pair(this, UNIT.vmin)
+    }
 
 /**
- * Extension function to convert Int to CSS vmax units.
+ * Extension property to convert Int to CSS vmax units.
  */
-fun Int.vmax(): CssSize = Pair(this, UNIT.vmax)
+val Int.vmax: CssSize
+    get() {
+        return Pair(this, UNIT.vmax)
+    }
 
 /**
- * Helper function to describe CSS auto value.
+ * Helper property to describe CSS auto value.
  */
-fun auto(): CssSize = Pair(0, UNIT.auto)
+val auto: CssSize = Pair(0, UNIT.auto)
 
 /**
  * Extension function to convert CssSize to String.
