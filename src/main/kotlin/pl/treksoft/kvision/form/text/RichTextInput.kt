@@ -57,7 +57,7 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
             }
         }
         if (disabled) {
-            sn.add("disabled" to "true")
+            sn.add("disabled" to "disabled")
         }
         return sn
     }

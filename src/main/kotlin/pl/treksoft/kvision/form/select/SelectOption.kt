@@ -93,7 +93,7 @@ open class SelectOption(
                 }
             }
             if (disabled) {
-                sn.add("disabled" to "true")
+                sn.add("disabled" to "disabled")
             }
         } else {
             sn.add("data-divider" to "true")

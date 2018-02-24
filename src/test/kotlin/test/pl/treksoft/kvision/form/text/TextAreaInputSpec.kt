@@ -44,7 +44,7 @@ class TextAreaInputSpec : DomSpec {
             root.add(ti)
             val element = document.getElementById("test")
             assertEquals(
-                "<textarea class=\"form-control\" id=\"idti\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"\" cols=\"5\" rows=\"2\">abc</textarea>",
+                "<textarea class=\"form-control\" id=\"idti\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" cols=\"5\" rows=\"2\">abc</textarea>",
                 element?.innerHTML,
                 "Should render correct input control"
             )

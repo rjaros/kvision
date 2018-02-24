@@ -191,7 +191,7 @@ open class SpinnerInput(
             }
         }
         if (disabled) {
-            sn.add("disabled" to "true")
+            sn.add("disabled" to "disabled")
             value?.let {
                 sn.add("value" to it.toString())
             }

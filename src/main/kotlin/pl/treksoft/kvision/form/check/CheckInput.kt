@@ -111,13 +111,13 @@ open class CheckInput(
         val sn = super.getSnAttrs().toMutableList()
         sn.add("type" to type.type)
         if (startValue) {
-            sn.add("checked" to "true")
+            sn.add("checked" to "checked")
         }
         name?.let {
             sn.add("name" to it)
         }
         if (disabled) {
-            sn.add("disabled" to "true")
+            sn.add("disabled" to "disabled")
         }
         extraValue?.let {
             sn.add("value" to it)

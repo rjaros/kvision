@@ -150,7 +150,7 @@ open class DateTimeInput(
             }
         }
         if (disabled) {
-            sn.add("disabled" to "true")
+            sn.add("disabled" to "disabled")
             value?.let {
                 sn.add("value" to it.toStringF(format))
             }

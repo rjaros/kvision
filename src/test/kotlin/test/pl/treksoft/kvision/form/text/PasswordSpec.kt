@@ -44,7 +44,7 @@ class PasswordSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ti.input.id
             assertEquals(
-                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"\" type=\"password\" value=\"abc\"></div>",
+                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" type=\"password\" value=\"abc\"></div>",
                 element?.innerHTML,
                 "Should render correct input form control"
             )

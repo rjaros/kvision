@@ -49,7 +49,7 @@ class SelectSpec : DomSpec {
                 "Should render correct select form control"
             )
             assertTrue(
-                true == element?.innerHTML?.endsWith("<select class=\"form-control selectpicker\" id=\"$id\" multiple=\"\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select></div></div>"),
+                true == element?.innerHTML?.endsWith("<select class=\"form-control selectpicker\" id=\"$id\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select></div></div>"),
                 "Should render correct select form control"
             )
         }

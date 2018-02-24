@@ -68,7 +68,7 @@ kotlinFrontend {
         dependency("url-loader")
         dependency("jquery", "3.2.1")
         dependency("fecha", "2.3.2")
-        dependency("snabbdom", "0.6.9")
+        dependency("snabbdom", "0.7.1")
         dependency("snabbdom-virtualize", "0.7.0")
         dependency("navigo", "7.0.0")
         dependency("jquery-resizable-dom", "0.28.0")

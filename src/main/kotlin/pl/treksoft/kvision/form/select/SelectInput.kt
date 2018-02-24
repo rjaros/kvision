@@ -245,7 +245,7 @@ open class SelectInput(
             sn.add("name" to it)
         }
         if (multiple) {
-            sn.add("multiple" to "true")
+            sn.add("multiple" to "multiple")
         }
         maxOptions?.let {
             sn.add("data-max-options" to "" + it)
@@ -262,7 +262,7 @@ open class SelectInput(
             }
         }
         if (disabled) {
-            sn.add("disabled" to "true")
+            sn.add("disabled" to "disabled")
         }
         val btnStyle = style?.className ?: "btn-default"
         when (size) {

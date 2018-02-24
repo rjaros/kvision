@@ -117,7 +117,7 @@ abstract class AbstractTextInput(
             }
         }
         if (disabled) {
-            sn.add("disabled" to "true")
+            sn.add("disabled" to "disabled")
         }
         return sn
     }

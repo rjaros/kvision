@@ -84,7 +84,7 @@ open class SelectOptGroup(
             sn.add("data-max-options" to "" + it)
         }
         if (disabled) {
-            sn.add("disabled" to "true")
+            sn.add("disabled" to "disabled")
         }
         return sn
     }
