@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.h
 import org.w3c.dom.CustomEventInit
+import org.w3c.dom.DragEvent
 import org.w3c.dom.Node
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
@@ -74,6 +75,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
      * A role attribute of generated HTML element.
      */
     var role: String? by refreshOnUpdate()
+    /**
+     * Determines if the current widget is draggable.
+     */
+    var draggable: Boolean? by refreshOnUpdate()
 
     internal var surroundingSpan by refreshOnUpdate(false)
 
@@ -209,6 +214,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         }
         role?.let {
             snattrs.add("role" to it)
+        }
+        if (draggable == true) {
+            snattrs.add("draggable" to "true")
         }
         return snattrs
     }
@@ -473,6 +481,72 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     override fun getRoot(): Root? {
         return this.parent?.getRoot()
+    }
+
+    /**
+     * Sets D&D data for the current widget. It also makes it draggable.
+     * @param format D&D data format
+     * @param data D&D data transferred to a drop target
+     */
+    open fun setDragDropData(format: String, data: String) {
+        draggable = true
+        setEventListener<Widget> {
+            dragstart = { e ->
+                e.dataTransfer?.setData(format, data)
+            }
+        }
+    }
+
+    /**
+     * Clears D&D data for the current widget. It also makes it not draggable.
+     */
+    open fun clearDragDropData() {
+        draggable = false
+        setEventListener<Widget> {
+            dragstart = {
+            }
+        }
+    }
+
+    /**
+     * Sets the current widget as a D&D drop target with helper callback accepting String data.
+     * @param format accepted D&D data format
+     * @param callback a callback function accepting String data called after any drop event
+     */
+    open fun setDropTargetData(format: String, callback: (String?) -> Unit) {
+        setDropTarget(format) { e ->
+            callback(e.dataTransfer?.getData(format))
+        }
+    }
+
+    /**
+     * Sets the current widget as a D&D drop target.
+     * @param format accepted D&D data format
+     * @param callback a callback function accepting event object called after any drop event
+     */
+    open fun setDropTarget(format: String, callback: (DragEvent) -> Unit) {
+        setDropTarget(setOf(format), callback)
+    }
+
+    /**
+     * Sets the current widget as a D&D drop target.
+     * @param formats a set of accepted D&D data formats
+     * @param callback a callback function accepting event object called after any drop event
+     */
+    open fun setDropTarget(formats: Set<String>? = null, callback: (DragEvent) -> Unit) {
+        setEventListener<Widget> {
+            dragover = { e ->
+                val types = e.dataTransfer?.types?.toSet() ?: setOf()
+                if (formats == null || formats.intersect(types).isNotEmpty()) {
+                    e.preventDefault()
+                }
+            }
+            drop = { e ->
+                e.preventDefault()
+                e.stopPropagation()
+                callback(e)
+            }
+        }
     }
 
     /**

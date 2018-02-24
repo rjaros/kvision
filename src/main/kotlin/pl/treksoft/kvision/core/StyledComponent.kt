@@ -55,6 +55,30 @@ abstract class StyledComponent : Component {
      */
     var maxHeight: CssSize? by refreshOnUpdate()
     /**
+     * CSS position of the current component.
+     */
+    var position: POSITION? by refreshOnUpdate()
+    /**
+     * Top edge of the current component.
+     */
+    var top: CssSize? by refreshOnUpdate()
+    /**
+     * Left edge of the current component.
+     */
+    var left: CssSize? by refreshOnUpdate()
+    /**
+     * Right edge of the current component.
+     */
+    var right: CssSize? by refreshOnUpdate()
+    /**
+     * Bottom edge of the current component.
+     */
+    var bottom: CssSize? by refreshOnUpdate()
+    /**
+     * Z-index of the current component.
+     */
+    var zIndex: Int? by refreshOnUpdate()
+    /**
      * Border of the current component.
      */
     var border: Border? by refreshOnUpdate()
@@ -155,7 +179,6 @@ abstract class StyledComponent : Component {
      */
     var background: Background? by refreshOnUpdate()
 
-
     private var snStyleCache: List<StringPair>? = null
 
     /**
@@ -201,6 +224,24 @@ abstract class StyledComponent : Component {
         }
         maxHeight?.let {
             snstyle.add("max-height" to it.asString())
+        }
+        position?.let {
+            snstyle.add("position" to it.position)
+        }
+        top?.let {
+            snstyle.add("top" to it.asString())
+        }
+        left?.let {
+            snstyle.add("left" to it.asString())
+        }
+        right?.let {
+            snstyle.add("right" to it.asString())
+        }
+        bottom?.let {
+            snstyle.add("bottom" to it.asString())
+        }
+        zIndex?.let {
+            snstyle.add("z-index" to it.toString())
         }
         border?.let {
             snstyle.add("border" to it.asString())

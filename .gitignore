@@ -4,3 +4,5 @@ out/
 *.iml
 /build-mvn.sh
 /upload.sh
+/src/main/kotlin/pl/treksoft/kvision/KVision.kt
+/src/main/kotlin/pl/treksoft/kvision/Main.kt

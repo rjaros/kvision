@@ -48,27 +48,27 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * @suppress
      * Internal property.
      */
-    protected var left: Component? = null
+    protected var leftComponent: Component? = null
     /**
      * @suppress
      * Internal property.
      */
-    protected var center: Component? = null
+    protected var centerComponent: Component? = null
     /**
      * @suppress
      * Internal property.
      */
-    protected var right: Component? = null
+    protected var rightComponent: Component? = null
     /**
      * @suppress
      * Internal property.
      */
-    protected var up: Component? = null
+    protected var upComponent: Component? = null
     /**
      * @suppress
      * Internal property.
      */
-    protected var down: Component? = null
+    protected var downComponent: Component? = null
 
     /**
      * @suppress
@@ -101,28 +101,28 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
     open fun add(child: Component, position: SIDE): DockPanel {
         when (position) {
             SIDE.UP -> {
-                up?.let { mainContainer.remove(it) }
-                up = child
+                upComponent?.let { mainContainer.remove(it) }
+                upComponent = child
                 mainContainer.add(child, 1, alignSelf = FLEXALIGNITEMS.CENTER)
             }
             SIDE.CENTER -> {
-                center?.let { subContainer.remove(it) }
-                center = child
+                centerComponent?.let { subContainer.remove(it) }
+                centerComponent = child
                 subContainer.add(child, 2)
             }
             SIDE.LEFT -> {
-                left?.let { subContainer.remove(it) }
-                left = child
+                leftComponent?.let { subContainer.remove(it) }
+                leftComponent = child
                 subContainer.add(child, 1)
             }
             SIDE.RIGHT -> {
-                right?.let { subContainer.remove(it) }
-                right = child
+                rightComponent?.let { subContainer.remove(it) }
+                rightComponent = child
                 subContainer.add(child, 3)
             }
             SIDE.DOWN -> {
-                down?.let { mainContainer.remove(it) }
-                down = child
+                downComponent?.let { mainContainer.remove(it) }
+                downComponent = child
                 mainContainer.add(child, 3, alignSelf = FLEXALIGNITEMS.CENTER)
             }
         }
@@ -139,11 +139,11 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
     }
 
     override fun remove(child: Component): DockPanel {
-        if (child == left) removeAt(SIDE.LEFT)
-        if (child == center) removeAt(SIDE.CENTER)
-        if (child == right) removeAt(SIDE.RIGHT)
-        if (child == up) removeAt(SIDE.UP)
-        if (child == down) removeAt(SIDE.DOWN)
+        if (child == leftComponent) removeAt(SIDE.LEFT)
+        if (child == centerComponent) removeAt(SIDE.CENTER)
+        if (child == rightComponent) removeAt(SIDE.RIGHT)
+        if (child == upComponent) removeAt(SIDE.UP)
+        if (child == downComponent) removeAt(SIDE.DOWN)
         return this
     }
 
@@ -155,24 +155,24 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
     open fun removeAt(position: SIDE): DockPanel {
         when (position) {
             SIDE.UP -> {
-                up?.let { mainContainer.remove(it) }
-                up = null
+                upComponent?.let { mainContainer.remove(it) }
+                upComponent = null
             }
             SIDE.CENTER -> {
-                center?.let { subContainer.remove(it) }
-                center = null
+                centerComponent?.let { subContainer.remove(it) }
+                centerComponent = null
             }
             SIDE.LEFT -> {
-                left?.let { subContainer.remove(it) }
-                left = null
+                leftComponent?.let { subContainer.remove(it) }
+                leftComponent = null
             }
             SIDE.RIGHT -> {
-                right?.let { subContainer.remove(it) }
-                right = null
+                rightComponent?.let { subContainer.remove(it) }
+                rightComponent = null
             }
             SIDE.DOWN -> {
-                down?.let { mainContainer.remove(it) }
-                down = null
+                downComponent?.let { mainContainer.remove(it) }
+                downComponent = null
             }
         }
         return this

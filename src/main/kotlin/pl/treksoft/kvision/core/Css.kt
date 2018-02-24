@@ -257,6 +257,17 @@ enum class BGCLIP(internal val clip: String) {
 }
 
 /**
+ * Definitions of CSS position options.
+ */
+enum class POSITION(internal val position: String) {
+    STATIC("static"),
+    RELATIVE("relative"),
+    FIXED("fixed"),
+    ABSOLUTE("absolute"),
+    STICKY("sticky")
+}
+
+/**
  * Type-safe definition of CSS border.
  */
 class Border private constructor(
