@@ -32,7 +32,7 @@ import pl.treksoft.kvision.core.Widget
 /**
  * Button styles.
  */
-enum class BUTTONSTYLE(internal val className: String) {
+enum class ButtonStyle(internal val className: String) {
     DEFAULT("btn-default"),
     PRIMARY("btn-primary"),
     SUCCESS("btn-success"),
@@ -45,7 +45,7 @@ enum class BUTTONSTYLE(internal val className: String) {
 /**
  * Button sizes.
  */
-enum class BUTTONSIZE(internal val className: String) {
+enum class ButtonSize(internal val className: String) {
     LARGE("btn-lg"),
     SMALL("btn-sm"),
     XSMALL("btn-xs")
@@ -62,7 +62,7 @@ enum class BUTTONSIZE(internal val className: String) {
  * @param classes a set of CSS class names
  */
 open class Button(
-    text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
+    text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT,
     disabled: Boolean = false, classes: Set<String> = setOf()
 ) : Widget(classes) {
 
@@ -89,7 +89,7 @@ open class Button(
     /**
      * Button size.
      */
-    var size: BUTTONSIZE? by refreshOnUpdate()
+    var size: ButtonSize? by refreshOnUpdate()
     /**
      * Determines if the button takes all the space horizontally.
      */
@@ -139,7 +139,7 @@ open class Button(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.button(
-            text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
+            text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT,
             disabled: Boolean = false, classes: Set<String> = setOf(), init: (Button.() -> Unit)? = null
         ): Button {
             val button = Button(text, icon, style, disabled, classes).apply { init?.invoke(this) }

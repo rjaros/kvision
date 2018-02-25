@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.utils.asString
+import kotlin.Unit
 import kotlin.reflect.KProperty
 
 /**
@@ -57,7 +58,7 @@ abstract class StyledComponent : Component {
     /**
      * CSS position of the current component.
      */
-    var position: POSITION? by refreshOnUpdate()
+    var position: Position? by refreshOnUpdate()
     /**
      * Top edge of the current component.
      */
@@ -161,11 +162,11 @@ abstract class StyledComponent : Component {
      *
      * This property gives a convenient way to set the value of [color] property e.g.:
      *
-     * c.colorName = COLOR.GREEN
+     * c.colorName = Col.GREEN
      *
      * The value read from this property is always null.
      */
-    var colorName: COLOR?
+    var colorName: Col?
         get() = null
         set(value) {
             color = if (value != null) Color(value) else null

@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.form.check
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.check.CHECKINPUTTYPE
+import pl.treksoft.kvision.form.check.CheckInputType
 import pl.treksoft.kvision.form.check.CheckInput
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -54,7 +54,7 @@ class CheckInputSpec : DomSpec {
     fun renderAsRadio() {
         run {
             val root = Root("test")
-            val ci = CheckInput(type = CHECKINPUTTYPE.RADIO, value = true).apply {
+            val ci = CheckInput(type = CheckInputType.RADIO, value = true).apply {
                 name = "name"
                 id = "idti"
                 extraValue = "abc"

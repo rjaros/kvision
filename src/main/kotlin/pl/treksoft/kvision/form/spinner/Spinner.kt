@@ -46,8 +46,8 @@ import pl.treksoft.kvision.utils.SnOn
  */
 open class Spinner(
     value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
-    decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
-    forceType: FORCETYPE = FORCETYPE.NONE, label: String? = null,
+    decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
+    forceType: ForceType = ForceType.NONE, label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(setOf("form-group")), NumberFormControl {
 
@@ -246,8 +246,8 @@ open class Spinner(
          */
         fun Container.spinner(
             value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
-            decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
-            forceType: FORCETYPE = FORCETYPE.NONE, label: String? = null,
+            decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
+            forceType: ForceType = ForceType.NONE, label: String? = null,
             rich: Boolean = false, init: (Spinner.() -> Unit)? = null
         ): Spinner {
             val spinner = Spinner(value, min, max, step, decimals, buttonsType, forceType, label, rich).apply {

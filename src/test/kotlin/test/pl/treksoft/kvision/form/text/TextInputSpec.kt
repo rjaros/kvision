@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.text.TEXTINPUTTYPE
+import pl.treksoft.kvision.form.text.TextInputType
 import pl.treksoft.kvision.form.text.TextInput
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -35,7 +35,7 @@ class TextInputSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val ti = TextInput(type = TEXTINPUTTYPE.PASSWORD, value = "abc").apply {
+            val ti = TextInput(type = TextInputType.PASSWORD, value = "abc").apply {
                 placeholder = "place"
                 name = "name"
                 maxlength = 15

@@ -71,7 +71,7 @@ enum class TAG(internal val tagName: String) {
 /**
  * CSS align attributes.
  */
-enum class ALIGN(val className: String) {
+enum class Align(val className: String) {
     LEFT("text-left"),
     CENTER("text-center"),
     RIGHT("text-right"),
@@ -91,7 +91,7 @@ enum class ALIGN(val className: String) {
  * @param init an initializer extension function
  */
 open class Tag(
-    type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN? = null,
+    type: TAG, text: String? = null, rich: Boolean = false, align: Align? = null,
     classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -144,7 +144,7 @@ open class Tag(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.tag(
-            type: TAG, text: String? = null, rich: Boolean = false, align: ALIGN? = null,
+            type: TAG, text: String? = null, rich: Boolean = false, align: Align? = null,
             classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
         ): Tag {
             val tag = Tag(type, text, rich, align, classes, init)

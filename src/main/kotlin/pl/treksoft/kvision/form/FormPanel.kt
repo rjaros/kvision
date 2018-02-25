@@ -34,7 +34,7 @@ import kotlin.js.Json
 /**
  * Bootstrap form layout options.
  */
-enum class FORMTYPE(internal val formType: String) {
+enum class FormType(internal val formType: String) {
     INLINE("form-inline"),
     HORIZONTAL("form-horizontal")
 }
@@ -49,7 +49,7 @@ enum class FORMTYPE(internal val formType: String) {
  * @param modelFactory function transforming a Map<String, Any?> to a data model of class K
  */
 open class FormPanel<K>(
-    private val type: FORMTYPE? = null, classes: Set<String> = setOf(),
+    private val type: FormType? = null, classes: Set<String> = setOf(),
     modelFactory: (Map<String, Any?>) -> K
 ) : SimplePanel(classes) {
 
@@ -123,7 +123,7 @@ open class FormPanel<K>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        if (type == FORMTYPE.HORIZONTAL) {
+        if (type == FormType.HORIZONTAL) {
             if (control is CheckBox || control is Radio) {
                 control.addCssClass("col-sm-offset-2")
                 control.addCssClass("col-sm-10")
@@ -223,7 +223,7 @@ open class FormPanel<K>(
          * It takes the same parameters as the constructor of the built component.
          */
         fun <K> Container.formPanel(
-            type: FORMTYPE? = null, classes: Set<String> = setOf(),
+            type: FormType? = null, classes: Set<String> = setOf(),
             modelFactory: (Map<String, Any?>) -> K
         ): FormPanel<K> {
             val panel = FormPanel(type, classes, modelFactory)

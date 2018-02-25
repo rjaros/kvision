@@ -29,7 +29,7 @@ import pl.treksoft.kvision.core.WidgetWrapper
 /**
  * CSS grid justification options.
  */
-enum class GRIDJUSTIFY(internal val justify: String) {
+enum class GridJustify(internal val justify: String) {
     START("start"),
     END("end"),
     CENTER("center"),
@@ -39,7 +39,7 @@ enum class GRIDJUSTIFY(internal val justify: String) {
 /**
  * CSS grid alignment options.
  */
-enum class GRIDALIGN(internal val align: String) {
+enum class GridAlign(internal val align: String) {
     START("start"),
     END("end"),
     CENTER("center"),
@@ -49,7 +49,7 @@ enum class GRIDALIGN(internal val align: String) {
 /**
  * CSS grid content justification options.
  */
-enum class GRIDJUSTIFYCONTENT(internal val justifyContent: String) {
+enum class GridJustifyContent(internal val justifyContent: String) {
     START("start"),
     END("end"),
     CENTER("center"),
@@ -62,7 +62,7 @@ enum class GRIDJUSTIFYCONTENT(internal val justifyContent: String) {
 /**
  * CSS grid content alignment options.
  */
-enum class GRIDALIGNCONTENT(internal val alignContent: String) {
+enum class GridAlignContent(internal val alignContent: String) {
     START("start"),
     END("end"),
     CENTER("center"),
@@ -75,7 +75,7 @@ enum class GRIDALIGNCONTENT(internal val alignContent: String) {
 /**
  * CSS grid flow options.
  */
-enum class GRIDFLOW(internal val flow: String) {
+enum class GridFlow(internal val flow: String) {
     ROW("row"),
     COLUMN("column"),
     ROWDENSE("row dense"),
@@ -102,11 +102,11 @@ enum class GRIDFLOW(internal val flow: String) {
  * @param init an initializer extension function
  */
 open class GridPanel(
-    autoColumns: String? = null, autoRows: String? = null, autoFlow: GRIDFLOW? = null,
+    autoColumns: String? = null, autoRows: String? = null, autoFlow: GridFlow? = null,
     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
-    columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
-    alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
-    alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
+    columnGap: Int? = null, rowGap: Int? = null, justifyItems: GridJustify? = null,
+    alignItems: GridAlign? = null, justifyContent: GridJustifyContent? = null,
+    alignContent: GridAlignContent? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -179,8 +179,8 @@ open class GridPanel(
     @Suppress("LongParameterList")
     fun add(
         child: Component, columnStart: Int? = null, rowStart: Int? = null,
-        columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: GRIDJUSTIFY? = null,
-        alignSelf: GRIDALIGN? = null, classes: Set<String> = setOf()
+        columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: GridJustify? = null,
+        alignSelf: GridAlign? = null, classes: Set<String> = setOf()
     ): GridPanel {
         addInternal(GridWrapper(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, classes))
         return this
@@ -263,11 +263,11 @@ open class GridPanel(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.gridPanel(
-            autoColumns: String? = null, autoRows: String? = null, autoFlow: GRIDFLOW? = null,
+            autoColumns: String? = null, autoRows: String? = null, autoFlow: GridFlow? = null,
             templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
-            columnGap: Int? = null, rowGap: Int? = null, justifyItems: GRIDJUSTIFY? = null,
-            alignItems: GRIDALIGN? = null, justifyContent: GRIDJUSTIFYCONTENT? = null,
-            alignContent: GRIDALIGNCONTENT? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
+            columnGap: Int? = null, rowGap: Int? = null, justifyItems: GridJustify? = null,
+            alignItems: GridAlign? = null, justifyContent: GridJustifyContent? = null,
+            alignContent: GridAlignContent? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
         ): GridPanel {
             val gridPanel = GridPanel(
                 autoColumns, autoRows, autoFlow, templateColumns, templateRows, templateAreas,
@@ -282,8 +282,8 @@ open class GridPanel(
 class GridWrapper(
     delegate: Component, private val columnStart: Int? = null, private val rowStart: Int? = null,
     private val columnEnd: String? = null, private val rowEnd: String? = null,
-    private val area: String? = null, private val justifySelf: GRIDJUSTIFY? = null,
-    private val alignSelf: GRIDALIGN? = null,
+    private val area: String? = null, private val justifySelf: GridJustify? = null,
+    private val alignSelf: GridAlign? = null,
     classes: Set<String> = setOf()
 ) : WidgetWrapper(delegate, classes) {
 

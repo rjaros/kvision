@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.modal
 
-import pl.treksoft.kvision.html.ALIGN
-import pl.treksoft.kvision.html.BUTTONSTYLE
+import pl.treksoft.kvision.html.Align
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -43,7 +43,7 @@ import pl.treksoft.kvision.html.Tag
  */
 open class Confirm(
     caption: String? = null, text: String? = null, rich: Boolean = false,
-    align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
+    align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
     cancelVisible: Boolean = false,
     private val noCallback: (() -> Unit)? = null,
     private val yesCallback: (() -> Unit)? = null
@@ -96,7 +96,7 @@ open class Confirm(
             }
         }
         this.addButton(noButton)
-        val yesButton = Button("Yes", "ok", BUTTONSTYLE.PRIMARY)
+        val yesButton = Button("Yes", "ok", ButtonStyle.PRIMARY)
         yesButton.setEventListener {
             click = {
                 hide()
@@ -133,7 +133,7 @@ open class Confirm(
         @Suppress("LongParameterList")
         fun show(
             caption: String? = null, text: String? = null, rich: Boolean = false,
-            align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
+            align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
             cancelVisible: Boolean = false,
             noCallback: (() -> Unit)? = null, yesCallback: (() -> Unit)? = null
         ) {

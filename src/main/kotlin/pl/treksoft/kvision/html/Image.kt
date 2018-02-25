@@ -31,7 +31,7 @@ import pl.treksoft.kvision.core.Widget
 /**
  * Image shapes.
  */
-enum class IMAGESHAPE(internal val className: String) {
+enum class ImageShape(internal val className: String) {
     ROUNDED("img-rounded"),
     CIRCLE("img-circle"),
     THUMBNAIL("img-thumbnail")
@@ -49,7 +49,7 @@ enum class IMAGESHAPE(internal val className: String) {
  * @param classes a set of CSS class names
  */
 open class Image(
-    src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGESHAPE? = null,
+    src: ResString, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
     centered: Boolean = false, classes: Set<String> = setOf()
 ) : Widget(classes) {
     /**
@@ -107,7 +107,7 @@ open class Image(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.image(
-            src: ResString, alt: String? = null, responsive: Boolean = false, shape: IMAGESHAPE? = null,
+            src: ResString, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
             centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null
         ): Image {
             val image = Image(src, alt, responsive, shape, centered, classes).apply { init?.invoke(this) }

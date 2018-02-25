@@ -33,7 +33,7 @@ import pl.treksoft.kvision.core.Container
 open class Div(
     text: String,
     rich: Boolean = false,
-    align: ALIGN? = null,
+    align: Align? = null,
     classes: Set<String> = setOf(),
     init: (Tag.() -> Unit)? = null
 ) :
@@ -47,7 +47,7 @@ open class Div(
         fun Container.div(
             text: String,
             rich: Boolean = false,
-            align: ALIGN? = null,
+            align: Align? = null,
             classes: Set<String> = setOf(),
             init: (Div.() -> Unit)? = null
         ): Div {

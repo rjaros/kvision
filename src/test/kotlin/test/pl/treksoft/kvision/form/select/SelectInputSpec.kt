@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.form.select
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.select.SELECTWIDTHTYPE
+import pl.treksoft.kvision.form.select.SelectWidthType
 import pl.treksoft.kvision.form.select.SelectInput
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -38,7 +38,7 @@ class SelectInputSpec : DomSpec {
             val selectInput = SelectInput(listOf("test1" to "Test 1", "test2" to "Test 2"), "test1", true).apply {
                 liveSearch = true
                 placeholder = "Choose ..."
-                selectWidthType = SELECTWIDTHTYPE.FIT
+                selectWidthType = SelectWidthType.FIT
                 emptyOption = true
             }
             root.add(selectInput)

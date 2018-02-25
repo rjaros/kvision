@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.form.check
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.check.CHECKBOXSTYLE
+import pl.treksoft.kvision.form.check.CheckBoxStyle
 import pl.treksoft.kvision.form.check.CheckBox
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -37,7 +37,7 @@ class CheckBoxSpec : DomSpec {
             val root = Root("test")
             val ci = CheckBox(value = true, label = "Label").apply {
                 name = "name"
-                style = CHECKBOXSTYLE.DANGER
+                style = CheckBoxStyle.DANGER
                 disabled = true
                 circled = true
                 inline = true
@@ -50,7 +50,7 @@ class CheckBoxSpec : DomSpec {
                 element?.innerHTML,
                 "Should render correct checkbox form control"
             )
-            ci.style = CHECKBOXSTYLE.INFO
+            ci.style = CheckBoxStyle.INFO
             ci.circled = false
             ci.inline = false
             assertEquals(

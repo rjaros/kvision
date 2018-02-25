@@ -31,7 +31,7 @@ import pl.treksoft.kvision.utils.px
 /**
  * CSS flexbox directions.
  */
-enum class FLEXDIR(internal val dir: String) {
+enum class FlexDir(internal val dir: String) {
     ROW("row"),
     ROWREV("row-reverse"),
     COLUMN("column"),
@@ -41,7 +41,7 @@ enum class FLEXDIR(internal val dir: String) {
 /**
  * CSS flexbox wrap modes.
  */
-enum class FLEXWRAP(internal val wrap: String) {
+enum class FlexWrap(internal val wrap: String) {
     NOWRAP("nowrap"),
     WRAP("wrap"),
     WRAPREV("wrap-reverse")
@@ -50,7 +50,7 @@ enum class FLEXWRAP(internal val wrap: String) {
 /**
  * CSS flexbox justification options.
  */
-enum class FLEXJUSTIFY(internal val justify: String) {
+enum class FlexJustify(internal val justify: String) {
     FLEXSTART("flex-start"),
     FLEXEND("flex-end"),
     CENTER("center"),
@@ -62,7 +62,7 @@ enum class FLEXJUSTIFY(internal val justify: String) {
 /**
  * CSS flexbox alignments options.
  */
-enum class FLEXALIGNITEMS(internal val alignItems: String) {
+enum class FlexAlignItems(internal val alignItems: String) {
     FLEXSTART("flex-start"),
     FLEXEND("flex-end"),
     CENTER("center"),
@@ -73,7 +73,7 @@ enum class FLEXALIGNITEMS(internal val alignItems: String) {
 /**
  * CSS flexbox content alignment options.
  */
-enum class FLEXALIGNCONTENT(internal val alignContent: String) {
+enum class FlexAlignContent(internal val alignContent: String) {
     FLEXSTART("flex-start"),
     FLEXEND("flex-end"),
     CENTER("center"),
@@ -96,8 +96,8 @@ enum class FLEXALIGNCONTENT(internal val alignContent: String) {
  * @param init an initializer extension function
  */
 open class FlexPanel(
-    direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
-    alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
+    direction: FlexDir? = null, wrap: FlexWrap? = null, justify: FlexJustify? = null,
+    alignItems: FlexAlignItems? = null, alignContent: FlexAlignContent? = null,
     spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -144,7 +144,7 @@ open class FlexPanel(
     @Suppress("LongParameterList")
     fun add(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
-        basis: Int? = null, alignSelf: FLEXALIGNITEMS? = null, classes: Set<String> = setOf()
+        basis: Int? = null, alignSelf: FlexAlignItems? = null, classes: Set<String> = setOf()
     ): FlexPanel {
         val wrapper = FlexWrapper(child, order, grow, shrink, basis, alignSelf, classes)
         addInternal(applySpacing(wrapper))
@@ -162,9 +162,9 @@ open class FlexPanel(
         wrapper.marginLeft = null
         spacing?.let {
             when (direction) {
-                FLEXDIR.COLUMN -> wrapper.marginBottom = it.px
-                FLEXDIR.ROWREV -> wrapper.marginLeft = it.px
-                FLEXDIR.COLUMNREV -> wrapper.marginTop = it.px
+                FlexDir.COLUMN -> wrapper.marginBottom = it.px
+                FlexDir.ROWREV -> wrapper.marginLeft = it.px
+                FlexDir.COLUMNREV -> wrapper.marginTop = it.px
                 else -> wrapper.marginRight = it.px
             }
         }
@@ -226,8 +226,8 @@ open class FlexPanel(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.flexPanel(
-            direction: FLEXDIR? = null, wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null,
-            alignItems: FLEXALIGNITEMS? = null, alignContent: FLEXALIGNCONTENT? = null,
+            direction: FlexDir? = null, wrap: FlexWrap? = null, justify: FlexJustify? = null,
+            alignItems: FlexAlignItems? = null, alignContent: FlexAlignContent? = null,
             spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
         ): FlexPanel {
             val flexPanel = FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes, init)
@@ -243,7 +243,7 @@ open class FlexPanel(
 internal class FlexWrapper(
     delegate: Component, private val order: Int? = null, private val grow: Int? = null,
     private val shrink: Int? = null, private val basis: Int? = null,
-    private val alignSelf: FLEXALIGNITEMS? = null,
+    private val alignSelf: FlexAlignItems? = null,
     classes: Set<String> = setOf()
 ) : WidgetWrapper(delegate, classes) {
 

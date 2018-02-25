@@ -24,14 +24,14 @@ package pl.treksoft.kvision.panel
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.WidgetWrapper
-import pl.treksoft.kvision.html.ALIGN
+import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 
 /**
  * Bootstrap grid sizes.
  */
-enum class GRIDSIZE(internal val size: String) {
+enum class GridSize(internal val size: String) {
     XS("xs"),
     SM("sm"),
     MD("md"),
@@ -46,7 +46,7 @@ internal data class WidgetParam(val widget: Component, val size: Int, val offset
  * The container with support for Bootstrap responsive grid layout.
  *
  * @constructor
- * @param gridsize grid size
+ * @param gridSize grid size
  * @param rows number of rows
  * @param cols number of columns
  * @param align text align of grid cells
@@ -54,8 +54,8 @@ internal data class WidgetParam(val widget: Component, val size: Int, val offset
  * @param init an initializer extension function
  */
 open class ResponsiveGridPanel(
-    private val gridsize: GRIDSIZE = GRIDSIZE.MD,
-    private var rows: Int = 0, private var cols: Int = 0, align: ALIGN? = null,
+    private val gridSize: GridSize = GridSize.MD,
+    private var rows: Int = 0, private var cols: Int = 0, align: Align? = null,
     classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -135,8 +135,8 @@ open class ResponsiveGridPanel(
                     (0 until cols).map { row[it] }.forEach { wp ->
                         if (auto) {
                             val widget = wp?.widget?.let {
-                                WidgetWrapper(it, setOf("col-" + gridsize.size + "-" + num))
-                            } ?: Tag(TAG.DIV, classes = setOf("col-" + gridsize.size + "-" + num))
+                                WidgetWrapper(it, setOf("col-" + gridSize.size + "-" + num))
+                            } ?: Tag(TAG.DIV, classes = setOf("col-" + gridSize.size + "-" + num))
                             align?.let {
                                 widget.addCssClass(it.className)
                             }
@@ -144,9 +144,9 @@ open class ResponsiveGridPanel(
                         } else {
                             if (wp != null) {
                                 val s = if (wp.size > 0) wp.size else num
-                                val widget = WidgetWrapper(wp.widget, setOf("col-" + gridsize.size + "-" + s))
+                                val widget = WidgetWrapper(wp.widget, setOf("col-" + gridSize.size + "-" + s))
                                 if (wp.offset > 0) {
-                                    widget.addCssClass("col-" + gridsize.size + "-offset-" + wp.offset)
+                                    widget.addCssClass("col-" + gridSize.size + "-offset-" + wp.offset)
                                 }
                                 align?.let {
                                     widget.addCssClass(it.className)
@@ -173,11 +173,11 @@ open class ResponsiveGridPanel(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.responsiveGridPanel(
-            gridsize: GRIDSIZE = GRIDSIZE.MD,
-            rows: Int = 0, cols: Int = 0, align: ALIGN? = null,
+            gridSize: GridSize = GridSize.MD,
+            rows: Int = 0, cols: Int = 0, align: Align? = null,
             classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
         ): ResponsiveGridPanel {
-            val responsiveGridPanel = ResponsiveGridPanel(gridsize, rows, cols, align, classes, init)
+            val responsiveGridPanel = ResponsiveGridPanel(gridSize, rows, cols, align, classes, init)
             this.add(responsiveGridPanel)
             return responsiveGridPanel
         }

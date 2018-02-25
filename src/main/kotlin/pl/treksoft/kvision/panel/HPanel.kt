@@ -37,7 +37,7 @@ import pl.treksoft.kvision.core.Container
  * @param init an initializer extension function
  */
 open class HPanel(
-    wrap: FLEXWRAP? = null, justify: FLEXJUSTIFY? = null, alignItems: FLEXALIGNITEMS? = null, spacing: Int? = null,
+    wrap: FlexWrap? = null, justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
     classes: Set<String> = setOf(), init: (HPanel.() -> Unit)? = null
 ) : FlexPanel(
     null,
@@ -55,9 +55,9 @@ open class HPanel(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.hPanel(
-            wrap: FLEXWRAP? = null,
-            justify: FLEXJUSTIFY? = null,
-            alignItems: FLEXALIGNITEMS? = null,
+            wrap: FlexWrap? = null,
+            justify: FlexJustify? = null,
+            alignItems: FlexAlignItems? = null,
             spacing: Int? = null,
             classes: Set<String> = setOf(),
             init: (HPanel.() -> Unit)? = null

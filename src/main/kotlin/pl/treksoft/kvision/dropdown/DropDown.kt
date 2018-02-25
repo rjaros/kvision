@@ -27,9 +27,9 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.html.BUTTONSTYLE
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.Button
-import pl.treksoft.kvision.html.LISTTYPE
+import pl.treksoft.kvision.html.ListType
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.ListTag
 import pl.treksoft.kvision.html.TAG
@@ -59,7 +59,7 @@ enum class DD(val option: String) {
  */
 open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
-    style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false,
+    style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
     /**
@@ -237,7 +237,7 @@ open class DropDown(
          */
         fun Container.dropDown(
             text: String, elements: List<StringPair>? = null, icon: String? = null,
-            style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT, disabled: Boolean = false,
+            style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false,
             classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
         ): DropDown {
             val dropDown = DropDown(text, elements, icon, style, disabled, classes).apply { init?.invoke(this) }
@@ -248,7 +248,7 @@ open class DropDown(
 }
 
 internal class DropDownButton(
-    id: String, text: String, icon: String? = null, style: BUTTONSTYLE = BUTTONSTYLE.DEFAULT,
+    id: String, text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT,
     disabled: Boolean = false, classes: Set<String> = setOf()
 ) :
     Button(text, icon, style, disabled, classes) {
@@ -266,7 +266,7 @@ internal class DropDownButton(
 }
 
 internal class DropDownListTag(private val ariaId: String, classes: Set<String> = setOf()) : ListTag(
-    LISTTYPE.UL, null,
+    ListType.UL, null,
     false, classes
 ) {
 

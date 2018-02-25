@@ -34,7 +34,7 @@ import pl.treksoft.kvision.utils.SnOn
 /**
  * Checkbox style options.
  */
-enum class CHECKBOXSTYLE(internal val className: String) {
+enum class CheckBoxStyle(internal val className: String) {
     DEFAULT("checkbox-default"),
     PRIMARY("checkbox-primary"),
     SUCCESS("checkbox-success"),
@@ -107,7 +107,7 @@ open class CheckBox(
     /**
      * The style (one of Bootstrap standard colors) of the input.
      */
-    var style: CHECKBOXSTYLE? by refreshOnUpdate()
+    var style: CheckBoxStyle? by refreshOnUpdate()
     /**
      * Determines if the checkbox is rendered as a circle.
      */
@@ -127,7 +127,7 @@ open class CheckBox(
 
     private val idc = "kv_form_checkbox_" + counter
     final override val input: CheckInput = CheckInput(
-        CHECKINPUTTYPE.CHECKBOX, value,
+        CheckInputType.CHECKBOX, value,
         setOf("styled")
     ).apply { id = idc }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf())

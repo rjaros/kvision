@@ -23,7 +23,7 @@ package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.html.Label
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.panel.FLEXJUSTIFY
+import pl.treksoft.kvision.panel.FlexJustify
 import pl.treksoft.kvision.panel.VPanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -36,7 +36,7 @@ class VPanelSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val vPanel = VPanel(justify = FLEXJUSTIFY.SPACEBETWEEN)
+            val vPanel = VPanel(justify = FlexJustify.SPACEBETWEEN)
             root.add(vPanel)
             vPanel.add(Label("abc"), 1)
             vPanel.add(Label("def"), 2)

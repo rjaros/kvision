@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.form.check
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.check.RADIOSTYLE
+import pl.treksoft.kvision.form.check.RadioStyle
 import pl.treksoft.kvision.form.check.Radio
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -37,7 +37,7 @@ class RadioSpec : DomSpec {
             val root = Root("test")
             val ci = Radio(value = true, label = "Label", extraValue = "abc").apply {
                 name = "name"
-                style = RADIOSTYLE.DANGER
+                style = RadioStyle.DANGER
                 disabled = true
                 inline = true
             }
@@ -49,7 +49,7 @@ class RadioSpec : DomSpec {
                 element?.innerHTML,
                 "Should render correct radio button form control"
             )
-            ci.style = RADIOSTYLE.INFO
+            ci.style = RadioStyle.INFO
             ci.squared = true
             ci.inline = false
             assertEquals(

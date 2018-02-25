@@ -32,7 +32,7 @@ import pl.treksoft.kvision.core.Container
  * @param rich determines if [label] can contain HTML code
  */
 open class Password(value: String? = null, label: String? = null, rich: Boolean = false) : Text(
-    TEXTINPUTTYPE.PASSWORD,
+    TextInputType.PASSWORD,
     value, label, rich
 ) {
     companion object {

@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.html.IMAGESHAPE
+import pl.treksoft.kvision.html.ImageShape
 import pl.treksoft.kvision.html.Image
 import test.pl.treksoft.kvision.DomSpec
 import test.pl.treksoft.kvision.require
@@ -38,7 +38,7 @@ class ImageSpec : DomSpec {
             val root = Root("test")
             val res = require("./img/placeholder.png")
             @Suppress("UnsafeCastFromDynamic")
-            val image = Image(res, "Image", true, IMAGESHAPE.ROUNDED, true)
+            val image = Image(res, "Image", true, ImageShape.ROUNDED, true)
             root.add(image)
             val element = document.getElementById("test")
             assertEquals(

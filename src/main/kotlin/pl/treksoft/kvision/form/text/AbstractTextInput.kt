@@ -25,7 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.InputSize
 
 /**
  * Base class for basic text components.
@@ -85,7 +85,7 @@ abstract class AbstractTextInput(
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? by refreshOnUpdate()
+    var size: InputSize? by refreshOnUpdate()
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()

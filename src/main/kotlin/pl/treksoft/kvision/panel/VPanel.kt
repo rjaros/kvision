@@ -36,10 +36,10 @@ import pl.treksoft.kvision.core.Container
  * @param init an initializer extension function
  */
 open class VPanel(
-    justify: FLEXJUSTIFY? = null, alignItems: FLEXALIGNITEMS? = null, spacing: Int? = null,
+    justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
     classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
 ) : FlexPanel(
-    FLEXDIR.COLUMN,
+    FlexDir.COLUMN,
     null, justify, alignItems, null, spacing, classes
 ) {
     init {
@@ -54,7 +54,7 @@ open class VPanel(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.vPanel(
-            justify: FLEXJUSTIFY? = null, alignItems: FLEXALIGNITEMS? = null, spacing: Int? = null,
+            justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
             classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
         ): VPanel {
             val vpanel = VPanel(justify, alignItems, spacing, classes, init)

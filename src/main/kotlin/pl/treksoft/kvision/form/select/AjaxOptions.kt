@@ -29,7 +29,7 @@ import pl.treksoft.kvision.utils.obj
 /**
  * HTTP protocol type for the AJAX call.
  */
-enum class HTTPTYPE(internal val type: String) {
+enum class HttpType(internal val type: String) {
     GET("GET"),
     POST("POST")
 }
@@ -37,7 +37,7 @@ enum class HTTPTYPE(internal val type: String) {
 /**
  * Data type for the AJAX call.
  */
-enum class DATATYPE(internal val type: String) {
+enum class DataType(internal val type: String) {
     JSON("json"),
     JSONP("jsonp"),
     XML("xml"),
@@ -77,8 +77,8 @@ enum class DATATYPE(internal val type: String) {
  */
 data class AjaxOptions(
     val url: String, val preprocessData: (dynamic) -> dynamic, val beforeSend: ((JQueryXHR) -> dynamic)? = null,
-    val data: dynamic = null, val httpType: HTTPTYPE = HTTPTYPE.GET,
-    val dataType: DATATYPE = DATATYPE.JSON, val minLength: Int = 0,
+    val data: dynamic = null, val httpType: HttpType = HttpType.GET,
+    val dataType: DataType = DataType.JSON, val minLength: Int = 0,
     val cache: Boolean = true, val clearOnEmpty: Boolean = true, val clearOnError: Boolean = true,
     val emptyRequest: Boolean = false,
     val requestDelay: Int = AJAX_REQUEST_DELAY, val restoreOnError: Boolean = false

@@ -27,12 +27,12 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.InputSize
 
 /**
  * Type of the check input control (checkbox or radio).
  */
-enum class CHECKINPUTTYPE(internal val type: String) {
+enum class CheckInputType(internal val type: String) {
     CHECKBOX("checkbox"),
     RADIO("radio")
 }
@@ -46,7 +46,7 @@ enum class CHECKINPUTTYPE(internal val type: String) {
  * @param classes a set of CSS class names
  */
 open class CheckInput(
-    type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boolean = false,
+    type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
     classes: Set<String> = setOf()
 ) : Widget(classes) {
 
@@ -93,7 +93,7 @@ open class CheckInput(
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? by refreshOnUpdate()
+    var size: InputSize? by refreshOnUpdate()
 
     override fun render(): VNode {
         return render("input")
@@ -159,7 +159,7 @@ open class CheckInput(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.checkInput(
-            type: CHECKINPUTTYPE = CHECKINPUTTYPE.CHECKBOX, value: Boolean = false,
+            type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
             classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
         ): CheckInput {
             val checkInput = CheckInput(type, value, classes).apply { init?.invoke(this) }

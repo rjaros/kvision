@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.html.ALIGN
+import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -37,7 +37,7 @@ class TagSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val tag = Tag(TAG.H1, "This is <b>h1</b>", rich = false, align = ALIGN.CENTER)
+            val tag = Tag(TAG.H1, "This is <b>h1</b>", rich = false, align = Align.CENTER)
             root.add(tag)
             val element = document.getElementById("test")
             assertEquals(
@@ -52,7 +52,7 @@ class TagSpec : DomSpec {
     fun renderRich() {
         run {
             val root = Root("test")
-            val tag = Tag(TAG.H1, "This is <b>h1</b>", rich = true, align = ALIGN.RIGHT)
+            val tag = Tag(TAG.H1, "This is <b>h1</b>", rich = true, align = Align.RIGHT)
             root.add(tag)
             val element = document.getElementById("test")
             assertEquals(
@@ -67,7 +67,7 @@ class TagSpec : DomSpec {
     fun renderAsContainer() {
         run {
             val root = Root("test")
-            val tag = Tag(TAG.P, align = ALIGN.RIGHT)
+            val tag = Tag(TAG.P, align = Align.RIGHT)
             tag.add(Tag(TAG.DEL, "This is test"))
             tag.add(Link("abc", "/x"))
             root.add(tag)

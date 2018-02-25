@@ -27,13 +27,13 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.utils.obj
 
 /**
  * Spinner buttons layout types.
  */
-enum class BUTTONSTYPE {
+enum class ButtonsType {
     NONE,
     HORIZONTAL,
     VERTICAL
@@ -42,7 +42,7 @@ enum class BUTTONSTYPE {
 /**
  * Spinner force rounding types.
  */
-enum class FORCETYPE(internal val value: String) {
+enum class ForceType(internal val value: String) {
     NONE("none"),
     ROUND("round"),
     FLOOR("floor"),
@@ -68,19 +68,19 @@ internal const val DEFAULT_MAX = 100
 @Suppress("TooManyFunctions")
 open class SpinnerInput(
     value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
-    decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
-    forceType: FORCETYPE = FORCETYPE.NONE,
+    decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
+    forceType: ForceType = ForceType.NONE,
     classes: Set<String> = setOf()
 ) : Widget(classes + "form-control") {
 
     init {
         this.addSurroundingCssClass("input-group")
-        if (buttonsType == BUTTONSTYPE.NONE) {
+        if (buttonsType == ButtonsType.NONE) {
             this.addSurroundingCssClass("kv-spinner-btn-none")
         } else {
             this.removeSurroundingCssClass("kv-spinner-btn-none")
         }
-        if (buttonsType == BUTTONSTYPE.VERTICAL) {
+        if (buttonsType == ButtonsType.VERTICAL) {
             this.addSurroundingCssClass("kv-spinner-btn-vertical")
         } else {
             this.removeSurroundingCssClass("kv-spinner-btn-vertical")
@@ -152,7 +152,7 @@ open class SpinnerInput(
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? by refreshOnUpdate()
+    var size: InputSize? by refreshOnUpdate()
 
     private var siblings: JQuery? = null
 
@@ -270,7 +270,7 @@ open class SpinnerInput(
     }
 
     private fun getSettingsObj(): dynamic {
-        val verticalbuttons = buttonsType == BUTTONSTYPE.VERTICAL || buttonsType == BUTTONSTYPE.NONE
+        val verticalbuttons = buttonsType == ButtonsType.VERTICAL || buttonsType == ButtonsType.NONE
         return obj {
             this.min = min
             this.max = max
@@ -291,8 +291,8 @@ open class SpinnerInput(
          */
         fun Container.spinnerInput(
             value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
-            decimals: Int = 0, buttonsType: BUTTONSTYPE = BUTTONSTYPE.VERTICAL,
-            forceType: FORCETYPE = FORCETYPE.NONE, classes: Set<String> = setOf(),
+            decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
+            forceType: ForceType = ForceType.NONE, classes: Set<String> = setOf(),
             init: (SpinnerInput.() -> Unit)? = null
         ): SpinnerInput {
             val spinnerInput = SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, classes).apply {

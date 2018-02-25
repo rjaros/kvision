@@ -22,8 +22,8 @@
 package test.pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.html.BUTTONSIZE
-import pl.treksoft.kvision.html.BUTTONSTYLE
+import pl.treksoft.kvision.html.ButtonSize
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.Button
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -36,8 +36,8 @@ class ButtonSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val button = Button("Cancel", "fa-bars", BUTTONSTYLE.PRIMARY)
-            button.size = BUTTONSIZE.LARGE
+            val button = Button("Cancel", "fa-bars", ButtonStyle.PRIMARY)
+            button.size = ButtonSize.LARGE
             button.block = true
             root.add(button)
             val element = document.getElementById("test")

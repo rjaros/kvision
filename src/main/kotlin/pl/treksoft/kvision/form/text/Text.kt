@@ -33,7 +33,7 @@ import pl.treksoft.kvision.core.Container
  * @param rich determines if [label] can contain HTML code
  */
 open class Text(
-    type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,
+    type: TextInputType = TextInputType.TEXT, value: String? = null,
     label: String? = null, rich: Boolean = false
 ) : AbstractText(label, rich) {
 
@@ -70,7 +70,7 @@ open class Text(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.text(
-            type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null,
+            type: TextInputType = TextInputType.TEXT, value: String? = null,
             label: String? = null, rich: Boolean = false, init: (Text.() -> Unit)? = null
         ): Text {
             val text = Text(type, value, label, rich).apply { init?.invoke(this) }

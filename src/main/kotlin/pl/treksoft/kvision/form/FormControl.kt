@@ -27,7 +27,7 @@ import kotlin.js.Date
 /**
  * Input controls sizes.
  */
-enum class INPUTSIZE(val className: String) {
+enum class InputSize(val className: String) {
     LARGE("input-lg"),
     SMALL("input-sm")
 }
@@ -43,7 +43,7 @@ interface FormControl : Component {
     /**
      * Input control size.
      */
-    var size: INPUTSIZE?
+    var size: InputSize?
     /**
      * The actual input component.
      */

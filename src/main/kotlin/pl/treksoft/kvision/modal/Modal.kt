@@ -36,7 +36,7 @@ import pl.treksoft.kvision.utils.obj
 /**
  * Modal window sizes.
  */
-enum class MODALSIZE(val className: String) {
+enum class ModalSize(val className: String) {
     LARGE("modal-lg"),
     SMALL("modal-sm")
 }
@@ -56,7 +56,7 @@ enum class MODALSIZE(val className: String) {
 @Suppress("TooManyFunctions")
 open class Modal(
     caption: String? = null, closeButton: Boolean = true,
-    size: MODALSIZE? = null, animation: Boolean = true, private val escape: Boolean = true,
+    size: ModalSize? = null, animation: Boolean = true, private val escape: Boolean = true,
     classes: Set<String> = setOf(), init: (Modal.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -251,7 +251,7 @@ open class Modal(
  * @constructor
  * @param size modal window size
  */
-internal class ModalDialog(size: MODALSIZE?) : SimplePanel(setOf("modal-dialog")) {
+internal class ModalDialog(size: ModalSize?) : SimplePanel(setOf("modal-dialog")) {
 
     /**
      * Modal window size.

@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.core.UNIT
+import pl.treksoft.kvision.core.Unit
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
 import test.pl.treksoft.kvision.DomSpec
@@ -38,7 +38,7 @@ class WidgetWrapperSpec : DomSpec {
             val root = Root("test")
             val widget = Widget()
             val wrapper = WidgetWrapper(widget)
-            wrapper.width = 100 to UNIT.em
+            wrapper.width = 100 to Unit.em
             root.add(wrapper)
             val element = document.getElementById("test")
             assertEquals(

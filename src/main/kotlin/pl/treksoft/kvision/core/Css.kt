@@ -28,7 +28,7 @@ import pl.treksoft.kvision.utils.toHexString
  * Definitions of CSS units.
  */
 @Suppress("EnumNaming", "EnumEntryName")
-enum class UNIT(internal val unit: String) {
+enum class Unit(internal val unit: String) {
     px("px"),
     pt("pt"),
     em("em"),
@@ -49,7 +49,7 @@ enum class UNIT(internal val unit: String) {
 /**
  * Definitions of CSS border styles.
  */
-enum class BORDERSTYLE(internal val borderStyle: String) {
+enum class BorderStyle(internal val borderStyle: String) {
     NONE("none"),
     HIDDEN("hidden"),
     DOTTED("dotted"),
@@ -67,7 +67,7 @@ enum class BORDERSTYLE(internal val borderStyle: String) {
 /**
  * Definitions of CSS color names.
  */
-enum class COLOR(internal val color: String) {
+enum class Col(internal val color: String) {
     ALICEBLUE("aliceblue"),
     ANTIQUEWHITE("antiquewhite"),
     AQUA("aqua"),
@@ -214,7 +214,7 @@ enum class COLOR(internal val color: String) {
 /**
  * Definitions of CSS background size.
  */
-enum class BGSIZE(internal val size: String) {
+enum class BgSize(internal val size: String) {
     COVER("cover"),
     CONTAIN("contain")
 }
@@ -222,7 +222,7 @@ enum class BGSIZE(internal val size: String) {
 /**
  * Definitions of CSS background repeat options.
  */
-enum class BGREPEAT(internal val repeat: String) {
+enum class BgRepeat(internal val repeat: String) {
     REPEAT("repeat"),
     REPEATX("repeat-x"),
     REPEATY("repeat-y"),
@@ -232,7 +232,7 @@ enum class BGREPEAT(internal val repeat: String) {
 /**
  * Definitions of CSS background attachment options.
  */
-enum class BGATTACH(internal val attachment: String) {
+enum class BgAttach(internal val attachment: String) {
     SCROLL("scroll"),
     FIXED("fixed"),
     LOCAL("local")
@@ -241,7 +241,7 @@ enum class BGATTACH(internal val attachment: String) {
 /**
  * Definitions of CSS background origin options.
  */
-enum class BGORIGIN(internal val origin: String) {
+enum class BgOrigin(internal val origin: String) {
     PADDING("padding-box"),
     BORDER("border-box"),
     CONTENT("content-box")
@@ -250,7 +250,7 @@ enum class BGORIGIN(internal val origin: String) {
 /**
  * Definitions of CSS background clipping options.
  */
-enum class BGCLIP(internal val clip: String) {
+enum class BgClip(internal val clip: String) {
     PADDING("padding-box"),
     BORDER("border-box"),
     CONTENT("content-box")
@@ -259,7 +259,7 @@ enum class BGCLIP(internal val clip: String) {
 /**
  * Definitions of CSS position options.
  */
-enum class POSITION(internal val position: String) {
+enum class Position(internal val position: String) {
     STATIC("static"),
     RELATIVE("relative"),
     FIXED("fixed"),
@@ -271,7 +271,7 @@ enum class POSITION(internal val position: String) {
  * Type-safe definition of CSS border.
  */
 class Border private constructor(
-    private val width: CssSize? = null, private val style: BORDERSTYLE? = null,
+    private val width: CssSize? = null, private val style: BorderStyle? = null,
     private val color: String? = null
 ) {
     /**
@@ -279,7 +279,7 @@ class Border private constructor(
      * @param width width of the border
      * @param style style of the border
      */
-    constructor(width: CssSize? = null, style: BORDERSTYLE? = null) : this(width, style, null)
+    constructor(width: CssSize? = null, style: BorderStyle? = null) : this(width, style, null)
 
     /**
      * Creates CSS Border with given width, style and color given in hex format.
@@ -287,7 +287,7 @@ class Border private constructor(
      * @param style style of the border
      * @param color color in hex format
      */
-    constructor(width: CssSize? = null, style: BORDERSTYLE? = null, color: Int) : this(
+    constructor(width: CssSize? = null, style: BorderStyle? = null, color: Int) : this(
         width, style,
         "#" + color.toHexString()
     )
@@ -298,7 +298,7 @@ class Border private constructor(
      * @param style style of the border
      * @param color color named constant
      */
-    constructor(width: CssSize? = null, style: BORDERSTYLE? = null, color: COLOR) : this(width, style, color.color)
+    constructor(width: CssSize? = null, style: BorderStyle? = null, color: Col) : this(width, style, color.color)
 
     internal fun asString(): String {
         val w = width?.asString()
@@ -320,7 +320,7 @@ class Color private constructor(private val color: String? = null) {
      * Creates CSS Color with color given with named constant.
      * @param color color named constant
      */
-    constructor(color: COLOR) : this(color.color)
+    constructor(color: Col) : this(color.color)
 
     internal fun asString(): String {
         return color.orEmpty()
@@ -334,9 +334,9 @@ class Background private constructor(
     private val color: String? = null, private val image: ResString? = null,
     private val positionX: CssSize? = null, private val positionY: CssSize? = null,
     private val sizeX: CssSize? = null, private val sizeY: CssSize? = null,
-    private val size: BGSIZE? = null, private val repeat: BGREPEAT? = null,
-    private val origin: BGORIGIN? = null, private val clip: BGCLIP? = null,
-    private val attachment: BGATTACH? = null
+    private val size: BgSize? = null, private val repeat: BgRepeat? = null,
+    private val origin: BgOrigin? = null, private val clip: BgClip? = null,
+    private val attachment: BgAttach? = null
 ) {
     /**
      * Creates CSS Background with given parameters.
@@ -353,9 +353,9 @@ class Background private constructor(
      */
     constructor(
         image: ResString? = null, positionX: CssSize? = null, positionY: CssSize? = null,
-        sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
-        repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
-        attachment: BGATTACH? = null
+        sizeX: CssSize? = null, sizeY: CssSize? = null, size: BgSize? = null,
+        repeat: BgRepeat? = null, origin: BgOrigin? = null, clip: BgClip? = null,
+        attachment: BgAttach? = null
     ) : this(
         null,
         image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment
@@ -378,9 +378,9 @@ class Background private constructor(
     constructor(
         color: Int, image: ResString? = null, positionX: CssSize? = null,
         positionY: CssSize? = null,
-        sizeX: CssSize? = null, sizeY: CssSize? = null, size: BGSIZE? = null,
-        repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
-        attachment: BGATTACH? = null
+        sizeX: CssSize? = null, sizeY: CssSize? = null, size: BgSize? = null,
+        repeat: BgRepeat? = null, origin: BgOrigin? = null, clip: BgClip? = null,
+        attachment: BgAttach? = null
     ) : this(
         "#" +
                 color.toHexString(), image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip,
@@ -402,10 +402,10 @@ class Background private constructor(
      * @param attachment attachment option of the background image
      */
     constructor(
-        color: COLOR, image: ResString? = null, positionX: CssSize? = null,
+        color: Col, image: ResString? = null, positionX: CssSize? = null,
         positionY: CssSize? = null, sizeX: CssSize? = null, sizeY: CssSize? = null,
-        size: BGSIZE? = null, repeat: BGREPEAT? = null, origin: BGORIGIN? = null, clip: BGCLIP? = null,
-        attachment: BGATTACH? = null
+        size: BgSize? = null, repeat: BgRepeat? = null, origin: BgOrigin? = null, clip: BgClip? = null,
+        attachment: BgAttach? = null
     ) : this(
         color.color, image,
         positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment

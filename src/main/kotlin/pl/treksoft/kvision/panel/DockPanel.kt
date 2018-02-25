@@ -27,7 +27,7 @@ import pl.treksoft.kvision.core.Container
 /**
  * Dock layout directions.
  */
-enum class SIDE {
+enum class Side {
     LEFT,
     RIGHT,
     CENTER,
@@ -75,14 +75,14 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * Internal property.
      */
     protected val mainContainer = FlexPanel(
-        direction = FLEXDIR.COLUMN, justify = FLEXJUSTIFY.SPACEBETWEEN,
-        alignItems = FLEXALIGNITEMS.STRETCH
+        direction = FlexDir.COLUMN, justify = FlexJustify.SPACEBETWEEN,
+        alignItems = FlexAlignItems.STRETCH
     )
     /**
      * @suppress
      * Internal property.
      */
-    protected val subContainer = FlexPanel(justify = FLEXJUSTIFY.SPACEBETWEEN, alignItems = FLEXALIGNITEMS.CENTER)
+    protected val subContainer = FlexPanel(justify = FlexJustify.SPACEBETWEEN, alignItems = FlexAlignItems.CENTER)
 
     init {
         this.addInternal(mainContainer)
@@ -98,39 +98,39 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * @return current container
      */
     @Suppress("MagicNumber")
-    open fun add(child: Component, position: SIDE): DockPanel {
+    open fun add(child: Component, position: Side): DockPanel {
         when (position) {
-            SIDE.UP -> {
+            Side.UP -> {
                 upComponent?.let { mainContainer.remove(it) }
                 upComponent = child
-                mainContainer.add(child, 1, alignSelf = FLEXALIGNITEMS.CENTER)
+                mainContainer.add(child, 1, alignSelf = FlexAlignItems.CENTER)
             }
-            SIDE.CENTER -> {
+            Side.CENTER -> {
                 centerComponent?.let { subContainer.remove(it) }
                 centerComponent = child
                 subContainer.add(child, 2)
             }
-            SIDE.LEFT -> {
+            Side.LEFT -> {
                 leftComponent?.let { subContainer.remove(it) }
                 leftComponent = child
                 subContainer.add(child, 1)
             }
-            SIDE.RIGHT -> {
+            Side.RIGHT -> {
                 rightComponent?.let { subContainer.remove(it) }
                 rightComponent = child
                 subContainer.add(child, 3)
             }
-            SIDE.DOWN -> {
+            Side.DOWN -> {
                 downComponent?.let { mainContainer.remove(it) }
                 downComponent = child
-                mainContainer.add(child, 3, alignSelf = FLEXALIGNITEMS.CENTER)
+                mainContainer.add(child, 3, alignSelf = FlexAlignItems.CENTER)
             }
         }
         return this
     }
 
     override fun add(child: Component): DockPanel {
-        return this.add(child, SIDE.CENTER)
+        return this.add(child, Side.CENTER)
     }
 
     override fun addAll(children: List<Component>): DockPanel {
@@ -139,11 +139,11 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
     }
 
     override fun remove(child: Component): DockPanel {
-        if (child == leftComponent) removeAt(SIDE.LEFT)
-        if (child == centerComponent) removeAt(SIDE.CENTER)
-        if (child == rightComponent) removeAt(SIDE.RIGHT)
-        if (child == upComponent) removeAt(SIDE.UP)
-        if (child == downComponent) removeAt(SIDE.DOWN)
+        if (child == leftComponent) removeAt(Side.LEFT)
+        if (child == centerComponent) removeAt(Side.CENTER)
+        if (child == rightComponent) removeAt(Side.RIGHT)
+        if (child == upComponent) removeAt(Side.UP)
+        if (child == downComponent) removeAt(Side.DOWN)
         return this
     }
 
@@ -152,25 +152,25 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * @param position position in the dock
      * @return current container
      */
-    open fun removeAt(position: SIDE): DockPanel {
+    open fun removeAt(position: Side): DockPanel {
         when (position) {
-            SIDE.UP -> {
+            Side.UP -> {
                 upComponent?.let { mainContainer.remove(it) }
                 upComponent = null
             }
-            SIDE.CENTER -> {
+            Side.CENTER -> {
                 centerComponent?.let { subContainer.remove(it) }
                 centerComponent = null
             }
-            SIDE.LEFT -> {
+            Side.LEFT -> {
                 leftComponent?.let { subContainer.remove(it) }
                 leftComponent = null
             }
-            SIDE.RIGHT -> {
+            Side.RIGHT -> {
                 rightComponent?.let { subContainer.remove(it) }
                 rightComponent = null
             }
-            SIDE.DOWN -> {
+            Side.DOWN -> {
                 downComponent?.let { mainContainer.remove(it) }
                 downComponent = null
             }
@@ -179,11 +179,11 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
     }
 
     override fun removeAll(): DockPanel {
-        removeAt(SIDE.LEFT)
-        removeAt(SIDE.CENTER)
-        removeAt(SIDE.RIGHT)
-        removeAt(SIDE.UP)
-        removeAt(SIDE.DOWN)
+        removeAt(Side.LEFT)
+        removeAt(Side.CENTER)
+        removeAt(Side.RIGHT)
+        removeAt(Side.UP)
+        removeAt(Side.DOWN)
         return this
     }
 

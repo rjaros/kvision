@@ -32,7 +32,7 @@ import pl.treksoft.kvision.panel.SimplePanel
 /**
  * HTML list types.
  */
-enum class LISTTYPE(internal val tagName: String) {
+enum class ListType(internal val tagName: String) {
     UL("ul"),
     OL("ol"),
     UNSTYLED("ul"),
@@ -55,7 +55,7 @@ enum class LISTTYPE(internal val tagName: String) {
  * @param init an initializer extension function
  */
 open class ListTag(
-    type: LISTTYPE, elements: List<String>? = null, rich: Boolean = false,
+    type: ListType, elements: List<String>? = null, rich: Boolean = false,
     classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null
 ) : SimplePanel(classes) {
     /**
@@ -78,10 +78,10 @@ open class ListTag(
 
     override fun render(): VNode {
         val childrenElements = when (type) {
-            LISTTYPE.UL, LISTTYPE.OL, LISTTYPE.UNSTYLED, LISTTYPE.INLINE -> elements?.map { el ->
+            ListType.UL, ListType.OL, ListType.UNSTYLED, ListType.INLINE -> elements?.map { el ->
                 element("li", el, rich)
             }
-            LISTTYPE.DL, LISTTYPE.DL_HORIZ -> elements?.mapIndexed { index, el ->
+            ListType.DL, ListType.DL_HORIZ -> elements?.mapIndexed { index, el ->
                 element(if (index % 2 == 0) "dt" else "dd", el, rich)
             }
         }?.toTypedArray()
@@ -95,14 +95,14 @@ open class ListTag(
     override fun childrenVNodes(): Array<VNode> {
         val childrenElements = children.filter { it.visible }
         val res = when (type) {
-            LISTTYPE.UL, LISTTYPE.OL, LISTTYPE.UNSTYLED, LISTTYPE.INLINE -> childrenElements.map { v ->
+            ListType.UL, ListType.OL, ListType.UNSTYLED, ListType.INLINE -> childrenElements.map { v ->
                 if (v is Tag && v.type == TAG.LI) {
                     v.renderVNode()
                 } else {
                     h("li", arrayOf(v.renderVNode()))
                 }
             }
-            LISTTYPE.DL, LISTTYPE.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
+            ListType.DL, ListType.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
                 if (v is Tag && v.type == TAG.LI) {
                     v.renderVNode()
                 } else {
@@ -125,9 +125,9 @@ open class ListTag(
         val cl = super.getSnClass().toMutableList()
         @Suppress("NON_EXHAUSTIVE_WHEN")
         when (type) {
-            LISTTYPE.UNSTYLED -> cl.add("list-unstyled" to true)
-            LISTTYPE.INLINE -> cl.add("list-inline" to true)
-            LISTTYPE.DL_HORIZ -> cl.add("dl-horizontal" to true)
+            ListType.UNSTYLED -> cl.add("list-unstyled" to true)
+            ListType.INLINE -> cl.add("list-inline" to true)
+            ListType.DL_HORIZ -> cl.add("dl-horizontal" to true)
         }
         return cl
     }
@@ -139,7 +139,7 @@ open class ListTag(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.listTag(
-            type: LISTTYPE, elements: List<String>? = null, rich: Boolean = false,
+            type: ListType, elements: List<String>? = null, rich: Boolean = false,
             classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null
         ): ListTag {
             val listTag = ListTag(type, elements, rich, classes, init)

@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.html.LISTTYPE
+import pl.treksoft.kvision.html.ListType
 import pl.treksoft.kvision.html.ListTag
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -37,7 +37,7 @@ class ListSpec : DomSpec {
     fun renderElements() {
         run {
             val root = Root("test")
-            val list = ListTag(LISTTYPE.DL_HORIZ, listOf("a1", "a2", "b1", "b2"))
+            val list = ListTag(ListType.DL_HORIZ, listOf("a1", "a2", "b1", "b2"))
             root.add(list)
             val element = document.getElementById("test")
             assertEquals(
@@ -52,7 +52,7 @@ class ListSpec : DomSpec {
     fun renderAsContainer() {
         run {
             val root = Root("test")
-            val list = ListTag(LISTTYPE.UL)
+            val list = ListTag(ListType.UL)
             list.add(Tag(TAG.PRE, "pre"))
             list.add(Tag(TAG.DEL, "del"))
             root.add(list)

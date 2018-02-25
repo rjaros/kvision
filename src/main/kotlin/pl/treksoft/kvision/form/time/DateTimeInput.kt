@@ -26,7 +26,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.toDateF
 import pl.treksoft.kvision.utils.toStringF
@@ -88,7 +88,7 @@ open class DateTimeInput(
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? by refreshOnUpdate()
+    var size: InputSize? by refreshOnUpdate()
     /**
      * Day of the week start. 0 (Sunday) to 6 (Saturday).
      */

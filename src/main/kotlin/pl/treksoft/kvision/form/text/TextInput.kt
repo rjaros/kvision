@@ -28,7 +28,7 @@ import pl.treksoft.kvision.core.StringPair
 /**
  * Text input types.
  */
-enum class TEXTINPUTTYPE(internal val type: String) {
+enum class TextInputType(internal val type: String) {
     TEXT("text"),
     PASSWORD("password"),
     EMAIL("email"),
@@ -46,7 +46,7 @@ enum class TEXTINPUTTYPE(internal val type: String) {
  * @param value text input value
  * @param classes a set of CSS class names
  */
-open class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null, classes: Set<String> = setOf()) :
+open class TextInput(type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf()) :
     AbstractTextInput(value, classes + "form-control") {
 
     /**
@@ -85,7 +85,7 @@ open class TextInput(type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = 
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.textInput(
-            type: TEXTINPUTTYPE = TEXTINPUTTYPE.TEXT, value: String? = null, classes: Set<String> = setOf(),
+            type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf(),
             init: (TextInput.() -> Unit)? = null
         ): TextInput {
             val textInput = TextInput(type, value, classes).apply { init?.invoke(this) }

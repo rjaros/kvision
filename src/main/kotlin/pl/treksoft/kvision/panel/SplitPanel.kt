@@ -26,7 +26,7 @@ import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.JQueryEventObject
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StyledComponent
-import pl.treksoft.kvision.core.UNIT
+import pl.treksoft.kvision.core.Unit
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.utils.obj
@@ -34,7 +34,7 @@ import pl.treksoft.kvision.utils.obj
 /**
  * Split panel direction.
  */
-enum class DIRECTION(internal val dir: String) {
+enum class Direction(internal val dir: String) {
     HORIZONTAL("horizontal"),
     VERTICAL("vertical")
 }
@@ -51,8 +51,8 @@ enum class DIRECTION(internal val dir: String) {
  * @param init an initializer extension function
  */
 open class SplitPanel(
-    private val direction: DIRECTION = DIRECTION.VERTICAL,
-    classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
+    private val direction: Direction = Direction.VERTICAL,
+    classes: Set<String> = setOf(), init: (SplitPanel.() -> kotlin.Unit)? = null
 ) : SimplePanel(classes + ("splitpanel-" + direction.dir)) {
 
     @Suppress("LeakingThis")
@@ -66,8 +66,8 @@ open class SplitPanel(
     @Suppress("UnsafeCastFromDynamic")
     internal fun afterInsertSplitter() {
         if (children.size == 2) {
-            val horizontal = direction == DIRECTION.HORIZONTAL
-            val px = UNIT.px
+            val horizontal = direction == Direction.HORIZONTAL
+            val px = Unit.px
             val self = this
             children[0].getElementJQueryD().resizable(obj {
                 handleSelector = "#" + splitter.id
@@ -106,8 +106,8 @@ open class SplitPanel(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.splitPanel(
-            direction: DIRECTION = DIRECTION.VERTICAL,
-            classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
+            direction: Direction = Direction.VERTICAL,
+            classes: Set<String> = setOf(), init: (SplitPanel.() -> kotlin.Unit)? = null
         ): SplitPanel {
             val splitPanel = SplitPanel(direction, classes, init)
             this.add(splitPanel)
@@ -116,7 +116,7 @@ open class SplitPanel(
     }
 }
 
-internal class Splitter(private val splitPanel: SplitPanel, direction: DIRECTION) : Tag(
+internal class Splitter(private val splitPanel: SplitPanel, direction: Direction) : Tag(
     TAG.DIV,
     classes = setOf("splitter-" + direction.dir)
 ) {

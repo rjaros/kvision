@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.core
 
 import com.github.snabbdom.VNode
+import kotlin.Unit
 
 /**
  * This class allows to wrap a component into separately styled DIV element.

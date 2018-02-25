@@ -34,7 +34,7 @@ import pl.treksoft.kvision.utils.SnOn
 /**
  * Radio style options.
  */
-enum class RADIOSTYLE(internal val className: String) {
+enum class RadioStyle(internal val className: String) {
     DEFAULT("radio-default"),
     PRIMARY("radio-primary"),
     SUCCESS("radio-success"),
@@ -117,7 +117,7 @@ open class Radio(
     /**
      * The style (one of Bootstrap standard colors) of the input.
      */
-    var style: RADIOSTYLE? by refreshOnUpdate()
+    var style: RadioStyle? by refreshOnUpdate()
     /**
      * Determines if the radio button is rendered as a square.
      */
@@ -136,7 +136,7 @@ open class Radio(
         }
 
     private val idc = "kv_form_radio_" + counter
-    final override val input: CheckInput = CheckInput(CHECKINPUTTYPE.RADIO, value).apply {
+    final override val input: CheckInput = CheckInput(CheckInputType.RADIO, value).apply {
         this.id = idc
         this.extraValue = extraValue
         this.name = name

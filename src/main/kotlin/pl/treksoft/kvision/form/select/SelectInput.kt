@@ -28,8 +28,8 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.form.INPUTSIZE
-import pl.treksoft.kvision.html.BUTTONSTYLE
+import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.asString
 import pl.treksoft.kvision.utils.obj
@@ -37,7 +37,7 @@ import pl.treksoft.kvision.utils.obj
 /**
  * Select width types. See [Bootstrap Select width](http://silviomoreto.github.io/bootstrap-select/examples/#width).
  */
-enum class SELECTWIDTHTYPE(internal val value: String) {
+enum class SelectWidthType(internal val value: String) {
     AUTO("auto"),
     FIT("fit")
 }
@@ -102,7 +102,7 @@ open class SelectInput(
     /**
      * The style of the select control.
      */
-    var style: BUTTONSTYLE? by refreshOnUpdate()
+    var style: ButtonStyle? by refreshOnUpdate()
     /**
      * The width of the select control.
      */
@@ -110,7 +110,7 @@ open class SelectInput(
     /**
      * The width type of the select control.
      */
-    var selectWidthType: SELECTWIDTHTYPE? by refreshOnUpdate()
+    var selectWidthType: SelectWidthType? by refreshOnUpdate()
     /**
      * Determines if an empty option is automatically generated.
      */
@@ -126,7 +126,7 @@ open class SelectInput(
     /**
      * The size of the input.
      */
-    var size: INPUTSIZE? by refreshOnUpdate()
+    var size: InputSize? by refreshOnUpdate()
 
     init {
         setChildrenFromOptions()
@@ -266,10 +266,10 @@ open class SelectInput(
         }
         val btnStyle = style?.className ?: "btn-default"
         when (size) {
-            INPUTSIZE.LARGE -> {
+            InputSize.LARGE -> {
                 sn.add("data-style" to "$btnStyle btn-lg")
             }
-            INPUTSIZE.SMALL -> {
+            InputSize.SMALL -> {
                 sn.add("data-style" to "$btnStyle btn-sm")
             }
             else -> {

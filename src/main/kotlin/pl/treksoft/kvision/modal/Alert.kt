@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.modal
 
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.html.ALIGN
-import pl.treksoft.kvision.html.BUTTONSTYLE
+import pl.treksoft.kvision.html.Align
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -43,7 +43,7 @@ import pl.treksoft.kvision.utils.ENTER_KEY
  */
 open class Alert(
     caption: String? = null, text: String? = null, rich: Boolean = false,
-    align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
+    align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
     private val callback: (() -> Unit)? = null
 ) : Modal(caption, true, size, animation) {
 
@@ -76,7 +76,7 @@ open class Alert(
 
     init {
         body.add(content)
-        val okButton = Button("OK", "ok", BUTTONSTYLE.PRIMARY)
+        val okButton = Button("OK", "ok", ButtonStyle.PRIMARY)
         okButton.setEventListener {
             click = {
                 hide()
@@ -112,7 +112,7 @@ open class Alert(
         @Suppress("LongParameterList")
         fun show(
             caption: String? = null, text: String? = null, rich: Boolean = false,
-            align: ALIGN? = null, size: MODALSIZE? = null, animation: Boolean = true,
+            align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
             callback: (() -> Unit)? = null
         ) {
             Alert(caption, text, rich, align, size, animation, callback).show()

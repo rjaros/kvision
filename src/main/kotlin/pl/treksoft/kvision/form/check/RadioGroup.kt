@@ -27,7 +27,7 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.HelpBlock
-import pl.treksoft.kvision.form.INPUTSIZE
+import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.panel.SimplePanel
@@ -87,7 +87,7 @@ open class RadioGroup(
         set(value) {
             flabel.rich = value
         }
-    override var size: INPUTSIZE? = null
+    override var size: InputSize? = null
 
     private val idc = "kv_form_radiogroup_" + Select.counter
     final override val input = Widget()

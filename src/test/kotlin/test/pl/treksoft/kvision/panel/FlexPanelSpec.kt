@@ -23,8 +23,8 @@ package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.html.Label
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.panel.FLEXDIR
-import pl.treksoft.kvision.panel.FLEXJUSTIFY
+import pl.treksoft.kvision.panel.FlexDir
+import pl.treksoft.kvision.panel.FlexJustify
 import pl.treksoft.kvision.panel.FlexPanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -37,7 +37,7 @@ class FlexPanelSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test")
-            val flexPanel = FlexPanel(FLEXDIR.ROWREV, justify = FLEXJUSTIFY.SPACEEVENLY)
+            val flexPanel = FlexPanel(FlexDir.ROWREV, justify = FlexJustify.SPACEEVENLY)
             root.add(flexPanel)
             flexPanel.add(Label("abc"), 1)
             flexPanel.add(Label("def"), 2)

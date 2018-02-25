@@ -38,6 +38,7 @@ import pl.treksoft.kvision.utils.snAttrs
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
 import pl.treksoft.kvision.utils.snStyle
+import kotlin.Unit
 
 /**
  * Base widget class. The parent of all component classes.
