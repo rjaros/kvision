@@ -29,6 +29,7 @@ import com.github.snabbdom.datasetModule
 import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
+import pl.treksoft.kvision.core.Component
 import kotlin.browser.document
 import kotlin.dom.clear
 
@@ -102,6 +103,10 @@ internal object KVManager {
         require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js")
     } catch (e: Throwable) {
     }
+    private val elementResizeEvent = try {
+        require("element-resize-event")
+    } catch (e: Throwable) {
+    }
 
     private val resizable = require("jquery-resizable-dom")
     internal val fecha = require("fecha")
@@ -127,5 +132,19 @@ internal object KVManager {
     @Suppress("UnsafeCastFromDynamic")
     internal fun virtualize(html: String): VNode {
         return sdVirtualize(html)
+    }
+
+    @Suppress("UnsafeCastFromDynamic")
+    internal fun setResizeEvent(component: Component, callback: () -> Unit) {
+        component.getElement()?.let {
+            elementResizeEvent(it, callback)
+        }
+    }
+
+    @Suppress("UnsafeCastFromDynamic")
+    internal fun clearResizeEvent(component: Component) {
+        component.getElement()?.let {
+            elementResizeEvent.unbind(it)
+        }
     }
 }

@@ -118,3 +118,12 @@ trix-toolbar .trix-button-group {
 .kv-radio-checkbox {
   padding-left: 7px;
 }
+
+.kv-window {
+  border-radius: 0px;
+}
+
+.kv-window .modal-header {
+  height: 40px;
+  padding: 10px 15px 5px 15px;
+}
