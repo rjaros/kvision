@@ -99,7 +99,7 @@ open class Window(
     /**
      * Determines if the window is draggable.
      */
-    var isDraggable by refreshOnUpdate(isDraggable, { checkIsDraggable(); refresh() })
+    var isDraggable by refreshOnUpdate(isDraggable, { checkIsDraggable(); })
     /**
      * Determines if Close button is visible.
      */
