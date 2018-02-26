@@ -77,6 +77,8 @@ kotlinFrontend {
             dependency(name, version)
         }
         devDependency("karma")
+        devDependency("karma-webpack", "2.0.9")
+        devDependency("webpack", "3.11.0")
     }
 
     webpackBundle {
