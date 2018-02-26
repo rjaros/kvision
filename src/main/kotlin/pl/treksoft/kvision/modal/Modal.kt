@@ -61,7 +61,7 @@ open class Modal(
 ) : SimplePanel(classes) {
 
     /**
-     * Window content text.
+     * Window caption text.
      */
     var caption
         get() = captionTag.text
@@ -152,6 +152,20 @@ open class Modal(
     override fun addAll(children: List<Component>): SimplePanel {
         body.addAll(children)
         return this
+    }
+
+    override fun remove(child: Component): SimplePanel {
+        body.remove(child)
+        return this
+    }
+
+    override fun removeAll(): SimplePanel {
+        body.removeAll()
+        return this
+    }
+
+    override fun getChildren(): List<Component> {
+        return body.getChildren()
     }
 
     /**
