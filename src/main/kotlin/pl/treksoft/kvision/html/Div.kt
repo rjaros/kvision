@@ -35,9 +35,15 @@ open class Div(
     rich: Boolean = false,
     align: Align? = null,
     classes: Set<String> = setOf(),
-    init: (Tag.() -> Unit)? = null
+    init: (Div.() -> Unit)? = null
 ) :
-    Tag(TAG.DIV, text, rich, align, classes, init) {
+    Tag(TAG.DIV, text, rich, align, classes) {
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
     companion object {
         /**
          * DSL builder extension function.
