@@ -26,7 +26,7 @@ import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.JQueryEventObject
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StyledComponent
-import pl.treksoft.kvision.core.Unit
+import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.utils.obj
@@ -67,7 +67,7 @@ open class SplitPanel(
     internal fun afterInsertSplitter() {
         if (children.size == 2) {
             val horizontal = direction == Direction.HORIZONTAL
-            val px = Unit.px
+            val px = UNIT.px
             val self = this
             children[0].getElementJQueryD().resizable(obj {
                 handleSelector = "#" + splitter.id

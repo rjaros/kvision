@@ -41,4 +41,4 @@ typealias StringBoolPair = Pair<String, Boolean>
         /**
          * This type is used for defining CSS dimensions (width, heights, margins, paddings, etc.).
          */
-typealias CssSize = Pair<Int, Unit>
+typealias CssSize = Pair<Int, UNIT>

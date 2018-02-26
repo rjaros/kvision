@@ -25,7 +25,7 @@ package pl.treksoft.kvision.utils
 
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.core.Unit
+import pl.treksoft.kvision.core.UNIT
 import kotlin.js.Date
 
 /**
@@ -33,7 +33,7 @@ import kotlin.js.Date
  */
 val Int.px: CssSize
     get() {
-        return Pair(this, Unit.px)
+        return Pair(this, UNIT.px)
     }
 
 /**
@@ -41,7 +41,7 @@ val Int.px: CssSize
  */
 val Int.em: CssSize
     get() {
-        return Pair(this, Unit.em)
+        return Pair(this, UNIT.em)
     }
 
 /**
@@ -49,7 +49,7 @@ val Int.em: CssSize
  */
 val Int.pt: CssSize
     get() {
-        return Pair(this, Unit.pt)
+        return Pair(this, UNIT.pt)
     }
 
 /**
@@ -57,7 +57,7 @@ val Int.pt: CssSize
  */
 val Int.perc: CssSize
     get() {
-        return Pair(this, Unit.perc)
+        return Pair(this, UNIT.perc)
     }
 
 /**
@@ -65,7 +65,7 @@ val Int.perc: CssSize
  */
 val Int.rem: CssSize
     get() {
-        return Pair(this, Unit.rem)
+        return Pair(this, UNIT.rem)
     }
 
 /**
@@ -73,7 +73,7 @@ val Int.rem: CssSize
  */
 val Int.ch: CssSize
     get() {
-        return Pair(this, Unit.ch)
+        return Pair(this, UNIT.ch)
     }
 
 /**
@@ -81,7 +81,7 @@ val Int.ch: CssSize
  */
 val Int.cm: CssSize
     get() {
-        return Pair(this, Unit.cm)
+        return Pair(this, UNIT.cm)
     }
 
 /**
@@ -89,7 +89,7 @@ val Int.cm: CssSize
  */
 val Int.mm: CssSize
     get() {
-        return Pair(this, Unit.mm)
+        return Pair(this, UNIT.mm)
     }
 
 /**
@@ -98,7 +98,7 @@ val Int.mm: CssSize
 @Suppress("FunctionNaming")
 val Int.`in`: CssSize
     get() {
-        return Pair(this, Unit.`in`)
+        return Pair(this, UNIT.`in`)
     }
 
 /**
@@ -106,7 +106,7 @@ val Int.`in`: CssSize
  */
 val Int.pc: CssSize
     get() {
-        return Pair(this, Unit.pc)
+        return Pair(this, UNIT.pc)
     }
 
 /**
@@ -114,7 +114,7 @@ val Int.pc: CssSize
  */
 val Int.vh: CssSize
     get() {
-        return Pair(this, Unit.vh)
+        return Pair(this, UNIT.vh)
     }
 
 /**
@@ -122,7 +122,7 @@ val Int.vh: CssSize
  */
 val Int.vw: CssSize
     get() {
-        return Pair(this, Unit.vw)
+        return Pair(this, UNIT.vw)
     }
 
 /**
@@ -130,7 +130,7 @@ val Int.vw: CssSize
  */
 val Int.vmin: CssSize
     get() {
-        return Pair(this, Unit.vmin)
+        return Pair(this, UNIT.vmin)
     }
 
 /**
@@ -138,19 +138,19 @@ val Int.vmin: CssSize
  */
 val Int.vmax: CssSize
     get() {
-        return Pair(this, Unit.vmax)
+        return Pair(this, UNIT.vmax)
     }
 
 /**
  * Helper property to describe CSS auto value.
  */
-val auto: CssSize = Pair(0, Unit.auto)
+val auto: CssSize = Pair(0, UNIT.auto)
 
 /**
  * Extension function to convert CssSize to String.
  */
 fun CssSize.asString(): String {
-    return if (this.second != Unit.auto) {
+    return if (this.second != UNIT.auto) {
         this.first.toString() + this.second.unit
     } else {
         "auto"
