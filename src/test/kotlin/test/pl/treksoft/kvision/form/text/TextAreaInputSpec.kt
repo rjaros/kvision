@@ -21,12 +21,11 @@
  */
 package test.pl.treksoft.kvision.form.text
 
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.form.text.TextAreaInput
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class TextAreaInputSpec : DomSpec {
 
@@ -43,7 +42,7 @@ class TextAreaInputSpec : DomSpec {
             }
             root.add(ti)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<textarea class=\"form-control\" id=\"idti\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" cols=\"5\" rows=\"2\">abc</textarea>",
                 element?.innerHTML,
                 "Should render correct input control"

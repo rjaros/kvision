@@ -21,14 +21,13 @@
  */
 package test.pl.treksoft.kvision.html
 
-import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.ButtonSize
 import pl.treksoft.kvision.html.ButtonStyle
-import pl.treksoft.kvision.html.Button
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class ButtonSpec : DomSpec {
 
@@ -41,7 +40,7 @@ class ButtonSpec : DomSpec {
             button.block = true
             root.add(button)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\"><i class=\"fa fa-bars\"></i> Cancel</button>",
                 element?.innerHTML,
                 "Should render correct html button"

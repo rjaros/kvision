@@ -22,12 +22,11 @@
 package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.html.Label
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.ResponsiveGridPanel
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class ResponsiveGridPanelSpec : DomSpec {
 
@@ -41,7 +40,7 @@ class ResponsiveGridPanelSpec : DomSpec {
             rgPanel.add(Label("def"), 2, 2)
             rgPanel.add(Label("ghi"), 3, 3)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<div><div class=\"row\"></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>abc</span></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>def</span></div><div class=\"col-md-3\"></div></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>ghi</span></div></div></div>",
                 element?.innerHTML,
                 "Should render correct responsive grid panel"

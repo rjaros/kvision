@@ -22,14 +22,13 @@
 package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.html.Label
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.FlexDir
 import pl.treksoft.kvision.panel.FlexJustify
 import pl.treksoft.kvision.panel.FlexPanel
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class FlexPanelSpec : DomSpec {
 
@@ -43,7 +42,7 @@ class FlexPanelSpec : DomSpec {
             flexPanel.add(Label("def"), 2)
             flexPanel.add(Label("ghi"), 3)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<div style=\"display: flex; flex-direction: row-reverse; justify-content: space-evenly;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",
                 element?.innerHTML,
                 "Should render correct flex panel"

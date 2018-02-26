@@ -26,6 +26,8 @@ import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.Root
 import kotlin.browser.document
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 interface TestSpec {
     fun beforeTest()
@@ -63,6 +65,20 @@ interface DomSpec : TestSpec {
         jQuery(`object` = ".modal-backdrop").remove()
     }
 
+    fun assertEqualsHtml(expected: String?, actual: String?, message: String?) {
+        if (expected != null && actual != null) {
+            val exp = jQuery(html = expected)
+            val act = jQuery(html = actual)
+            val result = exp[0]?.isEqualNode(act[0])
+            if (result == true) {
+                assertTrue(result == true, message)
+            } else {
+                assertEquals(expected, actual, message)
+            }
+        } else {
+            assertEquals(expected, actual, message)
+        }
+    }
 }
 
 interface WSpec : DomSpec {

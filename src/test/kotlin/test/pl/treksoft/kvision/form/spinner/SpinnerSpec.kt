@@ -21,8 +21,8 @@
  */
 package test.pl.treksoft.kvision.form.spinner
 
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.form.spinner.Spinner
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -42,13 +42,13 @@ class SpinnerSpec : DomSpec {
             root.add(ti)
             val element = document.getElementById("test")
             val id = ti.input.id
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"input-group kv-spinner-btn-vertical\"><span><div class=\"input-group bootstrap-touchspin\"><span class=\"input-group-addon bootstrap-touchspin-prefix\" style=\"display: none;\"></span><input class=\"form-control\" id=\"$id\" type=\"text\" value=\"13\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" style=\"display: block;\"><span class=\"input-group-addon bootstrap-touchspin-postfix\" style=\"display: none;\"></span><span class=\"input-group-btn-vertical\"><button class=\"btn btn-default bootstrap-touchspin-up\" type=\"button\"><i class=\"glyphicon glyphicon-chevron-up\"></i></button><button class=\"btn btn-default bootstrap-touchspin-down\" type=\"button\"><i class=\"glyphicon glyphicon-chevron-down\"></i></button></span></div></span></div></div>",
                 element?.innerHTML,
                 "Should render correct spinner input form control"
             )
             ti.validatorError = "Validation Error"
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"form-group has-error\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"input-group kv-spinner-btn-vertical\"><span><div class=\"input-group bootstrap-touchspin\"><span class=\"input-group-addon bootstrap-touchspin-prefix\" style=\"display: none;\"></span><input class=\"form-control\" id=\"$id\" type=\"text\" value=\"13\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" style=\"display: block;\"><span class=\"input-group-addon bootstrap-touchspin-postfix\" style=\"display: none;\"></span><span class=\"input-group-btn-vertical\"><button class=\"btn btn-default bootstrap-touchspin-up\" type=\"button\"><i class=\"glyphicon glyphicon-chevron-up\"></i></button><button class=\"btn btn-default bootstrap-touchspin-down\" type=\"button\"><i class=\"glyphicon glyphicon-chevron-down\"></i></button></span></div></span></div><span class=\"help-block small\">Validation Error</span></div>",
                 element?.innerHTML,
                 "Should render correct spinner input form control with validation error"

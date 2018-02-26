@@ -21,15 +21,14 @@
  */
 package test.pl.treksoft.kvision.html
 
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.html.ListType
 import pl.treksoft.kvision.html.ListTag
+import pl.treksoft.kvision.html.ListType
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class ListSpec : DomSpec {
 
@@ -40,7 +39,7 @@ class ListSpec : DomSpec {
             val list = ListTag(ListType.DL_HORIZ, listOf("a1", "a2", "b1", "b2"))
             root.add(list)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<dl class=\"dl-horizontal\"><dt>a1</dt><dd>a2</dd><dt>b1</dt><dd>b2</dd></dl>",
                 element?.innerHTML,
                 "Should render correct html list"
@@ -57,7 +56,7 @@ class ListSpec : DomSpec {
             list.add(Tag(TAG.DEL, "del"))
             root.add(list)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<ul><li><pre>pre</pre></li><li><del>del</del></li></ul>",
                 element?.innerHTML,
                 "Should render correct html list"

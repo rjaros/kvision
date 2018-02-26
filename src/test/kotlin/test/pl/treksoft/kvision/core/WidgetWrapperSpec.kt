@@ -21,10 +21,10 @@
  */
 package test.pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -41,7 +41,7 @@ class WidgetWrapperSpec : DomSpec {
             wrapper.width = 100 to UNIT.em
             root.add(wrapper)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<div style=\"width: 100em;\"><div></div></div>",
                 element?.innerHTML,
                 "Should render widget inside custom wrapper"

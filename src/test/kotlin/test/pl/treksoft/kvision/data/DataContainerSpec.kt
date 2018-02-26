@@ -22,14 +22,13 @@
 package test.pl.treksoft.kvision.data
 
 import com.lightningkite.kotlin.observable.list.observableListOf
-import pl.treksoft.kvision.html.Label
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.data.BaseDataComponent
 import pl.treksoft.kvision.data.DataContainer
+import pl.treksoft.kvision.html.Label
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class DataContainerSpec : DomSpec {
 
@@ -46,19 +45,19 @@ class DataContainerSpec : DomSpec {
             val container = DataContainer(model, { index -> Label(model[index].value) })
             root.add(container)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<div style=\"display: flex; flex-direction: column;\"><div><span>First</span></div><div><span>Second</span></div></div>",
                 element?.innerHTML,
                 "Should render correct data container"
             )
             model.add(Model("Third"))
-            assertEquals(
+            assertEqualsHtml(
                 "<div style=\"display: flex; flex-direction: column;\"><div><span>First</span></div><div><span>Second</span></div><div><span>Third</span></div></div>",
                 element?.innerHTML,
                 "Should render correct data container after model change"
             )
             model[1].value = "Changed"
-            assertEquals(
+            assertEqualsHtml(
                 "<div style=\"display: flex; flex-direction: column;\"><div><span>First</span></div><div><span>Changed</span></div><div><span>Third</span></div></div>",
                 element?.innerHTML,
                 "Should render correct data container after model element change"

@@ -21,12 +21,11 @@
  */
 package test.pl.treksoft.kvision.form.text
 
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.form.text.Text
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class TextSpec : DomSpec {
 
@@ -43,13 +42,13 @@ class TextSpec : DomSpec {
             root.add(ti)
             val element = document.getElementById("test")
             val id = ti.input.id
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" type=\"text\" value=\"abc\"></div>",
                 element?.innerHTML,
                 "Should render correct input form control"
             )
             ti.validatorError = "Validation Error"
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"form-group has-error\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" type=\"text\" value=\"abc\"><span class=\"help-block small\">Validation Error</span></div>",
                 element?.innerHTML,
                 "Should render correct input form control with validation error"

@@ -21,13 +21,12 @@
  */
 package test.pl.treksoft.kvision.form.check
 
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.check.CheckInputType
 import pl.treksoft.kvision.form.check.CheckInput
+import pl.treksoft.kvision.form.check.CheckInputType
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class CheckInputSpec : DomSpec {
 
@@ -42,7 +41,7 @@ class CheckInputSpec : DomSpec {
             }
             root.add(ci)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<input id=\"idti\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\">",
                 element?.innerHTML,
                 "Should render correct checkbox control"
@@ -61,7 +60,7 @@ class CheckInputSpec : DomSpec {
             }
             root.add(ci)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<input id=\"idti\" type=\"radio\" checked=\"checked\" name=\"name\" value=\"abc\">",
                 element?.innerHTML,
                 "Should render correct radio button control"

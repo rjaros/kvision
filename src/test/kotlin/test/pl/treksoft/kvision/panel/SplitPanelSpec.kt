@@ -22,13 +22,12 @@
 package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.html.Label
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.Direction
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SplitPanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class SplitPanelSpec : DomSpec {
 
@@ -44,7 +43,7 @@ class SplitPanelSpec : DomSpec {
             splitPanel.add(label2)
             val element = document.getElementById("test")
             val id = splitPanel.splitter.id
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"splitpanel-vertical\"><span class=\"resizable\">abc</span><div class=\"splitter-vertical\" id=\"$id\" style=\"touch-action: none;\"></div><span>def</span></div>",
                 element?.innerHTML,
                 "Should render correct split panel"

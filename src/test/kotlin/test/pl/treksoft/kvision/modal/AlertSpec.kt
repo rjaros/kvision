@@ -22,8 +22,8 @@
 package test.pl.treksoft.kvision.modal
 
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.modal.Alert
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -45,7 +45,7 @@ class AlertSpec : DomSpec {
             val body = document.getElementById("test")?.let { jQuery(it).find(".modal-body").html() }
             assertEquals("<div>Alert content</div>", body, "Should render alert window with correct content")
             val footer = document.getElementById("test")?.let { jQuery(it).find(".modal-footer").html() }
-            assertEquals(
+            assertEqualsHtml(
                 "<button class=\"btn btn-primary\" type=\"button\"><span class=\"glyphicon glyphicon-ok\"></span> OK</button>",
                 footer,
                 "Should render alert window with correct footer"

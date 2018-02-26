@@ -27,7 +27,6 @@ import pl.treksoft.kvision.panel.StackPanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class StackPanelSpec : DomSpec {
 
@@ -42,7 +41,7 @@ class StackPanelSpec : DomSpec {
             stackPanel.add(label1)
             stackPanel.add(label2)
             val element = document.getElementById("test")
-            assertEquals("<div><span>def</span></div>", element?.innerHTML, "Should render correct stack panel")
+            assertEqualsHtml("<div><span>def</span></div>", element?.innerHTML, "Should render correct stack panel")
         }
     }
 
@@ -57,7 +56,7 @@ class StackPanelSpec : DomSpec {
             stackPanel.add(label1)
             stackPanel.add(label2)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<div><span>abc</span></div>",
                 element?.innerHTML,
                 "Should render correct stack panel with activateLast = false"
@@ -77,7 +76,7 @@ class StackPanelSpec : DomSpec {
             stackPanel.add(label2)
             stackPanel.remove(label1)
             val element = document.getElementById("test")
-            assertEquals("<div><span>def</span></div>", element?.innerHTML, "Should remove correct child widget")
+            assertEqualsHtml("<div><span>def</span></div>", element?.innerHTML, "Should remove correct child widget")
         }
     }
 
@@ -93,7 +92,7 @@ class StackPanelSpec : DomSpec {
             stackPanel.add(label2)
             stackPanel.removeAll()
             val element = document.getElementById("test")
-            assertEquals("<div></div>", element?.innerHTML, "Should remove all child widgets")
+            assertEqualsHtml("<div></div>", element?.innerHTML, "Should remove all child widgets")
         }
     }
 }

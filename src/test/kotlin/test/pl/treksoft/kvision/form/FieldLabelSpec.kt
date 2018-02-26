@@ -37,7 +37,7 @@ class FieldLabelSpec : DomSpec {
             val fl = FieldLabel("input", "Label")
             root.add(fl)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<label class=\"control-label\" for=\"input\">Label</label>",
                 element?.innerHTML,
                 "Should render correct label"

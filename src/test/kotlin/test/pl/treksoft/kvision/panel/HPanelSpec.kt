@@ -22,13 +22,12 @@
 package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.html.Label
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.FlexJustify
 import pl.treksoft.kvision.panel.HPanel
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class HPanelSpec : DomSpec {
 
@@ -42,7 +41,7 @@ class HPanelSpec : DomSpec {
             hPanel.add(Label("def"), 2)
             hPanel.add(Label("ghi"), 3)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<div style=\"display: flex; justify-content: space-between;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",
                 element?.innerHTML,
                 "Should render correct horizontal panel"

@@ -21,13 +21,12 @@
  */
 package test.pl.treksoft.kvision.form.check
 
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.check.CheckBoxStyle
 import pl.treksoft.kvision.form.check.CheckBox
+import pl.treksoft.kvision.form.check.CheckBoxStyle
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class CheckBoxSpec : DomSpec {
 
@@ -45,7 +44,7 @@ class CheckBoxSpec : DomSpec {
             root.add(ci)
             val element = document.getElementById("test")
             val id = ci.input.id
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"checkbox checkbox-danger checkbox-circle checkbox-inline\"><input class=\"styled\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label for=\"$id\">Label</label></div>",
                 element?.innerHTML,
                 "Should render correct checkbox form control"
@@ -53,7 +52,7 @@ class CheckBoxSpec : DomSpec {
             ci.style = CheckBoxStyle.INFO
             ci.circled = false
             ci.inline = false
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"checkbox checkbox-info\"><input class=\"styled\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label for=\"$id\">Label</label></div>",
                 element?.innerHTML,
                 "Should render correct checkbox form control"

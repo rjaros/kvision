@@ -21,13 +21,12 @@
  */
 package test.pl.treksoft.kvision.form.check
 
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.check.RadioStyle
 import pl.treksoft.kvision.form.check.Radio
+import pl.treksoft.kvision.form.check.RadioStyle
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class RadioSpec : DomSpec {
 
@@ -44,7 +43,7 @@ class RadioSpec : DomSpec {
             root.add(ci)
             val element = document.getElementById("test")
             val id = ci.input.id
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"radio radio-danger radio-inline\"><input id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label for=\"$id\">Label</label></div>",
                 element?.innerHTML,
                 "Should render correct radio button form control"
@@ -52,7 +51,7 @@ class RadioSpec : DomSpec {
             ci.style = RadioStyle.INFO
             ci.squared = true
             ci.inline = false
-            assertEquals(
+            assertEqualsHtml(
                 "<div class=\"checkbox kv-radio-checkbox checkbox-info\"><input id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label for=\"$id\">Label</label></div>",
                 element?.innerHTML,
                 "Should render correct radio button form control"

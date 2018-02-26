@@ -21,13 +21,12 @@
  */
 package test.pl.treksoft.kvision.form.text
 
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.text.TextInputType
 import pl.treksoft.kvision.form.text.TextInput
+import pl.treksoft.kvision.form.text.TextInputType
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class TextInputSpec : DomSpec {
 
@@ -44,7 +43,7 @@ class TextInputSpec : DomSpec {
             }
             root.add(ti)
             val element = document.getElementById("test")
-            assertEquals(
+            assertEqualsHtml(
                 "<input class=\"form-control\" id=\"idti\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" type=\"password\" value=\"abc\">",
                 element?.innerHTML,
                 "Should render correct input control"
