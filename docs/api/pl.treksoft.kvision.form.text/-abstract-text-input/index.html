@@ -84,7 +84,7 @@
 <p><a href="size.html">size</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-i-n-p-u-t-s-i-z-e/index.html"><span class="identifier">INPUTSIZE</span></a><span class="symbol">?</span></code>
+<code><span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-input-size/index.html"><span class="identifier">InputSize</span></a><span class="symbol">?</span></code>
 <p>The size of the input.</p>
 </td>
 </tr>
@@ -111,6 +111,15 @@
 <h3>Inherited Properties</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/draggable.html">draggable</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">draggable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the current widget is draggable.</p>
+</td>
+</tr>
 <tr>
 <td>
 <p><a href="../../pl.treksoft.kvision.core/-widget/id.html">id</a></p>
@@ -258,6 +267,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/clear-drag-drop-data.html">clearDragDropData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearDragDropData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Clears D&D data for the current widget. It also makes it not draggable.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../../pl.treksoft.kvision.core/-widget/get-element.html">getElement</a></p>
 </td>
 <td>
@@ -346,6 +364,34 @@
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String)/elementName">elementName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code><br/>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String, kotlin.Array((kotlin.Any)))/elementName">elementName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String, kotlin.Array((kotlin.Any)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="keyword">dynamic</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
 <p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/set-drag-drop-data.html">setDragDropData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDragDropData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDragDropData(kotlin.String, kotlin.String)/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDragDropData(kotlin.String, kotlin.String)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets D&D data for the current widget. It also makes it draggable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/set-drop-target.html">setDropTarget</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTarget</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.String, kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.String, kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-drag-event/index.html"><span class="identifier">DragEvent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTarget</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.collections.Set((kotlin.String)), kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/formats">formats</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.collections.Set((kotlin.String)), kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-drag-event/index.html"><span class="identifier">DragEvent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the current widget as a D&D drop target.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/set-drop-target-data.html">setDropTargetData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTargetData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTargetData(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Unit)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTargetData(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the current widget as a D&D drop target with helper callback accepting String data.</p>
 </td>
 </tr>
 <tr>

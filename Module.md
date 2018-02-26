@@ -64,3 +64,7 @@ Simple and easy to use JavaScript router wrapper.
 # Package pl.treksoft.kvision.utils
 
 Interfaces and helper functions for Snabbdom virtual dom implementation and a few useful extension functions.
+
+# Package pl.treksoft.kvision.window
+
+Floating, resizable window component.

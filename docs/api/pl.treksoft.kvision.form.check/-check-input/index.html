@@ -18,7 +18,7 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">CheckInput</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput$<init>(pl.treksoft.kvision.form.check.CHECKINPUTTYPE, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-c-h-e-c-k-i-n-p-u-t-t-y-p-e/index.html"><span class="identifier">CHECKINPUTTYPE</span></a>&nbsp;<span class="symbol">=</span>&nbsp;CHECKINPUTTYPE.CHECKBOX<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput$<init>(pl.treksoft.kvision.form.check.CHECKINPUTTYPE, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput$<init>(pl.treksoft.kvision.form.check.CHECKINPUTTYPE, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">)</span></code></td>
+<code><span class="identifier">CheckInput</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput$<init>(pl.treksoft.kvision.form.check.CheckInputType, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-check-input-type/index.html"><span class="identifier">CheckInputType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;CheckInputType.CHECKBOX<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput$<init>(pl.treksoft.kvision.form.check.CheckInputType, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput$<init>(pl.treksoft.kvision.form.check.CheckInputType, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -57,7 +57,7 @@
 <p><a href="size.html">size</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-i-n-p-u-t-s-i-z-e/index.html"><span class="identifier">INPUTSIZE</span></a><span class="symbol">?</span></code>
+<code><span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-input-size/index.html"><span class="identifier">InputSize</span></a><span class="symbol">?</span></code>
 <p>The size of the input.</p>
 </td>
 </tr>
@@ -75,7 +75,7 @@
 <p><a href="type.html">type</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">type</span><span class="symbol">: </span><a href="../-c-h-e-c-k-i-n-p-u-t-t-y-p-e/index.html"><span class="identifier">CHECKINPUTTYPE</span></a></code>
+<code><span class="keyword">var </span><span class="identifier">type</span><span class="symbol">: </span><a href="../-check-input-type/index.html"><span class="identifier">CheckInputType</span></a></code>
 <p>The type of the generated HTML input element.</p>
 </td>
 </tr>
@@ -93,6 +93,15 @@
 <h3>Inherited Properties</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/draggable.html">draggable</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">draggable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the current widget is draggable.</p>
+</td>
+</tr>
 <tr>
 <td>
 <p><a href="../../pl.treksoft.kvision.core/-widget/id.html">id</a></p>
@@ -240,6 +249,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/clear-drag-drop-data.html">clearDragDropData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearDragDropData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Clears D&D data for the current widget. It also makes it not draggable.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../../pl.treksoft.kvision.core/-widget/get-element.html">getElement</a></p>
 </td>
 <td>
@@ -331,6 +349,34 @@
 </tr>
 <tr>
 <td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/set-drag-drop-data.html">setDragDropData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDragDropData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDragDropData(kotlin.String, kotlin.String)/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDragDropData(kotlin.String, kotlin.String)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets D&D data for the current widget. It also makes it draggable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/set-drop-target.html">setDropTarget</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTarget</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.String, kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.String, kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-drag-event/index.html"><span class="identifier">DragEvent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTarget</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.collections.Set((kotlin.String)), kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/formats">formats</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.collections.Set((kotlin.String)), kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-drag-event/index.html"><span class="identifier">DragEvent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the current widget as a D&D drop target.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/set-drop-target-data.html">setDropTargetData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTargetData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTargetData(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Unit)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTargetData(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the current widget as a D&D drop target with helper callback accepting String data.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../../pl.treksoft.kvision.core/-widget/set-event-listener.html">setEventListener</a></p>
 </td>
 <td>
@@ -368,7 +414,7 @@
 <p><a href="check-input.html">checkInput</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">checkInput</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput.Companion$checkInput(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.check.CHECKINPUTTYPE, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.check.CheckInput, kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-c-h-e-c-k-i-n-p-u-t-t-y-p-e/index.html"><span class="identifier">CHECKINPUTTYPE</span></a>&nbsp;<span class="symbol">=</span>&nbsp;CHECKINPUTTYPE.CHECKBOX<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput.Companion$checkInput(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.check.CHECKINPUTTYPE, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.check.CheckInput, kotlin.Unit)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput.Companion$checkInput(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.check.CHECKINPUTTYPE, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.check.CheckInput, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput.Companion$checkInput(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.check.CHECKINPUTTYPE, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.check.CheckInput, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CheckInput</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">CheckInput</span></a></code>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">checkInput</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput.Companion$checkInput(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.check.CheckInputType, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.check.CheckInput, kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-check-input-type/index.html"><span class="identifier">CheckInputType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;CheckInputType.CHECKBOX<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput.Companion$checkInput(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.check.CheckInputType, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.check.CheckInput, kotlin.Unit)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput.Companion$checkInput(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.check.CheckInputType, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.check.CheckInput, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.check.CheckInput.Companion$checkInput(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.check.CheckInputType, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.check.CheckInput, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CheckInput</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">CheckInput</span></a></code>
 <p>DSL builder extension function.</p>
 </td>
 </tr>

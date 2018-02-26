@@ -15,65 +15,56 @@ and backgrounds) and the main Widget class.</p>
 <tbody>
 <tr>
 <td>
-<p><a href="-b-g-a-t-t-a-c-h/index.html">BGATTACH</a></p>
-</td>
-<td>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BGATTACH</span></code>
-<p>Definitions of CSS background attachment options.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="-b-g-c-l-i-p/index.html">BGCLIP</a></p>
-</td>
-<td>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BGCLIP</span></code>
-<p>Definitions of CSS background clipping options.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="-b-g-o-r-i-g-i-n/index.html">BGORIGIN</a></p>
-</td>
-<td>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BGORIGIN</span></code>
-<p>Definitions of CSS background origin options.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="-b-g-r-e-p-e-a-t/index.html">BGREPEAT</a></p>
-</td>
-<td>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BGREPEAT</span></code>
-<p>Definitions of CSS background repeat options.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="-b-g-s-i-z-e/index.html">BGSIZE</a></p>
-</td>
-<td>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BGSIZE</span></code>
-<p>Definitions of CSS background size.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="-b-o-r-d-e-r-s-t-y-l-e/index.html">BORDERSTYLE</a></p>
-</td>
-<td>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BORDERSTYLE</span></code>
-<p>Definitions of CSS border styles.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="-background/index.html">Background</a></p>
 </td>
 <td>
 <code><span class="keyword">class </span><span class="identifier">Background</span></code>
 <p>Type-safe definition of CSS background.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-attach/index.html">BgAttach</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgAttach</span></code>
+<p>Definitions of CSS background attachment options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-clip/index.html">BgClip</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgClip</span></code>
+<p>Definitions of CSS background clipping options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-origin/index.html">BgOrigin</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgOrigin</span></code>
+<p>Definitions of CSS background origin options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-repeat/index.html">BgRepeat</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgRepeat</span></code>
+<p>Definitions of CSS background repeat options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-size/index.html">BgSize</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgSize</span></code>
+<p>Definitions of CSS background size.</p>
 </td>
 </tr>
 <tr>
@@ -87,10 +78,19 @@ and backgrounds) and the main Widget class.</p>
 </tr>
 <tr>
 <td>
-<p><a href="-c-o-l-o-r/index.html">COLOR</a></p>
+<p><a href="-border-style/index.html">BorderStyle</a></p>
 </td>
 <td>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">COLOR</span></code>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BorderStyle</span></code>
+<p>Definitions of CSS border styles.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-col/index.html">Col</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Col</span></code>
 <p>Definitions of CSS color names.</p>
 </td>
 </tr>
@@ -119,6 +119,33 @@ and backgrounds) and the main Widget class.</p>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">Container</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-component/index.html"><span class="identifier">Component</span></a></code>
 <p>Base interface for all containers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-overflow/index.html">Overflow</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Overflow</span></code>
+<p>Definitions of CSS overflow options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-position/index.html">Position</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Position</span></code>
+<p>Definitions of CSS position options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-resize/index.html">Resize</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Resize</span></code>
+<p>Definitions of CSS resize options.</p>
 </td>
 </tr>
 <tr>
