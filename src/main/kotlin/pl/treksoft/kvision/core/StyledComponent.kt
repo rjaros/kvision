@@ -80,6 +80,14 @@ abstract class StyledComponent : Component {
      */
     var zIndex: Int? by refreshOnUpdate()
     /**
+     * CSS overflow of the current component.
+     */
+    var overflow: Overflow? by refreshOnUpdate()
+    /**
+     * CSS resize of the current component.
+     */
+    var resize: Resize? by refreshOnUpdate()
+    /**
      * Border of the current component.
      */
     var border: Border? by refreshOnUpdate()
@@ -243,6 +251,12 @@ abstract class StyledComponent : Component {
         }
         zIndex?.let {
             snstyle.add("z-index" to it.toString())
+        }
+        overflow?.let {
+            snstyle.add("overflow" to it.toString())
+        }
+        resize?.let {
+            snstyle.add("resize" to it.toString())
         }
         border?.let {
             snstyle.add("border" to it.asString())

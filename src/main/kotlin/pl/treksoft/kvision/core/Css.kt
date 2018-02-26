@@ -28,7 +28,7 @@ import pl.treksoft.kvision.utils.toHexString
  * Definitions of CSS units.
  */
 @Suppress("EnumNaming", "EnumEntryName")
-enum class Unit(internal val unit: String) {
+enum class UNIT(internal val unit: String) {
     px("px"),
     pt("pt"),
     em("em"),
@@ -265,6 +265,30 @@ enum class Position(internal val position: String) {
     FIXED("fixed"),
     ABSOLUTE("absolute"),
     STICKY("sticky")
+}
+
+/**
+ * Definitions of CSS overflow options.
+ */
+enum class Overflow(internal val overflow: String) {
+    VISIBLE("visible"),
+    HIDDEN("hidden"),
+    SCROLL("scroll"),
+    AUTO("auto"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS resize options.
+ */
+enum class Resize(internal val resize: String) {
+    NONE("none"),
+    BOTH("both"),
+    HORIZONTAL("horizontal"),
+    VERTICAL("vertical"),
+    INITIAL("initial"),
+    INHERIT("inherit")
 }
 
 /**
