@@ -27,6 +27,7 @@ This design is quite similar to many non-web UI programming libraries including 
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
 - Data binding support for [observable](https://github.com/rjaros/kotlin-observable-js) data model.
+- Easy to use Drag & Drop support.
 - Ready to explore [KVision examples](https://github.com/rjaros/kvision-examples) are available,
 built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
 [Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).
