@@ -78,7 +78,7 @@ Application package will be saved as build/distributions/showcase.zip.
 ##### Simple, explicit way
 
         val root = Root("root")
-        val panel = HPanel(spacing = 20, alignItems = FLEXALIGNITEMS.CENTER)
+        val panel = HPanel(spacing = 20, alignItems = FlexAlignItems.CENTER)
         val label = Label("Not yet clicked.")
         panel.add(label)
         var count = 0
@@ -93,7 +93,7 @@ Application package will be saved as build/distributions/showcase.zip.
 ##### Using Kotlin language features
 
         Root("root").add(
-            HPanel(spacing = 20, alignItems = FLEXALIGNITEMS.CENTER).apply {
+            HPanel(spacing = 20, alignItems = FlexAlignItems.CENTER).apply {
                 val label = Label("Not yet clicked.").also { add(it) }
                 var count = 0
                 add(Button("Click me").onClick {
@@ -105,7 +105,7 @@ Application package will be saved as build/distributions/showcase.zip.
 ##### Using type safe DSL builders
 
         Root("root") {
-            hPanel(spacing = 20, alignItems = FLEXALIGNITEMS.CENTER) {
+            hPanel(spacing = 20, alignItems = FlexAlignItems.CENTER) {
                 val label = label("Not yet clicked.")
                 var count = 0
                 button("Click me") {
@@ -156,7 +156,7 @@ Application package will be saved as build/distributions/showcase.zip.
         )
         Root("root").add(DataContainer(model, { index ->
             Label(model[index].text)
-        }, child = HPanel(spacing = 10, wrap = FLEXWRAP.WRAP)))
+        }, child = HPanel(spacing = 10, wrap = FlexWrap.WRAP)))
 
         launch { // Kotlin coroutines
             while (true) {
