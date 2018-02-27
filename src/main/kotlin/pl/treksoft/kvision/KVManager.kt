@@ -30,6 +30,7 @@ import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.utils.isIE11
 import kotlin.browser.document
 import kotlin.dom.clear
 
@@ -136,16 +137,20 @@ internal object KVManager {
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun setResizeEvent(component: Component, callback: () -> Unit) {
-        component.getElement()?.let {
-            elementResizeEvent(it, callback)
+        if (!isIE11()) {
+            component.getElement()?.let {
+                elementResizeEvent(it, callback)
+            }
         }
     }
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun clearResizeEvent(component: Component) {
-        if (component.getElement()?.asDynamic()?.__resizeTrigger__?.contentDocument != null) {
-            component.getElement()?.let {
-                elementResizeEvent.unbind(it)
+        if (!isIE11()) {
+            if (component.getElement()?.asDynamic()?.__resizeTrigger__?.contentDocument != null) {
+                component.getElement()?.let {
+                    elementResizeEvent.unbind(it)
+                }
             }
         }
     }

@@ -26,6 +26,7 @@ package pl.treksoft.kvision.utils
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.UNIT
+import kotlin.browser.window
 import kotlin.js.Date
 
 /**
@@ -192,3 +193,9 @@ fun String.toDateF(format: String = "YYYY-MM-DD HH:mm:ss"): Date {
 fun Date.toStringF(format: String = "YYYY-MM-DD HH:mm:ss"): String {
     return KVManager.fecha.format(this, format)
 }
+
+/**
+ * Utility function to detect Internet Explorer 11.
+ * @return true if the current browser is IE11
+ */
+fun isIE11(): Boolean = window.navigator.userAgent.matches("Trident\\/7\\.")

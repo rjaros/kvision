@@ -135,9 +135,12 @@ abstract class AbstractTextInput(
      * Internal function
      */
     protected open fun refreshState() {
-        value?.let {
-            getElementJQuery()?.`val`(it)
-        } ?: getElementJQueryD()?.`val`(null)
+        val v = (getElementJQuery()?.`val`() as? String)
+        if (v != value && !(v.isNullOrEmpty() && value == null)) {
+            value?.let {
+                getElementJQuery()?.`val`(it)
+            } ?: getElementJQueryD()?.`val`(null)
+        }
     }
 
     /**
