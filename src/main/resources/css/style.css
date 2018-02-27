@@ -127,3 +127,7 @@ trix-toolbar .trix-button-group {
   height: 40px;
   padding: 10px 15px 5px 15px;
 }
+
+.kv-window .modal-header .modal-title {
+  white-space: nowrap;
+}

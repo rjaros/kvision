@@ -143,7 +143,7 @@ internal object KVManager {
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun clearResizeEvent(component: Component) {
-        if (component.getElement().asDynamic().__resizeTrigger__.contentDocument != null) {
+        if (component.getElement()?.asDynamic()?.__resizeTrigger__?.contentDocument != null) {
             component.getElement()?.let {
                 elementResizeEvent.unbind(it)
             }

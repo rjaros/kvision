@@ -99,7 +99,7 @@ open class Window(
     /**
      * Determines if the window is draggable.
      */
-    var isDraggable by refreshOnUpdate(isDraggable, { checkIsDraggable(); })
+    var isDraggable by refreshOnUpdate(isDraggable, { checkIsDraggable(); checkHeaderVisibility() })
     /**
      * Determines if Close button is visible.
      */
@@ -126,11 +126,12 @@ open class Window(
     private var isResizeEvent = false
 
     init {
+        id = "kv_window_" + counter
         position = Position.ABSOLUTE
         overflow = Overflow.HIDDEN
         @Suppress("LeakingThis")
         width = contentWidth
-        zIndex = DEFAULT_Z_INDEX
+        zIndex = ++zIndexCounter
         closeIcon.visible = closeButton
         closeIcon.setEventListener {
             click = {
@@ -148,7 +149,15 @@ open class Window(
             content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
         }
         @Suppress("LeakingThis")
+        setEventListener<Window> {
+            click = {
+                toFront()
+                focus()
+            }
+        }
+        @Suppress("LeakingThis")
         init?.invoke(this)
+        counter++
     }
 
     private fun checkHeaderVisibility() {
@@ -164,25 +173,27 @@ open class Window(
         if (isDraggable) {
             header.setEventListener<SimplePanel> {
                 mousedown = { e ->
-                    isDrag = true
-                    val dragStartX = this@Window.getElementJQuery()?.position()?.left?.toInt() ?: 0
-                    val dragStartY = this@Window.getElementJQuery()?.position()?.top?.toInt() ?: 0
-                    val dragMouseX = e.pageX
-                    val dragMouseY = e.pageY
-                    val moveCallback = { me: Event ->
-                        if (isDrag) {
-                            this@Window.left = (dragStartX + (me as MouseEvent).pageX - dragMouseX).toInt().px
-                            this@Window.top = (dragStartY + (me).pageY - dragMouseY).toInt().px
+                    if (e.button.toInt() == 0) {
+                        isDrag = true
+                        val dragStartX = this@Window.getElementJQuery()?.position()?.left?.toInt() ?: 0
+                        val dragStartY = this@Window.getElementJQuery()?.position()?.top?.toInt() ?: 0
+                        val dragMouseX = e.pageX
+                        val dragMouseY = e.pageY
+                        val moveCallback = { me: Event ->
+                            if (isDrag) {
+                                this@Window.left = (dragStartX + (me as MouseEvent).pageX - dragMouseX).toInt().px
+                                this@Window.top = (dragStartY + (me).pageY - dragMouseY).toInt().px
+                            }
                         }
+                        kotlin.browser.window.addEventListener("mousemove", moveCallback)
+                        var upCallback: ((Event) -> Unit)? = null
+                        upCallback = { _ ->
+                            isDrag = false
+                            kotlin.browser.window.removeEventListener("mousemove", moveCallback)
+                            kotlin.browser.window.removeEventListener("mouseup", upCallback)
+                        }
+                        kotlin.browser.window.addEventListener("mouseup", upCallback)
                     }
-                    kotlin.browser.window.addEventListener("mousemove", moveCallback)
-                    var upCallback: ((Event) -> Unit)? = null
-                    upCallback = { _ ->
-                        isDrag = false
-                        kotlin.browser.window.removeEventListener("mousemove", moveCallback)
-                        kotlin.browser.window.removeEventListener("mouseup", upCallback)
-                    }
-                    kotlin.browser.window.addEventListener("mouseup", upCallback)
                 }
             }
         } else {
@@ -210,12 +221,15 @@ open class Window(
         if (isResizable) {
             isResizeEvent = true
             KVManager.setResizeEvent(this) {
-                val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0) + 2
-                val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
-                width = intWidth.px
-                height = intHeight.px
-                content.width = (intWidth - 2).px
-                content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 1 - 2).px
+                val eid = getElementJQuery()?.attr("id")
+                if (eid == id) {
+                    val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0) + 2
+                    val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
+                    width = intWidth.px
+                    height = intHeight.px
+                    content.width = (intWidth - 2).px
+                    content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 1 - 2).px
+                }
             }
         } else if (isResizeEvent) {
             KVManager.clearResizeEvent(this)
@@ -250,7 +264,30 @@ open class Window(
         checkResizablEventHandler()
     }
 
+    override fun afterDestroy() {
+        if (isResizeEvent) {
+            KVManager.clearResizeEvent(this)
+        }
+    }
+
+    /**
+     * Moves the current window to the front.
+     */
+    open fun toFront() {
+        if ((zIndex ?: 0) < zIndexCounter) zIndex = ++zIndexCounter
+    }
+
+    /**
+     * Makes the current window focused.
+     */
+    open fun focus() {
+        getElementJQuery()?.focus()
+    }
+
     companion object {
+        internal var counter = 0
+        internal var zIndexCounter = DEFAULT_Z_INDEX
+
         /**
          * DSL builder extension function.
          *
@@ -258,15 +295,16 @@ open class Window(
          */
         fun Container.window(
             caption: String? = null,
-            width: CssSize? = CssSize(0, UNIT.auto),
-            height: CssSize? = CssSize(0, UNIT.auto),
-            resizable: Boolean = true,
-            draggable: Boolean = true,
+            contentWidth: CssSize? = CssSize(0, UNIT.auto),
+            contentHeight: CssSize? = CssSize(0, UNIT.auto),
+            isResizable: Boolean = true,
+            isDraggable: Boolean = true,
             closeButton: Boolean = false,
             classes: Set<String> = setOf(),
             init: (Window.() -> Unit)? = null
         ): Window {
-            val window = Window(caption, width, height, resizable, draggable, closeButton, classes, init)
+            val window =
+                Window(caption, contentWidth, contentHeight, isResizable, isDraggable, closeButton, classes, init)
             this.add(window)
             return window
         }
