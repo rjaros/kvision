@@ -126,6 +126,10 @@ abstract class AbstractTextInput(
         refreshState()
     }
 
+    override fun afterPostpatch(node: VNode) {
+        refreshState()
+    }
+
     /**
      * @suppress
      * Internal function
