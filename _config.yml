@@ -18,7 +18,7 @@ author: Robert Jaros
 email: rjaros@treksoft.pl
 description: >- # this means to ignore newlines until "baseurl:"
   Object oriented Web UI framework for Kotlin/JS.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/kvision" # the subpath of your site, e.g. /blog
 url: "https://rjaros.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  rjaros/kvision
 
