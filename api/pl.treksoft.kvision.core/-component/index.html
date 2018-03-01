@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Component - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.core</a>&nbsp;/&nbsp;<a href="./index.html">Component</a><br/>
+<br/>
+<h1>Component</h1>
+<code><span class="keyword">interface </span><span class="identifier">Component</span></code>
+<p>Base interface for all components.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="parent.html">parent</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">?</span></code>
+<p>Parent of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="visible.html">visible</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Visibility state of the current component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-css-class.html">addCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given value to the set of CSS classes generated in html code of current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-surrounding-css-class.html">addSurroundingCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-element.html">getElement</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElement</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">?</span></code>
+<p>Returns DOM element bound to the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-element-j-query.html">getElementJQuery</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQuery</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">JQuery</span><span class="symbol">?</span></code>
+<p>Returns JQuery element bound to the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-element-j-query-d.html">getElementJQueryD</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQueryD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
+<p>Returns JQuery element bound to the current component as a <em>dynamic</em> type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-css-class.html">removeCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given value from the set of CSS classes generated in html code of current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-surrounding-css-class.html">removeSurroundingCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-container/index.html">Container</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Container</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Component</span></a></code>
+<p>Base interface for all containers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.form/-form-control/index.html">FormControl</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">FormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Component</span></a></code>
+<p>Base interface of a form control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/index.html">StyledComponent</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">StyledComponent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Component</span></a></code>
+<p>Base class for components supporting CSS styling.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

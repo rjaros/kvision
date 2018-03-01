@@ -1,0 +1,246 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>GridPanel - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.panel</a>&nbsp;/&nbsp;<a href="./index.html">GridPanel</a><br/>
+<br/>
+<h1>GridPanel</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">GridPanel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>The container with CSS grid layout support.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">GridPanel</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/autoColumns">autoColumns</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/autoRows">autoRows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/autoFlow">autoFlow</span><span class="symbol">:</span>&nbsp;<a href="../-grid-flow/index.html"><span class="identifier">GridFlow</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/templateColumns">templateColumns</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/templateRows">templateRows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/templateAreas">templateAreas</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/columnGap">columnGap</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/rowGap">rowGap</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/justifyItems">justifyItems</span><span class="symbol">:</span>&nbsp;<a href="../-grid-justify/index.html"><span class="identifier">GridJustify</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/alignItems">alignItems</span><span class="symbol">:</span>&nbsp;<a href="../-grid-align/index.html"><span class="identifier">GridAlign</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/justifyContent">justifyContent</span><span class="symbol">:</span>&nbsp;<a href="../-grid-justify-content/index.html"><span class="identifier">GridJustifyContent</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/alignContent">alignContent</span><span class="symbol">:</span>&nbsp;<a href="../-grid-align-content/index.html"><span class="identifier">GridAlignContent</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$<init>(kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">GridPanel</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="align-content.html">alignContent</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">alignContent</span><span class="symbol">: </span><a href="../-grid-align-content/index.html"><span class="identifier">GridAlignContent</span></a><span class="symbol">?</span></code>
+<p>CSS grid content alignment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="align-items.html">alignItems</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">alignItems</span><span class="symbol">: </span><a href="../-grid-align/index.html"><span class="identifier">GridAlign</span></a><span class="symbol">?</span></code>
+<p>CSS grid items alignment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="auto-columns.html">autoColumns</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autoColumns</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>CSS grid auto columns.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="auto-flow.html">autoFlow</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autoFlow</span><span class="symbol">: </span><a href="../-grid-flow/index.html"><span class="identifier">GridFlow</span></a><span class="symbol">?</span></code>
+<p>CSS grid auto flow.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="auto-rows.html">autoRows</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autoRows</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>CSS grid auto rows.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="column-gap.html">columnGap</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">columnGap</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>CSS grid column gap.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="justify-content.html">justifyContent</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">justifyContent</span><span class="symbol">: </span><a href="../-grid-justify-content/index.html"><span class="identifier">GridJustifyContent</span></a><span class="symbol">?</span></code>
+<p>CSS grid content justification.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="justify-items.html">justifyItems</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">justifyItems</span><span class="symbol">: </span><a href="../-grid-justify/index.html"><span class="identifier">GridJustify</span></a><span class="symbol">?</span></code>
+<p>CSS grid items justification.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="row-gap.html">rowGap</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">rowGap</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>CSS grid row gap.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="template-areas.html">templateAreas</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">templateAreas</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code>
+<p>CSS grid areas template.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="template-columns.html">templateColumns</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">templateColumns</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>CSS grid columns template.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="template-rows.html">templateRows</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">templateRows</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>CSS grid rows template.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/columnStart">columnStart</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/rowStart">rowStart</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/columnEnd">columnEnd</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/rowEnd">rowEnd</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/area">area</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/justifySelf">justifySelf</span><span class="symbol">:</span>&nbsp;<a href="../-grid-justify/index.html"><span class="identifier">GridJustify</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/alignSelf">alignSelf</span><span class="symbol">:</span>&nbsp;<a href="../-grid-align/index.html"><span class="identifier">GridAlign</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, kotlin.collections.Set((kotlin.String)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">GridPanel</span></a></code>
+<p>Adds a component to the grid container.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$add(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">GridPanel</span></a></code>
+<p>Adds given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-all.html">addAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$addAll(kotlin.collections.List((pl.treksoft.kvision.core.Component)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">GridPanel</span></a></code>
+<p>Adds a list of components to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-sn-style.html">getSnStyle</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnStyle</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns the list of String pairs defining CSS style attributes and their values.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel$remove(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">GridPanel</span></a></code>
+<p>Removes given component from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-all.html">removeAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">GridPanel</span></a></code>
+<p>Removes all children from the current container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-simple-panel/add-internal.html">addInternal</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addInternal</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addInternal(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Protected and final method to add given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-simple-panel/children-v-nodes.html">childrenVNodes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">childrenVNodes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">VNode</span><span class="symbol">&gt;</span></code>
+<p>Returns the array of the children Snabbdom vnodes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-simple-panel/get-children.html">getChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of children of the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-simple-panel/render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
+<p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="grid-panel.html">gridPanel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">gridPanel</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/autoColumns">autoColumns</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/autoRows">autoRows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/autoFlow">autoFlow</span><span class="symbol">:</span>&nbsp;<a href="../-grid-flow/index.html"><span class="identifier">GridFlow</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/templateColumns">templateColumns</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/templateRows">templateRows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/templateAreas">templateAreas</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/columnGap">columnGap</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/rowGap">rowGap</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/justifyItems">justifyItems</span><span class="symbol">:</span>&nbsp;<a href="../-grid-justify/index.html"><span class="identifier">GridJustify</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/alignItems">alignItems</span><span class="symbol">:</span>&nbsp;<a href="../-grid-align/index.html"><span class="identifier">GridAlign</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/justifyContent">justifyContent</span><span class="symbol">:</span>&nbsp;<a href="../-grid-justify-content/index.html"><span class="identifier">GridJustifyContent</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/alignContent">alignContent</span><span class="symbol">:</span>&nbsp;<a href="../-grid-align-content/index.html"><span class="identifier">GridAlignContent</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.GridPanel.Companion$gridPanel(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.String, pl.treksoft.kvision.panel.GridFlow, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Int, kotlin.Int, pl.treksoft.kvision.panel.GridJustify, pl.treksoft.kvision.panel.GridAlign, pl.treksoft.kvision.panel.GridJustifyContent, pl.treksoft.kvision.panel.GridAlignContent, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.GridPanel, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">GridPanel</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">GridPanel</span></a></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,260 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Text - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.form.text</a>&nbsp;/&nbsp;<a href="./index.html">Text</a><br/>
+<br/>
+<h1>Text</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Text</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-text/index.html"><span class="identifier">AbstractText</span></a></code>
+<p>Form field text component.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Text</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.text.Text$<init>(pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean)/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-text-input-type/index.html"><span class="identifier">TextInputType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;TextInputType.TEXT<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.Text$<init>(pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.Text$<init>(pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean)/label">label</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.Text$<init>(pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean)/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="autocomplete.html">autocomplete</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autocomplete</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if autocomplete is enabled for the input element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="input.html">input</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">input</span><span class="symbol">: </span><a href="../-text-input/index.html"><span class="identifier">TextInput</span></a></code>
+<p>The actual input component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="type.html">type</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">type</span><span class="symbol">: </span><a href="../-text-input-type/index.html"><span class="identifier">TextInputType</span></a></code>
+<p>Text input type.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-text/autofocus.html">autofocus</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autofocus</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the text input is automatically focused.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/disabled.html">disabled</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">disabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if the field is disabled.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/flabel.html">flabel</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">flabel</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-field-label/index.html"><span class="identifier">FieldLabel</span></a></code>
+<p>Form field label.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/label.html">label</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">label</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The label text bound to the text input element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/maxlength.html">maxlength</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">maxlength</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>Maximal length of the text input value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/name.html">name</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The name attribute of the generated HTML input element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/placeholder.html">placeholder</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">placeholder</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The placeholder for the text input.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/readonly.html">readonly</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">readonly</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the text input is read-only.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/rich.html">rich</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">rich</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if <a href="../-abstract-text/label.html">label</a> can contain HTML code.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/size.html">size</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-input-size/index.html"><span class="identifier">InputSize</span></a><span class="symbol">?</span></code>
+<p>Input control size.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/start-value.html">startValue</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">startValue</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The value attribute of the generated HTML input element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/validation-info.html">validationInfo</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">validationInfo</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-help-block/index.html"><span class="identifier">HelpBlock</span></a></code>
+<p>Validation info component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/value.html">value</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">value</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Text input value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-text/blur.html">blur</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">blur</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Makes the input element blur.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/focus.html">focus</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">focus</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Makes the input element focused.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/get-sn-class.html">getSnClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns list of CSS class names for current widget in the form of a List.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/remove-event-listeners.html">removeEventListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeEventListeners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Removes all event listeners from current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-text/set-event-listener.html">setEventListener</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.text.AbstractText$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.form.text.AbstractText.setEventListener.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><a href="../-abstract-text/set-event-listener.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets an event listener for current widget, keeping the actual type of component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.text.AbstractText$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.core.Widget)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets an event listener for current widget.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="text.html">text</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">text</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.text.Text.Companion$text(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.text.Text, kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-text-input-type/index.html"><span class="identifier">TextInputType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;TextInputType.TEXT<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.Text.Companion$text(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.text.Text, kotlin.Unit)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.Text.Companion$text(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.text.Text, kotlin.Unit)))/label">label</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.Text.Companion$text(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.text.Text, kotlin.Unit)))/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.Text.Companion$text(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.text.TextInputType, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.text.Text, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Text</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Text</span></a></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-password/index.html">Password</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Password</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Text</span></a></code>
+<p>Form field password component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
