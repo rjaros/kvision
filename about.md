@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-Object oriented Web UI framework for Kotlin/JS.
-
 KVision allows you to build user interface of modern web applications with the [Kotlin](https://kotlinlang.org) language.
 It's designed to be object oriented in the "most classical" sense - it gives you a hierarchy of many different components,
 which are used to build application UI.
