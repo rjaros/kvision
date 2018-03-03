@@ -32,16 +32,18 @@ import pl.treksoft.kvision.panel.VPanel
  * A container class with support for observable data model.
  *
  * @constructor Creates DataContainer bound to given data model.
- * @param M base data model type
- * @param C base component type
+ * @param M data model type
+ * @param C visual component type
  * @param model data model of type *ObservableList<M>*
  * @param binding a function which creates component C from data model at given index
+ * @param filter a filtering function
  * @param child internal container (defaults to [VPanel])
  * @param init an initializer extension function
  */
-class DataContainer<M : DataComponent, C : Component>(
+class DataContainer<M, C : Component>(
     private val model: ObservableList<M>,
     private val binding: (Int) -> C,
+    private val filter: ((Int) -> Boolean)? = null,
     private val child: Container = VPanel(),
     init: (DataContainer<M, C>.() -> Unit)? = null
 ) :
@@ -97,10 +99,18 @@ class DataContainer<M : DataComponent, C : Component>(
      * Updates view from the current data model state.
      */
     override fun update() {
-        model.forEach { it.container = this }
+        model.forEach {
+            if (it is DataComponent) it.container = this
+        }
         singleRender {
             child.removeAll()
-            child.addAll(model.mapIndexed { index, _ -> binding(index) })
+            val indexed = model.mapIndexed { index, m -> index to m }
+            val children = if (filter != null) {
+                indexed.filter { p -> filter.invoke(p.first) }
+            } else {
+                indexed
+            }.map { p -> binding(p.first) }
+            child.addAll(children)
         }
         onUpdateHandler?.invoke()
     }
@@ -130,13 +140,14 @@ class DataContainer<M : DataComponent, C : Component>(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun <M : DataComponent, C : Component> Container.dataContainer(
+        fun <M, C : Component> Container.dataContainer(
             model: ObservableList<M>,
             binding: (Int) -> C,
+            filter: ((Int) -> Boolean)? = null,
             child: Container = VPanel(),
             init: (DataContainer<M, C>.() -> Unit)? = null
         ): DataContainer<M, C> {
-            val dataContainer = DataContainer(model, binding, child, init)
+            val dataContainer = DataContainer(model, binding, filter, child, init)
             this.add(dataContainer)
             return dataContainer
         }
