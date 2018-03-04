@@ -65,7 +65,14 @@ enum class TAG(internal val tagName: String) {
     VAR("var"),
     SAMP("samp"),
     SPAN("span"),
-    LI("li")
+    LI("li"),
+
+    CAPTION("caption"),
+    THEAD("thead"),
+    TH("th"),
+    TBODY("tbody"),
+    TR("tr"),
+    TD("td")
 }
 
 /**
