@@ -129,7 +129,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
      * @suppress
      * Internal property
      */
-    protected val idc = "kv_form_text_" + counter
+    protected val idc = "kv_form_text_$counter"
     abstract override val input: AbstractTextInput
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }

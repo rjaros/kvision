@@ -26,6 +26,7 @@ open class HeaderCell(
 ) : Tag(TAG.TH, text, rich, align, classes) {
 
     init {
+        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 

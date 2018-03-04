@@ -69,7 +69,7 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
         } else {
             this.getElementJQuery()?.on("trix-change", { _, _ ->
                 if (trixId != null) {
-                    val v = document.getElementById("trix-input-" + trixId)?.let { jQuery(it).`val`() as String? }
+                    val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
                     value = if (v != null && v.isNotEmpty()) {
                         v
                     } else {
@@ -90,14 +90,14 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
     }
 
     override fun afterDestroy() {
-        document.getElementById("trix-input-" + trixId)?.let { jQuery(it).remove() }
-        document.getElementById("trix-toolbar-" + trixId)?.let { jQuery(it).remove() }
+        document.getElementById("trix-input-$trixId")?.let { jQuery(it).remove() }
+        document.getElementById("trix-toolbar-$trixId")?.let { jQuery(it).remove() }
         trixId = null
     }
 
     @Suppress("UnsafeCastFromDynamic")
     override fun refreshState() {
-        val v = document.getElementById("trix-input-" + trixId)?.let { jQuery(it).`val`() as String? }
+        val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
         if (value != v) {
             val editor = this.getElement().asDynamic().editor
             value?.let {

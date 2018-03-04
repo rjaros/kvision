@@ -177,7 +177,7 @@ open class Spinner(
             input.size = value
         }
 
-    protected val idc = "kv_form_spinner_" + counter
+    protected val idc = "kv_form_spinner_$counter"
     final override val input: SpinnerInput = SpinnerInput(value, min, max, step, decimals, buttonsType, forceType)
         .apply { id = idc }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)

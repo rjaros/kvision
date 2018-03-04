@@ -120,7 +120,7 @@ internal class Splitter(private val splitPanel: SplitPanel, direction: Direction
     TAG.DIV,
     classes = setOf("splitter-" + direction.dir)
 ) {
-    private val idc = "kv_splitter_" + counter
+    private val idc = "kv_splitter_$counter"
 
     init {
         counter++

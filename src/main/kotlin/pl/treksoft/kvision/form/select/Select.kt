@@ -184,7 +184,7 @@ open class Select(
             input.size = value
         }
 
-    private val idc = "kv_form_select_" + counter
+    private val idc = "kv_form_select_$counter"
     final override val input: SelectInput = SelectInput(
         options, value, multiple, ajaxOptions,
         setOf("form-control")

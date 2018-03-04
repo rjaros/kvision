@@ -126,7 +126,7 @@ open class Window(
     private var isResizeEvent = false
 
     init {
-        id = "kv_window_" + counter
+        id = "kv_window_$counter"
         position = Position.ABSOLUTE
         overflow = Overflow.HIDDEN
         @Suppress("LeakingThis")

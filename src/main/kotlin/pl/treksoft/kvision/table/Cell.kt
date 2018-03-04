@@ -26,6 +26,7 @@ open class Cell(
 ) : Tag(TAG.TD, text, rich, align, classes) {
 
     init {
+        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 

@@ -54,7 +54,7 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     }
 
     override fun render(): VNode {
-        return render("div#" + id, childrenVNodes() + modalsVNodes())
+        return render("div#$id", childrenVNodes() + modalsVNodes())
     }
 
     internal fun addModal(modal: Modal) {

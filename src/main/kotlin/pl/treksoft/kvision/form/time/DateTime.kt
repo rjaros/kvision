@@ -176,7 +176,7 @@ open class DateTime(
             input.size = value
         }
 
-    private val idc = "kv_form_time_" + counter
+    private val idc = "kv_form_time_$counter"
     final override val input: DateTimeInput = DateTimeInput(value, format).apply { id = idc }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }

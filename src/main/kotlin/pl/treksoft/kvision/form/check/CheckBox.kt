@@ -125,7 +125,7 @@ open class CheckBox(
             input.size = value
         }
 
-    private val idc = "kv_form_checkbox_" + counter
+    private val idc = "kv_form_checkbox_$counter"
     final override val input: CheckInput = CheckInput(
         CheckInputType.CHECKBOX, value,
         setOf("styled")

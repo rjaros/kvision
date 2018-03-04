@@ -133,7 +133,7 @@ open class DropDown(
             button.width = value
         }
 
-    private val idc = "kv_dropdown_" + counter
+    private val idc = "kv_dropdown_$counter"
     internal val button: DropDownButton = DropDownButton(
         idc, text, icon, style,
         disabled, setOf("dropdown")

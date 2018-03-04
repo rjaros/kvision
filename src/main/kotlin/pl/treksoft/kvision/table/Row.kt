@@ -18,6 +18,7 @@ open class Row(classes: Set<String> = setOf(), init: (Row.() -> Unit)? = null) :
 ) {
 
     init {
+        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 

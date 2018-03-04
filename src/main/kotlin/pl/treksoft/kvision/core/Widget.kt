@@ -551,12 +551,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     ): Array<out Any> {
         return if (icon != null) {
             if (icon.startsWith("fa-")) {
-                arrayOf(KVManager.virtualize("<i class='fa $icon'></i>"), " " + label)
+                arrayOf(KVManager.virtualize("<i class='fa $icon'></i>"), " $label")
             } else {
-                arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " " + label)
+                arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " $label")
             }
         } else if (image != null) {
-            arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " " + label)
+            arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " $label")
         } else {
             arrayOf(label)
         }
