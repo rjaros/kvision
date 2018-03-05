@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.30'
     ext.dokka_version = '0.9.16-eap-3'
     ext.production = (findProperty('prod') ?: 'false') == 'true'
     ext.npmdeps = new File("npm.dependencies").getText()
@@ -34,7 +34,7 @@ apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: 'org.jetbrains.dokka'
 
 group = 'pl.treksoft'
-version = '0.0.7'
+version = '0.0.8'
 
 repositories {
     jcenter()
@@ -79,6 +79,7 @@ kotlinFrontend {
         devDependency("karma")
         devDependency("karma-webpack", "2.0.9")
         devDependency("webpack", "3.11.0")
+        devDependency("webpack-dev-server", "2.11.0")
     }
 
     webpackBundle {
