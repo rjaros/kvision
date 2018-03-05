@@ -37,5 +37,6 @@ pl.treksoft.kvision.html
 pl.treksoft.kvision.modal
 pl.treksoft.kvision.panel
 pl.treksoft.kvision.routing
+pl.treksoft.kvision.table
 pl.treksoft.kvision.utils
 pl.treksoft.kvision.window
