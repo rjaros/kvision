@@ -61,6 +61,10 @@ CSS grid and Bootstrap responsive 12 columns gid).
 
 Simple and easy to use JavaScript router wrapper.
 
+# Package pl.treksoft.kvision.table
+
+Clasess supporting HTML tables.
+
 # Package pl.treksoft.kvision.utils
 
 Interfaces and helper functions for Snabbdom virtual dom implementation and a few useful extension functions.
