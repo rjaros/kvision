@@ -42,8 +42,8 @@ import pl.treksoft.kvision.panel.VPanel
  */
 class DataContainer<M, C : Component>(
     private val model: ObservableList<M>,
-    private val binding: (Int) -> C,
-    private val filter: ((Int) -> Boolean)? = null,
+    private val binding: (Int, M) -> C,
+    private val filter: ((Int, M) -> Boolean)? = null,
     private val child: Container = VPanel(),
     init: (DataContainer<M, C>.() -> Unit)? = null
 ) :
@@ -106,10 +106,10 @@ class DataContainer<M, C : Component>(
             child.removeAll()
             val indexed = model.mapIndexed { index, m -> index to m }
             val children = if (filter != null) {
-                indexed.filter { p -> filter.invoke(p.first) }
+                indexed.filter { p -> filter.invoke(p.first, p.second) }
             } else {
                 indexed
-            }.map { p -> binding(p.first) }
+            }.map { p -> binding(p.first, p.second) }
             child.addAll(children)
         }
         onUpdateHandler?.invoke()
@@ -142,8 +142,8 @@ class DataContainer<M, C : Component>(
          */
         fun <M, C : Component> Container.dataContainer(
             model: ObservableList<M>,
-            binding: (Int) -> C,
-            filter: ((Int) -> Boolean)? = null,
+            binding: (Int, M) -> C,
+            filter: ((Int, M) -> Boolean)? = null,
             child: Container = VPanel(),
             init: (DataContainer<M, C>.() -> Unit)? = null
         ): DataContainer<M, C> {

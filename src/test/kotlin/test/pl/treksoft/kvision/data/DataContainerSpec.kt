@@ -42,7 +42,7 @@ class DataContainerSpec : DomSpec {
             }
 
             val model = observableListOf(Model("First"), Model("Second"))
-            val container = DataContainer(model, { index -> Label(model[index].value) })
+            val container = DataContainer(model, { _, m -> Label(m.value) })
             root.add(container)
             val element = document.getElementById("test")
             assertEqualsHtml(
