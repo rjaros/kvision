@@ -96,6 +96,7 @@ open class RadioGroup(
 
     init {
         setChildrenFromOptions()
+        setValueToChildren(value)
         counter++
     }
 
