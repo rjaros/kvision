@@ -51,6 +51,8 @@ enum class TAG(internal val tagName: String) {
     DIV("div"),
     LABEL("label"),
 
+    I("i"),
+    B("b"),
     MARK("mark"),
     DEL("del"),
     S("s"),
