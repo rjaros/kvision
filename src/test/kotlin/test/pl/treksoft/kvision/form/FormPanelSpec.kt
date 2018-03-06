@@ -51,7 +51,7 @@ class FormPanelSpec : SimpleSpec {
             val result = formPanel.getData()
             assertNull(result.a, "FormPanel should return null without adding any control")
             val textField = Text()
-            formPanel.add("a", textField)
+            formPanel.add(DataForm::a, textField)
             formPanel.setData(data)
             val result2 = formPanel.getData()
             assertEquals("Test value", result2.a, "FormPanel should return initial value")
@@ -71,9 +71,9 @@ class FormPanelSpec : SimpleSpec {
                 DataForm(it)
             }
             val data = DataForm(mapOf("a" to "Test value"))
-            formPanel.add("a", Text())
+            formPanel.add(DataForm::a, Text())
             formPanel.setData(data)
-            formPanel.remove("a")
+            formPanel.remove(DataForm::a)
             val result = formPanel.getData()
             assertNull(result.a, "FormPanel should return null after removing control")
         }
@@ -92,7 +92,7 @@ class FormPanelSpec : SimpleSpec {
                 DataForm(it)
             }
             val data = DataForm(mapOf("a" to "Test value"))
-            formPanel.add("a", Text())
+            formPanel.add(DataForm::a, Text())
             formPanel.setData(data)
             formPanel.removeAll()
             val result = formPanel.getData()
@@ -112,10 +112,10 @@ class FormPanelSpec : SimpleSpec {
             val formPanel = FormPanel {
                 DataForm(it)
             }
-            formPanel.add("a", Text())
-            val control = formPanel.getControl("b")
+            formPanel.add(DataForm::a, Text())
+            val control = formPanel.getControl(DataForm::b)
             assertNull(control, "Should return null when there is no such control")
-            val control2 = formPanel.getControl("a")
+            val control2 = formPanel.getControl(DataForm::a)
             assertNotNull(control2, "Should return correct control")
         }
     }
@@ -133,13 +133,13 @@ class FormPanelSpec : SimpleSpec {
                 DataForm(it)
             }
             val data = DataForm(mapOf("a" to "Test value"))
-            formPanel.add("a", Text())
-            val b = formPanel["b"]
+            formPanel.add(DataForm::a, Text())
+            val b = formPanel[DataForm::b]
             assertNull(b, "Should return null value when there is no added control")
-            val a = formPanel["a"]
+            val a = formPanel[DataForm::a]
             assertNull(a, "Should return null value when control is empty")
             formPanel.setData(data)
-            val a2 = formPanel["a"]
+            val a2 = formPanel[DataForm::a]
             assertEquals("Test value", a2, "Should return correct value")
         }
     }
@@ -158,7 +158,7 @@ class FormPanelSpec : SimpleSpec {
             }
             val data = DataForm(mapOf("a" to "Test value"))
             val textField = Text()
-            formPanel.add("a", textField)
+            formPanel.add(DataForm::a, textField)
             formPanel.setData(data)
             textField.value = "New value"
             val result = formPanel.getData()
@@ -177,10 +177,10 @@ class FormPanelSpec : SimpleSpec {
             val formPanel = FormPanel {
                 DataForm(it)
             }
-            formPanel.add("s", Text()) {
+            formPanel.add(DataForm::s, Text()) {
                 it.getValue()?.length ?: 0 > 4
             }
-            formPanel.add("d", DateTime(), required = true)
+            formPanel.add(DataForm::d, DateTime(), required = true)
             formPanel.setData(DataForm(mapOf("s" to "123")))
             val valid = formPanel.validate()
             assertEquals(false, valid, "Should be invalid with initial data")

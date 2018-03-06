@@ -29,7 +29,9 @@ import pl.treksoft.kvision.form.check.Radio
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
+import kotlin.js.Date
 import kotlin.js.Json
+import kotlin.reflect.KProperty1
 
 /**
  * Bootstrap form layout options.
@@ -109,17 +111,8 @@ open class FormPanel<K>(
         return cl
     }
 
-    /**
-     * Adds a control to the form panel.
-     * @param key key identifier of the control
-     * @param control the form control
-     * @param required determines if the control is required
-     * @param validatorMessage optional function returning validation message
-     * @param validator optional validation function
-     * @return current form panel
-     */
-    open fun <C : FormControl> add(
-        key: String, control: C, required: Boolean = false,
+    protected fun <C : FormControl> addInternal(
+        key: KProperty1<K, *>, control: C, required: Boolean = false,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
@@ -135,8 +128,76 @@ open class FormPanel<K>(
             }
         }
         super.add(control)
-        form.add(key, control, required, validatorMessage, validator)
+        form.addInternal(key, control, required, validatorMessage, validator)
         return this
+    }
+
+    /**
+     * Adds a string control to the form panel.
+     * @param key key identifier of the control
+     * @param control the string form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form panel
+     */
+    open fun <C : StringFormControl> add(
+        key: KProperty1<K, String?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): FormPanel<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a boolean control to the form panel.
+     * @param key key identifier of the control
+     * @param control the boolean form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form panel
+     */
+    open fun <C : BoolFormControl> add(
+        key: KProperty1<K, Boolean?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): FormPanel<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a number control to the form panel.
+     * @param key key identifier of the control
+     * @param control the number form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form panel
+     */
+    open fun <C : NumberFormControl> add(
+        key: KProperty1<K, Number?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): FormPanel<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a date control to the form panel.
+     * @param key key identifier of the control
+     * @param control the date form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form panel
+     */
+    open fun <C : DateFormControl> add(
+        key: KProperty1<K, Date?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): FormPanel<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
     }
 
     /**
@@ -144,7 +205,7 @@ open class FormPanel<K>(
      * @param key key identifier of the control
      * @return current form panel
      */
-    open fun remove(key: String): FormPanel<K> {
+    open fun remove(key: KProperty1<K, *>): FormPanel<K> {
         form.getControl(key)?.let {
             super.remove(it)
         }
@@ -164,7 +225,7 @@ open class FormPanel<K>(
      * @param key key identifier of the control
      * @return selected control
      */
-    open fun getControl(key: String): FormControl? {
+    open fun getControl(key: KProperty1<K, *>): FormControl? {
         return form.getControl(key)
     }
 
@@ -173,7 +234,7 @@ open class FormPanel<K>(
      * @param key key identifier of the control
      * @return value of the control
      */
-    operator fun get(key: String): Any? {
+    operator fun get(key: KProperty1<K, *>): Any? {
         return getControl(key)?.getValue()
     }
 

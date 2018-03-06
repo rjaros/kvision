@@ -23,6 +23,7 @@ package pl.treksoft.kvision.form
 
 import kotlin.js.Date
 import kotlin.js.Json
+import kotlin.reflect.KProperty1
 
 /**
  * Internal data class containing form field parameters.
@@ -48,23 +49,82 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
 
+    internal fun <C : FormControl> addInternal(
+        key: KProperty1<K, *>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): Form<K> {
+        this.fields[key.name] = control
+        this.fieldsParams[key.name] = FieldParams(required, validatorMessage, validator)
+        return this
+    }
+
     /**
-     * Adds a control to the form.
+     * Adds a string control to the form.
      * @param key key identifier of the control
-     * @param control the form control
+     * @param control the string form control
      * @param required determines if the control is required
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form
      */
-    fun <C : FormControl> add(
-        key: String, control: C, required: Boolean = false,
+    fun <C : StringFormControl> add(
+        key: KProperty1<K, String?>, control: C, required: Boolean = false,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        this.fields[key] = control
-        this.fieldsParams[key] = FieldParams(required, validatorMessage, validator)
-        return this
+        return addInternal(key, control, required, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a boolean control to the form.
+     * @param key key identifier of the control
+     * @param control the boolean form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form
+     */
+    fun <C : BoolFormControl> add(
+        key: KProperty1<K, Boolean?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): Form<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a number control to the form.
+     * @param key key identifier of the control
+     * @param control the number form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form
+     */
+    fun <C : NumberFormControl> add(
+        key: KProperty1<K, Number?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): Form<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a date control to the form.
+     * @param key key identifier of the control
+     * @param control the date form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form
+     */
+    fun <C : DateFormControl> add(
+        key: KProperty1<K, Date?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): Form<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
     }
 
     /**
@@ -72,8 +132,8 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
      * @param key key identifier of the control
      * @return current form
      */
-    fun remove(key: String): Form<K> {
-        this.fields.remove(key)
+    fun remove(key: KProperty1<K, *>): Form<K> {
+        this.fields.remove(key.name)
         return this
     }
 
@@ -91,8 +151,8 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
      * @param key key identifier of the control
      * @return selected control
      */
-    fun getControl(key: String): FormControl? {
-        return this.fields[key]
+    fun getControl(key: KProperty1<K, *>): FormControl? {
+        return this.fields[key.name]
     }
 
     /**
@@ -100,7 +160,7 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
      * @param key key identifier of the control
      * @return value of the control
      */
-    operator fun get(key: String): Any? {
+    operator fun get(key: KProperty1<K, *>): Any? {
         return getControl(key)?.getValue()
     }
 

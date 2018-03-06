@@ -51,7 +51,7 @@ class FormSpec : SimpleSpec {
             val result = form.getData()
             assertNull(result.a, "Form should return null without adding any control")
             val textField = Text()
-            form.add("a", textField)
+            form.add(DataForm::a, textField)
             form.setData(data)
             val result2 = form.getData()
             assertEquals("Test value", result2.a, "Form should return initial value")
@@ -71,9 +71,9 @@ class FormSpec : SimpleSpec {
                 DataForm(it)
             }
             val data = DataForm(mapOf("a" to "Test value"))
-            form.add("a", Text())
+            form.add(DataForm::a, Text())
             form.setData(data)
-            form.remove("a")
+            form.remove(DataForm::a)
             val result = form.getData()
             assertNull(result.a, "Form should return null after removing control")
         }
@@ -92,7 +92,7 @@ class FormSpec : SimpleSpec {
                 DataForm(it)
             }
             val data = DataForm(mapOf("a" to "Test value"))
-            form.add("a", Text())
+            form.add(DataForm::a, Text())
             form.setData(data)
             form.removeAll()
             val result = form.getData()
@@ -112,10 +112,10 @@ class FormSpec : SimpleSpec {
             val form = Form {
                 DataForm(it)
             }
-            form.add("a", Text())
-            val control = form.getControl("b")
+            form.add(DataForm::a, Text())
+            val control = form.getControl(DataForm::b)
             assertNull(control, "Should return null when there is no such control")
-            val control2 = form.getControl("a")
+            val control2 = form.getControl(DataForm::a)
             assertNotNull(control2, "Should return correct control")
         }
     }
@@ -133,13 +133,13 @@ class FormSpec : SimpleSpec {
                 DataForm(it)
             }
             val data = DataForm(mapOf("a" to "Test value"))
-            form.add("a", Text())
-            val b = form["b"]
+            form.add(DataForm::a, Text())
+            val b = form[DataForm::b]
             assertNull(b, "Should return null value when there is no added control")
-            val a = form["a"]
+            val a = form[DataForm::a]
             assertNull(a, "Should return null value when control is empty")
             form.setData(data)
-            val a2 = form["a"]
+            val a2 = form[DataForm::a]
             assertEquals("Test value", a2, "Should return correct value")
         }
     }
@@ -158,7 +158,7 @@ class FormSpec : SimpleSpec {
             }
             val data = DataForm(mapOf("a" to "Test value"))
             val textField = Text()
-            form.add("a", textField)
+            form.add(DataForm::a, textField)
             form.setData(data)
             textField.value = "New value"
             val result = form.getData()
@@ -177,10 +177,10 @@ class FormSpec : SimpleSpec {
             val form = Form {
                 DataForm(it)
             }
-            form.add("s", Text()) {
+            form.add(DataForm::s, Text()) {
                 it.getValue()?.length ?: 0 > 4
             }
-            form.add("d", DateTime(), required = true)
+            form.add(DataForm::d, DateTime(), required = true)
             form.setData(DataForm(mapOf("s" to "123")))
             val valid = form.validate()
             assertEquals(false, valid, "Should be invalid with initial data")
