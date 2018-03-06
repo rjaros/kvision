@@ -1,3 +1,7 @@
+.container-fluid {
+  padding: 0px;
+}
+
 .splitpanel-vertical {
   display: flex;
   flex-direction: row;
