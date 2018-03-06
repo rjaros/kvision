@@ -73,7 +73,7 @@ open class SplitPanel(
                 handleSelector = "#" + splitter.id
                 resizeWidth = !horizontal
                 resizeHeight = horizontal
-                onDrag = lok@ { e: JQueryEventObject, _: JQuery, newWidth: Int, newHeight: Int, _: dynamic ->
+                onDrag = lok@{ e: JQueryEventObject, _: JQuery, newWidth: Int, newHeight: Int, _: dynamic ->
                     e.asDynamic()["newWidth"] = newWidth
                     e.asDynamic()["newHeight"] = newHeight
                     self.dispatchEvent("dragSplitPanel", obj { detail = e })
