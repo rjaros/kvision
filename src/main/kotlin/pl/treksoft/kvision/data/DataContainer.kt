@@ -35,30 +35,32 @@ import pl.treksoft.kvision.panel.VPanel
  * @param M data model type
  * @param C visual component type
  * @param model data model of type *ObservableList<M>*
- * @param binding a function which creates component C from data model at given index
+ * @param factory a function which creates component C from data model at given index
  * @param filter a filtering function
- * @param child internal container (defaults to [VPanel])
+ * @param mapping a mapping function
+ * @param container internal container (defaults to [VPanel])
  * @param init an initializer extension function
  */
 class DataContainer<M, C : Component>(
     private val model: ObservableList<M>,
-    private val binding: (Int, M) -> C,
+    private val factory: (Int, M) -> C,
     private val filter: ((Int, M) -> Boolean)? = null,
-    private val child: Container = VPanel(),
+    private val mapping: ((List<M>) -> List<M>)? = null,
+    private val container: Container = VPanel(),
     init: (DataContainer<M, C>.() -> Unit)? = null
 ) :
     Widget(setOf()), Container, DataUpdatable {
 
     override var visible
-        get() = child.visible
+        get() = container.visible
         set(value) {
-            child.visible = value
+            container.visible = value
         }
 
     internal var onUpdateHandler: (() -> Unit)? = null
 
     init {
-        child.parent = this
+        container.parent = this
         model.onUpdate += { _ ->
             update()
         }
@@ -68,31 +70,31 @@ class DataContainer<M, C : Component>(
     }
 
     override fun add(child: Component): Container {
-        this.child.add(child)
+        this.container.add(child)
         return this
     }
 
     override fun addAll(children: List<Component>): Container {
-        this.child.addAll(children)
+        this.container.addAll(children)
         return this
     }
 
     override fun remove(child: Component): Container {
-        this.child.remove(child)
+        this.container.remove(child)
         return this
     }
 
     override fun removeAll(): Container {
-        this.child.removeAll()
+        this.container.removeAll()
         return this
     }
 
     override fun getChildren(): List<Component> {
-        return this.child.getChildren()
+        return this.container.getChildren()
     }
 
     override fun renderVNode(): VNode {
-        return this.child.renderVNode()
+        return this.container.renderVNode()
     }
 
     /**
@@ -103,14 +105,15 @@ class DataContainer<M, C : Component>(
             if (it is DataComponent) it.container = this
         }
         singleRender {
-            child.removeAll()
-            val indexed = model.mapIndexed { index, m -> index to m }
+            container.removeAll()
+            val mapped = mapping?.invoke(model) ?: model
+            val indexed = mapped.mapIndexed { index, m -> index to m }
             val children = if (filter != null) {
                 indexed.filter { p -> filter.invoke(p.first, p.second) }
             } else {
                 indexed
-            }.map { p -> binding(p.first, p.second) }
-            child.addAll(children)
+            }.map { p -> factory(p.first, p.second) }
+            container.addAll(children)
         }
         onUpdateHandler?.invoke()
     }
@@ -142,12 +145,13 @@ class DataContainer<M, C : Component>(
          */
         fun <M, C : Component> Container.dataContainer(
             model: ObservableList<M>,
-            binding: (Int, M) -> C,
+            factory: (Int, M) -> C,
             filter: ((Int, M) -> Boolean)? = null,
-            child: Container = VPanel(),
+            mapping: ((List<M>) -> List<M>)? = null,
+            container: Container = VPanel(),
             init: (DataContainer<M, C>.() -> Unit)? = null
         ): DataContainer<M, C> {
-            val dataContainer = DataContainer(model, binding, filter, child, init)
+            val dataContainer = DataContainer(model, factory, filter, mapping, container, init)
             this.add(dataContainer)
             return dataContainer
         }
