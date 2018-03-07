@@ -1,6 +1,8 @@
 buildscript {
     ext.kotlin_version = '1.2.30'
-    ext.dokka_version = '0.9.16-eap-3'
+    ext.dokka_version = '0.9.16'
+    ext.frontend_plugin_version = '0.0.29'
+    ext.detekt_version = '1.0.0.RC6-3'
     ext.production = (findProperty('prod') ?: 'false') == 'true'
     ext.npmdeps = new File("npm.dependencies").getText()
 
@@ -12,9 +14,9 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.27"
-        classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC6-2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
+        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:${frontend_plugin_version}"
+        classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${detekt_version}"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
     }
 }
@@ -77,7 +79,10 @@ kotlinFrontend {
             dependency(name, version)
         }
         devDependency("karma")
+        devDependency("karma-chrome-launcher")
+        devDependency("karma-firefox-launcher")
         devDependency("karma-webpack", "2.0.9")
+        devDependency("qunit-assert-html")
         devDependency("webpack", "3.11.0")
         devDependency("webpack-dev-server", "2.11.0")
     }
@@ -85,6 +90,11 @@ kotlinFrontend {
     webpackBundle {
         bundleName = "main"
         contentPath = file('src/main/web')
+    }
+
+    karma {
+        plugins = [ "karma-chrome-launcher", "karma-firefox-launcher" ]
+//        browsers = [ "Chrome", "Firefox" ]
     }
 
     define "PRODUCTION", production
@@ -110,7 +120,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 }
 
 detekt {
-    version = "1.0.0.RC6-2"
+    version = "${detekt_version}"
     profile("main") {
         input = "$projectDir/src/main/kotlin"
         config = "$projectDir/detekt.yml"
