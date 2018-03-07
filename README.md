@@ -135,8 +135,8 @@ Application package will be saved as build/distributions/showcase.zip.
         Root("root").add(FormPanel {
             Model(it.string("username"), it.string("password"))
         }.apply {
-            add("username", Text(label = "Username"), required = true)
-            add("password", Password(label = "Password"), required = true)
+            add(Model::username, Text(label = "Username"), required = true)
+            add(Model::password, Password(label = "Password"), required = true)
             add(Button("OK").onClick {
                 val data: Data = this@apply.getData()
                 println("Username: ${data.username}")
