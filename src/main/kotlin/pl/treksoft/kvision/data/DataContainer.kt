@@ -45,7 +45,7 @@ class DataContainer<M, C : Component>(
     private val model: ObservableList<M>,
     private val factory: (Int, M) -> C,
     private val filter: ((Int, M) -> Boolean)? = null,
-    private val mapping: ((List<M>) -> List<M>)? = null,
+    private val mapping: ((List<Pair<Int, M>>) -> List<Pair<Int, M>>)? = null,
     private val container: Container = VPanel(),
     init: (DataContainer<M, C>.() -> Unit)? = null
 ) :
@@ -106,12 +106,12 @@ class DataContainer<M, C : Component>(
         }
         singleRender {
             container.removeAll()
-            val mapped = mapping?.invoke(model) ?: model
-            val indexed = mapped.mapIndexed { index, m -> index to m }
+            val indexed = model.mapIndexed { index, m -> index to m }
+            val mapped = mapping?.invoke(indexed) ?: indexed
             val children = if (filter != null) {
-                indexed.filter { p -> filter.invoke(p.first, p.second) }
+                mapped.filter { p -> filter.invoke(p.first, p.second) }
             } else {
-                indexed
+                mapped
             }.map { p -> factory(p.first, p.second) }
             container.addAll(children)
         }
@@ -147,7 +147,7 @@ class DataContainer<M, C : Component>(
             model: ObservableList<M>,
             factory: (Int, M) -> C,
             filter: ((Int, M) -> Boolean)? = null,
-            mapping: ((List<M>) -> List<M>)? = null,
+            mapping: ((List<Pair<Int, M>>) -> List<Pair<Int, M>>)? = null,
             container: Container = VPanel(),
             init: (DataContainer<M, C>.() -> Unit)? = null
         ): DataContainer<M, C> {
