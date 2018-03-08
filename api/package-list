@@ -1,6 +1,7 @@
 $dokka.format:html
 $dokka.linkExtension:html
 $dokka.location:pl.treksoft.kvision.form$asJson(kotlin.collections.Map((kotlin.String, kotlin.Any)))pl.treksoft.kvision.form/kotlin.collections.-map/as-json.html
+$dokka.location:pl.treksoft.kvision.form$asMap(kotlin.js.Json)pl.treksoft.kvision.form/kotlin.js.-json/as-map.html
 $dokka.location:pl.treksoft.kvision.form$bool(kotlin.collections.Map((kotlin.String, kotlin.Any)), kotlin.String)pl.treksoft.kvision.form/kotlin.collections.-map/bool.html
 $dokka.location:pl.treksoft.kvision.form$date(kotlin.collections.Map((kotlin.String, kotlin.Any)), kotlin.String)pl.treksoft.kvision.form/kotlin.collections.-map/date.html
 $dokka.location:pl.treksoft.kvision.form$number(kotlin.collections.Map((kotlin.String, kotlin.Any)), kotlin.String)pl.treksoft.kvision.form/kotlin.collections.-map/number.html
