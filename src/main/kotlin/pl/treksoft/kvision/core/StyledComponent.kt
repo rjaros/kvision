@@ -22,7 +22,6 @@
 package pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.utils.asString
-import kotlin.Unit
 import kotlin.reflect.KProperty
 
 /**
@@ -38,119 +37,119 @@ abstract class StyledComponent : Component {
     /**
      * Minimal width of the current component.
      */
-    var minWidth: CssSize? by refreshOnUpdate()
+    open var minWidth: CssSize? by refreshOnUpdate()
     /**
      * Maximal width of the current component.
      */
-    var maxWidth: CssSize? by refreshOnUpdate()
+    open var maxWidth: CssSize? by refreshOnUpdate()
     /**
      * Height of the current component.
      */
-    var height: CssSize? by refreshOnUpdate()
+    open var height: CssSize? by refreshOnUpdate()
     /**
      * Minimal height of the current component.
      */
-    var minHeight: CssSize? by refreshOnUpdate()
+    open var minHeight: CssSize? by refreshOnUpdate()
     /**
      * Maximal height of the current component.
      */
-    var maxHeight: CssSize? by refreshOnUpdate()
+    open var maxHeight: CssSize? by refreshOnUpdate()
     /**
      * CSS position of the current component.
      */
-    var position: Position? by refreshOnUpdate()
+    open var position: Position? by refreshOnUpdate()
     /**
      * Top edge of the current component.
      */
-    var top: CssSize? by refreshOnUpdate()
+    open var top: CssSize? by refreshOnUpdate()
     /**
      * Left edge of the current component.
      */
-    var left: CssSize? by refreshOnUpdate()
+    open var left: CssSize? by refreshOnUpdate()
     /**
      * Right edge of the current component.
      */
-    var right: CssSize? by refreshOnUpdate()
+    open var right: CssSize? by refreshOnUpdate()
     /**
      * Bottom edge of the current component.
      */
-    var bottom: CssSize? by refreshOnUpdate()
+    open var bottom: CssSize? by refreshOnUpdate()
     /**
      * Z-index of the current component.
      */
-    var zIndex: Int? by refreshOnUpdate()
+    open var zIndex: Int? by refreshOnUpdate()
     /**
      * CSS overflow of the current component.
      */
-    var overflow: Overflow? by refreshOnUpdate()
+    open var overflow: Overflow? by refreshOnUpdate()
     /**
      * CSS resize of the current component.
      */
-    var resize: Resize? by refreshOnUpdate()
+    open var resize: Resize? by refreshOnUpdate()
     /**
      * Border of the current component.
      */
-    var border: Border? by refreshOnUpdate()
+    open var border: Border? by refreshOnUpdate()
     /**
      * Top border of the current component.
      */
-    var borderTop: Border? by refreshOnUpdate()
+    open var borderTop: Border? by refreshOnUpdate()
     /**
      * Right border of the current component.
      */
-    var borderRight: Border? by refreshOnUpdate()
+    open var borderRight: Border? by refreshOnUpdate()
     /**
      * Bottom border of the current component.
      */
-    var borderBottom: Border? by refreshOnUpdate()
+    open var borderBottom: Border? by refreshOnUpdate()
     /**
      * Left border of the current component.
      */
-    var borderLeft: Border? by refreshOnUpdate()
+    open var borderLeft: Border? by refreshOnUpdate()
     /**
      * Margin of the current component.
      */
-    var margin: CssSize? by refreshOnUpdate()
+    open var margin: CssSize? by refreshOnUpdate()
     /**
      * Top margin of the current component.
      */
-    var marginTop: CssSize? by refreshOnUpdate()
+    open var marginTop: CssSize? by refreshOnUpdate()
     /**
      * Right margin of the current component.
      */
-    var marginRight: CssSize? by refreshOnUpdate()
+    open var marginRight: CssSize? by refreshOnUpdate()
     /**
      * Bottom margin of the current component.
      */
-    var marginBottom: CssSize? by refreshOnUpdate()
+    open var marginBottom: CssSize? by refreshOnUpdate()
     /**
      * Left margin of the current component.
      */
-    var marginLeft: CssSize? by refreshOnUpdate()
+    open var marginLeft: CssSize? by refreshOnUpdate()
     /**
      * Padding of the current component.
      */
-    var padding: CssSize? by refreshOnUpdate()
+    open var padding: CssSize? by refreshOnUpdate()
     /**
      * Top padding of the current component.
      */
-    var paddingTop: CssSize? by refreshOnUpdate()
+    open var paddingTop: CssSize? by refreshOnUpdate()
     /**
      * Right padding of the current component.
      */
-    var paddingRight: CssSize? by refreshOnUpdate()
+    open var paddingRight: CssSize? by refreshOnUpdate()
     /**
      * Bottom padding of the current component.
      */
-    var paddingBottom: CssSize? by refreshOnUpdate()
+    open var paddingBottom: CssSize? by refreshOnUpdate()
     /**
      * Left padding of the current component.
      */
-    var paddingLeft: CssSize? by refreshOnUpdate()
+    open var paddingLeft: CssSize? by refreshOnUpdate()
     /**
      * Text color for the current component.
      */
-    var color: Color? by refreshOnUpdate()
+    open var color: Color? by refreshOnUpdate()
     /**
      * Text color for the current component given in hex format (write only).
      *
@@ -160,7 +159,7 @@ abstract class StyledComponent : Component {
      *
      * The value read from this property is always null.
      */
-    var colorHex: Int?
+    open var colorHex: Int?
         get() = null
         set(value) {
             color = if (value != null) Color(value) else null
@@ -174,7 +173,7 @@ abstract class StyledComponent : Component {
      *
      * The value read from this property is always null.
      */
-    var colorName: Col?
+    open var colorName: Col?
         get() = null
         set(value) {
             color = if (value != null) Color(value) else null
@@ -182,11 +181,91 @@ abstract class StyledComponent : Component {
     /**
      * Opacity of the current component.
      */
-    var opacity: Double? by refreshOnUpdate()
+    open var opacity: Double? by refreshOnUpdate()
     /**
      * Background of the current component.
      */
-    var background: Background? by refreshOnUpdate()
+    open var background: Background? by refreshOnUpdate()
+    /**
+     * CSS Text direction of the current component.
+     */
+    open var textDirection: Direction? by refreshOnUpdate()
+    /**
+     * CSS Text letter spacing of the current component.
+     */
+    open var letterSpacing: CssSize? by refreshOnUpdate()
+    /**
+     * CSS Text line height of the current component.
+     */
+    open var lineHeight: CssSize? by refreshOnUpdate()
+    /**
+     * CSS Text align of the current component.
+     */
+    open var textAlign: TextAlign? by refreshOnUpdate()
+    /**
+     * CSS Text decoration of the current component.
+     */
+    open var textDecoration: TextDecoration? by refreshOnUpdate()
+    /**
+     * CSS Text indent of the current component.
+     */
+    open var textIndent: CssSize? by refreshOnUpdate()
+    /**
+     * CSS Text shadow of the current component.
+     */
+    open var textShadow: TextShadow? by refreshOnUpdate()
+    /**
+     * CSS Text transform of the current component.
+     */
+    open var textTransform: TextTransform? by refreshOnUpdate()
+    /**
+     * CSS Text overflow of the current component.
+     */
+    open var textOverflow: TextOverflow? by refreshOnUpdate()
+    /**
+     * CSS Text unicode-bidi of the current component.
+     */
+    open var unicodeBidi: UnicodeBidi? by refreshOnUpdate()
+    /**
+     * CSS Text vertical align of the current component.
+     */
+    open var verticalAlign: VerticalAlign? by refreshOnUpdate()
+    /**
+     * CSS Text white space of the current component.
+     */
+    open var whiteSpace: WhiteSpace? by refreshOnUpdate()
+    /**
+     * CSS Text word spacing of the current component.
+     */
+    open var wordSpacing: CssSize? by refreshOnUpdate()
+    /**
+     * CSS font family of the current component.
+     */
+    open var fontFamily: String? by refreshOnUpdate()
+    /**
+     * CSS font size of the current component.
+     */
+    open var fontSize: CssSize? by refreshOnUpdate()
+    /**
+     * CSS font style of the current component.
+     */
+    open var fontStyle: FontStyle? by refreshOnUpdate()
+    /**
+     * CSS font weight of the current component.
+     */
+    open var fontWeight: FontWeight? by refreshOnUpdate()
+    /**
+     * CSS font variant of the current component.
+     */
+    open var fontVariant: FontVariant? by refreshOnUpdate()
+    /**
+     * CSS position float of the current component.
+     */
+    open var float: PosFloat? by refreshOnUpdate()
+    /**
+     * CSS clear float of the current component.
+     */
+    open var clear: Clear? by refreshOnUpdate()
 
     private var snStyleCache: List<StringPair>? = null
 
@@ -253,10 +332,10 @@ abstract class StyledComponent : Component {
             snstyle.add("z-index" to it.toString())
         }
         overflow?.let {
-            snstyle.add("overflow" to it.toString())
+            snstyle.add("overflow" to it.overflow)
         }
         resize?.let {
-            snstyle.add("resize" to it.toString())
+            snstyle.add("resize" to it.resize)
         }
         border?.let {
             snstyle.add("border" to it.asString())
@@ -311,6 +390,66 @@ abstract class StyledComponent : Component {
         }
         background?.let {
             snstyle.add("background" to it.asString())
+        }
+        textDirection?.let {
+            snstyle.add("direction" to it.direction)
+        }
+        letterSpacing?.let {
+            snstyle.add("letter-spacing" to it.asString())
+        }
+        lineHeight?.let {
+            snstyle.add("line-height" to it.asString())
+        }
+        textAlign?.let {
+            snstyle.add("text-align" to it.textAlign)
+        }
+        textDecoration?.let {
+            snstyle.add("text-decoration" to it.asString())
+        }
+        textIndent?.let {
+            snstyle.add("text-indent" to it.asString())
+        }
+        textShadow?.let {
+            snstyle.add("text-shadow" to it.asString())
+        }
+        textTransform?.let {
+            snstyle.add("text-transform" to it.textTransform)
+        }
+        textOverflow?.let {
+            snstyle.add("text-overflow" to it.textOverflow)
+        }
+        unicodeBidi?.let {
+            snstyle.add("unicode-bidi" to it.unicodeBidi)
+        }
+        verticalAlign?.let {
+            snstyle.add("vartical-align" to it.verticalAlign)
+        }
+        whiteSpace?.let {
+            snstyle.add("white-space" to it.whiteSpace)
+        }
+        wordSpacing?.let {
+            snstyle.add("word-spacing" to it.asString())
+        }
+        fontFamily?.let {
+            snstyle.add("font-family" to it)
+        }
+        fontSize?.let {
+            snstyle.add("font-size" to it.asString())
+        }
+        fontStyle?.let {
+            snstyle.add("font-style" to it.fontStyle)
+        }
+        fontWeight?.let {
+            snstyle.add("font-weight" to it.fontWeight)
+        }
+        fontVariant?.let {
+            snstyle.add("font-variant" to it.fontVariant)
+        }
+        float?.let {
+            snstyle.add("float" to it.posFloat)
+        }
+        clear?.let {
+            snstyle.add("clear" to it.clear)
         }
         return snstyle
     }

@@ -148,13 +148,18 @@ val Int.vmax: CssSize
 val auto: CssSize = Pair(0, UNIT.auto)
 
 /**
+ * Helper property to describe CSS normal value.
+ */
+val normal: CssSize = Pair(0, UNIT.normal)
+
+/**
  * Extension function to convert CssSize to String.
  */
 fun CssSize.asString(): String {
-    return if (this.second != UNIT.auto) {
-        this.first.toString() + this.second.unit
-    } else {
-        "auto"
+    return when (this.second) {
+        UNIT.auto -> "auto"
+        UNIT.normal -> "normal"
+        else -> this.first.toString() + this.second.unit
     }
 }
 

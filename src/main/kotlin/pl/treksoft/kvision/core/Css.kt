@@ -43,7 +43,8 @@ enum class UNIT(internal val unit: String) {
     vmin("vmin"),
     vmax("vmax"),
     perc("%"),
-    auto("auto")
+    auto("auto"),
+    normal("normal")
 }
 
 /**
@@ -292,6 +293,172 @@ enum class Resize(internal val resize: String) {
 }
 
 /**
+ * Definitions of CSS text direction options.
+ */
+enum class Direction(internal val direction: String) {
+    LTR("ltr"),
+    RTL("rtl"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS text align options.
+ */
+enum class TextAlign(internal val textAlign: String) {
+    LEFT("left"),
+    RIGHT("right"),
+    CENTER("center"),
+    JUSTIFY("justify"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS text decoration line options.
+ */
+enum class TextDecorationLine(internal val textDecorationLine: String) {
+    NONE("none"),
+    UNDERLINE("underline"),
+    OVERLINE("overline"),
+    LINETHROUGH("line-through"),
+    JUSTIFY("justify"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS text decoration style options.
+ */
+enum class TextDecorationStyle(internal val textDecorationStyle: String) {
+    SOLID("solid"),
+    DOUBLE("double"),
+    DOTTED("dotted"),
+    DASHED("dashed"),
+    WAVY("wavy"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS text transform options.
+ */
+enum class TextTransform(internal val textTransform: String) {
+    NONE("none"),
+    CAPITALIZE("capitalize"),
+    UPPERCASE("uppercase"),
+    LOWERCASE("lowercase"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS text overflow options.
+ */
+enum class TextOverflow(internal val textOverflow: String) {
+    CLIP("clip"),
+    ELLIPSIS("ellipsis"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS unicode-bidi options.
+ */
+enum class UnicodeBidi(internal val unicodeBidi: String) {
+    NORMAL("normal"),
+    EMBED("embed"),
+    BIDIOVERRIDE("bidi-override"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS vertical align options.
+ */
+enum class VerticalAlign(internal val verticalAlign: String) {
+    BASELINE("baseline"),
+    SUB("sub"),
+    SUPER("super"),
+    TOP("top"),
+    TEXTTOP("text-top"),
+    MIDDLE("middle"),
+    BOTTOM("bottom"),
+    TEXTBOTTOM("text-bottom"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS white space options.
+ */
+enum class WhiteSpace(internal val whiteSpace: String) {
+    NORMAL("normal"),
+    NOWRAP("nowrap"),
+    PRE("pre"),
+    PRELINE("pre-line"),
+    PREWRAP("pre-wrap"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS font style options.
+ */
+enum class FontStyle(internal val fontStyle: String) {
+    NORMAL("normal"),
+    ITALIC("italic"),
+    OBLIQUE("oblique"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS font variant options.
+ */
+enum class FontVariant(internal val fontVariant: String) {
+    NORMAL("normal"),
+    SMALLCAPS("small-caps"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS font weight options.
+ */
+enum class FontWeight(internal val fontWeight: String) {
+    NORMAL("normal"),
+    BOLD("bold"),
+    BOLDER("bolder"),
+    LIGHTER("lighter"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS float options.
+ */
+enum class PosFloat(internal val posFloat: String) {
+    NONE("none"),
+    LEFT("left"),
+    RIGHT("right"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS clear options.
+ */
+enum class Clear(internal val clear: String) {
+    NONE("none"),
+    LEFT("left"),
+    RIGHT("right"),
+    BOTH("both"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
  * Type-safe definition of CSS border.
  */
 class Border private constructor(
@@ -451,5 +618,93 @@ class Background private constructor(
                     ""
                 } + " " + (repeat?.repeat).orEmpty() + " " + (origin?.origin).orEmpty() + " " +
                 (clip?.clip).orEmpty() + " " + (attachment?.attachment).orEmpty()
+    }
+}
+
+/**
+ * Type-safe definition of CSS text decoration.
+ */
+class TextDecoration private constructor(
+    private val line: TextDecorationLine? = null, private val style: TextDecorationStyle? = null,
+    private val color: String? = null
+) {
+    /**
+     * Creates CSS text decoration with given line and style.
+     * @param line text decoration line
+     * @param style text decoration style
+     */
+    constructor(line: TextDecorationLine? = null, style: TextDecorationStyle? = null) : this(line, style, null)
+
+    /**
+     * Creates CSS text decoration with given line, style and color given in hex format.
+     * @param line text decoration line
+     * @param style text decoration style
+     * @param color color in hex format
+     */
+    constructor(line: TextDecorationLine? = null, style: TextDecorationStyle? = null, color: Int) : this(
+        line, style, "#" + color.toHexString()
+    )
+
+    /**
+     * Creates CSS text decoration with given line, style and color given with named constant.
+     * @param line text decoration line
+     * @param style text decoration style
+     * @param color color named constant
+     */
+    constructor(line: TextDecorationLine? = null, style: TextDecorationStyle? = null, color: Col) : this(
+        line, style, color.color
+    )
+
+    internal fun asString(): String {
+        return (line?.textDecorationLine).orEmpty() + " " +
+                (style?.textDecorationStyle).orEmpty() + " " +
+                color.orEmpty()
+    }
+}
+
+/**
+ * Type-safe definition of CSS text shadow.
+ */
+class TextShadow private constructor(
+    private val hShadow: CssSize? = null, private val vShadow: CssSize? = null,
+    private val blurRadius: CssSize? = null, private val color: String? = null
+) {
+    /**
+     * Creates CSS text shadow with given position and radius.
+     * @param hShadow the position of horizontal shadow
+     * @param vShadow the position of vertical shadow
+     * @param blurRadius the blur radius
+     */
+    constructor(hShadow: CssSize? = null, vShadow: CssSize? = null, blurRadius: CssSize? = null) : this(
+        hShadow, vShadow, blurRadius, null
+    )
+
+    /**
+     * Creates CSS text shadow with given position and radius and color given in hex format.
+     * @param hShadow the position of horizontal shadow
+     * @param vShadow the position of vertical shadow
+     * @param blurRadius the blur radius
+     * @param color color in hex format
+     */
+    constructor(hShadow: CssSize? = null, vShadow: CssSize? = null, blurRadius: CssSize? = null, color: Int) : this(
+        hShadow, vShadow, blurRadius, "#" + color.toHexString()
+    )
+
+    /**
+     * Creates CSS text shadow with given position and radius and color given with named constant.
+     * @param hShadow the position of horizontal shadow
+     * @param vShadow the position of vertical shadow
+     * @param blurRadius the blur radius
+     * @param color color named constant
+     */
+    constructor(hShadow: CssSize? = null, vShadow: CssSize? = null, blurRadius: CssSize? = null, color: Col) : this(
+        hShadow, vShadow, blurRadius, color.color
+    )
+
+    internal fun asString(): String {
+        return (hShadow?.asString()).orEmpty() + " " +
+                (vShadow?.asString()).orEmpty() + " " +
+                (blurRadius?.asString()).orEmpty() + " " +
+                color.orEmpty()
     }
 }
