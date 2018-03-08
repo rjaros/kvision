@@ -46,6 +46,15 @@ open class StackPanel(
      */
     var activeIndex by refreshOnUpdate(-1)
 
+    /**
+     * The active (visible) child.
+     */
+    var activeChild
+        get() = children[activeIndex]
+        set(value) {
+            activeIndex = children.indexOf(value)
+        }
+
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
