@@ -127,10 +127,13 @@ open class Window(
 
     init {
         id = "kv_window_$counter"
+        @Suppress("LeakingThis")
         position = Position.ABSOLUTE
+        @Suppress("LeakingThis")
         overflow = Overflow.HIDDEN
         @Suppress("LeakingThis")
         width = contentWidth
+        @Suppress("LeakingThis")
         zIndex = ++zIndexCounter
         closeIcon.visible = closeButton
         closeIcon.setEventListener {
@@ -145,6 +148,7 @@ open class Window(
         addInternal(content)
         checkIsDraggable()
         if (isResizable) {
+            @Suppress("LeakingThis")
             resize = Resize.BOTH
             content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
         }
