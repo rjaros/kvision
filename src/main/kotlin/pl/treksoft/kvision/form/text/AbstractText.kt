@@ -167,17 +167,11 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         return this
     }
 
-    /**
-     * Makes the input element focused.
-     */
-    open fun focus() {
+    override fun focus() {
         input.focus()
     }
 
-    /**
-     * Makes the input element blur.
-     */
-    open fun blur() {
+    override fun blur() {
         input.blur()
     }
 }

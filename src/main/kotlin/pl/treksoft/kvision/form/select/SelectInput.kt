@@ -329,6 +329,19 @@ open class SelectInput(
         } ?: getElementJQueryD()?.selectpicker("val", null)
     }
 
+    /**
+     * Makes the input element focused.
+     */
+    open fun focus() {
+        getElementJQuery()?.focus()
+    }
+
+    /**
+     * Makes the input element blur.
+     */
+    open fun blur() {
+        getElementJQuery()?.blur()
+    }
 
     companion object {
         /**

@@ -232,6 +232,14 @@ open class DateTime(
         return input.getValueAsString()
     }
 
+    override fun focus() {
+        input.focus()
+    }
+
+    override fun blur() {
+        input.blur()
+    }
+
     companion object {
         internal var counter = 0
 

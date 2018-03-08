@@ -248,6 +248,20 @@ open class DateTimeInput(
         return value?.toStringF(format)
     }
 
+    /**
+     * Makes the input element focused.
+     */
+    open fun focus() {
+        getElementJQuery()?.focus()
+    }
+
+    /**
+     * Makes the input element blur.
+     */
+    open fun blur() {
+        getElementJQuery()?.blur()
+    }
+
     companion object {
         private fun String.toDatePickerFormat(): String {
             return this.replace("YY", "yy").replace("m", "i").replace("MMMM", "{----}").replace("MMM", "{---}")

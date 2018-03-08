@@ -281,6 +281,20 @@ open class SpinnerInput(
         }
     }
 
+    /**
+     * Makes the input element focused.
+     */
+    open fun focus() {
+        getElementJQuery()?.focus()
+    }
+
+    /**
+     * Makes the input element blur.
+     */
+    open fun blur() {
+        getElementJQuery()?.blur()
+    }
+
     companion object {
         internal var counter = 0
 

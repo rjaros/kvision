@@ -270,6 +270,14 @@ open class Select(
         input.toggleOptions()
     }
 
+    override fun focus() {
+        input.focus()
+    }
+
+    override fun blur() {
+        input.blur()
+    }
+
     companion object {
         internal var counter = 0
 

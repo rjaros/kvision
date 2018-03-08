@@ -152,6 +152,14 @@ open class RadioGroup(
         this.addInternal(validationInfo)
     }
 
+    override fun focus() {
+        getChildren().filterIsInstance<Radio>().firstOrNull()?.focus()
+    }
+
+    override fun blur() {
+        getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
+    }
+
     companion object {
         internal var counter = 0
 

@@ -92,6 +92,16 @@ interface FormControl : Component {
             validationInfo.visible = value != null
             refresh()
         }
+
+    /**
+     * Makes the input element focused.
+     */
+    fun focus()
+
+    /**
+     * Makes the input element blur.
+     */
+    fun blur()
 }
 
 /**

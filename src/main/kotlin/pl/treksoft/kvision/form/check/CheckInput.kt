@@ -152,6 +152,20 @@ open class CheckInput(
         return this
     }
 
+    /**
+     * Makes the input element focused.
+     */
+    open fun focus() {
+        getElementJQuery()?.focus()
+    }
+
+    /**
+     * Makes the input element blur.
+     */
+    open fun blur() {
+        getElementJQuery()?.blur()
+    }
+
     companion object {
         /**
          * DSL builder extension function.
