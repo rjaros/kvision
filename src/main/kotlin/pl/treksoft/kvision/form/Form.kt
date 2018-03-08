@@ -263,10 +263,22 @@ fun Map<String, Any?>.bool(key: String): Boolean? = this[key] as? Boolean
 fun Map<String, Any?>.date(key: String): Date? = this[key] as? Date
 
 /**
- * Returns map values in JSON format.
+ * Extension function to convert Map to JSON.
+ * @return Json object
  */
 fun Map<String, Any?>.asJson(): Json {
     val array = this.entries.map { it.component1() to it.component2() }.toTypedArray()
     @Suppress("SpreadOperator")
     return kotlin.js.json(*array)
+}
+
+/**
+ * Extension function to convert JSON to Map.
+ * @return map object
+ */
+fun Json.asMap(): Map<String, Any?> {
+    val map = mutableMapOf<String, Any?>()
+    @Suppress("UnsafeCastFromDynamic")
+    for (key in js("Object").keys(this)) map[key] = this[key]
+    return map
 }
