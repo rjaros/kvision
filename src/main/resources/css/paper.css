@@ -1,0 +1,12 @@
+body {
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.kv-radio-checkbox {
+    padding-left: 20px !important;
+}
+
+.radio label, .checkbox label {
+    white-space: nowrap;
+}

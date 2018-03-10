@@ -29,6 +29,7 @@ import com.github.snabbdom.datasetModule
 import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
+import org.w3c.dom.asList
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.utils.isIE11
 import kotlin.browser.document
@@ -48,8 +49,17 @@ internal object KVManager {
     internal const val AJAX_REQUEST_DELAY = 300
     internal const val KVNULL = "#kvnull"
 
+    private val links = document.getElementsByTagName("link")
     private val bootstrapWebpack = try {
-        require("bootstrap-webpack")
+        val bootswatch = links.asList().find { it.getAttribute("href")?.contains("bootstrap.min.css") ?: false }
+        if (bootswatch != null) {
+            if (bootswatch.getAttribute("href")?.contains("/paper/") ?: false) {
+                require("./css/paper.css")
+            }
+            require("bootstrap-webpack!./js/bootstrap.config.js")
+        } else {
+            require("bootstrap-webpack")
+        }
     } catch (e: Throwable) {
     }
     private val fontAwesomeWebpack = try {
