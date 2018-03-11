@@ -30,16 +30,16 @@ import pl.treksoft.kvision.html.Tag
  *
  * @constructor
  * @param forId the value of *for* attribute
- * @param text the text of the label
- * @param rich determines if [text] can contain HTML code
+ * @param content the text of the label
+ * @param rich determines if [content] can contain HTML code
  * @param classes a set of CSS class names
  */
 open class FieldLabel(
-    internal val forId: String, text: String? = null, rich: Boolean = false,
+    internal val forId: String, content: String? = null, rich: Boolean = false,
     classes: Set<String> = setOf("control-label")
 ) : Tag(
     TAG.LABEL,
-    text, rich, classes = classes
+    content, rich, classes = classes
 ) {
 
     override fun getSnAttrs(): List<StringPair> {

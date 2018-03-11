@@ -102,9 +102,9 @@ open class Radio(
      * The label text bound to the input element.
      */
     var label
-        get() = flabel.text
+        get() = flabel.content
         set(value) {
-            flabel.text = value
+            flabel.content = value
         }
     /**
      * Determines if [label] can contain HTML code.

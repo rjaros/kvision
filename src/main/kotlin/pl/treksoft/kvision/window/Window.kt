@@ -71,9 +71,9 @@ open class Window(
      * Window caption text.
      */
     var caption
-        get() = captionTag.text
+        get() = captionTag.content
         set(value) {
-            captionTag.text = value
+            captionTag.content = value
             checkHeaderVisibility()
         }
     /**

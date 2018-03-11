@@ -27,17 +27,17 @@ import pl.treksoft.kvision.core.Container
  * Simple component rendered as *div*.
  *
  * @constructor
- * @param text element text
- * @param rich determines if [text] can contain HTML code
+ * @param content element text
+ * @param rich determines if [content] can contain HTML code
  */
 open class Div(
-    text: String,
+    content: String,
     rich: Boolean = false,
     align: Align? = null,
     classes: Set<String> = setOf(),
     init: (Div.() -> Unit)? = null
 ) :
-    Tag(TAG.DIV, text, rich, align, classes) {
+    Tag(TAG.DIV, content, rich, align, classes) {
 
     init {
         @Suppress("LeakingThis")
@@ -51,13 +51,13 @@ open class Div(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.div(
-            text: String,
+            content: String,
             rich: Boolean = false,
             align: Align? = null,
             classes: Set<String> = setOf(),
             init: (Div.() -> Unit)? = null
         ): Div {
-            val div = Div(text, rich, align, classes).apply { init?.invoke(this) }
+            val div = Div(content, rich, align, classes).apply { init?.invoke(this) }
             this.add(div)
             return div
         }

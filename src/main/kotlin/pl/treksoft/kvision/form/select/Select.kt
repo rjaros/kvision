@@ -166,9 +166,9 @@ open class Select(
      * The label text bound to the select element.
      */
     var label
-        get() = flabel.text
+        get() = flabel.content
         set(value) {
-            flabel.text = value
+            flabel.content = value
         }
     /**
      * Determines if [label] can contain HTML code.

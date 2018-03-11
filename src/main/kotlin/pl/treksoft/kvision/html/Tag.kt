@@ -74,7 +74,9 @@ enum class TAG(internal val tagName: String) {
     TH("th"),
     TBODY("tbody"),
     TR("tr"),
-    TD("td")
+    TD("td"),
+
+    FORM("form")
 }
 
 /**
@@ -93,14 +95,14 @@ enum class Align(val className: String) {
  *
  * @constructor
  * @param type tag type
- * @param text text content of the tag
- * @param rich determines if [text] can contain HTML code
- * @param align text align
+ * @param content content text of the tag
+ * @param rich determines if [content] can contain HTML code
+ * @param align content align
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class Tag(
-    type: TAG, text: String? = null, rich: Boolean = false, align: Align? = null,
+    type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
     classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -111,9 +113,9 @@ open class Tag(
     /**
      * Text content of the tag.
      */
-    var text by refreshOnUpdate(text)
+    var content by refreshOnUpdate(content)
     /**
-     * Determines if [text] can contain HTML code.
+     * Determines if [content] can contain HTML code.
      */
     var rich by refreshOnUpdate(rich)
     /**
@@ -127,11 +129,11 @@ open class Tag(
     }
 
     override fun render(): VNode {
-        return if (text != null) {
+        return if (content != null) {
             if (rich) {
-                render(type.tagName, arrayOf(KVManager.virtualize("<span>$text</span>")) + childrenVNodes())
+                render(type.tagName, arrayOf(KVManager.virtualize("<span>$content</span>")) + childrenVNodes())
             } else {
-                render(type.tagName, childrenVNodes() + arrayOf(text))
+                render(type.tagName, childrenVNodes() + arrayOf(content))
             }
         } else {
             render(type.tagName, childrenVNodes())
@@ -153,10 +155,10 @@ open class Tag(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.tag(
-            type: TAG, text: String? = null, rich: Boolean = false, align: Align? = null,
+            type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
             classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
         ): Tag {
-            val tag = Tag(type, text, rich, align, classes, init)
+            val tag = Tag(type, content, rich, align, classes, init)
             this.add(tag)
             return tag
         }

@@ -52,36 +52,36 @@ open class Confirm(
      * Window content text.
      */
     var text
-        get() = content.text
+        get() = contentTag.content
         set(value) {
-            content.text = value
+            contentTag.content = value
         }
     /**
      * Determines if [text] can contain HTML code.
      */
     var rich
-        get() = content.rich
+        get() = contentTag.rich
         set(value) {
-            content.rich = value
+            contentTag.rich = value
         }
     /**
      * Text align.
      */
     var align
-        get() = content.align
+        get() = contentTag.align
         set(value) {
-            content.align = value
+            contentTag.align = value
         }
     /**
      * Determines if Cancel button is visible.
      */
     var cancelVisible by refreshOnUpdate(cancelVisible, { refreshCancelButton() })
 
-    private val content = Tag(TAG.DIV, text, rich, align)
+    private val contentTag = Tag(TAG.DIV, text, rich, align)
     private val cancelButton = Button("Cancel", "remove")
 
     init {
-        body.add(content)
+        body.add(contentTag)
         cancelButton.setEventListener {
             click = {
                 hide()

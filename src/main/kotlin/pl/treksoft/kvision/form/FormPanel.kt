@@ -73,9 +73,9 @@ open class FormPanel<K>(
         }
 
     internal var validatorError: String?
-        get() = validationAlert.text
+        get() = validationAlert.content
         set(value) {
-            validationAlert.text = value
+            validationAlert.content = value
             validationAlert.visible = value != null
             refresh()
         }

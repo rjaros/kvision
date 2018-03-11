@@ -28,10 +28,10 @@ import pl.treksoft.kvision.html.Tag
  * Helper class for Bootstrap help block element.
  *
  * @constructor
- * @param text the text of the label
- * @param rich determines if [text] can contain HTML code
+ * @param content the text of the label
+ * @param rich determines if [content] can contain HTML code
  */
-open class HelpBlock(text: String? = null, rich: Boolean = false) : Tag(
-    TAG.SPAN, text, rich,
+open class HelpBlock(content: String? = null, rich: Boolean = false) : Tag(
+    TAG.SPAN, content, rich,
     classes = setOf("help-block", "small")
 )

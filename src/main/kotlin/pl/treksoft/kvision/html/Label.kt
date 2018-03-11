@@ -27,10 +27,10 @@ import pl.treksoft.kvision.core.Container
  * Simple label component rendered as *span*.
  *
  * @constructor
- * @param text label text
- * @param rich determines if [text] can contain HTML code
+ * @param content label text
+ * @param rich determines if [content] can contain HTML code
  */
-open class Label(text: String, rich: Boolean = false) : Tag(TAG.SPAN, text, rich) {
+open class Label(content: String, rich: Boolean = false) : Tag(TAG.SPAN, content, rich) {
     companion object {
         /**
          * DSL builder extension function.
@@ -38,9 +38,9 @@ open class Label(text: String, rich: Boolean = false) : Tag(TAG.SPAN, text, rich
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.label(
-            text: String, rich: Boolean = false, init: (Label.() -> Unit)? = null
+            content: String, rich: Boolean = false, init: (Label.() -> Unit)? = null
         ): Label {
-            val label = Label(text, rich).apply { init?.invoke(this) }
+            val label = Label(content, rich).apply { init?.invoke(this) }
             this.add(label)
             return label
         }

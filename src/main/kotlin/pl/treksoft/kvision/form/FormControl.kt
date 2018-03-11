@@ -86,9 +86,9 @@ interface FormControl : Component {
      * Validator error message.
      */
     var validatorError: String?
-        get() = validationInfo.text
+        get() = validationInfo.content
         set(value) {
-            validationInfo.text = value
+            validationInfo.content = value
             validationInfo.visible = value != null
             refresh()
         }
