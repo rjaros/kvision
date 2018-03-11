@@ -22,16 +22,17 @@
 package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.Button
-import pl.treksoft.kvision.html.ListType
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.ListTag
+import pl.treksoft.kvision.html.ListType
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
@@ -55,11 +56,12 @@ enum class DD(val option: String) {
  * @param icon the icon of the dropdown button
  * @param style the style of the dropdown button
  * @param disabled determines if the component is disabled on start
+ * @param forNavbar determines if the component will be used in a navbar
  * @param classes a set of CSS class names
  */
 open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
-    style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false,
+    style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false, val forNavbar: Boolean = false,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
     /**
@@ -136,7 +138,7 @@ open class DropDown(
     private val idc = "kv_dropdown_$counter"
     internal val button: DropDownButton = DropDownButton(
         idc, text, icon, style,
-        disabled, setOf("dropdown")
+        disabled, forNavbar, setOf("dropdown")
     )
     internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
@@ -145,6 +147,14 @@ open class DropDown(
         this.addInternal(button)
         this.addInternal(list)
         counter++
+    }
+
+    override fun render(): VNode {
+        return if (forNavbar) {
+            render("li", childrenVNodes())
+        } else {
+            render("div", childrenVNodes())
+        }
     }
 
     override fun add(child: Component): SimplePanel {
@@ -170,7 +180,6 @@ open class DropDown(
     override fun getChildren(): List<Component> {
         return list.getChildren()
     }
-
 
     private fun setChildrenFromElements() {
         list.removeAll()
@@ -237,10 +246,10 @@ open class DropDown(
          */
         fun Container.dropDown(
             text: String, elements: List<StringPair>? = null, icon: String? = null,
-            style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false,
+            style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false, navbar: Boolean = false,
             classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
         ): DropDown {
-            val dropDown = DropDown(text, elements, icon, style, disabled, classes).apply { init?.invoke(this) }
+            val dropDown = DropDown(text, elements, icon, style, disabled, navbar, classes).apply { init?.invoke(this) }
             this.add(dropDown)
             return dropDown
         }
@@ -249,7 +258,7 @@ open class DropDown(
 
 internal class DropDownButton(
     id: String, text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT,
-    disabled: Boolean = false, classes: Set<String> = setOf()
+    disabled: Boolean = false, val forNavbar: Boolean = false, classes: Set<String> = setOf()
 ) :
     Button(text, icon, style, disabled, classes) {
 
@@ -257,10 +266,30 @@ internal class DropDownButton(
         this.id = id
     }
 
+    override fun render(): VNode {
+        val text = createLabelWithIcon(text, icon, image)
+        return if (forNavbar) {
+            val textWithCarret = text.toMutableList()
+            textWithCarret.add(" ")
+            textWithCarret.add(KVManager.virtualize("<span class='caret'></span>"))
+            render("a", textWithCarret.toTypedArray())
+        } else {
+            render("button", text)
+        }
+    }
+
+    override fun getSnClass(): List<StringBoolPair> {
+        return if (forNavbar) {
+            listOf("dropdown" to true)
+        } else {
+            super.getSnClass()
+        }
+    }
+
     override fun getSnAttrs(): List<StringPair> {
         return super.getSnAttrs() + listOf(
             "data-toggle" to "dropdown", "aria-haspopup" to "true",
-            "aria-expanded" to "false"
+            "aria-expanded" to "false", "role" to "button", "href" to "#"
         )
     }
 }

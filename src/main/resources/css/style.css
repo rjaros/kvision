@@ -2,6 +2,11 @@
   padding: 0px;
 }
 
+.navbar .container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .splitpanel-vertical {
   display: flex;
   flex-direction: row;
@@ -73,7 +78,7 @@ trix-toolbar .trix-button-group {
   margin-right:6px;
 }
 
-.form-inline .form-group .form-control {
+.form-inline .form-group .form-control, .navbar-form .form-group .form-control {
   margin-left:6px;
 }
 

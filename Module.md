@@ -52,6 +52,10 @@ Components supporting complete set of HTML tags, with dedicated classes for butt
 
 Classes supporting general purpose Bootstrap modals with convenient helpers for alert and confirm popup dialogs.
 
+# Package pl.treksoft.kvision.navbar
+
+Bootstrap navbar components.
+
 # Package pl.treksoft.kvision.panel
 
 Rich set of container classes, supporting both simple use cases and sophisticated layouts (including CSS flexbox,
