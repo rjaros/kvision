@@ -53,7 +53,7 @@ internal object KVManager {
     private val bootstrapWebpack = try {
         val bootswatch = links.asList().find { it.getAttribute("href")?.contains("bootstrap.min.css") ?: false }
         if (bootswatch != null) {
-            if (bootswatch.getAttribute("href")?.contains("/paper/") ?: false) {
+            if (bootswatch.getAttribute("href")?.contains("/paper/") == true) {
                 require("./css/paper.css")
             }
             require("bootstrap-webpack!./js/bootstrap.config.js")
