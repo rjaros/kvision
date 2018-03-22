@@ -55,6 +55,10 @@ abstract class StyledComponent : Component {
      */
     open var maxHeight: CssSize? by refreshOnUpdate()
     /**
+     * CSS display of the current component.
+     */
+    open var display: Display? by refreshOnUpdate()
+    /**
      * CSS position of the current component.
      */
     open var position: Position? by refreshOnUpdate()
@@ -312,6 +316,9 @@ abstract class StyledComponent : Component {
         }
         maxHeight?.let {
             snstyle.add("max-height" to it.asString())
+        }
+        display?.let {
+            snstyle.add("display" to it.display)
         }
         position?.let {
             snstyle.add("position" to it.position)

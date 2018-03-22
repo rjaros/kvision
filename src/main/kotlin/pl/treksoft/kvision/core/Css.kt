@@ -258,6 +258,34 @@ enum class BgClip(internal val clip: String) {
 }
 
 /**
+ * Definitions of CSS display options.
+ */
+enum class Display(internal val display: String) {
+    INLINE("inline"),
+    BLOCK("block"),
+    FLEX("flex"),
+    GRID("grid"),
+    INLINEBLOCK("inline-block"),
+    INLINEFLEX("inline-flex"),
+    INLINEGRID("inline-grid"),
+    INLINETABLE("inline-table"),
+    LISTITEM("list-item"),
+    RUNIN("run-in"),
+    TABLE("table"),
+    TABLECAPTION("table-caption"),
+    TABLECOLUMNGROUP("table-column-group"),
+    TABLEHEADERGROUP("table-header-group"),
+    TABLEFOOTERGROUP("table-footer-group"),
+    TABLEROWGROUP("table-row-group"),
+    TABLECELL("table-cell"),
+    TABLECOLUMN("table-column"),
+    TABLEROW("table-row"),
+    NONE("none"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
+/**
  * Definitions of CSS position options.
  */
 enum class Position(internal val position: String) {
