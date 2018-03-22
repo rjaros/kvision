@@ -61,6 +61,7 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
      */
     protected fun addInternal(child: Component): SimplePanel {
         children.add(child)
+        child.parent?.remove(child)
         child.parent = this
         refresh()
         return this
