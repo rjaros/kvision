@@ -33,7 +33,7 @@ class CheckBoxSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val ci = CheckBox(value = true, label = "Label").apply {
                 name = "name"
                 style = CheckBoxStyle.DANGER

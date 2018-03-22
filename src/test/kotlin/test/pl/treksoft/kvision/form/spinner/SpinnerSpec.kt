@@ -33,7 +33,7 @@ class SpinnerSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val ti = Spinner(value = 13, label = "Label").apply {
                 placeholder = "place"
                 name = "name"
@@ -59,7 +59,7 @@ class SpinnerSpec : DomSpec {
     @Test
     fun spinUp() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val si = Spinner(value = 13)
             root.add(si)
             assertEquals(13, si.value, "Should return initial value before spinUp")
@@ -71,7 +71,7 @@ class SpinnerSpec : DomSpec {
     @Test
     fun spinDown() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val si = Spinner(value = 13)
             root.add(si)
             assertEquals(13, si.value, "Should return initial value before spinDown")

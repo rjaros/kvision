@@ -32,7 +32,7 @@ class TextAreaSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val ti = TextArea(cols = 5, rows = 2, value = "abc", label = "Label").apply {
                 placeholder = "place"
                 name = "name"

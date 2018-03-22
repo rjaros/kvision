@@ -35,7 +35,7 @@ class ModalSpec : DomSpec {
     @Test
     fun render() {
         run {
-            Root("test")
+            Root("test", true)
             val modal = Modal("Modal")
             modal.show()
             val content = document.getElementById("test")?.let { jQuery(it).find(".modal-title").html() }
@@ -47,7 +47,7 @@ class ModalSpec : DomSpec {
     @Test
     fun toggle() {
         run {
-            Root("test")
+            Root("test", true)
             val modal = Modal("Modal")
             modal.toggle()
             val content = document.getElementById("test")?.let { jQuery(it).find(".modal-title").html() }

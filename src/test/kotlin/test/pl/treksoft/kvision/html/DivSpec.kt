@@ -32,7 +32,7 @@ class DivSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val div = Div("This is a div")
             root.add(div)
             val element = document.getElementById("test")

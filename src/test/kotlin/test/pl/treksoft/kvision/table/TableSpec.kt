@@ -17,7 +17,7 @@ class TableSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val table = Table(listOf("a", "b")) {
                 row {
                     cell("A")

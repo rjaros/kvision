@@ -33,7 +33,7 @@ class ResponsiveGridPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val rgPanel = ResponsiveGridPanel()
             root.add(rgPanel)
             rgPanel.add(Label("abc"), 1, 1)
@@ -41,7 +41,7 @@ class ResponsiveGridPanelSpec : DomSpec {
             rgPanel.add(Label("ghi"), 3, 3)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><div class=\"row\"></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>abc</span></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>def</span></div><div class=\"col-md-3\"></div></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>ghi</span></div></div></div>",
+                "<div class=\"container-fluid\"><div class=\"row\"></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>abc</span></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>def</span></div><div class=\"col-md-3\"></div></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>ghi</span></div></div></div>",
                 element?.innerHTML,
                 "Should render correct responsive grid panel"
             )

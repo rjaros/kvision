@@ -57,7 +57,7 @@ open class ResponsiveGridPanel(
     private val gridSize: GridSize = GridSize.MD,
     private var rows: Int = 0, private var cols: Int = 0, align: Align? = null,
     classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(classes + "container-fluid") {
 
     /**
      * Text align of grid cells.

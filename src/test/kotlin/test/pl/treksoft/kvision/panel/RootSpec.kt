@@ -51,7 +51,7 @@ class RootSpec : DomSpec {
     @Test
     fun getRoot() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val r = root.getRoot()
             assertTrue("Should return self") { r == root }
         }
@@ -60,7 +60,7 @@ class RootSpec : DomSpec {
     @Test
     fun addModal() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val modal = Modal("test")
             modal.id = "test_modal"
             root.addModal(modal)

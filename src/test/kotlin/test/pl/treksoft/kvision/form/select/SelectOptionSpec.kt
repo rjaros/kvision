@@ -32,7 +32,7 @@ class SelectOptionSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val selectOption = SelectOption("testValue", "testLabel")
             root.add(selectOption)
             val element = document.getElementById("test")

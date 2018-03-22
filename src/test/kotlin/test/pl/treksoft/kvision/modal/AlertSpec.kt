@@ -36,7 +36,7 @@ class AlertSpec : DomSpec {
     @Test
     fun render() {
         run {
-            Root("test")
+            Root("test", true)
             Alert.show("Alert caption", "Alert content")
             val alert = document.getElementById("test")?.let { jQuery(it).find(".modal")[0] }
             assertNotNull(alert, "Should show alert window")

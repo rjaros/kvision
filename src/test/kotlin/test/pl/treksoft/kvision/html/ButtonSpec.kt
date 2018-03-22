@@ -34,7 +34,7 @@ class ButtonSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val button = Button("Cancel", "fa-bars", ButtonStyle.PRIMARY)
             button.size = ButtonSize.LARGE
             button.block = true

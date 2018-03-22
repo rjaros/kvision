@@ -33,7 +33,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Label("abc")
@@ -52,7 +52,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun setActiveIndex() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Label("abc")
@@ -72,7 +72,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun removeTab() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Label("abc")

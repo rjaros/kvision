@@ -35,7 +35,7 @@ class DataContainerSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
 
             class Model(value: String) : BaseDataComponent() {
                 var value: String by obs(value)

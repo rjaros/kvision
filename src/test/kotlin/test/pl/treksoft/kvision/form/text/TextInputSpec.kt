@@ -33,7 +33,7 @@ class TextInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val ti = TextInput(type = TextInputType.PASSWORD, value = "abc").apply {
                 placeholder = "place"
                 name = "name"

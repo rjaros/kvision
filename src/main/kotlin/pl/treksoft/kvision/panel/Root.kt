@@ -22,9 +22,12 @@
 package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
+import com.github.snabbdom.h
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.modal.Modal
+import pl.treksoft.kvision.utils.snClasses
+import pl.treksoft.kvision.utils.snOpt
 
 /**
  * Root container.
@@ -54,7 +57,13 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     }
 
     override fun render(): VNode {
-        return render("div#$id", childrenVNodes() + modalsVNodes())
+        return if (!fixed) {
+            render("div#$id", arrayOf(h("div", snOpt {
+                `class` = snClasses(listOf("row" to true))
+            }, childrenVNodes() + modalsVNodes())))
+        } else {
+            render("div#$id", childrenVNodes() + modalsVNodes())
+        }
     }
 
     internal fun addModal(modal: Modal) {

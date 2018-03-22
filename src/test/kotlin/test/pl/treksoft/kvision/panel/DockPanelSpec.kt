@@ -34,7 +34,7 @@ class DockPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val dockPanel = DockPanel()
             root.add(dockPanel)
             dockPanel.add(Label("abc"), Side.UP)

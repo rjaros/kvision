@@ -15,7 +15,7 @@ class RowSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val row = Row {
                 cell("A")
             }

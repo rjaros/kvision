@@ -85,7 +85,7 @@ interface WSpec : DomSpec {
 
     fun runW(code: (widget: Widget, element: Element?) -> Unit) {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val widget = Widget()
             widget.id = "test_id"
             root.add(widget)

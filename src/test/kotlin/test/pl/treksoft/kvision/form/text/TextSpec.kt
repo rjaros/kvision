@@ -32,7 +32,7 @@ class TextSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val ti = Text(value = "abc", label = "Label").apply {
                 placeholder = "place"
                 name = "name"

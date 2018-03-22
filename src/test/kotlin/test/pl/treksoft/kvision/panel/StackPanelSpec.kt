@@ -33,7 +33,7 @@ class StackPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val stackPanel = StackPanel()
             root.add(stackPanel)
             val label1 = Label("abc")
@@ -48,7 +48,7 @@ class StackPanelSpec : DomSpec {
     @Test
     fun renderNotActivateLast() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val stackPanel = StackPanel(activateLast = false)
             root.add(stackPanel)
             val label1 = Label("abc")
@@ -67,7 +67,7 @@ class StackPanelSpec : DomSpec {
     @Test
     fun remove() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val stackPanel = StackPanel(activateLast = false)
             root.add(stackPanel)
             val label1 = Label("abc")
@@ -83,7 +83,7 @@ class StackPanelSpec : DomSpec {
     @Test
     fun removeAll() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val stackPanel = StackPanel(activateLast = false)
             root.add(stackPanel)
             val label1 = Label("abc")

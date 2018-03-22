@@ -32,7 +32,7 @@ class LinkSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val link = Link("Google", "http://www.google.com")
             root.add(link)
             val element = document.getElementById("test")

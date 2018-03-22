@@ -32,7 +32,7 @@ class SpinnerInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val si = SpinnerInput(value = 13).apply {
                 placeholder = "place"
                 id = "idti"
@@ -46,7 +46,7 @@ class SpinnerInputSpec : DomSpec {
     @Test
     fun spinUp() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val si = SpinnerInput(value = 13).apply {
                 placeholder = "place"
                 id = "idti"
@@ -61,7 +61,7 @@ class SpinnerInputSpec : DomSpec {
     @Test
     fun spinDown() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val si = SpinnerInput(value = 13).apply {
                 placeholder = "place"
                 id = "idti"

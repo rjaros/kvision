@@ -33,7 +33,7 @@ class CheckInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val ci = CheckInput(value = true).apply {
                 name = "name"
                 id = "idti"
@@ -52,7 +52,7 @@ class CheckInputSpec : DomSpec {
     @Test
     fun renderAsRadio() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val ci = CheckInput(type = CheckInputType.RADIO, value = true).apply {
                 name = "name"
                 id = "idti"

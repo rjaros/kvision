@@ -14,7 +14,7 @@ class HeaderCellSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val cell = HeaderCell("This is a header cell")
             root.add(cell)
             val element = document.getElementById("test")

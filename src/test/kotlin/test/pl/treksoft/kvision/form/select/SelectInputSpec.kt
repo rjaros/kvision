@@ -34,7 +34,7 @@ class SelectInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val selectInput = SelectInput(listOf("test1" to "Test 1", "test2" to "Test 2"), "test1", true).apply {
                 liveSearch = true
                 placeholder = "Choose ..."

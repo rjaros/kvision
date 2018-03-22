@@ -34,7 +34,7 @@ class HPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test")
+            val root = Root("test", true)
             val hPanel = HPanel(justify = FlexJustify.SPACEBETWEEN)
             root.add(hPanel)
             hPanel.add(Label("abc"), 1)
