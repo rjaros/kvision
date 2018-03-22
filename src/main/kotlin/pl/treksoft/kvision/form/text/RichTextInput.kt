@@ -82,9 +82,10 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
         }
         this.getElementJQuery()?.on("trix-initialize", { _, _ ->
             trixId = this.getElementJQuery()?.attr("trix-id")
-            if (trixId!=null) {
+            if (trixId != null) {
                 value?.let {
-                    this.getElement().asDynamic().editor.loadHTML(it)
+                    if (this.getElement().asDynamic().editor != undefined)
+                        this.getElement().asDynamic().editor.loadHTML(it)
                 }
             }
         })
@@ -102,9 +103,11 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
         val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
         if (value != v) {
             val editor = this.getElement().asDynamic().editor
-            value?.let {
-                editor.loadHTML(it)
-            } ?: editor.loadHTML("")
+            if (editor != undefined) {
+                value?.let {
+                    editor.loadHTML(it)
+                } ?: editor.loadHTML("")
+            }
         }
     }
 
