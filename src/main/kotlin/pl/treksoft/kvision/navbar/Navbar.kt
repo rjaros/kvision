@@ -60,7 +60,7 @@ open class Navbar(
     private val idc = "kv_navbar_$counter"
 
     private val brandLink = Link(label, "#", classes = setOf("navbar-brand"))
-    protected val container = SimplePanel(setOf("collapse", "navbar-collapse")) {
+    internal val container = SimplePanel(setOf("collapse", "navbar-collapse")) {
         id = idc
     }
 
