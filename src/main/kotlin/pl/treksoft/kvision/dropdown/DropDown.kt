@@ -186,15 +186,11 @@ open class DropDown(
         elements?.let { elems ->
             val c = elems.map {
                 when (it.second) {
-                    DD.HEADER.option -> Tag(TAG.LI, it.first, classes = setOf("dropdown-header"))
-                    DD.SEPARATOR.option -> {
-                        val tag = Tag(TAG.LI, it.first, classes = setOf("divider"))
-                        tag.role = "separator"
-                        tag
-                    }
+                    DD.HEADER.option -> Header(it.first)
+                    DD.SEPARATOR.option -> Separator()
                     DD.DISABLED.option -> {
                         val tag = Tag(TAG.LI, classes = setOf("disabled"))
-                        tag.add(Link(it.first, "#"))
+                        tag.add(Link(it.first, "javascript:void(0)"))
                         tag
                     }
                     else -> Link(it.first, it.second)
@@ -246,10 +242,11 @@ open class DropDown(
          */
         fun Container.dropDown(
             text: String, elements: List<StringPair>? = null, icon: String? = null,
-            style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false, navbar: Boolean = false,
+            style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false, forNavbar: Boolean = false,
             classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
         ): DropDown {
-            val dropDown = DropDown(text, elements, icon, style, disabled, navbar, classes).apply { init?.invoke(this) }
+            val dropDown =
+                DropDown(text, elements, icon, style, disabled, forNavbar, classes).apply { init?.invoke(this) }
             this.add(dropDown)
             return dropDown
         }
@@ -264,6 +261,11 @@ internal class DropDownButton(
 
     init {
         this.id = id
+        setInternalEventListener<DropDownButton> {
+            click = { e ->
+                if (parent?.parent is ContextMenu) e.asDynamic().dropDownCM = true
+            }
+        }
     }
 
     override fun render(): VNode {

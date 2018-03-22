@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -79,6 +80,38 @@ open class Link(
         ): Link {
             val link = Link(label, url, icon, image, classes).apply { init?.invoke(this) }
             this.add(link)
+            return link
+        }
+
+        /**
+         * DSL builder extension function for a disabled link in a dropdown list.
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun ListTag.linkDisabled(
+            label: String, icon: String? = null, image: ResString? = null,
+            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+        ): Link {
+            val link = Link(label, "javascript:void(0)", icon, image, classes).apply { init?.invoke(this) }
+            val tag = Tag(TAG.LI, classes = setOf("disabled"))
+            tag.add(link)
+            this.add(tag)
+            return link
+        }
+
+        /**
+         * DSL builder extension function for a disabled link in a dropdown list.
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun DropDown.linkDisabled(
+            label: String, icon: String? = null, image: ResString? = null,
+            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+        ): Link {
+            val link = Link(label, "javascript:void(0)", icon, image, classes).apply { init?.invoke(this) }
+            val tag = Tag(TAG.LI, classes = setOf("disabled"))
+            tag.add(link)
+            this.add(tag)
             return link
         }
     }

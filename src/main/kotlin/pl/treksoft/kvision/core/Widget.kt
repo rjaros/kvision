@@ -27,9 +27,11 @@ import com.github.snabbdom.h
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.DragEvent
 import org.w3c.dom.Node
+import org.w3c.dom.events.MouseEvent
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.KVManager
+import pl.treksoft.kvision.dropdown.ContextMenu
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.SnOn
 import pl.treksoft.kvision.utils.hooks
@@ -55,7 +57,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     internal val internalListeners = mutableListOf<SnOn<Widget>.() -> Unit>()
     internal val listeners = mutableListOf<SnOn<Widget>.() -> Unit>()
 
-    override var parent: Component? = null
+    override var parent: Container? = null
 
     override var visible: Boolean = true
         set(value) {
@@ -539,6 +541,21 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
                 callback(e)
             }
         }
+    }
+
+    /**
+     * Sets context menu for the current widget.
+     * @param contextMenu a context menu
+     * @return current widget
+     */
+    open fun setContextMenu(contextMenu: ContextMenu): Widget {
+        setEventListener<Widget> {
+            contextmenu = { e: MouseEvent ->
+                e.preventDefault()
+                contextMenu.positionMenu(e)
+            }
+        }
+        return this
     }
 
     /**

@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import com.github.snabbdom.h
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.dropdown.ContextMenu
 import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
@@ -44,6 +45,7 @@ import pl.treksoft.kvision.utils.snOpt
  */
 class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Unit)? = null) : SimplePanel() {
     private val modals: MutableList<Modal> = mutableListOf()
+    private val contextMenus: MutableList<ContextMenu> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
 
     internal var renderDisabled = false
@@ -60,9 +62,9 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         return if (!fixed) {
             render("div#$id", arrayOf(h("div", snOpt {
                 `class` = snClasses(listOf("row" to true))
-            }, childrenVNodes() + modalsVNodes())))
+            }, childrenVNodes() + modalsVNodes() + contextMenusVNodes())))
         } else {
-            render("div#$id", childrenVNodes() + modalsVNodes())
+            render("div#$id", childrenVNodes() + modalsVNodes() + contextMenusVNodes())
         }
     }
 
@@ -72,8 +74,24 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         refresh()
     }
 
+    internal fun addContextMenu(contextMenu: ContextMenu) {
+        contextMenus.add(contextMenu)
+        contextMenu.parent = this
+        this.setInternalEventListener<Root> {
+            click = { e ->
+                @Suppress("UnsafeCastFromDynamic")
+                if (!e.asDynamic().dropDownCM) contextMenu.hide()
+            }
+        }
+        refresh()
+    }
+
     private fun modalsVNodes(): Array<VNode> {
         return modals.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+    }
+
+    private fun contextMenusVNodes(): Array<VNode> {
+        return contextMenus.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
     }
 
     override fun getSnClass(): List<StringBoolPair> {
