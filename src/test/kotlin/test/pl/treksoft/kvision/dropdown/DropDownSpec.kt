@@ -92,7 +92,7 @@ class DropDownSpec : DomSpec {
             val element = document.getElementById("test")
             val id = dd.button.id
             assertEqualsHtml(
-                "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"divider\" role=\"separator\">abc</li></ul></div>",
+                "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"divider\" role=\"separator\"></li></ul></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -109,7 +109,7 @@ class DropDownSpec : DomSpec {
             val element = document.getElementById("test")
             val id = dd.button.id
             assertEqualsHtml(
-                "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"disabled\"><a href=\"#\">abc</a></li></ul></div>",
+                "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"disabled\"><a href=\"javascript:void(0)\">abc</a></li></ul></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
