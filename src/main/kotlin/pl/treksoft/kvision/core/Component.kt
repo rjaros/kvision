@@ -33,7 +33,7 @@ interface Component {
     /**
      * Parent of the current component.
      */
-    var parent: Component?
+    var parent: Container?
     /**
      * Visibility state of the current component.
      */

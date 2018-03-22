@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.core
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.panel.SimplePanel
 import kotlin.Unit
 
 /**
@@ -31,7 +32,7 @@ import kotlin.Unit
  * @param wrapped wrapped component
  * @param classes Set of CSS class names
  */
-open class WidgetWrapper(internal var wrapped: Component?, classes: Set<String> = setOf()) : Widget(classes) {
+open class WidgetWrapper(internal var wrapped: Component?, classes: Set<String> = setOf()) : SimplePanel(classes) {
 
     override var visible
         get() = wrapped?.visible == true
