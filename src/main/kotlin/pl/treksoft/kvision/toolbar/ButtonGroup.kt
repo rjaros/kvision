@@ -5,7 +5,6 @@ package pl.treksoft.kvision.toolbar
 
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -49,6 +48,7 @@ open class ButtonGroup(
     var style by refreshOnUpdate(style)
 
     init {
+        role = "group"
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -65,10 +65,6 @@ open class ButtonGroup(
             cl.add(it.className to true)
         }
         return cl
-    }
-
-    override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + ("role" to "group")
     }
 
     companion object {

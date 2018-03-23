@@ -29,6 +29,9 @@ import pl.treksoft.kvision.core.Container
  * @constructor
  * @param content element text
  * @param rich determines if [content] can contain HTML code
+ * @param align content align
+ * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class Div(
     content: String,

@@ -261,6 +261,7 @@ internal class DropDownButton(
 
     init {
         this.id = id
+        this.role = "button"
         setInternalEventListener<DropDownButton> {
             click = { e ->
                 if (parent?.parent is ContextMenu) e.asDynamic().dropDownCM = true
@@ -291,7 +292,7 @@ internal class DropDownButton(
     override fun getSnAttrs(): List<StringPair> {
         return super.getSnAttrs() + listOf(
             "data-toggle" to "dropdown", "aria-haspopup" to "true",
-            "aria-expanded" to "false", "role" to "button", "href" to "#"
+            "aria-expanded" to "false", "href" to "#"
         )
     }
 }

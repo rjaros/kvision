@@ -3,7 +3,6 @@
  */
 package pl.treksoft.kvision.dropdown
 
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.ListTag
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -16,10 +15,8 @@ import pl.treksoft.kvision.html.Tag
  */
 open class Separator(classes: Set<String> = setOf()) : Tag(TAG.LI, classes = classes + "divider") {
 
-    override fun getSnAttrs(): List<StringPair> {
-        val pr = super.getSnAttrs().toMutableList()
-        pr.add("role" to "separator")
-        return pr
+    init {
+        role = "separator"
     }
 
     companion object {

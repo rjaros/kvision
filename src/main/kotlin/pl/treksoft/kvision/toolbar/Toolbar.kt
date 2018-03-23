@@ -4,7 +4,6 @@
 package pl.treksoft.kvision.toolbar
 
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -19,12 +18,9 @@ open class Toolbar(
 ) : SimplePanel(classes + "btn-toolbar") {
 
     init {
+        role = "toolbar"
         @Suppress("LeakingThis")
         init?.invoke(this)
-    }
-
-    override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + ("role" to "toolbar")
     }
 
     companion object {
