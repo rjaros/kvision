@@ -131,3 +131,7 @@ trix-toolbar .trix-button-group {
 .kv-window .modal-header .modal-title {
   white-space: nowrap;
 }
+
+ul.dropdown-menu li a {
+  cursor: pointer;
+}

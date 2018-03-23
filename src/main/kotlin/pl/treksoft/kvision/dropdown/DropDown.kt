@@ -190,7 +190,7 @@ open class DropDown(
                     DD.SEPARATOR.option -> Separator()
                     DD.DISABLED.option -> {
                         val tag = Tag(TAG.LI, classes = setOf("disabled"))
-                        tag.add(Link(it.first, "javascript:void(0)"))
+                        tag.add(Link(it.first))
                         tag
                     }
                     else -> Link(it.first, it.second)

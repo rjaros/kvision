@@ -39,7 +39,7 @@ import pl.treksoft.kvision.panel.SimplePanel
  * @param classes a set of CSS class names
  */
 open class Link(
-    label: String, url: String, icon: String? = null, image: ResString? = null,
+    label: String, url: String? = null, icon: String? = null, image: ResString? = null,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
     /**
@@ -65,7 +65,11 @@ open class Link(
     }
 
     override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + ("href" to url)
+        val pr = super.getSnAttrs().toMutableList()
+        url?.let {
+            pr.add("href" to it)
+        }
+        return pr
     }
 
     companion object {
@@ -75,7 +79,7 @@ open class Link(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.link(
-            label: String, url: String, icon: String? = null, image: ResString? = null,
+            label: String, url: String? = null, icon: String? = null, image: ResString? = null,
             classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
         ): Link {
             val link = Link(label, url, icon, image, classes).apply { init?.invoke(this) }
@@ -92,7 +96,7 @@ open class Link(
             label: String, icon: String? = null, image: ResString? = null,
             classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
         ): Link {
-            val link = Link(label, "javascript:void(0)", icon, image, classes).apply { init?.invoke(this) }
+            val link = Link(label, null, icon, image, classes).apply { init?.invoke(this) }
             val tag = Tag(TAG.LI, classes = setOf("disabled"))
             tag.add(link)
             this.add(tag)
