@@ -121,6 +121,7 @@ internal object KVManager {
 
     private val resizable = require("jquery-resizable-dom")
     internal val fecha = require("fecha")
+    private val handlebars = require("handlebars/dist/handlebars.runtime.min.js")
     private val sdPatch = Snabbdom.init(
         arrayOf(
             classModule, attributesModule, propsModule, styleModule,

@@ -104,7 +104,7 @@ enum class Align(val className: String) {
 open class Tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
     classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(classes), Template {
 
     /**
      * Tag type.
@@ -113,15 +113,19 @@ open class Tag(
     /**
      * Text content of the tag.
      */
-    var content by refreshOnUpdate(content)
+    override var content by refreshOnUpdate(content)
     /**
      * Determines if [content] can contain HTML code.
      */
-    var rich by refreshOnUpdate(rich)
+    override var rich by refreshOnUpdate(rich)
     /**
      * Text align.
      */
     var align by refreshOnUpdate(align)
+    /**
+     * Handlebars template.
+     */
+    override var template: (Any?) -> String by refreshOnUpdate()
 
     init {
         @Suppress("LeakingThis")

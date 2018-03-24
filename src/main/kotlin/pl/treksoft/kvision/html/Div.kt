@@ -34,7 +34,7 @@ import pl.treksoft.kvision.core.Container
  * @param init an initializer extension function
  */
 open class Div(
-    content: String,
+    content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
     classes: Set<String> = setOf(),
@@ -54,7 +54,7 @@ open class Div(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.div(
-            content: String,
+            content: String? = null,
             rich: Boolean = false,
             align: Align? = null,
             classes: Set<String> = setOf(),

@@ -44,7 +44,7 @@ internal class ProgressIndicator(
     content: String? = null, rich: Boolean = false, align: Align? = null,
     classes: Set<String> = setOf()
 ) :
-    Div(content ?: "", rich, align, classes) {
+    Div(content, rich, align, classes) {
 
     /**
      * The current progress.
