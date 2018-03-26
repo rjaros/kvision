@@ -1,8 +1,9 @@
 buildscript {
-    ext.kotlin_version = '1.2.30'
+    ext.kotlin_version = '1.2.31'
+    ext.coroutines_version = '0.22.5'
     ext.dokka_version = '0.9.16'
-    ext.frontend_plugin_version = '0.0.29'
-    ext.detekt_version = '1.0.0.RC6-3'
+    ext.frontend_plugin_version = '0.0.30'
+    ext.detekt_version = '1.0.0.RC6-4'
     ext.production = (findProperty('prod') ?: 'false') == 'true'
     ext.npmdeps = new File("npm.dependencies").getText()
 
@@ -52,6 +53,7 @@ dependencies {
         compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
         compile "org.jetbrains.kotlin:kotlin-test:$kotlin_version" // for now only compile configuration is supported
     }
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutines_version"
     compile "com.github.snabbdom:snabbdom-kotlin:0.1.1"
     compile "pl.treksoft:navigo-kotlin:0.0.2"
     compile "pl.treksoft:jquery-kotlin:0.0.3"
@@ -74,15 +76,17 @@ kotlinFrontend {
         dependency("snabbdom-virtualize", "0.7.0")
         dependency("navigo", "7.0.0")
         dependency("jquery-resizable-dom", "0.28.0")
+        dependency("handlebars", "4.0.11")
+        dependency("handlebars-loader")
         npmdeps.eachLine { line ->
             def (name, version) = line.tokenize(" ")
             dependency(name, version)
         }
-        devDependency("karma")
+        devDependency("karma", "2.0.0")
+        devDependency("karma-qunit", "1.2.1")
         devDependency("karma-chrome-launcher")
         devDependency("karma-firefox-launcher")
         devDependency("karma-webpack", "2.0.9")
-        devDependency("qunit-assert-html")
         devDependency("webpack", "3.11.0")
         devDependency("webpack-dev-server", "2.11.0")
     }
@@ -93,7 +97,7 @@ kotlinFrontend {
     }
 
     karma {
-        plugins = [ "karma-chrome-launcher", "karma-firefox-launcher" ]
+        plugins = ["karma-chrome-launcher", "karma-firefox-launcher"]
 //        browsers = [ "Chrome", "Firefox" ]
     }
 
