@@ -76,7 +76,8 @@ enum class TAG(internal val tagName: String) {
     TR("tr"),
     TD("td"),
 
-    FORM("form")
+    FORM("form"),
+    INPUT("input")
 }
 
 /**

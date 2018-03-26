@@ -28,12 +28,13 @@ import pl.treksoft.kvision.core.Container
  *
  * @constructor
  * @param value text input value
+ * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  */
-open class Password(value: String? = null, label: String? = null, rich: Boolean = false) : Text(
+open class Password(value: String? = null, name: String? = null, label: String? = null, rich: Boolean = false) : Text(
     TextInputType.PASSWORD,
-    value, label, rich
+    value, name, label, rich
 ) {
     companion object {
         /**
@@ -42,9 +43,13 @@ open class Password(value: String? = null, label: String? = null, rich: Boolean 
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.password(
-            value: String? = null, label: String? = null, rich: Boolean = false, init: (Password.() -> Unit)? = null
+            value: String? = null,
+            name: String? = null,
+            label: String? = null,
+            rich: Boolean = false,
+            init: (Password.() -> Unit)? = null
         ): Password {
-            val password = Password(value, label, rich).apply { init?.invoke(this) }
+            val password = Password(value, name, label, rich).apply { init?.invoke(this) }
             this.add(password)
             return password
         }

@@ -24,6 +24,7 @@ package pl.treksoft.kvision.form
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.check.CheckBox
 import pl.treksoft.kvision.form.check.Radio
 import pl.treksoft.kvision.html.TAG
@@ -42,18 +43,78 @@ enum class FormType(internal val formType: String) {
 }
 
 /**
+ * Form methods.
+ */
+enum class FormMethod(internal val method: String) {
+    GET("get"),
+    POST("post")
+}
+
+/**
+ * Form encoding types.
+ */
+enum class FormEnctype(internal val enctype: String) {
+    URLENCODED("application/x-www-form-urlencoded"),
+    MULTIPART("multipart/form-data"),
+    PLAIN("text/plain")
+}
+
+/**
+ * Form targets.
+ */
+enum class FormTarget(internal val target: String) {
+    BLANK("_blank"),
+    SELF("_self"),
+    PARENT("_parent"),
+    TOP("_top")
+}
+
+/**
  * Bootstrap form component.
  *
  * @constructor
  * @param K model class type
+ * @param method HTTP method
+ * @param action the URL address to send data
+ * @param enctype form encoding type
  * @param type form layout
  * @param classes set of CSS class names
  * @param modelFactory function transforming a Map<String, Any?> to a data model of class K
  */
 open class FormPanel<K>(
+    method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, classes: Set<String> = setOf(),
     modelFactory: (Map<String, Any?>) -> K
 ) : SimplePanel(classes) {
+
+    /**
+     * HTTP method.
+     */
+    var method by refreshOnUpdate(method)
+    /**
+     * The URL address to send data.
+     */
+    var action by refreshOnUpdate(action)
+    /**
+     * The form encoding type.
+     */
+    var enctype by refreshOnUpdate(enctype)
+    /**
+     * The form name.
+     */
+    var name: String? by refreshOnUpdate()
+    /**
+     * The form target.
+     */
+    var target: FormTarget? by refreshOnUpdate()
+    /**
+     * Determines if the form is not validated.
+     */
+    var novalidate: Boolean? by refreshOnUpdate()
+    /**
+     * Determines if the form should have autocomplete.
+     */
+    var autocomplete: Boolean? by refreshOnUpdate()
 
     /**
      * Function returning validation message.
@@ -109,6 +170,32 @@ open class FormPanel<K>(
             cl.add(type.formType to true)
         }
         return cl
+    }
+
+    override fun getSnAttrs(): List<StringPair> {
+        val sn = super.getSnAttrs().toMutableList()
+        method?.let {
+            sn.add("method" to it.method)
+        }
+        action?.let {
+            sn.add("action" to it)
+        }
+        enctype?.let {
+            sn.add("enctype" to it.enctype)
+        }
+        name?.let {
+            sn.add("name" to it)
+        }
+        target?.let {
+            sn.add("target" to it.target)
+        }
+        if (autocomplete == false) {
+            sn.add("autocomplete" to "off")
+        }
+        if (novalidate == true) {
+            sn.add("novalidate" to "novalidate")
+        }
+        return sn
     }
 
     protected fun <C : FormControl> addInternal(
@@ -284,10 +371,11 @@ open class FormPanel<K>(
          * It takes the same parameters as the constructor of the built component.
          */
         fun <K> Container.formPanel(
+            method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
             type: FormType? = null, classes: Set<String> = setOf(),
             modelFactory: (Map<String, Any?>) -> K
         ): FormPanel<K> {
-            val panel = FormPanel(type, classes, modelFactory)
+            val panel = FormPanel(method, action, enctype, type, classes, modelFactory)
             this.add(panel)
             return panel
         }

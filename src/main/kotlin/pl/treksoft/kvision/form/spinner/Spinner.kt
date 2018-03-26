@@ -35,6 +35,7 @@ import pl.treksoft.kvision.utils.SnOn
  *
  * @constructor
  * @param value spinner value
+ * @param name the name attribute of the generated HTML input element
  * @param min minimal value (default 0)
  * @param max maximal value (default 100)
  * @param step step value (default 1)
@@ -45,7 +46,7 @@ import pl.treksoft.kvision.utils.SnOn
  * @param rich determines if [label] can contain HTML code
  */
 open class Spinner(
-    value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
+    value: Number? = null, name: String? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, label: String? = null,
     rich: Boolean = false
@@ -127,19 +128,6 @@ open class Spinner(
             input.placeholder = value
         }
     /**
-     * The name attribute of the generated HTML input element.
-     */
-    var name
-        get() = input.name
-        set(value) {
-            input.name = value
-        }
-    override var disabled
-        get() = input.disabled
-        set(value) {
-            input.disabled = value
-        }
-    /**
      * Determines if the spinner is automatically focused.
      */
     var autofocus
@@ -171,15 +159,13 @@ open class Spinner(
         set(value) {
             flabel.rich = value
         }
-    override var size
-        get() = input.size
-        set(value) {
-            input.size = value
-        }
 
     protected val idc = "kv_form_spinner_$counter"
     final override val input: SpinnerInput = SpinnerInput(value, min, max, step, decimals, buttonsType, forceType)
-        .apply { id = idc }
+        .apply {
+            this.id = idc
+            this.name = name
+        }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
@@ -253,12 +239,19 @@ open class Spinner(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.spinner(
-            value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
-            decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
-            forceType: ForceType = ForceType.NONE, label: String? = null,
-            rich: Boolean = false, init: (Spinner.() -> Unit)? = null
+            value: Number? = null,
+            name: String? = null,
+            min: Int = 0,
+            max: Int = DEFAULT_MAX,
+            step: Double = DEFAULT_STEP,
+            decimals: Int = 0,
+            buttonsType: ButtonsType = ButtonsType.VERTICAL,
+            forceType: ForceType = ForceType.NONE,
+            label: String? = null,
+            rich: Boolean = false,
+            init: (Spinner.() -> Unit)? = null
         ): Spinner {
-            val spinner = Spinner(value, min, max, step, decimals, buttonsType, forceType, label, rich).apply {
+            val spinner = Spinner(value, name, min, max, step, decimals, buttonsType, forceType, label, rich).apply {
                 init?.invoke(
                     this
                 )

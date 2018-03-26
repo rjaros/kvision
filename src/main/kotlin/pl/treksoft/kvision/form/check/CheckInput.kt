@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 
 /**
@@ -48,7 +49,7 @@ enum class CheckInputType(internal val type: String) {
 open class CheckInput(
     type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
     classes: Set<String> = setOf()
-) : Widget(classes) {
+) : Widget(classes), FormInput {
 
     init {
         this.setInternalEventListener<CheckInput> {
@@ -81,11 +82,11 @@ open class CheckInput(
     /**
      * The name attribute of the generated HTML input element.
      */
-    var name: String? by refreshOnUpdate()
+    override var name: String? by refreshOnUpdate()
     /**
      * Determines if the field is disabled.
      */
-    var disabled by refreshOnUpdate(false)
+    override var disabled by refreshOnUpdate(false)
     /**
      * The additional String value used for the radio button group.
      */
@@ -93,7 +94,7 @@ open class CheckInput(
     /**
      * The size of the input.
      */
-    var size: InputSize? by refreshOnUpdate()
+    override var size: InputSize? by refreshOnUpdate()
 
     override fun render(): VNode {
         return render("input")

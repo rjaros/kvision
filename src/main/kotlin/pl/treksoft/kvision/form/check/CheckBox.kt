@@ -48,11 +48,12 @@ enum class CheckBoxStyle(internal val className: String) {
  *
  * @constructor
  * @param value selection state
+ * @param name the name of the input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  */
 open class CheckBox(
-    value: Boolean = false, label: String? = null,
+    value: Boolean = false, name: String? = null, label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(setOf("checkbox")), BoolFormControl {
 
@@ -74,19 +75,6 @@ open class CheckBox(
         get() = input.startValue
         set(value) {
             input.startValue = value
-        }
-    /**
-     * The name attribute of the generated HTML input element.
-     */
-    var name
-        get() = input.name
-        set(value) {
-            input.name = value
-        }
-    override var disabled
-        get() = input.disabled
-        set(value) {
-            input.disabled = value
         }
     /**
      * The label text bound to the input element.
@@ -116,20 +104,15 @@ open class CheckBox(
      * Determines if the checkbox is rendered inline.
      */
     var inline by refreshOnUpdate(false)
-    /**
-     * The size of the input.
-     */
-    override var size
-        get() = input.size
-        set(value) {
-            input.size = value
-        }
 
     private val idc = "kv_form_checkbox_$counter"
     final override val input: CheckInput = CheckInput(
         CheckInputType.CHECKBOX, value,
         setOf("styled")
-    ).apply { id = idc }
+    ).apply {
+        this.id = idc
+        this.name = name
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf())
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
@@ -204,10 +187,10 @@ open class CheckBox(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.checkBox(
-            value: Boolean = false, label: String? = null,
+            value: Boolean = false, name: String? = null, label: String? = null,
             rich: Boolean = false, init: (CheckBox.() -> Unit)? = null
         ): CheckBox {
-            val checkBox = CheckBox(value, label, rich).apply { init?.invoke(this) }
+            val checkBox = CheckBox(value, name, label, rich).apply { init?.invoke(this) }
             this.add(checkBox)
             return checkBox
         }

@@ -41,6 +41,7 @@ import pl.treksoft.kvision.utils.SnOn
  * @constructor
  * @param options an optional list of options (label to value pairs) for the select control
  * @param value selected value
+ * @param name the name attribute of the generated HTML input element
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote (AJAX) data source
  * @param label label text bound to the input element
@@ -48,7 +49,7 @@ import pl.treksoft.kvision.utils.SnOn
  */
 @Suppress("TooManyFunctions")
 open class Select(
-    options: List<StringPair>? = null, value: String? = null,
+    options: List<StringPair>? = null, value: String? = null, name: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(setOf("form-group")), StringFormControl {
@@ -68,14 +69,6 @@ open class Select(
         get() = input.value
         set(value) {
             input.value = value
-        }
-    /**
-     * The name attribute of the generated HTML select element.
-     */
-    var name
-        get() = input.name
-        set(value) {
-            input.name = value
         }
     /**
      * Determines if multiple value selection is allowed.
@@ -149,11 +142,6 @@ open class Select(
         set(value) {
             input.emptyOption = value
         }
-    override var disabled
-        get() = input.disabled
-        set(value) {
-            input.disabled = value
-        }
     /**
      * Determines if the select is automatically focused.
      */
@@ -178,17 +166,15 @@ open class Select(
         set(value) {
             flabel.rich = value
         }
-    override var size
-        get() = input.size
-        set(value) {
-            input.size = value
-        }
 
     private val idc = "kv_form_select_$counter"
     final override val input: SelectInput = SelectInput(
         options, value, multiple, ajaxOptions,
         setOf("form-control")
-    ).apply { id = idc }
+    ).apply {
+        this.id = idc
+        this.name = name
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
@@ -287,11 +273,11 @@ open class Select(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.select(
-            options: List<StringPair>? = null, value: String? = null,
+            options: List<StringPair>? = null, value: String? = null, name: String? = null,
             multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
             rich: Boolean = false, init: (Select.() -> Unit)? = null
         ): Select {
-            val select = Select(options, value, multiple, ajaxOptions, label, rich).apply { init?.invoke(this) }
+            val select = Select(options, value, name, multiple, ajaxOptions, label, rich).apply { init?.invoke(this) }
             this.add(select)
             return select
         }

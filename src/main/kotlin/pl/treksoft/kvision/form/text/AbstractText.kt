@@ -67,25 +67,12 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
             input.placeholder = value
         }
     /**
-     * The name attribute of the generated HTML input element.
-     */
-    var name
-        get() = input.name
-        set(value) {
-            input.name = value
-        }
-    /**
      * Maximal length of the text input value.
      */
     var maxlength
         get() = input.maxlength
         set(value) {
             input.maxlength = value
-        }
-    override var disabled
-        get() = input.disabled
-        set(value) {
-            input.disabled = value
         }
     /**
      * Determines if the text input is automatically focused.
@@ -118,11 +105,6 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         get() = flabel.rich
         set(value) {
             flabel.rich = value
-        }
-    override var size
-        get() = input.size
-        set(value) {
-            input.size = value
         }
 
     /**

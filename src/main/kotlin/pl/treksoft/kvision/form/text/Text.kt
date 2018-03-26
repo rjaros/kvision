@@ -29,11 +29,12 @@ import pl.treksoft.kvision.core.Container
  * @constructor
  * @param type text input type (default "text")
  * @param value text input value
+ * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  */
 open class Text(
-    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false
 ) : AbstractText(label, rich) {
 
@@ -54,7 +55,10 @@ open class Text(
             input.autocomplete = value
         }
 
-    final override val input: TextInput = TextInput(type, value).apply { id = idc }
+    final override val input: TextInput = TextInput(type, value).apply {
+        this.id = idc
+        this.name = name
+    }
 
     init {
         @Suppress("LeakingThis")
@@ -70,10 +74,10 @@ open class Text(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.text(
-            type: TextInputType = TextInputType.TEXT, value: String? = null,
+            type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
             label: String? = null, rich: Boolean = false, init: (Text.() -> Unit)? = null
         ): Text {
-            val text = Text(type, value, label, rich).apply { init?.invoke(this) }
+            val text = Text(type, value, name, label, rich).apply { init?.invoke(this) }
             this.add(text)
             return text
         }

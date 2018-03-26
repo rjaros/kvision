@@ -30,6 +30,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.ButtonStyle
+import pl.treksoft.kvision.html.ButtonType
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.ListTag
 import pl.treksoft.kvision.html.ListType
@@ -257,7 +258,7 @@ internal class DropDownButton(
     id: String, text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT,
     disabled: Boolean = false, val forNavbar: Boolean = false, classes: Set<String> = setOf()
 ) :
-    Button(text, icon, style, disabled, classes) {
+    Button(text, icon, style, ButtonType.BUTTON, disabled, classes) {
 
     init {
         this.id = id

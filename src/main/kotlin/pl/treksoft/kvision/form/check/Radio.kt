@@ -86,19 +86,6 @@ open class Radio(
             input.extraValue = value
         }
     /**
-     * The name attribute of the generated HTML input element.
-     */
-    var name
-        get() = input.name
-        set(value) {
-            input.name = value
-        }
-    override var disabled
-        get() = input.disabled
-        set(value) {
-            input.disabled = value
-        }
-    /**
      * The label text bound to the input element.
      */
     var label
@@ -126,14 +113,6 @@ open class Radio(
      * Determines if the radio button is rendered inline.
      */
     var inline by refreshOnUpdate(false)
-    /**
-     * The size of the input.
-     */
-    override var size
-        get() = input.size
-        set(value) {
-            input.size = value
-        }
 
     private val idc = "kv_form_radio_$counter"
     final override val input: CheckInput = CheckInput(CheckInputType.RADIO, value).apply {

@@ -26,6 +26,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.toDateF
@@ -47,7 +48,7 @@ internal const val MAX_VIEW = 4
 open class DateTimeInput(
     value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
     classes: Set<String> = setOf()
-) : Widget(classes + "form-control") {
+) : Widget(classes + "form-control"), FormInput {
 
     init {
         this.setInternalEventListener<DateTimeInput> {
@@ -72,11 +73,11 @@ open class DateTimeInput(
     /**
      * The name attribute of the generated HTML input element.
      */
-    var name: String? by refreshOnUpdate()
+    override var name: String? by refreshOnUpdate()
     /**
      * Determines if the field is disabled.
      */
-    var disabled by refreshOnUpdate(false)
+    override var disabled by refreshOnUpdate(false)
     /**
      * Determines if the text input is automatically focused.
      */
@@ -88,7 +89,7 @@ open class DateTimeInput(
     /**
      * The size of the input.
      */
-    var size: InputSize? by refreshOnUpdate()
+    override var size: InputSize? by refreshOnUpdate()
     /**
      * Day of the week start. 0 (Sunday) to 6 (Saturday).
      */

@@ -30,11 +30,12 @@ import pl.treksoft.kvision.core.Container
  * @param cols number of columns
  * @param rows number of rows
  * @param value text input value
+ * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  */
 open class TextArea(
-    cols: Int? = null, rows: Int? = null, value: String? = null,
+    cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false
 ) : AbstractText(label, rich) {
 
@@ -63,7 +64,10 @@ open class TextArea(
             input.wrapHard = value
         }
 
-    final override val input: TextAreaInput = TextAreaInput(cols, rows, value).apply { id = idc }
+    final override val input: TextAreaInput = TextAreaInput(cols, rows, value).apply {
+        this.id = idc
+        this.name = name
+    }
 
     init {
         @Suppress("LeakingThis")
@@ -79,10 +83,10 @@ open class TextArea(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.textArea(
-            cols: Int? = null, rows: Int? = null, value: String? = null,
+            cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
             label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
         ): TextArea {
-            val textArea = TextArea(cols, rows, value, label, rich).apply { init?.invoke(this) }
+            val textArea = TextArea(cols, rows, value, name, label, rich).apply { init?.invoke(this) }
             this.add(textArea)
             return textArea
         }

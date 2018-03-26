@@ -28,6 +28,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.panel.SimplePanel
@@ -60,7 +61,7 @@ open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
     classes: Set<String> = setOf()
-) : SimplePanel(classes) {
+) : SimplePanel(classes), FormInput {
 
     /**
      * A list of options (label to value pairs) for the select control.
@@ -73,7 +74,7 @@ open class SelectInput(
     /**
      * The name attribute of the generated HTML select element.
      */
-    var name: String? by refreshOnUpdate()
+    override var name: String? by refreshOnUpdate()
     /**
      * Determines if multiple value selection is allowed.
      */
@@ -118,7 +119,7 @@ open class SelectInput(
     /**
      * Determines if the field is disabled.
      */
-    var disabled by refreshOnUpdate(false)
+    override var disabled by refreshOnUpdate(false)
     /**
      * Determines if the select is automatically focused.
      */
@@ -126,7 +127,7 @@ open class SelectInput(
     /**
      * The size of the input.
      */
-    var size: InputSize? by refreshOnUpdate()
+    override var size: InputSize? by refreshOnUpdate()
 
     init {
         setChildrenFromOptions()

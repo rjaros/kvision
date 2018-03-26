@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 
 /**
@@ -37,7 +38,7 @@ import pl.treksoft.kvision.form.InputSize
 abstract class AbstractTextInput(
     value: String? = null,
     classes: Set<String> = setOf()
-) : Widget(classes) {
+) : Widget(classes), FormInput {
 
     init {
         this.setInternalEventListener<AbstractTextInput> {
@@ -65,7 +66,7 @@ abstract class AbstractTextInput(
     /**
      * The name attribute of the generated HTML input element.
      */
-    var name: String? by refreshOnUpdate()
+    override var name: String? by refreshOnUpdate()
     /**
      * Maximal length of the text input value.
      */
@@ -73,7 +74,7 @@ abstract class AbstractTextInput(
     /**
      * Determines if the field is disabled.
      */
-    var disabled by refreshOnUpdate(false)
+    override var disabled by refreshOnUpdate(false)
     /**
      * Determines if the text input is automatically focused.
      */
@@ -85,7 +86,7 @@ abstract class AbstractTextInput(
     /**
      * The size of the input.
      */
-    var size: InputSize? by refreshOnUpdate()
+    override var size: InputSize? by refreshOnUpdate()
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()

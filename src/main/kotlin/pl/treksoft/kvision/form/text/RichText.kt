@@ -28,11 +28,12 @@ import pl.treksoft.kvision.core.Container
  *
  * @constructor
  * @param value text input value
+ * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  */
 open class RichText(
-    value: String? = null,
+    value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false
 ) : AbstractText(label, rich) {
 
@@ -45,7 +46,10 @@ open class RichText(
             input.height = value
         }
 
-    final override val input: RichTextInput = RichTextInput(value).apply { id = idc }
+    final override val input: RichTextInput = RichTextInput(value).apply {
+        this.id = idc
+        this.name = name
+    }
 
     init {
         @Suppress("LeakingThis")
@@ -61,9 +65,13 @@ open class RichText(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.richText(
-            value: String? = null, label: String? = null, rich: Boolean = false, init: (RichText.() -> Unit)? = null
+            value: String? = null,
+            name: String? = null,
+            label: String? = null,
+            rich: Boolean = false,
+            init: (RichText.() -> Unit)? = null
         ): RichText {
-            val richText = RichText(value, label, rich).apply { init?.invoke(this) }
+            val richText = RichText(value, name, label, rich).apply { init?.invoke(this) }
             this.add(richText)
             return richText
         }

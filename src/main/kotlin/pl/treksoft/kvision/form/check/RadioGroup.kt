@@ -24,7 +24,6 @@ package pl.treksoft.kvision.form.check
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.HelpBlock
 import pl.treksoft.kvision.form.InputSize
@@ -41,12 +40,13 @@ import pl.treksoft.kvision.panel.SimplePanel
  * @constructor
  * @param options an optional list of options (label to value pairs) for the group
  * @param value selected option
+ * @param name the name attribute of the generated HTML input element
  * @param inline determines if the options are rendered inline
  * @param label label text of the options group
  * @param rich determines if [label] can contain HTML code
  */
 open class RadioGroup(
-    options: List<StringPair>? = null, value: String? = null, inline: Boolean = false,
+    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(setOf("form-group")), StringFormControl {
@@ -87,16 +87,26 @@ open class RadioGroup(
         set(value) {
             flabel.rich = value
         }
-    override var size: InputSize? = null
+    override var name
+        get() = getNameFromChildren()
+        set(value) {
+            setNameToChildren(value)
+        }
+    override var size
+        get() = getSizeFromChildren()
+        set(value) {
+            setSizeToChildren(value)
+        }
 
     private val idc = "kv_form_radiogroup_" + Select.counter
-    final override val input = Widget()
+    final override val input = CheckInput()
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
     init {
         setChildrenFromOptions()
         setValueToChildren(value)
+        setNameToChildren(name)
         counter++
     }
 
@@ -129,16 +139,34 @@ open class RadioGroup(
         getChildren().filterIsInstance<Radio>().forEach { it.disabled = disabled }
     }
 
+    private fun getNameFromChildren(): String? {
+        return getChildren().filterIsInstance<Radio>().firstOrNull()?.name ?: this.idc
+    }
+
+    private fun setNameToChildren(name: String?) {
+        val tname = name ?: this.idc
+        getChildren().filterIsInstance<Radio>().forEach { it.name = tname }
+    }
+
+    private fun getSizeFromChildren(): InputSize? {
+        return getChildren().filterIsInstance<Radio>().firstOrNull()?.size
+    }
+
+    private fun setSizeToChildren(size: InputSize?) {
+        getChildren().filterIsInstance<Radio>().forEach { it.size = size }
+    }
+
     private fun setChildrenFromOptions() {
+        val currentName = this.name
         super.removeAll()
         this.addInternal(flabel)
         options?.let {
-            val tidc = this.idc
+            val tname = currentName ?: this.idc
             val tinline = this.inline
             val c = it.map {
                 Radio(false, extraValue = it.first, label = it.second).apply {
                     inline = tinline
-                    name = tidc
+                    name = tname
                     eventTarget = this@RadioGroup
                     setEventListener<Radio> {
                         change = {
@@ -169,10 +197,10 @@ open class RadioGroup(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.radioGroup(
-            options: List<StringPair>? = null, value: String? = null, inline: Boolean = false,
+            options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
             label: String? = null, rich: Boolean = false, init: (RadioGroup.() -> Unit)? = null
         ): RadioGroup {
-            val radioGroup = RadioGroup(options, value, inline, label, rich).apply { init?.invoke(this) }
+            val radioGroup = RadioGroup(options, value, name, inline, label, rich).apply { init?.invoke(this) }
             this.add(radioGroup)
             return radioGroup
         }

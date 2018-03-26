@@ -36,12 +36,13 @@ import kotlin.js.Date
  *
  * @constructor
  * @param value date/time input value
+ * @param name the name attribute of the generated HTML input element
  * @param format date/time format (default YYYY-MM-DD HH:mm)
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  */
 open class DateTime(
-    value: Date? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
+    value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(setOf("form-group")), DateFormControl {
 
@@ -68,19 +69,6 @@ open class DateTime(
         get() = input.placeholder
         set(value) {
             input.placeholder = value
-        }
-    /**
-     * The name attribute of the generated HTML input element.
-     */
-    var name
-        get() = input.name
-        set(value) {
-            input.name = value
-        }
-    override var disabled
-        get() = input.disabled
-        set(value) {
-            input.disabled = value
         }
     /**
      * Determines if the date/time input is automatically focused.
@@ -170,14 +158,12 @@ open class DateTime(
         set(value) {
             flabel.rich = value
         }
-    override var size
-        get() = input.size
-        set(value) {
-            input.size = value
-        }
 
     private val idc = "kv_form_time_$counter"
-    final override val input: DateTimeInput = DateTimeInput(value, format).apply { id = idc }
+    final override val input: DateTimeInput = DateTimeInput(value, format).apply {
+        this.id = idc
+        this.name = name
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
@@ -249,10 +235,10 @@ open class DateTime(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.dateTime(
-            value: Date? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
+            value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
             rich: Boolean = false, init: (DateTime.() -> Unit)? = null
         ): DateTime {
-            val dateTime = DateTime(value, format, label, rich).apply { init?.invoke(this) }
+            val dateTime = DateTime(value, name, format, label, rich).apply { init?.invoke(this) }
             this.add(dateTime)
             return dateTime
         }

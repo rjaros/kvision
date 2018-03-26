@@ -32,6 +32,21 @@ enum class InputSize(val className: String) {
     SMALL("input-sm")
 }
 
+interface FormInput : Component {
+    /**
+     * Determines if the field is disabled.
+     */
+    var disabled: Boolean
+    /**
+     * Input control field size.
+     */
+    var size: InputSize?
+    /**
+     * The name attribute of the generated HTML input element.
+     */
+    var name: String?
+}
+
 /**
  * Base interface of a form control.
  */
@@ -40,14 +55,30 @@ interface FormControl : Component {
      * Determines if the field is disabled.
      */
     var disabled: Boolean
+        get() = input.disabled
+        set(value) {
+            input.disabled = value
+        }
     /**
-     * Input control size.
+     * Input control field size.
      */
     var size: InputSize?
+        get() = input.size
+        set(value) {
+            input.size = value
+        }
+    /**
+     * The name attribute of the generated HTML input element.
+     */
+    var name: String?
+        get() = input.name
+        set(value) {
+            input.name = value
+        }
     /**
      * The actual input component.
      */
-    val input: Component
+    val input: FormInput
     /**
      * Form field label.
      */

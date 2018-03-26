@@ -52,6 +52,15 @@ enum class ButtonSize(internal val className: String) {
 }
 
 /**
+ * Button types.
+ */
+enum class ButtonType(internal val buttonType: String) {
+    BUTTON("button"),
+    SUBMIT("submit"),
+    RESET("reset")
+}
+
+/**
  * Button component.
  *
  * @constructor
@@ -62,7 +71,7 @@ enum class ButtonSize(internal val className: String) {
  * @param classes a set of CSS class names
  */
 open class Button(
-    text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT,
+    text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT, type: ButtonType = ButtonType.BUTTON,
     disabled: Boolean = false, classes: Set<String> = setOf()
 ) : Widget(classes) {
 
@@ -78,6 +87,10 @@ open class Button(
      * Button style.
      */
     var style by refreshOnUpdate(style)
+    /**
+     * Button types.
+     */
+    var type by refreshOnUpdate(type)
     /**
      * Determines if button is disabled.
      */
@@ -117,7 +130,7 @@ open class Button(
     }
 
     override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + ("type" to "button")
+        return super.getSnAttrs() + ("type" to type.buttonType)
     }
 
     /**
@@ -139,10 +152,15 @@ open class Button(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.button(
-            text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT,
-            disabled: Boolean = false, classes: Set<String> = setOf(), init: (Button.() -> Unit)? = null
+            text: String,
+            icon: String? = null,
+            style: ButtonStyle = ButtonStyle.DEFAULT,
+            type: ButtonType = ButtonType.BUTTON,
+            disabled: Boolean = false,
+            classes: Set<String> = setOf(),
+            init: (Button.() -> Unit)? = null
         ): Button {
-            val button = Button(text, icon, style, disabled, classes).apply { init?.invoke(this) }
+            val button = Button(text, icon, style, type, disabled, classes).apply { init?.invoke(this) }
             this.add(button)
             return button
         }

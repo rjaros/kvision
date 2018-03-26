@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.utils.obj
 
@@ -71,7 +72,7 @@ open class SpinnerInput(
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE,
     classes: Set<String> = setOf()
-) : Widget(classes + "form-control") {
+) : Widget(classes + "form-control"), FormInput {
 
     init {
         this.addSurroundingCssClass("input-group")
@@ -136,11 +137,11 @@ open class SpinnerInput(
     /**
      * The name attribute of the generated HTML input element.
      */
-    var name: String? by refreshOnUpdate()
+    override var name: String? by refreshOnUpdate()
     /**
      * Determines if the field is disabled.
      */
-    var disabled by refreshOnUpdate(false)
+    override var disabled by refreshOnUpdate(false)
     /**
      * Determines if the spinner is automatically focused.
      */
@@ -152,7 +153,7 @@ open class SpinnerInput(
     /**
      * The size of the input.
      */
-    var size: InputSize? by refreshOnUpdate()
+    override var size: InputSize? by refreshOnUpdate()
 
     private var siblings: JQuery? = null
 
