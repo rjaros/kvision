@@ -35,6 +35,7 @@ enum class TableType(internal val type: String) {
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@Suppress("TooManyFunctions")
 open class Table(
     headerNames: List<String>? = null,
     types: Set<TableType> = setOf(), caption: String? = null, responsive: Boolean = false,

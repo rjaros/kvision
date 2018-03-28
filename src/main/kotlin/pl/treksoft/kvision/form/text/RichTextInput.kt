@@ -62,7 +62,7 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
         return sn
     }
 
-    @Suppress("UnsafeCastFromDynamic")
+    @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
     override fun afterInsert(node: VNode) {
         if (this.disabled || this.readonly == true) {
             this.getElementJQuery()?.removeAttr("contenteditable")

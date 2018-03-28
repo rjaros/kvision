@@ -55,6 +55,7 @@ internal const val WINDOW_CONTENT_MARGIN_BOTTOM = 11
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@Suppress("TooManyFunctions")
 open class Window(
     caption: String? = null,
     contentWidth: CssSize? = CssSize(0, UNIT.auto),

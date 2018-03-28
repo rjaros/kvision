@@ -169,6 +169,7 @@ open class SpinnerInput(
         return cl
     }
 
+    @Suppress("ComplexMethod")
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
         sn.add("type" to "text")

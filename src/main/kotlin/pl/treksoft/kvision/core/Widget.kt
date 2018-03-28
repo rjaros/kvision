@@ -219,6 +219,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
      * Returns list of event handlers in the form of a Snabbdom *On* object.
      * @return list of event handlers
      */
+    @Suppress("ComplexMethod")
     protected open fun getSnOn(): com.github.snabbdom.On? {
         return if (internalListeners.size > 0 || listeners.size > 0) {
             val internalHandlers = on(this)

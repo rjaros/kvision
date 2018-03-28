@@ -45,6 +45,7 @@ import pl.treksoft.kvision.panel.SimplePanel
  * @param label label text of the options group
  * @param rich determines if [label] can contain HTML code
  */
+@Suppress("TooManyFunctions")
 open class RadioGroup(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     label: String? = null,

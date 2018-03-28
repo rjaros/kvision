@@ -97,7 +97,7 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * @param position position in the dock
      * @return current container
      */
-    @Suppress("MagicNumber")
+    @Suppress("MagicNumber", "ComplexMethod")
     open fun add(child: Component, position: Side): DockPanel {
         when (position) {
             Side.UP -> {
@@ -152,6 +152,7 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * @param position position in the dock
      * @return current container
      */
+    @Suppress("ComplexMethod")
     open fun removeAt(position: Side): DockPanel {
         when (position) {
             Side.UP -> {

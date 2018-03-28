@@ -27,6 +27,7 @@ import kotlin.reflect.KProperty
 /**
  * Base class for components supporting CSS styling.
  */
+@Suppress("LargeClass")
 abstract class StyledComponent : Component {
     private val propertyValues: MutableMap<String, Any?> = mutableMapOf()
 

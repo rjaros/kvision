@@ -29,6 +29,7 @@ import pl.treksoft.kvision.panel.Root
 /**
  * Base interface for all components.
  */
+@Suppress("TooManyFunctions")
 interface Component {
     /**
      * Parent of the current component.
