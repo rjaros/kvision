@@ -23,6 +23,9 @@
 
 package pl.treksoft.kvision.utils
 
+import kotlinx.coroutines.experimental.suspendCancellableCoroutine
+import org.w3c.files.File
+import org.w3c.files.FileReader
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.UNIT
@@ -96,7 +99,7 @@ val Int.mm: CssSize
 /**
  * Extension property to convert Int to CSS in units.
  */
-@Suppress("FunctionNaming")
+@Suppress("TopLevelPropertyNaming")
 val Int.`in`: CssSize
     get() {
         return Pair(this, UNIT.`in`)
@@ -204,3 +207,20 @@ fun Date.toStringF(format: String = "YYYY-MM-DD HH:mm:ss"): String {
  * @return true if the current browser is IE11
  */
 fun isIE11(): Boolean = window.navigator.userAgent.matches("Trident\\/7\\.")
+
+/**
+ * Suspending extension function to get file content.
+ * @return file content
+ */
+@Suppress("EXPERIMENTAL_FEATURE_WARNING")
+suspend fun File.getContent() = suspendCancellableCoroutine<String> { cont ->
+    val reader = FileReader()
+    reader.onload = {
+        @Suppress("UnsafeCastFromDynamic")
+        cont.resume(reader.result)
+    }
+    reader.onerror = { e ->
+        cont.resumeWithException(Exception(e.type))
+    }
+    reader.readAsDataURL(this@getContent)
+}

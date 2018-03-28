@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form
 
+import org.w3c.files.File
 import pl.treksoft.kvision.core.Component
 import kotlin.js.Date
 
@@ -201,4 +202,21 @@ interface DateFormControl : FormControl {
     }
 
     override fun getValueAsString(): String? = value?.toString()
+}
+
+/**
+ * Base interface of a form control with a list of files value.
+ */
+interface FilesFormControl : FormControl {
+    /**
+     * List of files value.
+     */
+    var value: List<File>?
+
+    override fun getValue(): List<File>? = value
+    override fun setValue(v: Any?) {
+        if (v == null) value = null
+    }
+
+    override fun getValueAsString(): String? = value?.joinToString { it.name }
 }

@@ -2,16 +2,16 @@ buildscript {
     ext.kotlin_version = '1.2.31'
     ext.coroutines_version = '0.22.5'
     ext.dokka_version = '0.9.16'
-    ext.frontend_plugin_version = '0.0.30'
+    ext.frontend_plugin_version = '0.0.29'
     ext.detekt_version = '1.0.0.RC6-4'
     ext.production = (findProperty('prod') ?: 'false') == 'true'
     ext.npmdeps = new File("npm.dependencies").getText()
 
     repositories {
         jcenter()
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-        maven { url "https://plugins.gradle.org/m2/" }
-        maven { url 'https://bintray.com/kotlin/kotlin-eap/dokka' }
+        maven { url = 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven { url = "https://plugins.gradle.org/m2/" }
+        maven { url = 'https://bintray.com/kotlin/kotlin-eap/dokka' }
     }
 
     dependencies {
@@ -70,6 +70,7 @@ kotlinFrontend {
         dependency("uglifyjs-webpack-plugin")
         dependency("file-loader")
         dependency("url-loader")
+        dependency("expose-loader")
         dependency("jquery", "3.2.1")
         dependency("fecha", "2.3.2")
         dependency("snabbdom", "0.7.1")

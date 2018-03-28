@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form
 
+import org.w3c.files.File
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KProperty1
@@ -42,6 +43,7 @@ internal data class FieldParams<in F : FormControl>(
  * @param panel optional instance of [FormPanel]
  * @param modelFactory function transforming a Map<String, Any?> to a data model of class K
  */
+@Suppress("TooManyFunctions")
 class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory: (Map<String, Any?>) -> K) {
 
     internal val fields: MutableMap<String, FormControl> = mutableMapOf()
@@ -121,6 +123,23 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
      */
     fun <C : DateFormControl> add(
         key: KProperty1<K, Date?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): Form<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a files control to the form.
+     * @param key key identifier of the control
+     * @param control the files form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form
+     */
+    fun <C : FilesFormControl> add(
+        key: KProperty1<K, List<File>?>, control: C, required: Boolean = false,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {

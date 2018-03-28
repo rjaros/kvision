@@ -44,7 +44,7 @@ external fun require(name: String): dynamic
 /**
  * Internal singleton object which initializes and configures KVision framework.
  */
-@Suppress("EmptyCatchBlock")
+@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManager {
     internal const val AJAX_REQUEST_DELAY = 300
     internal const val KVNULL = "#kvnull"
@@ -116,6 +116,22 @@ internal object KVManager {
     }
     private val elementResizeEvent = try {
         require("element-resize-event")
+    } catch (e: Throwable) {
+    }
+    private val bootstrapFileinputCss = try {
+        require("bootstrap-fileinput/css/fileinput.min.css")
+    } catch (e: Throwable) {
+    }
+    private val bootstrapFileinputCssFa = try {
+        require("bootstrap-fileinput/themes/explorer-fa/theme.min.css")
+    } catch (e: Throwable) {
+    }
+    private val bootstrapFileinput = try {
+        require("bootstrap-fileinput")
+    } catch (e: Throwable) {
+    }
+    private val bootstrapFileinputFa = try {
+        require("bootstrap-fileinput/themes/explorer-fa/theme.min.js")
     } catch (e: Throwable) {
     }
 

@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form
 
 import com.github.snabbdom.VNode
+import org.w3c.files.File
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
@@ -81,6 +82,7 @@ enum class FormTarget(internal val target: String) {
  * @param classes set of CSS class names
  * @param modelFactory function transforming a Map<String, Any?> to a data model of class K
  */
+@Suppress("TooManyFunctions")
 open class FormPanel<K>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, classes: Set<String> = setOf(),
@@ -281,6 +283,23 @@ open class FormPanel<K>(
      */
     open fun <C : DateFormControl> add(
         key: KProperty1<K, Date?>, control: C, required: Boolean = false,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): FormPanel<K> {
+        return addInternal(key, control, required, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a files control to the form panel.
+     * @param key key identifier of the control
+     * @param control the files form control
+     * @param required determines if the control is required
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form panel
+     */
+    open fun <C : FilesFormControl> add(
+        key: KProperty1<K, List<File>?>, control: C, required: Boolean = false,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
