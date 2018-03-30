@@ -95,6 +95,11 @@ interface BtOn : On {
     var onMinBsSpinner: ((KvEvent) -> kotlin.Unit)?
     var onMaxBsSpinner: ((KvEvent) -> kotlin.Unit)?
     var updateModel: ((KvEvent) -> kotlin.Unit)?
+    var fileSelectUpload: ((KvEvent) -> kotlin.Unit)?
+    var fileClearUpload: ((KvEvent) -> kotlin.Unit)?
+    var fileResetUpload: ((KvEvent) -> kotlin.Unit)?
+    var fileBrowseUpload: ((KvEvent) -> kotlin.Unit)?
+    var filePreUpload: ((KvEvent) -> kotlin.Unit)?
 }
 
 /**

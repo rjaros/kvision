@@ -144,8 +144,27 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
         return if (v.isNotEmpty()) v else null
     }
 
+    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.fileinput(getSettingsObj())
+        this.getElementJQuery()?.on("fileselect", { e, _ ->
+            this.dispatchEvent("fileSelectUpload", obj { detail = e })
+        })
+        this.getElementJQuery()?.on("fileclear", { e, _ ->
+            this.dispatchEvent("fileClearUpload", obj { detail = e })
+        })
+        this.getElementJQuery()?.on("filereset", { e, _ ->
+            this.dispatchEvent("fileResetUpload", obj { detail = e })
+        })
+        this.getElementJQuery()?.on("filebrowse", { e, _ ->
+            this.dispatchEvent("fileBrowseUpload", obj { detail = e })
+        })
+        this.getElementJQueryD()?.on("filepreupload", lambda@{ _, data, previewId, index ->
+            data["previewId"] = previewId
+            data["index"] = index
+            this.dispatchEvent("filePreUpload", obj { detail = data })
+            return@lambda null
+        })
     }
 
     override fun afterDestroy() {
