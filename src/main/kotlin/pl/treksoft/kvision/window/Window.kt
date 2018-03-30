@@ -94,6 +94,14 @@ open class Window(
             content.height = value
         }
     /**
+     * Window content height.
+     */
+    var contentOverflow
+        get() = content.overflow
+        set(value) {
+            content.overflow = value
+        }
+    /**
      * Determines if the window is resizable.
      */
     var isResizable by refreshOnUpdate(isResizable, { checkIsResizable() })
