@@ -134,10 +134,15 @@ internal object KVManager {
         require("bootstrap-fileinput/themes/explorer-fa/theme.min.js")
     } catch (e: Throwable) {
     }
-
-    private val resizable = require("jquery-resizable-dom")
+    private val resizable = try {
+        require("jquery-resizable-dom")
+    } catch (e: Throwable) {
+    }
+    private val handlebars = try {
+        require("handlebars/dist/handlebars.runtime.min.js")
+    } catch (e: Throwable) {
+    }
     internal val fecha = require("fecha")
-    private val handlebars = require("handlebars/dist/handlebars.runtime.min.js")
     private val sdPatch = Snabbdom.init(
         arrayOf(
             classModule, attributesModule, propsModule, styleModule,

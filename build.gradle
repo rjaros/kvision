@@ -76,9 +76,6 @@ kotlinFrontend {
         dependency("snabbdom", "0.7.1")
         dependency("snabbdom-virtualize", "0.7.0")
         dependency("navigo", "7.0.0")
-        dependency("jquery-resizable-dom", "0.28.0")
-        dependency("handlebars", "4.0.11")
-        dependency("handlebars-loader")
         npmdeps.eachLine { line ->
             def (name, version) = line.tokenize(" ")
             dependency(name, version)
