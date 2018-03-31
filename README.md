@@ -23,7 +23,8 @@ This design is quite similar to many non-web UI programming libraries including 
 - Utilizes [Snabbdom](https://github.com/snabbdom/snabbdom) fast virtual DOM implementation.
 - Integrates with libraries and components from [Font awesome](https://fontawesome.com/), [Bootstrap Select](https://github.com/silviomoreto/bootstrap-select) (with [AJAX](https://github.com/truckingsim/Ajax-Bootstrap-Select) extension),
 [Awesome Bootstrap Checkbox](https://github.com/flatlogic/awesome-bootstrap-checkbox), [Trix editor](https://trix-editor.org/), [Bootstrap Datetime picker](https://github.com/AuspeXeu/bootstrap-datetimepicker), 
-[Bootstrap touchspin](https://github.com/istvan-ujjmeszaros/bootstrap-touchspin) and [Navigo](https://github.com/krasimir/navigo).
+[Bootstrap touchspin](https://github.com/istvan-ujjmeszaros/bootstrap-touchspin), [Bootstrap File Input](http://plugins.krajee.com/file-input),
+ [Handlebars](http://handlebarsjs.com/) and [Navigo](https://github.com/krasimir/navigo).
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
 - Data binding support for [observable](https://github.com/rjaros/kotlin-observable-js) data model.
@@ -85,7 +86,7 @@ Application package will be saved as build/distributions/showcase.zip.
         val button = Button("Click me")
         button.onClick {
             count++
-            label.text = "You clicked the button $count times."
+            label.content = "You clicked the button $count times."
         }
         panel.add(button)
         root.add(panel)
@@ -97,7 +98,7 @@ Application package will be saved as build/distributions/showcase.zip.
                 val label = Label("Not yet clicked.").also { add(it) }
                 var count = 0
                 add(Button("Click me").onClick {
-                    label.text = "You clicked the button ${++count} times."
+                    label.content = "You clicked the button ${++count} times."
                 })
             }
         )
@@ -110,7 +111,7 @@ Application package will be saved as build/distributions/showcase.zip.
                 var count = 0
                 button("Click me") {
                     onClick {
-                        label.text = "You clicked the button ${++count} times."
+                        label.content = "You clicked the button ${++count} times."
                     }
                 }
             }
