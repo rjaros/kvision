@@ -8,7 +8,8 @@
 <a href="../index.html">kvision</a>&nbsp;/&nbsp;<a href="./index.html">pl.treksoft.kvision.html</a><br/>
 <br/>
 <h2>Package pl.treksoft.kvision.html</h2>
-<p>Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links and lists.</p>
+<p>Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links, lists and iframe. 
+Support for Handlebars.js templates is included.</p>
 <h3>Types</h3>
 <table>
 <tbody>
@@ -50,6 +51,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="-button-type/index.html">ButtonType</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">ButtonType</span></code>
+<p>Button types.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="-div/index.html">Div</a></p>
 </td>
 <td>
@@ -64,6 +74,15 @@
 <td>
 <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Icon</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag/index.html"><span class="identifier">Tag</span></a></code>
 <p>Icon component with support for FontAwesome and Bootstrap glyphicons.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-iframe/index.html">Iframe</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Iframe</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Iframe component.</p>
 </td>
 </tr>
 <tr>
@@ -122,6 +141,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="-sandbox/index.html">Sandbox</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Sandbox</span></code>
+<p>Iframe sandbox options.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="-t-a-g/index.html">TAG</a></p>
 </td>
 <td>
@@ -134,9 +162,16 @@
 <p><a href="-tag/index.html">Tag</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Tag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Tag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="-template/index.html"><span class="identifier">Template</span></a></code>
 <p>HTML tag component.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="-template/index.html">Template</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Template</span></code></td>
 </tr>
 </tbody>
 </table>

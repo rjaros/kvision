@@ -32,7 +32,7 @@
 <p><a href="../-form-control/disabled.html">disabled</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">disabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">disabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
 <p>Determines if the field is disabled.</p>
 </td>
 </tr>
@@ -50,8 +50,17 @@
 <p><a href="../-form-control/input.html">input</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">input</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a></code>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">input</span><span class="symbol">: </span><a href="../-form-input/index.html"><span class="identifier">FormInput</span></a></code>
 <p>The actual input component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-form-control/name.html">name</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The name attribute of the generated HTML input element.</p>
 </td>
 </tr>
 <tr>
@@ -59,8 +68,8 @@
 <p><a href="../-form-control/size.html">size</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../-input-size/index.html"><span class="identifier">InputSize</span></a><span class="symbol">?</span></code>
-<p>Input control size.</p>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../-input-size/index.html"><span class="identifier">InputSize</span></a><span class="symbol">?</span></code>
+<p>Input control field size.</p>
 </td>
 </tr>
 <tr>
