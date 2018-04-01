@@ -4,8 +4,8 @@ KVision - object oriented Web UI framework for Kotlin/JS.
 
 # Package pl.treksoft.kvision.core
 
-KVision core classes. This includes base interfaces for all components, basic CSS enums (for colors, borders
-and backgrounds) and the main Widget class.
+KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders, 
+backgrounds, fonts, text and position) and the main Widget class.
 
 # Package pl.treksoft.kvision.data
 
@@ -13,7 +13,7 @@ Base component and container class with data binding support for observable data
 
 # Package pl.treksoft.kvision.dropdown
 
-Bootstrap dropdown component.
+Bootstrap dropdown component with support for navigation bars and context menus.
 
 # Package pl.treksoft.kvision.form
 
@@ -40,13 +40,18 @@ Text input components, with password, text area and rich text area support.
 
 Full-featured date and time input components.
 
+# Package pl.treksoft.kvision.form.upload
+
+Full-featured file upload component with drag & drop, preview and AJAX upload mode.
+
 # Package pl.treksoft.kvision.hmr
 
 Helper interfaces and classes necessary to develop applications supporting Hot Module Replacement (HMR).
 
 # Package pl.treksoft.kvision.html
 
-Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links and lists.
+Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links, lists and iframe. 
+Support for Handlebars.js templates is included.
 
 # Package pl.treksoft.kvision.modal
 
@@ -61,6 +66,10 @@ Bootstrap navbar components.
 Rich set of container classes, supporting both simple use cases and sophisticated layouts (including CSS flexbox,
 CSS grid and Bootstrap responsive 12 columns gid).
 
+# Package pl.treksoft.kvision.progress
+
+Bootstrap progress bar component.
+
 # Package pl.treksoft.kvision.routing
 
 Simple and easy to use JavaScript router wrapper.
@@ -68,6 +77,10 @@ Simple and easy to use JavaScript router wrapper.
 # Package pl.treksoft.kvision.table
 
 Clasess supporting HTML tables.
+
+# Package pl.treksoft.kvision.toolbar
+
+Toolbar and button group components.
 
 # Package pl.treksoft.kvision.utils
 
