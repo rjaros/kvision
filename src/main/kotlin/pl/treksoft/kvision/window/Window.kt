@@ -38,7 +38,7 @@ import pl.treksoft.kvision.modal.CloseIcon
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.px
 
-internal const val DEFAULT_Z_INDEX = 1000
+internal const val DEFAULT_Z_INDEX = 900
 internal const val WINDOW_HEADER_HEIGHT = 40
 internal const val WINDOW_CONTENT_MARGIN_BOTTOM = 11
 
@@ -238,8 +238,10 @@ open class Window(
                 if (eid == id) {
                     val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0) + 2
                     val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
+                    isResizable = false
                     width = intWidth.px
                     height = intHeight.px
+                    isResizable = true
                     content.width = (intWidth - 2).px
                     content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 1 - 2).px
                 }
