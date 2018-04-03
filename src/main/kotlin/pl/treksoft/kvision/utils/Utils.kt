@@ -213,7 +213,7 @@ fun isIE11(): Boolean = window.navigator.userAgent.matches("Trident\\/7\\.")
  * @return file content
  */
 @Suppress("EXPERIMENTAL_FEATURE_WARNING")
-suspend fun File.getContent(): String = suspendCancellableCoroutine<String> { cont ->
+suspend fun File.getContent(): String = suspendCancellableCoroutine { cont ->
     val reader = FileReader()
     reader.onload = {
         @Suppress("UnsafeCastFromDynamic")
