@@ -37,7 +37,7 @@ apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: 'org.jetbrains.dokka'
 
 group = 'pl.treksoft'
-version = '0.0.11'
+version = '0.0.12'
 
 repositories {
     jcenter()
