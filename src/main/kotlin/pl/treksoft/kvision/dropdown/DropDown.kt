@@ -58,12 +58,13 @@ enum class DD(val option: String) {
  * @param style the style of the dropdown button
  * @param disabled determines if the component is disabled on start
  * @param forNavbar determines if the component will be used in a navbar
+ * @param withCaret determines if the dropdown button renders caret
  * @param classes a set of CSS class names
  */
 open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false, val forNavbar: Boolean = false,
-    classes: Set<String> = setOf()
+    withCaret: Boolean = true, classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
     /**
      * Label of the dropdown button.
@@ -139,7 +140,7 @@ open class DropDown(
     private val idc = "kv_dropdown_$counter"
     internal val button: DropDownButton = DropDownButton(
         idc, text, icon, style,
-        disabled, forNavbar, setOf("dropdown")
+        disabled, forNavbar, withCaret, setOf("dropdown")
     )
     internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
@@ -244,10 +245,19 @@ open class DropDown(
         fun Container.dropDown(
             text: String, elements: List<StringPair>? = null, icon: String? = null,
             style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false, forNavbar: Boolean = false,
-            classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
+            withCaret: Boolean = true, classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
         ): DropDown {
             val dropDown =
-                DropDown(text, elements, icon, style, disabled, forNavbar, classes).apply { init?.invoke(this) }
+                DropDown(
+                    text,
+                    elements,
+                    icon,
+                    style,
+                    disabled,
+                    forNavbar,
+                    withCaret,
+                    classes
+                ).apply { init?.invoke(this) }
             this.add(dropDown)
             return dropDown
         }
@@ -255,8 +265,14 @@ open class DropDown(
 }
 
 internal class DropDownButton(
-    id: String, text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT,
-    disabled: Boolean = false, val forNavbar: Boolean = false, classes: Set<String> = setOf()
+    id: String,
+    text: String,
+    icon: String? = null,
+    style: ButtonStyle = ButtonStyle.DEFAULT,
+    disabled: Boolean = false,
+    val forNavbar: Boolean = false,
+    val withCaret: Boolean = true,
+    classes: Set<String> = setOf()
 ) :
     Button(text, icon, style, ButtonType.BUTTON, disabled, classes) {
 
@@ -273,10 +289,14 @@ internal class DropDownButton(
     override fun render(): VNode {
         val text = createLabelWithIcon(text, icon, image)
         return if (forNavbar) {
-            val textWithCarret = text.toMutableList()
-            textWithCarret.add(" ")
-            textWithCarret.add(KVManager.virtualize("<span class='caret'></span>"))
-            render("a", textWithCarret.toTypedArray())
+            if (withCaret) {
+                val textWithCarret = text.toMutableList()
+                textWithCarret.add(" ")
+                textWithCarret.add(KVManager.virtualize("<span class='caret'></span>"))
+                render("a", textWithCarret.toTypedArray())
+            } else {
+                render("a", text)
+            }
         } else {
             render("button", text)
         }
