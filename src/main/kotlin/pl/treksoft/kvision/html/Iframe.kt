@@ -4,6 +4,7 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import org.w3c.dom.Window
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
@@ -64,9 +65,9 @@ open class Iframe(
      * A current location URL of the iframe.
      */
     var location: String?
-        get() = getLocation()
+        get() = getLocationHref()
         set(value) {
-            setLocation(value)
+            setLocationHref(value)
         }
 
     override fun render(): VNode {
@@ -97,12 +98,21 @@ open class Iframe(
     }
 
     @Suppress("UnsafeCastFromDynamic")
-    private fun getLocation(): String? {
+    private fun getLocationHref(): String? {
         return getElementJQueryD()[0].contentWindow.location.href
     }
 
-    private fun setLocation(location: String?) {
+    private fun setLocationHref(location: String?) {
         getElementJQueryD()[0].contentWindow.location.href = location ?: "about:blank"
+    }
+
+    /**
+     * Returns content window object of the iframe.
+     * @return content window object
+     */
+    @Suppress("UnsafeCastFromDynamic")
+    open fun getIframeWindow(): Window {
+        return getElementJQueryD()[0].contentWindow
     }
 
     companion object {
