@@ -33,7 +33,7 @@ enum class NavbarType(internal val navbarType: String) {
  * @param init an initializer extension function
  */
 open class Navbar(
-    label: String = "",
+    label: String? = null,
     type: NavbarType? = null,
     inverted: Boolean = false,
     classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
@@ -43,9 +43,14 @@ open class Navbar(
      * The navbar header label.
      */
     var label
-        get() = brandLink.label
+        get() = if (brandLink.visible) brandLink.label else null
         set(value) {
-            brandLink.label = value
+            if (value != null) {
+                brandLink.label = value
+                brandLink.show()
+            } else {
+                brandLink.hide()
+            }
         }
 
     /**
@@ -59,7 +64,7 @@ open class Navbar(
 
     private val idc = "kv_navbar_$counter"
 
-    private val brandLink = Link(label, "#", classes = setOf("navbar-brand"))
+    private val brandLink = Link(label ?: "", "#", classes = setOf("navbar-brand"))
     internal val container = SimplePanel(setOf("collapse", "navbar-collapse")) {
         id = idc
     }
@@ -73,6 +78,7 @@ open class Navbar(
             add(container)
         }
         addInternal(c)
+        if (label == null) brandLink.hide()
         counter++
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -128,15 +134,15 @@ open class Navbar(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun Container.navbarPanel(
-            text: String = "",
+        fun Container.navbar(
+            label: String? = null,
             type: NavbarType? = null,
             inverted: Boolean = false,
             classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
         ): Navbar {
-            val navbarPanel = Navbar(text, type, inverted, classes, init)
-            this.add(navbarPanel)
-            return navbarPanel
+            val navbar = Navbar(label, type, inverted, classes, init)
+            this.add(navbar)
+            return navbar
         }
     }
 }
