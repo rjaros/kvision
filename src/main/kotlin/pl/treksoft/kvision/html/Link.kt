@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringPair
@@ -70,6 +71,18 @@ open class Link(
             pr.add("href" to it)
         }
         return pr
+    }
+
+    /**
+     * A convenient helper for easy setting onClick event handler.
+     */
+    open fun onClick(handler: Link.(MouseEvent) -> Unit): Link {
+        this.setEventListener<Link> {
+            click = { e ->
+                self.handler(e)
+            }
+        }
+        return this
     }
 
     companion object {
