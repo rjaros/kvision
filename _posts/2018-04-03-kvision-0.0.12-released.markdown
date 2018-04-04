@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "KVision 0.0.12 released"
+author: Robert Jaros
+date:   2018-04-03 18:22:00 +0100
+categories: kvision kotlin
+---
+
+I've just released KVision 0.0.12.
+
+Changelog:
+- some fixes in navigation bar component
+- added support for dropdowns without caret icon
+- some other minor fixes and enhancements
+
+There is also a new example - a very simple desktop application with three mini apps - a calculator, 
+a text editor and a web browser. You can find the 
+[sources](https://github.com/rjaros/kvision-examples/tree/master/desktop) on GitHub and live demo
+is available [here](https://rjaros.github.io/kvision-examples/desktop/). 
