@@ -21,15 +21,30 @@
  */
 package test.pl.treksoft.kvision.form
 
+import kotlinx.serialization.Serializable
 import pl.treksoft.kvision.form.Form
 import pl.treksoft.kvision.form.text.Text
 import pl.treksoft.kvision.form.time.DateTime
+import pl.treksoft.kvision.types.KDate
 import test.pl.treksoft.kvision.SimpleSpec
-import kotlin.js.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
+
+@Serializable
+data class DataForm(
+    val a: String? = null,
+    val b: Boolean? = null,
+    val c: KDate? = null
+)
+
+@Serializable
+data class DataForm2(
+    val s: String? = null,
+    val d: KDate? = null
+)
+
 
 @Suppress("CanBeParameter")
 class FormSpec : SimpleSpec {
@@ -37,16 +52,8 @@ class FormSpec : SimpleSpec {
     @Test
     fun add() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val form = Form {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val form = Form.create<DataForm>()
+            val data = DataForm(a = "Test value")
             form.setData(data)
             val result = form.getData()
             assertNull(result.a, "Form should return null without adding any control")
@@ -61,16 +68,8 @@ class FormSpec : SimpleSpec {
     @Test
     fun remove() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val form = Form {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val form = Form.create<DataForm>()
+            val data = DataForm(a = "Test value")
             form.add(DataForm::a, Text())
             form.setData(data)
             form.remove(DataForm::a)
@@ -82,16 +81,8 @@ class FormSpec : SimpleSpec {
     @Test
     fun removeAll() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val form = Form {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val form = Form.create<DataForm>()
+            val data = DataForm(a = "Test value")
             form.add(DataForm::a, Text())
             form.setData(data)
             form.removeAll()
@@ -103,15 +94,7 @@ class FormSpec : SimpleSpec {
     @Test
     fun getControl() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val form = Form {
-                DataForm(it)
-            }
+            val form = Form.create<DataForm>()
             form.add(DataForm::a, Text())
             val control = form.getControl(DataForm::b)
             assertNull(control, "Should return null when there is no such control")
@@ -123,16 +106,8 @@ class FormSpec : SimpleSpec {
     @Test
     fun get() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val form = Form {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val form = Form.create<DataForm>()
+            val data = DataForm(a = "Test value")
             form.add(DataForm::a, Text())
             val b = form[DataForm::b]
             assertNull(b, "Should return null value when there is no added control")
@@ -147,16 +122,8 @@ class FormSpec : SimpleSpec {
     @Test
     fun getData() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val form = Form {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val form = Form.create<DataForm>()
+            val data = DataForm(a = "Test value")
             val textField = Text()
             form.add(DataForm::a, textField)
             form.setData(data)
@@ -169,25 +136,18 @@ class FormSpec : SimpleSpec {
     @Test
     fun validate() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val s: String? by map
-                val d: Date? by map
-            }
-
-            val form = Form {
-                DataForm(it)
-            }
-            form.add(DataForm::s, Text()) {
+            val form = Form.create<DataForm2>()
+            form.add(DataForm2::s, Text()) {
                 it.getValue()?.length ?: 0 > 4
             }
-            form.add(DataForm::d, DateTime(), required = true)
-            form.setData(DataForm(mapOf("s" to "123")))
+            form.add(DataForm2::d, DateTime(), required = true)
+            form.setData(DataForm2(s = "123"))
             val valid = form.validate()
             assertEquals(false, valid, "Should be invalid with initial data")
-            form.setData(DataForm(mapOf("s" to "12345")))
+            form.setData(DataForm2(s = "12345"))
             val valid2 = form.validate()
             assertEquals(false, valid2, "Should be invalid with partially changed data")
-            form.setData(DataForm(mapOf("s" to "12345", "d" to Date())))
+            form.setData(DataForm2(s = "12345", d = KDate()))
             val valid3 = form.validate()
             assertEquals(true, valid3, "Should be valid")
         }

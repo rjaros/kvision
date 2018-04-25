@@ -19,35 +19,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.form.time
+package pl.treksoft.kvision.types
 
-import pl.treksoft.kvision.form.time.DateTimeInput
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.types.KDate
-import pl.treksoft.kvision.types.toStringF
-import test.pl.treksoft.kvision.DomSpec
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import pl.treksoft.kvision.utils.toDateF
+import pl.treksoft.kvision.utils.toStringF
+import kotlin.js.Date
 
-class DateTimeInputSpec : DomSpec {
+@Suppress("MayBeConstant", "TopLevelPropertyNaming")
+actual val KDATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
-    @Test
-    fun render() {
-        run {
-            val root = Root("test", true)
-            val data = KDate()
-            val dti = DateTimeInput(value = data).apply {
-                placeholder = "place"
-                id = "idti"
-            }
-            root.add(dti)
-            val value = dti.getElementJQuery()?.`val`()
-            assertEquals(
-                data.toStringF(dti.format),
-                value,
-                "Should render date time input with correctly formatted value"
-            )
-        }
-    }
+internal actual fun nowDate(): KDate =
+    KDate(Date().getTime().toLong())
 
-}
+internal actual fun String.toKDateF(format: String): KDate =
+    KDate(this.toDateF(format).getTime().toLong())
+
+internal actual fun KDate.toStringF(format: String) = this.toJS().toStringF(format)
+
+fun KDate.toJS(): kotlin.js.Date = kotlin.js.Date(this.time)

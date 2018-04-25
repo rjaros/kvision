@@ -24,12 +24,12 @@ package pl.treksoft.kvision.form.time
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.form.DateFormControl
 import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.HelpBlock
+import pl.treksoft.kvision.form.KDateFormControl
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.types.KDate
 import pl.treksoft.kvision.utils.SnOn
-import kotlin.js.Date
 
 /**
  * Form field date/time chooser component.
@@ -42,9 +42,9 @@ import kotlin.js.Date
  * @param rich determines if [label] can contain HTML code
  */
 open class DateTime(
-    value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
+    value: KDate? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false
-) : SimplePanel(setOf("form-group")), DateFormControl {
+) : SimplePanel(setOf("form-group")), KDateFormControl {
 
     /**
      * Date/time input value.
@@ -235,7 +235,7 @@ open class DateTime(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.dateTime(
-            value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
+            value: KDate? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
             rich: Boolean = false, init: (DateTime.() -> Unit)? = null
         ): DateTime {
             val dateTime = DateTime(value, name, format, label, rich).apply { init?.invoke(this) }

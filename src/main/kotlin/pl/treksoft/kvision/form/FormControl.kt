@@ -21,9 +21,9 @@
  */
 package pl.treksoft.kvision.form
 
-import org.w3c.files.File
 import pl.treksoft.kvision.core.Component
-import kotlin.js.Date
+import pl.treksoft.kvision.types.KDate
+import pl.treksoft.kvision.types.KFile
 
 /**
  * Input controls sizes.
@@ -190,15 +190,15 @@ interface BoolFormControl : FormControl {
 /**
  * Base interface of a form control with a date value.
  */
-interface DateFormControl : FormControl {
+interface KDateFormControl : FormControl {
     /**
      * Date value.
      */
-    var value: Date?
+    var value: KDate?
 
-    override fun getValue(): Date? = value
+    override fun getValue(): KDate? = value
     override fun setValue(v: Any?) {
-        value = v as? Date
+        value = v as? KDate
     }
 
     override fun getValueAsString(): String? = value?.toString()
@@ -207,13 +207,13 @@ interface DateFormControl : FormControl {
 /**
  * Base interface of a form control with a list of files value.
  */
-interface FilesFormControl : FormControl {
+interface KFilesFormControl : FormControl {
     /**
      * List of files value.
      */
-    var value: List<File>?
+    var value: List<KFile>?
 
-    override fun getValue(): List<File>? = value
+    override fun getValue(): List<KFile>? = value
     override fun setValue(v: Any?) {
         if (v == null) value = null
     }

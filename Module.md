@@ -70,6 +70,10 @@ CSS grid and Bootstrap responsive 12 columns gid).
 
 Bootstrap progress bar component.
 
+# Package pl.treksoft.kvision.remote
+
+A set of components for creating multiplatform automatic connectivity with backend servers.
+
 # Package pl.treksoft.kvision.routing
 
 Simple and easy to use JavaScript router wrapper.
@@ -81,6 +85,10 @@ Clasess supporting HTML tables.
 # Package pl.treksoft.kvision.toolbar
 
 Toolbar and button group components.
+
+# Package pl.treksoft.kvision.types
+
+Multiplatform type definitions.
 
 # Package pl.treksoft.kvision.utils
 

@@ -3,13 +3,15 @@
  */
 package pl.treksoft.kvision.form.upload
 
+import org.w3c.files.File
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
-import pl.treksoft.kvision.form.FilesFormControl
 import pl.treksoft.kvision.form.HelpBlock
+import pl.treksoft.kvision.form.KFilesFormControl
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -25,7 +27,7 @@ import pl.treksoft.kvision.utils.SnOn
 open class Upload(
     uploadUrl: String? = null, multiple: Boolean = false, label: String? = null,
     rich: Boolean = false
-) : SimplePanel(setOf("form-group")), FilesFormControl {
+) : SimplePanel(setOf("form-group")), KFilesFormControl {
 
     /**
      * File input value.
@@ -225,6 +227,15 @@ open class Upload(
 
     override fun getValueAsString(): String? {
         return input.getValueAsString()
+    }
+
+    /**
+     * Returns the native JavaScript File object.
+     * @param kFile KFile object
+     * @return File object
+     */
+    fun getNativeFile(kFile: KFile): File? {
+        return input.getNativeFile(kFile)
     }
 
     /**

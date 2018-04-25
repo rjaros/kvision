@@ -24,8 +24,8 @@ package test.pl.treksoft.kvision.form
 import pl.treksoft.kvision.form.FormPanel
 import pl.treksoft.kvision.form.text.Text
 import pl.treksoft.kvision.form.time.DateTime
+import pl.treksoft.kvision.types.KDate
 import test.pl.treksoft.kvision.SimpleSpec
-import kotlin.js.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -37,16 +37,8 @@ class FormPanelSpec : SimpleSpec {
     @Test
     fun add() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val formPanel = FormPanel {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val formPanel = FormPanel.create<DataForm>()
+            val data = DataForm(a = "Test value")
             formPanel.setData(data)
             val result = formPanel.getData()
             assertNull(result.a, "FormPanel should return null without adding any control")
@@ -61,16 +53,8 @@ class FormPanelSpec : SimpleSpec {
     @Test
     fun remove() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val formPanel = FormPanel {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val formPanel = FormPanel.create<DataForm>()
+            val data = DataForm(a = "Test value")
             formPanel.add(DataForm::a, Text())
             formPanel.setData(data)
             formPanel.remove(DataForm::a)
@@ -82,16 +66,8 @@ class FormPanelSpec : SimpleSpec {
     @Test
     fun removeAll() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val formPanel = FormPanel {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val formPanel = FormPanel.create<DataForm>()
+            val data = DataForm(a = "Test value")
             formPanel.add(DataForm::a, Text())
             formPanel.setData(data)
             formPanel.removeAll()
@@ -103,15 +79,7 @@ class FormPanelSpec : SimpleSpec {
     @Test
     fun getControl() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val formPanel = FormPanel {
-                DataForm(it)
-            }
+            val formPanel = FormPanel.create<DataForm>()
             formPanel.add(DataForm::a, Text())
             val control = formPanel.getControl(DataForm::b)
             assertNull(control, "Should return null when there is no such control")
@@ -123,16 +91,8 @@ class FormPanelSpec : SimpleSpec {
     @Test
     fun get() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val formPanel = FormPanel {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val formPanel = FormPanel.create<DataForm>()
+            val data = DataForm(a = "Test value")
             formPanel.add(DataForm::a, Text())
             val b = formPanel[DataForm::b]
             assertNull(b, "Should return null value when there is no added control")
@@ -147,16 +107,8 @@ class FormPanelSpec : SimpleSpec {
     @Test
     fun getData() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val a: String? by map
-                val b: Boolean? by map
-                val c: Date? by map
-            }
-
-            val formPanel = FormPanel {
-                DataForm(it)
-            }
-            val data = DataForm(mapOf("a" to "Test value"))
+            val formPanel = FormPanel.create<DataForm>()
+            val data = DataForm(a = "Test value")
             val textField = Text()
             formPanel.add(DataForm::a, textField)
             formPanel.setData(data)
@@ -169,25 +121,18 @@ class FormPanelSpec : SimpleSpec {
     @Test
     fun validate() {
         run {
-            class DataForm(val map: Map<String, Any?>) {
-                val s: String? by map
-                val d: Date? by map
-            }
-
-            val formPanel = FormPanel {
-                DataForm(it)
-            }
-            formPanel.add(DataForm::s, Text()) {
+            val formPanel = FormPanel.create<DataForm2>()
+            formPanel.add(DataForm2::s, Text()) {
                 it.getValue()?.length ?: 0 > 4
             }
-            formPanel.add(DataForm::d, DateTime(), required = true)
-            formPanel.setData(DataForm(mapOf("s" to "123")))
+            formPanel.add(DataForm2::d, DateTime(), required = true)
+            formPanel.setData(DataForm2(s = "123"))
             val valid = formPanel.validate()
             assertEquals(false, valid, "Should be invalid with initial data")
-            formPanel.setData(DataForm(mapOf("s" to "12345")))
+            formPanel.setData(DataForm2(s = "12345"))
             val valid2 = formPanel.validate()
             assertEquals(false, valid2, "Should be invalid with partially changed data")
-            formPanel.setData(DataForm(mapOf("s" to "12345", "d" to Date())))
+            formPanel.setData(DataForm2(s = "12345", d = KDate()))
             val valid3 = formPanel.validate()
             assertEquals(true, valid3, "Should be valid")
         }

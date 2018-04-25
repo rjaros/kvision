@@ -1,1 +1,3 @@
 rootProject.name = 'kvision'
+
+include 'kvision-common', 'kvision-server'

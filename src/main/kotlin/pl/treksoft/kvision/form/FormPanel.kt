@@ -22,7 +22,8 @@
 package pl.treksoft.kvision.form
 
 import com.github.snabbdom.VNode
-import org.w3c.files.File
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.serializer
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
@@ -31,7 +32,8 @@ import pl.treksoft.kvision.form.check.Radio
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
-import kotlin.js.Date
+import pl.treksoft.kvision.types.KDate
+import pl.treksoft.kvision.types.KFile
 import kotlin.js.Json
 import kotlin.reflect.KProperty1
 
@@ -80,13 +82,13 @@ enum class FormTarget(internal val target: String) {
  * @param enctype form encoding type
  * @param type form layout
  * @param classes set of CSS class names
- * @param modelFactory function transforming a Map<String, Any?> to a data model of class K
+ * @param serializer a serializer for model type
  */
 @Suppress("TooManyFunctions")
-open class FormPanel<K>(
+open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, classes: Set<String> = setOf(),
-    modelFactory: (Map<String, Any?>) -> K
+    serializer: KSerializer<K>
 ) : SimplePanel(classes) {
 
     /**
@@ -148,7 +150,7 @@ open class FormPanel<K>(
      * Internal property.
      */
     @Suppress("LeakingThis")
-    protected val form = Form(this, modelFactory)
+    protected val form = Form(this, serializer)
     /**
      * @suppress
      * Internal property.
@@ -281,8 +283,8 @@ open class FormPanel<K>(
      * @param validator optional validation function
      * @return current form panel
      */
-    open fun <C : DateFormControl> add(
-        key: KProperty1<K, Date?>, control: C, required: Boolean = false,
+    open fun <C : KDateFormControl> add(
+        key: KProperty1<K, KDate?>, control: C, required: Boolean = false,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
@@ -298,8 +300,8 @@ open class FormPanel<K>(
      * @param validator optional validation function
      * @return current form panel
      */
-    open fun <C : FilesFormControl> add(
-        key: KProperty1<K, List<File>?>, control: C, required: Boolean = false,
+    open fun <C : KFilesFormControl> add(
+        key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
@@ -368,6 +370,20 @@ open class FormPanel<K>(
     }
 
     /**
+     * Returns an object with the content of the file.
+     * @param key key identifier of the control
+     * @param kFile object identifying the file
+     * @return KFile object
+     */
+    @Suppress("EXPERIMENTAL_FEATURE_WARNING")
+    suspend fun getContent(
+        key: KProperty1<K, List<KFile>?>,
+        kFile: KFile
+    ): KFile {
+        return form.getContent(key, kFile)
+    }
+
+    /**
      * Returns current data model as JSON.
      * @return data model as JSON
      */
@@ -389,14 +405,26 @@ open class FormPanel<K>(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun <K> Container.formPanel(
+        inline fun <reified K : Any> Container.formPanel(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
             type: FormType? = null, classes: Set<String> = setOf(),
-            modelFactory: (Map<String, Any?>) -> K
+            noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
-            val panel = FormPanel(method, action, enctype, type, classes, modelFactory)
-            this.add(panel)
-            return panel
+            val formPanel = FormPanel.create<K>(method, action, enctype, type, classes)
+            init?.invoke(formPanel)
+            this.add(formPanel)
+            return formPanel
         }
+
+        inline fun <reified K : Any> create(
+            method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
+            type: FormType? = null, classes: Set<String> = setOf(),
+            noinline init: (FormPanel<K>.() -> Unit)? = null
+        ): FormPanel<K> {
+            val formPanel = FormPanel(method, action, enctype, type, classes, K::class.serializer())
+            init?.invoke(formPanel)
+            return formPanel
+        }
+
     }
 }

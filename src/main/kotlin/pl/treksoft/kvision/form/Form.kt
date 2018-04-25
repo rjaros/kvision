@@ -21,8 +21,14 @@
  */
 package pl.treksoft.kvision.form
 
-import org.w3c.files.File
-import kotlin.js.Date
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Mapper
+import kotlinx.serialization.json.JSON
+import kotlinx.serialization.serializer
+import pl.treksoft.kvision.form.upload.Upload
+import pl.treksoft.kvision.types.KDate
+import pl.treksoft.kvision.types.KFile
+import pl.treksoft.kvision.utils.getContent
 import kotlin.js.Json
 import kotlin.reflect.KProperty1
 
@@ -41,15 +47,44 @@ internal data class FieldParams<in F : FormControl>(
  * @constructor Creates a form with a given modelFactory function
  * @param K model class type
  * @param panel optional instance of [FormPanel]
- * @param modelFactory function transforming a Map<String, Any?> to a data model of class K
+ * @param serializer a serializer for model type
  */
 @Suppress("TooManyFunctions")
-class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory: (Map<String, Any?>) -> K) {
+class Form<K : Any>(private val panel: FormPanel<K>? = null, private val serializer: KSerializer<K>) {
 
+    internal val modelFactory: (Map<String, Any?>) -> K
     internal val fields: MutableMap<String, FormControl> = mutableMapOf()
     internal val fieldsParams: MutableMap<String, Any> = mutableMapOf()
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
+
+    init {
+        modelFactory = {
+            val map = it.flatMap { entry ->
+                when (entry.value) {
+                    is KDate -> {
+                        listOf(entry.key to entry.value, "${entry.key}.time" to (entry.value as KDate).time)
+                    }
+                    is List<*> -> {
+                        @Suppress("UNCHECKED_CAST")
+                        (entry.value as? List<KFile>)?.let {
+                            listOf(entry.key to entry.value, "${entry.key}.size" to it.size) +
+                                    it.mapIndexed { index, kFile ->
+                                        listOf(
+                                            "${entry.key}.${index + 1}.name" to kFile.name,
+                                            "${entry.key}.${index + 1}.size" to kFile.size,
+                                            "${entry.key}.${index + 1}.content" to kFile.content
+                                        )
+                                    }.flatten()
+                        } ?: listOf()
+                    }
+                    else -> listOf(entry.key to entry.value)
+                }
+            }.toMap().withDefault { null }
+            val mapper = Mapper.InNullableMapper(map)
+            mapper.read(serializer)
+        }
+    }
 
     internal fun <C : FormControl> addInternal(
         key: KProperty1<K, *>, control: C, required: Boolean = false,
@@ -121,8 +156,8 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
      * @param validator optional validation function
      * @return current form
      */
-    fun <C : DateFormControl> add(
-        key: KProperty1<K, Date?>, control: C, required: Boolean = false,
+    fun <C : KDateFormControl> add(
+        key: KProperty1<K, KDate?>, control: C, required: Boolean = false,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
@@ -138,8 +173,8 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
      * @param validator optional validation function
      * @return current form
      */
-    fun <C : FilesFormControl> add(
-        key: KProperty1<K, List<File>?>, control: C, required: Boolean = false,
+    fun <C : KFilesFormControl> add(
+        key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
@@ -189,16 +224,9 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
      */
     fun setData(model: K) {
         fields.forEach { it.value.setValue(null) }
-        val map = model.asDynamic().map as? Map<String, Any?>
-        if (map != null) {
-            map.forEach {
-                fields[it.key]?.setValue(it.value)
-            }
-        } else {
-            for (key in js("Object").keys(model)) {
-                @Suppress("UnsafeCastFromDynamic")
-                fields[key]?.setValue(model.asDynamic()[key])
-            }
+        for (key in js("Object").keys(model)) {
+            @Suppress("UnsafeCastFromDynamic")
+            fields[key]?.setValue(model.asDynamic()[key])
         }
     }
 
@@ -219,11 +247,27 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
     }
 
     /**
+     * Returns file with the content read.
+     * @param key key identifier of the control
+     * @param kFile object identifying the file
+     * @return KFile object
+     */
+    @Suppress("EXPERIMENTAL_FEATURE_WARNING")
+    suspend fun getContent(
+        key: KProperty1<K, List<KFile>?>,
+        kFile: KFile
+    ): KFile {
+        val control = getControl(key) as Upload
+        val content = control.getNativeFile(kFile)?.getContent()
+        return kFile.copy(content = content)
+    }
+
+    /**
      * Returns current data model as JSON.
      * @return data model as JSON
      */
     fun getDataJson(): Json {
-        return fields.entries.associateBy({ it.key }, { it.value.getValue() }).asJson()
+        return kotlin.js.JSON.parse(JSON.stringify(serializer, getData()))
     }
 
     /**
@@ -259,27 +303,20 @@ class Form<K>(private val panel: FormPanel<K>? = null, private val modelFactory:
         }
         return fieldWithError == null && validatorPassed
     }
+
+    companion object {
+        inline fun <reified K : Any> create(
+            panel: FormPanel<K>? = null,
+            noinline init: (Form<K>.() -> Unit)? = null
+        ): Form<K> {
+            val form = Form(panel, K::class.serializer())
+            init?.invoke(form)
+            return form
+        }
+
+
+    }
 }
-
-/**
- * Returns given value from the map as a String.
- */
-fun Map<String, Any?>.string(key: String): String? = this[key] as? String
-
-/**
- * Returns given value from the map as a Number.
- */
-fun Map<String, Any?>.number(key: String): Number? = this[key] as? Number
-
-/**
- * Returns given value from the map as a Boolean.
- */
-fun Map<String, Any?>.bool(key: String): Boolean? = this[key] as? Boolean
-
-/**
- * Returns given value from the map as a Date.
- */
-fun Map<String, Any?>.date(key: String): Date? = this[key] as? Date
 
 /**
  * Extension function to convert Map to JSON.

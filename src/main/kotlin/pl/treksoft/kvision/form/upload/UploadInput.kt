@@ -11,6 +11,7 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.utils.obj
 
 /**
@@ -28,7 +29,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     /**
      * File input value.
      */
-    var value: List<File>?
+    var value: List<KFile>?
         get() = getValue()
         set(value) {
             if (value == null) resetInput()
@@ -112,6 +113,8 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
      */
     override var size: InputSize? by refreshOnUpdate()
 
+    private val nativeFiles: MutableMap<KFile, File> = mutableMapOf()
+
     override fun render(): VNode {
         return render("input")
     }
@@ -139,7 +142,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
         return sn
     }
 
-    private fun getValue(): List<File>? {
+    private fun getValue(): List<KFile>? {
         val v = getFiles()
         return if (v.isNotEmpty()) v else null
     }
@@ -217,8 +220,22 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
         getElementJQueryD()?.fileinput("unlock")
     }
 
-    private fun getFiles(): List<File> {
-        return (getElementJQueryD()?.fileinput("getFileStack") as Array<File>).toList()
+    /**
+     * Returns the native JavaScript File object.
+     * @param kFile KFile object
+     * @return File object
+     */
+    fun getNativeFile(kFile: KFile): File? {
+        return nativeFiles[kFile]
+    }
+
+    private fun getFiles(): List<KFile> {
+        nativeFiles.clear()
+        return (getElementJQueryD()?.fileinput("getFileStack") as Array<File>).toList().map {
+            val kFile = KFile(it.name, it.size, null)
+            nativeFiles[kFile] = it
+            kFile
+        }
     }
 
     /**

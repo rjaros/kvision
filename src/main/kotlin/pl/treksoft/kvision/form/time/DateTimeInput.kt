@@ -28,10 +28,11 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.types.KDate
+import pl.treksoft.kvision.types.toJS
+import pl.treksoft.kvision.types.toKDateF
+import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.obj
-import pl.treksoft.kvision.utils.toDateF
-import pl.treksoft.kvision.utils.toStringF
-import kotlin.js.Date
 
 internal const val DEFAULT_MINUTE_STEP = 5
 internal const val MAX_VIEW = 4
@@ -46,7 +47,7 @@ internal const val MAX_VIEW = 4
  */
 @Suppress("TooManyFunctions")
 open class DateTimeInput(
-    value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
+    value: KDate? = null, format: String = "YYYY-MM-DD HH:mm",
     classes: Set<String> = setOf()
 ) : Widget(classes + "form-control"), FormInput {
 
@@ -162,7 +163,7 @@ open class DateTimeInput(
     @Suppress("UnsafeCastFromDynamic")
     protected open fun refreshState() {
         value?.let {
-            getElementJQueryD()?.datetimepicker("update", it)
+            getElementJQueryD()?.datetimepicker("update", it.toJS())
         } ?: run {
             getElementJQueryD()?.`val`(null)
             getElementJQueryD()?.datetimepicker("update", null)
@@ -179,7 +180,7 @@ open class DateTimeInput(
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
         if (v != null && v.isNotEmpty()) {
-            this.value = v.toDateF(format)
+            this.value = v.toKDateF(format)
         } else {
             this.value = null
         }
@@ -276,7 +277,7 @@ open class DateTimeInput(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.dateTimeInput(
-            value: Date? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
+            value: KDate? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
             init: (DateTimeInput.() -> Unit)? = null
         ): DateTimeInput {
             val dateTimeInput = DateTimeInput(value, format, classes).apply { init?.invoke(this) }
