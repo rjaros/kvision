@@ -1,59 +1,111 @@
 buildscript {
-    ext.kotlin_version = '1.2.31'
-    ext.coroutines_version = '0.22.5'
-    ext.dokka_version = '0.9.16'
-    ext.frontend_plugin_version = '0.0.29'
-    ext.detekt_version = '1.0.0.RC6-4'
     ext.production = (findProperty('prod') ?: 'false') == 'true'
     ext.npmdeps = new File("npm.dependencies").getText()
 
     repositories {
         jcenter()
-        maven { url = 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url = "https://plugins.gradle.org/m2/" }
-        maven { url = 'https://bintray.com/kotlin/kotlin-eap/dokka' }
+        maven { url = "https://bintray.com/kotlin/kotlin-eap/dokka" }
+        maven { url = "https://kotlin.bintray.com/kotlinx" }
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
-        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:${frontend_plugin_version}"
-        classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${detekt_version}"
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:${frontendPluginVersion}"
+        classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${detektVersion}"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}"
+        classpath "org.jetbrains.kotlinx:kotlinx-gradle-serialization-plugin:${serializationVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementPluginVersion}"
     }
 }
 
 plugins {
-    id "maven-publish"
     id "com.jfrog.bintray" version "1.7.3"
 }
 
+allprojects {
+    apply plugin: 'com.jfrog.bintray'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply from: rootProject.file('pom.gradle')
+    apply from: rootProject.file('bintray.gradle')
+
+    repositories {
+        jcenter()
+        maven { url = 'https://kotlin.bintray.com/kotlinx' }
+        maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
+        maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
+    }
+
+    afterEvaluate {
+        task sourceJar(type: Jar, dependsOn: classes) {
+            classifier 'sources'
+            from sourceSets.main.kotlin
+            duplicatesStrategy = "exclude"
+        }
+    }
+
+    task emptyJar(type: Jar) {
+        classifier 'javadoc'
+    }
+
+    tasks.build.dependsOn(['sourceJar', 'emptyJar'])
+
+    publishing {
+        publications {
+            mavenProject(MavenPublication) {
+                from components.java
+                groupId project.group
+                artifactId project.name
+                version project.version
+
+                artifact sourceJar {
+                    classifier 'sources'
+                }
+
+                artifact emptyJar {
+                    classifier 'javadoc'
+                }
+
+                withPom(pom)
+            }
+        }
+    }
+
+    model {
+        tasks.generatePomFileForMavenProjectPublication {
+            destination = file("$buildDir/libs/${project.name}-${version}.pom")
+        }
+    }
+}
+
 if (!project.gradle.startParameter.taskNames.contains("dokka")) {
-    apply plugin: 'kotlin2js'
+    apply plugin: 'kotlin-platform-js'
 } else {
     apply plugin: 'kotlin'
 }
 apply plugin: 'org.jetbrains.kotlin.frontend'
-apply plugin: "io.gitlab.arturbosch.detekt"
+apply plugin: 'io.gitlab.arturbosch.detekt'
 apply plugin: 'org.jetbrains.dokka'
-
-group = 'pl.treksoft'
-version = '0.0.12'
-
-repositories {
-    jcenter()
-    maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
-    maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
-}
+apply plugin: 'kotlinx-serialization'
 
 dependencies {
     if (!project.gradle.startParameter.taskNames.contains("dokka")) {
-        compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-        compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version" // for now only compile configuration is supported
+        expectedBy project(':kvision-common')
+        compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion"
+        compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion"
+        compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serializationVersion"
+        if (!project.gradle.startParameter.taskNames.contains("generatePomFileForMavenProjectPublication")) {
+            compile "org.jetbrains.kotlin:kotlin-test-js:$kotlinVersion"
+        }
+        testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlinVersion"
     } else {
-        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-        compile "org.jetbrains.kotlin:kotlin-test:$kotlin_version" // for now only compile configuration is supported
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+        compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
+        testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     }
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutines_version"
     compile "com.github.snabbdom:snabbdom-kotlin:0.1.1"
     compile "pl.treksoft:navigo-kotlin:0.0.2"
     compile "pl.treksoft:jquery-kotlin:0.0.3"
@@ -70,7 +122,6 @@ kotlinFrontend {
         dependency("uglifyjs-webpack-plugin")
         dependency("file-loader")
         dependency("url-loader")
-        dependency("expose-loader")
         dependency("jquery", "3.2.1")
         dependency("fecha", "2.3.2")
         dependency("snabbdom", "0.7.1")
@@ -80,49 +131,22 @@ kotlinFrontend {
             def (name, version) = line.tokenize(" ")
             dependency(name, version)
         }
-        devDependency("karma", "2.0.0")
-        devDependency("karma-qunit", "1.2.1")
-        devDependency("karma-chrome-launcher")
-        devDependency("karma-firefox-launcher")
-        devDependency("karma-webpack", "2.0.9")
-        devDependency("webpack", "3.11.0")
-        devDependency("webpack-dev-server", "2.11.0")
+        devDependency("karma")
+        devDependency("qunit")
     }
 
     webpackBundle {
         bundleName = "main"
         contentPath = file('src/main/web')
-    }
-
-    karma {
-        plugins = ["karma-chrome-launcher", "karma-firefox-launcher"]
-//        browsers = [ "Chrome", "Firefox" ]
+        mode = production ? "production" : "development"
     }
 
     define "PRODUCTION", production
 
 }
 
-task cleanLibs(type: Delete) {
-    delete 'build/js', 'build/libs'
-}
-
-if (project.gradle.startParameter.taskNames.contains("jar")) {
-    compileKotlin2Js.dependsOn 'cleanLibs'
-}
-
-jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    excludes = ["package.json"]
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
 detekt {
-    version = "${detekt_version}"
+    version = "${detektVersion}"
     profile("main") {
         input = "$projectDir/src/main/kotlin"
         config = "$projectDir/detekt.yml"
@@ -136,7 +160,19 @@ dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/kdoc"
     reportUndocumented = false
-    impliedPlatforms = ["JS"]
+}
+
+task cleanLibs(type: Delete) {
+    delete 'build/js', 'build/libs'
+}
+
+if (project.gradle.startParameter.taskNames.contains("jar")) {
+    compileKotlin2Js.dependsOn 'cleanLibs'
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    excludes = ["package.json"]
 }
 
 if (!project.gradle.startParameter.taskNames.contains("dokka")) {
@@ -173,49 +209,4 @@ if (!project.gradle.startParameter.taskNames.contains("dokka")) {
         tasks.getByName("webpack-run") { dependsOn(copyResources) }
         tasks.getByName("karma-start") { dependsOn(copyResources, copyResourcesForTests) }
     }
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-            pom.withXml {
-                asNode().dependencies.'*'.findAll() {
-                    it.artifactId.text() == 'kotlin-test-js'
-                }.each() {
-                    it.scope*.value = 'test'
-                }
-            }
-        }
-    }
-}
-
-model {
-    tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/${project.name}-${version}.pom")
-    }
-}
-
-bintray {
-    user = findProperty('buser')
-    key = findProperty('bkey')
-    pkg {
-        repo = 'kotlin'
-        name = "${project.name}"
-        licenses = ['MIT']
-        vcsUrl = "https://github.com/rjaros/${project.name}.git"
-        version {
-            name = "${project.version}"
-            desc = 'Object oriented Web UI framework for Kotlin/JS'
-            released = new Date()
-        }
-    }
-    filesSpec {
-        from "${project.buildDir}/libs/"
-        into "pl/treksoft/${project.name}/${project.version}"
-    }
-}
-
-bintrayUpload {
-    dependsOn "generatePomFileForMavenPublication"
 }

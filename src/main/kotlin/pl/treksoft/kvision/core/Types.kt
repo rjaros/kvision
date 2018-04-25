@@ -21,24 +21,25 @@
  */
 package pl.treksoft.kvision.core
 
-        /**
-         * This type is used for accessing resources with CommonJS **require** function.
-         *
-         * e.g. require("./img/picture.png")
-         */
+/**
+ * This type is used for accessing resources with CommonJS **require** function.
+ *
+ * e.g. require("./img/picture.png")
+ */
 typealias ResString = String
 
-        /**
-         * Helper type used to define CSS style attributes.
-         */
+/**
+ * Helper type used to define CSS style attributes.
+ */
 typealias StringPair = Pair<String, String>
 
-        /**
-         * Helper type used to define CSS classes.
-         */
+/**
+ * Helper type used to define CSS classes.
+ */
 typealias StringBoolPair = Pair<String, Boolean>
 
-        /**
-         * This type is used for defining CSS dimensions (width, heights, margins, paddings, etc.).
-         */
+/**
+ * This type is used for defining CSS dimensions (width, heights, margins, paddings, etc.).
+ */
 typealias CssSize = Pair<Int, UNIT>
+
