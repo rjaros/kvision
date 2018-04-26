@@ -32,30 +32,28 @@ import kotlinx.serialization.internal.StringSerializer
 import kotlinx.serialization.json.JSON
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
-import pl.treksoft.jquery.JQueryXHR
-import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.utils.obj
 import kotlin.js.Promise
 import kotlin.js.js
-import kotlin.js.undefined
 import kotlin.reflect.KClass
 import kotlin.js.JSON as NativeJSON
 
 internal class NonStandardTypeException(type: String) : Exception("Non standard type: $type!")
 
 /**
- * Client side agent for remote calls.
+ * Client side agent for JSON-RPC remote calls.
  */
 @Suppress("EXPERIMENTAL_FEATURE_WARNING", "LargeClass", "TooManyFunctions")
 open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
+
+    val callAgent = CallAgent()
 
     /**
      * Executes defined call to a remote web service.
      */
     inline fun <reified RET : Any, T> call(noinline function: T.(Request?) -> Deferred<RET>): Promise<RET> {
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, null).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, method = method).then {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -68,9 +66,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * Executes defined call to a remote web service.
      */
     inline fun <reified RET : Any, T> call(noinline function: T.(Request?) -> Deferred<List<RET>>): Promise<List<RET>> {
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, null).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, method = method).then {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -87,9 +85,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         p: PAR, serializer: KSerializer<PAR>? = null
     ): Promise<RET> {
         val data = serialize(p, serializer)
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
                 deserialize<RET>(it, (RET::class as KClass<Any>).js.name)
@@ -107,9 +105,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         p: PAR, serializer: KSerializer<PAR>? = null
     ): Promise<List<RET>> {
         val data = serialize(p, serializer)
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data), method).then {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -127,10 +125,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     ): Promise<RET> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
-        val data = "[ $data1 , $data2 ]"
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2), method).then {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -148,10 +145,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     ): Promise<List<RET>> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
-        val data = "[ $data1 , $data2 ]"
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2), method).then {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -171,10 +167,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
-        val data = "[ $data1 , $data2 , $data3 ]"
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method).then {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -194,10 +189,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
-        val data = "[ $data1 , $data2 , $data3 ]"
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method).then {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -224,10 +218,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
         val data4 = serialize(p4, serializer4)
-        val data = "[ $data1 , $data2 , $data3 , $data4 ]"
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method).then {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -254,10 +247,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
         val data4 = serialize(p4, serializer4)
-        val data = "[ $data1 , $data2 , $data3 , $data4 ]"
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method).then {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -289,10 +281,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         val data3 = serialize(p3, serializer3)
         val data4 = serialize(p4, serializer4)
         val data5 = serialize(p5, serializer5)
-        val data = "[ $data1 , $data2 , $data3 , $data4 , $data5 ]"
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method).then {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -324,10 +315,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         val data3 = serialize(p3, serializer3)
         val data4 = serialize(p4, serializer4)
         val data5 = serialize(p5, serializer5)
-        val data = "[ $data1 , $data2 , $data3 , $data4 , $data5 ]"
-        val url =
-            serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
-        return ajaxCall(url, data).then {
+        val (url, method) =
+                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method).then {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
@@ -336,32 +326,6 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         }
     }
 
-    /**
-     * @suppress
-     * Internal function
-     */
-    @Suppress("UnsafeCastFromDynamic")
-    fun ajaxCall(url: String, data: Any?): Promise<String> =
-        Promise({ resolve, reject ->
-            jQuery.ajax(url, obj {
-                this.contentType = "application/json"
-                this.data = data
-                this.method = "POST"
-                this.success =
-                        { data: Any, _: Any, _: Any ->
-                            resolve(NativeJSON.stringify(data))
-                        }
-                this.error =
-                        { xhr: JQueryXHR, _: String, errorText: String ->
-                            val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
-                                xhr.responseJSON.toString()
-                            } else {
-                                errorText
-                            }
-                            reject(Exception(message))
-                        }
-            })
-        })
 
     /**
      * @suppress

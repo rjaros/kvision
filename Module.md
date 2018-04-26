@@ -72,7 +72,7 @@ Bootstrap progress bar component.
 
 # Package pl.treksoft.kvision.remote
 
-A set of components for creating multiplatform automatic connectivity with backend servers.
+A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.
 
 # Package pl.treksoft.kvision.routing
 

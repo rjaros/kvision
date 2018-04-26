@@ -23,7 +23,20 @@ package pl.treksoft.kvision.remote
 
 import kotlinx.coroutines.experimental.Deferred
 
-const val SERVICE_PREFIX = "/kv_service"
+enum class RpcHttpMethod {
+    POST,
+    PUT,
+    DELETE,
+    OPTIONS
+}
+
+enum class HttpMethod {
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    OPTIONS
+}
 
 /**
  * Multiplatform service manager.
@@ -33,57 +46,84 @@ expect open class ServiceManager<out T>(service: T? = null) {
      * Binds a given route with a function of the receiver.
      * @param route a route
      * @param function a function of the receiver
+     * @param method a HTTP method
+     * @param prefix an URL address prefix
      */
-    protected inline fun <reified RET> bind(route: String, noinline function: T.(Request?) -> Deferred<RET>)
+    protected inline fun <reified RET> bind(
+        route: String,
+        noinline function: T.(Request?) -> Deferred<RET>,
+        method: RpcHttpMethod = RpcHttpMethod.POST,
+        prefix: String = "/"
+    )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param route a route
      * @param function a function of the receiver
+     * @param method a HTTP method
+     * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR, reified RET> bind(
         route: String,
-        noinline function: T.(PAR, Request?) -> Deferred<RET>
+        noinline function: T.(PAR, Request?) -> Deferred<RET>,
+        method: RpcHttpMethod = RpcHttpMethod.POST,
+        prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param route a route
      * @param function a function of the receiver
+     * @param method a HTTP method
+     * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR1, reified PAR2, reified RET> bind(
         route: String,
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>
+        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
+        method: RpcHttpMethod = RpcHttpMethod.POST,
+        prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param route a route
      * @param function a function of the receiver
+     * @param method a HTTP method
+     * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         route: String,
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>
+        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
+        method: RpcHttpMethod = RpcHttpMethod.POST,
+        prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param route a route
      * @param function a function of the receiver
+     * @param method a HTTP method
+     * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         route: String,
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>
+        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
+        method: RpcHttpMethod = RpcHttpMethod.POST,
+        prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param route a route
      * @param function a function of the receiver
+     * @param method a HTTP method
+     * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
         route: String,
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>
+        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
+        method: RpcHttpMethod = RpcHttpMethod.POST,
+        prefix: String = "/"
     )
 
     /**
@@ -93,7 +133,7 @@ expect open class ServiceManager<out T>(service: T? = null) {
     fun applyRoutes(k: JoobyServer)
 
     /**
-     * Returns the list of defined bindings.
+     * Returns the map of defined paths.
      */
-    fun getCalls(): Map<String, String>
+    fun getCalls(): Map<String, Pair<String, RpcHttpMethod>>
 }
