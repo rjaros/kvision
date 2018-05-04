@@ -47,7 +47,7 @@ class UtilsSpec : SimpleSpec {
             val res = "2017-03-14 14:50:35".toDateF()
             assertEquals(
                 js("new Date(2017,2,14,14,50,35).getTime()"),
-                res.getTime(),
+                res?.getTime(),
                 "Should convert String value to Date"
             )
         }

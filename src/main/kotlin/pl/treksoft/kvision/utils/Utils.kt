@@ -188,8 +188,9 @@ fun Int.toHexString(): String {
  * @return Date object
  */
 @Suppress("UnsafeCastFromDynamic")
-fun String.toDateF(format: String = "YYYY-MM-DD HH:mm:ss"): Date {
-    return KVManager.fecha.parse(this, format)
+fun String.toDateF(format: String = "YYYY-MM-DD HH:mm:ss"): Date? {
+    val result = KVManager.fecha.parse(this, format)
+    return if (result) result else null
 }
 
 /**

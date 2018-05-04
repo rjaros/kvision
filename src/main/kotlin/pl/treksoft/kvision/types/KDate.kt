@@ -32,7 +32,7 @@ internal actual fun nowDate(): KDate =
     KDate(Date().getTime().toLong())
 
 internal actual fun String.toKDateF(format: String): KDate =
-    KDate(this.toDateF(format).getTime().toLong())
+    this.toDateF(format)?.getTime()?.toLong()?.let { KDate(it) } ?: KDate()
 
 internal actual fun KDate.toStringF(format: String) = this.toJS().toStringF(format)
 
