@@ -44,7 +44,7 @@ class DockPanelSpec : DomSpec {
             dockPanel.add(Label("mno"), Side.CENTER)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><div style=\"display: flex; flex-direction: column; justify-content: space-between; align-items: stretch;\"><div style=\"order: 2;\"><div style=\"display: flex; justify-content: space-between; align-items: center;\"><div style=\"order: 3;\"><span>def</span></div><div style=\"order: 1;\"><span>jkl</span></div><div style=\"order: 2;\"><span>mno</span></div></div></div><div style=\"order: 1; align-self: center;\"><span>abc</span></div><div style=\"order: 3; align-self: center;\"><span>ghi</span></div></div></div>",
+                "<div><div style=\"width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: stretch;\"><div style=\"order: 2; flex-grow: 1; flex-basis: 0%;\"><div style=\"width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: stretch;\"><div style=\"order: 3; flex-basis: 0%;\"><span>def</span></div><div style=\"order: 1; flex-basis: 0%;\"><span>jkl</span></div><div style=\"order: 2; flex-grow: 1; flex-basis: 0%;\"><span>mno</span></div></div></div><div style=\"order: 1; flex-basis: 0%;\"><span>abc</span></div><div style=\"order: 3; flex-basis: 0%;\"><span>ghi</span></div></div></div>",
                 element?.innerHTML,
                 "Should render correct dock panel"
             )

@@ -23,6 +23,7 @@ package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.perc
 
 /**
  * Dock layout directions.
@@ -75,18 +76,23 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * Internal property.
      */
     protected val mainContainer = FlexPanel(
-        direction = FlexDir.COLUMN, justify = FlexJustify.SPACEBETWEEN,
-        alignItems = FlexAlignItems.STRETCH
-    )
+        direction = FlexDir.COLUMN, justify = FlexJustify.SPACEBETWEEN, alignItems = FlexAlignItems.STRETCH
+    ) {
+        width = 100.perc
+        height = 100.perc
+    }
     /**
      * @suppress
      * Internal property.
      */
-    protected val subContainer = FlexPanel(justify = FlexJustify.SPACEBETWEEN, alignItems = FlexAlignItems.CENTER)
+    protected val subContainer = FlexPanel(justify = FlexJustify.SPACEBETWEEN, alignItems = FlexAlignItems.STRETCH) {
+        width = 100.perc
+        height = 100.perc
+    }
 
     init {
         this.addInternal(mainContainer)
-        mainContainer.add(subContainer, 2)
+        mainContainer.add(subContainer, 2, grow = 1, basis = 0)
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -103,27 +109,27 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
             Side.UP -> {
                 upComponent?.let { mainContainer.remove(it) }
                 upComponent = child
-                mainContainer.add(child, 1, alignSelf = FlexAlignItems.CENTER)
+                mainContainer.add(child, 1, basis = 0)
             }
             Side.CENTER -> {
                 centerComponent?.let { subContainer.remove(it) }
                 centerComponent = child
-                subContainer.add(child, 2)
+                subContainer.add(child, 2, grow = 1, basis = 0)
             }
             Side.LEFT -> {
                 leftComponent?.let { subContainer.remove(it) }
                 leftComponent = child
-                subContainer.add(child, 1)
+                subContainer.add(child, 1, basis = 0)
             }
             Side.RIGHT -> {
                 rightComponent?.let { subContainer.remove(it) }
                 rightComponent = child
-                subContainer.add(child, 3)
+                subContainer.add(child, 3, basis = 0)
             }
             Side.DOWN -> {
                 downComponent?.let { mainContainer.remove(it) }
                 downComponent = child
-                mainContainer.add(child, 3, alignSelf = FlexAlignItems.CENTER)
+                mainContainer.add(child, 3, basis = 0)
             }
         }
         return this
