@@ -337,11 +337,15 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             if (serializer != null) {
                 JSON.stringify(serializer, it)
             } else {
-                try {
-                    @Suppress("UNCHECKED_CAST")
-                    JSON.stringify((PAR::class as KClass<Any>).serializer(), it as Any)
-                } catch (e: Throwable) {
-                    it.toString()
+                if (it is Enum<*>) {
+                    "\"$it\""
+                } else {
+                    try {
+                        @Suppress("UNCHECKED_CAST")
+                        JSON.stringify((PAR::class as KClass<Any>).serializer(), it as Any)
+                    } catch (e: Throwable) {
+                        it.toString()
+                    }
                 }
             }
         }
