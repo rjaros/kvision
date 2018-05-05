@@ -23,6 +23,7 @@
 
 package pl.treksoft.kvision.utils
 
+import com.lightningkite.kotlin.observable.list.ObservableList
 import kotlinx.coroutines.experimental.suspendCancellableCoroutine
 import org.w3c.files.File
 import org.w3c.files.FileReader
@@ -224,4 +225,22 @@ suspend fun File.getContent(): String = suspendCancellableCoroutine { cont ->
         cont.resumeWithException(Exception(e.type))
     }
     reader.readAsDataURL(this@getContent)
+}
+
+/**
+ * Utility extension function to synchronise elements of the ObservableList.
+ */
+fun <T> ObservableList<T>.syncWithList(list: List<T>) {
+    if (list.isEmpty()) {
+        this.clear()
+    } else {
+        for (pos in (this.size - 1) downTo list.size) this.removeAt(pos)
+        list.forEachIndexed { index, element ->
+            if (index < this.size) {
+                if (this[index] != element) this[index] = element
+            } else {
+                this.add(element)
+            }
+        }
+    }
 }
