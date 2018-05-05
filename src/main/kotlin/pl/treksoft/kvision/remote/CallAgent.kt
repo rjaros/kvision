@@ -59,14 +59,11 @@ open class CallAgent {
                 this.method = method.name
                 this.success =
                         { data: dynamic, _: Any, _: Any ->
-                            if (data.id != jsonRpcRequest.id) {
-                                reject(Exception("Invalid response ID"))
-                            } else if (data.error != null) {
-                                reject(Exception(data.error.toString()))
-                            } else if (data.result != null) {
-                                resolve(data.result)
-                            } else {
-                                reject(Exception("Invalid response"))
+                            when {
+                                data.id != jsonRpcRequest.id -> reject(Exception("Invalid response ID"))
+                                data.error != null -> reject(Exception(data.error.toString()))
+                                data.result != null -> resolve(data.result)
+                                else -> reject(Exception("Invalid response"))
                             }
                         }
                 this.error =

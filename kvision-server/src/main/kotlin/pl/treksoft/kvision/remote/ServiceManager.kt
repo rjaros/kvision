@@ -26,6 +26,7 @@ import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.runBlocking
 import org.jooby.Response
 import org.jooby.Status
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 /**
@@ -35,7 +36,7 @@ import org.slf4j.LoggerFactory
 actual open class ServiceManager<out T> actual constructor(val service: T?) {
 
     companion object {
-        val LOG = LoggerFactory.getLogger(ServiceManager::class.java.name)
+        val LOG: Logger = LoggerFactory.getLogger(ServiceManager::class.java.name)
     }
 
     protected val routes: MutableList<JoobyServer.() -> Unit> = mutableListOf()
