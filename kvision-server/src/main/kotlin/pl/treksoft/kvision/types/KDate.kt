@@ -21,6 +21,11 @@
  */
 package pl.treksoft.kvision.types
 
+import com.github.andrewoma.kwery.mapper.SimpleConverter
+import com.github.andrewoma.kwery.mapper.TableConfiguration
+import com.github.andrewoma.kwery.mapper.reifiedConverter
+import com.github.andrewoma.kwery.mapper.standardConverters
+import com.github.andrewoma.kwery.mapper.util.camelToLowerUnderscore
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,3 +45,13 @@ internal actual fun KDate.toStringF(format: String) =
     SimpleDateFormat(format).format(this.toJava())
 
 fun KDate.toJava(): java.util.Date = java.util.Date(this.time)
+
+object KDateConverter : SimpleConverter<KDate>(
+    { row, c -> KDate(row.date(c).time) },
+    { it.toJava() }
+)
+
+val kvTableConfig = TableConfiguration(
+    converters = standardConverters + reifiedConverter(KDateConverter),
+    namingConvention = camelToLowerUnderscore
+)

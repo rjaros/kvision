@@ -15,6 +15,7 @@ dependencies {
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     compile "org.jooby:jooby-lang-kotlin"
     compile "org.jooby:jooby-jackson"
+    compile "com.github.andrewoma.kwery:mapper:${kweryVersion}"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonModuleKotlinVersion}"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testCompile project(":kvision-common")
