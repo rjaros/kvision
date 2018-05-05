@@ -331,7 +331,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * @suppress
      * Internal function
      */
-    @Suppress("TooGenericExceptionCaught")
+    @Suppress("TooGenericExceptionCaught", "NestedBlockDepth")
     inline fun <reified PAR> serialize(value: PAR, serializer: KSerializer<PAR>?): String? {
         return value?.let {
             if (serializer != null) {

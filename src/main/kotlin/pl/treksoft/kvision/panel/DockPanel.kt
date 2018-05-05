@@ -78,7 +78,9 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
     protected val mainContainer = FlexPanel(
         direction = FlexDir.COLUMN, justify = FlexJustify.SPACEBETWEEN, alignItems = FlexAlignItems.STRETCH
     ) {
+        @Suppress("MagicNumber")
         width = 100.perc
+        @Suppress("MagicNumber")
         height = 100.perc
     }
     /**
@@ -86,7 +88,9 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * Internal property.
      */
     protected val subContainer = FlexPanel(justify = FlexJustify.SPACEBETWEEN, alignItems = FlexAlignItems.STRETCH) {
+        @Suppress("MagicNumber")
         width = 100.perc
+        @Suppress("MagicNumber")
         height = 100.perc
     }
 
