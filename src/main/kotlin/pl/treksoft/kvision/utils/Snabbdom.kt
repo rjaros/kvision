@@ -56,6 +56,8 @@ private fun vNodeData(): VNodeData = js("({})")
  */
 interface KvJQueryEventObject : JQueryEventObject {
     val clickedIndex: Int
+    val width: Int
+    val height: Int
 }
 
 /**
@@ -100,6 +102,7 @@ interface BtOn : On {
     var fileResetUpload: ((KvEvent) -> kotlin.Unit)?
     var fileBrowseUpload: ((KvEvent) -> kotlin.Unit)?
     var filePreUpload: ((KvEvent) -> kotlin.Unit)?
+    var resizeWindow: ((KvEvent) -> kotlin.Unit)?
 }
 
 /**

@@ -36,6 +36,7 @@ import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.modal.CloseIcon
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.px
 
 internal const val DEFAULT_Z_INDEX = 900
@@ -230,6 +231,7 @@ open class Window(
         }
     }
 
+    @Suppress("UnsafeCastFromDynamic")
     private fun checkResizablEventHandler() {
         if (isResizable) {
             isResizeEvent = true
@@ -244,6 +246,12 @@ open class Window(
                     isResizable = true
                     content.width = (intWidth - 2).px
                     content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 1 - 2).px
+                    this.dispatchEvent("resizeWindow", obj {
+                        detail = obj {
+                            this.width = intWidth
+                            this.height = intHeight
+                        }
+                    })
                 }
             }
         } else if (isResizeEvent) {
