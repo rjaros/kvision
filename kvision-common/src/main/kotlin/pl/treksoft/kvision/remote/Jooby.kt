@@ -30,3 +30,8 @@ expect open class JoobyServer
  * A server request.
  */
 expect interface Request
+
+/**
+ * A user profile.
+ */
+expect class Profile

@@ -57,7 +57,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer(), it)
+                JSON.nonstrict.parse(RET::class.serializer(), it)
             }
         }
     }
@@ -72,7 +72,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer().list, it)
+                JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
         }
     }
@@ -92,7 +92,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
                 @Suppress("UNCHECKED_CAST")
                 deserialize<RET>(it, (RET::class as KClass<Any>).js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer(), it)
+                JSON.nonstrict.parse(RET::class.serializer(), it)
             }
         }
     }
@@ -111,7 +111,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer().list, it)
+                JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
         }
     }
@@ -131,7 +131,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer(), it)
+                JSON.nonstrict.parse(RET::class.serializer(), it)
             }
         }
     }
@@ -151,7 +151,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer().list, it)
+                JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
         }
     }
@@ -173,7 +173,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer(), it)
+                JSON.nonstrict.parse(RET::class.serializer(), it)
             }
         }
     }
@@ -195,7 +195,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer().list, it)
+                JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
         }
     }
@@ -224,7 +224,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer(), it)
+                JSON.nonstrict.parse(RET::class.serializer(), it)
             }
         }
     }
@@ -253,7 +253,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer().list, it)
+                JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
         }
     }
@@ -287,7 +287,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserialize<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer(), it)
+                JSON.nonstrict.parse(RET::class.serializer(), it)
             }
         }
     }
@@ -321,7 +321,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             try {
                 deserializeLists<RET>(it, RET::class.js.name)
             } catch (t: NonStandardTypeException) {
-                JSON.parse(RET::class.serializer().list, it)
+                JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
         }
     }

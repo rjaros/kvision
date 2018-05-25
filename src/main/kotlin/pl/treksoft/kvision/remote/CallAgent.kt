@@ -31,6 +31,11 @@ import kotlin.js.undefined
 import kotlin.js.JSON as NativeJSON
 
 /**
+ * HTTP status unauthorized (401).
+ */
+const val HTTP_UNAUTHORIZED = 401
+
+/**
  * An agent responsible for remote calls.
  */
 open class CallAgent {
@@ -73,7 +78,11 @@ open class CallAgent {
                             } else {
                                 errorText
                             }
-                            reject(Exception(message))
+                            if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
+                                reject(SecurityException(message))
+                            } else {
+                                reject(Exception(message))
+                            }
                         }
             })
         })
@@ -110,7 +119,11 @@ open class CallAgent {
                             } else {
                                 errorText
                             }
-                            reject(Exception(message))
+                            if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
+                                reject(SecurityException(message))
+                            } else {
+                                reject(Exception(message))
+                            }
                         }
                 this.beforeSend = beforeSend
             })

@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.serialization.Serializable
+
 /**
  * A Jooby based server.
  * Not used on the js platform.
@@ -32,3 +34,19 @@ actual open class JoobyServer
  * Not used on the js platform.
  */
 actual interface Request
+
+/**
+ * A user profile.
+ */
+@Serializable
+actual data class Profile(
+    val id: String? = null,
+    val username: String? = null,
+    val linkedId: String? = null,
+    val firstName: String? = null,
+    val familyName: String? = null,
+    val email: String? = null,
+    val displayName: String? = null,
+    val pictureUrl: String? = null,
+    val profileUrl: String? = null
+)
