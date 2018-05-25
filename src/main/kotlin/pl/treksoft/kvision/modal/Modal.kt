@@ -229,6 +229,7 @@ open class Modal(
         })
         this.getElementJQuery()?.on("hidden.bs.modal", { e, _ ->
             this.visible = false
+            hide()
             this.dispatchEvent("hiddenBsModal", obj { detail = e })
         })
     }
