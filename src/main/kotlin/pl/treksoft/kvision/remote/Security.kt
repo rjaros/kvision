@@ -47,11 +47,15 @@ class LoginService {
      * Login with Pac4j FormClient.
      * @param credentials username and password credentials
      */
-    fun login(credentials: Credentials): Deferred<Boolean> =
-        loginAgent.remoteCall("callback?client_name=FormClient", obj {
-            this.username = credentials.username
-            this.password = credentials.password
-        }, HttpMethod.POST, "application/x-www-form-urlencoded").then { _: dynamic -> true }.asDeferred()
+    fun login(credentials: Credentials?): Deferred<Boolean> =
+        if (credentials?.username != null) {
+            loginAgent.remoteCall("callback?client_name=FormClient", obj {
+                this.username = credentials.username
+                this.password = credentials.password
+            }, HttpMethod.POST, "application/x-www-form-urlencoded").then { _: dynamic -> true }.asDeferred()
+        } else {
+            throw SecurityException("Credentials cannot be empty")
+        }
 }
 
 /**
@@ -74,19 +78,23 @@ abstract class SecurityMgr {
                     afterLogin()
                 }
             }
-        } catch (e: SecurityException) {
-            afterError()
-            isLoggedIn = false
-            while (!isLoggedIn) {
-                try {
-                    login().await()
-                    isLoggedIn = true
-                    afterLogin()
-                } catch (e: SecurityException) {
-                    console.log(e)
+        } catch (e: Exception) {
+            if (e is SecurityException || !isLoggedIn) {
+                afterError()
+                isLoggedIn = false
+                while (!isLoggedIn) {
+                    try {
+                        login()
+                        isLoggedIn = true
+                        afterLogin()
+                    } catch (e: Throwable) {
+                        console.log(e)
+                    }
                 }
+                block()
+            } else {
+                throw e
             }
-            block()
         }
     }
 
@@ -95,7 +103,7 @@ abstract class SecurityMgr {
      * @return true if login is successful
      * @throws SecurityException if login is not successful
      */
-    abstract suspend fun login(): Deferred<Boolean>
+    abstract suspend fun login(): Boolean
 
     /**
      * Method called after successful login.
