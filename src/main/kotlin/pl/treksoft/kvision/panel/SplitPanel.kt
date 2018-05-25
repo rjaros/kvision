@@ -69,7 +69,7 @@ open class SplitPanel(
             val horizontal = direction == Direction.HORIZONTAL
             val px = UNIT.px
             val self = this
-            children[0].getElementJQueryD().resizable(obj {
+            children[0].getElementJQueryD()?.resizable(obj {
                 handleSelector = "#" + splitter.id
                 resizeWidth = !horizontal
                 resizeHeight = horizontal

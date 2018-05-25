@@ -110,6 +110,11 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         return this
     }
 
+    override fun dispose() {
+        super.dispose()
+        roots.remove(this)
+    }
+
     companion object {
         private val roots: MutableList<Root> = mutableListOf()
 
