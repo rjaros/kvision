@@ -65,7 +65,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified RET : Any, T> call(noinline function: T.(Request?) -> Deferred<List<RET>>): Deferred<List<RET>> {
+    inline fun <reified RET : Any, T> call(
+        noinline function: T.(Request?) -> Deferred<List<RET>>
+    ): Deferred<List<RET>> {
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {

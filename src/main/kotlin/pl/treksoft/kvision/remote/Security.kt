@@ -70,6 +70,7 @@ abstract class SecurityMgr {
      * Executes given block of code after successful authentication.
      * @param block a block of code
      */
+    @Suppress("NestedBlockDepth", "TooGenericExceptionCaught")
     suspend fun <T> withAuth(block: suspend () -> T): T {
         return try {
             block().also {
