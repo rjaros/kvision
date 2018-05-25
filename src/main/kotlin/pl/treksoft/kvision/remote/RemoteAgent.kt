@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.remote
 
 import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.asDeferred
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.internal.ArrayListSerializer
 import kotlinx.serialization.internal.BooleanSerializer
@@ -32,7 +33,6 @@ import kotlinx.serialization.internal.StringSerializer
 import kotlinx.serialization.json.JSON
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
-import kotlin.js.Promise
 import kotlin.js.js
 import kotlin.reflect.KClass
 import kotlin.js.JSON as NativeJSON
@@ -50,7 +50,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified RET : Any, T> call(noinline function: T.(Request?) -> Deferred<RET>): Promise<RET> {
+    inline fun <reified RET : Any, T> call(noinline function: T.(Request?) -> Deferred<RET>): Deferred<RET> {
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {
@@ -59,13 +59,13 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer(), it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified RET : Any, T> call(noinline function: T.(Request?) -> Deferred<List<RET>>): Promise<List<RET>> {
+    inline fun <reified RET : Any, T> call(noinline function: T.(Request?) -> Deferred<List<RET>>): Deferred<List<RET>> {
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {
@@ -74,7 +74,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -83,7 +83,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     inline fun <reified PAR, reified RET : Any, T> call(
         noinline function: T.(PAR, Request?) -> Deferred<RET>,
         p: PAR, serializer: KSerializer<PAR>? = null
-    ): Promise<RET> {
+    ): Deferred<RET> {
         val data = serialize(p, serializer)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
@@ -94,7 +94,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer(), it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -103,7 +103,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     inline fun <reified PAR, reified RET : Any, T> call(
         noinline function: T.(PAR, Request?) -> Deferred<List<RET>>,
         p: PAR, serializer: KSerializer<PAR>? = null
-    ): Promise<List<RET>> {
+    ): Deferred<List<RET>> {
         val data = serialize(p, serializer)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
@@ -113,7 +113,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -122,7 +122,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     inline fun <reified PAR1, reified PAR2, reified RET : Any, T> call(
         noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
         p1: PAR1, p2: PAR2, serializer1: KSerializer<PAR1>? = null, serializer2: KSerializer<PAR2>? = null
-    ): Promise<RET> {
+    ): Deferred<RET> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val (url, method) =
@@ -133,7 +133,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer(), it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -142,7 +142,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     inline fun <reified PAR1, reified PAR2, reified RET : Any, T> call(
         noinline function: T.(PAR1, PAR2, Request?) -> Deferred<List<RET>>,
         p1: PAR1, p2: PAR2, serializer1: KSerializer<PAR1>? = null, serializer2: KSerializer<PAR2>? = null
-    ): Promise<List<RET>> {
+    ): Deferred<List<RET>> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val (url, method) =
@@ -153,7 +153,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -163,7 +163,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
         p1: PAR1, p2: PAR2, p3: PAR3, serializer1: KSerializer<PAR1>? = null, serializer2: KSerializer<PAR2>? = null,
         serializer3: KSerializer<PAR3>? = null
-    ): Promise<RET> {
+    ): Deferred<RET> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
@@ -175,7 +175,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer(), it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -185,7 +185,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<List<RET>>,
         p1: PAR1, p2: PAR2, p3: PAR3, serializer1: KSerializer<PAR1>? = null, serializer2: KSerializer<PAR2>? = null,
         serializer3: KSerializer<PAR3>? = null
-    ): Promise<List<RET>> {
+    ): Deferred<List<RET>> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
@@ -197,7 +197,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -213,7 +213,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         serializer2: KSerializer<PAR2>? = null,
         serializer3: KSerializer<PAR3>? = null,
         serializer4: KSerializer<PAR4>? = null
-    ): Promise<RET> {
+    ): Deferred<RET> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
@@ -226,7 +226,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer(), it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -242,7 +242,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         serializer2: KSerializer<PAR2>? = null,
         serializer3: KSerializer<PAR3>? = null,
         serializer4: KSerializer<PAR4>? = null
-    ): Promise<List<RET>> {
+    ): Deferred<List<RET>> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
@@ -255,7 +255,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -275,7 +275,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         serializer3: KSerializer<PAR3>? = null,
         serializer4: KSerializer<PAR4>? = null,
         serializer5: KSerializer<PAR5>? = null
-    ): Promise<RET> {
+    ): Deferred<RET> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
@@ -289,7 +289,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer(), it)
             }
-        }
+        }.asDeferred()
     }
 
     /**
@@ -309,7 +309,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         serializer3: KSerializer<PAR3>? = null,
         serializer4: KSerializer<PAR4>? = null,
         serializer5: KSerializer<PAR5>? = null
-    ): Promise<List<RET>> {
+    ): Deferred<List<RET>> {
         val data1 = serialize(p1, serializer1)
         val data2 = serialize(p2, serializer2)
         val data3 = serialize(p3, serializer3)
@@ -323,7 +323,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
             } catch (t: NonStandardTypeException) {
                 JSON.nonstrict.parse(RET::class.serializer().list, it)
             }
-        }
+        }.asDeferred()
     }
 
 
