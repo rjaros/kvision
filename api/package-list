@@ -2,10 +2,6 @@ $dokka.format:html
 $dokka.linkExtension:html
 $dokka.location:pl.treksoft.kvision.form$asJson(kotlin.collections.Map((kotlin.String, kotlin.Any)))pl.treksoft.kvision.form/kotlin.collections.-map/as-json.html
 $dokka.location:pl.treksoft.kvision.form$asMap(kotlin.js.Json)pl.treksoft.kvision.form/kotlin.js.-json/as-map.html
-$dokka.location:pl.treksoft.kvision.form$bool(kotlin.collections.Map((kotlin.String, kotlin.Any)), kotlin.String)pl.treksoft.kvision.form/kotlin.collections.-map/bool.html
-$dokka.location:pl.treksoft.kvision.form$date(kotlin.collections.Map((kotlin.String, kotlin.Any)), kotlin.String)pl.treksoft.kvision.form/kotlin.collections.-map/date.html
-$dokka.location:pl.treksoft.kvision.form$number(kotlin.collections.Map((kotlin.String, kotlin.Any)), kotlin.String)pl.treksoft.kvision.form/kotlin.collections.-map/number.html
-$dokka.location:pl.treksoft.kvision.form$string(kotlin.collections.Map((kotlin.String, kotlin.Any)), kotlin.String)pl.treksoft.kvision.form/kotlin.collections.-map/string.html
 $dokka.location:pl.treksoft.kvision.utils$asString(kotlin.Pair((kotlin.Int, pl.treksoft.kvision.core.UNIT)))pl.treksoft.kvision.utils/kotlin.-pair/as-string.html
 $dokka.location:pl.treksoft.kvision.utils$ch#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/ch.html
 $dokka.location:pl.treksoft.kvision.utils$cm#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/cm.html
@@ -18,6 +14,7 @@ $dokka.location:pl.treksoft.kvision.utils$perc#kotlin.Intpl.treksoft.kvision.ut
 $dokka.location:pl.treksoft.kvision.utils$pt#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/pt.html
 $dokka.location:pl.treksoft.kvision.utils$px#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/px.html
 $dokka.location:pl.treksoft.kvision.utils$rem#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/rem.html
+$dokka.location:pl.treksoft.kvision.utils$syncWithList(com.lightningkite.kotlin.observable.list.ObservableList((pl.treksoft.kvision.utils.syncWithList.T)), kotlin.collections.List((pl.treksoft.kvision.utils.syncWithList.T)))pl.treksoft.kvision.utils/com.lightningkite.kotlin.observable.list.-observable-list/sync-with-list.html
 $dokka.location:pl.treksoft.kvision.utils$toDateF(kotlin.String, kotlin.String)pl.treksoft.kvision.utils/kotlin.-string/to-date-f.html
 $dokka.location:pl.treksoft.kvision.utils$toHexString(kotlin.Int)pl.treksoft.kvision.utils/kotlin.-int/to-hex-string.html
 $dokka.location:pl.treksoft.kvision.utils$toStringF(kotlin.js.Date, kotlin.String)pl.treksoft.kvision.utils/kotlin.js.-date/to-string-f.html
@@ -41,8 +38,10 @@ pl.treksoft.kvision.modal
 pl.treksoft.kvision.navbar
 pl.treksoft.kvision.panel
 pl.treksoft.kvision.progress
+pl.treksoft.kvision.remote
 pl.treksoft.kvision.routing
 pl.treksoft.kvision.table
 pl.treksoft.kvision.toolbar
+pl.treksoft.kvision.types
 pl.treksoft.kvision.utils
 pl.treksoft.kvision.window

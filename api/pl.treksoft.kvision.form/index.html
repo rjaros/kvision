@@ -24,15 +24,6 @@ validation.</p>
 </tr>
 <tr>
 <td>
-<p><a href="-date-form-control/index.html">DateFormControl</a></p>
-</td>
-<td>
-<code><span class="keyword">interface </span><span class="identifier">DateFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-form-control/index.html"><span class="identifier">FormControl</span></a></code>
-<p>Base interface of a form control with a date value.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="-field-label/index.html">FieldLabel</a></p>
 </td>
 <td>
@@ -42,19 +33,10 @@ validation.</p>
 </tr>
 <tr>
 <td>
-<p><a href="-files-form-control/index.html">FilesFormControl</a></p>
-</td>
-<td>
-<code><span class="keyword">interface </span><span class="identifier">FilesFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-form-control/index.html"><span class="identifier">FormControl</span></a></code>
-<p>Base interface of a form control with a list of files value.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="-form/index.html">Form</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">Form</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">&gt;</span></code>
+<code><span class="keyword">class </span><span class="identifier">Form</span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
 <p>The form definition class. Can be used directly or indirectly inside a <a href="-form-panel/index.html">FormPanel</a>.</p>
 </td>
 </tr>
@@ -97,7 +79,7 @@ validation.</p>
 <p><a href="-form-panel/index.html">FormPanel</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">FormPanel</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">FormPanel</span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
 <p>Bootstrap form component.</p>
 </td>
 </tr>
@@ -135,6 +117,24 @@ validation.</p>
 <td>
 <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">InputSize</span></code>
 <p>Input controls sizes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-date-form-control/index.html">KDateFormControl</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">KDateFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-form-control/index.html"><span class="identifier">FormControl</span></a></code>
+<p>Base interface of a form control with a date value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-files-form-control/index.html">KFilesFormControl</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">KFilesFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-form-control/index.html"><span class="identifier">FormControl</span></a></code>
+<p>Base interface of a form control with a list of files value.</p>
 </td>
 </tr>
 <tr>
