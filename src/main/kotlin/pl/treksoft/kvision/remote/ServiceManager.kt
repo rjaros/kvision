@@ -41,7 +41,7 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
         noinline function: T.(Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
@@ -56,7 +56,7 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
         noinline function: T.(PAR, Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
@@ -71,7 +71,7 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
         noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
@@ -86,7 +86,7 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
         noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
@@ -101,7 +101,7 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
         noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
@@ -119,7 +119,7 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
         method: RpcHttpMethod,
         prefix: String
     ) {
-        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
