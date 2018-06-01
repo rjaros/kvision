@@ -26,94 +26,101 @@ import kotlinx.coroutines.experimental.Deferred
 /**
  * Multiplatform service manager.
  */
-actual open class ServiceManager<out T> actual constructor(service: T?) {
+actual open class ServiceManager<out T> actual constructor(service: T) {
     protected val calls: MutableMap<String, Pair<String, RpcHttpMethod>> = mutableMapOf()
+    var counter: Int = 0
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected actual inline fun <reified RET> bind(
-        route: String,
-        noinline function: T.(Request?) -> Deferred<RET>, method: RpcHttpMethod, prefix: String
+        noinline function: T.(Request?) -> Deferred<RET>,
+        route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        calls[function.toString()] = Pair("$prefix$route", method)
+        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR, reified RET> bind(
-        route: String,
-        noinline function: T.(PAR, Request?) -> Deferred<RET>, method: RpcHttpMethod, prefix: String
+        noinline function: T.(PAR, Request?) -> Deferred<RET>,
+        route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        calls[function.toString()] = Pair("$prefix$route", method)
+        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        route: String,
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>, method: RpcHttpMethod, prefix: String
+        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
+        route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        calls[function.toString()] = Pair("$prefix$route", method)
+        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        route: String,
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>, method: RpcHttpMethod, prefix: String
+        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
+        route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        calls[function.toString()] = Pair("$prefix$route", method)
+        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        route: String,
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>, method: RpcHttpMethod, prefix: String
+        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
+        route: String?, method: RpcHttpMethod, prefix: String
     ) {
-        calls[function.toString()] = Pair("$prefix$route", method)
+        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
-        route: String,
         noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
+        route: String?,
         method: RpcHttpMethod,
         prefix: String
     ) {
-        calls[function.toString()] = Pair("$prefix$route", method)
+        val routeDef = if (route != null) route else "route${this::class.simpleName}${counter++}"
+        calls[function.toString()] = Pair("$prefix$routeDef", method)
     }
 
     /**

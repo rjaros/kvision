@@ -41,87 +41,87 @@ enum class HttpMethod {
 /**
  * Multiplatform service manager.
  */
-expect open class ServiceManager<out T>(service: T? = null) {
+expect open class ServiceManager<out T>(service: T) {
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected inline fun <reified RET> bind(
-        route: String,
         noinline function: T.(Request?) -> Deferred<RET>,
+        route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST,
         prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR, reified RET> bind(
-        route: String,
         noinline function: T.(PAR, Request?) -> Deferred<RET>,
+        route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST,
         prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        route: String,
         noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
+        route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST,
         prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        route: String,
         noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
+        route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST,
         prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        route: String,
         noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
+        route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST,
         prefix: String = "/"
     )
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param route a route
      * @param function a function of the receiver
+     * @param route a route
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
-        route: String,
         noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
+        route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST,
         prefix: String = "/"
     )
