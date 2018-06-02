@@ -11,7 +11,10 @@ KVision is not declarative - it is not designed to mix HTML code (or pseudo code
 programming language like JavaScript. In KVision everything is just written in Kotlin, and your code can be reused not by creating any templates,
 but by using well known OOP design patterns - composition and inheritance.
 
-This design is quite similar to many non-web UI programming libraries including Swing (Java), QT (C++) and WinForms (C#).
+This design is quite similar to many non-web UI programming libraries including Swing (Java), JavaFX, QT (C++) and WinForms (C#).
+
+KVision contains innovative connectivity interface for [Jooby](https://jooby.org) micro web framework on the server side, which
+allows to build full-stack, multiplatform applications with shared common code.
 
 **KVision is a new project in a development phase. Please create an issue for any bugs or feature requests.**
 
@@ -29,6 +32,7 @@ This design is quite similar to many non-web UI programming libraries including 
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
 - Data binding support for [observable](https://github.com/rjaros/kotlin-observable-js) data model.
 - Easy to use Drag & Drop support.
+- Innovative integration interface for [Jooby](https://jooby.org) micro web framework on the server side.
 - Ready to explore [KVision examples](https://github.com/rjaros/kvision-examples) are available,
 built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
 [Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).
@@ -131,15 +135,14 @@ Application package will be saved as build/distributions/showcase.zip.
 
 ### Type safe forms
 
-        data class Model(val username: String?, val password: String?)
+        @Serializable
+        data class Model(val username: String? = null, val password: String? = null)
 
         Root("root").add(FormPanel {
-            Model(it.string("username"), it.string("password"))
-        }.apply {
             add(Model::username, Text(label = "Username"), required = true)
             add(Model::password, Password(label = "Password"), required = true)
             add(Button("OK").onClick {
-                val data: Data = this@apply.getData()
+                val data: Data = this@FormPanel.getData()
                 println("Username: ${data.username}")
                 println("Password: ${data.password}")
             })
@@ -155,8 +158,8 @@ Application package will be saved as build/distributions/showcase.zip.
             Data("Two"),
             Data("Three")
         )
-        Root("root").add(DataContainer(model, { index ->
-            Label(model[index].text)
+        Root("root").add(DataContainer(model, { index, data ->
+            Label(data.text)
         }, child = HPanel(spacing = 10, wrap = FlexWrap.WRAP)))
 
         launch { // Kotlin coroutines
