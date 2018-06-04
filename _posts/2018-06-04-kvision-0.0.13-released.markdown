@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "KVision 0.0.13 released"
+author: Robert Jaros
+date:   2018-06-04 14:29:00 +0100
+categories: kvision kotlin
+---
+
+I've just released KVision 0.0.13.
+
+Changelog:
+- DockPanel usability fixes
+- a dialog component
+- new simple HTML5 canvas component
+- add resizeWindow event to Window component
+- add dependencies on kotlinx.serialization and kotlinx.coroutines
+- multiplatform kvision-common and kvision-server modules
+- Jooby framework integration with automatic JSON-RPC connectivity
+- Kwery ORM integration
+- Pac4j security module integration
+- change module kind option to 'umd'
+
+KVision contains now an innovative connectivity interface for [Jooby](https://jooby.org) micro web framework on the server side,
+which allows to build full-stack, multiplatform applications with shared common code. KVision closely integrates the client and 
+the server side of the project with a shared data model and fully type-safe connectivity between both sides (based on 
+automatically generated routings and JSON-RPC endpoints).
+
+I've created a new example application - "Address book - fullstack". It utilizes:
+
+- H2 SQL database (configured for "filesystem" database)
+- [Kwery](https://github.com/andrewoma/kwery) ORM for database connectivity
+- [Pac4J](https://github.com/pac4j/pac4j) security engine for authentication and profile management
+
+The architecture of the project is heavily based on Kotlin coroutines, wrapping asynchronous client-server calls into easy-to-read 
+synchronous-like code.
+
+[You can play with live demo on Heroku](https://kvision-address-book.herokuapp.com/)
