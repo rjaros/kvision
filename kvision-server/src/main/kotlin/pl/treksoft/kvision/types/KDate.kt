@@ -26,6 +26,7 @@ import com.github.andrewoma.kwery.mapper.TableConfiguration
 import com.github.andrewoma.kwery.mapper.reifiedConverter
 import com.github.andrewoma.kwery.mapper.standardConverters
 import com.github.andrewoma.kwery.mapper.util.camelToLowerUnderscore
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,8 +48,8 @@ internal actual fun KDate.toStringF(format: String) =
 fun KDate.toJava(): java.util.Date = java.util.Date(this.time)
 
 object KDateConverter : SimpleConverter<KDate>(
-    { row, c -> KDate(row.date(c).time) },
-    { it.toJava() }
+    { row, c -> KDate(row.timestamp(c).time) },
+    { Timestamp(it.time) }
 )
 
 val kvTableConfig = TableConfiguration(
