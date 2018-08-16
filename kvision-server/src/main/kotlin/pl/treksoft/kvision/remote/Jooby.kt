@@ -40,7 +40,7 @@ actual open class JoobyServer(init: JoobyServer.() -> Unit) : Kooby() {
         @Suppress("LeakingThis")
         assets("/", "index.html")
         @Suppress("LeakingThis")
-        assets("/**")
+        assets("/**").onMissing(0)
         val mapper = jacksonObjectMapper()
         @Suppress("LeakingThis")
         use(Jackson(mapper))
