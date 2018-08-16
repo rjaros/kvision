@@ -38,9 +38,9 @@ import kotlinx.coroutines.experimental.async as coroutinesAsync
 actual open class JoobyServer(init: JoobyServer.() -> Unit) : Kooby() {
     init {
         @Suppress("LeakingThis")
-        assets("/**")
-        @Suppress("LeakingThis")
         assets("/", "index.html")
+        @Suppress("LeakingThis")
+        assets("/**")
         val mapper = jacksonObjectMapper()
         @Suppress("LeakingThis")
         use(Jackson(mapper))
