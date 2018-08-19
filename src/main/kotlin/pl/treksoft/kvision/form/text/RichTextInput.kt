@@ -46,7 +46,7 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
         placeholder?.let {
-            sn.add("placeholder" to it)
+            sn.add("placeholder" to translate(it))
         }
         name?.let {
             sn.add("name" to it)

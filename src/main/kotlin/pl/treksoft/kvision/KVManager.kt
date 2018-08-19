@@ -142,6 +142,7 @@ internal object KVManager {
         require("handlebars/dist/handlebars.runtime.min.js")
     } catch (e: Throwable) {
     }
+    private val jed = require("jed")
     internal val fecha = require("fecha")
     private val sdPatch = Snabbdom.init(
         arrayOf(

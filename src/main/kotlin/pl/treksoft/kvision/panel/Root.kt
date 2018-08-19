@@ -116,7 +116,7 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     }
 
     companion object {
-        private val roots: MutableList<Root> = mutableListOf()
+        internal val roots: MutableList<Root> = mutableListOf()
 
         internal fun getLastRoot(): Root? {
             return if (roots.size > 0)

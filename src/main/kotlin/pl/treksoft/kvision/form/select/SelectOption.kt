@@ -70,7 +70,7 @@ open class SelectOption(
 
     override fun render(): VNode {
         return if (!divider) {
-            render("option", arrayOf(label ?: value))
+            render("option", arrayOf(translate(label) ?: value))
         } else {
             render("option")
         }
@@ -83,7 +83,7 @@ open class SelectOption(
                 sn.add("value" to it)
             }
             subtext?.let {
-                sn.add("data-subtext" to it)
+                sn.add("data-subtext" to translate(it))
             }
             icon?.let {
                 if (it.startsWith("fa-")) {

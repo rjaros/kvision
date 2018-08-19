@@ -81,7 +81,7 @@ open class Image(
         val pr = super.getSnAttrs().toMutableList()
         pr.add("src" to src)
         alt?.let {
-            pr.add("alt" to it)
+            pr.add("alt" to translate(it))
         }
         return pr
     }

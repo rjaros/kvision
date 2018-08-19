@@ -135,10 +135,14 @@ open class Tag(
 
     override fun render(): VNode {
         return if (content != null) {
+            val translatedContent = content?.let { translate(it) }
             if (rich) {
-                render(type.tagName, arrayOf(KVManager.virtualize("<span>$content</span>")) + childrenVNodes())
+                render(
+                    type.tagName,
+                    arrayOf(KVManager.virtualize("<span>$translatedContent</span>")) + childrenVNodes()
+                )
             } else {
-                render(type.tagName, childrenVNodes() + arrayOf(content))
+                render(type.tagName, childrenVNodes() + arrayOf(translatedContent))
             }
         } else {
             render(type.tagName, childrenVNodes())

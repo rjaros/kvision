@@ -32,6 +32,8 @@ import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.dropdown.ContextMenu
+import pl.treksoft.kvision.i18n.I18n
+import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.SnOn
 import pl.treksoft.kvision.utils.hooks
@@ -93,6 +95,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     private var snOnCache: com.github.snabbdom.On? = null
     private var snHooksCache: com.github.snabbdom.Hooks? = null
 
+    private var lastLanguage: String? = null
+
     internal fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true
         val t = block()
@@ -117,6 +121,22 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
             } else {
                 h("div", opt, arrayOf(render()))
             }
+        }
+    }
+
+    /**
+     * Translates given text with I18n trans function and sets lastLanguage marker.
+     * @param text a text marked for a dynamic translation
+     * @return translated text
+     */
+    protected fun translate(text: String): String {
+        lastLanguage = I18n.language
+        return trans(text)
+    }
+
+    protected fun translate(text: String?): String? {
+        return text?.let {
+            translate(it)
         }
     }
 
@@ -163,6 +183,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     }
 
     private fun getSnAttrsInternal(): List<StringPair> {
+        if (lastLanguage != null && lastLanguage != I18n.language) snAttrsCache = null
         return snAttrsCache ?: {
             val s = getSnAttrs()
             snAttrsCache = s
@@ -567,16 +588,17 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         label: String, icon: String? = null,
         image: ResString? = null
     ): Array<out Any> {
+        val translatedLabel = translate(label)
         return if (icon != null) {
             if (icon.startsWith("fa-")) {
-                arrayOf(KVManager.virtualize("<i class='fa $icon'></i>"), " $label")
+                arrayOf(KVManager.virtualize("<i class='fa $icon'></i>"), " $translatedLabel")
             } else {
-                arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " $label")
+                arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " $translatedLabel")
             }
         } else if (image != null) {
-            arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " $label")
+            arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " $translatedLabel")
         } else {
-            arrayOf(label)
+            arrayOf(translatedLabel)
         }
     }
 

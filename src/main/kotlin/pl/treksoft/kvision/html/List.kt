@@ -116,10 +116,11 @@ open class ListTag(
     }
 
     private fun element(name: String, value: String, rich: Boolean): VNode {
+        val translatedValue = translate(value)
         return if (rich) {
-            h(name, arrayOf(KVManager.virtualize("<span>$value</span>")))
+            h(name, arrayOf(KVManager.virtualize("<span>$translatedValue</span>")))
         } else {
-            h(name, value)
+            h(name, translatedValue)
         }
     }
 

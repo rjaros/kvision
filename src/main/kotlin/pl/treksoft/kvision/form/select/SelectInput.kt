@@ -255,7 +255,7 @@ open class SelectInput(
             sn.add("data-live-search" to "true")
         }
         placeholder?.let {
-            sn.add("title" to it)
+            sn.add("title" to translate(it))
         }
         autofocus?.let {
             if (it) {

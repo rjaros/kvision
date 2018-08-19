@@ -79,7 +79,7 @@ open class SelectOptGroup(
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
-        sn.add("label" to label)
+        sn.add("label" to translate(label))
         maxOptions?.let {
             sn.add("data-max-options" to "" + it)
         }

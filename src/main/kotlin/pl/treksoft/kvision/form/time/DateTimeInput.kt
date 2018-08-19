@@ -136,7 +136,7 @@ open class DateTimeInput(
         val sn = super.getSnAttrs().toMutableList()
         sn.add("type" to "text")
         placeholder?.let {
-            sn.add("placeholder" to it)
+            sn.add("placeholder" to translate(it))
         }
         name?.let {
             sn.add("name" to it)
