@@ -28,6 +28,7 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.types.KDate
 import pl.treksoft.kvision.types.toJS
 import pl.treksoft.kvision.types.toKDateF
@@ -226,6 +227,7 @@ open class DateTimeInput(
         val minView = if (format.contains("HH") || format.contains("mm")) 0 else 2
         val maxView = if (format.contains("YY") || format.contains("M") || format.contains("D")) MAX_VIEW else 1
         val startView = if (maxView < 2) maxView else 2
+        val language = I18n.language
         getElementJQueryD()?.datetimepicker(obj {
             this.format = datePickerFormat
             this.startView = startView
@@ -239,6 +241,7 @@ open class DateTimeInput(
             this.showMeridian = showMeridian
             this.daysOfWeekDisabled = daysOfWeekDisabled
             this.autoclose = true
+            this.language = language
         })
     }
 

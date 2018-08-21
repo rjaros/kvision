@@ -203,7 +203,7 @@ open class FormPanel<K : Any>(
     }
 
     protected fun <C : FormControl> addInternal(
-        key: KProperty1<K, *>, control: C, required: Boolean = false,
+        key: KProperty1<K, *>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
@@ -219,7 +219,7 @@ open class FormPanel<K : Any>(
             }
         }
         super.add(control)
-        form.addInternal(key, control, required, validatorMessage, validator)
+        form.addInternal(key, control, required, requiredMessage, validatorMessage, validator)
         return this
     }
 
@@ -228,16 +228,17 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param control the string form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : StringFormControl> add(
-        key: KProperty1<K, String?>, control: C, required: Boolean = false,
+        key: KProperty1<K, String?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -245,16 +246,17 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param control the boolean form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : BoolFormControl> add(
-        key: KProperty1<K, Boolean?>, control: C, required: Boolean = false,
+        key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -262,16 +264,17 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param control the number form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : NumberFormControl> add(
-        key: KProperty1<K, Number?>, control: C, required: Boolean = false,
+        key: KProperty1<K, Number?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -279,16 +282,17 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param control the date form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : KDateFormControl> add(
-        key: KProperty1<K, KDate?>, control: C, required: Boolean = false,
+        key: KProperty1<K, KDate?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -296,16 +300,17 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param control the files form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : KFilesFormControl> add(
-        key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false,
+        key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**

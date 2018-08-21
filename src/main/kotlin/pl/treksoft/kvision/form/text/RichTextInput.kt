@@ -84,8 +84,9 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
             trixId = this.getElementJQuery()?.attr("trix-id")
             if (trixId != null) {
                 value?.let {
-                    if (this.getElement().asDynamic().editor != undefined)
+                    if (this.getElement().asDynamic().editor != undefined) {
                         this.getElement().asDynamic().editor.loadHTML(it)
+                    }
                 }
             }
         })

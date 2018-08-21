@@ -29,6 +29,7 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.utils.obj
 
@@ -279,6 +280,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     }
 
     private fun getSettingsObj(): dynamic {
+        val language = I18n.language
         return obj {
             this.uploadUrl = uploadUrl
             this.uploadExtraData = uploadExtraData ?: undefined
@@ -295,6 +297,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
             this.allowedFileTypes = allowedFileTypes?.toTypedArray()
             this.allowedFileExtensions = allowedFileExtensions?.toTypedArray()
             this.dropZoneEnabled = dropZoneEnabled
+            this.language = language
         }
     }
 

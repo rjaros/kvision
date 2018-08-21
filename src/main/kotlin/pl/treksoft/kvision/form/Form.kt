@@ -26,6 +26,7 @@ import kotlinx.serialization.Mapper
 import kotlinx.serialization.json.JSON
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.form.upload.Upload
+import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.types.KDate
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.utils.getContent
@@ -37,6 +38,7 @@ import kotlin.reflect.KProperty1
  */
 internal data class FieldParams<in F : FormControl>(
     val required: Boolean = false,
+    val requiredMessage: String? = null,
     val validatorMessage: ((F) -> String?)? = null,
     val validator: ((F) -> Boolean?)? = null
 )
@@ -51,7 +53,9 @@ private class FormMapWrapper<out V>(private val map: Map<String, V>) : Map<Strin
     override fun toString(): String = map.toString()
     override val size: Int get() = map.size
     override fun isEmpty(): Boolean = map.isEmpty()
-    override fun containsKey(key: String): Boolean = if (key.indexOf('.') != -1) map.containsKey(key) else !(map.containsKey("$key.time") || map.containsKey("$key.size"))
+    override fun containsKey(key: String): Boolean =
+        if (key.indexOf('.') != -1) map.containsKey(key) else !(map.containsKey("$key.time") || map.containsKey("$key.size"))
+
     override fun containsValue(value: @UnsafeVariance V): Boolean = map.containsValue(value)
     override fun get(key: String): V? = map[key]
     override val keys: Set<String> get() = map.keys
@@ -105,12 +109,12 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
     }
 
     internal fun <C : FormControl> addInternal(
-        key: KProperty1<K, *>, control: C, required: Boolean = false,
+        key: KProperty1<K, *>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
         this.fields[key.name] = control
-        this.fieldsParams[key.name] = FieldParams(required, validatorMessage, validator)
+        this.fieldsParams[key.name] = FieldParams(required, requiredMessage, validatorMessage, validator)
         return this
     }
 
@@ -119,16 +123,17 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
      * @param key key identifier of the control
      * @param control the string form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form
      */
     fun <C : StringFormControl> add(
-        key: KProperty1<K, String?>, control: C, required: Boolean = false,
+        key: KProperty1<K, String?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -136,16 +141,17 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
      * @param key key identifier of the control
      * @param control the boolean form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form
      */
     fun <C : BoolFormControl> add(
-        key: KProperty1<K, Boolean?>, control: C, required: Boolean = false,
+        key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -153,16 +159,17 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
      * @param key key identifier of the control
      * @param control the number form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form
      */
     fun <C : NumberFormControl> add(
-        key: KProperty1<K, Number?>, control: C, required: Boolean = false,
+        key: KProperty1<K, Number?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -170,16 +177,17 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
      * @param key key identifier of the control
      * @param control the date form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form
      */
     fun <C : KDateFormControl> add(
-        key: KProperty1<K, KDate?>, control: C, required: Boolean = false,
+        key: KProperty1<K, KDate?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -187,16 +195,17 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
      * @param key key identifier of the control
      * @param control the files form control
      * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form
      */
     fun <C : KFilesFormControl> add(
-        key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false,
+        key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -300,12 +309,12 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
                 val required = fieldsParams?.required ?: false
                 val requiredError = control.getValue() == null && required
                 if (requiredError) {
-                    control.validatorError = "Value is required"
+                    control.validatorError = trans(fieldsParams?.requiredMessage) ?: "Value is required"
                     true
                 } else {
                     val validatorPassed = fieldsParams?.validator?.invoke(control) ?: true
                     control.validatorError = if (!validatorPassed) {
-                        fieldsParams?.validatorMessage?.invoke(control) ?: "Invalid value"
+                        trans(fieldsParams?.validatorMessage?.invoke(control)) ?: "Invalid value"
                     } else {
                         null
                     }
@@ -315,7 +324,7 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
         }.find { it }
         val validatorPassed = validator?.invoke(this) ?: true
         panel?.validatorError = if (!validatorPassed) {
-            validatorMessage?.invoke(this) ?: "Invalid form data"
+            trans(validatorMessage?.invoke(this)) ?: "Invalid form data"
         } else {
             null
         }

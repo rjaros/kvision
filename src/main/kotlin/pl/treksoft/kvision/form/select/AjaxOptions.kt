@@ -24,6 +24,7 @@ package pl.treksoft.kvision.form.select
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.kvision.KVManager.AJAX_REQUEST_DELAY
 import pl.treksoft.kvision.KVManager.KVNULL
+import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.utils.obj
 
 /**
@@ -104,6 +105,7 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
             processedData
         }
     }
+    val language = I18n.language
     return obj {
         this.ajax = obj {
             this.url = url
@@ -121,5 +123,6 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
         this.preserveSelected = false
         this.requestDelay = requestDelay
         this.restoreOnError = restoreOnError
+        this.langCode = language
     }
 }

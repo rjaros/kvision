@@ -106,6 +106,11 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         return this
     }
 
+    internal fun restart() {
+        rootVnode = KVManager.patch(rootVnode, h("div"))
+        rootVnode = KVManager.patch(rootVnode, renderVNode())
+    }
+
     override fun getRoot(): Root? {
         return this
     }

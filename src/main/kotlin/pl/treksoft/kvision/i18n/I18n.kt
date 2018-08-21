@@ -48,7 +48,7 @@ object I18n {
     var language = defaultLanguage
         set(value) {
             field = value
-            Root.roots.forEach { it.reRender() }
+            Root.roots.forEach { it.restart() }
         }
 
     private val cache = mutableMapOf<String, Jed>()
