@@ -47,7 +47,7 @@ external fun require(name: String): dynamic
 /**
  * Internal singleton object which initializes and configures KVision framework.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
+@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught", "LargeClass")
 internal object KVManager {
     internal const val AJAX_REQUEST_DELAY = 300
     internal const val KVNULL = "#kvnull"

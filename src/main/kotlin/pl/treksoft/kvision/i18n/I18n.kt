@@ -66,6 +66,7 @@ object I18n {
         Promise.all(promises).then { initCallback() }
     }
 
+    @Suppress("MagicNumber")
     private fun readMessages(language: String): Promise<Jed> {
         return Promise { resolve, _ ->
             val xmlHttpRequest = XMLHttpRequest()
@@ -137,6 +138,7 @@ object I18n {
             gettext(text.substring(I18N_SINGLE_DELIMITER.length))
         } else if (text.startsWith(I18N_PLURAL_DELIMITER)) {
             val tab = text.substring(I18N_PLURAL_DELIMITER.length).split(I18N_PLURAL_DELIMITER)
+            @Suppress("MagicNumber")
             if (tab.size == 3) {
                 ngettext(tab[0], tab[1], tab[2].toIntOrNull() ?: 1)
             } else {

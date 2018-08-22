@@ -54,7 +54,8 @@ private class FormMapWrapper<out V>(private val map: Map<String, V>) : Map<Strin
     override val size: Int get() = map.size
     override fun isEmpty(): Boolean = map.isEmpty()
     override fun containsKey(key: String): Boolean =
-        if (key.indexOf('.') != -1) map.containsKey(key) else !(map.containsKey("$key.time") || map.containsKey("$key.size"))
+        if (key.indexOf('.') != -1) map.containsKey(key) else
+            !(map.containsKey("$key.time") || map.containsKey("$key.size"))
 
     override fun containsValue(value: @UnsafeVariance V): Boolean = map.containsValue(value)
     override fun get(key: String): V? = map[key]
