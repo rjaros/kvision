@@ -125,6 +125,11 @@ open class Tag(
      */
     var align by refreshOnUpdate(align)
     /**
+     * @suppress
+     * Internal property
+     */
+    override var templateDataObj: Any? = null
+    /**
      * Handlebars template.
      */
     override var template: ((Any?) -> String)? by refreshOnUpdate()
@@ -139,8 +144,11 @@ open class Tag(
     }
 
     override fun render(): VNode {
-        if (templateData != null && lastLanguage != null && lastLanguage != I18n.language)
-            templateData = templateData
+        if (templateDataObj != null && lastLanguage != null && lastLanguage != I18n.language) {
+            getRoot()?.renderDisabled = true
+            templateData = templateDataObj
+            getRoot()?.renderDisabled = false
+        }
         return if (content != null) {
             val translatedContent = content?.let { translate(it) }
             if (rich) {

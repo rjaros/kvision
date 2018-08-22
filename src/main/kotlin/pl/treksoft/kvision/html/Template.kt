@@ -29,18 +29,24 @@ import pl.treksoft.kvision.i18n.I18n
 interface Template {
     var content: String?
     var rich: Boolean
+    /**
+     * @suppress
+     * Internal property
+     */
+    var templateDataObj: Any?
     var template: ((Any?) -> String)?
-    val templates: Map<String, (Any?) -> String>
+    var templates: Map<String, (Any?) -> String>
 
     /**
      * Handlebars template data object.
      */
     var templateData: Any?
         get() {
-            return null
+            return templateDataObj
         }
         set(value) {
             if (!rich) rich = true
+            templateDataObj = value
             content = template?.invoke(value) ?: templates.get(I18n.language)?.invoke(value)
         }
 }
