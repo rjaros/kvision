@@ -30,7 +30,7 @@ interface Template {
     var content: String?
     var rich: Boolean
     var template: ((Any?) -> String)?
-    val templates: Map<String, (Any?) -> String>?
+    val templates: Map<String, (Any?) -> String>
 
     /**
      * Handlebars template data object.
@@ -41,6 +41,6 @@ interface Template {
         }
         set(value) {
             if (!rich) rich = true
-            content = template?.invoke(value) ?: templates?.get(I18n.language)?.invoke(value)
+            content = template?.invoke(value) ?: templates.get(I18n.language)?.invoke(value)
         }
 }

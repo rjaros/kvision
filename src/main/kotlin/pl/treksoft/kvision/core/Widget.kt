@@ -95,7 +95,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     private var snOnCache: com.github.snabbdom.On? = null
     private var snHooksCache: com.github.snabbdom.Hooks? = null
 
-    private var lastLanguage: String? = null
+    protected var lastLanguage: String? = null
 
     internal fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true

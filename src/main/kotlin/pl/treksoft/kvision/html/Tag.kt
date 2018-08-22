@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -130,7 +131,7 @@ open class Tag(
     /**
      * Handlebars templates for i18n.
      */
-    override var templates: Map<String, (Any?) -> String>? by refreshOnUpdate()
+    override var templates: Map<String, (Any?) -> String> by refreshOnUpdate(mapOf())
 
     init {
         @Suppress("LeakingThis")
@@ -138,6 +139,8 @@ open class Tag(
     }
 
     override fun render(): VNode {
+        if (templateData != null && lastLanguage != null && lastLanguage != I18n.language)
+            templateData = templateData
         return if (content != null) {
             val translatedContent = content?.let { translate(it) }
             if (rich) {
