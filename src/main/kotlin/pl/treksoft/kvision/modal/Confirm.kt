@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.modal
 
 import pl.treksoft.kvision.html.Align
-import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.Button
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 
@@ -38,13 +38,16 @@ import pl.treksoft.kvision.html.Tag
  * @param size modal window size
  * @param animation determines if animations are used
  * @param cancelVisible determines if Cancel button is visible
+ * @param yesTitle yes button text
+ * @param noTitle no button text
+ * @param cancelTitle cancel button text
  * @param noCallback a function called after closing window with No button
  * @param yesCallback a function called after closing window with Yes button
  */
 open class Confirm(
     caption: String? = null, text: String? = null, rich: Boolean = false,
     align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
-    cancelVisible: Boolean = false,
+    cancelVisible: Boolean = false, yesTitle: String = "Yes", noTitle: String = "No", cancelTitle: String = "Cancel",
     private val noCallback: (() -> Unit)? = null,
     private val yesCallback: (() -> Unit)? = null
 ) : Modal(caption, false, size, animation, false) {
@@ -77,8 +80,37 @@ open class Confirm(
      */
     var cancelVisible by refreshOnUpdate(cancelVisible, { refreshCancelButton() })
 
+    /**
+     * Yes button text.
+     */
+    var yesTitle
+        get() = yesButton.text
+        set(value) {
+            yesButton.text = value
+        }
+
+    /**
+     * No button text.
+     */
+    var noTitle
+        get() = noButton.text
+        set(value) {
+            noButton.text = value
+        }
+
+    /**
+     * Cancel button text.
+     */
+    var cancelTitle
+        get() = cancelButton.text
+        set(value) {
+            cancelButton.text = value
+        }
+
     private val contentTag = Tag(TAG.DIV, text, rich, align)
-    private val cancelButton = Button("Cancel", "remove")
+    private val cancelButton = Button(cancelTitle, "remove")
+    private val noButton = Button(noTitle, "ban-circle")
+    private val yesButton = Button(yesTitle, "ok", ButtonStyle.PRIMARY)
 
     init {
         body.add(contentTag)
@@ -88,7 +120,6 @@ open class Confirm(
             }
         }
         this.addButton(cancelButton)
-        val noButton = Button("No", "ban-circle")
         noButton.setEventListener {
             click = {
                 hide()
@@ -96,7 +127,6 @@ open class Confirm(
             }
         }
         this.addButton(noButton)
-        val yesButton = Button("Yes", "ok", ButtonStyle.PRIMARY)
         yesButton.setEventListener {
             click = {
                 hide()
@@ -134,10 +164,13 @@ open class Confirm(
         fun show(
             caption: String? = null, text: String? = null, rich: Boolean = false,
             align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
-            cancelVisible: Boolean = false,
-            noCallback: (() -> Unit)? = null, yesCallback: (() -> Unit)? = null
+            cancelVisible: Boolean = false, yesTitle: String = "Yes", noTitle: String = "No",
+            cancelTitle: String = "Cancel", noCallback: (() -> Unit)? = null, yesCallback: (() -> Unit)? = null
         ) {
-            Confirm(caption, text, rich, align, size, animation, cancelVisible, noCallback, yesCallback).show()
+            Confirm(
+                caption, text, rich, align, size, animation, cancelVisible, yesTitle, noTitle, cancelTitle,
+                noCallback, yesCallback
+            ).show()
         }
     }
 }

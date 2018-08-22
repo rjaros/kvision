@@ -127,7 +127,12 @@ object I18n {
         return I18N_PLURAL_DELIMITER + singularKey + I18N_PLURAL_DELIMITER + pluralKey + I18N_PLURAL_DELIMITER + value
     }
 
-    internal fun trans(text: String): String {
+    /**
+     * A dynamic translation function.
+     * @param text text marked for a dynamic translation.
+     * @return translated text.
+     */
+    fun trans(text: String): String {
         return if (text.startsWith(I18N_SINGLE_DELIMITER)) {
             gettext(text.substring(I18N_SINGLE_DELIMITER.length))
         } else if (text.startsWith(I18N_PLURAL_DELIMITER)) {
@@ -142,7 +147,12 @@ object I18n {
         }
     }
 
-    internal fun trans(text: String?): String? {
+    /**
+     * A dynamic translation function.
+     * @param text text marked for a dynamic translation.
+     * @return translated text.
+     */
+    fun trans(text: String?): String? {
         return text?.let {
             trans(it)
         }
