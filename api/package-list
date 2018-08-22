@@ -34,6 +34,7 @@ pl.treksoft.kvision.form.time
 pl.treksoft.kvision.form.upload
 pl.treksoft.kvision.hmr
 pl.treksoft.kvision.html
+pl.treksoft.kvision.i18n
 pl.treksoft.kvision.modal
 pl.treksoft.kvision.navbar
 pl.treksoft.kvision.panel
