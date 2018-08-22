@@ -126,7 +126,11 @@ open class Tag(
     /**
      * Handlebars template.
      */
-    override var template: (Any?) -> String by refreshOnUpdate()
+    override var template: ((Any?) -> String)? by refreshOnUpdate()
+    /**
+     * Handlebars templates for i18n.
+     */
+    override var templates: Map<String, (Any?) -> String>? by refreshOnUpdate()
 
     init {
         @Suppress("LeakingThis")

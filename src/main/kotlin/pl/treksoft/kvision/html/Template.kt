@@ -21,17 +21,26 @@
  */
 package pl.treksoft.kvision.html
 
+import pl.treksoft.kvision.i18n.I18n
+
+/**
+ * Handlebars templates helper interface.
+ */
 interface Template {
     var content: String?
     var rich: Boolean
-    var template: (Any?) -> String
+    var template: ((Any?) -> String)?
+    val templates: Map<String, (Any?) -> String>?
 
+    /**
+     * Handlebars template data object.
+     */
     var templateData: Any?
         get() {
             return null
         }
         set(value) {
             if (!rich) rich = true
-            content = template(value)
+            content = template?.invoke(value) ?: templates?.get(I18n.language)?.invoke(value)
         }
 }
