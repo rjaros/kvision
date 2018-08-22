@@ -53,6 +53,10 @@ Helper interfaces and classes necessary to develop applications supporting Hot M
 Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links, lists and iframe. 
 Support for Handlebars.js templates is included.
 
+# Package pl.treksoft.kvision.i18n
+
+Internationalization classes.
+
 # Package pl.treksoft.kvision.modal
 
 Classes supporting general purpose Bootstrap modals with convenient helpers for alert and confirm popup dialogs.
