@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.asDeferred
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.asDeferred
 import kotlinx.serialization.Serializable
 import pl.treksoft.kvision.utils.obj
 

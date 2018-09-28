@@ -24,13 +24,14 @@
 package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.Unconfined
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import org.jooby.Kooby
 import org.jooby.Session
 import org.jooby.json.Jackson
 import org.pac4j.core.profile.CommonProfile
-import kotlinx.coroutines.experimental.async as coroutinesAsync
+import kotlinx.coroutines.async as coroutinesAsync
 
 /**
  * A Jooby based server.
@@ -63,7 +64,7 @@ actual typealias Profile = CommonProfile
  * A helper extension function for asynchronous request processing.
  */
 fun <RESP> Request?.async(block: (Request) -> RESP): Deferred<RESP> = this?.let { req ->
-    coroutinesAsync(Unconfined) {
+    GlobalScope.coroutinesAsync(Dispatchers.Unconfined) {
         block(req)
     }
 } ?: throw IllegalStateException("Request not set!")
@@ -73,7 +74,7 @@ fun <RESP> Request?.async(block: (Request) -> RESP): Deferred<RESP> = this?.let 
  */
 fun <RESP> Request?.async(block: (Request, Session) -> RESP): Deferred<RESP> = this?.let { req ->
     val session = req.session()
-    coroutinesAsync(Unconfined) {
+    GlobalScope.coroutinesAsync(Dispatchers.Unconfined) {
         block(req, session)
     }
 } ?: throw IllegalStateException("Request not set!")
@@ -84,7 +85,7 @@ fun <RESP> Request?.async(block: (Request, Session) -> RESP): Deferred<RESP> = t
 fun <RESP> Request?.async(block: (Request, Session, Profile) -> RESP): Deferred<RESP> = this?.let { req ->
     val session = req.session()
     val profile = req.require(CommonProfile::class.java)
-    coroutinesAsync(Unconfined) {
+    GlobalScope.coroutinesAsync(Dispatchers.Unconfined) {
         block(req, session, profile)
     }
 } ?: throw IllegalStateException("Request not set!")

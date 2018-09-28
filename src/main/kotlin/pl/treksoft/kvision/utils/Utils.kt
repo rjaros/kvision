@@ -24,13 +24,15 @@
 package pl.treksoft.kvision.utils
 
 import com.lightningkite.kotlin.observable.list.ObservableList
-import kotlinx.coroutines.experimental.suspendCancellableCoroutine
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.w3c.files.File
 import org.w3c.files.FileReader
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.UNIT
 import kotlin.browser.window
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import kotlin.js.Date
 
 /**

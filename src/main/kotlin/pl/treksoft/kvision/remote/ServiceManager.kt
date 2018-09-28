@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 
 /**
  * Multiplatform service manager.

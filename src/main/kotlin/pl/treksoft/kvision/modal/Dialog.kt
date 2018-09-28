@@ -21,8 +21,9 @@
  */
 package pl.treksoft.kvision.modal
 
-import kotlinx.coroutines.experimental.suspendCancellableCoroutine
+import kotlinx.coroutines.suspendCancellableCoroutine
 import pl.treksoft.kvision.core.Widget
+import kotlin.coroutines.resume
 
 /**
  * Modal window with a result.

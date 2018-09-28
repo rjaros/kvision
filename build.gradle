@@ -12,10 +12,10 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}"
         classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:${frontendPluginVersion}"
         classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${detektVersion}"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}"
-        classpath "org.jetbrains.kotlinx:kotlinx-gradle-serialization-plugin:${serializationVersion}"
         classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementPluginVersion}"
     }
 }
@@ -33,6 +33,7 @@ allprojects {
 
     repositories {
         jcenter()
+        maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url = 'https://kotlin.bintray.com/kotlinx' }
         maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
         maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
