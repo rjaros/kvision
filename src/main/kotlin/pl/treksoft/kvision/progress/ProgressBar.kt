@@ -97,6 +97,30 @@ open class ProgressBar(
         set(value) {
             indicator.animated = value
         }
+    /**
+     * Text content of the progress bar.
+     */
+    var content
+        get() = indicator.content
+        set(value) {
+            indicator.content = value
+        }
+    /**
+     * Determines if [content] can contain HTML code.
+     */
+    var rich
+        get() = indicator.rich
+        set(value) {
+            indicator.rich = value
+        }
+    /**
+     * Text align of the progress bar.
+     */
+    var align
+        get() = indicator.align
+        set(value) {
+            indicator.align = value
+        }
 
     internal val indicator = ProgressIndicator(progress, min, max, style, striped, animated, content, rich, align)
 
