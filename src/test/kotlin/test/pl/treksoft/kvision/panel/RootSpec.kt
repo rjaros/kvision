@@ -56,18 +56,4 @@ class RootSpec : DomSpec {
             assertTrue("Should return self") { r == root }
         }
     }
-
-    @Test
-    fun addModal() {
-        run {
-            val root = Root("test", true)
-            val modal = Modal("test")
-            modal.id = "test_modal"
-            root.addModal(modal)
-            modal.show()
-            val elem = document.getElementById("test_modal")
-            assertTrue("Should render standard modal") { elem != null }
-            modal.hide()
-        }
-    }
 }

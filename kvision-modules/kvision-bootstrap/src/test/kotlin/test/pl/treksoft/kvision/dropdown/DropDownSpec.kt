@@ -39,7 +39,7 @@ class DropDownSpec : DomSpec {
             root.add(dd)
             dd.toggle()
             val element = document.getElementById("test")
-            val id = dd.button.id
+            val id = dd.buttonId()
             assertEqualsHtml(
                 "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li><a href=\"#!/x\">abc</a></li><li><a href=\"#!/y\">def</a></li></ul></div>",
                 element?.innerHTML,
@@ -56,7 +56,7 @@ class DropDownSpec : DomSpec {
             root.add(dd)
             dd.toggle()
             val element = document.getElementById("test")
-            val id = dd.button.id
+            val id = dd.buttonId()
             assertEqualsHtml(
                 "<div class=\"dropup open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li><a href=\"#!/x\">abc</a></li><li><a href=\"#!/y\">def</a></li></ul></div>",
                 element?.innerHTML,
@@ -73,7 +73,7 @@ class DropDownSpec : DomSpec {
             root.add(dd)
             dd.toggle()
             val element = document.getElementById("test")
-            val id = dd.button.id
+            val id = dd.buttonId()
             assertEqualsHtml(
                 "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"dropdown-header\">abc</li></ul></div>",
                 element?.innerHTML,
@@ -90,7 +90,7 @@ class DropDownSpec : DomSpec {
             root.add(dd)
             dd.toggle()
             val element = document.getElementById("test")
-            val id = dd.button.id
+            val id = dd.buttonId()
             assertEqualsHtml(
                 "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"divider\" role=\"separator\"></li></ul></div>",
                 element?.innerHTML,
@@ -107,7 +107,7 @@ class DropDownSpec : DomSpec {
             root.add(dd)
             dd.toggle()
             val element = document.getElementById("test")
-            val id = dd.button.id
+            val id = dd.buttonId()
             assertEqualsHtml(
                 "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"disabled\"><a>abc</a></li></ul></div>",
                 element?.innerHTML,

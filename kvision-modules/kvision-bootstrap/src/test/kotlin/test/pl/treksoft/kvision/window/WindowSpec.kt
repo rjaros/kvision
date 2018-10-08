@@ -44,7 +44,7 @@ class WindowSpec : DomSpec {
             )
             window.isResizable = true
             assertEqualsHtml(
-                "<div class=\"modal-content kv-window\" id=\"$id\" style=\"width: auto; position: absolute; z-index: 901; overflow: hidden; resize: both; height: 10px;\"><div class=\"modal-header\"><h4 class=\"modal-title\">Window title</h4></div><div style=\"height: auto; overflow: auto; margin-bottom: 11px;\"></div><object style=\"display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1; opacity: 0;\" class=\"resize-sensor\" type=\"text/html\" data=\"about:blank\"></object></div>",
+                "<div class=\"modal-content kv-window\" id=\"$id\" style=\"width: auto; position: absolute; z-index: 901; overflow: hidden; resize: both; height: 12px;\"><div class=\"modal-header\"><h4 class=\"modal-title\">Window title</h4></div><div style=\"height: auto; overflow: auto; margin-bottom: 11px;\"></div><object style=\"display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1; opacity: 0;\" class=\"resize-sensor\" type=\"text/html\" data=\"about:blank\"></object></div>",
                 element?.innerHTML,
                 "Should render floating window with resizable handler"
             )

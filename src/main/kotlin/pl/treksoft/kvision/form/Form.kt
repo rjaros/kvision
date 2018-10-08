@@ -43,6 +43,27 @@ internal data class FieldParams<in F : FormControl>(
 )
 
 /**
+ * A wrapper for a Map with a custom containsKey method implementation.
+ * Used with kotlinx.serialization Mapper.
+ */
+private class FormMapWrapper<out V>(private val map: Map<String, V>) : Map<String, V> {
+    override fun equals(other: Any?): Boolean = map == other
+    override fun hashCode(): Int = map.hashCode()
+    override fun toString(): String = map.toString()
+    override val size: Int get() = map.size
+    override fun isEmpty(): Boolean = map.isEmpty()
+    override fun containsKey(key: String): Boolean =
+        if (key.indexOf('.') != -1) map.containsKey(key) else
+            !(map.containsKey("$key.time") || map.containsKey("$key.size"))
+
+    override fun containsValue(value: @UnsafeVariance V): Boolean = map.containsValue(value)
+    override fun get(key: String): V? = map[key]
+    override val keys: Set<String> get() = map.keys
+    override val values: Collection<V> get() = map.values
+    override val entries: Set<Map.Entry<String, V>> get() = map.entries
+}
+
+/**
  * The form definition class. Can be used directly or indirectly inside a [FormPanel].
  *
  * @constructor Creates a form with a given modelFactory function
@@ -82,7 +103,7 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
                     else -> listOf(entry.key to entry.value)
                 }
             }.toMap()
-            val mapper = Mapper.InNullableMapper(map)
+            val mapper = Mapper.InNullableMapper(FormMapWrapper(map))
             mapper.decode(serializer)
         }
     }

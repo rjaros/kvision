@@ -142,6 +142,9 @@ open class DropDown(
         idc, text, icon, style,
         disabled, forNavbar, withCaret, setOf("dropdown")
     )
+
+    fun buttonId() = button.id
+
     internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
