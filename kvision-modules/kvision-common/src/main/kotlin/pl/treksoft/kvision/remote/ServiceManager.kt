@@ -128,9 +128,9 @@ expect open class ServiceManager<out T>(service: T) {
 
     /**
      * Applies all defined routes to the given server.
-     * @param k a Jooby server
+     * @param k a server
      */
-    fun applyRoutes(k: JoobyServer)
+    fun applyRoutes(k: KVServer)
 
     /**
      * Returns the map of defined paths.

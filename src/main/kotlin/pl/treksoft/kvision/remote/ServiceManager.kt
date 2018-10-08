@@ -127,7 +127,7 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
      * Applies all defined routes to the given server.
      * Not used on the js platform.
      */
-    actual fun applyRoutes(k: JoobyServer) {
+    actual fun applyRoutes(k: KVServer) {
     }
 
     /**

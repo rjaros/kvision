@@ -22,9 +22,9 @@
 package pl.treksoft.kvision.remote
 
 /**
- * A Jooby based server.
+ * A server.
  */
-expect open class JoobyServer
+expect open class KVServer
 
 /**
  * A server request.

@@ -25,10 +25,10 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
 /**
- * A Jooby based server.
+ * A server.
  * Not used on the js platform.
  */
-actual open class JoobyServer
+actual open class KVServer
 
 /**
  * A server request.

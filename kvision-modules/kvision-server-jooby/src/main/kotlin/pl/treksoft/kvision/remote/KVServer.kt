@@ -36,7 +36,7 @@ import kotlinx.coroutines.async as coroutinesAsync
 /**
  * A Jooby based server.
  */
-actual open class JoobyServer(init: JoobyServer.() -> Unit) : Kooby() {
+actual open class KVServer(init: KVServer.() -> Unit) : Kooby() {
     init {
         @Suppress("LeakingThis")
         assets("/", "index.html")

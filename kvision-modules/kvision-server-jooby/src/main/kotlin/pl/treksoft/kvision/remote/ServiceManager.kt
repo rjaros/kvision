@@ -39,7 +39,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
         val LOG: Logger = LoggerFactory.getLogger(ServiceManager::class.java.name)
     }
 
-    protected val routes: MutableList<JoobyServer.() -> Unit> = mutableListOf()
+    protected val routes: MutableList<KVServer.() -> Unit> = mutableListOf()
     val mapper = jacksonObjectMapper()
     var counter: Int = 0
 
@@ -299,7 +299,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
         method: RpcHttpMethod,
         path: String,
         handler: (Request, Response) -> Unit
-    ): JoobyServer.() -> Unit {
+    ): KVServer.() -> Unit {
         return {
             when (method) {
                 RpcHttpMethod.POST -> post(path, handler)
@@ -322,9 +322,9 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
 
     /**
      * Applies all defined routes to the given server.
-     * @param k a Jooby server
+     * @param k a server
      */
-    actual fun applyRoutes(k: JoobyServer) {
+    actual fun applyRoutes(k: KVServer) {
         routes.forEach {
             it.invoke(k)
         }
