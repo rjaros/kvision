@@ -23,8 +23,6 @@ package test.pl.treksoft.kvision.form
 
 import pl.treksoft.kvision.form.FormPanel
 import pl.treksoft.kvision.form.text.Text
-import pl.treksoft.kvision.form.time.DateTime
-import pl.treksoft.kvision.types.KDate
 import test.pl.treksoft.kvision.SimpleSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -125,14 +123,14 @@ class FormPanelSpec : SimpleSpec {
             formPanel.add(DataForm2::s, Text()) {
                 it.getValue()?.length ?: 0 > 4
             }
-            formPanel.add(DataForm2::d, DateTime(), required = true)
+            formPanel.add(DataForm2::d, Text(), required = true)
             formPanel.setData(DataForm2(s = "123"))
             val valid = formPanel.validate()
             assertEquals(false, valid, "Should be invalid with initial data")
             formPanel.setData(DataForm2(s = "12345"))
             val valid2 = formPanel.validate()
             assertEquals(false, valid2, "Should be invalid with partially changed data")
-            formPanel.setData(DataForm2(s = "12345", d = KDate()))
+            formPanel.setData(DataForm2(s = "12345", d = "abc"))
             val valid3 = formPanel.validate()
             assertEquals(true, valid3, "Should be valid")
         }

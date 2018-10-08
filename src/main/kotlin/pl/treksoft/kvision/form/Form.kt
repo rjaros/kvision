@@ -26,11 +26,9 @@ import kotlinx.serialization.Mapper
 import kotlinx.serialization.decode
 import kotlinx.serialization.json.JSON
 import kotlinx.serialization.serializer
-import pl.treksoft.kvision.form.upload.Upload
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.types.KDate
 import pl.treksoft.kvision.types.KFile
-import pl.treksoft.kvision.utils.getContent
 import kotlin.js.Json
 import kotlin.reflect.KProperty1
 
@@ -252,22 +250,6 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
     fun getData(): K {
         val map = fields.entries.associateBy({ it.key }, { it.value.getValue() })
         return modelFactory(map.withDefault { null })
-    }
-
-    /**
-     * Returns file with the content read.
-     * @param key key identifier of the control
-     * @param kFile object identifying the file
-     * @return KFile object
-     */
-    @Suppress("EXPERIMENTAL_FEATURE_WARNING")
-    suspend fun getContent(
-        key: KProperty1<K, List<KFile>?>,
-        kFile: KFile
-    ): KFile {
-        val control = getControl(key) as Upload
-        val content = control.getNativeFile(kFile)?.getContent()
-        return kFile.copy(content = content)
     }
 
     /**

@@ -462,13 +462,13 @@ abstract class StyledComponent : Component {
         return snstyle
     }
 
-    internal fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
         RefreshDelegateProvider<T>(null, refreshFunction)
 
-    internal fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    protected fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
         RefreshDelegateProvider(initialValue, refreshFunction)
 
-    internal inner class RefreshDelegateProvider<T>(
+    protected inner class RefreshDelegateProvider<T>(
         private val initialValue: T?, private val refreshFunction: (T) -> Unit
     ) {
         operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
@@ -477,7 +477,7 @@ abstract class StyledComponent : Component {
         }
     }
 
-    internal inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+    protected inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
         @Suppress("UNCHECKED_CAST")
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]

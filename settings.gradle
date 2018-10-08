@@ -1,3 +1,13 @@
 rootProject.name = 'kvision'
 
-include 'kvision-common', 'kvision-server'
+include 'kvision-modules:kvision-base',
+        'kvision-modules:kvision-common',
+        'kvision-modules:kvision-bootstrap',
+        'kvision-modules:kvision-select',
+        'kvision-modules:kvision-datetime',
+        'kvision-modules:kvision-spinner',
+        'kvision-modules:kvision-richtext',
+        'kvision-modules:kvision-upload',
+        'kvision-modules:kvision-handlebars',
+        'kvision-modules:kvision-i18n',
+        'kvision-modules:kvision-server-jooby'

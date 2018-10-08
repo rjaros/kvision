@@ -28,7 +28,6 @@ import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.HelpBlock
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.StringFormControl
-import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -99,7 +98,7 @@ open class RadioGroup(
             setSizeToChildren(value)
         }
 
-    private val idc = "kv_form_radiogroup_" + Select.counter
+    private val idc = "kv_form_radiogroup_$counter"
     final override val input = CheckInput()
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }

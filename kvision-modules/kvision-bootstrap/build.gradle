@@ -1,0 +1,13 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("bootstrap", "3.3.7")
+        dependency("bootstrap-webpack", "0.0.6")
+        dependency("font-awesome", "4.7.0")
+        dependency("font-awesome-webpack", "github:jarecsni/font-awesome-webpack")
+        dependency("awesome-bootstrap-checkbox", "0.3.7")
+    }
+
+}

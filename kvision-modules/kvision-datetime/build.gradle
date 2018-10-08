@@ -1,0 +1,9 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("bootstrap-datetime-picker", "2.4.4")
+    }
+
+}

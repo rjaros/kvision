@@ -1,6 +1,5 @@
 buildscript {
     ext.production = (findProperty('prod') ?: 'false') == 'true'
-    ext.npmdeps = new File("npm.dependencies").getText()
 
     repositories {
         jcenter()
@@ -24,13 +23,7 @@ plugins {
     id "com.jfrog.bintray" version "1.7.3"
 }
 
-allprojects {
-    apply plugin: 'com.jfrog.bintray'
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-    apply from: rootProject.file('pom.gradle')
-    apply from: rootProject.file('bintray.gradle')
-
+configure(allprojects - project(':kvision-modules')) {
     repositories {
         jcenter()
         maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
@@ -38,6 +31,14 @@ allprojects {
         maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
         maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
     }
+}
+
+configure(allprojects - project(':kvision-modules') - project(":kvision-modules:kvision-base")) {
+    apply plugin: 'com.jfrog.bintray'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply from: rootProject.file('pom.gradle')
+    apply from: rootProject.file('bintray.gradle')
 
     afterEvaluate {
         task sourceJar(type: Jar, dependsOn: classes) {
@@ -93,7 +94,7 @@ apply plugin: 'kotlinx-serialization'
 
 dependencies {
     if (!project.gradle.startParameter.taskNames.contains("dokka")) {
-        expectedBy project(':kvision-common')
+        expectedBy project('kvision-modules:kvision-common')
         compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion"
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion"
         compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serializationVersion"
@@ -127,11 +128,9 @@ kotlinFrontend {
         dependency("fecha", "2.3.2")
         dependency("snabbdom", "0.7.1")
         dependency("snabbdom-virtualize", "0.7.0")
+        dependency("jquery-resizable-dom", "0.28.0")
+        dependency("element-resize-event", "2.0.9")
         dependency("navigo", "7.0.0")
-        npmdeps.eachLine { line ->
-            def (name, version) = line.tokenize(" ")
-            dependency(name, version)
-        }
         devDependency("karma")
         devDependency("qunit")
     }
@@ -157,10 +156,33 @@ detekt {
 
 dokka {
     includes = ['Module.md']
+    sourceDirs = files('kvision-modules/kvision-bootstrap/src/main/kotlin',
+            'kvision-modules/kvision-select/src/main/kotlin',
+            'kvision-modules/kvision-datetime/src/main/kotlin',
+            'kvision-modules/kvision-spinner/src/main/kotlin',
+            'kvision-modules/kvision-richtext/src/main/kotlin',
+            'kvision-modules/kvision-upload/src/main/kotlin',
+            'kvision-modules/kvision-handlebars/src/main/kotlin',
+            'kvision-modules/kvision-i18n/src/main/kotlin',
+            'kvision-modules/kvision-common/src/main/kotlin',
+            'kvision-modules/kvision-server-jooby/src/main/kotlin')
     classpath = [new File("dokka/kvision-dokka-helper.jar")]
     outputFormat = 'html'
     outputDirectory = "$buildDir/kdoc"
     reportUndocumented = false
+}
+
+task testJar(type: Jar, dependsOn: testClasses) {
+    baseName = "${project.archivesBaseName}-test"
+    from sourceSets.test.output
+}
+
+configurations {
+    tests
+}
+
+artifacts {
+    tests testJar
 }
 
 task cleanLibs(type: Delete) {
@@ -173,7 +195,6 @@ if (project.gradle.startParameter.taskNames.contains("jar")) {
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    excludes = ["package.json"]
 }
 
 if (!project.gradle.startParameter.taskNames.contains("dokka")) {

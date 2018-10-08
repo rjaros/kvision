@@ -32,7 +32,7 @@ import pl.treksoft.kvision.core.Widget
 /**
  * Button styles.
  */
-enum class ButtonStyle(internal val className: String) {
+enum class ButtonStyle(val className: String) {
     DEFAULT("btn-default"),
     PRIMARY("btn-primary"),
     SUCCESS("btn-success"),

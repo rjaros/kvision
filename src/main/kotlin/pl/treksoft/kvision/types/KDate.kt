@@ -28,12 +28,12 @@ import kotlin.js.Date
 @Suppress("MayBeConstant", "TopLevelPropertyNaming")
 actual val KDATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
-internal actual fun nowDate(): KDate =
+actual fun nowDate(): KDate =
     KDate(Date().getTime().toLong())
 
-internal actual fun String.toKDateF(format: String): KDate =
+actual fun String.toKDateF(format: String): KDate =
     this.toDateF(format)?.getTime()?.toLong()?.let { KDate(it) } ?: KDate()
 
-internal actual fun KDate.toStringF(format: String) = this.toJS().toStringF(format)
+actual fun KDate.toStringF(format: String) = this.toJS().toStringF(format)
 
 fun KDate.toJS(): kotlin.js.Date = kotlin.js.Date(this.time)

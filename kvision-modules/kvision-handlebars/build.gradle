@@ -1,0 +1,10 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("handlebars", "4.0.11")
+        dependency("handlebars-loader", "1.7.0")
+    }
+
+}

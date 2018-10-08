@@ -375,20 +375,6 @@ open class FormPanel<K : Any>(
     }
 
     /**
-     * Returns an object with the content of the file.
-     * @param key key identifier of the control
-     * @param kFile object identifying the file
-     * @return KFile object
-     */
-    @Suppress("EXPERIMENTAL_FEATURE_WARNING")
-    suspend fun getContent(
-        key: KProperty1<K, List<KFile>?>,
-        kFile: KFile
-    ): KFile {
-        return form.getContent(key, kFile)
-    }
-
-    /**
      * Returns current data model as JSON.
      * @return data model as JSON
      */

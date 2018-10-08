@@ -1,0 +1,7 @@
+apply plugin: 'kotlin-platform-js'
+
+dependencies {
+    compile rootProject
+    compile project(path: ":", configuration: "tests")
+    testCompile rootProject
+}

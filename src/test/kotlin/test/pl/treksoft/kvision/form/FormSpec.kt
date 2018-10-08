@@ -24,8 +24,6 @@ package test.pl.treksoft.kvision.form
 import kotlinx.serialization.Serializable
 import pl.treksoft.kvision.form.Form
 import pl.treksoft.kvision.form.text.Text
-import pl.treksoft.kvision.form.time.DateTime
-import pl.treksoft.kvision.types.KDate
 import test.pl.treksoft.kvision.SimpleSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -36,13 +34,13 @@ import kotlin.test.assertNull
 data class DataForm(
     val a: String? = null,
     val b: Boolean? = null,
-    val c: KDate? = null
+    val c: String? = null
 )
 
 @Serializable
 data class DataForm2(
     val s: String? = null,
-    val d: KDate? = null
+    val d: String? = null
 )
 
 
@@ -140,14 +138,14 @@ class FormSpec : SimpleSpec {
             form.add(DataForm2::s, Text()) {
                 it.getValue()?.length ?: 0 > 4
             }
-            form.add(DataForm2::d, DateTime(), required = true)
+            form.add(DataForm2::d, Text(), required = true)
             form.setData(DataForm2(s = "123"))
             val valid = form.validate()
             assertEquals(false, valid, "Should be invalid with initial data")
             form.setData(DataForm2(s = "12345"))
             val valid2 = form.validate()
             assertEquals(false, valid2, "Should be invalid with partially changed data")
-            form.setData(DataForm2(s = "12345", d = KDate()))
+            form.setData(DataForm2(s = "12345", d = "abc"))
             val valid3 = form.validate()
             assertEquals(true, valid3, "Should be valid")
         }

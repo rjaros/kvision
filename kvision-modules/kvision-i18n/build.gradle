@@ -1,0 +1,9 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("jed", "1.1.1")
+    }
+
+}

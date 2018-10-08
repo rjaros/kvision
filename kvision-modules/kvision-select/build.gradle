@@ -1,0 +1,10 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("bootstrap-select", "1.12.4")
+        dependency("ajax-bootstrap-select", "1.4.3")
+    }
+
+}

@@ -84,9 +84,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
      */
     var draggable: Boolean? by refreshOnUpdate()
 
-    internal var surroundingSpan by refreshOnUpdate(false)
+    protected var surroundingSpan by refreshOnUpdate(false)
 
-    internal var eventTarget: Widget? = null
+    var eventTarget: Widget? = null
 
     private var vnode: VNode? = null
 
@@ -602,7 +602,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         }
     }
 
-    internal open fun dispatchEvent(type: String, eventInitDict: CustomEventInit): Boolean? {
+    protected open fun dispatchEvent(type: String, eventInitDict: CustomEventInit): Boolean? {
         val event = org.w3c.dom.CustomEvent(type, eventInitDict)
         return this.getElement()?.dispatchEvent(event)
     }
