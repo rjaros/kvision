@@ -67,15 +67,15 @@ internal class ProgressIndicator(
     /**
      * The current progress.
      */
-    var progress by refreshOnUpdate(progress, { refreshWidth() })
+    var progress by refreshOnUpdate(progress) { refreshWidth() }
     /**
      * The minimal progress.
      */
-    var min by refreshOnUpdate(min, { refreshWidth() })
+    var min by refreshOnUpdate(min) { refreshWidth() }
     /**
      * The maximal progress.
      */
-    var max by refreshOnUpdate(max, { refreshWidth() })
+    var max by refreshOnUpdate(max) { refreshWidth() }
     /**
      * The style of the progress indicator.
      */

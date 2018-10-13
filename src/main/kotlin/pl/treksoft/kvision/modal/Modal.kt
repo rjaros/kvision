@@ -218,20 +218,20 @@ open class Modal(
             keyboard = escape
             backdrop = if (escape) "true" else "static"
         })
-        this.getElementJQuery()?.on("show.bs.modal", { e, _ ->
+        this.getElementJQuery()?.on("show.bs.modal") { e, _ ->
             this.dispatchEvent("showBsModal", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("shown.bs.modal", { e, _ ->
+        }
+        this.getElementJQuery()?.on("shown.bs.modal") { e, _ ->
             this.dispatchEvent("shownBsModal", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("hide.bs.modal", { e, _ ->
+        }
+        this.getElementJQuery()?.on("hide.bs.modal") { e, _ ->
             this.dispatchEvent("hideBsModal", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("hidden.bs.modal", { e, _ ->
+        }
+        this.getElementJQuery()?.on("hidden.bs.modal") { e, _ ->
             this.visible = false
             hide()
             this.dispatchEvent("hiddenBsModal", obj { detail = e })
-        })
+        }
     }
 
     override fun hide(): Widget {

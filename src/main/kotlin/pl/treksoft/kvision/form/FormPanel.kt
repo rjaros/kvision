@@ -32,8 +32,8 @@ import pl.treksoft.kvision.form.check.Radio
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.types.KDate
 import pl.treksoft.kvision.types.KFile
+import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KProperty1
 
@@ -287,8 +287,8 @@ open class FormPanel<K : Any>(
      * @param validator optional validation function
      * @return current form panel
      */
-    open fun <C : KDateFormControl> add(
-        key: KProperty1<K, KDate?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+    open fun <C : DateFormControl> add(
+        key: KProperty1<K, Date?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {

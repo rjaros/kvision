@@ -67,14 +67,14 @@ open class CheckInput(
     /**
      * The selection state of the input.
      */
-    var value by refreshOnUpdate(value, { refreshState() })
+    var value by refreshOnUpdate(value) { refreshState() }
     /**
      * The value attribute of the generated HTML input element.
      *
      * This value is placed directly in generated HTML code, while the [value] property is dynamically
      * bound to the input selection state.
      */
-    var startValue by refreshOnUpdate(value, { this.value = it; refresh() })
+    var startValue by refreshOnUpdate(value) { this.value = it; refresh() }
     /**
      * The type of the generated HTML input element.
      */

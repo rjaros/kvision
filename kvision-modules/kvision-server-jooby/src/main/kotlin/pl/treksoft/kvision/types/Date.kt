@@ -21,29 +21,26 @@
  */
 package pl.treksoft.kvision.types
 
-import kotlinx.serialization.Serializable
+import com.github.andrewoma.kwery.mapper.SimpleConverter
+import com.github.andrewoma.kwery.mapper.TableConfiguration
+import com.github.andrewoma.kwery.mapper.reifiedConverter
+import com.github.andrewoma.kwery.mapper.standardConverters
+import com.github.andrewoma.kwery.mapper.util.camelToLowerUnderscore
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
 
-expect val KDATE_FORMAT: String
+actual typealias Date = java.util.Date
 
-/**
- * A serializable wrapper for a multiplatform Date type.
- */
-@Serializable
-data class KDate(val time: Long) {
-    constructor() : this(now().time)
-    constructor(str: String) : this(str.toKDateF(KDATE_FORMAT).time)
+actual fun String.toDateF(format: String): Date = SimpleDateFormat(format).parse(this)
 
-    override fun toString(): String {
-        return this.toStringF(KDATE_FORMAT)
-    }
+actual fun Date.toStringF(format: String): String = SimpleDateFormat(format).format(this)
 
-    companion object {
-        fun now() = nowDate()
-    }
-}
+object DateConverter : SimpleConverter<Date>(
+    { row, c -> Date(row.timestamp(c).time) },
+    { Timestamp(it.time) }
+)
 
-expect fun nowDate(): KDate
-
-expect fun String.toKDateF(format: String): KDate
-
-expect fun KDate.toStringF(format: String): String
+val kvTableConfig = TableConfiguration(
+    converters = standardConverters + reifiedConverter(DateConverter),
+    namingConvention = camelToLowerUnderscore
+)

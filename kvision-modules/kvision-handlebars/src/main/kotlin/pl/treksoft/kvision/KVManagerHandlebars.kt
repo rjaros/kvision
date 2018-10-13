@@ -21,10 +21,7 @@
  */
 package pl.treksoft.kvision
 
-import org.w3c.dom.asList
-import kotlin.browser.document
-
-internal val KVManagerHandlebarsInit = KVManagerHandlebars.init()
+internal val kVManagerHandlebarsInit = KVManagerHandlebars.init()
 
 /**
  * Internal singleton object which initializes and configures KVision handlebars module.

@@ -23,7 +23,6 @@ package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.KVManagerRichText
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import kotlin.browser.document
@@ -67,7 +66,7 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
         if (this.disabled || this.readonly == true) {
             this.getElementJQuery()?.removeAttr("contenteditable")
         } else {
-            this.getElementJQuery()?.on("trix-change", { _, _ ->
+            this.getElementJQuery()?.on("trix-change") { _, _ ->
                 if (trixId != null) {
                     val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
                     value = if (v != null && v.isNotEmpty()) {
@@ -78,9 +77,9 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
                     val event = org.w3c.dom.events.Event("change")
                     this.getElement()?.dispatchEvent(event)
                 }
-            })
+            }
         }
-        this.getElementJQuery()?.on("trix-initialize", { _, _ ->
+        this.getElementJQuery()?.on("trix-initialize") { _, _ ->
             trixId = this.getElementJQuery()?.attr("trix-id")
             if (trixId != null) {
                 value?.let {
@@ -89,8 +88,8 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
                     }
                 }
             }
-        })
-        this.getElementJQuery()?.on("trix-file-accept", { e, _ -> e.preventDefault() })
+        }
+        this.getElementJQuery()?.on("trix-file-accept") { e, _ -> e.preventDefault() }
     }
 
     override fun afterDestroy() {

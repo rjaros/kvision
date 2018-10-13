@@ -21,7 +21,6 @@
  */
 package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -40,7 +39,7 @@ class RootSpec : DomSpec {
     }
 
     @Test
-    fun getSnClass_Fluid() {
+    fun getSnClassFluid() {
         run {
             Root("test", fixed = true)
             val rootElem = document.getElementById("test")

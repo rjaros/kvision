@@ -27,13 +27,11 @@ import com.lightningkite.kotlin.observable.list.ObservableList
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.w3c.files.File
 import org.w3c.files.FileReader
-import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.UNIT
 import kotlin.browser.window
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.js.Date
 
 /**
  * Extension property to convert Int to CSS px units.
@@ -186,27 +184,6 @@ fun Int.toHexString(): String {
 }
 
 /**
- * Extension function to convert String to Date with a given date format.
- * @param format date/time format
- * @return Date object
- */
-@Suppress("UnsafeCastFromDynamic")
-fun String.toDateF(format: String = "YYYY-MM-DD HH:mm:ss"): Date? {
-    val result = KVManager.fecha.parse(this, format)
-    return if (result) result else null
-}
-
-/**
- * Extension function to convert Date to String with a given date format.
- * @param format date/time format
- * @return String object
- */
-@Suppress("UnsafeCastFromDynamic")
-fun Date.toStringF(format: String = "YYYY-MM-DD HH:mm:ss"): String {
-    return KVManager.fecha.format(this, format)
-}
-
-/**
  * Utility function to detect Internet Explorer 11.
  * @return true if the current browser is IE11
  */
@@ -216,7 +193,6 @@ fun isIE11(): Boolean = window.navigator.userAgent.matches("Trident\\/7\\.")
  * Suspending extension function to get file content.
  * @return file content
  */
-@Suppress("EXPERIMENTAL_FEATURE_WARNING")
 suspend fun File.getContent(): String = suspendCancellableCoroutine { cont ->
     val reader = FileReader()
     reader.onload = {

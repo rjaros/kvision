@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.form
 
 import pl.treksoft.kvision.core.Component
-import pl.treksoft.kvision.types.KDate
 import pl.treksoft.kvision.types.KFile
+import kotlin.js.Date
 
 /**
  * Input controls sizes.
@@ -190,15 +190,15 @@ interface BoolFormControl : FormControl {
 /**
  * Base interface of a form control with a date value.
  */
-interface KDateFormControl : FormControl {
+interface DateFormControl : FormControl {
     /**
      * Date value.
      */
-    var value: KDate?
+    var value: Date?
 
-    override fun getValue(): KDate? = value
+    override fun getValue(): Date? = value
     override fun setValue(v: Any?) {
-        value = v as? KDate
+        value = v as? Date
     }
 
     override fun getValueAsString(): String? = value?.toString()

@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision
 
-internal val KVManagerUploadInit = KVManagerUpload.init()
+internal val kVManagerUploadInit = KVManagerUpload.init()
 
 /**
  * Internal singleton object which initializes and configures KVision upload module.

@@ -104,7 +104,7 @@ open class FlexPanel(
     /**
      * CSS flexbox direction.
      */
-    var direction by refreshOnUpdate(direction, { refreshSpacing(); refresh() })
+    var direction by refreshOnUpdate(direction) { refreshSpacing(); refresh() }
     /**
      * CSS flexbox wrap mode.
      */
@@ -124,7 +124,7 @@ open class FlexPanel(
     /**
      * The spacing between columns/rows.
      */
-    var spacing by refreshOnUpdate(spacing, { refreshSpacing(); refresh() })
+    var spacing by refreshOnUpdate(spacing) { refreshSpacing(); refresh() }
 
     init {
         @Suppress("LeakingThis")

@@ -19,8 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-@file:Suppress("EXPERIMENTAL_FEATURE_WARNING")
-
 package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -31,6 +29,7 @@ import org.jooby.Kooby
 import org.jooby.Session
 import org.jooby.json.Jackson
 import org.pac4j.core.profile.CommonProfile
+import java.text.SimpleDateFormat
 import kotlinx.coroutines.async as coroutinesAsync
 
 /**
@@ -42,7 +41,9 @@ actual open class KVServer(init: KVServer.() -> Unit) : Kooby() {
         assets("/", "index.html")
         @Suppress("LeakingThis")
         assets("/**").onMissing(0)
-        val mapper = jacksonObjectMapper()
+        val mapper = jacksonObjectMapper().apply {
+            dateFormat = SimpleDateFormat("YYYY-MM-DD HH:mm:ss")
+        }
         @Suppress("LeakingThis")
         use(Jackson(mapper))
         @Suppress("LeakingThis")

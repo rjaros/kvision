@@ -61,7 +61,7 @@ class DataContainer<M, C : Component>(
 
     init {
         container.parent = this
-        model.onUpdate += { _ ->
+        model.onUpdate += {
             update()
         }
         update()

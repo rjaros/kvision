@@ -21,9 +21,9 @@
  */
 package test.pl.treksoft.kvision.utils
 
-import pl.treksoft.kvision.utils.toDateF
+import pl.treksoft.kvision.types.toDateF
+import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.toHexString
-import pl.treksoft.kvision.utils.toStringF
 import test.pl.treksoft.kvision.SimpleSpec
 import kotlin.js.Date
 import kotlin.test.Test
@@ -47,7 +47,7 @@ class UtilsSpec : SimpleSpec {
             val res = "2017-03-14 14:50:35".toDateF()
             assertEquals(
                 js("new Date(2017,2,14,14,50,35).getTime()"),
-                res?.getTime(),
+                res.getTime(),
                 "Should convert String value to Date"
             )
         }

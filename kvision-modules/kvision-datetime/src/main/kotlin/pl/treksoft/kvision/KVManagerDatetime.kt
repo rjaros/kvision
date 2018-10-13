@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision
 
-internal val KVManagerDatetimeInit = KVManagerDatetime.init()
+internal val kVManagerDatetimeInit = KVManagerDatetime.init()
 
 /**
  * Internal singleton object which initializes and configures KVision datetime module.

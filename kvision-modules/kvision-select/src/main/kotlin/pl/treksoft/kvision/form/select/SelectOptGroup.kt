@@ -49,7 +49,7 @@ open class SelectOptGroup(
     /**
      * A list of options (label to value pairs) for the group.
      */
-    var options by refreshOnUpdate(options, { setChildrenFromOptions() })
+    var options by refreshOnUpdate(options) { setChildrenFromOptions() }
     /**
      * Maximal number of selected options in the group.
      */

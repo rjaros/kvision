@@ -21,10 +21,7 @@
  */
 package pl.treksoft.kvision
 
-import org.w3c.dom.asList
-import kotlin.browser.document
-
-internal val KVManagerI18nInit = KVManagerI18n.init()
+internal val kVManagerI18nInit = KVManagerI18n.init()
 
 /**
  * Internal singleton object which initializes and configures KVision i18n module.

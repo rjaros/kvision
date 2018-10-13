@@ -62,67 +62,67 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
      * The optional URL for the upload processing action.
      * If not set the upload button action will default to form submission.
      */
-    var uploadUrl: String? by refreshOnUpdate(uploadUrl, { refreshUploadInput() })
+    var uploadUrl: String? by refreshOnUpdate(uploadUrl) { refreshUploadInput() }
     /**
      * Determines if multiple file upload is supported.
      */
-    var multiple: Boolean by refreshOnUpdate(multiple, { refresh(); refreshUploadInput() })
+    var multiple: Boolean by refreshOnUpdate(multiple) { refresh(); refreshUploadInput() }
     /**
      * The extra data that will be passed as data to the AJAX server call via POST.
      */
-    var uploadExtraData: ((String, Int) -> dynamic)? by refreshOnUpdate({ refreshUploadInput() })
+    var uploadExtraData: ((String, Int) -> dynamic)? by refreshOnUpdate { refreshUploadInput() }
     /**
      * Determines if the explorer theme is used.
      */
-    var explorerTheme: Boolean by refreshOnUpdate(false, { refreshUploadInput() })
+    var explorerTheme: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
     /**
      * Determines if the input selection is required.
      */
-    var required: Boolean by refreshOnUpdate(false, { refreshUploadInput() })
+    var required: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
     /**
      * Determines if the caption is shown.
      */
-    var showCaption: Boolean by refreshOnUpdate(true, { refreshUploadInput() })
+    var showCaption: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
     /**
      * Determines if the preview is shown.
      */
-    var showPreview: Boolean by refreshOnUpdate(true, { refreshUploadInput() })
+    var showPreview: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
     /**
      * Determines if the remove button is shown.
      */
-    var showRemove: Boolean by refreshOnUpdate(true, { refreshUploadInput() })
+    var showRemove: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
     /**
      * Determines if the upload button is shown.
      */
-    var showUpload: Boolean by refreshOnUpdate(true, { refreshUploadInput() })
+    var showUpload: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
     /**
      * Determines if the cancel button is shown.
      */
-    var showCancel: Boolean by refreshOnUpdate(true, { refreshUploadInput() })
+    var showCancel: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
     /**
      * Determines if the file browse button is shown.
      */
-    var showBrowse: Boolean by refreshOnUpdate(true, { refreshUploadInput() })
+    var showBrowse: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
     /**
      * Determines if the click on the preview zone opens file browse window.
      */
-    var browseOnZoneClick: Boolean by refreshOnUpdate(true, { refreshUploadInput() })
+    var browseOnZoneClick: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
     /**
      * Determines if the iconic preview is prefered.
      */
-    var preferIconicPreview: Boolean by refreshOnUpdate(false, { refreshUploadInput() })
+    var preferIconicPreview: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
     /**
      * Allowed file types.
      */
-    var allowedFileTypes: Set<String>? by refreshOnUpdate({ refreshUploadInput() })
+    var allowedFileTypes: Set<String>? by refreshOnUpdate { refreshUploadInput() }
     /**
      * Allowed file extensions.
      */
-    var allowedFileExtensions: Set<String>? by refreshOnUpdate({ refreshUploadInput() })
+    var allowedFileExtensions: Set<String>? by refreshOnUpdate { refreshUploadInput() }
     /**
      * Determines if Drag&Drop zone is enabled.
      */
-    var dropZoneEnabled: Boolean by refreshOnUpdate(true, { refreshUploadInput() })
+    var dropZoneEnabled: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
     /**
      * The name attribute of the generated HTML input element.
      */
@@ -130,7 +130,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     /**
      * Determines if the field is disabled.
      */
-    override var disabled by refreshOnUpdate(false, { refresh(); refreshUploadInput() })
+    override var disabled by refreshOnUpdate(false) { refresh(); refreshUploadInput() }
     /**
      * The size of the input (currently not working)
      */
@@ -173,24 +173,24 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.fileinput(getSettingsObj())
-        this.getElementJQuery()?.on("fileselect", { e, _ ->
+        this.getElementJQuery()?.on("fileselect") { e, _ ->
             this.dispatchEvent("fileSelectUpload", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("fileclear", { e, _ ->
+        }
+        this.getElementJQuery()?.on("fileclear") { e, _ ->
             this.dispatchEvent("fileClearUpload", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("filereset", { e, _ ->
+        }
+        this.getElementJQuery()?.on("filereset") { e, _ ->
             this.dispatchEvent("fileResetUpload", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("filebrowse", { e, _ ->
+        }
+        this.getElementJQuery()?.on("filebrowse") { e, _ ->
             this.dispatchEvent("fileBrowseUpload", obj { detail = e })
-        })
-        this.getElementJQueryD()?.on("filepreupload", lambda@{ _, data, previewId, index ->
+        }
+        this.getElementJQueryD()?.on("filepreupload") lambda@{ _, data, previewId, index ->
             data["previewId"] = previewId
             data["index"] = index
             this.dispatchEvent("filePreUpload", obj { detail = data })
             return@lambda null
-        })
+        }
     }
 
     override fun afterDestroy() {
@@ -334,7 +334,6 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
          * @param kFile object identifying the file
          * @return KFile object
          */
-        @Suppress("EXPERIMENTAL_FEATURE_WARNING")
         suspend fun <K : Any> Form<K>.getContent(
             key: KProperty1<K, List<KFile>?>,
             kFile: KFile
@@ -351,7 +350,6 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
          * @param kFile object identifying the file
          * @return KFile object
          */
-        @Suppress("EXPERIMENTAL_FEATURE_WARNING")
         suspend fun <K : Any> FormPanel<K>.getContent(
             key: KProperty1<K, List<KFile>?>,
             kFile: KFile

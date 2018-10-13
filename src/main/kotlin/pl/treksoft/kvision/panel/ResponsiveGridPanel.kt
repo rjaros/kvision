@@ -62,7 +62,7 @@ open class ResponsiveGridPanel(
     /**
      * Text align of grid cells.
      */
-    var align by refreshOnUpdate(align, { refreshRowContainers() })
+    var align by refreshOnUpdate(align) { refreshRowContainers() }
 
     internal val map = mutableMapOf<Int, MutableMap<Int, WidgetParam>>()
     private var auto: Boolean = true
@@ -86,7 +86,7 @@ open class ResponsiveGridPanel(
         val cCol = maxOf(col, 0)
         if (row > rows - 1) rows = cRow + 1
         if (col > cols - 1) cols = cCol + 1
-        map.getOrPut(cRow, { mutableMapOf() })[cCol] = WidgetParam(child, size, offset)
+        map.getOrPut(cRow) { mutableMapOf() }[cCol] = WidgetParam(child, size, offset)
         if (size > 0 || offset > 0) auto = false
         refreshRowContainers()
         return this

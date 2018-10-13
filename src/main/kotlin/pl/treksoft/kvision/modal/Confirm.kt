@@ -78,7 +78,7 @@ open class Confirm(
     /**
      * Determines if Cancel button is visible.
      */
-    var cancelVisible by refreshOnUpdate(cancelVisible, { refreshCancelButton() })
+    var cancelVisible by refreshOnUpdate(cancelVisible) { refreshCancelButton() }
 
     /**
      * Yes button text.

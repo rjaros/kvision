@@ -21,10 +21,10 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.serialization.json.JSON
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
 import kotlin.js.Promise
 import kotlin.js.undefined
@@ -56,8 +56,8 @@ open class CallAgent {
         method: RpcHttpMethod = RpcHttpMethod.POST
     ): Promise<String> {
         val jsonRpcRequest = JsonRpcRequest(counter++, url, data)
-        val jsonData = JSON.stringify(jsonRpcRequest)
-        return Promise({ resolve, reject ->
+        val jsonData = JSON.plain.stringify(jsonRpcRequest)
+        return Promise { resolve, reject ->
             jQuery.ajax(url, obj {
                 this.contentType = "application/json"
                 this.data = jsonData
@@ -85,7 +85,7 @@ open class CallAgent {
                             }
                         }
             })
-        })
+        }
     }
 
     /**
@@ -103,7 +103,7 @@ open class CallAgent {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
-        return Promise({ resolve, reject ->
+        return Promise { resolve, reject ->
             jQuery.ajax(url, obj {
                 this.contentType = contentType
                 this.data = data
@@ -127,6 +127,6 @@ open class CallAgent {
                         }
                 this.beforeSend = beforeSend
             })
-        })
+        }
     }
 }

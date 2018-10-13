@@ -23,12 +23,15 @@ package pl.treksoft.kvision.form
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Mapper
+import kotlinx.serialization.context.MutableSerialContextImpl
 import kotlinx.serialization.decode
-import kotlinx.serialization.json.JSON
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans
-import pl.treksoft.kvision.types.KDate
+import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.types.KFile
+import pl.treksoft.kvision.types.toStringF
+import pl.treksoft.kvision.utils.JSON
+import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KProperty1
 
@@ -84,8 +87,8 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
         modelFactory = {
             val map = it.flatMap { entry ->
                 when (entry.value) {
-                    is KDate -> {
-                        listOf(entry.key to entry.value, "${entry.key}.time" to (entry.value as KDate).time)
+                    is Date -> {
+                        listOf(entry.key to (entry.value as? Date)?.toStringF())
                     }
                     is List<*> -> {
                         @Suppress("UNCHECKED_CAST")
@@ -93,9 +96,9 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
                             listOf(entry.key to entry.value, "${entry.key}.size" to list.size) +
                                     list.mapIndexed { index, kFile ->
                                         listOf(
-                                            "${entry.key}.${index}.name" to kFile.name,
-                                            "${entry.key}.${index}.size" to kFile.size,
-                                            "${entry.key}.${index}.content" to kFile.content
+                                            "${entry.key}.$index.name" to kFile.name,
+                                            "${entry.key}.$index.size" to kFile.size,
+                                            "${entry.key}.$index.content" to kFile.content
                                         )
                                     }.flatten()
                         } ?: listOf()
@@ -104,6 +107,7 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
                 }
             }.toMap()
             val mapper = Mapper.InNullableMapper(FormMapWrapper(map))
+            mapper.context = MutableSerialContextImpl().apply { registerSerializer(Date::class, DateSerializer) }
             mapper.decode(serializer)
         }
     }
@@ -182,8 +186,8 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
      * @param validator optional validation function
      * @return current form
      */
-    fun <C : KDateFormControl> add(
-        key: KProperty1<K, KDate?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+    fun <C : DateFormControl> add(
+        key: KProperty1<K, Date?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
@@ -278,7 +282,7 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
      * @return data model as JSON
      */
     fun getDataJson(): Json {
-        return kotlin.js.JSON.parse(JSON.stringify(serializer, getData()))
+        return kotlin.js.JSON.parse(JSON.plain.stringify(serializer, getData()))
     }
 
     /**

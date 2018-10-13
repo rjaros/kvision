@@ -37,7 +37,6 @@ import kotlin.coroutines.resume
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-@Suppress("EXPERIMENTAL_FEATURE_WARNING")
 open class Dialog<R>(
     caption: String? = null, closeButton: Boolean = true,
     size: ModalSize? = null, animation: Boolean = true, escape: Boolean = true,

@@ -61,6 +61,7 @@ enum class DD(val option: String) {
  * @param withCaret determines if the dropdown button renders caret
  * @param classes a set of CSS class names
  */
+@Suppress("TooManyFunctions")
 open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.DEFAULT, disabled: Boolean = false, val forNavbar: Boolean = false,
@@ -74,7 +75,7 @@ open class DropDown(
         set(value) {
             button.text = value
         }
-    private var elements by refreshOnUpdate(elements, { setChildrenFromElements() })
+    private var elements by refreshOnUpdate(elements) { setChildrenFromElements() }
     /**
      * The icon of the dropdown button.
      */
@@ -207,18 +208,18 @@ open class DropDown(
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("show.bs.dropdown", { e, _ ->
+        this.getElementJQuery()?.on("show.bs.dropdown") { e, _ ->
             this.dispatchEvent("showBsDropdown", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("shown.bs.dropdown", { e, _ ->
+        }
+        this.getElementJQuery()?.on("shown.bs.dropdown") { e, _ ->
             this.dispatchEvent("shownBsDropdown", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("hide.bs.dropdown", { e, _ ->
+        }
+        this.getElementJQuery()?.on("hide.bs.dropdown") { e, _ ->
             this.dispatchEvent("hideBsDropdown", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("hidden.bs.dropdown", { e, _ ->
+        }
+        this.getElementJQuery()?.on("hidden.bs.dropdown") { e, _ ->
             this.dispatchEvent("hiddenBsDropdown", obj { detail = e })
-        })
+        }
     }
 
     override fun getSnClass(): List<StringBoolPair> {

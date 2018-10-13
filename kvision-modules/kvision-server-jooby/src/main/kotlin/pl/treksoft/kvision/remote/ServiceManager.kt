@@ -28,11 +28,11 @@ import org.jooby.Response
 import org.jooby.Status
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.text.SimpleDateFormat
 
 /**
  * Multiplatform service manager.
  */
-@Suppress("EXPERIMENTAL_FEATURE_WARNING")
 actual open class ServiceManager<out T> actual constructor(val service: T) {
 
     companion object {
@@ -40,7 +40,9 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
     }
 
     protected val routes: MutableList<KVServer.() -> Unit> = mutableListOf()
-    val mapper = jacksonObjectMapper()
+    val mapper = jacksonObjectMapper().apply {
+        dateFormat = SimpleDateFormat("YYYY-MM-DD HH:mm:ss")
+    }
     var counter: Int = 0
 
     /**
@@ -50,12 +52,13 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
+    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bind(
         noinline function: T.(Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add({
+        routes.add {
             call(method, "$prefix$routeDef") { req, res ->
                 if (service != null) {
                     val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
@@ -75,7 +78,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
                     res.status(Status.SERVER_ERROR)
                 }
             }.invoke(this)
-        })
+        }
     }
 
     /**
@@ -85,12 +88,13 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
+    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR, reified RET> bind(
         noinline function: T.(PAR, Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add({
+        routes.add {
             call(method, "$prefix$routeDef") { req, res ->
                 if (service != null) {
                     val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
@@ -115,7 +119,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
                     res.status(Status.SERVER_ERROR)
                 }
             }.invoke(this)
-        })
+        }
     }
 
     /**
@@ -125,12 +129,13 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
+    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
         noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add({
+        routes.add {
             call(method, "$prefix$routeDef") { req, res ->
                 if (service != null) {
                     val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
@@ -156,7 +161,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
                     res.status(Status.SERVER_ERROR)
                 }
             }.invoke(this)
-        })
+        }
     }
 
     /**
@@ -166,15 +171,17 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
+    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add({
+        routes.add {
             call(method, "$prefix$routeDef") { req, res ->
                 if (service != null) {
                     val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                    @Suppress("MagicNumber")
                     if (jsonRpcRequest.params.size == 3) {
                         val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                         val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
@@ -198,7 +205,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
                     res.status(Status.SERVER_ERROR)
                 }
             }.invoke(this)
-        })
+        }
     }
 
     /**
@@ -208,15 +215,17 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
+    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
         route: String?, method: RpcHttpMethod, prefix: String
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add({
+        routes.add {
             call(method, "$prefix$routeDef") { req, res ->
                 if (service != null) {
                     val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                    @Suppress("MagicNumber")
                     if (jsonRpcRequest.params.size == 4) {
                         val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                         val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
@@ -242,7 +251,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
                     res.status(Status.SERVER_ERROR)
                 }
             }.invoke(this)
-        })
+        }
     }
 
     /**
@@ -252,6 +261,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
      * @param method a HTTP method
      * @param prefix an URL address prefix
      */
+    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
         noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
@@ -260,10 +270,11 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
         prefix: String
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add({
+        routes.add {
             call(method, "$prefix$routeDef") { req, res ->
                 if (service != null) {
                     val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                    @Suppress("MagicNumber")
                     if (jsonRpcRequest.params.size == 5) {
                         val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                         val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
@@ -292,7 +303,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
                     res.status(Status.SERVER_ERROR)
                 }
             }.invoke(this)
-        })
+        }
     }
 
     fun call(
@@ -310,6 +321,7 @@ actual open class ServiceManager<out T> actual constructor(val service: T) {
         }
     }
 
+    @Suppress("TooGenericExceptionCaught")
     protected inline fun <reified T> getParameter(str: String?): T {
         return str?.let {
             if (T::class == String::class) {

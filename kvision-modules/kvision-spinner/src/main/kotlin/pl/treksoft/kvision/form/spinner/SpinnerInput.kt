@@ -98,38 +98,38 @@ open class SpinnerInput(
     /**
      * Spinner value.
      */
-    var value by refreshOnUpdate(value, { refreshState() })
+    var value by refreshOnUpdate(value) { refreshState() }
     /**
      * The value attribute of the generated HTML input element.
      *
      * This value is placed directly in generated HTML code, while the [value] property is dynamically
      * bound to the spinner input value.
      */
-    var startValue by refreshOnUpdate(value, { this.value = it; refresh() })
+    var startValue by refreshOnUpdate(value) { this.value = it; refresh() }
     /**
      * Minimal value.
      */
-    var min by refreshOnUpdate(min, { refreshSpinner() })
+    var min by refreshOnUpdate(min) { refreshSpinner() }
     /**
      * Maximal value.
      */
-    var max by refreshOnUpdate(max, { refreshSpinner() })
+    var max by refreshOnUpdate(max) { refreshSpinner() }
     /**
      * Step value.
      */
-    var step by refreshOnUpdate(step, { refreshSpinner() })
+    var step by refreshOnUpdate(step) { refreshSpinner() }
     /**
      * Number of decimal digits value.
      */
-    var decimals by refreshOnUpdate(decimals, { refreshSpinner() })
+    var decimals by refreshOnUpdate(decimals) { refreshSpinner() }
     /**
      * Spinner buttons type.
      */
-    var buttonsType by refreshOnUpdate(buttonsType, { refreshSpinner() })
+    var buttonsType by refreshOnUpdate(buttonsType) { refreshSpinner() }
     /**
      * Spinner force rounding type.
      */
-    var forceType by refreshOnUpdate(forceType, { refreshSpinner() })
+    var forceType by refreshOnUpdate(forceType) { refreshSpinner() }
     /**
      * The placeholder for the spinner input.
      */
@@ -217,18 +217,18 @@ open class SpinnerInput(
         size?.let {
             siblings?.find("button")?.addClass(it.className)
         }
-        this.getElementJQuery()?.on("change", { e, _ ->
+        this.getElementJQuery()?.on("change") { e, _ ->
             if (e.asDynamic().isTrigger != null) {
                 val event = org.w3c.dom.events.Event("change")
                 this.getElement()?.dispatchEvent(event)
             }
-        })
-        this.getElementJQuery()?.on("touchspin.on.min", { e, _ ->
+        }
+        this.getElementJQuery()?.on("touchspin.on.min") { e, _ ->
             this.dispatchEvent("onMinBsSpinner", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("touchspin.on.max", { e, _ ->
+        }
+        this.getElementJQuery()?.on("touchspin.on.max") { e, _ ->
             this.dispatchEvent("onMaxBsSpinner", obj { detail = e })
-        })
+        }
         refreshState()
     }
 

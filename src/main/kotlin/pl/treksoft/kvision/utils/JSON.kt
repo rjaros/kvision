@@ -19,21 +19,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package pl.treksoft.kvision.types
+package pl.treksoft.kvision.utils
 
-import pl.treksoft.kvision.utils.toDateF
-import pl.treksoft.kvision.utils.toStringF
+import kotlinx.serialization.context.SimpleModule
+import kotlinx.serialization.json.JSON
+import pl.treksoft.kvision.types.DateSerializer
 import kotlin.js.Date
 
-@Suppress("MayBeConstant", "TopLevelPropertyNaming")
-actual val KDATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
+object JSON {
 
-actual fun nowDate(): KDate =
-    KDate(Date().getTime().toLong())
+    val plain = JSON().apply {
+        install(SimpleModule(Date::class, DateSerializer))
+    }
 
-actual fun String.toKDateF(format: String): KDate =
-    this.toDateF(format)?.getTime()?.toLong()?.let { KDate(it) } ?: KDate()
+    val nonstrict = JSON(strictMode = false).apply {
+        install(SimpleModule(Date::class, DateSerializer))
+    }
 
-actual fun KDate.toStringF(format: String) = this.toJS().toStringF(format)
-
-fun KDate.toJS(): kotlin.js.Date = kotlin.js.Date(this.time)
+}

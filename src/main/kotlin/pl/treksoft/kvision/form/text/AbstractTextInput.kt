@@ -51,14 +51,14 @@ abstract class AbstractTextInput(
     /**
      * Text input value.
      */
-    var value by refreshOnUpdate(value, { refreshState() })
+    var value by refreshOnUpdate(value) { refreshState() }
     /**
      * The value attribute of the generated HTML input element.
      *
      * This value is placed directly in generated HTML code, while the [value] property is dynamically
      * bound to the text input value.
      */
-    var startValue by refreshOnUpdate(value, { this.value = it; refresh() })
+    var startValue by refreshOnUpdate(value) { this.value = it; refresh() }
     /**
      * The placeholder for the text input.
      */

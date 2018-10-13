@@ -25,7 +25,7 @@ import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.utils.obj
 import kotlin.browser.window
 
-internal val KVManagerRichTextInit = KVManagerRichText.init()
+internal val kVManagerRichTextInit = KVManagerRichText.init()
 
 /**
  * Internal singleton object which initializes and configures KVision RichText module.

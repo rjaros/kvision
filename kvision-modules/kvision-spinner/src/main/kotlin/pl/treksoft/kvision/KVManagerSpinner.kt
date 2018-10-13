@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision
 
-internal val KVManagerSpinnerInit = KVManagerSpinner.init()
+internal val kVManagerSpinnerInit = KVManagerSpinner.init()
 
 /**
  * Internal singleton object which initializes and configures KVision spinner module.

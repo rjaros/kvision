@@ -66,11 +66,11 @@ open class SelectInput(
     /**
      * A list of options (label to value pairs) for the select control.
      */
-    internal var options by refreshOnUpdate(options, { setChildrenFromOptions() })
+    internal var options by refreshOnUpdate(options) { setChildrenFromOptions() }
     /**
      * A value of the selected option.
      */
-    var value by refreshOnUpdate(value, { refreshState() })
+    var value by refreshOnUpdate(value) { refreshState() }
     /**
      * The name attribute of the generated HTML select element.
      */
@@ -82,12 +82,12 @@ open class SelectInput(
     /**
      * Additional options for remote (AJAX) data source.
      */
-    var ajaxOptions by refreshOnUpdate(ajaxOptions, {
+    var ajaxOptions by refreshOnUpdate(ajaxOptions) {
         if (it != null) {
             liveSearch = true
         }
         refresh()
-    })
+    }
     /**
      * Maximal number of selected options.
      */
@@ -115,7 +115,7 @@ open class SelectInput(
     /**
      * Determines if an empty option is automatically generated.
      */
-    var emptyOption by refreshOnUpdate(false, { setChildrenFromOptions() })
+    var emptyOption by refreshOnUpdate(false) { setChildrenFromOptions() }
     /**
      * Determines if the field is disabled.
      */
@@ -291,31 +291,31 @@ open class SelectInput(
             getElementJQueryD()?.selectpicker("render").ajaxSelectPicker(it.toJs(emptyOption))
         } ?: getElementJQueryD()?.selectpicker("render")
 
-        this.getElementJQuery()?.on("show.bs.select", { e, _ ->
+        this.getElementJQuery()?.on("show.bs.select") { e, _ ->
             this.dispatchEvent("showBsSelect", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("shown.bs.select", { e, _ ->
+        }
+        this.getElementJQuery()?.on("shown.bs.select") { e, _ ->
             this.dispatchEvent("shownBsSelect", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("hide.bs.select", { e, _ ->
+        }
+        this.getElementJQuery()?.on("hide.bs.select") { e, _ ->
             this.dispatchEvent("hideBsSelect", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("hidden.bs.select", { e, _ ->
+        }
+        this.getElementJQuery()?.on("hidden.bs.select") { e, _ ->
             this.dispatchEvent("hiddenBsSelect", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("loaded.bs.select", { e, _ ->
+        }
+        this.getElementJQuery()?.on("loaded.bs.select") { e, _ ->
             this.dispatchEvent("loadedBsSelect", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("rendered.bs.select", { e, _ ->
+        }
+        this.getElementJQuery()?.on("rendered.bs.select") { e, _ ->
             this.dispatchEvent("renderedBsSelect", obj { detail = e })
-        })
-        this.getElementJQuery()?.on("refreshed.bs.select", { e, _ ->
+        }
+        this.getElementJQuery()?.on("refreshed.bs.select") { e, _ ->
             this.dispatchEvent("refreshedBsSelect", obj { detail = e })
-        })
-        this.getElementJQueryD()?.on("changed.bs.select", { e, cIndex: Int ->
+        }
+        this.getElementJQueryD()?.on("changed.bs.select") { e, cIndex: Int ->
             e["clickedIndex"] = cIndex
             this.dispatchEvent("changedBsSelect", obj { detail = e })
-        })
+        }
         refreshState()
     }
 

@@ -29,11 +29,10 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.i18n.I18n
-import pl.treksoft.kvision.types.KDate
-import pl.treksoft.kvision.types.toJS
-import pl.treksoft.kvision.types.toKDateF
+import pl.treksoft.kvision.types.toDateF
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.obj
+import kotlin.js.Date
 
 internal const val DEFAULT_MINUTE_STEP = 5
 internal const val MAX_VIEW = 4
@@ -48,7 +47,7 @@ internal const val MAX_VIEW = 4
  */
 @Suppress("TooManyFunctions")
 open class DateTimeInput(
-    value: KDate? = null, format: String = "YYYY-MM-DD HH:mm",
+    value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
     classes: Set<String> = setOf()
 ) : Widget(classes + "form-control"), FormInput {
 
@@ -63,11 +62,11 @@ open class DateTimeInput(
     /**
      * Date/time input value.
      */
-    var value by refreshOnUpdate(value, { refreshState() })
+    var value by refreshOnUpdate(value) { refreshState() }
     /**
      * Date/time format.
      */
-    var format by refreshOnUpdate(format, { refreshDatePicker() })
+    var format by refreshOnUpdate(format) { refreshDatePicker() }
     /**
      * The placeholder for the date/time input.
      */
@@ -95,31 +94,31 @@ open class DateTimeInput(
     /**
      * Day of the week start. 0 (Sunday) to 6 (Saturday).
      */
-    var weekStart by refreshOnUpdate(0, { refreshDatePicker() })
+    var weekStart by refreshOnUpdate(0) { refreshDatePicker() }
     /**
      * Days of the week that should be disabled. Multiple values should be comma separated.
      */
-    var daysOfWeekDisabled by refreshOnUpdate(arrayOf<Int>(), { refreshDatePicker() })
+    var daysOfWeekDisabled by refreshOnUpdate(arrayOf<Int>()) { refreshDatePicker() }
     /**
      * Determines if *Clear* button should be visible.
      */
-    var clearBtn by refreshOnUpdate(true, { refreshDatePicker() })
+    var clearBtn by refreshOnUpdate(true) { refreshDatePicker() }
     /**
      * Determines if *Today* button should be visible.
      */
-    var todayBtn by refreshOnUpdate(false, { refreshDatePicker() })
+    var todayBtn by refreshOnUpdate(false) { refreshDatePicker() }
     /**
      * Determines if the current day should be highlighted.
      */
-    var todayHighlight by refreshOnUpdate(false, { refreshDatePicker() })
+    var todayHighlight by refreshOnUpdate(false) { refreshDatePicker() }
     /**
      * The increment used to build the hour view.
      */
-    var minuteStep by refreshOnUpdate(DEFAULT_MINUTE_STEP, { refreshDatePicker() })
+    var minuteStep by refreshOnUpdate(DEFAULT_MINUTE_STEP) { refreshDatePicker() }
     /**
      * Determines if meridian views are visible in day and hour views.
      */
-    var showMeridian by refreshOnUpdate(false, { refreshDatePicker() })
+    var showMeridian by refreshOnUpdate(false) { refreshDatePicker() }
 
     override fun render(): VNode {
         return render("input")
@@ -164,7 +163,7 @@ open class DateTimeInput(
     @Suppress("UnsafeCastFromDynamic")
     protected open fun refreshState() {
         value?.let {
-            getElementJQueryD()?.datetimepicker("update", it.toJS())
+            getElementJQueryD()?.datetimepicker("update", it)
         } ?: run {
             getElementJQueryD()?.`val`(null)
             getElementJQueryD()?.datetimepicker("update", null)
@@ -181,7 +180,7 @@ open class DateTimeInput(
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
         if (v != null && v.isNotEmpty()) {
-            this.value = v.toKDateF(format)
+            this.value = v.toDateF(format)
         } else {
             this.value = null
         }
@@ -205,15 +204,15 @@ open class DateTimeInput(
     override fun afterInsert(node: VNode) {
         if (!this.disabled) {
             this.initDateTimePicker()
-            this.getElementJQuery()?.on("changeDate", { e, _ ->
+            this.getElementJQuery()?.on("changeDate") { e, _ ->
                 this.dispatchEvent("change", obj { detail = e })
-            })
-            this.getElementJQuery()?.on("show", { e, _ ->
+            }
+            this.getElementJQuery()?.on("show") { e, _ ->
                 this.dispatchEvent("showBsDateTime", obj { detail = e })
-            })
-            this.getElementJQuery()?.on("hide", { e, _ ->
+            }
+            this.getElementJQuery()?.on("hide") { e, _ ->
                 this.dispatchEvent("hideBsDateTime", obj { detail = e })
-            })
+            }
             refreshState()
         }
     }
@@ -280,7 +279,7 @@ open class DateTimeInput(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.dateTimeInput(
-            value: KDate? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
+            value: Date? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
             init: (DateTimeInput.() -> Unit)? = null
         ): DateTimeInput {
             val dateTimeInput = DateTimeInput(value, format, classes).apply { init?.invoke(this) }

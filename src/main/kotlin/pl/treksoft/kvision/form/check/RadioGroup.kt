@@ -54,12 +54,12 @@ open class RadioGroup(
     /**
      * A list of options (label to value pairs) for the group.
      */
-    var options by refreshOnUpdate(options, { setChildrenFromOptions() })
+    var options by refreshOnUpdate(options) { setChildrenFromOptions() }
 
     /**
      * A value of the selected option.
      */
-    override var value by refreshOnUpdate(value, { setValueToChildren(it) })
+    override var value by refreshOnUpdate(value) { setValueToChildren(it) }
 
     /**
      * Determines if the options are rendered inline.

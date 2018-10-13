@@ -312,7 +312,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
                     afterPostpatch(v)
                 }
             }
-            destroy = { _ ->
+            destroy = {
                 afterDestroy()
                 vnode = null
                 vnode

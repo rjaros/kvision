@@ -105,11 +105,11 @@ open class Window(
     /**
      * Determines if the window is resizable.
      */
-    var isResizable by refreshOnUpdate(isResizable, { checkIsResizable() })
+    var isResizable by refreshOnUpdate(isResizable) { checkIsResizable() }
     /**
      * Determines if the window is draggable.
      */
-    var isDraggable by refreshOnUpdate(isDraggable, { checkIsDraggable(); checkHeaderVisibility() })
+    var isDraggable by refreshOnUpdate(isDraggable) { checkIsDraggable(); checkHeaderVisibility() }
     /**
      * Determines if Close button is visible.
      */
@@ -201,7 +201,7 @@ open class Window(
                         }
                         kotlin.browser.window.addEventListener("mousemove", moveCallback)
                         var upCallback: ((Event) -> Unit)? = null
-                        upCallback = { _ ->
+                        upCallback = {
                             isDrag = false
                             kotlin.browser.window.removeEventListener("mousemove", moveCallback)
                             kotlin.browser.window.removeEventListener("mouseup", upCallback)

@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision
 
-internal val KVManagerSelectInit = KVManagerSelect.init()
+internal val kVManagerSelectInit = KVManagerSelect.init()
 
 /**
  * Internal singleton object which initializes and configures KVision select module.

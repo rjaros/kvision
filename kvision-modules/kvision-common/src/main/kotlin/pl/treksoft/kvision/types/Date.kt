@@ -21,38 +21,8 @@
  */
 package pl.treksoft.kvision.types
 
-import com.github.andrewoma.kwery.mapper.SimpleConverter
-import com.github.andrewoma.kwery.mapper.TableConfiguration
-import com.github.andrewoma.kwery.mapper.reifiedConverter
-import com.github.andrewoma.kwery.mapper.standardConverters
-import com.github.andrewoma.kwery.mapper.util.camelToLowerUnderscore
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.util.*
+expect class Date
 
-/**
- * A serializable wrapper for a multiplatform Date type.
- */
-@Suppress("MayBeConstant")
-actual val KDATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
+expect fun String.toDateF(format: String = "YYYY-MM-DD HH:mm:ss"): Date
 
-actual fun nowDate(): KDate =
-    KDate(Date().time)
-
-actual fun String.toKDateF(format: String): KDate =
-    KDate(SimpleDateFormat(format).parse(this).time)
-
-actual fun KDate.toStringF(format: String) =
-    SimpleDateFormat(format).format(this.toJava())
-
-fun KDate.toJava(): java.util.Date = java.util.Date(this.time)
-
-object KDateConverter : SimpleConverter<KDate>(
-    { row, c -> KDate(row.timestamp(c).time) },
-    { Timestamp(it.time) }
-)
-
-val kvTableConfig = TableConfiguration(
-    converters = standardConverters + reifiedConverter(KDateConverter),
-    namingConvention = camelToLowerUnderscore
-)
+expect fun Date.toStringF(format: String = "YYYY-MM-DD HH:mm:ss"): String

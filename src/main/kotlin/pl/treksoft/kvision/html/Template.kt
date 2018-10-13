@@ -47,6 +47,6 @@ interface Template {
         set(value) {
             if (!rich) rich = true
             templateDataObj = value
-            content = template?.invoke(value) ?: templates.get(I18n.language)?.invoke(value)
+            content = template?.invoke(value) ?: templates[I18n.language]?.invoke(value)
         }
 }

@@ -61,7 +61,6 @@ class LoginService {
 /**
  * Pac4j form login dispatcher.
  */
-@Suppress("EXPERIMENTAL_FEATURE_WARNING")
 abstract class SecurityMgr {
 
     private var isLoggedIn = false

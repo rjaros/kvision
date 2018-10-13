@@ -63,7 +63,7 @@ open class Table(
     /**
      * Table headers names.
      */
-    var headerNames by refreshOnUpdate(headerNames, { refreshHeaders() })
+    var headerNames by refreshOnUpdate(headerNames) { refreshHeaders() }
     /**
      * Table types.
      */
