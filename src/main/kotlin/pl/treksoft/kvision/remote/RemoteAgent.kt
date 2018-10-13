@@ -24,13 +24,23 @@ package pl.treksoft.kvision.remote
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.asDeferred
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.internal.*
+import kotlinx.serialization.internal.BooleanSerializer
+import kotlinx.serialization.internal.ByteSerializer
+import kotlinx.serialization.internal.CharSerializer
+import kotlinx.serialization.internal.DoubleSerializer
+import kotlinx.serialization.internal.FloatSerializer
+import kotlinx.serialization.internal.IntSerializer
+import kotlinx.serialization.internal.LongSerializer
+import kotlinx.serialization.internal.ShortSerializer
+import kotlinx.serialization.internal.StringSerializer
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.JSON
 import kotlin.js.Date
+import kotlin.js.asDynamic
+import kotlin.js.js
 import kotlin.reflect.KClass
 import kotlin.js.JSON as NativeJSON
 
@@ -93,10 +103,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * Executes defined call to a remote web service.
      */
     inline fun <reified PAR, reified RET : Any, T> call(
-        noinline function: T.(PAR, Request?) -> Deferred<RET>,
-        p: PAR, serializer: KSerializer<PAR>? = null
+        noinline function: T.(PAR, Request?) -> Deferred<RET>, p: PAR
     ): Deferred<RET> {
-        val data = serialize(p, serializer)
+        val data = serialize(p)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method).then {
@@ -118,10 +127,9 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * Executes defined call to a remote web service.
      */
     inline fun <reified PAR, reified RET : Any, T> call(
-        noinline function: T.(PAR, Request?) -> Deferred<List<RET>>,
-        p: PAR, serializer: KSerializer<PAR>? = null
+        noinline function: T.(PAR, Request?) -> Deferred<List<RET>>, p: PAR
     ): Deferred<List<RET>> {
-        val data = serialize(p, serializer)
+        val data = serialize(p)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method).then {
@@ -142,11 +150,10 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * Executes defined call to a remote web service.
      */
     inline fun <reified PAR1, reified PAR2, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
-        p1: PAR1, p2: PAR2, serializer1: KSerializer<PAR1>? = null, serializer2: KSerializer<PAR2>? = null
+        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>, p1: PAR1, p2: PAR2
     ): Deferred<RET> {
-        val data1 = serialize(p1, serializer1)
-        val data2 = serialize(p2, serializer2)
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method).then {
@@ -168,11 +175,10 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * Executes defined call to a remote web service.
      */
     inline fun <reified PAR1, reified PAR2, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<List<RET>>,
-        p1: PAR1, p2: PAR2, serializer1: KSerializer<PAR1>? = null, serializer2: KSerializer<PAR2>? = null
+        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<List<RET>>, p1: PAR1, p2: PAR2
     ): Deferred<List<RET>> {
-        val data1 = serialize(p1, serializer1)
-        val data2 = serialize(p2, serializer2)
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method).then {
@@ -193,13 +199,11 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * Executes defined call to a remote web service.
      */
     inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
-        p1: PAR1, p2: PAR2, p3: PAR3, serializer1: KSerializer<PAR1>? = null, serializer2: KSerializer<PAR2>? = null,
-        serializer3: KSerializer<PAR3>? = null
+        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>, p1: PAR1, p2: PAR2, p3: PAR3
     ): Deferred<RET> {
-        val data1 = serialize(p1, serializer1)
-        val data2 = serialize(p2, serializer2)
-        val data3 = serialize(p3, serializer3)
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
+        val data3 = serialize(p3)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method).then {
@@ -221,13 +225,11 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * Executes defined call to a remote web service.
      */
     inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<List<RET>>,
-        p1: PAR1, p2: PAR2, p3: PAR3, serializer1: KSerializer<PAR1>? = null, serializer2: KSerializer<PAR2>? = null,
-        serializer3: KSerializer<PAR3>? = null
+        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<List<RET>>, p1: PAR1, p2: PAR2, p3: PAR3
     ): Deferred<List<RET>> {
-        val data1 = serialize(p1, serializer1)
-        val data2 = serialize(p2, serializer2)
-        val data3 = serialize(p3, serializer3)
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
+        val data3 = serialize(p3)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method).then {
@@ -248,20 +250,12 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * Executes defined call to a remote web service.
      */
     inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
-        p1: PAR1,
-        p2: PAR2,
-        p3: PAR3,
-        p4: PAR4,
-        serializer1: KSerializer<PAR1>? = null,
-        serializer2: KSerializer<PAR2>? = null,
-        serializer3: KSerializer<PAR3>? = null,
-        serializer4: KSerializer<PAR4>? = null
+        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>, p1: PAR1, p2: PAR2, p3: PAR3, p4: PAR4
     ): Deferred<RET> {
-        val data1 = serialize(p1, serializer1)
-        val data2 = serialize(p2, serializer2)
-        val data3 = serialize(p3, serializer3)
-        val data4 = serialize(p4, serializer4)
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
+        val data3 = serialize(p3)
+        val data4 = serialize(p4)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method).then {
@@ -287,16 +281,12 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         p1: PAR1,
         p2: PAR2,
         p3: PAR3,
-        p4: PAR4,
-        serializer1: KSerializer<PAR1>? = null,
-        serializer2: KSerializer<PAR2>? = null,
-        serializer3: KSerializer<PAR3>? = null,
-        serializer4: KSerializer<PAR4>? = null
+        p4: PAR4
     ): Deferred<List<RET>> {
-        val data1 = serialize(p1, serializer1)
-        val data2 = serialize(p2, serializer2)
-        val data3 = serialize(p3, serializer3)
-        val data4 = serialize(p4, serializer4)
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
+        val data3 = serialize(p3)
+        val data4 = serialize(p4)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method).then {
@@ -324,18 +314,13 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         p2: PAR2,
         p3: PAR3,
         p4: PAR4,
-        p5: PAR5,
-        serializer1: KSerializer<PAR1>? = null,
-        serializer2: KSerializer<PAR2>? = null,
-        serializer3: KSerializer<PAR3>? = null,
-        serializer4: KSerializer<PAR4>? = null,
-        serializer5: KSerializer<PAR5>? = null
+        p5: PAR5
     ): Deferred<RET> {
-        val data1 = serialize(p1, serializer1)
-        val data2 = serialize(p2, serializer2)
-        val data3 = serialize(p3, serializer3)
-        val data4 = serialize(p4, serializer4)
-        val data5 = serialize(p5, serializer5)
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
+        val data3 = serialize(p3)
+        val data4 = serialize(p4)
+        val data5 = serialize(p5)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method).then {
@@ -364,18 +349,13 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
         p2: PAR2,
         p3: PAR3,
         p4: PAR4,
-        p5: PAR5,
-        serializer1: KSerializer<PAR1>? = null,
-        serializer2: KSerializer<PAR2>? = null,
-        serializer3: KSerializer<PAR3>? = null,
-        serializer4: KSerializer<PAR4>? = null,
-        serializer5: KSerializer<PAR5>? = null
+        p5: PAR5
     ): Deferred<List<RET>> {
-        val data1 = serialize(p1, serializer1)
-        val data2 = serialize(p2, serializer2)
-        val data3 = serialize(p3, serializer3)
-        val data4 = serialize(p4, serializer4)
-        val data5 = serialize(p5, serializer5)
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
+        val data3 = serialize(p3)
+        val data4 = serialize(p4)
+        val data5 = serialize(p5)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method).then {
@@ -397,15 +377,10 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
      * @suppress
      * Internal function
      */
-    @Suppress("TooGenericExceptionCaught", "NestedBlockDepth")
-    inline fun <reified PAR> serialize(value: PAR, serializer: KSerializer<PAR>?): String? {
+    inline fun <reified PAR> serialize(value: PAR): String? {
         return value?.let {
-            if (serializer != null) {
-                JSON.plain.stringify(serializer, it)
-            } else {
-                @Suppress("UNCHECKED_CAST")
-                trySerialize((PAR::class as KClass<Any>), it as Any)
-            }
+            @Suppress("UNCHECKED_CAST")
+            trySerialize((PAR::class as KClass<Any>), it as Any)
         }
     }
 
@@ -420,44 +395,49 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
                 when {
                     value[0] is String ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(StringSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(StringSerializer.list as KSerializer<Any>, value)
                     value[0] is Date ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(DateSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(DateSerializer.list as KSerializer<Any>, value)
                     value[0] is Int ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(IntSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(IntSerializer.list as KSerializer<Any>, value)
                     value[0] is Long ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(LongSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(LongSerializer.list as KSerializer<Any>, value)
                     value[0] is Boolean ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(BooleanSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(BooleanSerializer.list as KSerializer<Any>, value)
                     value[0] is Float ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(FloatSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(FloatSerializer.list as KSerializer<Any>, value)
                     value[0] is Double ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(DoubleSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(DoubleSerializer.list as KSerializer<Any>, value)
                     value[0] is Char ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(CharSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(CharSerializer.list as KSerializer<Any>, value)
                     value[0] is Short ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(ShortSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(ShortSerializer.list as KSerializer<Any>, value)
                     value[0] is Byte ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(ByteSerializer) as KSerializer<Any>, value)
+                        JSON.plain.stringify(ByteSerializer.list as KSerializer<Any>, value)
                     value[0] is Enum<*> -> "[" + value.joinToString(",") { "\"$it\"" } + "]"
                     else -> try {
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(ArrayListSerializer(kClass.serializer()) as KSerializer<Any>, value)
+                        JSON.plain.stringify(kClass.serializer().list as KSerializer<Any>, value)
                     } catch (e: Throwable) {
                         try {
                             @Suppress("UNCHECKED_CAST")
-                            JSON.plain.stringify(ArrayListSerializer(StringSerializer) as KSerializer<Any>, value)
+                            JSON.plain.stringify(value[0]!!::class.serializer().list as KSerializer<Any>, value)
                         } catch (e: Throwable) {
-                            value.toString()
+                            try {
+                                @Suppress("UNCHECKED_CAST")
+                                JSON.plain.stringify(StringSerializer.list as KSerializer<Any>, value)
+                            } catch (e: Throwable) {
+                                value.toString()
+                            }
                         }
                     }
                 }
@@ -506,14 +486,14 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     @Suppress("UNCHECKED_CAST", "ComplexMethod")
     fun <RET> deserializeList(value: String, jsType: String): List<RET> {
         return when (jsType) {
-            "String" -> JSON.plain.parse(ArrayListSerializer(StringSerializer), value) as List<RET>
-            "Number" -> JSON.plain.parse(ArrayListSerializer(DoubleSerializer), value) as List<RET>
-            "Long" -> JSON.plain.parse(ArrayListSerializer(LongSerializer), value) as List<RET>
-            "Boolean" -> JSON.plain.parse(ArrayListSerializer(BooleanSerializer), value) as List<RET>
-            "BoxedChar" -> JSON.plain.parse(ArrayListSerializer(CharSerializer), value) as List<RET>
-            "Short" -> JSON.plain.parse(ArrayListSerializer(ShortSerializer), value) as List<RET>
-            "Date" -> JSON.plain.parse(ArrayListSerializer(DateSerializer), value) as List<RET>
-            "Byte" -> JSON.plain.parse(ArrayListSerializer(ByteSerializer), value) as List<RET>
+            "String" -> JSON.plain.parse(StringSerializer.list, value) as List<RET>
+            "Number" -> JSON.plain.parse(DoubleSerializer.list, value) as List<RET>
+            "Long" -> JSON.plain.parse(LongSerializer.list, value) as List<RET>
+            "Boolean" -> JSON.plain.parse(BooleanSerializer.list, value) as List<RET>
+            "BoxedChar" -> JSON.plain.parse(CharSerializer.list, value) as List<RET>
+            "Short" -> JSON.plain.parse(ShortSerializer.list, value) as List<RET>
+            "Date" -> JSON.plain.parse(DateSerializer.list, value) as List<RET>
+            "Byte" -> JSON.plain.parse(ByteSerializer.list, value) as List<RET>
             else -> throw NotStandardTypeException(jsType)
         }
     }
@@ -543,7 +523,7 @@ open class RemoteAgent<out T>(val serviceManager: ServiceManager<T>) {
     fun tryDeserializeEnumList(kClass: KClass<Any>, value: String): List<Any> {
         return try {
             if (kClass.asDynamic().jClass.`$metadata$`.interfaces[0].name == "Enum") {
-                JSON.plain.parse(ArrayListSerializer(StringSerializer), value).map {
+                JSON.plain.parse(StringSerializer.list, value).map {
                     findEnumValue(kClass, JSON.plain.parse(StringSerializer, it)) ?: throw NotEnumTypeException()
                 }
             } else {
