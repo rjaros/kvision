@@ -10,6 +10,25 @@
 <h1>StyledComponent</h1>
 <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">StyledComponent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a></code>
 <p>Base class for components supporting CSS styling.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-refresh-delegate/index.html">RefreshDelegate</a></p>
+</td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">RefreshDelegate</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-refresh-delegate-provider/index.html">RefreshDelegateProvider</a></p>
+</td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">RefreshDelegateProvider</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -558,6 +577,14 @@
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnStyle</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span></code>
 <p>Returns the list of String pairs defining CSS style attributes and their values.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="refresh-on-update.html">refreshOnUpdate</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="-refresh-delegate-provider/index.html"><span class="identifier">RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/initialValue">initialValue</span><span class="symbol">:</span>&nbsp;<a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="-refresh-delegate-provider/index.html"><span class="identifier">RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>

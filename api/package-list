@@ -2,6 +2,27 @@ $dokka.format:html
 $dokka.linkExtension:html
 $dokka.location:pl.treksoft.kvision.form$asJson(kotlin.collections.Map((kotlin.String, kotlin.Any)))pl.treksoft.kvision.form/kotlin.collections.-map/as-json.html
 $dokka.location:pl.treksoft.kvision.form$asMap(kotlin.js.Json)pl.treksoft.kvision.form/kotlin.js.-json/as-map.html
+$dokka.location:pl.treksoft.kvision.remote.Profilepl.treksoft.kvision.remote/-profile/index.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$<init>(kotlin.String, kotlin.collections.MutableMap((kotlin.String, )), kotlin.collections.MutableMap((kotlin.String, )), kotlin.collections.MutableSet((kotlin.String)), kotlin.collections.MutableSet((kotlin.String)), kotlin.String, kotlin.Boolean, kotlin.String)pl.treksoft.kvision.remote/-profile/-profile/-init-.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$attributespl.treksoft.kvision.remote/-profile/-profile/attributes.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$authenticationAttributespl.treksoft.kvision.remote/-profile/-profile/authentication-attributes.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$clientNamepl.treksoft.kvision.remote/-profile/-profile/client-name.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$displayNamepl.treksoft.kvision.remote/-profile/-profile/display-name.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$emailpl.treksoft.kvision.remote/-profile/-profile/email.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$familyNamepl.treksoft.kvision.remote/-profile/-profile/family-name.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$firstNamepl.treksoft.kvision.remote/-profile/-profile/first-name.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$idpl.treksoft.kvision.remote/-profile/-profile/id.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$linkedIdpl.treksoft.kvision.remote/-profile/-profile/linked-id.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$permissionspl.treksoft.kvision.remote/-profile/-profile/permissions.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$pictureUrlpl.treksoft.kvision.remote/-profile/-profile/picture-url.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$profileUrlpl.treksoft.kvision.remote/-profile/-profile/profile-url.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$rememberedpl.treksoft.kvision.remote/-profile/-profile/remembered.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$rolespl.treksoft.kvision.remote/-profile/-profile/roles.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$usernamepl.treksoft.kvision.remote/-profile/-profile/username.html
+$dokka.location:pl.treksoft.kvision.types$toDateF(kotlin.String, kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-date-f.html
+$dokka.location:pl.treksoft.kvision.types$toStringF(java.util.Date, kotlin.String)pl.treksoft.kvision.types/java.util.-date/to-string-f.html
+$dokka.location:pl.treksoft.kvision.types$toStringF(kotlin.js.Date, kotlin.String)pl.treksoft.kvision.types/kotlin.js.-date/to-string-f.html
+$dokka.location:pl.treksoft.kvision.types.Datepl.treksoft.kvision.types/-date/index.html
 $dokka.location:pl.treksoft.kvision.utils$asString(kotlin.Pair((kotlin.Int, pl.treksoft.kvision.core.UNIT)))pl.treksoft.kvision.utils/kotlin.-pair/as-string.html
 $dokka.location:pl.treksoft.kvision.utils$ch#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/ch.html
 $dokka.location:pl.treksoft.kvision.utils$cm#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/cm.html
@@ -15,9 +36,7 @@ $dokka.location:pl.treksoft.kvision.utils$pt#kotlin.Intpl.treksoft.kvision.util
 $dokka.location:pl.treksoft.kvision.utils$px#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/px.html
 $dokka.location:pl.treksoft.kvision.utils$rem#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/rem.html
 $dokka.location:pl.treksoft.kvision.utils$syncWithList(com.lightningkite.kotlin.observable.list.ObservableList((pl.treksoft.kvision.utils.syncWithList.T)), kotlin.collections.List((pl.treksoft.kvision.utils.syncWithList.T)))pl.treksoft.kvision.utils/com.lightningkite.kotlin.observable.list.-observable-list/sync-with-list.html
-$dokka.location:pl.treksoft.kvision.utils$toDateF(kotlin.String, kotlin.String)pl.treksoft.kvision.utils/kotlin.-string/to-date-f.html
 $dokka.location:pl.treksoft.kvision.utils$toHexString(kotlin.Int)pl.treksoft.kvision.utils/kotlin.-int/to-hex-string.html
-$dokka.location:pl.treksoft.kvision.utils$toStringF(kotlin.js.Date, kotlin.String)pl.treksoft.kvision.utils/kotlin.js.-date/to-string-f.html
 $dokka.location:pl.treksoft.kvision.utils$vh#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vh.html
 $dokka.location:pl.treksoft.kvision.utils$vmax#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vmax.html
 $dokka.location:pl.treksoft.kvision.utils$vmin#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vmin.html

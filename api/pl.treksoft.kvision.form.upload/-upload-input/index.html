@@ -202,7 +202,7 @@ If not set the upload button action will default to form submission.</p>
 <p><a href="value.html">value</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">value</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">KFile</span><span class="symbol">&gt;</span><span class="symbol">?</span></code>
+<code><span class="keyword">var </span><span class="identifier">value</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code>
 <p>File input value.</p>
 </td>
 </tr>
@@ -219,6 +219,13 @@ If not set the upload button action will default to form submission.</p>
 <code><span class="keyword">var </span><span class="identifier">draggable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
 <p>Determines if the current widget is draggable.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/event-target.html">eventTarget</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">eventTarget</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -253,6 +260,13 @@ If not set the upload button action will default to form submission.</p>
 <code><span class="keyword">var </span><span class="identifier">role</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
 <p>A role attribute of generated HTML element.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/surrounding-span.html">surroundingSpan</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">surroundingSpan</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -336,7 +350,7 @@ If not set the upload button action will default to form submission.</p>
 <p><a href="get-native-file.html">getNativeFile</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">getNativeFile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.upload.UploadInput$getNativeFile(pl.treksoft.kvision.types.KFile)/kFile">kFile</span><span class="symbol">:</span>&nbsp;<span class="identifier">KFile</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.files/-file/index.html"><span class="identifier">File</span></a><span class="symbol">?</span></code>
+<code><span class="keyword">fun </span><span class="identifier">getNativeFile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.upload.UploadInput$getNativeFile(pl.treksoft.kvision.types.KFile)/kFile">kFile</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.files/-file/index.html"><span class="identifier">File</span></a><span class="symbol">?</span></code>
 <p>Returns the native JavaScript File object.</p>
 </td>
 </tr>
@@ -461,6 +475,13 @@ If not set the upload button action will default to form submission.</p>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearDragDropData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Clears D&D data for the current widget. It also makes it not draggable.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/dispatch-event.html">dispatchEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">dispatchEvent</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$dispatchEvent(kotlin.String, org.w3c.dom.CustomEventInit)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$dispatchEvent(kotlin.String, org.w3c.dom.CustomEventInit)/eventInitDict">eventInitDict</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-custom-event-init/index.html"><span class="identifier">CustomEventInit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -631,6 +652,16 @@ If not set the upload button action will default to form submission.</p>
 <h3>Companion Object Functions</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="get-content.html">getContent</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="../../pl.treksoft.kvision.form/-form/index.html"><span class="identifier">Form</span></a><span class="symbol">&lt;</span><a href="get-content.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">getContent</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.upload.UploadInput.Companion$getContent(pl.treksoft.kvision.form.Form((pl.treksoft.kvision.form.upload.UploadInput.Companion.getContent.K)), kotlin.reflect.KProperty1((pl.treksoft.kvision.form.upload.UploadInput.Companion.getContent.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.types.KFile)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="get-content.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.upload.UploadInput.Companion$getContent(pl.treksoft.kvision.form.Form((pl.treksoft.kvision.form.upload.UploadInput.Companion.getContent.K)), kotlin.reflect.KProperty1((pl.treksoft.kvision.form.upload.UploadInput.Companion.getContent.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.types.KFile)/kFile">kFile</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a></code><br/>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="../../pl.treksoft.kvision.form/-form-panel/index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="get-content.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">getContent</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.upload.UploadInput.Companion$getContent(pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.upload.UploadInput.Companion.getContent.K)), kotlin.reflect.KProperty1((pl.treksoft.kvision.form.upload.UploadInput.Companion.getContent.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.types.KFile)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="get-content.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.upload.UploadInput.Companion$getContent(pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.upload.UploadInput.Companion.getContent.K)), kotlin.reflect.KProperty1((pl.treksoft.kvision.form.upload.UploadInput.Companion.getContent.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.types.KFile)/kFile">kFile</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a></code>
+<p>Returns file with the content read.</p>
+</td>
+</tr>
 <tr>
 <td>
 <p><a href="upload-input.html">uploadInput</a></p>

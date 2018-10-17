@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SimpleI18nManager - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.i18n</a>&nbsp;/&nbsp;<a href="./index.html">SimpleI18nManager</a><br/>
+<br/>
+<h1>SimpleI18nManager</h1>
+<code><span class="keyword">class </span><span class="identifier">SimpleI18nManager</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-i18n-manager/index.html"><span class="identifier">I18nManager</span></a></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">SimpleI18nManager</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="gettext.html">gettext</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">gettext</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.i18n.SimpleI18nManager$gettext(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>A static translation function for a singular form.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="ngettext.html">ngettext</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">ngettext</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.i18n.SimpleI18nManager$ngettext(kotlin.String, kotlin.String, kotlin.Int)/singularKey">singularKey</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.i18n.SimpleI18nManager$ngettext(kotlin.String, kotlin.String, kotlin.Int)/pluralKey">pluralKey</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.i18n.SimpleI18nManager$ngettext(kotlin.String, kotlin.String, kotlin.Int)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>A static translation function for a plural form.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-i18n-manager/ntr.html">ntr</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">ntr</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.i18n.I18nManager$ntr(kotlin.String, kotlin.String, kotlin.Int)/singularKey">singularKey</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.i18n.I18nManager$ntr(kotlin.String, kotlin.String, kotlin.Int)/pluralKey">pluralKey</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.i18n.I18nManager$ntr(kotlin.String, kotlin.String, kotlin.Int)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>A dynamic translation function for a plural form.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-i18n-manager/tr.html">tr</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">tr</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.i18n.I18nManager$tr(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>A dynamic translation function for a singular form.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-i18n-manager/trans.html">trans</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">trans</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.i18n.I18nManager$trans(kotlin.String)/text">text</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>A dynamic translation function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
