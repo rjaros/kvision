@@ -73,7 +73,7 @@ fun <RESP> Request?.async(block: (Request) -> RESP): Deferred<RESP> = this?.let 
 /**
  * A helper extension function for asynchronous request processing with session.
  */
-fun <RESP> Request?.async(block: (Request, Session) -> RESP): Deferred<RESP> = this?.let { req ->
+fun <RESP> Request?.asyncSession(block: (Request, Session) -> RESP): Deferred<RESP> = this?.let { req ->
     val session = req.session()
     GlobalScope.coroutinesAsync(Dispatchers.Unconfined) {
         block(req, session)
@@ -83,10 +83,12 @@ fun <RESP> Request?.async(block: (Request, Session) -> RESP): Deferred<RESP> = t
 /**
  * A helper extension function for asynchronous request processing with session and user profile.
  */
-fun <RESP> Request?.async(block: (Request, Session, Profile) -> RESP): Deferred<RESP> = this?.let { req ->
+fun <RESP> Request?.asyncAuth(block: (Request, Session, Profile) -> RESP): Deferred<RESP> = this?.let { req ->
     val session = req.session()
-    val profile = req.require(CommonProfile::class.java)
-    GlobalScope.coroutinesAsync(Dispatchers.Unconfined) {
-        block(req, session, profile)
+    val profile = req.require(CommonProfile::class.java) as CommonProfile?
+    profile?.let {
+        GlobalScope.coroutinesAsync(Dispatchers.Unconfined) {
+            block(req, session, profile)
+        }
     }
-} ?: throw IllegalStateException("Request not set!")
+} ?: throw IllegalStateException("Request or profile not set!")

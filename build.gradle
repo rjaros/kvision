@@ -161,7 +161,8 @@ dokka {
             'kvision-modules/kvision-handlebars/src/main/kotlin',
             'kvision-modules/kvision-i18n/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',
-            'kvision-modules/kvision-server-jooby/src/main/kotlin')
+            'kvision-modules/kvision-server-jooby/src/main/kotlin',
+            'kvision-modules/kvision-server-spring-boot/src/main/kotlin')
     classpath = [new File("dokka/kvision-dokka-helper.jar")]
     outputFormat = 'html'
     outputDirectory = "$buildDir/kdoc"

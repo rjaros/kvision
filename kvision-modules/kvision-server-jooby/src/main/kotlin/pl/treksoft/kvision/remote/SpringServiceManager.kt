@@ -22,27 +22,25 @@
 package pl.treksoft.kvision.remote
 
 import kotlinx.coroutines.Deferred
+import kotlin.reflect.KClass
 
 /**
- * Multiplatform service manager.
+ * Multiplatform service manager for Spring Boot.
+ * Not to be used in this module.
  */
-actual open class ServiceManager<out T> actual constructor(service: T) {
-    protected val calls: MutableMap<String, Pair<String, RpcHttpMethod>> = mutableMapOf()
-    var counter: Int = 0
-
+actual open class SpringServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : ServiceManager {
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
      * @param route a route
      * @param method a HTTP method
-     * @param prefix an URL address prefix
      */
     protected actual inline fun <reified RET> bind(
-        noinline function: T.(Request?) -> Deferred<RET>,
-        route: String?, method: RpcHttpMethod, prefix: String
+        noinline function: T.() -> Deferred<RET>,
+        route: String?,
+        method: RpcHttpMethod
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("$prefix$routeDef", method)
+        throw IllegalStateException("This class is for Spring Boot integration.")
     }
 
     /**
@@ -50,14 +48,13 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
      * @param function a function of the receiver
      * @param route a route
      * @param method a HTTP method
-     * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR, reified RET> bind(
-        noinline function: T.(PAR, Request?) -> Deferred<RET>,
-        route: String?, method: RpcHttpMethod, prefix: String
+        noinline function: T.(PAR) -> Deferred<RET>,
+        route: String?,
+        method: RpcHttpMethod
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("$prefix$routeDef", method)
+        throw IllegalStateException("This class is for Spring Boot integration.")
     }
 
     /**
@@ -65,14 +62,13 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
      * @param function a function of the receiver
      * @param route a route
      * @param method a HTTP method
-     * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
-        route: String?, method: RpcHttpMethod, prefix: String
+        noinline function: T.(PAR1, PAR2) -> Deferred<RET>,
+        route: String?,
+        method: RpcHttpMethod
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("$prefix$routeDef", method)
+        throw IllegalStateException("This class is for Spring Boot integration.")
     }
 
     /**
@@ -80,14 +76,13 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
      * @param function a function of the receiver
      * @param route a route
      * @param method a HTTP method
-     * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
-        route: String?, method: RpcHttpMethod, prefix: String
+        noinline function: T.(PAR1, PAR2, PAR3) -> Deferred<RET>,
+        route: String?,
+        method: RpcHttpMethod
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("$prefix$routeDef", method)
+        throw IllegalStateException("This class is for Spring Boot integration.")
     }
 
     /**
@@ -95,14 +90,13 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
      * @param function a function of the receiver
      * @param route a route
      * @param method a HTTP method
-     * @param prefix an URL address prefix
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
-        route: String?, method: RpcHttpMethod, prefix: String
+        noinline function: T.(PAR1, PAR2, PAR3, PAR4) -> Deferred<RET>,
+        route: String?,
+        method: RpcHttpMethod
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("$prefix$routeDef", method)
+        throw IllegalStateException("This class is for Spring Boot integration.")
     }
 
     /**
@@ -110,28 +104,13 @@ actual open class ServiceManager<out T> actual constructor(service: T) {
      * @param function a function of the receiver
      * @param route a route
      * @param method a HTTP method
-     * @param prefix an URL address prefix
      */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
-            reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
+    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
+        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> Deferred<RET>,
         route: String?,
-        method: RpcHttpMethod,
-        prefix: String
+        method: RpcHttpMethod
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("$prefix$routeDef", method)
+        throw IllegalStateException("This class is for Spring Boot integration.")
     }
 
-    /**
-     * Applies all defined routes to the given server.
-     * Not used on the js platform.
-     */
-    actual fun applyRoutes(k: KVServer) {
-    }
-
-    /**
-     * Returns the map of defined paths.
-     */
-    actual fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = calls
 }

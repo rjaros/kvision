@@ -21,25 +21,43 @@
  */
 package pl.treksoft.kvision.remote
 
-enum class RpcHttpMethod {
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
+import org.springframework.beans.BeansException
+import org.springframework.context.ApplicationContext
+import org.springframework.context.ApplicationContextAware
+import org.springframework.stereotype.Component
 
-enum class HttpMethod {
-    GET,
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
+@Component
+class SpringContext : ApplicationContextAware {
 
-interface ServiceManager {
-    /**
-     * Returns the map of defined paths.
-     */
-    fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = mapOf()
+    @Throws(BeansException::class)
+    override fun setApplicationContext(applicationContext: ApplicationContext) {
+        CONTEXT = applicationContext
+    }
+
+    companion object {
+
+        private var CONTEXT: ApplicationContext? = null
+
+        /**
+         * Get a Spring bean by type.
+         */
+        fun <T> getBean(beanClass: Class<T>): T {
+            return CONTEXT!!.getBean(beanClass)
+        }
+
+        /**
+         * Get a Spring bean by name.
+         */
+        fun getBean(beanName: String): Any {
+            return CONTEXT!!.getBean(beanName)
+        }
+
+        /**
+         * Get a Spring bean by name and type.
+         */
+        fun <T> getBean(beanName: String, beanClass: Class<T>): T {
+            return CONTEXT!!.getBean(beanName, beanClass)
+        }
+    }
 
 }

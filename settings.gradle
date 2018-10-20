@@ -10,4 +10,5 @@ include 'kvision-modules:kvision-base',
         'kvision-modules:kvision-upload',
         'kvision-modules:kvision-handlebars',
         'kvision-modules:kvision-i18n',
-        'kvision-modules:kvision-server-jooby'
+        'kvision-modules:kvision-server-jooby',
+        'kvision-modules:kvision-server-spring-boot'

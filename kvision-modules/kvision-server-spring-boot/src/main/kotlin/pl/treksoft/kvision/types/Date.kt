@@ -19,27 +19,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package pl.treksoft.kvision.remote
+package pl.treksoft.kvision.types
 
-enum class RpcHttpMethod {
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
+import com.github.andrewoma.kwery.mapper.SimpleConverter
+import com.github.andrewoma.kwery.mapper.TableConfiguration
+import com.github.andrewoma.kwery.mapper.reifiedConverter
+import com.github.andrewoma.kwery.mapper.standardConverters
+import com.github.andrewoma.kwery.mapper.util.camelToLowerUnderscore
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
 
-enum class HttpMethod {
-    GET,
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
+actual typealias Date = java.util.Date
 
-interface ServiceManager {
-    /**
-     * Returns the map of defined paths.
-     */
-    fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = mapOf()
+actual fun String.toDateF(format: String): Date = SimpleDateFormat(format).parse(this)
 
-}
+actual fun Date.toStringF(format: String): String = SimpleDateFormat(format).format(this)
+
+object DateConverter : SimpleConverter<Date>(
+    { row, c -> Date(row.timestamp(c).time) },
+    { Timestamp(it.time) }
+)
+
+val kvTableConfig = TableConfiguration(
+    converters = standardConverters + reifiedConverter(DateConverter),
+    namingConvention = camelToLowerUnderscore
+)

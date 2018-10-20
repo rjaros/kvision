@@ -21,25 +21,11 @@
  */
 package pl.treksoft.kvision.remote
 
-enum class RpcHttpMethod {
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration
 
-enum class HttpMethod {
-    GET,
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
-
-interface ServiceManager {
-    /**
-     * Returns the map of defined paths.
-     */
-    fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = mapOf()
-
+fun InterceptorRegistration.addPathPatternsFromServices(services: List<SpringServiceManager<*>>) {
+    val paths = services.flatMap {
+        it.postRequests.keys + it.putRequests.keys + it.optionsRequests.keys + it.optionsRequests.keys
+    }
+    this.addPathPatterns(paths)
 }
