@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SpringServiceManager - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.remote</a>&nbsp;/&nbsp;<a href="./index.html">SpringServiceManager</a><br/>
+<br/>
+<h1>SpringServiceManager</h1>
+<code><span class="keyword">open</span> <span class="keyword">expect</span> <span class="keyword">class </span><span class="identifier">SpringServiceManager</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-service-manager/index.html"><span class="identifier">ServiceManager</span></a></code>
+<p>Multiplatform service manager for Spring  Boot.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">SpringServiceManager</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$<init>(kotlin.reflect.KClass((pl.treksoft.kvision.remote.SpringServiceManager.T)))/serviceClass">serviceClass</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">)</span></code>
+<p>Multiplatform service manager for Spring  Boot.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="calls.html">calls</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">calls</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="counter.html">counter</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">counter</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="delete-requests.html">deleteRequests</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">deleteRequests</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="symbol">(</span><a href="../-request.html"><span class="identifier">Request</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="mapper.html">mapper</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">mapper</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="options-requests.html">optionsRequests</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">optionsRequests</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="symbol">(</span><a href="../-request.html"><span class="identifier">Request</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="post-requests.html">postRequests</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">postRequests</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="symbol">(</span><a href="../-request.html"><span class="identifier">Request</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="put-requests.html">putRequests</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">putRequests</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="symbol">(</span><a href="../-request.html"><span class="identifier">Request</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="service-class.html">serviceClass</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">serviceClass</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-route.html">addRoute</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addRoute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$addRoute(pl.treksoft.kvision.remote.RpcHttpMethod, kotlin.String, kotlin.Function2((pl.treksoft.kvision.remote.Request, , kotlin.Unit)))/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$addRoute(pl.treksoft.kvision.remote.RpcHttpMethod, kotlin.String, kotlin.Function2((pl.treksoft.kvision.remote.Request, , kotlin.Unit)))/path">path</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$addRoute(pl.treksoft.kvision.remote.RpcHttpMethod, kotlin.String, kotlin.Function2((pl.treksoft.kvision.remote.Request, , kotlin.Unit)))/handler">handler</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-request.html"><span class="identifier">Request</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="bind.html">bind</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">RET</span><span class="symbol">&gt;</span> <span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function1((pl.treksoft.kvision.remote.SpringServiceManager.T, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/function">function</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Deferred</span><span class="symbol">&lt;</span><a href="bind.html#RET"><span class="identifier">RET</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function1((pl.treksoft.kvision.remote.SpringServiceManager.T, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/route">route</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function1((pl.treksoft.kvision.remote.SpringServiceManager.T, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;RpcHttpMethod.POST<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">PAR</span><span class="symbol">, </span><span class="identifier">RET</span><span class="symbol">&gt;</span> <span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function2((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/function">function</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="bind.html#PAR"><span class="identifier">PAR</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Deferred</span><span class="symbol">&lt;</span><a href="bind.html#RET"><span class="identifier">RET</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function2((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/route">route</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function2((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;RpcHttpMethod.POST<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">PAR1</span><span class="symbol">, </span><span class="identifier">PAR2</span><span class="symbol">, </span><span class="identifier">RET</span><span class="symbol">&gt;</span> <span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function3((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/function">function</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="bind.html#PAR1"><span class="identifier">PAR1</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR2"><span class="identifier">PAR2</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Deferred</span><span class="symbol">&lt;</span><a href="bind.html#RET"><span class="identifier">RET</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function3((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/route">route</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function3((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;RpcHttpMethod.POST<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">PAR1</span><span class="symbol">, </span><span class="identifier">PAR2</span><span class="symbol">, </span><span class="identifier">PAR3</span><span class="symbol">, </span><span class="identifier">RET</span><span class="symbol">&gt;</span> <span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function4((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/function">function</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="bind.html#PAR1"><span class="identifier">PAR1</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR2"><span class="identifier">PAR2</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR3"><span class="identifier">PAR3</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Deferred</span><span class="symbol">&lt;</span><a href="bind.html#RET"><span class="identifier">RET</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function4((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/route">route</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function4((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;RpcHttpMethod.POST<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">PAR1</span><span class="symbol">, </span><span class="identifier">PAR2</span><span class="symbol">, </span><span class="identifier">PAR3</span><span class="symbol">, </span><span class="identifier">PAR4</span><span class="symbol">, </span><span class="identifier">RET</span><span class="symbol">&gt;</span> <span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function5((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR4, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/function">function</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="bind.html#PAR1"><span class="identifier">PAR1</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR2"><span class="identifier">PAR2</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR3"><span class="identifier">PAR3</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR4"><span class="identifier">PAR4</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Deferred</span><span class="symbol">&lt;</span><a href="bind.html#RET"><span class="identifier">RET</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function5((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR4, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/route">route</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function5((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR4, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;RpcHttpMethod.POST<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">PAR1</span><span class="symbol">, </span><span class="identifier">PAR2</span><span class="symbol">, </span><span class="identifier">PAR3</span><span class="symbol">, </span><span class="identifier">PAR4</span><span class="symbol">, </span><span class="identifier">PAR5</span><span class="symbol">, </span><span class="identifier">RET</span><span class="symbol">&gt;</span> <span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function6((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR4, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR5, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/function">function</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="bind.html#PAR1"><span class="identifier">PAR1</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR2"><span class="identifier">PAR2</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR3"><span class="identifier">PAR3</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR4"><span class="identifier">PAR4</span></a><span class="symbol">,</span>&nbsp;<a href="bind.html#PAR5"><span class="identifier">PAR5</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Deferred</span><span class="symbol">&lt;</span><a href="bind.html#RET"><span class="identifier">RET</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function6((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR4, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR5, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/route">route</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$bind(kotlin.Function6((pl.treksoft.kvision.remote.SpringServiceManager.T, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR1, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR2, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR3, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR4, pl.treksoft.kvision.remote.SpringServiceManager.bind.PAR5, kotlinx.coroutines.Deferred((pl.treksoft.kvision.remote.SpringServiceManager.bind.RET)))), kotlin.String, pl.treksoft.kvision.remote.RpcHttpMethod)/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;RpcHttpMethod.POST<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Binds a given route with a function of the receiver.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-calls.html">getCalls</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getCalls</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Returns the map of defined paths.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-parameter.html">getParameter</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">getParameter</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SpringServiceManager$getParameter(kotlin.String)/str">str</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="get-parameter.html#T"><span class="identifier">T</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-service-manager/get-calls.html">getCalls</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getCalls</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-rpc-http-method/index.html"><span class="identifier">RpcHttpMethod</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Returns the map of defined paths.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-l-o-g.html">LOG</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">LOG</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
