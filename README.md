@@ -144,7 +144,7 @@ Application package will be saved as build/distributions/showcase.zip.
             add(Model::username, Text(label = "Username"), required = true)
             add(Model::password, Password(label = "Password"), required = true)
             add(Button("OK").onClick {
-                val data: Data = this@FormPanel.getData()
+                val data: Model = this@FormPanel.getData()
                 println("Username: ${data.username}")
                 println("Password: ${data.password}")
             })
@@ -164,7 +164,7 @@ Application package will be saved as build/distributions/showcase.zip.
             Label(data.text)
         }, child = HPanel(spacing = 10, wrap = FlexWrap.WRAP)))
 
-        launch { // Kotlin coroutines
+        GlobalScope.launch { // Kotlin coroutines
             while (true) {
                 delay(1000)
                 model.reverse()
