@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.serialization.ImplicitReflectionSerializer
+import kotlinx.serialization.stringify
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
@@ -49,6 +51,7 @@ open class CallAgent {
      * @param data data to be sent
      * @return a promise of the result
      */
+    @UseExperimental(ImplicitReflectionSerializer::class)
     @Suppress("UnsafeCastFromDynamic")
     fun jsonRpcCall(
         url: String,

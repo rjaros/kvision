@@ -23,6 +23,7 @@ package pl.treksoft.kvision.remote
 
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.asDeferred
+import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.utils.JSON
@@ -34,6 +35,7 @@ import kotlin.js.JSON as NativeJSON
  * Client side agent for JSON-RPC remote calls with Jooby.
  */
 @Suppress("LargeClass", "TooManyFunctions")
+@UseExperimental(ImplicitReflectionSerializer::class)
 open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>) : RemoteAgent {
 
     val callAgent = CallAgent()

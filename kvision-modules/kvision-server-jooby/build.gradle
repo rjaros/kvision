@@ -11,6 +11,9 @@ dependencyManagement {
 dependencies {
     expectedBy project(":kvision-modules:kvision-common")
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     compile "org.jooby:jooby-lang-kotlin"

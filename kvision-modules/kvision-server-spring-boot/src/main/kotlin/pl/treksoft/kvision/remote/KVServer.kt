@@ -22,7 +22,6 @@
 package pl.treksoft.kvision.remote
 
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import org.pac4j.core.context.J2EContext
 import org.pac4j.core.context.session.J2ESessionStore
@@ -52,7 +51,7 @@ actual typealias Profile = CommonProfile
  * A helper extension function for asynchronous processing.
  */
 fun <RESP> async(block: () -> RESP): Deferred<RESP> =
-    GlobalScope.coroutinesAsync(Dispatchers.Unconfined) {
+    GlobalScope.coroutinesAsync {
         block()
     }
 
@@ -69,7 +68,7 @@ fun <RESP> asyncAuth(block: (Profile) -> RESP): Deferred<RESP> {
         null
     }
     return profile?.let {
-        GlobalScope.coroutinesAsync(Dispatchers.Unconfined) {
+        GlobalScope.coroutinesAsync {
             block(it)
         }
     } ?: throw IllegalStateException("Profile not set!")

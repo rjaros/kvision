@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form
 
 import com.github.snabbdom.VNode
+import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.core.Container
@@ -407,6 +408,7 @@ open class FormPanel<K : Any>(
             return formPanel
         }
 
+        @UseExperimental(ImplicitReflectionSerializer::class)
         inline fun <reified K : Any> create(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
             type: FormType? = null, classes: Set<String> = setOf(),

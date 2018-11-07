@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form
 
+import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Mapper
 import kotlinx.serialization.context.MutableSerialContextImpl
@@ -106,7 +107,7 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
                     else -> listOf(entry.key to entry.value)
                 }
             }.toMap()
-            val mapper = Mapper.InNullableMapper(FormMapWrapper(map))
+            val mapper = Mapper().InNullableMapper(FormMapWrapper(map))
             mapper.context = MutableSerialContextImpl().apply { registerSerializer(Date::class, DateSerializer) }
             mapper.decode(serializer)
         }
@@ -320,6 +321,7 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
     }
 
     companion object {
+        @UseExperimental(ImplicitReflectionSerializer::class)
         inline fun <reified K : Any> create(
             panel: FormPanel<K>? = null,
             noinline init: (Form<K>.() -> Unit)? = null
