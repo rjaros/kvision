@@ -175,7 +175,3 @@ Application package will be saved as build/distributions/showcase.zip.
 ## API documentation
 
 Full API documentation is available at [https://rjaros.github.io/kvision/api/](https://rjaros.github.io/kvision/api/).
-
-## Blog
-
-Find more information on [KVision Blog](https://rjaros.github.io/kvision/) site.
