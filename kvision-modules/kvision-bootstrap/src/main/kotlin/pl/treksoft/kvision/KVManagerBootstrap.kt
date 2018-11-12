@@ -50,4 +50,8 @@ internal object KVManagerBootstrap {
         require("awesome-bootstrap-checkbox")
     } catch (e: Throwable) {
     }
+    private val bootstrapVerticalTabsCss = try {
+        require("bootstrap-vertical-tabs")
+    } catch (e: Throwable) {
+    }
 }

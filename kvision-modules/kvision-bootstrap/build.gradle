@@ -8,6 +8,7 @@ kotlinFrontend {
         dependency("font-awesome", "4.7.0")
         dependency("font-awesome-webpack", "github:jarecsni/font-awesome-webpack")
         dependency("awesome-bootstrap-checkbox", "0.3.7")
+        dependency("bootstrap-vertical-tabs", "1.2.2")
     }
 
 }

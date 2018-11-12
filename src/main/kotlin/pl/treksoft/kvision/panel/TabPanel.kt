@@ -24,10 +24,32 @@ package pl.treksoft.kvision.panel
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
+import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.routing.routing
+
+/**
+ * Tab position.
+ */
+enum class TabPosition {
+    TOP,
+    LEFT,
+    RIGHT
+}
+
+/**
+ * Left or right tab size.
+ */
+enum class SideTabSize {
+    SIZE_1,
+    SIZE_2,
+    SIZE_3,
+    SIZE_4,
+    SIZE_5,
+    SIZE_6
+}
 
 /**
  * The container rendering it's children as tabs.
@@ -35,10 +57,17 @@ import pl.treksoft.kvision.routing.routing
  * It supports activating children by a JavaScript route.
  *
  * @constructor
+ * @param tabPosition tab position
+ * @param sideTabSize side tab size
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-open class TabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)? = null) : SimplePanel(classes) {
+open class TabPanel(
+    private val tabPosition: TabPosition = TabPosition.TOP,
+    private val sideTabSize: SideTabSize = SideTabSize.SIZE_3,
+    classes: Set<String> = setOf(),
+    init: (TabPanel.() -> Unit)? = null
+) : SimplePanel(classes) {
 
     /**
      * The index of active (visible) tab.
@@ -56,16 +85,46 @@ open class TabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)?
                 }
             }
         }
-
-    private var nav = Tag(TAG.UL, classes = setOf("nav", "nav-tabs"))
+    private val navClasses = when (tabPosition) {
+        TabPosition.TOP -> setOf("nav", "nav-tabs")
+        TabPosition.LEFT -> setOf("nav", "nav-tabs", "tabs-left")
+        TabPosition.RIGHT -> setOf("nav", "nav-tabs", "tabs-right")
+    }
+    private var nav = Tag(TAG.UL, classes = navClasses)
     private var content = StackPanel(false)
 
     init {
-        this.addInternal(nav)
-        this.addInternal(content)
-
+        when (tabPosition) {
+            TabPosition.TOP -> {
+                this.addInternal(nav)
+                this.addInternal(content)
+            }
+            TabPosition.LEFT -> {
+                this.addCssClass("clearfix")
+                val sizes = calculateSideClasses()
+                this.addInternal(WidgetWrapper(nav, setOf(sizes.first, "col-nopadding")))
+                this.addInternal(WidgetWrapper(content, setOf(sizes.second, "col-nopadding")))
+            }
+            TabPosition.RIGHT -> {
+                this.addCssClass("clearfix")
+                val sizes = calculateSideClasses()
+                this.addInternal(WidgetWrapper(content, setOf(sizes.second, "col-nopadding")))
+                this.addInternal(WidgetWrapper(nav, setOf(sizes.first, "col-nopadding")))
+            }
+        }
         @Suppress("LeakingThis")
         init?.invoke(this)
+    }
+
+    private fun calculateSideClasses(): Pair<String, String> {
+        return when (sideTabSize) {
+            SideTabSize.SIZE_1 -> Pair("col-xs-1", "col-xs-11")
+            SideTabSize.SIZE_2 -> Pair("col-xs-2", "col-xs-10")
+            SideTabSize.SIZE_3 -> Pair("col-xs-3", "col-xs-9")
+            SideTabSize.SIZE_4 -> Pair("col-xs-4", "col-xs-8")
+            SideTabSize.SIZE_5 -> Pair("col-xs-5", "col-xs-7")
+            SideTabSize.SIZE_6 -> Pair("col-xs-6", "col-xs-6")
+        }
     }
 
     /**
@@ -143,8 +202,13 @@ open class TabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)?
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun Container.tabPanel(classes: Set<String> = setOf(), init: (TabPanel.() -> Unit)? = null): TabPanel {
-            val tabPanel = TabPanel(classes, init)
+        fun Container.tabPanel(
+            tabPosition: TabPosition = TabPosition.TOP,
+            sideTabSize: SideTabSize = SideTabSize.SIZE_3,
+            classes: Set<String> = setOf(),
+            init: (TabPanel.() -> Unit)? = null
+        ): TabPanel {
+            val tabPanel = TabPanel(tabPosition, sideTabSize, classes, init)
             this.add(tabPanel)
             return tabPanel
         }
