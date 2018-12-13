@@ -21,7 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.asDeferred
 import kotlinx.serialization.Serializable
 import pl.treksoft.kvision.utils.obj
@@ -47,12 +46,12 @@ class LoginService {
      * Login with Pac4j FormClient.
      * @param credentials username and password credentials
      */
-    fun login(credentials: Credentials?): Deferred<Boolean> =
+    suspend fun login(credentials: Credentials?): Boolean =
         if (credentials?.username != null) {
             loginAgent.remoteCall("callback?client_name=FormClient", obj {
                 this.username = credentials.username
                 this.password = credentials.password
-            }, HttpMethod.POST, "application/x-www-form-urlencoded").then { _: dynamic -> true }.asDeferred()
+            }, HttpMethod.POST, "application/x-www-form-urlencoded").then { _: dynamic -> true }.asDeferred().await()
         } else {
             throw SecurityException("Credentials cannot be empty")
         }

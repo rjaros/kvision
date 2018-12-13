@@ -22,8 +22,10 @@
 package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.jooby.Response
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -32,6 +34,7 @@ import java.text.SimpleDateFormat
 /**
  * Multiplatform service manager for Jooby.
  */
+@UseExperimental(ExperimentalCoroutinesApi::class)
 actual open class JoobyServiceManager<T : Any> actual constructor(val service: T) : ServiceManager {
 
     companion object {
@@ -52,24 +55,26 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bind(
-        noinline function: T.(Request?) -> Deferred<RET>,
+        noinline function: suspend T.(Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                try {
-                    val result = runBlocking { function.invoke(service, req).await() }
-                    res.send(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
+                GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                    try {
+                        val result = function.invoke(service, req)
+                        res.send(
+                            JsonRpcResponse(
+                                id = jsonRpcRequest.id,
+                                result = mapper.writeValueAsString(result)
+                            )
                         )
-                    )
-                } catch (e: Exception) {
-                    LOG.error(e.message, e)
-                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                    } catch (e: Exception) {
+                        LOG.error(e.message, e)
+                        res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                    }
                 }
             }.invoke(this)
         }
@@ -83,7 +88,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR, reified RET> bind(
-        noinline function: T.(PAR, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR, Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -92,17 +97,19 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
                 if (jsonRpcRequest.params.size == 1) {
                     val param = getParameter<PAR>(jsonRpcRequest.params[0])
-                    try {
-                        val result = runBlocking { function.invoke(service, param, req).await() }
-                        res.send(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                        try {
+                            val result = function.invoke(service, param, req)
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
-                        )
-                    } catch (e: Exception) {
-                        LOG.error(e.message, e)
-                        res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        } catch (e: Exception) {
+                            LOG.error(e.message, e)
+                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        }
                     }
                 } else {
                     res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
@@ -119,7 +126,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -129,17 +136,19 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
                 if (jsonRpcRequest.params.size == 2) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                     val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                    try {
-                        val result = runBlocking { function.invoke(service, param1, param2, req).await() }
-                        res.send(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                        try {
+                            val result = function.invoke(service, param1, param2, req)
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
-                        )
-                    } catch (e: Exception) {
-                        LOG.error(e.message, e)
-                        res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        } catch (e: Exception) {
+                            LOG.error(e.message, e)
+                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        }
                     }
                 } else {
                     res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
@@ -156,7 +165,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -168,17 +177,19 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                     val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                     val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                    try {
-                        val result = runBlocking { function.invoke(service, param1, param2, param3, req).await() }
-                        res.send(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                        try {
+                            val result = function.invoke(service, param1, param2, param3, req)
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
-                        )
-                    } catch (e: Exception) {
-                        LOG.error(e.message, e)
-                        res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        } catch (e: Exception) {
+                            LOG.error(e.message, e)
+                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        }
                     }
                 } else {
                     res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
@@ -195,7 +206,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -208,18 +219,19 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
                     val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                     val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                     val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
-                    try {
-                        val result =
-                            runBlocking { function.invoke(service, param1, param2, param3, param4, req).await() }
-                        res.send(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                        try {
+                            val result = function.invoke(service, param1, param2, param3, param4, req)
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
-                        )
-                    } catch (e: Exception) {
-                        LOG.error(e.message, e)
-                        res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        } catch (e: Exception) {
+                            LOG.error(e.message, e)
+                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        }
                     }
                 } else {
                     res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
@@ -237,7 +249,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> RET,
         route: String?,
         method: RpcHttpMethod
     ) {
@@ -252,20 +264,19 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
                     val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                     val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
                     val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
-                    try {
-                        val result =
-                            runBlocking {
-                                function.invoke(service, param1, param2, param3, param4, param5, req).await()
-                            }
-                        res.send(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                        try {
+                            val result = function.invoke(service, param1, param2, param3, param4, param5, req)
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
-                        )
-                    } catch (e: Exception) {
-                        LOG.error(e.message, e)
-                        res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        } catch (e: Exception) {
+                            LOG.error(e.message, e)
+                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        }
                     }
                 } else {
                     res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))

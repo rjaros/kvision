@@ -21,8 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.Deferred
-
 /**
  * Multiplatform service manager for Jooby.
  */
@@ -38,7 +36,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(service: T) : 
      * @param method a HTTP method
      */
     protected actual inline fun <reified RET> bind(
-        noinline function: T.(Request?) -> Deferred<RET>,
+        noinline function: suspend T.(Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -52,7 +50,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(service: T) : 
      * @param method a HTTP method
      */
     protected actual inline fun <reified PAR, reified RET> bind(
-        noinline function: T.(PAR, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR, Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -66,7 +64,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(service: T) : 
      * @param method a HTTP method
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -80,7 +78,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(service: T) : 
      * @param method a HTTP method
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -94,7 +92,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(service: T) : 
      * @param method a HTTP method
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, Request?) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -109,7 +107,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(service: T) : 
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> RET,
         route: String?,
         method: RpcHttpMethod
     ) {

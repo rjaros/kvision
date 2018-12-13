@@ -21,8 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.GlobalScope
 import org.pac4j.core.context.J2EContext
 import org.pac4j.core.context.session.J2ESessionStore
 import org.pac4j.core.profile.CommonProfile
@@ -48,17 +46,10 @@ actual typealias Request = HttpServletRequest
 actual typealias Profile = CommonProfile
 
 /**
- * A helper extension function for asynchronous processing.
+ * A helper extension function for processing with authenticated user profile.
  */
-fun <RESP> async(block: () -> RESP): Deferred<RESP> =
-    GlobalScope.coroutinesAsync {
-        block()
-    }
-
-/**
- * A helper extension function for asynchronous processing with user profile.
- */
-fun <RESP> asyncAuth(block: (Profile) -> RESP): Deferred<RESP> {
+@Suppress("TooGenericExceptionCaught")
+fun <RESP> withProfile(block: (Profile) -> RESP): RESP {
     val profile = try {
         val requestAttributes = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes)
         val req = requestAttributes.request
@@ -68,8 +59,6 @@ fun <RESP> asyncAuth(block: (Profile) -> RESP): Deferred<RESP> {
         null
     }
     return profile?.let {
-        GlobalScope.coroutinesAsync {
-            block(it)
-        }
+        block(it)
     } ?: throw IllegalStateException("Profile not set!")
 }

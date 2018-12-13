@@ -21,7 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.asDeferred
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.list
@@ -43,7 +42,7 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified RET : Any, T> call(noinline function: T.(Request?) -> Deferred<RET>): Deferred<RET> {
+    suspend inline fun <reified RET : Any, T> call(noinline function: suspend T.(Request?) -> RET): RET {
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {
@@ -58,15 +57,15 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer(), it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified RET : Any, T> call(
-        noinline function: T.(Request?) -> Deferred<List<RET>>
-    ): Deferred<List<RET>> {
+    suspend inline fun <reified RET : Any, T> call(
+        noinline function: suspend T.(Request?) -> List<RET>
+    ): List<RET> {
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {
@@ -80,15 +79,15 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer().list, it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified PAR, reified RET : Any, T> call(
-        noinline function: T.(PAR, Request?) -> Deferred<RET>, p: PAR
-    ): Deferred<RET> {
+    suspend inline fun <reified PAR, reified RET : Any, T> call(
+        noinline function: suspend T.(PAR, Request?) -> RET, p: PAR
+    ): RET {
         val data = serialize(p)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
@@ -104,15 +103,15 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer(), it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified PAR, reified RET : Any, T> call(
-        noinline function: T.(PAR, Request?) -> Deferred<List<RET>>, p: PAR
-    ): Deferred<List<RET>> {
+    suspend inline fun <reified PAR, reified RET : Any, T> call(
+        noinline function: suspend T.(PAR, Request?) -> List<RET>, p: PAR
+    ): List<RET> {
         val data = serialize(p)
         val (url, method) =
                 serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
@@ -127,15 +126,15 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer().list, it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified PAR1, reified PAR2, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>, p1: PAR1, p2: PAR2
-    ): Deferred<RET> {
+    suspend inline fun <reified PAR1, reified PAR2, reified RET : Any, T> call(
+        noinline function: suspend T.(PAR1, PAR2, Request?) -> RET, p1: PAR1, p2: PAR2
+    ): RET {
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) =
@@ -152,15 +151,15 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer(), it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified PAR1, reified PAR2, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<List<RET>>, p1: PAR1, p2: PAR2
-    ): Deferred<List<RET>> {
+    suspend inline fun <reified PAR1, reified PAR2, reified RET : Any, T> call(
+        noinline function: suspend T.(PAR1, PAR2, Request?) -> List<RET>, p1: PAR1, p2: PAR2
+    ): List<RET> {
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) =
@@ -176,15 +175,15 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer().list, it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>, p1: PAR1, p2: PAR2, p3: PAR3
-    ): Deferred<RET> {
+    suspend inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET : Any, T> call(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, Request?) -> RET, p1: PAR1, p2: PAR2, p3: PAR3
+    ): RET {
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val data3 = serialize(p3)
@@ -202,15 +201,15 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer(), it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<List<RET>>, p1: PAR1, p2: PAR2, p3: PAR3
-    ): Deferred<List<RET>> {
+    suspend inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET : Any, T> call(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, Request?) -> List<RET>, p1: PAR1, p2: PAR2, p3: PAR3
+    ): List<RET> {
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val data3 = serialize(p3)
@@ -227,15 +226,15 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer().list, it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>, p1: PAR1, p2: PAR2, p3: PAR3, p4: PAR4
-    ): Deferred<RET> {
+    suspend inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET : Any, T> call(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, Request?) -> RET, p1: PAR1, p2: PAR2, p3: PAR3, p4: PAR4
+    ): RET {
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val data3 = serialize(p3)
@@ -254,19 +253,19 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer(), it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
-    inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<List<RET>>,
+    suspend inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET : Any, T> call(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, Request?) -> List<RET>,
         p1: PAR1,
         p2: PAR2,
         p3: PAR3,
         p4: PAR4
-    ): Deferred<List<RET>> {
+    ): List<RET> {
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val data3 = serialize(p3)
@@ -284,22 +283,22 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer().list, it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
     @Suppress("LongParameterList")
-    inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5,
+    suspend inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5,
             reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> RET,
         p1: PAR1,
         p2: PAR2,
         p3: PAR3,
         p4: PAR4,
         p5: PAR5
-    ): Deferred<RET> {
+    ): RET {
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val data3 = serialize(p3)
@@ -319,22 +318,22 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer(), it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
     /**
      * Executes defined call to a remote web service.
      */
     @Suppress("LongParameterList")
-    inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5,
+    suspend inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5,
             reified RET : Any, T> call(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<List<RET>>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> List<RET>,
         p1: PAR1,
         p2: PAR2,
         p3: PAR3,
         p4: PAR4,
         p5: PAR5
-    ): Deferred<List<RET>> {
+    ): List<RET> {
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val data3 = serialize(p3)
@@ -353,7 +352,7 @@ open class JoobyRemoteAgent<T : Any>(val serviceManager: JoobyServiceManager<T>)
                     JSON.nonstrict.parse(RET::class.serializer().list, it)
                 }
             }
-        }.asDeferred()
+        }.asDeferred().await()
     }
 
 

@@ -22,8 +22,10 @@
 package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.text.SimpleDateFormat
@@ -33,6 +35,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager for Spring Boot.
  */
+@UseExperimental(ExperimentalCoroutinesApi::class)
 actual open class SpringServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : ServiceManager {
 
     companion object {
@@ -57,56 +60,16 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bind(
-        noinline function: T.() -> Deferred<RET>,
+        noinline function: suspend T.() -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
-            try {
-                val result = runBlocking { function.invoke(service).await() }
-                res.writeJSON(
-                    mapper.writeValueAsString(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
-                        )
-                    )
-                )
-            } catch (e: Exception) {
-                LOG.error(e.message, e)
-                res.writeJSON(
-                    mapper.writeValueAsString(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = e.message ?: "Error"
-                        )
-                    )
-                )
-            }
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param route a route
-     * @param method a HTTP method
-     */
-    @Suppress("TooGenericExceptionCaught")
-    protected actual inline fun <reified PAR, reified RET> bind(
-        noinline function: T.(PAR) -> Deferred<RET>,
-        route: String?, method: RpcHttpMethod
-    ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, res ->
-            val service = SpringContext.getBean(serviceClass.java)
-            val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
-            if (jsonRpcRequest.params.size == 1) {
-                val param = getParameter<PAR>(jsonRpcRequest.params[0])
+            GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                 try {
-                    val result = runBlocking { function.invoke(service, param).await() }
+                    val result = function.invoke(service)
                     res.writeJSON(
                         mapper.writeValueAsString(
                             JsonRpcResponse(
@@ -125,6 +88,50 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
                             )
                         )
                     )
+                }
+            }
+        }
+    }
+
+    /**
+     * Binds a given route with a function of the receiver.
+     * @param function a function of the receiver
+     * @param route a route
+     * @param method a HTTP method
+     */
+    @Suppress("TooGenericExceptionCaught")
+    protected actual inline fun <reified PAR, reified RET> bind(
+        noinline function: suspend T.(PAR) -> RET,
+        route: String?, method: RpcHttpMethod
+    ) {
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
+        addRoute(method, "/kv/$routeDef") { req, res ->
+            val service = SpringContext.getBean(serviceClass.java)
+            val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
+            if (jsonRpcRequest.params.size == 1) {
+                val param = getParameter<PAR>(jsonRpcRequest.params[0])
+                GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                    try {
+                        val result = function.invoke(service, param)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
+                            )
+                        )
+                    } catch (e: Exception) {
+                        LOG.error(e.message, e)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    error = e.message ?: "Error"
+                                )
+                            )
+                        )
+                    }
                 }
             } else {
                 res.writeJSON(
@@ -147,7 +154,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: T.(PAR1, PAR2) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -157,26 +164,28 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
             if (jsonRpcRequest.params.size == 2) {
                 val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                 val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                try {
-                    val result = runBlocking { function.invoke(service, param1, param2).await() }
-                    res.writeJSON(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                    try {
+                        val result = function.invoke(service, param1, param2)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
                         )
-                    )
-                } catch (e: Exception) {
-                    LOG.error(e.message, e)
-                    res.writeJSON(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                error = e.message ?: "Error"
+                    } catch (e: Exception) {
+                        LOG.error(e.message, e)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    error = e.message ?: "Error"
+                                )
                             )
                         )
-                    )
+                    }
                 }
             } else {
                 res.writeJSON(
@@ -199,7 +208,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -211,26 +220,28 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
                 val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                 val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                 val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                try {
-                    val result = runBlocking { function.invoke(service, param1, param2, param3).await() }
-                    res.writeJSON(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                    try {
+                        val result = function.invoke(service, param1, param2, param3)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
                         )
-                    )
-                } catch (e: Exception) {
-                    LOG.error(e.message, e)
-                    res.writeJSON(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                error = e.message ?: "Error"
+                    } catch (e: Exception) {
+                        LOG.error(e.message, e)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    error = e.message ?: "Error"
+                                )
                             )
                         )
-                    )
+                    }
                 }
             } else {
                 res.writeJSON(
@@ -253,7 +264,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -266,27 +277,28 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
                 val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                 val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                 val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
-                try {
-                    val result =
-                        runBlocking { function.invoke(service, param1, param2, param3, param4).await() }
-                    res.writeJSON(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                    try {
+                        val result = function.invoke(service, param1, param2, param3, param4)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
                         )
-                    )
-                } catch (e: Exception) {
-                    LOG.error(e.message, e)
-                    res.writeJSON(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                error = e.message ?: "Error"
+                    } catch (e: Exception) {
+                        LOG.error(e.message, e)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    error = e.message ?: "Error"
+                                )
                             )
                         )
-                    )
+                    }
                 }
             } else {
                 res.writeJSON(
@@ -310,7 +322,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
         route: String?,
         method: RpcHttpMethod
     ) {
@@ -325,29 +337,28 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
                 val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                 val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
                 val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
-                try {
-                    val result =
-                        runBlocking {
-                            function.invoke(service, param1, param2, param3, param4, param5).await()
-                        }
-                    res.writeJSON(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
+                GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                    try {
+                        val result = function.invoke(service, param1, param2, param3, param4, param5)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
                             )
                         )
-                    )
-                } catch (e: Exception) {
-                    LOG.error(e.message, e)
-                    res.writeJSON(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                error = e.message ?: "Error"
+                    } catch (e: Exception) {
+                        LOG.error(e.message, e)
+                        res.writeJSON(
+                            mapper.writeValueAsString(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    error = e.message ?: "Error"
+                                )
                             )
                         )
-                    )
+                    }
                 }
             } else {
                 res.writeJSON(

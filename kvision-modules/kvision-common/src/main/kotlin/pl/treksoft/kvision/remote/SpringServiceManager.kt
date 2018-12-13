@@ -21,7 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.Deferred
 import kotlin.reflect.KClass
 
 /**
@@ -36,7 +35,7 @@ expect open class SpringServiceManager<T : Any>(serviceClass: KClass<T>) : Servi
      * @param method a HTTP method
      */
     protected inline fun <reified RET> bind(
-        noinline function: T.() -> Deferred<RET>,
+        noinline function: suspend T.() -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -48,7 +47,7 @@ expect open class SpringServiceManager<T : Any>(serviceClass: KClass<T>) : Servi
      * @param method a HTTP method
      */
     protected inline fun <reified PAR, reified RET> bind(
-        noinline function: T.(PAR) -> Deferred<RET>,
+        noinline function: suspend T.(PAR) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -60,7 +59,7 @@ expect open class SpringServiceManager<T : Any>(serviceClass: KClass<T>) : Servi
      * @param method a HTTP method
      */
     protected inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: T.(PAR1, PAR2) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -72,7 +71,7 @@ expect open class SpringServiceManager<T : Any>(serviceClass: KClass<T>) : Servi
      * @param method a HTTP method
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -84,7 +83,7 @@ expect open class SpringServiceManager<T : Any>(serviceClass: KClass<T>) : Servi
      * @param method a HTTP method
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -96,7 +95,7 @@ expect open class SpringServiceManager<T : Any>(serviceClass: KClass<T>) : Servi
      * @param method a HTTP method
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )

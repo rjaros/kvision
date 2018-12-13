@@ -21,8 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.Deferred
-
 /**
  * Multiplatform service manager for Jooby.
  */
@@ -35,7 +33,7 @@ expect open class JoobyServiceManager<T : Any>(service: T) : ServiceManager {
      * @param method a HTTP method
      */
     protected inline fun <reified RET> bind(
-        noinline function: T.(Request?) -> Deferred<RET>,
+        noinline function: suspend T.(Request?) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -47,7 +45,7 @@ expect open class JoobyServiceManager<T : Any>(service: T) : ServiceManager {
      * @param method a HTTP method
      */
     protected inline fun <reified PAR, reified RET> bind(
-        noinline function: T.(PAR, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR, Request?) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -59,7 +57,7 @@ expect open class JoobyServiceManager<T : Any>(service: T) : ServiceManager {
      * @param method a HTTP method
      */
     protected inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, Request?) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -71,7 +69,7 @@ expect open class JoobyServiceManager<T : Any>(service: T) : ServiceManager {
      * @param method a HTTP method
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, Request?) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -83,7 +81,7 @@ expect open class JoobyServiceManager<T : Any>(service: T) : ServiceManager {
      * @param method a HTTP method
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, Request?) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
@@ -95,7 +93,7 @@ expect open class JoobyServiceManager<T : Any>(service: T) : ServiceManager {
      * @param method a HTTP method
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> Deferred<RET>,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> RET,
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
