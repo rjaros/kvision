@@ -2,7 +2,8 @@ apply plugin: 'kotlin-platform-jvm'
 apply plugin: 'kotlinx-serialization'
 
 dependencies {
-    expectedBy project(":kvision-modules:kvision-common")
+    expectedBy project(":kvision-modules:kvision-common-types")
+    expectedBy project(":kvision-modules:kvision-common-remote")
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
@@ -15,7 +16,8 @@ dependencies {
     compile "com.github.andrewoma.kwery:mapper:${kweryVersion}"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonModuleKotlinVersion}"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
-    testCompile project(":kvision-modules:kvision-common")
+    testCompile project(":kvision-modules:kvision-common-types")
+    testCompile project(":kvision-modules:kvision-common-remote")
 }
 
 compileKotlin {

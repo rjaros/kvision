@@ -1,0 +1,5 @@
+apply from: "../shared.gradle"
+
+dependencies {
+    expectedBy project(":kvision-modules:kvision-common-remote")
+}

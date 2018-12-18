@@ -99,7 +99,7 @@ apply plugin: 'kotlinx-serialization'
 
 dependencies {
     if (!project.gradle.startParameter.taskNames.contains("dokka")) {
-        expectedBy project('kvision-modules:kvision-common')
+        expectedBy project('kvision-modules:kvision-common-types')
         compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion"
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion"
         compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serializationVersion"
@@ -160,7 +160,9 @@ dokka {
             'kvision-modules/kvision-upload/src/main/kotlin',
             'kvision-modules/kvision-handlebars/src/main/kotlin',
             'kvision-modules/kvision-i18n/src/main/kotlin',
+            'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',
+            'kvision-modules/kvision-common-types/src/main/kotlin',
             'kvision-modules/kvision-server-jooby/src/main/kotlin',
             'kvision-modules/kvision-server-spring-boot/src/main/kotlin')
     classpath = [new File("dokka/kvision-dokka-helper.jar")]

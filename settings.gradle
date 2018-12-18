@@ -1,7 +1,8 @@
 rootProject.name = 'kvision'
 
 include 'kvision-modules:kvision-base',
-        'kvision-modules:kvision-common',
+        'kvision-modules:kvision-common-remote',
+        'kvision-modules:kvision-common-types',
         'kvision-modules:kvision-bootstrap',
         'kvision-modules:kvision-select',
         'kvision-modules:kvision-datetime',
@@ -10,5 +11,6 @@ include 'kvision-modules:kvision-base',
         'kvision-modules:kvision-upload',
         'kvision-modules:kvision-handlebars',
         'kvision-modules:kvision-i18n',
+        'kvision-modules:kvision-remote',
         'kvision-modules:kvision-server-jooby',
         'kvision-modules:kvision-server-spring-boot'
