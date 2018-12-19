@@ -44,7 +44,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
      */
     suspend inline fun <reified RET : Any, T> call(noinline function: suspend T.() -> RET): RET {
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -67,7 +68,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         noinline function: suspend T.() -> List<RET>
     ): List<RET> {
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -90,7 +92,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
     ): RET {
         val data = serialize(p)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -114,7 +117,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
     ): List<RET> {
         val data = serialize(p)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -138,7 +142,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -163,7 +168,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -188,7 +194,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -214,7 +221,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -240,7 +248,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -271,7 +280,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -305,7 +315,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -340,7 +351,8 @@ open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) =
-                serviceManager.getCalls()[function.toString()] ?: throw IllegalStateException("Function not specified!")
+                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                    ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)

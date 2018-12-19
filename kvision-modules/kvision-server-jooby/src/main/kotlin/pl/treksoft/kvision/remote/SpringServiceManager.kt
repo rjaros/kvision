@@ -113,4 +113,14 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
         throw IllegalStateException("This class is for Spring Boot integration.")
     }
 
+    /**
+     * Binds a given function of the receiver as a select options source
+     * @param function a function of the receiver
+     */
+    protected actual fun bind(
+        function: T.(String) -> List<RemoteSelectOption>
+    ) {
+        throw IllegalStateException("This class is for Spring Boot integration.")
+    }
+
 }

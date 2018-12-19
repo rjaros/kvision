@@ -42,7 +42,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("/kv/$routeDef", method)
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -56,7 +56,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("/kv/$routeDef", method)
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -70,7 +70,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("/kv/$routeDef", method)
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -84,7 +84,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("/kv/$routeDef", method)
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -98,7 +98,7 @@ actual open class SpringServiceManager<T : Any> actual constructor(serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("/kv/$routeDef", method)
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -114,11 +114,23 @@ actual open class SpringServiceManager<T : Any> actual constructor(serviceClass:
         method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[function.toString()] = Pair("/kv/$routeDef", method)
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
+    }
+
+    /**
+     * Binds a given function of the receiver as a select options source
+     * @param function a function of the receiver
+     */
+    protected actual fun bind(
+        function: T.(String) -> List<RemoteSelectOption>
+    ) {
+        val routeDef = "route${this::class.simpleName}${counter++}"
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", RpcHttpMethod.POST)
     }
 
     /**
      * Returns the map of defined paths.
      */
     override fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = calls
+
 }

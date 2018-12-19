@@ -373,6 +373,54 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
         }
     }
 
+    /**
+     * Binds a given function of the receiver as a select options source
+     * @param function a function of the receiver
+     */
+    @Suppress("TooGenericExceptionCaught")
+    protected actual fun bind(
+        function: T.(String) -> List<RemoteSelectOption>
+    ) {
+        val routeDef = "route${this::class.simpleName}${counter++}"
+        addRoute(RpcHttpMethod.POST, "/kv/$routeDef") { req, res ->
+            val service = SpringContext.getBean(serviceClass.java)
+            val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
+            if (jsonRpcRequest.params.size == 1) {
+                val param = getParameter<String>(jsonRpcRequest.params[0])
+                try {
+                    val result = function.invoke(service, param)
+                    res.writeJSON(
+                        mapper.writeValueAsString(
+                            JsonRpcResponse(
+                                id = jsonRpcRequest.id,
+                                result = mapper.writeValueAsString(result)
+                            )
+                        )
+                    )
+                } catch (e: Exception) {
+                    LOG.error(e.message, e)
+                    res.writeJSON(
+                        mapper.writeValueAsString(
+                            JsonRpcResponse(
+                                id = jsonRpcRequest.id,
+                                error = e.message ?: "Error"
+                            )
+                        )
+                    )
+                }
+            } else {
+                res.writeJSON(
+                    mapper.writeValueAsString(
+                        JsonRpcResponse(
+                            id = jsonRpcRequest.id,
+                            error = "Invalid parameters"
+                        )
+                    )
+                )
+            }
+        }
+    }
+
     fun addRoute(
         method: RpcHttpMethod,
         path: String,

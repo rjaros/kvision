@@ -99,4 +99,12 @@ expect open class SpringServiceManager<T : Any>(serviceClass: KClass<T>) : Servi
         route: String? = null,
         method: RpcHttpMethod = RpcHttpMethod.POST
     )
+
+    /**
+     * Binds a given function of the receiver as a select options source
+     * @param function a function of the receiver
+     */
+    protected fun bind(
+        function: T.(String) -> List<RemoteSelectOption>
+    )
 }

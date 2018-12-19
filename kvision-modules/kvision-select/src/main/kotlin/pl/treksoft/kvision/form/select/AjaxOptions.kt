@@ -77,12 +77,19 @@ enum class DataType(internal val type: String) {
  * option
  */
 data class AjaxOptions(
-    val url: String, val preprocessData: (dynamic) -> dynamic, val beforeSend: ((JQueryXHR) -> dynamic)? = null,
-    val data: dynamic = null, val httpType: HttpType = HttpType.GET,
-    val dataType: DataType = DataType.JSON, val minLength: Int = 0,
-    val cache: Boolean = true, val clearOnEmpty: Boolean = true, val clearOnError: Boolean = true,
+    val url: String,
+    val preprocessData: (dynamic) -> dynamic,
+    val beforeSend: ((JQueryXHR, dynamic) -> dynamic)? = null,
+    val data: dynamic = null,
+    val httpType: HttpType = HttpType.GET,
+    val dataType: DataType = DataType.JSON,
+    val minLength: Int = 0,
+    val cache: Boolean = true,
+    val clearOnEmpty: Boolean = true,
+    val clearOnError: Boolean = true,
     val emptyRequest: Boolean = false,
-    val requestDelay: Int = AJAX_REQUEST_DELAY, val restoreOnError: Boolean = false
+    val requestDelay: Int = AJAX_REQUEST_DELAY,
+    val restoreOnError: Boolean = false
 )
 
 /**
@@ -109,10 +116,11 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
     return obj {
         this.ajax = obj {
             this.url = url
-            this.type = httpType.type
+            this.method = httpType.type
             this.dataType = dataType.type
             this.data = data
             this.beforeSend = beforeSend
+            this.contentType = "application/json"
         }
         this.preprocessData = procData
         this.minLength = minLength
@@ -124,5 +132,6 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
         this.requestDelay = requestDelay
         this.restoreOnError = restoreOnError
         this.langCode = language
+        this.processData = false
     }
 }
