@@ -36,10 +36,10 @@ import kotlin.reflect.KClass
  * Multiplatform service manager for Spring Boot.
  */
 @UseExperimental(ExperimentalCoroutinesApi::class)
-actual open class SpringServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : ServiceManager {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : ServiceManager {
 
     companion object {
-        val LOG: Logger = LoggerFactory.getLogger(JoobyServiceManager::class.java.name)
+        val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
     val postRequests: MutableMap<String, (Request, HttpServletResponse) -> Unit> = mutableMapOf()
@@ -379,16 +379,17 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual fun bind(
-        function: T.(String) -> List<RemoteSelectOption>
+        function: T.(String?, String?) -> List<RemoteSelectOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         addRoute(RpcHttpMethod.POST, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
-            if (jsonRpcRequest.params.size == 1) {
-                val param = getParameter<String>(jsonRpcRequest.params[0])
+            if (jsonRpcRequest.params.size == 2) {
+                val param1 = getParameter<String?>(jsonRpcRequest.params[0])
+                val param2 = getParameter<String?>(jsonRpcRequest.params[1])
                 try {
-                    val result = function.invoke(service, param)
+                    val result = function.invoke(service, param1, param2)
                     res.writeJSON(
                         mapper.writeValueAsString(
                             JsonRpcResponse(
@@ -434,7 +435,6 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
         }
     }
 
-    @Suppress("TooGenericExceptionCaught")
     protected inline fun <reified T> getParameter(str: String?): T {
         return str?.let {
             if (T::class == String::class) {
@@ -444,6 +444,11 @@ actual open class SpringServiceManager<T : Any> actual constructor(val serviceCl
             }
         } ?: null as T
     }
+
+    /**
+     * Applies all defined routes to the given server.
+     */
+    actual fun applyRoutes(k: KVServer) {}
 }
 
 fun HttpServletResponse.writeJSON(json: String) {

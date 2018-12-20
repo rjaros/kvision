@@ -31,11 +31,11 @@ import kotlin.reflect.KClass
 import kotlin.js.JSON as NativeJSON
 
 /**
- * Client side agent for JSON-RPC remote calls with Spring Boot.
+ * Client side agent for JSON-RPC remote calls.
  */
 @Suppress("LargeClass", "TooManyFunctions")
 @UseExperimental(ImplicitReflectionSerializer::class)
-open class SpringRemoteAgent<T : Any>(val serviceManager: SpringServiceManager<T>) : RemoteAgent {
+open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : RemoteAgent {
 
     val callAgent = CallAgent()
 

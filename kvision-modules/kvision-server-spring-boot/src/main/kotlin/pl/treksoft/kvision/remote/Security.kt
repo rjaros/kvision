@@ -23,7 +23,7 @@ package pl.treksoft.kvision.remote
 
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration
 
-fun InterceptorRegistration.addPathPatternsFromServices(services: List<SpringServiceManager<*>>) {
+fun InterceptorRegistration.addPathPatternsFromServices(services: List<KVServiceManager<*>>) {
     val paths = services.flatMap {
         it.postRequests.keys + it.putRequests.keys + it.optionsRequests.keys + it.optionsRequests.keys
     }

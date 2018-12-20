@@ -23,7 +23,6 @@ package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.jooby.Kooby
-import org.jooby.Session
 import org.jooby.json.Jackson
 import org.pac4j.core.profile.CommonProfile
 import java.text.SimpleDateFormat
@@ -59,20 +58,11 @@ actual typealias Request = org.jooby.Request
 actual typealias Profile = CommonProfile
 
 /**
- * A helper extension function for asynchronous request processing with session.
+ * A helper extension function for processing with authenticated user profile.
  */
-fun <RESP> Request?.withSession(block: (Request, Session) -> RESP): RESP = this?.let { req ->
-    val session = req.session()
-    block(req, session)
-} ?: throw IllegalStateException("Request not set!")
-
-/**
- * A helper extension function for asynchronous request processing with session and user profile.
- */
-fun <RESP> Request?.withProfile(block: (Request, Session, Profile) -> RESP): RESP = this?.let { req ->
-    val session = req.session()
-    val profile = req.require(CommonProfile::class.java) as CommonProfile?
-    profile?.let {
-        block(req, session, profile)
-    }
-} ?: throw IllegalStateException("Request or profile not set!")
+fun <RESP> Request.withProfile(block: (Profile) -> RESP): RESP {
+    val profile = this.require(CommonProfile::class.java) as CommonProfile?
+    return profile?.let {
+        block(profile)
+    } ?: throw IllegalStateException("Profile not set!")
+}

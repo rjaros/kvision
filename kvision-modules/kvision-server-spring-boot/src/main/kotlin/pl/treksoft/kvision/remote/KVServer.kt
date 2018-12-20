@@ -33,7 +33,7 @@ import kotlinx.coroutines.async as coroutinesAsync
 /**
  * A Spring boot based server.
  */
-actual open class KVServer(val services: List<SpringServiceManager<*>>)
+actual open class KVServer(val services: List<KVServiceManager<*>>)
 
 /**
  * A server request.

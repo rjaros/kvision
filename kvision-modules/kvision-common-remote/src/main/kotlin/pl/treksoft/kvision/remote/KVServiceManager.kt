@@ -21,24 +21,12 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlin.reflect.KClass
+
 /**
- * Multiplatform service manager for Jooby.
- * Not to be used in this module.
+ * Multiplatform service manager.
  */
-actual open class JoobyServiceManager<T : Any> actual constructor(val service: T) : ServiceManager {
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param route a route
-     * @param method a HTTP method
-     */
-    protected actual inline fun <reified RET> bind(
-        noinline function: suspend T.(Request?) -> RET,
-        route: String?,
-        method: RpcHttpMethod
-    ) {
-        throw IllegalStateException("This class is for Jooby integration.")
-    }
+expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) : ServiceManager {
 
     /**
      * Binds a given route with a function of the receiver.
@@ -46,13 +34,11 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      * @param route a route
      * @param method a HTTP method
      */
-    protected actual inline fun <reified PAR, reified RET> bind(
-        noinline function: suspend T.(PAR, Request?) -> RET,
-        route: String?,
-        method: RpcHttpMethod
-    ) {
-        throw IllegalStateException("This class is for Jooby integration.")
-    }
+    protected inline fun <reified RET> bind(
+        noinline function: suspend T.() -> RET,
+        route: String? = null,
+        method: RpcHttpMethod = RpcHttpMethod.POST
+    )
 
     /**
      * Binds a given route with a function of the receiver.
@@ -60,13 +46,11 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      * @param route a route
      * @param method a HTTP method
      */
-    protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, Request?) -> RET,
-        route: String?,
-        method: RpcHttpMethod
-    ) {
-        throw IllegalStateException("This class is for Jooby integration.")
-    }
+    protected inline fun <reified PAR, reified RET> bind(
+        noinline function: suspend T.(PAR) -> RET,
+        route: String? = null,
+        method: RpcHttpMethod = RpcHttpMethod.POST
+    )
 
     /**
      * Binds a given route with a function of the receiver.
@@ -74,13 +58,11 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      * @param route a route
      * @param method a HTTP method
      */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, Request?) -> RET,
-        route: String?,
-        method: RpcHttpMethod
-    ) {
-        throw IllegalStateException("This class is for Jooby integration.")
-    }
+    protected inline fun <reified PAR1, reified PAR2, reified RET> bind(
+        noinline function: suspend T.(PAR1, PAR2) -> RET,
+        route: String? = null,
+        method: RpcHttpMethod = RpcHttpMethod.POST
+    )
 
     /**
      * Binds a given route with a function of the receiver.
@@ -88,13 +70,11 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      * @param route a route
      * @param method a HTTP method
      */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, Request?) -> RET,
-        route: String?,
-        method: RpcHttpMethod
-    ) {
-        throw IllegalStateException("This class is for Jooby integration.")
-    }
+    protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
+        noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
+        route: String? = null,
+        method: RpcHttpMethod = RpcHttpMethod.POST
+    )
 
     /**
      * Binds a given route with a function of the receiver.
@@ -102,20 +82,34 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      * @param route a route
      * @param method a HTTP method
      */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
-            reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> RET,
-        route: String?,
-        method: RpcHttpMethod
-    ) {
-        throw IllegalStateException("This class is for Jooby integration.")
-    }
+    protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
+        route: String? = null,
+        method: RpcHttpMethod = RpcHttpMethod.POST
+    )
+
+    /**
+     * Binds a given route with a function of the receiver.
+     * @param function a function of the receiver
+     * @param route a route
+     * @param method a HTTP method
+     */
+    protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
+        route: String? = null,
+        method: RpcHttpMethod = RpcHttpMethod.POST
+    )
+
+    /**
+     * Binds a given function of the receiver as a select options source
+     * @param function a function of the receiver
+     */
+    protected fun bind(
+        function: T.(String?, String?) -> List<RemoteSelectOption>
+    )
 
     /**
      * Applies all defined routes to the given server.
-     * @param k a server
      */
-    actual fun applyRoutes(k: KVServer) {
-        throw IllegalStateException("This class is for Jooby integration.")
-    }
+    fun applyRoutes(k: KVServer)
 }

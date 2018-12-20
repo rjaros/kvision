@@ -22,23 +22,23 @@
 package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.google.inject.Injector
 import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jooby.Response
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.text.SimpleDateFormat
+import kotlin.reflect.KClass
 
 /**
  * Multiplatform service manager for Jooby.
  */
-@UseExperimental(ExperimentalCoroutinesApi::class)
-actual open class JoobyServiceManager<T : Any> actual constructor(val service: T) : ServiceManager {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : ServiceManager {
 
     companion object {
-        val LOG: Logger = LoggerFactory.getLogger(JoobyServiceManager::class.java.name)
+        val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
     protected val routes: MutableList<KVServer.() -> Unit> = mutableListOf()
@@ -55,16 +55,19 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bind(
-        noinline function: suspend T.(Request?) -> RET,
+        noinline function: suspend T.() -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                val service = req.require(serviceClass.java)
+                val injector = req.require(Injector::class.java)
+                injector.injectMembers(service)
                 GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                     try {
-                        val result = function.invoke(service, req)
+                        val result = function.invoke(service)
                         res.send(
                             JsonRpcResponse(
                                 id = jsonRpcRequest.id,
@@ -88,18 +91,21 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR, reified RET> bind(
-        noinline function: suspend T.(PAR, Request?) -> RET,
+        noinline function: suspend T.(PAR) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                val service = req.require(serviceClass.java)
+                val injector = req.require(Injector::class.java)
+                injector.injectMembers(service)
                 if (jsonRpcRequest.params.size == 1) {
                     val param = getParameter<PAR>(jsonRpcRequest.params[0])
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
-                            val result = function.invoke(service, param, req)
+                            val result = function.invoke(service, param)
                             res.send(
                                 JsonRpcResponse(
                                     id = jsonRpcRequest.id,
@@ -126,19 +132,22 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, Request?) -> RET,
+        noinline function: suspend T.(PAR1, PAR2) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                val service = req.require(serviceClass.java)
+                val injector = req.require(Injector::class.java)
+                injector.injectMembers(service)
                 if (jsonRpcRequest.params.size == 2) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                     val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
-                            val result = function.invoke(service, param1, param2, req)
+                            val result = function.invoke(service, param1, param2)
                             res.send(
                                 JsonRpcResponse(
                                     id = jsonRpcRequest.id,
@@ -165,13 +174,16 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, Request?) -> RET,
+        noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                val service = req.require(serviceClass.java)
+                val injector = req.require(Injector::class.java)
+                injector.injectMembers(service)
                 @Suppress("MagicNumber")
                 if (jsonRpcRequest.params.size == 3) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
@@ -179,7 +191,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
                     val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
-                            val result = function.invoke(service, param1, param2, param3, req)
+                            val result = function.invoke(service, param1, param2, param3)
                             res.send(
                                 JsonRpcResponse(
                                     id = jsonRpcRequest.id,
@@ -206,13 +218,16 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, Request?) -> RET,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                val service = req.require(serviceClass.java)
+                val injector = req.require(Injector::class.java)
+                injector.injectMembers(service)
                 @Suppress("MagicNumber")
                 if (jsonRpcRequest.params.size == 4) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
@@ -221,7 +236,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
                     val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
-                            val result = function.invoke(service, param1, param2, param3, param4, req)
+                            val result = function.invoke(service, param1, param2, param3, param4)
                             res.send(
                                 JsonRpcResponse(
                                     id = jsonRpcRequest.id,
@@ -249,7 +264,7 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, Request?) -> RET,
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
         route: String?,
         method: RpcHttpMethod
     ) {
@@ -257,6 +272,9 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                val service = req.require(serviceClass.java)
+                val injector = req.require(Injector::class.java)
+                injector.injectMembers(service)
                 @Suppress("MagicNumber")
                 if (jsonRpcRequest.params.size == 5) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
@@ -266,7 +284,46 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
                     val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
-                            val result = function.invoke(service, param1, param2, param3, param4, param5, req)
+                            val result = function.invoke(service, param1, param2, param3, param4, param5)
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
+                            )
+                        } catch (e: Exception) {
+                            LOG.error(e.message, e)
+                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        }
+                    }
+                } else {
+                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
+                }
+            }.invoke(this)
+        }
+    }
+
+    /**
+     * Binds a given function of the receiver as a select options source
+     * @param function a function of the receiver
+     */
+    @Suppress("TooGenericExceptionCaught")
+    protected actual fun bind(
+        function: T.(String?, String?) -> List<RemoteSelectOption>
+    ) {
+        val routeDef = "route${this::class.simpleName}${counter++}"
+        routes.add {
+            call(RpcHttpMethod.POST, "/kv/$routeDef") { req, res ->
+                val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                val service = req.require(serviceClass.java)
+                val injector = req.require(Injector::class.java)
+                injector.injectMembers(service)
+                if (jsonRpcRequest.params.size == 2) {
+                    val param1 = getParameter<String?>(jsonRpcRequest.params[0])
+                    val param2 = getParameter<String?>(jsonRpcRequest.params[1])
+                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                        try {
+                            val result = function.invoke(service, param1, param2)
                             res.send(
                                 JsonRpcResponse(
                                     id = jsonRpcRequest.id,
@@ -300,7 +357,6 @@ actual open class JoobyServiceManager<T : Any> actual constructor(val service: T
         }
     }
 
-    @Suppress("TooGenericExceptionCaught")
     protected inline fun <reified T> getParameter(str: String?): T {
         return str?.let {
             if (T::class == String::class) {
