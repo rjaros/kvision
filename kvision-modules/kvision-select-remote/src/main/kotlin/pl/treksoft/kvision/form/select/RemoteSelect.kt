@@ -43,7 +43,6 @@ import pl.treksoft.kvision.utils.SnOn
  * @param name the name attribute of the generated HTML input element
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote data source
- * @param classes a set of CSS class names
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  */
