@@ -283,6 +283,18 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
                     }
                 }
             }
+            if (internalHandlers.shownBsSelect != null) {
+                if (handlers.shownBsSelect == null) {
+                    handlers.shownBsSelect = internalHandlers.shownBsSelect
+                } else {
+                    val intc = internalHandlers.shownBsSelect
+                    val c = handlers.shownBsSelect
+                    handlers.shownBsSelect = { e ->
+                        intc?.invoke(e)
+                        c?.invoke(e)
+                    }
+                }
+            }
             handlers
         } else {
             null
