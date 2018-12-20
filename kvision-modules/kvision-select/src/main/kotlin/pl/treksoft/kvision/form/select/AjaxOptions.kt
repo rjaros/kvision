@@ -77,8 +77,8 @@ enum class DataType(internal val type: String) {
  * option
  */
 data class AjaxOptions(
-    val url: String,
-    val preprocessData: (dynamic) -> dynamic,
+    val url: String? = null,
+    val preprocessData: ((dynamic) -> dynamic)? = null,
     val beforeSend: ((JQueryXHR, dynamic) -> dynamic)? = null,
     val data: dynamic = null,
     val httpType: HttpType = HttpType.GET,
@@ -89,7 +89,9 @@ data class AjaxOptions(
     val clearOnError: Boolean = true,
     val emptyRequest: Boolean = false,
     val requestDelay: Int = AJAX_REQUEST_DELAY,
-    val restoreOnError: Boolean = false
+    val restoreOnError: Boolean = false,
+    val preserveSelected: Boolean = false,
+    val processData: Boolean = false
 )
 
 /**
@@ -99,7 +101,7 @@ data class AjaxOptions(
  */
 fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
     val procData = { data: dynamic ->
-        val processedData = this.preprocessData(data)
+        val processedData = this.preprocessData?.invoke(data) ?: data
         if (emptyOption) {
             val ret = mutableListOf(obj {
                 this.value = KVNULL
@@ -115,7 +117,7 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
     val language = I18n.language
     return obj {
         this.ajax = obj {
-            this.url = url
+            this.url = url ?: "/"
             this.method = httpType.type
             this.dataType = dataType.type
             this.data = data
@@ -128,10 +130,11 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
         this.clearOnEmpty = clearOnEmpty
         this.clearOnError = clearOnError
         this.emptyRequest = emptyRequest
-        this.preserveSelected = false
+        this.preserveSelected = preserveSelected
         this.requestDelay = requestDelay
         this.restoreOnError = restoreOnError
         this.langCode = language
-        this.processData = false
+        this.processData = processData
+        this.preserveSelectedOrder = true
     }
 }

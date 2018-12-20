@@ -39,7 +39,7 @@ import pl.treksoft.kvision.core.Widget
  */
 open class SelectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
-    divider: Boolean = false, disabled: Boolean = false,
+    divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
     classes: Set<String> = setOf()
 ) : Widget(classes) {
 
@@ -67,6 +67,10 @@ open class SelectOption(
      * Determines if the option should be disabled.
      */
     var disabled by refreshOnUpdate(disabled)
+    /**
+     * Determines if the option is selected.
+     */
+    var selected by refreshOnUpdate(selected)
 
     override fun render(): VNode {
         return if (!divider) {
@@ -94,6 +98,9 @@ open class SelectOption(
             }
             if (disabled) {
                 sn.add("disabled" to "disabled")
+            }
+            if (selected) {
+                sn.add("selected" to "selected")
             }
         } else {
             sn.add("data-divider" to "true")

@@ -234,9 +234,10 @@ open class SelectInput(
         return cl
     }
 
-    private fun refreshSelectInput() {
+    protected fun refreshSelectInput() {
         getElementJQueryD()?.selectpicker("refresh")
         refreshState()
+        getElementJQueryD()?.trigger("change")?.data("AjaxBootstrapSelect")?.list?.cache = {}
     }
 
     @Suppress("ComplexMethod")
@@ -321,13 +322,15 @@ open class SelectInput(
 
     @Suppress("UnsafeCastFromDynamic")
     private fun refreshState() {
-        value?.let {
-            if (multiple) {
-                getElementJQueryD()?.selectpicker("val", it.split(",").toTypedArray())
-            } else {
-                getElementJQueryD()?.selectpicker("val", it)
-            }
-        } ?: getElementJQueryD()?.selectpicker("val", null)
+        if (ajaxOptions == null) {
+            value?.let {
+                if (multiple) {
+                    getElementJQueryD()?.selectpicker("val", it.split(",").toTypedArray())
+                } else {
+                    getElementJQueryD()?.selectpicker("val", it)
+                }
+            } ?: getElementJQueryD()?.selectpicker("val", null)
+        }
     }
 
     /**
