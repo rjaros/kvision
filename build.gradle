@@ -121,14 +121,14 @@ dependencies {
 
 kotlinFrontend {
     npm {
-        dependency("css-loader")
-        dependency("style-loader")
-        dependency("less")
-        dependency("less-loader")
-        dependency("imports-loader")
-        dependency("uglifyjs-webpack-plugin")
-        dependency("file-loader")
-        dependency("url-loader")
+        dependency("css-loader", "2.0.1")
+        dependency("style-loader", "0.23.1")
+        dependency("less", "3.9.0")
+        dependency("less-loader", "4.1.0")
+        dependency("imports-loader", "0.8.0")
+        dependency("uglifyjs-webpack-plugin", "2.0.1")
+        dependency("file-loader", "2.0.0")
+        dependency("url-loader", "1.1.2")
         dependency("jquery", "3.2.1")
         dependency("fecha", "2.3.2")
         dependency("snabbdom", "0.7.1")
@@ -136,8 +136,8 @@ kotlinFrontend {
         dependency("jquery-resizable-dom", "0.28.0")
         dependency("element-resize-event", "2.0.9")
         dependency("navigo", "7.0.0")
-        devDependency("karma")
-        devDependency("qunit")
+        devDependency("karma", "3.1.4")
+        devDependency("qunit", "2.8.0")
     }
 
     webpackBundle {
