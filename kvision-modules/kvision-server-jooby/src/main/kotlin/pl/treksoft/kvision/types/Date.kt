@@ -29,6 +29,8 @@ import com.github.andrewoma.kwery.mapper.util.camelToLowerUnderscore
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
+actual val KV_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
+
 actual typealias Date = java.util.Date
 
 actual fun String.toDateF(format: String): Date = SimpleDateFormat(format).parse(this)

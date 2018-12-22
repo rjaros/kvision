@@ -28,6 +28,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import pl.treksoft.kvision.types.KV_DATE_FORMAT
 import java.text.SimpleDateFormat
 import javax.servlet.http.HttpServletResponse
 import kotlin.reflect.KClass
@@ -48,7 +49,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     val optionsRequests: MutableMap<String, (Request, HttpServletResponse) -> Unit> = mutableMapOf()
 
     val mapper = jacksonObjectMapper().apply {
-        dateFormat = SimpleDateFormat("YYYY-MM-DD HH:mm:ss")
+        dateFormat = SimpleDateFormat(KV_DATE_FORMAT)
     }
     var counter: Int = 0
 

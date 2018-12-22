@@ -21,8 +21,10 @@
  */
 package pl.treksoft.kvision.types
 
+expect val KV_DATE_FORMAT: String
+
 expect class Date
 
-expect fun String.toDateF(format: String = "YYYY-MM-DD HH:mm:ss"): Date
+expect fun String.toDateF(format: String = KV_DATE_FORMAT): Date
 
-expect fun Date.toStringF(format: String = "YYYY-MM-DD HH:mm:ss"): String
+expect fun Date.toStringF(format: String = KV_DATE_FORMAT): String
