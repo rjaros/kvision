@@ -1,0 +1,354 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RemoteSelect - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.form.select</a>&nbsp;/&nbsp;<a href="./index.html">RemoteSelect</a><br/>
+<br/>
+<h1>RemoteSelect</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RemoteSelect</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-string-form-control/index.html"><span class="identifier">StringFormControl</span></a></code>
+<p>The form field component for RemoteSelect control.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">RemoteSelect</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$<init>(kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$<init>(kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean)/serviceManager">serviceManager</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.remote/-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$<init>(kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean)/function">function</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$<init>(kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$<init>(kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean)/multiple">multiple</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$<init>(kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean)/ajaxOptions">ajaxOptions</span><span class="symbol">:</span>&nbsp;<a href="../-ajax-options/index.html"><span class="identifier">AjaxOptions</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$<init>(kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean)/label">label</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$<init>(kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean)/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="autofocus.html">autofocus</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autofocus</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the select is automatically focused.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="empty-option.html">emptyOption</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">emptyOption</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if an empty option is automatically generated.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="flabel.html">flabel</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">flabel</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-field-label/index.html"><span class="identifier">FieldLabel</span></a></code>
+<p>Form field label.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="input.html">input</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">input</span><span class="symbol">: </span><a href="../-remote-select-input/index.html"><span class="identifier">RemoteSelectInput</span></a><span class="symbol">&lt;</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>The actual input component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="label.html">label</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">label</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The label text bound to the select element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="max-options.html">maxOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">maxOptions</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>Maximal number of selected options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="multiple.html">multiple</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">multiple</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if multiple value selection is allowed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="placeholder.html">placeholder</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">placeholder</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The placeholder for the select control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="rich.html">rich</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">rich</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if <a href="label.html">label</a> can contain HTML code.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="select-width.html">selectWidth</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">selectWidth</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>The width of the select control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="select-width-type.html">selectWidthType</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">selectWidthType</span><span class="symbol">: </span><a href="../-select-width-type/index.html"><span class="identifier">SelectWidthType</span></a><span class="symbol">?</span></code>
+<p>The width type of the select control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="style.html">style</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">style</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.html/-button-style/index.html"><span class="identifier">ButtonStyle</span></a><span class="symbol">?</span></code>
+<p>The style of the select control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validation-info.html">validationInfo</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">validationInfo</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-help-block/index.html"><span class="identifier">HelpBlock</span></a></code>
+<p>Validation info component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="value.html">value</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">value</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>A value of the selected option.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$add(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-all.html">addAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$addAll(kotlin.collections.List((pl.treksoft.kvision.core.Component)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds a list of components to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="blur.html">blur</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">blur</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Makes the input element blur.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="focus.html">focus</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">focus</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Makes the input element focused.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-children.html">getChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of children of the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-sn-class.html">getSnClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns list of CSS class names for current widget in the form of a List.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="hide-options.html">hideOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hideOptions</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Hides dropdown with options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$remove(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes given component from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-all.html">removeAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes all children from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-event-listeners.html">removeEventListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeEventListeners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Removes all event listeners from current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-event-listener.html">setEventListener</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.form.select.RemoteSelect.setEventListener.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><a href="set-event-listener.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets an event listener for current widget, keeping the actual type of component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.core.Widget)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets an event listener for current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="show-options.html">showOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">showOptions</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Opens dropdown with options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="toggle-options.html">toggleOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toggleOptions</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Toggles visibility of dropdown with options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add-internal.html">addInternal</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addInternal</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addInternal(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Protected and final method to add given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/children-v-nodes.html">childrenVNodes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">childrenVNodes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">VNode</span><span class="symbol">&gt;</span></code>
+<p>Returns the array of the children Snabbdom vnodes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.form/-string-form-control/get-value.html">getValue</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getValue</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns the value of the control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.form/-string-form-control/get-value-as-string.html">getValueAsString</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getValueAsString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns the value of the control as a String.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
+<p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.form/-string-form-control/set-value.html">setValue</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setValue</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.StringFormControl$setValue(kotlin.Any)/v">v</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the value of the control.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="remote-select.html">remoteSelect</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">remoteSelect</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/serviceManager">serviceManager</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.remote/-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><a href="remote-select.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/function">function</span><span class="symbol">:</span>&nbsp;<a href="remote-select.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/multiple">multiple</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/ajaxOptions">ajaxOptions</span><span class="symbol">:</span>&nbsp;<a href="../-ajax-options/index.html"><span class="identifier">AjaxOptions</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/label">label</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.select.RemoteSelect.Companion$remoteSelect(pl.treksoft.kvision.core.Container, kotlin.String, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Function3((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T, kotlin.String, , kotlin.collections.List(()))), kotlin.String, kotlin.Boolean, pl.treksoft.kvision.form.select.AjaxOptions, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.select.RemoteSelect((pl.treksoft.kvision.form.select.RemoteSelect.Companion.remoteSelect.T)), kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">RemoteSelect</span></a><span class="symbol">&lt;</span><a href="remote-select.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RemoteSelect</span></a><span class="symbol">&lt;</span><a href="remote-select.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
