@@ -27,18 +27,12 @@ import org.pac4j.core.profile.CommonProfile
 import org.pac4j.core.profile.ProfileManager
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
-import javax.servlet.http.HttpServletRequest
 import kotlinx.coroutines.async as coroutinesAsync
 
 /**
  * A Spring boot based server.
  */
 actual open class KVServer(val services: List<KVServiceManager<*>>)
-
-/**
- * A server request.
- */
-actual typealias Request = HttpServletRequest
 
 /**
  * A user profile.

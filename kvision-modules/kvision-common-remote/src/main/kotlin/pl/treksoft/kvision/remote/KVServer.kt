@@ -27,11 +27,6 @@ package pl.treksoft.kvision.remote
 expect open class KVServer
 
 /**
- * A server request.
- */
-expect interface Request
-
-/**
  * A user profile.
  */
 expect class Profile

@@ -64,13 +64,13 @@ interface DomSpec : TestSpec {
     override fun afterTest() {
         val div = document.getElementById("pretest")
         div?.let { jQuery(it).remove() }
-        jQuery(`object` = ".modal-backdrop").remove()
+        jQuery(".modal-backdrop").remove()
     }
 
     fun assertEqualsHtml(expected: String?, actual: String?, message: String?) {
         if (expected != null && actual != null) {
-            val exp = jQuery(html = expected)
-            val act = jQuery(html = actual)
+            val exp = jQuery(expected)
+            val act = jQuery(actual)
             val result = exp[0]?.isEqualNode(act[0])
             if (result == true) {
                 assertTrue(result == true, message)

@@ -31,12 +31,6 @@ import kotlinx.serialization.Transient
 actual open class KVServer
 
 /**
- * A server request.
- * Not used on the js platform.
- */
-actual interface Request
-
-/**
  * A user profile.
  */
 @Serializable

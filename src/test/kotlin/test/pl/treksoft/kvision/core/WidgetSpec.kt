@@ -95,7 +95,7 @@ class WidgetSpec : WSpec {
     @Test
     fun setEventListener() {
         runW { widget, _ ->
-            widget.setEventListener { click = { _ -> } }
+            widget.setEventListener { click = { } }
             assertTrue("Element should have an event listener") { widget.listeners.size == 1 }
         }
     }
@@ -103,7 +103,7 @@ class WidgetSpec : WSpec {
     @Test
     fun removeEventListener() {
         runW { widget, _ ->
-            widget.setEventListener { click = { _ -> } }
+            widget.setEventListener { click = { } }
             widget.removeEventListeners()
             assertTrue("Element should not have any event listener") { widget.listeners.size == 0 }
         }

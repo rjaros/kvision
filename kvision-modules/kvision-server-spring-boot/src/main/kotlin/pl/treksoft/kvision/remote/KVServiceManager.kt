@@ -30,6 +30,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.treksoft.kvision.types.KV_DATE_FORMAT
 import java.text.SimpleDateFormat
+import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import kotlin.reflect.KClass
 
@@ -43,10 +44,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val postRequests: MutableMap<String, (Request, HttpServletResponse) -> Unit> = mutableMapOf()
-    val putRequests: MutableMap<String, (Request, HttpServletResponse) -> Unit> = mutableMapOf()
-    val deleteRequests: MutableMap<String, (Request, HttpServletResponse) -> Unit> = mutableMapOf()
-    val optionsRequests: MutableMap<String, (Request, HttpServletResponse) -> Unit> = mutableMapOf()
+    val postRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
+    val putRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
+    val deleteRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
+    val optionsRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
 
     val mapper = jacksonObjectMapper().apply {
         dateFormat = SimpleDateFormat(KV_DATE_FORMAT)
@@ -426,7 +427,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     fun addRoute(
         method: RpcHttpMethod,
         path: String,
-        handler: (Request, HttpServletResponse) -> Unit
+        handler: (HttpServletRequest, HttpServletResponse) -> Unit
     ) {
         when (method) {
             RpcHttpMethod.POST -> postRequests[path] = handler

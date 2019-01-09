@@ -26,6 +26,7 @@ import com.google.inject.Injector
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.jooby.Request
 import org.jooby.Response
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

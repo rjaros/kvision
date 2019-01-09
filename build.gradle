@@ -30,6 +30,7 @@ configure(allprojects - project(':kvision-modules')) {
         maven { url = 'https://kotlin.bintray.com/kotlinx' }
         maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
         maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
+        mavenLocal()
     }
 }
 
@@ -114,8 +115,8 @@ dependencies {
         testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     }
     compile "com.github.snabbdom:snabbdom-kotlin:0.1.1"
-    compile "pl.treksoft:navigo-kotlin:0.0.2"
-    compile "pl.treksoft:jquery-kotlin:0.0.3"
+    compile "pl.treksoft:navigo-kotlin:0.0.3"
+    compile "pl.treksoft:jquery-kotlin:0.0.4"
     compile "pl.treksoft:kotlin-observable-js:0.0.3"
 }
 

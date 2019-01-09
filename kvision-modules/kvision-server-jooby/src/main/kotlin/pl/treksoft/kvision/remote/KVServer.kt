@@ -23,6 +23,7 @@ package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.jooby.Kooby
+import org.jooby.Request
 import org.jooby.json.Jackson
 import org.pac4j.core.profile.CommonProfile
 import pl.treksoft.kvision.types.KV_DATE_FORMAT
@@ -47,11 +48,6 @@ actual open class KVServer(init: KVServer.() -> Unit) : Kooby() {
         init.invoke(this)
     }
 }
-
-/**
- * A server request.
- */
-actual typealias Request = org.jooby.Request
 
 /**
  * A user profile.
