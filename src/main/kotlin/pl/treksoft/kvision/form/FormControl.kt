@@ -218,5 +218,5 @@ interface KFilesFormControl : FormControl {
         if (v == null) value = null
     }
 
-    override fun getValueAsString(): String? = value?.joinToString { it.name }
+    override fun getValueAsString(): String? = value?.joinToString(",") { it.name }
 }

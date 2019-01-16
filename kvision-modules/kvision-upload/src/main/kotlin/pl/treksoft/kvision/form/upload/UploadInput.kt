@@ -254,11 +254,11 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
 
     private fun getFiles(): List<KFile> {
         nativeFiles.clear()
-        return (getElementJQueryD()?.fileinput("getFileStack") as Array<File>).toList().map {
+        return (getElementJQueryD()?.fileinput("getFileStack") as? Array<File>)?.toList()?.map {
             val kFile = KFile(it.name, it.size, null)
             nativeFiles[kFile] = it
             kFile
-        }
+        } ?: listOf()
     }
 
     /**
@@ -266,7 +266,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
      * @return value as a String
      */
     fun getValueAsString(): String? {
-        return value?.joinToString { it.name }
+        return value?.joinToString(",") { it.name }
     }
 
     /**
