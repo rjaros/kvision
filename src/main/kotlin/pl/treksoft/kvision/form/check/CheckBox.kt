@@ -106,8 +106,8 @@ open class CheckBox(
     var inline by refreshOnUpdate(false)
 
     private val idc = "kv_form_checkbox_$counter"
-    final override val input: CheckInput = CheckInput(
-        CheckInputType.CHECKBOX, value,
+    final override val input: CheckBoxInput = CheckBoxInput(
+        value,
         setOf("styled")
     ).apply {
         this.id = idc

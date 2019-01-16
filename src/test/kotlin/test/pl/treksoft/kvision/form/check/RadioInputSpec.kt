@@ -21,39 +21,19 @@
  */
 package test.pl.treksoft.kvision.form.check
 
-import pl.treksoft.kvision.form.check.CheckInput
-import pl.treksoft.kvision.form.check.CheckInputType
+import pl.treksoft.kvision.form.check.RadioInput
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class CheckInputSpec : DomSpec {
+class RadioInputSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", true)
-            val ci = CheckInput(value = true).apply {
-                name = "name"
-                id = "idti"
-                disabled = true
-            }
-            root.add(ci)
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                "<input id=\"idti\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\">",
-                element?.innerHTML,
-                "Should render correct checkbox control"
-            )
-        }
-    }
-
-    @Test
-    fun renderAsRadio() {
-        run {
-            val root = Root("test", true)
-            val ci = CheckInput(type = CheckInputType.RADIO, value = true).apply {
+            val ci = RadioInput(value = true).apply {
                 name = "name"
                 id = "idti"
                 extraValue = "abc"

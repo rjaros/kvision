@@ -24,14 +24,12 @@ package pl.treksoft.kvision.form.check
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.form.FieldLabel
-import pl.treksoft.kvision.form.HelpBlock
+import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
-import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
- * The form field component rendered as a group of HTML *input type="radio"* elements with the same name attribute.
+ * The input component rendered as a group of HTML *input type="radio"* elements with the same name attribute.
  *
  * The radio group can be populated directly from *options* parameter or manually by adding
  * [Radio] components to the container.
@@ -41,15 +39,11 @@ import pl.treksoft.kvision.panel.SimplePanel
  * @param value selected option
  * @param name the name attribute of the generated HTML input element
  * @param inline determines if the options are rendered inline
- * @param label label text of the options group
- * @param rich determines if [label] can contain HTML code
  */
 @Suppress("TooManyFunctions")
-open class RadioGroup(
-    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
-    label: String? = null,
-    rich: Boolean = false
-) : SimplePanel(setOf("form-group")), StringFormControl {
+open class RadioGroupInput(
+    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false
+) : SimplePanel(setOf("form-group")), FormInput {
 
     /**
      * A list of options (label to value pairs) for the group.
@@ -59,7 +53,7 @@ open class RadioGroup(
     /**
      * A value of the selected option.
      */
-    override var value by refreshOnUpdate(value) { setValueToChildren(it) }
+    var value by refreshOnUpdate(value) { setValueToChildren(it) }
 
     /**
      * Determines if the options are rendered inline.
@@ -70,22 +64,6 @@ open class RadioGroup(
         get() = getDisabledFromChildren()
         set(value) {
             setDisabledToChildren(value)
-        }
-    /**
-     * The label text of the options group.
-     */
-    var label
-        get() = flabel.content
-        set(value) {
-            flabel.content = value
-        }
-    /**
-     * Determines if [label] can contain HTML code.
-     */
-    var rich
-        get() = flabel.rich
-        set(value) {
-            flabel.rich = value
         }
     override var name
         get() = getNameFromChildren()
@@ -99,9 +77,6 @@ open class RadioGroup(
         }
 
     private val idc = "kv_form_radiogroup_$counter"
-    final override val input = RadioInput()
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
-    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
 
     init {
         setChildrenFromOptions()
@@ -112,9 +87,6 @@ open class RadioGroup(
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
-        if (validatorError != null) {
-            cl.add("has-error" to true)
-        }
         if (inline) {
             cl.add("kv-radiogroup-inline" to true)
         } else {
@@ -159,7 +131,6 @@ open class RadioGroup(
     private fun setChildrenFromOptions() {
         val currentName = this.name
         super.removeAll()
-        this.addInternal(flabel)
         options?.let {
             val tname = currentName ?: this.idc
             val tinline = this.inline
@@ -167,24 +138,23 @@ open class RadioGroup(
                 Radio(false, extraValue = it.first, label = it.second).apply {
                     inline = tinline
                     name = tname
-                    eventTarget = this@RadioGroup
+                    eventTarget = this@RadioGroupInput
                     setEventListener<Radio> {
                         change = {
-                            this@RadioGroup.value = self.extraValue
+                            this@RadioGroupInput.value = self.extraValue
                         }
                     }
                 }
             }
             super.addAll(c)
         }
-        this.addInternal(validationInfo)
     }
 
-    override fun focus() {
+    fun focus() {
         getChildren().filterIsInstance<Radio>().firstOrNull()?.focus()
     }
 
-    override fun blur() {
+    fun blur() {
         getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
     }
 
@@ -196,13 +166,13 @@ open class RadioGroup(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun Container.radioGroup(
+        fun Container.radioGroupInput(
             options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
-            label: String? = null, rich: Boolean = false, init: (RadioGroup.() -> Unit)? = null
-        ): RadioGroup {
-            val radioGroup = RadioGroup(options, value, name, inline, label, rich).apply { init?.invoke(this) }
-            this.add(radioGroup)
-            return radioGroup
+            init: (RadioGroupInput.() -> Unit)? = null
+        ): RadioGroupInput {
+            val radioGroupInput = RadioGroupInput(options, value, name, inline).apply { init?.invoke(this) }
+            this.add(radioGroupInput)
+            return radioGroupInput
         }
     }
 }

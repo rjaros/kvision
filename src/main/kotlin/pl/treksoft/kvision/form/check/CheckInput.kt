@@ -46,7 +46,7 @@ enum class CheckInputType(internal val type: String) {
  * @param value selection state
  * @param classes a set of CSS class names
  */
-open class CheckInput(
+abstract class CheckInput(
     type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
     classes: Set<String> = setOf()
 ) : Widget(classes), FormInput {
@@ -167,19 +167,4 @@ open class CheckInput(
         getElementJQuery()?.blur()
     }
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.checkInput(
-            type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
-            classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
-        ): CheckInput {
-            val checkInput = CheckInput(type, value, classes).apply { init?.invoke(this) }
-            this.add(checkInput)
-            return checkInput
-        }
-    }
 }
