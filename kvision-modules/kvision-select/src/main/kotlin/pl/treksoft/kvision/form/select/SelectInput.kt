@@ -146,7 +146,7 @@ open class SelectInput(
             @Suppress("UNCHECKED_CAST")
             val arr = v as? Array<String>
             if (arr != null && arr.isNotEmpty()) {
-                arr.joinToString()
+                arr.filter { it.isNotEmpty() }.joinToString(",")
             } else {
                 null
             }
