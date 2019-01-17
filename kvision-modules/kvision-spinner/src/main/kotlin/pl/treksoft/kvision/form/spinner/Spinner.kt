@@ -36,8 +36,8 @@ import pl.treksoft.kvision.utils.SnOn
  * @constructor
  * @param value spinner value
  * @param name the name attribute of the generated HTML input element
- * @param min minimal value (default 0)
- * @param max maximal value (default 100)
+ * @param min minimal value
+ * @param max maximal value
  * @param step step value (default 1)
  * @param decimals number of decimal digits (default 0)
  * @param buttonsType spinner buttons type
@@ -46,7 +46,7 @@ import pl.treksoft.kvision.utils.SnOn
  * @param rich determines if [label] can contain HTML code
  */
 open class Spinner(
-    value: Number? = null, name: String? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
+    value: Number? = null, name: String? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, label: String? = null,
     rich: Boolean = false
@@ -241,8 +241,8 @@ open class Spinner(
         fun Container.spinner(
             value: Number? = null,
             name: String? = null,
-            min: Int = 0,
-            max: Int = DEFAULT_MAX,
+            min: Int? = null,
+            max: Int? = null,
             step: Double = DEFAULT_STEP,
             decimals: Int = 0,
             buttonsType: ButtonsType = ButtonsType.VERTICAL,

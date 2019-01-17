@@ -51,15 +51,14 @@ enum class ForceType(internal val value: String) {
 }
 
 internal const val DEFAULT_STEP = 1.0
-internal const val DEFAULT_MAX = 100
 
 /**
  * The basic component for spinner control.
  *
  * @constructor
  * @param value spinner value
- * @param min minimal value (default 0)
- * @param max maximal value (default 100)
+ * @param min minimal value
+ * @param max maximal value
  * @param step step value (default 1)
  * @param decimals number of decimal digits (default 0)
  * @param buttonsType spinner buttons type
@@ -68,7 +67,7 @@ internal const val DEFAULT_MAX = 100
  */
 @Suppress("TooManyFunctions")
 open class SpinnerInput(
-    value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
+    value: Number? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE,
     classes: Set<String> = setOf()
@@ -205,6 +204,10 @@ open class SpinnerInput(
         val v = getElementJQuery()?.`val`() as String?
         if (v != null && v.isNotEmpty()) {
             this.value = v.toDoubleOrNull()
+            this.value?.let {
+                if (min != null && it.toInt() < min ?: 0) this.value = min
+                if (max != null && it.toInt() > max ?: 0) this.value = max
+            }
         } else {
             this.value = null
         }
@@ -214,9 +217,6 @@ open class SpinnerInput(
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.TouchSpin(getSettingsObj())
         siblings = getElementJQuery()?.parent(".bootstrap-touchspin")?.children("span")
-        size?.let {
-            siblings?.find("button")?.addClass(it.className)
-        }
         this.getElementJQuery()?.on("change") { e, _ ->
             if (e.asDynamic().isTrigger != null) {
                 val event = org.w3c.dom.events.Event("change")
@@ -280,6 +280,12 @@ open class SpinnerInput(
             this.decimals = decimals
             this.verticalbuttons = verticalbuttons
             this.forcestepdivisibility = forceType.value
+            if (verticalbuttons) {
+                this.verticalup = "<i class=\"fa fa-caret-up\"></i>"
+                this.verticaldown = "<i class=\"fa fa-caret-down\"></i>"
+            }
+            this.buttondown_class = "btn btn-default"
+            this.buttonup_class = "btn btn-default"
         }
     }
 
@@ -306,7 +312,7 @@ open class SpinnerInput(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Container.spinnerInput(
-            value: Number? = null, min: Int = 0, max: Int = DEFAULT_MAX, step: Double = DEFAULT_STEP,
+            value: Number? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
             decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
             forceType: ForceType = ForceType.NONE, classes: Set<String> = setOf(),
             init: (SpinnerInput.() -> Unit)? = null
