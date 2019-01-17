@@ -47,7 +47,7 @@ enum class ForceType(internal val value: String) {
     NONE("none"),
     ROUND("round"),
     FLOOR("floor"),
-    CEIL("cail")
+    CEIL("ceil")
 }
 
 internal const val DEFAULT_STEP = 1.0
