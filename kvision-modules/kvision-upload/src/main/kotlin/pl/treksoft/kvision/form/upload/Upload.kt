@@ -252,7 +252,7 @@ open class Upload(
      * @param kFile KFile object
      * @return File object
      */
-    fun getNativeFile(kFile: KFile): File? {
+    override fun getNativeFile(kFile: KFile): File? {
         return input.getNativeFile(kFile)
     }
 

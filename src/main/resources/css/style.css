@@ -140,3 +140,7 @@ ul.dropdown-menu li a {
    padding-left: 0;
    padding-right: 0;
 }
+
+.kv-preview-thumb .btn, .kv-zoom-actions .btn, .file-zoom-dialog .floating-buttons .btn {
+   padding: 5px 8px;
+}

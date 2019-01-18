@@ -173,23 +173,25 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.fileinput(getSettingsObj())
-        this.getElementJQuery()?.on("fileselect") { e, _ ->
-            this.dispatchEvent("fileSelectUpload", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("fileclear") { e, _ ->
-            this.dispatchEvent("fileClearUpload", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("filereset") { e, _ ->
-            this.dispatchEvent("fileResetUpload", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("filebrowse") { e, _ ->
-            this.dispatchEvent("fileBrowseUpload", obj { detail = e })
-        }
-        this.getElementJQueryD()?.on("filepreupload") lambda@{ _, data, previewId, index ->
-            data["previewId"] = previewId
-            data["index"] = index
-            this.dispatchEvent("filePreUpload", obj { detail = data })
-            return@lambda null
+        if (uploadUrl != null) {
+            this.getElementJQuery()?.on("fileselect") { e, _ ->
+                this.dispatchEvent("fileSelectUpload", obj { detail = e })
+            }
+            this.getElementJQuery()?.on("fileclear") { e, _ ->
+                this.dispatchEvent("fileClearUpload", obj { detail = e })
+            }
+            this.getElementJQuery()?.on("filereset") { e, _ ->
+                this.dispatchEvent("fileResetUpload", obj { detail = e })
+            }
+            this.getElementJQuery()?.on("filebrowse") { e, _ ->
+                this.dispatchEvent("fileBrowseUpload", obj { detail = e })
+            }
+            this.getElementJQueryD()?.on("filepreupload") lambda@{ _, data, previewId, index ->
+                data["previewId"] = previewId
+                data["index"] = index
+                this.dispatchEvent("filePreUpload", obj { detail = data })
+                return@lambda null
+            }
         }
     }
 
@@ -301,6 +303,10 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
             this.allowedFileTypes = allowedFileTypes?.toTypedArray()
             this.allowedFileExtensions = allowedFileExtensions?.toTypedArray()
             this.dropZoneEnabled = dropZoneEnabled
+            this.fileActionSettings = obj {
+                this.showUpload = showUpload
+                this.showRemove = showRemove
+            }
             this.language = language
         }
     }
