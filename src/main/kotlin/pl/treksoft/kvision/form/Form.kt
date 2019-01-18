@@ -32,6 +32,7 @@ import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.JSON
+import pl.treksoft.kvision.utils.getContent
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KProperty1
@@ -275,6 +276,24 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
      */
     fun getData(): K {
         val map = fields.entries.associateBy({ it.key }, { it.value.getValue() })
+        return modelFactory(map.withDefault { null })
+    }
+
+    /**
+     * Returns current data model with file content read for all KFiles controls.
+     * @return data model
+     */
+    suspend fun getDataWithFileContent(): K {
+        val map = fields.entries.associateBy({ it.key }, {
+            val value = it.value
+            if (value is KFilesFormControl) {
+                value.getValue()?.map {
+                    it.copy(content = value.getNativeFile(it)?.getContent())
+                }
+            } else {
+                value.getValue()
+            }
+        })
         return modelFactory(map.withDefault { null })
     }
 

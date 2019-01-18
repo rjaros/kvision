@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form
 
+import org.w3c.files.File
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.types.KFile
 import kotlin.js.Date
@@ -219,4 +220,11 @@ interface KFilesFormControl : FormControl {
     }
 
     override fun getValueAsString(): String? = value?.joinToString(",") { it.name }
+
+    /**
+     * Returns the native JavaScript File object.
+     * @param kFile KFile object
+     * @return File object
+     */
+    fun getNativeFile(kFile: KFile): File?
 }

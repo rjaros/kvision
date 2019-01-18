@@ -376,6 +376,14 @@ open class FormPanel<K : Any>(
     }
 
     /**
+     * Returns current data model with file content read for all KFiles controls.
+     * @return data model
+     */
+    suspend fun getDataWithFileContent(): K {
+        return form.getDataWithFileContent()
+    }
+
+    /**
      * Returns current data model as JSON.
      * @return data model as JSON
      */
