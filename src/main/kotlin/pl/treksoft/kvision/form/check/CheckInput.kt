@@ -23,7 +23,6 @@ package pl.treksoft.kvision.form.check
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
-import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
