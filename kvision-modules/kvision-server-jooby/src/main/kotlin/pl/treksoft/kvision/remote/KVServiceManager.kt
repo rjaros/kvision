@@ -30,6 +30,7 @@ import org.jooby.Request
 import org.jooby.Response
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
 import java.text.SimpleDateFormat
 import kotlin.reflect.KClass
 
@@ -44,7 +45,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 
     protected val routes: MutableList<KVServer.() -> Unit> = mutableListOf()
     val mapper = jacksonObjectMapper().apply {
-        dateFormat = SimpleDateFormat("YYYY-MM-DD HH:mm:ss")
+        dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
     }
     var counter: Int = 0
 

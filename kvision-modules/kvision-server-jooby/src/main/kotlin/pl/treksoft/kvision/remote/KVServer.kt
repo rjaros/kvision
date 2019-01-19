@@ -26,7 +26,7 @@ import org.jooby.Kooby
 import org.jooby.Request
 import org.jooby.json.Jackson
 import org.pac4j.core.profile.CommonProfile
-import pl.treksoft.kvision.types.KV_DATE_FORMAT
+import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
 import java.text.SimpleDateFormat
 import kotlinx.coroutines.async as coroutinesAsync
 
@@ -40,7 +40,7 @@ actual open class KVServer(init: KVServer.() -> Unit) : Kooby() {
         @Suppress("LeakingThis")
         assets("/**").onMissing(0)
         val mapper = jacksonObjectMapper().apply {
-            dateFormat = SimpleDateFormat(KV_DATE_FORMAT)
+            dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
         }
         @Suppress("LeakingThis")
         use(Jackson(mapper))

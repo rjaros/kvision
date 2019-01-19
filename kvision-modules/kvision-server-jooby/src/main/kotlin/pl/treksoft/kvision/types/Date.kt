@@ -29,7 +29,9 @@ import com.github.andrewoma.kwery.mapper.util.camelToLowerUnderscore
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
-actual val KV_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
+actual val KV_DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
+
+actual val KV_JSON_DATE_FORMAT = "yyyy-MM-dd HH:mm:ssZ"
 
 actual typealias Date = java.util.Date
 

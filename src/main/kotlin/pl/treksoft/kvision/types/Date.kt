@@ -29,7 +29,9 @@ import kotlinx.serialization.internal.SerialClassDescImpl
 import pl.treksoft.kvision.KVManager
 import kotlin.js.Date
 
-actual val KV_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
+actual val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
+
+actual val KV_JSON_DATE_FORMAT = "YYYY-MM-DD HH:mm:ssZZ"
 
 actual typealias Date = kotlin.js.Date
 
@@ -58,10 +60,10 @@ object DateSerializer : KSerializer<Date> {
     override val descriptor: SerialDescriptor = SerialClassDescImpl("kotlin.js.Date")
 
     override fun deserialize(input: Decoder): Date {
-        return input.decodeString().toDateF()
+        return input.decodeString().toDateF(KV_JSON_DATE_FORMAT)
     }
 
     override fun serialize(output: Encoder, obj: Date) {
-        output.encodeString(obj.toStringF())
+        output.encodeString(obj.toStringF(KV_JSON_DATE_FORMAT))
     }
 }
