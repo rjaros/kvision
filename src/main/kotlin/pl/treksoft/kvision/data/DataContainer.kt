@@ -29,6 +29,14 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.VPanel
 
 /**
+ * Sorter types.
+ */
+enum class SorterType {
+    ASC,
+    DESC
+}
+
+/**
  * A container class with support for observable data model.
  *
  * @constructor Creates DataContainer bound to given data model.
@@ -37,15 +45,17 @@ import pl.treksoft.kvision.panel.VPanel
  * @param model data model of type *ObservableList<M>*
  * @param factory a function which creates component C from data model at given index
  * @param filter a filtering function
- * @param mapping a mapping function
+ * @param sorter a sorting function
+ * @param sorterType a sorting type selection function
  * @param container internal container (defaults to [VPanel])
  * @param init an initializer extension function
  */
 class DataContainer<M, C : Component>(
     private val model: ObservableList<M>,
-    private val factory: (Int, M) -> C,
-    private val filter: ((Int, M) -> Boolean)? = null,
-    private val mapping: ((List<Pair<Int, M>>) -> List<Pair<Int, M>>)? = null,
+    private val factory: (M, Int, ObservableList<M>) -> C,
+    private val filter: ((M) -> Boolean)? = null,
+    private val sorter: ((M) -> Comparable<*>?)? = null,
+    private val sorterType: () -> SorterType = { SorterType.ASC },
     private val container: Container = VPanel(),
     init: (DataContainer<M, C>.() -> Unit)? = null
 ) :
@@ -106,13 +116,29 @@ class DataContainer<M, C : Component>(
         }
         singleRender {
             container.removeAll()
-            val indexed = model.mapIndexed { index, m -> index to m }
-            val mapped = mapping?.invoke(indexed) ?: indexed
-            val children = if (filter != null) {
-                mapped.filter { p -> filter.invoke(p.first, p.second) }
+            val indexed = model.mapIndexed { index, m -> m to index }
+            val sorted = if (sorter != null) {
+                when (sorterType()) {
+                    SorterType.ASC ->
+                        indexed.sortedBy {
+                            @Suppress("UNCHECKED_CAST")
+                            sorter.invoke(it.first) as Comparable<Any>?
+                        }
+                    SorterType.DESC ->
+                        indexed.sortedByDescending {
+                            @Suppress("UNCHECKED_CAST")
+                            sorter.invoke(it.first) as Comparable<Any>?
+                        }
+                }
             } else {
-                mapped
-            }.map { p -> factory(p.first, p.second) }
+                indexed
+            }
+            val filtered = if (filter != null) {
+                sorted.filter { filter.invoke(it.first) }
+            } else {
+                sorted
+            }
+            val children = filtered.map { p -> factory(p.first, p.second, model) }
             container.addAll(children)
         }
         onUpdateHandler?.invoke()
@@ -145,13 +171,14 @@ class DataContainer<M, C : Component>(
          */
         fun <M, C : Component> Container.dataContainer(
             model: ObservableList<M>,
-            factory: (Int, M) -> C,
-            filter: ((Int, M) -> Boolean)? = null,
-            mapping: ((List<Pair<Int, M>>) -> List<Pair<Int, M>>)? = null,
+            factory: (M, Int, ObservableList<M>) -> C,
+            filter: ((M) -> Boolean)? = null,
+            sorter: ((M) -> Comparable<*>?)? = null,
+            sorterType: () -> SorterType = { SorterType.ASC },
             container: Container = VPanel(),
             init: (DataContainer<M, C>.() -> Unit)? = null
         ): DataContainer<M, C> {
-            val dataContainer = DataContainer(model, factory, filter, mapping, container, init)
+            val dataContainer = DataContainer(model, factory, filter, sorter, sorterType, container, init)
             this.add(dataContainer)
             return dataContainer
         }

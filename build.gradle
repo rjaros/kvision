@@ -117,7 +117,7 @@ dependencies {
     compile "com.github.snabbdom:snabbdom-kotlin:0.1.1"
     compile "pl.treksoft:navigo-kotlin:0.0.3"
     compile "pl.treksoft:jquery-kotlin:0.0.4"
-    compile "pl.treksoft:kotlin-observable-js:0.0.3"
+    compile "pl.treksoft:kotlin-observable-js:0.0.4"
 }
 
 kotlinFrontend {
