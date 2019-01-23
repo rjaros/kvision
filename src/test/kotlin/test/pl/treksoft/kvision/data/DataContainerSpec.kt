@@ -26,6 +26,7 @@ import pl.treksoft.kvision.data.BaseDataComponent
 import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.html.Label
 import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.panel.VPanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -42,7 +43,7 @@ class DataContainerSpec : DomSpec {
             }
 
             val model = observableListOf(Model("First"), Model("Second"))
-            val container = DataContainer(model, { m, _, _ -> Label(m.value) })
+            val container = DataContainer(model, { m, _, _ -> Label(m.value) }, VPanel())
             root.add(container)
             val element = document.getElementById("test")
             assertEqualsHtml(

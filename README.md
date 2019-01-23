@@ -153,16 +153,16 @@ Application package will be saved as build/distributions/showcase.zip.
 ### Data binding with observable data model
 
         class Data(text: String) : BaseDataComponent() {
-            var text: String by obs(text)
+            var text by obs(text)
         }
         val model = observableListOf(
             Data("One"),
             Data("Two"),
             Data("Three")
         )
-        Root("root").add(DataContainer(model, { index, data ->
+        Root("root").add(DataContainer(model, { data, _, _ ->
             Label(data.text)
-        }, child = HPanel(spacing = 10, wrap = FlexWrap.WRAP)))
+        }, HPanel(spacing = 10, wrap = FlexWrap.WRAP)))
 
         GlobalScope.launch { // Kotlin coroutines
             while (true) {

@@ -42,22 +42,25 @@ enum class SorterType {
  * @constructor Creates DataContainer bound to given data model.
  * @param M data model type
  * @param C visual component type
+ * @param CONT container type
  * @param model data model of type *ObservableList<M>*
  * @param factory a function which creates component C from data model at given index
+ * @param container internal container
+ * @param containerAdd function to add component C to the internal container CONT
  * @param filter a filtering function
  * @param sorter a sorting function
  * @param sorterType a sorting type selection function
- * @param container internal container (defaults to [VPanel])
  * @param init an initializer extension function
  */
-class DataContainer<M, C : Component>(
+class DataContainer<M, C : Component, CONT : Container>(
     private val model: ObservableList<M>,
     private val factory: (M, Int, ObservableList<M>) -> C,
+    private val container: CONT,
+    private val containerAdd: (CONT.(C, M) -> Unit)? = null,
     private val filter: ((M) -> Boolean)? = null,
     private val sorter: ((M) -> Comparable<*>?)? = null,
     private val sorterType: () -> SorterType = { SorterType.ASC },
-    private val container: Container = VPanel(),
-    init: (DataContainer<M, C>.() -> Unit)? = null
+    init: (DataContainer<M, C, CONT>.() -> Unit)? = null
 ) :
     Widget(setOf()), Container, DataUpdatable {
 
@@ -138,8 +141,14 @@ class DataContainer<M, C : Component>(
             } else {
                 sorted
             }
-            val children = filtered.map { p -> factory(p.first, p.second, model) }
-            container.addAll(children)
+            val children = filtered.map { p -> p.first to factory(p.first, p.second, model) }
+            if (containerAdd != null) {
+                children.forEach { child ->
+                    containerAdd.invoke(container, child.second, child.first)
+                }
+            } else {
+                container.addAll(children.map { it.second })
+            }
         }
         onUpdateHandler?.invoke()
     }
@@ -149,7 +158,7 @@ class DataContainer<M, C : Component>(
      * @param handler notification handler
      * @return current container
      */
-    fun onUpdate(handler: () -> Unit): DataContainer<M, C> {
+    fun onUpdate(handler: () -> Unit): DataContainer<M, C, CONT> {
         onUpdateHandler = handler
         return this
     }
@@ -158,7 +167,7 @@ class DataContainer<M, C : Component>(
      * Clears notification handler.
      * @return current container
      */
-    fun clearOnUpdate(): DataContainer<M, C> {
+    fun clearOnUpdate(): DataContainer<M, C, CONT> {
         onUpdateHandler = null
         return this
     }
@@ -169,16 +178,36 @@ class DataContainer<M, C : Component>(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun <M, C : Component> Container.dataContainer(
+        fun <M, C : Component, CONT : Container> Container.dataContainer(
             model: ObservableList<M>,
             factory: (M, Int, ObservableList<M>) -> C,
+            container: CONT,
+            containerAdd: (CONT.(C, M) -> Unit)? = null,
             filter: ((M) -> Boolean)? = null,
             sorter: ((M) -> Comparable<*>?)? = null,
             sorterType: () -> SorterType = { SorterType.ASC },
-            container: Container = VPanel(),
-            init: (DataContainer<M, C>.() -> Unit)? = null
-        ): DataContainer<M, C> {
-            val dataContainer = DataContainer(model, factory, filter, sorter, sorterType, container, init)
+            init: (DataContainer<M, C, CONT>.() -> Unit)? = null
+        ): DataContainer<M, C, CONT> {
+            val dataContainer = DataContainer(model, factory, container, containerAdd, filter, sorter, sorterType, init)
+            this.add(dataContainer)
+            return dataContainer
+        }
+
+        /**
+         * DSL builder extension function with VPanel default.
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun <M, C : Component> Container.dataContainer(
+            model: ObservableList<M>,
+            factory: (M, Int, ObservableList<M>) -> C,
+            containerAdd: (VPanel.(C, M) -> Unit)? = null,
+            filter: ((M) -> Boolean)? = null,
+            sorter: ((M) -> Comparable<*>?)? = null,
+            sorterType: () -> SorterType = { SorterType.ASC },
+            init: (DataContainer<M, C, VPanel>.() -> Unit)? = null
+        ): DataContainer<M, C, VPanel> {
+            val dataContainer = DataContainer(model, factory, VPanel(), containerAdd, filter, sorter, sorterType, init)
             this.add(dataContainer)
             return dataContainer
         }
