@@ -113,6 +113,7 @@ class DataContainer<M, C : Component, CONT : Container>(
     /**
      * Updates view from the current data model state.
      */
+    @Suppress("ComplexMethod")
     override fun update() {
         model.forEach {
             if (it is DataComponent) it.container = this

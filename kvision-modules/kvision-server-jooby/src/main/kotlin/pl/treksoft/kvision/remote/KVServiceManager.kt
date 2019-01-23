@@ -37,6 +37,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager for Jooby.
  */
+@Suppress("LargeClass")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : ServiceManager {
 
     companion object {

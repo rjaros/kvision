@@ -80,6 +80,7 @@ open class SelectOption(
         }
     }
 
+    @Suppress("ComplexMethod")
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
         if (!divider) {
