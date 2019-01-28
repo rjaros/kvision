@@ -23,18 +23,18 @@ package pl.treksoft.kvision.utils
 
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.context.SimpleModule
-import kotlinx.serialization.json.JSON
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.types.DateSerializer
 import kotlin.js.Date
 
 object JSON {
 
-    val plain = JSON().apply {
+    val plain = Json().apply {
         install(SimpleModule(Date::class, DateSerializer))
     }
 
-    val nonstrict = JSON(strictMode = false).apply {
+    val nonstrict = Json(strictMode = false).apply {
         install(SimpleModule(Date::class, DateSerializer))
     }
 

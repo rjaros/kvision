@@ -59,11 +59,11 @@ actual fun Date.toStringF(format: String): String {
 object DateSerializer : KSerializer<Date> {
     override val descriptor: SerialDescriptor = SerialClassDescImpl("kotlin.js.Date")
 
-    override fun deserialize(input: Decoder): Date {
-        return input.decodeString().toDateF(KV_JSON_DATE_FORMAT)
+    override fun deserialize(decoder: Decoder): Date {
+        return decoder.decodeString().toDateF(KV_JSON_DATE_FORMAT)
     }
 
-    override fun serialize(output: Encoder, obj: Date) {
-        output.encodeString(obj.toStringF(KV_JSON_DATE_FORMAT))
+    override fun serialize(encoder: Encoder, obj: Date) {
+        encoder.encodeString(obj.toStringF(KV_JSON_DATE_FORMAT))
     }
 }
