@@ -91,10 +91,10 @@ configure(allprojects - project(':kvision-modules') - project(":kvision-modules:
 
 if (!project.gradle.startParameter.taskNames.contains("dokka")) {
     apply plugin: 'kotlin-platform-js'
+    apply plugin: 'org.jetbrains.kotlin.frontend'
 } else {
     apply plugin: 'kotlin'
 }
-apply plugin: 'org.jetbrains.kotlin.frontend'
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'kotlinx-serialization'
 
@@ -120,35 +120,37 @@ dependencies {
     compile "pl.treksoft:kotlin-observable-js:0.0.4"
 }
 
-kotlinFrontend {
-    npm {
-        dependency("css-loader", "2.0.1")
-        dependency("style-loader", "0.23.1")
-        dependency("less", "3.9.0")
-        dependency("less-loader", "4.1.0")
-        dependency("imports-loader", "0.8.0")
-        dependency("uglifyjs-webpack-plugin", "2.0.1")
-        dependency("file-loader", "2.0.0")
-        dependency("url-loader", "1.1.2")
-        dependency("jquery", "3.2.1")
-        dependency("fecha", "2.3.2")
-        dependency("snabbdom", "0.7.3")
-        dependency("snabbdom-virtualize", "0.7.0")
-        dependency("jquery-resizable-dom", "0.32.0")
-        dependency("element-resize-event", "3.0.3")
-        dependency("navigo", "7.0.0")
-        devDependency("karma", "3.1.4")
-        devDependency("qunit", "2.8.0")
+if (!project.gradle.startParameter.taskNames.contains("dokka")) {
+    kotlinFrontend {
+        npm {
+            dependency("css-loader", "2.0.1")
+            dependency("style-loader", "0.23.1")
+            dependency("less", "3.9.0")
+            dependency("less-loader", "4.1.0")
+            dependency("imports-loader", "0.8.0")
+            dependency("uglifyjs-webpack-plugin", "2.0.1")
+            dependency("file-loader", "2.0.0")
+            dependency("url-loader", "1.1.2")
+            dependency("jquery", "3.2.1")
+            dependency("fecha", "2.3.2")
+            dependency("snabbdom", "0.7.3")
+            dependency("snabbdom-virtualize", "0.7.0")
+            dependency("jquery-resizable-dom", "0.32.0")
+            dependency("element-resize-event", "3.0.3")
+            dependency("navigo", "7.0.0")
+            devDependency("karma", "3.1.4")
+            devDependency("qunit", "2.8.0")
+        }
+
+        webpackBundle {
+            bundleName = "main"
+            contentPath = file('src/main/web')
+            mode = production ? "production" : "development"
+        }
+
+        define "PRODUCTION", production
+
     }
-
-    webpackBundle {
-        bundleName = "main"
-        contentPath = file('src/main/web')
-        mode = production ? "production" : "development"
-    }
-
-    define "PRODUCTION", production
-
 }
 
 dokka {
