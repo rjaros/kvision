@@ -41,7 +41,14 @@ built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Re
 - [Karma](https://karma-runner.github.io/) testing framework support.
 - IDE support (IntelliJ IDEA Community Edition).
 
-## Getting started
+## Documentation
+
+The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook. It's not yet 100% complete, but it contains a lot of useful information about this framework. 
+
+Full API documentation (KDoc) is available at [https://rjaros.github.io/kvision/api/](https://rjaros.github.io/kvision/api/).
+
+
+## Quickstart
 
 #### Development
 
@@ -72,7 +79,7 @@ To build complete application optimized for production run:
         
 Application package will be saved as build/distributions/showcase.zip.
 
-## Usage samples
+## Code samples
 
 ### Hello world
 
@@ -152,9 +159,8 @@ Application package will be saved as build/distributions/showcase.zip.
         
 ### Data binding with observable data model
 
-        class Data(text: String) : BaseDataComponent() {
-            var text by obs(text)
-        }
+        data class Data(val text: String)
+        
         val model = observableListOf(
             Data("One"),
             Data("Two"),
@@ -162,7 +168,7 @@ Application package will be saved as build/distributions/showcase.zip.
         )
         Root("root").add(DataContainer(model, { data, _, _ ->
             Label(data.text)
-        }, HPanel(spacing = 10, wrap = FlexWrap.WRAP)))
+        }, HPanel(spacing = 10)))
 
         GlobalScope.launch { // Kotlin coroutines
             while (true) {
@@ -171,7 +177,3 @@ Application package will be saved as build/distributions/showcase.zip.
             }
         }
 
-
-## API documentation
-
-Full API documentation is available at [https://rjaros.github.io/kvision/api/](https://rjaros.github.io/kvision/api/).
