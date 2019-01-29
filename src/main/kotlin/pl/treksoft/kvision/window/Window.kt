@@ -134,7 +134,6 @@ open class Window(
     private val captionTag = Tag(TAG.H4, caption, classes = setOf("modal-title"))
 
     private var isResizeEvent = false
-    private var isResizing = false
 
     init {
         id = "kv_window_$counter"
@@ -221,13 +220,13 @@ open class Window(
         checkResizablEventHandler()
         if (isResizable) {
             resize = Resize.BOTH
-            val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
-            content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 2).px
+            val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
+            content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
             content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
         } else {
             resize = Resize.NONE
-            val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
-            content.height = (intHeight - WINDOW_HEADER_HEIGHT - 2).px
+            val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
+            content.height = (intHeight - WINDOW_HEADER_HEIGHT).px
             content.marginBottom = 0.px
         }
     }
@@ -235,23 +234,23 @@ open class Window(
     @Suppress("UnsafeCastFromDynamic")
     private fun checkResizablEventHandler() {
         if (isResizable) {
-            isResizeEvent = true
-            KVManager.setResizeEvent(this) {
-                if (!isResizing) {
+            if (!isResizeEvent) {
+                isResizeEvent = true
+                KVManager.setResizeEvent(this) {
                     val eid = getElementJQuery()?.attr("id")
                     if (eid == id) {
-                        val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0) + 2
-                        val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
-                        isResizing = true
-                        width = intWidth.px
-                        height = intHeight.px
-                        isResizing = false
-                        content.width = (intWidth - 2).px
-                        content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 2).px
+                        val outerWidth = (getElementJQuery()?.outerWidth()?.toInt() ?: 0)
+                        val outerHeight = (getElementJQuery()?.outerHeight()?.toInt() ?: 0)
+                        val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0)
+                        val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
+                        content.width = intWidth.px
+                        content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
+                        width = outerWidth.px
+                        height = outerHeight.px
                         this.dispatchEvent("resizeWindow", obj {
                             detail = obj {
-                                this.width = intWidth
-                                this.height = intHeight
+                                this.width = outerWidth
+                                this.height = outerHeight
                             }
                         })
                     }
