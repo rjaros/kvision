@@ -258,6 +258,7 @@ open class Window(
             }
         } else if (isResizeEvent) {
             KVManager.clearResizeEvent(this)
+            isResizeEvent = false
         }
     }
 
