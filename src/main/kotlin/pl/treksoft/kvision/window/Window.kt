@@ -134,6 +134,7 @@ open class Window(
     private val captionTag = Tag(TAG.H4, caption, classes = setOf("modal-title"))
 
     private var isResizeEvent = false
+    private var isResizing = false
 
     init {
         id = "kv_window_$counter"
@@ -221,12 +222,12 @@ open class Window(
         if (isResizable) {
             resize = Resize.BOTH
             val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
-            this.height = (intHeight + WINDOW_CONTENT_MARGIN_BOTTOM - 1).px
+            content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 2).px
             content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
         } else {
             resize = Resize.NONE
             val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
-            this.height = (intHeight - WINDOW_CONTENT_MARGIN_BOTTOM - 1).px
+            content.height = (intHeight - WINDOW_HEADER_HEIGHT - 2).px
             content.marginBottom = 0.px
         }
     }
@@ -236,22 +237,24 @@ open class Window(
         if (isResizable) {
             isResizeEvent = true
             KVManager.setResizeEvent(this) {
-                val eid = getElementJQuery()?.attr("id")
-                if (eid == id) {
-                    val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0) + 2
-                    val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
-                    isResizable = false
-                    width = intWidth.px
-                    height = intHeight.px
-                    isResizable = true
-                    content.width = (intWidth - 2).px
-                    content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 1 - 2).px
-                    this.dispatchEvent("resizeWindow", obj {
-                        detail = obj {
-                            this.width = intWidth
-                            this.height = intHeight
-                        }
-                    })
+                if (!isResizing) {
+                    val eid = getElementJQuery()?.attr("id")
+                    if (eid == id) {
+                        val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0) + 2
+                        val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0) + 2
+                        isResizing = true
+                        width = intWidth.px
+                        height = intHeight.px
+                        isResizing = false
+                        content.width = (intWidth - 2).px
+                        content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM - 2).px
+                        this.dispatchEvent("resizeWindow", obj {
+                            detail = obj {
+                                this.width = intWidth
+                                this.height = intHeight
+                            }
+                        })
+                    }
                 }
             }
         } else if (isResizeEvent) {
