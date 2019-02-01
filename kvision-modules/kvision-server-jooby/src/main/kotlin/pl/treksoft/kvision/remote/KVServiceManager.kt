@@ -26,6 +26,7 @@ import com.google.inject.Injector
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.jooby.Kooby
 import org.jooby.Request
 import org.jooby.Response
 import org.slf4j.Logger
@@ -44,7 +45,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    protected val routes: MutableList<KVServer.() -> Unit> = mutableListOf()
+    val routes: MutableList<Kooby.() -> Unit> = mutableListOf()
     val mapper = jacksonObjectMapper().apply {
         dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
     }
@@ -349,7 +350,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         method: RpcHttpMethod,
         path: String,
         handler: (Request, Response) -> Unit
-    ): KVServer.() -> Unit {
+    ): Kooby.() -> Unit {
         return {
             when (method) {
                 RpcHttpMethod.POST -> post(path, handler)
@@ -370,14 +371,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         } ?: null as T
     }
 
-    /**
-     * Applies all defined routes to the given server.
-     * @param k a server
-     */
-    fun applyRoutes(k: KVServer) {
-        routes.forEach {
-            it.invoke(k)
-        }
-    }
+}
 
+fun <T : Any> Kooby.applyRoutes(serviceManager: KVServiceManager<T>) {
+    serviceManager.routes.forEach {
+        it.invoke(this@applyRoutes)
+    }
 }

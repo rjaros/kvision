@@ -21,10 +21,17 @@
  */
 package pl.treksoft.kvision.remote
 
-import org.pac4j.core.profile.CommonProfile
-import kotlinx.coroutines.async as coroutinesAsync
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import org.jooby.Kooby
+import org.jooby.json.Jackson
+import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
+import java.text.SimpleDateFormat
 
-/**
- * A Ktor based server.
- */
-open class KVServer(val services: List<KVServiceManager<*>>)
+fun Kooby.kvisionInit() {
+    assets("/", "/assets/index.html")
+    assets("/**", "/assets/{0}").onMissing(0)
+    val mapper = jacksonObjectMapper().apply {
+        dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
+    }
+    use(Jackson(mapper))
+}

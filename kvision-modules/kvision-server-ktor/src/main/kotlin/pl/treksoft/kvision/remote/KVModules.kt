@@ -31,19 +31,16 @@ import io.ktor.application.ApplicationCallPipeline
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
-import io.ktor.http.HttpMethod
 import io.ktor.http.content.default
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.jackson.jackson
-import io.ktor.request.httpMethod
-import io.ktor.request.uri
 import io.ktor.routing.routing
 import io.ktor.util.AttributeKey
 import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
 import java.text.SimpleDateFormat
 
-fun Application.kvision(vararg modules: Module) {
+fun Application.kvisionInit(vararg modules: Module) {
     install(ContentNegotiation) {
         jackson {
             dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
@@ -56,26 +53,11 @@ fun Application.kvision(vararg modules: Module) {
         }
     }
 
+    @Suppress("SpreadOperator")
     val injector = Guice.createInjector(MainModule(this), *modules)
-    val kvServer = injector.getInstance(KVServer::class.java)
 
     intercept(ApplicationCallPipeline.Features) {
         call.attributes.put(InjectorKey, injector.createChildInjector(CallModule(call)))
-    }
-
-    intercept(ApplicationCallPipeline.Call) {
-        val routeUri = call.request.uri
-        if (routeUri.startsWith("/kv/")) {
-            kvServer.services.mapNotNull {
-                when (call.request.httpMethod) {
-                    HttpMethod.Post -> it.postRequests[routeUri]
-                    HttpMethod.Put -> it.putRequests[routeUri]
-                    HttpMethod.Delete -> it.deleteRequests[routeUri]
-                    HttpMethod.Options -> it.optionsRequests[routeUri]
-                    else -> null
-                }
-            }.firstOrNull()?.invoke(call)
-        }
     }
 }
 

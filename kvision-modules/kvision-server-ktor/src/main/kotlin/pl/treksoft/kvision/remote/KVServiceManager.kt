@@ -23,8 +23,15 @@ package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.ktor.application.ApplicationCall
+import io.ktor.application.call
 import io.ktor.request.receive
 import io.ktor.response.respond
+import io.ktor.routing.Route
+import io.ktor.routing.delete
+import io.ktor.routing.options
+import io.ktor.routing.post
+import io.ktor.routing.put
+import io.ktor.util.pipeline.PipelineContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -42,10 +49,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val postRequests: MutableMap<String, suspend (ApplicationCall) -> Unit> = mutableMapOf()
-    val putRequests: MutableMap<String, suspend (ApplicationCall) -> Unit> = mutableMapOf()
-    val deleteRequests: MutableMap<String, suspend (ApplicationCall) -> Unit> = mutableMapOf()
-    val optionsRequests: MutableMap<String, suspend (ApplicationCall) -> Unit> = mutableMapOf()
+    val postRequests: MutableMap<String, suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit> = mutableMapOf()
+    val putRequests: MutableMap<String, suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit> = mutableMapOf()
+    val deleteRequests: MutableMap<String, suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit> =
+        mutableMapOf()
+    val optionsRequests: MutableMap<String, suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit> =
+        mutableMapOf()
 
     val mapper = jacksonObjectMapper().apply {
         dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
@@ -64,7 +73,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { call ->
+        addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
             try {
@@ -99,7 +108,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { call ->
+        addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
             if (jsonRpcRequest.params.size == 1) {
@@ -144,7 +153,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { call ->
+        addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
             if (jsonRpcRequest.params.size == 2) {
@@ -190,7 +199,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { call ->
+        addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
             @Suppress("MagicNumber")
@@ -238,7 +247,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         route: String?, method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { call ->
+        addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
             @Suppress("MagicNumber")
@@ -289,7 +298,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         method: RpcHttpMethod
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { call ->
+        addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
             @Suppress("MagicNumber")
@@ -336,7 +345,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         function: T.(String?, String?) -> List<RemoteSelectOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        addRoute(RpcHttpMethod.POST, "/kv/$routeDef") { call ->
+        addRoute(RpcHttpMethod.POST, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
             if (jsonRpcRequest.params.size == 2) {
@@ -373,7 +382,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     fun addRoute(
         method: RpcHttpMethod,
         path: String,
-        handler: suspend (ApplicationCall) -> Unit
+        handler: suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit
     ) {
         when (method) {
             RpcHttpMethod.POST -> postRequests[path] = handler
@@ -391,5 +400,20 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 mapper.readValue(str, T::class.java)
             }
         } ?: null as T
+    }
+}
+
+fun <T : Any> Route.applyRoutes(serviceManager: KVServiceManager<T>) {
+    serviceManager.postRequests.forEach { (path, handler) ->
+        post(path, handler)
+    }
+    serviceManager.putRequests.forEach { (path, handler) ->
+        put(path, handler)
+    }
+    serviceManager.deleteRequests.forEach { (path, handler) ->
+        delete(path, handler)
+    }
+    serviceManager.optionsRequests.forEach { (path, handler) ->
+        options(path, handler)
     }
 }
