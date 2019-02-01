@@ -39,17 +39,16 @@ open class KVController {
         method = [RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS]
     )
     open fun kVMapping(req: HttpServletRequest, res: HttpServletResponse) {
-        val method = req.method
         val routeUrl = req.requestURI
-        val route = kvServer.services.map {
-            when (method) {
+        val route = kvServer.services.mapNotNull {
+            when (req.method) {
                 "POST" -> it.postRequests[routeUrl]
                 "PUT" -> it.putRequests[routeUrl]
                 "DELETE" -> it.deleteRequests[routeUrl]
                 "OPTIONS" -> it.optionsRequests[routeUrl]
                 else -> null
             }
-        }.find { it != null }
+        }.firstOrNull()
         if (route != null) {
             route.invoke(req, res)
         } else {
