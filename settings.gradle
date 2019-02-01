@@ -14,4 +14,5 @@ include 'kvision-modules:kvision-base',
         'kvision-modules:kvision-remote',
         'kvision-modules:kvision-select-remote',
         'kvision-modules:kvision-server-jooby',
+        'kvision-modules:kvision-server-ktor',
         'kvision-modules:kvision-server-spring-boot'
