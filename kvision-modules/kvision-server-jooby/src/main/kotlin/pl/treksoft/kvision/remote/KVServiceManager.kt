@@ -38,7 +38,7 @@ import kotlin.reflect.KClass
  * Multiplatform service manager for Jooby.
  */
 @Suppress("LargeClass")
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : ServiceManager {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -374,7 +374,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * Applies all defined routes to the given server.
      * @param k a server
      */
-    actual fun applyRoutes(k: KVServer) {
+    fun applyRoutes(k: KVServer) {
         routes.forEach {
             it.invoke(k)
         }

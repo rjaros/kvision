@@ -23,10 +23,25 @@ package pl.treksoft.kvision.remote
 
 import kotlin.reflect.KClass
 
+enum class RpcHttpMethod {
+    POST,
+    PUT,
+    DELETE,
+    OPTIONS
+}
+
+enum class HttpMethod {
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    OPTIONS
+}
+
 /**
  * Multiplatform service manager.
  */
-expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) : ServiceManager {
+expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) {
 
     /**
      * Binds a given route with a function of the receiver.
@@ -107,9 +122,4 @@ expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) : ServiceMa
     protected fun bind(
         function: T.(String?, String?) -> List<RemoteSelectOption>
     )
-
-    /**
-     * Applies all defined routes to the given server.
-     */
-    fun applyRoutes(k: KVServer)
 }

@@ -38,7 +38,7 @@ import kotlin.reflect.KClass
  * Multiplatform service manager for Spring Boot.
  */
 @UseExperimental(ExperimentalCoroutinesApi::class)
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : ServiceManager {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -446,11 +446,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
         } ?: null as T
     }
-
-    /**
-     * Applies all defined routes to the given server.
-     */
-    actual fun applyRoutes(k: KVServer) {}
 }
 
 fun HttpServletResponse.writeJSON(json: String) {

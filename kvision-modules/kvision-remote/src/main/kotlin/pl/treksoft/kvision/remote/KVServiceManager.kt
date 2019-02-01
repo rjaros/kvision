@@ -26,7 +26,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager.
  */
-actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KClass<T>) : ServiceManager {
+actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KClass<T>) {
 
     protected val calls: MutableMap<String, Pair<String, RpcHttpMethod>> = mutableMapOf()
     var counter: Int = 0
@@ -131,12 +131,6 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
     /**
      * Returns the map of defined paths.
      */
-    override fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = calls
+    fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = calls
 
-    /**
-     * Applies all defined routes to the given server.
-     * Not used on the js platform.
-     */
-    actual fun applyRoutes(k: KVServer) {
-    }
 }

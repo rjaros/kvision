@@ -25,12 +25,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
 /**
- * A server.
- * Not used on the js platform.
- */
-actual open class KVServer
-
-/**
  * A user profile.
  */
 @Serializable

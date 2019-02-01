@@ -21,10 +21,20 @@
  */
 package pl.treksoft.kvision.remote
 
+import org.jooby.Request
 import org.pac4j.core.profile.CommonProfile
-import kotlinx.coroutines.async as coroutinesAsync
 
 /**
- * A Ktor based server.
+ * A user profile.
  */
-open class KVServer(val services: List<KVServiceManager<*>>)
+actual typealias Profile = CommonProfile
+
+/**
+ * A helper extension function for processing with authenticated user profile.
+ */
+fun <RESP> Request.withProfile(block: (Profile) -> RESP): RESP {
+    val profile = this.require(CommonProfile::class.java) as CommonProfile?
+    return profile?.let {
+        block(profile)
+    } ?: throw IllegalStateException("Profile not set!")
+}

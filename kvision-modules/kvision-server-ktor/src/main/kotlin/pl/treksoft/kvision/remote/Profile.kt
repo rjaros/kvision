@@ -22,9 +22,8 @@
 package pl.treksoft.kvision.remote
 
 import org.pac4j.core.profile.CommonProfile
-import kotlinx.coroutines.async as coroutinesAsync
 
 /**
- * A Ktor based server.
+ * A user profile.
  */
-open class KVServer(val services: List<KVServiceManager<*>>)
+actual typealias Profile = CommonProfile

@@ -21,12 +21,32 @@
  */
 package pl.treksoft.kvision.remote
 
-/**
- * A server.
- */
-expect open class KVServer
+import org.pac4j.core.context.J2EContext
+import org.pac4j.core.context.session.J2ESessionStore
+import org.pac4j.core.profile.CommonProfile
+import org.pac4j.core.profile.ProfileManager
+import org.springframework.web.context.request.RequestContextHolder
+import org.springframework.web.context.request.ServletRequestAttributes
 
 /**
  * A user profile.
  */
-expect class Profile
+actual typealias Profile = CommonProfile
+
+/**
+ * A helper extension function for processing with authenticated user profile.
+ */
+@Suppress("TooGenericExceptionCaught")
+fun <RESP> withProfile(block: (Profile) -> RESP): RESP {
+    val profile = try {
+        val requestAttributes = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes)
+        val req = requestAttributes.request
+        val resp = requestAttributes.response
+        ProfileManager<CommonProfile>(J2EContext(req, resp, J2ESessionStore())).get(true).get()
+    } catch (e: Exception) {
+        null
+    }
+    return profile?.let {
+        block(it)
+    } ?: throw IllegalStateException("Profile not set!")
+}

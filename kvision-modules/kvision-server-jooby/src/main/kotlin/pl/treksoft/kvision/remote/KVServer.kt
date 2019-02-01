@@ -23,17 +23,14 @@ package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.jooby.Kooby
-import org.jooby.Request
 import org.jooby.json.Jackson
-import org.pac4j.core.profile.CommonProfile
 import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
 import java.text.SimpleDateFormat
-import kotlinx.coroutines.async as coroutinesAsync
 
 /**
  * A Jooby based server.
  */
-actual open class KVServer(init: KVServer.() -> Unit) : Kooby() {
+open class KVServer(init: KVServer.() -> Unit) : Kooby() {
     init {
         @Suppress("LeakingThis")
         assets("/", "index.html")
@@ -47,19 +44,4 @@ actual open class KVServer(init: KVServer.() -> Unit) : Kooby() {
         @Suppress("LeakingThis")
         init.invoke(this)
     }
-}
-
-/**
- * A user profile.
- */
-actual typealias Profile = CommonProfile
-
-/**
- * A helper extension function for processing with authenticated user profile.
- */
-fun <RESP> Request.withProfile(block: (Profile) -> RESP): RESP {
-    val profile = this.require(CommonProfile::class.java) as CommonProfile?
-    return profile?.let {
-        block(profile)
-    } ?: throw IllegalStateException("Profile not set!")
 }

@@ -21,25 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
-enum class RpcHttpMethod {
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
-
-enum class HttpMethod {
-    GET,
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
-
-interface ServiceManager {
-    /**
-     * Returns the map of defined paths.
-     */
-    fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = mapOf()
-
-}
+/**
+ * A user profile.
+ */
+expect class Profile
