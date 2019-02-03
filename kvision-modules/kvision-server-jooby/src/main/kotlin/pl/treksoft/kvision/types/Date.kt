@@ -21,12 +21,6 @@
  */
 package pl.treksoft.kvision.types
 
-import com.github.andrewoma.kwery.mapper.SimpleConverter
-import com.github.andrewoma.kwery.mapper.TableConfiguration
-import com.github.andrewoma.kwery.mapper.reifiedConverter
-import com.github.andrewoma.kwery.mapper.standardConverters
-import com.github.andrewoma.kwery.mapper.util.camelToLowerUnderscore
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
 actual val KV_DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
@@ -38,13 +32,3 @@ actual typealias Date = java.util.Date
 actual fun String.toDateF(format: String): Date = SimpleDateFormat(format).parse(this)
 
 actual fun Date.toStringF(format: String): String = SimpleDateFormat(format).format(this)
-
-object DateConverter : SimpleConverter<Date>(
-    { row, c -> Date(row.timestamp(c).time) },
-    { Timestamp(it.time) }
-)
-
-val kvTableConfig = TableConfiguration(
-    converters = standardConverters + reifiedConverter(DateConverter),
-    namingConvention = camelToLowerUnderscore
-)

@@ -13,7 +13,6 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.pac4j:pac4j-core:$pac4jVersion"
-    compile "com.github.andrewoma.kwery:mapper:${kweryVersion}"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonModuleKotlinVersion}"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testCompile project(":kvision-modules:kvision-common-types")

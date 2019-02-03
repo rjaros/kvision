@@ -20,7 +20,6 @@ dependencies {
     compile "org.jooby:jooby-lang-kotlin"
     compile "org.jooby:jooby-jackson"
     compile "org.jooby:jooby-pac4j2"
-    compile "com.github.andrewoma.kwery:mapper:${kweryVersion}"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonModuleKotlinVersion}"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testCompile project(":kvision-modules:kvision-common-types")
