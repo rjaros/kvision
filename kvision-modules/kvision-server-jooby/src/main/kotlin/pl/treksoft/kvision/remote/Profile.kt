@@ -32,7 +32,7 @@ actual typealias Profile = CommonProfile
 /**
  * A helper extension function for processing with authenticated user profile.
  */
-fun <RESP> Request.withProfile(block: (Profile) -> RESP): RESP {
+suspend fun <RESP> Request.withProfile(block: suspend (Profile) -> RESP): RESP {
     val profile = this.require(CommonProfile::class.java) as CommonProfile?
     return profile?.let {
         block(profile)

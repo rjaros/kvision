@@ -37,7 +37,7 @@ actual typealias Profile = CommonProfile
  * A helper extension function for processing with authenticated user profile.
  */
 @Suppress("TooGenericExceptionCaught")
-fun <RESP> withProfile(block: (Profile) -> RESP): RESP {
+suspend fun <RESP> withProfile(block: suspend (Profile) -> RESP): RESP {
     val profile = try {
         val requestAttributes = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes)
         val req = requestAttributes.request

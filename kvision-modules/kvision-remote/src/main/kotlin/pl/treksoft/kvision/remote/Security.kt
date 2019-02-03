@@ -37,18 +37,18 @@ class SecurityException(message: String) : Exception(message)
 data class Credentials(val username: String? = null, val password: String? = null)
 
 /**
- * Pac4j form login dispatcher.
+ * Form login dispatcher.
  */
-class LoginService {
+class LoginService(val loginEndpoint: String) {
     val loginAgent = CallAgent()
 
     /**
-     * Login with Pac4j FormClient.
+     * Login with a form.
      * @param credentials username and password credentials
      */
     suspend fun login(credentials: Credentials?): Boolean =
         if (credentials?.username != null) {
-            loginAgent.remoteCall("callback?client_name=FormClient", obj {
+            loginAgent.remoteCall(loginEndpoint, obj {
                 this.username = credentials.username
                 this.password = credentials.password
             }, HttpMethod.POST, "application/x-www-form-urlencoded").then { _: dynamic -> true }.asDeferred().await()
@@ -58,7 +58,7 @@ class LoginService {
 }
 
 /**
- * Pac4j form login dispatcher.
+ * Form login dispatcher.
  */
 abstract class SecurityMgr {
 
