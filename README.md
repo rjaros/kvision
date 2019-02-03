@@ -13,8 +13,7 @@ but by using well known OOP design patterns - composition and inheritance.
 
 This design is quite similar to many non-web UI programming libraries including Swing (Java), JavaFX, QT (C++) and WinForms (C#).
 
-KVision contains innovative connectivity interface for [Jooby](https://jooby.org) micro web framework 
-or [Spring Boot](https://spring.io/projects/spring-boot) framework on the server side, which
+KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side, which
 allows to build full-stack, multiplatform applications with shared common code.
 
 **KVision is a new project in a development phase. Please create an issue for any bugs or feature requests.**
@@ -34,7 +33,7 @@ allows to build full-stack, multiplatform applications with shared common code.
 - Data binding support for [observable](https://github.com/rjaros/kotlin-observable-js) data model.
 - Internationalization support based on [Jed](http://messageformat.github.io/Jed/) library and [gettext](https://www.gnu.org/software/gettext/) translations. 
 - Easy to use Drag & Drop support.
-- Innovative integration interface for [Jooby](https://jooby.org) micro web framework or [Spring Boot](https://spring.io/projects/spring-boot) framework on the server side.
+- Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side.
 - Ready to explore [KVision examples](https://github.com/rjaros/kvision-examples) are available,
 built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
 [Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).
