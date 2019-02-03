@@ -21,9 +21,101 @@
  */
 package pl.treksoft.kvision.remote
 
-import org.pac4j.core.profile.CommonProfile
+import io.ktor.application.ApplicationCall
+import io.ktor.sessions.get
+import io.ktor.sessions.sessions
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 /**
  * A user profile.
  */
-actual typealias Profile = CommonProfile
+@Serializable
+actual data class Profile(
+    val id: String? = null,
+    val attributes: MutableMap<String, String> = mutableMapOf(),
+    val authenticationAttributes: MutableMap<String, String> = mutableMapOf(),
+    val roles: MutableSet<String> = mutableSetOf(),
+    val permissions: MutableSet<String> = mutableSetOf(),
+    val linkedId: String? = null,
+    val remembered: Boolean = false,
+    val clientName: String? = null
+) {
+    @Transient
+    var username: String?
+        get() = attributes["username"]
+        set(value) {
+            if (value != null) {
+                attributes["username"] = value
+            } else {
+                attributes.remove("username")
+            }
+        }
+    @Transient
+    var firstName: String?
+        get() = attributes["first_name"]
+        set(value) {
+            if (value != null) {
+                attributes["first_name"] = value
+            } else {
+                attributes.remove("first_name")
+            }
+        }
+    @Transient
+    var familyName: String?
+        get() = attributes["family_name"]
+        set(value) {
+            if (value != null) {
+                attributes["family_name"] = value
+            } else {
+                attributes.remove("family_name")
+            }
+        }
+    @Transient
+    var displayName: String?
+        get() = attributes["display_name"]
+        set(value) {
+            if (value != null) {
+                attributes["display_name"] = value
+            } else {
+                attributes.remove("display_name")
+            }
+        }
+    @Transient
+    var email: String?
+        get() = attributes["email"]
+        set(value) {
+            if (value != null) {
+                attributes["email"] = value
+            } else {
+                attributes.remove("email")
+            }
+        }
+    @Transient
+    var pictureUrl: String?
+        get() = attributes["picture_url"]
+        set(value) {
+            if (value != null) {
+                attributes["picture_url"] = value
+            } else {
+                attributes.remove("picture_url")
+            }
+        }
+    @Transient
+    var profileUrl: String?
+        get() = attributes["profile_url"]
+        set(value) {
+            if (value != null) {
+                attributes["profile_url"] = value
+            } else {
+                attributes.remove("profile_url")
+            }
+        }
+}
+
+suspend fun <RESP> ApplicationCall.withProfile(block: suspend (Profile) -> RESP): RESP {
+    val profile = this.sessions.get<Profile>()
+    return profile?.let {
+        block(profile)
+    } ?: throw IllegalStateException("Profile not set!")
+}

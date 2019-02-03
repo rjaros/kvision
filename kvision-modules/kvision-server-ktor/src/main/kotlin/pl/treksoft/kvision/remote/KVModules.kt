@@ -31,7 +31,7 @@ import io.ktor.application.ApplicationCallPipeline
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
-import io.ktor.http.content.default
+import io.ktor.http.content.defaultResource
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.jackson.jackson
@@ -49,7 +49,7 @@ fun Application.kvisionInit(vararg modules: Module) {
     routing {
         static("/") {
             resources("assets")
-            default("index.html")
+            defaultResource("assets/index.html")
         }
     }
 
