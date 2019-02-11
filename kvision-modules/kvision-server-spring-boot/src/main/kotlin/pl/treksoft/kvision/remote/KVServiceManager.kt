@@ -44,6 +44,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
+    val getRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
     val postRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
     val putRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
     val deleteRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
@@ -57,18 +58,22 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bind(
         noinline function: suspend T.() -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
-            val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
+            val jsonRpcRequest = if (method == HttpMethod.GET) {
+                JsonRpcRequest(req.getParameter("id")?.toInt() ?: 0, "", listOf())
+            } else {
+                mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
+            }
             GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                 try {
                     val result = function.invoke(service)
@@ -98,14 +103,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR, reified RET> bind(
         noinline function: suspend T.(PAR) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
@@ -151,14 +158,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
@@ -205,14 +214,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
@@ -261,14 +272,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
@@ -318,16 +331,17 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
-        route: String?,
-        method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
@@ -384,7 +398,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         function: T.(String?, String?) -> List<RemoteSelectOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        addRoute(RpcHttpMethod.POST, "/kv/$routeDef") { req, res ->
+        addRoute(HttpMethod.POST, "/kv/$routeDef") { req, res ->
             val service = SpringContext.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
             if (jsonRpcRequest.params.size == 2) {
@@ -425,15 +439,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 
     fun addRoute(
-        method: RpcHttpMethod,
+        method: HttpMethod,
         path: String,
         handler: (HttpServletRequest, HttpServletResponse) -> Unit
     ) {
         when (method) {
-            RpcHttpMethod.POST -> postRequests[path] = handler
-            RpcHttpMethod.PUT -> putRequests[path] = handler
-            RpcHttpMethod.DELETE -> deleteRequests[path] = handler
-            RpcHttpMethod.OPTIONS -> optionsRequests[path] = handler
+            HttpMethod.GET -> getRequests[path] = handler
+            HttpMethod.POST -> postRequests[path] = handler
+            HttpMethod.PUT -> putRequests[path] = handler
+            HttpMethod.DELETE -> deleteRequests[path] = handler
+            HttpMethod.OPTIONS -> optionsRequests[path] = handler
         }
     }
 

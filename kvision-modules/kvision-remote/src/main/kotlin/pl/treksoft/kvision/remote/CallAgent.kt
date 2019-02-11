@@ -56,37 +56,41 @@ open class CallAgent {
     fun jsonRpcCall(
         url: String,
         data: List<String?> = listOf(),
-        method: RpcHttpMethod = RpcHttpMethod.POST
+        method: HttpMethod = HttpMethod.POST
     ): Promise<String> {
         val jsonRpcRequest = JsonRpcRequest(counter++, url, data)
-        val jsonData = JSON.plain.stringify(jsonRpcRequest)
+        val jsonData = if (method == HttpMethod.GET) {
+            obj { id = jsonRpcRequest.id }
+        } else {
+            JSON.plain.stringify(jsonRpcRequest)
+        }
         return Promise { resolve, reject ->
             jQuery.ajax(url, obj {
                 this.contentType = "application/json"
                 this.data = jsonData
                 this.method = method.name
                 this.success =
-                        { data: dynamic, _: Any, _: Any ->
-                            when {
-                                data.id != jsonRpcRequest.id -> reject(Exception("Invalid response ID"))
-                                data.error != null -> reject(Exception(data.error.toString()))
-                                data.result != null -> resolve(data.result)
-                                else -> reject(Exception("Invalid response"))
-                            }
+                    { data: dynamic, _: Any, _: Any ->
+                        when {
+                            data.id != jsonRpcRequest.id -> reject(Exception("Invalid response ID"))
+                            data.error != null -> reject(Exception(data.error.toString()))
+                            data.result != null -> resolve(data.result)
+                            else -> reject(Exception("Invalid response"))
                         }
+                    }
                 this.error =
-                        { xhr: JQueryXHR, _: String, errorText: String ->
-                            val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
-                                xhr.responseJSON.toString()
-                            } else {
-                                errorText
-                            }
-                            if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
-                                reject(SecurityException(message))
-                            } else {
-                                reject(Exception(message))
-                            }
+                    { xhr: JQueryXHR, _: String, errorText: String ->
+                        val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
+                            xhr.responseJSON.toString()
+                        } else {
+                            errorText
                         }
+                        if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
+                            reject(SecurityException(message))
+                        } else {
+                            reject(Exception(message))
+                        }
+                    }
             })
         }
     }
@@ -112,22 +116,22 @@ open class CallAgent {
                 this.data = data
                 this.method = method.name
                 this.success =
-                        { data: dynamic, _: Any, _: Any ->
-                            resolve(data)
-                        }
+                    { data: dynamic, _: Any, _: Any ->
+                        resolve(data)
+                    }
                 this.error =
-                        { xhr: JQueryXHR, _: String, errorText: String ->
-                            val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
-                                xhr.responseJSON.toString()
-                            } else {
-                                errorText
-                            }
-                            if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
-                                reject(SecurityException(message))
-                            } else {
-                                reject(Exception(message))
-                            }
+                    { xhr: JQueryXHR, _: String, errorText: String ->
+                        val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
+                            xhr.responseJSON.toString()
+                        } else {
+                            errorText
                         }
+                        if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
+                            reject(SecurityException(message))
+                        } else {
+                            reject(Exception(message))
+                        }
+                    }
                 this.beforeSend = beforeSend
             })
         }

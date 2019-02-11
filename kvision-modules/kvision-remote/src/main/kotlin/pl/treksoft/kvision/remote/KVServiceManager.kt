@@ -28,18 +28,18 @@ import kotlin.reflect.KClass
  */
 actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KClass<T>) {
 
-    protected val calls: MutableMap<String, Pair<String, RpcHttpMethod>> = mutableMapOf()
+    protected val calls: MutableMap<String, Pair<String, HttpMethod>> = mutableMapOf()
     var counter: Int = 0
 
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected actual inline fun <reified RET> bind(
         noinline function: suspend T.() -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
@@ -48,13 +48,15 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected actual inline fun <reified PAR, reified RET> bind(
         noinline function: suspend T.(PAR) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
@@ -62,13 +64,15 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
@@ -76,13 +80,15 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
@@ -90,13 +96,15 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
@@ -104,15 +112,16 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
-        route: String?,
-        method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
@@ -125,12 +134,12 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         function: T.(String?, String?) -> List<RemoteSelectOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", RpcHttpMethod.POST)
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)
     }
 
     /**
      * Returns the map of defined paths.
      */
-    fun getCalls(): Map<String, Pair<String, RpcHttpMethod>> = calls
+    fun getCalls(): Map<String, Pair<String, HttpMethod>> = calls
 
 }

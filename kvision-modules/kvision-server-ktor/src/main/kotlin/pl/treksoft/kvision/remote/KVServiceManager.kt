@@ -28,6 +28,7 @@ import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Route
 import io.ktor.routing.delete
+import io.ktor.routing.get
 import io.ktor.routing.options
 import io.ktor.routing.post
 import io.ktor.routing.put
@@ -49,6 +50,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
+    val getRequests: MutableMap<String, suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit> = mutableMapOf()
     val postRequests: MutableMap<String, suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit> = mutableMapOf()
     val putRequests: MutableMap<String, suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit> = mutableMapOf()
     val deleteRequests: MutableMap<String, suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit> =
@@ -64,18 +66,22 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bind(
         noinline function: suspend T.() -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
-            val jsonRpcRequest = call.receive<JsonRpcRequest>()
+            val jsonRpcRequest = if (method == HttpMethod.GET) {
+                JsonRpcRequest(call.request.queryParameters["id"]?.toInt() ?: 0, "", listOf())
+            } else {
+                call.receive()
+            }
             try {
                 val result = function.invoke(service)
                 call.respond(
@@ -99,14 +105,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR, reified RET> bind(
         noinline function: suspend T.(PAR) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
@@ -144,14 +152,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
@@ -190,14 +200,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
@@ -238,14 +250,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
-        route: String?, method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
@@ -287,16 +301,17 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
-        route: String?,
-        method: RpcHttpMethod
+        method: HttpMethod, route: String?
     ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
@@ -345,7 +360,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         function: T.(String?, String?) -> List<RemoteSelectOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        addRoute(RpcHttpMethod.POST, "/kv/$routeDef") {
+        addRoute(HttpMethod.POST, "/kv/$routeDef") {
             val service = call.injector.getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
             if (jsonRpcRequest.params.size == 2) {
@@ -380,15 +395,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 
     fun addRoute(
-        method: RpcHttpMethod,
+        method: HttpMethod,
         path: String,
         handler: suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit
     ) {
         when (method) {
-            RpcHttpMethod.POST -> postRequests[path] = handler
-            RpcHttpMethod.PUT -> putRequests[path] = handler
-            RpcHttpMethod.DELETE -> deleteRequests[path] = handler
-            RpcHttpMethod.OPTIONS -> optionsRequests[path] = handler
+            HttpMethod.GET -> getRequests[path] = handler
+            HttpMethod.POST -> postRequests[path] = handler
+            HttpMethod.PUT -> putRequests[path] = handler
+            HttpMethod.DELETE -> deleteRequests[path] = handler
+            HttpMethod.OPTIONS -> optionsRequests[path] = handler
         }
     }
 
@@ -404,6 +420,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 }
 
 fun <T : Any> Route.applyRoutes(serviceManager: KVServiceManager<T>) {
+    serviceManager.getRequests.forEach { (path, handler) ->
+        get(path, handler)
+    }
     serviceManager.postRequests.forEach { (path, handler) ->
         post(path, handler)
     }

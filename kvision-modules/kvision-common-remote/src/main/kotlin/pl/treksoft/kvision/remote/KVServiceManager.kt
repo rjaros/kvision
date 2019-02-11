@@ -23,13 +23,6 @@ package pl.treksoft.kvision.remote
 
 import kotlin.reflect.KClass
 
-enum class RpcHttpMethod {
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS
-}
-
 enum class HttpMethod {
     GET,
     POST,
@@ -46,73 +39,73 @@ expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) {
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected inline fun <reified RET> bind(
         noinline function: suspend T.() -> RET,
-        route: String? = null,
-        method: RpcHttpMethod = RpcHttpMethod.POST
+        method: HttpMethod = HttpMethod.POST,
+        route: String? = null
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected inline fun <reified PAR, reified RET> bind(
         noinline function: suspend T.(PAR) -> RET,
-        route: String? = null,
-        method: RpcHttpMethod = RpcHttpMethod.POST
+        method: HttpMethod = HttpMethod.POST,
+        route: String? = null
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected inline fun <reified PAR1, reified PAR2, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2) -> RET,
-        route: String? = null,
-        method: RpcHttpMethod = RpcHttpMethod.POST
+        method: HttpMethod = HttpMethod.POST,
+        route: String? = null
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
-        route: String? = null,
-        method: RpcHttpMethod = RpcHttpMethod.POST
+        method: HttpMethod = HttpMethod.POST,
+        route: String? = null
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
-        route: String? = null,
-        method: RpcHttpMethod = RpcHttpMethod.POST
+        method: HttpMethod = HttpMethod.POST,
+        route: String? = null
     )
 
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
-     * @param route a route
      * @param method a HTTP method
+     * @param route a route
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
-        route: String? = null,
-        method: RpcHttpMethod = RpcHttpMethod.POST
+        method: HttpMethod = HttpMethod.POST,
+        route: String? = null
     )
 
     /**
