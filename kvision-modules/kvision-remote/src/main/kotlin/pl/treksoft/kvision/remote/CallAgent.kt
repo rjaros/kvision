@@ -21,7 +21,12 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.DynamicObjectParser
 import kotlinx.serialization.ImplicitReflectionSerializer
+import kotlinx.serialization.SerializationStrategy
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.serializer
 import kotlinx.serialization.stringify
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
@@ -29,6 +34,7 @@ import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
 import kotlin.js.Promise
+import kotlin.js.then
 import kotlin.js.undefined
 import kotlin.js.JSON as NativeJSON
 
@@ -47,8 +53,8 @@ open class CallAgent {
     /**
      * Makes an JSON-RPC call to the remote server.
      * @param url an URL address
-     * @param method a HTTP method
      * @param data data to be sent
+     * @param method a HTTP method
      * @return a promise of the result
      */
     @UseExperimental(ImplicitReflectionSerializer::class)
@@ -98,8 +104,10 @@ open class CallAgent {
     /**
      * Makes a remote call to the remote server.
      * @param url an URL address
-     * @param method a HTTP method
      * @param data data to be sent
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
      * @return a promise of the result
      */
     @Suppress("UnsafeCastFromDynamic")
@@ -135,5 +143,237 @@ open class CallAgent {
                 this.beforeSend = beforeSend
             })
         }
+    }
+
+    /**
+     * Makes a remote call to the remote server.
+     * @param url an URL address
+     * @param data data to be sent
+     * @param deserializer a deserializer for the result value
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
+     * @param transform a function to transform the result of the call
+     * @return a promise of the result
+     */
+    fun <T> remoteCall(
+        url: String,
+        data: dynamic = null,
+        deserializer: DeserializationStrategy<T>,
+        method: HttpMethod = HttpMethod.GET,
+        contentType: String = "application/json",
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
+        transform: ((dynamic) -> dynamic)? = null
+    ): Promise<T> {
+        return remoteCall(url, data, method, contentType, beforeSend).then { result: dynamic ->
+            val transformed = if (transform != null) {
+                transform(result)
+            } else {
+                result
+            }
+            DynamicObjectParser().parse(transformed, deserializer)
+        }
+    }
+
+    /**
+     * Makes a remote call to the remote server.
+     * @param url an URL address
+     * @param serializer for the data
+     * @param data data to be sent
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
+     * @return a promise of the result
+     */
+    fun <V> remoteCall(
+        url: String,
+        serializer: SerializationStrategy<V>,
+        data: V,
+        method: HttpMethod = HttpMethod.GET,
+        contentType: String = "application/json",
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
+    ): Promise<dynamic> {
+        val dynamicData = NativeJSON.parse<dynamic>(Json.stringify(serializer, data))
+        return remoteCall(url, dynamicData, method, contentType, beforeSend)
+    }
+
+
+    /**
+     * Makes a remote call to the remote server.
+     * @param url an URL address
+     * @param serializer for the data
+     * @param data data to be sent
+     * @param deserializer a deserializer for the result value
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
+     * @param transform a function to transform the result of the call
+     * @return a promise of the result
+     */
+    fun <T, V> remoteCall(
+        url: String,
+        serializer: SerializationStrategy<V>,
+        data: V,
+        deserializer: DeserializationStrategy<T>,
+        method: HttpMethod = HttpMethod.GET,
+        contentType: String = "application/json",
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
+        transform: ((dynamic) -> dynamic)? = null
+    ): Promise<T> {
+        val dynamicData = NativeJSON.parse<dynamic>(Json.stringify(serializer, data))
+        return remoteCall(url, dynamicData, method, contentType, beforeSend).then { result: dynamic ->
+            val transformed = if (transform != null) {
+                transform(result)
+            } else {
+                result
+            }
+            DynamicObjectParser().parse(transformed, deserializer)
+        }
+    }
+
+    /**
+     * Helper inline function to automatically get deserializer for the result value with dynamic data.
+     * @param url an URL address
+     * @param data data to be sent
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
+     * @param transform a function to transform the result of the call
+     * @return a promise of the result
+     */
+    @UseExperimental(ImplicitReflectionSerializer::class)
+    inline fun <reified T : Any> call(
+        url: String,
+        data: dynamic = null,
+        method: HttpMethod = HttpMethod.GET,
+        contentType: String = "application/json",
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
+        noinline transform: ((dynamic) -> dynamic)? = null
+    ): Promise<T> {
+        return remoteCall(url, data, T::class.serializer(), method, contentType, beforeSend, transform)
+    }
+
+    /**
+     * Helper inline function to automatically get serializer for the data.
+     * @param url an URL address
+     * @param data data to be sent
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
+     * @return a promise of the result
+     */
+    @UseExperimental(ImplicitReflectionSerializer::class)
+    inline fun <reified V : Any> call(
+        url: String,
+        data: V,
+        method: HttpMethod = HttpMethod.GET,
+        contentType: String = "application/json",
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
+    ): Promise<dynamic> {
+        return remoteCall(
+            url,
+            V::class.serializer(),
+            data,
+            method,
+            contentType,
+            beforeSend
+        )
+    }
+
+    /**
+     * Helper inline function to automatically get serializer for the data.
+     * @param url an URL address
+     * @param data data to be sent
+     * @param deserializer a deserializer for the result value
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
+     * @param transform a function to transform the result of the call
+     * @return a promise of the result
+     */
+    @UseExperimental(ImplicitReflectionSerializer::class)
+    inline fun <T : Any, reified V : Any> call(
+        url: String,
+        data: V,
+        deserializer: DeserializationStrategy<T>,
+        method: HttpMethod = HttpMethod.GET,
+        contentType: String = "application/json",
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
+        noinline transform: ((dynamic) -> dynamic)? = null
+    ): Promise<T> {
+        return remoteCall(
+            url,
+            V::class.serializer(),
+            data,
+            deserializer,
+            method,
+            contentType,
+            beforeSend,
+            transform
+        )
+    }
+
+    /**
+     * Helper inline function to automatically deserializer for the result value with typed data.
+     * @param url an URL address
+     * @param serializer for the data
+     * @param data data to be sent
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
+     * @param transform a function to transform the result of the call
+     * @return a promise of the result
+     */
+    @UseExperimental(ImplicitReflectionSerializer::class)
+    inline fun <reified T : Any, V : Any> call(
+        url: String,
+        serializer: SerializationStrategy<V>,
+        data: V,
+        method: HttpMethod = HttpMethod.GET,
+        contentType: String = "application/json",
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
+        noinline transform: ((dynamic) -> dynamic)? = null
+    ): Promise<T> {
+        return remoteCall(
+            url,
+            serializer,
+            data,
+            T::class.serializer(),
+            method,
+            contentType,
+            beforeSend,
+            transform
+        )
+    }
+
+    /**
+     * Helper inline function to automatically get serializer for the data and deserializer for the result value.
+     * @param url an URL address
+     * @param data data to be sent
+     * @param method a HTTP method
+     * @param contentType a content type of the request
+     * @param beforeSend a content type of the request
+     * @param transform a function to transform the result of the call
+     * @return a promise of the result
+     */
+    @UseExperimental(ImplicitReflectionSerializer::class)
+    inline fun <reified T : Any, reified V : Any> call(
+        url: String,
+        data: V,
+        method: HttpMethod = HttpMethod.GET,
+        contentType: String = "application/json",
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
+        noinline transform: ((dynamic) -> dynamic)? = null
+    ): Promise<T> {
+        return remoteCall(
+            url,
+            V::class.serializer(),
+            data,
+            T::class.serializer(),
+            method,
+            contentType,
+            beforeSend,
+            transform
+        )
     }
 }
