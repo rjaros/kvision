@@ -44,8 +44,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
      */
     suspend inline fun <reified RET : Any, T> call(noinline function: suspend T.() -> RET): RET {
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -68,8 +68,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         noinline function: suspend T.() -> List<RET>
     ): List<RET> {
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -92,8 +92,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
     ): RET {
         val data = serialize(p)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -117,8 +117,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
     ): List<RET> {
         val data = serialize(p)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -142,8 +142,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -168,8 +168,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -194,8 +194,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -221,8 +221,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -248,8 +248,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -280,8 +280,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
@@ -315,8 +315,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method).then {
             try {
                 @Suppress("UNCHECKED_CAST")
@@ -351,8 +351,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method).then {
             try {
                 deserializeList<RET>(it, RET::class.js.name)
