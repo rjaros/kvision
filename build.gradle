@@ -138,7 +138,6 @@ if (!project.gradle.startParameter.taskNames.contains("dokka")) {
             dependency("jquery-resizable-dom", "0.32.0")
             dependency("element-resize-event", "3.0.3")
             dependency("navigo", "7.0.0")
-            dependency("ajv", "6.8.1")
             devDependency("karma", "3.1.4")
             devDependency("qunit", "2.8.0")
         }
