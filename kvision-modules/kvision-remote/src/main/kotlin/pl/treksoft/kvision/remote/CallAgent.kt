@@ -153,7 +153,7 @@ open class CallAgent {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    fun <T> remoteCall(
+    fun <T : Any> remoteCall(
         url: String,
         data: dynamic = null,
         deserializer: DeserializationStrategy<T>,
@@ -182,7 +182,7 @@ open class CallAgent {
      * @param beforeSend a content type of the request
      * @return a promise of the result
      */
-    fun <V> remoteCall(
+    fun <V : Any> remoteCall(
         url: String,
         serializer: SerializationStrategy<V>,
         data: V,
@@ -206,7 +206,7 @@ open class CallAgent {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    fun <T, V> remoteCall(
+    fun <T : Any, V : Any> remoteCall(
         url: String,
         serializer: SerializationStrategy<V>,
         data: V,
