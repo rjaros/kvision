@@ -55,7 +55,7 @@ open class CallAgent {
      * @return a promise of the result
      */
     @UseExperimental(ImplicitReflectionSerializer::class)
-    @Suppress("UnsafeCastFromDynamic")
+    @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
     fun jsonRpcCall(
         url: String,
         data: List<String?> = listOf(),
