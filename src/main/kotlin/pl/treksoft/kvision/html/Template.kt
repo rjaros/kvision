@@ -21,7 +21,11 @@
  */
 package pl.treksoft.kvision.html
 
+import kotlinx.serialization.ImplicitReflectionSerializer
+import kotlinx.serialization.SerializationStrategy
+import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n
+import pl.treksoft.kvision.utils.JSON.toObj
 
 /**
  * Handlebars templates helper interface.
@@ -49,4 +53,20 @@ interface Template {
             templateDataObj = value
             content = template?.invoke(value) ?: templates[I18n.language]?.invoke(value)
         }
+}
+
+/**
+ * Extension function to set serializable object as a template data.
+ */
+fun <K> Template.setData(obj: K, serializer: SerializationStrategy<K>) {
+    @Suppress("UnsafeCastFromDynamic")
+    this.templateData = obj.toObj(serializer)
+}
+
+/**
+ * Extension function to set serializable object as a template data.
+ */
+@UseExperimental(ImplicitReflectionSerializer::class)
+inline fun <reified K : Any> Template.setData(obj: K) {
+    this.setData(obj, K::class.serializer())
 }
