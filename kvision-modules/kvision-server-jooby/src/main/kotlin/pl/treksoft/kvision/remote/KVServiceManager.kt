@@ -70,9 +70,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 } else {
                     req.body(JsonRpcRequest::class.java)
                 }
-                val service = req.require(serviceClass.java)
                 val injector = req.require(Injector::class.java)
-                injector.injectMembers(service)
+                val service = injector.getInstance(serviceClass.java)
                 GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                     try {
                         val result = function.invoke(service)
@@ -108,11 +107,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                val service = req.require(serviceClass.java)
-                val injector = req.require(Injector::class.java)
-                injector.injectMembers(service)
                 if (jsonRpcRequest.params.size == 1) {
                     val param = getParameter<PAR>(jsonRpcRequest.params[0])
+                    val injector = req.require(Injector::class.java)
+                    val service = injector.getInstance(serviceClass.java)
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
                             val result = function.invoke(service, param)
@@ -151,12 +149,11 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                val service = req.require(serviceClass.java)
-                val injector = req.require(Injector::class.java)
-                injector.injectMembers(service)
                 if (jsonRpcRequest.params.size == 2) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                     val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
+                    val injector = req.require(Injector::class.java)
+                    val service = injector.getInstance(serviceClass.java)
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
                             val result = function.invoke(service, param1, param2)
@@ -195,14 +192,13 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                val service = req.require(serviceClass.java)
-                val injector = req.require(Injector::class.java)
-                injector.injectMembers(service)
                 @Suppress("MagicNumber")
                 if (jsonRpcRequest.params.size == 3) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                     val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                     val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
+                    val injector = req.require(Injector::class.java)
+                    val service = injector.getInstance(serviceClass.java)
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
                             val result = function.invoke(service, param1, param2, param3)
@@ -241,15 +237,14 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                val service = req.require(serviceClass.java)
-                val injector = req.require(Injector::class.java)
-                injector.injectMembers(service)
                 @Suppress("MagicNumber")
                 if (jsonRpcRequest.params.size == 4) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                     val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                     val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                     val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
+                    val injector = req.require(Injector::class.java)
+                    val service = injector.getInstance(serviceClass.java)
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
                             val result = function.invoke(service, param1, param2, param3, param4)
@@ -289,9 +284,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routes.add {
             call(method, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                val service = req.require(serviceClass.java)
-                val injector = req.require(Injector::class.java)
-                injector.injectMembers(service)
                 @Suppress("MagicNumber")
                 if (jsonRpcRequest.params.size == 5) {
                     val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
@@ -299,6 +291,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                     val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
                     val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
+                    val injector = req.require(Injector::class.java)
+                    val service = injector.getInstance(serviceClass.java)
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
                             val result = function.invoke(service, param1, param2, param3, param4, param5)
@@ -332,12 +326,11 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routes.add {
             call(HttpMethod.POST, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                val service = req.require(serviceClass.java)
-                val injector = req.require(Injector::class.java)
-                injector.injectMembers(service)
                 if (jsonRpcRequest.params.size == 2) {
                     val param1 = getParameter<String?>(jsonRpcRequest.params[0])
                     val param2 = getParameter<String?>(jsonRpcRequest.params[1])
+                    val injector = req.require(Injector::class.java)
+                    val service = injector.getInstance(serviceClass.java)
                     GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
                         try {
                             val result = function.invoke(service, param1, param2)
