@@ -28,6 +28,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.context.ApplicationContext
 import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
 import java.text.SimpleDateFormat
 import javax.servlet.http.HttpServletRequest
@@ -44,11 +45,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val getRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
-    val postRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
-    val putRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
-    val deleteRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
-    val optionsRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse) -> Unit> = mutableMapOf()
+    val getRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit> =
+        mutableMapOf()
+    val postRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit> =
+        mutableMapOf()
+    val putRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit> =
+        mutableMapOf()
+    val deleteRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit> =
+        mutableMapOf()
+    val optionsRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit> =
+        mutableMapOf()
 
     val mapper = jacksonObjectMapper().apply {
         dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
@@ -67,8 +73,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         method: HttpMethod, route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, res ->
-            val service = SpringContext.getBean(serviceClass.java)
+        addRoute(method, "/kv/$routeDef") { req, res, ctx ->
+            val service = ctx.getBean(serviceClass.java)
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(req.getParameter("id")?.toInt() ?: 0, "", listOf())
             } else {
@@ -114,8 +120,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, res ->
-            val service = SpringContext.getBean(serviceClass.java)
+        addRoute(method, "/kv/$routeDef") { req, res, ctx ->
+            val service = ctx.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
             if (jsonRpcRequest.params.size == 1) {
                 val param = getParameter<PAR>(jsonRpcRequest.params[0])
@@ -169,8 +175,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, res ->
-            val service = SpringContext.getBean(serviceClass.java)
+        addRoute(method, "/kv/$routeDef") { req, res, ctx ->
+            val service = ctx.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
             if (jsonRpcRequest.params.size == 2) {
                 val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
@@ -225,8 +231,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, res ->
-            val service = SpringContext.getBean(serviceClass.java)
+        addRoute(method, "/kv/$routeDef") { req, res, ctx ->
+            val service = ctx.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
             @Suppress("MagicNumber")
             if (jsonRpcRequest.params.size == 3) {
@@ -283,8 +289,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, res ->
-            val service = SpringContext.getBean(serviceClass.java)
+        addRoute(method, "/kv/$routeDef") { req, res, ctx ->
+            val service = ctx.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
             @Suppress("MagicNumber")
             if (jsonRpcRequest.params.size == 4) {
@@ -343,8 +349,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, res ->
-            val service = SpringContext.getBean(serviceClass.java)
+        addRoute(method, "/kv/$routeDef") { req, res, ctx ->
+            val service = ctx.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
             @Suppress("MagicNumber")
             if (jsonRpcRequest.params.size == 5) {
@@ -398,8 +404,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         function: T.(String?, String?) -> List<RemoteSelectOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        addRoute(HttpMethod.POST, "/kv/$routeDef") { req, res ->
-            val service = SpringContext.getBean(serviceClass.java)
+        addRoute(HttpMethod.POST, "/kv/$routeDef") { req, res, ctx ->
+            val service = ctx.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
             if (jsonRpcRequest.params.size == 2) {
                 val param1 = getParameter<String?>(jsonRpcRequest.params[0])
@@ -441,7 +447,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     fun addRoute(
         method: HttpMethod,
         path: String,
-        handler: (HttpServletRequest, HttpServletResponse) -> Unit
+        handler: (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit
     ) {
         when (method) {
             HttpMethod.GET -> getRequests[path] = handler

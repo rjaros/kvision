@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.remote
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -33,6 +34,9 @@ open class KVController {
 
     @Autowired
     lateinit var kvServer: KVServer
+
+    @Autowired
+    lateinit var applicationContext: ApplicationContext
 
     @RequestMapping(
         "/kv/**",
@@ -51,7 +55,7 @@ open class KVController {
             }
         }.firstOrNull()
         if (route != null) {
-            route.invoke(req, res)
+            route.invoke(req, res, applicationContext)
         } else {
             res.status = HttpServletResponse.SC_NOT_FOUND
         }
