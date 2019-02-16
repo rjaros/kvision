@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse
 open class KVController {
 
     @Autowired
-    lateinit var kvServer: KVServer
+    lateinit var services: List<KVServiceManager<*>>
 
     @Autowired
     lateinit var applicationContext: ApplicationContext
@@ -44,7 +44,7 @@ open class KVController {
     )
     open fun kVMapping(req: HttpServletRequest, res: HttpServletResponse) {
         val routeUrl = req.requestURI
-        val route = kvServer.services.mapNotNull {
+        val route = services.mapNotNull {
             when (req.method) {
                 "GET" -> it.getRequests[routeUrl]
                 "POST" -> it.postRequests[routeUrl]
