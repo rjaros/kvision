@@ -35,7 +35,7 @@ $dokka.location:pl.treksoft.kvision.utils$perc#kotlin.Intpl.treksoft.kvision.ut
 $dokka.location:pl.treksoft.kvision.utils$pt#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/pt.html
 $dokka.location:pl.treksoft.kvision.utils$px#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/px.html
 $dokka.location:pl.treksoft.kvision.utils$rem#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/rem.html
-$dokka.location:pl.treksoft.kvision.utils$syncWithList(com.lightningkite.kotlin.observable.list.ObservableList((pl.treksoft.kvision.utils.syncWithList.T)), kotlin.collections.List((pl.treksoft.kvision.utils.syncWithList.T)))pl.treksoft.kvision.utils/com.lightningkite.kotlin.observable.list.-observable-list/sync-with-list.html
+$dokka.location:pl.treksoft.kvision.utils$syncWithList(kotlin.collections.MutableList((pl.treksoft.kvision.utils.syncWithList.T)), kotlin.collections.List((pl.treksoft.kvision.utils.syncWithList.T)))pl.treksoft.kvision.utils/kotlin.collections.-mutable-list/sync-with-list.html
 $dokka.location:pl.treksoft.kvision.utils$toHexString(kotlin.Int)pl.treksoft.kvision.utils/kotlin.-int/to-hex-string.html
 $dokka.location:pl.treksoft.kvision.utils$vh#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vh.html
 $dokka.location:pl.treksoft.kvision.utils$vmax#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vmax.html

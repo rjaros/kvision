@@ -9,7 +9,7 @@
 <br/>
 <h1>LoginService</h1>
 <code><span class="keyword">class </span><span class="identifier">LoginService</span></code>
-<p>Pac4j form login dispatcher.</p>
+<p>Form login dispatcher.</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -18,8 +18,8 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">LoginService</span><span class="symbol">(</span><span class="symbol">)</span></code>
-<p>Pac4j form login dispatcher.</p>
+<code><span class="identifier">LoginService</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.LoginService$<init>(kotlin.String)/loginEndpoint">loginEndpoint</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code>
+<p>Form login dispatcher.</p>
 </td>
 </tr>
 </tbody>
@@ -34,6 +34,13 @@
 <td>
 <code><span class="keyword">val </span><span class="identifier">loginAgent</span><span class="symbol">: </span><a href="../-call-agent/index.html"><span class="identifier">CallAgent</span></a></code></td>
 </tr>
+<tr>
+<td>
+<p><a href="login-endpoint.html">loginEndpoint</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">loginEndpoint</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
 </tbody>
 </table>
 <h3>Functions</h3>
@@ -45,7 +52,7 @@
 </td>
 <td>
 <code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">login</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.LoginService$login(pl.treksoft.kvision.remote.Credentials)/credentials">credentials</span><span class="symbol">:</span>&nbsp;<a href="../-credentials/index.html"><span class="identifier">Credentials</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
-<p>Login with Pac4j FormClient.</p>
+<p>Login with a form.</p>
 </td>
 </tr>
 </tbody>
