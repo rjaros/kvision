@@ -34,6 +34,7 @@ import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.JSON.toObj
 import pl.treksoft.kvision.utils.obj
 import kotlin.js.Promise
+import kotlin.js.JSON as NativeJSON
 
 /**
  * HTTP status unauthorized (401).
@@ -127,7 +128,7 @@ open class CallAgent {
                 this.error =
                     { xhr: JQueryXHR, _: String, errorText: String ->
                         val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
-                            xhr.responseJSON.toString()
+                            NativeJSON.stringify(xhr.responseJSON)
                         } else {
                             errorText
                         }
