@@ -11,12 +11,12 @@ KVision is not declarative - it is not designed to mix HTML code (or pseudo code
 programming language like JavaScript. In KVision everything is just written in Kotlin, and your code can be reused not by creating any templates,
 but by using well known OOP design patterns - composition and inheritance.
 
-This design is quite similar to many non-web UI programming libraries including Swing (Java), JavaFX, QT (C++) and WinForms (C#).
+This design is quite similar to many non-web UI programming libraries including Swing (Java), JavaFX, QT (C++), WinForms (C#) and Flutter.
 
 KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side, which
 allows to build full-stack, multiplatform applications with shared common code.
 
-**KVision is a new project in a development phase. Please create an issue for any bugs or feature requests.**
+**KVision is being actively developed. Please create an issue for any bugs or feature requests.**
 
 ## Features
 
@@ -33,6 +33,7 @@ allows to build full-stack, multiplatform applications with shared common code.
 - Data binding support for [observable](https://github.com/rjaros/kotlin-observable-js) data model.
 - Internationalization support based on [Jed](http://messageformat.github.io/Jed/) library and [gettext](https://www.gnu.org/software/gettext/) translations. 
 - Easy to use Drag & Drop support.
+- Type-safe REST connectivity.
 - Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side.
 - Ready to explore [KVision examples](https://github.com/rjaros/kvision-examples) are available,
 built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
@@ -42,7 +43,7 @@ built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Re
 
 ## Documentation
 
-The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook. It's not yet 100% complete, but it contains a lot of useful information about this framework. 
+The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook. 
 
 Full API documentation (KDoc) is available at [https://rjaros.github.io/kvision/api/](https://rjaros.github.io/kvision/api/).
 
@@ -86,36 +87,7 @@ Application package will be saved as build/distributions/showcase.zip.
         val label = Label("Hello world!")
         root.add(label)
 
-### Basic components interactions
-
-##### Simple, explicit way
-
-        val root = Root("root")
-        val panel = HPanel(spacing = 20, alignItems = FlexAlignItems.CENTER)
-        val label = Label("Not yet clicked.")
-        panel.add(label)
-        var count = 0
-        val button = Button("Click me")
-        button.onClick {
-            count++
-            label.content = "You clicked the button $count times."
-        }
-        panel.add(button)
-        root.add(panel)
-
-##### Using Kotlin language features
-
-        Root("root").add(
-            HPanel(spacing = 20, alignItems = FlexAlignItems.CENTER).apply {
-                val label = Label("Not yet clicked.").also { add(it) }
-                var count = 0
-                add(Button("Click me").onClick {
-                    label.content = "You clicked the button ${++count} times."
-                })
-            }
-        )
-
-##### Using type safe DSL builders
+### Basic components interactions using type safe DSL builders
 
         Root("root") {
             hPanel(spacing = 20, alignItems = FlexAlignItems.CENTER) {
