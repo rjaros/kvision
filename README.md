@@ -2,6 +2,10 @@
 
 Object oriented Web UI framework for Kotlin/JS.
 
+[![Travis CI](https://travis-ci.com/rjaros/kvision.svg?branch=master)](https://travis-ci.com/rjaros/kvision)
+[![Download](https://api.bintray.com/packages/rjaros/kotlin/kvision/images/download.svg) ](https://bintray.com/rjaros/kotlin/kvision/_latestVersion)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 KVision allows you to build user interface of modern web applications with the [Kotlin](https://kotlinlang.org) language.
 It's designed to be object oriented in the "most classical" sense - it gives you a hierarchy of many different components,
 which are used to build application UI.
