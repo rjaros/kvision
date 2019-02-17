@@ -139,6 +139,7 @@ if (!project.gradle.startParameter.taskNames.contains("dokka")) {
             dependency("element-resize-event", "3.0.3")
             dependency("navigo", "7.0.0")
             devDependency("karma", "3.1.4")
+            devDependency("karma-chrome-launcher", "2.2.0")
             devDependency("qunit", "2.8.0")
         }
 
@@ -147,7 +148,10 @@ if (!project.gradle.startParameter.taskNames.contains("dokka")) {
             contentPath = file('src/main/web')
             mode = production ? "production" : "development"
         }
-
+        karma {
+            plugins = ["karma-chrome-launcher"]
+            browsers = ["ChromeHeadless"]
+        }
         define "PRODUCTION", production
 
     }
@@ -233,6 +237,7 @@ if (!project.gradle.startParameter.taskNames.contains("dokka")) {
     afterEvaluate {
         tasks.getByName("webpack-bundle") { dependsOn(copyResources) }
         tasks.getByName("webpack-run") { dependsOn(copyResources) }
+        tasks.getByName("test") { dependsOn(copyResources, copyResourcesForTests) }
         tasks.getByName("karma-start") { dependsOn(copyResources, copyResourcesForTests) }
     }
 }

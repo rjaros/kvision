@@ -11,6 +11,11 @@ kotlinFrontend {
     }
 
     define "PRODUCTION", production
+
+    karma {
+        plugins = ["karma-chrome-launcher"]
+        browsers = ["ChromeHeadless"]
+    }
 }
 
 
