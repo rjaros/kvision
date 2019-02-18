@@ -30,10 +30,10 @@ import kotlinx.serialization.stringify
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.utils.JSON
-import pl.treksoft.kvision.utils.JSON.toObj
-import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.remote.JSON.toObj
 import kotlin.js.Promise
+import kotlin.js.then
+import kotlin.js.undefined
 import kotlin.js.JSON as NativeJSON
 
 /**

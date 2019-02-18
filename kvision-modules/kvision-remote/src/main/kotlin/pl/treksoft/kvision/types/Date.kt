@@ -19,13 +19,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package pl.treksoft.kvision.remote
+package pl.treksoft.kvision.types
 
-import org.jooby.Kooby
-import org.jooby.json.Jackson
+import kotlinx.serialization.Decoder
+import kotlinx.serialization.Encoder
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerialDescriptor
+import kotlinx.serialization.internal.SerialClassDescImpl
+import kotlin.js.Date
 
-fun Kooby.kvisionInit() {
-    assets("/", "/assets/index.html")
-    assets("/**", "/assets/{0}").onMissing(0)
-    use(Jackson())
+actual typealias Date = kotlin.js.Date
+
+/**
+ * JSON date serializer.
+ */
+object JsonDateSerializer : KSerializer<Date> {
+    override val descriptor: SerialDescriptor = SerialClassDescImpl("kotlin.js.Date")
+
+    override fun deserialize(decoder: Decoder): Date {
+        return Date(decoder.decodeLong())
+    }
+
+    override fun serialize(encoder: Encoder, obj: Date) {
+        encoder.encodeLong(obj.getTime().toLong())
+    }
+}
+
+/**
+ * @suppress
+ * Not used in this module.
+ */
+actual val KV_DEFAULT_DATE_FORMAT = ""
+
+/**
+ * @suppress
+ * Not used in this module.
+ */
+actual fun String.toDateF(format: String): Date {
+    TODO("Unimplemented")
+}
+
+/**
+ * @suppress
+ * Not used in this module.
+ */
+actual fun Date.toStringF(format: String): String {
+    TODO("Unimplemented")
 }

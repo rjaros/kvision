@@ -34,9 +34,7 @@ import kotlinx.serialization.internal.ShortSerializer
 import kotlinx.serialization.internal.StringSerializer
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
-import pl.treksoft.kvision.types.DateSerializer
-import pl.treksoft.kvision.types.toStringF
-import pl.treksoft.kvision.utils.JSON
+import pl.treksoft.kvision.types.JsonDateSerializer
 import kotlin.js.Date
 import kotlin.reflect.KClass
 
@@ -64,7 +62,7 @@ interface RemoteAgent {
                         JSON.plain.stringify(StringSerializer.list as KSerializer<Any>, value)
                     value[0] is Date ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(DateSerializer.list as KSerializer<Any>, value)
+                        JSON.plain.stringify(JsonDateSerializer.list as KSerializer<Any>, value)
                     value[0] is Int ->
                         @Suppress("UNCHECKED_CAST")
                         JSON.plain.stringify(IntSerializer.list as KSerializer<Any>, value)
@@ -115,7 +113,7 @@ interface RemoteAgent {
                 is Enum<*> -> "\"$value\""
                 is String -> value
                 is Char -> "\"$value\""
-                is Date -> "\"${value.toStringF()}\""
+                is Date -> "\"${value.getTime()}\""
                 else -> try {
                     @Suppress("UNCHECKED_CAST")
                     JSON.plain.stringify(kClass.serializer(), value)
@@ -139,7 +137,7 @@ interface RemoteAgent {
             "Boolean" -> JSON.plain.parse(BooleanSerializer, value) as RET
             "BoxedChar" -> JSON.plain.parse(CharSerializer, value) as RET
             "Short" -> JSON.plain.parse(ShortSerializer, value) as RET
-            "Date" -> JSON.plain.parse(DateSerializer, value) as RET
+            "Date" -> JSON.plain.parse(JsonDateSerializer, value) as RET
             "Byte" -> JSON.plain.parse(ByteSerializer, value) as RET
             else -> throw NotStandardTypeException(jsType)
         }
@@ -158,7 +156,7 @@ interface RemoteAgent {
             "Boolean" -> JSON.plain.parse(BooleanSerializer.list, value) as List<RET>
             "BoxedChar" -> JSON.plain.parse(CharSerializer.list, value) as List<RET>
             "Short" -> JSON.plain.parse(ShortSerializer.list, value) as List<RET>
-            "Date" -> JSON.plain.parse(DateSerializer.list, value) as List<RET>
+            "Date" -> JSON.plain.parse(JsonDateSerializer.list, value) as List<RET>
             "Byte" -> JSON.plain.parse(ByteSerializer.list, value) as List<RET>
             else -> throw NotStandardTypeException(jsType)
         }

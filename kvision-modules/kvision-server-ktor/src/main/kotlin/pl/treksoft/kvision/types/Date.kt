@@ -25,8 +25,6 @@ import java.text.SimpleDateFormat
 
 actual val KV_DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
 
-actual val KV_JSON_DATE_FORMAT = "yyyy-MM-dd HH:mm:ssZ"
-
 actual typealias Date = java.util.Date
 
 actual fun String.toDateF(format: String): Date = SimpleDateFormat(format).parse(this)

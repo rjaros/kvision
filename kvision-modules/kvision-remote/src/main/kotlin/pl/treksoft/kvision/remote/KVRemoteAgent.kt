@@ -25,7 +25,6 @@ import kotlinx.coroutines.asDeferred
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
-import pl.treksoft.kvision.utils.JSON
 import kotlin.js.js
 import kotlin.reflect.KClass
 import kotlin.js.JSON as NativeJSON

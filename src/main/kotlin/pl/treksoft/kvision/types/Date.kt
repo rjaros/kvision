@@ -31,8 +31,6 @@ import kotlin.js.Date
 
 actual val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
-actual val KV_JSON_DATE_FORMAT = "YYYY-MM-DD HH:mm:ssZZ"
-
 actual typealias Date = kotlin.js.Date
 
 /**
@@ -60,10 +58,10 @@ object DateSerializer : KSerializer<Date> {
     override val descriptor: SerialDescriptor = SerialClassDescImpl("kotlin.js.Date")
 
     override fun deserialize(decoder: Decoder): Date {
-        return decoder.decodeString().toDateF(KV_JSON_DATE_FORMAT)
+        return decoder.decodeString().toDateF()
     }
 
     override fun serialize(encoder: Encoder, obj: Date) {
-        encoder.encodeString(obj.toStringF(KV_JSON_DATE_FORMAT))
+        encoder.encodeString(obj.toStringF())
     }
 }

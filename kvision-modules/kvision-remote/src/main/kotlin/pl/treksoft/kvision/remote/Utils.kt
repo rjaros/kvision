@@ -21,11 +21,42 @@
  */
 package pl.treksoft.kvision.remote
 
-import org.jooby.Kooby
-import org.jooby.json.Jackson
+import kotlinx.serialization.SerializationStrategy
+import kotlinx.serialization.context.SimpleModule
+import kotlinx.serialization.json.Json
+import pl.treksoft.kvision.types.JsonDateSerializer
+import kotlin.js.Date
 
-fun Kooby.kvisionInit() {
-    assets("/", "/assets/index.html")
-    assets("/**", "/assets/{0}").onMissing(0)
-    use(Jackson())
+/**
+ * JavaScript Object type
+ */
+external class Object
+
+/**
+ * Helper function for creating JavaScript objects.
+ */
+fun obj(init: dynamic.() -> Unit): dynamic {
+    return (Object()).apply(init)
+}
+
+/**
+ * JSON utility functions
+ */
+object JSON {
+
+    val plain = Json().apply {
+        install(SimpleModule(Date::class, JsonDateSerializer))
+    }
+
+    val nonstrict = Json(strictMode = false).apply {
+        install(SimpleModule(Date::class, JsonDateSerializer))
+    }
+
+    /**
+     * An extension function to convert Serializable object to JS dynamic object
+     * @param serializer a serializer for T
+     */
+    fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
+        return kotlin.js.JSON.parse(plain.stringify(serializer, this))
+    }
 }

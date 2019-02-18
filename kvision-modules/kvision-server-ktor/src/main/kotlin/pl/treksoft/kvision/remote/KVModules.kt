@@ -37,14 +37,10 @@ import io.ktor.http.content.static
 import io.ktor.jackson.jackson
 import io.ktor.routing.routing
 import io.ktor.util.AttributeKey
-import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
-import java.text.SimpleDateFormat
 
 fun Application.kvisionInit(vararg modules: Module) {
     install(ContentNegotiation) {
-        jackson {
-            dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
-        }
+        jackson()
     }
     routing {
         static("/") {

@@ -30,7 +30,6 @@ import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.types.KFile
-import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.getContent
@@ -91,7 +90,7 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
             val map = it.flatMap { entry ->
                 when (entry.value) {
                     is Date -> {
-                        listOf(entry.key to (entry.value as? Date)?.toStringF(KV_JSON_DATE_FORMAT))
+                        listOf(entry.key to (entry.value as? Date)?.toStringF())
                     }
                     is List<*> -> {
                         @Suppress("UNCHECKED_CAST")

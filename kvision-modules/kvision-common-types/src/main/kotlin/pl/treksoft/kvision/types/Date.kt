@@ -23,8 +23,6 @@ package pl.treksoft.kvision.types
 
 expect val KV_DEFAULT_DATE_FORMAT: String
 
-expect val KV_JSON_DATE_FORMAT: String
-
 expect class Date
 
 expect fun String.toDateF(format: String = KV_DEFAULT_DATE_FORMAT): Date

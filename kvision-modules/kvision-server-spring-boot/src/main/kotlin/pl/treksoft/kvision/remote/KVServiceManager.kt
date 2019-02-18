@@ -29,8 +29,6 @@ import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
-import pl.treksoft.kvision.types.KV_JSON_DATE_FORMAT
-import java.text.SimpleDateFormat
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import kotlin.reflect.KClass
@@ -56,9 +54,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     val optionsRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit> =
         mutableMapOf()
 
-    val mapper = jacksonObjectMapper().apply {
-        dateFormat = SimpleDateFormat(KV_JSON_DATE_FORMAT)
-    }
+    val mapper = jacksonObjectMapper()
     var counter: Int = 0
 
     /**

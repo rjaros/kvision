@@ -23,7 +23,6 @@ package pl.treksoft.kvision.remote
 
 import kotlinx.coroutines.asDeferred
 import kotlinx.serialization.Serializable
-import pl.treksoft.kvision.utils.obj
 
 /**
  * A security exception.
