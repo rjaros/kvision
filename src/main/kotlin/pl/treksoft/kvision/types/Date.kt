@@ -29,7 +29,7 @@ import kotlinx.serialization.internal.SerialClassDescImpl
 import pl.treksoft.kvision.KVManager
 import kotlin.js.Date
 
-actual val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
+val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
 actual typealias Date = kotlin.js.Date
 
@@ -39,7 +39,7 @@ actual typealias Date = kotlin.js.Date
  * @return Date object
  */
 @Suppress("UnsafeCastFromDynamic")
-actual fun String.toDateF(format: String): Date {
+fun String.toDateF(format: String = KV_DEFAULT_DATE_FORMAT): Date {
     val result = KVManager.fecha.parse(this, format)
     return if (result) result else Date()
 }
@@ -50,7 +50,7 @@ actual fun String.toDateF(format: String): Date {
  * @return String object
  */
 @Suppress("UnsafeCastFromDynamic")
-actual fun Date.toStringF(format: String): String {
+fun Date.toStringF(format: String = KV_DEFAULT_DATE_FORMAT): String {
     return KVManager.fecha.format(this, format)
 }
 

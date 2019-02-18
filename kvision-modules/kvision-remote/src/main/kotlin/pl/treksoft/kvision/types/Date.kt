@@ -44,25 +44,3 @@ object JsonDateSerializer : KSerializer<Date> {
         encoder.encodeLong(obj.getTime().toLong())
     }
 }
-
-/**
- * @suppress
- * Not used in this module.
- */
-actual val KV_DEFAULT_DATE_FORMAT = ""
-
-/**
- * @suppress
- * Not used in this module.
- */
-actual fun String.toDateF(format: String): Date {
-    TODO("Unimplemented")
-}
-
-/**
- * @suppress
- * Not used in this module.
- */
-actual fun Date.toStringF(format: String): String {
-    TODO("Unimplemented")
-}
