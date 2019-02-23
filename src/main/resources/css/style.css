@@ -132,6 +132,10 @@ trix-toolbar .trix-button-group {
   white-space: nowrap;
 }
 
+.modal-title {
+  font-size: 18px;
+}
+
 ul.dropdown-menu li a {
   cursor: pointer;
 }
@@ -143,4 +147,12 @@ ul.dropdown-menu li a {
 
 .kv-preview-thumb .btn, .kv-zoom-actions .btn, .file-zoom-dialog .floating-buttons .btn {
    padding: 5px 8px;
+}
+
+.file-drop-zone.clickable:hover {
+    border: 1px dashed #999;
+}
+
+.file-drop-zone.clickable:focus {
+    border: 1px solid #5acde2;
 }
