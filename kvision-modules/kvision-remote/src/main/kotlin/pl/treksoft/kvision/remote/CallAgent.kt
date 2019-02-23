@@ -118,9 +118,10 @@ open class CallAgent {
     ): Promise<dynamic> {
         return Promise { resolve, reject ->
             jQuery.ajax(url, obj {
-                this.contentType = contentType
+                this.contentType = if (contentType != "multipart/form-data") contentType else false
                 this.data = data
                 this.method = method.name
+                this.processData = if (contentType != "multipart/form-data") undefined else false
                 this.success =
                     { data: dynamic, _: Any, _: Any ->
                         resolve(data)
