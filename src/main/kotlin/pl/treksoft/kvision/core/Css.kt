@@ -309,6 +309,15 @@ enum class Overflow(internal val overflow: String) {
 }
 
 /**
+ * Definitions of CSS overflow-wrap options.
+ */
+enum class OverflowWrap(internal val overflowWrap: String) {
+    NORMAL("normal"),
+    BREAKWORK("break-word"),
+    ANYWHERE("anywhere")
+}
+
+/**
  * Definitions of CSS resize options.
  */
 enum class Resize(internal val resize: String) {
@@ -484,6 +493,26 @@ enum class Clear(internal val clear: String) {
     BOTH("both"),
     INITIAL("initial"),
     INHERIT("inherit")
+}
+
+/**
+ * Definitions of CSS word-break options.
+ */
+enum class WordBreak(internal val wordBreak: String) {
+    NORMAL("normal"),
+    KEEPALL("keep-all"),
+    BREAKALL("break-all")
+}
+
+/**
+ * Definitions of CSS line-break options.
+ */
+enum class LineBreak(internal val lineBreak: String) {
+    AUTO("auto"),
+    LOOSE("loose"),
+    NORMAL("normal"),
+    STRICT("strict"),
+    ANYWHERE("anywhere")
 }
 
 /**

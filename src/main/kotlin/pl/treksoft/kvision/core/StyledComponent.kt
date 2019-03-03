@@ -88,6 +88,10 @@ abstract class StyledComponent : Component {
      */
     open var overflow: Overflow? by refreshOnUpdate()
     /**
+     * CSS overflow-wrap of the current component.
+     */
+    open var overflowWrap: OverflowWrap? by refreshOnUpdate()
+    /**
      * CSS resize of the current component.
      */
     open var resize: Resize? by refreshOnUpdate()
@@ -271,6 +275,14 @@ abstract class StyledComponent : Component {
      * CSS clear float of the current component.
      */
     open var clear: Clear? by refreshOnUpdate()
+    /**
+     * CSS word break of the current component.
+     */
+    open var wordBreak: WordBreak? by refreshOnUpdate()
+    /**
+     * CSS line break of the current component.
+     */
+    open var lineBreak: LineBreak? by refreshOnUpdate()
 
     private var snStyleCache: List<StringPair>? = null
 
@@ -341,6 +353,9 @@ abstract class StyledComponent : Component {
         }
         overflow?.let {
             snstyle.add("overflow" to it.overflow)
+        }
+        overflowWrap?.let {
+            snstyle.add("overflow-wrap" to it.overflowWrap)
         }
         resize?.let {
             snstyle.add("resize" to it.resize)
@@ -458,6 +473,12 @@ abstract class StyledComponent : Component {
         }
         clear?.let {
             snstyle.add("clear" to it.clear)
+        }
+        wordBreak?.let {
+            snstyle.add("word-break" to it.wordBreak)
+        }
+        lineBreak?.let {
+            snstyle.add("line-break" to it.lineBreak)
         }
         return snstyle
     }
