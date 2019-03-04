@@ -43,12 +43,26 @@ external class Object
 /**
  * Helper function for creating JavaScript objects.
  */
-fun obj(init: dynamic.() -> Unit): dynamic {
+inline fun obj(init: dynamic.() -> Unit): dynamic {
     return (Object()).apply(init)
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private fun vNodeData(): VNodeData = js("({})")
+/**
+ * Helper function for creating JavaScript objects from dynamic constructors.
+ */
+@Suppress("UNUSED_VARIABLE")
+inline fun <reified T> Any?.createInstance(vararg args: dynamic): T {
+    val jsClass = this
+    val argsArray = (listOf(null) + args).toTypedArray()
+    return js("new (Function.prototype.bind.apply(jsClass, argsArray))").unsafeCast<T>()
+}
+
+/**
+ * @suppress
+ * Internal function
+ */
+@Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
+inline fun vNodeData(): VNodeData = js("{}")
 
 /**
  * @suppress
@@ -65,7 +79,7 @@ interface KvJQueryEventObject : JQueryEventObject {
  */
 @Suppress("UnsafeCastFromDynamic")
 class KvEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, eventInitDict) {
-    override val detail: KvJQueryEventObject = obj {}
+    override val detail: KvJQueryEventObject = js("{}")
 }
 
 /**
@@ -116,25 +130,30 @@ interface SnOn<T> : BtOn {
 /**
  * Helper function for creating object parameters for Snabbdom.
  */
-fun snOpt(block: VNodeData.() -> Unit) = (vNodeData()::apply)(block)
+@Suppress("NOTHING_TO_INLINE")
+inline fun snOpt(noinline block: VNodeData.() -> Unit) = (vNodeData()::apply)(block)
 
+/**
+ * @suppress
+ * Internal function.
+ */
 @Suppress("UnsafeCastFromDynamic")
 internal fun on(widget: Widget): SnOn<Widget> {
-    val obj = js("({})")
+    val obj = js("{}")
     obj["self"] = widget
     return obj
 }
 
-@Suppress("UnsafeCastFromDynamic")
-internal fun hooks(): Hooks {
-    return js("({})")
+@Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
+internal inline fun hooks(): Hooks {
+    return js("{}")
 }
 
 /**
  * Helper function for creating style parameters for Snabbdom.
  */
-@Suppress("UnsafeCastFromDynamic")
-fun snStyle(pairs: List<StringPair>): VNodeStyle {
+@Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
+inline fun snStyle(pairs: List<StringPair>): VNodeStyle {
     return obj {
         pairs.forEach { (key, value) -> this[key] = value }
     }
@@ -143,8 +162,8 @@ fun snStyle(pairs: List<StringPair>): VNodeStyle {
 /**
  * Helper function for creating properties parameters for Snabbdom.
  */
-@Suppress("UnsafeCastFromDynamic")
-fun snProps(pairs: List<StringPair>): Props {
+@Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
+inline fun snProps(pairs: List<StringPair>): Props {
     return obj {
         pairs.forEach { (key, value) -> this[key] = value }
     }
@@ -153,8 +172,8 @@ fun snProps(pairs: List<StringPair>): Props {
 /**
  * Helper function for creating classes parameters for Snabbdom.
  */
-@Suppress("UnsafeCastFromDynamic")
-fun snClasses(pairs: List<StringBoolPair>): Classes {
+@Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
+inline fun snClasses(pairs: List<StringBoolPair>): Classes {
     return obj {
         pairs.forEach { (key, value) -> this[key] = value }
     }
@@ -163,8 +182,8 @@ fun snClasses(pairs: List<StringBoolPair>): Classes {
 /**
  * Helper function for creating attributes parameters for Snabbdom.
  */
-@Suppress("UnsafeCastFromDynamic")
-fun snAttrs(pairs: List<StringPair>): Attrs {
+@Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
+inline fun snAttrs(pairs: List<StringPair>): Attrs {
     return obj {
         pairs.forEach { (key, value) -> this[key] = value }
     }
