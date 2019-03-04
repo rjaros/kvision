@@ -173,7 +173,8 @@ dokka {
             'kvision-modules/kvision-common-types/src/main/kotlin',
             'kvision-modules/kvision-server-jooby/src/main/kotlin',
             'kvision-modules/kvision-server-ktor/src/main/kotlin',
-            'kvision-modules/kvision-server-spring-boot/src/main/kotlin')
+            'kvision-modules/kvision-server-spring-boot/src/main/kotlin',
+            'kvision-modules/kvision-electron/src/main/kotlin')
     classpath = [new File("dokka/kvision-dokka-helper.jar")]
     outputFormat = 'html'
     outputDirectory = "$buildDir/kdoc"
