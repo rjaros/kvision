@@ -40,6 +40,7 @@ allows to build full-stack, multiplatform applications with shared common code.
 - Easy to use Drag & Drop support.
 - Type-safe REST connectivity.
 - Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side.
+- Support for building multi-platform desktop applications with [Electron](https://electronjs.org).
 - Ready to explore [KVision examples](https://github.com/rjaros/kvision-examples) are available,
 built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
 [Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).
