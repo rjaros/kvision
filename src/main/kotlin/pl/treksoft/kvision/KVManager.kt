@@ -65,10 +65,6 @@ internal object KVManager {
         )
     )
     private val sdVirtualize = require("snabbdom-virtualize/strings").default
-    private val styleCss = try {
-        require("./css/style.css")
-    } catch (e: Throwable) {
-    }
 
     internal fun patch(id: String, vnode: VNode): VNode {
         val container = document.getElementById(id)

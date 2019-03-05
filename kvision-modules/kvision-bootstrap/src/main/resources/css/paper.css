@@ -10,3 +10,7 @@ body {
 .radio label, .checkbox label {
     white-space: nowrap;
 }
+
+.modal-title {
+    font-size: 18px;
+}

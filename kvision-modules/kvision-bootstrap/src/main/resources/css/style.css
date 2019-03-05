@@ -132,10 +132,6 @@ trix-toolbar .trix-button-group {
   white-space: nowrap;
 }
 
-.modal-title {
-  font-size: 18px;
-}
-
 ul.dropdown-menu li a {
   cursor: pointer;
 }

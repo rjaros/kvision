@@ -33,17 +33,19 @@ internal object KVManagerBootstrap {
     private val bootstrapWebpack = try {
         val bootswatch = links.asList().find { it.getAttribute("href")?.contains("bootstrap.min.css") ?: false }
         if (bootswatch != null) {
+            require("bootstrap-webpack!./js/bootstrap.config.js")
             if (bootswatch.getAttribute("href")?.contains("/paper/") == true) {
                 require("./css/paper.css")
             }
-            require("bootstrap-webpack!./js/bootstrap.config.js")
+            require("./css/style.css")
         } else {
             require("bootstrap-webpack")
+            require("./css/style.css")
         }
     } catch (e: Throwable) {
     }
     private val fontAwesomeWebpack = try {
-        require("font-awesome-webpack")
+        require("font-awesome-webpack-4")
     } catch (e: Throwable) {
     }
     private val awesomeBootstrapCheckbox = try {
