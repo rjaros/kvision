@@ -20,12 +20,12 @@ $dokka.location:pl.treksoft.kvision.remote.Profile$rememberedpl.treksoft.kvisio
 $dokka.location:pl.treksoft.kvision.remote.Profile$rolespl.treksoft.kvision.remote/-profile/-profile/roles.html
 $dokka.location:pl.treksoft.kvision.remote.Profile$usernamepl.treksoft.kvision.remote/-profile/-profile/username.html
 $dokka.location:pl.treksoft.kvision.types$toDateF(kotlin.String, kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-date-f.html
-$dokka.location:pl.treksoft.kvision.types$toStringF(java.util.Date, kotlin.String)pl.treksoft.kvision.types/java.util.-date/to-string-f.html
 $dokka.location:pl.treksoft.kvision.types$toStringF(kotlin.js.Date, kotlin.String)pl.treksoft.kvision.types/kotlin.js.-date/to-string-f.html
 $dokka.location:pl.treksoft.kvision.types.Datepl.treksoft.kvision.types/-date/index.html
 $dokka.location:pl.treksoft.kvision.utils$asString(kotlin.Pair((kotlin.Int, pl.treksoft.kvision.core.UNIT)))pl.treksoft.kvision.utils/kotlin.-pair/as-string.html
 $dokka.location:pl.treksoft.kvision.utils$ch#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/ch.html
 $dokka.location:pl.treksoft.kvision.utils$cm#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/cm.html
+$dokka.location:pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))pl.treksoft.kvision.utils/kotlin.-any/create-instance.html
 $dokka.location:pl.treksoft.kvision.utils$em#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/em.html
 $dokka.location:pl.treksoft.kvision.utils$getContent(org.w3c.files.File)pl.treksoft.kvision.utils/org.w3c.files.-file/get-content.html
 $dokka.location:pl.treksoft.kvision.utils$in#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/in.html
@@ -44,6 +44,8 @@ $dokka.location:pl.treksoft.kvision.utils$vw#kotlin.Intpl.treksoft.kvision.util
 pl.treksoft.kvision.core
 pl.treksoft.kvision.data
 pl.treksoft.kvision.dropdown
+pl.treksoft.kvision.electron
+pl.treksoft.kvision.electron.nodejs
 pl.treksoft.kvision.form
 pl.treksoft.kvision.form.check
 pl.treksoft.kvision.form.select

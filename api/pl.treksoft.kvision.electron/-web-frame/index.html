@@ -1,0 +1,254 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>WebFrame - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.electron</a>&nbsp;/&nbsp;<a href="./index.html">WebFrame</a><br/>
+<br/>
+<h1>WebFrame</h1>
+<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">WebFrame</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="clear-cache.html">clearCache</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">clearCache</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="execute-java-script.html">executeJavaScript</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">executeJavaScript</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$executeJavaScript(kotlin.String, kotlin.Boolean, kotlin.Function1((kotlin.Any, kotlin.Unit)))/code">code</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$executeJavaScript(kotlin.String, kotlin.Boolean, kotlin.Function1((kotlin.Any, kotlin.Unit)))/userGesture">userGesture</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$executeJavaScript(kotlin.String, kotlin.Boolean, kotlin.Function1((kotlin.Any, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">result</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="execute-java-script-in-isolated-world.html">executeJavaScriptInIsolatedWorld</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">executeJavaScriptInIsolatedWorld</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$executeJavaScriptInIsolatedWorld(kotlin.Number, kotlin.Array((pl.treksoft.kvision.electron.WebSource)), kotlin.Boolean, kotlin.Function1((kotlin.Any, kotlin.Unit)))/worldId">worldId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$executeJavaScriptInIsolatedWorld(kotlin.Number, kotlin.Array((pl.treksoft.kvision.electron.WebSource)), kotlin.Boolean, kotlin.Function1((kotlin.Any, kotlin.Unit)))/scripts">scripts</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-web-source/index.html"><span class="identifier">WebSource</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$executeJavaScriptInIsolatedWorld(kotlin.Number, kotlin.Array((pl.treksoft.kvision.electron.WebSource)), kotlin.Boolean, kotlin.Function1((kotlin.Any, kotlin.Unit)))/userGesture">userGesture</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$executeJavaScriptInIsolatedWorld(kotlin.Number, kotlin.Array((pl.treksoft.kvision.electron.WebSource)), kotlin.Boolean, kotlin.Function1((kotlin.Any, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">result</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-resource-usage.html">getResourceUsage</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getResourceUsage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-resource-usage/index.html"><span class="identifier">ResourceUsage</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-zoom-factor.html">getZoomFactor</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getZoomFactor</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-zoom-level.html">getZoomLevel</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getZoomLevel</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="insert-text.html">insertText</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">insertText</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$insertText(kotlin.String)/text">text</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="register-u-r-l-scheme-as-bypassing-c-s-p.html">registerURLSchemeAsBypassingCSP</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerURLSchemeAsBypassingCSP</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$registerURLSchemeAsBypassingCSP(kotlin.String)/scheme">scheme</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="register-u-r-l-scheme-as-privileged.html">registerURLSchemeAsPrivileged</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerURLSchemeAsPrivileged</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$registerURLSchemeAsPrivileged(kotlin.String, pl.treksoft.kvision.electron.RegisterURLSchemeAsPrivilegedOptions)/scheme">scheme</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$registerURLSchemeAsPrivileged(kotlin.String, pl.treksoft.kvision.electron.RegisterURLSchemeAsPrivilegedOptions)/options">options</span><span class="symbol">:</span>&nbsp;<a href="../-register-u-r-l-scheme-as-privileged-options/index.html"><span class="identifier">RegisterURLSchemeAsPrivilegedOptions</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="register-u-r-l-scheme-as-secure.html">registerURLSchemeAsSecure</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerURLSchemeAsSecure</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$registerURLSchemeAsSecure(kotlin.String)/scheme">scheme</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-isolated-world-content-security-policy.html">setIsolatedWorldContentSecurityPolicy</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setIsolatedWorldContentSecurityPolicy</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setIsolatedWorldContentSecurityPolicy(kotlin.Number, kotlin.String)/worldId">worldId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setIsolatedWorldContentSecurityPolicy(kotlin.Number, kotlin.String)/csp">csp</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-isolated-world-human-readable-name.html">setIsolatedWorldHumanReadableName</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setIsolatedWorldHumanReadableName</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setIsolatedWorldHumanReadableName(kotlin.Number, kotlin.String)/worldId">worldId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setIsolatedWorldHumanReadableName(kotlin.Number, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-isolated-world-security-origin.html">setIsolatedWorldSecurityOrigin</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setIsolatedWorldSecurityOrigin</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setIsolatedWorldSecurityOrigin(kotlin.Number, kotlin.String)/worldId">worldId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setIsolatedWorldSecurityOrigin(kotlin.Number, kotlin.String)/securityOrigin">securityOrigin</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-layout-zoom-level-limits.html">setLayoutZoomLevelLimits</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setLayoutZoomLevelLimits</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setLayoutZoomLevelLimits(kotlin.Number, kotlin.Number)/minimumLevel">minimumLevel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setLayoutZoomLevelLimits(kotlin.Number, kotlin.Number)/maximumLevel">maximumLevel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-spell-check-provider.html">setSpellCheckProvider</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setSpellCheckProvider</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setSpellCheckProvider(kotlin.String, kotlin.Boolean, pl.treksoft.kvision.electron.Provider)/language">language</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setSpellCheckProvider(kotlin.String, kotlin.Boolean, pl.treksoft.kvision.electron.Provider)/autoCorrectWord">autoCorrectWord</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setSpellCheckProvider(kotlin.String, kotlin.Boolean, pl.treksoft.kvision.electron.Provider)/provider">provider</span><span class="symbol">:</span>&nbsp;<a href="../-provider/index.html"><span class="identifier">Provider</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-visual-zoom-level-limits.html">setVisualZoomLevelLimits</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setVisualZoomLevelLimits</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setVisualZoomLevelLimits(kotlin.Number, kotlin.Number)/minimumLevel">minimumLevel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setVisualZoomLevelLimits(kotlin.Number, kotlin.Number)/maximumLevel">maximumLevel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-zoom-factor.html">setZoomFactor</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setZoomFactor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setZoomFactor(kotlin.Number)/factor">factor</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-zoom-level.html">setZoomLevel</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setZoomLevel</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.WebFrame$setZoomLevel(kotlin.Number)/level">level</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-event-emitter/add-listener.html">addListener</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$addListener(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$addListener(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/emit.html">emit</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">emit</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$emit(kotlin.String, kotlin.Array((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$emit(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/event-names.html">eventNames</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">eventNames</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/get-max-listeners.html">getMaxListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getMaxListeners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/listener-count.html">listenerCount</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">listenerCount</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$listenerCount(kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/listeners.html">listeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">listeners</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$listeners(kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/on.html">on</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">on</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$on(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$on(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/once.html">once</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">once</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$once(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$once(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/prepend-listener.html">prependListener</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">prependListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$prependListener(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$prependListener(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/prepend-once-listener.html">prependOnceListener</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">prependOnceListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$prependOnceListener(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$prependOnceListener(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/remove-all-listeners.html">removeAllListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAllListeners</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$removeAllListeners(kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/remove-listener.html">removeListener</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$removeListener(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$removeListener(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-event-emitter/set-max-listeners.html">setMaxListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setMaxListeners</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$setMaxListeners(kotlin.Number)/n">n</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-event-emitter/index.html"><span class="identifier">EventEmitter</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
