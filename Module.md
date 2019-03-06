@@ -15,6 +15,14 @@ Base component and container class with data binding support for observable data
 
 Bootstrap dropdown component with support for navigation bars and context menus.
 
+# Package pl.treksoft.kvision.electron
+
+Kotlin bindings for Electron API.
+
+# Package pl.treksoft.kvision.electron.nodejs
+
+Kotlin bindings for NodeJS API within Electron.
+
 # Package pl.treksoft.kvision.form
 
 Convenient forms implementation, with support for many different input components and easy to define
