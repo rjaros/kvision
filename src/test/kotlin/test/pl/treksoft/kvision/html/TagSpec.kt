@@ -78,4 +78,21 @@ class TagSpec : DomSpec {
             )
         }
     }
+
+    @Test
+    fun renderUnaryPlus() {
+        run {
+            val root = Root("test", true)
+            val tag = Tag(TAG.H1, rich = true) {
+                +"This is <b>h1</b>"
+            }
+            root.add(tag)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<h1><span>This is <b>h1</b></span></h1>",
+                element?.innerHTML,
+                "Should render correct html tag with children"
+            )
+        }
+    }
 }

@@ -172,6 +172,13 @@ open class Tag(
         return cl
     }
 
+    operator fun String.unaryPlus() {
+        if (content == null)
+            content = this
+        else
+            content += this
+    }
+
     companion object {
         /**
          * DSL builder extension function.
