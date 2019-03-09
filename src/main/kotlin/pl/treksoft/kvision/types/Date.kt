@@ -29,7 +29,7 @@ import kotlinx.serialization.internal.SerialClassDescImpl
 import pl.treksoft.kvision.KVManager
 import kotlin.js.Date
 
-val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
+const val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
 actual typealias Date = kotlin.js.Date
 

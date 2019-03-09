@@ -26,7 +26,7 @@
     "CONFLICTING_OVERLOADS",
     "EXTERNAL_DELEGATION",
     "NESTED_CLASS_IN_EXTERNAL_INTERFACE",
-    "UNUSED", "PropertyName"
+    "UNUSED", "PropertyName", "TooManyFunctions", "VariableNaming", "MaxLineLength", "LargeClass"
 )
 @file:JsModule("electron")
 @file:JsNonModule

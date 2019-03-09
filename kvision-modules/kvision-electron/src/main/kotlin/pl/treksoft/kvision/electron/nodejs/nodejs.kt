@@ -26,7 +26,7 @@
     "CONFLICTING_OVERLOADS",
     "EXTERNAL_DELEGATION",
     "NESTED_CLASS_IN_EXTERNAL_INTERFACE",
-    "UNUSED"
+    "UNUSED", "TooManyFunctions"
 )
 @file:JsQualifier("NodeJS")
 

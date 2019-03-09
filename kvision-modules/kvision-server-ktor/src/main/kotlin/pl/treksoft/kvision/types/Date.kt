@@ -23,7 +23,7 @@ package pl.treksoft.kvision.types
 
 import java.text.SimpleDateFormat
 
-val KV_DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
+const val KV_DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
 
 actual typealias Date = java.util.Date
 

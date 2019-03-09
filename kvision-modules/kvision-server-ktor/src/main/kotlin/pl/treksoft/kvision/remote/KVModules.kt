@@ -53,13 +53,13 @@ fun Application.kvisionInit(vararg modules: Module) {
     val injector = Guice.createInjector(MainModule(this), *modules)
 
     intercept(ApplicationCallPipeline.Features) {
-        call.attributes.put(INJECTOR_KEY, injector.createChildInjector(CallModule(call)))
+        call.attributes.put(injectorKey, injector.createChildInjector(CallModule(call)))
     }
 }
 
-val INJECTOR_KEY = AttributeKey<Injector>("injector")
+val injectorKey = AttributeKey<Injector>("injector")
 
-val ApplicationCall.injector: Injector get() = attributes[INJECTOR_KEY]
+val ApplicationCall.injector: Injector get() = attributes[injectorKey]
 
 class CallModule(private val call: ApplicationCall) : AbstractModule() {
     override fun configure() {
