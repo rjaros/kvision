@@ -41,6 +41,8 @@ $dokka.location:pl.treksoft.kvision.utils$vh#kotlin.Intpl.treksoft.kvision.util
 $dokka.location:pl.treksoft.kvision.utils$vmax#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vmax.html
 $dokka.location:pl.treksoft.kvision.utils$vmin#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vmin.html
 $dokka.location:pl.treksoft.kvision.utils$vw#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vw.html
+pl.treksoft.kvision.chart
+pl.treksoft.kvision.chart.js
 pl.treksoft.kvision.core
 pl.treksoft.kvision.data
 pl.treksoft.kvision.dropdown
