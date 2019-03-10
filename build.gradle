@@ -167,6 +167,7 @@ dokka {
             'kvision-modules/kvision-upload/src/main/kotlin',
             'kvision-modules/kvision-handlebars/src/main/kotlin',
             'kvision-modules/kvision-i18n/src/main/kotlin',
+            'kvision-modules/kvision-chart/src/main/kotlin',
             'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-select-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',

@@ -1,0 +1,12 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("chart.js", "2.7.3")
+        devDependency("karma", "3.1.4")
+        devDependency("karma-chrome-launcher", "2.2.0")
+        devDependency("qunit", "2.8.0")
+    }
+
+}

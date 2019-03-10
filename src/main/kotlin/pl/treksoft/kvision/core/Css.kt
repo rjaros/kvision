@@ -570,7 +570,7 @@ class Color private constructor(private val color: String? = null) {
      */
     constructor(color: Col) : this(color.color)
 
-    internal fun asString(): String {
+    fun asString(): String {
         return color.orEmpty()
     }
 }

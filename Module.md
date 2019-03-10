@@ -7,6 +7,14 @@ KVision - object oriented Web UI framework for Kotlin/JS.
 KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders, 
 backgrounds, fonts, text and position) and the main Widget class.
 
+# Package pl.treksoft.kvision.chart
+
+Full-featured chart component based on chart.js library.
+
+# Package pl.treksoft.kvision.chart.js
+
+Kotlin bindings for chart.js API.
+
 # Package pl.treksoft.kvision.data
 
 Base component and container class with data binding support for observable data model.
