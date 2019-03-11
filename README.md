@@ -1,22 +1,19 @@
 ![KVision Logo](graphics/kvision-logo.png?raw=true "KVision")
 # KVision
 
-Object oriented Web UI framework for Kotlin/JS.
+Object oriented web framework for Kotlin/JS.
 
 [![Travis CI](https://travis-ci.com/rjaros/kvision.svg?branch=master)](https://travis-ci.com/rjaros/kvision)
 [![Download](https://api.bintray.com/packages/rjaros/kotlin/kvision/images/download.svg) ](https://bintray.com/rjaros/kotlin/kvision/_latestVersion)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-KVision allows you to build user interface of modern web applications with the [Kotlin](https://kotlinlang.org) language.
-It's designed to be object oriented in the "most classical" sense - it gives you a hierarchy of many different components,
-which are used to build application UI.
+KVision allows you to build modern web applications with the [Kotlin](https://kotlinlang.org) language, 
+without any use of HTML, CSS or JavaScript.
 
-Unlike most of the popular web UI frameworks (AngularJS, React, Vue.js and others),
-KVision is not declarative - it is not designed to mix HTML code (or pseudo code) with a typical
-programming language like JavaScript. In KVision everything is just written in Kotlin, and your code can be reused not by creating any templates,
-but by using well known OOP design patterns - composition and inheritance.
+KVision prefers the imperative style of programming. It's object oriented and supports many well known OOP design patterns. It gives you a hierarchy of many different components, 
+which are used as a builder blocks for the application GUI.
 
-This design is quite similar to many non-web UI programming libraries including Swing (Java), JavaFX, QT (C++), WinForms (C#) and Flutter.
+KVision's design is quite similar to many non-web UI programming libraries including Swing, JavaFX, QT, WinForms and Flutter.
 
 KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side, which
 allows to build full-stack, multiplatform applications with shared common code.
