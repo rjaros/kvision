@@ -117,7 +117,6 @@ dependencies {
     compile "com.github.snabbdom:snabbdom-kotlin:$snabbdomKotlinVersion"
     compile "pl.treksoft:navigo-kotlin:$navigoKotlinVersion"
     compile "pl.treksoft:jquery-kotlin:$jqueryKotlinVersion"
-    compile "pl.treksoft:kotlin-observable-js:$kotlinObservableVersion"
 }
 
 if (!project.gradle.startParameter.taskNames.contains("dokka")) {
@@ -168,6 +167,7 @@ dokka {
             'kvision-modules/kvision-handlebars/src/main/kotlin',
             'kvision-modules/kvision-i18n/src/main/kotlin',
             'kvision-modules/kvision-chart/src/main/kotlin',
+            'kvision-modules/kvision-datacontainer/src/main/kotlin',
             'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-select-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',

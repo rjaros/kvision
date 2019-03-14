@@ -97,7 +97,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     protected var lastLanguage: String? = null
 
-    internal fun <T> singleRender(block: () -> T): T {
+    protected fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true
         val t = block()
         getRoot()?.renderDisabled = false
