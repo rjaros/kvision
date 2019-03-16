@@ -1,0 +1,15 @@
+apply from: "../shared.gradle"
+
+dependencies {
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion"
+}
+
+kotlinFrontend {
+
+    npm {
+        devDependency("karma", "3.1.4")
+        devDependency("karma-chrome-launcher", "2.2.0")
+        devDependency("qunit", "2.8.0")
+    }
+
+}
