@@ -30,6 +30,7 @@ configure(allprojects - project(':kvision-modules')) {
         maven { url = 'https://kotlin.bintray.com/kotlinx' }
         maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
         maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
+        maven { url = 'https://dl.bintray.com/kotlin/kotlin-js-wrappers' }
         mavenLocal()
     }
 }
@@ -166,6 +167,8 @@ dokka {
             'kvision-modules/kvision-i18n/src/main/kotlin',
             'kvision-modules/kvision-chart/src/main/kotlin',
             'kvision-modules/kvision-datacontainer/src/main/kotlin',
+            'kvision-modules/kvision-dialog/src/main/kotlin',
+            'kvision-modules/kvision-redux/src/main/kotlin',
             'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-select-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',

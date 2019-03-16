@@ -1,0 +1,19 @@
+apply from: "../shared.gradle"
+
+dependencies {
+    compile ("org.jetbrains:kotlin-redux:$kotlinReduxVersion") {
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-html-js"
+    }
+}
+
+kotlinFrontend {
+
+    npm {
+        dependency("redux", "4.0.0")
+        dependency("redux-thunk", "2.3.0")
+        devDependency("karma", "3.1.4")
+        devDependency("karma-chrome-launcher", "2.2.0")
+        devDependency("qunit", "2.8.0")
+    }
+
+}
