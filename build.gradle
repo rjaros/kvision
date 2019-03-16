@@ -102,7 +102,6 @@ dependencies {
     if (!project.gradle.startParameter.taskNames.contains("dokka")) {
         expectedBy project('kvision-modules:kvision-common-types')
         compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion"
-        compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion"
         compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serializationVersion"
         if (!project.gradle.startParameter.taskNames.contains("generatePomFileForMavenProjectPublication")) {
             compile "org.jetbrains.kotlin:kotlin-test-js:$kotlinVersion"
@@ -110,7 +109,6 @@ dependencies {
         testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlinVersion"
     } else {
         compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-        compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
         compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
         testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     }
