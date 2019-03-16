@@ -32,7 +32,6 @@ import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.JSON
-import pl.treksoft.kvision.utils.getContent
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KProperty1
@@ -79,8 +78,8 @@ private class FormMapWrapper<out V>(private val map: Map<String, V>) : Map<Strin
 @Suppress("TooManyFunctions")
 class Form<K : Any>(private val panel: FormPanel<K>? = null, private val serializer: KSerializer<K>) {
 
-    internal val modelFactory: (Map<String, Any?>) -> K
-    internal val fields: MutableMap<String, FormControl> = mutableMapOf()
+    val modelFactory: (Map<String, Any?>) -> K
+    val fields: MutableMap<String, FormControl> = mutableMapOf()
     internal val fieldsParams: MutableMap<String, Any> = mutableMapOf()
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
@@ -279,23 +278,6 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
         return modelFactory(map.withDefault { null })
     }
 
-    /**
-     * Returns current data model with file content read for all KFiles controls.
-     * @return data model
-     */
-    suspend fun getDataWithFileContent(): K {
-        val map = fields.entries.associateBy({ it.key }, {
-            val value = it.value
-            if (value is KFilesFormControl) {
-                value.getValue()?.map {
-                    it.copy(content = value.getNativeFile(it)?.getContent())
-                }
-            } else {
-                value.getValue()
-            }
-        })
-        return modelFactory(map.withDefault { null })
-    }
 
     /**
      * Returns current data model as JSON.

@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form
 
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
@@ -46,4 +47,19 @@ open class FieldLabel(
         return super.getSnAttrs() + ("for" to forId)
     }
 
+    companion object {
+        /**
+         * DSL builder extension function.
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Container.fieldLabel(
+            forId: String, content: String? = null, rich: Boolean = false,
+            classes: Set<String> = setOf("control-label"), init: (FieldLabel.() -> Unit)? = null
+        ): FieldLabel {
+            val fieldLabel = FieldLabel(forId, content, rich, classes).apply { init?.invoke(this) }
+            this.add(fieldLabel)
+            return fieldLabel
+        }
+    }
 }

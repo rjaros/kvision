@@ -151,7 +151,7 @@ open class FormPanel<K : Any>(
      * Internal property.
      */
     @Suppress("LeakingThis")
-    protected val form = Form(this, serializer)
+    val form = Form(this, serializer)
     /**
      * @suppress
      * Internal property.
@@ -373,14 +373,6 @@ open class FormPanel<K : Any>(
      */
     open fun getData(): K {
         return form.getData()
-    }
-
-    /**
-     * Returns current data model with file content read for all KFiles controls.
-     * @return data model
-     */
-    suspend fun getDataWithFileContent(): K {
-        return form.getDataWithFileContent()
     }
 
     /**

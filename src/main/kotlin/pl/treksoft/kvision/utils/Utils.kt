@@ -23,14 +23,9 @@
 
 package pl.treksoft.kvision.utils
 
-import kotlinx.coroutines.suspendCancellableCoroutine
-import org.w3c.files.File
-import org.w3c.files.FileReader
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.UNIT
 import kotlin.browser.window
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 /**
  * Extension property to convert Int to CSS px units.
@@ -187,22 +182,6 @@ fun Int.toHexString(): String {
  * @return true if the current browser is IE11
  */
 fun isIE11(): Boolean = window.navigator.userAgent.matches("Trident\\/7\\.")
-
-/**
- * Suspending extension function to get file content.
- * @return file content
- */
-suspend fun File.getContent(): String = suspendCancellableCoroutine { cont ->
-    val reader = FileReader()
-    reader.onload = {
-        @Suppress("UnsafeCastFromDynamic")
-        cont.resume(reader.result)
-    }
-    reader.onerror = { e ->
-        cont.resumeWithException(Exception(e.type))
-    }
-    reader.readAsDataURL(this@getContent)
-}
 
 /**
  * Utility extension function to synchronise elements of the MutableList.
