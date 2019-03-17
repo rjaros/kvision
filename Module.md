@@ -1,6 +1,6 @@
 # Module KVision
 
-KVision - object oriented Web UI framework for Kotlin/JS.
+KVision - object oriented web framework for Kotlin/JS.
 
 # Package pl.treksoft.kvision.core
 
