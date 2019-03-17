@@ -62,6 +62,7 @@ pl.treksoft.kvision.modal
 pl.treksoft.kvision.navbar
 pl.treksoft.kvision.panel
 pl.treksoft.kvision.progress
+pl.treksoft.kvision.redux
 pl.treksoft.kvision.remote
 pl.treksoft.kvision.routing
 pl.treksoft.kvision.table
