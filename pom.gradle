@@ -24,7 +24,7 @@ def withPom = { pom ->
     pom.withXml {
         def root = asNode()
         root.appendNode('name', project.name)
-        root.appendNode('description', 'Object oriented Web UI framework for Kotlin/JS')
+        root.appendNode('description', 'Object oriented web framework for Kotlin/JS')
         root.appendNode('url', 'https://github.com/rjaros/kvision')
         root.children().last() + pomConfig
     }

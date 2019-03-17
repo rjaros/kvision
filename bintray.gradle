@@ -8,7 +8,7 @@ bintray {
         vcsUrl = "https://github.com/rjaros/kvision.git"
         version {
             name = "${project.version}"
-            desc = 'Object oriented Web UI framework for Kotlin/JS'
+            desc = 'Object oriented web framework for Kotlin/JS'
             released = new Date()
             vcsTag = project.version
         }
