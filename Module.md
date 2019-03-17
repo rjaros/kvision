@@ -90,6 +90,10 @@ CSS grid and Bootstrap responsive 12 columns gid).
 
 Bootstrap progress bar component.
 
+# Package pl.treksoft.kvision.redux
+
+Predictable state container based on Redux library.
+
 # Package pl.treksoft.kvision.remote
 
 A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.
