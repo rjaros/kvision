@@ -34,12 +34,13 @@ import redux.rEnhancer
 
 typealias Dispatch<A> = (A) -> WrapperAction
 typealias GetState<S> = () -> S
+typealias ActionCreator<A, S> = (Dispatch<A>, GetState<S>) -> Unit
 
 /**
  * An inline helper function for creating Redux store.
  *
  * @param reducer a reducer function
- * @param state an initial state
+ * @param initialState an initial state
  * @param middlewares a list of optional Redux JS middlewares
  */
 @UseExperimental(ImplicitReflectionSerializer::class)
@@ -60,7 +61,7 @@ inline fun <reified S : Any, A : RAction> createReduxStore(
  * @param S redux state type (@Serializable)
  * @param A redux action type
  * @param reducer a reducer function
- * @param state an initial state
+ * @param initialState an initial state
  * @param stateSerializer a serializer for the state type
  * @param middlewares a list of optional Redux JS middlewares
  */
@@ -107,9 +108,17 @@ class ReduxStore<S : Any, A : RAction>(
     /**
      * Dispatches an asynchronous action function.
      */
-    fun dispatch(action: (Dispatch<A>, GetState<S>) -> Unit): WrapperAction {
-        return store.dispatch({ d: Dispatch<A>, g: GetState<String> ->
-            action(d, { JSON.plain.parse(stateSerializer, g()) })
+    fun dispatch(actionCreator: ActionCreator<dynamic, S>): WrapperAction {
+        return store.dispatch({ reduxDispatch: Dispatch<dynamic>, reduxGetState: GetState<String> ->
+            val newDispatch: Dispatch<dynamic> = { elem ->
+                @Suppress("UnsafeCastFromDynamic")
+                if (js("typeof elem === 'function'")) {
+                    dispatch(actionCreator = elem)
+                } else {
+                    reduxDispatch(elem)
+                }
+            }
+            actionCreator(newDispatch, { JSON.plain.parse(stateSerializer, reduxGetState()) })
         })
     }
 
