@@ -86,6 +86,8 @@ open class CallAgent {
                     { xhr: JQueryXHR, _: String, errorText: String ->
                         val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
                             xhr.responseJSON.toString()
+                        } else if (xhr.responseText != undefined) {
+                            xhr.responseText
                         } else {
                             errorText
                         }
@@ -130,6 +132,8 @@ open class CallAgent {
                     { xhr: JQueryXHR, _: String, errorText: String ->
                         val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
                             NativeJSON.stringify(xhr.responseJSON)
+                        } else if (xhr.responseText != undefined) {
+                            xhr.responseText
                         } else {
                             errorText
                         }
