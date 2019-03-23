@@ -40,7 +40,7 @@ import pl.treksoft.kvision.panel.Root
 open class Style(className: String? = null, parentStyle: Style? = null, init: (Style.() -> Unit)? = null) :
     StyledComponent() {
 
-    override var parent: Container? = null
+    override var parent: Container? = Root.getFirstRoot()
 
     private val newClassName: String = if (parentStyle == null) {
         className ?: "kv_styleclass_${counter++}"
@@ -54,15 +54,7 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
     var className: String by refreshOnUpdate(newClassName)
 
     init {
-        val root = Root.getLastRoot()
-        @Suppress("LeakingThis")
-        parent = root
-        if (root != null) {
-            @Suppress("LeakingThis")
-            root.addStyle(this)
-        } else {
-            println("At least one Root object is required to create a style object!")
-        }
+        styles.add(this)
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -141,10 +133,12 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
     }
 
     override fun dispose() {
+        styles.remove(this)
     }
 
     companion object {
         internal var counter = 0
+        internal var styles = mutableListOf<Style>()
 
         /**
          * DSL builder extension function.

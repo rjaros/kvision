@@ -46,17 +46,21 @@ import pl.treksoft.kvision.utils.snOpt
  */
 @Suppress("TooManyFunctions")
 class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Unit)? = null) : SimplePanel() {
-    private val styles: MutableList<Style> = mutableListOf()
     private val modals: MutableList<Modal> = mutableListOf()
     private val contextMenus: MutableList<ContextMenu> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
 
     internal var renderDisabled = false
 
+    private val isFirstRoot = roots.isEmpty()
+
     init {
         rootVnode = KVManager.patch(id, this.renderVNode())
         this.id = id
         roots.add(this)
+        if (isFirstRoot) {
+            Style.styles.forEach { it.parent = this }
+        }
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -69,12 +73,6 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         } else {
             render("div#$id", stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())
         }
-    }
-
-    internal fun addStyle(style: Style) {
-        styles.add(style)
-        style.parent = this
-        refresh()
     }
 
     internal fun addModal(modal: Modal) {
@@ -96,10 +94,14 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     }
 
     private fun stylesVNodes(): Array<VNode> {
-        val visibleStyles = styles.filter { it.visible }
-        return if (visibleStyles.isNotEmpty()) {
-            val stylesDesc = visibleStyles.joinToString("\n") { it.generateStyle() }
-            arrayOf(h("style", arrayOf(stylesDesc)))
+        return if (isFirstRoot) {
+            val visibleStyles = Style.styles.filter { it.visible }
+            if (visibleStyles.isNotEmpty()) {
+                val stylesDesc = visibleStyles.joinToString("\n") { it.generateStyle() }
+                arrayOf(h("style", arrayOf(stylesDesc)))
+            } else {
+                arrayOf()
+            }
         } else {
             arrayOf()
         }
@@ -135,18 +137,25 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     }
 
     override fun dispose() {
-        styles.forEach { it.dispose() }
-        modals.forEach { it.dispose() }
-        contextMenus.forEach { it.dispose() }
         super.dispose()
         roots.remove(this)
+        if (isFirstRoot) {
+            Style.styles.clear()
+        }
     }
 
     companion object {
         internal val roots: MutableList<Root> = mutableListOf()
 
+        internal fun getFirstRoot(): Root? {
+            return if (roots.isNotEmpty())
+                roots[0]
+            else
+                null
+        }
+
         internal fun getLastRoot(): Root? {
-            return if (roots.size > 0)
+            return if (roots.isNotEmpty())
                 roots[roots.size - 1]
             else
                 null

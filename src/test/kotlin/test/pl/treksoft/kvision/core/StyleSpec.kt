@@ -24,6 +24,7 @@ package test.pl.treksoft.kvision.core
 import pl.treksoft.kvision.core.Col
 import pl.treksoft.kvision.core.Color
 import pl.treksoft.kvision.core.Overflow
+import pl.treksoft.kvision.core.Style
 import pl.treksoft.kvision.core.Style.Companion.style
 import pl.treksoft.kvision.core.Widget.Companion.widget
 import pl.treksoft.kvision.panel.Root
@@ -37,7 +38,7 @@ class StyleSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true) {
+            Root("test", true) {
                 widget {
                     style {
                         margin = 2.px
@@ -46,20 +47,20 @@ class StyleSpec : DomSpec {
                     }
                 }
             }
-            root.reRender()
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<style>.kv_styleclass_0 {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}</style><div class=\"kv_styleclass_0\"></div>",
                 element?.innerHTML,
                 "Should render correct style element"
             )
+            Style.styles.clear()
         }
     }
 
     @Test
     fun renderCustomClass() {
         run {
-            val root = Root("test", true) {
+            Root("test", true) {
                 widget {
                     style("customclass") {
                         margin = 2.px
@@ -68,20 +69,20 @@ class StyleSpec : DomSpec {
                     }
                 }
             }
-            root.reRender()
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<style>.customclass {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}</style><div class=\"customclass\"></div>",
                 element?.innerHTML,
                 "Should render correct style element with custom class name"
             )
+            Style.styles.clear()
         }
     }
 
     @Test
     fun renderSubclass() {
         run {
-            val root = Root("test", true) {
+            Root("test", true) {
                 widget {
                     style("customclass") {
                         margin = 2.px
@@ -93,7 +94,6 @@ class StyleSpec : DomSpec {
                     }
                 }
             }
-            root.reRender()
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<style>.customclass {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}\n" +
@@ -104,6 +104,7 @@ class StyleSpec : DomSpec {
                 element?.innerHTML,
                 "Should render correct child style class name"
             )
+            Style.styles.clear()
         }
     }
 }
