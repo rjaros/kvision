@@ -98,6 +98,10 @@ Predictable state container based on Redux library.
 
 A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.
 
+# Package pl.treksoft.kvision.rest
+
+RESTful API client with support for type-safe connectivity.
+
 # Package pl.treksoft.kvision.routing
 
 Simple and easy to use JavaScript router wrapper.
