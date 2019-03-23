@@ -48,11 +48,25 @@ interface Component {
     fun addCssClass(css: String): Component
 
     /**
+     * Adds given style object to the set of CSS classes generated in html code of current component.
+     * @param css CSS style object
+     * @return current component
+     */
+    fun addCssClass(css: Style): Component
+
+    /**
      * Removes given value from the set of CSS classes generated in html code of current component.
      * @param css CSS class name
      * @return current component
      */
     fun removeCssClass(css: String): Component
+
+    /**
+     * Removes given style object from the set of CSS classes generated in html code of current component.
+     * @param css CSS style object
+     * @return current component
+     */
+    fun removeCssClass(css: Style): Component
 
     /**
      * Adds given value to the set of CSS classes generated in html code of parent component.
@@ -62,11 +76,25 @@ interface Component {
     fun addSurroundingCssClass(css: String): Component
 
     /**
+     * Adds given style object to the set of CSS classes generated in html code of parent component.
+     * @param css CSS style object
+     * @return current component
+     */
+    fun addSurroundingCssClass(css: Style): Component
+
+    /**
      * Removes given value from the set of CSS classes generated in html code of parent component.
      * @param css CSS class name
      * @return current component
      */
     fun removeSurroundingCssClass(css: String): Component
+
+    /**
+     * Removes given style object from the set of CSS classes generated in html code of parent component.
+     * @param css CSS style object
+     * @return current component
+     */
+    fun removeSurroundingCssClass(css: Style): Component
 
     /**
      * @suppress
@@ -101,6 +129,7 @@ interface Component {
      * @return current component
      */
     fun clearParent(): Component
+
     /**
      * @suppress
      * Internal function.
@@ -108,6 +137,7 @@ interface Component {
      * @return root component
      */
     fun getRoot(): Root?
+
     /**
      * @suppress
      * Internal function

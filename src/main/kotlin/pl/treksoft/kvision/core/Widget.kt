@@ -456,6 +456,22 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         return this
     }
 
+    override fun addCssClass(css: Style): Widget {
+        return addCssClass(css.className)
+    }
+
+    override fun removeCssClass(css: Style): Widget {
+        return removeCssClass(css.className)
+    }
+
+    override fun addSurroundingCssClass(css: Style): Widget {
+        return addSurroundingCssClass(css.className)
+    }
+
+    override fun removeSurroundingCssClass(css: Style): Widget {
+        return removeSurroundingCssClass(css.className)
+    }
+
     override fun getElement(): Node? {
         return this.vnode?.elm
     }

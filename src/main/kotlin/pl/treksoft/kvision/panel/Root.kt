@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import com.github.snabbdom.h
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.Style
 import pl.treksoft.kvision.dropdown.ContextMenu
 import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.utils.snClasses
@@ -44,6 +45,7 @@ import pl.treksoft.kvision.utils.snOpt
  * @param init an initializer extension function
  */
 class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Unit)? = null) : SimplePanel() {
+    private val styles: MutableList<Style> = mutableListOf()
     private val modals: MutableList<Modal> = mutableListOf()
     private val contextMenus: MutableList<ContextMenu> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
@@ -62,10 +64,16 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         return if (!fixed) {
             render("div#$id", arrayOf(h("div", snOpt {
                 `class` = snClasses(listOf("row" to true))
-            }, childrenVNodes() + modalsVNodes() + contextMenusVNodes())))
+            }, stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())))
         } else {
-            render("div#$id", childrenVNodes() + modalsVNodes() + contextMenusVNodes())
+            render("div#$id", stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())
         }
+    }
+
+    internal fun addStyle(style: Style) {
+        styles.add(style)
+        style.parent = this
+        refresh()
     }
 
     internal fun addModal(modal: Modal) {
@@ -84,6 +92,16 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
             }
         }
         refresh()
+    }
+
+    private fun stylesVNodes(): Array<VNode> {
+        val visibleStyles = styles.filter { it.visible }
+        return if (visibleStyles.isNotEmpty()) {
+            val stylesDesc = visibleStyles.map { it.generateStyle() }.joinToString("\n")
+            arrayOf(h("style", arrayOf(stylesDesc)))
+        } else {
+            arrayOf()
+        }
     }
 
     private fun modalsVNodes(): Array<VNode> {
@@ -116,6 +134,9 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     }
 
     override fun dispose() {
+        styles.forEach { it.dispose() }
+        modals.forEach { it.dispose() }
+        contextMenus.forEach { it.dispose() }
         super.dispose()
         roots.remove(this)
     }
