@@ -1,6 +1,5 @@
 .*/
 build/
-out/
 *.iml
 /build-mvn.sh
 /build-mvnlocal.sh

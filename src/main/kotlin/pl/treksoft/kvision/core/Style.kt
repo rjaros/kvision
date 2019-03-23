@@ -36,6 +36,7 @@ import pl.treksoft.kvision.panel.Root
  * @param parentStyle parent CSS style object
  * @param init an initializer extension function
  */
+@Suppress("TooManyFunctions")
 open class Style(className: String? = null, parentStyle: Style? = null, init: (Style.() -> Unit)? = null) :
     StyledComponent() {
 
@@ -54,6 +55,7 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
 
     init {
         val root = Root.getLastRoot()
+        @Suppress("LeakingThis")
         parent = root
         if (root != null) {
             @Suppress("LeakingThis")
@@ -112,9 +114,9 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
 
     internal fun generateStyle(): String {
         val styles = getSnStyle()
-        return ".${className} {\n" + styles.map {
+        return ".$className {\n" + styles.joinToString("\n") {
             "${it.first}: ${it.second};"
-        }.joinToString("\n") + "\n}"
+        } + "\n}"
     }
 
     override fun getElement(): Node? {
@@ -161,8 +163,7 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
          * It takes the same parameters as the constructor of the built component.
          */
         fun Style.style(className: String? = null, init: (Style.() -> Unit)? = null): Style {
-            val style = Style(className, this, init)
-            return style
+            return Style(className, this, init)
         }
     }
 

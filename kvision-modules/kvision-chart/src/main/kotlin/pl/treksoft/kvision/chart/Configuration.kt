@@ -911,9 +911,9 @@ fun Configuration.toJs(i18nTranslator: (String) -> (String)): Chart.ChartConfigu
 }
 
 private fun Array<dynamic>.checkSingleValue(): dynamic {
-    if (this.size == 1) {
-        return this[0]
+    return if (this.size == 1) {
+        this[0]
     } else {
-        return this
+        this
     }
 }

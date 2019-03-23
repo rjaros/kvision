@@ -44,6 +44,7 @@ import pl.treksoft.kvision.utils.snOpt
  * otherwise it's rendered with "container" class (default is false)
  * @param init an initializer extension function
  */
+@Suppress("TooManyFunctions")
 class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Unit)? = null) : SimplePanel() {
     private val styles: MutableList<Style> = mutableListOf()
     private val modals: MutableList<Modal> = mutableListOf()
@@ -97,7 +98,7 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     private fun stylesVNodes(): Array<VNode> {
         val visibleStyles = styles.filter { it.visible }
         return if (visibleStyles.isNotEmpty()) {
-            val stylesDesc = visibleStyles.map { it.generateStyle() }.joinToString("\n")
+            val stylesDesc = visibleStyles.joinToString("\n") { it.generateStyle() }
             arrayOf(h("style", arrayOf(stylesDesc)))
         } else {
             arrayOf()

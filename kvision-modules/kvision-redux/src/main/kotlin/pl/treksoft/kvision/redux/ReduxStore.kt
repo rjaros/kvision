@@ -118,7 +118,7 @@ class ReduxStore<S : Any, A : RAction>(
                     reduxDispatch(elem)
                 }
             }
-            actionCreator(newDispatch, { JSON.plain.parse(stateSerializer, reduxGetState()) })
+            actionCreator(newDispatch) { JSON.plain.parse(stateSerializer, reduxGetState()) }
         })
     }
 

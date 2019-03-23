@@ -110,7 +110,7 @@ open class CallAgent {
      * @param beforeSend a content type of the request
      * @return a promise of the result
      */
-    @Suppress("UnsafeCastFromDynamic")
+    @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
     fun remoteCall(
         url: String,
         data: dynamic = null,
