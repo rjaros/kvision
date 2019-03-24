@@ -36,17 +36,19 @@ import redux.RAction
  * @param container a container
  * @param factory a function which re-creates the view based on the given state
  */
-class StateBinding<S : Any, A : RAction, CONT : Container>(
+class StateBinding<S : Any, A : RAction, CONT : Container, CONTENT>(
     store: ReduxStore<S, A>,
     private val container: CONT,
-    private val factory: (CONT.(S) -> Unit)
+    private val factory: (CONT.(S) -> CONTENT)
 ) : Widget(setOf()) {
 
     init {
-        container.add(this)
-        container.factory(store.getState())
+        update(store.getState())
         store.subscribe { update(it) }
     }
+
+    private var updateState: ((S, CONTENT) -> Unit)? = null
+    private var content: CONTENT? = null
 
     /**
      * Updates view from the current state.
@@ -54,10 +56,20 @@ class StateBinding<S : Any, A : RAction, CONT : Container>(
     @Suppress("ComplexMethod")
     fun update(state: S) {
         singleRender {
-            container.removeAll()
-            container.add(this)
-            container.factory(state)
+            if (updateState == null || content == null) {
+                container.removeAll()
+                container.add(this)
+                content = container.factory(state)
+            } else {
+                content?.let {
+                    updateState?.invoke(state, it)
+                }
+            }
         }
+    }
+
+    private fun setUpdateState(updateState: (S, CONTENT) -> Unit) {
+        this.updateState = updateState
     }
 
     companion object {
@@ -69,8 +81,29 @@ class StateBinding<S : Any, A : RAction, CONT : Container>(
         fun <S : Any, A : RAction, CONT : Container> CONT.stateBinding(
             store: ReduxStore<S, A>,
             factory: (CONT.(S) -> Unit)
-        ): StateBinding<S, A, CONT> {
+        ): StateBinding<S, A, CONT, Unit> {
             return StateBinding(store, this, factory)
         }
+
+        /**
+         * DSL builder extension function for updateable redux content.
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun <S : Any, A : RAction, CONT : Container, CONTENT> CONT.stateUpdate(
+            store: ReduxStore<S, A>,
+            factory: (CONT.(S) -> CONTENT)
+        ): Updateable<S, CONTENT> {
+            return Updateable(StateBinding(store, this, factory)::setUpdateState)
+        }
+    }
+}
+
+/**
+ * A helper class for updateable redux content.
+ */
+class Updateable<S : Any, CONTENT>(private val setUpdateState: ((S, CONTENT) -> Unit) -> Unit) {
+    infix fun updateWith(updateState: (S, CONTENT) -> Unit) {
+        setUpdateState(updateState)
     }
 }

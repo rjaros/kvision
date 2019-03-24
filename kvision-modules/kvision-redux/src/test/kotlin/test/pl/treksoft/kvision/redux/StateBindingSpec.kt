@@ -26,6 +26,7 @@ import pl.treksoft.kvision.html.Div.Companion.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.redux.StateBinding.Companion.stateBinding
+import pl.treksoft.kvision.redux.StateBinding.Companion.stateUpdate
 import pl.treksoft.kvision.redux.createReduxStore
 import redux.RAction
 import test.pl.treksoft.kvision.DomSpec
@@ -60,6 +61,34 @@ class StateBindingSpec : DomSpec {
             val container = SimplePanel()
             container.stateBinding(store) { state ->
                 div("${state.counter}")
+            }
+            root.add(container)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><div></div><div>10</div></div>",
+                element?.innerHTML,
+                "Should render initial state of the container"
+            )
+            store.dispatch(StateAction.Inc)
+            assertEqualsHtml(
+                "<div><div></div><div>11</div></div>",
+                element?.innerHTML,
+                "Should render changed state of the container"
+            )
+        }
+    }
+
+    @Test
+    fun stateUpdate() {
+        run {
+            val root = Root("test", true)
+            val store = createReduxStore(::stateReducer, State(10))
+
+            val container = SimplePanel()
+            container.stateUpdate(store) { state ->
+                div("${state.counter}")
+            } updateWith { state, d ->
+                d.content = "${state.counter}"
             }
             root.add(container)
             val element = document.getElementById("test")
