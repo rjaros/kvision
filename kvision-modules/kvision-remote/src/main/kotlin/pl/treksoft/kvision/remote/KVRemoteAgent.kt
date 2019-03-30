@@ -21,10 +21,18 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.asDeferred
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
+import kotlinx.serialization.stringify
+import kotlin.js.console
 import kotlin.js.js
 import kotlin.reflect.KClass
 import kotlin.js.JSON as NativeJSON
@@ -366,6 +374,178 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
         }.asDeferred().await()
     }
 
+    /**
+     * Executes defined web socket connection
+     */
+    suspend inline fun <reified PAR1 : Any, reified PAR2 : Any> webSocket(
+        noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
+        noinline handler: suspend (SendChannel<PAR1>, ReceiveChannel<PAR2>) -> Unit
+    ) {
+        val (url, _) =
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
+        val socket = Socket()
+        val requestChannel = Channel<PAR1>()
+        val responseChannel = Channel<PAR2>()
+        try {
+            coroutineScope {
+                socket.connect(getWebSocketUrl(url))
+                lateinit var responseJob: Job
+                lateinit var handlerJob: Job
+                val requestJob = launch {
+                    for (par1 in requestChannel) {
+                        val param = serialize(par1)
+                        val str = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(param)))
+                        if (!socket.sendOrFalse(str)) break
+                    }
+                    responseJob.cancel()
+                    handlerJob.cancel()
+                    if (!requestChannel.isClosedForReceive) requestChannel.close()
+                    if (!responseChannel.isClosedForSend) responseChannel.close()
+                }
+                responseJob = launch {
+                    while (true) {
+                        val str = socket.receiveOrNull() ?: break
+                        val data = kotlin.js.JSON.parse<dynamic>(str).result
+                        val par2 = try {
+                            @Suppress("UNCHECKED_CAST")
+                            deserialize<PAR2>(data, PAR2::class.js.name)
+                        } catch (t: NotStandardTypeException) {
+                            try {
+                                @Suppress("UNCHECKED_CAST")
+                                tryDeserializeEnum(PAR2::class as KClass<Any>, data) as PAR2
+                            } catch (t: NotEnumTypeException) {
+                                JSON.nonstrict.parse(PAR2::class.serializer(), data)
+                            }
+                        }
+                        responseChannel.send(par2)
+                    }
+                    requestJob.cancel()
+                    handlerJob.cancel()
+                    if (!requestChannel.isClosedForReceive) requestChannel.close()
+                    if (!responseChannel.isClosedForSend) responseChannel.close()
+                }
+                handlerJob = launch {
+                    exceptionHelper {
+                        handler(requestChannel, responseChannel)
+                    }
+                    requestJob.cancel()
+                    responseJob.cancel()
+                    if (!requestChannel.isClosedForReceive) requestChannel.close()
+                    if (!responseChannel.isClosedForSend) responseChannel.close()
+                }
+            }
+        } catch (e: Exception) {
+            console.log(e)
+        }
+        if (!requestChannel.isClosedForReceive) requestChannel.close()
+        if (!responseChannel.isClosedForSend) responseChannel.close()
+        socket.close()
+    }
+
+    /**
+     * Executes defined web socket connection returning list objects
+     */
+    suspend inline fun <reified PAR1 : Any, reified PAR2 : Any> webSocket(
+        noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<List<PAR2>>) -> Unit,
+        noinline handler: suspend (SendChannel<PAR1>, ReceiveChannel<List<PAR2>>) -> Unit
+    ) {
+        val (url, _) =
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
+        val socket = Socket()
+        val requestChannel = Channel<PAR1>()
+        val responseChannel = Channel<List<PAR2>>()
+        try {
+            coroutineScope {
+                socket.connect(getWebSocketUrl(url))
+                lateinit var responseJob: Job
+                lateinit var handlerJob: Job
+                val requestJob = launch {
+                    for (par1 in requestChannel) {
+                        val param = serialize(par1)
+                        val str = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(param)))
+                        if (!socket.sendOrFalse(str)) break
+                    }
+                    responseJob.cancel()
+                    handlerJob.cancel()
+                    if (!requestChannel.isClosedForReceive) requestChannel.close()
+                    if (!responseChannel.isClosedForSend) responseChannel.close()
+                }
+                responseJob = launch {
+                    while (true) {
+                        val str = socket.receiveOrNull() ?: break
+                        val data = kotlin.js.JSON.parse<dynamic>(str).result
+                        val par2 = try {
+                            deserializeList<PAR2>(data, PAR2::class.js.name)
+                        } catch (t: NotStandardTypeException) {
+                            try {
+                                @Suppress("UNCHECKED_CAST")
+                                tryDeserializeEnumList(PAR2::class as KClass<Any>, data) as List<PAR2>
+                            } catch (t: NotEnumTypeException) {
+                                JSON.nonstrict.parse(PAR2::class.serializer().list, data)
+                            }
+                        }
+                        responseChannel.send(par2)
+                    }
+                    requestJob.cancel()
+                    handlerJob.cancel()
+                    if (!requestChannel.isClosedForReceive) requestChannel.close()
+                    if (!responseChannel.isClosedForSend) responseChannel.close()
+                }
+                handlerJob = launch {
+                    exceptionHelper {
+                        handler(requestChannel, responseChannel)
+                    }
+                    requestJob.cancel()
+                    responseJob.cancel()
+                    if (!requestChannel.isClosedForReceive) requestChannel.close()
+                    if (!responseChannel.isClosedForSend) responseChannel.close()
+                }
+            }
+        } catch (e: Exception) {
+            console.log(e)
+        }
+        if (!requestChannel.isClosedForReceive) requestChannel.close()
+        if (!responseChannel.isClosedForSend) responseChannel.close()
+        socket.close()
+    }
+
+    /**
+     * @suppress internal function
+     */
+    suspend fun Socket.receiveOrNull(): String? {
+        return try {
+            this.receive()
+        } catch (e: SocketClosedException) {
+            console.log("Socket was closed: ${e.reason}")
+            null
+        }
+    }
+
+    /**
+     * @suppress internal function
+     */
+    fun Socket.sendOrFalse(str: String): Boolean {
+        return try {
+            this.send(str)
+            true
+        } catch (e: SocketClosedException) {
+            console.log("Socket was closed: ${e.reason}")
+            false
+        }
+    }
+
+    /**
+     * @suppress internal function
+     */
+    suspend fun exceptionHelper(block: suspend () -> Unit) {
+        try {
+            block()
+        } catch (e: Exception) {
+            console.log(e)
+        }
+    }
 
     /**
      * @suppress

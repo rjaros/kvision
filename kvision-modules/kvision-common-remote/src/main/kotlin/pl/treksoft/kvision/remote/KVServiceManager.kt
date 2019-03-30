@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
 import kotlin.reflect.KClass
 
 enum class HttpMethod {
@@ -114,5 +116,14 @@ expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) {
      */
     protected fun bind(
         function: T.(String?, String?) -> List<RemoteSelectOption>
+    )
+
+    /**
+     * Binds a given function of the receiver as a web socket connection
+     * @param function a function of the receiver
+     */
+    protected inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
+        noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
+        route: String? = null
     )
 }

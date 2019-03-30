@@ -25,6 +25,7 @@ import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.context.SimpleModule
 import kotlinx.serialization.json.Json
 import pl.treksoft.kvision.types.JsonDateSerializer
+import kotlin.browser.window
 import kotlin.js.Date
 
 /**
@@ -59,4 +60,15 @@ object JSON {
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
         return kotlin.js.JSON.parse(plain.stringify(serializer, this))
     }
+}
+
+/**
+ * Creates a websocket URL from current window.location and given path.
+ */
+fun getWebSocketUrl(url: String): String {
+    val location = window.location
+    val scheme = if (location.protocol == "https:") "wss" else "ws"
+    val port = if (location.port == "8088") ":8080"
+    else if (location.port != "0" && location.port != "") ":${location.port}" else ""
+    return "$scheme://${location.hostname}$port$url"
 }

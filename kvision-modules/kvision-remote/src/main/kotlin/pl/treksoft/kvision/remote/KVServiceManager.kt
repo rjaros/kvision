@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
 import kotlin.reflect.KClass
 
 /**
@@ -132,6 +134,19 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
      */
     protected actual fun bind(
         function: T.(String?, String?) -> List<RemoteSelectOption>
+    ) {
+        val routeDef = "route${this::class.simpleName}${counter++}"
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)
+    }
+
+    /**
+     * Binds a given web socket connetion with a function of the receiver.
+     * @param function a function of the receiver
+     * @param route a web socket route
+     */
+    protected actual inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
+        noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
+        route: String?
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)

@@ -25,6 +25,8 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -389,6 +391,18 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 )
             }
         }
+    }
+
+    /**
+     * Binds a given web socket connetion with a function of the receiver.
+     * @param function a function of the receiver
+     * @param route a route
+     */
+    protected actual inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
+        noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
+        route: String?
+    ) {
+        TODO("Not implemented in Spring Boot module")
     }
 
     /**

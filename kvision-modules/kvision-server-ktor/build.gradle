@@ -10,6 +10,7 @@ dependencies {
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     compile "io.ktor:ktor-server-core:$ktorVersion"
     compile "io.ktor:ktor-jackson:$ktorVersion"
+    compile "io.ktor:ktor-websockets:$ktorVersion"
     compile "com.google.inject:guice:$guiceVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
