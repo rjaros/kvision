@@ -86,6 +86,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     protected var surroundingSpan by refreshOnUpdate(false)
 
+    private var tooltipSiblings: JQuery? = null
+    private var popoverSiblings: JQuery? = null
+
+    protected var tooltipOptions: TooltipOptions? = null
+    protected var popoverOptions: PopoverOptions? = null
+
     var eventTarget: Widget? = null
 
     private var vnode: VNode? = null
@@ -225,7 +231,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
             snattrs.add("id" to it)
         }
         title?.let {
-            snattrs.add("title" to it)
+            snattrs.add("title" to translate(it))
         }
         role?.let {
             snattrs.add("role" to it)
@@ -314,17 +320,20 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
             }
             insert = { v ->
                 vnode = v
+                afterInsertInternal(v)
                 afterInsert(v)
             }
             postpatch = { ov, v ->
                 vnode = v
                 if (ov.elm !== v.elm) {
+                    afterInsertInternal(v)
                     afterInsert(v)
                 } else {
                     afterPostpatch(v)
                 }
             }
             destroy = {
+                afterDestroyInternal()
                 afterDestroy()
                 vnode = null
                 vnode
@@ -425,6 +434,95 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     }
 
     /**
+     * Enables tooltip for the current widget.
+     * @param options tooltip options
+     * @return current widget
+     */
+    open fun enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
+        this.tooltipOptions = options
+        getElementJQueryD()?.tooltip(options.copy(title = options.title?.let { translate(it) }).toJs())
+        return this
+    }
+
+    /**
+     * Shows tooltip for the current widget.
+     * @return current widget
+     */
+    open fun showTooltip(): Widget {
+        if (this.tooltipOptions != null) {
+            getElementJQueryD()?.tooltip("show")
+        }
+        return this
+    }
+
+    /**
+     * Hides tooltip for the current widget.
+     * @return current widget
+     */
+    open fun hideTooltip(): Widget {
+        if (this.tooltipOptions != null) {
+            getElementJQueryD()?.tooltip("hide")
+        }
+        return this
+    }
+
+    /**
+     * Disables tooltip for the current widget.
+     * @return current widget
+     */
+    open fun disableTooltip(): Widget {
+        this.tooltipOptions = null
+        getElementJQueryD()?.tooltip("destroy")
+        return this
+    }
+
+    /**
+     * Enables popover for the current widget.
+     * @param options popover options
+     * @return current widget
+     */
+    open fun enablePopover(options: PopoverOptions = PopoverOptions()): Widget {
+        this.popoverOptions = options
+        getElementJQueryD()?.popover(
+            options.copy(title = options.title?.let { translate(it) },
+                content = options.content?.let { translate(it) }).toJs()
+        )
+        return this
+    }
+
+    /**
+     * Shows popover for the current widget.
+     * @return current widget
+     */
+    open fun showPopover(): Widget {
+        if (this.popoverOptions != null) {
+            getElementJQueryD()?.popover("show")
+        }
+        return this
+    }
+
+    /**
+     * Hides popover for the current widget.
+     * @return current widget
+     */
+    open fun hidePopover(): Widget {
+        if (this.popoverOptions != null) {
+            getElementJQueryD()?.popover("hide")
+        }
+        return this
+    }
+
+    /**
+     * Disables popover for the current widget.
+     * @return current widget
+     */
+    open fun disablePopover(): Widget {
+        this.popoverOptions = null
+        getElementJQueryD()?.popover("destroy")
+        return this
+    }
+
+    /**
      * Toggles visibility of current widget.
      * @return current widget
      */
@@ -506,6 +604,23 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     }
 
     /**
+     * Internal method called after inserting Snabbdom vnode into the DOM.
+     */
+    internal open fun afterInsertInternal(node: VNode) {
+        this.tooltipOptions?.let {
+            @Suppress("UnsafeCastFromDynamic")
+            getElementJQueryD().tooltip(it.copy(title = it.title?.let { translate(it) }).toJs())
+        }
+        this.popoverOptions?.let {
+            @Suppress("UnsafeCastFromDynamic")
+            getElementJQueryD().popover(
+                it.copy(title = it.title?.let { translate(it) },
+                    content = it.content?.let { translate(it) }).toJs()
+            )
+        }
+    }
+
+    /**
      * Method called after inserting Snabbdom vnode into the DOM.
      */
     protected open fun afterInsert(node: VNode) {
@@ -515,6 +630,18 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
      * Method called after updating Snabbdom vnode.
      */
     protected open fun afterPostpatch(node: VNode) {
+    }
+
+    /**
+     * Internal method called after destroying Snabbdom vnode.
+     */
+    internal open fun afterDestroyInternal() {
+        this.tooltipOptions?.let {
+            getElementJQueryD().tooltip("destroy")
+        }
+        this.popoverOptions?.let {
+            getElementJQueryD().popover("destroy")
+        }
     }
 
     /**
