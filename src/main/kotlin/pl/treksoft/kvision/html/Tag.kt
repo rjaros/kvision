@@ -176,7 +176,7 @@ open class Tag(
         if (content == null)
             content = this
         else
-            content += this
+            content += translate(this)
     }
 
     companion object {
