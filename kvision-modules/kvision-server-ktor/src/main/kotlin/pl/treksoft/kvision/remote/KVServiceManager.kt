@@ -56,6 +56,7 @@ import kotlin.reflect.KClass
  * Multiplatform service manager for Ktor.
  */
 @UseExperimental(ExperimentalCoroutinesApi::class)
+@Suppress("LargeClass")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
 
     companion object {

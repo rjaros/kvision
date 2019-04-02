@@ -377,6 +377,7 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
     /**
      * Executes defined web socket connection
      */
+    @Suppress("ComplexMethod", "TooGenericExceptionCaught")
     suspend inline fun <reified PAR1 : Any, reified PAR2 : Any> webSocket(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         noinline handler: suspend (SendChannel<PAR1>, ReceiveChannel<PAR2>) -> Unit
@@ -446,6 +447,7 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
     /**
      * Executes defined web socket connection returning list objects
      */
+    @Suppress("ComplexMethod", "TooGenericExceptionCaught")
     suspend inline fun <reified PAR1 : Any, reified PAR2 : Any> webSocket(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<List<PAR2>>) -> Unit,
         noinline handler: suspend (SendChannel<PAR1>, ReceiveChannel<List<PAR2>>) -> Unit
@@ -539,6 +541,7 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
     /**
      * @suppress internal function
      */
+    @Suppress("TooGenericExceptionCaught")
     suspend fun exceptionHelper(block: suspend () -> Unit) {
         try {
             block()

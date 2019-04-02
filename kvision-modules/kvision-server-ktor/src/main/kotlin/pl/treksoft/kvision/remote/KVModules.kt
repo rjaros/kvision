@@ -88,7 +88,7 @@ class WsSessionModule(private val webSocketSession: WebSocketServerSession) :
     }
 }
 
-class DummyWsSessionModule() : AbstractModule() {
+class DummyWsSessionModule : AbstractModule() {
     override fun configure() {
         bind(WebSocketServerSession::class.java).toInstance(DummyWebSocketServerSession())
     }
