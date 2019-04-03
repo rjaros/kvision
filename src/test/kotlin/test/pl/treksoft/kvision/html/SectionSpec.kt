@@ -19,35 +19,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.panel
+package test.pl.treksoft.kvision.html
 
-import pl.treksoft.kvision.html.Span
-import pl.treksoft.kvision.panel.Direction
+import pl.treksoft.kvision.html.Section
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.panel.SplitPanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class SplitPanelSpec : DomSpec {
+class SectionSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", true)
-            val splitPanel = SplitPanel(Direction.VERTICAL)
-            root.add(splitPanel)
-            val label1 = Span("abc")
-            val label2 = Span("def")
-            splitPanel.add(label1)
-            splitPanel.add(label2)
+            val section = Section("This is a section")
+            root.add(section)
             val element = document.getElementById("test")
-            val id = splitPanel.splitter.id
             assertEqualsHtml(
-                "<div class=\"splitpanel-vertical\"><span class=\"resizable\">abc</span><div class=\"splitter-vertical\" id=\"$id\" style=\"touch-action: none;\"></div><span>def</span></div>",
+                "<section>This is a section</section>",
                 element?.innerHTML,
-                "Should render correct split panel"
+                "Should render correct section"
             )
         }
     }
+
 }

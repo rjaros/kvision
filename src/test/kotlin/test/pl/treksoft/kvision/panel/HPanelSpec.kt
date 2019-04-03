@@ -21,7 +21,7 @@
  */
 package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.html.Label
+import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.FlexJustify
 import pl.treksoft.kvision.panel.HPanel
 import pl.treksoft.kvision.panel.Root
@@ -37,9 +37,9 @@ class HPanelSpec : DomSpec {
             val root = Root("test", true)
             val hPanel = HPanel(justify = FlexJustify.SPACEBETWEEN)
             root.add(hPanel)
-            hPanel.add(Label("abc"), 1)
-            hPanel.add(Label("def"), 2)
-            hPanel.add(Label("ghi"), 3)
+            hPanel.add(Span("abc"), 1)
+            hPanel.add(Span("def"), 2)
+            hPanel.add(Span("ghi"), 3)
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div style=\"display: flex; justify-content: space-between;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",

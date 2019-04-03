@@ -21,7 +21,7 @@
  */
 package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.html.Label
+import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.DockPanel
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.Side
@@ -37,11 +37,11 @@ class DockPanelSpec : DomSpec {
             val root = Root("test", true)
             val dockPanel = DockPanel()
             root.add(dockPanel)
-            dockPanel.add(Label("abc"), Side.UP)
-            dockPanel.add(Label("def"), Side.RIGHT)
-            dockPanel.add(Label("ghi"), Side.DOWN)
-            dockPanel.add(Label("jkl"), Side.LEFT)
-            dockPanel.add(Label("mno"), Side.CENTER)
+            dockPanel.add(Span("abc"), Side.UP)
+            dockPanel.add(Span("def"), Side.RIGHT)
+            dockPanel.add(Span("ghi"), Side.DOWN)
+            dockPanel.add(Span("jkl"), Side.LEFT)
+            dockPanel.add(Span("mno"), Side.CENTER)
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div><div style=\"width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: stretch;\"><div style=\"order: 2; flex-grow: 1; flex-basis: 0%;\"><div style=\"width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: stretch;\"><div style=\"order: 3; flex-basis: 0%;\"><span>def</span></div><div style=\"order: 1; flex-basis: 0%;\"><span>jkl</span></div><div style=\"order: 2; flex-grow: 1; flex-basis: 0%;\"><span>mno</span></div></div></div><div style=\"order: 1; flex-basis: 0%;\"><span>abc</span></div><div style=\"order: 3; flex-basis: 0%;\"><span>ghi</span></div></div></div>",

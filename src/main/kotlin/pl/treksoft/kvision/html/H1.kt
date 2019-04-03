@@ -24,28 +24,45 @@ package pl.treksoft.kvision.html
 import pl.treksoft.kvision.core.Container
 
 /**
- * Simple label component rendered as *span*.
+ * Simple component rendered as *h1*.
  *
  * @constructor
- * @param content label text
+ * @param content element text
  * @param rich determines if [content] can contain HTML code
+ * @param align content align
+ * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
-@Deprecated("Use Span class instead.")
-open class Label(content: String? = null, rich: Boolean = false) : Span(content, rich) {
+open class H1(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String> = setOf(),
+    init: (H1.() -> Unit)? = null
+) :
+    Tag(TAG.H1, content, rich, align, classes) {
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
     companion object {
         /**
          * DSL builder extension function.
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        @Deprecated("User Span.Companion.span function instead.")
-        @Suppress("DEPRECATION")
-        fun Container.label(
-            content: String? = null, rich: Boolean = false, init: (Label.() -> Unit)? = null
-        ): Label {
-            val label = Label(content, rich).apply { init?.invoke(this) }
-            this.add(label)
-            return label
+        fun Container.h1(
+            content: String? = null,
+            rich: Boolean = false,
+            align: Align? = null,
+            classes: Set<String> = setOf(),
+            init: (H1.() -> Unit)? = null
+        ): H1 {
+            val h1 = H1(content, rich, align, classes).apply { init?.invoke(this) }
+            this.add(h1)
+            return h1
         }
     }
 }

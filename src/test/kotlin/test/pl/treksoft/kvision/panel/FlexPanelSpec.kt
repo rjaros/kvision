@@ -21,7 +21,7 @@
  */
 package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.html.Label
+import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.FlexDir
 import pl.treksoft.kvision.panel.FlexJustify
 import pl.treksoft.kvision.panel.FlexPanel
@@ -38,9 +38,9 @@ class FlexPanelSpec : DomSpec {
             val root = Root("test", true)
             val flexPanel = FlexPanel(FlexDir.ROWREV, justify = FlexJustify.SPACEEVENLY)
             root.add(flexPanel)
-            flexPanel.add(Label("abc"), 1)
-            flexPanel.add(Label("def"), 2)
-            flexPanel.add(Label("ghi"), 3)
+            flexPanel.add(Span("abc"), 1)
+            flexPanel.add(Span("def"), 2)
+            flexPanel.add(Span("ghi"), 3)
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div style=\"display: flex; flex-direction: row-reverse; justify-content: space-evenly;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",

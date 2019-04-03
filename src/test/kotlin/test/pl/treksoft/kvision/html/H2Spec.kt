@@ -21,22 +21,22 @@
  */
 package test.pl.treksoft.kvision.html
 
-import pl.treksoft.kvision.html.Label
+import pl.treksoft.kvision.html.H2
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class LabelSpec : DomSpec {
+class H2Spec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", true)
-            val label = Label("This is a label")
-            root.add(label)
+            val h2 = H2("This is h2 header")
+            root.add(h2)
             val element = document.getElementById("test")
-            assertEqualsHtml("<span>This is a label</span>", element?.innerHTML, "Should render correct label")
+            assertEqualsHtml("<h2>This is h2 header</h2>", element?.innerHTML, "Should render correct h2")
         }
     }
 

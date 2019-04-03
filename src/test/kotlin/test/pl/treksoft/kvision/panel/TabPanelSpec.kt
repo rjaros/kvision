@@ -21,7 +21,7 @@
  */
 package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.html.Label
+import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.TabPanel
 import test.pl.treksoft.kvision.DomSpec
@@ -36,8 +36,8 @@ class TabPanelSpec : DomSpec {
             val root = Root("test", true)
             val tabs = TabPanel()
             root.add(tabs)
-            val label1 = Label("abc")
-            val label2 = Label("def")
+            val label1 = Span("abc")
+            val label2 = Span("def")
             tabs.addTab("ABC", label1)
             tabs.addTab("DEF", label2)
             val element = document.getElementById("test")
@@ -55,8 +55,8 @@ class TabPanelSpec : DomSpec {
             val root = Root("test", true)
             val tabs = TabPanel()
             root.add(tabs)
-            val label1 = Label("abc")
-            val label2 = Label("def")
+            val label1 = Span("abc")
+            val label2 = Span("def")
             tabs.addTab("ABC", label1)
             tabs.addTab("DEF", label2)
             tabs.activeIndex = 1
@@ -75,8 +75,8 @@ class TabPanelSpec : DomSpec {
             val root = Root("test", true)
             val tabs = TabPanel()
             root.add(tabs)
-            val label1 = Label("abc")
-            val label2 = Label("def")
+            val label1 = Span("abc")
+            val label2 = Span("def")
             tabs.addTab("ABC", label1)
             tabs.addTab("DEF", label2)
             tabs.activeIndex = 1

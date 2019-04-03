@@ -21,7 +21,7 @@
  */
 package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.html.Label
+import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.StackPanel
 import test.pl.treksoft.kvision.DomSpec
@@ -36,8 +36,8 @@ class StackPanelSpec : DomSpec {
             val root = Root("test", true)
             val stackPanel = StackPanel()
             root.add(stackPanel)
-            val label1 = Label("abc")
-            val label2 = Label("def")
+            val label1 = Span("abc")
+            val label2 = Span("def")
             stackPanel.add(label1)
             stackPanel.add(label2)
             val element = document.getElementById("test")
@@ -51,8 +51,8 @@ class StackPanelSpec : DomSpec {
             val root = Root("test", true)
             val stackPanel = StackPanel(activateLast = false)
             root.add(stackPanel)
-            val label1 = Label("abc")
-            val label2 = Label("def")
+            val label1 = Span("abc")
+            val label2 = Span("def")
             stackPanel.add(label1)
             stackPanel.add(label2)
             val element = document.getElementById("test")
@@ -70,8 +70,8 @@ class StackPanelSpec : DomSpec {
             val root = Root("test", true)
             val stackPanel = StackPanel(activateLast = false)
             root.add(stackPanel)
-            val label1 = Label("abc")
-            val label2 = Label("def")
+            val label1 = Span("abc")
+            val label2 = Span("def")
             stackPanel.add(label1)
             stackPanel.add(label2)
             stackPanel.remove(label1)
@@ -86,8 +86,8 @@ class StackPanelSpec : DomSpec {
             val root = Root("test", true)
             val stackPanel = StackPanel(activateLast = false)
             root.add(stackPanel)
-            val label1 = Label("abc")
-            val label2 = Label("def")
+            val label1 = Span("abc")
+            val label2 = Span("def")
             stackPanel.add(label1)
             stackPanel.add(label2)
             stackPanel.removeAll()
