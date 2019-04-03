@@ -45,7 +45,8 @@ allows to build full-stack, multiplatform applications with shared common code.
 - Internationalization support based on [Jed](http://messageformat.github.io/Jed/) library and [gettext](https://www.gnu.org/software/gettext/) translations. 
 - Easy to use Drag & Drop support.
 - Type-safe REST connectivity.
-- Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side.
+- Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side. 
+Support for type-safe websockets connections with [Ktor](https://ktor.io).
 - Support for building cross-platform, desktop applications with [Electron](https://electronjs.org).
 - Ready to explore [KVision examples](https://github.com/rjaros/kvision-examples) are available,
 built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
@@ -96,14 +97,14 @@ Application package will be saved as build/distributions/showcase.zip.
 ### Hello world
 
         val root = Root("root")
-        val label = Label("Hello world!")
+        val label = Span("Hello world!")
         root.add(label)
 
 ### Basic components interactions using type safe DSL builders
 
         Root("root") {
             hPanel(spacing = 20, alignItems = FlexAlignItems.CENTER) {
-                val label = label("Not yet clicked.")
+                val label = span("Not yet clicked.")
                 var count = 0
                 button("Click me") {
                     onClick {
@@ -115,9 +116,9 @@ Application package will be saved as build/distributions/showcase.zip.
 
 ### Tab panel with JavaScript routing
 
-        val firstPanel = Tag(TAG.DIV, "First")
-        val secondPanel = Tag(TAG.DIV, "Second")
-        val thirdPanel = Tag(TAG.DIV, "Third")
+        val firstPanel = Div("First")
+        val secondPanel = Div("Second")
+        val thirdPanel = Div("Third")
 
         Root("root").add(TabPanel().apply {
             addTab("First", firstPanel, route = "/first")
@@ -150,7 +151,7 @@ Application package will be saved as build/distributions/showcase.zip.
             Data("Three")
         )
         Root("root").add(DataContainer(model, { data, _, _ ->
-            Label(data.text)
+            Span(data.text)
         }, HPanel(spacing = 10)))
 
         GlobalScope.launch { // Kotlin coroutines
