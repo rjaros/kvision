@@ -94,6 +94,7 @@ class DummyWsSessionModule : AbstractModule() {
     }
 }
 
+@Suppress("UNUSED_PARAMETER")
 class DummyWebSocketServerSession : WebSocketServerSession {
     override val call: ApplicationCall
         get() = throw UnsupportedOperationException()
