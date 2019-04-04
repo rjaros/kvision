@@ -24,7 +24,6 @@ package test.pl.treksoft.kvision.core
 import pl.treksoft.kvision.core.Col
 import pl.treksoft.kvision.core.Color
 import pl.treksoft.kvision.core.Overflow
-import pl.treksoft.kvision.core.Style
 import pl.treksoft.kvision.core.Style.Companion.style
 import pl.treksoft.kvision.core.Widget.Companion.widget
 import pl.treksoft.kvision.panel.Root
@@ -53,7 +52,6 @@ class StyleSpec : DomSpec {
                 element?.innerHTML,
                 "Should render correct style element"
             )
-            Style.styles.clear()
         }
     }
 
@@ -75,7 +73,6 @@ class StyleSpec : DomSpec {
                 element?.innerHTML,
                 "Should render correct style element with custom class name"
             )
-            Style.styles.clear()
         }
     }
 
@@ -104,7 +101,6 @@ class StyleSpec : DomSpec {
                 element?.innerHTML,
                 "Should render correct child style class name"
             )
-            Style.styles.clear()
         }
     }
 }

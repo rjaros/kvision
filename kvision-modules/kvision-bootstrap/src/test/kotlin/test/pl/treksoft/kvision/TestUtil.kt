@@ -65,6 +65,7 @@ interface DomSpec : TestSpec {
         val div = document.getElementById("pretest")
         div?.let { jQuery(it).remove() }
         jQuery(".modal-backdrop").remove()
+        Root.shutdown()
     }
 
     fun assertEqualsHtml(expected: String?, actual: String?, message: String?) {
