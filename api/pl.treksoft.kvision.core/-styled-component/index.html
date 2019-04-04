@@ -625,6 +625,8 @@
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
 <p>Adds given value to the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given style object to the set of CSS classes generated in html code of current component.</p>
 </td>
 </tr>
 <tr>
@@ -634,6 +636,8 @@
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
 <p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given style object to the set of CSS classes generated in html code of parent component.</p>
 </td>
 </tr>
 <tr>
@@ -670,6 +674,8 @@
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
 <p>Removes given value from the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given style object from the set of CSS classes generated in html code of current component.</p>
 </td>
 </tr>
 <tr>
@@ -679,6 +685,8 @@
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
 <p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given style object from the set of CSS classes generated in html code of parent component.</p>
 </td>
 </tr>
 </tbody>
@@ -700,6 +708,15 @@
 <h3>Inheritors</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="../-style/index.html">Style</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Style</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">StyledComponent</span></a></code>
+<p>CSS style object.</p>
+</td>
+</tr>
 <tr>
 <td>
 <p><a href="../-widget/index.html">Widget</a></p>

@@ -27,8 +27,17 @@ It requires @Serializable state.</p>
 <p><a href="-state-binding/index.html">StateBinding</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">StateBinding</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<code><span class="keyword">class </span><span class="identifier">StateBinding</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
 <p>A class which binds the redux store with the given container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-updateable/index.html">Updateable</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Updateable</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span></code>
+<p>A helper class for updateable redux content.</p>
 </td>
 </tr>
 </tbody>
@@ -36,6 +45,13 @@ It requires @Serializable state.</p>
 <h3>Type Aliases</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="-action-creator.html">ActionCreator</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">ActionCreator</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">S</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><a href="-dispatch.html"><span class="identifier">Dispatch</span></a><span class="symbol">&lt;</span><a href="-action-creator.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="-get-state.html"><span class="identifier">GetState</span></a><span class="symbol">&lt;</span><a href="-action-creator.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
 <tr>
 <td>
 <p><a href="-dispatch.html">Dispatch</a></p>

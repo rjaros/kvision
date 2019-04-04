@@ -118,6 +118,13 @@
 </tr>
 <tr>
 <td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/popover-options.html">popoverOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">popoverOptions</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-popover-options/index.html"><span class="identifier">PopoverOptions</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="../../pl.treksoft.kvision.core/-widget/role.html">role</a></p>
 </td>
 <td>
@@ -140,6 +147,13 @@
 <code><span class="keyword">var </span><span class="identifier">title</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
 <p>A title attribute of generated HTML element.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/tooltip-options.html">tooltipOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">tooltipOptions</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-tooltip-options/index.html"><span class="identifier">TooltipOptions</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -194,6 +208,8 @@
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
 <p>Adds given value to the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$addCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Adds given style object to the set of CSS classes generated in html code of current component.</p>
 </td>
 </tr>
 <tr>
@@ -203,6 +219,8 @@
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
 <p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$addSurroundingCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Adds given style object to the set of CSS classes generated in html code of parent component.</p>
 </td>
 </tr>
 <tr>
@@ -252,10 +270,46 @@
 </tr>
 <tr>
 <td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/disable-popover.html">disablePopover</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">disablePopover</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Disables popover for the current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/disable-tooltip.html">disableTooltip</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">disableTooltip</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Disables tooltip for the current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../../pl.treksoft.kvision.core/-widget/dispatch-event.html">dispatchEvent</a></p>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">dispatchEvent</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$dispatchEvent(kotlin.String, org.w3c.dom.CustomEventInit)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$dispatchEvent(kotlin.String, org.w3c.dom.CustomEventInit)/eventInitDict">eventInitDict</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-custom-event-init/index.html"><span class="identifier">CustomEventInit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/enable-popover.html">enablePopover</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">enablePopover</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$enablePopover(pl.treksoft.kvision.core.PopoverOptions)/options">options</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-popover-options/index.html"><span class="identifier">PopoverOptions</span></a>&nbsp;<span class="symbol">=</span>&nbsp;PopoverOptions()<span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Enables popover for the current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/enable-tooltip.html">enableTooltip</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">enableTooltip</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$enableTooltip(pl.treksoft.kvision.core.TooltipOptions)/options">options</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-tooltip-options/index.html"><span class="identifier">TooltipOptions</span></a>&nbsp;<span class="symbol">=</span>&nbsp;TooltipOptions()<span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Enables tooltip for the current widget.</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -313,11 +367,31 @@
 </tr>
 <tr>
 <td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/hide-popover.html">hidePopover</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hidePopover</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Hides popover for the current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/hide-tooltip.html">hideTooltip</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hideTooltip</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Hides tooltip for the current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../../pl.treksoft.kvision.core/-widget/remove-css-class.html">removeCssClass</a></p>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
 <p>Removes given value from the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Removes given style object from the set of CSS classes generated in html code of current component.</p>
 </td>
 </tr>
 <tr>
@@ -336,6 +410,8 @@
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
 <p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeSurroundingCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Removes given style object from the set of CSS classes generated in html code of parent component.</p>
 </td>
 </tr>
 <tr>
@@ -403,6 +479,24 @@
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">show</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
 <p>Makes current widget visible.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/show-popover.html">showPopover</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">showPopover</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Shows popover for the current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/show-tooltip.html">showTooltip</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">showTooltip</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Shows tooltip for the current widget.</p>
 </td>
 </tr>
 <tr>

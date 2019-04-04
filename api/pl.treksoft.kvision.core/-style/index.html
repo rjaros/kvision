@@ -1,0 +1,713 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Style - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.core</a>&nbsp;/&nbsp;<a href="./index.html">Style</a><br/>
+<br/>
+<h1>Style</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Style</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-styled-component/index.html"><span class="identifier">StyledComponent</span></a></code>
+<p>CSS style object.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Style</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$<init>(kotlin.String, pl.treksoft.kvision.core.Style, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/className">className</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Style$<init>(kotlin.String, pl.treksoft.kvision.core.Style, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/parentStyle">parentStyle</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Style$<init>(kotlin.String, pl.treksoft.kvision.core.Style, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="class-name.html">className</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">className</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the CSS class.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="parent.html">parent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">?</span></code>
+<p>Parent of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="visible.html">visible</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Visibility state of the current component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-styled-component/background.html">background</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">background</span><span class="symbol">: </span><a href="../-background/index.html"><span class="identifier">Background</span></a><span class="symbol">?</span></code>
+<p>Background of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/border.html">border</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">border</span><span class="symbol">: </span><a href="../-border/index.html"><span class="identifier">Border</span></a><span class="symbol">?</span></code>
+<p>Border of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/border-bottom.html">borderBottom</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">borderBottom</span><span class="symbol">: </span><a href="../-border/index.html"><span class="identifier">Border</span></a><span class="symbol">?</span></code>
+<p>Bottom border of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/border-left.html">borderLeft</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">borderLeft</span><span class="symbol">: </span><a href="../-border/index.html"><span class="identifier">Border</span></a><span class="symbol">?</span></code>
+<p>Left border of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/border-right.html">borderRight</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">borderRight</span><span class="symbol">: </span><a href="../-border/index.html"><span class="identifier">Border</span></a><span class="symbol">?</span></code>
+<p>Right border of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/border-top.html">borderTop</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">borderTop</span><span class="symbol">: </span><a href="../-border/index.html"><span class="identifier">Border</span></a><span class="symbol">?</span></code>
+<p>Top border of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/bottom.html">bottom</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">bottom</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Bottom edge of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/clear.html">clear</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">clear</span><span class="symbol">: </span><a href="../-clear/index.html"><span class="identifier">Clear</span></a><span class="symbol">?</span></code>
+<p>CSS clear float of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/color.html">color</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">color</span><span class="symbol">: </span><a href="../-color/index.html"><span class="identifier">Color</span></a><span class="symbol">?</span></code>
+<p>Text color for the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/color-hex.html">colorHex</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">colorHex</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>Text color for the current component given in hex format (write only).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/color-name.html">colorName</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">colorName</span><span class="symbol">: </span><a href="../-col/index.html"><span class="identifier">Col</span></a><span class="symbol">?</span></code>
+<p>Text color for the current component given with named constant (write only).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/display.html">display</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">display</span><span class="symbol">: </span><a href="../-display/index.html"><span class="identifier">Display</span></a><span class="symbol">?</span></code>
+<p>CSS display of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/float.html">float</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">float</span><span class="symbol">: </span><a href="../-pos-float/index.html"><span class="identifier">PosFloat</span></a><span class="symbol">?</span></code>
+<p>CSS position float of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/font-family.html">fontFamily</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">fontFamily</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>CSS font family of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/font-size.html">fontSize</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">fontSize</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>CSS font size of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/font-style.html">fontStyle</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">fontStyle</span><span class="symbol">: </span><a href="../-font-style/index.html"><span class="identifier">FontStyle</span></a><span class="symbol">?</span></code>
+<p>CSS font style of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/font-variant.html">fontVariant</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">fontVariant</span><span class="symbol">: </span><a href="../-font-variant/index.html"><span class="identifier">FontVariant</span></a><span class="symbol">?</span></code>
+<p>CSS font variant of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/font-weight.html">fontWeight</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">fontWeight</span><span class="symbol">: </span><a href="../-font-weight/index.html"><span class="identifier">FontWeight</span></a><span class="symbol">?</span></code>
+<p>CSS font weight of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/height.html">height</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">height</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Height of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/left.html">left</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">left</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Left edge of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/letter-spacing.html">letterSpacing</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">letterSpacing</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>CSS Text letter spacing of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/line-break.html">lineBreak</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">lineBreak</span><span class="symbol">: </span><a href="../-line-break/index.html"><span class="identifier">LineBreak</span></a><span class="symbol">?</span></code>
+<p>CSS line break of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/line-height.html">lineHeight</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">lineHeight</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>CSS Text line height of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/margin.html">margin</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">margin</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Margin of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/margin-bottom.html">marginBottom</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">marginBottom</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Bottom margin of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/margin-left.html">marginLeft</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">marginLeft</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Left margin of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/margin-right.html">marginRight</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">marginRight</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Right margin of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/margin-top.html">marginTop</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">marginTop</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Top margin of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/max-height.html">maxHeight</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">maxHeight</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Maximal height of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/max-width.html">maxWidth</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">maxWidth</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Maximal width of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/min-height.html">minHeight</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">minHeight</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Minimal height of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/min-width.html">minWidth</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">minWidth</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Minimal width of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/opacity.html">opacity</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">opacity</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">?</span></code>
+<p>Opacity of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/overflow.html">overflow</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">overflow</span><span class="symbol">: </span><a href="../-overflow/index.html"><span class="identifier">Overflow</span></a><span class="symbol">?</span></code>
+<p>CSS overflow of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/overflow-wrap.html">overflowWrap</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">overflowWrap</span><span class="symbol">: </span><a href="../-overflow-wrap/index.html"><span class="identifier">OverflowWrap</span></a><span class="symbol">?</span></code>
+<p>CSS overflow-wrap of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/padding.html">padding</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">padding</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Padding of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/padding-bottom.html">paddingBottom</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">paddingBottom</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Bottom padding of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/padding-left.html">paddingLeft</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">paddingLeft</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Left padding of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/padding-right.html">paddingRight</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">paddingRight</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Right padding of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/padding-top.html">paddingTop</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">paddingTop</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Top padding of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/position.html">position</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">position</span><span class="symbol">: </span><a href="../-position/index.html"><span class="identifier">Position</span></a><span class="symbol">?</span></code>
+<p>CSS position of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/resize.html">resize</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">resize</span><span class="symbol">: </span><a href="../-resize/index.html"><span class="identifier">Resize</span></a><span class="symbol">?</span></code>
+<p>CSS resize of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/right.html">right</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">right</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Right edge of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/text-align.html">textAlign</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">textAlign</span><span class="symbol">: </span><a href="../-text-align/index.html"><span class="identifier">TextAlign</span></a><span class="symbol">?</span></code>
+<p>CSS Text align of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/text-decoration.html">textDecoration</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">textDecoration</span><span class="symbol">: </span><a href="../-text-decoration/index.html"><span class="identifier">TextDecoration</span></a><span class="symbol">?</span></code>
+<p>CSS Text decoration of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/text-direction.html">textDirection</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">textDirection</span><span class="symbol">: </span><a href="../-direction/index.html"><span class="identifier">Direction</span></a><span class="symbol">?</span></code>
+<p>CSS Text direction of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/text-indent.html">textIndent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">textIndent</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>CSS Text indent of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/text-overflow.html">textOverflow</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">textOverflow</span><span class="symbol">: </span><a href="../-text-overflow/index.html"><span class="identifier">TextOverflow</span></a><span class="symbol">?</span></code>
+<p>CSS Text overflow of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/text-shadow.html">textShadow</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">textShadow</span><span class="symbol">: </span><a href="../-text-shadow/index.html"><span class="identifier">TextShadow</span></a><span class="symbol">?</span></code>
+<p>CSS Text shadow of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/text-transform.html">textTransform</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">textTransform</span><span class="symbol">: </span><a href="../-text-transform/index.html"><span class="identifier">TextTransform</span></a><span class="symbol">?</span></code>
+<p>CSS Text transform of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/top.html">top</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">top</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Top edge of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/unicode-bidi.html">unicodeBidi</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">unicodeBidi</span><span class="symbol">: </span><a href="../-unicode-bidi/index.html"><span class="identifier">UnicodeBidi</span></a><span class="symbol">?</span></code>
+<p>CSS Text unicode-bidi of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/vertical-align.html">verticalAlign</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">verticalAlign</span><span class="symbol">: </span><a href="../-vertical-align/index.html"><span class="identifier">VerticalAlign</span></a><span class="symbol">?</span></code>
+<p>CSS Text vertical align of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/white-space.html">whiteSpace</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">whiteSpace</span><span class="symbol">: </span><a href="../-white-space/index.html"><span class="identifier">WhiteSpace</span></a><span class="symbol">?</span></code>
+<p>CSS Text white space of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/width.html">width</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">width</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Width of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/word-break.html">wordBreak</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">wordBreak</span><span class="symbol">: </span><a href="../-word-break/index.html"><span class="identifier">WordBreak</span></a><span class="symbol">?</span></code>
+<p>CSS word break of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/word-spacing.html">wordSpacing</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">wordSpacing</span><span class="symbol">: </span><a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>CSS Text word spacing of the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/z-index.html">zIndex</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">zIndex</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>Z-index of the current component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-css-class.html">addCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given value to the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$addCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given style object to the set of CSS classes generated in html code of current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-surrounding-css-class.html">addSurroundingCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$addSurroundingCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Adds given style object to the set of CSS classes generated in html code of parent component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-element.html">getElement</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElement</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">?</span></code>
+<p>Returns DOM element bound to the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-element-j-query.html">getElementJQuery</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElementJQuery</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">JQuery</span><span class="symbol">?</span></code>
+<p>Returns JQuery element bound to the current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-element-j-query-d.html">getElementJQueryD</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElementJQueryD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
+<p>Returns JQuery element bound to the current component as a <em>dynamic</em> type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-css-class.html">removeCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given value from the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$removeCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given style object from the set of CSS classes generated in html code of current component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-surrounding-css-class.html">removeSurroundingCssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$removeSurroundingCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Removes given style object from the set of CSS classes generated in html code of parent component.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-styled-component/get-sn-style.html">getSnStyle</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnStyle</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns the list of String pairs defining CSS style attributes and their values.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-styled-component/refresh-on-update.html">refreshOnUpdate</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="../-styled-component/-refresh-delegate-provider/index.html"><span class="identifier">RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/initialValue">initialValue</span><span class="symbol">:</span>&nbsp;<a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="../-styled-component/-refresh-delegate-provider/index.html"><span class="identifier">RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="style.html">style</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">.</span><span class="identifier">style</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style.Companion$style(pl.treksoft.kvision.core.Widget, kotlin.String, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/className">className</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Style.Companion$style(pl.treksoft.kvision.core.Widget, kotlin.String, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Style</span></a></code>
+<p>DSL builder extension function.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">.</span><span class="identifier">style</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style.Companion$style(pl.treksoft.kvision.core.Style, kotlin.String, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/className">className</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Style.Companion$style(pl.treksoft.kvision.core.Style, kotlin.String, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Style</span></a></code>
+<p>DSL builder extension function for cascading styles.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

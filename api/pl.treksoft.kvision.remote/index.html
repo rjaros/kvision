@@ -39,6 +39,20 @@
 </tr>
 <tr>
 <td>
+<p><a href="-dummy-web-socket-server-session/index.html">DummyWebSocketServerSession</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">DummyWebSocketServerSession</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-dummy-ws-session-module/index.html">DummyWsSessionModule</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">DummyWsSessionModule</span></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="-j-s-o-n/index.html">JSON</a></p>
 </td>
 <td>
@@ -123,6 +137,22 @@
 <p>Form login dispatcher.</p>
 </td>
 </tr>
+<tr>
+<td>
+<p><a href="-socket/index.html">Socket</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Socket</span></code>
+<p>A websocket client implementation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-ws-session-module/index.html">WsSessionModule</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">WsSessionModule</span></code></td>
+</tr>
 </tbody>
 </table>
 <h3>Exceptions</h3>
@@ -135,6 +165,15 @@
 <td>
 <code><span class="keyword">class </span><span class="identifier">SecurityException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a></code>
 <p>A security exception.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-socket-closed-exception/index.html">SocketClosedException</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SocketClosedException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a></code>
+<p>Websocket closed exception class.</p>
 </td>
 </tr>
 </tbody>
@@ -197,6 +236,15 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">applyRoutes</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$applyRoutes(, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.remote.applyRoutes.T)))/serviceManager">serviceManager</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><a href="apply-routes.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-web-socket-url.html">getWebSocketUrl</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getWebSocketUrl</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$getWebSocketUrl(kotlin.String)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Creates a websocket URL from current window.location and given path.</p>
+</td>
 </tr>
 <tr>
 <td>
