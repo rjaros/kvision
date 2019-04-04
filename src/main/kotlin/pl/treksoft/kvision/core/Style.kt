@@ -25,7 +25,6 @@ import com.github.snabbdom.VNode
 import com.github.snabbdom.h
 import org.w3c.dom.Node
 import pl.treksoft.jquery.JQuery
-import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.panel.Root
 
 /**
@@ -65,8 +64,6 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
             field = value
             if (oldField != field) refresh()
         }
-
-    private var vnode: VNode? = null
 
     override fun addCssClass(css: String): Component {
         return this
@@ -112,15 +109,15 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
     }
 
     override fun getElement(): Node? {
-        return this.vnode?.elm
+        return null
     }
 
     override fun getElementJQuery(): JQuery? {
-        return getElement()?.let { jQuery(it) }
+        return null
     }
 
     override fun getElementJQueryD(): dynamic {
-        return getElement()?.let { jQuery(it).asDynamic() }
+        return null
     }
 
     override fun clearParent(): Component {

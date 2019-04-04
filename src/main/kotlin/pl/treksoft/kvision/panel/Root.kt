@@ -46,13 +46,12 @@ import pl.treksoft.kvision.utils.snOpt
  */
 @Suppress("TooManyFunctions")
 class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Unit)? = null) : SimplePanel() {
-    private val modals: MutableList<Modal> = mutableListOf()
     private val contextMenus: MutableList<ContextMenu> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
 
     internal var renderDisabled = false
 
-    private val isFirstRoot = roots.isEmpty()
+    val isFirstRoot = roots.isEmpty()
 
     init {
         rootVnode = KVManager.patch(id, this.renderVNode())
@@ -60,6 +59,7 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         roots.add(this)
         if (isFirstRoot) {
             Style.styles.forEach { it.parent = this }
+            Modal.modals.forEach { it.parent = this }
         }
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -73,12 +73,6 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         } else {
             render("div#$id", stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())
         }
-    }
-
-    internal fun addModal(modal: Modal) {
-        modals.add(modal)
-        modal.parent = this
-        refresh()
     }
 
     internal fun addContextMenu(contextMenu: ContextMenu) {
@@ -108,7 +102,11 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     }
 
     private fun modalsVNodes(): Array<VNode> {
-        return modals.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+        return if (isFirstRoot) {
+            Modal.modals.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+        } else {
+            arrayOf()
+        }
     }
 
     private fun contextMenusVNodes(): Array<VNode> {
@@ -141,10 +139,19 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
         roots.remove(this)
         if (isFirstRoot) {
             Style.styles.clear()
+            Modal.modals.clear()
         }
     }
 
     companion object {
+        /**
+         * @suppress internal function
+         */
+        fun shutdown() {
+            roots.forEach { it.dispose() }
+            roots.clear()
+        }
+
         internal val roots: MutableList<Root> = mutableListOf()
 
         internal fun getFirstRoot(): Root? {

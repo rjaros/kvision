@@ -23,6 +23,7 @@ package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
@@ -59,6 +60,8 @@ open class Modal(
     size: ModalSize? = null, animation: Boolean = true, private val escape: Boolean = true,
     classes: Set<String> = setOf(), init: (Modal.() -> Unit)? = null
 ) : SimplePanel(classes) {
+
+    override var parent: Container? = Root.getFirstRoot()
 
     /**
      * Window caption text.
@@ -125,13 +128,7 @@ open class Modal(
         content.add(header)
         content.add(body)
         content.add(footer)
-        val root = Root.getLastRoot()
-        if (root != null) {
-            @Suppress("LeakingThis")
-            root.addModal(this)
-        } else {
-            println("At least one Root object is required to create a modal!")
-        }
+        modals.add(this)
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -257,6 +254,23 @@ open class Modal(
     @Suppress("UnsafeCastFromDynamic")
     private fun hideInternal() {
         getElementJQueryD()?.modal("hide")
+    }
+
+    override fun clearParent(): Widget {
+        this.parent = null
+        return this
+    }
+
+    override fun getRoot(): Root? {
+        return this.parent?.getRoot()
+    }
+
+    override fun dispose() {
+        modals.remove(this)
+    }
+
+    companion object {
+        internal var modals = mutableListOf<Modal>()
     }
 }
 
