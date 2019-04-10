@@ -149,7 +149,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         route: String?
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kvws/$routeDef", HttpMethod.POST)
     }
 
     /**

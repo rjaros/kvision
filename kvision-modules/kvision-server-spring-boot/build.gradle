@@ -12,6 +12,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compile "org.springframework.boot:spring-boot-starter:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-websocket:$springBootVersion"
     compile "org.pac4j:pac4j-core:$pac4jVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonModuleKotlinVersion}"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"

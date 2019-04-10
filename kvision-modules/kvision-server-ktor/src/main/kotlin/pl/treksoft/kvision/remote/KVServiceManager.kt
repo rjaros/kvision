@@ -36,6 +36,7 @@ import io.ktor.routing.get
 import io.ktor.routing.options
 import io.ktor.routing.post
 import io.ktor.routing.put
+import io.ktor.util.KtorExperimentalAPI
 import io.ktor.util.pipeline.PipelineContext
 import io.ktor.websocket.WebSocketServerSession
 import io.ktor.websocket.webSocket
@@ -45,7 +46,6 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.filterNotNull
 import kotlinx.coroutines.channels.map
-import kotlinx.coroutines.channels.mapNotNull
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
@@ -55,6 +55,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager for Ktor.
  */
+@KtorExperimentalAPI
 @UseExperimental(ExperimentalCoroutinesApi::class)
 @Suppress("LargeClass")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
@@ -374,15 +375,17 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         route: String?
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        webSocketRequests["/kv/$routeDef"] = {
+        webSocketRequests["/kvws/$routeDef"] = {
             val wsInjector = call.injector.createChildInjector(WsSessionModule(this))
             val service = wsInjector.getInstance(serviceClass.java)
-            val requestChannel = incoming.mapNotNull { it as? Frame.Text }.map {
-                val jsonRpcRequest = getParameter<JsonRpcRequest>(it.readText())
-                if (jsonRpcRequest.params.size == 1) {
-                    getParameter<PAR1>(jsonRpcRequest.params[0])
-                } else {
-                    null
+            val requestChannel = incoming.map {
+                (it as? Frame.Text)?.readText()?.let { text ->
+                    val jsonRpcRequest = getParameter<JsonRpcRequest>(text)
+                    if (jsonRpcRequest.params.size == 1) {
+                        getParameter<PAR1>(jsonRpcRequest.params[0])
+                    } else {
+                        null
+                    }
                 }
             }.filterNotNull()
             val responseChannel = Channel<PAR2>()
@@ -452,6 +455,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
+    /**
+     * @suppress Internal method
+     */
     fun addRoute(
         method: HttpMethod,
         path: String,
@@ -466,6 +472,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
+    /**
+     * @suppress Internal method
+     */
     protected inline fun <reified T> getParameter(str: String?): T {
         return str?.let {
             if (T::class == String::class) {
@@ -477,6 +486,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 }
 
+/**
+ * A function to generate routes based on definitions from the service manager.
+ */
+@KtorExperimentalAPI
 fun <T : Any> Route.applyRoutes(serviceManager: KVServiceManager<T>) {
     serviceManager.getRequests.forEach { (path, handler) ->
         get(path, handler)

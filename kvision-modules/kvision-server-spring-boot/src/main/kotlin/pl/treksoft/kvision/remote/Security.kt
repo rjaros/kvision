@@ -23,6 +23,9 @@ package pl.treksoft.kvision.remote
 
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration
 
+/**
+ * A function to gather paths for an interceptor from a list of service managers.
+ */
 fun InterceptorRegistration.addPathPatternsFromServices(services: List<KVServiceManager<*>>) {
     val paths = services.flatMap {
         it.postRequests.keys + it.putRequests.keys + it.optionsRequests.keys + it.optionsRequests.keys

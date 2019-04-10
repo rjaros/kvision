@@ -29,6 +29,9 @@ import org.springframework.web.bind.annotation.RequestMethod
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+/**
+ * Controller for handling automatic routes.
+ */
 @Controller
 open class KVController {
 
@@ -44,7 +47,7 @@ open class KVController {
     )
     open fun kVMapping(req: HttpServletRequest, res: HttpServletResponse) {
         val routeUrl = req.requestURI
-        val route = services.mapNotNull {
+        val handler = services.mapNotNull {
             when (req.method) {
                 "GET" -> it.getRequests[routeUrl]
                 "POST" -> it.postRequests[routeUrl]
@@ -54,8 +57,8 @@ open class KVController {
                 else -> null
             }
         }.firstOrNull()
-        if (route != null) {
-            route.invoke(req, res, applicationContext)
+        if (handler != null) {
+            handler.invoke(req, res, applicationContext)
         } else {
             res.status = HttpServletResponse.SC_NOT_FOUND
         }

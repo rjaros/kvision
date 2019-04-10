@@ -23,14 +23,21 @@ package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.channels.filterNotNull
+import kotlinx.coroutines.channels.map
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
+import org.springframework.web.context.support.GenericWebApplicationContext
+import org.springframework.web.socket.WebSocketSession
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import kotlin.reflect.KClass
@@ -54,6 +61,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     val deleteRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit> =
         mutableMapOf()
     val optionsRequests: MutableMap<String, (HttpServletRequest, HttpServletResponse, ApplicationContext) -> Unit> =
+        mutableMapOf()
+    val webSocketsRequests: MutableMap<String, suspend (
+        WebSocketSession, GenericWebApplicationContext, ReceiveChannel<String>, SendChannel<String>
+    ) -> Unit> =
         mutableMapOf()
 
     val mapper = jacksonObjectMapper()
@@ -402,7 +413,39 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
     ) {
-        TODO("Not implemented in Spring Boot module")
+        val routeDef = "route${this::class.simpleName}${counter++}"
+        webSocketsRequests[routeDef] = { webSocketSession, ctx, incoming, outgoing ->
+            val service = synchronized(this) {
+                WebSocketSessionHolder.webSocketSession = webSocketSession
+                ctx.getBean(serviceClass.java)
+            }
+            val requestChannel = incoming.map {
+                val jsonRpcRequest = getParameter<JsonRpcRequest>(it)
+                if (jsonRpcRequest.params.size == 1) {
+                    getParameter<PAR1>(jsonRpcRequest.params[0])
+                } else {
+                    null
+                }
+            }.filterNotNull()
+            val responseChannel = Channel<PAR2>()
+            coroutineScope {
+                launch {
+                    for (p in responseChannel) {
+                        val text = mapper.writeValueAsString(
+                            JsonRpcResponse(
+                                id = 0,
+                                result = mapper.writeValueAsString(p)
+                            )
+                        )
+                        outgoing.send(text)
+                    }
+                }
+                launch(start = CoroutineStart.UNDISPATCHED) {
+                    function.invoke(service, requestChannel, responseChannel)
+                    if (!responseChannel.isClosedForReceive) responseChannel.close()
+                }
+            }
+        }
     }
 
     /**
@@ -454,6 +497,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
+    /**
+     * @suppress internal function
+     */
     fun addRoute(
         method: HttpMethod,
         path: String,
@@ -468,6 +514,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
+    /**
+     * @suppress internal function
+     */
     protected inline fun <reified T> getParameter(str: String?): T {
         return str?.let {
             if (T::class == String::class) {
@@ -479,6 +528,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 }
 
+/**
+ * @suppress internal function
+ */
 fun HttpServletResponse.writeJSON(json: String) {
     val out = this.outputStream
     this.contentType = "application/json"

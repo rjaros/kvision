@@ -24,6 +24,9 @@ package pl.treksoft.kvision.remote
 import org.jooby.Kooby
 import org.jooby.json.Jackson
 
+/**
+ * Initialization function for Jooby server.
+ */
 fun Kooby.kvisionInit() {
     assets("/", "/assets/index.html")
     assets("/**", "/assets/{0}").onMissing(0)

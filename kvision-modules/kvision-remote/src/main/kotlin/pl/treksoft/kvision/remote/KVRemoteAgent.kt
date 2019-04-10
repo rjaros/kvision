@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.asDeferred
 import kotlinx.coroutines.channels.Channel
@@ -41,7 +42,7 @@ import kotlin.js.JSON as NativeJSON
  * Client side agent for JSON-RPC remote calls.
  */
 @Suppress("LargeClass", "TooManyFunctions")
-@UseExperimental(ImplicitReflectionSerializer::class)
+@UseExperimental(ImplicitReflectionSerializer::class, ExperimentalCoroutinesApi::class)
 open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : RemoteAgent {
 
     val callAgent = CallAgent()
@@ -407,7 +408,7 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = kotlin.js.JSON.parse<dynamic>(str).result
+                        val data = kotlin.js.JSON.parse<JsonRpcResponse>(str).result ?: ""
                         val par2 = try {
                             @Suppress("UNCHECKED_CAST")
                             deserialize<PAR2>(data, PAR2::class.js.name)
@@ -477,7 +478,7 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceManager<T>) : Rem
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = kotlin.js.JSON.parse<dynamic>(str).result
+                        val data = kotlin.js.JSON.parse<JsonRpcResponse>(str).result ?: ""
                         val par2 = try {
                             deserializeList<PAR2>(data, PAR2::class.js.name)
                         } catch (t: NotStandardTypeException) {

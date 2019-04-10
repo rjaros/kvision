@@ -45,6 +45,9 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Initialization function for Ktor server.
+ */
 fun Application.kvisionInit(vararg modules: Module) {
     install(ContentNegotiation) {
         jackson()
@@ -69,18 +72,21 @@ val injectorKey = AttributeKey<Injector>("injector")
 
 val ApplicationCall.injector: Injector get() = attributes[injectorKey]
 
-class CallModule(private val call: ApplicationCall) : AbstractModule() {
+internal class CallModule(private val call: ApplicationCall) : AbstractModule() {
     override fun configure() {
         bind(ApplicationCall::class.java).toInstance(call)
     }
 }
 
-class MainModule(private val application: Application) : AbstractModule() {
+internal class MainModule(private val application: Application) : AbstractModule() {
     override fun configure() {
         bind(Application::class.java).toInstance(application)
     }
 }
 
+/**
+ * @suppress internal class
+ */
 class WsSessionModule(private val webSocketSession: WebSocketServerSession) :
     AbstractModule() {
     override fun configure() {
@@ -88,12 +94,18 @@ class WsSessionModule(private val webSocketSession: WebSocketServerSession) :
     }
 }
 
+/**
+ * @suppress internal class
+ */
 class DummyWsSessionModule : AbstractModule() {
     override fun configure() {
         bind(WebSocketServerSession::class.java).toInstance(DummyWebSocketServerSession())
     }
 }
 
+/**
+ * @suppress internal class
+ */
 @Suppress("UNUSED_PARAMETER")
 class DummyWebSocketServerSession : WebSocketServerSession {
     override val call: ApplicationCall
