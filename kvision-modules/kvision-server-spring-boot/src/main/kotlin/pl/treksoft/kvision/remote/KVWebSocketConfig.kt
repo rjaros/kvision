@@ -184,6 +184,7 @@ internal open class KvWebSocketHandler(
     }
 }
 
+@Suppress("TooManyFunctions")
 open class DummyWebSocketSession : WebSocketSession {
     override fun getBinaryMessageSizeLimit(): Int {
         return 0
