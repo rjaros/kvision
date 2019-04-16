@@ -23,8 +23,9 @@ package pl.treksoft.kvision.utils
 
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.context.SimpleModule
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
+import kotlinx.serialization.modules.serializersModuleOf
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.types.DateSerializer
 import kotlin.js.Date
@@ -34,13 +35,12 @@ import kotlin.js.Date
  */
 object JSON {
 
-    val plain = Json().apply {
-        install(SimpleModule(Date::class, DateSerializer))
-    }
+    val plain = Json(context = serializersModuleOf(Date::class, DateSerializer))
 
-    val nonstrict = Json(strictMode = false).apply {
-        install(SimpleModule(Date::class, DateSerializer))
-    }
+    val nonstrict = Json(
+        configuration = JsonConfiguration.Stable.copy(strictMode = false),
+        context = serializersModuleOf(Date::class, DateSerializer)
+    )
 
     /**
      * An extension function to convert Serializable object to JS dynamic object

@@ -44,8 +44,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.channels.filterNotNull
-import kotlinx.coroutines.channels.map
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
@@ -378,19 +376,22 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         webSocketRequests["/kvws/$routeDef"] = {
             val wsInjector = call.injector.createChildInjector(WsSessionModule(this))
             val service = wsInjector.getInstance(serviceClass.java)
-            val requestChannel = incoming.map {
-                (it as? Frame.Text)?.readText()?.let { text ->
-                    val jsonRpcRequest = getParameter<JsonRpcRequest>(text)
-                    if (jsonRpcRequest.params.size == 1) {
-                        getParameter<PAR1>(jsonRpcRequest.params[0])
-                    } else {
-                        null
-                    }
-                }
-            }.filterNotNull()
+            val requestChannel = Channel<PAR1>()
             val responseChannel = Channel<PAR2>()
             val session = this
             coroutineScope {
+                launch {
+                    for (p in incoming) {
+                        (p as? Frame.Text)?.readText()?.let { text ->
+                            val jsonRpcRequest = getParameter<JsonRpcRequest>(text)
+                            if (jsonRpcRequest.params.size == 1) {
+                                val par = getParameter<PAR1>(jsonRpcRequest.params[0])
+                                requestChannel.send(par)
+                            }
+                        }
+                    }
+                    requestChannel.close()
+                }
                 launch {
                     for (p in responseChannel) {
                         val text = mapper.writeValueAsString(

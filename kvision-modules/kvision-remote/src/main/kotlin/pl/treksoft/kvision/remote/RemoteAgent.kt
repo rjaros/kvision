@@ -198,7 +198,7 @@ interface RemoteAgent {
         }
     }
 
-    private fun findEnumValue(kClass: KClass<Any>, value: String): Any? {
+    fun findEnumValue(kClass: KClass<Any>, value: String): Any? {
         return (kClass.asDynamic().jClass.values() as Array<Any>).find {
             it.asDynamic().name == value
         }

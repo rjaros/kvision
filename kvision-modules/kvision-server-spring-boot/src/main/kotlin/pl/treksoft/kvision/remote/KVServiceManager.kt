@@ -23,14 +23,11 @@ package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.channels.filterNotNull
-import kotlinx.coroutines.channels.map
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
@@ -420,16 +417,19 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 WebSocketSessionHolder.webSocketSession = webSocketSession
                 ctx.getBean(serviceClass.java)
             }
-            val requestChannel = incoming.map {
-                val jsonRpcRequest = getParameter<JsonRpcRequest>(it)
-                if (jsonRpcRequest.params.size == 1) {
-                    getParameter<PAR1>(jsonRpcRequest.params[0])
-                } else {
-                    null
-                }
-            }.filterNotNull()
+            val requestChannel = Channel<PAR1>()
             val responseChannel = Channel<PAR2>()
             coroutineScope {
+                launch {
+                    for (p in incoming) {
+                        val jsonRpcRequest = getParameter<JsonRpcRequest>(p)
+                        if (jsonRpcRequest.params.size == 1) {
+                            val par = getParameter<PAR1>(jsonRpcRequest.params[0])
+                            requestChannel.send(par)
+                        }
+                    }
+                    requestChannel.close()
+                }
                 launch {
                     for (p in responseChannel) {
                         val text = mapper.writeValueAsString(

@@ -30,8 +30,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.channels.filterNotNull
-import kotlinx.coroutines.channels.map
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.jooby.Kooby
@@ -344,16 +342,19 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             ws.close()
                         }
                         launch {
-                            val requestChannel = incoming.map {
-                                val jsonRpcRequest = getParameter<JsonRpcRequest>(it)
-                                if (jsonRpcRequest.params.size == 1) {
-                                    getParameter<PAR1>(jsonRpcRequest.params[0])
-                                } else {
-                                    null
-                                }
-                            }.filterNotNull()
+                            val requestChannel = Channel<PAR1>()
                             val responseChannel = Channel<PAR2>()
                             coroutineScope {
+                                launch {
+                                    for (p in incoming) {
+                                        val jsonRpcRequest = getParameter<JsonRpcRequest>(p)
+                                        if (jsonRpcRequest.params.size == 1) {
+                                            val par = getParameter<PAR1>(jsonRpcRequest.params[0])
+                                            requestChannel.send(par)
+                                        }
+                                    }
+                                    requestChannel.close()
+                                }
                                 launch(Dispatchers.IO) {
                                     for (p in responseChannel) {
                                         val text = mapper.writeValueAsString(
