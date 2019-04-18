@@ -42,6 +42,7 @@ import pl.treksoft.kvision.utils.snAttrs
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
 import pl.treksoft.kvision.utils.snStyle
+import kotlin.reflect.KProperty
 
 /**
  * Base widget class. The parent of all component classes.
@@ -53,6 +54,7 @@ import pl.treksoft.kvision.utils.snStyle
  */
 @Suppress("TooManyFunctions", "LargeClass")
 open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
+    private val propertyValues: MutableMap<String, Any?> = mutableMapOf()
 
     internal val classes = classes.toMutableSet()
     internal val surroundingClasses: MutableSet<String> = mutableSetOf()
@@ -763,6 +765,38 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     }
 
     override fun dispose() {
+    }
+
+    protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+        RefreshDelegateProvider<T>(null, refreshFunction)
+
+    protected fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+        RefreshDelegateProvider(initialValue, refreshFunction)
+
+    protected inner class RefreshDelegateProvider<T>(
+        private val initialValue: T?, private val refreshFunction: (T) -> Unit
+    ) {
+        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
+            if (initialValue != null) propertyValues[prop.name] = initialValue
+            return RefreshDelegate(refreshFunction)
+        }
+    }
+
+    protected inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+        @Suppress("UNCHECKED_CAST")
+        operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
+            val value = propertyValues[property.name]
+            return if (value != null) {
+                value as T
+            } else {
+                null as T
+            }
+        }
+
+        operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
+            propertyValues[property.name] = value
+            refreshFunction(value)
+        }
     }
 
     companion object {

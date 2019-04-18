@@ -26,6 +26,7 @@ import com.github.snabbdom.h
 import org.w3c.dom.Node
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.kvision.panel.Root
+import kotlin.reflect.KProperty
 
 /**
  * CSS style object.
@@ -38,6 +39,7 @@ import pl.treksoft.kvision.panel.Root
 @Suppress("TooManyFunctions")
 open class Style(className: String? = null, parentStyle: Style? = null, init: (Style.() -> Unit)? = null) :
     StyledComponent() {
+    private val propertyValues: MutableMap<String, Any?> = mutableMapOf()
 
     override var parent: Container? = Root.getFirstRoot()
 
@@ -131,6 +133,38 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
 
     override fun dispose() {
         styles.remove(this)
+    }
+
+    protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+        RefreshDelegateProvider<T>(null, refreshFunction)
+
+    protected fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+        RefreshDelegateProvider(initialValue, refreshFunction)
+
+    protected inner class RefreshDelegateProvider<T>(
+        private val initialValue: T?, private val refreshFunction: (T) -> Unit
+    ) {
+        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
+            if (initialValue != null) propertyValues[prop.name] = initialValue
+            return RefreshDelegate(refreshFunction)
+        }
+    }
+
+    protected inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+        @Suppress("UNCHECKED_CAST")
+        operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
+            val value = propertyValues[property.name]
+            return if (value != null) {
+                value as T
+            } else {
+                null as T
+            }
+        }
+
+        operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
+            propertyValues[property.name] = value
+            refreshFunction(value)
+        }
     }
 
     companion object {

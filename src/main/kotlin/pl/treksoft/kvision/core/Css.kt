@@ -552,6 +552,8 @@ class Border private constructor(
         val w = width?.asString()
         return w.orEmpty() + " " + (style?.borderStyle).orEmpty() + " " + color.orEmpty()
     }
+
+    override fun toString() = asString()
 }
 
 /**
@@ -573,6 +575,8 @@ class Color private constructor(private val color: String? = null) {
     fun asString(): String {
         return color.orEmpty()
     }
+
+    override fun toString() = asString()
 }
 
 /**
@@ -676,6 +680,8 @@ class Background private constructor(
                 } + " " + (repeat?.repeat).orEmpty() + " " + (origin?.origin).orEmpty() + " " +
                 (clip?.clip).orEmpty() + " " + (attachment?.attachment).orEmpty()
     }
+
+    override fun toString() = asString()
 }
 
 /**
@@ -717,6 +723,8 @@ class TextDecoration private constructor(
                 (style?.textDecorationStyle).orEmpty() + " " +
                 color.orEmpty()
     }
+
+    override fun toString() = asString()
 }
 
 /**
@@ -764,4 +772,6 @@ class TextShadow private constructor(
                 (blurRadius?.asString()).orEmpty() + " " +
                 color.orEmpty()
     }
+
+    override fun toString() = asString()
 }

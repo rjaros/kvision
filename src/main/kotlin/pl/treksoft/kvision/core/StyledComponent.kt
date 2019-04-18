@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.core
 
+import pl.treksoft.kvision.utils.Cache
 import pl.treksoft.kvision.utils.asString
 import kotlin.reflect.KProperty
 
@@ -311,185 +312,196 @@ abstract class StyledComponent : Component {
      */
     @Suppress("ComplexMethod", "LongMethod")
     protected open fun getSnStyle(): List<StringPair> {
-        val snstyle = mutableListOf<StringPair>()
-        width?.let {
-            snstyle.add("width" to it.asString())
+        val cacheKey = getCacheKey()
+        return globalStyleCache[cacheKey] ?: run {
+            val snstyle = mutableListOf<StringPair>()
+            width?.let {
+                snstyle.add("width" to it.asString())
+            }
+            minWidth?.let {
+                snstyle.add("min-width" to it.asString())
+            }
+            maxWidth?.let {
+                snstyle.add("max-width" to it.asString())
+            }
+            height?.let {
+                snstyle.add("height" to it.asString())
+            }
+            minHeight?.let {
+                snstyle.add("min-height" to it.asString())
+            }
+            maxHeight?.let {
+                snstyle.add("max-height" to it.asString())
+            }
+            display?.let {
+                snstyle.add("display" to it.display)
+            }
+            position?.let {
+                snstyle.add("position" to it.position)
+            }
+            top?.let {
+                snstyle.add("top" to it.asString())
+            }
+            left?.let {
+                snstyle.add("left" to it.asString())
+            }
+            right?.let {
+                snstyle.add("right" to it.asString())
+            }
+            bottom?.let {
+                snstyle.add("bottom" to it.asString())
+            }
+            zIndex?.let {
+                snstyle.add("z-index" to it.toString())
+            }
+            overflow?.let {
+                snstyle.add("overflow" to it.overflow)
+            }
+            overflowWrap?.let {
+                snstyle.add("overflow-wrap" to it.overflowWrap)
+            }
+            resize?.let {
+                snstyle.add("resize" to it.resize)
+            }
+            border?.let {
+                snstyle.add("border" to it.asString())
+            }
+            borderTop?.let {
+                snstyle.add("border-top" to it.asString())
+            }
+            borderRight?.let {
+                snstyle.add("border-right" to it.asString())
+            }
+            borderBottom?.let {
+                snstyle.add("border-bottom" to it.asString())
+            }
+            borderLeft?.let {
+                snstyle.add("border-left" to it.asString())
+            }
+            margin?.let {
+                snstyle.add("margin" to it.asString())
+            }
+            marginTop?.let {
+                snstyle.add("margin-top" to it.asString())
+            }
+            marginRight?.let {
+                snstyle.add("margin-right" to it.asString())
+            }
+            marginBottom?.let {
+                snstyle.add("margin-bottom" to it.asString())
+            }
+            marginLeft?.let {
+                snstyle.add("margin-left" to it.asString())
+            }
+            padding?.let {
+                snstyle.add("padding" to it.asString())
+            }
+            paddingTop?.let {
+                snstyle.add("padding-top" to it.asString())
+            }
+            paddingRight?.let {
+                snstyle.add("padding-right" to it.asString())
+            }
+            paddingBottom?.let {
+                snstyle.add("padding-bottom" to it.asString())
+            }
+            paddingLeft?.let {
+                snstyle.add("padding-left" to it.asString())
+            }
+            color?.let {
+                snstyle.add("color" to it.asString())
+            }
+            opacity?.let {
+                snstyle.add("opacity" to it.toString())
+            }
+            background?.let {
+                snstyle.add("background" to it.asString())
+            }
+            textDirection?.let {
+                snstyle.add("direction" to it.direction)
+            }
+            letterSpacing?.let {
+                snstyle.add("letter-spacing" to it.asString())
+            }
+            lineHeight?.let {
+                snstyle.add("line-height" to it.asString())
+            }
+            textAlign?.let {
+                snstyle.add("text-align" to it.textAlign)
+            }
+            textDecoration?.let {
+                snstyle.add("text-decoration" to it.asString())
+            }
+            textIndent?.let {
+                snstyle.add("text-indent" to it.asString())
+            }
+            textShadow?.let {
+                snstyle.add("text-shadow" to it.asString())
+            }
+            textTransform?.let {
+                snstyle.add("text-transform" to it.textTransform)
+            }
+            textOverflow?.let {
+                snstyle.add("text-overflow" to it.textOverflow)
+            }
+            unicodeBidi?.let {
+                snstyle.add("unicode-bidi" to it.unicodeBidi)
+            }
+            verticalAlign?.let {
+                snstyle.add("vartical-align" to it.verticalAlign)
+            }
+            whiteSpace?.let {
+                snstyle.add("white-space" to it.whiteSpace)
+            }
+            wordSpacing?.let {
+                snstyle.add("word-spacing" to it.asString())
+            }
+            fontFamily?.let {
+                snstyle.add("font-family" to it)
+            }
+            fontSize?.let {
+                snstyle.add("font-size" to it.asString())
+            }
+            fontStyle?.let {
+                snstyle.add("font-style" to it.fontStyle)
+            }
+            fontWeight?.let {
+                snstyle.add("font-weight" to it.fontWeight)
+            }
+            fontVariant?.let {
+                snstyle.add("font-variant" to it.fontVariant)
+            }
+            float?.let {
+                snstyle.add("float" to it.posFloat)
+            }
+            clear?.let {
+                snstyle.add("clear" to it.clear)
+            }
+            wordBreak?.let {
+                snstyle.add("word-break" to it.wordBreak)
+            }
+            lineBreak?.let {
+                snstyle.add("line-break" to it.lineBreak)
+            }
+            globalStyleCache[cacheKey] = snstyle
+            return snstyle
         }
-        minWidth?.let {
-            snstyle.add("min-width" to it.asString())
-        }
-        maxWidth?.let {
-            snstyle.add("max-width" to it.asString())
-        }
-        height?.let {
-            snstyle.add("height" to it.asString())
-        }
-        minHeight?.let {
-            snstyle.add("min-height" to it.asString())
-        }
-        maxHeight?.let {
-            snstyle.add("max-height" to it.asString())
-        }
-        display?.let {
-            snstyle.add("display" to it.display)
-        }
-        position?.let {
-            snstyle.add("position" to it.position)
-        }
-        top?.let {
-            snstyle.add("top" to it.asString())
-        }
-        left?.let {
-            snstyle.add("left" to it.asString())
-        }
-        right?.let {
-            snstyle.add("right" to it.asString())
-        }
-        bottom?.let {
-            snstyle.add("bottom" to it.asString())
-        }
-        zIndex?.let {
-            snstyle.add("z-index" to it.toString())
-        }
-        overflow?.let {
-            snstyle.add("overflow" to it.overflow)
-        }
-        overflowWrap?.let {
-            snstyle.add("overflow-wrap" to it.overflowWrap)
-        }
-        resize?.let {
-            snstyle.add("resize" to it.resize)
-        }
-        border?.let {
-            snstyle.add("border" to it.asString())
-        }
-        borderTop?.let {
-            snstyle.add("border-top" to it.asString())
-        }
-        borderRight?.let {
-            snstyle.add("border-right" to it.asString())
-        }
-        borderBottom?.let {
-            snstyle.add("border-bottom" to it.asString())
-        }
-        borderLeft?.let {
-            snstyle.add("border-left" to it.asString())
-        }
-        margin?.let {
-            snstyle.add("margin" to it.asString())
-        }
-        marginTop?.let {
-            snstyle.add("margin-top" to it.asString())
-        }
-        marginRight?.let {
-            snstyle.add("margin-right" to it.asString())
-        }
-        marginBottom?.let {
-            snstyle.add("margin-bottom" to it.asString())
-        }
-        marginLeft?.let {
-            snstyle.add("margin-left" to it.asString())
-        }
-        padding?.let {
-            snstyle.add("padding" to it.asString())
-        }
-        paddingTop?.let {
-            snstyle.add("padding-top" to it.asString())
-        }
-        paddingRight?.let {
-            snstyle.add("padding-right" to it.asString())
-        }
-        paddingBottom?.let {
-            snstyle.add("padding-bottom" to it.asString())
-        }
-        paddingLeft?.let {
-            snstyle.add("padding-left" to it.asString())
-        }
-        color?.let {
-            snstyle.add("color" to it.asString())
-        }
-        opacity?.let {
-            snstyle.add("opacity" to it.toString())
-        }
-        background?.let {
-            snstyle.add("background" to it.asString())
-        }
-        textDirection?.let {
-            snstyle.add("direction" to it.direction)
-        }
-        letterSpacing?.let {
-            snstyle.add("letter-spacing" to it.asString())
-        }
-        lineHeight?.let {
-            snstyle.add("line-height" to it.asString())
-        }
-        textAlign?.let {
-            snstyle.add("text-align" to it.textAlign)
-        }
-        textDecoration?.let {
-            snstyle.add("text-decoration" to it.asString())
-        }
-        textIndent?.let {
-            snstyle.add("text-indent" to it.asString())
-        }
-        textShadow?.let {
-            snstyle.add("text-shadow" to it.asString())
-        }
-        textTransform?.let {
-            snstyle.add("text-transform" to it.textTransform)
-        }
-        textOverflow?.let {
-            snstyle.add("text-overflow" to it.textOverflow)
-        }
-        unicodeBidi?.let {
-            snstyle.add("unicode-bidi" to it.unicodeBidi)
-        }
-        verticalAlign?.let {
-            snstyle.add("vartical-align" to it.verticalAlign)
-        }
-        whiteSpace?.let {
-            snstyle.add("white-space" to it.whiteSpace)
-        }
-        wordSpacing?.let {
-            snstyle.add("word-spacing" to it.asString())
-        }
-        fontFamily?.let {
-            snstyle.add("font-family" to it)
-        }
-        fontSize?.let {
-            snstyle.add("font-size" to it.asString())
-        }
-        fontStyle?.let {
-            snstyle.add("font-style" to it.fontStyle)
-        }
-        fontWeight?.let {
-            snstyle.add("font-weight" to it.fontWeight)
-        }
-        fontVariant?.let {
-            snstyle.add("font-variant" to it.fontVariant)
-        }
-        float?.let {
-            snstyle.add("float" to it.posFloat)
-        }
-        clear?.let {
-            snstyle.add("clear" to it.clear)
-        }
-        wordBreak?.let {
-            snstyle.add("word-break" to it.wordBreak)
-        }
-        lineBreak?.let {
-            snstyle.add("line-break" to it.lineBreak)
-        }
-        return snstyle
     }
 
-    protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    protected open fun getCacheKey(): String {
+        val SEP = "###KvSep###"
+        return propertyValues.map {
+            it.toString()
+        }.joinToString(SEP)
+    }
+
+    private fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
         RefreshDelegateProvider<T>(null, refreshFunction)
 
-    protected fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    private fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
         RefreshDelegateProvider(initialValue, refreshFunction)
 
-    protected inner class RefreshDelegateProvider<T>(
+    private inner class RefreshDelegateProvider<T>(
         private val initialValue: T?, private val refreshFunction: (T) -> Unit
     ) {
         operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
@@ -498,7 +510,7 @@ abstract class StyledComponent : Component {
         }
     }
 
-    protected inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+    private inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
         @Suppress("UNCHECKED_CAST")
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]
@@ -513,5 +525,9 @@ abstract class StyledComponent : Component {
             propertyValues[property.name] = value
             refreshFunction(value)
         }
+    }
+
+    companion object {
+        internal val globalStyleCache = Cache<String, List<StringPair>>()
     }
 }
