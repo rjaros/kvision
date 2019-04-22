@@ -28,7 +28,7 @@ import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.internal.SerialClassDescImpl
 import kotlin.js.Date
 
-actual typealias Date = kotlin.js.Date
+actual typealias Date = Date
 
 /**
  * JSON date serializer.

@@ -402,7 +402,7 @@ open class FormPanel<K : Any>(
             type: FormType? = null, classes: Set<String> = setOf(),
             noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
-            val formPanel = FormPanel.create<K>(method, action, enctype, type, classes)
+            val formPanel = create<K>(method, action, enctype, type, classes)
             init?.invoke(formPanel)
             this.add(formPanel)
             return formPanel

@@ -637,6 +637,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
     /**
      * Internal method called after destroying Snabbdom vnode.
      */
+    @Suppress("UnsafeCastFromDynamic")
     internal open fun afterDestroyInternal() {
         this.tooltipOptions?.let {
             getElementJQueryD().tooltip("destroy")

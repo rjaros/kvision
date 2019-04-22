@@ -52,7 +52,7 @@ enum class Direction(internal val dir: String) {
  */
 open class SplitPanel(
     private val direction: Direction = Direction.VERTICAL,
-    classes: Set<String> = setOf(), init: (SplitPanel.() -> kotlin.Unit)? = null
+    classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
 ) : SimplePanel(classes + ("splitpanel-" + direction.dir)) {
 
     @Suppress("LeakingThis")
@@ -107,7 +107,7 @@ open class SplitPanel(
          */
         fun Container.splitPanel(
             direction: Direction = Direction.VERTICAL,
-            classes: Set<String> = setOf(), init: (SplitPanel.() -> kotlin.Unit)? = null
+            classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
         ): SplitPanel {
             val splitPanel = SplitPanel(direction, classes, init)
             this.add(splitPanel)

@@ -31,7 +31,7 @@ import kotlin.js.Date
 
 const val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
-actual typealias Date = kotlin.js.Date
+actual typealias Date = Date
 
 /**
  * Extension function to convert String to Date with a given date format.

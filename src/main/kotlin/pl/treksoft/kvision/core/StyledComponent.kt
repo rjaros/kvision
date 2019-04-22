@@ -489,10 +489,9 @@ abstract class StyledComponent : Component {
     }
 
     protected open fun getCacheKey(): String {
-        val SEP = "###KvSep###"
         return propertyValues.map {
             it.toString()
-        }.joinToString(SEP)
+        }.joinToString("###KvSep###")
     }
 
     private fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =

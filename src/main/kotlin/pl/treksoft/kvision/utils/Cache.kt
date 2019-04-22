@@ -95,27 +95,27 @@ class LinkedList<T> {
 
     fun last(): Node<T>? {
         var node = head
-        if (node != null) {
+        return if (node != null) {
             while (node?.next != null) {
                 node = node.next
             }
-            return node
+            node
         } else {
-            return null
+            null
         }
     }
 
     fun count(): Int {
         var node = head
-        if (node != null) {
+        return if (node != null) {
             var counter = 1
             while (node?.next != null) {
                 node = node.next
                 counter += 1
             }
-            return counter
+            counter
         } else {
-            return 0
+            0
         }
     }
 
@@ -167,19 +167,19 @@ class LinkedList<T> {
 
     fun removeLast(): T? {
         val last = this.last()
-        if (last != null) {
-            return removeNode(last)
+        return if (last != null) {
+            removeNode(last)
         } else {
-            return null
+            null
         }
     }
 
     fun removeAtIndex(index: Int): T? {
         val node = nodeAtIndex(index)
-        if (node != null) {
-            return removeNode(node)
+        return if (node != null) {
+            removeNode(node)
         } else {
-            return null
+            null
         }
     }
 
@@ -193,6 +193,6 @@ class LinkedList<T> {
                 s += ", "
             }
         }
-        return s + "]"
+        return "$s]"
     }
 }

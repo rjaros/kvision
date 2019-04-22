@@ -92,8 +92,7 @@ class Socket {
      */
     @Suppress("ThrowsCount", "MagicNumber")
     suspend fun receive(): String {
-        val event = eventQueue.receive()
-        return when (event) {
+        return when (val event = eventQueue.receive()) {
             is MessageEvent -> {
                 event.data as String
             }
