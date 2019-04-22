@@ -82,6 +82,8 @@ open class Table(
     private val tbody = Tag(TAG.TBODY)
 
     init {
+        thead.parent = this
+        tbody.parent = this
         refreshHeaders()
         @Suppress("LeakingThis")
         init?.invoke(this)
