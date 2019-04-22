@@ -37,13 +37,13 @@ enum class SorterType {
 }
 
 /**
- * A container class with support for observable data model.
+ * A container class with support for mutable/observable data model.
  *
  * @constructor Creates DataContainer bound to given data model.
  * @param M data model type
  * @param C visual component type
  * @param CONT container type
- * @param model data model of type *ObservableList<M>*
+ * @param model data model of type *MutableList<M>*
  * @param factory a function which creates component C from data model at given index
  * @param container internal container
  * @param containerAdd function to add component C to the internal container CONT
@@ -53,8 +53,8 @@ enum class SorterType {
  * @param init an initializer extension function
  */
 class DataContainer<M, C : Component, CONT : Container>(
-    private val model: ObservableList<M>,
-    private val factory: (M, Int, ObservableList<M>) -> C,
+    private val model: MutableList<M>,
+    private val factory: (M, Int, MutableList<M>) -> C,
     private val container: CONT,
     private val containerAdd: (CONT.(C, M) -> Unit)? = null,
     private val filter: ((M) -> Boolean)? = null,
@@ -74,8 +74,10 @@ class DataContainer<M, C : Component, CONT : Container>(
 
     init {
         container.parent = this
-        model.onUpdate += {
-            update()
+        if (model is ObservableList) {
+            model.onUpdate += {
+                update()
+            }
         }
         update()
         @Suppress("LeakingThis")
@@ -180,8 +182,8 @@ class DataContainer<M, C : Component, CONT : Container>(
          * It takes the same parameters as the constructor of the built component.
          */
         fun <M, C : Component, CONT : Container> Container.dataContainer(
-            model: ObservableList<M>,
-            factory: (M, Int, ObservableList<M>) -> C,
+            model: MutableList<M>,
+            factory: (M, Int, MutableList<M>) -> C,
             container: CONT,
             containerAdd: (CONT.(C, M) -> Unit)? = null,
             filter: ((M) -> Boolean)? = null,
@@ -200,8 +202,8 @@ class DataContainer<M, C : Component, CONT : Container>(
          * It takes the same parameters as the constructor of the built component.
          */
         fun <M, C : Component> Container.dataContainer(
-            model: ObservableList<M>,
-            factory: (M, Int, ObservableList<M>) -> C,
+            model: MutableList<M>,
+            factory: (M, Int, MutableList<M>) -> C,
             containerAdd: (VPanel.(C, M) -> Unit)? = null,
             filter: ((M) -> Boolean)? = null,
             sorter: ((M) -> Comparable<*>?)? = null,
