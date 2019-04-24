@@ -11,6 +11,25 @@
 <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Widget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-styled-component/index.html"><span class="identifier">StyledComponent</span></a></code>
 <p>Base widget class. The parent of all component classes.</p>
 <p>A simple widget is rendered as HTML DIV element.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-refresh-delegate/index.html">RefreshDelegate</a></p>
+</td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">RefreshDelegate</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-refresh-delegate-provider/index.html">RefreshDelegateProvider</a></p>
+</td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">RefreshDelegateProvider</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -116,6 +135,20 @@
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
 <p>Visibility state of the current component.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="vnkey.html">vnkey</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">vnkey</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="vnode.html">vnode</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">vnode</span><span class="symbol">: </span><span class="identifier">VNode</span><span class="symbol">?</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -700,15 +733,6 @@
 </tr>
 <tr>
 <td>
-<p><a href="after-postpatch.html">afterPostpatch</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">afterPostpatch</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$afterPostpatch(com.github.snabbdom.VNode)/node">node</span><span class="symbol">:</span>&nbsp;<span class="identifier">VNode</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Method called after updating Snabbdom vnode.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="clear-drag-drop-data.html">clearDragDropData</a></p>
 </td>
 <td>
@@ -848,6 +872,14 @@
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hideTooltip</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code>
 <p>Hides tooltip for the current widget.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="refresh-on-update.html">refreshOnUpdate</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="-refresh-delegate-provider/index.html"><span class="identifier">Widget.RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/initialValue">initialValue</span><span class="symbol">:</span>&nbsp;<a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="-refresh-delegate-provider/index.html"><span class="identifier">Widget.RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
@@ -998,20 +1030,19 @@
 <tbody>
 <tr>
 <td>
+<p><a href="../-styled-component/get-cache-key.html">getCacheKey</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getCacheKey</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="../-styled-component/get-sn-style.html">getSnStyle</a></p>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnStyle</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span></code>
 <p>Returns the list of String pairs defining CSS style attributes and their values.</p>
 </td>
-</tr>
-<tr>
-<td>
-<p><a href="../-styled-component/refresh-on-update.html">refreshOnUpdate</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="../-styled-component/-refresh-delegate-provider/index.html"><span class="identifier">StyledComponent.RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code><br/>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/initialValue">initialValue</span><span class="symbol">:</span>&nbsp;<a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.StyledComponent$refreshOnUpdate(pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.StyledComponent.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="../-styled-component/-refresh-delegate-provider/index.html"><span class="identifier">StyledComponent.RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="../-styled-component/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -1106,7 +1137,7 @@
 </td>
 <td>
 <code><span class="keyword">class </span><span class="identifier">DataContainer</span><span class="symbol">&lt;</span><span class="identifier">M</span><span class="symbol">, </span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.data/-data-updatable/index.html"><span class="identifier">DataUpdatable</span></a></code>
-<p>A container class with support for observable data model.</p>
+<p>A container class with support for mutable/observable data model.</p>
 </td>
 </tr>
 <tr>
@@ -1170,6 +1201,15 @@
 <td>
 <code><span class="keyword">class </span><span class="identifier">StateBinding</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code>
 <p>A class which binds the redux store with the given container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.tabulator/-tabulator/index.html">Tabulator</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Tabulator</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code>
+<p>Tabulator component.</p>
 </td>
 </tr>
 <tr>

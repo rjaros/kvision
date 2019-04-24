@@ -116,6 +116,20 @@
 <p>Visibility state of the current component.</p>
 </td>
 </tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/vnkey.html">vnkey</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">vnkey</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/vnode.html">vnode</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">vnode</span><span class="symbol">: </span><span class="identifier">VNode</span><span class="symbol">?</span></code></td>
+</tr>
 </tbody>
 </table>
 <h3>Functions</h3>
@@ -182,15 +196,6 @@
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">afterInsert</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$afterInsert(com.github.snabbdom.VNode)/node">node</span><span class="symbol">:</span>&nbsp;<span class="identifier">VNode</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Method called after inserting Snabbdom vnode into the DOM.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../../pl.treksoft.kvision.core/-widget/after-postpatch.html">afterPostpatch</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">afterPostpatch</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$afterPostpatch(com.github.snabbdom.VNode)/node">node</span><span class="symbol">:</span>&nbsp;<span class="identifier">VNode</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Method called after updating Snabbdom vnode.</p>
 </td>
 </tr>
 <tr>
@@ -334,6 +339,14 @@
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hideTooltip</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
 <p>Hides tooltip for the current widget.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.core/-widget/refresh-on-update.html">refreshOnUpdate</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../pl.treksoft.kvision.core/-widget/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/-refresh-delegate-provider/index.html"><span class="identifier">Widget.RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-widget/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/initialValue">initialValue</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../pl.treksoft.kvision.core/-widget/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/-refresh-delegate-provider/index.html"><span class="identifier">Widget.RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-widget/refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>

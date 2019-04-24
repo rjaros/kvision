@@ -1,0 +1,128 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Tabulator.OptionsCell - kvision</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../../index.html">pl.treksoft.kvision.tabulator.js</a>&nbsp;/&nbsp;<a href="../index.html">Tabulator</a>&nbsp;/&nbsp;<a href="./index.html">OptionsCell</a><br/>
+<br/>
+<h1>OptionsCell</h1>
+<code><span class="keyword">interface </span><span class="identifier">OptionsCell</span></code>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="cell-click.html">cellClick</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellClick</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-context.html">cellContext</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellContext</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-dbl-click.html">cellDblClick</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellDblClick</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-dbl-tap.html">cellDblTap</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellDblTap</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-edit-cancelled.html">cellEditCancelled</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellEditCancelled</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-edited.html">cellEdited</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellEdited</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-editing.html">cellEditing</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellEditing</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-mouse-enter.html">cellMouseEnter</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellMouseEnter</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-mouse-leave.html">cellMouseLeave</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellMouseLeave</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-mouse-move.html">cellMouseMove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellMouseMove</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-mouse-out.html">cellMouseOut</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellMouseOut</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-mouse-over.html">cellMouseOver</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellMouseOver</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-tap.html">cellTap</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellTap</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="cell-tap-hold.html">cellTapHold</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">cellTapHold</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">cell</span><span class="symbol">:</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-options.html">Options</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Options</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-options-general/index.html"><span class="identifier">Tabulator.OptionsGeneral</span></a><span class="symbol">, </span><a href="../-options-history/index.html"><span class="identifier">Tabulator.OptionsHistory</span></a><span class="symbol">, </span><a href="../-options-locale/index.html"><span class="identifier">Tabulator.OptionsLocale</span></a><span class="symbol">, </span><a href="../-options-download/index.html"><span class="identifier">Tabulator.OptionsDownload</span></a><span class="symbol">, </span><a href="../-options-columns/index.html"><span class="identifier">Tabulator.OptionsColumns</span></a><span class="symbol">, </span><a href="../-options-rows/index.html"><span class="identifier">Tabulator.OptionsRows</span></a><span class="symbol">, </span><a href="../-options-data/index.html"><span class="identifier">Tabulator.OptionsData</span></a><span class="symbol">, </span><a href="../-options-sorting/index.html"><span class="identifier">Tabulator.OptionsSorting</span></a><span class="symbol">, </span><a href="../-options-filtering/index.html"><span class="identifier">Tabulator.OptionsFiltering</span></a><span class="symbol">, </span><a href="../-options-row-grouping/index.html"><span class="identifier">Tabulator.OptionsRowGrouping</span></a><span class="symbol">, </span><a href="../-options-pagination/index.html"><span class="identifier">Tabulator.OptionsPagination</span></a><span class="symbol">, </span><a href="../-options-persistent-configuration/index.html"><span class="identifier">Tabulator.OptionsPersistentConfiguration</span></a><span class="symbol">, </span><a href="../-options-clipboard/index.html"><span class="identifier">Tabulator.OptionsClipboard</span></a><span class="symbol">, </span><a href="../-options-data-tree/index.html"><span class="identifier">Tabulator.OptionsDataTree</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Tabulator.OptionsCell</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
