@@ -169,6 +169,7 @@ dokka {
             'kvision-modules/kvision-datacontainer/src/main/kotlin',
             'kvision-modules/kvision-dialog/src/main/kotlin',
             'kvision-modules/kvision-redux/src/main/kotlin',
+            'kvision-modules/kvision-tabulator/src/main/kotlin',
             'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-select-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',

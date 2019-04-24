@@ -35,7 +35,7 @@ import pl.treksoft.kvision.utils.snOpt
 /**
  * HTML table types.
  */
-enum class TableType(internal val type: String) {
+enum class TableType(val type: String) {
     STRIPED("table-striped"),
     BORDERED("table-bordered"),
     HOVER("table-hover"),
