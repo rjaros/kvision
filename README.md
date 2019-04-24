@@ -36,6 +36,7 @@ allows to build full-stack, multiplatform applications with shared common code.
     - [Bootstrap File Input](http://plugins.krajee.com/file-input)
     - [Handlebars](http://handlebarsjs.com/)
     - [Chart.js](https://www.chartjs.org/)
+    - [Tabulator](http://tabulator.info/)
     - [Redux](https://redux.js.org/)
     - [Navigo](https://github.com/krasimir/navigo)
  
@@ -96,9 +97,9 @@ Application package will be saved as build/distributions/showcase.zip.
 
 ### Hello world
 
-        val root = Root("root")
-        val label = Span("Hello world!")
-        root.add(label)
+        Root("root") {
+            span("Hello world!")
+        }
 
 ### Basic components interactions using type safe DSL builders
 
@@ -106,10 +107,8 @@ Application package will be saved as build/distributions/showcase.zip.
             hPanel(spacing = 20, alignItems = FlexAlignItems.CENTER) {
                 val label = span("Not yet clicked.")
                 var count = 0
-                button("Click me") {
-                    onClick {
-                        label.content = "You clicked the button ${++count} times."
-                    }
+                button("Click me").onClick {
+                    label.content = "You clicked the button ${++count} times."
                 }
             }
         }
@@ -120,26 +119,30 @@ Application package will be saved as build/distributions/showcase.zip.
         val secondPanel = Div("Second")
         val thirdPanel = Div("Third")
 
-        Root("root").add(TabPanel().apply {
-            addTab("First", firstPanel, route = "/first")
-            addTab("Second", secondPanel, route = "/second")
-            addTab("Third", thirdPanel, route = "/third")
-        })
+        Root("root") {
+            tabPanel {
+                addTab("First", firstPanel, route = "/first")
+                addTab("Second", secondPanel, route = "/second")
+                addTab("Third", thirdPanel, route = "/third")
+            }
+        }
 
 ### Type safe forms
 
         @Serializable
         data class Model(val username: String? = null, val password: String? = null)
 
-        Root("root").add(FormPanel {
-            add(Model::username, Text(label = "Username"), required = true)
-            add(Model::password, Password(label = "Password"), required = true)
-            add(Button("OK").onClick {
-                val data: Model = this@FormPanel.getData()
-                println("Username: ${data.username}")
-                println("Password: ${data.password}")
-            })
-        })
+        Root("root") {
+            formPanel {
+                add(Model::username, Text(label = "Username"), required = true)
+                add(Model::password, Password(label = "Password"), required = true)
+                add(Button("OK").onClick {
+                    val data: Model = this@FormPanel.getData()
+                    println("Username: ${data.username}")
+                    println("Password: ${data.password}")
+                })
+            }
+        }
         
 ### Data binding with observable data model
 
@@ -150,14 +153,9 @@ Application package will be saved as build/distributions/showcase.zip.
             Data("Two"),
             Data("Three")
         )
-        Root("root").add(DataContainer(model, { data, _, _ ->
-            Span(data.text)
-        }, HPanel(spacing = 10)))
-
-        GlobalScope.launch { // Kotlin coroutines
-            while (true) {
-                delay(1000)
-                model.reverse()
-            }
+        Root("root") {
+            dataContainer(model, { data, _, _ ->
+                Span(data.text)
+            }, HPanel(spacing = 10))
         }
-
+        model.reverse()
