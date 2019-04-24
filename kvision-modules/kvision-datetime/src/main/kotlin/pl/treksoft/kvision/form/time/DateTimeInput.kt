@@ -51,7 +51,10 @@ open class DateTimeInput(
     classes: Set<String> = setOf()
 ) : Widget(classes + "form-control"), FormInput {
 
+    private var initialized = false
+
     init {
+        this.vnkey = "kv_datetimeinput_${counter++}"
         this.setInternalEventListener<DateTimeInput> {
             change = {
                 self.changeValue()
@@ -78,7 +81,7 @@ open class DateTimeInput(
     /**
      * Determines if the field is disabled.
      */
-    override var disabled by refreshOnUpdate(false)
+    override var disabled by refreshOnUpdate(false) { refresh(); checkDisabled() }
     /**
      * Determines if the text input is automatically focused.
      */
@@ -160,6 +163,22 @@ open class DateTimeInput(
         return sn
     }
 
+    private fun checkDisabled() {
+        if (disabled) {
+            if (initialized) {
+                getElementJQueryD()?.datetimepicker("remove")
+                initialized = false
+            }
+        } else {
+            if (!initialized) {
+                this.initDateTimePicker()
+                this.initEventHandlers()
+                this.refreshState()
+                initialized = true
+            }
+        }
+    }
+
     @Suppress("UnsafeCastFromDynamic")
     protected open fun refreshState() {
         value?.let {
@@ -190,35 +209,31 @@ open class DateTimeInput(
      * Open date/time chooser popup.
      */
     open fun showPopup() {
-        getElementJQueryD()?.datetimepicker("show")
+        if (initialized) getElementJQueryD()?.datetimepicker("show")
     }
 
     /**
      * Hides date/time chooser popup.
      */
     open fun hidePopup() {
-        getElementJQueryD()?.datetimepicker("hide")
+        if (initialized) getElementJQueryD()?.datetimepicker("hide")
     }
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         if (!this.disabled) {
             this.initDateTimePicker()
-            this.getElementJQuery()?.on("changeDate") { e, _ ->
-                this.dispatchEvent("change", obj { detail = e })
-            }
-            this.getElementJQuery()?.on("show") { e, _ ->
-                this.dispatchEvent("showBsDateTime", obj { detail = e })
-            }
-            this.getElementJQuery()?.on("hide") { e, _ ->
-                this.dispatchEvent("hideBsDateTime", obj { detail = e })
-            }
-            refreshState()
+            this.initEventHandlers()
+            this.refreshState()
+            initialized = true
         }
     }
 
     override fun afterDestroy() {
-        getElementJQueryD()?.datetimepicker("remove")
+        if (initialized) {
+            getElementJQueryD()?.datetimepicker("remove")
+            initialized = false
+        }
     }
 
     private fun initDateTimePicker() {
@@ -244,6 +259,18 @@ open class DateTimeInput(
         })
     }
 
+    private fun initEventHandlers() {
+        this.getElementJQuery()?.on("changeDate") { e, _ ->
+            this.dispatchEvent("change", obj { detail = e })
+        }
+        this.getElementJQuery()?.on("show") { e, _ ->
+            this.dispatchEvent("showBsDateTime", obj { detail = e })
+        }
+        this.getElementJQuery()?.on("hide") { e, _ ->
+            this.dispatchEvent("hideBsDateTime", obj { detail = e })
+        }
+    }
+
     /**
      * Get value of date/time input control as String
      * @return value as a String
@@ -267,6 +294,8 @@ open class DateTimeInput(
     }
 
     companion object {
+        internal var counter = 0
+
         private fun String.toDatePickerFormat(): String {
             return this.replace("YY", "yy").replace("m", "i").replace("MMMM", "{----}").replace("MMM", "{---}")
                 .replace("M", "m").replace("{----}", "MM").replace("{---}", "M").replace("H", "{-}")

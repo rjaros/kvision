@@ -130,6 +130,7 @@ open class SelectInput(
     override var size: InputSize? by refreshOnUpdate()
 
     init {
+        this.vnkey = "kv_selectinput_${counter++}"
         setChildrenFromOptions()
         this.setInternalEventListener<SelectInput> {
             change = {
@@ -348,6 +349,8 @@ open class SelectInput(
     }
 
     companion object {
+        internal var counter = 0
+
         /**
          * DSL builder extension function.
          *

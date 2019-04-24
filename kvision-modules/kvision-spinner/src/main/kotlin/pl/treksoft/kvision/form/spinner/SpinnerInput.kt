@@ -74,6 +74,7 @@ open class SpinnerInput(
 ) : Widget(classes + "form-control"), FormInput {
 
     init {
+        this.vnkey = "kv_spinnerinput_${counter++}"
         this.addSurroundingCssClass("input-group")
         if (buttonsType == ButtonsType.NONE) {
             this.addSurroundingCssClass("kv-spinner-btn-none")

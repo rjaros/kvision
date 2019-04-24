@@ -53,6 +53,10 @@ open class Canvas(
      */
     lateinit var context2D: CanvasRenderingContext2D
 
+    init {
+        this.vnkey = "kv_canvas_${counter++}"
+    }
+
     override fun render(): VNode {
         return render("canvas")
     }
@@ -68,11 +72,14 @@ open class Canvas(
         return pr
     }
 
-    override fun afterInsert(node: VNode) {
+    override fun afterInsertInternal(node: VNode) {
+        super.afterInsertInternal(node)
         context2D = (node.elm as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
     }
 
     companion object {
+        internal var counter = 0
+
         /**
          * DSL builder extension function.
          *

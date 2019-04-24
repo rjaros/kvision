@@ -110,6 +110,7 @@ open class Modal(
     private val footer = SimplePanel(setOf("modal-footer"))
 
     init {
+        this.vnkey = "kv_modal_${counter++}"
         this.hide()
         this.role = "dialog"
         this.addInternal(dialog)
@@ -270,6 +271,7 @@ open class Modal(
     }
 
     companion object {
+        internal var counter = 0
         internal var modals = mutableListOf<Modal>()
     }
 }

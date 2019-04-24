@@ -41,6 +41,7 @@ abstract class AbstractTextInput(
 ) : Widget(classes), FormInput {
 
     init {
+        this.vnkey = "kv_textinput_${counter++}"
         this.setInternalEventListener<AbstractTextInput> {
             input = {
                 self.changeValue()
@@ -127,10 +128,6 @@ abstract class AbstractTextInput(
         refreshState()
     }
 
-    override fun afterPostpatch(node: VNode) {
-        refreshState()
-    }
-
     /**
      * @suppress
      * Internal function
@@ -169,5 +166,9 @@ abstract class AbstractTextInput(
      */
     open fun blur() {
         getElementJQuery()?.blur()
+    }
+
+    companion object {
+        internal var counter = 0
     }
 }

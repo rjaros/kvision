@@ -53,7 +53,6 @@ internal class ChartCanvas(
     }
 
     override fun afterInsert(node: VNode) {
-        super.afterInsert(node)
         jsChart =
             JsChart(this.context2D, configuration.toJs(this::translate))
     }

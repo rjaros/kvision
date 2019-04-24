@@ -123,8 +123,9 @@ internal class Splitter(private val splitPanel: SplitPanel, direction: Direction
     private val idc = "kv_splitter_$counter"
 
     init {
-        counter++
+        this.vnkey = "kv_splitter_$counter"
         this.id = idc
+        counter++
     }
 
     override fun afterInsert(node: VNode) {

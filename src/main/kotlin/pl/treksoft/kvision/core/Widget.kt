@@ -96,7 +96,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     var eventTarget: Widget? = null
 
-    private var vnode: VNode? = null
+    protected var vnkey: String? by refreshOnUpdate()
+    protected var vnode: VNode? = null
 
     private var snAttrsCache: List<StringPair>? = null
     private var snClassCache: List<StringBoolPair>? = null
@@ -182,6 +183,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
      */
     private fun getSnOpt(): VNodeData {
         return snOpt {
+            if (vnkey != null) key = vnkey
             attrs = snAttrs(getSnAttrsInternal())
             style = snStyle(getSnStyleInternal())
             `class` = snClasses(getSnClassInternal())
@@ -324,15 +326,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
                 vnode = v
                 afterInsertInternal(v)
                 afterInsert(v)
-            }
-            postpatch = { ov, v ->
-                vnode = v
-                if (ov.elm !== v.elm) {
-                    afterInsertInternal(v)
-                    afterInsert(v)
-                } else {
-                    afterPostpatch(v)
-                }
             }
             destroy = {
                 afterDestroyInternal()
@@ -626,12 +619,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
      * Method called after inserting Snabbdom vnode into the DOM.
      */
     protected open fun afterInsert(node: VNode) {
-    }
-
-    /**
-     * Method called after updating Snabbdom vnode.
-     */
-    protected open fun afterPostpatch(node: VNode) {
     }
 
     /**
