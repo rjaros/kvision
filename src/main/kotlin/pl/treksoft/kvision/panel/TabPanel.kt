@@ -59,12 +59,14 @@ enum class SideTabSize {
  * @constructor
  * @param tabPosition tab position
  * @param sideTabSize side tab size
+ * @param scrollableTabs determines if tabs are scrollable (default: false)
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class TabPanel(
     private val tabPosition: TabPosition = TabPosition.TOP,
     private val sideTabSize: SideTabSize = SideTabSize.SIZE_3,
+    scrollableTabs: Boolean = false,
     classes: Set<String> = setOf(),
     init: (TabPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
@@ -86,7 +88,7 @@ open class TabPanel(
             }
         }
     private val navClasses = when (tabPosition) {
-        TabPosition.TOP -> setOf("nav", "nav-tabs")
+        TabPosition.TOP -> if (scrollableTabs) setOf("nav", "nav-tabs", "tabs-top") else setOf("nav", "nav-tabs")
         TabPosition.LEFT -> setOf("nav", "nav-tabs", "tabs-left")
         TabPosition.RIGHT -> setOf("nav", "nav-tabs", "tabs-right")
     }
@@ -205,10 +207,11 @@ open class TabPanel(
         fun Container.tabPanel(
             tabPosition: TabPosition = TabPosition.TOP,
             sideTabSize: SideTabSize = SideTabSize.SIZE_3,
+            scrollableTabs: Boolean = false,
             classes: Set<String> = setOf(),
             init: (TabPanel.() -> Unit)? = null
         ): TabPanel {
-            val tabPanel = TabPanel(tabPosition, sideTabSize, classes, init)
+            val tabPanel = TabPanel(tabPosition, sideTabSize, scrollableTabs, classes, init)
             this.add(tabPanel)
             return tabPanel
         }

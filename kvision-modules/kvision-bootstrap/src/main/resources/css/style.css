@@ -152,3 +152,14 @@ ul.dropdown-menu li a {
 .file-drop-zone.clickable:focus {
     border: 1px solid #5acde2;
 }
+
+ul.tabs-top {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+}
+
+ul.tabs-top > li {
+    float:none;
+    flex-shrink: 0;
+}
