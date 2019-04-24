@@ -98,6 +98,14 @@ Predictable state container based on Redux library.
 
 A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.
 
+# Package pl.treksoft.kvision.tabulator
+
+Full-featured grid/table component based on the Tabulator library.
+
+# Package pl.treksoft.kvision.tabulator.js
+
+Kotlin bindings for Tabulator API.
+
 # Package pl.treksoft.kvision.rest
 
 RESTful API client with support for type-safe connectivity.
