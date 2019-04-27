@@ -61,6 +61,7 @@ The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is 
 
 Full API documentation (KDoc) is available at [https://rjaros.github.io/kvision/api/](https://rjaros.github.io/kvision/api/).
 
+You can also look at [KVision blog posts at dev.to](https://dev.to/t/kvision/latest).
 
 ## Quickstart
 
