@@ -22,7 +22,7 @@
 package test.pl.treksoft.kvision.tabulator
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.tabulator.Options
+import pl.treksoft.kvision.tabulator.TabulatorOptions
 import pl.treksoft.kvision.tabulator.Tabulator
 import pl.treksoft.kvision.utils.obj
 import test.pl.treksoft.kvision.DomSpec
@@ -35,7 +35,7 @@ class TabulatorSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", true)
-            val tabulator = Tabulator<Any>(options = Options(data = arrayOf(obj {
+            val tabulator = Tabulator<Any>(options = TabulatorOptions(data = arrayOf(obj {
                 id = 1
                 name = "Name"
                 age = 40

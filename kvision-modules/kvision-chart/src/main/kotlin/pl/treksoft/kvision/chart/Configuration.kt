@@ -728,7 +728,7 @@ fun ChartScales.toJs(i18nTranslator: (String) -> (String)): dynamic {
 /**
  * Chart options.
  */
-data class Options(
+data class ChartOptions(
     val responsive: Boolean = true,
     val responsiveAnimationDuration: Int = 0,
     val aspectRatio: Int = 2,

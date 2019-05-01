@@ -411,7 +411,7 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
 /**
  * Tabulator options.
  */
-data class Options(
+data class TabulatorOptions(
     val height: String? = null,
     val virtualDom: Boolean? = null,
     val virtualDomBuffer: Int? = null,
