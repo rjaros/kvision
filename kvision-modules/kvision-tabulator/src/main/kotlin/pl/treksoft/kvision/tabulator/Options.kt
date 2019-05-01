@@ -572,7 +572,7 @@ data class TabulatorOptions(
  * An extension function to convert tabulator options class to JS object.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod")
-fun Options.toJs(i18nTranslator: (String) -> (String)): Tabulator.Options {
+fun TabulatorOptions.toJs(i18nTranslator: (String) -> (String)): Tabulator.Options {
     return obj {
         if (height != null) this.height = height
         if (virtualDom != null) this.virtualDom = virtualDom
