@@ -758,7 +758,7 @@ data class ChartOptions(
  * An extension function to convert configuration class to JS object.
  */
 @Suppress("ComplexMethod")
-fun Options.toJs(i18nTranslator: (String) -> (String)): dynamic {
+fun ChartOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
     return obj {
         this.responsive = responsive
         this.responsiveAnimationDuration = responsiveAnimationDuration
@@ -889,7 +889,7 @@ data class Configuration(
     val type: ChartType,
     val dataSets: List<DataSets>,
     val labels: List<String>? = null,
-    val options: Options? = null
+    val options: ChartOptions? = null
 )
 
 /**
