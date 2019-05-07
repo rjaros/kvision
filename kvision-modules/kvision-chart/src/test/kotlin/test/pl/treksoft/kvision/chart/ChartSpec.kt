@@ -25,7 +25,7 @@ import pl.treksoft.kvision.chart.Chart
 import pl.treksoft.kvision.chart.ChartType
 import pl.treksoft.kvision.chart.Configuration
 import pl.treksoft.kvision.chart.DataSets
-import pl.treksoft.kvision.chart.Options
+import pl.treksoft.kvision.chart.ChartOptions
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.px
 import test.pl.treksoft.kvision.DomSpec
@@ -65,7 +65,7 @@ class ChartSpec : DomSpec {
                 Configuration(
                     ChartType.SCATTER,
                     listOf(DataSets(label = "Chart", data = listOf(0, 1))),
-                    options = Options(responsive = false)
+                    options = ChartOptions(responsive = false)
                 ), 300, 600
             )
             root.add(chart)

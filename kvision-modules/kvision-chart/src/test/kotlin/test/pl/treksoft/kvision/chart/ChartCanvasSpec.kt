@@ -25,7 +25,7 @@ import pl.treksoft.kvision.chart.ChartCanvas
 import pl.treksoft.kvision.chart.ChartType
 import pl.treksoft.kvision.chart.Configuration
 import pl.treksoft.kvision.chart.DataSets
-import pl.treksoft.kvision.chart.Options
+import pl.treksoft.kvision.chart.ChartOptions
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -62,7 +62,7 @@ class ChartCanvasSpec : DomSpec {
                 configuration = Configuration(
                     ChartType.SCATTER,
                     listOf(DataSets(label = "Chart", data = listOf(0, 1))),
-                    options = Options(responsive = false)
+                    options = ChartOptions(responsive = false)
                 )
             )
             root.add(chart)
