@@ -163,3 +163,17 @@ ul.tabs-top > li {
     float:none;
     flex-shrink: 0;
 }
+
+.kv-tab-close {
+    margin-left: 10px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+}
+
+.kv-tab-close:hover, .kv-tab-close:focus {
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
