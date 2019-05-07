@@ -48,4 +48,4 @@ open class Routing : Navigo(null, true, "#!") {
 /**
  * Default JavaScript router.
  */
-var routing = Routing()
+var routing = Routing().also { it.resolve() }
