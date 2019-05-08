@@ -21,8 +21,6 @@
  */
 package pl.treksoft.kvision
 
-import pl.treksoft.kvision.require
-
 internal val kVManagerMomentInit = KVManagerMoment.init()
 
 /**

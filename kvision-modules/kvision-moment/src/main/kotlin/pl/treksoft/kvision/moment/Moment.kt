@@ -1,20 +1,29 @@
-@file:Suppress(
-    "INTERFACE_WITH_SUPERCLASS",
-    "OVERRIDING_FINAL_MEMBER",
-    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
-    "CONFLICTING_OVERLOADS",
-    "EXTERNAL_DELEGATION",
-    "NESTED_CLASS_IN_EXTERNAL_INTERFACE",
-    "unused", "PropertyName", "TooManyFunctions", "VariableNaming", "MaxLineLength"
-)
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+package pl.treksoft.kvision.moment
 
-package pl.treksoft.kvision.moment.js
-
-import com.fleethome.util.kvision.FormatDisplayOption
-import com.fleethome.util.kvision.LocalizedFormatDisplayOption
 import kotlin.js.Date
 
-@Suppress("ClassName")
+@Suppress("unused")
 @JsNonModule
 @JsModule("moment")
 open external class Moment {
@@ -34,8 +43,6 @@ open external class Moment {
     open fun utcOffset(amount: dynamic): dynamic = definedExternally
     open fun utcOffset(amount: dynamic, keepExistingTimeOfDay: Boolean): dynamic = definedExternally
     open fun format(pattern: String): dynamic = definedExternally
-    open fun format(displayOption: FormatDisplayOption): dynamic = definedExternally
-    open fun format(localizedDisplayOption: LocalizedFormatDisplayOption): dynamic = definedExternally
     open fun format(): dynamic = definedExternally
     open fun fromNow(): dynamic = definedExternally
     open fun fromNow(withoutSuffix: Boolean): dynamic = definedExternally
