@@ -33,7 +33,7 @@ class UploadInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val upi = UploadInput(multiple = true).apply {
                 id = "idti"
             }

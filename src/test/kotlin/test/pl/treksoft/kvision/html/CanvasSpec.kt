@@ -32,7 +32,7 @@ class CanvasSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val canvas = Canvas(800, 600)
             root.add(canvas)
             val element = document.getElementById("test")

@@ -32,7 +32,7 @@ class H6Spec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val div = H1("This is h1 header")
             root.add(div)
             val element = document.getElementById("test")

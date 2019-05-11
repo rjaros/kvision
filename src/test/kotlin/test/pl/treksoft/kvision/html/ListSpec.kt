@@ -35,7 +35,7 @@ class ListSpec : DomSpec {
     @Test
     fun renderElements() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val list = ListTag(ListType.DL_HORIZ, listOf("a1", "a2", "b1", "b2"))
             root.add(list)
             val element = document.getElementById("test")
@@ -50,7 +50,7 @@ class ListSpec : DomSpec {
     @Test
     fun renderAsContainer() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val list = ListTag(ListType.UL)
             list.add(Tag(TAG.PRE, "pre"))
             list.add(Tag(TAG.DEL, "del"))

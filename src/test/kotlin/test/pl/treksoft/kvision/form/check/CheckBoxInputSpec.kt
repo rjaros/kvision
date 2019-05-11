@@ -32,7 +32,7 @@ class CheckBoxInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val ci = CheckBoxInput(value = true).apply {
                 name = "name"
                 id = "idti"

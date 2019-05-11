@@ -34,7 +34,7 @@ class SplitPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val splitPanel = SplitPanel(Direction.VERTICAL)
             root.add(splitPanel)
             val label1 = Span("abc")

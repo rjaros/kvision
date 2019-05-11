@@ -33,7 +33,7 @@ class SelectOptGroupSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val selectOptGroup = SelectOptGroup("Group", listOf("test1" to "Test 1", "test2" to "Test 2"), 2)
             root.add(selectOptGroup)
             val element = document.getElementById("test")

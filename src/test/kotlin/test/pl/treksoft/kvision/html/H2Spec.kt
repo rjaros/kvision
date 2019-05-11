@@ -32,7 +32,7 @@ class H2Spec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val h2 = H2("This is h2 header")
             root.add(h2)
             val element = document.getElementById("test")

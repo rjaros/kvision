@@ -34,7 +34,7 @@ class VPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val vPanel = VPanel(justify = FlexJustify.SPACEBETWEEN)
             root.add(vPanel)
             vPanel.add(Span("abc"), 1)

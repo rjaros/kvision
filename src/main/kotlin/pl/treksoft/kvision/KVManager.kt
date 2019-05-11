@@ -29,6 +29,7 @@ import com.github.snabbdom.datasetModule
 import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
+import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.utils.isIE11
 import kotlin.browser.document
@@ -70,6 +71,10 @@ internal object KVManager {
         val container = document.getElementById(id)
         container?.clear()
         return sdPatch(container, vnode)
+    }
+
+    internal fun patch(element: HTMLElement, vnode: VNode): VNode {
+        return sdPatch(element, vnode)
     }
 
     internal fun patch(oldVNode: VNode, newVNode: VNode): VNode {

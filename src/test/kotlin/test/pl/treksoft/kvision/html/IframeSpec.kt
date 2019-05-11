@@ -33,7 +33,7 @@ class IframeSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val iframe = Iframe("https://www.google.com", null, "test", 800, 600, setOf(Sandbox.ALLOWSAMEORIGIN))
             root.add(iframe)
             val element = document.getElementById("test")

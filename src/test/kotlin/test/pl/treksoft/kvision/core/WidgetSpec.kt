@@ -130,7 +130,7 @@ class WidgetSpec : WSpec {
     @Test
     fun getRoot() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val widget = Widget()
             root.add(widget)
             val r = widget.getRoot()

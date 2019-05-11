@@ -35,7 +35,7 @@ class FlexPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val flexPanel = FlexPanel(FlexDir.ROWREV, justify = FlexJustify.SPACEEVENLY)
             root.add(flexPanel)
             flexPanel.add(Span("abc"), 1)

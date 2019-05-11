@@ -36,7 +36,7 @@ class ConfirmSpec : DomSpec {
     @Test
     fun render() {
         run {
-            Root("test", true)
+            Root("test", fixed = true)
             Confirm.show("Confirm caption", "Confirm content")
             val confirm = document.getElementById("test")?.let { jQuery(it).find(".modal")[0] }
             assertNotNull(confirm, "Should show confirm window")

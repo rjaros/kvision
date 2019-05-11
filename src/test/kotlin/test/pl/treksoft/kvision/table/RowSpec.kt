@@ -33,7 +33,7 @@ class RowSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val row = Row {
                 cell("A")
             }

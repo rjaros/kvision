@@ -23,6 +23,7 @@ package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
+import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Style
@@ -45,7 +46,12 @@ import pl.treksoft.kvision.utils.snOpt
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Unit)? = null) : SimplePanel() {
+class Root(
+    id: String? = null,
+    element: HTMLElement? = null,
+    private val fixed: Boolean = false,
+    init: (Root.() -> Unit)? = null
+) : SimplePanel() {
     private val contextMenus: MutableList<ContextMenu> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
 
@@ -54,8 +60,15 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     val isFirstRoot = roots.isEmpty()
 
     init {
-        rootVnode = KVManager.patch(id, this.renderVNode())
-        this.id = id
+        if (id != null) {
+            rootVnode = KVManager.patch(id, this.renderVNode())
+            this.id = id
+        } else if (element != null) {
+            rootVnode = KVManager.patch(element, this.renderVNode())
+            this.id = "kv_root_${counter++}"
+        } else {
+            throw IllegalArgumentException("No root element specified!")
+        }
         roots.add(this)
         if (isFirstRoot) {
             Style.styles.forEach { it.parent = this }
@@ -144,6 +157,8 @@ class Root(id: String, private val fixed: Boolean = false, init: (Root.() -> Uni
     }
 
     companion object {
+        internal var counter = 0
+
         /**
          * @suppress internal function
          */

@@ -55,7 +55,7 @@ class StateBindingSpec : DomSpec {
     @Test
     fun stateBinding() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val store = createReduxStore(::stateReducer, State(10))
 
             val container = SimplePanel()
@@ -81,7 +81,7 @@ class StateBindingSpec : DomSpec {
     @Test
     fun stateUpdate() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val store = createReduxStore(::stateReducer, State(10))
 
             val container = SimplePanel()
