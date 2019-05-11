@@ -50,7 +50,7 @@ enum class SelectWidthType(internal val value: String) {
  * [SelectOption] or [SelectOptGroup] components to the container.
  *
  * @constructor
- * @param options an optional list of options (label to value pairs) for the select control
+ * @param options an optional list of options (value to label pairs) for the select control
  * @param value selected value
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote (AJAX) data source
@@ -64,9 +64,9 @@ open class SelectInput(
 ) : SimplePanel(classes), FormInput {
 
     /**
-     * A list of options (label to value pairs) for the select control.
+     * A list of options (value to label pairs) for the select control.
      */
-    internal var options by refreshOnUpdate(options) { setChildrenFromOptions() }
+    var options by refreshOnUpdate(options) { setChildrenFromOptions() }
     /**
      * A value of the selected option.
      */
@@ -337,14 +337,14 @@ open class SelectInput(
     /**
      * Makes the input element focused.
      */
-    open fun focus() {
+    override fun focus() {
         getElementJQuery()?.focus()
     }
 
     /**
      * Makes the input element blur.
      */
-    open fun blur() {
+    override fun blur() {
         getElementJQuery()?.blur()
     }
 

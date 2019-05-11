@@ -150,11 +150,11 @@ open class RadioGroupInput(
         }
     }
 
-    fun focus() {
+    override fun focus() {
         getChildren().filterIsInstance<Radio>().firstOrNull()?.focus()
     }
 
-    fun blur() {
+    override fun blur() {
         getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
     }
 

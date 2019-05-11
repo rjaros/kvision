@@ -278,14 +278,14 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     /**
      * Makes the input element focused.
      */
-    open fun focus() {
+    override fun focus() {
         getElementJQuery()?.focus()
     }
 
     /**
      * Makes the input element blur.
      */
-    open fun blur() {
+    override fun blur() {
         getElementJQuery()?.blur()
     }
 

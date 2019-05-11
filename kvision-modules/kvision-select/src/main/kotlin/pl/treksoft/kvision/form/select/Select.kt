@@ -39,7 +39,7 @@ import pl.treksoft.kvision.utils.SnOn
  * [SelectOption] or [SelectOptGroup] components to the container.
  *
  * @constructor
- * @param options an optional list of options (label to value pairs) for the select control
+ * @param options an optional list of options (value to label pairs) for the select control
  * @param value selected value
  * @param name the name attribute of the generated HTML input element
  * @param multiple allows multiple value selection (multiple values are comma delimited)
@@ -55,7 +55,7 @@ open class Select(
 ) : SimplePanel(setOf("form-group")), StringFormControl {
 
     /**
-     * A list of options (label to value pairs) for the select control.
+     * A list of options (value to label pairs) for the select control.
      */
     var options
         get() = input.options
