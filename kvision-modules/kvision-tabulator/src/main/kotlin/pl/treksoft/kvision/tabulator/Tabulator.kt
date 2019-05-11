@@ -54,7 +54,7 @@ import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 @Suppress("LargeClass", "TooManyFunctions")
 open class Tabulator<T : Any>(
     protected val data: List<T>? = null,
-    val options: TabulatorOptions = TabulatorOptions(),
+    val options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     classes: Set<String> = setOf(),
     protected val dataSerializer: KSerializer<T>? = null
@@ -228,7 +228,7 @@ open class Tabulator<T : Any>(
         (this.getElement() as? HTMLElement)?.let {
             jsTabulator =
                 KVManagerTabulator.getConstructor()
-                    .createInstance(it, options.toJs(this::translate))
+                    .createInstance(it, options.toJs(this::translate, dataSerializer))
             if (currentPage != null) {
                 jsTabulator?.setPageSize(pageSize ?: 0)
                 jsTabulator?.setPage(currentPage)
@@ -561,7 +561,7 @@ open class Tabulator<T : Any>(
          */
         inline fun <reified T : Any> Container.tabulator(
             data: List<T>? = null,
-            options: TabulatorOptions = TabulatorOptions(),
+            options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             noinline init: (Tabulator<T>.() -> Unit)? = null
@@ -578,7 +578,7 @@ open class Tabulator<T : Any>(
         inline fun <reified T : Any, S : Any, A : RAction> Container.tabulator(
             store: ReduxStore<S, A>,
             noinline dataFactory: (S) -> List<T>,
-            options: TabulatorOptions = TabulatorOptions(),
+            options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             noinline init: (Tabulator<T>.() -> Unit)? = null
@@ -594,7 +594,7 @@ open class Tabulator<T : Any>(
          */
         inline fun <reified T : Any, A : RAction> Container.tabulator(
             store: ReduxStore<List<T>, A>,
-            options: TabulatorOptions = TabulatorOptions(),
+            options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             noinline init: (Tabulator<T>.() -> Unit)? = null
@@ -609,7 +609,7 @@ open class Tabulator<T : Any>(
          * DSL builder extension function for dynamic data (send within options parameter).
          */
         fun <T : Any> Container.tabulator(
-            options: TabulatorOptions = TabulatorOptions(),
+            options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             init: (Tabulator<T>.() -> Unit)? = null
@@ -625,7 +625,7 @@ open class Tabulator<T : Any>(
          */
         @UseExperimental(ImplicitReflectionSerializer::class)
         inline fun <reified T : Any> create(
-            data: List<T>? = null, options: TabulatorOptions = TabulatorOptions(),
+            data: List<T>? = null, options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             noinline init: (Tabulator<T>.() -> Unit)? = null
@@ -642,7 +642,7 @@ open class Tabulator<T : Any>(
         inline fun <reified T : Any, S : Any, A : RAction> create(
             store: ReduxStore<S, A>,
             noinline dataFactory: (S) -> List<T>,
-            options: TabulatorOptions = TabulatorOptions(),
+            options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             noinline init: (Tabulator<T>.() -> Unit)? = null
@@ -662,7 +662,7 @@ open class Tabulator<T : Any>(
         @UseExperimental(ImplicitReflectionSerializer::class)
         inline fun <reified T : Any, A : RAction> create(
             store: ReduxStore<List<T>, A>,
-            options: TabulatorOptions = TabulatorOptions(),
+            options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             noinline init: (Tabulator<T>.() -> Unit)? = null

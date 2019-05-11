@@ -22,6 +22,7 @@
 
 package pl.treksoft.kvision.tabulator
 
+import kotlinx.serialization.KSerializer
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.form.FormControl
@@ -30,6 +31,7 @@ import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.tabulator.EditorRoot.disposeTimer
 import pl.treksoft.kvision.tabulator.EditorRoot.root
 import pl.treksoft.kvision.tabulator.js.Tabulator
+import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
 import kotlin.browser.document
 import kotlin.browser.window
@@ -257,7 +259,7 @@ fun DownloadConfig.toJs(): Tabulator.DownloadConfig {
 /**
  * Column definition options.
  */
-data class ColumnDefinition(
+data class ColumnDefinition<T : Any>(
     val title: String,
     val field: String? = null,
     val visible: Boolean? = null,
@@ -284,6 +286,9 @@ data class ColumnDefinition(
         cell: Tabulator.CellComponent, formatterParams: dynamic,
         onRendered: (callback: () -> Unit) -> Unit
     ) -> dynamic)? = null,
+    val formatterComponentFunction: ((
+        cell: Tabulator.CellComponent, onRendered: (callback: () -> Unit) -> Unit, data: T
+    ) -> Component)? = null,
     val formatterParams: dynamic = null,
     val variableHeight: Boolean? = null,
     val editable: ((cell: Tabulator.CellComponent) -> Boolean)? = null,
@@ -293,6 +298,11 @@ data class ColumnDefinition(
         onRendered: (callback: () -> Unit) -> Unit,
         success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, editorParams: dynamic
     ) -> dynamic)? = null,
+    val editorComponentFunction: ((
+        cell: Tabulator.CellComponent,
+        onRendered: (callback: () -> Unit) -> Unit,
+        success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, data: T
+    ) -> Component)? = null,
     val editorParams: dynamic = null,
     val validator: Validator? = null,
     val validatorFunction: dynamic = null,
@@ -353,12 +363,19 @@ internal object EditorRoot {
  * An extension function to convert column definition class to JS object.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod", "MagicNumber")
-fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.ColumnDefinition {
-    val tmpEditorFunction = editorFunction?.let {
+fun <T : Any> ColumnDefinition<T>.toJs(
+    i18nTranslator: (String) -> (String),
+    dataSerializer: KSerializer<T>? = null
+): Tabulator.ColumnDefinition {
+    val tmpEditorFunction = editorComponentFunction?.let {
         { cell: Tabulator.CellComponent,
           onRendered: (callback: () -> Unit) -> Unit,
-          success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, editorParams: dynamic ->
+          success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, _: dynamic ->
             var onRenderedCallback: (() -> Unit)? = null
+            val str = kotlin.js.JSON.stringify(cell.getData())
+            @Suppress("UNCHECKED_CAST") val data = dataSerializer?.let {
+                JSON.plain.parse(it, str)
+            } ?: cell.getData() as T
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, { value ->
@@ -368,49 +385,44 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
                     disposeTimer = null
                     root = null
                 }, 500)
-            }, cancel, editorParams)
-            if (component is Component) {
-                val rootElement = document.createElement("div") as HTMLElement
-                onRendered {
-                    if (root != null) {
-                        disposeTimer?.let { window.clearTimeout(it) }
-                        root?.dispose()
-                    }
-                    root = Root(element = rootElement)
-                    @Suppress("UnsafeCastFromDynamic")
-                    root?.add(component)
-                    (component as? FormControl)?.focus()
-                    (component as? FormInput)?.focus()
-                    cell.checkHeight()
-                    onRenderedCallback?.invoke()
+            }, cancel, data)
+            val rootElement = document.createElement("div") as HTMLElement
+            onRendered {
+                if (root != null) {
+                    disposeTimer?.let { window.clearTimeout(it) }
+                    root?.dispose()
                 }
-                rootElement
-            } else {
-                component
+                root = Root(element = rootElement)
+                @Suppress("UnsafeCastFromDynamic")
+                root?.add(component)
+                (component as? FormControl)?.focus()
+                (component as? FormInput)?.focus()
+                cell.checkHeight()
+                onRenderedCallback?.invoke()
             }
+            rootElement
         }
     }
 
-    val tmpFormatterFunction = formatterFunction?.let {
-        { cell: Tabulator.CellComponent, formatterParams: dynamic,
+    val tmpFormatterFunction = formatterComponentFunction?.let {
+        { cell: Tabulator.CellComponent, _: dynamic,
           onRendered: (callback: () -> Unit) -> Unit ->
             var onRenderedCallback: (() -> Unit)? = null
-            val component = it(cell, formatterParams) { callback ->
+            val str = kotlin.js.JSON.stringify(cell.getData())
+            @Suppress("UNCHECKED_CAST") val data =
+                dataSerializer?.let { JSON.plain.parse(it, str) } ?: cell.getData() as T
+            val component = it(cell, { callback ->
                 onRenderedCallback = callback
+            }, data)
+            val rootElement = document.createElement("div") as HTMLElement
+            onRendered {
+                val root = Root(element = rootElement)
+                @Suppress("UnsafeCastFromDynamic")
+                root.add(component)
+                cell.checkHeight()
+                onRenderedCallback?.invoke()
             }
-            if (component is Component) {
-                val rootElement = document.createElement("div") as HTMLElement
-                onRendered {
-                    val root = Root(element = rootElement)
-                    @Suppress("UnsafeCastFromDynamic")
-                    root.add(component)
-                    cell.checkHeight()
-                    onRenderedCallback?.invoke()
-                }
-                rootElement
-            } else {
-                component
-            }
+            rootElement
         }
     }
 
@@ -438,6 +450,8 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
         if (sorterParams != null) this.sorterParams = sorterParams
         if (tmpFormatterFunction != null) {
             this.formatter = tmpFormatterFunction
+        } else if (formatterFunction != null) {
+            this.formatter = formatterFunction
         } else if (formatter != null) {
             this.formatter = formatter.formatter
         }
@@ -446,6 +460,8 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
         if (editable != null) this.editable = editable
         if (tmpEditorFunction != null) {
             this.editor = tmpEditorFunction
+        } else if (editorFunction != null) {
+            this.editor = editorFunction
         } else if (editor != null) {
             this.editor = editor.editor
         }
@@ -496,14 +512,20 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
         if (cellMouseMove != null) this.cellMouseMove = cellMouseMove
         if (cellEditing != null) this.cellEditing = cellEditing
         if (cellEdited != null) this.cellEdited = cellEdited
-        if (cellEditCancelled != null) this.cellEditCancelled = cellEditCancelled
+        if (cellEditCancelled != null) {
+            this.cellEditCancelled = cellEditCancelled
+        } else if (tmpEditorFunction != null) {
+            this.cellEditCancelled = { cell: Tabulator.CellComponent ->
+                cell.checkHeight()
+            }
+        }
     } as Tabulator.ColumnDefinition
 }
 
 /**
  * Tabulator options.
  */
-data class TabulatorOptions(
+data class TabulatorOptions<T : Any>(
     val height: String? = null,
     val virtualDom: Boolean? = null,
     val virtualDomBuffer: Int? = null,
@@ -517,7 +539,7 @@ data class TabulatorOptions(
     val downloadConfig: DownloadConfig? = null,
     val reactiveData: Boolean? = null,
     val autoResize: Boolean? = null,
-    val columns: List<ColumnDefinition>? = null,
+    val columns: List<ColumnDefinition<T>>? = null,
     val autoColumns: Boolean? = null,
     val layout: Layout? = null,
     val layoutColumnsOnNewData: Boolean? = null,
@@ -664,7 +686,10 @@ data class TabulatorOptions(
  * An extension function to convert tabulator options class to JS object.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod")
-fun TabulatorOptions.toJs(i18nTranslator: (String) -> (String)): Tabulator.Options {
+fun <T : Any> TabulatorOptions<T>.toJs(
+    i18nTranslator: (String) -> (String),
+    dataSerializer: KSerializer<T>? = null
+): Tabulator.Options {
     return obj {
         if (height != null) this.height = height
         if (virtualDom != null) this.virtualDom = virtualDom
@@ -679,7 +704,7 @@ fun TabulatorOptions.toJs(i18nTranslator: (String) -> (String)): Tabulator.Optio
         if (downloadConfig != null) this.downloadConfig = downloadConfig.toJs()
         if (reactiveData != null) this.reactiveData = reactiveData
         if (autoResize != null) this.autoResize = autoResize
-        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator) }.toTypedArray()
+        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator, dataSerializer) }.toTypedArray()
         if (autoColumns != null) {
             this.autoColumns = autoColumns
         } else if (columns == null) {
