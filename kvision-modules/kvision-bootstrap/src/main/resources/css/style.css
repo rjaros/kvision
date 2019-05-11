@@ -196,6 +196,10 @@ select.form-control option {
     background-color: white;
 }
 
+select.input-sm {
+    line-height: inherit;
+}
+
 .tabulator-row .tabulator-cell.tabulator-editing input, .tabulator-row .tabulator-cell.tabulator-editing select {
     border: 1px solid #ccc;
     border-radius: 4px;
