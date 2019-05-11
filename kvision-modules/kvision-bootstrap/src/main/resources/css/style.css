@@ -177,3 +177,32 @@ ul.tabs-top > li {
     filter: alpha(opacity=50);
     opacity: 0.5;
 }
+
+select.form-control, .tabulator-row .tabulator-cell.tabulator-editing select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent none no-repeat;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAKCAYAAABblxXYAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wUKFyIn4IjqJgAAAENJREFUKM/l0LERACEQQlGsiTa2px1aokGugNNAx8wfMy8AeLoBALYjaTqoKkga2+gKPgF/2Q7JkEx359oftu+C7/UBCUIcVQz0PvcAAAAASUVORK5CYII=');
+    background-position: right center;
+    cursor: pointer;
+}
+
+select.form-control:hover {
+    background-color: #e6e6e6;
+}
+
+select.form-control option {
+    background-color: white;
+}
+
+.tabulator-row .tabulator-cell.tabulator-editing input, .tabulator-row .tabulator-cell.tabulator-editing select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.tabulator-row .tabulator-cell.tabulator-editing input:focus, .tabulator-row .tabulator-cell.tabulator-editing select:focus {
+    border-color: #66afe9;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
