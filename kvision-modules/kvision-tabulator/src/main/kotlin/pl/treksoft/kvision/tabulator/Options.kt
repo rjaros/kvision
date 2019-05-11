@@ -402,7 +402,6 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
                 val rootElement = document.createElement("div") as HTMLElement
                 onRendered {
                     val root = Root(element = rootElement)
-                    console.log("root created")
                     @Suppress("UnsafeCastFromDynamic")
                     root.add(component)
                     cell.checkHeight()
