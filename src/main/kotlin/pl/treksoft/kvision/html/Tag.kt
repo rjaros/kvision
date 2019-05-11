@@ -25,6 +25,8 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
 
@@ -78,7 +80,10 @@ enum class TAG(internal val tagName: String) {
     TD("td"),
 
     FORM("form"),
-    INPUT("input")
+    INPUT("input"),
+    SELECT("select"),
+    OPTION("option"),
+    BUTTON("button")
 }
 
 /**
@@ -101,12 +106,16 @@ enum class Align(val className: String) {
  * @param rich determines if [content] can contain HTML code
  * @param align content align
  * @param classes a set of CSS class names
+ * @param attributes a map of additional attributes
  * @param init an initializer extension function
  */
 open class Tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-    classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
+    classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
+    init: (Tag.() -> Unit)? = null
 ) : SimplePanel(classes), Template {
+
+    protected val attributes = attributes.toMutableMap()
 
     /**
      * Tag type.
@@ -172,11 +181,49 @@ open class Tag(
         return cl
     }
 
+    override fun getSnAttrs(): List<StringPair> {
+        return if (attributes.isEmpty()) {
+            super.getSnAttrs()
+        } else {
+            attributes.toList() + super.getSnAttrs()
+        }
+    }
+
     operator fun String.unaryPlus() {
         if (content == null)
             content = this
         else
             content += translate(this)
+    }
+
+    /**
+     * Returns the value of an additional attribute.
+     * @param name the name of the attribute
+     * @return the value of the attribute
+     */
+    fun getAttribute(name: String): String? {
+        return this.attributes[name]
+    }
+
+    /**
+     * Sets the value of additional attribute.
+     * @param name the name of the attribute
+     * @param value the value of the attribute
+     */
+    fun setAttribute(name: String, value: String): Widget {
+        this.attributes[name] = value
+        refresh()
+        return this
+    }
+
+    /**
+     * Removes the value of additional attribute.
+     * @param name the name of the attribute
+     */
+    fun removeAttribute(name: String): Widget {
+        this.attributes.remove(name)
+        refresh()
+        return this
     }
 
     companion object {
@@ -187,9 +234,10 @@ open class Tag(
          */
         fun Container.tag(
             type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-            classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
+            classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
+            init: (Tag.() -> Unit)? = null
         ): Tag {
-            val tag = Tag(type, content, rich, align, classes, init)
+            val tag = Tag(type, content, rich, align, classes, attributes, init)
             this.add(tag)
             return tag
         }
