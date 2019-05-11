@@ -22,8 +22,17 @@
 
 package pl.treksoft.kvision.tabulator
 
+import org.w3c.dom.HTMLElement
+import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.form.FormControl
+import pl.treksoft.kvision.form.FormInput
+import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.tabulator.EditorRoot.disposeTimer
+import pl.treksoft.kvision.tabulator.EditorRoot.root
 import pl.treksoft.kvision.tabulator.js.Tabulator
 import pl.treksoft.kvision.utils.obj
+import kotlin.browser.document
+import kotlin.browser.window
 import kotlin.js.Promise
 
 /**
@@ -265,6 +274,10 @@ data class ColumnDefinition(
     val rowHandle: Boolean? = null,
     val hideInHtml: Boolean? = null,
     val sorter: Sorter? = null,
+    val sorterFunction: ((
+        a: dynamic, b: dynamic, aRow: Tabulator.RowComponent, bRow: Tabulator.RowComponent,
+        column: Tabulator.ColumnComponent, dir: SortingDir, sorterParams: dynamic
+    ) -> Number)? = null,
     val sorterParams: dynamic = null,
     val formatter: Formatter? = null,
     val formatterFunction: ((
@@ -275,8 +288,14 @@ data class ColumnDefinition(
     val variableHeight: Boolean? = null,
     val editable: ((cell: Tabulator.CellComponent) -> Boolean)? = null,
     val editor: Editor? = null,
+    val editorFunction: ((
+        cell: Tabulator.CellComponent,
+        onRendered: (callback: () -> Unit) -> Unit,
+        success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, editorParams: dynamic
+    ) -> dynamic)? = null,
     val editorParams: dynamic = null,
     val validator: Validator? = null,
+    val validatorFunction: dynamic = null,
     val validatorParams: String? = null,
     val download: Boolean? = null,
     val downloadTitle: String? = null,
@@ -325,11 +344,77 @@ data class ColumnDefinition(
     val cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null
 )
 
+internal object EditorRoot {
+    internal var root: Root? = null
+    internal var disposeTimer: Int? = null
+}
+
 /**
  * An extension function to convert column definition class to JS object.
  */
-@Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod")
+@Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod", "MagicNumber")
 fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.ColumnDefinition {
+    val tmpEditorFunction = editorFunction?.let {
+        { cell: Tabulator.CellComponent,
+          onRendered: (callback: () -> Unit) -> Unit,
+          success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, editorParams: dynamic ->
+            var onRenderedCallback: (() -> Unit)? = null
+            val component = it(cell, { callback ->
+                onRenderedCallback = callback
+            }, { value ->
+                success(value)
+                disposeTimer = window.setTimeout({
+                    root?.dispose()
+                    disposeTimer = null
+                    root = null
+                }, 500)
+            }, cancel, editorParams)
+            if (component is Component) {
+                val rootElement = document.createElement("div") as HTMLElement
+                onRendered {
+                    if (root != null) {
+                        disposeTimer?.let { window.clearTimeout(it) }
+                        root?.dispose()
+                    }
+                    root = Root(element = rootElement)
+                    @Suppress("UnsafeCastFromDynamic")
+                    root?.add(component)
+                    (component as? FormControl)?.focus()
+                    (component as? FormInput)?.focus()
+                    cell.checkHeight()
+                    onRenderedCallback?.invoke()
+                }
+                rootElement
+            } else {
+                component
+            }
+        }
+    }
+
+    val tmpFormatterFunction = formatterFunction?.let {
+        { cell: Tabulator.CellComponent, formatterParams: dynamic,
+          onRendered: (callback: () -> Unit) -> Unit ->
+            var onRenderedCallback: (() -> Unit)? = null
+            val component = it(cell, formatterParams) { callback ->
+                onRenderedCallback = callback
+            }
+            if (component is Component) {
+                val rootElement = document.createElement("div") as HTMLElement
+                onRendered {
+                    val root = Root(element = rootElement)
+                    console.log("root created")
+                    @Suppress("UnsafeCastFromDynamic")
+                    root.add(component)
+                    cell.checkHeight()
+                    onRenderedCallback?.invoke()
+                }
+                rootElement
+            } else {
+                component
+            }
+        }
+    }
+
     return obj {
         this.title = i18nTranslator(title)
         if (field != null) this.field = field
@@ -346,17 +431,25 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
         if (cssClass != null) this.cssClass = cssClass
         if (rowHandle != null) this.rowHandle = rowHandle
         if (hideInHtml != null) this.hideInHtml = hideInHtml
-        if (sorter != null) this.sorter = sorter.sorter
+        if (sorterFunction != null) {
+            this.sorter = sorterFunction
+        } else if (sorter != null) {
+            this.sorter = sorter.sorter
+        }
         if (sorterParams != null) this.sorterParams = sorterParams
-        if (formatterFunction != null) {
-            this.formatter = formatterFunction
+        if (tmpFormatterFunction != null) {
+            this.formatter = tmpFormatterFunction
         } else if (formatter != null) {
             this.formatter = formatter.formatter
         }
         if (formatterParams != null) this.formatterParams = formatterParams
         if (variableHeight != null) this.variableHeight = variableHeight
         if (editable != null) this.editable = editable
-        if (editor != null) this.editor = editor.editor
+        if (tmpEditorFunction != null) {
+            this.editor = tmpEditorFunction
+        } else if (editor != null) {
+            this.editor = editor.editor
+        }
         if (editorParams != null) this.editorParams = editorParams
         if (validator != null) this.validator = validator.validator
         if (validatorParams != null) this.validatorParams = validatorParams
