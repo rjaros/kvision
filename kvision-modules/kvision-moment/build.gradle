@@ -1,0 +1,9 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("moment", "2.24.0")
+    }
+
+}
