@@ -98,6 +98,10 @@ Predictable state container based on Redux library.
 
 A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.
 
+# Package pl.treksoft.kvision.moment
+
+A set of tools for parsing, validating, manipulating, and formatting dates based on Moment Library.
+
 # Package pl.treksoft.kvision.tabulator
 
 Full-featured grid/table component based on the Tabulator library.
