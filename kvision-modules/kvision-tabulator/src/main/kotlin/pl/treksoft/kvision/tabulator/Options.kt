@@ -448,22 +448,18 @@ fun <T : Any> ColumnDefinition<T>.toJs(
             this.sorter = sorter.sorter
         }
         if (sorterParams != null) this.sorterParams = sorterParams
-        if (tmpFormatterFunction != null) {
-            this.formatter = tmpFormatterFunction
-        } else if (formatterFunction != null) {
-            this.formatter = formatterFunction
-        } else if (formatter != null) {
-            this.formatter = formatter.formatter
+        when {
+            tmpFormatterFunction != null -> this.formatter = tmpFormatterFunction
+            formatterFunction != null -> this.formatter = formatterFunction
+            formatter != null -> this.formatter = formatter.formatter
         }
         if (formatterParams != null) this.formatterParams = formatterParams
         if (variableHeight != null) this.variableHeight = variableHeight
         if (editable != null) this.editable = editable
-        if (tmpEditorFunction != null) {
-            this.editor = tmpEditorFunction
-        } else if (editorFunction != null) {
-            this.editor = editorFunction
-        } else if (editor != null) {
-            this.editor = editor.editor
+        when {
+            tmpEditorFunction != null -> this.editor = tmpEditorFunction
+            editorFunction != null -> this.editor = editorFunction
+            editor != null -> this.editor = editor.editor
         }
         if (editorParams != null) this.editorParams = editorParams
         if (validator != null) this.validator = validator.validator
@@ -690,6 +686,13 @@ fun <T : Any> TabulatorOptions<T>.toJs(
     i18nTranslator: (String) -> (String),
     dataSerializer: KSerializer<T>? = null
 ): Tabulator.Options {
+    val tmpCellEditCancelled = this.columns?.find { it.editorComponentFunction != null }?.let {
+        { cell: Tabulator.CellComponent ->
+            cellEditCancelled?.invoke(cell)
+            cell.getTable().redraw(true)
+        }
+    } ?: cellEditCancelled
+
     return obj {
         if (height != null) this.height = height
         if (virtualDom != null) this.virtualDom = virtualDom
@@ -817,7 +820,9 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (cellMouseMove != null) this.cellMouseMove = cellMouseMove
         if (cellEditing != null) this.cellEditing = cellEditing
         if (cellEdited != null) this.cellEdited = cellEdited
-        if (cellEditCancelled != null) this.cellEditCancelled = cellEditCancelled
+        if (tmpCellEditCancelled != null) {
+            this.cellEditCancelled = tmpCellEditCancelled
+        }
         if (columnMoved != null) this.columnMoved = columnMoved
         if (columnResized != null) this.columnResized = columnResized
         if (columnVisibilityChanged != null) this.columnVisibilityChanged = columnVisibilityChanged

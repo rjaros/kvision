@@ -38,6 +38,7 @@ import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.syncWithList
 import redux.RAction
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 
@@ -47,13 +48,16 @@ import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
  * @constructor
  * @param T serializable type
  * @param data a list of serializable objects
+ * @param dataUpdateOnEdit determines if the data model is automatically updated after tabulator edit action
  * @param options tabulator options
+ * @param types a set of table types
  * @param classes a set of CSS class names
  * @param dataSerializer a serializer for class T
  */
 @Suppress("LargeClass", "TooManyFunctions")
 open class Tabulator<T : Any>(
     protected val data: List<T>? = null,
+    protected val dataUpdateOnEdit: Boolean = true,
     val options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     classes: Set<String> = setOf(),
@@ -191,6 +195,9 @@ open class Tabulator<T : Any>(
                 val d = nativeToData(data, dataSerializer)
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("tabulatorDataEdited", obj { detail = d })
+                if (dataUpdateOnEdit && this.data is MutableList<T>) {
+                    this.data.syncWithList(d)
+                }
             }
         }
         counter++
@@ -561,12 +568,13 @@ open class Tabulator<T : Any>(
          */
         inline fun <reified T : Any> Container.tabulator(
             data: List<T>? = null,
+            dataUpdateOnEdit: Boolean = true,
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
-            val tabulator = create(data, options, types, classes)
+            val tabulator = create(data, dataUpdateOnEdit, options, types, classes)
             init?.invoke(tabulator)
             this.add(tabulator)
             return tabulator
@@ -614,7 +622,7 @@ open class Tabulator<T : Any>(
             classes: Set<String> = setOf(),
             init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
-            val tabulator = Tabulator<T>(options = options, types = types, classes = classes)
+            val tabulator = Tabulator(dataUpdateOnEdit = false, options = options, types = types, classes = classes)
             init?.invoke(tabulator)
             this.add(tabulator)
             return tabulator
@@ -625,12 +633,14 @@ open class Tabulator<T : Any>(
          */
         @UseExperimental(ImplicitReflectionSerializer::class)
         inline fun <reified T : Any> create(
-            data: List<T>? = null, options: TabulatorOptions<T> = TabulatorOptions(),
+            data: List<T>? = null,
+            dataUpdateOnEdit: Boolean = true,
+            options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
-            val tabulator = Tabulator(data, options, types, classes, T::class.serializer())
+            val tabulator = Tabulator(data, dataUpdateOnEdit, options, types, classes, T::class.serializer())
             init?.invoke(tabulator)
             return tabulator
         }
@@ -648,7 +658,7 @@ open class Tabulator<T : Any>(
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val data = dataFactory(store.getState())
-            val tabulator = Tabulator(data, options, types, classes, T::class.serializer())
+            val tabulator = Tabulator(data, false, options, types, classes, T::class.serializer())
             init?.invoke(tabulator)
             store.subscribe { s ->
                 tabulator.replaceData(dataFactory(s))
@@ -668,7 +678,7 @@ open class Tabulator<T : Any>(
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val data = store.getState()
-            val tabulator = Tabulator(data, options, types, classes, T::class.serializer())
+            val tabulator = Tabulator(data, false, options, types, classes, T::class.serializer())
             init?.invoke(tabulator)
             store.subscribe { s ->
                 tabulator.replaceData(s)
