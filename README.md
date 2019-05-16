@@ -49,13 +49,14 @@ allows to build full-stack, multiplatform applications with shared common code.
 - Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side,
 including support for type-safe websockets connections.
 - Support for building cross-platform, desktop applications with [Electron](https://electronjs.org).
-- Ready to explore [KVision examples](https://github.com/rjaros/kvision-examples) are available,
-built with [Gradle](https://gradle.org/) and supporting Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
+- KVision applications are built with [Gradle](https://gradle.org/) with support for Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
 [Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).
 - [Karma](https://karma-runner.github.io/) testing framework support.
 - IDE support (IntelliJ IDEA Community Edition).
 
-## Documentation
+## Examples and documentation
+
+Ready to explore, rich set of [KVision examples](https://github.com/rjaros/kvision-examples) is available in the separate project.
 
 The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook. 
 
