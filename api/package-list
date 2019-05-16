@@ -59,6 +59,7 @@ pl.treksoft.kvision.hmr
 pl.treksoft.kvision.html
 pl.treksoft.kvision.i18n
 pl.treksoft.kvision.modal
+pl.treksoft.kvision.moment
 pl.treksoft.kvision.navbar
 pl.treksoft.kvision.panel
 pl.treksoft.kvision.progress
