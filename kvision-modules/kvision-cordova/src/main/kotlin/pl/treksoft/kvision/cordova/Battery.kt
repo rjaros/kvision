@@ -27,7 +27,7 @@ import kotlin.browser.window
 /**
  * Battery status event types.
  */
-enum class BatteryEvent(internal val event: String) {
+enum class BatteryEvent(internal val type: String) {
     BATTERY_STATUS("batterystatus"),
     BATTERY_LOW("batterylow"),
     BATTERY_CRITICAL("batterycritical")
@@ -46,7 +46,7 @@ external class BatteryStatus {
  */
 fun addBatteryStatusListener(event: BatteryEvent, listener: (BatteryStatus) -> Unit) {
     addDeviceReadyListener {
-        window.addEventListener(event.event, { status ->
+        window.addEventListener(event.type, { status ->
             @Suppress("UnsafeCastFromDynamic")
             listener(status.asDynamic())
         }, false)

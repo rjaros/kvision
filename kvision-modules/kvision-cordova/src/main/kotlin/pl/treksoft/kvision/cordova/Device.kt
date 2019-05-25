@@ -22,6 +22,7 @@
 
 package pl.treksoft.kvision.cordova
 
+import org.w3c.dom.events.Event
 import kotlin.browser.document
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -58,17 +59,35 @@ external class ResumeEvent {
 }
 
 /**
- * External device information object.
+ * Cordova event types.
  */
-external val device: Device
+enum class CordovaEvent(internal val type: String) {
+    DEVICEREADY("deviceready"),
+    PAUSE("pause"),
+    RESUME("resume"),
+    BACKBUTTON("backbutton"),
+    MENUBUTTON("menubutton"),
+    SEARCHBUTTON("searchbutton"),
+    STARTCALLBUTTON("startcallbutton"),
+    ENDCALLBUTTON("endcallbutton"),
+    VOLUMEDOWNBUTTON("volumedownbutton"),
+    VOLUMEUPBUTTON("volumeupbutton"),
+    ACTIVATED("activated")
+}
 
-private var intDevice: Device? = null
+private external val device: Device
+
+/**
+ * Cordova device information object.
+ */
+var cordovaDevice: Device? = null
+    private set
 
 /**
  * Add listeners for 'deviceready' Cordova event.
  */
 fun addDeviceReadyListener(listener: (Device) -> Unit) {
-    document.addEventListener("deviceready", {
+    document.addEventListener(CordovaEvent.DEVICEREADY.type, {
         listener(device)
     }, false)
 }
@@ -77,28 +96,43 @@ fun addDeviceReadyListener(listener: (Device) -> Unit) {
  * Add listeners for 'pause' Cordova event.
  */
 fun addPauseListener(listener: () -> Unit) {
-    document.addEventListener("pause", {
-        listener()
-    }, false)
+    addDeviceReadyListener {
+        document.addEventListener(CordovaEvent.PAUSE.type, {
+            listener()
+        }, false)
+    }
 }
 
 /**
  * Add listeners for 'resume' Cordova event.
  */
 fun addResumeListener(listener: (ResumeEvent) -> Unit) {
-    document.addEventListener("resume", { e ->
-        @Suppress("UnsafeCastFromDynamic")
-        listener(e.asDynamic())
-    }, false)
+    addDeviceReadyListener {
+        document.addEventListener(CordovaEvent.RESUME.type, { e ->
+            @Suppress("UnsafeCastFromDynamic")
+            listener(e.asDynamic())
+        }, false)
+    }
+}
+
+/**
+ * Add listeners for a Cordova events.
+ */
+fun addCordovaEventListener(event: CordovaEvent, listener: (Event) -> Unit) {
+    addDeviceReadyListener {
+        document.addEventListener(event.type, { e ->
+            listener(e)
+        }, false)
+    }
 }
 
 /**
  * Suspending function to return device information object.
  */
 suspend fun getDevice(): Device {
-    return intDevice ?: suspendCoroutine { continuation ->
+    return cordovaDevice ?: suspendCoroutine { continuation ->
         addDeviceReadyListener {
-            intDevice = device
+            cordovaDevice = device
             continuation.resume(device)
         }
     }
