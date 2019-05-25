@@ -27,7 +27,7 @@ import kotlin.browser.window
 /**
  * Battery status event types.
  */
-enum class BatteryEvent(internal var event: String) {
+enum class BatteryEvent(internal val event: String) {
     BATTERY_STATUS("batterystatus"),
     BATTERY_LOW("batterylow"),
     BATTERY_CRITICAL("batterycritical")
@@ -37,8 +37,8 @@ enum class BatteryEvent(internal var event: String) {
  * Battery status.
  */
 external class BatteryStatus {
-    val level: Int = definedExternally
-    val isPlugged: Boolean = definedExternally
+    val level: Int
+    val isPlugged: Boolean
 }
 
 /**

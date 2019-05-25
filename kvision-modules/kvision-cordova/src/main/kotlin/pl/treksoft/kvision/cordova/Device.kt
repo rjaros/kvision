@@ -30,14 +30,31 @@ import kotlin.coroutines.suspendCoroutine
  * Device information class.
  */
 external class Device {
-    val cordova: String = definedExternally
-    val model: String = definedExternally
-    val platform: String = definedExternally
-    val uuid: String = definedExternally
-    val version: String = definedExternally
-    val manufacturer: String = definedExternally
-    val isVirtual: Boolean = definedExternally
-    val serial: String = definedExternally
+    val cordova: String
+    val model: String
+    val platform: String
+    val uuid: String
+    val version: String
+    val manufacturer: String
+    val isVirtual: Boolean
+    val serial: String
+}
+
+/**
+ * Pending result class.
+ */
+external class PendingResult {
+    val pluginServiceName: String
+    val pluginStatus: String
+    val result: dynamic
+}
+
+/**
+ * Resume event class.
+ */
+external class ResumeEvent {
+    val action: String?
+    val pendingResult: PendingResult?
 }
 
 /**
@@ -53,6 +70,25 @@ private var intDevice: Device? = null
 fun addDeviceReadyListener(listener: (Device) -> Unit) {
     document.addEventListener("deviceready", {
         listener(device)
+    }, false)
+}
+
+/**
+ * Add listeners for 'pause' Cordova event.
+ */
+fun addPauseListener(listener: () -> Unit) {
+    document.addEventListener("pause", {
+        listener()
+    }, false)
+}
+
+/**
+ * Add listeners for 'resume' Cordova event.
+ */
+fun addResumeListener(listener: (ResumeEvent) -> Unit) {
+    document.addEventListener("resume", { e ->
+        @Suppress("UnsafeCastFromDynamic")
+        listener(e.asDynamic())
     }, false)
 }
 
