@@ -25,15 +25,6 @@ package pl.treksoft.kvision.cordova
 import kotlin.browser.window
 
 /**
- * Battery status event types.
- */
-enum class BatteryEvent(internal val type: String) {
-    BATTERY_STATUS("batterystatus"),
-    BATTERY_LOW("batterylow"),
-    BATTERY_CRITICAL("batterycritical")
-}
-
-/**
  * Battery status.
  */
 external class BatteryStatus {
@@ -42,13 +33,28 @@ external class BatteryStatus {
 }
 
 /**
- * Add listeners for battery status Cordova events.
+ * Main object for Cordova battery.
  */
-fun addBatteryStatusListener(event: BatteryEvent, listener: (BatteryStatus) -> Unit) {
-    addDeviceReadyListener {
-        window.addEventListener(event.type, { status ->
-            @Suppress("UnsafeCastFromDynamic")
-            listener(status.asDynamic())
-        }, false)
+object Battery {
+
+    /**
+     * Battery status event types.
+     */
+    enum class BatteryEvent(internal val type: String) {
+        BATTERY_STATUS("batterystatus"),
+        BATTERY_LOW("batterylow"),
+        BATTERY_CRITICAL("batterycritical")
+    }
+
+    /**
+     * Add listeners for battery status Cordova events.
+     */
+    fun addStatusListener(event: BatteryEvent, listener: (BatteryStatus) -> Unit) {
+        addDeviceReadyListener {
+            window.addEventListener(event.type, { status ->
+                @Suppress("UnsafeCastFromDynamic")
+                listener(status.asDynamic())
+            }, false)
+        }
     }
 }
