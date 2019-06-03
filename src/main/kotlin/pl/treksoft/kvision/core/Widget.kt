@@ -53,11 +53,12 @@ import kotlin.reflect.KProperty
  * @param classes Set of CSS class names
  */
 @Suppress("TooManyFunctions", "LargeClass")
-open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
+open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component {
     private val propertyValues: MutableMap<String, Any?> = mutableMapOf()
 
     internal val classes = classes.toMutableSet()
     internal val surroundingClasses: MutableSet<String> = mutableSetOf()
+    internal val attributes: MutableMap<String, String> = mutableMapOf()
     internal val internalListeners = mutableListOf<SnOn<Widget>.() -> Unit>()
     internal val listeners = mutableListOf<SnOn<Widget>.() -> Unit>()
 
@@ -242,6 +243,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
         }
         if (draggable == true) {
             snattrs.add("draggable" to "true")
+        }
+        if (attributes.isNotEmpty()) {
+            snattrs += attributes.toList()
         }
         return snattrs
     }
@@ -563,6 +567,22 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent() {
 
     override fun removeSurroundingCssClass(css: Style): Widget {
         return removeSurroundingCssClass(css.className)
+    }
+
+    override fun getAttribute(name: String): String? {
+        return this.attributes[name]
+    }
+
+    override fun setAttribute(name: String, value: String): Widget {
+        this.attributes[name] = value
+        refresh()
+        return this
+    }
+
+    override fun removeAttribute(name: String): Widget {
+        this.attributes.remove(name)
+        refresh()
+        return this
     }
 
     override fun getElement(): Node? {

@@ -25,8 +25,6 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
-import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
 
@@ -115,8 +113,6 @@ open class Tag(
     init: (Tag.() -> Unit)? = null
 ) : SimplePanel(classes), Template {
 
-    protected val attributes = attributes.toMutableMap()
-
     /**
      * Tag type.
      */
@@ -148,6 +144,7 @@ open class Tag(
     override var templates: Map<String, (Any?) -> String> by refreshOnUpdate(mapOf())
 
     init {
+        this.attributes += attributes
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -181,49 +178,11 @@ open class Tag(
         return cl
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        return if (attributes.isEmpty()) {
-            super.getSnAttrs()
-        } else {
-            attributes.toList() + super.getSnAttrs()
-        }
-    }
-
     operator fun String.unaryPlus() {
         if (content == null)
             content = this
         else
             content += translate(this)
-    }
-
-    /**
-     * Returns the value of an additional attribute.
-     * @param name the name of the attribute
-     * @return the value of the attribute
-     */
-    fun getAttribute(name: String): String? {
-        return this.attributes[name]
-    }
-
-    /**
-     * Sets the value of additional attribute.
-     * @param name the name of the attribute
-     * @param value the value of the attribute
-     */
-    fun setAttribute(name: String, value: String): Widget {
-        this.attributes[name] = value
-        refresh()
-        return this
-    }
-
-    /**
-     * Removes the value of additional attribute.
-     * @param name the name of the attribute
-     */
-    fun removeAttribute(name: String): Widget {
-        this.attributes.remove(name)
-        refresh()
-        return this
     }
 
     companion object {

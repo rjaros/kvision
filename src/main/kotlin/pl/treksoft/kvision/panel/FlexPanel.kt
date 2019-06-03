@@ -24,7 +24,7 @@ package pl.treksoft.kvision.panel
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.core.StyledComponent
+import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.utils.px
 
@@ -152,10 +152,10 @@ open class FlexPanel(
     }
 
     private fun refreshSpacing() {
-        getChildren().filterIsInstance<StyledComponent>().map { applySpacing(it) }
+        getChildren().filterIsInstance<Widget>().map { applySpacing(it) }
     }
 
-    private fun applySpacing(wrapper: StyledComponent): StyledComponent {
+    private fun applySpacing(wrapper: Widget): Widget {
         wrapper.marginTop = null
         wrapper.marginRight = null
         wrapper.marginBottom = null

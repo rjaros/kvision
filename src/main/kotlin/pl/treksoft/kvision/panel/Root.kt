@@ -71,7 +71,6 @@ class Root(
         }
         roots.add(this)
         if (isFirstRoot) {
-            Style.styles.forEach { it.parent = this }
             Modal.modals.forEach { it.parent = this }
         }
         @Suppress("LeakingThis")
@@ -102,9 +101,8 @@ class Root(
 
     private fun stylesVNodes(): Array<VNode> {
         return if (isFirstRoot) {
-            val visibleStyles = Style.styles.filter { it.visible }
-            if (visibleStyles.isNotEmpty()) {
-                val stylesDesc = visibleStyles.joinToString("\n") { it.generateStyle() }
+            if (Style.styles.isNotEmpty()) {
+                val stylesDesc = Style.styles.joinToString("\n") { it.generateStyle() }
                 arrayOf(h("style", arrayOf(stylesDesc)))
             } else {
                 arrayOf()
