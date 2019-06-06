@@ -1,3 +1,6 @@
+@file:Suppress(
+    "TooManyFunctions", "TooGenericExceptionCaught"
+)
 /*
  * Source: https://github.com/kittinunf/Result
  *
@@ -31,9 +34,9 @@ inline fun <reified X> Result<*, *>.getAs() = when (this) {
     is Result.Failure -> error as? X
 }
 
-fun <V : Any> Result<V, *>.success(f: (V) -> Unit) = fold(f, {})
+inline fun <V : Any> Result<V, *>.success(f: (V) -> Unit) = fold(f, {})
 
-fun <E : Exception> Result<*, E>.failure(f: (E) -> Unit) = fold({}, f)
+inline fun <E : Exception> Result<*, E>.failure(f: (E) -> Unit) = fold({}, f)
 
 infix fun <V : Any, E : Exception> Result<V, E>.or(fallback: V) = when (this) {
     is Result.Success -> this
