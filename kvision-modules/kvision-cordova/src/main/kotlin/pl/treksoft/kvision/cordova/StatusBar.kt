@@ -27,12 +27,14 @@ import kotlin.browser.window
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+@Suppress("TopLevelPropertyNaming")
 @JsName("StatusBar")
 internal external val StatusBarJs: dynamic
 
 /**
  * Main object for Cordova status bar.
  */
+@Suppress("TooManyFunctions")
 object StatusBar {
 
     /**

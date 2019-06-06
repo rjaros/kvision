@@ -23,7 +23,7 @@ package pl.treksoft.kvision.moment
 
 import kotlin.js.Date
 
-@Suppress("unused")
+@Suppress("unused", "TooManyFunctions")
 @JsNonModule
 @JsModule("moment")
 open external class Moment {
@@ -79,7 +79,9 @@ open external class Moment {
     open fun isSameOrAfter(moment: dynamic): Boolean = definedExternally
     open fun isSameOrAfter(moment: dynamic, key: String): Boolean = definedExternally
     open fun isBetween(firstMoment: dynamic, secondMoment: dynamic): Boolean = definedExternally
-    open fun isBetween(firstMoment: dynamic, secondMoment: dynamic, key: String, inclusivity: String): Boolean = definedExternally
+    open fun isBetween(firstMoment: dynamic, secondMoment: dynamic, key: String, inclusivity: String): Boolean =
+        definedExternally
+
     open fun isBetween(firstMoment: dynamic, secondMoment: dynamic, key: String): Boolean = definedExternally
     open fun isDST(): Boolean = definedExternally
     open fun isDSTShifted(): Boolean = definedExternally

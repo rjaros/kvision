@@ -251,6 +251,7 @@ data class CameraOptions(
     val cameraDirection: Camera.Direction? = null
 )
 
+@Suppress("ComplexMethod")
 internal fun CameraOptions.toJs(): dynamic {
     return obj {
         if (quality != null) this.quality = quality
