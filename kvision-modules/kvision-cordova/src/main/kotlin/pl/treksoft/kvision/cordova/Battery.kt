@@ -23,6 +23,8 @@
 package pl.treksoft.kvision.cordova
 
 import kotlin.browser.window
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Battery status.
@@ -55,6 +57,17 @@ object Battery {
                 @Suppress("UnsafeCastFromDynamic")
                 listener(status.asDynamic())
             }, false)
+        }
+    }
+
+    /**
+     * Get battery status.
+     */
+    suspend fun getStatus(): BatteryStatus {
+        return suspendCoroutine { continuation ->
+            addStatusListener(Battery.BatteryEvent.BATTERY_STATUS) { status ->
+                continuation.resume(status)
+            }
         }
     }
 }
