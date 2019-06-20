@@ -100,6 +100,7 @@ object MediaCapture {
         CAPTURE_NOT_SUPPORTED
     }
 
+    @Suppress("MagicNumber")
     private fun codeToEnum(code: Int): CaptureErrorCode {
         return when (code) {
             0 -> CaptureErrorCode.CAPTURE_INTERNAL_ERR

@@ -43,6 +43,7 @@ external class MediaError {
 /**
  * Cordova media class.
  */
+@Suppress("TooManyFunctions")
 external class Media(
     src: String,
     mediaSuccess: (() -> Unit)? = definedExternally,

@@ -251,6 +251,7 @@ object Locationservices {
         }
     }
 
+    @Suppress("MagicNumber")
     private fun getJsPriority(priority: Priority): dynamic {
         return when (priority) {
             Priority.PRIORITY_HIGH_ACCURACY -> 100
