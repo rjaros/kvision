@@ -90,7 +90,7 @@ object Geolocation {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 window.navigator.asDynamic().geolocation.getCurrentPosition({ position: Position ->
-                    continuation.resume(Result.Success(position))
+                    continuation.resume(Result.success(position))
                 }, { error ->
                     continuation.resume(Result.error(GeolocationException(codeToEnum(error.code), error.message)))
                 }, obj {
@@ -120,7 +120,7 @@ object Geolocation {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 val watchId = window.navigator.asDynamic().geolocation.watchPosition({ position: Position ->
-                    resultCallback(Result.Success(position))
+                    resultCallback(Result.success(position))
                 }, { error ->
                     resultCallback(Result.error(GeolocationException(codeToEnum(error.code), error.message)))
                 }, obj {
@@ -183,7 +183,7 @@ object Locationservices {
             addDeviceReadyListener {
                 window.asDynamic()
                     .cordova.plugins.locationServices.geolocation.getCurrentPosition({ position: Position ->
-                    continuation.resume(Result.Success(position))
+                    continuation.resume(Result.success(position))
                 }, { error ->
                     continuation.resume(Result.error(GeolocationException(codeToEnum(error.code), error.message)))
                 }, obj {
@@ -224,7 +224,7 @@ object Locationservices {
                 val watchId =
                     window.asDynamic()
                         .cordova.plugins.locationServices.geolocation.watchPosition({ position: Position ->
-                        resultCallback(Result.Success(position))
+                        resultCallback(Result.success(position))
                     }, { error ->
                         resultCallback(Result.error(GeolocationException(codeToEnum(error.code), error.message)))
                     }, obj {

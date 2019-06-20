@@ -106,7 +106,7 @@ object File {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 window.asDynamic().resolveLocalFileSystemURL(url, { entry ->
-                    continuation.resume(Result.Success(entry))
+                    continuation.resume(Result.success(entry))
                 }, { error ->
                     continuation.resume(Result.error(FileException(error.code)))
                 })
@@ -173,7 +173,7 @@ object File {
             }
             addDeviceReadyListener {
                 window.asDynamic().requestFileSystem(type, size, { fs ->
-                    continuation.resume(Result.Success(fs))
+                    continuation.resume(Result.success(fs))
                 }, { error ->
                     continuation.resume(Result.error(FileException(error.code)))
                 })
