@@ -69,6 +69,7 @@ enum class TAG(internal val tagName: String) {
     SAMP("samp"),
     SPAN("span"),
     LI("li"),
+    HR("hr"),
 
     CAPTION("caption"),
     THEAD("thead"),
