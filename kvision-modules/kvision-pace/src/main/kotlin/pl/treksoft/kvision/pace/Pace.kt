@@ -22,69 +22,117 @@
 
 package pl.treksoft.kvision.pace
 
-import pl.treksoft.kvision.require
-import pl.treksoft.kvision.utils.obj
 import org.w3c.dom.events.Event
 import org.w3c.dom.get
+import pl.treksoft.kvision.require
+import pl.treksoft.kvision.utils.obj
 import kotlin.browser.window
 
-class PaceAjaxOptions(trackMethods:Array<dynamic>? = null,
-                      trackWebSockets:Boolean? = null,
-                      ignoreURLs:Array<dynamic>? = null) {
+class PaceAjaxOptions(
+    trackMethods: Array<dynamic>? = null,
+    trackWebSockets: Boolean? = null,
+    ignoreURLs: Array<dynamic>? = null
+) {
     internal var paceAjaxOptionsJs: dynamic = obj {
-        if (trackMethods != null) { this.trackMethods = trackMethods }
-        if (trackWebSockets != null) { this.trackWebSockets = trackWebSockets }
-        if (ignoreURLs != null) { this.ignoreURLs = ignoreURLs }
+        if (trackMethods != null) {
+            this.trackMethods = trackMethods
+        }
+        if (trackWebSockets != null) {
+            this.trackWebSockets = trackWebSockets
+        }
+        if (ignoreURLs != null) {
+            this.ignoreURLs = ignoreURLs
+        }
     }
 }
 
-class PaceElementsOptions(minSamples:Int? = null,
-                          selectors:Array<dynamic>? = null) {
+class PaceElementsOptions(
+    minSamples: Int? = null,
+    selectors: Array<dynamic>? = null
+) {
     internal var paceElementsOptionsJs: dynamic = obj {
-        if (minSamples != null) { this.minSamples = minSamples }
-        if (selectors != null) { this.selectors = selectors }
+        if (minSamples != null) {
+            this.minSamples = minSamples
+        }
+        if (selectors != null) {
+            this.selectors = selectors
+        }
     }
 }
 
-class PaceEventLagOptions(minSamples:Int? = null,
-                          sampleCount:Int? = null,
-                          lagThreshold:Int? = null) {
+class PaceEventLagOptions(
+    minSamples: Int? = null,
+    sampleCount: Int? = null,
+    lagThreshold: Int? = null
+) {
     internal var paceEventLagOptionsJs: dynamic = obj {
-        if (minSamples != null) { this.minSamples = minSamples }
-        if (sampleCount != null) { this.sampleCount = sampleCount }
-        if (lagThreshold != null) { this.lagThreshold = lagThreshold }
+        if (minSamples != null) {
+            this.minSamples = minSamples
+        }
+        if (sampleCount != null) {
+            this.sampleCount = sampleCount
+        }
+        if (lagThreshold != null) {
+            this.lagThreshold = lagThreshold
+        }
     }
 }
 
 class PaceOptions(
-        ajax:PaceAjaxOptions? = null,
-        catchupTime:Int? = null,
-        easeFactor:Double? = null,
-        elements:PaceElementsOptions? = null,
-        eventLag:PaceEventLagOptions? = null,
-        ghostTime:Int? = null,
-        initialRate:Double? = null,
-        maxProgressPerFrame:Int? = null,
-        minTime:Int? = null,
-        restartOnPushState:Boolean? = null,
-        restartOnRequestAfter:Double? = null,
-        startOnPageLoad:Boolean? = null,
-        target:String? = null
+    ajax: PaceAjaxOptions? = null,
+    catchupTime: Int? = null,
+    easeFactor: Double? = null,
+    elements: PaceElementsOptions? = null,
+    eventLag: PaceEventLagOptions? = null,
+    ghostTime: Int? = null,
+    initialRate: Double? = null,
+    maxProgressPerFrame: Int? = null,
+    minTime: Int? = null,
+    restartOnPushState: Boolean? = null,
+    restartOnRequestAfter: Double? = null,
+    startOnPageLoad: Boolean? = null,
+    target: String? = null
 ) {
     internal var paceOptionsJs: dynamic = obj {
-        if (ajax != null) { this.ajax = ajax.paceAjaxOptionsJs }
-        if (catchupTime != null) { this.catchupTime = catchupTime }
-        if (easeFactor != null) { this.easeFactor = easeFactor }
-        if (elements != null) { this.elements = elements.paceElementsOptionsJs }
-        if (eventLag != null) { this.eventLag = eventLag.paceEventLagOptionsJs }
-        if (ghostTime != null) { this.ghostTime = ghostTime }
-        if (initialRate != null) { this.initialRate = initialRate }
-        if (maxProgressPerFrame != null) { this.maxProgressPerFrame = maxProgressPerFrame }
-        if (minTime != null) { this.minTime = minTime }
-        if (restartOnPushState != null) { this.restartOnPushState = restartOnPushState }
-        if (restartOnRequestAfter != null) { this.restartOnRequestAfter = restartOnRequestAfter }
-        if (startOnPageLoad != null) { this.startOnPageLoad = startOnPageLoad }
-        if (target != null) { this.target = target }
+        if (ajax != null) {
+            this.ajax = ajax.paceAjaxOptionsJs
+        }
+        if (catchupTime != null) {
+            this.catchupTime = catchupTime
+        }
+        if (easeFactor != null) {
+            this.easeFactor = easeFactor
+        }
+        if (elements != null) {
+            this.elements = elements.paceElementsOptionsJs
+        }
+        if (eventLag != null) {
+            this.eventLag = eventLag.paceEventLagOptionsJs
+        }
+        if (ghostTime != null) {
+            this.ghostTime = ghostTime
+        }
+        if (initialRate != null) {
+            this.initialRate = initialRate
+        }
+        if (maxProgressPerFrame != null) {
+            this.maxProgressPerFrame = maxProgressPerFrame
+        }
+        if (minTime != null) {
+            this.minTime = minTime
+        }
+        if (restartOnPushState != null) {
+            this.restartOnPushState = restartOnPushState
+        }
+        if (restartOnRequestAfter != null) {
+            this.restartOnRequestAfter = restartOnRequestAfter
+        }
+        if (startOnPageLoad != null) {
+            this.startOnPageLoad = startOnPageLoad
+        }
+        if (target != null) {
+            this.target = target
+        }
     }
 }
 
@@ -124,6 +172,7 @@ class Pace {
         fun setNewTheme(color: PaceColor, theme: PaceTheme) {
             require("pace-progressbar/themes/${color.paceColorString}/pace-theme-${theme.paceThemeString}.css")
         }
+
         fun setOptions(options: PaceOptions) {
             window["Pace"].options = options.paceOptionsJs
         }
