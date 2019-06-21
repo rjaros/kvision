@@ -22,7 +22,6 @@
 
 package pl.treksoft.kvision.tabulator
 
-import kotlinx.serialization.KSerializer
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.form.FormControl
@@ -239,9 +238,9 @@ enum class AddRowMode(internal val mode: String) {
  * Download config options.
  */
 data class DownloadConfig(
-    val columnGroups: Boolean? = null,
-    val rowGroups: Boolean? = null,
-    val columnCalcs: Boolean? = null
+        val columnGroups: Boolean? = null,
+        val rowGroups: Boolean? = null,
+        val columnCalcs: Boolean? = null
 )
 
 /**
@@ -260,98 +259,98 @@ fun DownloadConfig.toJs(): Tabulator.DownloadConfig {
  * Column definition options.
  */
 data class ColumnDefinition<T : Any>(
-    val title: String,
-    val field: String? = null,
-    val visible: Boolean? = null,
-    val align: Align? = null,
-    val width: String? = null,
-    val minWidth: Int? = null,
-    val widthGrow: Int? = null,
-    val widthShrink: Int? = null,
-    val resizable: Boolean? = null,
-    val frozen: Boolean? = null,
-    val responsive: Int? = null,
-    val tooltip: ((cell: Tabulator.CellComponent) -> String)? = null,
-    val cssClass: String? = null,
-    val rowHandle: Boolean? = null,
-    val hideInHtml: Boolean? = null,
-    val sorter: Sorter? = null,
-    val sorterFunction: ((
-        a: dynamic, b: dynamic, aRow: Tabulator.RowComponent, bRow: Tabulator.RowComponent,
-        column: Tabulator.ColumnComponent, dir: SortingDir, sorterParams: dynamic
-    ) -> Number)? = null,
-    val sorterParams: dynamic = null,
-    val formatter: Formatter? = null,
-    val formatterFunction: ((
-        cell: Tabulator.CellComponent, formatterParams: dynamic,
-        onRendered: (callback: () -> Unit) -> Unit
-    ) -> dynamic)? = null,
-    val formatterComponentFunction: ((
-        cell: Tabulator.CellComponent, onRendered: (callback: () -> Unit) -> Unit, data: T
-    ) -> Component)? = null,
-    val formatterParams: dynamic = null,
-    val variableHeight: Boolean? = null,
-    val editable: ((cell: Tabulator.CellComponent) -> Boolean)? = null,
-    val editor: Editor? = null,
-    val editorFunction: ((
-        cell: Tabulator.CellComponent,
-        onRendered: (callback: () -> Unit) -> Unit,
-        success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, editorParams: dynamic
-    ) -> dynamic)? = null,
-    val editorComponentFunction: ((
-        cell: Tabulator.CellComponent,
-        onRendered: (callback: () -> Unit) -> Unit,
-        success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, data: T
-    ) -> Component)? = null,
-    val editorParams: dynamic = null,
-    val validator: Validator? = null,
-    val validatorFunction: dynamic = null,
-    val validatorParams: String? = null,
-    val download: Boolean? = null,
-    val downloadTitle: String? = null,
-    val topCalc: Calc? = null,
-    val topCalcParams: dynamic = null,
-    val topCalcFormatter: Formatter? = null,
-    val topCalcFormatterParams: dynamic = null,
-    val bottomCalc: Calc? = null,
-    val bottomCalcParams: dynamic = null,
-    val bottomCalcFormatter: Formatter? = null,
-    val bottomCalcFormatterParams: dynamic = null,
-    val headerSort: Boolean? = null,
-    val headerSortStartingDir: SortingDir? = null,
-    val headerSortTristate: Boolean? = null,
-    val headerClick: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val headerDblClick: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val headerContext: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val headerTap: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val headerDblTap: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val headerTapHold: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val headerTooltip: ((column: Tabulator.ColumnComponent) -> String)? = null,
-    val headerVertical: Boolean? = null,
-    val editableTitle: Boolean? = null,
-    val titleFormatter: Formatter? = null,
-    val titleFormatterParams: dynamic = null,
-    val headerFilter: Editor? = null,
-    val headerFilterParams: dynamic = null,
-    val headerFilterPlaceholder: String? = null,
-    val headerFilterEmptyCheck: ((value: Any) -> Boolean)? = null,
-    val headerFilterFunc: Filter? = null,
-    val headerFilterFuncParams: dynamic = null,
-    val headerFilterLiveFilter: Boolean? = null,
-    val cellClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellDblClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellContext: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellTap: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellDblTap: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellTapHold: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseEnter: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseLeave: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseOver: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseOut: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseMove: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellEditing: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellEdited: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null
+        val title: String,
+        val field: String? = null,
+        val visible: Boolean? = null,
+        val align: Align? = null,
+        val width: String? = null,
+        val minWidth: Int? = null,
+        val widthGrow: Int? = null,
+        val widthShrink: Int? = null,
+        val resizable: Boolean? = null,
+        val frozen: Boolean? = null,
+        val responsive: Int? = null,
+        val tooltip: ((cell: Tabulator.CellComponent) -> String)? = null,
+        val cssClass: String? = null,
+        val rowHandle: Boolean? = null,
+        val hideInHtml: Boolean? = null,
+        val sorter: Sorter? = null,
+        val sorterFunction: ((
+                a: dynamic, b: dynamic, aRow: Tabulator.RowComponent, bRow: Tabulator.RowComponent,
+                column: Tabulator.ColumnComponent, dir: SortingDir, sorterParams: dynamic
+        ) -> Number)? = null,
+        val sorterParams: dynamic = null,
+        val formatter: Formatter? = null,
+        val formatterFunction: ((
+                cell: Tabulator.CellComponent, formatterParams: dynamic,
+                onRendered: (callback: () -> Unit) -> Unit
+        ) -> dynamic)? = null,
+        val formatterComponentFunction: ((
+                cell: Tabulator.CellComponent, onRendered: (callback: () -> Unit) -> Unit, data: T
+        ) -> Component)? = null,
+        val formatterParams: dynamic = null,
+        val variableHeight: Boolean? = null,
+        val editable: ((cell: Tabulator.CellComponent) -> Boolean)? = null,
+        val editor: Editor? = null,
+        val editorFunction: ((
+                cell: Tabulator.CellComponent,
+                onRendered: (callback: () -> Unit) -> Unit,
+                success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, editorParams: dynamic
+        ) -> dynamic)? = null,
+        val editorComponentFunction: ((
+                cell: Tabulator.CellComponent,
+                onRendered: (callback: () -> Unit) -> Unit,
+                success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, data: T
+        ) -> Component)? = null,
+        val editorParams: dynamic = null,
+        val validator: Validator? = null,
+        val validatorFunction: dynamic = null,
+        val validatorParams: String? = null,
+        val download: Boolean? = null,
+        val downloadTitle: String? = null,
+        val topCalc: Calc? = null,
+        val topCalcParams: dynamic = null,
+        val topCalcFormatter: Formatter? = null,
+        val topCalcFormatterParams: dynamic = null,
+        val bottomCalc: Calc? = null,
+        val bottomCalcParams: dynamic = null,
+        val bottomCalcFormatter: Formatter? = null,
+        val bottomCalcFormatterParams: dynamic = null,
+        val headerSort: Boolean? = null,
+        val headerSortStartingDir: SortingDir? = null,
+        val headerSortTristate: Boolean? = null,
+        val headerClick: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
+        val headerDblClick: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
+        val headerContext: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
+        val headerTap: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
+        val headerDblTap: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
+        val headerTapHold: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
+        val headerTooltip: ((column: Tabulator.ColumnComponent) -> String)? = null,
+        val headerVertical: Boolean? = null,
+        val editableTitle: Boolean? = null,
+        val titleFormatter: Formatter? = null,
+        val titleFormatterParams: dynamic = null,
+        val headerFilter: Editor? = null,
+        val headerFilterParams: dynamic = null,
+        val headerFilterPlaceholder: String? = null,
+        val headerFilterEmptyCheck: ((value: Any) -> Boolean)? = null,
+        val headerFilterFunc: Filter? = null,
+        val headerFilterFuncParams: dynamic = null,
+        val headerFilterLiveFilter: Boolean? = null,
+        val cellClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellDblClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellContext: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellTap: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellDblTap: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellTapHold: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellMouseEnter: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellMouseLeave: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellMouseOver: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellMouseOut: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellMouseMove: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellEditing: ((cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellEdited: ((cell: Tabulator.CellComponent) -> Unit)? = null,
+        val cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null
 )
 
 internal object EditorRoot {
@@ -365,18 +364,14 @@ internal object EditorRoot {
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod", "MagicNumber")
 fun <T : Any> ColumnDefinition<T>.toJs(
-    i18nTranslator: (String) -> (String),
-    dataSerializer: KSerializer<T>? = null
+        i18nTranslator: (String) -> (String)
 ): Tabulator.ColumnDefinition {
     val tmpEditorFunction = editorComponentFunction?.let {
         { cell: Tabulator.CellComponent,
           onRendered: (callback: () -> Unit) -> Unit,
           success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, _: dynamic ->
             var onRenderedCallback: (() -> Unit)? = null
-            val str = kotlin.js.JSON.stringify(cell.getData())
-            @Suppress("UNCHECKED_CAST") val data = dataSerializer?.let {
-                JSON.plain.parse(it, str)
-            } ?: cell.getData() as T
+            @Suppress("UNCHECKED_CAST") val data = cell.getData() as T
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, { value ->
@@ -411,9 +406,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         { cell: Tabulator.CellComponent, _: dynamic,
           onRendered: (callback: () -> Unit) -> Unit ->
             var onRenderedCallback: (() -> Unit)? = null
-            val str = kotlin.js.JSON.stringify(cell.getData())
-            @Suppress("UNCHECKED_CAST") val data =
-                dataSerializer?.let { JSON.plain.parse(it, str) } ?: cell.getData() as T
+            @Suppress("UNCHECKED_CAST") val data = cell.getData() as T
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, data)
@@ -525,160 +518,160 @@ fun <T : Any> ColumnDefinition<T>.toJs(
  * Tabulator options.
  */
 data class TabulatorOptions<T : Any>(
-    val height: String? = null,
-    val virtualDom: Boolean? = null,
-    val virtualDomBuffer: Int? = null,
-    val placeholder: String? = null,
-    val footerElement: String? = null,
-    val tooltips: ((cell: Tabulator.CellComponent) -> String)? = null,
-    val tooltipGenerationMode: TooltipGenerationMode? = null,
-    val history: Boolean? = null,
-    val keybindings: dynamic = null,
-    val downloadDataFormatter: dynamic = null,
-    val downloadConfig: DownloadConfig? = null,
-    val reactiveData: Boolean? = null,
-    val autoResize: Boolean? = null,
-    val columns: List<ColumnDefinition<T>>? = null,
-    val autoColumns: Boolean? = null,
-    val layout: Layout? = null,
-    val layoutColumnsOnNewData: Boolean? = null,
-    val responsiveLayout: ResponsiveLayout? = null,
-    val responsiveLayoutCollapseStartOpen: Boolean? = null,
-    val responsiveLayoutCollapseUseFormatters: Boolean? = null,
-    val columnMinWidth: Int? = null,
-    val resizableColumns: Boolean? = null,
-    val movableColumns: Boolean? = null,
-    val tooltipsHeader: Boolean? = null,
-    val headerFilterPlaceholder: String? = null,
-    val scrollToColumnPosition: ColumnPosition? = null,
-    val scrollToColumnIfVisible: Boolean? = null,
-    val rowFormatter: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    val addRowPos: RowPos? = null,
-    val selectable: dynamic = null,
-    val selectableRangeMode: RangeMode? = null,
-    val selectableRollingSelection: Boolean? = null,
-    val selectablePersistence: Boolean? = null,
-    val selectableCheck: ((row: Tabulator.RowComponent) -> Boolean)? = null,
-    val movableRows: Boolean? = null,
-    val movableRowsConnectedTables: dynamic = null,
-    val movableRowsSender: dynamic = null,
-    val movableRowsReceiver: dynamic = null,
-    val resizableRows: Boolean? = null,
-    val scrollToRowPosition: RowPosition? = null,
-    val scrollToRowIfVisible: Boolean? = null,
-    val index: String? = null,
-    @Suppress("ArrayInDataClass") var data: Array<dynamic>? = null,
-    val ajaxURL: String? = null,
-    val ajaxParams: dynamic = null,
-    val ajaxConfig: dynamic = null,
-    val ajaxContentType: dynamic = null,
-    val ajaxURLGenerator: ((url: String, config: dynamic, params: dynamic) -> String)? = null,
-    val ajaxRequestFunc: ((url: String, config: dynamic, params: dynamic) -> Promise<Any>)? = null,
-    val ajaxFiltering: Boolean? = null,
-    val ajaxSorting: Boolean? = null,
-    val ajaxProgressiveLoad: ProgressiveMode? = null,
-    val ajaxProgressiveLoadDelay: Int? = null,
-    val ajaxProgressiveLoadScrollMargin: Int? = null,
-    val ajaxLoader: Boolean? = null,
-    val ajaxLoaderLoading: String? = null,
-    val ajaxLoaderError: String? = null,
-    val initialSort: List<Tabulator.Sorter>? = null,
-    val sortOrderReverse: Boolean? = null,
-    val initialFilter: List<Tabulator.Filter>? = null,
-    val initialHeaderFilter: List<Any?>? = null,
-    val pagination: PaginationMode? = null,
-    val paginationSize: Int? = null,
-    val paginationSizeSelector: Boolean? = null,
-    val paginationElement: dynamic = null,
-    val paginationDataReceived: dynamic = null,
-    val paginationDataSent: dynamic = null,
-    val paginationAddRow: AddRowMode? = null,
-    val paginationButtonCount: Int? = null,
-    var persistenceID: String? = null,
-    var persistenceMode: Boolean? = null,
-    var persistentLayout: Boolean? = null,
-    var persistentSort: Boolean? = null,
-    var persistentFilter: Boolean? = null,
-    val locale: String? = null,
-    var langs: dynamic = null,
-    val localized: ((locale: String, lang: dynamic) -> Unit)? = null,
-    val dataTreeRowExpanded: ((row: Tabulator.RowComponent, level: Number) -> Unit)? = null,
-    val dataTreeRowCollapsed: ((row: Tabulator.RowComponent, level: Number) -> Unit)? = null,
-    val movableRowsSendingStart: ((toTables: Array<Any>) -> Unit)? = null,
-    val movableRowsSent: ((
-        fromRow: Tabulator.RowComponent,
-        toRow: Tabulator.RowComponent, toTable: Tabulator
-    ) -> Unit)? = null,
-    val movableRowsSentFailed: ((
-        fromRow: Tabulator.RowComponent,
-        toRow: Tabulator.RowComponent, toTable: Tabulator
-    ) -> Unit)? = null,
-    val movableRowsSendingStop: ((toTables: Array<Any>) -> Unit)? = null,
-    val movableRowsReceivingStart: ((fromRow: Tabulator.RowComponent, toTable: Tabulator) -> Unit)? = null,
-    val movableRowsReceived: ((
-        fromRow: Tabulator.RowComponent,
-        toRow: Tabulator.RowComponent, fromTable: Tabulator
-    ) -> Unit)? = null,
-    val movableRowsReceivedFailed: ((
-        fromRow: Tabulator.RowComponent,
-        toRow: Tabulator.RowComponent, fromTable: Tabulator
-    ) -> Unit)? = null,
-    val movableRowsReceivingStop: ((fromTable: Tabulator) -> Unit)? = null,
-    var rowClick: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowDblClick: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowContext: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowTap: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowDblTap: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowTapHold: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowMouseEnter: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowMouseLeave: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowMouseOver: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowMouseOut: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowMouseMove: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowAdded: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowUpdated: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowDeleted: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowMoved: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowResized: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowSelectionChanged: ((data: Array<Any>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
-    var rowSelected: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowDeselected: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var cellClick: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellDblClick: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellContext: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellTap: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellDblTap: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellTapHold: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellMouseEnter: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellMouseLeave: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellMouseOver: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellMouseOut: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellMouseMove: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellEditing: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellEdited: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    var columnMoved: ((column: Tabulator.ColumnComponent, columns: Array<dynamic>) -> Unit)? = null,
-    var columnResized: ((column: Tabulator.ColumnComponent) -> Unit)? = null,
-    var columnVisibilityChanged: ((column: Tabulator.ColumnComponent, visible: Boolean) -> Unit)? = null,
-    var columnTitleChanged: ((column: Tabulator.ColumnComponent) -> Unit)? = null,
-    var tableBuilding: (() -> Unit)? = null,
-    var tableBuilt: (() -> Unit)? = null,
-    var renderStarted: (() -> Unit)? = null,
-    var renderComplete: (() -> Unit)? = null,
-    var htmlImporting: (() -> Unit)? = null,
-    var htmlImported: (() -> Unit)? = null,
-    var dataLoading: ((data: Any) -> Unit)? = null,
-    var dataLoaded: ((data: Any) -> Unit)? = null,
-    var dataEdited: ((data: Any) -> Unit)? = null,
-    var pageLoaded: ((pageno: Int) -> Unit)? = null,
-    var dataSorting: ((sorters: Array<Tabulator.Sorter>) -> Unit)? = null,
-    var dataSorted: ((sorters: Array<Tabulator.Sorter>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
-    var dataFiltering: ((filters: Array<Tabulator.Filter>) -> Unit)? = null,
-    var dataFiltered: ((filters: Array<Tabulator.Filter>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
-    var validationFailed: ((cell: Tabulator.CellComponent, value: Any, validators: dynamic) -> Unit)? = null,
-    var ajaxRequesting: ((url: String, params: dynamic) -> Boolean)? = null,
-    var ajaxResponse: ((url: String, params: dynamic, response: dynamic) -> Any)? = null,
-    var ajaxError: ((xhr: dynamic, textStatus: String, errorThrown: dynamic) -> Unit)? = null
+        val height: String? = null,
+        val virtualDom: Boolean? = null,
+        val virtualDomBuffer: Int? = null,
+        val placeholder: String? = null,
+        val footerElement: String? = null,
+        val tooltips: ((cell: Tabulator.CellComponent) -> String)? = null,
+        val tooltipGenerationMode: TooltipGenerationMode? = null,
+        val history: Boolean? = null,
+        val keybindings: dynamic = null,
+        val downloadDataFormatter: dynamic = null,
+        val downloadConfig: DownloadConfig? = null,
+        val reactiveData: Boolean? = null,
+        val autoResize: Boolean? = null,
+        val columns: List<ColumnDefinition<T>>? = null,
+        val autoColumns: Boolean? = null,
+        val layout: Layout? = null,
+        val layoutColumnsOnNewData: Boolean? = null,
+        val responsiveLayout: ResponsiveLayout? = null,
+        val responsiveLayoutCollapseStartOpen: Boolean? = null,
+        val responsiveLayoutCollapseUseFormatters: Boolean? = null,
+        val columnMinWidth: Int? = null,
+        val resizableColumns: Boolean? = null,
+        val movableColumns: Boolean? = null,
+        val tooltipsHeader: Boolean? = null,
+        val headerFilterPlaceholder: String? = null,
+        val scrollToColumnPosition: ColumnPosition? = null,
+        val scrollToColumnIfVisible: Boolean? = null,
+        val rowFormatter: ((row: Tabulator.RowComponent) -> Unit)? = null,
+        val addRowPos: RowPos? = null,
+        val selectable: dynamic = null,
+        val selectableRangeMode: RangeMode? = null,
+        val selectableRollingSelection: Boolean? = null,
+        val selectablePersistence: Boolean? = null,
+        val selectableCheck: ((row: Tabulator.RowComponent) -> Boolean)? = null,
+        val movableRows: Boolean? = null,
+        val movableRowsConnectedTables: dynamic = null,
+        val movableRowsSender: dynamic = null,
+        val movableRowsReceiver: dynamic = null,
+        val resizableRows: Boolean? = null,
+        val scrollToRowPosition: RowPosition? = null,
+        val scrollToRowIfVisible: Boolean? = null,
+        val index: String? = null,
+        @Suppress("ArrayInDataClass") var data: Array<T>? = null,
+        val ajaxURL: String? = null,
+        val ajaxParams: dynamic = null,
+        val ajaxConfig: dynamic = null,
+        val ajaxContentType: dynamic = null,
+        val ajaxURLGenerator: ((url: String, config: dynamic, params: dynamic) -> String)? = null,
+        val ajaxRequestFunc: ((url: String, config: dynamic, params: dynamic) -> Promise<Any>)? = null,
+        val ajaxFiltering: Boolean? = null,
+        val ajaxSorting: Boolean? = null,
+        val ajaxProgressiveLoad: ProgressiveMode? = null,
+        val ajaxProgressiveLoadDelay: Int? = null,
+        val ajaxProgressiveLoadScrollMargin: Int? = null,
+        val ajaxLoader: Boolean? = null,
+        val ajaxLoaderLoading: String? = null,
+        val ajaxLoaderError: String? = null,
+        val initialSort: List<Tabulator.Sorter>? = null,
+        val sortOrderReverse: Boolean? = null,
+        val initialFilter: List<Tabulator.Filter>? = null,
+        val initialHeaderFilter: List<Any?>? = null,
+        val pagination: PaginationMode? = null,
+        val paginationSize: Int? = null,
+        val paginationSizeSelector: Boolean? = null,
+        val paginationElement: dynamic = null,
+        val paginationDataReceived: dynamic = null,
+        val paginationDataSent: dynamic = null,
+        val paginationAddRow: AddRowMode? = null,
+        val paginationButtonCount: Int? = null,
+        var persistenceID: String? = null,
+        var persistenceMode: Boolean? = null,
+        var persistentLayout: Boolean? = null,
+        var persistentSort: Boolean? = null,
+        var persistentFilter: Boolean? = null,
+        val locale: String? = null,
+        var langs: dynamic = null,
+        val localized: ((locale: String, lang: dynamic) -> Unit)? = null,
+        val dataTreeRowExpanded: ((row: Tabulator.RowComponent, level: Number) -> Unit)? = null,
+        val dataTreeRowCollapsed: ((row: Tabulator.RowComponent, level: Number) -> Unit)? = null,
+        val movableRowsSendingStart: ((toTables: Array<Any>) -> Unit)? = null,
+        val movableRowsSent: ((
+                fromRow: Tabulator.RowComponent,
+                toRow: Tabulator.RowComponent, toTable: Tabulator
+        ) -> Unit)? = null,
+        val movableRowsSentFailed: ((
+                fromRow: Tabulator.RowComponent,
+                toRow: Tabulator.RowComponent, toTable: Tabulator
+        ) -> Unit)? = null,
+        val movableRowsSendingStop: ((toTables: Array<Any>) -> Unit)? = null,
+        val movableRowsReceivingStart: ((fromRow: Tabulator.RowComponent, toTable: Tabulator) -> Unit)? = null,
+        val movableRowsReceived: ((
+                fromRow: Tabulator.RowComponent,
+                toRow: Tabulator.RowComponent, fromTable: Tabulator
+        ) -> Unit)? = null,
+        val movableRowsReceivedFailed: ((
+                fromRow: Tabulator.RowComponent,
+                toRow: Tabulator.RowComponent, fromTable: Tabulator
+        ) -> Unit)? = null,
+        val movableRowsReceivingStop: ((fromTable: Tabulator) -> Unit)? = null,
+        var rowClick: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowDblClick: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowContext: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowTap: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowDblTap: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowTapHold: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowMouseEnter: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowMouseLeave: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowMouseOver: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowMouseOut: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowMouseMove: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowAdded: ((row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowUpdated: ((row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowDeleted: ((row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowMoved: ((row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowResized: ((row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowSelectionChanged: ((data: Array<Any>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
+        var rowSelected: ((row: Tabulator.RowComponent) -> Unit)? = null,
+        var rowDeselected: ((row: Tabulator.RowComponent) -> Unit)? = null,
+        var cellClick: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellDblClick: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellContext: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellTap: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellDblTap: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellTapHold: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellMouseEnter: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellMouseLeave: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellMouseOver: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellMouseOut: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellMouseMove: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellEditing: ((cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellEdited: ((cell: Tabulator.CellComponent) -> Unit)? = null,
+        var cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null,
+        var columnMoved: ((column: Tabulator.ColumnComponent, columns: Array<dynamic>) -> Unit)? = null,
+        var columnResized: ((column: Tabulator.ColumnComponent) -> Unit)? = null,
+        var columnVisibilityChanged: ((column: Tabulator.ColumnComponent, visible: Boolean) -> Unit)? = null,
+        var columnTitleChanged: ((column: Tabulator.ColumnComponent) -> Unit)? = null,
+        var tableBuilding: (() -> Unit)? = null,
+        var tableBuilt: (() -> Unit)? = null,
+        var renderStarted: (() -> Unit)? = null,
+        var renderComplete: (() -> Unit)? = null,
+        var htmlImporting: (() -> Unit)? = null,
+        var htmlImported: (() -> Unit)? = null,
+        var dataLoading: ((data: List<T>) -> Unit)? = null,
+        var dataLoaded: ((data: List<T>) -> Unit)? = null,
+        var dataEdited: ((data: List<T>) -> Unit)? = null,
+        var pageLoaded: ((pageno: Int) -> Unit)? = null,
+        var dataSorting: ((sorters: Array<Tabulator.Sorter>) -> Unit)? = null,
+        var dataSorted: ((sorters: Array<Tabulator.Sorter>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
+        var dataFiltering: ((filters: Array<Tabulator.Filter>) -> Unit)? = null,
+        var dataFiltered: ((filters: Array<Tabulator.Filter>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
+        var validationFailed: ((cell: Tabulator.CellComponent, value: Any, validators: dynamic) -> Unit)? = null,
+        var ajaxRequesting: ((url: String, params: dynamic) -> Boolean)? = null,
+        var ajaxResponse: ((url: String, params: dynamic, response: dynamic) -> Any)? = null,
+        var ajaxError: ((xhr: dynamic, textStatus: String, errorThrown: dynamic) -> Unit)? = null
 )
 
 /**
@@ -686,8 +679,7 @@ data class TabulatorOptions<T : Any>(
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod")
 fun <T : Any> TabulatorOptions<T>.toJs(
-    i18nTranslator: (String) -> (String),
-    dataSerializer: KSerializer<T>? = null
+        i18nTranslator: (String) -> (String)
 ): Tabulator.Options {
     val tmpCellEditCancelled = this.columns?.find { it.editorComponentFunction != null }?.let {
         { cell: Tabulator.CellComponent ->
@@ -710,7 +702,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (downloadConfig != null) this.downloadConfig = downloadConfig.toJs()
         if (reactiveData != null) this.reactiveData = reactiveData
         if (autoResize != null) this.autoResize = autoResize
-        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator, dataSerializer) }.toTypedArray()
+        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator) }.toTypedArray()
         if (autoColumns != null) {
             this.autoColumns = autoColumns
         } else if (columns == null) {
@@ -720,9 +712,9 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (layoutColumnsOnNewData != null) this.layoutColumnsOnNewData = layoutColumnsOnNewData
         if (responsiveLayout != null) this.responsiveLayout = responsiveLayout.layout
         if (responsiveLayoutCollapseStartOpen != null) this.responsiveLayoutCollapseStartOpen =
-            responsiveLayoutCollapseStartOpen
+                responsiveLayoutCollapseStartOpen
         if (responsiveLayoutCollapseUseFormatters != null) this.responsiveLayoutCollapseUseFormatters =
-            responsiveLayoutCollapseUseFormatters
+                responsiveLayoutCollapseUseFormatters
         if (columnMinWidth != null) this.columnMinWidth = columnMinWidth
         if (resizableColumns != null) this.resizableColumns = resizableColumns
         if (movableColumns != null) this.movableColumns = movableColumns
@@ -757,7 +749,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (ajaxProgressiveLoad != null) this.ajaxProgressiveLoad = ajaxProgressiveLoad.mode
         if (ajaxProgressiveLoadDelay != null) this.ajaxProgressiveLoadDelay = ajaxProgressiveLoadDelay
         if (ajaxProgressiveLoadScrollMargin != null) this.ajaxProgressiveLoadScrollMargin =
-            ajaxProgressiveLoadScrollMargin
+                ajaxProgressiveLoadScrollMargin
         if (ajaxLoader != null) this.ajaxLoader = ajaxLoader
         if (ajaxLoaderLoading != null) this.ajaxLoaderLoading = i18nTranslator(ajaxLoaderLoading)
         if (ajaxLoaderError != null) this.ajaxLoaderError = i18nTranslator(ajaxLoaderError)

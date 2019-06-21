@@ -1,0 +1,9 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("pace-progressbar", "1.0.8")
+    }
+
+}
