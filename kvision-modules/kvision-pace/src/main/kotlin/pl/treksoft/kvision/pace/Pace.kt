@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2019-present Robert Cronin
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -169,6 +170,10 @@ enum class PaceTheme(var paceThemeString: String) {
 
 class Pace {
     companion object {
+        fun init() {
+            setNewTheme(PaceColor.Blue, PaceTheme.Flash)
+        }
+
         fun setNewTheme(color: PaceColor, theme: PaceTheme) {
             require("pace-progressbar/themes/${color.paceColorString}/pace-theme-${theme.paceThemeString}.css")
         }
