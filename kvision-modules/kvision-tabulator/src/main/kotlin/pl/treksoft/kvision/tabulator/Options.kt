@@ -356,6 +356,7 @@ data class ColumnDefinition<T : Any>(
 
 internal object EditorRoot {
     internal var root: Root? = null
+    internal var cancel: ((value: dynamic) -> Unit)? = null
     internal var disposeTimer: Int? = null
 }
 
@@ -384,6 +385,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                     root?.dispose()
                     disposeTimer = null
                     root = null
+                    EditorRoot.cancel = null
                 }, 500)
             }, cancel, data)
             val rootElement = document.createElement("div") as HTMLElement
@@ -393,6 +395,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                     root?.dispose()
                 }
                 root = Root(element = rootElement)
+                EditorRoot.cancel = cancel
                 @Suppress("UnsafeCastFromDynamic")
                 root?.add(component)
                 (component as? FormControl)?.focus()

@@ -40,6 +40,7 @@ import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.syncWithList
 import redux.RAction
+import kotlin.browser.window
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 
 /**
@@ -556,6 +557,13 @@ open class Tabulator<T : Any>(
      */
     open fun navigateDown() {
         jsTabulator?.navigateDown()
+    }
+
+    internal fun removeCustomEditors() {
+        EditorRoot.cancel?.invoke(null)
+        EditorRoot.disposeTimer?.let { window.clearTimeout(it) }
+        EditorRoot.root?.dispose()
+        EditorRoot.root = null
     }
 
     companion object {
