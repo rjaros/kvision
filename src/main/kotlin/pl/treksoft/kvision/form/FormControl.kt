@@ -47,6 +47,16 @@ interface FormInput : Component {
      * The name attribute of the generated HTML input element.
      */
     var name: String?
+
+    /**
+     * Makes the input element focused.
+     */
+    fun focus()
+
+    /**
+     * Makes the input element blur.
+     */
+    fun blur()
 }
 
 /**

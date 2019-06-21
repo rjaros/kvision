@@ -69,6 +69,7 @@ enum class TAG(internal val tagName: String) {
     SAMP("samp"),
     SPAN("span"),
     LI("li"),
+    HR("hr"),
 
     CAPTION("caption"),
     THEAD("thead"),
@@ -78,7 +79,10 @@ enum class TAG(internal val tagName: String) {
     TD("td"),
 
     FORM("form"),
-    INPUT("input")
+    INPUT("input"),
+    SELECT("select"),
+    OPTION("option"),
+    BUTTON("button")
 }
 
 /**
@@ -101,11 +105,13 @@ enum class Align(val className: String) {
  * @param rich determines if [content] can contain HTML code
  * @param align content align
  * @param classes a set of CSS class names
+ * @param attributes a map of additional attributes
  * @param init an initializer extension function
  */
 open class Tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-    classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
+    classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
+    init: (Tag.() -> Unit)? = null
 ) : SimplePanel(classes), Template {
 
     /**
@@ -139,6 +145,7 @@ open class Tag(
     override var templates: Map<String, (Any?) -> String> by refreshOnUpdate(mapOf())
 
     init {
+        this.attributes += attributes
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -187,9 +194,10 @@ open class Tag(
          */
         fun Container.tag(
             type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-            classes: Set<String> = setOf(), init: (Tag.() -> Unit)? = null
+            classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
+            init: (Tag.() -> Unit)? = null
         ): Tag {
-            val tag = Tag(type, content, rich, align, classes, init)
+            val tag = Tag(type, content, rich, align, classes, attributes, init)
             this.add(tag)
             return tag
         }

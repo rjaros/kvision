@@ -37,7 +37,7 @@ class ChartSpec : DomSpec {
     @Test
     fun renderResponsive() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val chart = Chart(
                 Configuration(
                     ChartType.SCATTER,
@@ -60,7 +60,7 @@ class ChartSpec : DomSpec {
     @Test
     fun renderNotResponsive() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val chart = Chart(
                 Configuration(
                     ChartType.SCATTER,

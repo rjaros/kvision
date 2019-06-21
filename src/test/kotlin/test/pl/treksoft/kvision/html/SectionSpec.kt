@@ -32,7 +32,7 @@ class SectionSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val section = Section("This is a section")
             root.add(section)
             val element = document.getElementById("test")

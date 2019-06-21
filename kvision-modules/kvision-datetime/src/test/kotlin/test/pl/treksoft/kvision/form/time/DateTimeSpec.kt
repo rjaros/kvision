@@ -34,7 +34,7 @@ class DateTimeSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val data = Date()
             val ti = DateTime(value = data, label = "Label").apply {
                 placeholder = "place"

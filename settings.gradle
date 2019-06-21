@@ -23,4 +23,5 @@ include 'kvision-modules:kvision-base',
         'kvision-modules:kvision-server-jooby',
         'kvision-modules:kvision-server-ktor',
         'kvision-modules:kvision-server-spring-boot',
-        'kvision-modules:kvision-electron'
+        'kvision-modules:kvision-electron',
+        'kvision-modules:kvision-cordova'

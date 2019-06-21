@@ -32,7 +32,7 @@ class IconSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val icon = Icon("fa-check")
             root.add(icon)
             val element = document.getElementById("test")

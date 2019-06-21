@@ -36,7 +36,7 @@ class ChartCanvasSpec : DomSpec {
     @Test
     fun renderResponsive() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val chart = ChartCanvas(
                 configuration = Configuration(
                     ChartType.SCATTER,
@@ -56,7 +56,7 @@ class ChartCanvasSpec : DomSpec {
     @Test
     fun renderNotResponsive() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val chart = ChartCanvas(
                 300, 600,
                 configuration = Configuration(

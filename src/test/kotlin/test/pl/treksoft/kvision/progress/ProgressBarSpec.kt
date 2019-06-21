@@ -33,7 +33,7 @@ class ProgressBarSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val progressBar =
                 ProgressBar(50, style = ProgressBarStyle.SUCCESS, striped = true, content = "Processing ...")
             root.add(progressBar)

@@ -32,7 +32,7 @@ class NavFormSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val navf = NavForm()
             root.add(navf)
             val element = document.getElementById("test")

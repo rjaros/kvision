@@ -34,7 +34,7 @@ class ContextMenuSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val m = ContextMenu {
                 link("a", "b")
                 link("c", "d")
@@ -54,7 +54,7 @@ class ContextMenuSpec : DomSpec {
     @Test
     fun positionMenu() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val m = ContextMenu {
                 link("a", "b")
                 link("c", "d")

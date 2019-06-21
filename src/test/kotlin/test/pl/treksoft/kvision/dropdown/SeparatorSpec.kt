@@ -32,7 +32,7 @@ class SeparatorSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val s = Separator()
             root.add(s)
             val element = document.getElementById("test")

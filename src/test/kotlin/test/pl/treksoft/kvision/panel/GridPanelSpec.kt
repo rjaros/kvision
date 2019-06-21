@@ -33,7 +33,7 @@ class GridPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val gridPanel = GridPanel()
             root.add(gridPanel)
             gridPanel.add(Span("abc"), 1, 1)

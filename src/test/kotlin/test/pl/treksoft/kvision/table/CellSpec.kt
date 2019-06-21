@@ -32,7 +32,7 @@ class CellSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val cell = Cell("This is a cell")
             root.add(cell)
             val element = document.getElementById("test")

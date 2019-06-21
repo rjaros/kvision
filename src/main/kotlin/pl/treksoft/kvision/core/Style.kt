@@ -21,11 +21,6 @@
  */
 package pl.treksoft.kvision.core
 
-import com.github.snabbdom.VNode
-import com.github.snabbdom.h
-import org.w3c.dom.Node
-import pl.treksoft.jquery.JQuery
-import pl.treksoft.kvision.panel.Root
 import kotlin.reflect.KProperty
 
 /**
@@ -41,8 +36,6 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
     StyledComponent() {
     private val propertyValues: MutableMap<String, Any?> = mutableMapOf()
 
-    override var parent: Container? = Root.getFirstRoot()
-
     private val newClassName: String = if (parentStyle == null) {
         className ?: "kv_styleclass_${counter++}"
     } else {
@@ -55,84 +48,17 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
     var className: String by refreshOnUpdate(newClassName)
 
     init {
+        @Suppress("LeakingThis")
         styles.add(this)
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
-    override var visible: Boolean = true
-        set(value) {
-            val oldField = field
-            field = value
-            if (oldField != field) refresh()
-        }
-
-    override fun addCssClass(css: String): Component {
-        return this
-    }
-
-    override fun removeCssClass(css: String): Component {
-        return this
-    }
-
-    override fun addSurroundingCssClass(css: String): Component {
-        return this
-    }
-
-    override fun removeSurroundingCssClass(css: String): Component {
-        return this
-    }
-
-    override fun addCssClass(css: Style): Component {
-        return this
-    }
-
-    override fun removeCssClass(css: Style): Component {
-        return this
-    }
-
-    override fun addSurroundingCssClass(css: Style): Component {
-        return this
-    }
-
-    override fun removeSurroundingCssClass(css: Style): Component {
-        return this
-    }
-
-    override fun renderVNode(): VNode {
-        return h("style", arrayOf(generateStyle()))
-    }
-
     internal fun generateStyle(): String {
-        val styles = getSnStyle()
+        val styles = getSnStyleInternal()
         return ".$className {\n" + styles.joinToString("\n") {
             "${it.first}: ${it.second};"
         } + "\n}"
-    }
-
-    override fun getElement(): Node? {
-        return null
-    }
-
-    override fun getElementJQuery(): JQuery? {
-        return null
-    }
-
-    override fun getElementJQueryD(): dynamic {
-        return null
-    }
-
-    override fun clearParent(): Component {
-        this.parent = null
-        return this
-    }
-
-    override fun getRoot(): Root? {
-        return this.parent?.getRoot()
-    }
-
-    override fun dispose() {
-        styles.remove(this)
     }
 
     protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =

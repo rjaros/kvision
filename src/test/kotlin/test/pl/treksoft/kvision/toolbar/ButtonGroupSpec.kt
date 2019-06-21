@@ -34,7 +34,7 @@ class ButtonGroupSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val group = ButtonGroup()
             root.add(group)
             val element = document.getElementById("test")

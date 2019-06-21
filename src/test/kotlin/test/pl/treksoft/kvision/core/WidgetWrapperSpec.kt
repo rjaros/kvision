@@ -35,7 +35,7 @@ class WidgetWrapperSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val widget = Widget()
             val wrapper = WidgetWrapper(widget)
             wrapper.width = 100 to UNIT.em

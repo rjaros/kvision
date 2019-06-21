@@ -25,10 +25,13 @@ import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.WidgetWrapper
-import pl.treksoft.kvision.html.Link
+import pl.treksoft.kvision.html.Icon
+import pl.treksoft.kvision.html.Link.Companion.link
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.routing.routing
+import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.html.Icon.Companion.icon as cicon
 
 /**
  * Tab position.
@@ -95,6 +98,8 @@ open class TabPanel(
     private var nav = Tag(TAG.UL, classes = navClasses)
     private var content = StackPanel(false)
 
+    internal val childrenMap = mutableMapOf<Int, Component>()
+
     init {
         when (tabPosition) {
             TabPosition.TOP -> {
@@ -135,23 +140,46 @@ open class TabPanel(
      * @param panel child component
      * @param icon icon of the tab
      * @param image image of the tab
+     * @param closable determines if this tab is closable
      * @param route JavaScript route to activate given child
      * @return current container
      */
     open fun addTab(
         title: String, panel: Component, icon: String? = null,
-        image: ResString? = null, route: String? = null
+        image: ResString? = null, closable: Boolean = false, route: String? = null
     ): TabPanel {
-        val tag = Tag(TAG.LI)
-        tag.role = "presentation"
-        tag.add(Link(title, "#", icon, image))
-        val index = nav.children.size
-        tag.setEventListener {
-            click = { e ->
-                activeIndex = index
-                e.preventDefault()
-                if (route != null) {
-                    routing.navigate(route)
+        val currentIndex = counter++
+        childrenMap[currentIndex] = panel
+        val tag = Tag(TAG.LI) {
+            role = "presentation"
+            link(title, "#", icon, image) {
+                if (closable) {
+                    cicon("remove") {
+                        addCssClass("kv-tab-close")
+                        setEventListener<Icon> {
+                            click = { e ->
+                                val actIndex = this@TabPanel.content.children.indexOf(childrenMap[currentIndex])
+                                e.asDynamic().data = actIndex
+                                if (this@TabPanel.dispatchEvent(
+                                        "tabClosing",
+                                        obj { detail = e; cancelable = true }) != false
+                                ) {
+                                    this@TabPanel.removeTab(actIndex)
+                                    this@TabPanel.dispatchEvent("tabClosed", obj { detail = e })
+                                }
+                                e.stopPropagation()
+                            }
+                        }
+                    }
+                }
+            }
+            setEventListener {
+                click = { e ->
+                    activeIndex = this@TabPanel.content.children.indexOf(childrenMap[currentIndex])
+                    e.preventDefault()
+                    if (route != null) {
+                        routing.navigate(route)
+                    }
                 }
             }
         }
@@ -162,7 +190,8 @@ open class TabPanel(
         }
         content.add(panel)
         if (route != null) {
-            routing.on(route, { _ -> activeIndex = index }).resolve()
+            routing.on(route, { _ -> activeIndex = this@TabPanel.content.children.indexOf(childrenMap[currentIndex]) })
+                .resolve()
         }
         return this
     }
@@ -172,6 +201,9 @@ open class TabPanel(
      */
     open fun removeTab(index: Int): TabPanel {
         nav.remove(nav.children[index])
+        childrenMap.filter { it.value == content.children[index] }.keys.firstOrNull()?.let {
+            childrenMap.remove(it)
+        }
         content.remove(content.children[index])
         activeIndex = content.activeIndex
         return this
@@ -191,14 +223,32 @@ open class TabPanel(
         return removeTab(index)
     }
 
+    /**
+     * Returns child component by tab index.
+     * @param index tab index
+     */
+    open fun getChildComponent(index: Int): Component? {
+        return content.children[index]
+    }
+
+    /**
+     * Returns tab header component by tab index.
+     * @param index tab index
+     */
+    open fun getNavComponent(index: Int): Tag? {
+        return nav.children[index] as? Tag
+    }
+
     override fun removeAll(): TabPanel {
         content.removeAll()
         nav.removeAll()
+        childrenMap.clear()
         refresh()
         return this
     }
 
     companion object {
+        internal var counter = 0
         /**
          * DSL builder extension function.
          *

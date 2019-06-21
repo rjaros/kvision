@@ -33,7 +33,7 @@ class RadioSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val ci = Radio(value = true, label = "Label", extraValue = "abc").apply {
                 name = "name"
                 style = RadioStyle.DANGER

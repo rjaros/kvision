@@ -33,7 +33,7 @@ class ResponsiveGridPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val rgPanel = ResponsiveGridPanel()
             root.add(rgPanel)
             rgPanel.add(Span("abc"), 1, 1)

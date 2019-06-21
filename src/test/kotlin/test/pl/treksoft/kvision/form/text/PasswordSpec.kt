@@ -32,7 +32,7 @@ class PasswordSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val ti = Password(value = "abc", label = "Label").apply {
                 placeholder = "place"
                 name = "name"

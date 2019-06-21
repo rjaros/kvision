@@ -32,7 +32,7 @@ class SpanSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val span = Span("This is a label")
             root.add(span)
             val element = document.getElementById("test")

@@ -21,6 +21,7 @@
  */
 package test.pl.treksoft.kvision.panel
 
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.TabPanel
@@ -33,7 +34,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Span("abc")
@@ -52,7 +53,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun setActiveIndex() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Span("abc")
@@ -72,7 +73,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun removeTab() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Span("abc")
@@ -86,6 +87,30 @@ class TabPanelSpec : DomSpec {
                 "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"\"><a href=\"#\">ABC</a></li></ul><div><span>abc</span></div></div>",
                 element?.innerHTML,
                 "Should remove tab"
+            )
+        }
+    }
+
+
+    @Test
+    fun tabClick() {
+        run {
+            val root = Root("test", fixed = true)
+            val tabs = TabPanel()
+            root.add(tabs)
+            val label1 = Span("abc")
+            val label2 = Span("def")
+            tabs.addTab("ABC", label1)
+            tabs.addTab("DEF", label2)
+            tabs.removeTab(0)
+            val label3 = Span("ghi")
+            tabs.addTab("GHI", label3)
+            jQuery("#test a")[0]?.click()
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"\"><a href=\"#\">DEF</a></li><li role=\"presentation\"><a href=\"#\">GHI</a></li></ul><div><span>def</span></div></div>",
+                element?.innerHTML,
+                "Should select correct tab by clicking"
             )
         }
     }

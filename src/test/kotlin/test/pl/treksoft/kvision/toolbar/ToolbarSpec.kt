@@ -32,7 +32,7 @@ class ToolbarSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val toolbar = Toolbar()
             root.add(toolbar)
             val element = document.getElementById("test")

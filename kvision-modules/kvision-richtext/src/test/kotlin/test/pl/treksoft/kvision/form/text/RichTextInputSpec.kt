@@ -34,7 +34,7 @@ class RichTextInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val hai = RichTextInput(value = "abc").apply {
                 placeholder = "place"
                 id = "idti"

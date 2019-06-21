@@ -32,7 +32,7 @@ class HelpBlockSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val fl = HelpBlock("Form Error")
             root.add(fl)
             val element = document.getElementById("test")

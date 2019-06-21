@@ -50,7 +50,7 @@ class RootSpec : DomSpec {
     @Test
     fun getRoot() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val r = root.getRoot()
             assertTrue("Should return self") { r == root }
         }

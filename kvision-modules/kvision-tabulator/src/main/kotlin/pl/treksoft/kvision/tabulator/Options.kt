@@ -22,8 +22,19 @@
 
 package pl.treksoft.kvision.tabulator
 
+import kotlinx.serialization.KSerializer
+import org.w3c.dom.HTMLElement
+import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.form.FormControl
+import pl.treksoft.kvision.form.FormInput
+import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.tabulator.EditorRoot.disposeTimer
+import pl.treksoft.kvision.tabulator.EditorRoot.root
 import pl.treksoft.kvision.tabulator.js.Tabulator
+import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
+import kotlin.browser.document
+import kotlin.browser.window
 import kotlin.js.Promise
 
 /**
@@ -248,7 +259,7 @@ fun DownloadConfig.toJs(): Tabulator.DownloadConfig {
 /**
  * Column definition options.
  */
-data class ColumnDefinition(
+data class ColumnDefinition<T : Any>(
     val title: String,
     val field: String? = null,
     val visible: Boolean? = null,
@@ -265,18 +276,36 @@ data class ColumnDefinition(
     val rowHandle: Boolean? = null,
     val hideInHtml: Boolean? = null,
     val sorter: Sorter? = null,
+    val sorterFunction: ((
+        a: dynamic, b: dynamic, aRow: Tabulator.RowComponent, bRow: Tabulator.RowComponent,
+        column: Tabulator.ColumnComponent, dir: SortingDir, sorterParams: dynamic
+    ) -> Number)? = null,
     val sorterParams: dynamic = null,
     val formatter: Formatter? = null,
     val formatterFunction: ((
         cell: Tabulator.CellComponent, formatterParams: dynamic,
         onRendered: (callback: () -> Unit) -> Unit
     ) -> dynamic)? = null,
+    val formatterComponentFunction: ((
+        cell: Tabulator.CellComponent, onRendered: (callback: () -> Unit) -> Unit, data: T
+    ) -> Component)? = null,
     val formatterParams: dynamic = null,
     val variableHeight: Boolean? = null,
     val editable: ((cell: Tabulator.CellComponent) -> Boolean)? = null,
     val editor: Editor? = null,
+    val editorFunction: ((
+        cell: Tabulator.CellComponent,
+        onRendered: (callback: () -> Unit) -> Unit,
+        success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, editorParams: dynamic
+    ) -> dynamic)? = null,
+    val editorComponentFunction: ((
+        cell: Tabulator.CellComponent,
+        onRendered: (callback: () -> Unit) -> Unit,
+        success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, data: T
+    ) -> Component)? = null,
     val editorParams: dynamic = null,
     val validator: Validator? = null,
+    val validatorFunction: dynamic = null,
     val validatorParams: String? = null,
     val download: Boolean? = null,
     val downloadTitle: String? = null,
@@ -325,11 +354,78 @@ data class ColumnDefinition(
     val cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null
 )
 
+internal object EditorRoot {
+    internal var root: Root? = null
+    internal var disposeTimer: Int? = null
+}
+
 /**
  * An extension function to convert column definition class to JS object.
  */
-@Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod")
-fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.ColumnDefinition {
+@Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod", "MagicNumber")
+fun <T : Any> ColumnDefinition<T>.toJs(
+    i18nTranslator: (String) -> (String),
+    dataSerializer: KSerializer<T>? = null
+): Tabulator.ColumnDefinition {
+    val tmpEditorFunction = editorComponentFunction?.let {
+        { cell: Tabulator.CellComponent,
+          onRendered: (callback: () -> Unit) -> Unit,
+          success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, _: dynamic ->
+            var onRenderedCallback: (() -> Unit)? = null
+            val str = kotlin.js.JSON.stringify(cell.getData())
+            @Suppress("UNCHECKED_CAST") val data = dataSerializer?.let {
+                JSON.plain.parse(it, str)
+            } ?: cell.getData() as T
+            val component = it(cell, { callback ->
+                onRenderedCallback = callback
+            }, { value ->
+                success(value)
+                disposeTimer = window.setTimeout({
+                    root?.dispose()
+                    disposeTimer = null
+                    root = null
+                }, 500)
+            }, cancel, data)
+            val rootElement = document.createElement("div") as HTMLElement
+            onRendered {
+                if (root != null) {
+                    disposeTimer?.let { window.clearTimeout(it) }
+                    root?.dispose()
+                }
+                root = Root(element = rootElement)
+                @Suppress("UnsafeCastFromDynamic")
+                root?.add(component)
+                (component as? FormControl)?.focus()
+                (component as? FormInput)?.focus()
+                cell.checkHeight()
+                onRenderedCallback?.invoke()
+            }
+            rootElement
+        }
+    }
+
+    val tmpFormatterFunction = formatterComponentFunction?.let {
+        { cell: Tabulator.CellComponent, _: dynamic,
+          onRendered: (callback: () -> Unit) -> Unit ->
+            var onRenderedCallback: (() -> Unit)? = null
+            val str = kotlin.js.JSON.stringify(cell.getData())
+            @Suppress("UNCHECKED_CAST") val data =
+                dataSerializer?.let { JSON.plain.parse(it, str) } ?: cell.getData() as T
+            val component = it(cell, { callback ->
+                onRenderedCallback = callback
+            }, data)
+            val rootElement = document.createElement("div") as HTMLElement
+            onRendered {
+                val root = Root(element = rootElement)
+                @Suppress("UnsafeCastFromDynamic")
+                root.add(component)
+                cell.checkHeight()
+                onRenderedCallback?.invoke()
+            }
+            rootElement
+        }
+    }
+
     return obj {
         this.title = i18nTranslator(title)
         if (field != null) this.field = field
@@ -346,17 +442,25 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
         if (cssClass != null) this.cssClass = cssClass
         if (rowHandle != null) this.rowHandle = rowHandle
         if (hideInHtml != null) this.hideInHtml = hideInHtml
-        if (sorter != null) this.sorter = sorter.sorter
+        if (sorterFunction != null) {
+            this.sorter = sorterFunction
+        } else if (sorter != null) {
+            this.sorter = sorter.sorter
+        }
         if (sorterParams != null) this.sorterParams = sorterParams
-        if (formatterFunction != null) {
-            this.formatter = formatterFunction
-        } else if (formatter != null) {
-            this.formatter = formatter.formatter
+        when {
+            tmpFormatterFunction != null -> this.formatter = tmpFormatterFunction
+            formatterFunction != null -> this.formatter = formatterFunction
+            formatter != null -> this.formatter = formatter.formatter
         }
         if (formatterParams != null) this.formatterParams = formatterParams
         if (variableHeight != null) this.variableHeight = variableHeight
         if (editable != null) this.editable = editable
-        if (editor != null) this.editor = editor.editor
+        when {
+            tmpEditorFunction != null -> this.editor = tmpEditorFunction
+            editorFunction != null -> this.editor = editorFunction
+            editor != null -> this.editor = editor.editor
+        }
         if (editorParams != null) this.editorParams = editorParams
         if (validator != null) this.validator = validator.validator
         if (validatorParams != null) this.validatorParams = validatorParams
@@ -404,14 +508,20 @@ fun ColumnDefinition.toJs(i18nTranslator: (String) -> (String)): Tabulator.Colum
         if (cellMouseMove != null) this.cellMouseMove = cellMouseMove
         if (cellEditing != null) this.cellEditing = cellEditing
         if (cellEdited != null) this.cellEdited = cellEdited
-        if (cellEditCancelled != null) this.cellEditCancelled = cellEditCancelled
+        if (cellEditCancelled != null) {
+            this.cellEditCancelled = cellEditCancelled
+        } else if (tmpEditorFunction != null) {
+            this.cellEditCancelled = { cell: Tabulator.CellComponent ->
+                cell.checkHeight()
+            }
+        }
     } as Tabulator.ColumnDefinition
 }
 
 /**
  * Tabulator options.
  */
-data class TabulatorOptions(
+data class TabulatorOptions<T : Any>(
     val height: String? = null,
     val virtualDom: Boolean? = null,
     val virtualDomBuffer: Int? = null,
@@ -425,7 +535,7 @@ data class TabulatorOptions(
     val downloadConfig: DownloadConfig? = null,
     val reactiveData: Boolean? = null,
     val autoResize: Boolean? = null,
-    val columns: List<ColumnDefinition>? = null,
+    val columns: List<ColumnDefinition<T>>? = null,
     val autoColumns: Boolean? = null,
     val layout: Layout? = null,
     val layoutColumnsOnNewData: Boolean? = null,
@@ -572,7 +682,17 @@ data class TabulatorOptions(
  * An extension function to convert tabulator options class to JS object.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod")
-fun TabulatorOptions.toJs(i18nTranslator: (String) -> (String)): Tabulator.Options {
+fun <T : Any> TabulatorOptions<T>.toJs(
+    i18nTranslator: (String) -> (String),
+    dataSerializer: KSerializer<T>? = null
+): Tabulator.Options {
+    val tmpCellEditCancelled = this.columns?.find { it.editorComponentFunction != null }?.let {
+        { cell: Tabulator.CellComponent ->
+            cellEditCancelled?.invoke(cell)
+            cell.getTable().redraw(true)
+        }
+    } ?: cellEditCancelled
+
     return obj {
         if (height != null) this.height = height
         if (virtualDom != null) this.virtualDom = virtualDom
@@ -587,7 +707,7 @@ fun TabulatorOptions.toJs(i18nTranslator: (String) -> (String)): Tabulator.Optio
         if (downloadConfig != null) this.downloadConfig = downloadConfig.toJs()
         if (reactiveData != null) this.reactiveData = reactiveData
         if (autoResize != null) this.autoResize = autoResize
-        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator) }.toTypedArray()
+        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator, dataSerializer) }.toTypedArray()
         if (autoColumns != null) {
             this.autoColumns = autoColumns
         } else if (columns == null) {
@@ -700,7 +820,9 @@ fun TabulatorOptions.toJs(i18nTranslator: (String) -> (String)): Tabulator.Optio
         if (cellMouseMove != null) this.cellMouseMove = cellMouseMove
         if (cellEditing != null) this.cellEditing = cellEditing
         if (cellEdited != null) this.cellEdited = cellEdited
-        if (cellEditCancelled != null) this.cellEditCancelled = cellEditCancelled
+        if (tmpCellEditCancelled != null) {
+            this.cellEditCancelled = tmpCellEditCancelled
+        }
         if (columnMoved != null) this.columnMoved = columnMoved
         if (columnResized != null) this.columnResized = columnResized
         if (columnVisibilityChanged != null) this.columnVisibilityChanged = columnVisibilityChanged

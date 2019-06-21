@@ -32,7 +32,7 @@ class WindowSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val window = Window("Window title", isResizable = false)
             root.add(window)
             val id = window.id

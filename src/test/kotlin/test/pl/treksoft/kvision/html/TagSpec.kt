@@ -35,7 +35,7 @@ class TagSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val tag = Tag(TAG.H1, "This is <b>h1</b>", rich = false, align = Align.CENTER)
             root.add(tag)
             val element = document.getElementById("test")
@@ -50,7 +50,7 @@ class TagSpec : DomSpec {
     @Test
     fun renderRich() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val tag = Tag(TAG.H1, "This is <b>h1</b>", rich = true, align = Align.RIGHT)
             root.add(tag)
             val element = document.getElementById("test")
@@ -65,7 +65,7 @@ class TagSpec : DomSpec {
     @Test
     fun renderAsContainer() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val tag = Tag(TAG.P, align = Align.RIGHT)
             tag.add(Tag(TAG.DEL, "This is test"))
             tag.add(Link("abc", "/x"))
@@ -82,7 +82,7 @@ class TagSpec : DomSpec {
     @Test
     fun renderUnaryPlus() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val tag = Tag(TAG.H1, rich = true) {
                 +"This is <b>h1</b>"
             }

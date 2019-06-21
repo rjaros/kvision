@@ -33,7 +33,7 @@ class ProgressIndicatorSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val ind = ProgressIndicator(50, style = ProgressBarStyle.SUCCESS, striped = true)
             root.add(ind)
             val element = document.getElementById("test")

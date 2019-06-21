@@ -34,7 +34,7 @@ class TabulatorSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val tabulator = Tabulator<Any>(options = TabulatorOptions(data = arrayOf(obj {
                 id = 1
                 name = "Name"

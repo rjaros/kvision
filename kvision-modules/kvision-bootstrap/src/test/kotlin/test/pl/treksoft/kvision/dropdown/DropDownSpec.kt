@@ -34,7 +34,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
             root.add(dd)
             dd.toggle()
@@ -51,7 +51,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun renderDropUp() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag").apply { dropup = true }
             root.add(dd)
             dd.toggle()
@@ -68,7 +68,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun renderHeaderElement() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to DD.HEADER.option), "flag")
             root.add(dd)
             dd.toggle()
@@ -85,7 +85,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun renderSeparatorElement() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to DD.SEPARATOR.option), "flag")
             root.add(dd)
             dd.toggle()
@@ -102,7 +102,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun renderDisabledElement() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to DD.DISABLED.option), "flag")
             root.add(dd)
             dd.toggle()
@@ -119,7 +119,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun toggle() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
             root.add(dd)
             val visible = dd.getElementJQuery()?.hasClass("open") ?: false

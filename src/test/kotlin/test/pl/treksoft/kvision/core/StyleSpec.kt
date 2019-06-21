@@ -37,7 +37,7 @@ class StyleSpec : DomSpec {
     @Test
     fun render() {
         run {
-            Root("test", true) {
+            Root("test", fixed = true) {
                 widget {
                     style {
                         margin = 2.px
@@ -58,7 +58,7 @@ class StyleSpec : DomSpec {
     @Test
     fun renderCustomClass() {
         run {
-            Root("test", true) {
+            Root("test", fixed = true) {
                 widget {
                     style("customclass") {
                         margin = 2.px
@@ -79,7 +79,7 @@ class StyleSpec : DomSpec {
     @Test
     fun renderSubclass() {
         run {
-            Root("test", true) {
+            Root("test", fixed = true) {
                 widget {
                     style("customclass") {
                         margin = 2.px

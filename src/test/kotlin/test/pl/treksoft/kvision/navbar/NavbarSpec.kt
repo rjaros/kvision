@@ -37,7 +37,7 @@ class NavbarSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val navbar = Navbar("TEST", NavbarType.FIXEDTOP)
             root.add(navbar)
             val element = document.getElementById("test")

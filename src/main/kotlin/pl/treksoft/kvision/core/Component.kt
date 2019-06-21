@@ -97,6 +97,26 @@ interface Component {
     fun removeSurroundingCssClass(css: Style): Component
 
     /**
+     * Returns the value of an additional attribute.
+     * @param name the name of the attribute
+     * @return the value of the attribute
+     */
+    fun getAttribute(name: String): String?
+
+    /**
+     * Sets the value of additional attribute.
+     * @param name the name of the attribute
+     * @param value the value of the attribute
+     */
+    fun setAttribute(name: String, value: String): Component
+
+    /**
+     * Removes the value of additional attribute.
+     * @param name the name of the attribute
+     */
+    fun removeAttribute(name: String): Component
+
+    /**
      * @suppress
      * Internal function
      * Renders current component as a Snabbdom vnode.

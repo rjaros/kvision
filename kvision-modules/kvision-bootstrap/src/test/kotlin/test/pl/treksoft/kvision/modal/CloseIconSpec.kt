@@ -32,7 +32,7 @@ class CloseIconSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val ci = CloseIcon()
             root.add(ci)
             val element = document.getElementById("test")

@@ -34,7 +34,7 @@ class RichTextSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val hai = RichText(value = "abc", label = "Field").apply {
                 placeholder = "place"
                 id = "idti"

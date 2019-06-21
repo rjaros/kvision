@@ -32,7 +32,7 @@ class H3Spec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", true)
+            val root = Root("test", fixed = true)
             val h3 = H3("This is h3 header")
             root.add(h3)
             val element = document.getElementById("test")

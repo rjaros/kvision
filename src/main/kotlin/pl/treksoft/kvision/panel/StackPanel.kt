@@ -55,6 +55,8 @@ open class StackPanel(
             activeIndex = children.indexOf(value)
         }
 
+    internal val childrenMap = mutableMapOf<Int, Component>()
+
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -76,8 +78,11 @@ open class StackPanel(
      */
     open fun add(panel: Component, route: String): StackPanel {
         add(panel)
-        val currentIndex = children.size - 1
-        routing.on(route, { _ -> activeIndex = currentIndex }).resolve()
+        val currentIndex = counter++
+        childrenMap[currentIndex] = panel
+        routing.on(route, { _ ->
+            activeChild = childrenMap[currentIndex]!!
+        }).resolve()
         return this
     }
 
@@ -97,17 +102,23 @@ open class StackPanel(
 
     override fun remove(child: Component): StackPanel {
         super.remove(child)
+        childrenMap.filter { it.value == child }.keys.firstOrNull()?.let {
+            childrenMap.remove(it)
+        }
         if (activeIndex > children.size - 1) activeIndex = children.size - 1
         return this
     }
 
     override fun removeAll(): StackPanel {
         super.removeAll()
+        childrenMap.clear()
         if (activeIndex > children.size - 1) activeIndex = children.size - 1
         return this
     }
 
     companion object {
+        internal var counter = 0
+
         /**
          * DSL builder extension function.
          *
