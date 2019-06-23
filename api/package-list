@@ -1,5 +1,7 @@
 $dokka.format:html
 $dokka.linkExtension:html
+$dokka.location:pl.treksoft.kvision.cordova$toDirectoryEntry(kotlin.String)pl.treksoft.kvision.cordova/kotlin.-string/to-directory-entry.html
+$dokka.location:pl.treksoft.kvision.cordova$toFileEntry(kotlin.String)pl.treksoft.kvision.cordova/kotlin.-string/to-file-entry.html
 $dokka.location:pl.treksoft.kvision.form$asJson(kotlin.collections.Map((kotlin.String, kotlin.Any)))pl.treksoft.kvision.form/kotlin.collections.-map/as-json.html
 $dokka.location:pl.treksoft.kvision.form$asMap(kotlin.js.Json)pl.treksoft.kvision.form/kotlin.js.-json/as-map.html
 $dokka.location:pl.treksoft.kvision.remote.Profilepl.treksoft.kvision.remote/-profile/index.html
@@ -43,6 +45,7 @@ $dokka.location:pl.treksoft.kvision.utils$vmin#kotlin.Intpl.treksoft.kvision.ut
 $dokka.location:pl.treksoft.kvision.utils$vw#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/vw.html
 pl.treksoft.kvision.chart
 pl.treksoft.kvision.chart.js
+pl.treksoft.kvision.cordova
 pl.treksoft.kvision.core
 pl.treksoft.kvision.data
 pl.treksoft.kvision.dropdown
@@ -61,6 +64,7 @@ pl.treksoft.kvision.i18n
 pl.treksoft.kvision.modal
 pl.treksoft.kvision.moment
 pl.treksoft.kvision.navbar
+pl.treksoft.kvision.pace
 pl.treksoft.kvision.panel
 pl.treksoft.kvision.progress
 pl.treksoft.kvision.redux

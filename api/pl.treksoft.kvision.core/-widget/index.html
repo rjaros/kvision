@@ -8,7 +8,7 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.core</a>&nbsp;/&nbsp;<a href="./index.html">Widget</a><br/>
 <br/>
 <h1>Widget</h1>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Widget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-styled-component/index.html"><span class="identifier">StyledComponent</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Widget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-styled-component/index.html"><span class="identifier">StyledComponent</span></a><span class="symbol">, </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
 <p>Base widget class. The parent of all component classes.</p>
 <p>A simple widget is rendered as HTML DIV element.</p>
 <h3>Types</h3>
@@ -102,6 +102,15 @@
 <td>
 <code><span class="keyword">var </span><span class="identifier">role</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
 <p>A role attribute of generated HTML element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="strict-d-o-m.html">strictDOM</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">strictDOM</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if the current widget is strictly bound to the DOM.</p>
 </td>
 </tr>
 <tr>
@@ -785,6 +794,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="get-attribute.html">getAttribute</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$getAttribute(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns the value of an additional attribute.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="get-element.html">getElement</a></p>
 </td>
 <td>
@@ -883,6 +901,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="remove-attribute.html">removeAttribute</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeAttribute(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code>
+<p>Removes the value of additional attribute.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="remove-css-class.html">removeCssClass</a></p>
 </td>
 <td>
@@ -921,6 +948,15 @@
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String)/elementName">elementName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code><br/>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String, kotlin.Array((kotlin.Any)))/elementName">elementName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String, kotlin.Array((kotlin.Any)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="keyword">dynamic</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
 <p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-attribute.html">setAttribute</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setAttribute(kotlin.String, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setAttribute(kotlin.String, kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets the value of additional attribute.</p>
 </td>
 </tr>
 <tr>

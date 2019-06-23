@@ -1,0 +1,185 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Entry - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">Entry</a><br/>
+<br/>
+<h1>Entry</h1>
+<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">Entry</span></code>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="filesystem.html">filesystem</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">filesystem</span><span class="symbol">: </span><a href="../-file-system/index.html"><span class="identifier">FileSystem</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="full-path.html">fullPath</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">fullPath</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="is-directory.html">isDirectory</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isDirectory</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="is-file.html">isFile</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isFile</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="name.html">name</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="copy-to.html">copyTo</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">copyTo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$copyTo(pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String, pl.treksoft.kvision.cordova.EntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry/index.html"><span class="identifier">DirectoryEntry</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$copyTo(pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String, pl.treksoft.kvision.cordova.EntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/newName">newName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$copyTo(pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String, pl.treksoft.kvision.cordova.EntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/successCallback">successCallback</span><span class="symbol">:</span>&nbsp;<a href="../-entry-callback.html"><span class="identifier">EntryCallback</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$copyTo(pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String, pl.treksoft.kvision.cordova.EntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/errorCallback">errorCallback</span><span class="symbol">:</span>&nbsp;<a href="../-error-callback.html"><span class="identifier">ErrorCallback</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-metadata.html">getMetadata</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getMetadata</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$getMetadata(pl.treksoft.kvision.cordova.MetadataCallback, pl.treksoft.kvision.cordova.ErrorCallback)/successCallback">successCallback</span><span class="symbol">:</span>&nbsp;<a href="../-metadata-callback.html"><span class="identifier">MetadataCallback</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$getMetadata(pl.treksoft.kvision.cordova.MetadataCallback, pl.treksoft.kvision.cordova.ErrorCallback)/errorCallback">errorCallback</span><span class="symbol">:</span>&nbsp;<a href="../-error-callback.html"><span class="identifier">ErrorCallback</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-parent.html">getParent</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getParent</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$getParent(pl.treksoft.kvision.cordova.DirectoryEntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/successCallback">successCallback</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry-callback.html"><span class="identifier">DirectoryEntryCallback</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$getParent(pl.treksoft.kvision.cordova.DirectoryEntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/errorCallback">errorCallback</span><span class="symbol">:</span>&nbsp;<a href="../-error-callback.html"><span class="identifier">ErrorCallback</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="move-to.html">moveTo</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">moveTo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$moveTo(pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String, pl.treksoft.kvision.cordova.EntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry/index.html"><span class="identifier">DirectoryEntry</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$moveTo(pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String, pl.treksoft.kvision.cordova.EntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/newName">newName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$moveTo(pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String, pl.treksoft.kvision.cordova.EntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/successCallback">successCallback</span><span class="symbol">:</span>&nbsp;<a href="../-entry-callback.html"><span class="identifier">EntryCallback</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$moveTo(pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String, pl.treksoft.kvision.cordova.EntryCallback, pl.treksoft.kvision.cordova.ErrorCallback)/errorCallback">errorCallback</span><span class="symbol">:</span>&nbsp;<a href="../-error-callback.html"><span class="identifier">ErrorCallback</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$remove(pl.treksoft.kvision.cordova.VoidCallback, pl.treksoft.kvision.cordova.ErrorCallback)/successCallback">successCallback</span><span class="symbol">:</span>&nbsp;<a href="../-void-callback.html"><span class="identifier">VoidCallback</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Entry$remove(pl.treksoft.kvision.cordova.VoidCallback, pl.treksoft.kvision.cordova.ErrorCallback)/errorCallback">errorCallback</span><span class="symbol">:</span>&nbsp;<a href="../-error-callback.html"><span class="identifier">ErrorCallback</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="to-internal-u-r-l.html">toInternalURL</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">toInternalURL</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="to-u-r-l.html">toURL</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">toURL</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../copy-to.html">copyTo</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">Entry</span></a><span class="symbol">.</span><span class="identifier">copyTo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$copyTo(pl.treksoft.kvision.cordova.Entry, pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry/index.html"><span class="identifier">DirectoryEntry</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova$copyTo(pl.treksoft.kvision.cordova.Entry, pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String)/newName">newName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">Entry</span></a><span class="symbol">,</span>&nbsp;<a href="../-file-exception/index.html"><span class="identifier">FileException</span></a><span class="symbol">&gt;</span></code>
+<p>Copy given file or directory to a new location.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../get-metadata.html">getMetadata</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">Entry</span></a><span class="symbol">.</span><span class="identifier">getMetadata</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../-metadata/index.html"><span class="identifier">Metadata</span></a><span class="symbol">,</span>&nbsp;<a href="../-file-exception/index.html"><span class="identifier">FileException</span></a><span class="symbol">&gt;</span></code>
+<p>Get file or directory metadata.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../get-parent.html">getParent</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">Entry</span></a><span class="symbol">.</span><span class="identifier">getParent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../-directory-entry/index.html"><span class="identifier">DirectoryEntry</span></a><span class="symbol">,</span>&nbsp;<a href="../-file-exception/index.html"><span class="identifier">FileException</span></a><span class="symbol">&gt;</span></code>
+<p>Get file or directory parent directory entry.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../move-to.html">moveTo</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">Entry</span></a><span class="symbol">.</span><span class="identifier">moveTo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$moveTo(pl.treksoft.kvision.cordova.Entry, pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry/index.html"><span class="identifier">DirectoryEntry</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova$moveTo(pl.treksoft.kvision.cordova.Entry, pl.treksoft.kvision.cordova.DirectoryEntry, kotlin.String)/newName">newName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">Entry</span></a><span class="symbol">,</span>&nbsp;<a href="../-file-exception/index.html"><span class="identifier">FileException</span></a><span class="symbol">&gt;</span></code>
+<p>Move given file or directory to a new location.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">Entry</span></a><span class="symbol">.</span><span class="identifier">remove</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">Entry</span></a><span class="symbol">,</span>&nbsp;<a href="../-file-exception/index.html"><span class="identifier">FileException</span></a><span class="symbol">&gt;</span></code>
+<p>Remove given file or directory.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-directory-entry/index.html">DirectoryEntry</a></p>
+</td>
+<td>
+<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">DirectoryEntry</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Entry</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-file-entry/index.html">FileEntry</a></p>
+</td>
+<td>
+<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">FileEntry</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Entry</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

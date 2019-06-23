@@ -53,24 +53,6 @@
 <p>The name of the CSS class.</p>
 </td>
 </tr>
-<tr>
-<td>
-<p><a href="parent.html">parent</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">?</span></code>
-<p>Parent of the current component.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="visible.html">visible</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
-<p>Visibility state of the current component.</p>
-</td>
-</tr>
 </tbody>
 </table>
 <h3>Inherited Properties</h3>
@@ -605,82 +587,11 @@
 <tbody>
 <tr>
 <td>
-<p><a href="add-css-class.html">addCssClass</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
-<p>Adds given value to the set of CSS classes generated in html code of current component.</p>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$addCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
-<p>Adds given style object to the set of CSS classes generated in html code of current component.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="add-surrounding-css-class.html">addSurroundingCssClass</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
-<p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$addSurroundingCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
-<p>Adds given style object to the set of CSS classes generated in html code of parent component.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="get-element.html">getElement</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElement</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">?</span></code>
-<p>Returns DOM element bound to the current component.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="get-element-j-query.html">getElementJQuery</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElementJQuery</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">JQuery</span><span class="symbol">?</span></code>
-<p>Returns JQuery element bound to the current component.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="get-element-j-query-d.html">getElementJQueryD</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElementJQueryD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
-<p>Returns JQuery element bound to the current component as a <em>dynamic</em> type.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="refresh-on-update.html">refreshOnUpdate</a></p>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$refreshOnUpdate(kotlin.Function1((pl.treksoft.kvision.core.Style.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="-refresh-delegate-provider/index.html"><span class="identifier">Style.RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code><br/>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$refreshOnUpdate(pl.treksoft.kvision.core.Style.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.Style.refreshOnUpdate.T, kotlin.Unit)))/initialValue">initialValue</span><span class="symbol">:</span>&nbsp;<a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Style$refreshOnUpdate(pl.treksoft.kvision.core.Style.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.Style.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><a href="-refresh-delegate-provider/index.html"><span class="identifier">Style.RefreshDelegateProvider</span></a><span class="symbol">&lt;</span><a href="refresh-on-update.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="remove-css-class.html">removeCssClass</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
-<p>Removes given value from the set of CSS classes generated in html code of current component.</p>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$removeCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
-<p>Removes given style object from the set of CSS classes generated in html code of current component.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="remove-surrounding-css-class.html">removeSurroundingCssClass</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
-<p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Style$removeSurroundingCssClass(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
-<p>Removes given style object from the set of CSS classes generated in html code of parent component.</p>
-</td>
 </tr>
 </tbody>
 </table>
