@@ -66,8 +66,8 @@ open class ContextMenu(
      */
     open fun positionMenu(mouseEvent: MouseEvent): ContextMenu {
         if (fixedPosition) {
-            this.top = 5.px
-            this.left = 5.px
+            this.top = DEFAULT_FIXED_POS_Y.px
+            this.left = DEFAULT_FIXED_POS_X.px
         } else {
             this.top = mouseEvent.pageY.toInt().px
             this.left = mouseEvent.pageX.toInt().px
@@ -77,6 +77,10 @@ open class ContextMenu(
     }
 
     companion object {
+
+        const val DEFAULT_FIXED_POS_X = 5
+        const val DEFAULT_FIXED_POS_Y = 5
+
         /**
          * DSL builder extension function.
          *
