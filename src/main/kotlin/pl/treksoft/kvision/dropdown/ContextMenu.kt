@@ -33,9 +33,13 @@ import pl.treksoft.kvision.utils.px
  * Context menu component.
  *
  * @constructor
+ * @param element an element to bind
+ * @param fixedPosition use fixed positioning
  * @param classes a set of CSS class names
  */
 open class ContextMenu(
+    element: Widget? = null,
+    protected val fixedPosition: Boolean = false,
     classes: Set<String> = setOf(), init: (ContextMenu.() -> Unit)? = null
 ) : ListTag(ListType.UL, classes = classes + "dropdown-menu") {
 
@@ -44,7 +48,7 @@ open class ContextMenu(
         hide()
         @Suppress("LeakingThis")
         display = Display.BLOCK
-        val root = Root.getLastRoot()
+        val root = element?.getRoot() ?: Root.getLastRoot()
         if (root != null) {
             @Suppress("LeakingThis")
             root.addContextMenu(this)
@@ -61,8 +65,13 @@ open class ContextMenu(
      * @return current context menu
      */
     open fun positionMenu(mouseEvent: MouseEvent): ContextMenu {
-        this.top = mouseEvent.pageY.toInt().px
-        this.left = mouseEvent.pageX.toInt().px
+        if (fixedPosition) {
+            this.top = 5.px
+            this.left = 5.px
+        } else {
+            this.top = mouseEvent.pageY.toInt().px
+            this.left = mouseEvent.pageX.toInt().px
+        }
         this.show()
         return this
     }
@@ -74,9 +83,10 @@ open class ContextMenu(
          * It takes the same parameters as the constructor of the built component.
          */
         fun Widget.contextMenu(
+            fixedPosition: Boolean = false,
             classes: Set<String> = setOf(), init: (ContextMenu.() -> Unit)? = null
         ): ContextMenu {
-            val contextMenu = ContextMenu(classes).apply { init?.invoke(this) }
+            val contextMenu = ContextMenu(this, fixedPosition, classes).apply { init?.invoke(this) }
             this.setContextMenu(contextMenu)
             return contextMenu
         }

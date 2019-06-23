@@ -369,6 +369,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         { cell: Tabulator.CellComponent,
           onRendered: (callback: () -> Unit) -> Unit,
           success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, _: dynamic ->
+            cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
             @Suppress("UNCHECKED_CAST") val data = cell.getData() as T
             val component = it(cell, { callback ->
@@ -404,6 +405,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
     val tmpFormatterFunction = formatterComponentFunction?.let {
         { cell: Tabulator.CellComponent, _: dynamic,
           onRendered: (callback: () -> Unit) -> Unit ->
+            cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
             @Suppress("UNCHECKED_CAST") val data = cell.getData() as T
             val component = it(cell, { callback ->
