@@ -171,11 +171,7 @@ enum class PaceTheme(var paceThemeString: String) {
 class Pace {
     companion object {
         fun init() {
-            setNewTheme(PaceColor.Blue, PaceTheme.Flash)
-        }
-
-        fun setNewTheme(color: PaceColor, theme: PaceTheme) {
-            require("pace-progressbar/themes/${color.paceColorString}/pace-theme-${theme.paceThemeString}.css")
+            require("pace-progressbar/themes/blue/pace-theme-flash.css")
         }
 
         fun setOptions(options: PaceOptions) {
