@@ -15,6 +15,10 @@ Full-featured chart component based on chart.js library.
 
 Kotlin bindings for chart.js API.
 
+# Package pl.treksoft.kvision.cordova
+
+Kotlin bindings for core Apache Cordova API.
+
 # Package pl.treksoft.kvision.data
 
 Base component and container class with data binding support for observable data model.
@@ -80,6 +84,10 @@ Classes supporting general purpose Bootstrap modals with convenient helpers for 
 # Package pl.treksoft.kvision.navbar
 
 Bootstrap navbar components.
+
+# Package pl.treksoft.kvision.pace
+
+Automatic progress bar module.
 
 # Package pl.treksoft.kvision.panel
 
