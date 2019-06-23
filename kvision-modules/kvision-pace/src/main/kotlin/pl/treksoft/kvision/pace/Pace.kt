@@ -137,41 +137,9 @@ class PaceOptions(
     }
 }
 
-enum class PaceColor(var paceColorString: String) {
-    Black("black"),
-    Blue("blue"),
-    Green("green"),
-    Orange("orange"),
-    Pink("pink"),
-    Purple("purple"),
-    Red("red"),
-    Silver("silver"),
-    White("white"),
-    Yellow("yellow")
-}
-
-enum class PaceTheme(var paceThemeString: String) {
-    BarberShop("barber-shop"),
-    BigCounter("big-counter"),
-    Bounce("bounce"),
-    CenterAtom("center-atom"),
-    CenterCircle("center-circle"),
-    CenterRadar("center-radar"),
-    CenterSimple("center-simple"),
-    CornerIndicator("corner-indicator"),
-    FillLeft("fill-left"),
-    Flash("flash"),
-    FlatTop("flat-top"),
-    LoadingBar("loading-bar"),
-    MacOSX("mac-osx"),
-    Material("material"),
-    Minimal("minimal")
-}
-
 class Pace {
     companion object {
-        fun init() {
-            require("pace-progressbar/themes/blue/pace-theme-flash.css")
+        fun init(req: dynamic = require("pace-progressbar/themes/blue/pace-theme-flash.css")) {
         }
 
         fun setOptions(options: PaceOptions) {
