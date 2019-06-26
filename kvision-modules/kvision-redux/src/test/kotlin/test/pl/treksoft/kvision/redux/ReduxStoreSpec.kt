@@ -21,15 +21,13 @@
  */
 package test.pl.treksoft.kvision.redux
 
-import kotlinx.serialization.Serializable
 import pl.treksoft.kvision.redux.createReduxStore
 import redux.RAction
 import test.pl.treksoft.kvision.SimpleSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@Serializable
-data class TestState(val counter: Int)
+data class TestState(val counter: Int, val values: List<Int>)
 
 sealed class TestAction : RAction {
     object Inc : TestAction()
@@ -38,10 +36,10 @@ sealed class TestAction : RAction {
 
 fun testReducer(state: TestState, action: TestAction): TestState = when (action) {
     is TestAction.Inc -> {
-        state.copy(counter = state.counter + 1)
+        state.copy(counter = state.counter + 1, values = state.values + state.counter)
     }
     is TestAction.Dec -> {
-        state.copy(counter = state.counter - 1)
+        state.copy(counter = state.counter - 1, values = state.values + state.counter)
     }
 }
 
@@ -50,20 +48,21 @@ class ReduxStoreSpec : SimpleSpec {
     @Test
     fun getState() {
         run {
-            val store = createReduxStore(::testReducer, TestState(10))
-            assertEquals(TestState(10), store.getState())
+            val store = createReduxStore(::testReducer, TestState(10, listOf()))
+            assertEquals(TestState(10, listOf()), store.getState())
         }
     }
 
     @Test
     fun dispatch() {
         run {
-            val store = createReduxStore(::testReducer, TestState(10))
+            val store = createReduxStore(::testReducer, TestState(10, listOf()))
             store.dispatch(TestAction.Inc)
             store.dispatch(TestAction.Inc)
             store.dispatch(TestAction.Inc)
             store.dispatch(TestAction.Dec)
-            assertEquals(TestState(12), store.getState())
+            store.dispatch(TestAction.Dec)
+            assertEquals(TestState(11, listOf(10, 11, 12, 13, 12)), store.getState())
         }
     }
 
@@ -71,7 +70,7 @@ class ReduxStoreSpec : SimpleSpec {
     fun subscribe() {
         run {
             var counter = 0
-            val store = createReduxStore(::testReducer, TestState(10))
+            val store = createReduxStore(::testReducer, TestState(10, listOf()))
             store.subscribe {
                 counter++
             }

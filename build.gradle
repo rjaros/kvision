@@ -13,7 +13,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
         classpath "org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}"
         classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:${frontendPluginVersion}"
-        classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${detektVersion}"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}"
         classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementPluginVersion}"
     }
@@ -21,6 +20,7 @@ buildscript {
 
 plugins {
     id "com.jfrog.bintray" version "1.7.3"
+    id "io.gitlab.arturbosch.detekt" version "1.0.0-RC14"
 }
 
 configure(allprojects - project(':kvision-modules')) {
@@ -172,6 +172,7 @@ dokka {
             'kvision-modules/kvision-redux/src/main/kotlin',
             'kvision-modules/kvision-moment/src/main/kotlin',
             'kvision-modules/kvision-tabulator/src/main/kotlin',
+            'kvision-modules/kvision-pace/src/main/kotlin',
             'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-select-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',

@@ -21,7 +21,6 @@
  */
 package test.pl.treksoft.kvision.redux
 
-import kotlinx.serialization.Serializable
 import pl.treksoft.kvision.html.Div.Companion.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
@@ -33,7 +32,6 @@ import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-@Serializable
 data class State(val counter: Int)
 
 sealed class StateAction : RAction {

@@ -39,6 +39,8 @@ allows to build full-stack, multiplatform applications with shared common code.
     - [Tabulator](http://tabulator.info/)
     - [Redux](https://redux.js.org/)
     - [Navigo](https://github.com/krasimir/navigo)
+    - [Moment.js](https://momentjs.com/)
+    - [Pace](https://github.hubspot.com/pace/docs/welcome/)
  
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
@@ -48,6 +50,7 @@ allows to build full-stack, multiplatform applications with shared common code.
 - Type-safe REST connectivity.
 - Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side,
 including support for type-safe websockets connections.
+- Support for building hybrid mobile applications with [Apache Cordova](https://cordova.apache.org/).
 - Support for building cross-platform, desktop applications with [Electron](https://electronjs.org).
 - KVision applications are built with [Gradle](https://gradle.org/) with support for Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
 [Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).

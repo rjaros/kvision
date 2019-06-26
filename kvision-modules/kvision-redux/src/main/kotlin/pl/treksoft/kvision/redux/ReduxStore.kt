@@ -21,11 +21,7 @@
  */
 package pl.treksoft.kvision.redux
 
-import kotlinx.serialization.ImplicitReflectionSerializer
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.serializer
 import pl.treksoft.kvision.KVManagerRedux
-import pl.treksoft.kvision.utils.JSON
 import redux.RAction
 import redux.Reducer
 import redux.Store
@@ -43,49 +39,45 @@ typealias ActionCreator<A, S> = (Dispatch<A>, GetState<S>) -> Unit
  * @param initialState an initial state
  * @param middlewares a list of optional Redux JS middlewares
  */
-@UseExperimental(ImplicitReflectionSerializer::class)
-inline fun <reified S : Any, A : RAction> createReduxStore(
-    noinline reducer: Reducer<S, A>,
+fun <S : Any, A : RAction> createReduxStore(
+    reducer: Reducer<S, A>,
     initialState: S,
     vararg middlewares: dynamic
 ): ReduxStore<S, A> {
     @Suppress("SpreadOperator")
-    return ReduxStore(reducer, initialState, S::class.serializer(), *middlewares)
+    return ReduxStore(reducer, initialState, *middlewares)
 }
 
 /**
  * A class implementing redux pattern backed by the original Redux JS library.
- * It requires @Serializable state.
  *
  * @constructor Creates a Redux store with given reducer function and initial state.
- * @param S redux state type (@Serializable)
+ * @param S redux state type
  * @param A redux action type
  * @param reducer a reducer function
  * @param initialState an initial state
- * @param stateSerializer a serializer for the state type
  * @param middlewares a list of optional Redux JS middlewares
  */
 class ReduxStore<S : Any, A : RAction>(
     reducer: Reducer<S, A>,
     initialState: S,
-    val stateSerializer: KSerializer<S>,
     vararg middlewares: dynamic
 ) {
-    private val store: Store<String, dynamic, WrapperAction>
+    private val store: Store<S, dynamic, WrapperAction>
 
     init {
         @Suppress("UnsafeCastFromDynamic")
         store = KVManagerRedux.createStore(
-            { s: String, a: RAction ->
+            { s: S, a: RAction ->
                 @Suppress("UnsafeCastFromDynamic")
                 if (a == undefined || (a.asDynamic().type is String && a.asDynamic().type.startsWith("@@"))) {
                     s
                 } else {
                     @Suppress("UNCHECKED_CAST")
-                    JSON.plain.stringify(stateSerializer, reducer(JSON.plain.parse(stateSerializer, s), a as A))
+                    reducer(s, a as A)
                 }
             },
-            JSON.plain.stringify(stateSerializer, initialState),
+            initialState,
             @Suppress("SpreadOperator")
             KVManagerRedux.compose(KVManagerRedux.applyMiddleware(KVManagerRedux.reduxThunk, *middlewares), rEnhancer())
         )
@@ -95,7 +87,7 @@ class ReduxStore<S : Any, A : RAction>(
      * Returns the current state.
      */
     fun getState(): S {
-        return JSON.plain.parse(stateSerializer, store.getState())
+        return store.getState()
     }
 
     /**
@@ -109,7 +101,7 @@ class ReduxStore<S : Any, A : RAction>(
      * Dispatches an asynchronous action function.
      */
     fun dispatch(actionCreator: ActionCreator<dynamic, S>): WrapperAction {
-        return store.dispatch({ reduxDispatch: Dispatch<dynamic>, reduxGetState: GetState<String> ->
+        return store.dispatch({ reduxDispatch: Dispatch<dynamic>, reduxGetState: GetState<S> ->
             val newDispatch: Dispatch<dynamic> = { elem ->
                 @Suppress("UnsafeCastFromDynamic")
                 if (js("typeof elem === 'function'")) {
@@ -118,7 +110,7 @@ class ReduxStore<S : Any, A : RAction>(
                     reduxDispatch(elem)
                 }
             }
-            actionCreator(newDispatch) { JSON.plain.parse(stateSerializer, reduxGetState()) }
+            actionCreator(newDispatch) { reduxGetState() }
         })
     }
 

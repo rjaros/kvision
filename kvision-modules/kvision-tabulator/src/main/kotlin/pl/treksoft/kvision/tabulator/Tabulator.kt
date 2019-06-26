@@ -23,23 +23,20 @@ package pl.treksoft.kvision.tabulator
 
 import com.github.snabbdom.VNode
 import com.lightningkite.kotlin.observable.list.ObservableList
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.list
-import kotlinx.serialization.serializer
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerTabulator
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.i18n.I18n
+import pl.treksoft.kvision.redux.ReduxStore
 import pl.treksoft.kvision.table.TableType
-import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.syncWithList
-import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 import redux.RAction
-import pl.treksoft.kvision.redux.*
+import kotlin.browser.window
+import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 
 /**
  * Tabulator component.
@@ -54,13 +51,13 @@ import pl.treksoft.kvision.redux.*
  */
 @Suppress("LargeClass", "TooManyFunctions")
 open class Tabulator<T : Any>(
-        protected val data: List<T>? = null,
-        protected val dataUpdateOnEdit: Boolean = true,
-        val options: TabulatorOptions<T> = TabulatorOptions(),
-        types: Set<TableType> = setOf(),
-        classes: Set<String> = setOf()
+    protected val data: List<T>? = null,
+    protected val dataUpdateOnEdit: Boolean = true,
+    val options: TabulatorOptions<T> = TabulatorOptions(),
+    types: Set<TableType> = setOf(),
+    classes: Set<String> = setOf()
 ) :
-        Widget(classes) {
+    Widget(classes) {
 
     /**
      * Table types.
@@ -211,8 +208,8 @@ open class Tabulator<T : Any>(
     protected fun createJsTabulator() {
         (this.getElement() as? HTMLElement)?.let {
             jsTabulator =
-                    KVManagerTabulator.getConstructor()
-                            .createInstance(it, options.toJs(this::translate))
+                KVManagerTabulator.getConstructor()
+                    .createInstance(it, options.toJs(this::translate))
             if (currentPage != null) {
                 jsTabulator?.setPageSize(pageSize ?: 0)
                 jsTabulator?.setPage(currentPage)
@@ -249,6 +246,9 @@ open class Tabulator<T : Any>(
     open fun replaceData(data: Array<T>) {
         @Suppress("UnsafeCastFromDynamic")
         options.data = data
+        if ((getElementJQuery()?.find(".tabulator-editing")?.length?.toInt() ?: 0) > 0) {
+            this.removeCustomEditors()
+        }
         jsTabulator?.replaceData(data, null, null)
     }
 
@@ -267,10 +267,10 @@ open class Tabulator<T : Any>(
      * @param active return only visible data
      * @return current data
      */
+    @Suppress("UNCHECKED_CAST")
     open fun getData(active: Boolean): List<T>? {
         return if (jsTabulator != null) {
-            val native = jsTabulator?.getData(active) as? List<T>
-            native
+            jsTabulator?.getData(active)?.toList() as? List<T>
         } else {
             data
         }
@@ -280,10 +280,10 @@ open class Tabulator<T : Any>(
      * Returns the selected data in the table.
      * @return selected data
      */
+    @Suppress("UNCHECKED_CAST")
     open fun getSelectedData(): List<T> {
         return if (jsTabulator != null) {
-            val native = jsTabulator?.getSelectedData() as List<T>
-            native
+            jsTabulator?.getSelectedData()?.toList() as List<T>
         } else {
             listOf()
         }
@@ -337,9 +337,9 @@ open class Tabulator<T : Any>(
      * @param ifVisible scroll to already visible row
      */
     open fun scrollToRow(
-            row: Int,
-            position: RowPosition? = null,
-            ifVisible: Boolean? = null
+        row: Int,
+        position: RowPosition? = null,
+        ifVisible: Boolean? = null
     ) {
         jsTabulator?.scrollToRow(row, position, ifVisible)
     }
@@ -528,6 +528,13 @@ open class Tabulator<T : Any>(
         jsTabulator?.navigateDown()
     }
 
+    internal fun removeCustomEditors() {
+        EditorRoot.cancel?.invoke(null)
+        EditorRoot.disposeTimer?.let { window.clearTimeout(it) }
+        EditorRoot.root?.dispose()
+        EditorRoot.root = null
+    }
+
     companion object {
         internal var counter = 0
 
@@ -536,13 +543,13 @@ open class Tabulator<T : Any>(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        inline fun <reified T : Any> Container.tabulator(
-                data: List<T>? = null,
-                dataUpdateOnEdit: Boolean = true,
-                options: TabulatorOptions<T> = TabulatorOptions(),
-                types: Set<TableType> = setOf(),
-                classes: Set<String> = setOf(),
-                noinline init: (Tabulator<T>.() -> Unit)? = null
+        fun <T : Any> Container.tabulator(
+            data: List<T>? = null,
+            dataUpdateOnEdit: Boolean = true,
+            options: TabulatorOptions<T> = TabulatorOptions(),
+            types: Set<TableType> = setOf(),
+            classes: Set<String> = setOf(),
+            init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val tabulator = create(data, dataUpdateOnEdit, options, types, classes)
             init?.invoke(tabulator)
@@ -553,13 +560,13 @@ open class Tabulator<T : Any>(
         /**
          * DSL builder extension function for general redux store.
          */
-        inline fun <reified T : Any, S : Any, A: RAction> Container.tabulator(
-                store: ReduxStore<S, A>,
-                noinline dataFactory: (S) -> List<T>,
-                options: TabulatorOptions<T> = TabulatorOptions(),
-                types: Set<TableType> = setOf(),
-                classes: Set<String> = setOf(),
-                noinline init: (Tabulator<T>.() -> Unit)? = null
+        fun <T : Any, S : Any, A : RAction> Container.tabulator(
+            store: ReduxStore<S, A>,
+            dataFactory: (S) -> List<T>,
+            options: TabulatorOptions<T> = TabulatorOptions(),
+            types: Set<TableType> = setOf(),
+            classes: Set<String> = setOf(),
+            init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val tabulator = create(store, dataFactory, options, types, classes)
             init?.invoke(tabulator)
@@ -570,12 +577,12 @@ open class Tabulator<T : Any>(
         /**
          * DSL builder extension function for dedicated redux store (backed with a list).
          */
-        inline fun <reified T : Any, A: RAction> Container.tabulator(
-                store: ReduxStore<List<T>, A>,
-                options: TabulatorOptions<T> = TabulatorOptions(),
-                types: Set<TableType> = setOf(),
-                classes: Set<String> = setOf(),
-                noinline init: (Tabulator<T>.() -> Unit)? = null
+        fun <T : Any, A : RAction> Container.tabulator(
+            store: ReduxStore<List<T>, A>,
+            options: TabulatorOptions<T> = TabulatorOptions(),
+            types: Set<TableType> = setOf(),
+            classes: Set<String> = setOf(),
+            init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val tabulator = create(store, options, types, classes)
             init?.invoke(tabulator)
@@ -587,10 +594,10 @@ open class Tabulator<T : Any>(
          * DSL builder extension function for dynamic data (send within options parameter).
          */
         fun <T : Any> Container.tabulator(
-                options: TabulatorOptions<T> = TabulatorOptions(),
-                types: Set<TableType> = setOf(),
-                classes: Set<String> = setOf(),
-                init: (Tabulator<T>.() -> Unit)? = null
+            options: TabulatorOptions<T> = TabulatorOptions(),
+            types: Set<TableType> = setOf(),
+            classes: Set<String> = setOf(),
+            init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val tabulator = Tabulator(dataUpdateOnEdit = false, options = options, types = types, classes = classes)
             init?.invoke(tabulator)
@@ -601,13 +608,13 @@ open class Tabulator<T : Any>(
         /**
          * A helper function to create a Tabulator object with correct serializer.
          */
-        inline fun <reified T : Any> create(
-                data: List<T>? = null,
-                dataUpdateOnEdit: Boolean = true,
-                options: TabulatorOptions<T> = TabulatorOptions(),
-                types: Set<TableType> = setOf(),
-                classes: Set<String> = setOf(),
-                noinline init: (Tabulator<T>.() -> Unit)? = null
+        fun <T : Any> create(
+            data: List<T>? = null,
+            dataUpdateOnEdit: Boolean = true,
+            options: TabulatorOptions<T> = TabulatorOptions(),
+            types: Set<TableType> = setOf(),
+            classes: Set<String> = setOf(),
+            init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val tabulator = Tabulator(data, dataUpdateOnEdit, options, types, classes)
             init?.invoke(tabulator)
@@ -617,13 +624,13 @@ open class Tabulator<T : Any>(
         /**
          * A helper function to create a Tabulator object with correct serializer and general redux store.
          */
-        inline fun <reified T : Any, S : Any, A : RAction> create(
-                store: ReduxStore<S, A>,
-                noinline dataFactory: (S) -> List<T>,
-                options: TabulatorOptions<T> = TabulatorOptions(),
-                types: Set<TableType> = setOf(),
-                classes: Set<String> = setOf(),
-                noinline init: (Tabulator<T>.() -> Unit)? = null
+        fun <T : Any, S : Any, A : RAction> create(
+            store: ReduxStore<S, A>,
+            dataFactory: (S) -> List<T>,
+            options: TabulatorOptions<T> = TabulatorOptions(),
+            types: Set<TableType> = setOf(),
+            classes: Set<String> = setOf(),
+            init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val data = dataFactory(store.getState())
             val tabulator = Tabulator(data, false, options, types, classes)
@@ -637,12 +644,12 @@ open class Tabulator<T : Any>(
         /**
          * A helper function to create a Tabulator object with correct serializer and dedicated redux store.
          */
-        inline fun <reified T : Any, A : RAction> create(
-                store: ReduxStore<List<T>, A>,
-                options: TabulatorOptions<T> = TabulatorOptions(),
-                types: Set<TableType> = setOf(),
-                classes: Set<String> = setOf(),
-                noinline init: (Tabulator<T>.() -> Unit)? = null
+        fun <T : Any, A : RAction> create(
+            store: ReduxStore<List<T>, A>,
+            options: TabulatorOptions<T> = TabulatorOptions(),
+            types: Set<TableType> = setOf(),
+            classes: Set<String> = setOf(),
+            init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val data = store.getState()
             val tabulator = Tabulator(data, false, options, types, classes)

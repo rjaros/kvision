@@ -86,6 +86,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * Determines if the current widget is draggable.
      */
     var draggable: Boolean? by refreshOnUpdate()
+    /**
+     * Determines if the current widget is strictly bound to the DOM.
+     */
+    var strictDOM: Boolean by refreshOnUpdate(false)
 
     protected var surroundingSpan by refreshOnUpdate(false)
 
@@ -184,7 +188,11 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     private fun getSnOpt(): VNodeData {
         return snOpt {
-            if (vnkey != null) key = vnkey
+            if (vnkey != null) {
+                key = vnkey
+            } else if (strictDOM) {
+                key = hashCode().toString()
+            }
             attrs = snAttrs(getSnAttrsInternal())
             style = snStyle(getSnStyleInternal())
             `class` = snClasses(getSnClassInternal())
