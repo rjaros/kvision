@@ -448,7 +448,7 @@ abstract class StyledComponent {
                 snstyle.add("unicode-bidi" to it.unicodeBidi)
             }
             verticalAlign?.let {
-                snstyle.add("vartical-align" to it.verticalAlign)
+                snstyle.add("vertical-align" to it.verticalAlign)
             }
             whiteSpace?.let {
                 snstyle.add("white-space" to it.whiteSpace)
