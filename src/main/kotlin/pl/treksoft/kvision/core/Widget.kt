@@ -783,10 +783,13 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     override fun dispose() {
     }
 
-    protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
-        RefreshDelegateProvider<T>(null, refreshFunction)
+    protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }): RefreshDelegateProvider<T> =
+        RefreshDelegateProvider(null, refreshFunction)
 
-    protected fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    protected fun <T> refreshOnUpdate(
+        initialValue: T,
+        refreshFunction: ((T) -> Unit) = { this.refresh() }
+    ): RefreshDelegateProvider<T> =
         RefreshDelegateProvider(initialValue, refreshFunction)
 
     protected inner class RefreshDelegateProvider<T>(
