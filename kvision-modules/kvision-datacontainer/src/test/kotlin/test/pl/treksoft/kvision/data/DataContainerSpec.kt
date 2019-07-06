@@ -23,7 +23,7 @@ package test.pl.treksoft.kvision.data
 
 import pl.treksoft.kvision.data.BaseDataComponent
 import pl.treksoft.kvision.data.DataContainer
-import pl.treksoft.kvision.html.Label
+import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.VPanel
 import pl.treksoft.kvision.utils.observableListOf
@@ -43,7 +43,7 @@ class DataContainerSpec : DomSpec {
             }
 
             val model = observableListOf(Model("First"), Model("Second"))
-            val container = DataContainer(model, { m, _, _ -> Label(m.value) }, VPanel())
+            val container = DataContainer(model, { m, _, _ -> Span(m.value) }, VPanel())
             root.add(container)
             val element = document.getElementById("test")
             assertEqualsHtml(
