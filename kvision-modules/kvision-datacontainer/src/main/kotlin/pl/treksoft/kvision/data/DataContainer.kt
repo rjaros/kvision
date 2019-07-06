@@ -22,11 +22,11 @@
 package pl.treksoft.kvision.data
 
 import com.github.snabbdom.VNode
-import com.lightningkite.kotlin.observable.list.ObservableList
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.VPanel
+import pl.treksoft.kvision.utils.ObservableList
 
 /**
  * Sorter types.

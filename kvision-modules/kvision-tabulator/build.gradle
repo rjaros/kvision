@@ -1,7 +1,6 @@
 apply from: "../shared.gradle"
 
 dependencies {
-    compile "pl.treksoft:kotlin-observable-js:$kotlinObservableVersion"
     compile project(":kvision-modules:kvision-redux")
 }
 

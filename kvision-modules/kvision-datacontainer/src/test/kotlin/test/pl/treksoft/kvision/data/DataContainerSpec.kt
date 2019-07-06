@@ -21,12 +21,12 @@
  */
 package test.pl.treksoft.kvision.data
 
-import com.lightningkite.kotlin.observable.list.observableListOf
 import pl.treksoft.kvision.data.BaseDataComponent
 import pl.treksoft.kvision.data.DataContainer
 import pl.treksoft.kvision.html.Label
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.VPanel
+import pl.treksoft.kvision.utils.observableListOf
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test

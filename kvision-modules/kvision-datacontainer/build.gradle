@@ -1,9 +1,5 @@
 apply from: "../shared.gradle"
 
-dependencies {
-    compile "pl.treksoft:kotlin-observable-js:$kotlinObservableVersion"
-}
-
 kotlinFrontend {
 
     npm {

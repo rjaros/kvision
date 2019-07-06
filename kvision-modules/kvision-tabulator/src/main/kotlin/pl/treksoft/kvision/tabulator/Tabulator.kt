@@ -22,7 +22,6 @@
 package pl.treksoft.kvision.tabulator
 
 import com.github.snabbdom.VNode
-import com.lightningkite.kotlin.observable.list.ObservableList
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerTabulator
 import pl.treksoft.kvision.core.Container
@@ -31,6 +30,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.redux.ReduxStore
 import pl.treksoft.kvision.table.TableType
+import pl.treksoft.kvision.utils.ObservableList
 import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.syncWithList
