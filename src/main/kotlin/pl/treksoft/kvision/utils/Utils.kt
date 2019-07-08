@@ -38,7 +38,7 @@ val Int.px: CssSize
 /**
  * Extension property to convert Int to CSS em units.
  */
-val Int.em: CssSize
+val Number.em: CssSize
     get() {
         return Pair(this, UNIT.em)
     }
@@ -54,7 +54,7 @@ val Int.pt: CssSize
 /**
  * Extension property to convert Int to CSS percent units.
  */
-val Int.perc: CssSize
+val Number.perc: CssSize
     get() {
         return Pair(this, UNIT.perc)
     }
@@ -62,7 +62,7 @@ val Int.perc: CssSize
 /**
  * Extension property to convert Int to CSS rem units.
  */
-val Int.rem: CssSize
+val Number.rem: CssSize
     get() {
         return Pair(this, UNIT.rem)
     }
@@ -70,7 +70,7 @@ val Int.rem: CssSize
 /**
  * Extension property to convert Int to CSS ch units.
  */
-val Int.ch: CssSize
+val Number.ch: CssSize
     get() {
         return Pair(this, UNIT.ch)
     }
@@ -78,7 +78,7 @@ val Int.ch: CssSize
 /**
  * Extension property to convert Int to CSS cm units.
  */
-val Int.cm: CssSize
+val Number.cm: CssSize
     get() {
         return Pair(this, UNIT.cm)
     }
@@ -86,7 +86,7 @@ val Int.cm: CssSize
 /**
  * Extension property to convert Int to CSS mm units.
  */
-val Int.mm: CssSize
+val Number.mm: CssSize
     get() {
         return Pair(this, UNIT.mm)
     }
@@ -95,7 +95,7 @@ val Int.mm: CssSize
  * Extension property to convert Int to CSS in units.
  */
 @Suppress("TopLevelPropertyNaming")
-val Int.`in`: CssSize
+val Number.`in`: CssSize
     get() {
         return Pair(this, UNIT.`in`)
     }
@@ -103,7 +103,7 @@ val Int.`in`: CssSize
 /**
  * Extension property to convert Int to CSS pc units.
  */
-val Int.pc: CssSize
+val Number.pc: CssSize
     get() {
         return Pair(this, UNIT.pc)
     }
@@ -111,7 +111,7 @@ val Int.pc: CssSize
 /**
  * Extension property to convert Int to CSS vh units.
  */
-val Int.vh: CssSize
+val Number.vh: CssSize
     get() {
         return Pair(this, UNIT.vh)
     }
@@ -119,7 +119,7 @@ val Int.vh: CssSize
 /**
  * Extension property to convert Int to CSS vw units.
  */
-val Int.vw: CssSize
+val Number.vw: CssSize
     get() {
         return Pair(this, UNIT.vw)
     }
@@ -127,7 +127,7 @@ val Int.vw: CssSize
 /**
  * Extension property to convert Int to CSS vmin units.
  */
-val Int.vmin: CssSize
+val Number.vmin: CssSize
     get() {
         return Pair(this, UNIT.vmin)
     }
@@ -135,7 +135,7 @@ val Int.vmin: CssSize
 /**
  * Extension property to convert Int to CSS vmax units.
  */
-val Int.vmax: CssSize
+val Number.vmax: CssSize
     get() {
         return Pair(this, UNIT.vmax)
     }
