@@ -119,6 +119,14 @@ expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) {
     )
 
     /**
+     * Binds a given function of the receiver as a tabulator component source
+     * @param function a function of the receiver
+     */
+    protected inline fun <reified RET> bind(
+        noinline function: T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<RET>
+    )
+
+    /**
      * Binds a given function of the receiver as a web socket connection
      * @param function a function of the receiver
      */

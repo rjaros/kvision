@@ -34,3 +34,12 @@ data class RemoteSelectOption(
     val disabled: Boolean = false,
     val divider: Boolean = false
 )
+
+@Serializable
+data class RemoteData<T>(val data: List<T> = listOf(), val last_page: Int = 0)
+
+@Serializable
+data class RemoteFilter(val field: String, val type: String, val value: String?)
+
+@Serializable
+data class RemoteSorter(val field: String, val dir: String)

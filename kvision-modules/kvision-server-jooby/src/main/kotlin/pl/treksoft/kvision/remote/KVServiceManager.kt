@@ -429,6 +429,46 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 
     /**
+     * Binds a given function of the receiver as a tabulator component source
+     * @param function a function of the receiver
+     */
+    @Suppress("TooGenericExceptionCaught")
+    protected actual inline fun <reified RET> bind(
+        noinline function: T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<RET>
+    ) {
+        val routeDef = "route${this::class.simpleName}${counter++}"
+        routes.add {
+            call(HttpMethod.POST, "/kv/$routeDef") { req, res ->
+                val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                if (jsonRpcRequest.params.size == 4) {
+                    val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
+                    val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
+                    val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
+                    val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
+                    val injector = req.require(Injector::class.java)
+                    val service = injector.getInstance(serviceClass.java)
+                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+                        try {
+                            val result = function.invoke(service, param1, param2, param3, param4)
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id,
+                                    result = mapper.writeValueAsString(result)
+                                )
+                            )
+                        } catch (e: Exception) {
+                            LOG.error(e.message, e)
+                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error"))
+                        }
+                    }
+                } else {
+                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
+                }
+            }.invoke(this)
+        }
+    }
+
+    /**
      * @suppress Internal method
      */
     fun call(

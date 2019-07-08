@@ -1,0 +1,6 @@
+apply from: "../shared.gradle"
+
+dependencies {
+    compile project(":kvision-modules:kvision-tabulator")
+    compile project(":kvision-modules:kvision-remote")
+}

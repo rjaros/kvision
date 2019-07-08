@@ -140,6 +140,17 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
     }
 
     /**
+     * Binds a given function of the receiver as a tabulator component source
+     * @param function a function of the receiver
+     */
+    protected actual inline fun <reified RET> bind(
+        noinline function: T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<RET>
+    ) {
+        val routeDef = "route${this::class.simpleName}${counter++}"
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)
+    }
+
+    /**
      * Binds a given web socket connetion with a function of the receiver.
      * @param function a function of the receiver
      * @param route a web socket route

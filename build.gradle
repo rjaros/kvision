@@ -175,6 +175,7 @@ dokka {
             'kvision-modules/kvision-pace/src/main/kotlin',
             'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-select-remote/src/main/kotlin',
+            'kvision-modules/kvision-tabulator-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',
             'kvision-modules/kvision-common-types/src/main/kotlin',
             'kvision-modules/kvision-server-jooby/src/main/kotlin',
