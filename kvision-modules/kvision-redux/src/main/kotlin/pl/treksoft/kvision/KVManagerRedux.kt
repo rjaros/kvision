@@ -26,6 +26,7 @@ import redux.Enhancer
 import redux.Middleware
 import redux.Reducer
 import redux.Store
+import kotlin.browser.window
 
 internal val kVManagerReduxInit = KVManagerRedux.init()
 
@@ -64,6 +65,11 @@ internal object KVManagerRedux {
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun <A, T1, R> compose(function1: (T1) -> R, function2: (A) -> T1): (A) -> R {
-        return redux.compose(function1, function2)
+        val composeEnhancers = if (window.asDynamic().__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ != undefined) {
+            window.asDynamic().__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        } else {
+            redux.compose
+        }
+        return composeEnhancers(function1, function2)
     }
 }
