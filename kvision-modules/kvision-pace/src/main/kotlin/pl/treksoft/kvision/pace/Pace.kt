@@ -139,7 +139,7 @@ class PaceOptions(
 
 class Pace {
     companion object {
-        fun init(req: dynamic = require("pace-progressbar/themes/blue/pace-theme-flash.css")) {
+        fun init(@Suppress("UNUSED_PARAMETER") req: dynamic = require("pace-progressbar/themes/blue/pace-theme-flash.css")) {
         }
 
         fun setOptions(options: PaceOptions) {

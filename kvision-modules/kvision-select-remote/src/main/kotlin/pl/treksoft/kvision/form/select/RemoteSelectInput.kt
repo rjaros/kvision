@@ -35,7 +35,6 @@ import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.remote.RemoteSelectOption
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
-import kotlin.js.JSON as NativeJSON
 
 external fun decodeURIComponent(encodedURI: String): String
 
@@ -61,8 +60,8 @@ open class RemoteSelectInput<T : Any>(
 ) : SelectInput(null, value, multiple, null, classes) {
     init {
         val (url, method) =
-                serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
-                    ?: throw IllegalStateException("Function not specified!")
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
         val data = obj {
             q = "{{{q}}}"
         }

@@ -4,11 +4,3 @@ dependencies {
     compile project(":kvision-modules:kvision-select")
     compile project(":kvision-modules:kvision-remote")
 }
-
-kotlinFrontend {
-
-    npm {
-        dependency("jquery-deparam", "0.5.3")
-    }
-
-}
