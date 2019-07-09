@@ -190,7 +190,6 @@ open class Tabulator<T : Any>(
                 }
             }
         }
-        counter++
     }
 
     override fun getSnClass(): List<StringBoolPair> {
@@ -535,7 +534,6 @@ open class Tabulator<T : Any>(
     }
 
     companion object {
-        internal var counter = 0
 
         /**
          * DSL builder extension function.

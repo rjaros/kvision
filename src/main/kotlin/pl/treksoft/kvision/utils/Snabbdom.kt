@@ -53,7 +53,7 @@ inline fun obj(init: dynamic.() -> Unit): dynamic {
 @Suppress("UNUSED_VARIABLE")
 inline fun <reified T> Any?.createInstance(vararg args: dynamic): T {
     val jsClass = this
-    val argsArray = (listOf<dynamic>() + args).toTypedArray()
+    val argsArray = (listOf<dynamic>(null) + args).toTypedArray()
     return js("new (Function.prototype.bind.apply(jsClass, argsArray))").unsafeCast<T>()
 }
 

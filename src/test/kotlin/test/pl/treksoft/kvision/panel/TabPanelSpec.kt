@@ -108,7 +108,7 @@ class TabPanelSpec : DomSpec {
             jQuery("#test a")[0]?.click()
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\" class=\"\"><a href=\"#\">DEF</a></li><li role=\"presentation\"><a href=\"#\">GHI</a></li></ul><div><span>def</span></div></div>",
+                "<div><ul class=\"nav nav-tabs\"><li role=\"presentation\"><a href=\"#\">DEF</a></li><li role=\"presentation\"><a href=\"#\">GHI</a></li></ul><div><span>def</span></div></div>",
                 element?.innerHTML,
                 "Should select correct tab by clicking"
             )
