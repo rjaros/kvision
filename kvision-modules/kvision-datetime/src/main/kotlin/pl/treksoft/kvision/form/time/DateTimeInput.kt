@@ -54,7 +54,6 @@ open class DateTimeInput(
     private var initialized = false
 
     init {
-        this.vnkey = "kv_datetimeinput_${counter++}"
         this.setInternalEventListener<DateTimeInput> {
             change = {
                 self.changeValue()
@@ -294,7 +293,6 @@ open class DateTimeInput(
     }
 
     companion object {
-        internal var counter = 0
 
         private fun String.toDatePickerFormat(): String {
             return this.replace("YY", "yy").replace("m", "i").replace("MMMM", "{----}").replace("MMM", "{---}")

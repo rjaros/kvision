@@ -123,7 +123,6 @@ internal class Splitter(private val splitPanel: SplitPanel, direction: Direction
     private val idc = "kv_splitter_$counter"
 
     init {
-        this.vnkey = "kv_splitter_$counter"
         this.id = idc
         counter++
     }

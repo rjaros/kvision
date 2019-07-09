@@ -85,7 +85,6 @@ open class SimpleSelectInput(
     override var size: InputSize? by refreshOnUpdate()
 
     init {
-        this.vnkey = "kv_simpleselectinput_${counter++}"
         setChildrenFromOptions()
         this.setInternalEventListener<SimpleSelectInput> {
             change = {
@@ -194,7 +193,6 @@ open class SimpleSelectInput(
     }
 
     companion object {
-        internal var counter = 0
 
         /**
          * DSL builder extension function.

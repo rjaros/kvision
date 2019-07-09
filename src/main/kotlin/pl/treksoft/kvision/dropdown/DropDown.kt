@@ -149,7 +149,6 @@ open class DropDown(
     internal val list: DropDownListTag = DropDownListTag(idc, setOf("dropdown-menu"))
 
     init {
-        this.vnkey = "kv_dropdown_$counter"
         setChildrenFromElements()
         this.addInternal(button)
         this.addInternal(list)

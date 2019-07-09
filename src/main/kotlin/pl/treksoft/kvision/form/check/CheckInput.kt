@@ -51,7 +51,6 @@ abstract class CheckInput(
 ) : Widget(classes), FormInput {
 
     init {
-        this.vnkey = "kv_checkinput_${counter++}"
         this.setInternalEventListener<CheckInput> {
             click = {
                 val v = getElementJQuery()?.prop("checked") as Boolean?
@@ -161,9 +160,5 @@ abstract class CheckInput(
      */
     override fun blur() {
         getElementJQuery()?.blur()
-    }
-
-    companion object {
-        internal var counter = 0
     }
 }

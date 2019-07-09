@@ -138,10 +138,6 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
 
     private val nativeFiles: MutableMap<KFile, File> = mutableMapOf()
 
-    init {
-        this.vnkey = "kv_uploadinput_${counter++}"
-    }
-
     override fun render(): VNode {
         return render("input")
     }
@@ -316,7 +312,6 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     }
 
     companion object {
-        internal var counter = 0
 
         /**
          * DSL builder extension function.

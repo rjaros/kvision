@@ -72,7 +72,6 @@ open class Tabulator<T : Any>(
     protected var filter: ((T) -> Boolean)? = null
 
     init {
-        this.vnkey = "kv_tabulator_$counter"
         if (data != null) {
             @Suppress("UnsafeCastFromDynamic")
             options.data = data.toTypedArray()

@@ -53,10 +53,6 @@ open class Canvas(
      */
     lateinit var context2D: CanvasRenderingContext2D
 
-    init {
-        this.vnkey = "kv_canvas_${counter++}"
-    }
-
     override fun render(): VNode {
         return render("canvas")
     }
