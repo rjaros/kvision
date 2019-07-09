@@ -128,8 +128,17 @@ trix-toolbar .trix-button-group {
   padding: 10px 15px 5px 15px;
 }
 
+.kv-window .modal-header button.close {
+  width: 21px;
+}
+
 .kv-window .modal-header .modal-title {
   white-space: nowrap;
+}
+
+.kv-window .modal-header .window-icon {
+    display: inline-block;
+    margin-right: 6px;
 }
 
 ul.dropdown-menu li a {

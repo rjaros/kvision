@@ -32,6 +32,7 @@ import pl.treksoft.kvision.core.Overflow
 import pl.treksoft.kvision.core.Position
 import pl.treksoft.kvision.core.Resize
 import pl.treksoft.kvision.core.UNIT
+import pl.treksoft.kvision.html.Icon
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.modal.CloseIcon
@@ -53,6 +54,8 @@ internal const val WINDOW_CONTENT_MARGIN_BOTTOM = 11
  * @param isResizable determines if the window is resizable
  * @param isDraggable determines if the window is draggable
  * @param closeButton determines if Close button is visible
+ * @param maximizeButton determines if Maximize button is visible
+ * @param minimizeButton determines if Minimize button is visible
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
@@ -64,6 +67,9 @@ open class Window(
     isResizable: Boolean = true,
     isDraggable: Boolean = true,
     closeButton: Boolean = false,
+    maximizeButton: Boolean = false,
+    minimizeButton: Boolean = false,
+    icon: String? = null,
     classes: Set<String> = setOf(),
     init: (Window.() -> Unit)? = null
 ) :
@@ -119,6 +125,33 @@ open class Window(
             closeIcon.visible = value
             checkHeaderVisibility()
         }
+    /**
+     * Determines if Maximize button is visible.
+     */
+    var maximizeButton
+        get() = maximizeIcon.visible
+        set(value) {
+            maximizeIcon.visible = value
+            checkHeaderVisibility()
+        }
+    /**
+     * Determines if Maximize button is visible.
+     */
+    var minimizeButton
+        get() = minimizeIcon.visible
+        set(value) {
+            minimizeIcon.visible = value
+            checkHeaderVisibility()
+        }
+    /**
+     * Window icon.
+     */
+    var icon
+        get() = if (windowIcon.icon == "") null else windowIcon.icon
+        set(value) {
+            windowIcon.icon = value ?: ""
+            windowIcon.visible = (value != null && value != "")
+        }
 
     private val header = SimplePanel(setOf("modal-header"))
 
@@ -131,7 +164,10 @@ open class Window(
         this.overflow = Overflow.AUTO
     }
     private val closeIcon = CloseIcon()
+    private val maximizeIcon = MaximizeIcon()
+    private val minimizeIcon = MinimizeIcon()
     private val captionTag = Tag(TAG.H4, caption, classes = setOf("modal-title"))
+    private val windowIcon = Icon(icon ?: "").apply { addCssClass("window-icon") }
 
     private var isResizeEvent = false
 
@@ -147,12 +183,42 @@ open class Window(
         zIndex = ++zIndexCounter
         closeIcon.visible = closeButton
         closeIcon.setEventListener {
-            click = {
-                hide()
+            click = { e ->
+                if (this@Window.dispatchEvent("closeWindow", obj {}) != false) {
+                    close()
+                }
+            }
+            mousedown = { e ->
+                e.stopPropagation()
             }
         }
         header.add(closeIcon)
+        maximizeIcon.visible = maximizeButton
+        maximizeIcon.setEventListener {
+            click = { e ->
+                if (this@Window.dispatchEvent("maximizeWindow", obj {}) != false) {
+                    toggleMaximize()
+                }
+            }
+            mousedown = { e ->
+                e.stopPropagation()
+            }
+        }
+        header.add(maximizeIcon)
+        minimizeIcon.visible = minimizeButton
+        minimizeIcon.setEventListener {
+            click = { e ->
+                if (this@Window.dispatchEvent("minimizeWindow", obj {}) != false) {
+                    toggleMinimize()
+                }
+            }
+            mousedown = { e ->
+                e.stopPropagation()
+            }
+        }
+        header.add(minimizeIcon)
         header.add(captionTag)
+        captionTag.add(windowIcon)
         checkHeaderVisibility()
         addInternal(header)
         addInternal(content)
@@ -175,7 +241,7 @@ open class Window(
     }
 
     private fun checkHeaderVisibility() {
-        if (!closeButton && caption == null && !isDraggable) {
+        if (!closeButton && !maximizeButton && !minimizeButton && caption == null && !isDraggable) {
             header.hide()
         } else {
             header.show()
@@ -238,7 +304,7 @@ open class Window(
                 isResizeEvent = true
                 KVManager.setResizeEvent(this) {
                     val eid = getElementJQuery()?.attr("id")
-                    if (eid == id) {
+                    if (isResizable && eid == id) {
                         val outerWidth = (getElementJQuery()?.outerWidth()?.toInt() ?: 0)
                         val outerHeight = (getElementJQuery()?.outerHeight()?.toInt() ?: 0)
                         val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0)
@@ -293,6 +359,7 @@ open class Window(
     override fun afterDestroy() {
         if (isResizeEvent) {
             KVManager.clearResizeEvent(this)
+            isResizeEvent = false
         }
     }
 
@@ -308,6 +375,25 @@ open class Window(
      */
     open fun focus() {
         getElementJQuery()?.focus()
+    }
+
+    /**
+     * Close the window.
+     */
+    open fun close() {
+        hide()
+    }
+
+    /**
+     * Maximize or restore the window size.
+     */
+    open fun toggleMaximize() {
+    }
+
+    /**
+     * Minimize or restore the window size.
+     */
+    open fun toggleMinimize() {
     }
 
     companion object {
@@ -326,11 +412,26 @@ open class Window(
             isResizable: Boolean = true,
             isDraggable: Boolean = true,
             closeButton: Boolean = false,
+            maximizeButton: Boolean = false,
+            minimizeButton: Boolean = false,
+            icon: String? = null,
             classes: Set<String> = setOf(),
             init: (Window.() -> Unit)? = null
         ): Window {
             val window =
-                Window(caption, contentWidth, contentHeight, isResizable, isDraggable, closeButton, classes, init)
+                Window(
+                    caption,
+                    contentWidth,
+                    contentHeight,
+                    isResizable,
+                    isDraggable,
+                    closeButton,
+                    maximizeButton,
+                    minimizeButton,
+                    icon,
+                    classes,
+                    init
+                )
             this.add(window)
             return window
         }

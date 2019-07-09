@@ -53,7 +53,7 @@ inline fun obj(init: dynamic.() -> Unit): dynamic {
 @Suppress("UNUSED_VARIABLE")
 inline fun <reified T> Any?.createInstance(vararg args: dynamic): T {
     val jsClass = this
-    val argsArray = (listOf(null) + args).toTypedArray()
+    val argsArray = (listOf<dynamic>() + args).toTypedArray()
     return js("new (Function.prototype.bind.apply(jsClass, argsArray))").unsafeCast<T>()
 }
 
@@ -117,6 +117,9 @@ interface BtOn : On {
     var fileBrowseUpload: ((KvEvent) -> Unit)?
     var filePreUpload: ((KvEvent) -> Unit)?
     var resizeWindow: ((KvEvent) -> Unit)?
+    var closeWindow: ((KvEvent) -> Unit)?
+    var maximizeWindow: ((KvEvent) -> Unit)?
+    var minimizeWindow: ((KvEvent) -> Unit)?
     var tabulatorRowClick: ((KvEvent) -> Unit)?
     var tabulatorRowDblClick: ((KvEvent) -> Unit)?
     var tabulatorRowSelectionChanged: ((KvEvent) -> Unit)?
