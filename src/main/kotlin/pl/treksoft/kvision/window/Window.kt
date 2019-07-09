@@ -167,7 +167,10 @@ open class Window(
     private val maximizeIcon = MaximizeIcon()
     private val minimizeIcon = MinimizeIcon()
     private val captionTag = Tag(TAG.H4, caption, classes = setOf("modal-title"))
-    private val windowIcon = Icon(icon ?: "").apply { addCssClass("window-icon") }
+    private val windowIcon = Icon(icon ?: "").apply {
+        addCssClass("window-icon")
+        visible = (icon != null && icon != "")
+    }
 
     private var isResizeEvent = false
 
@@ -183,7 +186,8 @@ open class Window(
         zIndex = ++zIndexCounter
         closeIcon.visible = closeButton
         closeIcon.setEventListener {
-            click = { e ->
+            click = { _ ->
+                @Suppress("UnsafeCastFromDynamic")
                 if (this@Window.dispatchEvent("closeWindow", obj {}) != false) {
                     close()
                 }
@@ -195,7 +199,8 @@ open class Window(
         header.add(closeIcon)
         maximizeIcon.visible = maximizeButton
         maximizeIcon.setEventListener {
-            click = { e ->
+            click = { _ ->
+                @Suppress("UnsafeCastFromDynamic")
                 if (this@Window.dispatchEvent("maximizeWindow", obj {}) != false) {
                     toggleMaximize()
                 }
@@ -207,7 +212,8 @@ open class Window(
         header.add(maximizeIcon)
         minimizeIcon.visible = minimizeButton
         minimizeIcon.setEventListener {
-            click = { e ->
+            click = { _ ->
+                @Suppress("UnsafeCastFromDynamic")
                 if (this@Window.dispatchEvent("minimizeWindow", obj {}) != false) {
                     toggleMinimize()
                 }
