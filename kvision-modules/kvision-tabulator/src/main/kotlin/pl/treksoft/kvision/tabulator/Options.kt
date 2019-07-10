@@ -596,6 +596,14 @@ data class TabulatorOptions<T : Any>(
     val locale: String? = null,
     var langs: dynamic = null,
     val localized: ((locale: String, lang: dynamic) -> Unit)? = null,
+    val dataTree: Boolean? = null,
+    val dataTreeChildField: String? = null,
+    val dataTreeCollapseElement: dynamic = null,
+    val dataTreeExpandElement: dynamic = null,
+    val dataTreeElementColumn: String? = null,
+    val dataTreeBranchElement: dynamic = null,
+    val dataTreeChildIndent: Number? = null,
+    val dataTreeStartExpanded: ((row: Tabulator.RowComponent, level: Number) -> Boolean)? = null,
     val dataTreeRowExpanded: ((row: Tabulator.RowComponent, level: Number) -> Unit)? = null,
     val dataTreeRowCollapsed: ((row: Tabulator.RowComponent, level: Number) -> Unit)? = null,
     val movableRowsSendingStart: ((toTables: Array<Any>) -> Unit)? = null,
@@ -774,6 +782,14 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (locale != null) this.locale = locale
         if (langs != null) this.langs = langs
         if (localized != null) this.localized = localized
+        if (dataTree != null) this.dataTree = dataTree
+        if (dataTreeChildField != null) this.dataTreeChildField = dataTreeChildField
+        if (dataTreeCollapseElement != null) this.dataTreeCollapseElement = dataTreeCollapseElement
+        if (dataTreeExpandElement != null) this.dataTreeExpandElement = dataTreeExpandElement
+        if (dataTreeElementColumn != null) this.dataTreeElementColumn = dataTreeElementColumn
+        if (dataTreeBranchElement != null) this.dataTreeBranchElement = dataTreeBranchElement
+        if (dataTreeChildIndent != null) this.dataTreeChildIndent = dataTreeChildIndent
+        if (dataTreeStartExpanded != null) this.dataTreeStartExpanded = dataTreeStartExpanded
         if (dataTreeRowExpanded != null) this.dataTreeRowExpanded = dataTreeRowExpanded
         if (dataTreeRowCollapsed != null) this.dataTreeRowCollapsed = dataTreeRowCollapsed
         if (movableRowsSendingStart != null) this.movableRowsSendingStart = movableRowsSendingStart
