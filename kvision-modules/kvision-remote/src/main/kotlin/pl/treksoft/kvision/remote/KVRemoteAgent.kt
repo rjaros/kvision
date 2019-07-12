@@ -33,10 +33,7 @@ import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
 import kotlinx.serialization.stringify
-import kotlin.js.console
-import kotlin.js.js
 import kotlin.reflect.KClass
-import kotlin.js.JSON as NativeJSON
 
 /**
  * Client side agent for JSON-RPC remote calls.

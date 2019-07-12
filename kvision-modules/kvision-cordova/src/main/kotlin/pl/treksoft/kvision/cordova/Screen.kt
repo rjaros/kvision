@@ -62,7 +62,10 @@ object Screen {
      */
     fun getOrientation(): Orientation {
         val type = window.screen.asDynamic().orientation.type
-        return Orientation.values().find { it.type == type } ?: Screen.Orientation.ANY
+        return Orientation.values().find {
+            @Suppress("UnsafeCastFromDynamic")
+            it.type == type
+        } ?: Screen.Orientation.ANY
     }
 
     /**

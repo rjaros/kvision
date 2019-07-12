@@ -92,6 +92,7 @@ object File {
     suspend fun getSystemDirectories(): SystemDirs {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
+                @Suppress("UnsafeCastFromDynamic")
                 continuation.resume(window.asDynamic().cordova.file)
             }
         }
@@ -163,7 +164,7 @@ object File {
      */
     @Suppress("UnsafeCastFromDynamic")
     suspend fun requestFileSystem(
-        fileSystemType: File.FileSystemType,
+        fileSystemType: FileSystemType,
         size: Long = 0
     ): Result<FileSystem, FileException> {
         return suspendCoroutine { continuation ->

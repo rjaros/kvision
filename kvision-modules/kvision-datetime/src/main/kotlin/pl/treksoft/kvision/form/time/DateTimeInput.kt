@@ -260,12 +260,15 @@ open class DateTimeInput(
 
     private fun initEventHandlers() {
         this.getElementJQuery()?.on("changeDate") { e, _ ->
+            @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("change", obj { detail = e })
         }
         this.getElementJQuery()?.on("show") { e, _ ->
+            @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("showBsDateTime", obj { detail = e })
         }
         this.getElementJQuery()?.on("hide") { e, _ ->
+            @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("hideBsDateTime", obj { detail = e })
         }
     }

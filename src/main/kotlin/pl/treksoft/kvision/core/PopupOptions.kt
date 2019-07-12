@@ -62,7 +62,7 @@ data class TooltipOptions(
  * @return JSON object
  */
 fun TooltipOptions.toJs(): dynamic {
-    val trigger = this.triggers?.map { it.trigger }?.joinToString(" ")
+    val trigger = this.triggers?.joinToString(" ") { it.trigger }
     return obj {
         if (this@toJs.title != null) this.title = this@toJs.title
         if (this@toJs.rich != null) this.html = this@toJs.rich
@@ -93,7 +93,7 @@ data class PopoverOptions(
  * @return JSON object
  */
 fun PopoverOptions.toJs(): dynamic {
-    val trigger = this.triggers?.map { it.trigger }?.joinToString(" ")
+    val trigger = this.triggers?.joinToString(" ") { it.trigger }
     return obj {
         if (this@toJs.content != null) this.content = this@toJs.content
         if (this@toJs.title != null) this.title = this@toJs.title

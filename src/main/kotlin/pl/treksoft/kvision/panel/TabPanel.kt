@@ -160,6 +160,7 @@ open class TabPanel(
                             click = { e ->
                                 val actIndex = this@TabPanel.content.children.indexOf(childrenMap[currentIndex])
                                 e.asDynamic().data = actIndex
+                                @Suppress("UnsafeCastFromDynamic")
                                 if (this@TabPanel.dispatchEvent(
                                         "tabClosing",
                                         obj { detail = e; cancelable = true }) != false

@@ -128,6 +128,7 @@ open class Modal(
         content.add(header)
         content.add(body)
         content.add(footer)
+        @Suppress("LeakingThis")
         modals.add(this)
         @Suppress("LeakingThis")
         init?.invoke(this)

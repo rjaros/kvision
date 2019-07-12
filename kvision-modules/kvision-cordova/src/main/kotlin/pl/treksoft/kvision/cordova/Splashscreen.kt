@@ -34,6 +34,7 @@ object Splashscreen {
      */
     fun show() {
         addDeviceReadyListener {
+            @Suppress("UnsafeCastFromDynamic")
             window.navigator.asDynamic().splashscreen.show()
         }
     }
@@ -43,6 +44,7 @@ object Splashscreen {
      */
     fun hide() {
         addDeviceReadyListener {
+            @Suppress("UnsafeCastFromDynamic")
             window.navigator.asDynamic().splashscreen.hide()
         }
     }

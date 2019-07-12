@@ -380,7 +380,10 @@ open class Tabulator<T : Any>(
     open fun applyFilter() {
         if (filter != null) {
             jsTabulator?.setFilter({ data: dynamic, _: dynamic ->
-                filter?.let { it(data) }
+                filter?.let {
+                    @Suppress("UnsafeCastFromDynamic")
+                    it(data)
+                }
             }, null, null)
         }
     }
