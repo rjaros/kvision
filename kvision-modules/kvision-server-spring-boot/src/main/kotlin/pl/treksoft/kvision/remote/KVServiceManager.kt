@@ -43,7 +43,7 @@ import kotlin.reflect.KClass
  * Multiplatform service manager for Spring Boot.
  */
 @UseExperimental(ExperimentalCoroutinesApi::class)
-@Suppress("LargeClass")
+@Suppress("LargeClass", "TooManyFunctions")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
 
     companion object {
@@ -455,7 +455,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual fun bind(
-        function: T.(String?, String?) -> List<RemoteSelectOption>
+        function: T.(String?, String?) -> List<RemoteOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         addRoute(HttpMethod.POST, "/kv/$routeDef") { req, res, ctx ->
@@ -510,10 +510,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         addRoute(HttpMethod.POST, "/kv/$routeDef") { req, res, ctx ->
             val service = ctx.getBean(serviceClass.java)
             val jsonRpcRequest = mapper.readValue(req.inputStream, JsonRpcRequest::class.java)
+            @Suppress("MagicNumber")
             if (jsonRpcRequest.params.size == 4) {
                 val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
                 val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
                 val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
+                @Suppress("MagicNumber")
                 val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
                 try {
                     val result = function.invoke(service, param1, param2, param3, param4)

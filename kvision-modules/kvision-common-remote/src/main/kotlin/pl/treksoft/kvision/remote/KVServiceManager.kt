@@ -115,7 +115,7 @@ expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) {
      * @param function a function of the receiver
      */
     protected fun bind(
-        function: T.(String?, String?) -> List<RemoteSelectOption>
+        function: T.(String?, String?) -> List<RemoteOption>
     )
 
     /**

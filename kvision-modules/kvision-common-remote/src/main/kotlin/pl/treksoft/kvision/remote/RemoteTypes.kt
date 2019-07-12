@@ -24,7 +24,7 @@ package pl.treksoft.kvision.remote
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RemoteSelectOption(
+data class RemoteOption(
     val value: String? = null,
     val text: String? = null,
     val className: String? = null,
@@ -36,6 +36,7 @@ data class RemoteSelectOption(
 )
 
 @Serializable
+@Suppress("ConstructorParameterNaming")
 data class RemoteData<T>(val data: List<T> = listOf(), val last_page: Int = 0)
 
 @Serializable

@@ -32,7 +32,7 @@ import pl.treksoft.kvision.remote.CallAgent
 import pl.treksoft.kvision.remote.HttpMethod
 import pl.treksoft.kvision.remote.JsonRpcRequest
 import pl.treksoft.kvision.remote.KVServiceManager
-import pl.treksoft.kvision.remote.RemoteSelectOption
+import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
 
@@ -50,10 +50,10 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param classes a set of CSS class names
  */
 @UseExperimental(ImplicitReflectionSerializer::class)
-open class RemoteSelectInput<T : Any>(
+open class SelectRemoteInput<T : Any>(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?) -> List<RemoteSelectOption>,
+    function: T.(String?, String?) -> List<RemoteOption>,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     classes: Set<String> = setOf()
@@ -68,7 +68,7 @@ open class RemoteSelectInput<T : Any>(
         val tempAjaxOptions = ajaxOptions ?: AjaxOptions()
         this.ajaxOptions = tempAjaxOptions.copy(url = url, preprocessData = {
             @Suppress("UnsafeCastFromDynamic")
-            JSON.plain.parse(RemoteSelectOption.serializer().list, it.result as String).map {
+            JSON.plain.parse(RemoteOption.serializer().list, it.result as String).map {
                 obj {
                     this.value = it.value
                     if (it.text != null) this.text = it.text
@@ -96,14 +96,14 @@ open class RemoteSelectInput<T : Any>(
                     JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, value))),
                     HttpMethod.POST
                 ).asDeferred().await()
-                JSON.plain.parse(RemoteSelectOption.serializer().list, initials.result as String).map {
+                JSON.plain.parse(RemoteOption.serializer().list, initials.result as String).map {
                     add(SelectOption(it.value, it.text, selected = true))
                 }
-                this@RemoteSelectInput.refreshSelectInput()
+                this@SelectRemoteInput.refreshSelectInput()
             }
         }
         if (this.ajaxOptions?.emptyRequest == true) {
-            this.setInternalEventListener<RemoteSelect<*>> {
+            this.setInternalEventListener<SelectRemote<*>> {
                 shownBsSelect = {
                     val input = self.getElementJQuery()?.parent()?.find("input")
                     input?.trigger("keyup", null)
@@ -120,20 +120,20 @@ open class RemoteSelectInput<T : Any>(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun <T : Any> Container.remoteSelectInput(
+        fun <T : Any> Container.selectRemoteInput(
             value: String? = null,
             serviceManager: KVServiceManager<T>,
-            function: T.(String?, String?) -> List<RemoteSelectOption>,
+            function: T.(String?, String?) -> List<RemoteOption>,
             multiple: Boolean = false,
             ajaxOptions: AjaxOptions? = null,
-            classes: Set<String> = setOf(), init: (RemoteSelectInput<T>.() -> Unit)? = null
-        ): RemoteSelectInput<T> {
-            val remoteSelectInput =
-                RemoteSelectInput(value, serviceManager, function, multiple, ajaxOptions, classes).apply {
+            classes: Set<String> = setOf(), init: (SelectRemoteInput<T>.() -> Unit)? = null
+        ): SelectRemoteInput<T> {
+            val selectRemoteInput =
+                SelectRemoteInput(value, serviceManager, function, multiple, ajaxOptions, classes).apply {
                     init?.invoke(this)
                 }
-            this.add(remoteSelectInput)
-            return remoteSelectInput
+            this.add(selectRemoteInput)
+            return selectRemoteInput
         }
     }
 

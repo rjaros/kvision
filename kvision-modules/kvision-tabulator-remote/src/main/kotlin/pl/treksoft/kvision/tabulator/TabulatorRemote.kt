@@ -47,7 +47,7 @@ import pl.treksoft.kvision.utils.JSON
  * @param classes a set of CSS class names
  */
 @UseExperimental(ImplicitReflectionSerializer::class)
-open class RemoteTabulator<T : Any, E : Any>(
+open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceManager<E>,
     function: E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
     options: TabulatorOptions<T> = TabulatorOptions(),
@@ -96,18 +96,18 @@ open class RemoteTabulator<T : Any, E : Any>(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun <T : Any, E : Any> Container.remoteTabulator(
+        fun <T : Any, E : Any> Container.tabulatorRemote(
             serviceManager: KVServiceManager<E>,
             function: E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
-            init: (RemoteTabulator<T, E>.() -> Unit)? = null
-        ): RemoteTabulator<T, E> {
-            val remoteTabulator = RemoteTabulator(serviceManager, function, options, types, classes)
-            init?.invoke(remoteTabulator)
-            this.add(remoteTabulator)
-            return remoteTabulator
+            init: (TabulatorRemote<T, E>.() -> Unit)? = null
+        ): TabulatorRemote<T, E> {
+            val tabulatorRemote = TabulatorRemote(serviceManager, function, options, types, classes)
+            init?.invoke(tabulatorRemote)
+            this.add(tabulatorRemote)
+            return tabulatorRemote
         }
     }
 

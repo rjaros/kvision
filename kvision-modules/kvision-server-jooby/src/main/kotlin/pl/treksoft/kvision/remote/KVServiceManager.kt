@@ -42,7 +42,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager for Jooby.
  */
-@Suppress("LargeClass")
+@Suppress("LargeClass", "TooManyFunctions")
 @UseExperimental(ExperimentalCoroutinesApi::class)
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
 
@@ -396,7 +396,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual fun bind(
-        function: T.(String?, String?) -> List<RemoteSelectOption>
+        function: T.(String?, String?) -> List<RemoteOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         routes.add {
@@ -440,10 +440,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routes.add {
             call(HttpMethod.POST, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                @Suppress("MagicNumber")
                 if (jsonRpcRequest.params.size == 4) {
                     val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
                     val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
                     val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
+                    @Suppress("MagicNumber")
                     val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
                     val injector = req.require(Injector::class.java)
                     val service = injector.getInstance(serviceClass.java)

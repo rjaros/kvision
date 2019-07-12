@@ -30,11 +30,11 @@ import pl.treksoft.kvision.form.HelpBlock
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.remote.KVServiceManager
-import pl.treksoft.kvision.remote.RemoteSelectOption
+import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.utils.SnOn
 
 /**
- * The form field component for RemoteSelect control.
+ * The form field component for SelectRemote control.
  *
  * @constructor
  * @param value selected value
@@ -47,10 +47,10 @@ import pl.treksoft.kvision.utils.SnOn
  * @param rich determines if [label] can contain HTML code
  */
 @Suppress("TooManyFunctions")
-open class RemoteSelect<T : Any>(
+open class SelectRemote<T : Any>(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?) -> List<RemoteSelectOption>,
+    function: T.(String?, String?) -> List<RemoteOption>,
     name: String? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
@@ -146,8 +146,8 @@ open class RemoteSelect<T : Any>(
             flabel.rich = value
         }
 
-    private val idc = "kv_form_remoteselect_$counter"
-    final override val input: RemoteSelectInput<T> = RemoteSelectInput(
+    private val idc = "kv_form_SelectRemote_$counter"
+    final override val input: SelectRemoteInput<T> = SelectRemoteInput(
         value, serviceManager, function, multiple, ajaxOptions,
         setOf("form-control")
     ).apply {
@@ -251,15 +251,15 @@ open class RemoteSelect<T : Any>(
          *
          * It takes the same parameters as the constructor of the built component.
          */
-        fun <T : Any> Container.remoteSelect(
+        fun <T : Any> Container.selectRemote(
             value: String? = null,
             serviceManager: KVServiceManager<T>,
-            function: T.(String?, String?) -> List<RemoteSelectOption>, name: String? = null,
+            function: T.(String?, String?) -> List<RemoteOption>, name: String? = null,
             multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
-            rich: Boolean = false, init: (RemoteSelect<T>.() -> Unit)? = null
-        ): RemoteSelect<T> {
-            val remoteSelect =
-                RemoteSelect(
+            rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
+        ): SelectRemote<T> {
+            val selectRemote =
+                SelectRemote(
                     value,
                     serviceManager,
                     function,
@@ -269,8 +269,8 @@ open class RemoteSelect<T : Any>(
                     label,
                     rich
                 ).apply { init?.invoke(this) }
-            this.add(remoteSelect)
-            return remoteSelect
+            this.add(selectRemote)
+            return selectRemote
         }
     }
 }
