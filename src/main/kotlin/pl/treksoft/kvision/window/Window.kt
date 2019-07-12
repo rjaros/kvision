@@ -247,6 +247,7 @@ open class Window(
     }
 
     private fun checkHeaderVisibility() {
+        @Suppress("ComplexCondition")
         if (!closeButton && !maximizeButton && !minimizeButton && caption == null && !isDraggable) {
             header.hide()
         } else {

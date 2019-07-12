@@ -32,6 +32,7 @@ interface ObservableList<T> : MutableList<T> {
 /**
  * Simple observable list implementation.
  */
+@Suppress("TooManyFunctions")
 class ObservableListWrapper<T>(val mutableList: MutableList<T> = mutableListOf()) : MutableList<T>, ObservableList<T> {
 
     override val onUpdate: MutableCollection<(MutableList<T>) -> Unit> = mutableListOf()
