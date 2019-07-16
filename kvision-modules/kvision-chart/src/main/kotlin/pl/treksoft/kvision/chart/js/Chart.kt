@@ -61,6 +61,7 @@ open external class Chart {
 
     open var config: ChartConfiguration = definedExternally
     open var data: ChartData = definedExternally
+    open var options: ChartOptions = definedExternally
     open fun destroy(): Any = definedExternally
     open fun update(duration: Any? = definedExternally, lazy: Any? = definedExternally): Any = definedExternally
     open fun render(duration: Any? = definedExternally, lazy: Any? = definedExternally): Any = definedExternally

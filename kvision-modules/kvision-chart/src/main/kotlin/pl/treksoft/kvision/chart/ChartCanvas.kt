@@ -38,7 +38,9 @@ internal class ChartCanvas(
     var configuration: Configuration = configuration
         set(value) {
             field = value
-            jsChart?.config = value.toJs(this::translate)
+            val newConfig = value.toJs(this::translate)
+            if (newConfig.data != null) jsChart?.data = newConfig.data!!
+            if (newConfig.options != null) jsChart?.options = newConfig.options!!
             jsChart?.update()
         }
 
@@ -46,7 +48,9 @@ internal class ChartCanvas(
 
     override fun render(): VNode {
         if (lastLanguage != null && lastLanguage != I18n.language) {
-            jsChart?.config = configuration.toJs(this::translate)
+            val newConfig = configuration.toJs(this::translate)
+            if (newConfig.data != null) jsChart?.data = newConfig.data!!
+            if (newConfig.options != null) jsChart?.options = newConfig.options!!
             jsChart?.update()
         }
         return render("canvas")
