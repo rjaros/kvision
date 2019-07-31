@@ -87,7 +87,7 @@ developers on Kotlin Slack [#kvision](https://kotlinlang.slack.com/messages/kvis
         ./gradlew -t run                                    (on Linux)
         gradlew.bat -t run                                  (on Windows)
         
-4. Open [http://localhost:8088/](http://localhost:8088/) in your browser.
+4. Open [http://localhost:3000/](http://localhost:3000/) in your browser.
 
 5. Play with the code and see your changes immediately in the browser.
 
@@ -95,10 +95,10 @@ developers on Kotlin Slack [#kvision](https://kotlinlang.slack.com/messages/kvis
 
 To build complete application optimized for production run:
 
-        ./gradlew -Pprod=true distZip                       (on Linux)
-        gradlew.bat -Pprod=true distZip                     (on Windows)
+        ./gradlew -Pprod=true zip                       (on Linux)
+        gradlew.bat -Pprod=true zip                     (on Windows)
         
-Application package will be saved as build/distributions/showcase.zip.
+Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
 
 ## Code samples
 
