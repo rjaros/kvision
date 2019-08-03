@@ -51,3 +51,13 @@ object I18n : I18nManager {
     }
 
 }
+
+/**
+ * A top level helper function for translations.
+ */
+fun tr(key: String): String = I18n.tr(key)
+
+/**
+ * A top level helper function for translations.
+ */
+fun gettext(key: String): String = I18n.gettext(key)
