@@ -45,7 +45,7 @@ allows to build full-stack, multiplatform applications with shared common code.
  
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
-- Data binding support for [observable](https://github.com/rjaros/kotlin-observable-js) data model.
+- Data binding support for observable data model.
 - Internationalization support based on [Jed](http://messageformat.github.io/Jed/) library and [gettext](https://www.gnu.org/software/gettext/) translations. 
 - Easy to use Drag & Drop support.
 - Type-safe REST connectivity.
