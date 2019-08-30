@@ -26,6 +26,7 @@ plugins {
 configure(allprojects - project(':kvision-modules')) {
     repositories {
         jcenter()
+        mavenCentral()
         maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url = 'https://kotlin.bintray.com/kotlinx' }
         maven { url = 'https://dl.bintray.com/gbaldeck/kotlin' }
@@ -170,6 +171,7 @@ dokka {
             'kvision-modules/kvision-datacontainer/src/main/kotlin',
             'kvision-modules/kvision-dialog/src/main/kotlin',
             'kvision-modules/kvision-redux/src/main/kotlin',
+            'kvision-modules/kvision-redux-kotlin/src/main/kotlin',
             'kvision-modules/kvision-moment/src/main/kotlin',
             'kvision-modules/kvision-tabulator/src/main/kotlin',
             'kvision-modules/kvision-pace/src/main/kotlin',

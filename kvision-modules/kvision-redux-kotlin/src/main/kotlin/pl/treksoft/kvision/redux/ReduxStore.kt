@@ -21,14 +21,17 @@
  */
 package pl.treksoft.kvision.redux
 
-import pl.treksoft.kvision.KVManagerRedux
-import redux.Reducer
-import redux.Store
-import redux.WrapperAction
-import redux.rEnhancer
+import org.reduxkotlin.ActionTypes
+import org.reduxkotlin.Middleware
+import org.reduxkotlin.Store
+import org.reduxkotlin.applyMiddleware
+import org.reduxkotlin.createStore
+import org.reduxkotlin.createThunk
+import org.reduxkotlin.createThunkMiddleware
 
-typealias RAction = redux.RAction
-typealias Dispatch<A> = (A) -> WrapperAction
+interface RAction
+typealias ReducerFun<S, A> = (S, A) -> S
+typealias Dispatch<A> = (A) -> Unit
 typealias GetState<S> = () -> S
 typealias ActionCreator<A, S> = (Dispatch<A>, GetState<S>) -> Unit
 
@@ -40,78 +43,60 @@ typealias ActionCreator<A, S> = (Dispatch<A>, GetState<S>) -> Unit
  * @param middlewares a list of optional Redux JS middlewares
  */
 fun <S : Any, A : RAction> createReduxStore(
-    reducer: Reducer<S, A>,
+    reducer: ReducerFun<S, A>,
     initialState: S,
-    vararg middlewares: dynamic
+    vararg middlewares: Middleware<S>
 ): ReduxStore<S, A> {
     @Suppress("SpreadOperator")
     return ReduxStore(reducer, initialState, *middlewares)
 }
 
 /**
- * A class implementing redux pattern backed by the original Redux JS library.
+ * A class implementing redux pattern backed by the Redux Kotlin library.
  *
  * @constructor Creates a Redux store with given reducer function and initial state.
  * @param S redux state type
  * @param A redux action type
  * @param reducer a reducer function
  * @param initialState an initial state
- * @param middlewares a list of optional Redux JS middlewares
+ * @param middlewares a list of optional Redux Kotlin middlewares
  */
 class ReduxStore<S : Any, A : RAction>(
-    reducer: Reducer<S, A>,
+    reducer: ReducerFun<S, A>,
     initialState: S,
-    vararg middlewares: dynamic
+    vararg middlewares: Middleware<S>
 ) {
-    private val store: Store<S, dynamic, WrapperAction>
-
-    init {
-        @Suppress("UnsafeCastFromDynamic")
-        store = KVManagerRedux.createStore(
-            { s: S, a: RAction ->
-                @Suppress("UnsafeCastFromDynamic")
-                if (a == undefined || (a.asDynamic().type is String && a.asDynamic().type.startsWith("@@"))) {
-                    s
-                } else {
-                    @Suppress("UNCHECKED_CAST")
-                    reducer(s, a as A)
-                }
-            },
-            initialState,
-            @Suppress("SpreadOperator")
-            KVManagerRedux.compose(KVManagerRedux.applyMiddleware(KVManagerRedux.reduxThunk, *middlewares), rEnhancer())
-        )
-    }
+    @Suppress("UNCHECKED_CAST")
+    private val store: Store<S> = createStore({ s: S, a: Any ->
+        if (a == ActionTypes.INIT || a == ActionTypes.REPLACE) {
+            s
+        } else {
+            reducer(s, a as A)
+        }
+    }, initialState, applyMiddleware(createThunkMiddleware(), *middlewares))
 
     /**
      * Returns the current state.
      */
     fun getState(): S {
+        @Suppress("UNCHECKED_CAST")
         return store.getState()
     }
 
     /**
      * Dispatches a synchronous action object.
      */
-    fun dispatch(action: A): WrapperAction {
-        return store.dispatch(action)
+    fun dispatch(action: A) {
+        store.dispatch(action)
     }
 
     /**
      * Dispatches an asynchronous action function.
      */
-    fun dispatch(actionCreator: ActionCreator<dynamic, S>): WrapperAction {
-        return store.dispatch({ reduxDispatch: Dispatch<dynamic>, reduxGetState: GetState<S> ->
-            val newDispatch: Dispatch<dynamic> = { elem ->
-                @Suppress("UnsafeCastFromDynamic")
-                if (js("typeof elem === 'function'")) {
-                    dispatch(actionCreator = elem)
-                } else {
-                    reduxDispatch(elem)
-                }
-            }
-            actionCreator(newDispatch) { reduxGetState() }
-        })
+    fun dispatch(actionCreator: ActionCreator<A, S>) {
+        @Suppress("UNCHECKED_CAST")
+        val thunk = createThunk<S> { dispatch, getState, _ -> actionCreator(dispatch as ((A) -> Unit), getState) }
+        store.dispatch(thunk)
     }
 
     /**
