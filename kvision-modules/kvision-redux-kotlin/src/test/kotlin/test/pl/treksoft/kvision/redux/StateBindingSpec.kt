@@ -24,10 +24,10 @@ package test.pl.treksoft.kvision.redux
 import pl.treksoft.kvision.html.Div.Companion.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.redux.RAction
 import pl.treksoft.kvision.redux.StateBinding.Companion.stateBinding
 import pl.treksoft.kvision.redux.StateBinding.Companion.stateUpdate
 import pl.treksoft.kvision.redux.createReduxStore
-import redux.RAction
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
