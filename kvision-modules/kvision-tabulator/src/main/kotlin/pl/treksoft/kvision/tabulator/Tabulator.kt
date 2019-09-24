@@ -324,9 +324,27 @@ open class Tabulator<T : Any>(
     /**
      * Get the HTML code of the table.
      * @param activeOnly include only visible rows
+     * @param isStyled return styled output
+     * @param htmlOutputConfig override output configuration
      * @return the HTML code of the table
      */
-    open fun getHtml(activeOnly: Boolean = false): String? = jsTabulator?.getHtml(activeOnly)
+    open fun getHtml(
+        activeOnly: Boolean = false,
+        isStyled: Boolean = false,
+        htmlOutputConfig: dynamic = null
+    ): String? = jsTabulator?.getHtml(activeOnly, isStyled, htmlOutputConfig)
+
+    /**
+     * Print the table.
+     * @param activeOnly include only visible rows
+     * @param isStyled styled output
+     * @param printConfig override print configuration
+     */
+    open fun print(
+        activeOnly: Boolean = false,
+        isStyled: Boolean = false,
+        printConfig: dynamic = null
+    ): Unit? = jsTabulator?.print(activeOnly, isStyled, printConfig)
 
     /**
      * Scroll to the row given by id.

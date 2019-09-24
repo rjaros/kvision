@@ -88,7 +88,8 @@ enum class Formatter(internal val formatter: String) {
     BUTTONTICK("buttonTick"),
     BUTTONCROSS("buttonCross"),
     ROWNUM("rownum"),
-    HANDLE("handle")
+    HANDLE("handle"),
+    ROWSELECTION("rowSelection")
 }
 
 /**
@@ -336,6 +337,8 @@ data class ColumnDefinition<T : Any>(
     val headerFilterFunc: Filter? = null,
     val headerFilterFuncParams: dynamic = null,
     val headerFilterLiveFilter: Boolean? = null,
+    val htmlOutput: Boolean? = null,
+    val print: Boolean? = null,
     val cellClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
     val cellDblClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
     val cellContext: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
@@ -492,6 +495,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (headerFilterFunc != null) this.headerFilterFunc = headerFilterFunc.filter
         if (headerFilterFuncParams != null) this.headerFilterFuncParams = headerFilterFuncParams
         if (headerFilterLiveFilter != null) this.headerFilterLiveFilter = headerFilterLiveFilter
+        if (htmlOutput != null) this.htmlOutput = htmlOutput
+        if (print != null) this.print = print
         if (cellClick != null) this.cellClick = cellClick
         if (cellDblClick != null) this.cellDblClick = cellDblClick
         if (cellContext != null) this.cellContext = cellContext
@@ -596,6 +601,19 @@ data class TabulatorOptions<T : Any>(
     val locale: String? = null,
     var langs: dynamic = null,
     val localized: ((locale: String, lang: dynamic) -> Unit)? = null,
+    val headerVisible: Boolean? = null,
+    val htmlOutputConfig: dynamic = null,
+    val printAsHtml: Boolean? = null,
+    val printConfig: dynamic = null,
+    val printCopyStyle: Boolean? = null,
+    val printVisibleRows: Boolean? = null,
+    val printHeader: String? = null,
+    val printFooter: String? = null,
+    val printFormatter: ((tableHolder: dynamic, table: dynamic) -> Unit)? = null,
+    val tabEndNewRow: dynamic = null,
+    val headerSort: Boolean? = null,
+    val headerSortTristate: Boolean? = null,
+    val invalidOptionWarnings: Boolean? = null,
     val dataTree: Boolean? = null,
     val dataTreeChildField: String? = null,
     val dataTreeCollapseElement: dynamic = null,
@@ -782,6 +800,19 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (locale != null) this.locale = locale
         if (langs != null) this.langs = langs
         if (localized != null) this.localized = localized
+        if (headerVisible != null) this.headerVisible = headerVisible
+        if (htmlOutputConfig != null) this.htmlOutputConfig = htmlOutputConfig
+        if (printAsHtml != null) this.printAsHtml = printAsHtml
+        if (printConfig != null) this.printConfig = printConfig
+        if (printCopyStyle != null) this.printCopyStyle = printCopyStyle
+        if (printVisibleRows != null) this.printVisibleRows = printVisibleRows
+        if (printHeader != null) this.printHeader = printHeader
+        if (printFooter != null) this.printFooter = printFooter
+        if (printFormatter != null) this.printFormatter = printFormatter
+        if (tabEndNewRow != null) this.tabEndNewRow = tabEndNewRow
+        if (headerSort != null) this.headerSort = headerSort
+        if (headerSortTristate != null) this.headerSortTristate = headerSortTristate
+        if (invalidOptionWarnings != null) this.invalidOptionWarnings = invalidOptionWarnings
         if (dataTree != null) this.dataTree = dataTree
         if (dataTreeChildField != null) this.dataTreeChildField = dataTreeChildField
         if (dataTreeCollapseElement != null) this.dataTreeCollapseElement = dataTreeCollapseElement

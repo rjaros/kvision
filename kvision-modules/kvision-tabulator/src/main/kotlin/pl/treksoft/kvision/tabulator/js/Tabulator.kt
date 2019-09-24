@@ -66,7 +66,9 @@ open external class Tabulator {
     ): Array<Any> =
         definedExternally
 
-    open fun getHtml(activeOnly: Boolean? /*= null*/): String = definedExternally
+    open fun getHtml(activeOnly: Boolean? /*= null*/, isStyled: Boolean?, htmlOutputConfig: dynamic): String = definedExternally
+    open fun print(activeOnly: Boolean?, isStyled: Boolean?, printConfig: dynamic): Unit = definedExternally
+
     open fun getAjaxUrl(): String = definedExternally
     open fun replaceData(
         data: dynamic /* String | Array<Any?> */ /*= null*/,
