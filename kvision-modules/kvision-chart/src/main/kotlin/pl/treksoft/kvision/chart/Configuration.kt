@@ -751,7 +751,8 @@ data class ChartOptions(
     val spanGaps: Boolean? = null,
     val cutoutPercentage: Int? = null,
     val circumference: Double? = null,
-    val rotation: Double? = null
+    val rotation: Double? = null,
+    val plugins: dynamic = null
 )
 
 /**
@@ -783,6 +784,7 @@ fun ChartOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (cutoutPercentage != null) this.cutoutPercentage = cutoutPercentage
         if (circumference != null) this.circumference = circumference
         if (rotation != null) this.rotation = rotation
+        if (plugins != null) this.plugins = plugins
     }
 }
 

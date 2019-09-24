@@ -23,6 +23,7 @@ package pl.treksoft.kvision.chart
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.chart.js.Chart.ChartConfiguration
+import pl.treksoft.kvision.chart.js.Chart as JsChart
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 
@@ -124,6 +125,14 @@ open class Chart(
             val chart = Chart(configuration, chartWidth, chartHeight, classes).apply { init?.invoke(this) }
             this.add(chart)
             return chart
+        }
+
+        fun registerPlugin(plugin: dynamic) {
+            JsChart.plugins.register(plugin)
+        }
+
+        fun unregisterPlugin(plugin: dynamic) {
+            JsChart.plugins.unregister(plugin)
         }
     }
 }
