@@ -42,6 +42,7 @@ import io.ktor.websocket.WebSocketServerSession
 import io.ktor.websocket.webSocket
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ClosedSendChannelException
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
@@ -402,7 +403,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                         outgoing.send(Frame.Text(text))
                     }
-                    session.close(CloseReason(CloseReason.Codes.NORMAL, ""))
+                    try {
+                        session.close(CloseReason(CloseReason.Codes.NORMAL, ""))
+                    } catch (e: ClosedSendChannelException) {
+                    }
                     session.close()
                 }
                 launch {
