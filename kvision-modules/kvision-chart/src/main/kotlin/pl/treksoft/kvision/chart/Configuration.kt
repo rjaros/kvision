@@ -738,7 +738,7 @@ data class ChartOptions(
     val hover: HoverOptions? = null,
     val events: List<String>? = null,
     val onHover: ((chart: Chart, event: MouseEvent, activeElements: Array<Any>) -> Any)? = null,
-    val onClick: ((chart: Chart, event: MouseEvent, activeElements: Array<Any>) -> Any)? = null,
+    val onClick: ((event: MouseEvent, activeElements: Array<Any>) -> Any)? = null,
     val animation: AnimationOptions? = null,
     val layout: LayoutOptions? = null,
     val legend: LegendOptions? = null,
