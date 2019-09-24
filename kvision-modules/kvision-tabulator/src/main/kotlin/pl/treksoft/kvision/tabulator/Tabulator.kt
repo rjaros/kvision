@@ -64,7 +64,10 @@ open class Tabulator<T : Any>(
      */
     var types by refreshOnUpdate(types)
 
-    protected var jsTabulator: JsTabulator? = null
+    /**
+     * Native Tabulator object.
+     */
+    var jsTabulator: JsTabulator? = null
 
     private var pageSize: Number? = null
     private var currentPage: Number? = null
@@ -545,6 +548,51 @@ open class Tabulator<T : Any>(
      */
     open fun navigateDown() {
         jsTabulator?.navigateDown()
+    }
+
+    /**
+     * Get column component by name.
+     * @param name column name
+     * @return column component
+     */
+    open fun getColumn(name: String): JsTabulator.ColumnComponent? {
+        return jsTabulator?.getColumn(name)
+    }
+
+    /**
+     * Delete column by name.
+     * @param name column name
+     */
+    open fun deleteColumn(name: String) {
+        jsTabulator?.deleteColumn(name)
+    }
+
+    /**
+     * Add new column to the tabulator.
+     * @param columnDefinition column definition
+     * @param insertRightOfTarget determines how to position the new column
+     * @param positionTarget the field to insert the new column next to
+     */
+    open fun addColumn(
+        columnDefinition: ColumnDefinition<T>,
+        insertRightOfTarget: Boolean? = null,
+        positionTarget: String? = null
+    ) {
+        jsTabulator?.addColumn(columnDefinition.toJs(this::translate), insertRightOfTarget, positionTarget)
+    }
+
+    /**
+     * Add new column to the tabulator.
+     * @param columnDefinition column definition native object
+     * @param insertRightOfTarget determines how to position the new column
+     * @param positionTarget the field to insert the new column next to
+     */
+    open fun addColumn(
+        columnDefinition: JsTabulator.ColumnDefinition,
+        insertRightOfTarget: Boolean? = null,
+        positionTarget: String? = null
+    ) {
+        jsTabulator?.addColumn(columnDefinition, insertRightOfTarget, positionTarget)
     }
 
     internal fun removeCustomEditors() {
