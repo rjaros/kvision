@@ -39,6 +39,7 @@ allows to build full-stack, multiplatform applications with shared common code.
     - [Chart.js](https://www.chartjs.org/)
     - [Tabulator](http://tabulator.info/)
     - [Redux](https://redux.js.org/)
+    - [ReduxKotlin](https://reduxkotlin.org/)
     - [Navigo](https://github.com/krasimir/navigo)
     - [Moment.js](https://momentjs.com/)
     - [Pace](https://github.hubspot.com/pace/docs/welcome/)
