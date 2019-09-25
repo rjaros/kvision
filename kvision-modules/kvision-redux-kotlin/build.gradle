@@ -4,14 +4,3 @@ dependencies {
     compile ("org.reduxkotlin:redux-kotlin-js:$reduxKotlinVersion")
     compile ("org.reduxkotlin:redux-kotlin-thunk-js:$reduxKotlinThunkVersion")
 }
-
-kotlinFrontend {
-
-    npm {
-        devDependency("karma", "3.1.4")
-        devDependency("karma-chrome-launcher", "2.2.0")
-        devDependency("karma-webpack", "3.0.5")
-        devDependency("qunit", "2.8.0")
-    }
-
-}

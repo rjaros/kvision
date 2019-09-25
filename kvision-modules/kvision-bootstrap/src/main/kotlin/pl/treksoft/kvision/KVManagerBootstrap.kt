@@ -32,16 +32,15 @@ internal object KVManagerBootstrap {
     private val links = document.getElementsByTagName("link")
     private val bootstrapWebpack = try {
         val bootswatch = links.asList().find { it.getAttribute("href")?.contains("bootstrap.min.css") ?: false }
+        require("bootstrap")
         if (bootswatch != null) {
-            require("bootstrap-webpack!./js/bootstrap.config.js")
             if (bootswatch.getAttribute("href")?.contains("/paper/") == true) {
                 require("./css/paper.css")
             }
-            require("./css/style.css")
         } else {
-            require("bootstrap-webpack")
-            require("./css/style.css")
+            require("bootstrap/dist/css/bootstrap.min.css")
         }
+        require("./css/style.css")
     } catch (e: Throwable) {
     }
     private val fontAwesomeWebpack = try {
