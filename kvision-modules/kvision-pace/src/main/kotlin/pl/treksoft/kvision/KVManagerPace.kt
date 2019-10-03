@@ -27,13 +27,11 @@ internal val kVManagerPaceInit = KVManagerPace.init()
 /**
  * Internal singleton object which initializes and configures KVision Moment module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerPace {
-    fun init() {
+
+    init {
+        require("pace-progressbar").default
     }
 
-    private val pace = try {
-        require("pace-progressbar").default
-    } catch (e: Throwable) {
-    }
+    internal fun init() {}
 }

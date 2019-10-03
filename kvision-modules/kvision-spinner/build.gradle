@@ -1,9 +1,0 @@
-apply from: "../shared.gradle"
-
-kotlinFrontend {
-
-    npm {
-        dependency("bootstrap-touchspin", "4.2.5")
-    }
-
-}

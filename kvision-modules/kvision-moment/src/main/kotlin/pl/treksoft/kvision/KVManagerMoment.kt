@@ -27,11 +27,11 @@ internal val kVManagerMomentInit = KVManagerMoment.init()
 /**
  * Internal singleton object which initializes and configures KVision Moment module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerMoment {
-    fun init() {}
 
-    private val moment = try {
+    init {
         require("moment/min/moment-with-locales.js")
-    } catch (e: Throwable) {}
+    }
+
+    internal fun init() {}
 }

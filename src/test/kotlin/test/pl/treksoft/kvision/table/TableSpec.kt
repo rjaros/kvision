@@ -23,6 +23,7 @@ package test.pl.treksoft.kvision.table
 
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.table.Cell.Companion.cell
+import pl.treksoft.kvision.table.ResponsiveType
 import pl.treksoft.kvision.table.Row.Companion.row
 import pl.treksoft.kvision.table.Table
 import pl.treksoft.kvision.table.TableType
@@ -50,7 +51,7 @@ class TableSpec : DomSpec {
                 "Should render correct table"
             )
             table.caption = "Caption"
-            table.responsive = true
+            table.responsiveType = ResponsiveType.RESPONSIVE
             table.types = setOf(TableType.BORDERED)
             val element2 = document.getElementById("test")
             assertEqualsHtml(

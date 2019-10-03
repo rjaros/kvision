@@ -135,7 +135,6 @@ if (!project.gradle.startParameter.taskNames.contains("dokka")) {
             dependency("snabbdom", "0.7.3")
             dependency("snabbdom-virtualize", "0.7.0")
             dependency("jquery-resizable-dom", "0.32.0")
-            dependency("element-resize-event", "3.0.3")
             dependency("navigo", "7.1.2")
             devDependency("karma", "4.3.0")
             devDependency("karma-chrome-launcher", "3.1.0")
@@ -160,23 +159,25 @@ if (!project.gradle.startParameter.taskNames.contains("dokka")) {
 dokka {
     includes = ['Module.md']
     sourceDirs = files('kvision-modules/kvision-bootstrap/src/main/kotlin',
-            'kvision-modules/kvision-select/src/main/kotlin',
-            'kvision-modules/kvision-datetime/src/main/kotlin',
-            'kvision-modules/kvision-spinner/src/main/kotlin',
+            'kvision-modules/kvision-bootstrap-css/src/main/kotlin',
+            'kvision-modules/kvision-bootstrap-select/src/main/kotlin',
+            'kvision-modules/kvision-bootstrap-datetime/src/main/kotlin',
+            'kvision-modules/kvision-bootstrap-spinner/src/main/kotlin',
             'kvision-modules/kvision-richtext/src/main/kotlin',
-            'kvision-modules/kvision-upload/src/main/kotlin',
+            'kvision-modules/kvision-bootstrap-upload/src/main/kotlin',
             'kvision-modules/kvision-handlebars/src/main/kotlin',
             'kvision-modules/kvision-i18n/src/main/kotlin',
             'kvision-modules/kvision-chart/src/main/kotlin',
             'kvision-modules/kvision-datacontainer/src/main/kotlin',
-            'kvision-modules/kvision-dialog/src/main/kotlin',
+            'kvision-modules/kvision-bootstrap-dialog/src/main/kotlin',
+            'kvision-modules/kvision-fontawesome/src/main/kotlin',
             'kvision-modules/kvision-redux/src/main/kotlin',
             'kvision-modules/kvision-redux-kotlin/src/main/kotlin',
             'kvision-modules/kvision-moment/src/main/kotlin',
             'kvision-modules/kvision-tabulator/src/main/kotlin',
             'kvision-modules/kvision-pace/src/main/kotlin',
             'kvision-modules/kvision-remote/src/main/kotlin',
-            'kvision-modules/kvision-select-remote/src/main/kotlin',
+            'kvision-modules/kvision-bootstrap-select-remote/src/main/kotlin',
             'kvision-modules/kvision-tabulator-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',
             'kvision-modules/kvision-common-types/src/main/kotlin',

@@ -27,7 +27,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.BoolFormControl
 import pl.treksoft.kvision.form.FieldLabel
-import pl.treksoft.kvision.form.HelpBlock
+import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.SnOn
 
@@ -35,12 +35,12 @@ import pl.treksoft.kvision.utils.SnOn
  * Radio style options.
  */
 enum class RadioStyle(internal val className: String) {
-    DEFAULT("radio-default"),
-    PRIMARY("radio-primary"),
-    SUCCESS("radio-success"),
-    INFO("radio-info"),
-    WARNING("radio-warning"),
-    DANGER("radio-danger"),
+    DEFAULT("abc-radio-default"),
+    PRIMARY("abc-radio-primary"),
+    SUCCESS("abc-radio-success"),
+    INFO("abc-radio-info"),
+    WARNING("abc-radio-warning"),
+    DANGER("abc-radio-danger"),
 }
 
 /**
@@ -56,7 +56,7 @@ enum class RadioStyle(internal val className: String) {
 open class Radio(
     value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
     rich: Boolean = false
-) : SimplePanel(), BoolFormControl {
+) : SimplePanel(classes = setOf("form-check")), BoolFormControl {
 
     /**
      * The selection state of the radio button.
@@ -115,20 +115,20 @@ open class Radio(
     var inline by refreshOnUpdate(false)
 
     private val idc = "kv_form_radio_$counter"
-    final override val input: RadioInput = RadioInput(value).apply {
+    final override val input: RadioInput = RadioInput(value, classes = setOf("form-check-input")).apply {
         this.id = idc
         this.extraValue = extraValue
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf())
-    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf("form-check-label"))
+    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this.eventTarget ?: this
         this.addInternal(input)
         this.addInternal(flabel)
-        this.addInternal(validationInfo)
+        this.addInternal(invalidFeedback)
         counter++
     }
 
@@ -151,25 +151,21 @@ open class Radio(
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (!squared) {
-            cl.add("radio" to true)
+            cl.add("abc-radio" to true)
             style?.let {
                 cl.add(it.className to true)
             }
-            if (inline) {
-                cl.add("radio-inline" to true)
-            }
         } else {
-            cl.add("checkbox" to true)
-            cl.add("kv-radio-checkbox" to true)
+            cl.add("abc-checkbox" to true)
             style?.let {
                 cl.add(it.className.replace("radio", "checkbox") to true)
             }
-            if (inline) {
-                cl.add("checkbox-inline" to true)
-            }
+        }
+        if (inline) {
+            cl.add("form-check-inline" to true)
         }
         if (validatorError != null) {
-            cl.add("has-error" to true)
+            cl.add("text-danger" to true)
         }
         return cl
     }

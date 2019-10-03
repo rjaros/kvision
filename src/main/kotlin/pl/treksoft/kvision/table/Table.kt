@@ -38,8 +38,29 @@ import pl.treksoft.kvision.utils.snOpt
 enum class TableType(val type: String) {
     STRIPED("table-striped"),
     BORDERED("table-bordered"),
+    BORDERLESS("table-borderless"),
     HOVER("table-hover"),
-    CONDENSED("table-condensed")
+    SMALL("table-sm"),
+    DARK("table-dark")
+}
+
+/**
+ * HTML table responsive types.
+ */
+enum class ResponsiveType(val type: String) {
+    RESPONSIVE("table-responsive"),
+    RESPONSIVESM("table-responsive-sm"),
+    RESPONSIVEMD("table-responsive-md"),
+    RESPONSIVELG("table-responsive-lg"),
+    RESPONSIVEXL("table-responsive-xl")
+}
+
+/**
+ * HTML table header types.
+ */
+enum class TheadType(internal val type: String) {
+    DARK("thead-dark"),
+    LIGHT("thead-light")
 }
 
 /**
@@ -56,8 +77,8 @@ enum class TableType(val type: String) {
 @Suppress("TooManyFunctions")
 open class Table(
     headerNames: List<String>? = null,
-    types: Set<TableType> = setOf(), caption: String? = null, responsive: Boolean = false,
-    classes: Set<String> = setOf(), init: (Table.() -> Unit)? = null
+    types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
+    theadType: TheadType? = null, classes: Set<String> = setOf(), init: (Table.() -> Unit)? = null
 ) : SimplePanel(classes + "table") {
 
     /**
@@ -75,10 +96,13 @@ open class Table(
     /**
      * Determines if the table is responsive.
      */
-    var responsive by refreshOnUpdate(responsive)
+    var responsiveType by refreshOnUpdate(responsiveType)
 
     private val theadRow = Tag(TAG.TR)
-    private val thead = Tag(TAG.THEAD).add(theadRow)
+    private val thead = Tag(TAG.THEAD).apply {
+        if (theadType != null) addCssClass(theadType.type)
+        add(theadRow)
+    }
     private val tbody = Tag(TAG.TBODY)
 
     init {
@@ -94,7 +118,7 @@ open class Table(
     private fun refreshHeaders() {
         theadRow.removeAll()
         headerNames?.forEach {
-            theadRow.add(HeaderCell(it))
+            theadRow.add(HeaderCell(it, scope = Scope.COL))
         }
     }
 
@@ -128,9 +152,9 @@ open class Table(
     }
 
     override fun render(): VNode {
-        return if (responsive) {
+        return if (responsiveType != null) {
             val opt = snOpt {
-                `class` = snClasses(listOf("table-responsive" to true))
+                `class` = snClasses(listOf(responsiveType!!.type to true))
             }
             h("div", opt, arrayOf(render("table", childrenVNodes())))
         } else {
@@ -185,11 +209,11 @@ open class Table(
          */
         fun Container.table(
             headerNames: List<String>? = null,
-            types: Set<TableType> = setOf(), caption: String? = null, responsive: Boolean = false,
-            classes: Set<String> = setOf(), init: (Table.() -> Unit)? = null
+            types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
+            theadType: TheadType? = null, classes: Set<String> = setOf(), init: (Table.() -> Unit)? = null
         ): Table {
             val table =
-                Table(headerNames, types, caption, responsive, classes, init)
+                Table(headerNames, types, caption, responsiveType, theadType, classes, init)
             this.add(table)
             return table
         }

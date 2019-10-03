@@ -26,13 +26,11 @@ internal val kVManagerHandlebarsInit = KVManagerHandlebars.init()
 /**
  * Internal singleton object which initializes and configures KVision handlebars module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerHandlebars {
-    fun init() {}
 
-    private val handlebars = try {
+    init {
         require("handlebars/dist/handlebars.runtime.min.js")
-    } catch (e: Throwable) {
     }
 
+    internal fun init() {}
 }

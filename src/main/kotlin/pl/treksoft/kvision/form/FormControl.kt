@@ -30,8 +30,16 @@ import kotlin.js.Date
  * Input controls sizes.
  */
 enum class InputSize(val className: String) {
-    LARGE("input-lg"),
-    SMALL("input-sm")
+    LARGE("form-control-lg"),
+    SMALL("form-control-sm")
+}
+
+/**
+ * Input controls validation status.
+ */
+enum class ValidationStatus(val className: String) {
+    VALID("is-valid"),
+    INVALID("is-invalid")
 }
 
 interface FormInput : Component {
@@ -47,6 +55,10 @@ interface FormInput : Component {
      * The name attribute of the generated HTML input element.
      */
     var name: String?
+    /**
+     * Input control validation status.
+     */
+    var validationStatus: ValidationStatus?
 
     /**
      * Makes the input element focused.
@@ -78,6 +90,16 @@ interface FormControl : Component {
         get() = input.size
         set(value) {
             input.size = value
+            if (value == InputSize.SMALL) {
+                flabel.addCssClass("col-form-label-sm")
+            } else {
+                flabel.removeCssClass("col-form-label-sm")
+            }
+            if (value == InputSize.LARGE) {
+                flabel.addCssClass("col-form-label-lg")
+            } else {
+                flabel.removeCssClass("col-form-label-lg")
+            }
         }
     /**
      * The name attribute of the generated HTML input element.
@@ -88,6 +110,14 @@ interface FormControl : Component {
             input.name = value
         }
     /**
+     * Input control validation status.
+     */
+    var validationStatus: ValidationStatus?
+        get() = input.validationStatus
+        set(value) {
+            input.validationStatus = value
+        }
+    /**
      * The actual input component.
      */
     val input: FormInput
@@ -96,9 +126,9 @@ interface FormControl : Component {
      */
     val flabel: FieldLabel
     /**
-     * Validation info component.
+     * Invalid feedback component.
      */
-    val validationInfo: HelpBlock
+    val invalidFeedback: InvalidFeedback
 
     /**
      * Returns the value of the control.
@@ -129,10 +159,11 @@ interface FormControl : Component {
      * Validator error message.
      */
     var validatorError: String?
-        get() = validationInfo.content
+        get() = invalidFeedback.content
         set(value) {
-            validationInfo.content = value
-            validationInfo.visible = value != null
+            invalidFeedback.content = value
+            invalidFeedback.visible = value != null
+            input.validationStatus = if (value != null) ValidationStatus.INVALID else null
             refresh()
         }
 

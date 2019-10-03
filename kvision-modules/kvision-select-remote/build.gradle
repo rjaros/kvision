@@ -1,6 +1,0 @@
-apply from: "../shared.gradle"
-
-dependencies {
-    compile project(":kvision-modules:kvision-select")
-    compile project(":kvision-modules:kvision-remote")
-}

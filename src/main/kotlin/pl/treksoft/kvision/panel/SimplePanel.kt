@@ -35,7 +35,7 @@ import pl.treksoft.kvision.core.Widget
  */
 open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> Unit)? = null) : Widget(classes),
     Container {
-    internal val children: MutableList<Component> = mutableListOf()
+    protected val children: MutableList<Component> = mutableListOf()
 
     init {
         @Suppress("LeakingThis")
@@ -94,7 +94,7 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
     }
 
     override fun getChildren(): List<Component> {
-        return ArrayList(children)
+        return children
     }
 
     override fun dispose() {

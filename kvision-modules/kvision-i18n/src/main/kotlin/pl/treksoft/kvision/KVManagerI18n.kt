@@ -26,13 +26,11 @@ internal val kVManagerI18nInit = KVManagerI18n.init()
 /**
  * Internal singleton object which initializes and configures KVision i18n module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerI18n {
-    fun init() {}
 
-    private val jed = try {
+    init {
         require("jed")
-    } catch (e: Throwable) {
     }
 
+    internal fun init() {}
 }

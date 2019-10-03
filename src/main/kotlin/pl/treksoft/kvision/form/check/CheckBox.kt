@@ -27,7 +27,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.BoolFormControl
 import pl.treksoft.kvision.form.FieldLabel
-import pl.treksoft.kvision.form.HelpBlock
+import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.SnOn
 
@@ -35,12 +35,11 @@ import pl.treksoft.kvision.utils.SnOn
  * Checkbox style options.
  */
 enum class CheckBoxStyle(internal val className: String) {
-    DEFAULT("checkbox-default"),
-    PRIMARY("checkbox-primary"),
-    SUCCESS("checkbox-success"),
-    INFO("checkbox-info"),
-    WARNING("checkbox-warning"),
-    DANGER("checkbox-danger"),
+    PRIMARY("abc-checkbox-primary"),
+    SUCCESS("abc-checkbox-success"),
+    INFO("abc-checkbox-info"),
+    WARNING("abc-checkbox-warning"),
+    DANGER("abc-checkbox-danger"),
 }
 
 /**
@@ -55,7 +54,7 @@ enum class CheckBoxStyle(internal val className: String) {
 open class CheckBox(
     value: Boolean = false, name: String? = null, label: String? = null,
     rich: Boolean = false
-) : SimplePanel(setOf("checkbox")), BoolFormControl {
+) : SimplePanel(setOf("form-check", "abc-checkbox")), BoolFormControl {
 
     /**
      * The selection state of the checkbox.
@@ -106,22 +105,19 @@ open class CheckBox(
     var inline by refreshOnUpdate(false)
 
     private val idc = "kv_form_checkbox_$counter"
-    final override val input: CheckBoxInput = CheckBoxInput(
-        value,
-        setOf("styled")
-    ).apply {
+    final override val input: CheckBoxInput = CheckBoxInput(value, classes = setOf("form-check-input")).apply {
         this.id = idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf())
-    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf("form-check-label"))
+    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addInternal(input)
         this.addInternal(flabel)
-        this.addInternal(validationInfo)
+        this.addInternal(invalidFeedback)
         counter++
     }
 
@@ -147,13 +143,13 @@ open class CheckBox(
             cl.add(it.className to true)
         }
         if (circled) {
-            cl.add("checkbox-circle" to true)
+            cl.add("abc-checkbox-circle" to true)
         }
         if (inline) {
-            cl.add("checkbox-inline" to true)
+            cl.add("form-check-inline" to true)
         }
         if (validatorError != null) {
-            cl.add("has-error" to true)
+            cl.add("text-danger" to true)
         }
         return cl
     }

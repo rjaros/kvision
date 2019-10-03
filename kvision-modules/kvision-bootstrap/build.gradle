@@ -3,12 +3,9 @@ apply from: "../shared.gradle"
 kotlinFrontend {
 
     npm {
-        dependency("popper.js", "1.15.0")
         dependency("bootstrap", "4.3.1")
-        dependency("font-awesome", "4.7.0")
-        dependency("font-awesome-webpack-4", "1.0.0")
         dependency("awesome-bootstrap-checkbox", "1.0.1")
-        dependency("bootstrap-vertical-tabs", "1.2.2")
+        dependency("element-resize-event", "3.0.3")
     }
 
 }

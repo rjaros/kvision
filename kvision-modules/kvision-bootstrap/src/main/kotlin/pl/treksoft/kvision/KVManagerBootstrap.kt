@@ -21,38 +21,43 @@
  */
 package pl.treksoft.kvision
 
-import org.w3c.dom.asList
-import kotlin.browser.document
+import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.utils.isIE11
+
+internal val kVManagerBootstrapInit = KVManagerBootstrap.init()
 
 /**
  * Internal singleton object which initializes and configures KVision Bootstrap module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerBootstrap {
-    private val links = document.getElementsByTagName("link")
-    private val bootstrapWebpack = try {
-        val bootswatch = links.asList().find { it.getAttribute("href")?.contains("bootstrap.min.css") ?: false }
-        require("bootstrap")
-        if (bootswatch != null) {
-            if (bootswatch.getAttribute("href")?.contains("/paper/") == true) {
-                require("./css/paper.css")
-            }
-        } else {
-            require("bootstrap/dist/css/bootstrap.min.css")
-        }
-        require("./css/style.css")
-    } catch (e: Throwable) {
-    }
-    private val fontAwesomeWebpack = try {
-        require("font-awesome-webpack-4")
-    } catch (e: Throwable) {
-    }
-    private val awesomeBootstrapCheckbox = try {
+    init {
+        require("bootstrap/dist/js/bootstrap.bundle.min.js")
         require("awesome-bootstrap-checkbox")
-    } catch (e: Throwable) {
-    }
-    private val bootstrapVerticalTabsCss = try {
         require("bootstrap-vertical-tabs")
-    } catch (e: Throwable) {
+        require("./css/kvbootstrap.css")
     }
+
+    private val elementResizeEvent = require("element-resize-event")
+
+    @Suppress("UnsafeCastFromDynamic")
+    internal fun setResizeEvent(component: Component, callback: () -> Unit) {
+        if (!isIE11()) {
+            component.getElement()?.let {
+                elementResizeEvent(it, callback)
+            }
+        }
+    }
+
+    @Suppress("UnsafeCastFromDynamic")
+    internal fun clearResizeEvent(component: Component) {
+        if (!isIE11()) {
+            if (component.getElement()?.asDynamic()?.__resizeTrigger__?.contentDocument != null) {
+                component.getElement()?.let {
+                    elementResizeEvent.unbind(it)
+                }
+            }
+        }
+    }
+
+    internal fun init() {}
 }
