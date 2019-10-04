@@ -24,19 +24,20 @@ package pl.treksoft.kvision.form.time
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
-import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
-import pl.treksoft.kvision.form.InputSize
-import pl.treksoft.kvision.form.ValidationStatus
+import pl.treksoft.kvision.form.text.TextInput
+import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.html.Icon
+import pl.treksoft.kvision.html.Icon.Companion.icon
+import pl.treksoft.kvision.html.Span.Companion.span
 import pl.treksoft.kvision.i18n.I18n
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.toDateF
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.obj
 import kotlin.js.Date
 
-internal const val DEFAULT_MINUTE_STEP = 5
-internal const val MAX_VIEW = 4
+internal const val DEFAULT_STEPPING = 5
 
 /**
  * Basic date/time chooser component.
@@ -50,22 +51,32 @@ internal const val MAX_VIEW = 4
 open class DateTimeInput(
     value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
     classes: Set<String> = setOf()
-) : Widget(classes + "form-control"), FormInput {
+) : SimplePanel(classes + "input-group" + "date"), FormInput {
 
     private var initialized = false
 
-    init {
-        this.setInternalEventListener<DateTimeInput> {
-            change = {
-                self.changeValue()
-            }
+    internal val input = TextInput(value = value?.toStringF(format))
+    private lateinit var icon: Icon
+    private val addon = Div(classes = setOf("input-group-append")) {
+        span(classes = setOf("input-group-text", "datepickerbutton")) {
+            icon = icon(getIconClass(format))
         }
+    }
+
+    init {
+        addInternal(input)
+        addInternal(addon)
     }
 
     /**
      * Date/time input value.
      */
-    var value by refreshOnUpdate(value) { refreshState() }
+    var value
+        get() = input.value?.toDateF(format)
+        set(value) {
+            input.value = value?.toStringF(format)
+            refreshState()
+        }
     /**
      * Date/time format.
      */
@@ -73,35 +84,60 @@ open class DateTimeInput(
     /**
      * The placeholder for the date/time input.
      */
-    var placeholder: String? by refreshOnUpdate()
+    var placeholder
+        get() = input.placeholder
+        set(value) {
+            input.placeholder = value
+        }
     /**
      * The name attribute of the generated HTML input element.
      */
-    override var name: String? by refreshOnUpdate()
+    override var name
+        get() = input.name
+        set(value) {
+            input.name = value
+        }
     /**
      * Determines if the field is disabled.
      */
-    override var disabled by refreshOnUpdate(false) { refresh(); checkDisabled() }
+    override var disabled
+        get() = input.disabled
+        set(value) {
+            input.disabled = value
+        }
     /**
      * Determines if the text input is automatically focused.
      */
-    var autofocus: Boolean? by refreshOnUpdate()
+    var autofocus
+        get() = input.autofocus
+        set(value) {
+            input.autofocus = value
+        }
     /**
      * Determines if the date/time input is read-only.
      */
-    var readonly: Boolean? by refreshOnUpdate()
+    var readonly
+        get() = input.readonly
+        set(value) {
+            input.readonly = value
+        }
     /**
      * The size of the input.
      */
-    override var size: InputSize? by refreshOnUpdate()
+    override var size
+        get() = input.size
+        set(value) {
+            input.size = value
+        }
     /**
      * The validation status of the input.
      */
-    override var validationStatus: ValidationStatus? by refreshOnUpdate()
-    /**
-     * Day of the week start. 0 (Sunday) to 6 (Saturday).
-     */
-    var weekStart by refreshOnUpdate(0) { refreshDatePicker() }
+    override var validationStatus
+        get() = input.validationStatus
+        set(value) {
+            input.validationStatus = value
+            refresh()
+        }
     /**
      * Days of the week that should be disabled. Multiple values should be comma separated.
      */
@@ -109,26 +145,54 @@ open class DateTimeInput(
     /**
      * Determines if *Clear* button should be visible.
      */
-    var clearBtn by refreshOnUpdate(true) { refreshDatePicker() }
+    var showClear by refreshOnUpdate(true) { refreshDatePicker() }
+    /**
+     * Determines if *Close* button should be visible.
+     */
+    var showClose by refreshOnUpdate(true) { refreshDatePicker() }
     /**
      * Determines if *Today* button should be visible.
      */
-    var todayBtn by refreshOnUpdate(false) { refreshDatePicker() }
-    /**
-     * Determines if the current day should be highlighted.
-     */
-    var todayHighlight by refreshOnUpdate(false) { refreshDatePicker() }
+    var showTodayButton by refreshOnUpdate(true) { refreshDatePicker() }
     /**
      * The increment used to build the hour view.
      */
-    var minuteStep by refreshOnUpdate(DEFAULT_MINUTE_STEP) { refreshDatePicker() }
+    var stepping by refreshOnUpdate(DEFAULT_STEPPING) { refreshDatePicker() }
     /**
-     * Determines if meridian views are visible in day and hour views.
+     * Prevents date selection before this date.
      */
-    var showMeridian by refreshOnUpdate(false) { refreshDatePicker() }
+    var minDate: Date? by refreshOnUpdate { refreshDatePicker() }
+    /**
+     * Prevents date selection after this date.
+     */
+    var maxDate: Date? by refreshOnUpdate { refreshDatePicker() }
+    /**
+     * Shows date and time pickers side by side.
+     */
+    var sideBySide by refreshOnUpdate(false) { refreshDatePicker() }
+    /**
+     * An array of enabled dates.
+     */
+    var enabledDates by refreshOnUpdate(arrayOf<Date>()) { refreshDatePicker() }
+    /**
+     * An array of disabled dates.
+     */
+    var disabledDates by refreshOnUpdate(arrayOf<Date>()) { refreshDatePicker() }
+    /**
+     * Allow date picker for readonly component.
+     */
+    var ignoreReadonly by refreshOnUpdate(false) { refreshDatePicker() }
 
-    override fun render(): VNode {
-        return render("input")
+    private fun refreshState() {
+        if (initialized) getElementJQueryD().data("DateTimePicker").date(value)
+    }
+
+    private fun getIconClass(format: String): String {
+        return if (format.contains("YYYY") || format.contains("MM") || format.contains("DD")) {
+            "fas fa-calendar-alt"
+        } else {
+            "fas fa-clock"
+        }
     }
 
     override fun getSnClass(): List<StringBoolPair> {
@@ -136,146 +200,137 @@ open class DateTimeInput(
         validationStatus?.let {
             cl.add(it.className to true)
         }
-        size?.let {
-            cl.add(it.className to true)
-        }
         return cl
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("type" to "text")
-        placeholder?.let {
-            sn.add("placeholder" to translate(it))
-        }
-        name?.let {
-            sn.add("name" to it)
-        }
-        autofocus?.let {
-            if (it) {
-                sn.add("autofocus" to "autofocus")
-            }
-        }
-        readonly?.let {
-            if (it) {
-                sn.add("readonly" to "readonly")
-            }
-        }
-        if (disabled) {
-            sn.add("disabled" to "disabled")
-            value?.let {
-                sn.add("value" to it.toStringF(format))
-            }
-        }
-        return sn
-    }
-
-    private fun checkDisabled() {
-        if (disabled) {
-            if (initialized) {
-                getElementJQueryD()?.datetimepicker("remove")
-                initialized = false
-            }
-        } else {
-            if (!initialized) {
-                this.initDateTimePicker()
-                this.initEventHandlers()
-                this.refreshState()
-                initialized = true
-            }
-        }
-    }
-
-    @Suppress("UnsafeCastFromDynamic")
-    protected open fun refreshState() {
-        value?.let {
-            getElementJQueryD()?.datetimepicker("update", it)
-        } ?: run {
-            getElementJQueryD()?.`val`(null)
-            getElementJQueryD()?.datetimepicker("update", null)
-        }
-    }
-
     protected open fun refreshDatePicker() {
-        getElementJQueryD()?.`val`(null)
-        getElementJQueryD()?.datetimepicker("remove")
-        initDateTimePicker()
-        refreshState()
-    }
-
-    protected open fun changeValue() {
-        val v = getElementJQuery()?.`val`() as String?
-        if (v != null && v.isNotEmpty()) {
-            this.value = v.toDateF(format)
-        } else {
-            this.value = null
+        if (initialized) {
+            getElementJQueryD()?.data("DateTimePicker").destroy()
         }
+        initDateTimePicker()
+        icon.icon = getIconClass(format)
     }
 
     /**
      * Open date/time chooser popup.
      */
     open fun showPopup() {
-        if (initialized) getElementJQueryD()?.datetimepicker("show")
+        if (initialized) getElementJQueryD()?.data("DateTimePicker").show()
     }
 
     /**
      * Hides date/time chooser popup.
      */
     open fun hidePopup() {
-        if (initialized) getElementJQueryD()?.datetimepicker("hide")
+        if (initialized) getElementJQueryD()?.data("DateTimePicker").hide()
+    }
+
+    /**
+     * Toggles date/time chooser popup.
+     */
+    open fun togglePopup() {
+        if (initialized) getElementJQueryD()?.data("DateTimePicker").toggle()
     }
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
-        if (!this.disabled) {
-            this.initDateTimePicker()
-            this.initEventHandlers()
-            this.refreshState()
-            initialized = true
-        }
+        this.initDateTimePicker()
+        this.initEventHandlers()
+        initialized = true
     }
 
     override fun afterDestroy() {
         if (initialized) {
-            getElementJQueryD()?.datetimepicker("remove")
+            getElementJQueryD()?.data("DateTimePicker").destroy()
             initialized = false
         }
     }
 
     private fun initDateTimePicker() {
-        val datePickerFormat = format.toDatePickerFormat()
-        val minView = if (format.contains("HH") || format.contains("mm")) 0 else 2
-        val maxView = if (format.contains("YY") || format.contains("M") || format.contains("D")) MAX_VIEW else 1
-        val startView = if (maxView < 2) maxView else 2
         val language = I18n.language
+        val self = this
         getElementJQueryD()?.datetimepicker(obj {
-            this.format = datePickerFormat
-            this.startView = startView
-            this.minView = minView
-            this.maxView = maxView
-            this.minuteStep = minuteStep
-            this.todayHighlight = todayHighlight
-            this.clearBtn = clearBtn
-            this.todayBtn = todayBtn
-            this.weekStart = weekStart
-            this.showMeridian = showMeridian
-            this.daysOfWeekDisabled = daysOfWeekDisabled
-            this.autoclose = true
-            this.language = language
+            this.useCurrent = false
+            this.format = format
+            this.stepping = stepping
+            this.showClear = showClear
+            this.showClose = showClose
+            this.showTodayButton = showTodayButton
+            this.sideBySide = sideBySide
+            this.ignoreReadonly = ignoreReadonly
+            if (minDate != null) this.minDate = minDate
+            if (maxDate != null) this.maxDate = maxDate
+            if (daysOfWeekDisabled.isNotEmpty()) this.daysOfWeekDisabled = daysOfWeekDisabled
+            if (enabledDates.isNotEmpty()) this.enabledDates = enabledDates
+            if (disabledDates.isNotEmpty()) this.disabledDates = disabledDates
+            this.locale = language
+            this.icons = obj {
+                this.time = "far fa-clock"
+                this.date = "far fa-calendar"
+                this.up = "fas fa-arrow-up"
+                this.down = "fas fa-arrow-down"
+                this.previous = "fas fa-chevron-left"
+                this.next = "fas fa-chevron-right"
+                this.today = "fas fa-calendar-check"
+                this.clear = "far fa-trash-alt"
+                this.close = "far fa-times-circle"
+            }
+            this.tooltips = obj {
+                this.today = ""
+                this.clear = ""
+                this.close = ""
+                this.selectMonth = ""
+                this.prevMonth = ""
+                this.nextMonth = ""
+                this.selectYear = ""
+                this.prevYear = ""
+                this.nextYear = ""
+                this.selectDecade = ""
+                this.prevDecade = ""
+                this.nextDecade = ""
+                this.prevCentury = ""
+                this.nextCentury = ""
+                this.pickHour = ""
+                this.incrementHour = ""
+                this.decrementHour = ""
+                this.pickMinute = ""
+                this.incrementMinute = ""
+                this.decrementMinute = ""
+                this.pickSecond = ""
+                this.incrementSecond = ""
+                this.decrementSecond = ""
+                this.togglePeriod = ""
+                this.selectTime = ""
+            }
+            this.keyBinds = obj {
+                enter = {
+                    self.togglePopup()
+                }
+            }
         })
     }
 
     private fun initEventHandlers() {
-        this.getElementJQuery()?.on("changeDate") { e, _ ->
+        this.getElementJQuery()?.on("dp.change") { e, _ ->
+            val moment = e.asDynamic().date
+            if (moment) {
+                this.value = moment.toDate()
+            } else {
+                this.value = null
+            }
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("change", obj { detail = e })
         }
-        this.getElementJQuery()?.on("show") { e, _ ->
+        this.getElementJQuery()?.on("dp.error") { e, _ ->
+            this.value = null
+            @Suppress("UnsafeCastFromDynamic")
+            this.dispatchEvent("change", obj { detail = e })
+        }
+        this.getElementJQuery()?.on("dp.show") { e, _ ->
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("showBsDateTime", obj { detail = e })
         }
-        this.getElementJQuery()?.on("hide") { e, _ ->
+        this.getElementJQuery()?.on("dp.hide") { e, _ ->
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("hideBsDateTime", obj { detail = e })
         }
@@ -293,24 +348,17 @@ open class DateTimeInput(
      * Makes the input element focused.
      */
     override fun focus() {
-        getElementJQuery()?.focus()
+        input.focus()
     }
 
     /**
      * Makes the input element blur.
      */
     override fun blur() {
-        getElementJQuery()?.blur()
+        input.blur()
     }
 
     companion object {
-
-        private fun String.toDatePickerFormat(): String {
-            return this.replace("YY", "yy").replace("m", "i").replace("MMMM", "{----}").replace("MMM", "{---}")
-                .replace("M", "m").replace("{----}", "MM").replace("{---}", "M").replace("H", "{-}")
-                .replace("h", "H").replace("{-}", "h").replace("D", "d").replace("a", "p").replace("A", "P")
-        }
-
         /**
          * DSL builder extension function.
          *

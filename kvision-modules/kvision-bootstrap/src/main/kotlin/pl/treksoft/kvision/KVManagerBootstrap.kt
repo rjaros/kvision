@@ -33,7 +33,6 @@ internal object KVManagerBootstrap {
     init {
         require("bootstrap/dist/js/bootstrap.bundle.min.js")
         require("awesome-bootstrap-checkbox")
-        require("bootstrap-vertical-tabs")
         require("./css/kvbootstrap.css")
     }
 

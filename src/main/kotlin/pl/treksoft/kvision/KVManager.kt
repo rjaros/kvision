@@ -61,7 +61,7 @@ object KVManager {
         require("jquery-resizable-dom")
     }
 
-    internal val fecha = require("fecha")
+    internal val fecha = require("fecha").default
     private val sdPatch = Snabbdom.init(
         arrayOf(
             classModule, attributesModule, propsModule, styleModule,

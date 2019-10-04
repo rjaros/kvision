@@ -87,14 +87,6 @@ open class DateTime(
             input.readonly = value
         }
     /**
-     * Day of the week start. 0 (Sunday) to 6 (Saturday).
-     */
-    var weekStart
-        get() = input.weekStart
-        set(value) {
-            input.weekStart = value
-        }
-    /**
      * Days of the week that should be disabled. Multiple values should be comma separated.
      */
     var daysOfWeekDisabled
@@ -105,42 +97,82 @@ open class DateTime(
     /**
      * Determines if *Clear* button should be visible.
      */
-    var clearBtn
-        get() = input.clearBtn
+    var showClear
+        get() = input.showClear
         set(value) {
-            input.clearBtn = value
+            input.showClear = value
+        }
+    /**
+     * Determines if *Close* button should be visible.
+     */
+    var showClose
+        get() = input.showClose
+        set(value) {
+            input.showClose = value
         }
     /**
      * Determines if *Today* button should be visible.
      */
-    var todayBtn
-        get() = input.todayBtn
+    var showTodayButton
+        get() = input.showTodayButton
         set(value) {
-            input.todayBtn = value
-        }
-    /**
-     * Determines if the current day should be highlighted.
-     */
-    var todayHighlight
-        get() = input.todayHighlight
-        set(value) {
-            input.todayHighlight = value
+            input.showTodayButton = value
         }
     /**
      * The increment used to build the hour view.
      */
-    var minuteStep
-        get() = input.minuteStep
+    var stepping
+        get() = input.stepping
         set(value) {
-            input.minuteStep = value
+            input.stepping = value
         }
     /**
-     * Determines if meridian views are visible in day and hour views.
+     * Prevents date selection before this date.
      */
-    var showMeridian
-        get() = input.showMeridian
+    var minDate
+        get() = input.minDate
         set(value) {
-            input.showMeridian = value
+            input.minDate = value
+        }
+    /**
+     * Prevents date selection after this date.
+     */
+    var maxDate
+        get() = input.maxDate
+        set(value) {
+            input.maxDate = value
+        }
+    /**
+     * Shows date and time pickers side by side.
+     */
+    var sideBySide
+        get() = input.sideBySide
+        set(value) {
+            input.sideBySide = value
+        }
+    /**
+     * An array of enabled dates.
+     */
+    var enabledDates
+        get() = input.enabledDates
+        set(value) {
+            input.enabledDates = value
+        }
+    /**
+     * An array of disabled dates.
+     */
+    var disabledDates
+        get() = input.disabledDates
+        set(value) {
+            input.disabledDates = value
+        }
+    /**
+     * Allow date picker for readonly component..
+     */
+    var ignoreReadonly
+        get() = input.ignoreReadonly
+        set(value) {
+            input.ignoreReadonly = value
         }
     /**
      * The label text bound to the input element.
@@ -212,6 +244,13 @@ open class DateTime(
      */
     open fun hidePopup() {
         input.hidePopup()
+    }
+
+    /**
+     * Toggle date/time chooser popup.
+     */
+    open fun togglePopup() {
+        input.togglePopup()
     }
 
     override fun getValueAsString(): String? {

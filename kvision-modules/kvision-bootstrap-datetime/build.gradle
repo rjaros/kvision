@@ -7,7 +7,7 @@ dependencies {
 kotlinFrontend {
 
     npm {
-        dependency("bootstrap-datetime-picker", "2.4.4")
+        dependency("pc-bootstrap4-datetimepicker", "4.17.50")
     }
 
 }

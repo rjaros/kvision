@@ -1,3 +1,7 @@
+.input-group.date.is-invalid~.invalid-feedback {
+    display: block;
+}
+
 /*
 
 .bootstrap-touchspin .input-group-btn-vertical> .input-sm {
