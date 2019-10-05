@@ -28,9 +28,6 @@ import kotlinx.serialization.serializer
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.form.check.CheckBox
-import pl.treksoft.kvision.form.check.Radio
-import pl.treksoft.kvision.form.check.RadioGroup
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.KFile
@@ -215,31 +212,10 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        if (type == FormType.HORIZONTAL) {
-            if (control is CheckBox || control is Radio) {
-                control.addCssClass("form-group")
-                control.addSurroundingCssClass("row")
-                control.addCssClass("offset-sm-2")
-                control.addCssClass("col-sm-10")
-            } else if (control is RadioGroup) {
-                control.addCssClass("row")
-                control.flabel.addCssClass("col-sm-2")
-                control.flabel.addCssClass("col-form-label")
-                control.container.addCssClass("col-sm-10")
-                control.invalidFeedback.addCssClass("offset-sm-2")
-                control.invalidFeedback.addCssClass("col-sm-10")
-            } else {
-                control.addCssClass("row")
-                control.flabel.addCssClass("col-sm-2")
-                control.flabel.addCssClass("col-form-label")
-                control.input.addCssClass("col-sm-10")
-                control.invalidFeedback.addCssClass("offset-sm-2")
-                control.invalidFeedback.addCssClass("col-sm-10")
-            }
-        } else {
-            if (control is CheckBox || control is Radio) {
-                control.addCssClass("form-group")
-            }
+        when (type) {
+            FormType.INLINE -> control.styleForInlineFormPanel()
+            FormType.HORIZONTAL -> control.styleForHorizontalFormPanel()
+            else -> control.styleForVerticalFormPanel()
         }
         super.add(control)
         form.addInternal(key, control, required, requiredMessage, validatorMessage, validator)

@@ -190,6 +190,21 @@ open class Radio(
         input.blur()
     }
 
+    override fun styleForHorizontalFormPanel() {
+        addCssClass("form-group")
+        addSurroundingCssClass("row")
+        addCssClass("offset-sm-2")
+        addCssClass("col-sm-10")
+    }
+
+    override fun styleForInlineFormPanel() {
+        addCssClass("form-group")
+    }
+
+    override fun styleForVerticalFormPanel() {
+        addCssClass("form-group")
+    }
+
     companion object {
         internal var counter = 0
 

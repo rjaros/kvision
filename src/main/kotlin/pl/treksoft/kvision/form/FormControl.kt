@@ -176,6 +176,30 @@ interface FormControl : Component {
      * Makes the input element blur.
      */
     fun blur()
+
+    /**
+     * Style form control element for vertical form panel.
+     */
+    fun styleForVerticalFormPanel() {
+    }
+
+    /**
+     * Style form control element for horizontal form panel.
+     */
+    fun styleForHorizontalFormPanel() {
+        addCssClass("row")
+        flabel.addCssClass("col-sm-2")
+        flabel.addCssClass("col-form-label")
+        input.addCssClass("col-sm-10")
+        invalidFeedback.addCssClass("offset-sm-2")
+        invalidFeedback.addCssClass("col-sm-10")
+    }
+
+    /**
+     * Style form control element for inline form panel.
+     */
+    fun styleForInlineFormPanel() {
+    }
 }
 
 /**

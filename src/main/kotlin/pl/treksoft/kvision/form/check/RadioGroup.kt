@@ -107,7 +107,7 @@ open class RadioGroup(
         get() = super.validatorError
         set(value) {
             super.validatorError = value
-            if (value!=null) {
+            if (value != null) {
                 container.addCssClass("is-invalid")
             } else {
                 container.removeCssClass("is-invalid")
@@ -214,6 +214,15 @@ open class RadioGroup(
 
     override fun blur() {
         container.getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
+    }
+
+    override fun styleForHorizontalFormPanel() {
+        addCssClass("row")
+        flabel.addCssClass("col-sm-2")
+        flabel.addCssClass("col-form-label")
+        container.addCssClass("col-sm-10")
+        invalidFeedback.addCssClass("offset-sm-2")
+        invalidFeedback.addCssClass("col-sm-10")
     }
 
     companion object {
