@@ -33,7 +33,6 @@ internal object KVManagerBootstrap {
     init {
         require("bootstrap/dist/js/bootstrap.bundle.min.js")
         require("awesome-bootstrap-checkbox")
-        require("./css/kvbootstrap.css")
     }
 
     private val elementResizeEvent = require("element-resize-event")

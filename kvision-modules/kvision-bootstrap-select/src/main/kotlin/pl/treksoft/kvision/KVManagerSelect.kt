@@ -36,6 +36,7 @@ internal object KVManagerSelect {
         require("./js/locales/bootstrap-select/bootstrap-select-i18n.min.js")
         require("ajax-bootstrap-select/dist/css/ajax-bootstrap-select.min.css")
         require("ajax-bootstrap-select/dist/js/ajax-bootstrap-select.min.js")
+        require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.cs-CZ.min.js")
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.de-DE.min.js")
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.es-ES.min.js")
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.fr-FR.min.js")
@@ -46,7 +47,11 @@ internal object KVManagerSelect {
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.pl-PL.min.js")
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.pt-BR.min.js")
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.ru-RU.min.js")
+        require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.sr-SP.min.js")
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.tr-TR.min.js")
+        js("$.fn.selectpicker.Constructor.BootstrapVersion = '4';")
+        js("$.fn.selectpicker.Constructor.DEFAULTS.styleBase = 'form-control';");
+        js("$.fn.selectpicker.Constructor.DEFAULTS.style = '';")
     }
 
     internal fun init() {}

@@ -7,8 +7,8 @@ dependencies {
 kotlinFrontend {
 
     npm {
-        dependency("bootstrap-select", "1.12.4")
-        dependency("ajax-bootstrap-select", "1.4.3")
+        dependency("bootstrap-select", "1.13.11")
+        dependency("ajax-bootstrap-select", "1.4.5")
     }
 
 }

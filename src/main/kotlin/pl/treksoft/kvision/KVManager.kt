@@ -46,11 +46,11 @@ external fun require(name: String): dynamic
 object KVManager {
     init {
         try {
-            require("kvision-bootstrap").pl.treksoft.kvision.KVManagerBootstrap
+            require("kvision-bootstrap-css").pl.treksoft.kvision.KVManagerBootstrapCss
         } catch (e: Throwable) {
         }
         try {
-            require("kvision-bootstrap-css").pl.treksoft.kvision.KVManagerBootstrapCss
+            require("kvision-bootstrap").pl.treksoft.kvision.KVManagerBootstrap
         } catch (e: Throwable) {
         }
         try {
