@@ -30,6 +30,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.utils.obj
 
 /**
@@ -64,36 +65,16 @@ internal const val DEFAULT_STEP = 1.0
  * @param decimals number of decimal digits (default 0)
  * @param buttonsType spinner buttons type
  * @param forceType spinner force rounding type
+ * @param buttonStyle the style of the up/down buttons
  * @param classes a set of CSS class names
  */
 @Suppress("TooManyFunctions")
 open class SpinnerInput(
     value: Number? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
-    decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
-    forceType: ForceType = ForceType.NONE,
+    decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
+    forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
     classes: Set<String> = setOf()
 ) : Widget(classes + "form-control"), FormInput {
-
-    init {
-        this.addSurroundingCssClass("input-group")
-        if (buttonsType == ButtonsType.NONE) {
-            this.addSurroundingCssClass("kv-spinner-btn-none")
-        } else {
-            this.removeSurroundingCssClass("kv-spinner-btn-none")
-        }
-        if (buttonsType == ButtonsType.VERTICAL) {
-            this.addSurroundingCssClass("kv-spinner-btn-vertical")
-        } else {
-            this.removeSurroundingCssClass("kv-spinner-btn-vertical")
-        }
-        this.surroundingSpan = true
-        this.refreshSpinner()
-        this.setInternalEventListener<SpinnerInput> {
-            change = {
-                self.changeValue()
-            }
-        }
-    }
 
     /**
      * Spinner value.
@@ -123,13 +104,13 @@ open class SpinnerInput(
      */
     var decimals by refreshOnUpdate(decimals) { refreshSpinner() }
     /**
-     * Spinner buttons type.
-     */
-    var buttonsType by refreshOnUpdate(buttonsType) { refreshSpinner() }
-    /**
      * Spinner force rounding type.
      */
     var forceType by refreshOnUpdate(forceType) { refreshSpinner() }
+    /**
+     * The style of the up/down buttons.
+     */
+    var buttonStyle by refreshOnUpdate(buttonStyle) { refreshSpinner() }
     /**
      * The placeholder for the spinner input.
      */
@@ -160,6 +141,22 @@ open class SpinnerInput(
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
     private var siblings: JQuery? = null
+
+    init {
+        this.addSurroundingCssClass("input-group")
+        this.addSurroundingCssClass("kv-spinner")
+        when (buttonsType) {
+            ButtonsType.NONE -> this.addSurroundingCssClass("kv-spinner-btn-none")
+            ButtonsType.VERTICAL -> this.addSurroundingCssClass("kv-spinner-btn-vertical")
+            ButtonsType.HORIZONTAL -> this.addSurroundingCssClass("kv-spinner-btn-horizontal")
+        }
+        this.surroundingSpan = true
+        this.setInternalEventListener<SpinnerInput> {
+            change = {
+                self.changeValue()
+            }
+        }
+    }
 
     override fun render(): VNode {
         return render("input")
@@ -281,6 +278,7 @@ open class SpinnerInput(
 
     private fun getSettingsObj(): dynamic {
         val verticalbuttons = buttonsType == ButtonsType.VERTICAL || buttonsType == ButtonsType.NONE
+        val style = buttonStyle
         return obj {
             this.min = min
             this.max = max
@@ -288,12 +286,17 @@ open class SpinnerInput(
             this.decimals = decimals
             this.verticalbuttons = verticalbuttons
             this.forcestepdivisibility = forceType.value
+            if (style != null) {
+                this.buttonup_class = "btn ${style.className}"
+                this.buttondown_class = "btn ${style.className}"
+            } else {
+                this.buttonup_class = "btn btn-secondary"
+                this.buttondown_class = "btn btn-secondary"
+            }
             if (verticalbuttons) {
                 this.verticalup = "<i class=\"fas fa-caret-up\"></i>"
                 this.verticaldown = "<i class=\"fas fa-caret-down\"></i>"
             }
-            this.buttondown_class = "btn btn-default"
-            this.buttonup_class = "btn btn-default"
         }
     }
 
@@ -321,14 +324,15 @@ open class SpinnerInput(
         fun Container.spinnerInput(
             value: Number? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
             decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
-            forceType: ForceType = ForceType.NONE, classes: Set<String> = setOf(),
+            forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null, classes: Set<String> = setOf(),
             init: (SpinnerInput.() -> Unit)? = null
         ): SpinnerInput {
-            val spinnerInput = SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, classes).apply {
-                init?.invoke(
-                    this
-                )
-            }
+            val spinnerInput =
+                SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, buttonStyle, classes).apply {
+                    init?.invoke(
+                        this
+                    )
+                }
             this.add(spinnerInput)
             return spinnerInput
         }

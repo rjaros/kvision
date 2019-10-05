@@ -97,25 +97,6 @@ trix-toolbar .trix-button-group {
     min-width: 200px;
 }
 
-/*.bootstrap-select.form-control {
-    border: 1px solid #ced4da !important;
-}
-
-.bootstrap-select.form-control:focus {
-    border-color: #80bdff !important;
-}*/
-
-/*
-
-.bootstrap-touchspin .input-group-btn-vertical> .input-sm {
-  padding: 7px 10px;
-  height: 6px;
-}
-
-.bootstrap-touchspin .input-group-btn-vertical> .input-lg {
-  height: 24px;
-}
-
 .kv-spinner-btn-none .input-group-btn-vertical {
   display: none;
 }
@@ -124,9 +105,19 @@ trix-toolbar .trix-button-group {
   border-radius: 4px !important;
 }
 
-.kv-spinner-btn-vertical .form-control {
-  border-radius: 4px 0px 0px 4px !important;
-}*/
+.kv-spinner > span {
+    display: inline-block;
+    width: 100%;
+}
+
+.input-group.kv-spinner {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.kv-spinner.is-invalid~.invalid-feedback {
+    display: block;
+}
 
 .kv-radiogroup-inline label.control-label {
   vertical-align: top;

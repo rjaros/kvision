@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.NumberFormControl
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.SnOn
 
@@ -47,8 +48,8 @@ import pl.treksoft.kvision.utils.SnOn
  */
 open class Spinner(
     value: Number? = null, name: String? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
-    decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
-    forceType: ForceType = ForceType.NONE, label: String? = null,
+    decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
+    forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null, label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(setOf("form-group")), NumberFormControl {
 
@@ -104,20 +105,20 @@ open class Spinner(
             input.decimals = value
         }
     /**
-     * Spinner buttons type.
-     */
-    var buttonsType
-        get() = input.buttonsType
-        set(value) {
-            input.buttonsType = value
-        }
-    /**
      * Spinner force rounding type.
      */
     var forceType
         get() = input.forceType
         set(value) {
             input.forceType = value
+        }
+    /**
+     * The style of the up/down buttons.
+     */
+    var buttonStyle
+        get() = input.buttonStyle
+        set(value) {
+            input.buttonStyle = value
         }
     /**
      * The placeholder for the spinner input.
@@ -160,12 +161,24 @@ open class Spinner(
             flabel.rich = value
         }
 
-    protected val idc = "kv_form_spinner_$counter"
-    final override val input: SpinnerInput = SpinnerInput(value, min, max, step, decimals, buttonsType, forceType)
-        .apply {
-            this.id = idc
-            this.name = name
+    override var validatorError: String?
+        get() = super.validatorError
+        set(value) {
+            super.validatorError = value
+            if (value != null) {
+                input.addSurroundingCssClass("is-invalid")
+            } else {
+                input.removeSurroundingCssClass("is-invalid")
+            }
         }
+
+    protected val idc = "kv_form_spinner_$counter"
+    final override val input: SpinnerInput =
+        SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, buttonStyle)
+            .apply {
+                this.id = idc
+                this.name = name
+            }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
@@ -230,6 +243,15 @@ open class Spinner(
         input.blur()
     }
 
+    override fun styleForHorizontalFormPanel() {
+        addCssClass("row")
+        flabel.addCssClass("col-sm-2")
+        flabel.addCssClass("col-form-label")
+        input.addSurroundingCssClass("col-sm-10")
+        invalidFeedback.addCssClass("offset-sm-2")
+        invalidFeedback.addCssClass("col-sm-10")
+    }
+
     companion object {
         internal var counter = 0
 
@@ -247,15 +269,17 @@ open class Spinner(
             decimals: Int = 0,
             buttonsType: ButtonsType = ButtonsType.VERTICAL,
             forceType: ForceType = ForceType.NONE,
+            buttonStyle: ButtonStyle? = null,
             label: String? = null,
             rich: Boolean = false,
             init: (Spinner.() -> Unit)? = null
         ): Spinner {
-            val spinner = Spinner(value, name, min, max, step, decimals, buttonsType, forceType, label, rich).apply {
-                init?.invoke(
-                    this
-                )
-            }
+            val spinner =
+                Spinner(value, name, min, max, step, decimals, buttonsType, forceType, buttonStyle, label, rich).apply {
+                    init?.invoke(
+                        this
+                    )
+                }
             this.add(spinner)
             return spinner
         }
