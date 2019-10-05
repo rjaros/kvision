@@ -298,7 +298,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
         return obj {
             this.uploadUrl = uploadUrl
             this.uploadExtraData = uploadExtraData ?: undefined
-            this.theme = if (explorerTheme) "explorer-fa" else null
+            this.theme = if (explorerTheme) "explorer-fas" else "fas"
             this.required = required
             this.showCaption = showCaption
             this.showPreview = showPreview
@@ -315,6 +315,8 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
                 this.showUpload = showUpload
                 this.showRemove = showRemove
             }
+            this.autoOrientImage = false
+            this.purifyHtml = false
             this.language = language
         }
     }

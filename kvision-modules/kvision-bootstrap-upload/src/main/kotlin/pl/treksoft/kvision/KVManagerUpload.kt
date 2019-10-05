@@ -30,7 +30,7 @@ internal object KVManagerUpload {
 
     init {
         require("bootstrap-fileinput/css/fileinput.min.css")
-        require("bootstrap-fileinput/themes/explorer-fa/theme.min.css")
+        require("bootstrap-fileinput/themes/explorer-fas/theme.min.css")
         require("bootstrap-fileinput")
         require("./js/locales/bootstrap-fileinput/ar.js")
         require("./js/locales/bootstrap-fileinput/az.js")
@@ -51,7 +51,7 @@ internal object KVManagerUpload {
         require("./js/locales/bootstrap-fileinput/it.js")
         require("./js/locales/bootstrap-fileinput/ja.js")
         require("./js/locales/bootstrap-fileinput/ka.js")
-        require("./js/locales/bootstrap-fileinput/ko.js")
+        require("./js/locales/bootstrap-fileinput/kr.js")
         require("./js/locales/bootstrap-fileinput/kz.js")
         require("./js/locales/bootstrap-fileinput/lt.js")
         require("./js/locales/bootstrap-fileinput/nl.js")
@@ -68,7 +68,8 @@ internal object KVManagerUpload {
         require("./js/locales/bootstrap-fileinput/uk.js")
         require("./js/locales/bootstrap-fileinput/vi.js")
         require("./js/locales/bootstrap-fileinput/zh.js")
-        require("bootstrap-fileinput/themes/explorer-fa/theme.min.js")
+        require("bootstrap-fileinput/themes/explorer-fas/theme.min.js")
+        require("bootstrap-fileinput/themes/fas/theme.min.js")
     }
 
     internal fun init() {}

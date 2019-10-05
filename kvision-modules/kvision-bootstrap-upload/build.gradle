@@ -8,7 +8,7 @@ dependencies {
 kotlinFrontend {
 
     npm {
-        dependency("bootstrap-fileinput", "4.5.2")
+        dependency("bootstrap-fileinput", "5.0.6")
     }
 
 }
