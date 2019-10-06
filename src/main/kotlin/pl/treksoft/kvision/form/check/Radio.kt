@@ -35,7 +35,6 @@ import pl.treksoft.kvision.utils.SnOn
  * Radio style options.
  */
 enum class RadioStyle(internal val className: String) {
-    DEFAULT("abc-radio-default"),
     PRIMARY("abc-radio-primary"),
     SUCCESS("abc-radio-success"),
     INFO("abc-radio-info"),
