@@ -26,6 +26,7 @@ import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag.Companion.tag
 import pl.treksoft.kvision.navbar.Nav
 import pl.treksoft.kvision.navbar.Navbar
+import pl.treksoft.kvision.navbar.NavbarColor
 import pl.treksoft.kvision.navbar.NavbarType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
@@ -43,15 +44,15 @@ class NavbarSpec : DomSpec {
             val element = document.getElementById("test")
             val id = navbar.container.id
             assertEqualsHtml(
-                "<nav class=\"navbar navbar-fixed-top navbar-default\"><div class=\"container-fluid\"><div class=\"navbar-header\"><button class=\"navbar-toggle collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#$id\" aria-expanded=\"false\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button><a class=\"navbar-brand\" href=\"#\">TEST</a></div><div class=\"collapse navbar-collapse\" id=\"$id\"></div></div></nav>",
+                "<nav class=\"navbar fixed-top navbar-expand-lg navbar-light bg-light\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"></div></nav>",
                 element?.innerHTML,
                 "Should render correct navbar"
             )
-            navbar.inverted = true
+            navbar.nColor = NavbarColor.DARK
             assertEqualsHtml(
-                "<nav class=\"navbar navbar-fixed-top navbar-inverse\"><div class=\"container-fluid\"><div class=\"navbar-header\"><button class=\"navbar-toggle collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#$id\" aria-expanded=\"false\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button><a class=\"navbar-brand\" href=\"#\">TEST</a></div><div class=\"collapse navbar-collapse\" id=\"$id\"></div></div></nav>",
+                "<nav class=\"navbar fixed-top navbar-expand-lg bg-light navbar-dark\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"></div></nav>",
                 element?.innerHTML,
-                "Should render correct inverted navbar"
+                "Should render correct dark navbar"
             )
             navbar.add(Nav {
                 tag(TAG.LI) {
@@ -59,7 +60,7 @@ class NavbarSpec : DomSpec {
                 }
             })
             assertEqualsHtml(
-                "<nav class=\"navbar navbar-fixed-top navbar-inverse\"><div class=\"container-fluid\"><div class=\"navbar-header\"><button class=\"navbar-toggle collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#$id\" aria-expanded=\"false\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button><a class=\"navbar-brand\" href=\"#\">TEST</a></div><div class=\"collapse navbar-collapse\" id=\"$id\"><ul class=\"nav navbar-nav\"><li><a href=\"#!/test\">Test</a></li></ul></div></div></nav>",
+                "<nav class=\"navbar fixed-top navbar-expand-lg bg-light navbar-dark\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"><div class=\"navbar-nav\"><li><a href=\"#!/test\">Test</a></li></div></div></nav>",
                 element?.innerHTML,
                 "Should render correct navbar with nav link"
             )

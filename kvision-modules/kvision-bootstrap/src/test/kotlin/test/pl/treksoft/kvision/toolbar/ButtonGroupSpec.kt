@@ -24,7 +24,6 @@ package test.pl.treksoft.kvision.toolbar
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.toolbar.ButtonGroup
 import pl.treksoft.kvision.toolbar.ButtonGroupSize
-import pl.treksoft.kvision.toolbar.ButtonGroupStyle
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -44,11 +43,11 @@ class ButtonGroupSpec : DomSpec {
                 "Should render correct button group"
             )
             group.size = ButtonGroupSize.LARGE
-            group.style = ButtonGroupStyle.JUSTIFIED
+            group.vertical = true
             assertEqualsHtml(
-                "<div class=\"btn-group btn-group-lg btn-group-justified\" role=\"group\"></div>",
+                "<div class=\"btn-group-lg btn-group-vertical\" role=\"group\"></div>",
                 element?.innerHTML,
-                "Should render correct button group with large and justified buttons"
+                "Should render correct button group with large and vertical buttons"
             )
 
         }

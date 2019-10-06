@@ -70,8 +70,8 @@ interface DomSpec : TestSpec {
 
     fun assertEqualsHtml(expected: String?, actual: String?, message: String?) {
         if (expected != null && actual != null) {
-            val exp = jQuery(expected)
-            val act = jQuery(actual)
+            val exp = jQuery(expected.replace("position: ;","position: absolute;"))
+            val act = jQuery(actual.replace("position: ;","position: absolute;"))
             val result = exp[0]?.isEqualNode(act[0])
             if (result == true) {
                 assertTrue(result == true, message)

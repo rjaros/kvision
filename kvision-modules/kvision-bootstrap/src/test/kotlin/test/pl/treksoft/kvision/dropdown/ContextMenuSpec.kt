@@ -22,6 +22,7 @@
 package test.pl.treksoft.kvision.dropdown
 
 import pl.treksoft.kvision.dropdown.ContextMenu
+import pl.treksoft.kvision.dropdown.ContextMenu.Companion.setContextMenu
 import pl.treksoft.kvision.html.Link.Companion.link
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.obj
@@ -43,7 +44,7 @@ class ContextMenuSpec : DomSpec {
             m.show()
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ul class=\"dropdown-menu\" style=\"display: block;\"><li><a href=\"b\">a</a></li><li><a href=\"d\">c</a></li></ul>",
+                "<div class=\"dropdown-menu\" style=\"display: block;\"><a href=\"b\">a</a><a href=\"d\">c</a></div>",
                 element?.innerHTML,
                 "Should render correct context menu"
             )
@@ -66,7 +67,7 @@ class ContextMenuSpec : DomSpec {
             })
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ul class=\"dropdown-menu\" style=\"display: block; top: 50px; left: 40px;\"><li><a href=\"b\">a</a></li><li><a href=\"d\">c</a></li></ul>",
+                "<div class=\"dropdown-menu\" style=\"display: block; top: 50px; left: 40px;\"><a href=\"b\">a</a><a href=\"d\">c</a></div>",
                 element?.innerHTML,
                 "Should place context menu in the correct position"
             )

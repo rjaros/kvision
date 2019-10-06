@@ -37,7 +37,7 @@ class HeaderSpec : DomSpec {
             root.add(h)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<li class=\"dropdown-header\">Test</li>",
+                "<h6 class=\"dropdown-header\">Test</h6>",
                 element?.innerHTML,
                 "Should render correct drop down header"
             )

@@ -37,7 +37,7 @@ class SeparatorSpec : DomSpec {
             root.add(s)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<li class=\"divider\" role=\"separator\"></li>",
+                "<div class=\"dropdown-divider\"></div>",
                 element?.innerHTML,
                 "Should render correct drop down separator"
             )

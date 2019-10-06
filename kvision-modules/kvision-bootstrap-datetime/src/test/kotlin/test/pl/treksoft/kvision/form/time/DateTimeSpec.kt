@@ -46,13 +46,13 @@ class DateTimeSpec : DomSpec {
             val id = ti.input.id
             val datastr = data.toStringF(ti.format)
             assertEqualsHtml(
-                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"text\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" value=\"$datastr\"></div>",
+                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"input-group date\" id=\"$id\"><input class=\"form-control\" placeholder=\"place\" name=\"name\" disabled=\"\" type=\"text\" value=\"$datastr\"><div class=\"input-group-append\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div></div></div>",
                 element?.innerHTML,
                 "Should render correct date time input form control"
             )
             ti.validatorError = "Validation Error"
             assertEqualsHtml(
-                "<div class=\"form-group text-danger\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"text\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" value=\"$datastr\"><span class=\"help-block small\">Validation Error</span></div>",
+                "<div class=\"form-group text-danger\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"input-group date is-invalid\" id=\"$id\"><input class=\"form-control is-invalid\" placeholder=\"place\" name=\"name\" disabled=\"\" type=\"text\" value=\"$datastr\"><div class=\"input-group-append\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div></div><div class=\"invalid-feedback\">Validation Error</div></div>",
                 element?.innerHTML,
                 "Should render correct date time input form control with validation error"
             )

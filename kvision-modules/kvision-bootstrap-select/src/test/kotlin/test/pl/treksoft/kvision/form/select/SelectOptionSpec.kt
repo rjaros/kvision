@@ -41,9 +41,9 @@ class SelectOptionSpec : DomSpec {
                 element?.innerHTML,
                 "Should render correct select option"
             )
-            selectOption.icon = "fa-flag"
+            selectOption.icon = "fas fa-flag"
             assertEqualsHtml(
-                "<option value=\"testValue\" data-icon=\"fa fa-flag\">testLabel</option>",
+                "<option value=\"testValue\" data-icon=\"fas fa-flag\">testLabel</option>",
                 element?.innerHTML,
                 "Should render correct select option with icon"
             )

@@ -27,7 +27,7 @@ import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class HelpBlockSpec : DomSpec {
+class HelpTextSpec : DomSpec {
 
     @Test
     fun render() {
@@ -37,7 +37,7 @@ class HelpBlockSpec : DomSpec {
             root.add(fl)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<span class=\"help-block small\">Form Error</span>",
+                "<small class=\"form-text text-muted\">Form Error</small>",
                 element?.innerHTML,
                 "Should render correct help block"
             )

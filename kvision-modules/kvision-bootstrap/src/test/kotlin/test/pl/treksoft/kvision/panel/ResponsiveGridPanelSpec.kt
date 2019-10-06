@@ -41,7 +41,7 @@ class ResponsiveGridPanelSpec : DomSpec {
             rgPanel.add(Span("ghi"), 3, 3)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"container-fluid\"><div class=\"row\"></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>abc</span></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>def</span></div><div class=\"col-md-3\"></div></div><div class=\"row\"><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"></div><div class=\"col-md-3\"><span>ghi</span></div></div></div>",
+                "<div class=\"container-fluid\"><div class=\"row\"><div class=\"col-md-4\"><span>abc</span></div><div class=\"col-md-4\"></div><div class=\"col-md-4\"></div></div><div class=\"row\"><div class=\"col-md-4\"></div><div class=\"col-md-4\"><span>def</span></div><div class=\"col-md-4\"></div></div><div class=\"row\"><div class=\"col-md-4\"></div><div class=\"col-md-4\"></div><div class=\"col-md-4\"><span>ghi</span></div></div></div>",
                 element?.innerHTML,
                 "Should render correct responsive grid panel"
             )

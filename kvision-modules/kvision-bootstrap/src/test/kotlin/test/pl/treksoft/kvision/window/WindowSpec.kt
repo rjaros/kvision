@@ -35,18 +35,13 @@ class WindowSpec : DomSpec {
             val root = Root("test", fixed = true)
             val window = Window("Window title", isResizable = false)
             root.add(window)
+            window.show()
             val id = window.id
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"modal-content kv-window\" id=\"$id\" style=\"width: auto; position: absolute; z-index: 901; overflow: hidden;\"><div class=\"modal-header\"><h4 class=\"modal-title\">Window title</h4></div><div style=\"height: auto; overflow: auto;\"></div></div>",
+                "<div class=\"modal-content kv-window\" id=\"$id\" style=\"width: auto; position: absolute; z-index: 901; overflow: hidden;\"><div class=\"modal-header\"><h5 class=\"modal-title\">Window title</h5><div class=\"kv-window-icons-container\"></div></div><div style=\"height: auto; overflow: auto;\"></div></div>",
                 element?.innerHTML,
-                "Should render floating window without resizable handler"
-            )
-            window.isResizable = true
-            assertEqualsHtml(
-                "<div class=\"modal-content kv-window\" id=\"$id\" style=\"width: auto; position: absolute; z-index: 901; overflow: hidden; resize: both;\"><div class=\"modal-header\"><h4 class=\"modal-title\">Window title</h4></div><div style=\"height: auto; overflow: auto; margin-bottom: 11px;\"></div><object style=\"position: absolute; top: 0; left: 0; height: 100%; width: 100%; pointer-events: none; z-index: -1; opacity: 0;\" class=\"resize-sensor\" tabindex=\"-1\" type=\"text/html\" data=\"about:blank\"></object></div>",
-                element?.innerHTML,
-                "Should render floating window with resizable handler"
+                "Should render floating window"
             )
         }
     }

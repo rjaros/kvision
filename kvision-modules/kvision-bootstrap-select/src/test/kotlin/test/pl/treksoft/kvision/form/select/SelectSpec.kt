@@ -45,11 +45,7 @@ class SelectSpec : DomSpec {
             val element = document.getElementById("test")
             val id = select.input.id
             assertTrue(
-                true == element?.innerHTML?.startsWith("<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label>"),
-                "Should render correct select form control"
-            )
-            assertTrue(
-                true == element?.innerHTML?.endsWith("<select class=\"form-control selectpicker\" id=\"$id\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select></div></div>"),
+                true == element?.innerHTML?.startsWith("<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"dropdown bootstrap-select show-tick form-control fit-width\"><select class=\"form-control selectpicker\" id=\"$id\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select>"),
                 "Should render correct select form control"
             )
         }

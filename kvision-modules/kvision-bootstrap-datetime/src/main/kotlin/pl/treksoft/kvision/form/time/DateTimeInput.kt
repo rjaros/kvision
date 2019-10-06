@@ -241,7 +241,8 @@ open class DateTimeInput(
 
     override fun afterDestroy() {
         if (initialized) {
-            getElementJQueryD()?.data("DateTimePicker").destroy()
+            val comp = getElementJQueryD()?.data("DateTimePicker")
+            if (comp != null) comp.destroy()
             initialized = false
         }
     }

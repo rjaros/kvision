@@ -25,6 +25,7 @@ import pl.treksoft.kvision.form.time.DateTimeInput
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.types.toStringF
 import test.pl.treksoft.kvision.DomSpec
+import kotlin.browser.document
 import kotlin.js.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -41,10 +42,11 @@ class DateTimeInputSpec : DomSpec {
                 id = "idti"
             }
             root.add(dti)
-            val value = dti.getElementJQuery()?.`val`()
+            val element = document.getElementById("test")
+            val datastr = data.toStringF(dti.format)
             assertEquals(
-                data.toStringF(dti.format),
-                value,
+                "<div class=\"input-group date\" id=\"idti\"><input class=\"form-control\" placeholder=\"place\" type=\"text\" value=\"$datastr\"><div class=\"input-group-append\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div></div>",
+                element?.innerHTML,
                 "Should render date time input with correctly formatted value"
             )
         }

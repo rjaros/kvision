@@ -37,13 +37,13 @@ class NavFormSpec : DomSpec {
             root.add(navf)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<form class=\"navbar-form navbar-left\"></form>",
+                "<form class=\"form-inline\"></form>",
                 element?.innerHTML,
                 "Should render correct nav form"
             )
             navf.rightAlign = true
             assertEqualsHtml(
-                "<form class=\"navbar-form navbar-right\"></form>",
+                "<form class=\"form-inline ml-auto\"></form>",
                 element?.innerHTML,
                 "Should render correct right aligned nav form"
             )

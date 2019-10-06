@@ -33,10 +33,10 @@ class IconSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", fixed = true)
-            val icon = Icon("fa-check")
+            val icon = Icon("fas fa-check")
             root.add(icon)
             val element = document.getElementById("test")
-            assertEqualsHtml("<span class=\"fa fa-check\"></span>", element?.innerHTML, "Should render correct icon")
+            assertEqualsHtml("<span class=\"fas fa-check\"></span>", element?.innerHTML, "Should render correct icon")
         }
     }
 

@@ -44,7 +44,7 @@ class SelectInputSpec : DomSpec {
             root.add(selectInput)
             val element = document.getElementById("test")
             assertTrue(
-                true == element?.innerHTML?.endsWith("<select class=\"selectpicker\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select></div>"),
+                true == element?.innerHTML?.startsWith("<div class=\"dropdown bootstrap-select show-tick fit-width\"><select class=\"selectpicker\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select>"),
                 "Should render correct select input"
             )
         }

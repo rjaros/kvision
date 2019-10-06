@@ -37,13 +37,13 @@ class NavSpec : DomSpec {
             root.add(nav)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ul class=\"nav navbar-nav\"></ul>",
+                "<div class=\"navbar-nav\"></div>",
                 element?.innerHTML,
                 "Should render correct nav"
             )
             nav.rightAlign = true
             assertEqualsHtml(
-                "<ul class=\"nav navbar-nav navbar-right\"></ul>",
+                "<div class=\"navbar-nav ml-auto\"></div>",
                 element?.innerHTML,
                 "Should render correct right aligned nav"
             )

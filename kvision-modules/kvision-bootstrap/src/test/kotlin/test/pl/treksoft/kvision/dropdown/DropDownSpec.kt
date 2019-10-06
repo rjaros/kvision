@@ -22,6 +22,7 @@
 package test.pl.treksoft.kvision.dropdown
 
 import pl.treksoft.kvision.dropdown.DD
+import pl.treksoft.kvision.dropdown.Direction
 import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
@@ -37,11 +38,11 @@ class DropDownSpec : DomSpec {
             val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
             root.add(dd)
-            dd.toggle()
+            dd.list.getElementJQueryD()?.dropdown("toggle")
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li><a href=\"#!/x\">abc</a></li><li><a href=\"#!/y\">def</a></li></ul></div>",
+                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -52,13 +53,13 @@ class DropDownSpec : DomSpec {
     fun renderDropUp() {
         run {
             val root = Root("test", fixed = true)
-            val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag").apply { dropup = true }
+            val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag").apply { direction = Direction.DROPUP }
             root.add(dd)
-            dd.toggle()
+            dd.list.getElementJQueryD()?.dropdown("toggle")
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropup open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li><a href=\"#!/x\">abc</a></li><li><a href=\"#!/y\">def</a></li></ul></div>",
+                "<div class=\"dropup show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"top-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -71,11 +72,11 @@ class DropDownSpec : DomSpec {
             val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to DD.HEADER.option), "flag")
             root.add(dd)
-            dd.toggle()
+            dd.list.getElementJQueryD()?.dropdown("toggle")
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"dropdown-header\">abc</li></ul></div>",
+                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><h6 class=\"dropdown-header\">abc</h6></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -88,11 +89,11 @@ class DropDownSpec : DomSpec {
             val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to DD.SEPARATOR.option), "flag")
             root.add(dd)
-            dd.toggle()
+            dd.list.getElementJQueryD()?.dropdown("toggle")
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"divider\" role=\"separator\"></li></ul></div>",
+                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><div class=\"dropdown-divider\"></div></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -105,11 +106,11 @@ class DropDownSpec : DomSpec {
             val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to DD.DISABLED.option), "flag")
             root.add(dd)
-            dd.toggle()
+            dd.list.getElementJQueryD()?.dropdown("toggle")
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown open\"><button class=\"dropdown btn btn-default\" id=\"$id\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" role=\"button\" href=\"#\"><span class=\"glyphicon glyphicon-flag\"></span> Dropdown</button><ul class=\"dropdown-menu\" aria-labelledby=\"$id\" aria-expanded=\"true\"><li class=\"disabled\"><a>abc</a></li></ul></div>",
+                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item disabled\" tabindex=\"-1\" aria-disabled=\"true\" href=\"javascript:void(0)\">abc</a></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -122,10 +123,10 @@ class DropDownSpec : DomSpec {
             val root = Root("test", fixed = true)
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
             root.add(dd)
-            val visible = dd.getElementJQuery()?.hasClass("open") ?: false
+            val visible = dd.getElementJQuery()?.hasClass("show") ?: false
             assertTrue("Dropdown menu is not visible before toggle") { !visible }
-            dd.toggle()
-            val visible2 = dd.getElementJQuery()?.hasClass("open") ?: false
+            dd.list.getElementJQueryD()?.dropdown("toggle")
+            val visible2 = dd.getElementJQuery()?.hasClass("show") ?: false
             assertTrue("Dropdown menu is visible after toggle") { visible2 }
         }
     }
