@@ -108,9 +108,9 @@ open class Confirm(
         }
 
     private val contentTag = Tag(TAG.DIV, text, rich, align)
-    private val cancelButton = Button(cancelTitle, "remove")
-    private val noButton = Button(noTitle, "ban-circle")
-    private val yesButton = Button(yesTitle, "ok", ButtonStyle.PRIMARY)
+    private val cancelButton = Button(cancelTitle, "fas fa-times")
+    private val noButton = Button(noTitle, "fas fa-ban")
+    private val yesButton = Button(yesTitle, "fas fa-check", ButtonStyle.PRIMARY)
 
     init {
         body.add(contentTag)

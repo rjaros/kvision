@@ -76,7 +76,7 @@ open class Alert(
 
     init {
         body.add(contentTag)
-        val okButton = Button("OK", "ok", ButtonStyle.PRIMARY)
+        val okButton = Button("OK", "fas fa-check", ButtonStyle.PRIMARY)
         okButton.setEventListener {
             click = {
                 hide()
