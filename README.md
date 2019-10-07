@@ -32,7 +32,7 @@ allows to build full-stack, multiplatform applications with shared common code.
     - [Bootstrap Select](https://github.com/silviomoreto/bootstrap-select) (with [AJAX](https://github.com/truckingsim/Ajax-Bootstrap-Select) extension)
     - [Awesome Bootstrap Checkbox](https://github.com/flatlogic/awesome-bootstrap-checkbox)
     - [Trix editor](https://trix-editor.org/)
-    - [Bootstrap Datetime picker](https://github.com/smalot/bootstrap-datetimepicker)
+    - [Bootstrap Datetime picker](https://github.com/pingcheng/bootstrap4-datetimepicker)
     - [Bootstrap touchspin](https://github.com/istvan-ujjmeszaros/bootstrap-touchspin)
     - [Bootstrap File Input](http://plugins.krajee.com/file-input)
     - [Handlebars](http://handlebarsjs.com/)
