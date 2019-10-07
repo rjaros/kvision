@@ -27,8 +27,7 @@ import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Style
-import pl.treksoft.kvision.dropdown.ContextMenu
-import pl.treksoft.kvision.modal.Modal
+import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
 
@@ -52,7 +51,7 @@ class Root(
     private val fixed: Boolean = false,
     init: (Root.() -> Unit)? = null
 ) : SimplePanel() {
-    private val contextMenus: MutableList<ContextMenu> = mutableListOf()
+    private val contextMenus: MutableList<Widget> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
 
     internal var renderDisabled = false
@@ -71,7 +70,7 @@ class Root(
         }
         roots.add(this)
         if (isFirstRoot) {
-            Modal.modals.forEach { it.parent = this }
+            modals.forEach { it.parent = this }
         }
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -87,7 +86,7 @@ class Root(
         }
     }
 
-    internal fun addContextMenu(contextMenu: ContextMenu) {
+    fun addContextMenu(contextMenu: Widget) {
         contextMenus.add(contextMenu)
         contextMenu.parent = this
         this.setInternalEventListener<Root> {
@@ -114,7 +113,7 @@ class Root(
 
     private fun modalsVNodes(): Array<VNode> {
         return if (isFirstRoot) {
-            Modal.modals.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+            modals.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
         } else {
             arrayOf()
         }
@@ -150,12 +149,13 @@ class Root(
         roots.remove(this)
         if (isFirstRoot) {
             Style.styles.clear()
-            Modal.modals.clear()
+            modals.clear()
         }
     }
 
     companion object {
         internal var counter = 0
+        private val modals: MutableList<Widget> = mutableListOf()
 
         /**
          * @suppress internal function
@@ -167,18 +167,26 @@ class Root(
 
         internal val roots: MutableList<Root> = mutableListOf()
 
-        internal fun getFirstRoot(): Root? {
+        fun getFirstRoot(): Root? {
             return if (roots.isNotEmpty())
                 roots[0]
             else
                 null
         }
 
-        internal fun getLastRoot(): Root? {
+        fun getLastRoot(): Root? {
             return if (roots.isNotEmpty())
                 roots[roots.size - 1]
             else
                 null
+        }
+
+        fun addModal(modal: Widget) {
+            modals.add(modal)
+        }
+
+        fun removeModal(modal: Widget) {
+            modals.remove(modal)
         }
     }
 }

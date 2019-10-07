@@ -28,10 +28,7 @@ import kotlinx.serialization.serializer
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.form.check.CheckBox
-import pl.treksoft.kvision.form.check.Radio
-import pl.treksoft.kvision.html.TAG
-import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.KFile
 import kotlin.js.Date
@@ -82,13 +79,14 @@ enum class FormTarget(internal val target: String) {
  * @param action the URL address to send data
  * @param enctype form encoding type
  * @param type form layout
+ * @param condensed  determines if the form is condensed.
  * @param classes set of CSS class names
  * @param serializer a serializer for model type
  */
 @Suppress("TooManyFunctions")
 open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-    private val type: FormType? = null, classes: Set<String> = setOf(),
+    private val type: FormType? = null, condensed: Boolean = false, classes: Set<String> = setOf(),
     serializer: KSerializer<K>
 ) : SimplePanel(classes) {
 
@@ -120,6 +118,10 @@ open class FormPanel<K : Any>(
      * Determines if the form should have autocomplete.
      */
     var autocomplete: Boolean? by refreshOnUpdate()
+    /**
+     * Determines if the form is condensed.
+     */
+    var condensed by refreshOnUpdate(condensed)
 
     /**
      * Function returning validation message.
@@ -156,7 +158,7 @@ open class FormPanel<K : Any>(
      * @suppress
      * Internal property.
      */
-    protected val validationAlert = Tag(TAG.H5, classes = setOf("alert", "alert-danger")).apply {
+    protected val validationAlert = Div(classes = setOf("alert", "alert-danger")).apply {
         role = "alert"
         visible = false
     }
@@ -173,7 +175,9 @@ open class FormPanel<K : Any>(
         val cl = super.getSnClass().toMutableList()
         if (type != null) {
             cl.add(type.formType to true)
+            if (type == FormType.HORIZONTAL) cl.add("container-fluid" to true)
         }
+        if (condensed) cl.add("kv-form-condensed" to true)
         return cl
     }
 
@@ -208,16 +212,10 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        if (type == FormType.HORIZONTAL) {
-            if (control is CheckBox || control is Radio) {
-                control.addCssClass("col-sm-offset-2")
-                control.addCssClass("col-sm-10")
-            } else {
-                control.flabel.addCssClass("col-sm-2")
-                control.input.addSurroundingCssClass("col-sm-10")
-                control.validationInfo.addCssClass("col-sm-offset-2")
-                control.validationInfo.addCssClass("col-sm-10")
-            }
+        when (type) {
+            FormType.INLINE -> control.styleForInlineFormPanel()
+            FormType.HORIZONTAL -> control.styleForHorizontalFormPanel()
+            else -> control.styleForVerticalFormPanel()
         }
         super.add(control)
         form.addInternal(key, control, required, requiredMessage, validatorMessage, validator)
@@ -399,10 +397,10 @@ open class FormPanel<K : Any>(
          */
         inline fun <reified K : Any> Container.formPanel(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-            type: FormType? = null, classes: Set<String> = setOf(),
+            type: FormType? = null, condensed: Boolean = false, classes: Set<String> = setOf(),
             noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
-            val formPanel = create<K>(method, action, enctype, type, classes)
+            val formPanel = create<K>(method, action, enctype, type, condensed, classes)
             init?.invoke(formPanel)
             this.add(formPanel)
             return formPanel
@@ -411,10 +409,10 @@ open class FormPanel<K : Any>(
         @UseExperimental(ImplicitReflectionSerializer::class)
         inline fun <reified K : Any> create(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-            type: FormType? = null, classes: Set<String> = setOf(),
+            type: FormType? = null, condensed: Boolean = false, classes: Set<String> = setOf(),
             noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
-            val formPanel = FormPanel(method, action, enctype, type, classes, K::class.serializer())
+            val formPanel = FormPanel(method, action, enctype, type, condensed, classes, K::class.serializer())
             init?.invoke(formPanel)
             return formPanel
         }

@@ -26,6 +26,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -74,6 +75,11 @@ open class RadioGroupInput(
         get() = getSizeFromChildren()
         set(value) {
             setSizeToChildren(value)
+        }
+    override var validationStatus
+        get() = getValidationStatusFromChildren()
+        set(value) {
+            setValidationStatusToChildren(value)
         }
 
     private val idc = "kv_form_radiogroup_$counter"
@@ -126,6 +132,14 @@ open class RadioGroupInput(
 
     private fun setSizeToChildren(size: InputSize?) {
         getChildren().filterIsInstance<Radio>().forEach { it.size = size }
+    }
+
+    private fun getValidationStatusFromChildren(): ValidationStatus? {
+        return getChildren().filterIsInstance<Radio>().firstOrNull()?.validationStatus
+    }
+
+    private fun setValidationStatusToChildren(validationStatus: ValidationStatus?) {
+        getChildren().filterIsInstance<Radio>().forEach { it.validationStatus = validationStatus }
     }
 
     private fun setChildrenFromOptions() {

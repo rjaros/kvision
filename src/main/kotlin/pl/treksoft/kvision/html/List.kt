@@ -27,7 +27,6 @@ import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
-import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -98,14 +97,14 @@ open class ListTag(
         val childrenElements = children.filter { it.visible }
         val res = when (type) {
             ListType.UL, ListType.OL, ListType.UNSTYLED, ListType.INLINE -> childrenElements.map { v ->
-                if (v is Tag && v.type == TAG.LI || v is DropDown && v.forNavbar) {
+                if (v is Tag && v.type == TAG.LI /*|| v is DropDown && v.forNavbar*/) {
                     v.renderVNode()
                 } else {
                     h("li", arrayOf(v.renderVNode()))
                 }
             }
             ListType.DL, ListType.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
-                if (v is Tag && v.type == TAG.LI || v is DropDown && v.forNavbar) {
+                if (v is Tag && v.type == TAG.LI /*|| v is DropDown && v.forNavbar*/) {
                     v.renderVNode()
                 } else {
                     h(if (index % 2 == 0) "dt" else "dd", arrayOf(v.renderVNode()))

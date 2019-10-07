@@ -39,13 +39,7 @@ open class Icon(icon: String) : Tag(TAG.SPAN) {
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
-        if (icon.startsWith("fa-")) {
-            cl.add("fa" to true)
-            cl.add(icon to true)
-        } else {
-            cl.add("glyphicon" to true)
-            cl.add("glyphicon-$icon" to true)
-        }
+        icon.split(" ").forEach { cl.add(it to true) }
         return cl
     }
 

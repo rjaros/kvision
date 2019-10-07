@@ -25,9 +25,10 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.FieldLabel
-import pl.treksoft.kvision.form.HelpBlock
 import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.StringFormControl
+import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -97,13 +98,33 @@ open class RadioGroup(
         set(value) {
             setSizeToChildren(value)
         }
+    override var validationStatus
+        get() = getValidationStatusFromChildren()
+        set(value) {
+            setValidationStatusToChildren(value)
+        }
+    override var validatorError: String?
+        get() = super.validatorError
+        set(value) {
+            super.validatorError = value
+            if (value != null) {
+                container.addCssClass("is-invalid")
+            } else {
+                container.removeCssClass("is-invalid")
+            }
+        }
 
     private val idc = "kv_form_radiogroup_$counter"
     final override val input = RadioInput()
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
-    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
+    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
+
+    internal val container = SimplePanel(setOf("kv-radiogroup-container"))
 
     init {
+        this.addInternal(flabel)
+        this.addInternal(container)
+        this.addInternal(invalidFeedback)
         setChildrenFromOptions()
         setValueToChildren(value)
         setNameToChildren(name)
@@ -113,7 +134,7 @@ open class RadioGroup(
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (validatorError != null) {
-            cl.add("has-error" to true)
+            cl.add("text-danger" to true)
         }
         if (inline) {
             cl.add("kv-radiogroup-inline" to true)
@@ -124,7 +145,7 @@ open class RadioGroup(
     }
 
     private fun setValueToChildren(value: String?) {
-        val radios = getChildren().filterIsInstance<Radio>()
+        val radios = container.getChildren().filterIsInstance<Radio>()
         radios.forEach { it.value = false }
         radios.find {
             it.extraValue == value
@@ -132,34 +153,42 @@ open class RadioGroup(
     }
 
     private fun getDisabledFromChildren(): Boolean {
-        return getChildren().filterIsInstance<Radio>().firstOrNull()?.disabled ?: false
+        return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.disabled ?: false
     }
 
     private fun setDisabledToChildren(disabled: Boolean) {
-        getChildren().filterIsInstance<Radio>().forEach { it.disabled = disabled }
+        container.getChildren().filterIsInstance<Radio>().forEach { it.disabled = disabled }
     }
 
     private fun getNameFromChildren(): String? {
-        return getChildren().filterIsInstance<Radio>().firstOrNull()?.name ?: this.idc
+        return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.name ?: this.idc
     }
 
     private fun setNameToChildren(name: String?) {
         val tname = name ?: this.idc
-        getChildren().filterIsInstance<Radio>().forEach { it.name = tname }
+        container.getChildren().filterIsInstance<Radio>().forEach { it.name = tname }
     }
 
     private fun getSizeFromChildren(): InputSize? {
-        return getChildren().filterIsInstance<Radio>().firstOrNull()?.size
+        return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.size
     }
 
     private fun setSizeToChildren(size: InputSize?) {
-        getChildren().filterIsInstance<Radio>().forEach { it.size = size }
+        container.getChildren().filterIsInstance<Radio>().forEach { it.size = size }
+        super.size = size
+    }
+
+    private fun getValidationStatusFromChildren(): ValidationStatus? {
+        return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.validationStatus
+    }
+
+    private fun setValidationStatusToChildren(validationStatus: ValidationStatus?) {
+        container.getChildren().filterIsInstance<Radio>().forEach { it.validationStatus = validationStatus }
     }
 
     private fun setChildrenFromOptions() {
         val currentName = this.name
-        super.removeAll()
-        this.addInternal(flabel)
+        container.removeAll()
         options?.let {
             val tname = currentName ?: this.idc
             val tinline = this.inline
@@ -175,17 +204,25 @@ open class RadioGroup(
                     }
                 }
             }
-            super.addAll(c)
+            container.addAll(c)
         }
-        this.addInternal(validationInfo)
     }
 
     override fun focus() {
-        getChildren().filterIsInstance<Radio>().firstOrNull()?.focus()
+        container.getChildren().filterIsInstance<Radio>().firstOrNull()?.focus()
     }
 
     override fun blur() {
-        getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
+        container.getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
+    }
+
+    override fun styleForHorizontalFormPanel() {
+        addCssClass("row")
+        flabel.addCssClass("col-sm-2")
+        flabel.addCssClass("col-form-label")
+        container.addCssClass("col-sm-10")
+        invalidFeedback.addCssClass("offset-sm-2")
+        invalidFeedback.addCssClass("col-sm-10")
     }
 
     companion object {

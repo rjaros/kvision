@@ -64,6 +64,22 @@ open class Cell(
             this.add(cell)
             return cell
         }
+
+        /**
+         * DSL builder extension function.
+         *
+         * It takes the same parameters as the constructor of the built component.
+         */
+        fun Row.thcell(
+            content: String? = null,
+            rich: Boolean = false,
+            align: Align? = null,
+            classes: Set<String> = setOf(), init: (HeaderCell.() -> Unit)? = null
+        ): HeaderCell {
+            val headerCell = HeaderCell(content, rich, align, Scope.ROW, classes, init)
+            this.add(headerCell)
+            return headerCell
+        }
     }
 
 }

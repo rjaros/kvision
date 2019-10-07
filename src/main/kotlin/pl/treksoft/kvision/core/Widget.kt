@@ -27,11 +27,9 @@ import com.github.snabbdom.h
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.DragEvent
 import org.w3c.dom.Node
-import org.w3c.dom.events.MouseEvent
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.KVManager
-import pl.treksoft.kvision.dropdown.ContextMenu
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.panel.Root
@@ -82,6 +80,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * A role attribute of generated HTML element.
      */
     var role: String? by refreshOnUpdate()
+    /**
+     * A tabindex attribute of generated HTML element.
+     */
+    var tabindex: Int? by refreshOnUpdate()
     /**
      * Determines if the current widget is draggable.
      */
@@ -240,6 +242,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         }
         role?.let {
             snattrs.add("role" to it)
+        }
+        tabindex?.let {
+            snattrs.add("tabindex" to it.toString())
         }
         if (draggable == true) {
             snattrs.add("draggable" to "true")
@@ -439,7 +444,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     open fun enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
         this.tooltipOptions = options
-        getElementJQueryD()?.tooltip(options.copy(title = options.title?.let { translate(it) }).toJs())
+        val tooltipFun = getElementJQueryD()?.tooltip
+        if (tooltipFun != undefined) getElementJQueryD()?.tooltip(options.copy(title = options.title?.let { translate(it) }).toJs())
         return this
     }
 
@@ -449,7 +455,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     open fun showTooltip(): Widget {
         if (this.tooltipOptions != null) {
-            getElementJQueryD()?.tooltip("show")
+            val tooltipFun = getElementJQueryD()?.tooltip
+            if (tooltipFun != undefined) getElementJQueryD()?.tooltip("show")
         }
         return this
     }
@@ -460,7 +467,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     open fun hideTooltip(): Widget {
         if (this.tooltipOptions != null) {
-            getElementJQueryD()?.tooltip("hide")
+            val tooltipFun = getElementJQueryD()?.tooltip
+            if (tooltipFun != undefined) getElementJQueryD()?.tooltip("hide")
         }
         return this
     }
@@ -471,7 +479,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     open fun disableTooltip(): Widget {
         this.tooltipOptions = null
-        getElementJQueryD()?.tooltip("destroy")
+        val tooltipFun = getElementJQueryD()?.tooltip
+        if (tooltipFun != undefined) getElementJQueryD()?.tooltip("dispose")
         return this
     }
 
@@ -482,7 +491,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     open fun enablePopover(options: PopoverOptions = PopoverOptions()): Widget {
         this.popoverOptions = options
-        getElementJQueryD()?.popover(
+        val popoverFun = getElementJQueryD()?.popover
+        if (popoverFun != undefined) getElementJQueryD()?.popover(
             options.copy(title = options.title?.let { translate(it) },
                 content = options.content?.let { translate(it) }).toJs()
         )
@@ -495,7 +505,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     open fun showPopover(): Widget {
         if (this.popoverOptions != null) {
-            getElementJQueryD()?.popover("show")
+            val popoverFun = getElementJQueryD()?.popover
+            if (popoverFun != undefined) getElementJQueryD()?.popover("show")
         }
         return this
     }
@@ -506,7 +517,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     open fun hidePopover(): Widget {
         if (this.popoverOptions != null) {
-            getElementJQueryD()?.popover("hide")
+            val popoverFun = getElementJQueryD()?.popover
+            if (popoverFun != undefined) getElementJQueryD()?.popover("hide")
         }
         return this
     }
@@ -517,7 +529,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     open fun disablePopover(): Widget {
         this.popoverOptions = null
-        getElementJQueryD()?.popover("destroy")
+        val popoverFun = getElementJQueryD()?.popover
+        if (popoverFun != undefined) getElementJQueryD()?.popover("dispose")
         return this
     }
 
@@ -624,11 +637,13 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     internal open fun afterInsertInternal(node: VNode) {
         this.tooltipOptions?.let {
             @Suppress("UnsafeCastFromDynamic")
-            getElementJQueryD().tooltip(it.copy(title = it.title?.let { translate(it) }).toJs())
+            val tooltipFun = getElementJQueryD()?.tooltip
+            if (tooltipFun != undefined) getElementJQueryD()?.tooltip(it.copy(title = it.title?.let { translate(it) }).toJs())
         }
         this.popoverOptions?.let {
             @Suppress("UnsafeCastFromDynamic")
-            getElementJQueryD().popover(
+            val popoverFun = getElementJQueryD()?.popover
+            if (popoverFun != undefined) getElementJQueryD()?.popover(
                 it.copy(title = it.title?.let { translate(it) },
                     content = it.content?.let { translate(it) }).toJs()
             )
@@ -647,10 +662,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     @Suppress("UnsafeCastFromDynamic")
     internal open fun afterDestroyInternal() {
         this.tooltipOptions?.let {
-            getElementJQueryD().tooltip("destroy")
+            val tooltipFun = getElementJQueryD()?.tooltip
+            if (tooltipFun != undefined) getElementJQueryD()?.tooltip("dispose")
         }
         this.popoverOptions?.let {
-            getElementJQueryD().popover("destroy")
+            val popoverFun = getElementJQueryD()?.popover
+            if (popoverFun != undefined) getElementJQueryD()?.popover("dispose")
         }
     }
 
@@ -731,21 +748,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     /**
-     * Sets context menu for the current widget.
-     * @param contextMenu a context menu
-     * @return current widget
-     */
-    open fun setContextMenu(contextMenu: ContextMenu): Widget {
-        setEventListener<Widget> {
-            contextmenu = { e: MouseEvent ->
-                e.preventDefault()
-                contextMenu.positionMenu(e)
-            }
-        }
-        return this
-    }
-
-    /**
      * @suppress
      * Internal function
      */
@@ -755,11 +757,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     ): Array<out Any> {
         val translatedLabel = translate(label)
         return if (icon != null) {
-            if (icon.startsWith("fa-")) {
-                arrayOf(KVManager.virtualize("<i class='fa $icon'></i>"), " $translatedLabel")
-            } else {
-                arrayOf(KVManager.virtualize("<span class='glyphicon glyphicon-$icon'></span>"), " $translatedLabel")
-            }
+            arrayOf(KVManager.virtualize("<i class='$icon'></i>"), " $translatedLabel")
         } else if (image != null) {
             arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " $translatedLabel")
         } else {

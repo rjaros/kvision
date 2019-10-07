@@ -27,7 +27,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FieldLabel
-import pl.treksoft.kvision.form.HelpBlock
+import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.SnOn
@@ -117,21 +117,21 @@ open class SimpleSelect(
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
-    final override val validationInfo: HelpBlock = HelpBlock().apply { visible = false }
+    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addInternal(flabel)
         this.addInternal(input)
-        this.addInternal(validationInfo)
+        this.addInternal(invalidFeedback)
         counter++
     }
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (validatorError != null) {
-            cl.add("has-error" to true)
+            cl.add("text-danger" to true)
         }
         return cl
     }

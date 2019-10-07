@@ -1,0 +1,13 @@
+apply from: "../shared.gradle"
+
+dependencies {
+    compile project(":kvision-modules:kvision-bootstrap")
+}
+
+kotlinFrontend {
+
+    npm {
+        dependency("pc-bootstrap4-datetimepicker", "4.17.50")
+    }
+
+}

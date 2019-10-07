@@ -1,0 +1,13 @@
+apply from: "../shared.gradle"
+
+dependencies {
+    compile project(":kvision-modules:kvision-bootstrap")
+}
+
+kotlinFrontend {
+
+    npm {
+        dependency("bootstrap-touchspin", "4.2.5")
+    }
+
+}

@@ -33,13 +33,23 @@ import pl.treksoft.kvision.core.Widget
  * Button styles.
  */
 enum class ButtonStyle(val className: String) {
-    DEFAULT("btn-default"),
     PRIMARY("btn-primary"),
+    SECONDARY("btn-secondary"),
     SUCCESS("btn-success"),
-    INFO("btn-info"),
-    WARNING("btn-warning"),
     DANGER("btn-danger"),
-    LINK("btn-link")
+    WARNING("btn-warning"),
+    INFO("btn-info"),
+    LIGHT("btn-light"),
+    DARK("btn-dark"),
+    LINK("btn-link"),
+    OUTLINEPRIMARY("btn-outline-primary"),
+    OUTLINESECONDARY("btn-outline-secondary"),
+    OUTLINESUCCESS("btn-outline-success"),
+    OUTLINEDANGER("btn-outline-danger"),
+    OUTLINEWARNING("btn-outline-warning"),
+    OUTLINEINFO("btn-outline-info"),
+    OUTLINELIGHT("btn-outline-light"),
+    OUTLINEDARK("btn-outline-dark")
 }
 
 /**
@@ -47,8 +57,7 @@ enum class ButtonStyle(val className: String) {
  */
 enum class ButtonSize(internal val className: String) {
     LARGE("btn-lg"),
-    SMALL("btn-sm"),
-    XSMALL("btn-xs")
+    SMALL("btn-sm")
 }
 
 /**
@@ -71,7 +80,7 @@ enum class ButtonType(internal val buttonType: String) {
  * @param classes a set of CSS class names
  */
 open class Button(
-    text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.DEFAULT, type: ButtonType = ButtonType.BUTTON,
+    text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.PRIMARY, type: ButtonType = ButtonType.BUTTON,
     disabled: Boolean = false, classes: Set<String> = setOf()
 ) : Widget(classes) {
 
@@ -123,14 +132,16 @@ open class Button(
         if (block) {
             cl.add("btn-block" to true)
         }
-        if (disabled) {
-            cl.add("disabled" to true)
-        }
         return cl
     }
 
     override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + ("type" to type.buttonType)
+        val snattrs = super.getSnAttrs().toMutableList()
+        snattrs.add("type" to type.buttonType)
+        if (disabled) {
+            snattrs.add("disabled" to "disabled")
+        }
+        return snattrs
     }
 
     /**
@@ -154,7 +165,7 @@ open class Button(
         fun Container.button(
             text: String,
             icon: String? = null,
-            style: ButtonStyle = ButtonStyle.DEFAULT,
+            style: ButtonStyle = ButtonStyle.PRIMARY,
             type: ButtonType = ButtonType.BUTTON,
             disabled: Boolean = false,
             classes: Set<String> = setOf(),

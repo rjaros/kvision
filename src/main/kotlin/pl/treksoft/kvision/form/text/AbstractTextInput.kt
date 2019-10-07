@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.form.ValidationStatus
 
 /**
  * Base class for basic text components.
@@ -87,9 +88,16 @@ abstract class AbstractTextInput(
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
+    /**
+     * The validation status of the input.
+     */
+    override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
+        validationStatus?.let {
+            cl.add(it.className to true)
+        }
         size?.let {
             cl.add(it.className to true)
         }

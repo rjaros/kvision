@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
+import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
@@ -83,6 +84,10 @@ open class SimpleSelectInput(
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
+    /**
+     * The validation status of the input.
+     */
+    override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
     init {
         setChildrenFromOptions()
@@ -129,6 +134,9 @@ open class SimpleSelectInput(
 
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
+        validationStatus?.let {
+            cl.add(it.className to true)
+        }
         size?.let {
             cl.add(it.className to true)
         }

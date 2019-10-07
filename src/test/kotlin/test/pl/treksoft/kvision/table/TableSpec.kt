@@ -23,6 +23,7 @@ package test.pl.treksoft.kvision.table
 
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.table.Cell.Companion.cell
+import pl.treksoft.kvision.table.ResponsiveType
 import pl.treksoft.kvision.table.Row.Companion.row
 import pl.treksoft.kvision.table.Table
 import pl.treksoft.kvision.table.TableType
@@ -45,16 +46,16 @@ class TableSpec : DomSpec {
             root.add(table)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<table class=\"table\"><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td>A</td><td>B</td></tr></tbody></table>",
+                "<table class=\"table\"><thead><tr><th scope=\"col\">a</th><th scope=\"col\">b</th></tr></thead><tbody><tr><td>A</td><td>B</td></tr></tbody></table>",
                 element?.innerHTML,
                 "Should render correct table"
             )
             table.caption = "Caption"
-            table.responsive = true
+            table.responsiveType = ResponsiveType.RESPONSIVE
             table.types = setOf(TableType.BORDERED)
             val element2 = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"table-responsive\"><table class=\"table table-bordered\"><caption>Caption</caption><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td>A</td><td>B</td></tr></tbody></table></div>",
+                "<div class=\"table-responsive\"><table class=\"table table-bordered\"><caption>Caption</caption><thead><tr><th scope=\"col\">a</th><th scope=\"col\">b</th></tr></thead><tbody><tr><td>A</td><td>B</td></tr></tbody></table></div>",
                 element2?.innerHTML,
                 "Should render correct responsive table"
             )

@@ -26,13 +26,11 @@ internal val kVManagerChartInit = KVManagerChart.init()
 /**
  * Internal singleton object which initializes and configures KVision Chart module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerChart {
-    fun init() {}
 
-    private val chart = try {
+    init {
         require("chart.js/dist/Chart.bundle.min.js")
-    } catch (e: Throwable) {
     }
 
+    internal fun init() {}
 }

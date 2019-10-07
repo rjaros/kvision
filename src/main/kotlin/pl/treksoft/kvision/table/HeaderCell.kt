@@ -25,6 +25,11 @@ import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 
+enum class Scope(internal val scope: String) {
+    ROW("row"),
+    COL("col")
+}
+
 /**
  * HTML table header cell component.
  *
@@ -39,11 +44,16 @@ open class HeaderCell(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
+    scope: Scope? = null,
     classes: Set<String> = setOf(),
     init: (HeaderCell.() -> Unit)? = null
 ) : Tag(TAG.TH, content, rich, align, classes) {
 
     init {
+        scope?.let {
+            @Suppress("LeakingThis")
+            setAttribute("scope", it.scope)
+        }
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -58,9 +68,10 @@ open class HeaderCell(
             content: String? = null,
             rich: Boolean = false,
             align: Align? = null,
+            scope: Scope? = null,
             classes: Set<String> = setOf(), init: (HeaderCell.() -> Unit)? = null
         ): HeaderCell {
-            val cell = HeaderCell(content, rich, align, classes, init)
+            val cell = HeaderCell(content, rich, align, scope, classes, init)
             this.add(cell)
             return cell
         }

@@ -30,8 +30,6 @@ import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
 import org.w3c.dom.HTMLElement
-import pl.treksoft.kvision.core.Component
-import pl.treksoft.kvision.utils.isIE11
 import kotlin.browser.document
 import kotlin.dom.clear
 
@@ -44,21 +42,26 @@ external fun require(name: String): dynamic
 /**
  * Internal singleton object which initializes and configures KVision framework.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught", "LargeClass")
-internal object KVManager {
-    private val kvisionBootstrap = try {
-        require("kvision-bootstrap").pl.treksoft.kvision.KVManagerBootstrap
-    } catch (e: Throwable) {
-    }
-    private val elementResizeEvent = try {
-        require("element-resize-event")
-    } catch (e: Throwable) {
-    }
-    private val resizable = try {
+@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
+object KVManager {
+    init {
+        try {
+            require("kvision-bootstrap-css").pl.treksoft.kvision.KVManagerBootstrapCss
+        } catch (e: Throwable) {
+        }
+        try {
+            require("kvision-bootstrap").pl.treksoft.kvision.KVManagerBootstrap
+        } catch (e: Throwable) {
+        }
+        try {
+            require("kvision-fontawesome").pl.treksoft.kvision.KVManagerFontAwesome
+        } catch (e: Throwable) {
+        }
+        require("./css/style.css")
         require("jquery-resizable-dom")
-    } catch (e: Throwable) {
     }
-    internal val fecha = require("fecha")
+
+    internal val fecha = require("fecha").default
     private val sdPatch = Snabbdom.init(
         arrayOf(
             classModule, attributesModule, propsModule, styleModule,
@@ -81,28 +84,12 @@ internal object KVManager {
         return sdPatch(oldVNode, newVNode)
     }
 
+    /**
+     * @suppress
+     * Internal function.
+     */
     @Suppress("UnsafeCastFromDynamic")
-    internal fun virtualize(html: String): VNode {
+    fun virtualize(html: String): VNode {
         return sdVirtualize(html)
-    }
-
-    @Suppress("UnsafeCastFromDynamic")
-    internal fun setResizeEvent(component: Component, callback: () -> Unit) {
-        if (!isIE11()) {
-            component.getElement()?.let {
-                elementResizeEvent(it, callback)
-            }
-        }
-    }
-
-    @Suppress("UnsafeCastFromDynamic")
-    internal fun clearResizeEvent(component: Component) {
-        if (!isIE11()) {
-            if (component.getElement()?.asDynamic()?.__resizeTrigger__?.contentDocument != null) {
-                component.getElement()?.let {
-                    elementResizeEvent.unbind(it)
-                }
-            }
-        }
     }
 }

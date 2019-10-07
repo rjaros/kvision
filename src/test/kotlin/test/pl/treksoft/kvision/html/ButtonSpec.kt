@@ -35,13 +35,13 @@ class ButtonSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", fixed = true)
-            val button = Button("Cancel", "fa-bars", ButtonStyle.PRIMARY)
+            val button = Button("Cancel", "fas fa-bars", ButtonStyle.PRIMARY)
             button.size = ButtonSize.LARGE
             button.block = true
             root.add(button)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\"><i class=\"fa fa-bars\"></i> Cancel</button>",
+                "<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\"><i class=\"fas fa-bars\"></i> Cancel</button>",
                 element?.innerHTML,
                 "Should render correct html button"
             )

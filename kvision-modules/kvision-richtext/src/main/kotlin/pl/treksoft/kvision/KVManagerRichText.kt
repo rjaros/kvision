@@ -30,15 +30,10 @@ internal val kVManagerRichTextInit = KVManagerRichText.init()
 /**
  * Internal singleton object which initializes and configures KVision RichText module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerRichText {
-    fun init() {}
 
-    private val trixCss = try {
+    init {
         require("trix/dist/trix.css")
-    } catch (e: Throwable) {
-    }
-    private val trix = try {
         val trix = require("trix")
         window.asDynamic().Trix = trix
         trix.config.languages = obj {}
@@ -59,6 +54,7 @@ internal object KVManagerRichText {
             orig()
         }
         require("./js/locales/trix/trix.pl.js")
-    } catch (e: Throwable) {
     }
+
+    internal fun init() {}
 }

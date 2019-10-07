@@ -1,0 +1,14 @@
+apply from: "../shared.gradle"
+
+dependencies {
+    compile project(":kvision-modules:kvision-bootstrap")
+}
+
+kotlinFrontend {
+
+    npm {
+        dependency("bootstrap-select", "1.13.11")
+        dependency("ajax-bootstrap-select", "1.4.5")
+    }
+
+}

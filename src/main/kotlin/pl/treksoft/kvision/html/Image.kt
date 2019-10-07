@@ -32,8 +32,8 @@ import pl.treksoft.kvision.core.Widget
  * Image shapes.
  */
 enum class ImageShape(internal val className: String) {
-    ROUNDED("img-rounded"),
-    CIRCLE("img-circle"),
+    ROUNDED("rounded"),
+    CIRCLE("rounded-circle"),
     THUMBNAIL("img-thumbnail")
 }
 
@@ -89,7 +89,7 @@ open class Image(
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         if (responsive) {
-            cl.add("img-responsive" to true)
+            cl.add("img-fluid" to true)
         }
         if (centered) {
             cl.add("center-block" to true)

@@ -26,22 +26,18 @@ internal val kVManagerTabulatorInit = KVManagerTabulator.init()
 /**
  * Internal singleton object which initializes and configures KVision Tabulator module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerTabulator {
-    fun init() {}
 
-    private val tabulatorCss = try {
-        require("tabulator-tables/dist/css/bootstrap/tabulator_bootstrap.min.css")
-    } catch (e: Throwable) {
+    init {
+        require("tabulator-tables/dist/css/bootstrap/tabulator_bootstrap4.min.css")
     }
 
-    private val tabulator = try {
-        require("tabulator-tables/dist/js/tabulator.min.js")
-    } catch (e: Throwable) {
-    }
+    private val tabulator = require("tabulator-tables/dist/js/tabulator.min.js")
 
     @Suppress("UnsafeCastFromDynamic")
     fun getConstructor(): Any {
         return tabulator
     }
+
+    internal fun init() {}
 }

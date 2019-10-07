@@ -55,7 +55,7 @@ open class RichText(
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addInternal(input)
-        this.addInternal(validationInfo)
+        this.addInternal(invalidFeedback)
     }
 
     companion object {

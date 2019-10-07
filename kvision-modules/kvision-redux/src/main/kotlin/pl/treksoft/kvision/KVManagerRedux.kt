@@ -33,18 +33,10 @@ internal val kVManagerReduxInit = KVManagerRedux.init()
 /**
  * Internal singleton object which initializes and configures KVision Redux module.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 internal object KVManagerRedux {
-    fun init() {}
 
-    private val redux = try {
-        require("redux/dist/redux.min.js")
-    } catch (e: Throwable) {
-    }
-    internal val reduxThunk = try {
-        require("redux-thunk/dist/redux-thunk.min.js").default
-    } catch (e: Throwable) {
-    }
+    private val redux = require("redux/dist/redux.min.js")
+    internal val reduxThunk = require("redux-thunk/dist/redux-thunk.min.js").default
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun <S, A, R> createStore(
@@ -72,4 +64,6 @@ internal object KVManagerRedux {
         }
         return composeEnhancers(function1, function2)
     }
+
+    internal fun init() {}
 }

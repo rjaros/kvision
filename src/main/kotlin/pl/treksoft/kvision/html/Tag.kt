@@ -73,6 +73,12 @@ enum class TAG(internal val tagName: String) {
     BR("br"),
 
     CAPTION("caption"),
+    FIGURE("figure"),
+    FIGCAPTION("figcaption"),
+    PICTURE("figcaption"),
+    SOURCE("figcaption"),
+
+    TABLE("table"),
     THEAD("thead"),
     TH("th"),
     TBODY("tbody"),
