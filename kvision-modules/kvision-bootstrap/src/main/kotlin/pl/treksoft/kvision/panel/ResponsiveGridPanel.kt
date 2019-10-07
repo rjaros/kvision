@@ -35,7 +35,7 @@ enum class GridSize(internal val size: String) {
     SM("sm"),
     MD("md"),
     LG("lg"),
-    XL("xs")
+    XL("xl")
 }
 
 internal const val MAX_COLUMNS = 12
