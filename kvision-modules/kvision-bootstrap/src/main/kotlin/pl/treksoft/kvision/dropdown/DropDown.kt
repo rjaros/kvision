@@ -166,14 +166,6 @@ open class DropDown(
         counter++
     }
 
-    override fun render(): VNode {
-        return if (forNavbar) {
-            render("li", childrenVNodes())
-        } else {
-            render("div", childrenVNodes())
-        }
-    }
-
     override fun add(child: Component): SimplePanel {
         list.add(child)
         return this
