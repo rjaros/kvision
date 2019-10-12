@@ -19,13 +19,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package pl.treksoft.kvision.utils
+package pl.treksoft.kvision.state
 
 /**
  * Observable list interface.
  */
-interface ObservableList<T> : MutableList<T> {
+interface ObservableList<T> : MutableList<T>, ObservableState<List<T>> {
     val onUpdate: MutableCollection<(MutableList<T>) -> Unit>
 }
 
@@ -33,7 +32,13 @@ interface ObservableList<T> : MutableList<T> {
  * Simple observable list implementation.
  */
 @Suppress("TooManyFunctions")
-class ObservableListWrapper<T>(val mutableList: MutableList<T> = mutableListOf()) : MutableList<T>, ObservableList<T> {
+class ObservableListWrapper<T>(val mutableList: MutableList<T> = mutableListOf()) : MutableList<T>, ObservableList<T>,
+    ObservableState<List<T>> {
+
+    override fun subscribe(observer: (List<T>) -> Unit) {
+        onUpdate += observer
+        observer(this)
+    }
 
     override val onUpdate: MutableCollection<(MutableList<T>) -> Unit> = mutableListOf()
 

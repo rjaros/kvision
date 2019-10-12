@@ -26,7 +26,7 @@ import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.VPanel
-import pl.treksoft.kvision.utils.ObservableList
+import pl.treksoft.kvision.state.ObservableList
 
 /**
  * Sorter types.
