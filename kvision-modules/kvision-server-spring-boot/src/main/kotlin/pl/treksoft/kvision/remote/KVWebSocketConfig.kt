@@ -21,232 +21,87 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.config.ConfigurableBeanFactory
+import kotlinx.coroutines.reactive.asFlow
+import kotlinx.coroutines.reactor.asFlux
+import kotlinx.coroutines.reactor.asMono
+import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Scope
-import org.springframework.http.HttpHeaders
-import org.springframework.http.server.ServerHttpRequest
-import org.springframework.http.server.ServerHttpResponse
-import org.springframework.web.context.support.GenericWebApplicationContext
-import org.springframework.web.socket.CloseStatus
-import org.springframework.web.socket.TextMessage
-import org.springframework.web.socket.WebSocketExtension
-import org.springframework.web.socket.WebSocketHandler
-import org.springframework.web.socket.WebSocketMessage
-import org.springframework.web.socket.WebSocketSession
-import org.springframework.web.socket.config.annotation.EnableWebSocket
-import org.springframework.web.socket.config.annotation.WebSocketConfigurer
-import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
-import org.springframework.web.socket.handler.TextWebSocketHandler
-import org.springframework.web.socket.server.HandshakeInterceptor
-import java.net.InetSocketAddress
-import java.net.URI
-import java.security.Principal
-import java.util.concurrent.ConcurrentHashMap
+import org.springframework.web.reactive.HandlerMapping
+import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping
+import org.springframework.web.reactive.socket.WebSocketHandler
+import org.springframework.web.reactive.socket.WebSocketSession
+import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter
+import reactor.core.publisher.Mono
+import kotlin.coroutines.EmptyCoroutineContext
 
-const val KV_ROUTE_ID_ATTRIBUTE = "KV_ROUTE_ID_ATTRIBUTE"
-
-/**
- * Automatic websockets configuration.
- */
-@Configuration
-@EnableWebSocket
-open class KVWebSocketConfig : WebSocketConfigurer {
-
-    @Autowired
-    lateinit var services: List<KVServiceManager<*>>
-
-    @Autowired
-    lateinit var applicationContext: GenericWebApplicationContext
-
-    override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
-        registry.addHandler(socketHandler(), "/kvws/*").setAllowedOrigins("*").addInterceptors(routeInterceptor())
-    }
-
-    @Bean
-    open fun routeInterceptor(): HandshakeInterceptor {
-        return KvHandshakeInterceptor()
-    }
-
-    @Bean
-    open fun socketHandler(): WebSocketHandler {
-        return KvWebSocketHandler(services, applicationContext)
-    }
-
-    @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    open fun webSocketSession(): WebSocketSession {
-        return WebSocketSessionHolder.webSocketSession
-    }
-}
-
-object WebSocketSessionHolder {
-    var webSocketSession: WebSocketSession = DummyWebSocketSession()
-}
-
-internal open class KvHandshakeInterceptor : HandshakeInterceptor {
-    override fun beforeHandshake(
-        request: ServerHttpRequest,
-        response: ServerHttpResponse,
-        wsHandler: WebSocketHandler,
-        attributes: MutableMap<String, Any>
-    ): Boolean {
-        val path = request.uri.path
-        val route = path.substring(path.lastIndexOf('/') + 1)
-        attributes[KV_ROUTE_ID_ATTRIBUTE] = route
-        return true
-    }
-
-    override fun afterHandshake(
-        request: ServerHttpRequest,
-        response: ServerHttpResponse,
-        wsHandler: WebSocketHandler,
-        exception: Exception?
-    ) {
-    }
-}
-
-@UseExperimental(ExperimentalCoroutinesApi::class)
-internal open class KvWebSocketHandler(
+class KVWebSocketHandler(
     private val services: List<KVServiceManager<*>>,
-    private val applicationContext: GenericWebApplicationContext
-) : TextWebSocketHandler() {
-
-    private val sessions = ConcurrentHashMap<String, Pair<Channel<String>, Channel<String>>>()
+    private val applicationContext: ApplicationContext
+) : WebSocketHandler, CoroutineScope by CoroutineScope(Dispatchers.Default) {
 
     private fun getHandler(session: WebSocketSession): (suspend (
-        WebSocketSession, GenericWebApplicationContext,
+        WebSocketSession, ApplicationContext,
         ReceiveChannel<String>, SendChannel<String>
-    ) -> Unit)? {
-        val routeId = session.attributes[KV_ROUTE_ID_ATTRIBUTE] as String
+    ) -> Unit) {
+        val uri = session.handshakeInfo.uri.toString()
+        val route = uri.substring(uri.lastIndexOf('/') + 1)
         return services.mapNotNull {
-            it.webSocketsRequests[routeId]
-        }.firstOrNull()
+            it.webSocketsRequests[route]
+        }.first()
     }
 
-    private fun getSessionId(session: WebSocketSession): String {
-        val routeId = session.attributes[KV_ROUTE_ID_ATTRIBUTE] as String
-        return session.id + "###" + routeId
-    }
-
-    override fun afterConnectionEstablished(session: WebSocketSession) {
-        getHandler(session)?.let { handler ->
-            val requestChannel = Channel<String>()
-            val responseChannel = Channel<String>()
-            GlobalScope.launch {
-                coroutineScope {
-                    launch(Dispatchers.IO) {
-                        for (text in responseChannel) {
-                            session.sendMessage(TextMessage(text))
-                        }
-                        session.close()
+    @UseExperimental(ObsoleteCoroutinesApi::class, ExperimentalCoroutinesApi::class)
+    override fun handle(session: WebSocketSession): Mono<Void> {
+        val handler = getHandler(session)
+        val responseChannel = Channel<String>()
+        val requestChannel = Channel<String>()
+        val output = session.send(responseChannel.asFlux(EmptyCoroutineContext).map(session::textMessage))
+        val input = async {
+            coroutineScope {
+                launch {
+                    session.receive().map {
+                        it.payloadAsText
+                    }.asFlow().collect {
+                        requestChannel.send(it)
                     }
-                    launch {
-                        handler.invoke(session, applicationContext, requestChannel, responseChannel)
-                        if (!responseChannel.isClosedForReceive) responseChannel.close()
-                    }
-                    sessions[getSessionId(session)] = responseChannel to requestChannel
-                }
-            }
-        }
-    }
-
-    override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
-        getHandler(session)?.let {
-            sessions[getSessionId(session)]?.let { (_, requestChannel) ->
-                GlobalScope.launch {
-                    requestChannel.send(message.payload)
-                }
-            }
-        }
-    }
-
-    override fun afterConnectionClosed(session: WebSocketSession, status: CloseStatus) {
-        getHandler(session)?.let {
-            sessions[getSessionId(session)]?.let { (responseChannel, requestChannel) ->
-                GlobalScope.launch {
-                    responseChannel.close()
                     requestChannel.close()
                 }
-                sessions.remove(getSessionId(session))
+                launch {
+                    handler.invoke(session, applicationContext, requestChannel, responseChannel)
+                    if (!responseChannel.isClosedForReceive) responseChannel.close()
+                    session.close()
+                }
             }
-        }
+        }.asMono(EmptyCoroutineContext).then()
+        return Mono.zip(input, output).then()
     }
 }
 
-@Suppress("TooManyFunctions")
-open class DummyWebSocketSession : WebSocketSession {
-    override fun getBinaryMessageSizeLimit(): Int {
-        return 0
+@Configuration
+open class KVWebSocketConfig(
+    private var services: List<KVServiceManager<*>>,
+    private var applicationContext: ApplicationContext
+) {
+
+    @Bean
+    open fun handlerMapping(): HandlerMapping {
+        val map = mapOf("/kvws/*" to KVWebSocketHandler(services, applicationContext))
+        val order = -1
+        return SimpleUrlHandlerMapping(map, order)
     }
 
-    override fun sendMessage(message: WebSocketMessage<*>) {
-    }
-
-    override fun getAcceptedProtocol(): String? {
-        return null
-    }
-
-    override fun getTextMessageSizeLimit(): Int {
-        return 0
-    }
-
-    override fun getLocalAddress(): InetSocketAddress? {
-        return null
-    }
-
-    override fun getId(): String {
-        return ""
-    }
-
-    override fun getExtensions(): MutableList<WebSocketExtension> {
-        return mutableListOf()
-    }
-
-    override fun getUri(): URI? {
-        return null
-    }
-
-    override fun setBinaryMessageSizeLimit(messageSizeLimit: Int) {
-    }
-
-    override fun getAttributes(): MutableMap<String, Any> {
-        return mutableMapOf()
-    }
-
-    override fun getHandshakeHeaders(): HttpHeaders {
-        return HttpHeaders.EMPTY
-    }
-
-    override fun isOpen(): Boolean {
-        return false
-    }
-
-    override fun getPrincipal(): Principal? {
-        return null
-    }
-
-    override fun close() {
-    }
-
-    override fun close(status: CloseStatus) {
-    }
-
-    override fun setTextMessageSizeLimit(messageSizeLimit: Int) {
-    }
-
-    override fun getRemoteAddress(): InetSocketAddress? {
-        return null
-    }
-
+    @Bean
+    open fun handlerAdapter() = WebSocketHandlerAdapter()
 }

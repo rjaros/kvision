@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.inject.Injector
 import kotlinx.coroutines.CoroutineStart
@@ -37,7 +38,14 @@ import org.jooby.Request
 import org.jooby.Response
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import pl.treksoft.kvision.types.*
 import kotlin.reflect.KClass
+import java.time.LocalDateTime
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.OffsetDateTime
+import java.time.OffsetTime
+
 
 /**
  * Multiplatform service manager for Jooby.
@@ -51,7 +59,20 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 
     val routes: MutableList<Kooby.() -> Unit> = mutableListOf()
-    val mapper = jacksonObjectMapper()
+    val mapper = jacksonObjectMapper().apply {
+        val module = SimpleModule()
+        module.addSerializer(LocalDateTime::class.java, LocalDateTimeSerializer())
+        module.addSerializer(LocalDate::class.java, LocalDateSerializer())
+        module.addSerializer(LocalTime::class.java, LocalTimeSerializer())
+        module.addSerializer(OffsetDateTime::class.java, OffsetDateTimeSerializer())
+        module.addSerializer(OffsetTime::class.java, OffsetTimeSerializer())
+        module.addDeserializer(LocalDateTime::class.java, LocalDateTimeDeserializer())
+        module.addDeserializer(LocalDate::class.java, LocalDateDeserializer())
+        module.addDeserializer(LocalTime::class.java, LocalTimeDeserializer())
+        module.addDeserializer(OffsetDateTime::class.java, OffsetDateTimeDeserializer())
+        module.addDeserializer(OffsetTime::class.java, OffsetTimeDeserializer())
+        this.registerModule(module)
+    }
     var counter: Int = 0
 
     /**

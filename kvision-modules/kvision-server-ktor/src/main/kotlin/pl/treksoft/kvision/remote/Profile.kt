@@ -25,7 +25,6 @@ import io.ktor.application.ApplicationCall
 import io.ktor.sessions.get
 import io.ktor.sessions.sessions
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 /**
  * A user profile.
@@ -41,7 +40,6 @@ actual data class Profile(
     val remembered: Boolean = false,
     val clientName: String? = null
 ) {
-    @Transient
     var username: String?
         get() = attributes["username"]
         set(value) {
@@ -51,7 +49,6 @@ actual data class Profile(
                 attributes.remove("username")
             }
         }
-    @Transient
     var firstName: String?
         get() = attributes["first_name"]
         set(value) {
@@ -61,7 +58,6 @@ actual data class Profile(
                 attributes.remove("first_name")
             }
         }
-    @Transient
     var familyName: String?
         get() = attributes["family_name"]
         set(value) {
@@ -71,7 +67,6 @@ actual data class Profile(
                 attributes.remove("family_name")
             }
         }
-    @Transient
     var displayName: String?
         get() = attributes["display_name"]
         set(value) {
@@ -81,7 +76,6 @@ actual data class Profile(
                 attributes.remove("display_name")
             }
         }
-    @Transient
     var email: String?
         get() = attributes["email"]
         set(value) {
@@ -91,7 +85,6 @@ actual data class Profile(
                 attributes.remove("email")
             }
         }
-    @Transient
     var pictureUrl: String?
         get() = attributes["picture_url"]
         set(value) {
@@ -101,7 +94,6 @@ actual data class Profile(
                 attributes.remove("picture_url")
             }
         }
-    @Transient
     var profileUrl: String?
         get() = attributes["profile_url"]
         set(value) {

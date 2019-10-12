@@ -21,32 +21,123 @@
  */
 package pl.treksoft.kvision.remote
 
-import org.pac4j.core.context.J2EContext
-import org.pac4j.core.context.session.J2ESessionStore
-import org.pac4j.core.profile.CommonProfile
-import org.pac4j.core.profile.ProfileManager
-import org.springframework.web.context.request.RequestContextHolder
-import org.springframework.web.context.request.ServletRequestAttributes
+import com.fasterxml.jackson.annotation.JsonIgnore
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
 /**
  * A user profile.
  */
-actual typealias Profile = CommonProfile
+@Serializable
+actual data class Profile(
+    val id: String? = null,
+    val attributes: MutableMap<String, String> = mutableMapOf(),
+    val authenticationAttributes: MutableMap<String, String> = mutableMapOf(),
+    val roles: MutableSet<String> = mutableSetOf(),
+    val permissions: MutableSet<String> = mutableSetOf(),
+    val linkedId: String? = null,
+    val remembered: Boolean = false,
+    val clientName: String? = null
+) : UserDetails {
 
-/**
- * A helper extension function for processing with authenticated user profile.
- */
-@Suppress("TooGenericExceptionCaught")
-suspend fun <RESP> withProfile(block: suspend (Profile) -> RESP): RESP {
-    val profile = try {
-        val requestAttributes = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes)
-        val req = requestAttributes.request
-        val resp = requestAttributes.response
-        ProfileManager<CommonProfile>(J2EContext(req, resp, J2ESessionStore())).get(true).get()
-    } catch (e: Exception) {
-        null
+    @Transient
+    @JsonIgnore
+    private var password: String? = null
+
+    override fun getUsername(): String? {
+        return attributes["username"]
     }
-    return profile?.let {
-        block(it)
-    } ?: throw IllegalStateException("Profile not set!")
+
+    fun setUsername(username: String?) {
+        if (username != null) {
+            attributes["username"] = username
+        } else {
+            attributes.remove("username")
+        }
+    }
+
+    override fun getPassword(): String? {
+        return password
+    }
+
+    fun setPassword(password: String?) {
+        this.password = password
+    }
+
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
+        return mutableListOf()
+    }
+
+    override fun isEnabled(): Boolean {
+        return true
+    }
+
+    override fun isCredentialsNonExpired(): Boolean {
+        return true
+    }
+
+    override fun isAccountNonExpired(): Boolean {
+        return true
+    }
+
+    override fun isAccountNonLocked(): Boolean {
+        return true
+    }
+
+    var firstName: String?
+        get() = attributes["first_name"]
+        set(value) {
+            if (value != null) {
+                attributes["first_name"] = value
+            } else {
+                attributes.remove("first_name")
+            }
+        }
+    var familyName: String?
+        get() = attributes["family_name"]
+        set(value) {
+            if (value != null) {
+                attributes["family_name"] = value
+            } else {
+                attributes.remove("family_name")
+            }
+        }
+    var displayName: String?
+        get() = attributes["display_name"]
+        set(value) {
+            if (value != null) {
+                attributes["display_name"] = value
+            } else {
+                attributes.remove("display_name")
+            }
+        }
+    var email: String?
+        get() = attributes["email"]
+        set(value) {
+            if (value != null) {
+                attributes["email"] = value
+            } else {
+                attributes.remove("email")
+            }
+        }
+    var pictureUrl: String?
+        get() = attributes["picture_url"]
+        set(value) {
+            if (value != null) {
+                attributes["picture_url"] = value
+            } else {
+                attributes.remove("picture_url")
+            }
+        }
+    var profileUrl: String?
+        get() = attributes["profile_url"]
+        set(value) {
+            if (value != null) {
+                attributes["profile_url"] = value
+            } else {
+                attributes.remove("profile_url")
+            }
+        }
 }

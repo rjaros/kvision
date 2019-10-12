@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=pl.treksoft.kvision.remote.KVController,pl.treksoft.kvision.remote.KVWebSocketConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=pl.treksoft.kvision.remote.KVRouterConfiguration,pl.treksoft.kvision.remote.KVHandler,pl.treksoft.kvision.remote.KVWebSocketConfig

@@ -1,19 +1,29 @@
 apply plugin: 'kotlin-platform-jvm'
 apply plugin: 'kotlinx-serialization'
 
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
+    maven { url = 'https://kotlin.bintray.com/kotlinx' }
+    maven { url = 'https://dl.bintray.com/rjaros/kotlin' }
+    maven { url = "https://repo.spring.io/milestone" }
+}
+
 dependencies {
     expectedBy project(":kvision-modules:kvision-common-types")
     expectedBy project(":kvision-modules:kvision-common-remote")
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutinesVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compile "org.springframework.boot:spring-boot-starter:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-websocket:$springBootVersion"
-    compile "org.pac4j:pac4j-core:$pac4jVersion"
+    compile "org.springframework.boot:spring-boot-starter-webflux:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-security:$springBootVersion"
+    compile "org.springframework.data:spring-data-relational:$springDataRelationalVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonModuleKotlinVersion}"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testCompile project(":kvision-modules:kvision-common-types")

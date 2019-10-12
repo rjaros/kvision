@@ -35,6 +35,7 @@ import kotlinx.serialization.internal.StringSerializer
 import kotlinx.serialization.list
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.types.JsonDateSerializer
+import pl.treksoft.kvision.types.toStringInternal
 import kotlin.js.Date
 import kotlin.reflect.KClass
 
@@ -113,7 +114,7 @@ interface RemoteAgent {
                 is Enum<*> -> "\"$value\""
                 is String -> value
                 is Char -> "\"$value\""
-                is Date -> "\"${value.getTime()}\""
+                is Date -> "\"${value.toStringInternal()}\""
                 else -> try {
                     @Suppress("UNCHECKED_CAST")
                     JSON.plain.stringify(kClass.serializer(), value)
