@@ -31,7 +31,18 @@ import kotlin.js.Date
 
 const val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
+@Deprecated("Compatibility with KVision 1. Use LocalDateTime or OffsetDateTime instead.")
 actual typealias Date = Date
+
+actual typealias LocalDateTime = Date
+
+actual typealias LocalDate = Date
+
+actual typealias LocalTime = Date
+
+actual typealias OffsetDateTime = Date
+
+actual typealias OffsetTime = Date
 
 /**
  * Extension function to convert String to Date with a given date format.

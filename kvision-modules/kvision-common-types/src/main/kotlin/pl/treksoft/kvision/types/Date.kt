@@ -21,4 +21,15 @@
  */
 package pl.treksoft.kvision.types
 
+@Deprecated("Compatibility with KVision 1. Use LocalDateTime or OffsetDateTime instead.")
 expect class Date
+
+expect class LocalDateTime
+
+expect class LocalDate
+
+expect class LocalTime
+
+expect class OffsetDateTime
+
+expect class OffsetTime
