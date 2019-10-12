@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.redux
 
 import pl.treksoft.kvision.KVManagerRedux
+import pl.treksoft.kvision.state.ObservableState
 import redux.Reducer
 import redux.Store
 import redux.WrapperAction
@@ -62,7 +63,7 @@ class ReduxStore<S : Any, A : RAction>(
     reducer: Reducer<S, A>,
     initialState: S,
     vararg middlewares: dynamic
-) {
+) : ObservableState<S> {
     private val store: Store<S, dynamic, WrapperAction>
 
     init {
@@ -83,9 +84,6 @@ class ReduxStore<S : Any, A : RAction>(
         )
     }
 
-    /**
-     * Returns the current state.
-     */
     fun getState(): S {
         return store.getState()
     }
@@ -114,12 +112,10 @@ class ReduxStore<S : Any, A : RAction>(
         })
     }
 
-    /**
-     * Subscribes a client for the change state notifications.
-     */
-    fun subscribe(listener: (S) -> Unit): () -> Unit {
-        return store.subscribe {
-            listener(getState())
+    override fun subscribe(observer: (S) -> Unit) {
+        store.subscribe {
+            observer(getState())
         }
+        observer(getState())
     }
 }

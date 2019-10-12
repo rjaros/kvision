@@ -25,8 +25,8 @@ import pl.treksoft.kvision.html.Div.Companion.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.redux.RAction
-import pl.treksoft.kvision.redux.StateBinding.Companion.stateBinding
-import pl.treksoft.kvision.redux.StateBinding.Companion.stateUpdate
+import pl.treksoft.kvision.state.StateBinding.Companion.stateBinding
+import pl.treksoft.kvision.state.StateBinding.Companion.stateUpdate
 import pl.treksoft.kvision.redux.createReduxStore
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document

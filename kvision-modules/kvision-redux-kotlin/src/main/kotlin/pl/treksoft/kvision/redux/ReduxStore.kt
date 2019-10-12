@@ -28,6 +28,7 @@ import org.reduxkotlin.applyMiddleware
 import org.reduxkotlin.createStore
 import org.reduxkotlin.createThunk
 import org.reduxkotlin.createThunkMiddleware
+import pl.treksoft.kvision.state.ObservableState
 
 interface RAction
 typealias ReducerFun<S, A> = (S, A) -> S
@@ -65,7 +66,7 @@ class ReduxStore<S : Any, A : RAction>(
     reducer: ReducerFun<S, A>,
     initialState: S,
     vararg middlewares: Middleware<S>
-) {
+) : ObservableState<S> {
     @Suppress("UNCHECKED_CAST")
     private val store: Store<S> = createStore({ s: S, a: Any ->
         if (a == ActionTypes.INIT || a == ActionTypes.REPLACE) {
@@ -75,11 +76,7 @@ class ReduxStore<S : Any, A : RAction>(
         }
     }, initialState, applyMiddleware(createThunkMiddleware(), *middlewares))
 
-    /**
-     * Returns the current state.
-     */
     fun getState(): S {
-        @Suppress("UNCHECKED_CAST")
         return store.getState()
     }
 
@@ -99,12 +96,10 @@ class ReduxStore<S : Any, A : RAction>(
         store.dispatch(thunk)
     }
 
-    /**
-     * Subscribes a client for the change state notifications.
-     */
-    fun subscribe(listener: (S) -> Unit): () -> Unit {
-        return store.subscribe {
-            listener(getState())
+    override fun subscribe(observer: (S) -> Unit) {
+        store.subscribe {
+            observer(getState())
         }
+        observer(getState())
     }
 }

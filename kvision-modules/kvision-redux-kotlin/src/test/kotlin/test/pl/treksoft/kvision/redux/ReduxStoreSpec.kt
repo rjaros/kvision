@@ -76,7 +76,7 @@ class ReduxStoreSpec : SimpleSpec {
             }
             store.dispatch(TestAction.Inc)
             store.dispatch(TestAction.Dec)
-            assertEquals(2, counter)
+            assertEquals(3, counter)
         }
     }
 }

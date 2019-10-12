@@ -19,34 +19,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.redux
+package test.pl.treksoft.kvision.state
 
 import pl.treksoft.kvision.html.Div.Companion.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.StateBinding.Companion.stateBinding
 import pl.treksoft.kvision.state.StateBinding.Companion.stateUpdate
-import pl.treksoft.kvision.redux.createReduxStore
-import redux.RAction
+import pl.treksoft.kvision.state.observableListOf
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
-
-data class State(val counter: Int)
-
-sealed class StateAction : RAction {
-    object Inc : StateAction()
-    object Dec : StateAction()
-}
-
-fun stateReducer(state: State, action: StateAction): State = when (action) {
-    is StateAction.Inc -> {
-        state.copy(counter = state.counter + 1)
-    }
-    is StateAction.Dec -> {
-        state.copy(counter = state.counter - 1)
-    }
-}
 
 class StateBindingSpec : DomSpec {
 
@@ -54,22 +37,23 @@ class StateBindingSpec : DomSpec {
     fun stateBinding() {
         run {
             val root = Root("test", fixed = true)
-            val store = createReduxStore(::stateReducer, State(10))
-
             val container = SimplePanel()
-            container.stateBinding(store) { state ->
-                div("${state.counter}")
+            val observableList = observableListOf(1, 2, 3)
+            container.stateBinding(observableList) { state ->
+                state.forEach {
+                    div("$it")
+                }
             }
             root.add(container)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><div></div><div>10</div></div>",
+                "<div><div></div><div>1</div><div>2</div><div>3</div></div>",
                 element?.innerHTML,
                 "Should render initial state of the container"
             )
-            store.dispatch(StateAction.Inc)
+            observableList.add(4)
             assertEqualsHtml(
-                "<div><div></div><div>11</div></div>",
+                "<div><div></div><div>1</div><div>2</div><div>3</div><div>4</div></div>",
                 element?.innerHTML,
                 "Should render changed state of the container"
             )
@@ -80,24 +64,23 @@ class StateBindingSpec : DomSpec {
     fun stateUpdate() {
         run {
             val root = Root("test", fixed = true)
-            val store = createReduxStore(::stateReducer, State(10))
-
             val container = SimplePanel()
-            container.stateUpdate(store) { state ->
-                div("${state.counter}")
+            val observableList = observableListOf(1)
+            container.stateUpdate(observableList) { state ->
+                div("${state[0]}")
             } updateWith { state, d ->
-                d.content = "${state.counter}"
+                d.content = "${state[0]}"
             }
             root.add(container)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><div></div><div>10</div></div>",
+                "<div><div></div><div>1</div></div>",
                 element?.innerHTML,
                 "Should render initial state of the container"
             )
-            store.dispatch(StateAction.Inc)
+            observableList[0] = 2
             assertEqualsHtml(
-                "<div><div></div><div>11</div></div>",
+                "<div><div></div><div>2</div></div>",
                 element?.innerHTML,
                 "Should render changed state of the container"
             )
