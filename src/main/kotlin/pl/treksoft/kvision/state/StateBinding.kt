@@ -22,8 +22,10 @@ class StateBinding<S : Any, CONT : Container, CONTENT>(
     private val factory: (CONT.(S) -> CONTENT)
 ) : Widget(setOf()) {
 
+    private val unsubscribe: () -> Unit
+
     init {
-        observableState.subscribe { update(it) }
+        unsubscribe = observableState.subscribe { update(it) }
     }
 
     private var updateState: ((S, CONTENT) -> Unit)? = null
@@ -49,6 +51,11 @@ class StateBinding<S : Any, CONT : Container, CONTENT>(
 
     private fun setUpdateState(updateState: (S, CONTENT) -> Unit) {
         this.updateState = updateState
+    }
+
+    override fun dispose() {
+        unsubscribe()
+        super.dispose()
     }
 
     companion object {

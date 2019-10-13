@@ -35,9 +35,12 @@ interface ObservableList<T> : MutableList<T>, ObservableState<List<T>> {
 class ObservableListWrapper<T>(val mutableList: MutableList<T> = mutableListOf()) : MutableList<T>, ObservableList<T>,
     ObservableState<List<T>> {
 
-    override fun subscribe(observer: (List<T>) -> Unit) {
+    override fun subscribe(observer: (List<T>) -> Unit): () -> Unit {
         onUpdate += observer
         observer(this)
+        return {
+            onUpdate -= observer
+        }
     }
 
     override val onUpdate: MutableCollection<(MutableList<T>) -> Unit> = mutableListOf()

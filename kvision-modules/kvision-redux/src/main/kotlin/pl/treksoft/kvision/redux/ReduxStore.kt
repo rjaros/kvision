@@ -112,10 +112,10 @@ class ReduxStore<S : Any, A : RAction>(
         })
     }
 
-    override fun subscribe(observer: (S) -> Unit) {
-        store.subscribe {
+    override fun subscribe(observer: (S) -> Unit): () -> Unit {
+        observer(getState())
+        return store.subscribe {
             observer(getState())
         }
-        observer(getState())
     }
 }

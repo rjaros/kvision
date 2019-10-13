@@ -28,5 +28,5 @@ interface ObservableState<S> {
     /**
      * Subscribe for the state change notifications.
      */
-    fun subscribe(observer: (S) -> Unit)
+    fun subscribe(observer: (S) -> Unit): () -> Unit
 }
