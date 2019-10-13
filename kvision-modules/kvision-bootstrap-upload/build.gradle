@@ -1,7 +1,6 @@
 apply from: "../shared.gradle"
 
 dependencies {
-    compile project(":kvision-modules:kvision-bootstrap")
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion"
 }
 
