@@ -24,13 +24,14 @@ package pl.treksoft.kvision.remote
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactor.asFlux
@@ -62,12 +63,12 @@ class KVWebSocketHandler(
         }.first()
     }
 
-    @UseExperimental(ObsoleteCoroutinesApi::class, ExperimentalCoroutinesApi::class)
+    @UseExperimental(ExperimentalCoroutinesApi::class, FlowPreview::class)
     override fun handle(session: WebSocketSession): Mono<Void> {
         val handler = getHandler(session)
         val responseChannel = Channel<String>()
         val requestChannel = Channel<String>()
-        val output = session.send(responseChannel.asFlux(EmptyCoroutineContext).map(session::textMessage))
+        val output = session.send(responseChannel.consumeAsFlow().asFlux().map(session::textMessage))
         val input = async {
             coroutineScope {
                 launch {
