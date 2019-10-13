@@ -24,6 +24,7 @@ package pl.treksoft.kvision.panel
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
 import org.w3c.dom.HTMLElement
+import pl.treksoft.kvision.Application
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Style
@@ -40,6 +41,7 @@ import pl.treksoft.kvision.utils.snOpt
  *
  * @constructor
  * @param id ID attribute of element in the main HTML file
+ * @param element HTML element in the DOM tree
  * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
  * otherwise it's rendered with "container" class (default is false)
  * @param init an initializer extension function
@@ -160,13 +162,16 @@ class Root(
         /**
          * @suppress internal function
          */
-        fun shutdown() {
+        fun disposeAllRoots() {
             roots.forEach { it.dispose() }
             roots.clear()
         }
 
         internal val roots: MutableList<Root> = mutableListOf()
 
+        /**
+         * @suppress internal function
+         */
         fun getFirstRoot(): Root? {
             return if (roots.isNotEmpty())
                 roots[0]
@@ -174,6 +179,9 @@ class Root(
                 null
         }
 
+        /**
+         * @suppress internal function
+         */
         fun getLastRoot(): Root? {
             return if (roots.isNotEmpty())
                 roots[roots.size - 1]
@@ -181,12 +189,41 @@ class Root(
                 null
         }
 
+        /**
+         * @suppress internal function
+         */
         fun addModal(modal: Widget) {
             modals.add(modal)
         }
 
+        /**
+         * @suppress internal function
+         */
         fun removeModal(modal: Widget) {
             modals.remove(modal)
         }
+
+        /**
+         * Create new Root container based on ID
+         * @param id ID attribute of element in the main HTML file
+         * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
+         * otherwise it's rendered with "container" class (default is false)
+         * @param init an initializer extension function
+         */
+        fun Application.root(id: String, fixed: Boolean = false, init: Root.() -> Unit) {
+            Root(id, fixed = fixed, init = init)
+        }
+
+        /**
+         * Create new Root container based on HTML element
+         * @param element HTML element in the DOM tree
+         * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
+         * otherwise it's rendered with "container" class (default is false)
+         * @param init an initializer extension function
+         */
+        fun Application.root(element: HTMLElement, fixed: Boolean = false, init: Root.() -> Unit) {
+            Root(element = element, fixed = fixed, init = init)
+        }
+
     }
 }

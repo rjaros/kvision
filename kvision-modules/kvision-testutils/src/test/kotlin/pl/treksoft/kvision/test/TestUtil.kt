@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision
+package pl.treksoft.kvision.test
 
 import org.w3c.dom.Element
 import pl.treksoft.jquery.jQuery
@@ -63,7 +63,7 @@ interface DomSpec : TestSpec {
         val div = document.getElementById("pretest")
         div?.let { jQuery(it).remove() }
         jQuery(".modal-backdrop").remove()
-        Root.shutdown()
+        Root.disposeAllRoots()
     }
 
     fun assertEqualsHtml(expected: String?, actual: String?, message: String?) {

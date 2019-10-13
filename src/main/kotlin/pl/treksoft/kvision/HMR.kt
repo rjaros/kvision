@@ -19,23 +19,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package pl.treksoft.kvision.hmr
+package pl.treksoft.kvision
 
 /**
- * Base interface for applications.
- *
- * Base interface for applications supporting Hot Module Replacement (HMR).
+ * Helper variable for Hot Module Replacement (HMR).
  */
-interface ApplicationBase {
-    /**
-     * Starting point for an application.
-     * @param state Initial state between Hot Module Replacement (HMR).
-     */
-    fun start(state: Map<String, Any>)
+external val module: Module
 
-    /**
-     * Ending point for an application.
-     * @return final state for Hot Module Replacement (HMR).
-     */
-    fun dispose(): Map<String, Any>
+/**
+ * Helper interface for Hot Module Replacement (HMR).
+ */
+external interface Module {
+    val hot: Hot?
+}
+
+/**
+ * Helper interface for Hot Module Replacement (HMR).
+ */
+external interface Hot {
+    val data: dynamic
+
+    fun accept()
+    fun accept(dependency: String, callback: () -> Unit)
+    fun accept(dependencies: Array<String>, callback: (updated: Array<String>) -> Unit)
+
+    fun dispose(callback: (data: dynamic) -> Unit)
 }

@@ -1,0 +1,60 @@
+apply plugin: 'kotlin-platform-js'
+
+task cleanLibs(type: Delete) {
+    delete 'build/js', 'build/libs'
+}
+
+if (project.gradle.startParameter.taskNames.contains("jar")) {
+    compileKotlin2Js.dependsOn 'cleanLibs'
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+task testJar(type: Jar, dependsOn: testClasses) {
+    baseName = "${project.archivesBaseName}-test"
+    from sourceSets.test.output
+}
+
+configurations {
+    tests
+}
+
+artifacts {
+    tests testJar
+}
+
+publishing {
+    publications {
+        mavenProject(MavenPublication) {
+            artifact testJar {
+                classifier 'tests'
+            }
+        }
+    }
+}
+
+compileKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
+    kotlinOptions.sourceMap = !production
+    kotlinOptions.moduleKind = 'umd'
+}
+
+compileTestKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.outputFile = "$project.buildDir.path/js-tests/${project.name}-tests.js"
+    kotlinOptions.sourceMap = !production
+    kotlinOptions.moduleKind = 'umd'
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-test-js:$kotlinVersion"
+    if (!project.gradle.startParameter.taskNames.contains("generatePomFileForMavenProjectPublication")) {
+        compile project(":kvision-modules:kvision-base")
+    } else {
+        compile rootProject
+    }
+}
