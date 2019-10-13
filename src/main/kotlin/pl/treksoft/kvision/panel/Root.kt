@@ -38,21 +38,11 @@ import pl.treksoft.kvision.utils.snOpt
  * This container is bound to the specific element in the main HTML file of the project.
  * It is always the root of components tree and it is responsible for rendering and updating
  * Snabbdom virtual DOM.
- *
- * @constructor
- * @param id ID attribute of element in the main HTML file
- * @param element HTML element in the DOM tree
- * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
- * otherwise it's rendered with "container" class (default is false)
- * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-class Root(
-    id: String? = null,
-    element: HTMLElement? = null,
-    private val fixed: Boolean = false,
-    init: (Root.() -> Unit)? = null
-) : SimplePanel() {
+class Root : SimplePanel {
+
+    private val fixed: Boolean
     private val contextMenus: MutableList<Widget> = mutableListOf()
     private var rootVnode: VNode = renderVNode()
 
@@ -60,22 +50,41 @@ class Root(
 
     val isFirstRoot = roots.isEmpty()
 
+    /**
+     * @constructor
+     * @param id ID attribute of element in the main HTML file
+     * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
+     * otherwise it's rendered with "container" class (default is false)
+     * @param init an initializer extension function
+     */
+    constructor(id: String, fixed: Boolean = false, init: (Root.() -> Unit)? = null) : super() {
+        this.fixed = fixed
+        rootVnode = KVManager.patch(id, this.renderVNode())
+        this.id = id
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
+    /**
+     * @constructor
+     * @param element HTML element in the DOM tree
+     * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
+     * otherwise it's rendered with "container" class (default is false)
+     * @param init an initializer extension function
+     */
+    constructor(element: HTMLElement, fixed: Boolean = false, init: (Root.() -> Unit)? = null) : super() {
+        this.fixed = fixed
+        rootVnode = KVManager.patch(element, this.renderVNode())
+        this.id = "kv_root_${counter++}"
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
     init {
-        if (id != null) {
-            rootVnode = KVManager.patch(id, this.renderVNode())
-            this.id = id
-        } else if (element != null) {
-            rootVnode = KVManager.patch(element, this.renderVNode())
-            this.id = "kv_root_${counter++}"
-        } else {
-            throw IllegalArgumentException("No root element specified!")
-        }
         roots.add(this)
         if (isFirstRoot) {
             modals.forEach { it.parent = this }
         }
-        @Suppress("LeakingThis")
-        init?.invoke(this)
     }
 
     override fun render(): VNode {
@@ -211,7 +220,7 @@ class Root(
          * @param init an initializer extension function
          */
         fun Application.root(id: String, fixed: Boolean = false, init: Root.() -> Unit) {
-            Root(id, fixed = fixed, init = init)
+            Root(id, fixed, init)
         }
 
         /**
@@ -222,7 +231,7 @@ class Root(
          * @param init an initializer extension function
          */
         fun Application.root(element: HTMLElement, fixed: Boolean = false, init: Root.() -> Unit) {
-            Root(element = element, fixed = fixed, init = init)
+            Root(element, fixed, init)
         }
 
     }
