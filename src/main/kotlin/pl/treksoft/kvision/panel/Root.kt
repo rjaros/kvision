@@ -218,9 +218,10 @@ class Root : SimplePanel {
          * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
          * otherwise it's rendered with "container" class (default is false)
          * @param init an initializer extension function
+         * @return the created Root container
          */
-        fun Application.root(id: String, fixed: Boolean = false, init: Root.() -> Unit) {
-            Root(id, fixed, init)
+        fun Application.root(id: String, fixed: Boolean = false, init: Root.() -> Unit): Root {
+            return Root(id, fixed, init)
         }
 
         /**
@@ -229,9 +230,10 @@ class Root : SimplePanel {
          * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
          * otherwise it's rendered with "container" class (default is false)
          * @param init an initializer extension function
+         * @return the created Root container
          */
-        fun Application.root(element: HTMLElement, fixed: Boolean = false, init: Root.() -> Unit) {
-            Root(element, fixed, init)
+        fun Application.root(element: HTMLElement, fixed: Boolean = false, init: Root.() -> Unit): Root {
+            return Root(element, fixed, init)
         }
 
     }
