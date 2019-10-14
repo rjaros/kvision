@@ -46,7 +46,7 @@ allows to build full-stack, multiplatform applications with shared common code.
  
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
-- Data binding support for observable data model.
+- Supports an observer pattern for data bindings.
 - Internationalization support based on [Jed](http://messageformat.github.io/Jed/) library and [gettext](https://www.gnu.org/software/gettext/) translations. 
 - Easy to use Drag & Drop support.
 - Type-safe REST connectivity.
@@ -70,7 +70,7 @@ Full API documentation (KDoc) is available at [https://rjaros.github.io/kvision/
 You can also look at [KVision blog posts at dev.to](https://dev.to/t/kvision/latest) and you can talk with KVision 
 developers on Kotlin Slack [#kvision](https://kotlinlang.slack.com/messages/kvision/) channel.
 
-If you are looking for the guide for KVision 1.x, you can [find it here](https://kvision.gitbook.io/kvision-guide/v/kvision-1.x/).
+If you are looking for the guide for KVision 1.x (based on Bootstrap 3), you can [find it here](https://kvision.gitbook.io/kvision-guide/v/kvision-1.x/).
 
 ## Quickstart
 
@@ -107,13 +107,13 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
 
 ### Hello world
 
-        Root("root") {
+        root("root") {
             span("Hello world!")
         }
 
 ### Basic components interactions using type safe DSL builders
 
-        Root("root") {
+        root("root") {
             hPanel(spacing = 20, alignItems = FlexAlignItems.CENTER) {
                 val label = span("Not yet clicked.")
                 var count = 0
@@ -129,7 +129,7 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
         val secondPanel = Div("Second")
         val thirdPanel = Div("Third")
 
-        Root("root") {
+        root("root") {
             tabPanel {
                 addTab("First", firstPanel, route = "/first")
                 addTab("Second", secondPanel, route = "/second")
@@ -142,7 +142,7 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
         @Serializable
         data class Model(val username: String? = null, val password: String? = null)
 
-        Root("root") {
+        root("root") {
             formPanel {
                 add(Model::username, Text(label = "Username"), required = true)
                 add(Model::password, Password(label = "Password"), required = true)
@@ -154,7 +154,7 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
             }
         }
         
-### Data binding with observable data model
+### Observer design pattern
 
         data class Data(val text: String)
         
@@ -163,7 +163,7 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
             Data("Two"),
             Data("Three")
         )
-        Root("root") {
+        root("root") {
             dataContainer(model, { data, _, _ ->
                 Span(data.text)
             }, HPanel(spacing = 10))
