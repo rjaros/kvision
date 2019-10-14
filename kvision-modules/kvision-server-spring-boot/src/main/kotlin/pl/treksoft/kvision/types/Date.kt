@@ -36,7 +36,7 @@ import java.time.OffsetTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
-@Deprecated("Compatibility with KVision 1. Use LocalDateTime or OffsetDateTime instead.")
+@Deprecated("Not supported in KVision 2. Use LocalDateTime or OffsetDateTime instead.", level = DeprecationLevel.ERROR)
 actual typealias Date = LocalDateTime
 
 actual typealias LocalDateTime = LocalDateTime

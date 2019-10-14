@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision.types
 
-@Deprecated("Compatibility with KVision 1. Use LocalDateTime or OffsetDateTime instead.")
+@Deprecated("Not supported in KVision 2. Use LocalDateTime or OffsetDateTime instead.", level = DeprecationLevel.ERROR)
 expect class Date
 
 expect class LocalDateTime
