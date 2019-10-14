@@ -21,9 +21,7 @@
  */
 package pl.treksoft.kvision.test
 
-import org.w3c.dom.Element
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.Root
 import kotlin.browser.document
 import kotlin.test.assertEquals
@@ -53,9 +51,11 @@ interface SimpleSpec : TestSpec {
 
 interface DomSpec : TestSpec {
 
+    fun getId() = "test"
+
     override fun beforeTest() {
         val fixture = "<div style=\"display: none\" id=\"pretest\">" +
-                "<div id=\"test\"></div></div>"
+                "<div id=\"${getId()}\"></div></div>"
         document.body?.insertAdjacentHTML("afterbegin", fixture)
     }
 
@@ -81,20 +81,3 @@ interface DomSpec : TestSpec {
         }
     }
 }
-
-interface WSpec : DomSpec {
-
-    fun runW(code: (widget: Widget, element: Element?) -> Unit) {
-        run {
-            val root = Root("test", fixed = true)
-            val widget = Widget()
-            widget.id = "test_id"
-            root.add(widget)
-            val element = document.getElementById("test_id")
-            code(widget, element)
-        }
-    }
-
-}
-
-external fun require(name: String): dynamic
