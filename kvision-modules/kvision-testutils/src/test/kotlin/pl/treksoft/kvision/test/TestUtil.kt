@@ -51,11 +51,11 @@ interface SimpleSpec : TestSpec {
 
 interface DomSpec : TestSpec {
 
-    fun getId() = "test"
+    fun getTestId() = "test"
 
     override fun beforeTest() {
         val fixture = "<div style=\"display: none\" id=\"pretest\">" +
-                "<div id=\"${getId()}\"></div></div>"
+                "<div id=\"${getTestId()}\"></div></div>"
         document.body?.insertAdjacentHTML("afterbegin", fixture)
     }
 
