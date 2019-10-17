@@ -55,7 +55,7 @@ class KVProcessor : AbstractProcessor() {
     }
 
     override fun process(roundEnvironment: RoundEnvironment) {
-        val isCommon = this.configuration.kotlinSourceRoots.find { it.isCommon } != null
+        val isCommon = this.configuration.kotlinSourceRoots.find { !it.isCommon } == null
         if (isCommon) {
             roundEnvironment.getElementsAnnotatedWith(KVService::class.java.name).forEach {
                 if (it is Element.ClassElement && it.classDescriptor.name.asString().startsWith("I")

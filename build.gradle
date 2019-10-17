@@ -23,7 +23,7 @@ plugins {
     id "io.gitlab.arturbosch.detekt" version "1.0.0-RC14"
 }
 
-configure(allprojects - project(':kvision-modules')) {
+configure(allprojects - project(':kvision-modules') - project(':kvision-tools')) {
     repositories {
         jcenter()
         mavenCentral()
@@ -36,7 +36,7 @@ configure(allprojects - project(':kvision-modules')) {
     }
 }
 
-configure(allprojects - project(':kvision-modules') - project(":kvision-modules:kvision-base")) {
+configure(allprojects - project(':kvision-modules') - project(':kvision-tools') - project(":kvision-modules:kvision-base")) {
     apply plugin: 'io.gitlab.arturbosch.detekt'
     apply plugin: 'com.jfrog.bintray'
     apply plugin: 'maven'

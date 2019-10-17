@@ -31,5 +31,5 @@ include 'kvision-modules:kvision-base',
         'kvision-modules:kvision-electron',
         'kvision-modules:kvision-cordova',
         'kvision-modules:kvision-testutils',
-        'kvision-modules:kvision-compiler-plugin',
-        'kvision-modules:kvision-gradle-plugin'
+        'kvision-tools:kvision-compiler-plugin',
+        'kvision-tools:kvision-gradle-plugin'
