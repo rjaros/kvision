@@ -1,0 +1,20 @@
+apply plugin: 'kotlin-platform-jvm'
+apply plugin: "java-gradle-plugin"
+apply plugin: "kotlin-kapt"
+apply plugin: "maven"
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = "pl.treksoft.kvision"
+            implementationClass = "pl.treksoft.kvision.gradle.KVisionGradlePlugin"
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "org.jetbrains.kotlin:kotlin-gradle-plugin-api:$kotlinVersion"
+    compileOnly "com.google.auto.service:auto-service:$autoServiceVersion"
+    kapt "com.google.auto.service:auto-service:$autoServiceVersion"
+}

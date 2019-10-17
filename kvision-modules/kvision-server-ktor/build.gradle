@@ -4,6 +4,7 @@ apply plugin: 'kotlinx-serialization'
 dependencies {
     expectedBy project(":kvision-modules:kvision-common-types")
     expectedBy project(":kvision-modules:kvision-common-remote")
+    expectedBy project(":kvision-modules:kvision-common-annotations")
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
@@ -16,6 +17,7 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testCompile project(":kvision-modules:kvision-common-types")
     testCompile project(":kvision-modules:kvision-common-remote")
+    testCompile project(":kvision-modules:kvision-common-annotations")
 }
 
 compileKotlin {

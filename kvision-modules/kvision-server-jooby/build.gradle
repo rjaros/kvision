@@ -11,6 +11,7 @@ dependencyManagement {
 dependencies {
     expectedBy project(":kvision-modules:kvision-common-types")
     expectedBy project(":kvision-modules:kvision-common-remote")
+    expectedBy project(":kvision-modules:kvision-common-annotations")
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
@@ -24,6 +25,7 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testCompile project(":kvision-modules:kvision-common-types")
     testCompile project(":kvision-modules:kvision-common-remote")
+    testCompile project(":kvision-modules:kvision-common-annotations")
 }
 
 compileKotlin {

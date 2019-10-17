@@ -13,6 +13,7 @@ repositories {
 dependencies {
     expectedBy project(":kvision-modules:kvision-common-types")
     expectedBy project(":kvision-modules:kvision-common-remote")
+    expectedBy project(":kvision-modules:kvision-common-annotations")
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
@@ -28,6 +29,7 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testCompile project(":kvision-modules:kvision-common-types")
     testCompile project(":kvision-modules:kvision-common-remote")
+    testCompile project(":kvision-modules:kvision-common-annotations")
 }
 
 compileKotlin {

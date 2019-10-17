@@ -1,6 +1,7 @@
 rootProject.name = 'kvision'
 
 include 'kvision-modules:kvision-base',
+        'kvision-modules:kvision-common-annotations',
         'kvision-modules:kvision-common-remote',
         'kvision-modules:kvision-common-types',
         'kvision-modules:kvision-bootstrap',
@@ -29,4 +30,6 @@ include 'kvision-modules:kvision-base',
         'kvision-modules:kvision-server-spring-boot',
         'kvision-modules:kvision-electron',
         'kvision-modules:kvision-cordova',
-        'kvision-modules:kvision-testutils'
+        'kvision-modules:kvision-testutils',
+        'kvision-modules:kvision-compiler-plugin',
+        'kvision-modules:kvision-gradle-plugin'
