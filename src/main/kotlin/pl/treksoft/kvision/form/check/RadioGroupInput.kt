@@ -174,19 +174,19 @@ open class RadioGroupInput(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.radioGroupInput(
-            options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
-            init: (RadioGroupInput.() -> Unit)? = null
-        ): RadioGroupInput {
-            val radioGroupInput = RadioGroupInput(options, value, name, inline).apply { init?.invoke(this) }
-            this.add(radioGroupInput)
-            return radioGroupInput
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.radioGroupInput(
+    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
+    init: (RadioGroupInput.() -> Unit)? = null
+): RadioGroupInput {
+    val radioGroupInput = RadioGroupInput(options, value, name, inline).apply { init?.invoke(this) }
+    this.add(radioGroupInput)
+    return radioGroupInput
 }

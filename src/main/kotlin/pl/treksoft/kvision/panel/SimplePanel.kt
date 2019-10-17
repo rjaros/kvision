@@ -101,17 +101,15 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
         children.forEach { it.dispose() }
         removeAll()
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.simplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> Unit)? = null): SimplePanel {
-            val simplePanel = SimplePanel(classes, init)
-            this.add(simplePanel)
-            return simplePanel
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.simplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> Unit)? = null): SimplePanel {
+    val simplePanel = SimplePanel(classes, init)
+    this.add(simplePanel)
+    return simplePanel
 }

@@ -110,22 +110,6 @@ open class Chart(
     }
 
     companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.chart(
-            configuration: Configuration,
-            chartWidth: Int? = null,
-            chartHeight: Int? = null,
-            classes: Set<String> = setOf(),
-            init: (Chart.() -> Unit)? = null
-        ): Chart {
-            val chart = Chart(configuration, chartWidth, chartHeight, classes).apply { init?.invoke(this) }
-            this.add(chart)
-            return chart
-        }
 
         fun registerPlugin(plugin: dynamic) {
             JsChart.plugins.register(plugin)
@@ -135,4 +119,21 @@ open class Chart(
             JsChart.plugins.unregister(plugin)
         }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.chart(
+    configuration: Configuration,
+    chartWidth: Int? = null,
+    chartHeight: Int? = null,
+    classes: Set<String> = setOf(),
+    init: (Chart.() -> Unit)? = null
+): Chart {
+    val chart = Chart(configuration, chartWidth, chartHeight, classes).apply { init?.invoke(this) }
+    this.add(chart)
+    return chart
 }

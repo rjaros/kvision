@@ -133,20 +133,18 @@ open class ListTag(
         }
         return cl
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.listTag(
-            type: ListType, elements: List<String>? = null, rich: Boolean = false,
-            classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null
-        ): ListTag {
-            val listTag = ListTag(type, elements, rich, classes, init)
-            this.add(listTag)
-            return listTag
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.listTag(
+    type: ListType, elements: List<String>? = null, rich: Boolean = false,
+    classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null
+): ListTag {
+    val listTag = ListTag(type, elements, rich, classes, init)
+    this.add(listTag)
+    return listTag
 }

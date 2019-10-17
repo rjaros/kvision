@@ -104,67 +104,64 @@ open class SelectOption(
         }
         return sn
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Select.selectOption(
-            value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
-            divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-            classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
-        ): SelectOption {
-            val selectOption =
-                SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
-                    init?.invoke(
-                        this
-                    )
-                }
-            this.add(selectOption)
-            return selectOption
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Select.selectOption(
+    value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
+    divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
+    classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
+): SelectOption {
+    val selectOption =
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
+            init?.invoke(
+                this
+            )
         }
+    this.add(selectOption)
+    return selectOption
+}
 
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun SelectInput.selectOption(
-            value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
-            divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-            classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
-        ): SelectOption {
-            val selectOption =
-                SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
-                    init?.invoke(
-                        this
-                    )
-                }
-            this.add(selectOption)
-            return selectOption
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun SelectInput.selectOption(
+    value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
+    divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
+    classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
+): SelectOption {
+    val selectOption =
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
+            init?.invoke(
+                this
+            )
         }
+    this.add(selectOption)
+    return selectOption
+}
 
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun SelectOptGroup.selectOption(
-            value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
-            divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-            classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
-        ): SelectOption {
-            val selectOption =
-                SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
-                    init?.invoke(
-                        this
-                    )
-                }
-            this.add(selectOption)
-            return selectOption
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun SelectOptGroup.selectOption(
+    value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
+    divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
+    classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
+): SelectOption {
+    val selectOption =
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
+            init?.invoke(
+                this
+            )
         }
-
-    }
+    this.add(selectOption)
+    return selectOption
 }

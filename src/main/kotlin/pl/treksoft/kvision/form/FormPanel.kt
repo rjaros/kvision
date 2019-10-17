@@ -28,6 +28,7 @@ import kotlinx.serialization.serializer
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.form.FormPanel.Companion.create
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.KFile
@@ -390,21 +391,6 @@ open class FormPanel<K : Any>(
     }
 
     companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        inline fun <reified K : Any> Container.formPanel(
-            method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-            type: FormType? = null, condensed: Boolean = false, classes: Set<String> = setOf(),
-            noinline init: (FormPanel<K>.() -> Unit)? = null
-        ): FormPanel<K> {
-            val formPanel = create<K>(method, action, enctype, type, condensed, classes)
-            init?.invoke(formPanel)
-            this.add(formPanel)
-            return formPanel
-        }
 
         @UseExperimental(ImplicitReflectionSerializer::class)
         inline fun <reified K : Any> create(
@@ -418,4 +404,20 @@ open class FormPanel<K : Any>(
         }
 
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+inline fun <reified K : Any> Container.formPanel(
+    method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
+    type: FormType? = null, condensed: Boolean = false, classes: Set<String> = setOf(),
+    noinline init: (FormPanel<K>.() -> Unit)? = null
+): FormPanel<K> {
+    val formPanel = create<K>(method, action, enctype, type, condensed, classes)
+    init?.invoke(formPanel)
+    this.add(formPanel)
+    return formPanel
 }

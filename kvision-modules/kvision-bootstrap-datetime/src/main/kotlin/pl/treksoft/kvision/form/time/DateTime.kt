@@ -267,19 +267,19 @@ open class DateTime(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.dateTime(
-            value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
-            rich: Boolean = false, init: (DateTime.() -> Unit)? = null
-        ): DateTime {
-            val dateTime = DateTime(value, name, format, label, rich).apply { init?.invoke(this) }
-            this.add(dateTime)
-            return dateTime
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.dateTime(
+    value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
+    rich: Boolean = false, init: (DateTime.() -> Unit)? = null
+): DateTime {
+    val dateTime = DateTime(value, name, format, label, rich).apply { init?.invoke(this) }
+    this.add(dateTime)
+    return dateTime
 }

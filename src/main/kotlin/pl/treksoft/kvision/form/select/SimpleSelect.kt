@@ -186,24 +186,24 @@ open class SimpleSelect(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.simpleSelect(
-            options: List<StringPair>? = null,
-            value: String? = null,
-            emptyOption: Boolean = false,
-            name: String? = null,
-            label: String? = null,
-            rich: Boolean = false,
-            init: (SimpleSelect.() -> Unit)? = null
-        ): SimpleSelect {
-            val simpleSelect = SimpleSelect(options, value, emptyOption, name, label, rich).apply { init?.invoke(this) }
-            this.add(simpleSelect)
-            return simpleSelect
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.simpleSelect(
+    options: List<StringPair>? = null,
+    value: String? = null,
+    emptyOption: Boolean = false,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (SimpleSelect.() -> Unit)? = null
+): SimpleSelect {
+    val simpleSelect = SimpleSelect(options, value, emptyOption, name, label, rich).apply { init?.invoke(this) }
+    this.add(simpleSelect)
+    return simpleSelect
 }

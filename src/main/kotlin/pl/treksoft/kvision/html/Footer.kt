@@ -46,23 +46,21 @@ open class Footer(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.footer(
-            content: String? = null,
-            rich: Boolean = false,
-            align: Align? = null,
-            classes: Set<String> = setOf(),
-            init: (Footer.() -> Unit)? = null
-        ): Footer {
-            val footer = Footer(content, rich, align, classes).apply { init?.invoke(this) }
-            this.add(footer)
-            return footer
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.footer(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String> = setOf(),
+    init: (Footer.() -> Unit)? = null
+): Footer {
+    val footer = Footer(content, rich, align, classes).apply { init?.invoke(this) }
+    this.add(footer)
+    return footer
 }

@@ -57,24 +57,21 @@ open class HeaderCell(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Row.headerCell(
-            content: String? = null,
-            rich: Boolean = false,
-            align: Align? = null,
-            scope: Scope? = null,
-            classes: Set<String> = setOf(), init: (HeaderCell.() -> Unit)? = null
-        ): HeaderCell {
-            val cell = HeaderCell(content, rich, align, scope, classes, init)
-            this.add(cell)
-            return cell
-        }
-    }
-
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Row.headerCell(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    scope: Scope? = null,
+    classes: Set<String> = setOf(), init: (HeaderCell.() -> Unit)? = null
+): HeaderCell {
+    val cell = HeaderCell(content, rich, align, scope, classes, init)
+    this.add(cell)
+    return cell
 }

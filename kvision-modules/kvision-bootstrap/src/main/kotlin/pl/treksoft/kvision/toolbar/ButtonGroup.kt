@@ -75,35 +75,34 @@ open class ButtonGroup(
         }
         return cl
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.buttonGroup(
-            size: ButtonGroupSize? = null, vertical: Boolean = false,
-            classes: Set<String> = setOf(), init: (ButtonGroup.() -> Unit)? = null
-        ): ButtonGroup {
-            val group = ButtonGroup(size, vertical, classes).apply { init?.invoke(this) }
-            this.add(group)
-            return group
-        }
-        /**
-         * DSL builder extension function for toolbar.
-         *
-         * It creates button groups with size and vertical parameters of the toolbar.
-         */
-        fun Toolbar.buttonGroup(
-            classes: Set<String> = setOf(), init: (ButtonGroup.() -> Unit)? = null
-        ): ButtonGroup {
-            val group = ButtonGroup(this.size, this.vertical, classes).apply {
-                marginRight = this@buttonGroup.spacing.px
-                init?.invoke(this)
-            }
-            this.add(group)
-            return group
-        }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.buttonGroup(
+    size: ButtonGroupSize? = null, vertical: Boolean = false,
+    classes: Set<String> = setOf(), init: (ButtonGroup.() -> Unit)? = null
+): ButtonGroup {
+    val group = ButtonGroup(size, vertical, classes).apply { init?.invoke(this) }
+    this.add(group)
+    return group
+}
+
+/**
+ * DSL builder extension function for toolbar.
+ *
+ * It creates button groups with size and vertical parameters of the toolbar.
+ */
+fun Toolbar.buttonGroup(
+    classes: Set<String> = setOf(), init: (ButtonGroup.() -> Unit)? = null
+): ButtonGroup {
+    val group = ButtonGroup(this.size, this.vertical, classes).apply {
+        marginRight = this@buttonGroup.spacing.px
+        init?.invoke(this)
     }
+    this.add(group)
+    return group
 }

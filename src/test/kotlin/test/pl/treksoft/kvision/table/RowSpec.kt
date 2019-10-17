@@ -22,8 +22,8 @@
 package test.pl.treksoft.kvision.table
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.table.Cell.Companion.cell
 import pl.treksoft.kvision.table.Row
+import pl.treksoft.kvision.table.cell
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test

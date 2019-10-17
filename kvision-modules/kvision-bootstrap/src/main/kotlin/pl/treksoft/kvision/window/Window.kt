@@ -409,41 +409,41 @@ open class Window(
     companion object {
         internal var counter = 0
         internal var zIndexCounter = DEFAULT_Z_INDEX
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.window(
-            caption: String? = null,
-            contentWidth: CssSize? = CssSize(0, UNIT.auto),
-            contentHeight: CssSize? = CssSize(0, UNIT.auto),
-            isResizable: Boolean = true,
-            isDraggable: Boolean = true,
-            closeButton: Boolean = false,
-            maximizeButton: Boolean = false,
-            minimizeButton: Boolean = false,
-            icon: String? = null,
-            classes: Set<String> = setOf(),
-            init: (Window.() -> Unit)? = null
-        ): Window {
-            val window =
-                Window(
-                    caption,
-                    contentWidth,
-                    contentHeight,
-                    isResizable,
-                    isDraggable,
-                    closeButton,
-                    maximizeButton,
-                    minimizeButton,
-                    icon,
-                    classes,
-                    init
-                )
-            this.add(window)
-            return window
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.window(
+    caption: String? = null,
+    contentWidth: CssSize? = CssSize(0, UNIT.auto),
+    contentHeight: CssSize? = CssSize(0, UNIT.auto),
+    isResizable: Boolean = true,
+    isDraggable: Boolean = true,
+    closeButton: Boolean = false,
+    maximizeButton: Boolean = false,
+    minimizeButton: Boolean = false,
+    icon: String? = null,
+    classes: Set<String> = setOf(),
+    init: (Window.() -> Unit)? = null
+): Window {
+    val window =
+        Window(
+            caption,
+            contentWidth,
+            contentHeight,
+            isResizable,
+            isDraggable,
+            closeButton,
+            maximizeButton,
+            minimizeButton,
+            icon,
+            classes,
+            init
+        )
+    this.add(window)
+    return window
 }

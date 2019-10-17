@@ -29,7 +29,8 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.Span
-import pl.treksoft.kvision.html.Span.Companion.span
+import pl.treksoft.kvision.html.div
+import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.panel.SimplePanel
 
 /**
@@ -173,31 +174,31 @@ open class Navbar(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.navbar(
-            label: String? = null,
-            type: NavbarType? = null,
-            expand: NavbarExpand? = NavbarExpand.LG,
-            nColor: NavbarColor = NavbarColor.LIGHT,
-            bgColor: BsBgColor = BsBgColor.LIGHT,
-            classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
-        ): Navbar {
-            val navbar = Navbar(label, type, expand, nColor, bgColor, classes, init)
-            this.add(navbar)
-            return navbar
-        }
-
-        fun Navbar.navText(label: String, classes: Set<String> = setOf()): Span {
-            val text = Span(label, classes = classes + "navbar-text")
-            this.add(text)
-            return text
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.navbar(
+    label: String? = null,
+    type: NavbarType? = null,
+    expand: NavbarExpand? = NavbarExpand.LG,
+    nColor: NavbarColor = NavbarColor.LIGHT,
+    bgColor: BsBgColor = BsBgColor.LIGHT,
+    classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
+): Navbar {
+    val navbar = Navbar(label, type, expand, nColor, bgColor, classes, init)
+    this.add(navbar)
+    return navbar
+}
+
+fun Navbar.navText(label: String, classes: Set<String> = setOf()): Span {
+    val text = Span(label, classes = classes + "navbar-text")
+    this.add(text)
+    return text
 }
 
 /**

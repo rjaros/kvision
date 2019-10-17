@@ -34,25 +34,21 @@ import pl.treksoft.kvision.html.Tag
 open class Row(classes: Set<String> = setOf(), init: (Row.() -> Unit)? = null) : Tag(
     TAG.TR, classes = classes
 ) {
-
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Table.row(
-            classes: Set<String> = setOf(), init: (Row.() -> Unit)? = null
-        ): Row {
-            val row = Row(classes, init)
-            this.add(row)
-            return row
-        }
-    }
-
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Table.row(
+    classes: Set<String> = setOf(), init: (Row.() -> Unit)? = null
+): Row {
+    val row = Row(classes, init)
+    this.add(row)
+    return row
 }

@@ -197,17 +197,15 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
         removeAt(Side.DOWN)
         return this
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.dockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit)? = null): DockPanel {
-            val dockPanel = DockPanel(classes, init)
-            this.add(dockPanel)
-            return dockPanel
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.dockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit)? = null): DockPanel {
+    val dockPanel = DockPanel(classes, init)
+    this.add(dockPanel)
+    return dockPanel
 }

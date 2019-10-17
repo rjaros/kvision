@@ -308,26 +308,26 @@ open class Upload(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.upload(
-            uploadUrl: String? = null,
-            multiple: Boolean = false,
-            label: String? = null,
-            rich: Boolean = false,
-            init: (Upload.() -> Unit)? = null
-        ): Upload {
-            val upload = Upload(uploadUrl, multiple, label, rich).apply {
-                init?.invoke(
-                    this
-                )
-            }
-            this.add(upload)
-            return upload
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.upload(
+    uploadUrl: String? = null,
+    multiple: Boolean = false,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Upload.() -> Unit)? = null
+): Upload {
+    val upload = Upload(uploadUrl, multiple, label, rich).apply {
+        init?.invoke(
+            this
+        )
+    }
+    this.add(upload)
+    return upload
 }

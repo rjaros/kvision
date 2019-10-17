@@ -254,34 +254,34 @@ open class Spinner(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.spinner(
-            value: Number? = null,
-            name: String? = null,
-            min: Int? = null,
-            max: Int? = null,
-            step: Double = DEFAULT_STEP,
-            decimals: Int = 0,
-            buttonsType: ButtonsType = ButtonsType.VERTICAL,
-            forceType: ForceType = ForceType.NONE,
-            buttonStyle: ButtonStyle? = null,
-            label: String? = null,
-            rich: Boolean = false,
-            init: (Spinner.() -> Unit)? = null
-        ): Spinner {
-            val spinner =
-                Spinner(value, name, min, max, step, decimals, buttonsType, forceType, buttonStyle, label, rich).apply {
-                    init?.invoke(
-                        this
-                    )
-                }
-            this.add(spinner)
-            return spinner
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.spinner(
+    value: Number? = null,
+    name: String? = null,
+    min: Int? = null,
+    max: Int? = null,
+    step: Double = DEFAULT_STEP,
+    decimals: Int = 0,
+    buttonsType: ButtonsType = ButtonsType.VERTICAL,
+    forceType: ForceType = ForceType.NONE,
+    buttonStyle: ButtonStyle? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Spinner.() -> Unit)? = null
+): Spinner {
+    val spinner =
+        Spinner(value, name, min, max, step, decimals, buttonsType, forceType, buttonStyle, label, rich).apply {
+            init?.invoke(
+                this
+            )
+        }
+    this.add(spinner)
+    return spinner
 }

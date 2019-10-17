@@ -75,20 +75,20 @@ open class Canvas(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.canvas(
-            canvasWidth: Int? = null, canvasHeight: Int? = null, classes: Set<String> = setOf(),
-            init: (Canvas.() -> Unit)? = null
-        ): Canvas {
-            val canvas =
-                Canvas(canvasWidth, canvasHeight, classes).apply { init?.invoke(this) }
-            this.add(canvas)
-            return canvas
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.canvas(
+    canvasWidth: Int? = null, canvasHeight: Int? = null, classes: Set<String> = setOf(),
+    init: (Canvas.() -> Unit)? = null
+): Canvas {
+    val canvas =
+        Canvas(canvasWidth, canvasHeight, classes).apply { init?.invoke(this) }
+    this.add(canvas)
+    return canvas
 }

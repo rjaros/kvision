@@ -88,36 +88,34 @@ open class SelectOptGroup(
         }
         return sn
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Select.selectOptGroup(
-            label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
-            disabled: Boolean = false, classes: Set<String> = setOf(), init: (SelectOptGroup.() -> Unit)? = null
-        ): SelectOptGroup {
-            val selectOptGroup =
-                SelectOptGroup(label, options, maxOptions, disabled, classes).apply { init?.invoke(this) }
-            this.add(selectOptGroup)
-            return selectOptGroup
-        }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Select.selectOptGroup(
+    label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
+    disabled: Boolean = false, classes: Set<String> = setOf(), init: (SelectOptGroup.() -> Unit)? = null
+): SelectOptGroup {
+    val selectOptGroup =
+        SelectOptGroup(label, options, maxOptions, disabled, classes).apply { init?.invoke(this) }
+    this.add(selectOptGroup)
+    return selectOptGroup
+}
 
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun SelectInput.selectOptGroup(
-            label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
-            disabled: Boolean = false, classes: Set<String> = setOf(), init: (SelectOptGroup.() -> Unit)? = null
-        ): SelectOptGroup {
-            val selectOptGroup =
-                SelectOptGroup(label, options, maxOptions, disabled, classes).apply { init?.invoke(this) }
-            this.add(selectOptGroup)
-            return selectOptGroup
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun SelectInput.selectOptGroup(
+    label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
+    disabled: Boolean = false, classes: Set<String> = setOf(), init: (SelectOptGroup.() -> Unit)? = null
+): SelectOptGroup {
+    val selectOptGroup =
+        SelectOptGroup(label, options, maxOptions, disabled, classes).apply { init?.invoke(this) }
+    this.add(selectOptGroup)
+    return selectOptGroup
 }

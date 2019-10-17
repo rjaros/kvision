@@ -33,21 +33,18 @@ import pl.treksoft.kvision.core.Container
 open class RadioInput(
     value: Boolean = false,
     classes: Set<String> = setOf()
-) : CheckInput(CheckInputType.RADIO, value, classes) {
+) : CheckInput(CheckInputType.RADIO, value, classes)
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.radioInput(
-            value: Boolean = false,
-            classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
-        ): RadioInput {
-            val checkBoxInput = RadioInput(value, classes).apply { init?.invoke(this) }
-            this.add(checkBoxInput)
-            return checkBoxInput
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.radioInput(
+    value: Boolean = false,
+    classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
+): RadioInput {
+    val checkBoxInput = RadioInput(value, classes).apply { init?.invoke(this) }
+    this.add(checkBoxInput)
+    return checkBoxInput
 }

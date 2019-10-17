@@ -69,20 +69,18 @@ open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = 
         }
         return sn
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.textAreaInput(
-            cols: Int? = null, rows: Int? = null, value: String? = null, classes: Set<String> = setOf(),
-            init: (TextAreaInput.() -> Unit)? = null
-        ): TextAreaInput {
-            val textAreaInput = TextAreaInput(cols, rows, value, classes).apply { init?.invoke(this) }
-            this.add(textAreaInput)
-            return textAreaInput
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.textAreaInput(
+    cols: Int? = null, rows: Int? = null, value: String? = null, classes: Set<String> = setOf(),
+    init: (TextAreaInput.() -> Unit)? = null
+): TextAreaInput {
+    val textAreaInput = TextAreaInput(cols, rows, value, classes).apply { init?.invoke(this) }
+    this.add(textAreaInput)
+    return textAreaInput
 }

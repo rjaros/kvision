@@ -75,20 +75,18 @@ open class TextArea(
         this.addInternal(input)
         this.addInternal(invalidFeedback)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.textArea(
-            cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
-            label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
-        ): TextArea {
-            val textArea = TextArea(cols, rows, value, name, label, rich).apply { init?.invoke(this) }
-            this.add(textArea)
-            return textArea
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.textArea(
+    cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
+    label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
+): TextArea {
+    val textArea = TextArea(cols, rows, value, name, label, rich).apply { init?.invoke(this) }
+    this.add(textArea)
+    return textArea
 }

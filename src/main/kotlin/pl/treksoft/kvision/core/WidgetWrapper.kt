@@ -23,7 +23,6 @@ package pl.treksoft.kvision.core
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.panel.SimplePanel
-import kotlin.Unit
 
 /**
  * This class allows to wrap a component into separately styled DIV element.
@@ -55,21 +54,19 @@ open class WidgetWrapper(internal var wrapped: Component?, classes: Set<String> 
         wrapped?.clearParent()
         wrapped = null
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.widgetWrapper(
-            wrapped: Component?,
-            classes: Set<String> = setOf(),
-            init: (WidgetWrapper.() -> Unit)? = null
-        ): WidgetWrapper {
-            val widgetWrapper = WidgetWrapper(wrapped, classes).apply { init?.invoke(this) }
-            this.add(widgetWrapper)
-            return widgetWrapper
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.widgetWrapper(
+    wrapped: Component?,
+    classes: Set<String> = setOf(),
+    init: (WidgetWrapper.() -> Unit)? = null
+): WidgetWrapper {
+    val widgetWrapper = WidgetWrapper(wrapped, classes).apply { init?.invoke(this) }
+    this.add(widgetWrapper)
+    return widgetWrapper
 }

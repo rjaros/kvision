@@ -26,12 +26,12 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.Icon
-import pl.treksoft.kvision.html.Link.Companion.link
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.html.link
 import pl.treksoft.kvision.routing.routing
 import pl.treksoft.kvision.utils.obj
-import pl.treksoft.kvision.html.Icon.Companion.icon as cicon
+import pl.treksoft.kvision.html.icon as cicon
 
 /**
  * Tab position.
@@ -253,21 +253,22 @@ open class TabPanel(
 
     companion object {
         internal var counter = 0
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.tabPanel(
-            tabPosition: TabPosition = TabPosition.TOP,
-            sideTabSize: SideTabSize = SideTabSize.SIZE_3,
-            scrollableTabs: Boolean = false,
-            classes: Set<String> = setOf(),
-            init: (TabPanel.() -> Unit)? = null
-        ): TabPanel {
-            val tabPanel = TabPanel(tabPosition, sideTabSize, scrollableTabs, classes, init)
-            this.add(tabPanel)
-            return tabPanel
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.tabPanel(
+    tabPosition: TabPosition = TabPosition.TOP,
+    sideTabSize: SideTabSize = SideTabSize.SIZE_3,
+    scrollableTabs: Boolean = false,
+    classes: Set<String> = setOf(),
+    init: (TabPanel.() -> Unit)? = null
+): TabPanel {
+    val tabPanel = TabPanel(tabPosition, sideTabSize, scrollableTabs, classes, init)
+    this.add(tabPanel)
+    return tabPanel
 }

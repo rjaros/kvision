@@ -98,22 +98,20 @@ open class SplitPanel(
             arrayOf()
         }
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.splitPanel(
-            direction: Direction = Direction.VERTICAL,
-            classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
-        ): SplitPanel {
-            val splitPanel = SplitPanel(direction, classes, init)
-            this.add(splitPanel)
-            return splitPanel
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.splitPanel(
+    direction: Direction = Direction.VERTICAL,
+    classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
+): SplitPanel {
+    val splitPanel = SplitPanel(direction, classes, init)
+    this.add(splitPanel)
+    return splitPanel
 }
 
 internal class Splitter(private val splitPanel: SplitPanel, direction: Direction) : Tag(

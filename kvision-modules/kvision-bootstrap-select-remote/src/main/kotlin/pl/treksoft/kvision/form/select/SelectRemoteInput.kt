@@ -113,28 +113,25 @@ open class SelectRemoteInput<T : Any>(
 
         }
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun <T : Any> Container.selectRemoteInput(
-            value: String? = null,
-            serviceManager: KVServiceManager<T>,
-            function: T.(String?, String?) -> List<RemoteOption>,
-            multiple: Boolean = false,
-            ajaxOptions: AjaxOptions? = null,
-            classes: Set<String> = setOf(), init: (SelectRemoteInput<T>.() -> Unit)? = null
-        ): SelectRemoteInput<T> {
-            val selectRemoteInput =
-                SelectRemoteInput(value, serviceManager, function, multiple, ajaxOptions, classes).apply {
-                    init?.invoke(this)
-                }
-            this.add(selectRemoteInput)
-            return selectRemoteInput
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <T : Any> Container.selectRemoteInput(
+    value: String? = null,
+    serviceManager: KVServiceManager<T>,
+    function: T.(String?, String?) -> List<RemoteOption>,
+    multiple: Boolean = false,
+    ajaxOptions: AjaxOptions? = null,
+    classes: Set<String> = setOf(), init: (SelectRemoteInput<T>.() -> Unit)? = null
+): SelectRemoteInput<T> {
+    val selectRemoteInput =
+        SelectRemoteInput(value, serviceManager, function, multiple, ajaxOptions, classes).apply {
+            init?.invoke(this)
         }
-    }
-
+    this.add(selectRemoteInput)
+    return selectRemoteInput
 }

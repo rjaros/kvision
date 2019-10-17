@@ -66,20 +66,18 @@ open class Text(
         this.addInternal(input)
         this.addInternal(invalidFeedback)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.text(
-            type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-            label: String? = null, rich: Boolean = false, init: (Text.() -> Unit)? = null
-        ): Text {
-            val text = Text(type, value, name, label, rich).apply { init?.invoke(this) }
-            this.add(text)
-            return text
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.text(
+    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
+    label: String? = null, rich: Boolean = false, init: (Text.() -> Unit)? = null
+): Text {
+    val text = Text(type, value, name, label, rich).apply { init?.invoke(this) }
+    this.add(text)
+    return text
 }

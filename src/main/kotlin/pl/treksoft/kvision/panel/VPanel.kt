@@ -46,20 +46,18 @@ open class VPanel(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.vPanel(
-            justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
-            classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
-        ): VPanel {
-            val vpanel = VPanel(justify, alignItems, spacing, classes, init)
-            this.add(vpanel)
-            return vpanel
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.vPanel(
+    justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
+    classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
+): VPanel {
+    val vpanel = VPanel(justify, alignItems, spacing, classes, init)
+    this.add(vpanel)
+    return vpanel
 }

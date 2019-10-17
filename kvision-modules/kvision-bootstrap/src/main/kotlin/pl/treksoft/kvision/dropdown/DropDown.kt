@@ -242,103 +242,102 @@ open class DropDown(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.dropDown(
-            text: String, elements: List<StringPair>? = null, icon: String? = null,
-            style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
-            disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-            classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
-        ): DropDown {
-            val dropDown =
-                DropDown(
-                    text,
-                    elements,
-                    icon,
-                    style,
-                    direction,
-                    disabled,
-                    forNavbar,
-                    forDropDown,
-                    classes
-                ).apply { init?.invoke(this) }
-            this.add(dropDown)
-            return dropDown
-        }
-
-        /**
-         * DSL builder extension function for a link in a dropdown list.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun DropDown.ddLink(
-            label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
-        ): Link {
-            val link = Link(label, url, icon, image, classes + "dropdown-item").apply {
-                init?.invoke(this)
-            }
-            this.add(link)
-            return link
-        }
-
-        /**
-         * DSL builder extension function for a link in a context menu list.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun ContextMenu.cmLink(
-            label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
-        ): Link {
-            val link = Link(label, url, icon, image, classes + "dropdown-item").apply {
-                init?.invoke(this)
-            }
-            this.add(link)
-            return link
-        }
-
-        /**
-         * DSL builder extension function for a disabled link in a dropdown list.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun DropDown.ddLinkDisabled(
-            label: String, icon: String? = null, image: ResString? = null,
-            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
-        ): Link {
-            val link = Link(label, "javascript:void(0)", icon, image, classes + "dropdown-item" + "disabled").apply {
-                tabindex = -1
-                setAttribute("aria-disabled", "true")
-                init?.invoke(this)
-            }
-            this.add(link)
-            return link
-        }
-
-        /**
-         * DSL builder extension function for a disabled link in a context menu list.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun ContextMenu.cmLinkDisabled(
-            label: String, icon: String? = null, image: ResString? = null,
-            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
-        ): Link {
-            val link = Link(label, "javascript:void(0)", icon, image, classes + "dropdown-item" + "disabled").apply {
-                tabindex = -1
-                setAttribute("aria-disabled", "true")
-                init?.invoke(this)
-            }
-            this.add(link)
-            return link
-        }
-
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.dropDown(
+    text: String, elements: List<StringPair>? = null, icon: String? = null,
+    style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
+    disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
+    classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
+): DropDown {
+    val dropDown =
+        DropDown(
+            text,
+            elements,
+            icon,
+            style,
+            direction,
+            disabled,
+            forNavbar,
+            forDropDown,
+            classes
+        ).apply { init?.invoke(this) }
+    this.add(dropDown)
+    return dropDown
+}
+
+/**
+ * DSL builder extension function for a link in a dropdown list.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun DropDown.ddLink(
+    label: String, url: String? = null, icon: String? = null, image: ResString? = null,
+    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+): Link {
+    val link = Link(label, url, icon, image, classes + "dropdown-item").apply {
+        init?.invoke(this)
+    }
+    this.add(link)
+    return link
+}
+
+/**
+ * DSL builder extension function for a link in a context menu list.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun ContextMenu.cmLink(
+    label: String, url: String? = null, icon: String? = null, image: ResString? = null,
+    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+): Link {
+    val link = Link(label, url, icon, image, classes + "dropdown-item").apply {
+        init?.invoke(this)
+    }
+    this.add(link)
+    return link
+}
+
+/**
+ * DSL builder extension function for a disabled link in a dropdown list.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun DropDown.ddLinkDisabled(
+    label: String, icon: String? = null, image: ResString? = null,
+    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+): Link {
+    val link = Link(label, "javascript:void(0)", icon, image, classes + "dropdown-item" + "disabled").apply {
+        tabindex = -1
+        setAttribute("aria-disabled", "true")
+        init?.invoke(this)
+    }
+    this.add(link)
+    return link
+}
+
+/**
+ * DSL builder extension function for a disabled link in a context menu list.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun ContextMenu.cmLinkDisabled(
+    label: String, icon: String? = null, image: ResString? = null,
+    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+): Link {
+    val link = Link(label, "javascript:void(0)", icon, image, classes + "dropdown-item" + "disabled").apply {
+        tabindex = -1
+        setAttribute("aria-disabled", "true")
+        init?.invoke(this)
+    }
+    this.add(link)
+    return link
 }
 
 internal class DropDownButton(

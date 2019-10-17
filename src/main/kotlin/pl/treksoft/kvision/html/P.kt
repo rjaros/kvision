@@ -46,23 +46,21 @@ open class P(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.p(
-            content: String? = null,
-            rich: Boolean = false,
-            align: Align? = null,
-            classes: Set<String> = setOf(),
-            init: (P.() -> Unit)? = null
-        ): P {
-            val p = P(content, rich, align, classes).apply { init?.invoke(this) }
-            this.add(p)
-            return p
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.p(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String> = setOf(),
+    init: (P.() -> Unit)? = null
+): P {
+    val p = P(content, rich, align, classes).apply { init?.invoke(this) }
+    this.add(p)
+    return p
 }

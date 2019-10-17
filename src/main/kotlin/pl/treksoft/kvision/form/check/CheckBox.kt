@@ -191,19 +191,19 @@ open class CheckBox(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.checkBox(
-            value: Boolean = false, name: String? = null, label: String? = null,
-            rich: Boolean = false, init: (CheckBox.() -> Unit)? = null
-        ): CheckBox {
-            val checkBox = CheckBox(value, name, label, rich).apply { init?.invoke(this) }
-            this.add(checkBox)
-            return checkBox
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.checkBox(
+    value: Boolean = false, name: String? = null, label: String? = null,
+    rich: Boolean = false, init: (CheckBox.() -> Unit)? = null
+): CheckBox {
+    val checkBox = CheckBox(value, name, label, rich).apply { init?.invoke(this) }
+    this.add(checkBox)
+    return checkBox
 }

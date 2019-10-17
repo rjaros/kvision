@@ -114,19 +114,17 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
     override fun changeValue() {
         // disabled parent class functionality
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.richTextInput(
-            value: String? = null, classes: Set<String> = setOf(), init: (RichTextInput.() -> Unit)? = null
-        ): RichTextInput {
-            val richTextInput = RichTextInput(value, classes).apply { init?.invoke(this) }
-            this.add(richTextInput)
-            return richTextInput
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.richTextInput(
+    value: String? = null, classes: Set<String> = setOf(), init: (RichTextInput.() -> Unit)? = null
+): RichTextInput {
+    val richTextInput = RichTextInput(value, classes).apply { init?.invoke(this) }
+    this.add(richTextInput)
+    return richTextInput
 }

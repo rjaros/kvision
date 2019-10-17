@@ -28,8 +28,8 @@ import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.text.TextInput
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.html.Icon
-import pl.treksoft.kvision.html.Icon.Companion.icon
-import pl.treksoft.kvision.html.Span.Companion.span
+import pl.treksoft.kvision.html.icon
+import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.toDateF
@@ -358,20 +358,18 @@ open class DateTimeInput(
     override fun blur() {
         input.blur()
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.dateTimeInput(
-            value: Date? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
-            init: (DateTimeInput.() -> Unit)? = null
-        ): DateTimeInput {
-            val dateTimeInput = DateTimeInput(value, format, classes).apply { init?.invoke(this) }
-            this.add(dateTimeInput)
-            return dateTimeInput
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.dateTimeInput(
+    value: Date? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
+    init: (DateTimeInput.() -> Unit)? = null
+): DateTimeInput {
+    val dateTimeInput = DateTimeInput(value, format, classes).apply { init?.invoke(this) }
+    this.add(dateTimeInput)
+    return dateTimeInput
 }

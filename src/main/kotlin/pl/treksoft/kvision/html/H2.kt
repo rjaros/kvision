@@ -46,23 +46,21 @@ open class H2(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.h2(
-            content: String? = null,
-            rich: Boolean = false,
-            align: Align? = null,
-            classes: Set<String> = setOf(),
-            init: (H2.() -> Unit)? = null
-        ): H2 {
-            val h2 = H2(content, rich, align, classes).apply { init?.invoke(this) }
-            this.add(h2)
-            return h2
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.h2(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String> = setOf(),
+    init: (H2.() -> Unit)? = null
+): H2 {
+    val h2 = H2(content, rich, align, classes).apply { init?.invoke(this) }
+    this.add(h2)
+    return h2
 }

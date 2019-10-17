@@ -57,23 +57,21 @@ open class RichText(
         this.addInternal(input)
         this.addInternal(invalidFeedback)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.richText(
-            value: String? = null,
-            name: String? = null,
-            label: String? = null,
-            rich: Boolean = false,
-            init: (RichText.() -> Unit)? = null
-        ): RichText {
-            val richText = RichText(value, name, label, rich).apply { init?.invoke(this) }
-            this.add(richText)
-            return richText
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.richText(
+    value: String? = null,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (RichText.() -> Unit)? = null
+): RichText {
+    val richText = RichText(value, name, label, rich).apply { init?.invoke(this) }
+    this.add(richText)
+    return richText
 }

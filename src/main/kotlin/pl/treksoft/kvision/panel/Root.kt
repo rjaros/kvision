@@ -211,30 +211,29 @@ class Root : SimplePanel {
         fun removeModal(modal: Widget) {
             modals.remove(modal)
         }
-
-        /**
-         * Create new Root container based on ID
-         * @param id ID attribute of element in the main HTML file
-         * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
-         * otherwise it's rendered with "container" class (default is false)
-         * @param init an initializer extension function
-         * @return the created Root container
-         */
-        fun Application.root(id: String, fixed: Boolean = false, init: Root.() -> Unit): Root {
-            return Root(id, fixed, init)
-        }
-
-        /**
-         * Create new Root container based on HTML element
-         * @param element HTML element in the DOM tree
-         * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
-         * otherwise it's rendered with "container" class (default is false)
-         * @param init an initializer extension function
-         * @return the created Root container
-         */
-        fun Application.root(element: HTMLElement, fixed: Boolean = false, init: Root.() -> Unit): Root {
-            return Root(element, fixed, init)
-        }
-
     }
+}
+
+/**
+ * Create new Root container based on ID
+ * @param id ID attribute of element in the main HTML file
+ * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
+ * otherwise it's rendered with "container" class (default is false)
+ * @param init an initializer extension function
+ * @return the created Root container
+ */
+fun Application.root(id: String, fixed: Boolean = false, init: Root.() -> Unit): Root {
+    return Root(id, fixed, init)
+}
+
+/**
+ * Create new Root container based on HTML element
+ * @param element HTML element in the DOM tree
+ * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
+ * otherwise it's rendered with "container" class (default is false)
+ * @param init an initializer extension function
+ * @return the created Root container
+ */
+fun Application.root(element: HTMLElement, fixed: Boolean = false, init: Root.() -> Unit): Root {
+    return Root(element, fixed, init)
 }

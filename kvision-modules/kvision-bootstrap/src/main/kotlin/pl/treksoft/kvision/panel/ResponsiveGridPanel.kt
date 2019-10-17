@@ -165,21 +165,19 @@ open class ResponsiveGridPanel(
         children.forEach { it.dispose() }
         removeAll()
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.responsiveGridPanel(
-            gridSize: GridSize = GridSize.MD,
-            rows: Int = 0, cols: Int = 0, align: Align? = null,
-            classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
-        ): ResponsiveGridPanel {
-            val responsiveGridPanel = ResponsiveGridPanel(gridSize, rows, cols, align, classes, init)
-            this.add(responsiveGridPanel)
-            return responsiveGridPanel
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.responsiveGridPanel(
+    gridSize: GridSize = GridSize.MD,
+    rows: Int = 0, cols: Int = 0, align: Align? = null,
+    classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
+): ResponsiveGridPanel {
+    val responsiveGridPanel = ResponsiveGridPanel(gridSize, rows, cols, align, classes, init)
+    this.add(responsiveGridPanel)
+    return responsiveGridPanel
 }

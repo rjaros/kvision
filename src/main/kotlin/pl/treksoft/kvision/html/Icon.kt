@@ -42,19 +42,17 @@ open class Icon(icon: String) : Tag(TAG.SPAN) {
         icon.split(" ").forEach { cl.add(it to true) }
         return cl
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.icon(
-            icon: String, init: (Icon.() -> Unit)? = null
-        ): Icon {
-            val i = Icon(icon).apply { init?.invoke(this) }
-            this.add(i)
-            return i
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.icon(
+    icon: String, init: (Icon.() -> Unit)? = null
+): Icon {
+    val i = Icon(icon).apply { init?.invoke(this) }
+    this.add(i)
+    return i
 }

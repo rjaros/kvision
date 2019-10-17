@@ -54,19 +54,17 @@ open class NavForm(rightAlign: Boolean = false, classes: Set<String> = setOf(), 
         }
         return cl
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Navbar.navForm(
-            rightAlign: Boolean = false, classes: Set<String> = setOf(), init: (NavForm.() -> Unit)? = null
-        ): NavForm {
-            val navForm = NavForm(rightAlign, classes).apply { init?.invoke(this) }
-            this.add(navForm)
-            return navForm
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Navbar.navForm(
+    rightAlign: Boolean = false, classes: Set<String> = setOf(), init: (NavForm.() -> Unit)? = null
+): NavForm {
+    val navForm = NavForm(rightAlign, classes).apply { init?.invoke(this) }
+    this.add(navForm)
+    return navForm
 }

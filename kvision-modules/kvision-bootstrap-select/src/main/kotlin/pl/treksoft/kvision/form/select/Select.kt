@@ -266,20 +266,20 @@ open class Select(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.select(
-            options: List<StringPair>? = null, value: String? = null, name: String? = null,
-            multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
-            rich: Boolean = false, init: (Select.() -> Unit)? = null
-        ): Select {
-            val select = Select(options, value, name, multiple, ajaxOptions, label, rich).apply { init?.invoke(this) }
-            this.add(select)
-            return select
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.select(
+    options: List<StringPair>? = null, value: String? = null, name: String? = null,
+    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
+    rich: Boolean = false, init: (Select.() -> Unit)? = null
+): Select {
+    val select = Select(options, value, name, multiple, ajaxOptions, label, rich).apply { init?.invoke(this) }
+    this.add(select)
+    return select
 }

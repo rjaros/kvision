@@ -96,26 +96,25 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
     companion object {
         internal var counter = 0
         internal var styles = mutableListOf<Style>()
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Widget.style(className: String? = null, init: (Style.() -> Unit)? = null): Style {
-            val style = Style(className, null, init)
-            this.addCssClass(style)
-            return style
-        }
-
-        /**
-         * DSL builder extension function for cascading styles.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Style.style(className: String? = null, init: (Style.() -> Unit)? = null): Style {
-            return Style(className, this, init)
-        }
     }
+}
 
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Widget.style(className: String? = null, init: (Style.() -> Unit)? = null): Style {
+    val style = Style(className, null, init)
+    this.addCssClass(style)
+    return style
+}
+
+/**
+ * DSL builder extension function for cascading styles.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Style.style(className: String? = null, init: (Style.() -> Unit)? = null): Style {
+    return Style(className, this, init)
 }

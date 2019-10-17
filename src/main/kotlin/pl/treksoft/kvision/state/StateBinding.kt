@@ -49,7 +49,7 @@ class StateBinding<S : Any, CONT : Container, CONTENT>(
         }
     }
 
-    private fun setUpdateState(updateState: (S, CONTENT) -> Unit) {
+    internal fun setUpdateState(updateState: (S, CONTENT) -> Unit) {
         this.updateState = updateState
     }
 
@@ -57,32 +57,30 @@ class StateBinding<S : Any, CONT : Container, CONTENT>(
         unsubscribe()
         super.dispose()
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun <S : Any, CONT : Container> CONT.stateBinding(
-            observableState: ObservableState<S>,
-            factory: (CONT.(S) -> Unit)
-        ): StateBinding<S, CONT, Unit> {
-            return StateBinding(observableState, this, factory)
-        }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S : Any, CONT : Container> CONT.stateBinding(
+    observableState: ObservableState<S>,
+    factory: (CONT.(S) -> Unit)
+): StateBinding<S, CONT, Unit> {
+    return StateBinding(observableState, this, factory)
+}
 
-        /**
-         * DSL builder extension function for updateable redux content.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun <S : Any, CONT : Container, CONTENT> CONT.stateUpdate(
-            observableState: ObservableState<S>,
-            factory: (CONT.(S) -> CONTENT)
-        ): Updateable<S, CONTENT> {
-            return Updateable(StateBinding(observableState, this, factory)::setUpdateState)
-        }
-    }
+/**
+ * DSL builder extension function for updateable redux content.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S : Any, CONT : Container, CONTENT> CONT.stateUpdate(
+    observableState: ObservableState<S>,
+    factory: (CONT.(S) -> CONTENT)
+): Updateable<S, CONTENT> {
+    return Updateable(StateBinding(observableState, this, factory)::setUpdateState)
 }
 
 /**

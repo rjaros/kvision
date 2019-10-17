@@ -200,22 +200,20 @@ open class Table(
     override fun getChildren(): List<Component> {
         return tbody.getChildren()
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.table(
-            headerNames: List<String>? = null,
-            types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
-            theadType: TheadType? = null, classes: Set<String> = setOf(), init: (Table.() -> Unit)? = null
-        ): Table {
-            val table =
-                Table(headerNames, types, caption, responsiveType, theadType, classes, init)
-            this.add(table)
-            return table
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.table(
+    headerNames: List<String>? = null,
+    types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
+    theadType: TheadType? = null, classes: Set<String> = setOf(), init: (Table.() -> Unit)? = null
+): Table {
+    val table =
+        Table(headerNames, types, caption, responsiveType, theadType, classes, init)
+    this.add(table)
+    return table
 }

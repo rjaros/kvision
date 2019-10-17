@@ -46,23 +46,21 @@ open class Div(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.div(
-            content: String? = null,
-            rich: Boolean = false,
-            align: Align? = null,
-            classes: Set<String> = setOf(),
-            init: (Div.() -> Unit)? = null
-        ): Div {
-            val div = Div(content, rich, align, classes).apply { init?.invoke(this) }
-            this.add(div)
-            return div
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.div(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String> = setOf(),
+    init: (Div.() -> Unit)? = null
+): Div {
+    val div = Div(content, rich, align, classes).apply { init?.invoke(this) }
+    this.add(div)
+    return div
 }

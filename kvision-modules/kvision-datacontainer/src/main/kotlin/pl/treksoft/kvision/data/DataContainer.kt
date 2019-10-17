@@ -174,45 +174,43 @@ class DataContainer<M, C : Component, CONT : Container>(
         onUpdateHandler = null
         return this
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun <M, C : Component, CONT : Container> Container.dataContainer(
-            model: MutableList<M>,
-            factory: (M, Int, MutableList<M>) -> C,
-            container: CONT,
-            containerAdd: (CONT.(C, M) -> Unit)? = null,
-            filter: ((M) -> Boolean)? = null,
-            sorter: ((M) -> Comparable<*>?)? = null,
-            sorterType: () -> SorterType = { SorterType.ASC },
-            init: (DataContainer<M, C, CONT>.() -> Unit)? = null
-        ): DataContainer<M, C, CONT> {
-            val dataContainer = DataContainer(model, factory, container, containerAdd, filter, sorter, sorterType, init)
-            this.add(dataContainer)
-            return dataContainer
-        }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <M, C : Component, CONT : Container> Container.dataContainer(
+    model: MutableList<M>,
+    factory: (M, Int, MutableList<M>) -> C,
+    container: CONT,
+    containerAdd: (CONT.(C, M) -> Unit)? = null,
+    filter: ((M) -> Boolean)? = null,
+    sorter: ((M) -> Comparable<*>?)? = null,
+    sorterType: () -> SorterType = { SorterType.ASC },
+    init: (DataContainer<M, C, CONT>.() -> Unit)? = null
+): DataContainer<M, C, CONT> {
+    val dataContainer = DataContainer(model, factory, container, containerAdd, filter, sorter, sorterType, init)
+    this.add(dataContainer)
+    return dataContainer
+}
 
-        /**
-         * DSL builder extension function with VPanel default.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun <M, C : Component> Container.dataContainer(
-            model: MutableList<M>,
-            factory: (M, Int, MutableList<M>) -> C,
-            containerAdd: (VPanel.(C, M) -> Unit)? = null,
-            filter: ((M) -> Boolean)? = null,
-            sorter: ((M) -> Comparable<*>?)? = null,
-            sorterType: () -> SorterType = { SorterType.ASC },
-            init: (DataContainer<M, C, VPanel>.() -> Unit)? = null
-        ): DataContainer<M, C, VPanel> {
-            val dataContainer = DataContainer(model, factory, VPanel(), containerAdd, filter, sorter, sorterType, init)
-            this.add(dataContainer)
-            return dataContainer
-        }
-    }
+/**
+ * DSL builder extension function with VPanel default.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <M, C : Component> Container.dataContainer(
+    model: MutableList<M>,
+    factory: (M, Int, MutableList<M>) -> C,
+    containerAdd: (VPanel.(C, M) -> Unit)? = null,
+    filter: ((M) -> Boolean)? = null,
+    sorter: ((M) -> Comparable<*>?)? = null,
+    sorterType: () -> SorterType = { SorterType.ASC },
+    init: (DataContainer<M, C, VPanel>.() -> Unit)? = null
+): DataContainer<M, C, VPanel> {
+    val dataContainer = DataContainer(model, factory, VPanel(), containerAdd, filter, sorter, sorterType, init)
+    this.add(dataContainer)
+    return dataContainer
 }

@@ -132,22 +132,20 @@ open class Iframe(
     open fun getIframeWindow(): Window {
         return getElementJQueryD()[0].contentWindow
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.iframe(
-            src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
-            iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null, classes: Set<String> = setOf(),
-            init: (Iframe.() -> Unit)? = null
-        ): Iframe {
-            val iframe =
-                Iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes).apply { init?.invoke(this) }
-            this.add(iframe)
-            return iframe
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.iframe(
+    src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
+    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null, classes: Set<String> = setOf(),
+    init: (Iframe.() -> Unit)? = null
+): Iframe {
+    val iframe =
+        Iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes).apply { init?.invoke(this) }
+    this.add(iframe)
+    return iframe
 }

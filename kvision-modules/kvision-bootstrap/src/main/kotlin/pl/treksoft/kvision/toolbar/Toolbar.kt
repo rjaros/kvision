@@ -44,20 +44,18 @@ open class Toolbar(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.toolbar(
-            size: ButtonGroupSize? = null, spacing: Int = 2, vertical: Boolean = false,
-            classes: Set<String> = setOf(), init: (Toolbar.() -> Unit)? = null
-        ): Toolbar {
-            val toolbar = Toolbar(size, spacing, vertical, classes).apply { init?.invoke(this) }
-            this.add(toolbar)
-            return toolbar
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.toolbar(
+    size: ButtonGroupSize? = null, spacing: Int = 2, vertical: Boolean = false,
+    classes: Set<String> = setOf(), init: (Toolbar.() -> Unit)? = null
+): Toolbar {
+    val toolbar = Toolbar(size, spacing, vertical, classes).apply { init?.invoke(this) }
+    this.add(toolbar)
+    return toolbar
 }

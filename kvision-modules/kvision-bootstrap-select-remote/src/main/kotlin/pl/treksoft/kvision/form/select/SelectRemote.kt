@@ -245,32 +245,32 @@ open class SelectRemote<T : Any>(
 
     companion object {
         internal var counter = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun <T : Any> Container.selectRemote(
-            value: String? = null,
-            serviceManager: KVServiceManager<T>,
-            function: T.(String?, String?) -> List<RemoteOption>, name: String? = null,
-            multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
-            rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
-        ): SelectRemote<T> {
-            val selectRemote =
-                SelectRemote(
-                    value,
-                    serviceManager,
-                    function,
-                    name,
-                    multiple,
-                    ajaxOptions,
-                    label,
-                    rich
-                ).apply { init?.invoke(this) }
-            this.add(selectRemote)
-            return selectRemote
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <T : Any> Container.selectRemote(
+    value: String? = null,
+    serviceManager: KVServiceManager<T>,
+    function: T.(String?, String?) -> List<RemoteOption>, name: String? = null,
+    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
+    rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
+): SelectRemote<T> {
+    val selectRemote =
+        SelectRemote(
+            value,
+            serviceManager,
+            function,
+            name,
+            multiple,
+            ajaxOptions,
+            label,
+            rich
+        ).apply { init?.invoke(this) }
+    this.add(selectRemote)
+    return selectRemote
 }

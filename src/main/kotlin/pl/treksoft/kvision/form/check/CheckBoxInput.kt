@@ -33,21 +33,18 @@ import pl.treksoft.kvision.core.Container
 open class CheckBoxInput(
     value: Boolean = false,
     classes: Set<String> = setOf()
-) : CheckInput(CheckInputType.CHECKBOX, value, classes) {
+) : CheckInput(CheckInputType.CHECKBOX, value, classes)
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.checkBoxInput(
-            value: Boolean = false,
-            classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
-        ): CheckBoxInput {
-            val checkBoxInput = CheckBoxInput(value, classes).apply { init?.invoke(this) }
-            this.add(checkBoxInput)
-            return checkBoxInput
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.checkBoxInput(
+    value: Boolean = false,
+    classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
+): CheckBoxInput {
+    val checkBoxInput = CheckBoxInput(value, classes).apply { init?.invoke(this) }
+    this.add(checkBoxInput)
+    return checkBoxInput
 }

@@ -810,16 +810,16 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
 
     companion object {
         private var counter: Long = 0
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.widget(classes: Set<String> = setOf(), init: (Widget.() -> Unit)? = null): Widget {
-            val widget = Widget(classes).apply { init?.invoke(this) }
-            this.add(widget)
-            return widget
-        }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.widget(classes: Set<String> = setOf(), init: (Widget.() -> Unit)? = null): Widget {
+    val widget = Widget(classes).apply { init?.invoke(this) }
+    this.add(widget)
+    return widget
 }

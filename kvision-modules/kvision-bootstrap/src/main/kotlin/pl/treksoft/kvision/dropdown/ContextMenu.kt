@@ -76,37 +76,36 @@ open class ContextMenu(
     }
 
     companion object {
-
         const val DEFAULT_FIXED_POS_X = 5
         const val DEFAULT_FIXED_POS_Y = 5
+    }
+}
 
-        /**
-         * Sets context menu for the current widget.
-         * @param contextMenu a context menu
-         * @return current widget
-         */
-        fun Widget.setContextMenu(contextMenu: ContextMenu): Widget {
-            this.setEventListener<Widget> {
-                contextmenu = { e: MouseEvent ->
-                    e.preventDefault()
-                    contextMenu.positionMenu(e)
-                }
-            }
-            return this
-        }
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Widget.contextMenu(
-            fixedPosition: Boolean = false,
-            classes: Set<String> = setOf(), init: (ContextMenu.() -> Unit)? = null
-        ): ContextMenu {
-            val contextMenu = ContextMenu(this, fixedPosition, classes).apply { init?.invoke(this) }
-            this.setContextMenu(contextMenu)
-            return contextMenu
+/**
+ * Sets context menu for the current widget.
+ * @param contextMenu a context menu
+ * @return current widget
+ */
+fun Widget.setContextMenu(contextMenu: ContextMenu): Widget {
+    this.setEventListener<Widget> {
+        contextmenu = { e: MouseEvent ->
+            e.preventDefault()
+            contextMenu.positionMenu(e)
         }
     }
+    return this
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Widget.contextMenu(
+    fixedPosition: Boolean = false,
+    classes: Set<String> = setOf(), init: (ContextMenu.() -> Unit)? = null
+): ContextMenu {
+    val contextMenu = ContextMenu(this, fixedPosition, classes).apply { init?.invoke(this) }
+    this.setContextMenu(contextMenu)
+    return contextMenu
 }

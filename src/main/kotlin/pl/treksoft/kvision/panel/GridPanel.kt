@@ -255,28 +255,26 @@ open class GridPanel(
         }
         return snstyle
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.gridPanel(
-            autoColumns: String? = null, autoRows: String? = null, autoFlow: GridFlow? = null,
-            templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
-            columnGap: Int? = null, rowGap: Int? = null, justifyItems: GridJustify? = null,
-            alignItems: GridAlign? = null, justifyContent: GridJustifyContent? = null,
-            alignContent: GridAlignContent? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
-        ): GridPanel {
-            val gridPanel = GridPanel(
-                autoColumns, autoRows, autoFlow, templateColumns, templateRows, templateAreas,
-                columnGap, rowGap, justifyItems, alignItems, justifyContent, alignContent, classes, init
-            )
-            this.add(gridPanel)
-            return gridPanel
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.gridPanel(
+    autoColumns: String? = null, autoRows: String? = null, autoFlow: GridFlow? = null,
+    templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
+    columnGap: Int? = null, rowGap: Int? = null, justifyItems: GridJustify? = null,
+    alignItems: GridAlign? = null, justifyContent: GridJustifyContent? = null,
+    alignContent: GridAlignContent? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
+): GridPanel {
+    val gridPanel = GridPanel(
+        autoColumns, autoRows, autoFlow, templateColumns, templateRows, templateAreas,
+        columnGap, rowGap, justifyItems, alignItems, justifyContent, alignContent, classes, init
+    )
+    this.add(gridPanel)
+    return gridPanel
 }
 
 class GridWrapper(

@@ -320,58 +320,55 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
             this.language = language
         }
     }
+}
 
-    companion object {
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.uploadInput(
-            uploadUrl: String? = null,
-            multiple: Boolean = false,
-            classes: Set<String> = setOf(),
-            init: (UploadInput.() -> Unit)? = null
-        ): UploadInput {
-            val uploadInput = UploadInput(uploadUrl, multiple, classes).apply {
-                init?.invoke(
-                    this
-                )
-            }
-            this.add(uploadInput)
-            return uploadInput
-        }
-
-        /**
-         * Returns file with the content read.
-         * @param key key identifier of the control
-         * @param kFile object identifying the file
-         * @return KFile object
-         */
-        suspend fun <K : Any> Form<K>.getContent(
-            key: KProperty1<K, List<KFile>?>,
-            kFile: KFile
-        ): KFile {
-            val control = getControl(key) as Upload
-            val content = control.getNativeFile(kFile)?.getContent()
-            return kFile.copy(content = content)
-        }
-
-
-        /**
-         * Returns file with the content read.
-         * @param key key identifier of the control
-         * @param kFile object identifying the file
-         * @return KFile object
-         */
-        suspend fun <K : Any> FormPanel<K>.getContent(
-            key: KProperty1<K, List<KFile>?>,
-            kFile: KFile
-        ): KFile {
-            val control = getControl(key) as Upload
-            val content = control.getNativeFile(kFile)?.getContent()
-            return kFile.copy(content = content)
-        }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.uploadInput(
+    uploadUrl: String? = null,
+    multiple: Boolean = false,
+    classes: Set<String> = setOf(),
+    init: (UploadInput.() -> Unit)? = null
+): UploadInput {
+    val uploadInput = UploadInput(uploadUrl, multiple, classes).apply {
+        init?.invoke(
+            this
+        )
     }
+    this.add(uploadInput)
+    return uploadInput
+}
+
+/**
+ * Returns file with the content read.
+ * @param key key identifier of the control
+ * @param kFile object identifying the file
+ * @return KFile object
+ */
+suspend fun <K : Any> Form<K>.getContent(
+    key: KProperty1<K, List<KFile>?>,
+    kFile: KFile
+): KFile {
+    val control = getControl(key) as Upload
+    val content = control.getNativeFile(kFile)?.getContent()
+    return kFile.copy(content = content)
+}
+
+
+/**
+ * Returns file with the content read.
+ * @param key key identifier of the control
+ * @param kFile object identifying the file
+ * @return KFile object
+ */
+suspend fun <K : Any> FormPanel<K>.getContent(
+    key: KProperty1<K, List<KFile>?>,
+    kFile: KFile
+): KFile {
+    val control = getControl(key) as Upload
+    val content = control.getNativeFile(kFile)?.getContent()
+    return kFile.copy(content = content)
 }

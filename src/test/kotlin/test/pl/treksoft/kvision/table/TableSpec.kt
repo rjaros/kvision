@@ -22,11 +22,11 @@
 package test.pl.treksoft.kvision.table
 
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.table.Cell.Companion.cell
 import pl.treksoft.kvision.table.ResponsiveType
-import pl.treksoft.kvision.table.Row.Companion.row
 import pl.treksoft.kvision.table.Table
 import pl.treksoft.kvision.table.TableType
+import pl.treksoft.kvision.table.cell
+import pl.treksoft.kvision.table.row
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test

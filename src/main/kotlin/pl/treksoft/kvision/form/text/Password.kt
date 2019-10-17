@@ -35,23 +35,21 @@ import pl.treksoft.kvision.core.Container
 open class Password(value: String? = null, name: String? = null, label: String? = null, rich: Boolean = false) : Text(
     TextInputType.PASSWORD,
     value, name, label, rich
-) {
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.password(
-            value: String? = null,
-            name: String? = null,
-            label: String? = null,
-            rich: Boolean = false,
-            init: (Password.() -> Unit)? = null
-        ): Password {
-            val password = Password(value, name, label, rich).apply { init?.invoke(this) }
-            this.add(password)
-            return password
-        }
-    }
+)
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.password(
+    value: String? = null,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Password.() -> Unit)? = null
+): Password {
+    val password = Password(value, name, label, rich).apply { init?.invoke(this) }
+    this.add(password)
+    return password
 }

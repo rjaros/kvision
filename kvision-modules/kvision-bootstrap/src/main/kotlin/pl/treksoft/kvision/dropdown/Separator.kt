@@ -29,29 +29,26 @@ import pl.treksoft.kvision.html.Div
  * @constructor
  * @param classes a set of CSS class names
  */
-open class Separator(classes: Set<String> = setOf()) : Div(classes = classes + "dropdown-divider") {
+open class Separator(classes: Set<String> = setOf()) : Div(classes = classes + "dropdown-divider")
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun ContextMenu.separator(classes: Set<String> = setOf()): Separator {
-            val separator = Separator(classes)
-            this.add(separator)
-            return separator
-        }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun ContextMenu.separator(classes: Set<String> = setOf()): Separator {
+    val separator = Separator(classes)
+    this.add(separator)
+    return separator
+}
 
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun DropDown.separator(classes: Set<String> = setOf()): Separator {
-            val separator = Separator(classes)
-            this.add(separator)
-            return separator
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun DropDown.separator(classes: Set<String> = setOf()): Separator {
+    val separator = Separator(classes)
+    this.add(separator)
+    return separator
 }

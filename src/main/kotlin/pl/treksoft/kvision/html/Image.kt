@@ -99,20 +99,18 @@ open class Image(
         }
         return cl
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.image(
-            src: ResString, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
-            centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null
-        ): Image {
-            val image = Image(src, alt, responsive, shape, centered, classes).apply { init?.invoke(this) }
-            this.add(image)
-            return image
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.image(
+    src: ResString, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
+    centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null
+): Image {
+    val image = Image(src, alt, responsive, shape, centered, classes).apply { init?.invoke(this) }
+    this.add(image)
+    return image
 }

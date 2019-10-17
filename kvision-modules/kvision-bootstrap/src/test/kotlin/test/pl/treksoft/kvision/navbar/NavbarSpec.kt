@@ -21,9 +21,9 @@
  */
 package test.pl.treksoft.kvision.navbar
 
-import pl.treksoft.kvision.html.Link.Companion.link
 import pl.treksoft.kvision.html.TAG
-import pl.treksoft.kvision.html.Tag.Companion.tag
+import pl.treksoft.kvision.html.link
+import pl.treksoft.kvision.html.tag
 import pl.treksoft.kvision.navbar.Nav
 import pl.treksoft.kvision.navbar.Navbar
 import pl.treksoft.kvision.navbar.NavbarColor

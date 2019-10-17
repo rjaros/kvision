@@ -192,21 +192,19 @@ open class Tag(
         else
             content += translate(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.tag(
-            type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-            classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
-            init: (Tag.() -> Unit)? = null
-        ): Tag {
-            val tag = Tag(type, content, rich, align, classes, attributes, init)
-            this.add(tag)
-            return tag
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.tag(
+    type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
+    classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
+    init: (Tag.() -> Unit)? = null
+): Tag {
+    val tag = Tag(type, content, rich, align, classes, attributes, init)
+    this.add(tag)
+    return tag
 }

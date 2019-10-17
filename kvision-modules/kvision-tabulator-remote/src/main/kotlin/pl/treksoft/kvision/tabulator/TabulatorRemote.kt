@@ -89,26 +89,23 @@ open class TabulatorRemote<T : Any, E : Any>(
             }
         }
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun <T : Any, E : Any> Container.tabulatorRemote(
-            serviceManager: KVServiceManager<E>,
-            function: E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
-            options: TabulatorOptions<T> = TabulatorOptions(),
-            types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
-            init: (TabulatorRemote<T, E>.() -> Unit)? = null
-        ): TabulatorRemote<T, E> {
-            val tabulatorRemote = TabulatorRemote(serviceManager, function, options, types, classes)
-            init?.invoke(tabulatorRemote)
-            this.add(tabulatorRemote)
-            return tabulatorRemote
-        }
-    }
-
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <T : Any, E : Any> Container.tabulatorRemote(
+    serviceManager: KVServiceManager<E>,
+    function: E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
+    options: TabulatorOptions<T> = TabulatorOptions(),
+    types: Set<TableType> = setOf(),
+    classes: Set<String> = setOf(),
+    init: (TabulatorRemote<T, E>.() -> Unit)? = null
+): TabulatorRemote<T, E> {
+    val tabulatorRemote = TabulatorRemote(serviceManager, function, options, types, classes)
+    init?.invoke(tabulatorRemote)
+    this.add(tabulatorRemote)
+    return tabulatorRemote
 }

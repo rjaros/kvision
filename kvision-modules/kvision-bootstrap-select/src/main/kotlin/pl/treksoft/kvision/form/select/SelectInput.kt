@@ -354,22 +354,19 @@ open class SelectInput(
     override fun blur() {
         getElementJQuery()?.blur()
     }
+}
 
-    companion object {
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.selectInput(
-            options: List<StringPair>? = null, value: String? = null,
-            multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-            classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
-        ): SelectInput {
-            val selectInput = SelectInput(options, value, multiple, ajaxOptions, classes).apply { init?.invoke(this) }
-            this.add(selectInput)
-            return selectInput
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.selectInput(
+    options: List<StringPair>? = null, value: String? = null,
+    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
+    classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
+): SelectInput {
+    val selectInput = SelectInput(options, value, multiple, ajaxOptions, classes).apply { init?.invoke(this) }
+    this.add(selectInput)
+    return selectInput
 }

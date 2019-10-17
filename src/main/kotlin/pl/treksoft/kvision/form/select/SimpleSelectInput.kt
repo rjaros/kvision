@@ -199,21 +199,18 @@ open class SimpleSelectInput(
     override fun blur() {
         getElementJQuery()?.blur()
     }
+}
 
-    companion object {
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.simpleSelectInput(
-            options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-            classes: Set<String> = setOf(), init: (SimpleSelectInput.() -> Unit)? = null
-        ): SimpleSelectInput {
-            val simpleSelectInput = SimpleSelectInput(options, value, emptyOption, classes).apply { init?.invoke(this) }
-            this.add(simpleSelectInput)
-            return simpleSelectInput
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.simpleSelectInput(
+    options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
+    classes: Set<String> = setOf(), init: (SimpleSelectInput.() -> Unit)? = null
+): SimpleSelectInput {
+    val simpleSelectInput = SimpleSelectInput(options, value, emptyOption, classes).apply { init?.invoke(this) }
+    this.add(simpleSelectInput)
+    return simpleSelectInput
 }

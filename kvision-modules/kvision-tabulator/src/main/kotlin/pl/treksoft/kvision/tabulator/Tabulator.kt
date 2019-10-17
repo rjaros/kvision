@@ -603,74 +603,6 @@ open class Tabulator<T : Any>(
     }
 
     companion object {
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun <T : Any> Container.tabulator(
-            data: List<T>? = null,
-            dataUpdateOnEdit: Boolean = true,
-            options: TabulatorOptions<T> = TabulatorOptions(),
-            types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
-            init: (Tabulator<T>.() -> Unit)? = null
-        ): Tabulator<T> {
-            val tabulator = create(data, dataUpdateOnEdit, options, types, classes)
-            init?.invoke(tabulator)
-            this.add(tabulator)
-            return tabulator
-        }
-
-        /**
-         * DSL builder extension function for general redux store.
-         */
-        fun <T : Any, S : Any, A : RAction> Container.tabulator(
-            store: ReduxStore<S, A>,
-            dataFactory: (S) -> List<T>,
-            options: TabulatorOptions<T> = TabulatorOptions(),
-            types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
-            init: (Tabulator<T>.() -> Unit)? = null
-        ): Tabulator<T> {
-            val tabulator = create(store, dataFactory, options, types, classes)
-            init?.invoke(tabulator)
-            this.add(tabulator)
-            return tabulator
-        }
-
-        /**
-         * DSL builder extension function for dedicated redux store (backed with a list).
-         */
-        fun <T : Any, A : RAction> Container.tabulator(
-            store: ReduxStore<List<T>, A>,
-            options: TabulatorOptions<T> = TabulatorOptions(),
-            types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
-            init: (Tabulator<T>.() -> Unit)? = null
-        ): Tabulator<T> {
-            val tabulator = create(store, options, types, classes)
-            init?.invoke(tabulator)
-            this.add(tabulator)
-            return tabulator
-        }
-
-        /**
-         * DSL builder extension function for dynamic data (send within options parameter).
-         */
-        fun <T : Any> Container.tabulator(
-            options: TabulatorOptions<T> = TabulatorOptions(),
-            types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
-            init: (Tabulator<T>.() -> Unit)? = null
-        ): Tabulator<T> {
-            val tabulator = Tabulator(dataUpdateOnEdit = false, options = options, types = types, classes = classes)
-            init?.invoke(tabulator)
-            this.add(tabulator)
-            return tabulator
-        }
-
         /**
          * A helper function to create a Tabulator object with correct serializer.
          */
@@ -726,4 +658,71 @@ open class Tabulator<T : Any>(
             return tabulator
         }
     }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <T : Any> Container.tabulator(
+    data: List<T>? = null,
+    dataUpdateOnEdit: Boolean = true,
+    options: TabulatorOptions<T> = TabulatorOptions(),
+    types: Set<TableType> = setOf(),
+    classes: Set<String> = setOf(),
+    init: (Tabulator<T>.() -> Unit)? = null
+): Tabulator<T> {
+    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, classes)
+    init?.invoke(tabulator)
+    this.add(tabulator)
+    return tabulator
+}
+
+/**
+ * DSL builder extension function for general redux store.
+ */
+fun <T : Any, S : Any, A : RAction> Container.tabulator(
+    store: ReduxStore<S, A>,
+    dataFactory: (S) -> List<T>,
+    options: TabulatorOptions<T> = TabulatorOptions(),
+    types: Set<TableType> = setOf(),
+    classes: Set<String> = setOf(),
+    init: (Tabulator<T>.() -> Unit)? = null
+): Tabulator<T> {
+    val tabulator = Tabulator.create(store, dataFactory, options, types, classes)
+    init?.invoke(tabulator)
+    this.add(tabulator)
+    return tabulator
+}
+
+/**
+ * DSL builder extension function for dedicated redux store (backed with a list).
+ */
+fun <T : Any, A : RAction> Container.tabulator(
+    store: ReduxStore<List<T>, A>,
+    options: TabulatorOptions<T> = TabulatorOptions(),
+    types: Set<TableType> = setOf(),
+    classes: Set<String> = setOf(),
+    init: (Tabulator<T>.() -> Unit)? = null
+): Tabulator<T> {
+    val tabulator = Tabulator.create(store, options, types, classes)
+    init?.invoke(tabulator)
+    this.add(tabulator)
+    return tabulator
+}
+
+/**
+ * DSL builder extension function for dynamic data (send within options parameter).
+ */
+fun <T : Any> Container.tabulator(
+    options: TabulatorOptions<T> = TabulatorOptions(),
+    types: Set<TableType> = setOf(),
+    classes: Set<String> = setOf(),
+    init: (Tabulator<T>.() -> Unit)? = null
+): Tabulator<T> {
+    val tabulator = Tabulator(dataUpdateOnEdit = false, options = options, types = types, classes = classes)
+    init?.invoke(tabulator)
+    this.add(tabulator)
+    return tabulator
 }

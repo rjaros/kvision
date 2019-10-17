@@ -46,23 +46,21 @@ open class H6(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.h6(
-            content: String? = null,
-            rich: Boolean = false,
-            align: Align? = null,
-            classes: Set<String> = setOf(),
-            init: (H6.() -> Unit)? = null
-        ): H6 {
-            val h6 = H6(content, rich, align, classes).apply { init?.invoke(this) }
-            this.add(h6)
-            return h6
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.h6(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String> = setOf(),
+    init: (H6.() -> Unit)? = null
+): H6 {
+    val h6 = H6(content, rich, align, classes).apply { init?.invoke(this) }
+    this.add(h6)
+    return h6
 }

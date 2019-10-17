@@ -155,25 +155,23 @@ open class Button(
         }
         return this
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.button(
-            text: String,
-            icon: String? = null,
-            style: ButtonStyle = ButtonStyle.PRIMARY,
-            type: ButtonType = ButtonType.BUTTON,
-            disabled: Boolean = false,
-            classes: Set<String> = setOf(),
-            init: (Button.() -> Unit)? = null
-        ): Button {
-            val button = Button(text, icon, style, type, disabled, classes).apply { init?.invoke(this) }
-            this.add(button)
-            return button
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.button(
+    text: String,
+    icon: String? = null,
+    style: ButtonStyle = ButtonStyle.PRIMARY,
+    type: ButtonType = ButtonType.BUTTON,
+    disabled: Boolean = false,
+    classes: Set<String> = setOf(),
+    init: (Button.() -> Unit)? = null
+): Button {
+    val button = Button(text, icon, style, type, disabled, classes).apply { init?.invoke(this) }
+    this.add(button)
+    return button
 }

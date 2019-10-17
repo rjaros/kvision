@@ -46,23 +46,21 @@ open class Header(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.header(
-            content: String? = null,
-            rich: Boolean = false,
-            align: Align? = null,
-            classes: Set<String> = setOf(),
-            init: (Header.() -> Unit)? = null
-        ): Header {
-            val header = Header(content, rich, align, classes).apply { init?.invoke(this) }
-            this.add(header)
-            return header
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.header(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String> = setOf(),
+    init: (Header.() -> Unit)? = null
+): Header {
+    val header = Header(content, rich, align, classes).apply { init?.invoke(this) }
+    this.add(header)
+    return header
 }

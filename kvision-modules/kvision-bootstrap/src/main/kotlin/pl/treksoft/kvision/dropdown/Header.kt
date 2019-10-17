@@ -32,30 +32,26 @@ import pl.treksoft.kvision.html.Tag
  * @param classes a set of CSS class names
  */
 open class Header(content: String? = null, classes: Set<String> = setOf()) :
-    Tag(TAG.H6, content, classes = classes + "dropdown-header") {
+    Tag(TAG.H6, content, classes = classes + "dropdown-header")
 
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun ContextMenu.header(content: String? = null, classes: Set<String> = setOf()): Header {
+    val header = Header(content, classes)
+    this.add(header)
+    return header
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun ContextMenu.header(content: String? = null, classes: Set<String> = setOf()): Header {
-            val header = Header(content, classes)
-            this.add(header)
-            return header
-        }
-
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun DropDown.header(content: String? = null, classes: Set<String> = setOf()): Header {
-            val header = Header(content, classes)
-            this.add(header)
-            return header
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun DropDown.header(content: String? = null, classes: Set<String> = setOf()): Header {
+    val header = Header(content, classes)
+    this.add(header)
+    return header
 }

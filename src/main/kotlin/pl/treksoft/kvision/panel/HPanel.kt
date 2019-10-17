@@ -47,24 +47,22 @@ open class HPanel(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.hPanel(
-            wrap: FlexWrap? = null,
-            justify: FlexJustify? = null,
-            alignItems: FlexAlignItems? = null,
-            spacing: Int? = null,
-            classes: Set<String> = setOf(),
-            init: (HPanel.() -> Unit)? = null
-        ): HPanel {
-            val hpanel = HPanel(wrap, justify, alignItems, spacing, classes, init)
-            this.add(hpanel)
-            return hpanel
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.hPanel(
+    wrap: FlexWrap? = null,
+    justify: FlexJustify? = null,
+    alignItems: FlexAlignItems? = null,
+    spacing: Int? = null,
+    classes: Set<String> = setOf(),
+    init: (HPanel.() -> Unit)? = null
+): HPanel {
+    val hpanel = HPanel(wrap, justify, alignItems, spacing, classes, init)
+    this.add(hpanel)
+    return hpanel
 }

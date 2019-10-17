@@ -55,56 +55,52 @@ open class Nav(rightAlign: Boolean = false, classes: Set<String> = setOf(), init
         }
         return cl
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Navbar.nav(
-            rightAlign: Boolean = false, classes: Set<String> = setOf(), init: (Nav.() -> Unit)? = null
-        ): Nav {
-            val nav = Nav(rightAlign, classes).apply { init?.invoke(this) }
-            this.add(nav)
-            return nav
-        }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Navbar.nav(
+    rightAlign: Boolean = false, classes: Set<String> = setOf(), init: (Nav.() -> Unit)? = null
+): Nav {
+    val nav = Nav(rightAlign, classes).apply { init?.invoke(this) }
+    this.add(nav)
+    return nav
+}
 
-
-        /**
-         * DSL builder extension function for a link in a nav list.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Nav.navLink(
-            label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
-        ): Link {
-            val link = Link(label, url, icon, image, classes + "nav-item" + "nav-link").apply {
-                init?.invoke(this)
-            }
-            this.add(link)
-            return link
-        }
-
-        /**
-         * DSL builder extension function for a disabled link in a nav list.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Nav.navLinkDisabled(
-            label: String, icon: String? = null, image: ResString? = null,
-            classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
-        ): Link {
-            val link =
-                Link(label, "javascript:void(0)", icon, image, classes + "nav-item" + "nav-link" + "disabled").apply {
-                    tabindex = -1
-                    setAttribute("aria-disabled", "true")
-                    init?.invoke(this)
-                }
-            this.add(link)
-            return link
-        }
-
+/**
+ * DSL builder extension function for a link in a nav list.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Nav.navLink(
+    label: String, url: String? = null, icon: String? = null, image: ResString? = null,
+    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+): Link {
+    val link = Link(label, url, icon, image, classes + "nav-item" + "nav-link").apply {
+        init?.invoke(this)
     }
+    this.add(link)
+    return link
+}
+
+/**
+ * DSL builder extension function for a disabled link in a nav list.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Nav.navLinkDisabled(
+    label: String, icon: String? = null, image: ResString? = null,
+    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+): Link {
+    val link =
+        Link(label, "javascript:void(0)", icon, image, classes + "nav-item" + "nav-link" + "disabled").apply {
+            tabindex = -1
+            setAttribute("aria-disabled", "true")
+            init?.invoke(this)
+        }
+    this.add(link)
+    return link
 }

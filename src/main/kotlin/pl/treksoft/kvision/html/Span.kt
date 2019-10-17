@@ -46,23 +46,21 @@ open class Span(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.span(
-            content: String? = null,
-            rich: Boolean = false,
-            align: Align? = null,
-            classes: Set<String> = setOf(),
-            init: (Span.() -> Unit)? = null
-        ): Span {
-            val span = Span(content, rich, align, classes).apply { init?.invoke(this) }
-            this.add(span)
-            return span
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.span(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String> = setOf(),
+    init: (Span.() -> Unit)? = null
+): Span {
+    val span = Span(content, rich, align, classes).apply { init?.invoke(this) }
+    this.add(span)
+    return span
 }

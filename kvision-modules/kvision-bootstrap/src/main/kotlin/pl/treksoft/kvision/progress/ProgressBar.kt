@@ -130,33 +130,31 @@ open class ProgressBar(
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
+}
 
-    companion object {
-        /**
-         * DSL builder extension function.
-         *
-         * It takes the same parameters as the constructor of the built component.
-         */
-        fun Container.progressBar(
-            progress: Int, min: Int = DEFAULT_MIN, max: Int = DEFAULT_MAX, style: ProgressBarStyle? = null,
-            striped: Boolean = false, animated: Boolean = false,
-            content: String? = null, rich: Boolean = false, align: Align? = null,
-            classes: Set<String> = setOf(), init: (ProgressBar.() -> Unit)? = null
-        ): ProgressBar {
-            val progressBar = ProgressBar(
-                progress,
-                min,
-                max,
-                style,
-                striped,
-                animated,
-                content,
-                rich,
-                align,
-                classes
-            ).apply { init?.invoke(this) }
-            this.add(progressBar)
-            return progressBar
-        }
-    }
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.progressBar(
+    progress: Int, min: Int = DEFAULT_MIN, max: Int = DEFAULT_MAX, style: ProgressBarStyle? = null,
+    striped: Boolean = false, animated: Boolean = false,
+    content: String? = null, rich: Boolean = false, align: Align? = null,
+    classes: Set<String> = setOf(), init: (ProgressBar.() -> Unit)? = null
+): ProgressBar {
+    val progressBar = ProgressBar(
+        progress,
+        min,
+        max,
+        style,
+        striped,
+        animated,
+        content,
+        rich,
+        align,
+        classes
+    ).apply { init?.invoke(this) }
+    this.add(progressBar)
+    return progressBar
 }
