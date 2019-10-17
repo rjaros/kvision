@@ -55,7 +55,8 @@ including support for type-safe websockets connections.
 - Support for building hybrid mobile applications with [Apache Cordova](https://cordova.apache.org/).
 - Support for building cross-platform, desktop applications with [Electron](https://electronjs.org).
 - KVision applications are built with [Gradle](https://gradle.org/) with support for Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
-[Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).
+[Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html). Kotlin compiler plugin for Gradle is available to automatically generate 
+boilerplate code for server-side interfaces.
 - [Karma](https://karma-runner.github.io/) testing framework support.
 - IDE support (IntelliJ IDEA Community Edition).
 
