@@ -92,47 +92,56 @@ class PaceOptions(
     restartOnPushState: Boolean? = null,
     restartOnRequestAfter: Double? = null,
     startOnPageLoad: Boolean? = null,
-    target: String? = null
+    target: String? = null,
+    manual: Boolean = false
 ) {
     internal var paceOptionsJs: dynamic = obj {
-        if (ajax != null) {
-            this.ajax = ajax.paceAjaxOptionsJs
-        }
-        if (catchupTime != null) {
-            this.catchupTime = catchupTime
-        }
-        if (easeFactor != null) {
-            this.easeFactor = easeFactor
-        }
-        if (elements != null) {
-            this.elements = elements.paceElementsOptionsJs
-        }
-        if (eventLag != null) {
-            this.eventLag = eventLag.paceEventLagOptionsJs
-        }
-        if (ghostTime != null) {
-            this.ghostTime = ghostTime
-        }
-        if (initialRate != null) {
-            this.initialRate = initialRate
-        }
-        if (maxProgressPerFrame != null) {
-            this.maxProgressPerFrame = maxProgressPerFrame
-        }
-        if (minTime != null) {
-            this.minTime = minTime
-        }
-        if (restartOnPushState != null) {
-            this.restartOnPushState = restartOnPushState
-        }
-        if (restartOnRequestAfter != null) {
-            this.restartOnRequestAfter = restartOnRequestAfter
-        }
-        if (startOnPageLoad != null) {
-            this.startOnPageLoad = startOnPageLoad
-        }
-        if (target != null) {
-            this.target = target
+        if (!manual) {
+            if (ajax != null) {
+                this.ajax = ajax.paceAjaxOptionsJs
+            }
+            if (catchupTime != null) {
+                this.catchupTime = catchupTime
+            }
+            if (easeFactor != null) {
+                this.easeFactor = easeFactor
+            }
+            if (elements != null) {
+                this.elements = elements.paceElementsOptionsJs
+            }
+            if (eventLag != null) {
+                this.eventLag = eventLag.paceEventLagOptionsJs
+            }
+            if (ghostTime != null) {
+                this.ghostTime = ghostTime
+            }
+            if (initialRate != null) {
+                this.initialRate = initialRate
+            }
+            if (maxProgressPerFrame != null) {
+                this.maxProgressPerFrame = maxProgressPerFrame
+            }
+            if (minTime != null) {
+                this.minTime = minTime
+            }
+            if (restartOnPushState != null) {
+                this.restartOnPushState = restartOnPushState
+            }
+            if (restartOnRequestAfter != null) {
+                this.restartOnRequestAfter = restartOnRequestAfter
+            }
+            if (startOnPageLoad != null) {
+                this.startOnPageLoad = startOnPageLoad
+            }
+            if (target != null) {
+                this.target = target
+            }
+        } else {
+            this.ajax = false
+            this.elements = false
+            this.document = false
+            this.eventLag = false
+            this.startOnPageLoad = false
         }
     }
 }
@@ -155,6 +164,14 @@ class Pace {
         }
 
         fun stop() {
+            window["Pace"].stop()
+        }
+
+        fun show() {
+            window["Pace"].bar.render()
+        }
+
+        fun hide() {
             window["Pace"].stop()
         }
     }
