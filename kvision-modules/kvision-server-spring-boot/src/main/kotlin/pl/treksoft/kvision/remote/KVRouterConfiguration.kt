@@ -21,21 +21,25 @@
  */
 package pl.treksoft.kvision.remote
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.support.GenericApplicationContext
+import org.springframework.core.io.Resource
+import org.springframework.http.MediaType.TEXT_HTML
 import org.springframework.stereotype.Component
-import org.springframework.web.reactive.function.server.RouterFunction
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.buildAndAwait
 import org.springframework.web.reactive.function.server.coRouter
 import org.springframework.web.reactive.function.server.router
-import java.net.URI
 
 @Configuration
 open class KVRouterConfiguration {
+    @Value("classpath:/public/index.html")
+    private lateinit var indexHtml: Resource
+
     @Bean
     open fun kvRoutes(kvHandler: KVHandler) = coRouter {
         GET("/kv/**", kvHandler::handle)
@@ -46,16 +50,9 @@ open class KVRouterConfiguration {
     }
 
     @Bean
-    open fun indexRouter(): RouterFunction<ServerResponse> {
-        val redirectToIndex =
-            ServerResponse
-                .temporaryRedirect(URI("/index.html"))
-                .build()
-
-        return router {
-            GET("/") {
-                redirectToIndex
-            }
+    open fun indexRouter() = router {
+        GET("/") {
+            ok().contentType(TEXT_HTML).bodyValue(indexHtml)
         }
     }
 }
