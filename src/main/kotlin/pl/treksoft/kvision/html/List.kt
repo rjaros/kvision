@@ -28,6 +28,8 @@ import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.snClasses
+import pl.treksoft.kvision.utils.snOpt
 
 /**
  * HTML list types.
@@ -79,10 +81,10 @@ open class ListTag(
     override fun render(): VNode {
         val childrenElements = when (type) {
             ListType.UL, ListType.OL, ListType.UNSTYLED, ListType.INLINE -> elements?.map { el ->
-                element("li", el, rich)
+                element("li", el, rich, type == ListType.INLINE)
             }
             ListType.DL, ListType.DL_HORIZ -> elements?.mapIndexed { index, el ->
-                element(if (index % 2 == 0) "dt" else "dd", el, rich)
+                element(if (index % 2 == 0) "dt" else "dd", el, rich, false)
             }
         }?.toTypedArray()
         return if (childrenElements != null) {
@@ -100,7 +102,14 @@ open class ListTag(
                 if (v is Tag && v.type == TAG.LI /*|| v is DropDown && v.forNavbar*/) {
                     v.renderVNode()
                 } else {
-                    h("li", arrayOf(v.renderVNode()))
+                    if (type == ListType.INLINE) {
+                        val opt = snOpt {
+                            `class` = snClasses(listOf("list-inline-item" to true))
+                        }
+                        h("li", opt, arrayOf(v.renderVNode()))
+                    } else {
+                        h("li", arrayOf(v.renderVNode()))
+                    }
                 }
             }
             ListType.DL, ListType.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
@@ -114,12 +123,19 @@ open class ListTag(
         return res.toTypedArray()
     }
 
-    private fun element(name: String, value: String, rich: Boolean): VNode {
+    private fun element(name: String, value: String, rich: Boolean, inline: Boolean): VNode {
         val translatedValue = translate(value)
-        return if (rich) {
-            h(name, arrayOf(KVManager.virtualize("<span>$translatedValue</span>")))
+        val opt = if (inline) {
+            snOpt {
+                `class` = snClasses(listOf("list-inline-item" to true))
+            }
         } else {
-            h(name, translatedValue)
+            snOpt {}
+        }
+        return if (rich) {
+            h(name, opt, arrayOf(KVManager.virtualize("<span>$translatedValue</span>")))
+        } else {
+            h(name, opt, translatedValue)
         }
     }
 
