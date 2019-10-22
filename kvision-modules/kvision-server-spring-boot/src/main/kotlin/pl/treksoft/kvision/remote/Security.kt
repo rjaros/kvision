@@ -30,6 +30,20 @@ import org.springframework.security.web.server.util.matcher.ServerWebExchangeMat
  * A function to gather paths for spring security matchers.
  */
 fun ServerHttpSecurity.AuthorizeExchangeSpec.serviceMatchers(vararg services: KVServiceManager<*>): ServerHttpSecurity.AuthorizeExchangeSpec.Access {
+    return this.matchers(*getServerWebExchangeMatcher(*services))
+}
+
+/**
+ * A function to gather paths for spring security matchers.
+ */
+fun serviceMatchers(vararg services: KVServiceManager<*>): ServerWebExchangeMatcher {
+    return ServerWebExchangeMatchers.matchers(*getServerWebExchangeMatcher(*services))
+}
+
+/**
+ * A function to gather paths for spring security matchers.
+ */
+fun getServerWebExchangeMatcher(vararg services: KVServiceManager<*>): Array<ServerWebExchangeMatcher> {
     val matchers = mutableListOf<ServerWebExchangeMatcher>()
     val getPaths = services.flatMap { it.getRequests.keys }.toTypedArray()
     if (getPaths.isNotEmpty()) matchers.add(ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, *getPaths))
@@ -46,5 +60,5 @@ fun ServerHttpSecurity.AuthorizeExchangeSpec.serviceMatchers(vararg services: KV
             *optionsPaths
         )
     )
-    return this.matchers(*matchers.toTypedArray())
+    return matchers.toTypedArray()
 }
