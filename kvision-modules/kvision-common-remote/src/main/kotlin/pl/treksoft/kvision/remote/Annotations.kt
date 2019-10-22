@@ -27,12 +27,4 @@ expect annotation class Id()
 
 @UseExperimental(ExperimentalMultiplatform::class)
 @OptionalExpectation
-expect annotation class Table()
-
-@UseExperimental(ExperimentalMultiplatform::class)
-@OptionalExpectation
-expect annotation class Column()
-
-@UseExperimental(ExperimentalMultiplatform::class)
-@OptionalExpectation
 expect annotation class Transient()
