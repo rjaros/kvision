@@ -443,17 +443,18 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual fun bind(
-        function: T.(String?, String?) -> List<RemoteOption>
+        function: T.(String?, String?, String?) -> List<RemoteOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         addRoute(HttpMethod.POST, "/kv/$routeDef") {
             val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            if (jsonRpcRequest.params.size == 2) {
+            if (jsonRpcRequest.params.size == 3) {
                 val param1 = getParameter<String?>(jsonRpcRequest.params[0])
                 val param2 = getParameter<String?>(jsonRpcRequest.params[1])
+                val param3 = getParameter<String?>(jsonRpcRequest.params[2])
                 try {
-                    val result = function.invoke(service, param1, param2)
+                    val result = function.invoke(service, param1, param2, param3)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,

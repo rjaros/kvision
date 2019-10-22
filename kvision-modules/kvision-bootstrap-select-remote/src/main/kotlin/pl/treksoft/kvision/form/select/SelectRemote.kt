@@ -40,6 +40,7 @@ import pl.treksoft.kvision.utils.SnOn
  * @param value selected value
  * @param serviceManager multiplatform service manager
  * @param function multiplatform service method returning the list of options
+ * @param stateFunction a function to generate the state object passed with the remote request
  * @param name the name attribute of the generated HTML input element
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote data source
@@ -50,7 +51,8 @@ import pl.treksoft.kvision.utils.SnOn
 open class SelectRemote<T : Any>(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?) -> List<RemoteOption>,
+    function: T.(String?, String?, String?) -> List<RemoteOption>,
+    stateFunction: (() -> String)? = null,
     name: String? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
@@ -148,7 +150,7 @@ open class SelectRemote<T : Any>(
 
     private val idc = "kv_form_SelectRemote_$counter"
     final override val input: SelectRemoteInput<T> = SelectRemoteInput(
-        value, serviceManager, function, multiple, ajaxOptions,
+        value, serviceManager, function, stateFunction, multiple, ajaxOptions,
         setOf("form-control")
     ).apply {
         this.id = idc
@@ -256,8 +258,8 @@ open class SelectRemote<T : Any>(
 fun <T : Any> Container.selectRemote(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?) -> List<RemoteOption>, name: String? = null,
-    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
+    function: T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
+    name: String? = null, multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
     rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
 ): SelectRemote<T> {
     val selectRemote =
@@ -265,6 +267,7 @@ fun <T : Any> Container.selectRemote(
             value,
             serviceManager,
             function,
+            stateFunction,
             name,
             multiple,
             ajaxOptions,

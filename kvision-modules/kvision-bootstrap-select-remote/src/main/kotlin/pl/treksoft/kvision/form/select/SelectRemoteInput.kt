@@ -45,6 +45,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param value selected value
  * @param serviceManager multiplatform service manager
  * @param function multiplatform service method returning the list of options
+ * @param stateFunction a function to generate the state object passed with the remote request
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote data source
  * @param classes a set of CSS class names
@@ -53,7 +54,8 @@ external fun decodeURIComponent(encodedURI: String): String
 open class SelectRemoteInput<T : Any>(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?) -> List<RemoteOption>,
+    function: T.(String?, String?, String?) -> List<RemoteOption>,
+    stateFunction: (() -> String)? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     classes: Set<String> = setOf()
@@ -85,15 +87,17 @@ open class SelectRemoteInput<T : Any>(
         }, data = data, beforeSend = { _, b ->
             @Suppress("UnsafeCastFromDynamic")
             val q = decodeURIComponent(b.data.substring(2))
-            b.data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(q, this.value)))
+            val state = stateFunction?.invoke()
+            b.data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(q, this.value, state)))
             true
         }, httpType = HttpType.valueOf(method.name), cache = false, preserveSelected = true)
         if (value != null) {
             GlobalScope.launch {
                 val callAgent = CallAgent()
+                val state = stateFunction?.invoke()
                 val initials = callAgent.remoteCall(
                     url,
-                    JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, value))),
+                    JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, value, state))),
                     HttpMethod.POST
                 ).asDeferred().await()
                 JSON.plain.parse(RemoteOption.serializer().list, initials.result as String).map {
@@ -123,13 +127,14 @@ open class SelectRemoteInput<T : Any>(
 fun <T : Any> Container.selectRemoteInput(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?) -> List<RemoteOption>,
+    function: T.(String?, String?, String?) -> List<RemoteOption>,
+    stateFunction: (() -> String)? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     classes: Set<String> = setOf(), init: (SelectRemoteInput<T>.() -> Unit)? = null
 ): SelectRemoteInput<T> {
     val selectRemoteInput =
-        SelectRemoteInput(value, serviceManager, function, multiple, ajaxOptions, classes).apply {
+        SelectRemoteInput(value, serviceManager, function, stateFunction, multiple, ajaxOptions, classes).apply {
             init?.invoke(this)
         }
     this.add(selectRemoteInput)

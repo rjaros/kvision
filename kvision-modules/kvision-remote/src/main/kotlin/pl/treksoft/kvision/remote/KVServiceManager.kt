@@ -133,7 +133,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
      * @param function a function of the receiver
      */
     protected actual fun bind(
-        function: T.(String?, String?) -> List<RemoteOption>
+        function: T.(String?, String?, String?) -> List<RemoteOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)
