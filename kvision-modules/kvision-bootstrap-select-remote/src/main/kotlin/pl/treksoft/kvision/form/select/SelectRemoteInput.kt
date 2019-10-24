@@ -54,7 +54,7 @@ external fun decodeURIComponent(encodedURI: String): String
 open class SelectRemoteInput<T : Any>(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?, String?) -> List<RemoteOption>,
+    function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
@@ -127,7 +127,7 @@ open class SelectRemoteInput<T : Any>(
 fun <T : Any> Container.selectRemoteInput(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?, String?) -> List<RemoteOption>,
+    function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,

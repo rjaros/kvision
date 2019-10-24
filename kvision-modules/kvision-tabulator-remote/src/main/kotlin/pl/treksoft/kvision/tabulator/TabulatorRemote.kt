@@ -49,7 +49,7 @@ import pl.treksoft.kvision.utils.JSON
 @UseExperimental(ImplicitReflectionSerializer::class)
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceManager<E>,
-    function: E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
+    function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     classes: Set<String> = setOf()
@@ -98,7 +98,7 @@ open class TabulatorRemote<T : Any, E : Any>(
  */
 fun <T : Any, E : Any> Container.tabulatorRemote(
     serviceManager: KVServiceManager<E>,
-    function: E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
+    function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     classes: Set<String> = setOf(),

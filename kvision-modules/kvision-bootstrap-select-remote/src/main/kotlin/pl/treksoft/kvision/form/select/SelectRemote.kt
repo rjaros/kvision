@@ -51,7 +51,7 @@ import pl.treksoft.kvision.utils.SnOn
 open class SelectRemote<T : Any>(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?, String?) -> List<RemoteOption>,
+    function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
     name: String? = null,
     multiple: Boolean = false,
@@ -258,7 +258,7 @@ open class SelectRemote<T : Any>(
 fun <T : Any> Container.selectRemote(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
-    function: T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
+    function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
     name: String? = null, multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
     rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
 ): SelectRemote<T> {

@@ -132,8 +132,8 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
      * Binds a given function of the receiver as a select options source
      * @param function a function of the receiver
      */
-    protected actual fun bind(
-        function: T.(String?, String?, String?) -> List<RemoteOption>
+    protected actual fun bindSelectRemote(
+        function: suspend T.(String?, String?, String?) -> List<RemoteOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)
@@ -143,8 +143,8 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
      * Binds a given function of the receiver as a tabulator component source
      * @param function a function of the receiver
      */
-    protected actual inline fun <reified RET> bind(
-        noinline function: T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<RET>
+    protected actual inline fun <reified RET> bindTabulatorRemote(
+        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<RET>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)

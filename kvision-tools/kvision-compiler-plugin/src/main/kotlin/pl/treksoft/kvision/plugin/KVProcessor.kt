@@ -28,7 +28,6 @@ import de.jensklingenberg.mpapt.model.Element
 import de.jensklingenberg.mpapt.model.RoundEnvironment
 import de.jensklingenberg.mpapt.utils.KotlinPlatformValues
 import org.jetbrains.kotlin.backend.common.descriptors.allParameters
-import org.jetbrains.kotlin.backend.common.descriptors.isSuspend
 import org.jetbrains.kotlin.cli.common.config.kotlinSourceRoots
 import org.jetbrains.kotlin.descriptors.CallableMemberDescriptor
 import org.jetbrains.kotlin.descriptors.ParameterDescriptor
@@ -85,7 +84,11 @@ class KVProcessor : AbstractProcessor() {
                         appendln("    init {")
                         appendln("        GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {")
                         cl.methods().forEach {
-                            appendln("            bind($iName::${it.name})")
+                            when {
+                                it.returnType.toString().startsWith("RemoteData") -> appendln("            bindTabulatorRemote($iName::${it.name})")
+                                it.returnType.toString() == "List<RemoteOption>" -> appendln("            bindSelectRemote($iName::${it.name})")
+                                else -> appendln("            bind($iName::${it.name})")
+                            }
                         }
                         appendln("        }")
                         appendln("    }")
@@ -125,29 +128,33 @@ class KVProcessor : AbstractProcessor() {
                                 if (params.size == 2)
                                     params.first().type.toString().startsWith("ReceiveChannel")
                                 else false
-                            if (it.isSuspend) {
-                                if (!wsMethod) {
-                                    if (params.isNotEmpty()) {
-                                        appendln(
+                            if (!wsMethod) {
+                                if (params.isNotEmpty()) {
+                                    when {
+                                        it.returnType.toString().startsWith("RemoteData") -> appendln(
+                                            "    override suspend fun $name(${getParameterList(
+                                                params
+                                            )}) = ${it.returnType.toString()}()"
+                                        )
+                                        it.returnType.toString() == "List<RemoteOption>" -> appendln(
+                                            "    override suspend fun $name(${getParameterList(
+                                                params
+                                            )}) = emptyList<RemoteOption>()"
+                                        )
+                                        else -> appendln(
                                             "    override suspend fun $name(${getParameterList(params)}) = call($iName::$name, ${getParameterNames(
                                                 params
                                             )})"
                                         )
-                                    } else {
-                                        appendln("    override suspend fun $name() = call($iName::$name)")
                                     }
                                 } else {
-                                    appendln("    override suspend fun $name(${getParameterList(params)}) {}")
-                                    val type1 = params[0].type.toString().replace("ReceiveChannel", "SendChannel")
-                                    val type2 = params[1].type.toString().replace("SendChannel", "ReceiveChannel")
-                                    appendln("    suspend fun $name(handler: suspend ($type1, $type2) -> Unit) = webSocket($iName::$name, handler)")
+                                    appendln("    override suspend fun $name() = call($iName::$name)")
                                 }
                             } else {
-                                if (it.returnType.toString().startsWith("RemoteData")) {
-                                    appendln("    override fun $name(${getParameterList(params)}) = ${it.returnType.toString()}()")
-                                } else {
-                                    appendln("    override fun $name(${getParameterList(params)}) = emptyList<RemoteOption>()")
-                                }
+                                appendln("    override suspend fun $name(${getParameterList(params)}) {}")
+                                val type1 = params[0].type.toString().replace("ReceiveChannel", "SendChannel")
+                                val type2 = params[1].type.toString().replace("SendChannel", "ReceiveChannel")
+                                appendln("    suspend fun $name(handler: suspend ($type1, $type2) -> Unit) = webSocket($iName::$name, handler)")
                             }
                         }
                         appendln("}")

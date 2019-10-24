@@ -506,8 +506,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param function a function of the receiver
      */
     @Suppress("TooGenericExceptionCaught")
-    protected actual fun bind(
-        function: T.(String?, String?, String?) -> List<RemoteOption>
+    protected actual fun bindSelectRemote(
+        function: suspend T.(String?, String?, String?) -> List<RemoteOption>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         addRoute(HttpMethod.POST, "/kv/$routeDef") { req, ctx ->
@@ -557,8 +557,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param function a function of the receiver
      */
     @Suppress("TooGenericExceptionCaught")
-    protected actual inline fun <reified RET> bind(
-        noinline function: T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<RET>
+    protected actual inline fun <reified RET> bindTabulatorRemote(
+        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<RET>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         addRoute(HttpMethod.POST, "/kv/$routeDef") { req, ctx ->
