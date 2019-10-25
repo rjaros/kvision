@@ -71,7 +71,7 @@ Full API documentation (KDoc) is available at [https://rjaros.github.io/kvision/
 You can also look at [KVision blog posts at dev.to](https://dev.to/t/kvision/latest) and you can talk with KVision 
 developers on Kotlin Slack [#kvision](https://kotlinlang.slack.com/messages/kvision/) channel.
 
-If you are looking for the guide for KVision 1.x (based on Bootstrap 3), you can [find it here](https://kvision.gitbook.io/kvision-guide/v/kvision-1.x/).
+If you are interested in the documentation for KVision 1.x (based on Bootstrap 3), you can [find the guide here](https://kvision.gitbook.io/kvision-guide/v/kvision-1.x/) and the [API docs here](https://rjaros.github.io/kvision/api1/).
 
 ## Quickstart
 
