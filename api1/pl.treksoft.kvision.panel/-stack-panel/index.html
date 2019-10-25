@@ -1,0 +1,162 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>StackPanel - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.panel</a>&nbsp;/&nbsp;<a href="./index.html">StackPanel</a><br/>
+<br/>
+<h1>StackPanel</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">StackPanel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>The container with only one active (visible) child at any moment.</p>
+<p>It supports activating children by a JavaScript route.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">StackPanel</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel$<init>(kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.StackPanel, kotlin.Unit)))/activateLast">activateLast</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel$<init>(kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.StackPanel, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel$<init>(kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.StackPanel, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">StackPanel</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="active-child.html">activeChild</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">activeChild</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a></code>
+<p>The active (visible) child.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="active-index.html">activeIndex</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">activeIndex</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>The index of active (visible) child.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel$add(pl.treksoft.kvision.core.Component, kotlin.String)/panel">panel</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel$add(pl.treksoft.kvision.core.Component, kotlin.String)/route">route</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">StackPanel</span></a></code>
+<p>Adds given component and bounds it's activation to a given route.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel$add(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">StackPanel</span></a></code>
+<p>Adds given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-all.html">addAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel$addAll(kotlin.collections.List((pl.treksoft.kvision.core.Component)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">StackPanel</span></a></code>
+<p>Adds a list of components to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="children-v-nodes.html">childrenVNodes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">childrenVNodes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">VNode</span><span class="symbol">&gt;</span></code>
+<p>Returns the array of the children Snabbdom vnodes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel$remove(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">StackPanel</span></a></code>
+<p>Removes given component from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-all.html">removeAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">StackPanel</span></a></code>
+<p>Removes all children from the current container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-simple-panel/add-internal.html">addInternal</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addInternal</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addInternal(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Protected and final method to add given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-simple-panel/get-children.html">getChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of children of the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-simple-panel/render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
+<p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="stack-panel.html">stackPanel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">stackPanel</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel.Companion$stackPanel(pl.treksoft.kvision.core.Container, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.StackPanel, kotlin.Unit)))/activateLast">activateLast</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel.Companion$stackPanel(pl.treksoft.kvision.core.Container, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.StackPanel, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.panel.StackPanel.Companion$stackPanel(pl.treksoft.kvision.core.Container, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.panel.StackPanel, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">StackPanel</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">StackPanel</span></a></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

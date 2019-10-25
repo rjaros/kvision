@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MediaFile - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">MediaFile</a><br/>
+<br/>
+<h1>MediaFile</h1>
+<code><span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">MediaFile</span></code>
+<p>Media file information class.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">MediaFile</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Media file information class.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="full-path.html">fullPath</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">fullPath</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="last-modified-date.html">lastModifiedDate</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">lastModifiedDate</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="name.html">name</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="size.html">size</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">size</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="type.html">type</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">type</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-format-data.html">getFormatData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getFormatData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaFile$getFormatData(kotlin.Function1((pl.treksoft.kvision.cordova.MediaFileData, kotlin.Unit)), kotlin.Function0((kotlin.Unit)))/successCallback">successCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-media-file-data/index.html"><span class="identifier">MediaFileData</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaFile$getFormatData(kotlin.Function1((pl.treksoft.kvision.cordova.MediaFileData, kotlin.Unit)), kotlin.Function0((kotlin.Unit)))/errorCallback">errorCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../get-format-data.html">getFormatData</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">MediaFile</span></a><span class="symbol">.</span><span class="identifier">getFormatData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-media-file-data/index.html"><span class="identifier">MediaFileData</span></a><span class="symbol">?</span></code>
+<p>Get details for the given file.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

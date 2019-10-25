@@ -32,13 +32,6 @@
 </tr>
 <tr>
 <td>
-<p><a href="-dummy-web-socket-session/index.html">DummyWebSocketSession</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DummyWebSocketSession</span></code></td>
-</tr>
-<tr>
-<td>
 <p><a href="-j-s-o-n/index.html">JSON</a></p>
 </td>
 <td>
@@ -48,12 +41,10 @@
 </tr>
 <tr>
 <td>
-<p><a href="-k-v-controller/index.html">KVController</a></p>
+<p><a href="-k-v-handler/index.html">KVHandler</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVController</span></code>
-<p>Controller for handling automatic routes.</p>
-</td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVHandler</span></code></td>
 </tr>
 <tr>
 <td>
@@ -63,6 +54,13 @@
 <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVRemoteAgent</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-remote-agent/index.html"><span class="identifier">RemoteAgent</span></a></code>
 <p>Client side agent for JSON-RPC remote calls.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-v-router-configuration/index.html">KVRouterConfiguration</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVRouterConfiguration</span></code></td>
 </tr>
 <tr>
 <td>
@@ -78,9 +76,14 @@
 <p><a href="-k-v-web-socket-config/index.html">KVWebSocketConfig</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVWebSocketConfig</span></code>
-<p>Automatic websockets configuration.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVWebSocketConfig</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-v-web-socket-handler/index.html">KVWebSocketHandler</a></p>
 </td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">KVWebSocketHandler</span></code></td>
 </tr>
 <tr>
 <td>
@@ -138,10 +141,38 @@
 </tr>
 <tr>
 <td>
-<p><a href="-web-socket-session-holder/index.html">WebSocketSessionHolder</a></p>
+<p><a href="-with-principal/index.html">WithPrincipal</a></p>
 </td>
 <td>
-<code><span class="keyword">object </span><span class="identifier">WebSocketSessionHolder</span></code></td>
+<code><span class="keyword">interface </span><span class="identifier">WithPrincipal</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-with-profile/index.html">WithProfile</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithProfile</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-with-request/index.html">WithRequest</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithRequest</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-with-web-session/index.html">WithWebSession</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithWebSession</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-with-web-socket-session/index.html">WithWebSocketSession</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithWebSocketSession</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -173,12 +204,26 @@
 <tbody>
 <tr>
 <td>
+<p><a href="-id.html">Id</a></p>
+</td>
+<td>
+<code><span class="keyword">actual</span> <span class="keyword">typealias </span><span class="identifier">Id</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-id.html"><span class="identifier">Id</span></a></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="-profile/index.html">Profile</a></p>
 </td>
 <td>
 <code><span class="keyword">actual</span> <span class="keyword">typealias </span><span class="identifier">Profile</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span></code>
 <p>A user profile.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="-transient.html">Transient</a></p>
+</td>
+<td>
+<code><span class="keyword">actual</span> <span class="keyword">typealias </span><span class="identifier">Transient</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-transient.html"><span class="identifier">Transient</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -208,13 +253,6 @@
 <td>
 <code><span class="keyword">val </span><span class="identifier">injectorKey</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code></td>
 </tr>
-<tr>
-<td>
-<p><a href="-k-v_-r-o-u-t-e_-i-d_-a-t-t-r-i-b-u-t-e.html">KV_ROUTE_ID_ATTRIBUTE</a></p>
-</td>
-<td>
-<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">KV_ROUTE_ID_ATTRIBUTE</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
 </tbody>
 </table>
 <h3>Functions</h3>
@@ -222,20 +260,20 @@
 <tbody>
 <tr>
 <td>
-<p><a href="add-path-patterns-from-services.html">addPathPatternsFromServices</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">addPathPatternsFromServices</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$addPathPatternsFromServices(, kotlin.collections.List((pl.treksoft.kvision.remote.KVServiceManager((kotlin.Any)))))/services">services</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>A function to gather paths for an interceptor from a list of service managers.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="apply-routes.html">applyRoutes</a></p>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">applyRoutes</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$applyRoutes(, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.remote.applyRoutes.T)))/serviceManager">serviceManager</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><a href="apply-routes.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>A function to generate routes based on definitions from the service manager.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-server-web-exchange-matcher.html">getServerWebExchangeMatcher</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getServerWebExchangeMatcher</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.remote$getServerWebExchangeMatcher(kotlin.Array((pl.treksoft.kvision.remote.KVServiceManager((kotlin.Any)))))/services">services</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&gt;</span></code>
+<p>A function to gather paths for spring security matchers.</p>
 </td>
 </tr>
 <tr>
@@ -269,11 +307,20 @@
 </tr>
 <tr>
 <td>
+<p><a href="service-matchers.html">serviceMatchers</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">serviceMatchers</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.remote$serviceMatchers(, kotlin.Array((pl.treksoft.kvision.remote.KVServiceManager((kotlin.Any)))))/services">services</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">serviceMatchers</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.remote$serviceMatchers(kotlin.Array((pl.treksoft.kvision.remote.KVServiceManager((kotlin.Any)))))/services">services</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code>
+<p>A function to gather paths for spring security matchers.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="with-profile.html">withProfile</a></p>
 </td>
 <td>
-<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">RESP</span><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">withProfile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$withProfile(, kotlin.coroutines.SuspendFunction1((pl.treksoft.kvision.remote.Profile, pl.treksoft.kvision.remote.withProfile.RESP)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="keyword">suspend </span><span class="symbol">(</span><a href="-profile/index.html"><span class="identifier">Profile</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="with-profile.html#RESP"><span class="identifier">RESP</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="with-profile.html#RESP"><span class="identifier">RESP</span></a></code><br/>
-<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">RESP</span><span class="symbol">&gt;</span> <span class="identifier">withProfile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$withProfile(kotlin.coroutines.SuspendFunction1((pl.treksoft.kvision.remote.Profile, pl.treksoft.kvision.remote.withProfile.RESP)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="keyword">suspend </span><span class="symbol">(</span><a href="-profile/index.html"><span class="identifier">Profile</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="with-profile.html#RESP"><span class="identifier">RESP</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="with-profile.html#RESP"><span class="identifier">RESP</span></a></code>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">RESP</span><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">withProfile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$withProfile(, kotlin.coroutines.SuspendFunction1((pl.treksoft.kvision.remote.Profile, pl.treksoft.kvision.remote.withProfile.RESP)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="keyword">suspend </span><span class="symbol">(</span><a href="-profile/index.html"><span class="identifier">Profile</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="with-profile.html#RESP"><span class="identifier">RESP</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="with-profile.html#RESP"><span class="identifier">RESP</span></a></code>
 <p>A helper extension function for processing with authenticated user profile.</p>
 </td>
 </tr>

@@ -1,0 +1,384 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Spinner - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.form.spinner</a>&nbsp;/&nbsp;<a href="./index.html">Spinner</a><br/>
+<br/>
+<h1>Spinner</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Spinner</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-number-form-control/index.html"><span class="identifier">NumberFormControl</span></a></code>
+<p>The form field component for spinner control.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Spinner</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/min">min</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/max">max</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/step">step</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a>&nbsp;<span class="symbol">=</span>&nbsp;DEFAULT_STEP<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/decimals">decimals</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;0<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/buttonsType">buttonsType</span><span class="symbol">:</span>&nbsp;<a href="../-buttons-type/index.html"><span class="identifier">ButtonsType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ButtonsType.VERTICAL<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/forceType">forceType</span><span class="symbol">:</span>&nbsp;<a href="../-force-type/index.html"><span class="identifier">ForceType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ForceType.NONE<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/label">label</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$<init>(kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean)/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="autofocus.html">autofocus</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autofocus</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the spinner is automatically focused.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="buttons-type.html">buttonsType</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">buttonsType</span><span class="symbol">: </span><a href="../-buttons-type/index.html"><span class="identifier">ButtonsType</span></a></code>
+<p>Spinner buttons type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="decimals.html">decimals</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">decimals</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Number of decimal digits value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="flabel.html">flabel</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">flabel</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-field-label/index.html"><span class="identifier">FieldLabel</span></a></code>
+<p>Form field label.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="force-type.html">forceType</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">forceType</span><span class="symbol">: </span><a href="../-force-type/index.html"><span class="identifier">ForceType</span></a></code>
+<p>Spinner force rounding type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="idc.html">idc</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">idc</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="input.html">input</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">input</span><span class="symbol">: </span><a href="../-spinner-input/index.html"><span class="identifier">SpinnerInput</span></a></code>
+<p>The actual input component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="label.html">label</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">label</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The label text bound to the spinner input element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="max.html">max</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">max</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>Maximal value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="min.html">min</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">min</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>Minimal value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="placeholder.html">placeholder</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">placeholder</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The placeholder for the spinner input.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="readonly.html">readonly</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">readonly</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the spinner is read-only.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="rich.html">rich</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">rich</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if <a href="label.html">label</a> can contain HTML code.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="start-value.html">startValue</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">startValue</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span></code>
+<p>The value attribute of the generated HTML input element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="step.html">step</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">step</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a></code>
+<p>Step value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validation-info.html">validationInfo</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">validationInfo</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.form/-help-block/index.html"><span class="identifier">HelpBlock</span></a></code>
+<p>Validation info component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="value.html">value</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">value</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span></code>
+<p>Spinner value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="blur.html">blur</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">blur</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Makes the input element blur.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="focus.html">focus</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">focus</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Makes the input element focused.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-sn-class.html">getSnClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns list of CSS class names for current widget in the form of a List.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-value-as-string.html">getValueAsString</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getValueAsString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns the value of the control as a String.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-event-listeners.html">removeEventListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeEventListeners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Removes all event listeners from current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-event-listener.html">setEventListener</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.form.spinner.Spinner.setEventListener.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><a href="set-event-listener.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets an event listener for current widget, keeping the actual type of component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.core.Widget)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Sets an event listener for current widget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="spin-down.html">spinDown</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">spinDown</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Spinner</span></a></code>
+<p>Change value in minus.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="spin-up.html">spinUp</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">spinUp</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Spinner</span></a></code>
+<p>Change value in plus.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$add(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add-all.html">addAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addAll(kotlin.collections.List((pl.treksoft.kvision.core.Component)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds a list of components to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add-internal.html">addInternal</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addInternal</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addInternal(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Protected and final method to add given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/children-v-nodes.html">childrenVNodes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">childrenVNodes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">VNode</span><span class="symbol">&gt;</span></code>
+<p>Returns the array of the children Snabbdom vnodes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/get-children.html">getChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of children of the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.form/-number-form-control/get-value.html">getValue</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getValue</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span></code>
+<p>Returns the value of the control.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$remove(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes given component from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/remove-all.html">removeAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes all children from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
+<p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.form/-number-form-control/set-value.html">setValue</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setValue</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.NumberFormControl$setValue(kotlin.Any)/v">v</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the value of the control.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="spinner.html">spinner</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">spinner</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/min">min</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/max">max</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/step">step</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a>&nbsp;<span class="symbol">=</span>&nbsp;DEFAULT_STEP<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/decimals">decimals</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;0<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/buttonsType">buttonsType</span><span class="symbol">:</span>&nbsp;<a href="../-buttons-type/index.html"><span class="identifier">ButtonsType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ButtonsType.VERTICAL<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/forceType">forceType</span><span class="symbol">:</span>&nbsp;<a href="../-force-type/index.html"><span class="identifier">ForceType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ForceType.NONE<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/label">label</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.spinner.Spinner.Companion$spinner(pl.treksoft.kvision.core.Container, kotlin.Number, kotlin.String, kotlin.Int, kotlin.Int, kotlin.Double, kotlin.Int, pl.treksoft.kvision.form.spinner.ButtonsType, pl.treksoft.kvision.form.spinner.ForceType, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.spinner.Spinner, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">Spinner</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Spinner</span></a></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

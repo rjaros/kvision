@@ -1,0 +1,352 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>FormPanel - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.form</a>&nbsp;/&nbsp;<a href="./index.html">FormPanel</a><br/>
+<br/>
+<h1>FormPanel</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">FormPanel</span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Bootstrap form component.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">FormPanel</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$<init>(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlinx.serialization.KSerializer((pl.treksoft.kvision.form.FormPanel.K)))/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-form-method/index.html"><span class="identifier">FormMethod</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$<init>(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlinx.serialization.KSerializer((pl.treksoft.kvision.form.FormPanel.K)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$<init>(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlinx.serialization.KSerializer((pl.treksoft.kvision.form.FormPanel.K)))/enctype">enctype</span><span class="symbol">:</span>&nbsp;<a href="../-form-enctype/index.html"><span class="identifier">FormEnctype</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$<init>(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlinx.serialization.KSerializer((pl.treksoft.kvision.form.FormPanel.K)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-form-type/index.html"><span class="identifier">FormType</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$<init>(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlinx.serialization.KSerializer((pl.treksoft.kvision.form.FormPanel.K)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$<init>(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlinx.serialization.KSerializer((pl.treksoft.kvision.form.FormPanel.K)))/serializer">serializer</span><span class="symbol">:</span>&nbsp;<span class="identifier">KSerializer</span><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="action.html">action</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">action</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The URL address to send data.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="autocomplete.html">autocomplete</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">autocomplete</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the form should have autocomplete.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="enctype.html">enctype</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">enctype</span><span class="symbol">: </span><a href="../-form-enctype/index.html"><span class="identifier">FormEnctype</span></a><span class="symbol">?</span></code>
+<p>The form encoding type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="method.html">method</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">method</span><span class="symbol">: </span><a href="../-form-method/index.html"><span class="identifier">FormMethod</span></a><span class="symbol">?</span></code>
+<p>HTTP method.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="name.html">name</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The form name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="novalidate.html">novalidate</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">novalidate</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Determines if the form is not validated.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="target.html">target</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">target</span><span class="symbol">: </span><a href="../-form-target/index.html"><span class="identifier">FormTarget</span></a><span class="symbol">?</span></code>
+<p>The form target.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validator.html">validator</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">validator</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><a href="../-form/index.html"><span class="identifier">Form</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span></code>
+<p>Validation function.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validator-message.html">validatorMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">validatorMessage</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><a href="../-form/index.html"><span class="identifier">Form</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span></code>
+<p>Function returning validation message.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-string-form-control/index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">&gt;</span> <span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.String)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.String)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/control">control</span><span class="symbol">:</span>&nbsp;<a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.String)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/required">required</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.String)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/requiredMessage">requiredMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.String)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validatorMessage">validatorMessage</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.String)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validator">validator</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code>
+<p>Adds a string control to the form panel.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-bool-form-control/index.html"><span class="identifier">BoolFormControl</span></a><span class="symbol">&gt;</span> <span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Boolean)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Boolean)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/control">control</span><span class="symbol">:</span>&nbsp;<a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Boolean)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/required">required</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Boolean)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/requiredMessage">requiredMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Boolean)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validatorMessage">validatorMessage</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Boolean)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validator">validator</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code>
+<p>Adds a boolean control to the form panel.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-number-form-control/index.html"><span class="identifier">NumberFormControl</span></a><span class="symbol">&gt;</span> <span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Number)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Number)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/control">control</span><span class="symbol">:</span>&nbsp;<a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Number)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/required">required</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Number)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/requiredMessage">requiredMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Number)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validatorMessage">validatorMessage</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Number)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validator">validator</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code>
+<p>Adds a number control to the form panel.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-date-form-control/index.html"><span class="identifier">DateFormControl</span></a><span class="symbol">&gt;</span> <span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.js.Date)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.js.Date)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/control">control</span><span class="symbol">:</span>&nbsp;<a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.js.Date)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/required">required</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.js.Date)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/requiredMessage">requiredMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.js.Date)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validatorMessage">validatorMessage</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.js.Date)), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validator">validator</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code>
+<p>Adds a date control to the form panel.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-k-files-form-control/index.html"><span class="identifier">KFilesFormControl</span></a><span class="symbol">&gt;</span> <span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.types/-k-file/index.html"><span class="identifier">KFile</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/control">control</span><span class="symbol">:</span>&nbsp;<a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/required">required</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/requiredMessage">requiredMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validatorMessage">validatorMessage</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$add(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.collections.List((pl.treksoft.kvision.types.KFile)))), pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.add.C, kotlin.Boolean)))/validator">validator</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code>
+<p>Adds a files control to the form panel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-internal.html">addInternal</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-form-control/index.html"><span class="identifier">FormControl</span></a><span class="symbol">&gt;</span> <span class="identifier">addInternal</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$addInternal(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)), pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$addInternal(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)), pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean)))/control">control</span><span class="symbol">:</span>&nbsp;<a href="add-internal.html#C"><span class="identifier">C</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$addInternal(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)), pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean)))/required">required</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$addInternal(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)), pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean)))/requiredMessage">requiredMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$addInternal(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)), pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean)))/validatorMessage">validatorMessage</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add-internal.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$addInternal(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)), pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean, kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel.addInternal.C, kotlin.Boolean)))/validator">validator</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="add-internal.html#C"><span class="identifier">C</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="clear-data.html">clearData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the values of all controls to null.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$get(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code>
+<p>Returns a value of the control of given key.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-control.html">getControl</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getControl</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$getControl(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-form-control/index.html"><span class="identifier">FormControl</span></a><span class="symbol">?</span></code>
+<p>Returns a control of given key.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-data.html">getData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#K"><span class="identifier">K</span></a></code>
+<p>Returns current data model.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-data-json.html">getDataJson</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDataJson</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-json/index.html"><span class="identifier">Json</span></a></code>
+<p>Returns current data model as JSON.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-sn-attrs.html">getSnAttrs</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnAttrs</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns list of element attributes in the form of a List.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-sn-class.html">getSnClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns list of CSS class names for current widget in the form of a List.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$remove(kotlin.reflect.KProperty1((pl.treksoft.kvision.form.FormPanel.K, kotlin.Any)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property1/index.html"><span class="identifier">KProperty1</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code>
+<p>Removes a control from the form panel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-all.html">removeAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code>
+<p>Removes all children from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
+<p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-data.html">setData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel$setData(pl.treksoft.kvision.form.FormPanel.K)/model">model</span><span class="symbol">:</span>&nbsp;<a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the values of all the controls from the model.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validate.html">validate</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">validate</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Invokes validator function and validates the form.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$add(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add-all.html">addAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addAll(kotlin.collections.List((pl.treksoft.kvision.core.Component)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds a list of components to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add-internal.html">addInternal</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addInternal</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addInternal(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Protected and final method to add given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/children-v-nodes.html">childrenVNodes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">childrenVNodes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">VNode</span><span class="symbol">&gt;</span></code>
+<p>Returns the array of the children Snabbdom vnodes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/get-children.html">getChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of children of the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$remove(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes given component from the current container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="create.html">create</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">create</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$create(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.create.K)), kotlin.Unit)))/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-form-method/index.html"><span class="identifier">FormMethod</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$create(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.create.K)), kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$create(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.create.K)), kotlin.Unit)))/enctype">enctype</span><span class="symbol">:</span>&nbsp;<a href="../-form-enctype/index.html"><span class="identifier">FormEnctype</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$create(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.create.K)), kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-form-type/index.html"><span class="identifier">FormType</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$create(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.create.K)), kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$create(pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.create.K)), kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="create.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="create.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="form-panel.html">formPanel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">formPanel</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$formPanel(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.formPanel.K)), kotlin.Unit)))/method">method</span><span class="symbol">:</span>&nbsp;<a href="../-form-method/index.html"><span class="identifier">FormMethod</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$formPanel(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.formPanel.K)), kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$formPanel(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.formPanel.K)), kotlin.Unit)))/enctype">enctype</span><span class="symbol">:</span>&nbsp;<a href="../-form-enctype/index.html"><span class="identifier">FormEnctype</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$formPanel(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.formPanel.K)), kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="../-form-type/index.html"><span class="identifier">FormType</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$formPanel(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.formPanel.K)), kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.FormPanel.Companion$formPanel(pl.treksoft.kvision.core.Container, pl.treksoft.kvision.form.FormMethod, kotlin.String, pl.treksoft.kvision.form.FormEnctype, pl.treksoft.kvision.form.FormType, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.form.FormPanel((pl.treksoft.kvision.form.FormPanel.Companion.formPanel.K)), kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="form-panel.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="form-panel.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/get-data-with-file-content.html">getDataWithFileContent</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.utils/get-data-with-file-content.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">getDataWithFileContent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/get-data-with-file-content.html#K"><span class="identifier">K</span></a></code>
+<p>Returns current data model with file content read for all KFiles controls.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

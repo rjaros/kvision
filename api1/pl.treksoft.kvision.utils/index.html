@@ -1,0 +1,265 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>pl.treksoft.kvision.utils - kvision</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kvision</a>&nbsp;/&nbsp;<a href="./index.html">pl.treksoft.kvision.utils</a><br/>
+<br/>
+<h2>Package pl.treksoft.kvision.utils</h2>
+<p>Interfaces and helper functions for Snabbdom virtual dom implementation and a few useful extension functions.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-cache/index.html">Cache</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Cache</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>This is a LRU cache that has no performance impact for cache insertions
+once the capacity of the cache has been reached. For cache hit,
+performance is O(1) and for cache eviction, it is O(1).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-j-s-o-n/index.html">JSON</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">JSON</span></code>
+<p>JSON utility functions</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-kv-event/index.html">KvEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">KvEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-custom-event/index.html"><span class="identifier">CustomEvent</span></a></code>
+<p>Helper class for defining custom events.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-linked-list/index.html">LinkedList</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">LinkedList</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-node/index.html">Node</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Node</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Created by gazollajunior on 07/04/16.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-object/index.html">Object</a></p>
+</td>
+<td>
+<code><span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Object</span></code>
+<p>JavaScript Object type</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-observable-list/index.html">ObservableList</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ObservableList</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="-observable-list/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>Observable list interface.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-observable-list-wrapper/index.html">ObservableListWrapper</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ObservableListWrapper</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="-observable-list-wrapper/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="-observable-list/index.html"><span class="identifier">ObservableList</span></a><span class="symbol">&lt;</span><a href="-observable-list-wrapper/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>Simple observable list implementation.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="kotlin.-any/index.html">kotlin.Any</a></p>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="kotlin.collections.-mutable-list/index.html">kotlin.collections.MutableList</a></p>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="kotlin.-int/index.html">kotlin.Int</a></p>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="kotlin.-number/index.html">kotlin.Number</a></p>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="kotlin.-pair/index.html">kotlin.Pair</a></p>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="org.w3c.files.-file/index.html">org.w3c.files.File</a></p>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="auto.html">auto</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">auto</span><span class="symbol">: </span><a href="../pl.treksoft.kvision.core/-css-size.html"><span class="identifier">CssSize</span></a></code>
+<p>Helper property to describe CSS auto value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-e-n-t-e-r_-k-e-y.html">ENTER_KEY</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ENTER_KEY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Keycode of the ENTER key.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-e-s-c_-k-e-y.html">ESC_KEY</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ESC_KEY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Keycode of the ESC key.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="normal.html">normal</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">normal</span><span class="symbol">: </span><a href="../pl.treksoft.kvision.core/-css-size.html"><span class="identifier">CssSize</span></a></code>
+<p>Helper property to describe CSS normal value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-data-with-file-content.html">getDataWithFileContent</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="../pl.treksoft.kvision.form/-form/index.html"><span class="identifier">Form</span></a><span class="symbol">&lt;</span><a href="get-data-with-file-content.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">getDataWithFileContent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="get-data-with-file-content.html#K"><span class="identifier">K</span></a></code><br/>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="../pl.treksoft.kvision.form/-form-panel/index.html"><span class="identifier">FormPanel</span></a><span class="symbol">&lt;</span><a href="get-data-with-file-content.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">getDataWithFileContent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="get-data-with-file-content.html#K"><span class="identifier">K</span></a></code>
+<p>Returns current data model with file content read for all KFiles controls.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="is-i-e11.html">isIE11</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isIE11</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Utility function to detect Internet Explorer 11.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="obj.html">obj</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">obj</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils$obj(kotlin.Function1((kotlin.Any, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
+<p>Helper function for creating JavaScript objects.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="observable-list-of.html">observableListOf</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">observableListOf</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$observableListOf(kotlin.Array((pl.treksoft.kvision.utils.observableListOf.T)))/items">items</span><span class="symbol">:</span>&nbsp;<a href="observable-list-of.html#T"><span class="identifier">T</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-observable-list-wrapper/index.html"><span class="identifier">ObservableListWrapper</span></a><span class="symbol">&lt;</span><a href="observable-list-of.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>Creates an instance of ObservableList</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sn-attrs.html">snAttrs</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">snAttrs</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils$snAttrs(kotlin.collections.List((kotlin.Pair((kotlin.String, )))))/pairs">pairs</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../pl.treksoft.kvision.core/-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Attrs</span></code>
+<p>Helper function for creating attributes parameters for Snabbdom.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sn-classes.html">snClasses</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">snClasses</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils$snClasses(kotlin.collections.List((kotlin.Pair((kotlin.String, kotlin.Boolean)))))/pairs">pairs</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../pl.treksoft.kvision.core/-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Classes</span></code>
+<p>Helper function for creating classes parameters for Snabbdom.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sn-opt.html">snOpt</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">snOpt</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils$snOpt(kotlin.Function1((com.github.snabbdom.VNodeData, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">VNodeData</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNodeData</span></code>
+<p>Helper function for creating object parameters for Snabbdom.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sn-props.html">snProps</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">snProps</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils$snProps(kotlin.collections.List((kotlin.Pair((kotlin.String, )))))/pairs">pairs</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../pl.treksoft.kvision.core/-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Props</span></code>
+<p>Helper function for creating properties parameters for Snabbdom.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sn-style.html">snStyle</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">snStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils$snStyle(kotlin.collections.List((kotlin.Pair((kotlin.String, )))))/pairs">pairs</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../pl.treksoft.kvision.core/-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNodeStyle</span></code>
+<p>Helper function for creating style parameters for Snabbdom.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

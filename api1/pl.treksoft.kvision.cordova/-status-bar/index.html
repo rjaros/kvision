@@ -1,0 +1,132 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>StatusBar - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">StatusBar</a><br/>
+<br/>
+<h1>StatusBar</h1>
+<code><span class="keyword">object </span><span class="identifier">StatusBar</span></code>
+<p>Main object for Cordova status bar.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-tap-listener.html">addTapListener</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addTapListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.StatusBar$addTapListener(kotlin.Function0((kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add listeners for the status bar tap event.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="hide.html">hide</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hide</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Hide status bar.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="is-visible.html">isVisible</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">isVisible</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns if the status bar is visible.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="overlays-web-view.html">overlaysWebView</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">overlaysWebView</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.StatusBar$overlaysWebView(kotlin.Boolean)/overlays">overlays</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set overlay.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-background-color.html">setBackgroundColor</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setBackgroundColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.StatusBar$setBackgroundColor(kotlin.Int)/color">color</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the background color of the status bar by a hexadecimal Int.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-background-color-by-hex-string.html">setBackgroundColorByHexString</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setBackgroundColorByHexString</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.StatusBar$setBackgroundColorByHexString(kotlin.String)/color">color</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the background color of the status bar by a hex string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="show.html">show</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">show</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Show status bar.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="style-black-opaque.html">styleBlackOpaque</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">styleBlackOpaque</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Use the blackOpaque status bar (light text, for dark backgrounds).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="style-black-translucent.html">styleBlackTranslucent</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">styleBlackTranslucent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Use the blackTranslucent status bar (light text, for dark backgrounds).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="style-default.html">styleDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">styleDefault</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Use the default status bar (dark text, for light backgrounds).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="style-light-content.html">styleLightContent</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">styleLightContent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Use the lightContent status bar (light text, for dark backgrounds).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

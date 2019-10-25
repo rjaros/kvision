@@ -1,0 +1,153 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>H5 - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.html</a>&nbsp;/&nbsp;<a href="./index.html">H5</a><br/>
+<br/>
+<h1>H5</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">H5</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag/index.html"><span class="identifier">Tag</span></a></code>
+<p>Simple component rendered as <em>h5</em>.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">H5</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.html.H5$<init>(kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/content">content</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.H5$<init>(kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.H5$<init>(kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/align">align</span><span class="symbol">:</span>&nbsp;<a href="../-align/index.html"><span class="identifier">Align</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.H5$<init>(kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.H5$<init>(kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">H5</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-tag/align.html">align</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">align</span><span class="symbol">: </span><a href="../-align/index.html"><span class="identifier">Align</span></a><span class="symbol">?</span></code>
+<p>Text align.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-tag/content.html">content</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">content</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Text content of the tag.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-tag/rich.html">rich</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rich</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if <a href="../-tag/content.html">content</a> can contain HTML code.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-tag/template.html">template</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">template</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">?</span></code>
+<p>Handlebars template.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-tag/templates.html">templates</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">templates</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Handlebars templates for i18n.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-tag/type.html">type</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">type</span><span class="symbol">: </span><a href="../-t-a-g/index.html"><span class="identifier">TAG</span></a></code>
+<p>Tag type.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-tag/get-sn-class.html">getSnClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns list of CSS class names for current widget in the form of a List.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-tag/render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
+<p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-tag/unary-plus.html">unaryPlus</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">.</span><span class="identifier">unaryPlus</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="h5.html">h5</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">h5</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.html.H5.Companion$h5(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/content">content</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.H5.Companion$h5(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.H5.Companion$h5(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/align">align</span><span class="symbol">:</span>&nbsp;<a href="../-align/index.html"><span class="identifier">Align</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.H5.Companion$h5(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.H5.Companion$h5(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.Boolean, pl.treksoft.kvision.html.Align, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.html.H5, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">H5</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">H5</span></a></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../set-data.html">setData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">&gt;</span> <a href="../-template/index.html"><span class="identifier">Template</span></a><span class="symbol">.</span><span class="identifier">setData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.html$setData(pl.treksoft.kvision.html.Template, pl.treksoft.kvision.html.setData.K, kotlinx.serialization.SerializationStrategy((pl.treksoft.kvision.html.setData.K)))/obj">obj</span><span class="symbol">:</span>&nbsp;<a href="../set-data.html#K"><span class="identifier">K</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html$setData(pl.treksoft.kvision.html.Template, pl.treksoft.kvision.html.setData.K, kotlinx.serialization.SerializationStrategy((pl.treksoft.kvision.html.setData.K)))/serializer">serializer</span><span class="symbol">:</span>&nbsp;<span class="identifier">SerializationStrategy</span><span class="symbol">&lt;</span><a href="../set-data.html#K"><span class="identifier">K</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="../-template/index.html"><span class="identifier">Template</span></a><span class="symbol">.</span><span class="identifier">setData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.html$setData(pl.treksoft.kvision.html.Template, pl.treksoft.kvision.html.setData.K)/obj">obj</span><span class="symbol">:</span>&nbsp;<a href="../set-data.html#K"><span class="identifier">K</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Extension function to set serializable object as a template data.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

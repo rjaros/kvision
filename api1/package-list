@@ -1,0 +1,80 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:pl.treksoft.kvision.cordova$toDirectoryEntry(kotlin.String)pl.treksoft.kvision.cordova/kotlin.-string/to-directory-entry.html
+$dokka.location:pl.treksoft.kvision.cordova$toFileEntry(kotlin.String)pl.treksoft.kvision.cordova/kotlin.-string/to-file-entry.html
+$dokka.location:pl.treksoft.kvision.form$asJson(kotlin.collections.Map((kotlin.String, kotlin.Any)))pl.treksoft.kvision.form/kotlin.collections.-map/as-json.html
+$dokka.location:pl.treksoft.kvision.form$asMap(kotlin.js.Json)pl.treksoft.kvision.form/kotlin.js.-json/as-map.html
+$dokka.location:pl.treksoft.kvision.remote.Profilepl.treksoft.kvision.remote/-profile/index.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$<init>(kotlin.String, kotlin.collections.MutableMap((kotlin.String, )), kotlin.collections.MutableMap((kotlin.String, )), kotlin.collections.MutableSet((kotlin.String)), kotlin.collections.MutableSet((kotlin.String)), kotlin.String, kotlin.Boolean, kotlin.String)pl.treksoft.kvision.remote/-profile/-profile/-init-.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$attributespl.treksoft.kvision.remote/-profile/-profile/attributes.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$authenticationAttributespl.treksoft.kvision.remote/-profile/-profile/authentication-attributes.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$clientNamepl.treksoft.kvision.remote/-profile/-profile/client-name.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$displayNamepl.treksoft.kvision.remote/-profile/-profile/display-name.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$emailpl.treksoft.kvision.remote/-profile/-profile/email.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$familyNamepl.treksoft.kvision.remote/-profile/-profile/family-name.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$firstNamepl.treksoft.kvision.remote/-profile/-profile/first-name.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$idpl.treksoft.kvision.remote/-profile/-profile/id.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$linkedIdpl.treksoft.kvision.remote/-profile/-profile/linked-id.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$permissionspl.treksoft.kvision.remote/-profile/-profile/permissions.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$pictureUrlpl.treksoft.kvision.remote/-profile/-profile/picture-url.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$profileUrlpl.treksoft.kvision.remote/-profile/-profile/profile-url.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$rememberedpl.treksoft.kvision.remote/-profile/-profile/remembered.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$rolespl.treksoft.kvision.remote/-profile/-profile/roles.html
+$dokka.location:pl.treksoft.kvision.remote.Profile$usernamepl.treksoft.kvision.remote/-profile/-profile/username.html
+$dokka.location:pl.treksoft.kvision.types$toDateF(kotlin.String, kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-date-f.html
+$dokka.location:pl.treksoft.kvision.types$toStringF(kotlin.js.Date, kotlin.String)pl.treksoft.kvision.types/kotlin.js.-date/to-string-f.html
+$dokka.location:pl.treksoft.kvision.types.Datepl.treksoft.kvision.types/-date/index.html
+$dokka.location:pl.treksoft.kvision.utils$asString(kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)))pl.treksoft.kvision.utils/kotlin.-pair/as-string.html
+$dokka.location:pl.treksoft.kvision.utils$ch#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/ch.html
+$dokka.location:pl.treksoft.kvision.utils$cm#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/cm.html
+$dokka.location:pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))pl.treksoft.kvision.utils/kotlin.-any/create-instance.html
+$dokka.location:pl.treksoft.kvision.utils$em#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/em.html
+$dokka.location:pl.treksoft.kvision.utils$getContent(org.w3c.files.File)pl.treksoft.kvision.utils/org.w3c.files.-file/get-content.html
+$dokka.location:pl.treksoft.kvision.utils$in#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/in.html
+$dokka.location:pl.treksoft.kvision.utils$mm#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/mm.html
+$dokka.location:pl.treksoft.kvision.utils$pc#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/pc.html
+$dokka.location:pl.treksoft.kvision.utils$perc#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/perc.html
+$dokka.location:pl.treksoft.kvision.utils$pt#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/pt.html
+$dokka.location:pl.treksoft.kvision.utils$px#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/px.html
+$dokka.location:pl.treksoft.kvision.utils$rem#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/rem.html
+$dokka.location:pl.treksoft.kvision.utils$syncWithList(kotlin.collections.MutableList((pl.treksoft.kvision.utils.syncWithList.T)), kotlin.collections.List((pl.treksoft.kvision.utils.syncWithList.T)))pl.treksoft.kvision.utils/kotlin.collections.-mutable-list/sync-with-list.html
+$dokka.location:pl.treksoft.kvision.utils$toHexString(kotlin.Int)pl.treksoft.kvision.utils/kotlin.-int/to-hex-string.html
+$dokka.location:pl.treksoft.kvision.utils$vh#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/vh.html
+$dokka.location:pl.treksoft.kvision.utils$vmax#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/vmax.html
+$dokka.location:pl.treksoft.kvision.utils$vmin#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/vmin.html
+$dokka.location:pl.treksoft.kvision.utils$vw#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/vw.html
+pl.treksoft.kvision.chart
+pl.treksoft.kvision.chart.js
+pl.treksoft.kvision.cordova
+pl.treksoft.kvision.core
+pl.treksoft.kvision.data
+pl.treksoft.kvision.dropdown
+pl.treksoft.kvision.electron
+pl.treksoft.kvision.electron.nodejs
+pl.treksoft.kvision.form
+pl.treksoft.kvision.form.check
+pl.treksoft.kvision.form.select
+pl.treksoft.kvision.form.spinner
+pl.treksoft.kvision.form.text
+pl.treksoft.kvision.form.time
+pl.treksoft.kvision.form.upload
+pl.treksoft.kvision.hmr
+pl.treksoft.kvision.html
+pl.treksoft.kvision.i18n
+pl.treksoft.kvision.modal
+pl.treksoft.kvision.moment
+pl.treksoft.kvision.navbar
+pl.treksoft.kvision.pace
+pl.treksoft.kvision.panel
+pl.treksoft.kvision.progress
+pl.treksoft.kvision.redux
+pl.treksoft.kvision.remote
+pl.treksoft.kvision.rest
+pl.treksoft.kvision.routing
+pl.treksoft.kvision.table
+pl.treksoft.kvision.tabulator
+pl.treksoft.kvision.tabulator.js
+pl.treksoft.kvision.toolbar
+pl.treksoft.kvision.types
+pl.treksoft.kvision.utils
+pl.treksoft.kvision.window

@@ -1,0 +1,283 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>pl.treksoft.kvision.remote - kvision</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kvision</a>&nbsp;/&nbsp;<a href="./index.html">pl.treksoft.kvision.remote</a><br/>
+<br/>
+<h2>Package pl.treksoft.kvision.remote</h2>
+<p>A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-call-agent/index.html">CallAgent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">CallAgent</span></code>
+<p>An agent responsible for remote calls.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-credentials/index.html">Credentials</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Credentials</span></code>
+<p>Username and password credentials.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-dummy-web-socket-session/index.html">DummyWebSocketSession</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DummyWebSocketSession</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-j-s-o-n/index.html">JSON</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">JSON</span></code>
+<p>JSON utility functions</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-v-controller/index.html">KVController</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVController</span></code>
+<p>Controller for handling automatic routes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-v-remote-agent/index.html">KVRemoteAgent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVRemoteAgent</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-remote-agent/index.html"><span class="identifier">RemoteAgent</span></a></code>
+<p>Client side agent for JSON-RPC remote calls.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-v-service-manager/index.html">KVServiceManager</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">actual</span> <span class="keyword">class </span><span class="identifier">KVServiceManager</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Multiplatform service manager.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-v-web-socket-config/index.html">KVWebSocketConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">KVWebSocketConfig</span></code>
+<p>Automatic websockets configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-login-service/index.html">LoginService</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">LoginService</span></code>
+<p>Form login dispatcher.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-object/index.html">Object</a></p>
+</td>
+<td>
+<code><span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Object</span></code>
+<p>JavaScript Object type</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-profile/index.html">Profile</a></p>
+</td>
+<td>
+<code><span class="keyword">actual</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Profile</span></code>
+<p>A user profile.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-remote-agent/index.html">RemoteAgent</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">RemoteAgent</span></code>
+<p>Interface for client side agent for JSON-RPC remote calls.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-security-mgr/index.html">SecurityMgr</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">SecurityMgr</span></code>
+<p>Form login dispatcher.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-socket/index.html">Socket</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Socket</span></code>
+<p>A websocket client implementation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-web-socket-session-holder/index.html">WebSocketSessionHolder</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">WebSocketSessionHolder</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Exceptions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-security-exception/index.html">SecurityException</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SecurityException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a></code>
+<p>A security exception.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-socket-closed-exception/index.html">SocketClosedException</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SocketClosedException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a></code>
+<p>Websocket closed exception class.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Type Aliases</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-profile/index.html">Profile</a></p>
+</td>
+<td>
+<code><span class="keyword">actual</span> <span class="keyword">typealias </span><span class="identifier">Profile</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span></code>
+<p>A user profile.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-h-t-t-p_-u-n-a-u-t-h-o-r-i-z-e-d.html">HTTP_UNAUTHORIZED</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HTTP_UNAUTHORIZED</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>HTTP status unauthorized (401).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="injector.html">injector</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">injector</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="injector-key.html">injectorKey</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">injectorKey</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-k-v_-r-o-u-t-e_-i-d_-a-t-t-r-i-b-u-t-e.html">KV_ROUTE_ID_ATTRIBUTE</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">KV_ROUTE_ID_ATTRIBUTE</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-path-patterns-from-services.html">addPathPatternsFromServices</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">addPathPatternsFromServices</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$addPathPatternsFromServices(, kotlin.collections.List((pl.treksoft.kvision.remote.KVServiceManager((kotlin.Any)))))/services">services</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>A function to gather paths for an interceptor from a list of service managers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="apply-routes.html">applyRoutes</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">applyRoutes</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$applyRoutes(, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.remote.applyRoutes.T)))/serviceManager">serviceManager</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><a href="apply-routes.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>A function to generate routes based on definitions from the service manager.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-web-socket-url.html">getWebSocketUrl</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getWebSocketUrl</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$getWebSocketUrl(kotlin.String)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Creates a websocket URL from current window.location and given path.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="kvision-init.html">kvisionInit</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">kvisionInit</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Initialization function for Jooby server.</p>
+<code><span class="keyword">fun </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">kvisionInit</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.remote$kvisionInit(, kotlin.Array(()))/modules">modules</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Initialization function for Ktor server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="obj.html">obj</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">obj</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$obj(kotlin.Function1((kotlin.Any, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
+<p>Helper function for creating JavaScript objects.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="with-profile.html">withProfile</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">RESP</span><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">withProfile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$withProfile(, kotlin.coroutines.SuspendFunction1((pl.treksoft.kvision.remote.Profile, pl.treksoft.kvision.remote.withProfile.RESP)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="keyword">suspend </span><span class="symbol">(</span><a href="-profile/index.html"><span class="identifier">Profile</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="with-profile.html#RESP"><span class="identifier">RESP</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="with-profile.html#RESP"><span class="identifier">RESP</span></a></code><br/>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">RESP</span><span class="symbol">&gt;</span> <span class="identifier">withProfile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$withProfile(kotlin.coroutines.SuspendFunction1((pl.treksoft.kvision.remote.Profile, pl.treksoft.kvision.remote.withProfile.RESP)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="keyword">suspend </span><span class="symbol">(</span><a href="-profile/index.html"><span class="identifier">Profile</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="with-profile.html#RESP"><span class="identifier">RESP</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="with-profile.html#RESP"><span class="identifier">RESP</span></a></code>
+<p>A helper extension function for processing with authenticated user profile.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

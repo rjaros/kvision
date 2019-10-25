@@ -8,7 +8,7 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.redux</a>&nbsp;/&nbsp;<a href="./index.html">ReduxStore</a><br/>
 <br/>
 <h1>ReduxStore</h1>
-<code><span class="keyword">class </span><span class="identifier">ReduxStore</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-r-action.html"><span class="identifier">RAction</span></a><span class="symbol">&gt;</span></code>
+<code><span class="keyword">class </span><span class="identifier">ReduxStore</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-r-action.html"><span class="identifier">RAction</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span></code>
 <p>A class implementing redux pattern backed by the Redux Kotlin library.</p>
 <h3>Constructors</h3>
 <table>
@@ -45,17 +45,15 @@
 <p><a href="get-state.html">getState</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">getState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#S"><span class="identifier">S</span></a></code>
-<p>Returns the current state.</p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">getState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#S"><span class="identifier">S</span></a></code></td>
 </tr>
 <tr>
 <td>
 <p><a href="subscribe.html">subscribe</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">subscribe</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$subscribe(kotlin.Function1((pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Subscribes a client for the change state notifications.</p>
+<code><span class="keyword">fun </span><span class="identifier">subscribe</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$subscribe(kotlin.Function1((pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Unit)))/observer">observer</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Subscribe for the state change notifications.</p>
 </td>
 </tr>
 </tbody>

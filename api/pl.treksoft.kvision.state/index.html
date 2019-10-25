@@ -1,0 +1,94 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>pl.treksoft.kvision.state - kvision</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kvision</a>&nbsp;/&nbsp;<a href="./index.html">pl.treksoft.kvision.state</a><br/>
+<br/>
+<h2>Package pl.treksoft.kvision.state</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-observable-list/index.html">ObservableList</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ObservableList</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="-observable-list/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="-observable-list/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Observable list interface.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-observable-list-wrapper/index.html">ObservableListWrapper</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ObservableListWrapper</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="-observable-list-wrapper/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="-observable-list/index.html"><span class="identifier">ObservableList</span></a><span class="symbol">&lt;</span><a href="-observable-list-wrapper/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="-observable-list-wrapper/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Simple observable list implementation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-observable-state/index.html">ObservableState</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ObservableState</span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span></code>
+<p>An interface of observable state.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-state-binding/index.html">StateBinding</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">StateBinding</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>A class which binds the given container to the observable state.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-updateable/index.html">Updateable</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Updateable</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span></code>
+<p>A helper class for updateable content.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="observable-list-of.html">observableListOf</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">observableListOf</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.state$observableListOf(kotlin.Array((pl.treksoft.kvision.state.observableListOf.T)))/items">items</span><span class="symbol">:</span>&nbsp;<a href="observable-list-of.html#T"><span class="identifier">T</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-observable-list-wrapper/index.html"><span class="identifier">ObservableListWrapper</span></a><span class="symbol">&lt;</span><a href="observable-list-of.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>Creates an instance of ObservableList</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="state-binding.html">stateBinding</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">&gt;</span> <a href="state-binding.html#CONT"><span class="identifier">CONT</span></a><span class="symbol">.</span><span class="identifier">stateBinding</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.state$stateBinding(pl.treksoft.kvision.state.stateBinding.CONT, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.stateBinding.S)), kotlin.Function2((pl.treksoft.kvision.state.stateBinding.CONT, pl.treksoft.kvision.state.stateBinding.S, kotlin.Unit)))/observableState">observableState</span><span class="symbol">:</span>&nbsp;<a href="-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="state-binding.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.state$stateBinding(pl.treksoft.kvision.state.stateBinding.CONT, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.stateBinding.S)), kotlin.Function2((pl.treksoft.kvision.state.stateBinding.CONT, pl.treksoft.kvision.state.stateBinding.S, kotlin.Unit)))/factory">factory</span><span class="symbol">:</span>&nbsp;<a href="state-binding.html#CONT"><span class="identifier">CONT</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="state-binding.html#S"><span class="identifier">S</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-state-binding/index.html"><span class="identifier">StateBinding</span></a><span class="symbol">&lt;</span><a href="state-binding.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="state-binding.html#CONT"><span class="identifier">CONT</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="state-update.html">stateUpdate</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span> <a href="state-update.html#CONT"><span class="identifier">CONT</span></a><span class="symbol">.</span><span class="identifier">stateUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.state$stateUpdate(pl.treksoft.kvision.state.stateUpdate.CONT, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.stateUpdate.S)), kotlin.Function2((pl.treksoft.kvision.state.stateUpdate.CONT, pl.treksoft.kvision.state.stateUpdate.S, pl.treksoft.kvision.state.stateUpdate.CONTENT)))/observableState">observableState</span><span class="symbol">:</span>&nbsp;<a href="-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="state-update.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.state$stateUpdate(pl.treksoft.kvision.state.stateUpdate.CONT, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.stateUpdate.S)), kotlin.Function2((pl.treksoft.kvision.state.stateUpdate.CONT, pl.treksoft.kvision.state.stateUpdate.S, pl.treksoft.kvision.state.stateUpdate.CONTENT)))/factory">factory</span><span class="symbol">:</span>&nbsp;<a href="state-update.html#CONT"><span class="identifier">CONT</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="state-update.html#S"><span class="identifier">S</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="state-update.html#CONTENT"><span class="identifier">CONTENT</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-updateable/index.html"><span class="identifier">Updateable</span></a><span class="symbol">&lt;</span><a href="state-update.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="state-update.html#CONTENT"><span class="identifier">CONTENT</span></a><span class="symbol">&gt;</span></code>
+<p>DSL builder extension function for updateable redux content.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

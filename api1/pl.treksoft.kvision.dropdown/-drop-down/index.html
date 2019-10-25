@@ -1,0 +1,265 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>DropDown - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.dropdown</a>&nbsp;/&nbsp;<a href="./index.html">DropDown</a><br/>
+<br/>
+<h1>DropDown</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DropDown</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Bootstrap dropdown component.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">DropDown</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$<init>(kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/text">text</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$<init>(kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$<init>(kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/icon">icon</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$<init>(kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/style">style</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.html/-button-style/index.html"><span class="identifier">ButtonStyle</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ButtonStyle.DEFAULT<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$<init>(kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/disabled">disabled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$<init>(kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/forNavbar">forNavbar</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$<init>(kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/withCaret">withCaret</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$<init>(kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="block.html">block</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">block</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if the dropdown button takes all the space horizontally.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="disabled.html">disabled</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">disabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if the dropdown is disabled.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="dropup.html">dropup</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">dropup</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Determines if the dropdown is showing upwards.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="for-navbar.html">forNavbar</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">forNavbar</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>determines if the component will be used in a navbar</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="icon.html">icon</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">icon</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The icon of the dropdown button.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="image.html">image</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">image</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-res-string.html"><span class="identifier">ResString</span></a><span class="symbol">?</span></code>
+<p>The image on the dropdown button.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="size.html">size</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">size</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.html/-button-size/index.html"><span class="identifier">ButtonSize</span></a><span class="symbol">?</span></code>
+<p>The size of the dropdown button.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="style.html">style</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">style</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.html/-button-style/index.html"><span class="identifier">ButtonStyle</span></a></code>
+<p>The style of the dropdown button.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="text.html">text</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">text</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Label of the dropdown button.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="width.html">width</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">width</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span></code>
+<p>Width of the dropdown button.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$add(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-all.html">addAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$addAll(kotlin.collections.List((pl.treksoft.kvision.core.Component)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Adds a list of components to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="after-insert.html">afterInsert</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">afterInsert</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$afterInsert(com.github.snabbdom.VNode)/node">node</span><span class="symbol">:</span>&nbsp;<span class="identifier">VNode</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method called after inserting Snabbdom vnode into the DOM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="button-id.html">buttonId</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">buttonId</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-children.html">getChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of children of the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-sn-class.html">getSnClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span></code>
+<p>Returns list of CSS class names for current widget in the form of a List.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown$remove(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes given component from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-all.html">removeAll</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Removes all children from the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code>
+<p>Renders current component as a Snabbdom vnode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="toggle.html">toggle</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toggle</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Toggles dropdown visibility.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/add-internal.html">addInternal</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addInternal</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.panel.SimplePanel$addInternal(pl.treksoft.kvision.core.Component)/child">child</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>Protected and final method to add given component to the current container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.panel/-simple-panel/children-v-nodes.html">childrenVNodes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">childrenVNodes</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">VNode</span><span class="symbol">&gt;</span></code>
+<p>Returns the array of the children Snabbdom vnodes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="drop-down.html">dropDown</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">dropDown</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/text">text</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../pl.treksoft.kvision.core/-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/icon">icon</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/style">style</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.html/-button-style/index.html"><span class="identifier">ButtonStyle</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ButtonStyle.DEFAULT<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/disabled">disabled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/forNavbar">forNavbar</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/withCaret">withCaret</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown.DropDown.Companion$dropDown(pl.treksoft.kvision.core.Container, kotlin.String, kotlin.collections.List((kotlin.Pair((kotlin.String, )))), kotlin.String, pl.treksoft.kvision.html.ButtonStyle, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.Function1((pl.treksoft.kvision.dropdown.DropDown, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">DropDown</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">DropDown</span></a></code>
+<p>DSL builder extension function.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

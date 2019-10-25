@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Camera - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">Camera</a><br/>
+<br/>
+<h1>Camera</h1>
+<code><span class="keyword">object </span><span class="identifier">Camera</span></code>
+<p>Main object for Cordova camera.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-camera-popover-options/index.html">CameraPopoverOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CameraPopoverOptions</span></code>
+<p>iOS popover options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-destination-type/index.html">DestinationType</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">DestinationType</span></code>
+<p>Camera destination types.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-direction/index.html">Direction</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Direction</span></code>
+<p>Camera facing types.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-encoding-type/index.html">EncodingType</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">EncodingType</span></code>
+<p>Picture encoding types.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-media-type/index.html">MediaType</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">MediaType</span></code>
+<p>Picture/video media types.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-picture-source-type/index.html">PictureSourceType</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">PictureSourceType</span></code>
+<p>Camera picture/video sources.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-popover-arrow-direction/index.html">PopoverArrowDirection</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">PopoverArrowDirection</span></code>
+<p>iOS popover arrow directions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-camera-result-callback.html">addCameraResultCallback</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addCameraResultCallback</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Camera$addCameraResultCallback(kotlin.Function1((pl.treksoft.kvision.cordova.Result((kotlin.String, pl.treksoft.kvision.cordova.CameraException)), kotlin.Unit)))/resultCallback">resultCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-camera-exception/index.html"><span class="identifier">CameraException</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>An Android specific function to get picture from the camera after resume when the application
+webview intent is killed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="cleanup.html">cleanup</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">cleanup</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Camera$cleanup(kotlin.Function1((pl.treksoft.kvision.cordova.Result((kotlin.String, pl.treksoft.kvision.cordova.CameraException)), kotlin.Unit)))/resultCallback">resultCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-camera-exception/index.html"><span class="identifier">CameraException</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Removes intermediate image files that are kept in the temporary storage after calling <a href="get-picture.html">getPicture</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-picture.html">getPicture</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getPicture</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Camera$getPicture(pl.treksoft.kvision.cordova.CameraOptions)/options">options</span><span class="symbol">:</span>&nbsp;<a href="../-camera-options/index.html"><span class="identifier">CameraOptions</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-camera-exception/index.html"><span class="identifier">CameraException</span></a><span class="symbol">&gt;</span></code>
+<p>Suspending function to get picture from the camera.</p>
+<code><span class="keyword">fun </span><span class="identifier">getPicture</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Camera$getPicture(pl.treksoft.kvision.cordova.CameraOptions, kotlin.Function1((pl.treksoft.kvision.cordova.Result((kotlin.String, pl.treksoft.kvision.cordova.CameraException)), kotlin.Unit)))/options">options</span><span class="symbol">:</span>&nbsp;<a href="../-camera-options/index.html"><span class="identifier">CameraOptions</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Camera$getPicture(pl.treksoft.kvision.cordova.CameraOptions, kotlin.Function1((pl.treksoft.kvision.cordova.Result((kotlin.String, pl.treksoft.kvision.cordova.CameraException)), kotlin.Unit)))/resultCallback">resultCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-camera-exception/index.html"><span class="identifier">CameraException</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>A function to get picture from the camera.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

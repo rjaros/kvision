@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>pl.treksoft.kvision.redux - kvision</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kvision</a>&nbsp;/&nbsp;<a href="./index.html">pl.treksoft.kvision.redux</a><br/>
+<br/>
+<h2>Package pl.treksoft.kvision.redux</h2>
+<p>Predictable state container based on Redux library.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-r-action.html">RAction</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">RAction</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-redux-store/index.html">ReduxStore</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ReduxStore</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-r-action.html"><span class="identifier">RAction</span></a><span class="symbol">&gt;</span></code>
+<p>A class implementing redux pattern backed by the Redux Kotlin library.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-state-binding/index.html">StateBinding</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">StateBinding</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-r-action.html"><span class="identifier">RAction</span></a><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>A class which binds the redux store with the given container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-updateable/index.html">Updateable</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Updateable</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span></code>
+<p>A helper class for updateable redux content.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Type Aliases</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-action-creator.html">ActionCreator</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">ActionCreator</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">S</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><a href="-dispatch.html"><span class="identifier">Dispatch</span></a><span class="symbol">&lt;</span><a href="-action-creator.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="-get-state.html"><span class="identifier">GetState</span></a><span class="symbol">&lt;</span><a href="-action-creator.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-dispatch.html">Dispatch</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">Dispatch</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><a href="-dispatch.html#A"><span class="identifier">A</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-get-state.html">GetState</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">GetState</span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="-get-state.html#S"><span class="identifier">S</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-reducer-fun.html">ReducerFun</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">ReducerFun</span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><a href="-reducer-fun.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="-reducer-fun.html#A"><span class="identifier">A</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="-reducer-fun.html#S"><span class="identifier">S</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="create-redux-store.html">createReduxStore</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-r-action.html"><span class="identifier">RAction</span></a><span class="symbol">&gt;</span> <span class="identifier">createReduxStore</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux$createReduxStore(kotlin.Function2((pl.treksoft.kvision.redux.createReduxStore.S, pl.treksoft.kvision.redux.createReduxStore.A, )), pl.treksoft.kvision.redux.createReduxStore.S, kotlin.Array((((pl.treksoft.kvision.redux.createReduxStore.S)))))/reducer">reducer</span><span class="symbol">:</span>&nbsp;<a href="-reducer-fun.html"><span class="identifier">ReducerFun</span></a><span class="symbol">&lt;</span><a href="create-redux-store.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="create-redux-store.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.redux$createReduxStore(kotlin.Function2((pl.treksoft.kvision.redux.createReduxStore.S, pl.treksoft.kvision.redux.createReduxStore.A, )), pl.treksoft.kvision.redux.createReduxStore.S, kotlin.Array((((pl.treksoft.kvision.redux.createReduxStore.S)))))/initialState">initialState</span><span class="symbol">:</span>&nbsp;<a href="create-redux-store.html#S"><span class="identifier">S</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.redux$createReduxStore(kotlin.Function2((pl.treksoft.kvision.redux.createReduxStore.S, pl.treksoft.kvision.redux.createReduxStore.A, )), pl.treksoft.kvision.redux.createReduxStore.S, kotlin.Array((((pl.treksoft.kvision.redux.createReduxStore.S)))))/middlewares">middlewares</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&lt;</span><a href="create-redux-store.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-redux-store/index.html"><span class="identifier">ReduxStore</span></a><span class="symbol">&lt;</span><a href="create-redux-store.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="create-redux-store.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-r-action.html"><span class="identifier">RAction</span></a><span class="symbol">&gt;</span> <span class="identifier">createReduxStore</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux$createReduxStore(((pl.treksoft.kvision.redux.createReduxStore.S, pl.treksoft.kvision.redux.createReduxStore.A)), pl.treksoft.kvision.redux.createReduxStore.S, kotlin.Array((kotlin.Any)))/reducer">reducer</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&lt;</span><a href="create-redux-store.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="create-redux-store.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.redux$createReduxStore(((pl.treksoft.kvision.redux.createReduxStore.S, pl.treksoft.kvision.redux.createReduxStore.A)), pl.treksoft.kvision.redux.createReduxStore.S, kotlin.Array((kotlin.Any)))/initialState">initialState</span><span class="symbol">:</span>&nbsp;<a href="create-redux-store.html#S"><span class="identifier">S</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.redux$createReduxStore(((pl.treksoft.kvision.redux.createReduxStore.S, pl.treksoft.kvision.redux.createReduxStore.A)), pl.treksoft.kvision.redux.createReduxStore.S, kotlin.Array((kotlin.Any)))/middlewares">middlewares</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="-redux-store/index.html"><span class="identifier">ReduxStore</span></a><span class="symbol">&lt;</span><a href="create-redux-store.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="create-redux-store.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span></code>
+<p>An inline helper function for creating Redux store.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

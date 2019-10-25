@@ -1,0 +1,202 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Result - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">Result</a><br/>
+<br/>
+<h1>Result</h1>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">Result</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">E</span><span class="symbol">&gt;</span></code>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-failure/index.html">Failure</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Failure</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">E</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">,</span>&nbsp;<a href="-failure/index.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-success/index.html">Success</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Success</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="-success/index.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="component1.html">component1</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">component1</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="component2.html">component2</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">component2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#E"><span class="identifier">E</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="fold.html">fold</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">X</span><span class="symbol">&gt;</span> <span class="identifier">fold</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Result$fold(kotlin.Function1((pl.treksoft.kvision.cordova.Result.V, pl.treksoft.kvision.cordova.Result.fold.X)), kotlin.Function1((pl.treksoft.kvision.cordova.Result.E, pl.treksoft.kvision.cordova.Result.fold.X)))/success">success</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="fold.html#X"><span class="identifier">X</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Result$fold(kotlin.Function1((pl.treksoft.kvision.cordova.Result.V, pl.treksoft.kvision.cordova.Result.fold.X)), kotlin.Function1((pl.treksoft.kvision.cordova.Result.E, pl.treksoft.kvision.cordova.Result.fold.X)))/failure">failure</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#E"><span class="identifier">E</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="fold.html#X"><span class="identifier">X</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="fold.html#X"><span class="identifier">X</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#V"><span class="identifier">V</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="error.html">error</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">error</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Result.Companion$error(pl.treksoft.kvision.cordova.Result.Companion.error.E)/ex">ex</span><span class="symbol">:</span>&nbsp;<a href="error.html#E"><span class="identifier">E</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-failure/index.html"><span class="identifier">Result.Failure</span></a><span class="symbol">&lt;</span><a href="error.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="of.html">of</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">of</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Result.Companion$of(pl.treksoft.kvision.cordova.Result.Companion.of.V, kotlin.Function0((java.lang.Exception)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="of.html#V"><span class="identifier">V</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Result.Companion$of(pl.treksoft.kvision.cordova.Result.Companion.of.V, kotlin.Function0((java.lang.Exception)))/fail">fail</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ Exception() }<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="of.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">of</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Result.Companion$of(kotlin.Function0((pl.treksoft.kvision.cordova.Result.Companion.of.V)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="of.html#V"><span class="identifier">V</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="of.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="of.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="success.html">success</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">success</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Result.Companion$success(pl.treksoft.kvision.cordova.Result.Companion.success.V)/v">v</span><span class="symbol">:</span>&nbsp;<a href="success.html#V"><span class="identifier">V</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-success/index.html"><span class="identifier">Result.Success</span></a><span class="symbol">&lt;</span><a href="success.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../any.html">any</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../any.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../any.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">any</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$any(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.any.V, pl.treksoft.kvision.cordova.any.E)), kotlin.Function1((pl.treksoft.kvision.cordova.any.V, kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../any.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../failure.html">failure</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">,</span>&nbsp;<a href="../failure.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">failure</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$failure(pl.treksoft.kvision.cordova.Result((kotlin.Any, pl.treksoft.kvision.cordova.failure.E)), kotlin.Function1((pl.treksoft.kvision.cordova.failure.E, kotlin.Unit)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../failure.html#E"><span class="identifier">E</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../fanout.html">fanout</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../fanout.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">fanout</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$fanout(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.fanout.V, java.lang.Exception)), kotlin.Function0((pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.fanout.U, java.lang.Exception)))))/other">other</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../fanout.html#U"><span class="identifier">U</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="../fanout.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../fanout.html#U"><span class="identifier">U</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../flat-map.html">flatMap</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../flat-map.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../flat-map.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">flatMap</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$flatMap(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.flatMap.V, pl.treksoft.kvision.cordova.flatMap.E)), kotlin.Function1((pl.treksoft.kvision.cordova.flatMap.V, pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.flatMap.U, pl.treksoft.kvision.cordova.flatMap.E)))))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../flat-map.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../flat-map.html#U"><span class="identifier">U</span></a><span class="symbol">,</span>&nbsp;<a href="../flat-map.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../flat-map.html#U"><span class="identifier">U</span></a><span class="symbol">,</span>&nbsp;<a href="../flat-map.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../flat-map-error.html">flatMapError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">, </span><span class="identifier">E2</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../flat-map-error.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../flat-map-error.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">flatMapError</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$flatMapError(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.flatMapError.V, pl.treksoft.kvision.cordova.flatMapError.E)), kotlin.Function1((pl.treksoft.kvision.cordova.flatMapError.E, pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.flatMapError.V, pl.treksoft.kvision.cordova.flatMapError.E2)))))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../flat-map-error.html#E"><span class="identifier">E</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../flat-map-error.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../flat-map-error.html#E2"><span class="identifier">E2</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../flat-map-error.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../flat-map-error.html#E2"><span class="identifier">E2</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../get-as.html">getAs</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">X</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">getAs</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../get-as.html#X"><span class="identifier">X</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../get-or-else.html">getOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">infix</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../get-or-else.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../get-or-else.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">getOrElse</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$getOrElse(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.getOrElse.V, pl.treksoft.kvision.cordova.getOrElse.E)), pl.treksoft.kvision.cordova.getOrElse.V)/fallback">fallback</span><span class="symbol">:</span>&nbsp;<a href="../get-or-else.html#V"><span class="identifier">V</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../get-or-else.html#V"><span class="identifier">V</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../map.html">map</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../map.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../map.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$map(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.map.V, pl.treksoft.kvision.cordova.map.E)), kotlin.Function1((pl.treksoft.kvision.cordova.map.V, pl.treksoft.kvision.cordova.map.U)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../map.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../map.html#U"><span class="identifier">U</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../map.html#U"><span class="identifier">U</span></a><span class="symbol">,</span>&nbsp;<a href="../map.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../map-error.html">mapError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">, </span><span class="identifier">E2</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../map-error.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../map-error.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">mapError</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$mapError(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.mapError.V, pl.treksoft.kvision.cordova.mapError.E)), kotlin.Function1((pl.treksoft.kvision.cordova.mapError.E, pl.treksoft.kvision.cordova.mapError.E2)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../map-error.html#E"><span class="identifier">E</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../map-error.html#E2"><span class="identifier">E2</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../map-error.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../map-error.html#E2"><span class="identifier">E2</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../or.html">or</a></p>
+</td>
+<td>
+<code><span class="keyword">infix</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../or.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="../or.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">or</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$or(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.or.V, pl.treksoft.kvision.cordova.or.E)), pl.treksoft.kvision.cordova.or.V)/fallback">fallback</span><span class="symbol">:</span>&nbsp;<a href="../or.html#V"><span class="identifier">V</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-success/index.html"><span class="identifier">Result.Success</span></a><span class="symbol">&lt;</span><a href="../or.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../success.html">success</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="../success.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">success</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova$success(pl.treksoft.kvision.cordova.Result((pl.treksoft.kvision.cordova.success.V, java.lang.Exception)), kotlin.Function1((pl.treksoft.kvision.cordova.success.V, kotlin.Unit)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../success.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-failure/index.html">Failure</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Failure</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">E</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">,</span>&nbsp;<a href="-failure/index.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-success/index.html">Success</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Success</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="-success/index.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

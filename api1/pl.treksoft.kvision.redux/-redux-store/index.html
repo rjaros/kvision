@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ReduxStore - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.redux</a>&nbsp;/&nbsp;<a href="./index.html">ReduxStore</a><br/>
+<br/>
+<h1>ReduxStore</h1>
+<code><span class="keyword">class </span><span class="identifier">ReduxStore</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-r-action.html"><span class="identifier">RAction</span></a><span class="symbol">&gt;</span></code>
+<p>A class implementing redux pattern backed by the Redux Kotlin library.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ReduxStore</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$<init>(kotlin.Function2((pl.treksoft.kvision.redux.ReduxStore.S, pl.treksoft.kvision.redux.ReduxStore.A, )), pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Array((((pl.treksoft.kvision.redux.ReduxStore.S)))))/reducer">reducer</span><span class="symbol">:</span>&nbsp;<a href="../-reducer-fun.html"><span class="identifier">ReducerFun</span></a><span class="symbol">&lt;</span><a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$<init>(kotlin.Function2((pl.treksoft.kvision.redux.ReduxStore.S, pl.treksoft.kvision.redux.ReduxStore.A, )), pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Array((((pl.treksoft.kvision.redux.ReduxStore.S)))))/initialState">initialState</span><span class="symbol">:</span>&nbsp;<a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$<init>(kotlin.Function2((pl.treksoft.kvision.redux.ReduxStore.S, pl.treksoft.kvision.redux.ReduxStore.A, )), pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Array((((pl.treksoft.kvision.redux.ReduxStore.S)))))/middlewares">middlewares</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&lt;</span><a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span><span class="symbol">)</span></code><br/>
+<code><span class="identifier">ReduxStore</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$<init>(((pl.treksoft.kvision.redux.ReduxStore.S, pl.treksoft.kvision.redux.ReduxStore.A)), pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Array((kotlin.Any)))/reducer">reducer</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&lt;</span><a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">,</span>&nbsp;<a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$<init>(((pl.treksoft.kvision.redux.ReduxStore.S, pl.treksoft.kvision.redux.ReduxStore.A)), pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Array((kotlin.Any)))/initialState">initialState</span><span class="symbol">:</span>&nbsp;<a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$<init>(((pl.treksoft.kvision.redux.ReduxStore.S, pl.treksoft.kvision.redux.ReduxStore.A)), pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Array((kotlin.Any)))/middlewares">middlewares</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span></code>
+<p>Creates a Redux store with given reducer function and initial state.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="dispatch.html">dispatch</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">dispatch</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$dispatch(pl.treksoft.kvision.redux.ReduxStore.A)/action">action</span><span class="symbol">:</span>&nbsp;<a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Dispatches a synchronous action object.</p>
+<code><span class="keyword">fun </span><span class="identifier">dispatch</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$dispatch(kotlin.Function2((kotlin.Function1((pl.treksoft.kvision.redux.ReduxStore.A, kotlin.Unit)), kotlin.Function0((pl.treksoft.kvision.redux.ReduxStore.S)), )))/actionCreator">actionCreator</span><span class="symbol">:</span>&nbsp;<a href="../-action-creator.html"><span class="identifier">ActionCreator</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">,</span>&nbsp;<a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">dispatch</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$dispatch(kotlin.Function2((kotlin.Function1((kotlin.Any, kotlin.Unit)), kotlin.Function0((pl.treksoft.kvision.redux.ReduxStore.S)), )))/actionCreator">actionCreator</span><span class="symbol">:</span>&nbsp;<a href="../-action-creator.html"><span class="identifier">ActionCreator</span></a><span class="symbol">&lt;</span><span class="keyword">dynamic</span><span class="symbol">,</span>&nbsp;<a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code>
+<p>Dispatches an asynchronous action function.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-state.html">getState</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#S"><span class="identifier">S</span></a></code>
+<p>Returns the current state.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="subscribe.html">subscribe</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">subscribe</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.redux.ReduxStore$subscribe(kotlin.Function1((pl.treksoft.kvision.redux.ReduxStore.S, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#S"><span class="identifier">S</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Subscribes a client for the change state notifications.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
+<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

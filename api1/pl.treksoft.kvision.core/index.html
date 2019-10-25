@@ -1,0 +1,472 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>pl.treksoft.kvision.core - kvision</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kvision</a>&nbsp;/&nbsp;<a href="./index.html">pl.treksoft.kvision.core</a><br/>
+<br/>
+<h2>Package pl.treksoft.kvision.core</h2>
+<p>KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders, 
+backgrounds, fonts, text and position) and the main Widget class.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-background/index.html">Background</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Background</span></code>
+<p>Type-safe definition of CSS background.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-attach/index.html">BgAttach</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgAttach</span></code>
+<p>Definitions of CSS background attachment options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-clip/index.html">BgClip</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgClip</span></code>
+<p>Definitions of CSS background clipping options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-origin/index.html">BgOrigin</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgOrigin</span></code>
+<p>Definitions of CSS background origin options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-repeat/index.html">BgRepeat</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgRepeat</span></code>
+<p>Definitions of CSS background repeat options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bg-size/index.html">BgSize</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BgSize</span></code>
+<p>Definitions of CSS background size.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-border/index.html">Border</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Border</span></code>
+<p>Type-safe definition of CSS border.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-border-style/index.html">BorderStyle</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">BorderStyle</span></code>
+<p>Definitions of CSS border styles.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-clear/index.html">Clear</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Clear</span></code>
+<p>Definitions of CSS clear options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-col/index.html">Col</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Col</span></code>
+<p>Definitions of CSS color names.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-color/index.html">Color</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Color</span></code>
+<p>Type-safe definition of CSS color.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-component/index.html">Component</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Component</span></code>
+<p>Base interface for all components.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-container/index.html">Container</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Container</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Base interface for all containers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-direction/index.html">Direction</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Direction</span></code>
+<p>Definitions of CSS text direction options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-display/index.html">Display</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Display</span></code>
+<p>Definitions of CSS display options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-font-style/index.html">FontStyle</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">FontStyle</span></code>
+<p>Definitions of CSS font style options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-font-variant/index.html">FontVariant</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">FontVariant</span></code>
+<p>Definitions of CSS font variant options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-font-weight/index.html">FontWeight</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">FontWeight</span></code>
+<p>Definitions of CSS font weight options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-line-break/index.html">LineBreak</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">LineBreak</span></code>
+<p>Definitions of CSS line-break options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-overflow/index.html">Overflow</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Overflow</span></code>
+<p>Definitions of CSS overflow options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-overflow-wrap/index.html">OverflowWrap</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">OverflowWrap</span></code>
+<p>Definitions of CSS overflow-wrap options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-placement/index.html">Placement</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Placement</span></code>
+<p>Tooltip / Popover placements.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-popover-options/index.html">PopoverOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PopoverOptions</span></code>
+<p>Popover options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-pos-float/index.html">PosFloat</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">PosFloat</span></code>
+<p>Definitions of CSS float options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-position/index.html">Position</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Position</span></code>
+<p>Definitions of CSS position options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-resize/index.html">Resize</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Resize</span></code>
+<p>Definitions of CSS resize options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-style/index.html">Style</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Style</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-styled-component/index.html"><span class="identifier">StyledComponent</span></a></code>
+<p>CSS style object.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-styled-component/index.html">StyledComponent</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">StyledComponent</span></code>
+<p>Base class for components supporting CSS styling.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-text-align/index.html">TextAlign</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">TextAlign</span></code>
+<p>Definitions of CSS text align options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-text-decoration/index.html">TextDecoration</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TextDecoration</span></code>
+<p>Type-safe definition of CSS text decoration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-text-decoration-line/index.html">TextDecorationLine</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">TextDecorationLine</span></code>
+<p>Definitions of CSS text decoration line options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-text-decoration-style/index.html">TextDecorationStyle</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">TextDecorationStyle</span></code>
+<p>Definitions of CSS text decoration style options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-text-overflow/index.html">TextOverflow</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">TextOverflow</span></code>
+<p>Definitions of CSS text overflow options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-text-shadow/index.html">TextShadow</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TextShadow</span></code>
+<p>Type-safe definition of CSS text shadow.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-text-transform/index.html">TextTransform</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">TextTransform</span></code>
+<p>Definitions of CSS text transform options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-tooltip-options/index.html">TooltipOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TooltipOptions</span></code>
+<p>Tooltip options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-trigger/index.html">Trigger</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Trigger</span></code>
+<p>Tooltip / Popover triggers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-unicode-bidi/index.html">UnicodeBidi</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">UnicodeBidi</span></code>
+<p>Definitions of CSS unicode-bidi options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-u-n-i-t/index.html">UNIT</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">UNIT</span></code>
+<p>Definitions of CSS units.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-vertical-align/index.html">VerticalAlign</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">VerticalAlign</span></code>
+<p>Definitions of CSS vertical align options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-white-space/index.html">WhiteSpace</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">WhiteSpace</span></code>
+<p>Definitions of CSS white space options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-widget/index.html">Widget</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Widget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-styled-component/index.html"><span class="identifier">StyledComponent</span></a><span class="symbol">, </span><a href="-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Base widget class. The parent of all component classes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-widget-wrapper/index.html">WidgetWrapper</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WidgetWrapper</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a></code>
+<p>This class allows to wrap a component into separately styled DIV element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-word-break/index.html">WordBreak</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">WordBreak</span></code>
+<p>Definitions of CSS word-break options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Type Aliases</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-css-size.html">CssSize</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">CssSize</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">,</span>&nbsp;<a href="-u-n-i-t/index.html"><span class="identifier">UNIT</span></a><span class="symbol">&gt;</span></code>
+<p>This type is used for defining CSS dimensions (width, heights, margins, paddings, etc.).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-res-string.html">ResString</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">ResString</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>This type is used for accessing resources with CommonJS <strong>require</strong> function.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-string-bool-pair.html">StringBoolPair</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">StringBoolPair</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>Helper type used to define CSS classes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-string-pair.html">StringPair</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">StringPair</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Helper type used to define CSS style attributes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="to-js.html">toJs</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-tooltip-options/index.html"><span class="identifier">TooltipOptions</span></a><span class="symbol">.</span><span class="identifier">toJs</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
+<p>Convert TooltipOptions to JavaScript JSON object.</p>
+<code><span class="keyword">fun </span><a href="-popover-options/index.html"><span class="identifier">PopoverOptions</span></a><span class="symbol">.</span><span class="identifier">toJs</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
+<p>Convert PopoverOptions to JavaScript JSON object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

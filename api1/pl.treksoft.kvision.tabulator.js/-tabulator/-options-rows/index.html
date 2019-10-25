@@ -1,0 +1,331 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Tabulator.OptionsRows - kvision</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../../index.html">pl.treksoft.kvision.tabulator.js</a>&nbsp;/&nbsp;<a href="../index.html">Tabulator</a>&nbsp;/&nbsp;<a href="./index.html">OptionsRows</a><br/>
+<br/>
+<h1>OptionsRows</h1>
+<code><span class="keyword">interface </span><span class="identifier">OptionsRows</span></code>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-row-pos.html">addRowPos</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">addRowPos</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="data-tree-row-collapsed.html">dataTreeRowCollapsed</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">dataTreeRowCollapsed</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">level</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="data-tree-row-expanded.html">dataTreeRowExpanded</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">dataTreeRowExpanded</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">level</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows.html">movableRows</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRows</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-connected-tables.html">movableRowsConnectedTables</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsConnectedTables</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-received.html">movableRowsReceived</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsReceived</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">fromRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">toRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">fromTable</span><span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Tabulator</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-received-failed.html">movableRowsReceivedFailed</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsReceivedFailed</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">fromRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">toRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">fromTable</span><span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Tabulator</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-receiver.html">movableRowsReceiver</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsReceiver</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-receiving-start.html">movableRowsReceivingStart</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsReceivingStart</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">fromRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">toTable</span><span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Tabulator</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-receiving-stop.html">movableRowsReceivingStop</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsReceivingStop</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">fromTable</span><span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Tabulator</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-sender.html">movableRowsSender</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsSender</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-sending-start.html">movableRowsSendingStart</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsSendingStart</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">toTables</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-sending-stop.html">movableRowsSendingStop</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsSendingStop</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">toTables</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-sent.html">movableRowsSent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsSent</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">fromRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">toRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">toTable</span><span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Tabulator</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="movable-rows-sent-failed.html">movableRowsSentFailed</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsSentFailed</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">fromRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">toRow</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">toTable</span><span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Tabulator</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="resizable-rows.html">resizableRows</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">resizableRows</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-added.html">rowAdded</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowAdded</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-click.html">rowClick</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowClick</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-context.html">rowContext</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowContext</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-dbl-click.html">rowDblClick</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDblClick</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-dbl-tap.html">rowDblTap</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDblTap</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-deleted.html">rowDeleted</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDeleted</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-deselected.html">rowDeselected</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDeselected</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-formatter.html">rowFormatter</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowFormatter</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-mouse-enter.html">rowMouseEnter</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseEnter</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-mouse-leave.html">rowMouseLeave</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseLeave</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-mouse-move.html">rowMouseMove</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseMove</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-mouse-out.html">rowMouseOut</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseOut</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-mouse-over.html">rowMouseOver</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseOver</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-moved.html">rowMoved</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMoved</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-resized.html">rowResized</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowResized</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-selected.html">rowSelected</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowSelected</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-selection-changed.html">rowSelectionChanged</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowSelectionChanged</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">rows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-tap.html">rowTap</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowTap</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-tap-hold.html">rowTapHold</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowTapHold</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="row-updated.html">rowUpdated</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowUpdated</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="scroll-to-row-if-visible.html">scrollToRowIfVisible</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">scrollToRowIfVisible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="scroll-to-row-position.html">scrollToRowPosition</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">scrollToRowPosition</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="selectable.html">selectable</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">selectable</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="selectable-check.html">selectableCheck</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">selectableCheck</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="selectable-persistence.html">selectablePersistence</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">selectablePersistence</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="selectable-range-mode.html">selectableRangeMode</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">selectableRangeMode</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="selectable-rolling-selection.html">selectableRollingSelection</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">selectableRollingSelection</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-options.html">Options</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Options</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-options-general/index.html"><span class="identifier">Tabulator.OptionsGeneral</span></a><span class="symbol">, </span><a href="../-options-history/index.html"><span class="identifier">Tabulator.OptionsHistory</span></a><span class="symbol">, </span><a href="../-options-locale/index.html"><span class="identifier">Tabulator.OptionsLocale</span></a><span class="symbol">, </span><a href="../-options-download/index.html"><span class="identifier">Tabulator.OptionsDownload</span></a><span class="symbol">, </span><a href="../-options-columns/index.html"><span class="identifier">Tabulator.OptionsColumns</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Tabulator.OptionsRows</span></a><span class="symbol">, </span><a href="../-options-data/index.html"><span class="identifier">Tabulator.OptionsData</span></a><span class="symbol">, </span><a href="../-options-sorting/index.html"><span class="identifier">Tabulator.OptionsSorting</span></a><span class="symbol">, </span><a href="../-options-filtering/index.html"><span class="identifier">Tabulator.OptionsFiltering</span></a><span class="symbol">, </span><a href="../-options-row-grouping/index.html"><span class="identifier">Tabulator.OptionsRowGrouping</span></a><span class="symbol">, </span><a href="../-options-pagination/index.html"><span class="identifier">Tabulator.OptionsPagination</span></a><span class="symbol">, </span><a href="../-options-persistent-configuration/index.html"><span class="identifier">Tabulator.OptionsPersistentConfiguration</span></a><span class="symbol">, </span><a href="../-options-clipboard/index.html"><span class="identifier">Tabulator.OptionsClipboard</span></a><span class="symbol">, </span><a href="../-options-data-tree/index.html"><span class="identifier">Tabulator.OptionsDataTree</span></a><span class="symbol">, </span><a href="../-options-cell/index.html"><span class="identifier">Tabulator.OptionsCell</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
