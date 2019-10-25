@@ -169,8 +169,8 @@ object File {
     ): Result<FileSystem, FileException> {
         return suspendCoroutine { continuation ->
             val type = when (fileSystemType) {
-                File.FileSystemType.TEMPORARY -> LocalFileSystem.TEMPORARY
-                File.FileSystemType.PERSISTENT -> LocalFileSystem.PERSISTENT
+                FileSystemType.TEMPORARY -> LocalFileSystem.TEMPORARY
+                FileSystemType.PERSISTENT -> LocalFileSystem.PERSISTENT
             }
             addDeviceReadyListener {
                 window.asDynamic().requestFileSystem(type, size, { fs ->

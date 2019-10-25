@@ -70,7 +70,7 @@ enum class TheadType(internal val type: String) {
  * @param headerNames a list of table headers names
  * @param types a set of table types
  * @param caption table caption
- * @param responsive determines if the table is responsive
+ * @param responsiveType determines if the table is responsive
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */

@@ -445,7 +445,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     open fun enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
         this.tooltipOptions = options
         val tooltipFun = getElementJQueryD()?.tooltip
-        if (tooltipFun != undefined) getElementJQueryD()?.tooltip(options.copy(title = options.title?.let { translate(it) }).toJs())
+        if (tooltipFun != undefined) getElementJQueryD()?.tooltip(
+            options.copy(title = options.title?.let { translate(it) }).toJs()
+        )
         return this
     }
 
@@ -638,7 +640,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         this.tooltipOptions?.let {
             @Suppress("UnsafeCastFromDynamic")
             val tooltipFun = getElementJQueryD()?.tooltip
-            if (tooltipFun != undefined) getElementJQueryD()?.tooltip(it.copy(title = it.title?.let { translate(it) }).toJs())
+            if (tooltipFun != undefined) getElementJQueryD()?.tooltip(
+                it.copy(title = it.title?.let { translate(it) }).toJs()
+            )
         }
         this.popoverOptions?.let {
             @Suppress("UnsafeCastFromDynamic")

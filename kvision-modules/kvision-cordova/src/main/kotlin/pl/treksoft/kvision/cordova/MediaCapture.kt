@@ -84,7 +84,7 @@ suspend fun MediaFile.getFormatData(): MediaFileData? {
 /**
  * Exception class for media capture errors.
  */
-class CaptureException(val code: MediaCapture.CaptureErrorCode) : Exception("Capture exception: $code")
+class CaptureException(code: MediaCapture.CaptureErrorCode) : Exception("Capture exception: $code")
 
 /**
  * Main media capture object.

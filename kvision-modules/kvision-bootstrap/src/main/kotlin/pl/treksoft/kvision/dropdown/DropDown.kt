@@ -377,12 +377,10 @@ internal class DropDownButton(
     }
 
     override fun getSnClass(): List<StringBoolPair> {
-        return if (forNavbar) {
-            listOf("nav-link" to true, "dropdown-toggle" to true)
-        } else if (forDropDown) {
-            super.getSnClass() + listOf("dropdown-item" to true, "dropdown-toggle" to true)
-        } else {
-            super.getSnClass() + ("dropdown-toggle" to true)
+        return when {
+            forNavbar -> listOf("nav-link" to true, "dropdown-toggle" to true)
+            forDropDown -> super.getSnClass() + listOf("dropdown-item" to true, "dropdown-toggle" to true)
+            else -> super.getSnClass() + ("dropdown-toggle" to true)
         }
     }
 

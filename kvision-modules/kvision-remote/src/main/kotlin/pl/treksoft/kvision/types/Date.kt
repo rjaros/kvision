@@ -57,6 +57,7 @@ internal object JsonDateSerializer : KSerializer<Date> {
     }
 }
 
+@Suppress("ComplexMethod", "MagicNumber")
 internal fun String.toDateInternal(): Date {
     val dt = this.split(':', 'T', '-', '+')
     val utcCheck = this[length - 1] == 'Z'
@@ -89,6 +90,7 @@ internal fun String.toDateInternal(): Date {
 }
 
 internal fun Date.toStringInternal(): String {
+    @Suppress("MagicNumber")
     val tz = this.getTimezoneOffset() / 60
     val sign = if (tz > 0) "-" else "+"
     return "" + this.getFullYear() + "-" + ("0" + (this.getMonth() + 1)).takeLast(2) + "-" +

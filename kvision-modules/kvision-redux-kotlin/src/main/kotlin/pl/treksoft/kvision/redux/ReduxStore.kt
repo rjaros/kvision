@@ -67,7 +67,7 @@ class ReduxStore<S : Any, A : RAction>(
     initialState: S,
     vararg middlewares: Middleware<S>
 ) : ObservableState<S> {
-    @Suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST", "SpreadOperator")
     private val store: Store<S> = createStore({ s: S, a: Any ->
         if (a == ActionTypes.INIT || a == ActionTypes.REPLACE) {
             s

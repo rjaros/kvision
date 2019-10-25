@@ -29,6 +29,7 @@ import org.springframework.security.web.server.util.matcher.ServerWebExchangeMat
 /**
  * A function to gather paths for spring security matchers.
  */
+@Suppress("SpreadOperator", "MaxLineLength")
 fun ServerHttpSecurity.AuthorizeExchangeSpec.serviceMatchers(vararg services: KVServiceManager<*>): ServerHttpSecurity.AuthorizeExchangeSpec.Access {
     return this.matchers(*getServerWebExchangeMatcher(*services))
 }
@@ -36,6 +37,7 @@ fun ServerHttpSecurity.AuthorizeExchangeSpec.serviceMatchers(vararg services: KV
 /**
  * A function to gather paths for spring security matchers.
  */
+@Suppress("SpreadOperator")
 fun serviceMatchers(vararg services: KVServiceManager<*>): ServerWebExchangeMatcher {
     return ServerWebExchangeMatchers.matchers(*getServerWebExchangeMatcher(*services))
 }
@@ -43,6 +45,7 @@ fun serviceMatchers(vararg services: KVServiceManager<*>): ServerWebExchangeMatc
 /**
  * A function to gather paths for spring security matchers.
  */
+@Suppress("SpreadOperator")
 fun getServerWebExchangeMatcher(vararg services: KVServiceManager<*>): Array<ServerWebExchangeMatcher> {
     val matchers = mutableListOf<ServerWebExchangeMatcher>()
     val getPaths = services.flatMap { it.getRequests.keys }.toTypedArray()

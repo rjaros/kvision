@@ -222,6 +222,7 @@ class Root : SimplePanel {
  * @param init an initializer extension function
  * @return the created Root container
  */
+@Suppress("unused")
 fun Application.root(id: String, fixed: Boolean = false, init: Root.() -> Unit): Root {
     return Root(id, fixed, init)
 }
@@ -234,6 +235,7 @@ fun Application.root(id: String, fixed: Boolean = false, init: Root.() -> Unit):
  * @param init an initializer extension function
  * @return the created Root container
  */
+@Suppress("unused")
 fun Application.root(element: HTMLElement, fixed: Boolean = false, init: Root.() -> Unit): Root {
     return Root(element, fixed, init)
 }

@@ -23,6 +23,7 @@ package pl.treksoft.kvision.chart
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.chart.js.Chart.ChartConfiguration
+import pl.treksoft.kvision.chart.js.PluginServiceGlobalRegistration
 import pl.treksoft.kvision.chart.js.Chart as JsChart
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
@@ -112,11 +113,13 @@ open class Chart(
     companion object {
 
         fun registerPlugin(plugin: dynamic) {
-            JsChart.plugins.register(plugin)
+            @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+            JsChart.plugins.register(plugin as PluginServiceGlobalRegistration)
         }
 
         fun unregisterPlugin(plugin: dynamic) {
-            JsChart.plugins.unregister(plugin)
+            @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+            JsChart.plugins.unregister(plugin as PluginServiceGlobalRegistration)
         }
     }
 }

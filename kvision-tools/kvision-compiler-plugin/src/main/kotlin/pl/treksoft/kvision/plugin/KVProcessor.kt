@@ -53,6 +53,7 @@ class KVProcessor : AbstractProcessor() {
         }
     }
 
+    @Suppress("MaxLineLength", "ComplexMethod", "NestedBlockDepth")
     override fun process(roundEnvironment: RoundEnvironment) {
         val isCommon = this.configuration.kotlinSourceRoots.find { !it.isCommon } == null
         if (isCommon) {
@@ -85,8 +86,10 @@ class KVProcessor : AbstractProcessor() {
                         appendln("        GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {")
                         cl.methods().forEach {
                             when {
-                                it.returnType.toString().startsWith("RemoteData") -> appendln("            bindTabulatorRemote($iName::${it.name})")
-                                it.returnType.toString() == "List<RemoteOption>" -> appendln("            bindSelectRemote($iName::${it.name})")
+                                it.returnType.toString().startsWith("RemoteData") ->
+                                    appendln("            bindTabulatorRemote($iName::${it.name})")
+                                it.returnType.toString() == "List<RemoteOption>" ->
+                                    appendln("            bindSelectRemote($iName::${it.name})")
                                 else -> appendln("            bind($iName::${it.name})")
                             }
                         }
@@ -180,15 +183,15 @@ class KVProcessor : AbstractProcessor() {
     }
 
     private fun getParameterList(params: List<ParameterDescriptor>): String {
-        return params.map {
+        return params.joinToString(", ") {
             "${it.name.asString()}: ${it.type}"
-        }.joinToString(", ")
+        }
     }
 
     private fun getParameterNames(params: List<ParameterDescriptor>): String {
-        return params.map {
+        return params.joinToString(", ") {
             it.name.asString()
-        }.joinToString(", ")
+        }
     }
 
     private fun getTypes(type: KotlinType): Set<String> {

@@ -241,8 +241,7 @@ open class DateTimeInput(
 
     override fun afterDestroy() {
         if (initialized) {
-            val comp = getElementJQueryD()?.data("DateTimePicker")
-            if (comp != null) comp.destroy()
+            getElementJQueryD()?.data("DateTimePicker")?.destroy()
             initialized = false
         }
     }
@@ -314,6 +313,7 @@ open class DateTimeInput(
     private fun initEventHandlers() {
         this.getElementJQuery()?.on("dp.change") { e, _ ->
             val moment = e.asDynamic().date
+            @Suppress("UnsafeCastFromDynamic")
             if (moment) {
                 this.value = moment.toDate()
             } else {

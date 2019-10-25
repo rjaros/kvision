@@ -50,7 +50,7 @@ internal object KVManagerSelect {
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.sr-SP.min.js")
         require("./js/locales/ajax-bootstrap-select/ajax-bootstrap-select.tr-TR.min.js")
         js("$.fn.selectpicker.Constructor.BootstrapVersion = '4';")
-        js("$.fn.selectpicker.Constructor.DEFAULTS.styleBase = 'form-control';");
+        js("$.fn.selectpicker.Constructor.DEFAULTS.styleBase = 'form-control';")
         js("$.fn.selectpicker.Constructor.DEFAULTS.style = '';")
     }
 

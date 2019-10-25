@@ -87,6 +87,7 @@ class LocalDateTimeDeserializer : JsonDeserializer<LocalDateTime>() {
     override fun deserialize(p: JsonParser, ctx: DeserializationContext): LocalDateTime? {
         val str = p.text
         try {
+            @Suppress("MagicNumber")
             return LocalDateTime.parse(str.dropLast(6), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
@@ -113,6 +114,7 @@ class LocalDateDeserializer : JsonDeserializer<LocalDate>() {
     override fun deserialize(p: JsonParser, ctx: DeserializationContext): LocalDate? {
         val str = p.text
         try {
+            @Suppress("MagicNumber")
             return LocalDate.parse(str.dropLast(6), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
@@ -139,6 +141,7 @@ class LocalTimeDeserializer : JsonDeserializer<LocalTime>() {
     override fun deserialize(p: JsonParser, ctx: DeserializationContext): LocalTime? {
         val str = p.text
         try {
+            @Suppress("MagicNumber")
             return LocalTime.parse(str.dropLast(6), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
@@ -164,11 +167,11 @@ class OffsetDateTimeDeserializer : JsonDeserializer<OffsetDateTime>() {
     @Throws(IOException::class)
     override fun deserialize(p: JsonParser, ctx: DeserializationContext): OffsetDateTime? {
         val str = p.text
-        try {
-            return OffsetDateTime.parse(str, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+        return try {
+            OffsetDateTime.parse(str, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
-            return null
+            null
         }
     }
 }
@@ -190,11 +193,11 @@ class OffsetTimeDeserializer : JsonDeserializer<OffsetTime>() {
     @Throws(IOException::class)
     override fun deserialize(p: JsonParser, ctx: DeserializationContext): OffsetTime? {
         val str = p.text
-        try {
-            return OffsetTime.parse(str, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+        return try {
+            OffsetTime.parse(str, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
-            return null
+            null
         }
     }
 }

@@ -514,6 +514,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             val service = ctx.getBean(serviceClass.java)
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
+            @Suppress("MagicNumber")
             if (jsonRpcRequest.params.size == 3) {
                 val param1 = getParameter<String?>(jsonRpcRequest.params[0])
                 val param2 = getParameter<String?>(jsonRpcRequest.params[1])

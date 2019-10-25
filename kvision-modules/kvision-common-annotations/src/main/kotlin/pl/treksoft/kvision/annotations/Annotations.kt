@@ -22,5 +22,4 @@
 package pl.treksoft.kvision.annotations
 
 @Target(AnnotationTarget.CLASS)
-annotation class KVService()
-
+annotation class KVService

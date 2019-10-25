@@ -423,6 +423,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routes.add {
             call(HttpMethod.POST, "/kv/$routeDef") { req, res ->
                 val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+                @Suppress("MagicNumber")
                 if (jsonRpcRequest.params.size == 3) {
                     val param1 = getParameter<String?>(jsonRpcRequest.params[0])
                     val param2 = getParameter<String?>(jsonRpcRequest.params[1])

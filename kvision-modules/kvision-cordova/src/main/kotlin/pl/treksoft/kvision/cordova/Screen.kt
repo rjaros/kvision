@@ -65,7 +65,7 @@ object Screen {
         return Orientation.values().find {
             @Suppress("UnsafeCastFromDynamic")
             it.type == type
-        } ?: Screen.Orientation.ANY
+        } ?: Orientation.ANY
     }
 
     /**

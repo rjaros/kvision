@@ -24,7 +24,6 @@ package pl.treksoft.kvision.window
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
-import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.KVManagerBootstrap
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container

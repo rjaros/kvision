@@ -65,7 +65,7 @@ object Battery {
      */
     suspend fun getStatus(): BatteryStatus {
         return suspendCoroutine { continuation ->
-            addStatusListener(Battery.BatteryEvent.BATTERY_STATUS) { status ->
+            addStatusListener(BatteryEvent.BATTERY_STATUS) { status ->
                 continuation.resume(status)
             }
         }

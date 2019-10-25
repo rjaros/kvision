@@ -389,6 +389,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param function a function of the receiver
      * @param route a route
      */
+    @Suppress("EmptyCatchBlock")
     protected actual inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
@@ -449,6 +450,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         addRoute(HttpMethod.POST, "/kv/$routeDef") {
             val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
+            @Suppress("MagicNumber")
             if (jsonRpcRequest.params.size == 3) {
                 val param1 = getParameter<String?>(jsonRpcRequest.params[0])
                 val param2 = getParameter<String?>(jsonRpcRequest.params[1])

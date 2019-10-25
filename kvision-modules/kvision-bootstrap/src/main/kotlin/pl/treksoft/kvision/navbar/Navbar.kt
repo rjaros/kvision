@@ -29,7 +29,6 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.Span
-import pl.treksoft.kvision.html.div
 import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.panel.SimplePanel
 

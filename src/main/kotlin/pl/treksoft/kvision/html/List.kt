@@ -94,7 +94,7 @@ open class ListTag(
         }
     }
 
-    @Suppress("ComplexCondition")
+    @Suppress("ComplexCondition", "ComplexMethod")
     override fun childrenVNodes(): Array<VNode> {
         val childrenElements = children.filter { it.visible }
         val res = when (type) {
