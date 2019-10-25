@@ -135,6 +135,14 @@ open class Select(
             input.selectWidthType = value
         }
     /**
+     * The dropdown align of the select control.
+     */
+    var dropdownAlign
+        get() = input.dropdownAlign
+        set(value) {
+            input.dropdownAlign = value
+        }
+    /**
      * Determines if an empty option is automatically generated.
      */
     var emptyOption

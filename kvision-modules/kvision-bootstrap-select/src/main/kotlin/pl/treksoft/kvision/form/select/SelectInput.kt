@@ -45,6 +45,15 @@ enum class SelectWidthType(internal val value: String) {
 }
 
 /**
+ * Select dropdown align. See [Bootstrap Select width](http://silviomoreto.github.io/bootstrap-select/examples/#width).
+ */
+enum class SelectDropdownAlign {
+    AUTO,
+    LEFT,
+    RIGHT
+}
+
+/**
  * The basic component for Select control.
  *
  * The select control can be populated directly from *options* parameter or manually by adding
@@ -113,6 +122,10 @@ open class SelectInput(
      * The width type of the select control.
      */
     var selectWidthType: SelectWidthType? by refreshOnUpdate()
+    /**
+     * The dropdown align of the select control.
+     */
+    var dropdownAlign by refreshOnUpdate(SelectDropdownAlign.LEFT)
     /**
      * Determines if an empty option is automatically generated.
      */
@@ -291,6 +304,15 @@ open class SelectInput(
         } ?: selectWidth?.let {
             sn.add("data-width" to it.asString())
         }
+        when (dropdownAlign) {
+            SelectDropdownAlign.RIGHT -> {
+                sn.add("data-dropdown-align-right" to "true")
+            }
+            SelectDropdownAlign.AUTO -> {
+                sn.add("data-dropdown-align-right" to "auto")
+            }
+            else -> {}
+        }
         return sn
     }
 
@@ -338,6 +360,8 @@ open class SelectInput(
                     getElementJQueryD()?.selectpicker("val", it)
                 }
             } ?: getElementJQueryD()?.selectpicker("val", null)
+        } else if (value == null) {
+            getElementJQueryD()?.selectpicker("val", null)
         }
     }
 

@@ -68,29 +68,37 @@ open class SelectRemoteInput<T : Any>(
             q = "{{{q}}}"
         }
         val tempAjaxOptions = ajaxOptions ?: AjaxOptions()
-        this.ajaxOptions = tempAjaxOptions.copy(url = url, preprocessData = {
-            @Suppress("UnsafeCastFromDynamic")
-            JSON.plain.parse(RemoteOption.serializer().list, it.result as String).map {
-                obj {
-                    this.value = it.value
-                    if (it.text != null) this.text = it.text
-                    if (it.className != null) this.`class` = it.className
-                    if (it.disabled) this.disabled = true
-                    if (it.divider) this.divider = true
-                    this.data = obj {
-                        if (it.subtext != null) this.subtext = it.subtext
-                        if (it.icon != null) this.icon = it.icon
-                        if (it.content != null) this.content = it.content
+        this.ajaxOptions = tempAjaxOptions.copy(
+            url = url,
+            preprocessData = {
+                @Suppress("UnsafeCastFromDynamic")
+                JSON.plain.parse(RemoteOption.serializer().list, it.result as String).map {
+                    obj {
+                        this.value = it.value
+                        if (it.text != null) this.text = it.text
+                        if (it.className != null) this.`class` = it.className
+                        if (it.disabled) this.disabled = true
+                        if (it.divider) this.divider = true
+                        this.data = obj {
+                            if (it.subtext != null) this.subtext = it.subtext
+                            if (it.icon != null) this.icon = it.icon
+                            if (it.content != null) this.content = it.content
+                        }
                     }
-                }
-            }.toTypedArray()
-        }, data = data, beforeSend = { _, b ->
-            @Suppress("UnsafeCastFromDynamic")
-            val q = decodeURIComponent(b.data.substring(2))
-            val state = stateFunction?.invoke()
-            b.data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(q, this.value, state)))
-            true
-        }, httpType = HttpType.valueOf(method.name), cache = false, preserveSelected = true)
+                }.toTypedArray()
+            },
+            data = data,
+            beforeSend = { _, b ->
+                @Suppress("UnsafeCastFromDynamic")
+                val q = decodeURIComponent(b.data.substring(2))
+                val state = stateFunction?.invoke()
+                b.data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(q, this.value, state)))
+                true
+            },
+            httpType = HttpType.valueOf(method.name),
+            cache = false,
+            preserveSelected = ajaxOptions?.preserveSelected ?: true
+        )
         if (value != null) {
             GlobalScope.launch {
                 val callAgent = CallAgent()
