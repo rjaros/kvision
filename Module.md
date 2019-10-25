@@ -2,6 +2,14 @@
 
 KVision - object oriented web framework for Kotlin/JS.
 
+# Package pl.treksoft.kvision
+
+KVision main Application class and some helper interfaces necessary to support Hot Module Replacement (HMR).
+
+# Package pl.treksoft.kvision.annotations
+
+Annotations for use with KVision compiler plugin.
+
 # Package pl.treksoft.kvision.core
 
 KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders, 
@@ -46,7 +54,7 @@ Checkbox, radiobutton and radiobutton group components.
 
 # Package pl.treksoft.kvision.form.select
 
-Full-featured select component with support for remote (AJAX) data source.
+Contains a simple select component as well as a full-featured component with support for remote (AJAX) data source.
 
 # Package pl.treksoft.kvision.form.spinner
 
@@ -63,10 +71,6 @@ Full-featured date and time input components.
 # Package pl.treksoft.kvision.form.upload
 
 Full-featured file upload component with drag & drop, preview and AJAX upload mode.
-
-# Package pl.treksoft.kvision.hmr
-
-Helper interfaces and classes necessary to develop applications supporting Hot Module Replacement (HMR).
 
 # Package pl.treksoft.kvision.html
 
@@ -109,6 +113,10 @@ A set of components for creating multiplatform automatic JSON-RPC connectivity w
 # Package pl.treksoft.kvision.moment
 
 A set of tools for parsing, validating, manipulating, and formatting dates based on Moment Library.
+
+# Package pl.treksoft.kvision.state
+
+Classes supporting the observer pattern, including the implementation of the observable list. 
 
 # Package pl.treksoft.kvision.tabulator
 
