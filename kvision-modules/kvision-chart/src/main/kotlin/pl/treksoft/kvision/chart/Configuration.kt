@@ -891,7 +891,8 @@ data class Configuration(
     val type: ChartType,
     val dataSets: List<DataSets>,
     val labels: List<String>? = null,
-    val options: ChartOptions? = null
+    val options: ChartOptions? = null,
+    val plugins: List<dynamic>? = null
 )
 
 /**
@@ -909,6 +910,7 @@ fun Configuration.toJs(i18nTranslator: (String) -> (String)): Chart.ChartConfigu
             }.toTypedArray()
         }
         if (options != null) this.options = options.toJs(i18nTranslator)
+        if (plugins != null) this.plugins = plugins.toTypedArray()
     } as Chart.ChartConfiguration
 }
 
