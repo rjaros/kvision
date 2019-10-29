@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision.plugin
 
-import de.jensklingenberg.mpapt.common.guessingBuildFolder
+import de.jensklingenberg.mpapt.common.canonicalFilePath
 import de.jensklingenberg.mpapt.common.methods
 import de.jensklingenberg.mpapt.model.AbstractProcessor
 import de.jensklingenberg.mpapt.model.Element
@@ -62,7 +62,9 @@ class KVProcessor : AbstractProcessor() {
                     && it.classDescriptor.name.asString().endsWith("Service")
                 ) {
                     val cl = it.classDescriptor
-                    val genRootDir = File(cl.guessingBuildFolder(), "generated-src").apply {
+                    val projectFolder = cl.canonicalFilePath()?.split("${File.separator}src")?.get(0) ?: ""
+                    val buildFolder = "$projectFolder${File.separator}build"
+                    val genRootDir = File(buildFolder, "generated-src").apply {
                         mkdirs()
                     }
                     val packageName = cl.containingDeclaration.fqNameSafe.asString()
