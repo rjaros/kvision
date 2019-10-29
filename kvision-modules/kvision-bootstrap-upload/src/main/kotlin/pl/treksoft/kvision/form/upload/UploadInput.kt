@@ -264,11 +264,15 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
 
     private fun getFiles(): List<KFile> {
         nativeFiles.clear()
-        return (getElementJQueryD()?.fileinput("getFileStack") as? Array<File>)?.toList()?.map {
-            val kFile = KFile(it.name, it.size, null)
-            nativeFiles[kFile] = it
-            kFile
-        } ?: listOf()
+        val fileStack = getElementJQueryD()?.fileinput("getFileStack")
+        val list = mutableListOf<KFile>()
+        for (key in js("Object").keys(fileStack)) {
+            val nativeFile = fileStack[key].file as File
+            val kFile = KFile(nativeFile.name, nativeFile.size, null)
+            nativeFiles[kFile] = nativeFile
+            list += kFile
+        }
+        return list
     }
 
     /**
