@@ -23,6 +23,8 @@ package pl.treksoft.kvision.remote
 
 import kotlinx.serialization.Serializable
 
+class ServiceException(message: String) : Exception(message)
+
 @Serializable
 data class RemoteOption(
     val value: String? = null,

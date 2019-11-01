@@ -71,7 +71,13 @@ open class CallAgent {
                     { data: dynamic, _: Any, _: Any ->
                         when {
                             data.id != jsonRpcRequest.id -> reject(Exception("Invalid response ID"))
-                            data.error != null -> reject(Exception(data.error.toString()))
+                            data.error != null -> {
+                                if (data.exceptionType == "pl.treksoft.kvision.remote.ServiceException") {
+                                    reject(ServiceException(data.error.toString()))
+                                } else {
+                                    reject(Exception(data.error.toString()))
+                                }
+                            }
                             data.result != null -> resolve(data.result)
                             else -> reject(Exception("Invalid response"))
                         }

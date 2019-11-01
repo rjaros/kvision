@@ -33,5 +33,6 @@ data class JsonRpcResponse(
     val id: Int? = null,
     val result: String? = null,
     val error: String? = null,
+    val exceptionType: String? = null,
     val jsonrpc: String = "2.0"
 )

@@ -124,11 +124,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     )
                 )
             } catch (e: Exception) {
-                LOG.error(e.message, e)
+                if (!(e is ServiceException)) LOG.error(e.message, e)
                 call.respond(
                     JsonRpcResponse(
                         id = jsonRpcRequest.id,
-                        error = e.message ?: "Error"
+                        error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
                     )
                 )
             }
@@ -163,11 +164,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    LOG.error(e.message, e)
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
-                            error = e.message ?: "Error"
+                            error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
                         )
                     )
                 }
@@ -211,11 +213,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    LOG.error(e.message, e)
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
-                            error = e.message ?: "Error"
+                            error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
                         )
                     )
                 }
@@ -261,11 +264,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    LOG.error(e.message, e)
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
-                            error = e.message ?: "Error"
+                            error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
                         )
                     )
                 }
@@ -312,11 +316,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    LOG.error(e.message, e)
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
-                            error = e.message ?: "Error"
+                            error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
                         )
                     )
                 }
@@ -365,11 +370,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    LOG.error(e.message, e)
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
-                            error = e.message ?: "Error"
+                            error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
                         )
                     )
                 }
@@ -464,11 +470,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    LOG.error(e.message, e)
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
-                            error = e.message ?: "Error"
+                            error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
                         )
                     )
                 }
@@ -511,11 +518,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    LOG.error(e.message, e)
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
-                            error = e.message ?: "Error"
+                            error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
                         )
                     )
                 }
