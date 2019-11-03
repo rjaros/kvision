@@ -62,8 +62,8 @@ class KVProcessor : AbstractProcessor() {
                     && it.classDescriptor.name.asString().endsWith("Service")
                 ) {
                     val cl = it.classDescriptor
-                    val projectFolder = cl.canonicalFilePath()?.split("${File.separator}src")?.get(0) ?: ""
-                    val buildFolder = "$projectFolder${File.separator}build"
+                    val projectFolder = cl.canonicalFilePath()?.split("/src")?.get(0) ?: ""
+                    val buildFolder = "$projectFolder/build"
                     val genRootDir = File(buildFolder, "generated-src").apply {
                         mkdirs()
                     }
