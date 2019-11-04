@@ -69,7 +69,12 @@ object DateSerializer : KSerializer<Date> {
     override val descriptor: SerialDescriptor = SerialClassDescImpl("kotlin.js.Date")
 
     override fun deserialize(decoder: Decoder): Date {
-        return decoder.decodeString().toDateF()
+        val str = decoder.decodeString()
+        return if (str.length == 10) {
+            "$str 00:00:00".toDateF()
+        } else {
+            str.toDateF()
+        }
     }
 
     override fun serialize(encoder: Encoder, obj: Date) {

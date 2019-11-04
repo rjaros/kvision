@@ -25,12 +25,15 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.DynamicObjectParser
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.SerializationStrategy
+import kotlinx.serialization.modules.serializersModuleOf
 import kotlinx.serialization.serializer
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.utils.JSON.toObj
 import pl.treksoft.kvision.utils.obj
+import kotlin.js.Date
 import kotlin.js.Promise
 import kotlin.js.JSON as NativeJSON
 
@@ -103,7 +106,10 @@ open class RestClient {
             } else {
                 result
             }
-            DynamicObjectParser().parse(transformed, deserializer)
+            DynamicObjectParser(context = serializersModuleOf(Date::class, DateSerializer)).parse(
+                transformed,
+                deserializer
+            )
         }
     }
 
@@ -157,7 +163,10 @@ open class RestClient {
             } else {
                 result
             }
-            DynamicObjectParser().parse(transformed, deserializer)
+            DynamicObjectParser(context = serializersModuleOf(Date::class, DateSerializer)).parse(
+                transformed,
+                deserializer
+            )
         }
     }
 
@@ -381,7 +390,12 @@ open class RestClient {
             } else {
                 result.data
             }
-            Response(DynamicObjectParser().parse(transformed, deserializer), result.textStatus, result.jqXHR)
+            Response(
+                DynamicObjectParser(context = serializersModuleOf(Date::class, DateSerializer)).parse(
+                    transformed,
+                    deserializer
+                ), result.textStatus, result.jqXHR
+            )
         }
     }
 
@@ -441,7 +455,12 @@ open class RestClient {
             } else {
                 result.data
             }
-            Response(DynamicObjectParser().parse(transformed, deserializer), result.textStatus, result.jqXHR)
+            Response(
+                DynamicObjectParser(context = serializersModuleOf(Date::class, DateSerializer)).parse(
+                    transformed,
+                    deserializer
+                ), result.textStatus, result.jqXHR
+            )
         }
     }
 
