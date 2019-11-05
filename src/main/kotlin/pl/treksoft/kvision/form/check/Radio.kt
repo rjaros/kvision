@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.BoolFormControl
 import pl.treksoft.kvision.form.FieldLabel
+import pl.treksoft.kvision.form.FormHorizontalRatio
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.SnOn
@@ -189,11 +190,11 @@ open class Radio(
         input.blur()
     }
 
-    override fun styleForHorizontalFormPanel() {
+    override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
         addCssClass("form-group")
         addSurroundingCssClass("row")
-        addCssClass("offset-sm-2")
-        addCssClass("col-sm-10")
+        addCssClass("offset-sm-${horizontalRatio.labels}")
+        addCssClass("col-sm-${horizontalRatio.fields}")
     }
 
     override fun styleForInlineFormPanel() {

@@ -186,13 +186,13 @@ interface FormControl : Component {
     /**
      * Style form control element for horizontal form panel.
      */
-    fun styleForHorizontalFormPanel() {
+    fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
         addCssClass("row")
-        flabel.addCssClass("col-sm-2")
+        flabel.addCssClass("col-sm-${horizontalRatio.labels}")
         flabel.addCssClass("col-form-label")
-        input.addCssClass("col-sm-10")
-        invalidFeedback.addCssClass("offset-sm-2")
-        invalidFeedback.addCssClass("col-sm-10")
+        input.addCssClass("col-sm-${horizontalRatio.fields}")
+        invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
+        invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
     }
 
     /**

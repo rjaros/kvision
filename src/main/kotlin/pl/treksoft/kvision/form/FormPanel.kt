@@ -45,6 +45,21 @@ enum class FormType(internal val formType: String) {
 }
 
 /**
+ * Proportions for horizontal form layout.
+ */
+enum class FormHorizontalRatio(val labels: Int, val fields: Int) {
+    RATIO_2(2, 10),
+    RATIO_3(3, 9),
+    RATIO_4(4, 8),
+    RATIO_5(5, 7),
+    RATIO_6(6, 6),
+    RATIO_7(7, 5),
+    RATIO_8(8, 4),
+    RATIO_9(9, 3),
+    RATIO_10(10, 2)
+}
+
+/**
  * Form methods.
  */
 enum class FormMethod(internal val method: String) {
@@ -81,13 +96,15 @@ enum class FormTarget(internal val target: String) {
  * @param enctype form encoding type
  * @param type form layout
  * @param condensed  determines if the form is condensed.
+ * @param horizRatio  horizontal form layout ratio
  * @param classes set of CSS class names
  * @param serializer a serializer for model type
  */
 @Suppress("TooManyFunctions")
 open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-    private val type: FormType? = null, condensed: Boolean = false, classes: Set<String> = setOf(),
+    private val type: FormType? = null, condensed: Boolean = false,
+    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
     serializer: KSerializer<K>
 ) : SimplePanel(classes) {
 
@@ -123,6 +140,10 @@ open class FormPanel<K : Any>(
      * Determines if the form is condensed.
      */
     var condensed by refreshOnUpdate(condensed)
+    /**
+     * Horizontal form layout ratio.
+     */
+    var horizRatio by refreshOnUpdate(horizRatio)
 
     /**
      * Function returning validation message.
@@ -215,7 +236,7 @@ open class FormPanel<K : Any>(
     ): FormPanel<K> {
         when (type) {
             FormType.INLINE -> control.styleForInlineFormPanel()
-            FormType.HORIZONTAL -> control.styleForHorizontalFormPanel()
+            FormType.HORIZONTAL -> control.styleForHorizontalFormPanel(horizRatio)
             else -> control.styleForVerticalFormPanel()
         }
         super.add(control)
@@ -395,10 +416,12 @@ open class FormPanel<K : Any>(
         @UseExperimental(ImplicitReflectionSerializer::class)
         inline fun <reified K : Any> create(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-            type: FormType? = null, condensed: Boolean = false, classes: Set<String> = setOf(),
+            type: FormType? = null, condensed: Boolean = false,
+            horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
             noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
-            val formPanel = FormPanel(method, action, enctype, type, condensed, classes, K::class.serializer())
+            val formPanel =
+                FormPanel(method, action, enctype, type, condensed, horizRatio, classes, K::class.serializer())
             init?.invoke(formPanel)
             return formPanel
         }
@@ -413,10 +436,11 @@ open class FormPanel<K : Any>(
  */
 inline fun <reified K : Any> Container.formPanel(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-    type: FormType? = null, condensed: Boolean = false, classes: Set<String> = setOf(),
+    type: FormType? = null, condensed: Boolean = false,
+    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
     noinline init: (FormPanel<K>.() -> Unit)? = null
 ): FormPanel<K> {
-    val formPanel = create<K>(method, action, enctype, type, condensed, classes)
+    val formPanel = create<K>(method, action, enctype, type, condensed, horizRatio, classes)
     init?.invoke(formPanel)
     this.add(formPanel)
     return formPanel

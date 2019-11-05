@@ -25,6 +25,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.FieldLabel
+import pl.treksoft.kvision.form.FormHorizontalRatio
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.StringFormControl
@@ -216,13 +217,13 @@ open class RadioGroup(
         container.getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
     }
 
-    override fun styleForHorizontalFormPanel() {
+    override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
         addCssClass("row")
-        flabel.addCssClass("col-sm-2")
+        flabel.addCssClass("col-sm-${horizontalRatio.labels}")
         flabel.addCssClass("col-form-label")
-        container.addCssClass("col-sm-10")
-        invalidFeedback.addCssClass("offset-sm-2")
-        invalidFeedback.addCssClass("col-sm-10")
+        container.addCssClass("col-sm-${horizontalRatio.fields}")
+        invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
+        invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
     }
 
     companion object {
