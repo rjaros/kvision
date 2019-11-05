@@ -22,7 +22,7 @@
 package pl.treksoft.kvision.form.select
 
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.asDeferred
+import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.list
@@ -48,6 +48,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param stateFunction a function to generate the state object passed with the remote request
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote data source
+ * @param preload preload all options from remote data source
  * @param classes a set of CSS class names
  */
 @UseExperimental(ImplicitReflectionSerializer::class)
@@ -55,75 +56,125 @@ open class SelectRemoteInput<T : Any>(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
-    stateFunction: (() -> String)? = null,
+    private val stateFunction: (() -> String)? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
+    private val preload: Boolean = false,
     classes: Set<String> = setOf()
 ) : SelectInput(null, value, multiple, null, classes) {
+    private val url: String
+    private val labelsCache = mutableMapOf<String, String>()
+    private var initRun = false
+
     init {
-        val (url, method) =
+        val (_url, method) =
             serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
-        val data = obj {
-            q = "{{{q}}}"
-        }
-        val tempAjaxOptions = ajaxOptions ?: AjaxOptions()
-        this.ajaxOptions = tempAjaxOptions.copy(
-            url = url,
-            preprocessData = {
-                @Suppress("UnsafeCastFromDynamic")
-                JSON.plain.parse(RemoteOption.serializer().list, it.result as String).map {
-                    obj {
-                        this.value = it.value
-                        if (it.text != null) this.text = it.text
-                        if (it.className != null) this.`class` = it.className
-                        if (it.disabled) this.disabled = true
-                        if (it.divider) this.divider = true
-                        this.data = obj {
-                            if (it.subtext != null) this.subtext = it.subtext
-                            if (it.icon != null) this.icon = it.icon
-                            if (it.content != null) this.content = it.content
+        this.url = _url
+        if (!preload) {
+            val data = obj {
+                q = "{{{q}}}"
+            }
+            val tempAjaxOptions = ajaxOptions ?: AjaxOptions()
+            this.ajaxOptions = tempAjaxOptions.copy(
+                url = url,
+                preprocessData = {
+                    @Suppress("UnsafeCastFromDynamic")
+                    JSON.plain.parse(RemoteOption.serializer().list, it.result as String).map {
+                        obj {
+                            this.value = it.value
+                            if (it.text != null) this.text = it.text
+                            if (it.className != null) this.`class` = it.className
+                            if (it.disabled) this.disabled = true
+                            if (it.divider) this.divider = true
+                            this.data = obj {
+                                if (it.subtext != null) this.subtext = it.subtext
+                                if (it.icon != null) this.icon = it.icon
+                                if (it.content != null) this.content = it.content
+                            }
                         }
+                    }.toTypedArray()
+                },
+                data = data,
+                beforeSend = { _, b ->
+                    @Suppress("UnsafeCastFromDynamic")
+                    val q = decodeURIComponent(b.data.substring(2))
+                    val state = stateFunction?.invoke()
+                    b.data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(q, this.value, state)))
+                    true
+                },
+                httpType = HttpType.valueOf(method.name),
+                cache = false,
+                preserveSelected = ajaxOptions?.preserveSelected ?: true
+            )
+            if (this.ajaxOptions?.emptyRequest == true) {
+                this.setInternalEventListener<SelectRemote<*>> {
+                    shownBsSelect = {
+                        val input = self.getElementJQuery()?.parent()?.find("input")
+                        input?.trigger("keyup", null)
+                        input?.hide(0)
                     }
-                }.toTypedArray()
-            },
-            data = data,
-            beforeSend = { _, b ->
-                @Suppress("UnsafeCastFromDynamic")
-                val q = decodeURIComponent(b.data.substring(2))
-                val state = stateFunction?.invoke()
-                b.data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(q, this.value, state)))
-                true
-            },
-            httpType = HttpType.valueOf(method.name),
-            cache = false,
-            preserveSelected = ajaxOptions?.preserveSelected ?: true
-        )
-        if (value != null) {
+                }
+
+            }
+        } else {
             GlobalScope.launch {
                 val callAgent = CallAgent()
                 val state = stateFunction?.invoke()
-                val initials = callAgent.remoteCall(
+                val values = callAgent.remoteCall(
                     url,
-                    JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, value, state))),
+                    JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, null, state))),
                     HttpMethod.POST
-                ).asDeferred().await()
-                JSON.plain.parse(RemoteOption.serializer().list, initials.result as String).map {
-                    add(SelectOption(it.value, it.text, selected = true))
+                ).await()
+                JSON.plain.parse(RemoteOption.serializer().list, values.result as String).forEach {
+                    add(
+                        SelectOption(
+                            it.value,
+                            it.text,
+                            it.subtext,
+                            it.icon,
+                            it.divider,
+                            it.disabled,
+                            false,
+                            it.className?.let { setOf(it) } ?: setOf()))
                 }
-                this@SelectRemoteInput.refreshSelectInput()
             }
         }
-        if (this.ajaxOptions?.emptyRequest == true) {
-            this.setInternalEventListener<SelectRemote<*>> {
-                shownBsSelect = {
-                    val input = self.getElementJQuery()?.parent()?.find("input")
-                    input?.trigger("keyup", null)
-                    input?.hide(0)
-                }
-            }
+    }
 
-        }
+    @Suppress("UnsafeCastFromDynamic")
+    override fun refreshState() {
+        value?.let {
+            if (multiple) {
+                getElementJQueryD()?.selectpicker("val", it.split(",").toTypedArray())
+            } else {
+                getElementJQueryD()?.selectpicker("val", it)
+            }
+            val elementValue = getElementJQuery()?.`val`()
+            @Suppress("SimplifyBooleanWithConstants")
+            if (!preload && elementValue == null && initRun == false) {
+                initRun = true
+                GlobalScope.launch {
+                    val labels = labelsCache.getOrPut(it) {
+                        val callAgent = CallAgent()
+                        val state = stateFunction?.invoke()
+                        val initials = callAgent.remoteCall(
+                            url,
+                            JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, it, state))),
+                            HttpMethod.POST
+                        ).await()
+                        JSON.plain.parse(RemoteOption.serializer().list, initials.result as String).map {
+                            it.text
+                        }.filterNotNull().joinToString(", ")
+                    }
+                    val button = getElementJQuery()?.next()
+                    button?.removeClass("bs-placeholder")
+                    button?.prop("title", labels)
+                    button?.find(".filter-option-inner-inner")?.html(labels)
+                    initRun = false
+                }
+            }
+        } ?: getElementJQueryD()?.selectpicker("val", null)
     }
 }
 
@@ -139,10 +190,20 @@ fun <T : Any> Container.selectRemoteInput(
     stateFunction: (() -> String)? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
+    preload: Boolean = false,
     classes: Set<String> = setOf(), init: (SelectRemoteInput<T>.() -> Unit)? = null
 ): SelectRemoteInput<T> {
     val selectRemoteInput =
-        SelectRemoteInput(value, serviceManager, function, stateFunction, multiple, ajaxOptions, classes).apply {
+        SelectRemoteInput(
+            value,
+            serviceManager,
+            function,
+            stateFunction,
+            multiple,
+            ajaxOptions,
+            preload,
+            classes
+        ).apply {
             init?.invoke(this)
         }
     this.add(selectRemoteInput)

@@ -44,6 +44,7 @@ import pl.treksoft.kvision.utils.SnOn
  * @param name the name attribute of the generated HTML input element
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote data source
+ * @param preload preload all options from remote data source
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  */
@@ -56,6 +57,7 @@ open class SelectRemote<T : Any>(
     name: String? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
+    preload: Boolean = false,
     label: String? = null,
     rich: Boolean = false
 ) : SimplePanel(setOf("form-group")), StringFormControl {
@@ -158,7 +160,7 @@ open class SelectRemote<T : Any>(
 
     private val idc = "kv_form_SelectRemote_$counter"
     final override val input: SelectRemoteInput<T> = SelectRemoteInput(
-        value, serviceManager, function, stateFunction, multiple, ajaxOptions,
+        value, serviceManager, function, stateFunction, multiple, ajaxOptions, preload,
         setOf("form-control")
     ).apply {
         this.id = idc
@@ -267,8 +269,8 @@ fun <T : Any> Container.selectRemote(
     value: String? = null,
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
-    name: String? = null, multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
-    rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
+    name: String? = null, multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, preload: Boolean = false,
+    label: String? = null, rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
 ): SelectRemote<T> {
     val selectRemote =
         SelectRemote(
@@ -279,6 +281,7 @@ fun <T : Any> Container.selectRemote(
             name,
             multiple,
             ajaxOptions,
+            preload,
             label,
             rich
         ).apply { init?.invoke(this) }

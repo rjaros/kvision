@@ -351,7 +351,7 @@ open class SelectInput(
     }
 
     @Suppress("UnsafeCastFromDynamic")
-    private fun refreshState() {
+    protected open fun refreshState() {
         if (ajaxOptions == null) {
             value?.let {
                 if (multiple) {
