@@ -352,11 +352,7 @@ open class RestClient {
                         } else {
                             errorText
                         }
-                        if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
-                            reject(SecurityException(message))
-                        } else {
-                            reject(Exception(message))
-                        }
+                        reject(Exception(message))
                     }
                 this.beforeSend = beforeSend
             })
