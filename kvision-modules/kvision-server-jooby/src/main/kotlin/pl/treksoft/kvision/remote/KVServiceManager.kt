@@ -23,6 +23,7 @@ package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.inject.Injector
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
@@ -528,7 +529,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             if (T::class == String::class) {
                 str as T
             } else {
-                mapper.readValue(str, T::class.java)
+                mapper.readValue(str)
             }
         } ?: null as T
     }

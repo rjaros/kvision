@@ -23,6 +23,7 @@ package pl.treksoft.kvision.remote
 
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
@@ -48,7 +49,6 @@ import java.time.LocalTime
 import java.time.OffsetDateTime
 import java.time.OffsetTime
 import kotlin.reflect.KClass
-
 
 /**
  * Multiplatform service manager for Spring Boot.
@@ -640,7 +640,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             if (T::class == String::class) {
                 str as T
             } else {
-                mapper.readValue(str, T::class.java)
+                mapper.readValue(str)
             }
         } ?: null as T
     }
