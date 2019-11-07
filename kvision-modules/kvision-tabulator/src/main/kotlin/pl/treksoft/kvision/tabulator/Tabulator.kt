@@ -372,6 +372,13 @@ open class Tabulator<T : Any>(
     }
 
     /**
+     * Reload table data.
+     */
+    open fun reload() {
+        jsTabulator?.setData(null, null, null)
+    }
+
+    /**
      * Change the height of the table.
      * @param height new heigth of the table
      */
