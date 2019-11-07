@@ -42,6 +42,7 @@ import pl.treksoft.kvision.utils.JSON
  * @param E type of service manager
  * @param serviceManager multiplatform service manager
  * @param function multiplatform service method returning tabulator rows data
+ * @param stateFunction a function to generate the state object passed with the remote request
  * @param options tabulator options
  * @param types a set of table types
  * @param classes a set of CSS class names
@@ -49,7 +50,8 @@ import pl.treksoft.kvision.utils.JSON
 @UseExperimental(ImplicitReflectionSerializer::class)
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceManager<E>,
-    function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
+    function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
+    stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     classes: Set<String> = setOf()
@@ -76,8 +78,9 @@ open class TabulatorRemote<T : Any, E : Any>(
             } else {
                 null
             }
+            val state = stateFunction?.invoke()
             @Suppress("UnsafeCastFromDynamic")
-            val data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(page, size, filters, sorters)))
+            val data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
             restClient.remoteCall(url, data, method = HttpMethod.valueOf(method.name)).then { r: dynamic ->
                 val result = kotlin.js.JSON.parse<dynamic>(r.result as String)
                 @Suppress("UnsafeCastFromDynamic")
@@ -98,13 +101,14 @@ open class TabulatorRemote<T : Any, E : Any>(
  */
 fun <T : Any, E : Any> Container.tabulatorRemote(
     serviceManager: KVServiceManager<E>,
-    function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<T>,
+    function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
+    stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     classes: Set<String> = setOf(),
     init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
-    val tabulatorRemote = TabulatorRemote(serviceManager, function, options, types, classes)
+    val tabulatorRemote = TabulatorRemote(serviceManager, function, stateFunction, options, types, classes)
     init?.invoke(tabulatorRemote)
     this.add(tabulatorRemote)
     return tabulatorRemote

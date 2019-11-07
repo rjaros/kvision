@@ -566,7 +566,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bindTabulatorRemote(
-        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?) -> RemoteData<RET>
+        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         addRoute(HttpMethod.POST, "/kv/$routeDef") { req, ctx ->
@@ -574,14 +574,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
             @Suppress("MagicNumber")
-            if (jsonRpcRequest.params.size == 4) {
+            if (jsonRpcRequest.params.size == 5) {
                 val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
                 val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
                 val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
                 @Suppress("MagicNumber")
                 val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
+                @Suppress("MagicNumber")
+                val param5 = getParameter<String?>(jsonRpcRequest.params[4])
                 try {
-                    val result = function.invoke(service, param1, param2, param3, param4)
+                    val result = function.invoke(service, param1, param2, param3, param4, param5)
                     ServerResponse.ok().json().bodyValueAndAwait(
                         mapper.writeValueAsString(
                             JsonRpcResponse(
