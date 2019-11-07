@@ -61,9 +61,17 @@ class KVProcessor : AbstractProcessor() {
                 if (it is Element.ClassElement && it.classDescriptor.name.asString().startsWith("I")
                     && it.classDescriptor.name.asString().endsWith("Service")
                 ) {
+                    tailrec fun findBuildFolder(path: String): String {
+                        val preSrcDir = path.substringBeforeLast("/src")
+                        return if (path == preSrcDir || File(preSrcDir, "build").isDirectory) {
+                            "$preSrcDir/build"
+                        } else {
+                            findBuildFolder(preSrcDir)
+                        }
+                    }
+
                     val cl = it.classDescriptor
-                    val projectFolder = cl.canonicalFilePath()?.split("/src")?.get(0) ?: ""
-                    val buildFolder = "$projectFolder/build"
+                    val buildFolder = cl.canonicalFilePath()?.let { path -> findBuildFolder(path) }
                     val genRootDir = File(buildFolder, "generated-src").apply {
                         mkdirs()
                     }
