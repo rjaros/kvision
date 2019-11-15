@@ -155,6 +155,19 @@ open class Button(
         }
         return this
     }
+    /**
+     * Makes the button focused.
+     */
+    open fun focus() {
+        getElementJQuery()?.focus()
+    }
+
+    /**
+     * Makes the button blur.
+     */
+    open fun blur() {
+        getElementJQuery()?.blur()
+    }
 }
 
 /**
