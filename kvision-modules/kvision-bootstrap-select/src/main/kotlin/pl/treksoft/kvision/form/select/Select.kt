@@ -209,7 +209,9 @@ open class Select(
         return this
     }
 
+    @Deprecated("Use onEvent extension function instead.", ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent"))
     override fun setEventListener(block: SnOn<Widget>.() -> Unit): Widget {
+        @Suppress("DEPRECATION")
         input.setEventListener(block)
         return this
     }

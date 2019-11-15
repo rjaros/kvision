@@ -175,7 +175,7 @@ open class TabPanel(
                     }
                 }
             }
-            setEventListener {
+            setEventListener<Tag> {
                 click = { e ->
                     activeIndex = this@TabPanel.content.getChildren().indexOf(childrenMap[currentIndex])
                     e.preventDefault()

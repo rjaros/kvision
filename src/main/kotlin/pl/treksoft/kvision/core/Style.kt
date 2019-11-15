@@ -106,7 +106,7 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
  */
 fun Widget.style(className: String? = null, init: (Style.() -> Unit)? = null): Style {
     val style = Style(className, null, init)
-    this.addCssClass(style)
+    this.addCssStyle(style)
     return style
 }
 

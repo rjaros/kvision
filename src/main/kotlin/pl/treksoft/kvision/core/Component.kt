@@ -52,7 +52,7 @@ interface Component {
      * @param css CSS style object
      * @return current component
      */
-    fun addCssClass(css: Style): Component
+    fun addCssStyle(css: Style): Component
 
     /**
      * Removes given value from the set of CSS classes generated in html code of current component.
@@ -66,7 +66,7 @@ interface Component {
      * @param css CSS style object
      * @return current component
      */
-    fun removeCssClass(css: Style): Component
+    fun removeCssStyle(css: Style): Component
 
     /**
      * Adds given value to the set of CSS classes generated in html code of parent component.
@@ -80,7 +80,7 @@ interface Component {
      * @param css CSS style object
      * @return current component
      */
-    fun addSurroundingCssClass(css: Style): Component
+    fun addSurroundingCssStyle(css: Style): Component
 
     /**
      * Removes given value from the set of CSS classes generated in html code of parent component.
@@ -94,7 +94,7 @@ interface Component {
      * @param css CSS style object
      * @return current component
      */
-    fun removeSurroundingCssClass(css: Style): Component
+    fun removeSurroundingCssStyle(css: Style): Component
 
     /**
      * Returns the value of an additional attribute.

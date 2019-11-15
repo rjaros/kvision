@@ -358,16 +358,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     /**
-     * @suppress
-     * Internal function
-     */
-    protected fun setInternalEventListener(block: SnOn<Widget>.() -> Unit): Widget {
-        internalListeners.add(block)
-        refresh()
-        return this
-    }
-
-    /**
      * Sets an event listener for current widget, keeping the actual type of component.
      * @param T widget type
      * @param block event handler
@@ -403,6 +393,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      *          }
      *      }
      */
+    @Deprecated("Use onEvent extension function instead.", ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent"))
     open fun setEventListener(block: SnOn<Widget>.() -> Unit): Widget {
         listeners.add(block)
         refresh()
@@ -568,19 +559,19 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         return this
     }
 
-    override fun addCssClass(css: Style): Widget {
+    override fun addCssStyle(css: Style): Widget {
         return addCssClass(css.className)
     }
 
-    override fun removeCssClass(css: Style): Widget {
+    override fun removeCssStyle(css: Style): Widget {
         return removeCssClass(css.className)
     }
 
-    override fun addSurroundingCssClass(css: Style): Widget {
+    override fun addSurroundingCssStyle(css: Style): Widget {
         return addSurroundingCssClass(css.className)
     }
 
-    override fun removeSurroundingCssClass(css: Style): Widget {
+    override fun removeSurroundingCssStyle(css: Style): Widget {
         return removeSurroundingCssClass(css.className)
     }
 
@@ -826,4 +817,8 @@ fun Container.widget(classes: Set<String> = setOf(), init: (Widget.() -> Unit)? 
     val widget = Widget(classes).apply { init?.invoke(this) }
     this.add(widget)
     return widget
+}
+
+inline fun <reified T : Widget> T.onEvent(noinline block: SnOn<T>.() -> Unit): Widget {
+    return this.setEventListener(block)
 }

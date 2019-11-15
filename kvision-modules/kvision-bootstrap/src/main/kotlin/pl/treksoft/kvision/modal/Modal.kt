@@ -120,7 +120,7 @@ open class Modal(
         dialog.role = "document"
         dialog.add(content)
         closeIcon.visible = closeButton
-        closeIcon.setEventListener {
+        closeIcon.setEventListener<CloseIcon> {
             click = {
                 hide()
             }

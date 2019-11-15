@@ -77,13 +77,13 @@ open class Alert(
     init {
         body.add(contentTag)
         val okButton = Button("OK", "fas fa-check", ButtonStyle.PRIMARY)
-        okButton.setEventListener {
+        okButton.setEventListener<Button> {
             click = {
                 hide()
             }
         }
         this.addButton(okButton)
-        this.setEventListener {
+        this.setEventListener<Button> {
             keydown = { e ->
                 if (e.keyCode == ENTER_KEY) {
                     hide()

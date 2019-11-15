@@ -114,20 +114,20 @@ open class Confirm(
 
     init {
         body.add(contentTag)
-        cancelButton.setEventListener {
+        cancelButton.setEventListener<Button> {
             click = {
                 hide()
             }
         }
         this.addButton(cancelButton)
-        noButton.setEventListener {
+        noButton.setEventListener<Button> {
             click = {
                 hide()
                 noCallback?.invoke()
             }
         }
         this.addButton(noButton)
-        yesButton.setEventListener {
+        yesButton.setEventListener<Button> {
             click = {
                 hide()
                 yesCallback?.invoke()

@@ -189,7 +189,7 @@ open class Window(
         captionTag.add(windowIcon)
         header.add(iconsContainer)
         minimizeIcon.visible = minimizeButton
-        minimizeIcon.setEventListener {
+        minimizeIcon.setEventListener<MinimizeIcon> {
             click = { _ ->
                 @Suppress("UnsafeCastFromDynamic")
                 if (this@Window.dispatchEvent("minimizeWindow", obj {}) != false) {
@@ -202,7 +202,7 @@ open class Window(
         }
         iconsContainer.add(minimizeIcon)
         maximizeIcon.visible = maximizeButton
-        maximizeIcon.setEventListener {
+        maximizeIcon.setEventListener<MaximizeIcon> {
             click = { _ ->
                 @Suppress("UnsafeCastFromDynamic")
                 if (this@Window.dispatchEvent("maximizeWindow", obj {}) != false) {
@@ -215,7 +215,7 @@ open class Window(
         }
         iconsContainer.add(maximizeIcon)
         closeIcon.visible = closeButton
-        closeIcon.setEventListener {
+        closeIcon.setEventListener<CloseIcon> {
             click = { _ ->
                 @Suppress("UnsafeCastFromDynamic")
                 if (this@Window.dispatchEvent("closeWindow", obj {}) != false) {
