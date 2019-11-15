@@ -37,6 +37,7 @@ import pl.treksoft.kvision.html.Tag
  * @param align text align
  * @param size modal window size
  * @param animation determines if animations are used
+ * @param centered determines if modal dialog is vertically centered
  * @param cancelVisible determines if Cancel button is visible
  * @param yesTitle yes button text
  * @param noTitle no button text
@@ -46,11 +47,11 @@ import pl.treksoft.kvision.html.Tag
  */
 open class Confirm(
     caption: String? = null, text: String? = null, rich: Boolean = false,
-    align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
+    align: Align? = null, size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
     cancelVisible: Boolean = false, yesTitle: String = "Yes", noTitle: String = "No", cancelTitle: String = "Cancel",
     private val noCallback: (() -> Unit)? = null,
     private val yesCallback: (() -> Unit)? = null
-) : Modal(caption, false, size, animation, false) {
+) : Modal(caption, false, size, animation, centered, false) {
     /**
      * Window content text.
      */
@@ -156,6 +157,7 @@ open class Confirm(
          * @param align text align
          * @param size modal window size
          * @param animation determines if animations are used
+         * @param centered determines if modal dialog is vertically centered
          * @param cancelVisible determines if Cancel button is visible
          * @param noCallback a function called after closing window with No button
          * @param yesCallback a function called after closing window with Yes button
@@ -163,12 +165,12 @@ open class Confirm(
         @Suppress("LongParameterList")
         fun show(
             caption: String? = null, text: String? = null, rich: Boolean = false,
-            align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
+            align: Align? = null, size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
             cancelVisible: Boolean = false, yesTitle: String = "Yes", noTitle: String = "No",
             cancelTitle: String = "Cancel", noCallback: (() -> Unit)? = null, yesCallback: (() -> Unit)? = null
         ) {
             Confirm(
-                caption, text, rich, align, size, animation, cancelVisible, yesTitle, noTitle, cancelTitle,
+                caption, text, rich, align, size, animation, centered, cancelVisible, yesTitle, noTitle, cancelTitle,
                 noCallback, yesCallback
             ).show()
         }

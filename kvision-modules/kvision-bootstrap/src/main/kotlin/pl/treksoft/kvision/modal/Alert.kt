@@ -23,8 +23,8 @@ package pl.treksoft.kvision.modal
 
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.Align
-import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.Button
+import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.utils.ENTER_KEY
@@ -39,13 +39,14 @@ import pl.treksoft.kvision.utils.ENTER_KEY
  * @param align text align
  * @param size modal window size
  * @param animation determines if animations are used
+ * @param centered determines if modal dialog is vertically centered
  * @param callback a function called after closing window with OK button
  */
 open class Alert(
     caption: String? = null, text: String? = null, rich: Boolean = false,
-    align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
+    align: Align? = null, size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
     private val callback: (() -> Unit)? = null
-) : Modal(caption, true, size, animation) {
+) : Modal(caption, true, size, animation, centered) {
 
     /**
      * Window content text.
@@ -107,15 +108,16 @@ open class Alert(
          * @param align text align
          * @param size modal window size
          * @param animation determines if animations are used
+         * @param centered determines if modal dialog is vertically centered
          * @param callback a function called after closing window with OK button
          */
         @Suppress("LongParameterList")
         fun show(
             caption: String? = null, text: String? = null, rich: Boolean = false,
             align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
-            callback: (() -> Unit)? = null
+            centered: Boolean = false, callback: (() -> Unit)? = null
         ) {
-            Alert(caption, text, rich, align, size, animation, callback).show()
+            Alert(caption, text, rich, align, size, animation, centered, callback).show()
         }
     }
 }

@@ -52,6 +52,7 @@ enum class ModalSize(val className: String) {
  * @param closeButton determines if Close button is visible
  * @param size modal window size
  * @param animation determines if animations are used
+ * @param centered determines if modal dialog is vertically centered
  * @param escape determines if dialog can be closed with Esc key
  * @param classes a set of CSS class names
  * @param init an initializer extension function
@@ -59,7 +60,7 @@ enum class ModalSize(val className: String) {
 @Suppress("TooManyFunctions")
 open class Modal(
     caption: String? = null, closeButton: Boolean = true,
-    size: ModalSize? = null, animation: Boolean = true, private val escape: Boolean = true,
+    size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false, private val escape: Boolean = true,
     classes: Set<String> = setOf(), init: (Modal.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -95,8 +96,16 @@ open class Modal(
      * Determines if animations are used.
      */
     var animation by refreshOnUpdate(animation)
+    /**
+     * Determines if modal dialog is vertically centered.
+     */
+    var centered
+        get() = dialog.centered
+        set(value) {
+            dialog.centered = value
+        }
 
-    private val dialog = ModalDialog(size)
+    private val dialog = ModalDialog(size, centered)
     private val header = SimplePanel(setOf("modal-header"))
     /**
      * @suppress
@@ -273,18 +282,27 @@ open class Modal(
  *
  * @constructor
  * @param size modal window size
+ * @param centered determines if modal dialog is vertically centered
  */
-internal class ModalDialog(size: ModalSize?) : SimplePanel(setOf("modal-dialog")) {
+internal class ModalDialog(size: ModalSize?, centered: Boolean = false) : SimplePanel(setOf("modal-dialog")) {
 
     /**
      * Modal window size.
      */
     var size by refreshOnUpdate(size)
 
+    /**
+     * Determines if modal dialog is vertically centered.
+     */
+    var centered by refreshOnUpdate(centered)
+
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         size?.let {
             cl.add(it.className to true)
+        }
+        if (centered) {
+            cl.add("modal-dialog-centered" to true)
         }
         return cl
     }
