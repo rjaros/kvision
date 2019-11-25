@@ -261,6 +261,7 @@ fun DownloadConfig.toJs(): Tabulator.DownloadConfig {
 data class ColumnDefinition<T : Any>(
     val title: String,
     val field: String? = null,
+    val columns: List<ColumnDefinition<T>>? = null,
     val visible: Boolean? = null,
     val align: Align? = null,
     val width: String? = null,
@@ -429,6 +430,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
     return obj {
         this.title = i18nTranslator(title)
         if (field != null) this.field = field
+        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator) }.toTypedArray()
         if (visible != null) this.visible = visible
         if (align != null) this.align = align.align
         if (width != null) this.width = width
@@ -708,7 +710,8 @@ data class TabulatorOptions<T : Any>(
 fun <T : Any> TabulatorOptions<T>.toJs(
     i18nTranslator: (String) -> (String)
 ): Tabulator.Options {
-    val tmpCellEditCancelled = this.columns?.find { it.editorComponentFunction != null }?.let {
+    val allColumns = this.columns?.let { c -> c + c.mapNotNull { it.columns }.flatten() }
+    val tmpCellEditCancelled = allColumns?.find { it.editorComponentFunction != null }?.let {
         { cell: Tabulator.CellComponent ->
             cellEditCancelled?.invoke(cell)
             cell.getTable().redraw(true)
