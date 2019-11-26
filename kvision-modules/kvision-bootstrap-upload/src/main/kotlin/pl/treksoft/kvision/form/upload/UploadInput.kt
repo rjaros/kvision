@@ -268,7 +268,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
         val list = mutableListOf<KFile>()
         for (key in js("Object").keys(fileStack)) {
             val nativeFile = fileStack[key].file as File
-            val kFile = KFile(nativeFile.name, nativeFile.size, null)
+            val kFile = KFile(nativeFile.name, nativeFile.size.toInt(), null)
             nativeFiles[kFile] = nativeFile
             list += kFile
         }
