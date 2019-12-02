@@ -104,6 +104,11 @@ trix-toolbar .trix-button-group {
     min-width: 200px;
 }
 
+label.required-label::after {
+    content: " *";
+    color: #dc3545;
+}
+
 .kv-spinner-btn-none .input-group-btn-vertical {
   display: none;
 }

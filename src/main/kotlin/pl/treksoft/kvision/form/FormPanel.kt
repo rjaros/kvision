@@ -239,6 +239,7 @@ open class FormPanel<K : Any>(
             FormType.HORIZONTAL -> control.styleForHorizontalFormPanel(horizRatio)
             else -> control.styleForVerticalFormPanel()
         }
+        if (required) control.flabel.addCssClass("required-label")
         super.add(control)
         form.addInternal(key, control, required, requiredMessage, validatorMessage, validator)
         return this
