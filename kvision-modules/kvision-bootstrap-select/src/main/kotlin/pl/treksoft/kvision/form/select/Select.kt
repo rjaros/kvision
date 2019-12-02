@@ -199,6 +199,7 @@ open class Select(
         val cl = super.getSnClass().toMutableList()
         if (validatorError != null) {
             cl.add("text-danger" to true)
+            cl.add("select-parent" to true)
         }
         return cl
     }

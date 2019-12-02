@@ -93,6 +93,13 @@ trix-toolbar .trix-button-group {
     margin-left: -1em !important;
 }
 
+.select-parent.text-danger>.invalid-feedback {
+    display: block;
+}
+.select-parent.text-danger>div.form-control>button.form-control {
+    border-color: #dc3545;
+}
+
 .form-inline .bootstrap-select .form-control {
     min-width: 200px;
 }
