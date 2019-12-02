@@ -181,6 +181,10 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.fileinput(getSettingsObj())
+        getElementJQuery()?.parent()?.parent()?.parent()?.find("div.kv-fileinput-caption")?.removeAttr("tabindex")
+        getElementJQuery()?.parent()?.parent()?.parent()?.find("input.file-caption-name")?.attr("tabindex", "-1")
+        getElementJQuery()?.parent()?.parent()?.parent()?.find("button.fileinput-remove")?.removeAttr("tabindex")
+        getElementJQuery()?.parent()?.parent()?.parent()?.find("div.btn-file")?.removeAttr("tabindex")
         if (uploadUrl != null) {
             this.getElementJQuery()?.on("fileselect") { e, _ ->
                 this.dispatchEvent("fileSelectUpload", obj { detail = e })
@@ -200,6 +204,12 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
                 this.dispatchEvent("filePreUpload", obj { detail = data })
                 return@lambda null
             }
+        }
+        this.getElementJQuery()?.on("focus") { _, _ ->
+            getElementJQuery()?.parent()?.parent()?.parent()?.addClass("kv-focus")
+        }
+        this.getElementJQuery()?.on("blur") { _, _ ->
+            getElementJQuery()?.parent()?.parent()?.parent()?.removeClass("kv-focus")
         }
     }
 

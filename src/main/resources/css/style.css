@@ -387,3 +387,13 @@ select.form-control, .tabulator-row .tabulator-cell.tabulator-editing select {
   border-radius: 0 4px 4px 0;
   margin-right: 0;
 }
+
+.kv-focus {
+    border-radius: 0.25rem;
+    outline-width: 0px;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.kv-focus .kv-fileinput-caption {
+    border-color: #80bdff;
+}
