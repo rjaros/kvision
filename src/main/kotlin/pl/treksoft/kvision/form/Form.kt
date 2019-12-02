@@ -297,7 +297,7 @@ class Form<K : Any>(private val panel: FormPanel<K>? = null, private val seriali
                 @Suppress("UNCHECKED_CAST")
                 val fieldsParams = (entry.value as? FieldParams<FormControl>)
                 val required = fieldsParams?.required ?: false
-                val requiredError = control.getValue() == null && required
+                val requiredError = control.getValue() == null && control.visible && required
                 if (requiredError) {
                     control.validatorError = trans(fieldsParams?.requiredMessage) ?: "Value is required"
                     true
