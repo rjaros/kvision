@@ -397,3 +397,11 @@ select.form-control, .tabulator-row .tabulator-cell.tabulator-editing select {
 .kv-focus .kv-fileinput-caption {
     border-color: #80bdff;
 }
+
+.modal-dialog .modal-footer {
+    flex-wrap: wrap;
+}
+
+.modal-dialog .modal-footer>button {
+    margin-top: 5px;
+}
