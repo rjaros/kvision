@@ -23,6 +23,7 @@ package pl.treksoft.kvision
 
 import pl.treksoft.kvision.panel.Root
 import kotlin.browser.document
+import kotlin.browser.window
 
 /**
  * Base class for KVision applications.
@@ -55,6 +56,8 @@ abstract class Application {
  * Main function for creating KVision applications.
  */
 fun startApplication(builder: () -> Application) {
+    @Suppress("UnsafeCastFromDynamic")
+    if (window.asDynamic().__karma__) return
 
     fun start(state: dynamic): Application? {
         val application = builder()
