@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.modal
 
+import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.ButtonStyle
@@ -136,6 +137,11 @@ open class Confirm(
         }
         this.addButton(yesButton)
         refreshCancelButton()
+        onEvent {
+            shownBsModal = {
+                yesButton.focus()
+            }
+        }
     }
 
     private fun refreshCancelButton() {

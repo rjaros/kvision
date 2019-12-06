@@ -90,6 +90,9 @@ open class Alert(
                     hide()
                 }
             }
+            shownBsModal = {
+                okButton.focus()
+            }
         }
     }
 
