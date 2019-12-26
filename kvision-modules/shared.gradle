@@ -5,10 +5,10 @@ apply plugin: 'kotlinx-serialization'
 kotlinFrontend {
 
     npm {
-        devDependency("karma", "4.3.0")
+        devDependency("karma", "4.4.1")
         devDependency("karma-chrome-launcher", "3.1.0")
         devDependency("karma-webpack", "4.0.2")
-        devDependency("qunit", "2.9.2")
+        devDependency("qunit", "2.9.3")
     }
 
     webpackBundle {

@@ -3,7 +3,7 @@ apply from: "../shared.gradle"
 kotlinFrontend {
 
     npm {
-        dependency("chart.js", "2.7.3")
+        dependency("chart.js", "2.9.3")
     }
 
 }

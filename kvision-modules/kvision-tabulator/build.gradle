@@ -7,7 +7,7 @@ dependencies {
 kotlinFrontend {
 
     npm {
-        dependency("tabulator-tables", "4.4.1")
+        dependency("tabulator-tables", "4.5.2")
     }
 
 }

@@ -3,7 +3,7 @@ apply from: "../shared.gradle"
 kotlinFrontend {
 
     npm {
-        dependency("@fortawesome/fontawesome-free", "5.11.2")
+        dependency("@fortawesome/fontawesome-free", "5.12.0")
     }
 
 }

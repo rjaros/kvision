@@ -3,7 +3,7 @@ apply from: "../shared.gradle"
 kotlinFrontend {
 
     npm {
-        dependency("handlebars", "4.3.1")
+        dependency("handlebars", "4.5.3")
         dependency("handlebars-loader", "1.7.1")
     }
 

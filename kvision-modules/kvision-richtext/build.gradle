@@ -3,7 +3,7 @@ apply from: "../shared.gradle"
 kotlinFrontend {
 
     npm {
-        dependency("trix", "1.2.0")
+        dependency("trix", "1.2.2")
     }
 
 }
