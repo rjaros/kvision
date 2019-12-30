@@ -27,15 +27,17 @@ open external class Tabulator {
     open var options: Options = definedExternally
     open fun download(
         downloadType: dynamic /* String /* "json" */ | String /* "csv" */ | String /* "xlsx" */ | String /* "pdf" */ | (columns: Array<Tabulator.ColumnDefinition>, data: Any, options: Any, setFileContents: Any) -> Any */,
-        fileName: String,
-        params: DownloadOptions? /*= null*/
+        fileName: String?,
+        params: DownloadOptions? /*= null*/,
+        set: String?
     ): Unit =
         definedExternally
 
     open fun downloadToTab(
         downloadType: dynamic /* String /* "json" */ | String /* "csv" */ | String /* "xlsx" */ | String /* "pdf" */ */,
-        fileName: String,
-        params: DownloadOptions? /*= null*/
+        fileName: String?,
+        params: DownloadOptions? /*= null*/,
+        set: String?
     ): Unit =
         definedExternally
 

@@ -39,6 +39,15 @@ import kotlin.browser.window
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 
 /**
+ * Tabulator download data set option.
+ */
+enum class DownloadSet(internal val set: String) {
+    ALL("all"),
+    VISIBLE("visible"),
+    ACTIVE("active")
+}
+
+/**
  * Tabulator component.
  *
  * @constructor
@@ -348,6 +357,79 @@ open class Tabulator<T : Any>(
         isStyled: Boolean = false,
         printConfig: dynamic = null
     ): Unit? = jsTabulator?.print(activeOnly, isStyled, printConfig)
+
+    /**
+     * Download the table content as CSV
+     * @param fileName downloaded file name
+     * @param dataSet a data set configuration
+     * @param delimiter CSV delimiter
+     * @param includeBOM determines if BOM should be included
+     * @param newTab determines if download should be open in a new tab
+     */
+    @Suppress("UnsafeCastFromDynamic")
+    open fun downloadCSV(
+        fileName: String? = null,
+        dataSet: DownloadSet = DownloadSet.ACTIVE,
+        delimiter: Char = ',',
+        includeBOM: Boolean = false,
+        newTab: Boolean = false
+    ): Unit? {
+        return if (newTab) {
+            jsTabulator?.downloadToTab("csv", fileName, obj {
+                this.delimiter = delimiter
+                this.bom = includeBOM
+            }, dataSet.set)
+        } else {
+            jsTabulator?.download("csv", fileName, obj {
+                this.delimiter = delimiter
+                this.bom = includeBOM
+            }, dataSet.set)
+        }
+    }
+
+    /**
+     * Download the table content as JSON
+     * @param fileName downloaded file name
+     * @param dataSet a data set configuration
+     * @param newTab determines if download should be open in a new tab
+     */
+    @Suppress("UnsafeCastFromDynamic")
+    open fun downloadJSON(
+        fileName: String? = null,
+        dataSet: DownloadSet = DownloadSet.ACTIVE,
+        newTab: Boolean = false
+    ): Unit? {
+        return if (newTab) {
+            jsTabulator?.downloadToTab("json", fileName, obj {}, dataSet.set)
+        } else {
+            jsTabulator?.download("json", fileName, obj {}, dataSet.set)
+        }
+    }
+
+    /**
+     * Download the table content as HTML
+     * @param fileName downloaded file name
+     * @param dataSet a data set configuration
+     * @param style download a html table with matching styling
+     * @param newTab determines if download should be open in a new tab
+     */
+    @Suppress("UnsafeCastFromDynamic")
+    open fun downloadHTML(
+        fileName: String? = null,
+        dataSet: DownloadSet = DownloadSet.ACTIVE,
+        style: Boolean = false,
+        newTab: Boolean = false
+    ): Unit? {
+        return if (newTab) {
+            jsTabulator?.downloadToTab("html", fileName, obj {
+                this.style = style
+            }, dataSet.set)
+        } else {
+            jsTabulator?.download("html", fileName, obj {
+                this.style = style
+            }, dataSet.set)
+        }
+    }
 
     /**
      * Scroll to the row given by id.
