@@ -43,6 +43,7 @@ enum class TAG(internal val tagName: String) {
     ABBR("abbr"),
     ADDRESS("address"),
     BLOCKQUOTE("blockquote"),
+    MAIN("main"),
     SECTION("section"),
     HEADER("header"),
     FOOTER("footer"),
