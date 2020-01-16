@@ -40,12 +40,13 @@ import org.jooby.Response
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.treksoft.kvision.types.*
-import kotlin.reflect.KClass
-import java.time.LocalDateTime
+import java.math.BigDecimal
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.OffsetDateTime
 import java.time.OffsetTime
+import kotlin.reflect.KClass
 
 
 /**
@@ -67,11 +68,13 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         module.addSerializer(LocalTime::class.java, LocalTimeSerializer())
         module.addSerializer(OffsetDateTime::class.java, OffsetDateTimeSerializer())
         module.addSerializer(OffsetTime::class.java, OffsetTimeSerializer())
+        module.addSerializer(BigDecimal::class.java, BigDecimalSerializer())
         module.addDeserializer(LocalDateTime::class.java, LocalDateTimeDeserializer())
         module.addDeserializer(LocalDate::class.java, LocalDateDeserializer())
         module.addDeserializer(LocalTime::class.java, LocalTimeDeserializer())
         module.addDeserializer(OffsetDateTime::class.java, OffsetDateTimeDeserializer())
         module.addDeserializer(OffsetTime::class.java, OffsetTimeDeserializer())
+        module.addDeserializer(BigDecimal::class.java, BigDecimalDeserializer())
         this.registerModule(module)
     }
     var counter: Int = 0
@@ -108,8 +111,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     } catch (e: Exception) {
                         if (!(e is ServiceException)) LOG.error(e.message, e)
-                        res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName))
+                        res.send(
+                            JsonRpcResponse(
+                                id = jsonRpcRequest.id, error = e.message ?: "Error",
+                                exceptionType = e.javaClass.canonicalName
+                            )
+                        )
                     }
                 }
             }.invoke(this)
@@ -148,8 +155,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             )
                         } catch (e: Exception) {
                             if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName))
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
+                                    exceptionType = e.javaClass.canonicalName
+                                )
+                            )
                         }
                     }
                 } else {
@@ -192,8 +203,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             )
                         } catch (e: Exception) {
                             if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName))
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
+                                    exceptionType = e.javaClass.canonicalName
+                                )
+                            )
                         }
                     }
                 } else {
@@ -238,8 +253,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             )
                         } catch (e: Exception) {
                             if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName))
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
+                                    exceptionType = e.javaClass.canonicalName
+                                )
+                            )
                         }
                     }
                 } else {
@@ -285,8 +304,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             )
                         } catch (e: Exception) {
                             if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName))
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
+                                    exceptionType = e.javaClass.canonicalName
+                                )
+                            )
                         }
                     }
                 } else {
@@ -334,8 +357,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             )
                         } catch (e: Exception) {
                             if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName))
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
+                                    exceptionType = e.javaClass.canonicalName
+                                )
+                            )
                         }
                     }
                 } else {
@@ -448,8 +475,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             )
                         } catch (e: Exception) {
                             if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName))
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
+                                    exceptionType = e.javaClass.canonicalName
+                                )
+                            )
                         }
                     }
                 } else {
@@ -493,8 +524,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             )
                         } catch (e: Exception) {
                             if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName))
+                            res.send(
+                                JsonRpcResponse(
+                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
+                                    exceptionType = e.javaClass.canonicalName
+                                )
+                            )
                         }
                     }
                 } else {

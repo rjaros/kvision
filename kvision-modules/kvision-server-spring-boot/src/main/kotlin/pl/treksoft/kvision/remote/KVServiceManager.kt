@@ -43,6 +43,7 @@ import org.springframework.web.reactive.function.server.bodyValueAndAwait
 import org.springframework.web.reactive.function.server.json
 import org.springframework.web.reactive.socket.WebSocketSession
 import pl.treksoft.kvision.types.*
+import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -83,11 +84,13 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         module.addSerializer(LocalTime::class.java, LocalTimeSerializer())
         module.addSerializer(OffsetDateTime::class.java, OffsetDateTimeSerializer())
         module.addSerializer(OffsetTime::class.java, OffsetTimeSerializer())
+        module.addSerializer(BigDecimal::class.java, BigDecimalSerializer())
         module.addDeserializer(LocalDateTime::class.java, LocalDateTimeDeserializer())
         module.addDeserializer(LocalDate::class.java, LocalDateDeserializer())
         module.addDeserializer(LocalTime::class.java, LocalTimeDeserializer())
         module.addDeserializer(OffsetDateTime::class.java, OffsetDateTimeDeserializer())
         module.addDeserializer(OffsetTime::class.java, OffsetTimeDeserializer())
+        module.addDeserializer(BigDecimal::class.java, BigDecimalDeserializer())
         this.registerModule(module)
     }
     var counter: Int = 0
@@ -152,7 +155,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
                             error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName
+                            exceptionType = e.javaClass.canonicalName
                         )
                     )
                 )
