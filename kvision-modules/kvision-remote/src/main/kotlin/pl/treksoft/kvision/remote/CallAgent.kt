@@ -23,9 +23,11 @@ package pl.treksoft.kvision.remote
 
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.stringify
+import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
+import kotlin.browser.window
 import kotlin.js.Promise
 import kotlin.js.undefined
 import kotlin.js.JSON as NativeJSON
@@ -40,6 +42,8 @@ const val HTTP_UNAUTHORIZED = 401
  */
 open class CallAgent {
 
+    private val kvUrlPrefix = window["kv_remote_url_prefix"]
+    private val urlPrefix: String = if (kvUrlPrefix != undefined) kvUrlPrefix else ""
     private var counter = 1
 
     /**
@@ -63,7 +67,7 @@ open class CallAgent {
             JSON.plain.stringify(jsonRpcRequest)
         }
         return Promise { resolve, reject ->
-            jQuery.ajax(url, obj {
+            jQuery.ajax(urlPrefix + url, obj {
                 this.contentType = "application/json"
                 this.data = jsonData
                 this.method = method.name
