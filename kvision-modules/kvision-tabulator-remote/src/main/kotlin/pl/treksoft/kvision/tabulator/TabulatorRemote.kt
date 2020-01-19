@@ -23,16 +23,18 @@ package pl.treksoft.kvision.tabulator
 
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.stringify
+import org.w3c.dom.get
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.remote.CallAgent
+import pl.treksoft.kvision.remote.HttpMethod
 import pl.treksoft.kvision.remote.JsonRpcRequest
 import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.remote.RemoteData
 import pl.treksoft.kvision.remote.RemoteFilter
 import pl.treksoft.kvision.remote.RemoteSorter
-import pl.treksoft.kvision.rest.HttpMethod
-import pl.treksoft.kvision.rest.RestClient
 import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.utils.JSON
+import kotlin.browser.window
 
 /**
  * Tabulator component connected to the multiplatform service.
@@ -56,13 +58,17 @@ open class TabulatorRemote<T : Any, E : Any>(
     types: Set<TableType> = setOf(),
     classes: Set<String> = setOf()
 ) : Tabulator<T>(null, false, options, types, classes) {
+
+    private val kvUrlPrefix = window["kv_remote_url_prefix"]
+    private val urlPrefix: String = if (kvUrlPrefix != undefined) kvUrlPrefix else ""
+
     init {
         val (url, method) =
             serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
 
-        val restClient = RestClient()
-        options.ajaxURL = url
+        val callAgent = CallAgent()
+        options.ajaxURL = urlPrefix + url
         options.ajaxRequestFunc = { _, _, params ->
             val page = params.page
             val size = params.size
@@ -81,7 +87,7 @@ open class TabulatorRemote<T : Any, E : Any>(
             val state = stateFunction?.invoke()
             @Suppress("UnsafeCastFromDynamic")
             val data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
-            restClient.remoteCall(url, data, method = HttpMethod.valueOf(method.name)).then { r: dynamic ->
+            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name)).then { r: dynamic ->
                 val result = kotlin.js.JSON.parse<dynamic>(r.result as String)
                 @Suppress("UnsafeCastFromDynamic")
                 if (page != null) {

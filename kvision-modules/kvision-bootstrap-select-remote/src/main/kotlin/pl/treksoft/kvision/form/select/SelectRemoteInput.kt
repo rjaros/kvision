@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.list
 import kotlinx.serialization.stringify
+import org.w3c.dom.get
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.CallAgent
 import pl.treksoft.kvision.remote.HttpMethod
@@ -35,6 +36,7 @@ import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
+import kotlin.browser.window
 
 external fun decodeURIComponent(encodedURI: String): String
 
@@ -62,6 +64,10 @@ open class SelectRemoteInput<T : Any>(
     private val preload: Boolean = false,
     classes: Set<String> = setOf()
 ) : SelectInput(null, value, multiple, null, classes) {
+
+    private val kvUrlPrefix = window["kv_remote_url_prefix"]
+    private val urlPrefix: String = if (kvUrlPrefix != undefined) kvUrlPrefix else ""
+
     private val url: String
     private val labelsCache = mutableMapOf<String, String>()
     private var initRun = false
@@ -77,7 +83,7 @@ open class SelectRemoteInput<T : Any>(
             }
             val tempAjaxOptions = ajaxOptions ?: AjaxOptions()
             this.ajaxOptions = tempAjaxOptions.copy(
-                url = url,
+                url = urlPrefix + url,
                 preprocessData = {
                     @Suppress("UnsafeCastFromDynamic")
                     JSON.plain.parse(RemoteOption.serializer().list, it.result as String).map {
