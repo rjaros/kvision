@@ -125,7 +125,7 @@ open class CallAgent {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
         return Promise { resolve, reject ->
-            jQuery.ajax(url, obj {
+            jQuery.ajax(urlPrefix + url, obj {
                 this.contentType = if (contentType != "multipart/form-data") contentType else false
                 this.data = data
                 this.method = method.name
