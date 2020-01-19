@@ -66,7 +66,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
@@ -87,7 +87,7 @@ open class RestClient {
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
@@ -120,7 +120,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
     fun <V : Any> remoteCall(
@@ -143,7 +143,7 @@ open class RestClient {
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
@@ -176,7 +176,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
@@ -198,7 +198,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
     @UseExperimental(ImplicitReflectionSerializer::class)
@@ -226,7 +226,7 @@ open class RestClient {
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
@@ -259,7 +259,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
@@ -291,7 +291,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
@@ -322,7 +322,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @return a promise of the response
      */
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
@@ -367,7 +367,7 @@ open class RestClient {
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
@@ -402,7 +402,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @return a promise of the response
      */
     fun <V : Any> remoteRequest(
@@ -425,7 +425,7 @@ open class RestClient {
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
@@ -466,7 +466,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
@@ -488,7 +488,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @return a promise of the response
      */
     @UseExperimental(ImplicitReflectionSerializer::class)
@@ -516,7 +516,7 @@ open class RestClient {
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
@@ -549,7 +549,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
@@ -581,7 +581,7 @@ open class RestClient {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
