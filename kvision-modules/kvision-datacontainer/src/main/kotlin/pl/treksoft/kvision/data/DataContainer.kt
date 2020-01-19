@@ -54,7 +54,7 @@ enum class SorterType {
  */
 class DataContainer<M, C : Component, CONT : Container>(
     private val model: MutableList<M>,
-    private val factory: (M, Int, MutableList<M>) -> C,
+    private val factory: Container.(M, Int, MutableList<M>) -> C,
     private val container: CONT,
     private val containerAdd: (CONT.(C, M) -> Unit)? = null,
     private val filter: ((M) -> Boolean)? = null,
@@ -144,13 +144,15 @@ class DataContainer<M, C : Component, CONT : Container>(
             } else {
                 sorted
             }
-            val children = filtered.map { p -> p.first to factory(p.first, p.second, model) }
-            if (containerAdd != null) {
-                children.forEach { child ->
-                    containerAdd.invoke(container, child.second, child.first)
+            val children = filtered.map { p -> p.first to container.factory(p.first, p.second, model) }
+            if (container.getChildren().isEmpty() && children.isNotEmpty()) {
+                if (containerAdd != null) {
+                    children.forEach { child ->
+                        containerAdd.invoke(container, child.second, child.first)
+                    }
+                } else {
+                    container.addAll(children.map { it.second })
                 }
-            } else {
-                container.addAll(children.map { it.second })
             }
         }
         onUpdateHandler?.invoke()
@@ -183,7 +185,7 @@ class DataContainer<M, C : Component, CONT : Container>(
  */
 fun <M, C : Component, CONT : Container> Container.dataContainer(
     model: MutableList<M>,
-    factory: (M, Int, MutableList<M>) -> C,
+    factory: Container.(M, Int, MutableList<M>) -> C,
     container: CONT,
     containerAdd: (CONT.(C, M) -> Unit)? = null,
     filter: ((M) -> Boolean)? = null,
@@ -203,7 +205,7 @@ fun <M, C : Component, CONT : Container> Container.dataContainer(
  */
 fun <M, C : Component> Container.dataContainer(
     model: MutableList<M>,
-    factory: (M, Int, MutableList<M>) -> C,
+    factory: Container.(M, Int, MutableList<M>) -> C,
     containerAdd: (VPanel.(C, M) -> Unit)? = null,
     filter: ((M) -> Boolean)? = null,
     sorter: ((M) -> Comparable<*>?)? = null,
