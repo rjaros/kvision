@@ -29,7 +29,6 @@ import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
 import kotlin.browser.window
 import kotlin.js.Promise
-import kotlin.js.undefined
 import kotlin.js.JSON as NativeJSON
 
 /**
@@ -101,6 +100,9 @@ open class CallAgent {
                             reject(Exception(message))
                         }
                     }
+                this.xhrFields = obj {
+                    this.withCredentials = true
+                }
             })
         }
     }
@@ -111,7 +113,7 @@ open class CallAgent {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a content type of the request
+     * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
@@ -148,6 +150,9 @@ open class CallAgent {
                         }
                     }
                 this.beforeSend = beforeSend
+                this.xhrFields = obj {
+                    this.withCredentials = true
+                }
             })
         }
     }
