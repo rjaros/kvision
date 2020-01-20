@@ -1,9 +1,5 @@
 apply from: "../shared.gradle"
 
-dependencies {
-    compile project(":kvision-modules:kvision-redux")
-}
-
 kotlinFrontend {
 
     npm {

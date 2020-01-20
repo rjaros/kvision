@@ -76,7 +76,7 @@ class ReduxStore<S : Any, A : RAction>(
         }
     }, initialState, applyMiddleware(createThunkMiddleware(), *middlewares))
 
-    fun getState(): S {
+    override fun getState(): S {
         return store.getState()
     }
 

@@ -28,13 +28,12 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.i18n.I18n
-import pl.treksoft.kvision.redux.ReduxStore
 import pl.treksoft.kvision.state.ObservableList
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.syncWithList
-import redux.RAction
 import kotlin.browser.window
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 
@@ -711,8 +710,8 @@ open class Tabulator<T : Any>(
         /**
          * A helper function to create a Tabulator object with correct serializer and general redux store.
          */
-        fun <T : Any, S : Any, A : RAction> create(
-            store: ReduxStore<S, A>,
+        fun <T : Any, S : Any> create(
+            store: ObservableState<S>,
             dataFactory: (S) -> List<T>,
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
@@ -731,8 +730,8 @@ open class Tabulator<T : Any>(
         /**
          * A helper function to create a Tabulator object with correct serializer and dedicated redux store.
          */
-        fun <T : Any, A : RAction> create(
-            store: ReduxStore<List<T>, A>,
+        fun <T : Any> create(
+            store: ObservableState<List<T>>,
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             classes: Set<String> = setOf(),
@@ -771,8 +770,8 @@ fun <T : Any> Container.tabulator(
 /**
  * DSL builder extension function for general redux store.
  */
-fun <T : Any, S : Any, A : RAction> Container.tabulator(
-    store: ReduxStore<S, A>,
+fun <T : Any, S : Any> Container.tabulator(
+    store: ObservableState<S>,
     dataFactory: (S) -> List<T>,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
@@ -788,8 +787,8 @@ fun <T : Any, S : Any, A : RAction> Container.tabulator(
 /**
  * DSL builder extension function for dedicated redux store (backed with a list).
  */
-fun <T : Any, A : RAction> Container.tabulator(
-    store: ReduxStore<List<T>, A>,
+fun <T : Any> Container.tabulator(
+    store: ObservableState<List<T>>,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     classes: Set<String> = setOf(),

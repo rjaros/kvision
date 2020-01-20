@@ -26,6 +26,11 @@ package pl.treksoft.kvision.state
  */
 interface ObservableState<S> {
     /**
+     * Get current state.
+     */
+    fun getState(): S
+
+    /**
      * Subscribe for the state change notifications.
      */
     fun subscribe(observer: (S) -> Unit): () -> Unit

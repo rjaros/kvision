@@ -84,7 +84,7 @@ class ReduxStore<S : Any, A : RAction>(
         )
     }
 
-    fun getState(): S {
+    override fun getState(): S {
         return store.getState()
     }
 
