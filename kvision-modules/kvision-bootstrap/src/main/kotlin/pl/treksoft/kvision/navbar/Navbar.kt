@@ -64,7 +64,8 @@ enum class NavbarExpand(internal val navbarExpand: String) {
  * The Bootstrap Navbar container.
  *
  * @constructor
- * @param label the navbar label
+ * @param label the navbar header label
+ * @param link the navbar header link
  * @param type the navbar type
  * @param expand the navbar responsive behavior
  * @param nColor the navbar color
@@ -74,6 +75,7 @@ enum class NavbarExpand(internal val navbarExpand: String) {
  */
 open class Navbar(
     label: String? = null,
+    link: String? = null,
     type: NavbarType? = null,
     expand: NavbarExpand? = NavbarExpand.LG,
     nColor: NavbarColor = NavbarColor.LIGHT,
@@ -93,6 +95,14 @@ open class Navbar(
             } else {
                 brandLink.hide()
             }
+        }
+    /**
+     * The navbar header link.
+     */
+    var link
+        get() = brandLink.url
+        set(value) {
+            brandLink.url = value
         }
 
     /**
@@ -114,7 +124,7 @@ open class Navbar(
 
     private val idc = "kv_navbar_$counter"
 
-    private val brandLink = Link(label ?: "", "#", classes = setOf("navbar-brand"))
+    private val brandLink = Link(label ?: "", link, classes = setOf("navbar-brand"))
     internal val container = SimplePanel(setOf("collapse", "navbar-collapse")) {
         id = idc
     }
@@ -183,13 +193,14 @@ open class Navbar(
  */
 fun Container.navbar(
     label: String? = null,
+    link: String? = null,
     type: NavbarType? = null,
     expand: NavbarExpand? = NavbarExpand.LG,
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
     classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
 ): Navbar {
-    val navbar = Navbar(label, type, expand, nColor, bgColor, classes, init)
+    val navbar = Navbar(label, link, type, expand, nColor, bgColor, classes, init)
     this.add(navbar)
     return navbar
 }

@@ -392,7 +392,7 @@ internal class DropDownButton(
             inherited
         } + listOf(
             "data-toggle" to "dropdown", "aria-haspopup" to "true",
-            "aria-expanded" to "false", "href" to "#"
+            "aria-expanded" to "false", "href" to "javascript:void(0)"
         )
     }
 }

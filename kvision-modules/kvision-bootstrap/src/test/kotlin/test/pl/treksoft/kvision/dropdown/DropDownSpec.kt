@@ -42,7 +42,7 @@ class DropDownSpec : DomSpec {
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
+                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"javascript:void(0)\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -59,7 +59,7 @@ class DropDownSpec : DomSpec {
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropup show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"top-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
+                "<div class=\"dropup show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"javascript:void(0)\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"top-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -76,7 +76,7 @@ class DropDownSpec : DomSpec {
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><h6 class=\"dropdown-header\">abc</h6></div></div>",
+                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"javascript:void(0)\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><h6 class=\"dropdown-header\">abc</h6></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -93,7 +93,7 @@ class DropDownSpec : DomSpec {
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><div class=\"dropdown-divider\"></div></div></div>",
+                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"javascript:void(0)\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><div class=\"dropdown-divider\"></div></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )
@@ -110,7 +110,7 @@ class DropDownSpec : DomSpec {
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item disabled\" tabindex=\"-1\" aria-disabled=\"true\" href=\"javascript:void(0)\">abc</a></div></div>",
+                "<div class=\"dropdown show\"><button class=\"btn btn-primary dropdown-toggle\" id=\"$id\" role=\"button\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"javascript:void(0)\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" x-placement=\"bottom-start\" aria-expanded=\"true\" style=\"position: ;\"><a class=\"dropdown-item disabled\" tabindex=\"-1\" aria-disabled=\"true\" href=\"javascript:void(0)\">abc</a></div></div>",
                 element?.innerHTML,
                 "Should render correct drop down"
             )

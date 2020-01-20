@@ -39,7 +39,7 @@ class NavbarSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", fixed = true)
-            val navbar = Navbar("TEST", NavbarType.FIXEDTOP)
+            val navbar = Navbar("TEST", "#", NavbarType.FIXEDTOP)
             root.add(navbar)
             val element = document.getElementById("test")
             val id = navbar.container.id
