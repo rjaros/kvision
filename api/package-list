@@ -43,6 +43,7 @@ $dokka.location:pl.treksoft.kvision.types$toStringF(java.time.OffsetTime)pl.tre
 $dokka.location:pl.treksoft.kvision.types$toStringF(kotlin.js.Date, kotlin.String)pl.treksoft.kvision.types/kotlin.js.-date/to-string-f.html
 $dokka.location:pl.treksoft.kvision.types$toTimeF(kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-time-f.html
 $dokka.location:pl.treksoft.kvision.types.Datepl.treksoft.kvision.types/-date/index.html
+$dokka.location:pl.treksoft.kvision.types.Decimalpl.treksoft.kvision.types/-decimal/index.html
 $dokka.location:pl.treksoft.kvision.types.LocalDatepl.treksoft.kvision.types/-local-date/index.html
 $dokka.location:pl.treksoft.kvision.types.LocalDateTimepl.treksoft.kvision.types/-local-date-time/index.html
 $dokka.location:pl.treksoft.kvision.types.LocalTimepl.treksoft.kvision.types/-local-time/index.html
