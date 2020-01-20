@@ -726,25 +726,6 @@ open class Tabulator<T : Any>(
             }
             return tabulator
         }
-
-        /**
-         * A helper function to create a Tabulator object with correct serializer and dedicated redux store.
-         */
-        fun <T : Any> create(
-            store: ObservableState<List<T>>,
-            options: TabulatorOptions<T> = TabulatorOptions(),
-            types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
-            init: (Tabulator<T>.() -> Unit)? = null
-        ): Tabulator<T> {
-            val data = store.getState()
-            val tabulator = Tabulator(data, false, options, types, classes)
-            init?.invoke(tabulator)
-            store.subscribe { s ->
-                tabulator.replaceData(s.toTypedArray())
-            }
-            return tabulator
-        }
     }
 }
 
@@ -779,22 +760,6 @@ fun <T : Any, S : Any> Container.tabulator(
     init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
     val tabulator = Tabulator.create(store, dataFactory, options, types, classes)
-    init?.invoke(tabulator)
-    this.add(tabulator)
-    return tabulator
-}
-
-/**
- * DSL builder extension function for dedicated redux store (backed with a list).
- */
-fun <T : Any> Container.tabulator(
-    store: ObservableState<List<T>>,
-    options: TabulatorOptions<T> = TabulatorOptions(),
-    types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
-    init: (Tabulator<T>.() -> Unit)? = null
-): Tabulator<T> {
-    val tabulator = Tabulator.create(store, options, types, classes)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
