@@ -31,6 +31,7 @@ import pl.treksoft.kvision.core.Style
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
+import kotlin.browser.document
 
 /**
  * Root container.
@@ -44,7 +45,7 @@ class Root : SimplePanel {
 
     private val fixed: Boolean
     private val contextMenus: MutableList<Widget> = mutableListOf()
-    private var rootVnode: VNode = renderVNode()
+    private var rootVnode: VNode? = null
 
     internal var renderDisabled = false
 
@@ -59,7 +60,9 @@ class Root : SimplePanel {
      */
     constructor(id: String, fixed: Boolean = false, init: (Root.() -> Unit)? = null) : super() {
         this.fixed = fixed
-        rootVnode = KVManager.patch(id, this.renderVNode())
+        if (document.getElementById(id) != null) {
+            rootVnode = KVManager.patch(id, this.renderVNode())
+        }
         this.id = id
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -140,15 +143,17 @@ class Root : SimplePanel {
     }
 
     internal fun reRender(): Root {
-        if (!renderDisabled) {
-            rootVnode = KVManager.patch(rootVnode, renderVNode())
+        if (!renderDisabled && rootVnode != null) {
+            rootVnode = KVManager.patch(rootVnode!!, renderVNode())
         }
         return this
     }
 
     internal fun restart() {
-        rootVnode = KVManager.patch(rootVnode, h("div"))
-        rootVnode = KVManager.patch(rootVnode, renderVNode())
+        if (rootVnode != null) {
+            rootVnode = KVManager.patch(rootVnode!!, h("div"))
+            rootVnode = KVManager.patch(rootVnode!!, renderVNode())
+        }
     }
 
     override fun getRoot(): Root? {
