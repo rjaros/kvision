@@ -146,6 +146,7 @@ open class TabPanel(
      * @param route JavaScript route to activate given child
      * @return current container
      */
+    @Suppress("UnsafeCastFromDynamic")
     open fun addTab(
         title: String, panel: Component, icon: String? = null,
         image: ResString? = null, closable: Boolean = false, route: String? = null
@@ -181,6 +182,9 @@ open class TabPanel(
                     e.preventDefault()
                     if (route != null) {
                         routing.navigate(route)
+                    } else {
+                        e.asDynamic().data = activeIndex
+                        this@TabPanel.dispatchEvent("tabChange", obj { detail = e })
                     }
                 }
             }
@@ -194,8 +198,10 @@ open class TabPanel(
         if (route != null) {
             routing.on(
                 route,
-                { _ -> activeIndex = this@TabPanel.content.getChildren().indexOf(childrenMap[currentIndex]) })
-                .resolve()
+                { _ ->
+                    activeIndex = this@TabPanel.content.getChildren().indexOf(childrenMap[currentIndex])
+                    this@TabPanel.dispatchEvent("tabChange", obj { detail = obj { data = activeIndex } })
+                }).resolve()
         }
         return this
     }
@@ -210,6 +216,7 @@ open class TabPanel(
         }
         content.remove(content.getChildren()[index])
         activeIndex = content.activeIndex
+        this@TabPanel.dispatchEvent("tabChange", obj { detail = obj { data = activeIndex } })
         return this
     }
 

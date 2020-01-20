@@ -133,6 +133,7 @@ interface BtOn : On {
     var tabulatorDataLoading: ((KvEvent) -> Unit)?
     var tabulatorDataLoaded: ((KvEvent) -> Unit)?
     var tabulatorDataEdited: ((KvEvent) -> Unit)?
+    var tabChange: ((KvEvent) -> Unit)?
     var tabClosing: ((KvEvent) -> Unit)?
     var tabClosed: ((KvEvent) -> Unit)?
 }
