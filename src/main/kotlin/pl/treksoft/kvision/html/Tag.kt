@@ -87,6 +87,9 @@ enum class TAG(internal val tagName: String) {
     TR("tr"),
     TD("td"),
 
+    FIELDSET("fieldset"),
+    LEGEND("legend"),
+
     FORM("form"),
     INPUT("input"),
     SELECT("select"),

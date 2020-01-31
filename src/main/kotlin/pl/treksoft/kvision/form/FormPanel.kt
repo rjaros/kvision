@@ -30,6 +30,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.FormPanel.Companion.create
 import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.panel.FieldsetPanel
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.KFile
 import kotlin.js.Date
@@ -185,6 +186,8 @@ open class FormPanel<K : Any>(
         visible = false
     }
 
+    private var currentFieldset: FieldsetPanel? = null
+
     init {
         this.addInternal(validationAlert)
     }
@@ -231,6 +234,7 @@ open class FormPanel<K : Any>(
 
     protected fun <C : FormControl> addInternal(
         key: KProperty1<K, *>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
@@ -240,7 +244,16 @@ open class FormPanel<K : Any>(
             else -> control.styleForVerticalFormPanel()
         }
         if (required) control.flabel.addCssClass("required-label")
-        super.add(control)
+        if (legend == null) {
+            super.add(control)
+        } else if (currentFieldset == null || currentFieldset?.legend != legend) {
+            currentFieldset = FieldsetPanel(legend) {
+                add(control)
+            }
+            super.add(currentFieldset!!)
+        } else {
+            currentFieldset?.add(control)
+        }
         form.addInternal(key, control, required, requiredMessage, validatorMessage, validator)
         return this
     }
@@ -251,16 +264,18 @@ open class FormPanel<K : Any>(
      * @param control the string form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : StringFormControl> add(
         key: KProperty1<K, String?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -269,16 +284,18 @@ open class FormPanel<K : Any>(
      * @param control the boolean form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : BoolFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -287,16 +304,18 @@ open class FormPanel<K : Any>(
      * @param control the number form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : NumberFormControl> add(
         key: KProperty1<K, Number?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -305,16 +324,18 @@ open class FormPanel<K : Any>(
      * @param control the date form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : DateFormControl> add(
         key: KProperty1<K, Date?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -323,16 +344,18 @@ open class FormPanel<K : Any>(
      * @param control the files form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return current form panel
      */
     open fun <C : KFilesFormControl> add(
         key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**

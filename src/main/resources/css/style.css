@@ -405,3 +405,36 @@ select.form-control, .tabulator-row .tabulator-cell.tabulator-editing select {
 .modal-dialog .modal-footer>button {
     margin-top: 5px;
 }
+
+.kv_fieldset {
+    border: 1px solid #dee2e6;
+	border-radius: 0.25rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.kv_fieldset legend {
+    border: 1px solid #dee2e6;
+	border-radius: 0.25rem;
+	margin-bottom: 0;
+	font-size: 1rem;
+	font-weight: bold;
+	padding: 3px 10px 3px 10px;
+	width: auto;
+}
+
+form fieldset.kv_fieldset {
+    padding-top: 5px;
+    margin-bottom: 8px;
+}
+
+form[class~="form-horizontal"] fieldset.kv_fieldset {
+  padding-left: 1.1rem;
+  padding-right: 2rem;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+form[class~="form-horizontal"] div.form-group {
+    align-items: center;
+}
