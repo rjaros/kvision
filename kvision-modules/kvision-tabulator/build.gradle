@@ -3,7 +3,7 @@ apply from: "../shared.gradle"
 kotlinFrontend {
 
     npm {
-        dependency("tabulator-tables", "4.5.2")
+        dependency("tabulator-tables", "4.5.3")
     }
 
 }

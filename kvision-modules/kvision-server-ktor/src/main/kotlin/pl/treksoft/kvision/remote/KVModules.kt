@@ -38,7 +38,6 @@ import io.ktor.http.content.static
 import io.ktor.jackson.jackson
 import io.ktor.routing.routing
 import io.ktor.util.AttributeKey
-import io.ktor.util.KtorExperimentalAPI
 import io.ktor.websocket.WebSocketServerSession
 import io.ktor.websocket.WebSockets
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -126,11 +125,6 @@ class DummyWebSocketServerSession : WebSocketServerSession {
         }
     override val outgoing: SendChannel<Frame>
         get() = throw UnsupportedOperationException()
-
-    @UseExperimental(KtorExperimentalAPI::class)
-    override suspend fun close(cause: Throwable?) {
-        throw UnsupportedOperationException()
-    }
 
     override suspend fun flush() {
         throw UnsupportedOperationException()

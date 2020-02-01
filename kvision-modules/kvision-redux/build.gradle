@@ -9,9 +9,8 @@ dependencies {
 kotlinFrontend {
 
     npm {
-        dependency("redux", "4.0.4")
+        dependency("redux", "4.0.5")
         dependency("redux-thunk", "2.3.0")
-        dependency("core-js", "3.2.1")
     }
 
 }
