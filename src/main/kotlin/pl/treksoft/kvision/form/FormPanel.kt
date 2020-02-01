@@ -35,6 +35,7 @@ import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.KFile
 import kotlin.js.Date
 import kotlin.js.Json
+import kotlin.reflect.KClass
 import kotlin.reflect.KProperty1
 
 /**
@@ -106,7 +107,7 @@ open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
-    serializer: KSerializer<K>
+    serializer: KSerializer<K>, customSerializers: Map<KClass<*>, KSerializer<*>>? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -176,7 +177,7 @@ open class FormPanel<K : Any>(
      * Internal property.
      */
     @Suppress("LeakingThis")
-    val form = Form(this, serializer)
+    val form = Form(this, serializer, customSerializers)
     /**
      * @suppress
      * Internal property.
@@ -271,6 +272,26 @@ open class FormPanel<K : Any>(
      */
     open fun <C : StringFormControl> add(
         key: KProperty1<K, String?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        legend: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): FormPanel<K> {
+        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+    }
+
+    /**
+     * Adds a string control to the form panel bound to custom field type.
+     * @param key key identifier of the control
+     * @param control the string form control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param legend put this control inside a fieldset with given legend
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form panel
+     */
+    open fun <C : StringFormControl> addCustom(
+        key: KProperty1<K, Any?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
@@ -442,10 +463,21 @@ open class FormPanel<K : Any>(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
             type: FormType? = null, condensed: Boolean = false,
             horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
+            customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
             noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
             val formPanel =
-                FormPanel(method, action, enctype, type, condensed, horizRatio, classes, K::class.serializer())
+                FormPanel(
+                    method,
+                    action,
+                    enctype,
+                    type,
+                    condensed,
+                    horizRatio,
+                    classes,
+                    K::class.serializer(),
+                    customSerializers
+                )
             init?.invoke(formPanel)
             return formPanel
         }
@@ -462,9 +494,10 @@ inline fun <reified K : Any> Container.formPanel(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
+    customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
     noinline init: (FormPanel<K>.() -> Unit)? = null
 ): FormPanel<K> {
-    val formPanel = create<K>(method, action, enctype, type, condensed, horizRatio, classes)
+    val formPanel = create<K>(method, action, enctype, type, condensed, horizRatio, classes, customSerializers)
     init?.invoke(formPanel)
     this.add(formPanel)
     return formPanel

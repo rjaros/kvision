@@ -213,7 +213,7 @@ interface StringFormControl : FormControl {
 
     override fun getValue(): String? = value
     override fun setValue(v: Any?) {
-        value = v as? String
+        value = v as? String ?: v?.toString()
     }
 
     override fun getValueAsString(): String? = value
