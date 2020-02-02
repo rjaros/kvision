@@ -52,7 +52,7 @@ enum class ForceType(internal val value: String) {
     CEIL("ceil")
 }
 
-internal const val DEFAULT_STEP = 1.0
+internal const val DEFAULT_STEP = 1
 
 /**
  * The basic component for spinner control.
@@ -70,7 +70,7 @@ internal const val DEFAULT_STEP = 1.0
  */
 @Suppress("TooManyFunctions")
 open class SpinnerInput(
-    value: Number? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
+    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
     classes: Set<String> = setOf()
@@ -210,8 +210,8 @@ open class SpinnerInput(
         if (v != null && v.isNotEmpty()) {
             this.value = v.toDoubleOrNull()
             this.value?.let {
-                if (min != null && it.toInt() < min ?: 0) this.value = min
-                if (max != null && it.toInt() > max ?: 0) this.value = max
+                if (min != null && it.toDouble() < (min?.toDouble() ?: 0.0)) this.value = min
+                if (max != null && it.toDouble() > (max?.toDouble() ?: 0.0)) this.value = max
             }
         } else {
             this.value = null
@@ -321,7 +321,7 @@ open class SpinnerInput(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.spinnerInput(
-    value: Number? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
+    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null, classes: Set<String> = setOf(),
     init: (SpinnerInput.() -> Unit)? = null

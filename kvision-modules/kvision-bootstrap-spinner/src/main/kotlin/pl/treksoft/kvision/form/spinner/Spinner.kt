@@ -48,7 +48,7 @@ import pl.treksoft.kvision.utils.SnOn
  * @param rich determines if [label] can contain HTML code
  */
 open class Spinner(
-    value: Number? = null, name: String? = null, min: Int? = null, max: Int? = null, step: Double = DEFAULT_STEP,
+    value: Number? = null, name: String? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null, label: String? = null,
     rich: Boolean = false
@@ -206,7 +206,10 @@ open class Spinner(
         return this
     }
 
-    @Deprecated("Use onEvent extension function instead.", ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent"))
+    @Deprecated(
+        "Use onEvent extension function instead.",
+        ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent")
+    )
     override fun setEventListener(block: SnOn<Widget>.() -> Unit): Widget {
         @Suppress("DEPRECATION")
         input.setEventListener(block)
@@ -268,9 +271,9 @@ open class Spinner(
 fun Container.spinner(
     value: Number? = null,
     name: String? = null,
-    min: Int? = null,
-    max: Int? = null,
-    step: Double = DEFAULT_STEP,
+    min: Number? = null,
+    max: Number? = null,
+    step: Number = DEFAULT_STEP,
     decimals: Int = 0,
     buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE,
