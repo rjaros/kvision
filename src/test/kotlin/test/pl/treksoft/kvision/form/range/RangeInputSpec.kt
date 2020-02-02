@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.form.select
+package test.pl.treksoft.kvision.form.range
 
 import pl.treksoft.kvision.form.range.RangeInput
 import pl.treksoft.kvision.panel.Root
