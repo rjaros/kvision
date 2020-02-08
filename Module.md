@@ -62,7 +62,7 @@ Spinner input component.
 
 # Package pl.treksoft.kvision.form.text
 
-Text input components, with password, text area and rich text area support.
+Text input components, with password, text area, rich text area and typeahead support.
 
 # Package pl.treksoft.kvision.form.time
 

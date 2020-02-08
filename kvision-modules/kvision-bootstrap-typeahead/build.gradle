@@ -1,0 +1,9 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("eam_bootstrap-3-typeahead", "0.0.2")
+    }
+
+}
