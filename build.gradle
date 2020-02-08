@@ -180,6 +180,7 @@ dokka {
             'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-bootstrap-select-remote/src/main/kotlin',
             'kvision-modules/kvision-tabulator-remote/src/main/kotlin',
+            'kvision-modules/kvision-bootstrap-typeahead-remote/src/main/kotlin',
             'kvision-modules/kvision-common/src/main/kotlin',
             'kvision-modules/kvision-common-types/src/main/kotlin',
             'kvision-modules/kvision-common-annotations/src/main/kotlin',
