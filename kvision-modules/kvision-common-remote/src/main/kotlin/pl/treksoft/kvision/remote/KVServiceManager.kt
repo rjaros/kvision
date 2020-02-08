@@ -111,14 +111,6 @@ expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) {
     )
 
     /**
-     * Binds a given function of the receiver as a select options source
-     * @param function a function of the receiver
-     */
-    protected fun bindSelectRemote(
-        function: suspend T.(String?, String?, String?) -> List<RemoteOption>
-    )
-
-    /**
      * Binds a given function of the receiver as a tabulator component source
      * @param function a function of the receiver
      */

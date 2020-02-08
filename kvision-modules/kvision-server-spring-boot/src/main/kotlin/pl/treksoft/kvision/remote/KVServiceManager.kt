@@ -511,59 +511,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 
     /**
-     * Binds a given function of the receiver as a select options source
-     * @param function a function of the receiver
-     */
-    @Suppress("TooGenericExceptionCaught")
-    protected actual fun bindSelectRemote(
-        function: suspend T.(String?, String?, String?) -> List<RemoteOption>
-    ) {
-        val routeDef = "route${this::class.simpleName}${counter++}"
-        addRoute(HttpMethod.POST, "/kv/$routeDef") { req, ctx ->
-            val service = ctx.getBean(serviceClass.java)
-            initializeService(service, req)
-            val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
-            @Suppress("MagicNumber")
-            if (jsonRpcRequest.params.size == 3) {
-                val param1 = getParameter<String?>(jsonRpcRequest.params[0])
-                val param2 = getParameter<String?>(jsonRpcRequest.params[1])
-                val param3 = getParameter<String?>(jsonRpcRequest.params[2])
-                try {
-                    val result = function.invoke(service, param1, param2, param3)
-                    ServerResponse.ok().json().bodyValueAndAwait(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
-                            )
-                        )
-                    )
-                } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
-                    ServerResponse.ok().json().bodyValueAndAwait(
-                        mapper.writeValueAsString(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName
-                            )
-                        )
-                    )
-                }
-            } else {
-                ServerResponse.ok().json().bodyValueAndAwait(
-                    mapper.writeValueAsString(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = "Invalid parameters"
-                        )
-                    )
-                )
-            }
-        }
-    }
-
-    /**
      * Binds a given function of the receiver as a tabulator component source
      * @param function a function of the receiver
      */

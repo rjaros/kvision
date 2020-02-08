@@ -98,8 +98,6 @@ class KVProcessor : AbstractProcessor() {
                             when {
                                 it.returnType.toString().startsWith("RemoteData") ->
                                     appendln("            bindTabulatorRemote($iName::${it.name})")
-                                it.returnType.toString() == "List<RemoteOption>" ->
-                                    appendln("            bindSelectRemote($iName::${it.name})")
                                 else -> appendln("            bind($iName::${it.name})")
                             }
                         }
@@ -148,11 +146,6 @@ class KVProcessor : AbstractProcessor() {
                                             "    override suspend fun $name(${getParameterList(
                                                 params
                                             )}) = ${it.returnType.toString()}()"
-                                        )
-                                        it.returnType.toString() == "List<RemoteOption>" -> appendln(
-                                            "    override suspend fun $name(${getParameterList(
-                                                params
-                                            )}) = emptyList<RemoteOption>()"
                                         )
                                         else -> appendln(
                                             "    override suspend fun $name(${getParameterList(params)}) = call($iName::$name, ${getParameterNames(
