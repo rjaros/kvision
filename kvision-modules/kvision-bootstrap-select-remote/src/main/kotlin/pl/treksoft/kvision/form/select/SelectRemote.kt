@@ -50,10 +50,10 @@ import pl.treksoft.kvision.utils.SnOn
  */
 @Suppress("TooManyFunctions")
 open class SelectRemote<T : Any>(
-    value: String? = null,
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
+    value: String? = null,
     name: String? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
@@ -160,7 +160,7 @@ open class SelectRemote<T : Any>(
 
     private val idc = "kv_form_SelectRemote_$counter"
     final override val input: SelectRemoteInput<T> = SelectRemoteInput(
-        value, serviceManager, function, stateFunction, multiple, ajaxOptions, preload,
+        serviceManager, function, stateFunction, value, multiple, ajaxOptions, preload,
         setOf("form-control")
     ).apply {
         this.id = idc
@@ -268,18 +268,18 @@ open class SelectRemote<T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.selectRemote(
-    value: String? = null,
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
+    value: String? = null,
     name: String? = null, multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, preload: Boolean = false,
     label: String? = null, rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
 ): SelectRemote<T> {
     val selectRemote =
         SelectRemote(
-            value,
             serviceManager,
             function,
             stateFunction,
+            value,
             name,
             multiple,
             ajaxOptions,

@@ -55,10 +55,10 @@ external fun decodeURIComponent(encodedURI: String): String
  */
 @UseExperimental(ImplicitReflectionSerializer::class)
 open class SelectRemoteInput<T : Any>(
-    value: String? = null,
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     private val stateFunction: (() -> String)? = null,
+    value: String? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     private val preload: Boolean = false,
@@ -190,10 +190,10 @@ open class SelectRemoteInput<T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.selectRemoteInput(
-    value: String? = null,
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
+    value: String? = null,
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     preload: Boolean = false,
@@ -201,10 +201,10 @@ fun <T : Any> Container.selectRemoteInput(
 ): SelectRemoteInput<T> {
     val selectRemoteInput =
         SelectRemoteInput(
-            value,
             serviceManager,
             function,
             stateFunction,
+            value,
             multiple,
             ajaxOptions,
             preload,
