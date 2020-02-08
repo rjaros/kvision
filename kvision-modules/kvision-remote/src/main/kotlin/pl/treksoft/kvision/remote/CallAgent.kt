@@ -88,7 +88,7 @@ open class CallAgent {
                 this.error =
                     { xhr: JQueryXHR, _: String, errorText: String ->
                         val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
-                            xhr.responseJSON.toString()
+                            NativeJSON.stringify(xhr.responseJSON)
                         } else if (xhr.responseText != undefined) {
                             xhr.responseText
                         } else {
