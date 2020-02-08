@@ -60,6 +60,8 @@ enum class DataType(internal val type: String) {
  * [JQuery ajax.data](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings) option
  * @param httpType
  * [JQuery ajax.type](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings) option
+ * @param dataType
+ * [JQuery ajax.dataType](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings) option
  * @param minLength
  * [AjaxBootstrapSelect minLength](https://github.com/truckingsim/Ajax-Bootstrap-Select#optionsminlength) option
  * @param cache
@@ -74,7 +76,11 @@ enum class DataType(internal val type: String) {
  * [AjaxBootstrapSelect requestDelay](https://github.com/truckingsim/Ajax-Bootstrap-Select#optionsrequestdelay) option
  * @param restoreOnError
  * [AjaxBootstrapSelect restoreOnError](https://github.com/truckingsim/Ajax-Bootstrap-Select#optionsrestoreonerror)
+ * @param preserveSelected
+ * [AjaxBootstrapSelect preserveSelected](https://github.com/truckingsim/Ajax-Bootstrap-Select#optionspreserveselected)
  * option
+ * @param processData
+ * [JQuery ajax.processData](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings) option
  */
 data class AjaxOptions(
     val url: String? = null,
