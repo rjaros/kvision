@@ -80,6 +80,7 @@ pl.treksoft.kvision.electron
 pl.treksoft.kvision.electron.nodejs
 pl.treksoft.kvision.form
 pl.treksoft.kvision.form.check
+pl.treksoft.kvision.form.range
 pl.treksoft.kvision.form.select
 pl.treksoft.kvision.form.spinner
 pl.treksoft.kvision.form.text
