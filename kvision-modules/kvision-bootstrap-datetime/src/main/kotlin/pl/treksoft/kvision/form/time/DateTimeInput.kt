@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.time
 
 import com.github.snabbdom.VNode
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.form.FormInput
@@ -328,6 +329,31 @@ open class DateTimeInput(
             this.dispatchEvent("change", obj { detail = e })
         }
         this.getElementJQuery()?.on("dp.show") { e, _ ->
+            val inTabulator = this.getElementJQuery()?.closest(".tabulator-cell")?.length == 1
+            if (inTabulator) {
+                val datepicker = jQuery("body").find(".bootstrap-datetimepicker-widget:last")
+                val position = datepicker.offset()
+                val parent = datepicker.parent()
+                val parentPos = parent.offset()
+                val width = datepicker.width()
+                val parentWid = parent.width()
+                datepicker.appendTo("body")
+                @Suppress("UnsafeCastFromDynamic")
+                datepicker.css(obj {
+                    this.position = "absolute"
+                    this.top = position.top
+                    this.bottom = "auto"
+                    this.left = position.left
+                    this.right = "auto"
+                })
+                if (parentPos.left.toInt() + parentWid.toInt() < position.left.toInt() + width.toInt()) {
+                    var newLeft = parentPos.left.toInt()
+                    newLeft += parentWid.toInt() / 2
+                    newLeft -= width.toInt() / 2
+                    @Suppress("UnsafeCastFromDynamic")
+                    datepicker.css(obj { this.left = newLeft })
+                }
+            }
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("showBsDateTime", obj { detail = e })
         }
