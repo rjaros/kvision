@@ -182,7 +182,8 @@ open class RangeInput(
     protected open fun refreshState() {
         value?.let {
             getElementJQuery()?.`val`(it)
-        } ?: getElementJQueryD()?.`val`(min)
+        }
+        if (value == null) value = min
     }
 
     /**
