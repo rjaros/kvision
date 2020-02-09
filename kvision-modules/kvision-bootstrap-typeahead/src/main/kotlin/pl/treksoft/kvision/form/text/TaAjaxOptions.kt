@@ -61,7 +61,7 @@ enum class DataType(internal val type: String) {
 data class TaAjaxOptions(
     val url: String,
     val preprocessQuery: ((String) -> dynamic)? = null,
-    val preprocessData: ((dynamic) -> dynamic)? = null,
+    val preprocessData: ((dynamic) -> Array<String>)? = null,
     val beforeSend: ((JQueryXHR, dynamic) -> dynamic)? = null,
     val httpType: HttpType = HttpType.GET,
     val dataType: DataType = DataType.JSON,

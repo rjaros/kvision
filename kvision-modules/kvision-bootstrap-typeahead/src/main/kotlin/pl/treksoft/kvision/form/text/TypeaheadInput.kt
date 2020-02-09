@@ -100,6 +100,7 @@ open class TypeaheadInput(
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.typeahead(getSettingsObj())
+        refreshState()
     }
 
     override fun afterDestroy() {
@@ -107,7 +108,7 @@ open class TypeaheadInput(
     }
 
     @Suppress("UnsafeCastFromDynamic")
-    private fun getSettingsObj(): dynamic {
+    protected fun getSettingsObj(): dynamic {
         val sourceOpt = when {
             options != null -> {
                 options?.toTypedArray()?.asDynamic()
@@ -161,6 +162,9 @@ open class TypeaheadInput(
             this.autoSelect = autoSelect
             this.delay = delay
             this.fitToElement = fitToElement
+            this.afterSelect = { v: String ->
+                this@TypeaheadInput.value = v
+            }
         }
     }
 
