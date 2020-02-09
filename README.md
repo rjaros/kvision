@@ -35,6 +35,7 @@ allows to build full-stack, multiplatform applications with shared common code.
     - [Bootstrap Datetime picker](https://github.com/pingcheng/bootstrap4-datetimepicker)
     - [Bootstrap touchspin](https://github.com/istvan-ujjmeszaros/bootstrap-touchspin)
     - [Bootstrap File Input](http://plugins.krajee.com/file-input)
+    - [Bootstrap Typeahead](https://github.com/eduardoinf/Bootstrap-3-Typeahead)
     - [Handlebars](http://handlebarsjs.com/)
     - [Chart.js](https://www.chartjs.org/)
     - [Tabulator](http://tabulator.info/)
