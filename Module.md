@@ -52,6 +52,10 @@ validation.
 
 Checkbox, radiobutton and radiobutton group components.
 
+# Package pl.treksoft.kvision.form.range
+
+Range input component.
+
 # Package pl.treksoft.kvision.form.select
 
 Contains a simple select component as well as a full-featured component with support for remote (AJAX) data source.
