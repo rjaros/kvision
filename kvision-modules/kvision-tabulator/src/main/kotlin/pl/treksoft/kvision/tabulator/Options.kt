@@ -783,10 +783,10 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (ajaxLoader != null) this.ajaxLoader = ajaxLoader
         if (ajaxLoaderLoading != null) this.ajaxLoaderLoading = i18nTranslator(ajaxLoaderLoading)
         if (ajaxLoaderError != null) this.ajaxLoaderError = i18nTranslator(ajaxLoaderError)
-        if (initialSort != null) this.initialSort = initialSort
+        if (initialSort != null) this.initialSort = initialSort.toTypedArray()
         if (sortOrderReverse != null) this.sortOrderReverse = sortOrderReverse
-        if (initialFilter != null) this.initialFilter = initialFilter
-        if (initialHeaderFilter != null) this.initialHeaderFilter = initialHeaderFilter
+        if (initialFilter != null) this.initialFilter = initialFilter.toTypedArray()
+        if (initialHeaderFilter != null) this.initialHeaderFilter = initialHeaderFilter.toTypedArray()
         if (pagination != null) this.pagination = pagination.mode
         if (paginationSize != null) this.paginationSize = paginationSize
         if (paginationSizeSelector != null) this.paginationSizeSelector = paginationSizeSelector
