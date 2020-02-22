@@ -284,6 +284,10 @@ abstract class StyledComponent {
      * CSS line break of the current component.
      */
     open var lineBreak: LineBreak? by refreshOnUpdate()
+    /**
+     * CSS cursor shape over the current component.
+     */
+    open var cursor: Cursor? by refreshOnUpdate()
 
     private var snStyleCache: List<StringPair>? = null
 
@@ -482,6 +486,9 @@ abstract class StyledComponent {
             }
             lineBreak?.let {
                 snstyle.add("line-break" to it.lineBreak)
+            }
+            cursor?.let {
+                snstyle.add("cursor" to it.cursor)
             }
             globalStyleCache[cacheKey] = snstyle
             return snstyle

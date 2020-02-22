@@ -515,6 +515,47 @@ enum class LineBreak(internal val lineBreak: String) {
     ANYWHERE("anywhere")
 }
 
+enum class Cursor(internal val cursor: String) {
+    DEFAULT("default"),
+    AUTO("auto"),
+    NONE("none"),
+    ALIAS("alias"),
+    ALLSCROLL("all-scroll"),
+    CELL("cell"),
+    CONTEXTMENU("context-menu"),
+    COLRESIZE("col-resize"),
+    COPY("copy"),
+    CROSSHAIR("crosshair"),
+    ERESIZE("e-resize"),
+    EWRESIZE("ew-resize"),
+    GRAB("grab"),
+    GRABBING("grabbing"),
+    HELP("help"),
+    MOVE("move"),
+    NRESIZE("n-resize"),
+    NERESIZE("ne-resize"),
+    NESWRESIZE("nesw-resize"),
+    NSRESIZE("ns-resize"),
+    NWRESIZE("nw-resize"),
+    NWSERESIZE("nwse-resize"),
+    NODROP("no-drop"),
+    NOTALLOWED("not-allowed"),
+    POINTER("pointer"),
+    PROGRESS("progress"),
+    ROWRESIZE("row-resize"),
+    SRESIZE("s-resize"),
+    SERESIZE("se-resize"),
+    SWRESIZE("sw-resize"),
+    TEXT("text"),
+    VERTICALTEXT("vertical-text"),
+    WRESIZE("w-resize"),
+    WAIT("wait"),
+    ZOOMIN("zoom-in"),
+    ZOOMOUT("zoom-out"),
+    INITIAL("initial"),
+    INHERIT("inherit")
+}
+
 /**
  * Type-safe definition of CSS border.
  * @param width width of the border
