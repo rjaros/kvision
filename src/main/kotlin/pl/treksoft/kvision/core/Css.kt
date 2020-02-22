@@ -517,27 +517,26 @@ enum class LineBreak(internal val lineBreak: String) {
 
 /**
  * Type-safe definition of CSS border.
+ * @param width width of the border
+ * @param style style of the border
+ * @param color color of the border
  */
-class Border private constructor(
+class Border(
     private val width: CssSize? = null, private val style: BorderStyle? = null,
-    private val color: String? = null
+    private val color: Color? = null
 ) {
-    /**
-     * Creates CSS Border with given width and style.
-     * @param width width of the border
-     * @param style style of the border
-     */
-    constructor(width: CssSize? = null, style: BorderStyle? = null) : this(width, style, null)
-
     /**
      * Creates CSS Border with given width, style and color given in hex format.
      * @param width width of the border
      * @param style style of the border
      * @param color color in hex format
      */
+    @Deprecated(
+        "Use primary constructor Border(CssSize?, BorderStyle?, Color?) instead.",
+        level = DeprecationLevel.WARNING
+    )
     constructor(width: CssSize? = null, style: BorderStyle? = null, color: Int) : this(
-        width, style,
-        "#" + color.toHexString()
+        width, style, Color.hex(color)
     )
 
     /**
@@ -546,11 +545,15 @@ class Border private constructor(
      * @param style style of the border
      * @param color color named constant
      */
-    constructor(width: CssSize? = null, style: BorderStyle? = null, color: Col) : this(width, style, color.color)
+    @Deprecated(
+        "Use primary constructor Border(CssSize?, BorderStyle?, Color?) instead.",
+        level = DeprecationLevel.WARNING
+    )
+    constructor(width: CssSize? = null, style: BorderStyle? = null, color: Col) : this(width, style, Color.name(color))
 
     internal fun asString(): String {
         val w = width?.asString()
-        return w.orEmpty() + " " + (style?.borderStyle).orEmpty() + " " + color.orEmpty()
+        return w.orEmpty() + " " + (style?.borderStyle).orEmpty() + " " + color?.asString().orEmpty()
     }
 
     override fun toString() = asString()
@@ -559,17 +562,19 @@ class Border private constructor(
 /**
  * Type-safe definition of CSS color.
  */
-class Color private constructor(private val color: String? = null) {
+class Color private constructor(internal val color: String? = null) {
     /**
      * Creates CSS Color with color given in hex format.
      * @param color color in hex format
      */
+    @Deprecated("Use Color.hex() function instead.", level = DeprecationLevel.WARNING)
     constructor(color: Int) : this("#" + color.toHexString())
 
     /**
      * Creates CSS Color with color given with named constant.
      * @param color color named constant
      */
+    @Deprecated("Use Color.name() function instead.", level = DeprecationLevel.WARNING)
     constructor(color: Col) : this(color.color)
 
     fun asString(): String {
@@ -577,13 +582,42 @@ class Color private constructor(private val color: String? = null) {
     }
 
     override fun toString() = asString()
+
+    companion object {
+        /**
+         * Creates CSS Color with color given in hex format.
+         * @param color color in hex format
+         */
+        fun hex(color: Int): Color {
+            return Color("#" + color.toHexString())
+        }
+
+        /**
+         * Creates CSS Color with color given with named constant.
+         * @param color color named constant
+         */
+        fun name(color: Col): Color {
+            return Color(color.color)
+        }
+    }
 }
 
 /**
  * Type-safe definition of CSS background.
+ * @param color color of the background
+ * @param image background image
+ * @param positionX horizontal position of the background image
+ * @param positionY vertical position of the background image
+ * @param sizeX horizontal size of the background image
+ * @param sizeY vertical size of the background image
+ * @param size resize of the background image
+ * @param repeat repeat option of the background image
+ * @param origin origin option of the background image
+ * @param clip clipping option of the background image
+ * @param attachment attachment option of the background image
  */
-class Background private constructor(
-    private val color: String? = null, private val image: ResString? = null,
+class Background(
+    private val color: Color? = null, private val image: ResString? = null,
     private val positionX: CssSize? = null, private val positionY: CssSize? = null,
     private val sizeX: CssSize? = null, private val sizeY: CssSize? = null,
     private val size: BgSize? = null, private val repeat: BgRepeat? = null,
@@ -603,6 +637,10 @@ class Background private constructor(
      * @param clip clipping option of the background image
      * @param attachment attachment option of the background image
      */
+    @Deprecated(
+        "Use primary constructor Background(Color?, ResString?, ...) instead.",
+        level = DeprecationLevel.WARNING
+    )
     constructor(
         image: ResString? = null, positionX: CssSize? = null, positionY: CssSize? = null,
         sizeX: CssSize? = null, sizeY: CssSize? = null, size: BgSize? = null,
@@ -627,6 +665,10 @@ class Background private constructor(
      * @param clip clipping option of the background image
      * @param attachment attachment option of the background image
      */
+    @Deprecated(
+        "Use primary constructor Background(Color?, ResString?, ...) instead.",
+        level = DeprecationLevel.WARNING
+    )
     constructor(
         color: Int, image: ResString? = null, positionX: CssSize? = null,
         positionY: CssSize? = null,
@@ -634,8 +676,7 @@ class Background private constructor(
         repeat: BgRepeat? = null, origin: BgOrigin? = null, clip: BgClip? = null,
         attachment: BgAttach? = null
     ) : this(
-        "#" +
-                color.toHexString(), image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip,
+        Color.hex(color), image, positionX, positionY, sizeX, sizeY, size, repeat, origin, clip,
         attachment
     )
 
@@ -653,13 +694,17 @@ class Background private constructor(
      * @param clip clipping option of the background image
      * @param attachment attachment option of the background image
      */
+    @Deprecated(
+        "Use primary constructor Background(Color?, ResString?, ...) instead.",
+        level = DeprecationLevel.WARNING
+    )
     constructor(
         color: Col, image: ResString? = null, positionX: CssSize? = null,
         positionY: CssSize? = null, sizeX: CssSize? = null, sizeY: CssSize? = null,
         size: BgSize? = null, repeat: BgRepeat? = null, origin: BgOrigin? = null, clip: BgClip? = null,
         attachment: BgAttach? = null
     ) : this(
-        color.color, image,
+        Color.name(color), image,
         positionX, positionY, sizeX, sizeY, size, repeat, origin, clip, attachment
     )
 
@@ -671,7 +716,7 @@ class Background private constructor(
         val posY = positionY?.asString()
         val sX = sizeX?.asString()
         val sY = sizeY?.asString()
-        return color.orEmpty() + " " + img.orEmpty() + " " + posX.orEmpty() + " " + posY.orEmpty() +
+        return color?.asString().orEmpty() + " " + img.orEmpty() + " " + posX.orEmpty() + " " + posY.orEmpty() +
                 if (sX != null || sY != null || size != null) {
                     (if (posX != null || posY != null) " / " else " 0px 0px / ") +
                             sX.orEmpty() + " " + sY.orEmpty() + " " + (size?.size).orEmpty()
@@ -686,26 +731,26 @@ class Background private constructor(
 
 /**
  * Type-safe definition of CSS text decoration.
+ * @param line text decoration line
+ * @param style text decoration style
+ * @param color text decoration color
  */
-class TextDecoration private constructor(
+class TextDecoration(
     private val line: TextDecorationLine? = null, private val style: TextDecorationStyle? = null,
-    private val color: String? = null
+    private val color: Color? = null
 ) {
-    /**
-     * Creates CSS text decoration with given line and style.
-     * @param line text decoration line
-     * @param style text decoration style
-     */
-    constructor(line: TextDecorationLine? = null, style: TextDecorationStyle? = null) : this(line, style, null)
-
     /**
      * Creates CSS text decoration with given line, style and color given in hex format.
      * @param line text decoration line
      * @param style text decoration style
      * @param color color in hex format
      */
+    @Deprecated(
+        "Use primary constructor TextDecoration(TextDecorationLine?, TextDecorationStyle?, Color?) instead.",
+        level = DeprecationLevel.WARNING
+    )
     constructor(line: TextDecorationLine? = null, style: TextDecorationStyle? = null, color: Int) : this(
-        line, style, "#" + color.toHexString()
+        line, style, Color.hex(color)
     )
 
     /**
@@ -714,14 +759,18 @@ class TextDecoration private constructor(
      * @param style text decoration style
      * @param color color named constant
      */
+    @Deprecated(
+        "Use primary constructor TextDecoration(TextDecorationLine?, TextDecorationStyle?, Color?) instead.",
+        level = DeprecationLevel.WARNING
+    )
     constructor(line: TextDecorationLine? = null, style: TextDecorationStyle? = null, color: Col) : this(
-        line, style, color.color
+        line, style, Color.name(color)
     )
 
     internal fun asString(): String {
         return (line?.textDecorationLine).orEmpty() + " " +
                 (style?.textDecorationStyle).orEmpty() + " " +
-                color.orEmpty()
+                color?.asString().orEmpty()
     }
 
     override fun toString() = asString()
@@ -729,21 +778,15 @@ class TextDecoration private constructor(
 
 /**
  * Type-safe definition of CSS text shadow.
+ * @param hShadow the position of the horizontal shadow
+ * @param vShadow the position of the vertical shadow
+ * @param blurRadius the blur radius
+ * @param color color of the shadow
  */
 class TextShadow private constructor(
     private val hShadow: CssSize? = null, private val vShadow: CssSize? = null,
-    private val blurRadius: CssSize? = null, private val color: String? = null
+    private val blurRadius: CssSize? = null, private val color: Color? = null
 ) {
-    /**
-     * Creates CSS text shadow with given position and radius.
-     * @param hShadow the position of horizontal shadow
-     * @param vShadow the position of vertical shadow
-     * @param blurRadius the blur radius
-     */
-    constructor(hShadow: CssSize? = null, vShadow: CssSize? = null, blurRadius: CssSize? = null) : this(
-        hShadow, vShadow, blurRadius, null
-    )
-
     /**
      * Creates CSS text shadow with given position and radius and color given in hex format.
      * @param hShadow the position of horizontal shadow
@@ -751,8 +794,12 @@ class TextShadow private constructor(
      * @param blurRadius the blur radius
      * @param color color in hex format
      */
+    @Deprecated(
+        "Use primary constructor TextDecoration(TextDecorationLine?, TextDecorationStyle?, Color?) instead.",
+        level = DeprecationLevel.WARNING
+    )
     constructor(hShadow: CssSize? = null, vShadow: CssSize? = null, blurRadius: CssSize? = null, color: Int) : this(
-        hShadow, vShadow, blurRadius, "#" + color.toHexString()
+        hShadow, vShadow, blurRadius, Color.hex(color)
     )
 
     /**
@@ -762,15 +809,19 @@ class TextShadow private constructor(
      * @param blurRadius the blur radius
      * @param color color named constant
      */
+    @Deprecated(
+        "Use primary constructor TextDecoration(TextDecorationLine?, TextDecorationStyle?, Color?) instead.",
+        level = DeprecationLevel.WARNING
+    )
     constructor(hShadow: CssSize? = null, vShadow: CssSize? = null, blurRadius: CssSize? = null, color: Col) : this(
-        hShadow, vShadow, blurRadius, color.color
+        hShadow, vShadow, blurRadius, Color.name(color)
     )
 
     internal fun asString(): String {
         return (hShadow?.asString()).orEmpty() + " " +
                 (vShadow?.asString()).orEmpty() + " " +
                 (blurRadius?.asString()).orEmpty() + " " +
-                color.orEmpty()
+                color?.asString().orEmpty()
     }
 
     override fun toString() = asString()

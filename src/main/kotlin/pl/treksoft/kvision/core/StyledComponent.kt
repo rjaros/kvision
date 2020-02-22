@@ -172,7 +172,7 @@ abstract class StyledComponent {
     open var colorHex: Int?
         get() = null
         set(value) {
-            color = if (value != null) Color(value) else null
+            color = if (value != null) Color.hex(value) else null
         }
     /**
      * Text color for the current component given with named constant (write only).
@@ -186,7 +186,7 @@ abstract class StyledComponent {
     open var colorName: Col?
         get() = null
         set(value) {
-            color = if (value != null) Color(value) else null
+            color = if (value != null) Color.name(value) else null
         }
     /**
      * Opacity of the current component.
