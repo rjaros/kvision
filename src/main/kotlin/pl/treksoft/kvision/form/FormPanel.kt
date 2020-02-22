@@ -450,10 +450,11 @@ open class FormPanel<K : Any>(
 
     /**
      * Invokes validator function and validates the form.
+     * @param markFields determines if form fields should be labeled with error messages
      * @return validation result
      */
-    open fun validate(): Boolean {
-        return form.validate()
+    open fun validate(markFields: Boolean = true): Boolean {
+        return form.validate(markFields)
     }
 
     companion object {

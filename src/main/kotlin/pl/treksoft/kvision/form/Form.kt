@@ -325,9 +325,10 @@ class Form<K : Any>(
 
     /**
      * Invokes validator function and validates the form.
+     * @param markFields determines if form fields should be labeled with error messages
      * @return validation result
      */
-    fun validate(): Boolean {
+    fun validate(markFields: Boolean = true): Boolean {
         val fieldWithError = fieldsParams.mapNotNull { entry ->
             fields[entry.key]?.let { control ->
                 @Suppress("UNCHECKED_CAST")
@@ -335,14 +336,16 @@ class Form<K : Any>(
                 val required = fieldsParams?.required ?: false
                 val requiredError = control.getValue() == null && control.visible && required
                 if (requiredError) {
-                    control.validatorError = trans(fieldsParams?.requiredMessage) ?: "Value is required"
+                    if (markFields) control.validatorError = trans(fieldsParams?.requiredMessage) ?: "Value is required"
                     true
                 } else {
-                    val validatorPassed = fieldsParams?.validator?.invoke(control) ?: true
-                    control.validatorError = if (!validatorPassed) {
-                        trans(fieldsParams?.validatorMessage?.invoke(control)) ?: "Invalid value"
-                    } else {
-                        null
+                    val validatorPassed = control.visible && (fieldsParams?.validator?.invoke(control) ?: true)
+                    if (markFields) {
+                        control.validatorError = if (!validatorPassed) {
+                            trans(fieldsParams?.validatorMessage?.invoke(control)) ?: "Invalid value"
+                        } else {
+                            null
+                        }
                     }
                     !validatorPassed
                 }
