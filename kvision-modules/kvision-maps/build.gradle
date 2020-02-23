@@ -1,0 +1,9 @@
+apply from: "../shared.gradle"
+
+kotlinFrontend {
+
+    npm {
+        dependency("leaflet", "1.6.0")
+    }
+
+}
