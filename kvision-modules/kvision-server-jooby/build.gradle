@@ -4,7 +4,7 @@ apply plugin: 'kotlinx-serialization'
 
 dependencyManagement {
     imports {
-        mavenBom "org.jooby:jooby-bom:${joobyVersion}"
+        mavenBom "io.jooby:jooby-bom:${joobyVersion}"
     }
 }
 
@@ -18,9 +18,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-    compile "org.jooby:jooby-lang-kotlin"
-    compile "org.jooby:jooby-jackson"
-    compile "org.jooby:jooby-pac4j2"
+    compile "io.jooby:jooby-netty"
+    compile "io.jooby:jooby-guice"
+    compile "io.jooby:jooby-jackson"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonModuleKotlinVersion}"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testCompile project(":kvision-modules:kvision-common-types")

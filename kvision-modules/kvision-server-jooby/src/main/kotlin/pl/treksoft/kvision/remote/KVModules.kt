@@ -21,14 +21,17 @@
  */
 package pl.treksoft.kvision.remote
 
-import org.jooby.Kooby
-import org.jooby.json.Jackson
+import io.jooby.AssetSource
+import io.jooby.Kooby
+import io.jooby.di.GuiceModule
+import io.jooby.json.JacksonModule
 
 /**
  * Initialization function for Jooby server.
  */
 fun Kooby.kvisionInit() {
     assets("/", "/assets/index.html")
-    assets("/**", "/assets/{0}").onMissing(0)
-    use(Jackson())
+    assets("/*", AssetSource.create(javaClass.classLoader, "assets"))
+    install(GuiceModule())
+    install(JacksonModule())
 }
