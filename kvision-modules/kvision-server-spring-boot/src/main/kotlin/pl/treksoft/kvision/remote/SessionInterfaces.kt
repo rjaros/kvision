@@ -38,10 +38,6 @@ interface WithPrincipal {
     var principal: Principal
 }
 
-interface WithProfile {
-    var profile: Profile
-}
-
 interface WithWebSocketSession {
     var webSocketSession: WebSocketSession
 }

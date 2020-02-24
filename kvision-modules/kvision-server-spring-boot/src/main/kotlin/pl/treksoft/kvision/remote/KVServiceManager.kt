@@ -110,12 +110,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             val principal = req.principal().awaitSingle()
             service.principal = principal
         }
-        if (service is WithProfile) {
-            val profile = req.principal().ofType(Authentication::class.java).map {
-                it.principal as Profile
-            }.awaitSingle()
-            service.profile = profile
-        }
     }
 
     /**
@@ -470,12 +464,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             if (service is WithPrincipal) {
                 val principal = webSocketSession.handshakeInfo.principal.awaitSingle()
                 service.principal = principal
-            }
-            if (service is WithProfile) {
-                val profile = webSocketSession.handshakeInfo.principal.ofType(Authentication::class.java).map {
-                    it.principal as Profile
-                }.awaitSingle()
-                service.profile = profile
             }
             val requestChannel = Channel<PAR1>()
             val responseChannel = Channel<PAR2>()
