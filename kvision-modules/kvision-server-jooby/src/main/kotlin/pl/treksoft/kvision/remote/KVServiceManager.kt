@@ -24,8 +24,12 @@ package pl.treksoft.kvision.remote
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.google.inject.Injector
-import kotlinx.coroutines.CoroutineStart
+import io.jooby.Context
+import io.jooby.CoroutineRouter
+import io.jooby.HandlerContext
+import io.jooby.Kooby
+import io.jooby.WebSocketConfigurer
+import io.jooby.body
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -34,9 +38,6 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import org.jooby.Kooby
-import org.jooby.Request
-import org.jooby.Response
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.treksoft.kvision.types.*
@@ -60,7 +61,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val routes: MutableList<Kooby.() -> Unit> = mutableListOf()
+    val getRequests: MutableMap<String, suspend HandlerContext.() -> Any> = mutableMapOf()
+    val postRequests: MutableMap<String, suspend HandlerContext.() -> Any> = mutableMapOf()
+    val putRequests: MutableMap<String, suspend HandlerContext.() -> Any> = mutableMapOf()
+    val deleteRequests: MutableMap<String, suspend HandlerContext.() -> Any> =
+        mutableMapOf()
+    val optionsRequests: MutableMap<String, suspend HandlerContext.() -> Any> =
+        mutableMapOf()
+    val webSocketRequests: MutableMap<String, (ctx: Context, configurer: WebSocketConfigurer) -> Unit> =
+        mutableMapOf()
+
     val mapper = jacksonObjectMapper().apply {
         val module = SimpleModule()
         module.addSerializer(LocalDateTime::class.java, LocalDateTimeSerializer())
@@ -91,35 +101,26 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         method: HttpMethod, route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add {
-            call(method, "/kv/$routeDef") { req, res ->
-                val jsonRpcRequest = if (method == HttpMethod.GET) {
-                    JsonRpcRequest(req.param("id").intValue(), "", listOf())
-                } else {
-                    req.body(JsonRpcRequest::class.java)
-                }
-                val injector = req.require(Injector::class.java)
-                val service = injector.getInstance(serviceClass.java)
-                GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-                    try {
-                        val result = function.invoke(service)
-                        res.send(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id,
-                                result = mapper.writeValueAsString(result)
-                            )
-                        )
-                    } catch (e: Exception) {
-                        if (!(e is ServiceException)) LOG.error(e.message, e)
-                        res.send(
-                            JsonRpcResponse(
-                                id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                exceptionType = e.javaClass.canonicalName
-                            )
-                        )
-                    }
-                }
-            }.invoke(this)
+        addRoute(method, "/kv/$routeDef") {
+            val jsonRpcRequest = if (method == HttpMethod.GET) {
+                JsonRpcRequest(ctx.query("id").intValue(), "", listOf())
+            } else {
+                ctx.body<JsonRpcRequest>()
+            }
+            val service = ctx.require(serviceClass.java)
+            try {
+                val result = function.invoke(service)
+                JsonRpcResponse(
+                    id = jsonRpcRequest.id,
+                    result = mapper.writeValueAsString(result)
+                )
+            } catch (e: Exception) {
+                if (!(e is ServiceException)) LOG.error(e.message, e)
+                JsonRpcResponse(
+                    id = jsonRpcRequest.id, error = e.message ?: "Error",
+                    exceptionType = e.javaClass.canonicalName
+                )
+            }
         }
     }
 
@@ -137,36 +138,27 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add {
-            call(method, "/kv/$routeDef") { req, res ->
-                val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                if (jsonRpcRequest.params.size == 1) {
-                    val param = getParameter<PAR>(jsonRpcRequest.params[0])
-                    val injector = req.require(Injector::class.java)
-                    val service = injector.getInstance(serviceClass.java)
-                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-                        try {
-                            val result = function.invoke(service, param)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id,
-                                    result = mapper.writeValueAsString(result)
-                                )
-                            )
-                        } catch (e: Exception) {
-                            if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                    exceptionType = e.javaClass.canonicalName
-                                )
-                            )
-                        }
-                    }
-                } else {
-                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
+        addRoute(method, "/kv/$routeDef") {
+            val jsonRpcRequest = ctx.body<JsonRpcRequest>()
+            if (jsonRpcRequest.params.size == 1) {
+                val param = getParameter<PAR>(jsonRpcRequest.params[0])
+                val service = ctx.require(serviceClass.java)
+                try {
+                    val result = function.invoke(service, param)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        result = mapper.writeValueAsString(result)
+                    )
+                } catch (e: Exception) {
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id, error = e.message ?: "Error",
+                        exceptionType = e.javaClass.canonicalName
+                    )
                 }
-            }.invoke(this)
+            } else {
+                JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
+            }
         }
     }
 
@@ -184,37 +176,28 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add {
-            call(method, "/kv/$routeDef") { req, res ->
-                val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                if (jsonRpcRequest.params.size == 2) {
-                    val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                    val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                    val injector = req.require(Injector::class.java)
-                    val service = injector.getInstance(serviceClass.java)
-                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-                        try {
-                            val result = function.invoke(service, param1, param2)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id,
-                                    result = mapper.writeValueAsString(result)
-                                )
-                            )
-                        } catch (e: Exception) {
-                            if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                    exceptionType = e.javaClass.canonicalName
-                                )
-                            )
-                        }
-                    }
-                } else {
-                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
+        addRoute(method, "/kv/$routeDef") {
+            val jsonRpcRequest = ctx.body<JsonRpcRequest>()
+            if (jsonRpcRequest.params.size == 2) {
+                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
+                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
+                val service = ctx.require(serviceClass.java)
+                try {
+                    val result = function.invoke(service, param1, param2)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        result = mapper.writeValueAsString(result)
+                    )
+                } catch (e: Exception) {
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id, error = e.message ?: "Error",
+                        exceptionType = e.javaClass.canonicalName
+                    )
                 }
-            }.invoke(this)
+            } else {
+                JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
+            }
         }
     }
 
@@ -232,39 +215,30 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add {
-            call(method, "/kv/$routeDef") { req, res ->
-                val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                @Suppress("MagicNumber")
-                if (jsonRpcRequest.params.size == 3) {
-                    val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                    val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                    val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                    val injector = req.require(Injector::class.java)
-                    val service = injector.getInstance(serviceClass.java)
-                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-                        try {
-                            val result = function.invoke(service, param1, param2, param3)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id,
-                                    result = mapper.writeValueAsString(result)
-                                )
-                            )
-                        } catch (e: Exception) {
-                            if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                    exceptionType = e.javaClass.canonicalName
-                                )
-                            )
-                        }
-                    }
-                } else {
-                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
+        addRoute(method, "/kv/$routeDef") {
+            val jsonRpcRequest = ctx.body<JsonRpcRequest>()
+            @Suppress("MagicNumber")
+            if (jsonRpcRequest.params.size == 3) {
+                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
+                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
+                val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
+                val service = ctx.require(serviceClass.java)
+                try {
+                    val result = function.invoke(service, param1, param2, param3)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        result = mapper.writeValueAsString(result)
+                    )
+                } catch (e: Exception) {
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id, error = e.message ?: "Error",
+                        exceptionType = e.javaClass.canonicalName
+                    )
                 }
-            }.invoke(this)
+            } else {
+                JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
+            }
         }
     }
 
@@ -282,40 +256,31 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add {
-            call(method, "/kv/$routeDef") { req, res ->
-                val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                @Suppress("MagicNumber")
-                if (jsonRpcRequest.params.size == 4) {
-                    val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                    val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                    val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                    val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
-                    val injector = req.require(Injector::class.java)
-                    val service = injector.getInstance(serviceClass.java)
-                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-                        try {
-                            val result = function.invoke(service, param1, param2, param3, param4)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id,
-                                    result = mapper.writeValueAsString(result)
-                                )
-                            )
-                        } catch (e: Exception) {
-                            if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                    exceptionType = e.javaClass.canonicalName
-                                )
-                            )
-                        }
-                    }
-                } else {
-                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
+        addRoute(method, "/kv/$routeDef") {
+            val jsonRpcRequest = ctx.body<JsonRpcRequest>()
+            @Suppress("MagicNumber")
+            if (jsonRpcRequest.params.size == 4) {
+                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
+                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
+                val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
+                val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
+                val service = ctx.require(serviceClass.java)
+                try {
+                    val result = function.invoke(service, param1, param2, param3, param4)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        result = mapper.writeValueAsString(result)
+                    )
+                } catch (e: Exception) {
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id, error = e.message ?: "Error",
+                        exceptionType = e.javaClass.canonicalName
+                    )
                 }
-            }.invoke(this)
+            } else {
+                JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
+            }
         }
     }
 
@@ -334,41 +299,32 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        routes.add {
-            call(method, "/kv/$routeDef") { req, res ->
-                val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
-                @Suppress("MagicNumber")
-                if (jsonRpcRequest.params.size == 5) {
-                    val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                    val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                    val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                    val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
-                    val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
-                    val injector = req.require(Injector::class.java)
-                    val service = injector.getInstance(serviceClass.java)
-                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-                        try {
-                            val result = function.invoke(service, param1, param2, param3, param4, param5)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id,
-                                    result = mapper.writeValueAsString(result)
-                                )
-                            )
-                        } catch (e: Exception) {
-                            if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                    exceptionType = e.javaClass.canonicalName
-                                )
-                            )
-                        }
-                    }
-                } else {
-                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
+        addRoute(method, "/kv/$routeDef") {
+            val jsonRpcRequest = ctx.body<JsonRpcRequest>()
+            @Suppress("MagicNumber")
+            if (jsonRpcRequest.params.size == 5) {
+                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
+                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
+                val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
+                val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
+                val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
+                val service = ctx.require(serviceClass.java)
+                try {
+                    val result = function.invoke(service, param1, param2, param3, param4, param5)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        result = mapper.writeValueAsString(result)
+                    )
+                } catch (e: Exception) {
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id, error = e.message ?: "Error",
+                        exceptionType = e.javaClass.canonicalName
+                    )
                 }
-            }.invoke(this)
+            } else {
+                JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
+            }
         }
     }
 
@@ -382,12 +338,11 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         route: String?
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        routes.add {
-            ws("/kvws/$routeDef") { ws ->
-                val injector = ws.require(Injector::class.java)
-                val service = injector.getInstance(serviceClass.java)
-                val incoming = Channel<String>()
-                val outgoing = Channel<String>()
+        webSocketRequests["/kvws/$routeDef"] = { ctx, configurer ->
+            val service = ctx.require(serviceClass.java)
+            val incoming = Channel<String>()
+            val outgoing = Channel<String>()
+            configurer.onConnect { ws ->
                 GlobalScope.launch {
                     coroutineScope {
                         launch(Dispatchers.IO) {
@@ -430,16 +385,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         }
                     }
                 }
-                ws.onClose {
-                    GlobalScope.launch {
-                        outgoing.close()
-                        incoming.close()
-                    }
+            }
+            configurer.onClose { _, _ ->
+                GlobalScope.launch {
+                    outgoing.close()
+                    incoming.close()
                 }
-                ws.onMessage { msg ->
-                    GlobalScope.launch {
-                        incoming.send(msg.value())
-                    }
+            }
+            configurer.onMessage { _, msg ->
+                GlobalScope.launch {
+                    incoming.send(msg.value())
                 }
             }
         }
@@ -454,62 +409,51 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        routes.add {
-            call(HttpMethod.POST, "/kv/$routeDef") { req, res ->
-                val jsonRpcRequest = req.body(JsonRpcRequest::class.java)
+        addRoute(HttpMethod.POST, "/kv/$routeDef") {
+            val jsonRpcRequest = ctx.body<JsonRpcRequest>()
+            @Suppress("MagicNumber")
+            if (jsonRpcRequest.params.size == 5) {
+                val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
+                val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
+                val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
                 @Suppress("MagicNumber")
-                if (jsonRpcRequest.params.size == 5) {
-                    val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
-                    val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
-                    val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
-                    @Suppress("MagicNumber")
-                    val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
-                    @Suppress("MagicNumber")
-                    val param5 = getParameter<String?>(jsonRpcRequest.params[4])
-                    val injector = req.require(Injector::class.java)
-                    val service = injector.getInstance(serviceClass.java)
-                    GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-                        try {
-                            val result = function.invoke(service, param1, param2, param3, param4, param5)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id,
-                                    result = mapper.writeValueAsString(result)
-                                )
-                            )
-                        } catch (e: Exception) {
-                            if (!(e is ServiceException)) LOG.error(e.message, e)
-                            res.send(
-                                JsonRpcResponse(
-                                    id = jsonRpcRequest.id, error = e.message ?: "Error",
-                                    exceptionType = e.javaClass.canonicalName
-                                )
-                            )
-                        }
-                    }
-                } else {
-                    res.send(JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters"))
+                val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
+                @Suppress("MagicNumber")
+                val param5 = getParameter<String?>(jsonRpcRequest.params[4])
+                val service = ctx.require(serviceClass.java)
+                try {
+                    val result = function.invoke(service, param1, param2, param3, param4, param5)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        result = mapper.writeValueAsString(result)
+                    )
+                } catch (e: Exception) {
+                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id, error = e.message ?: "Error",
+                        exceptionType = e.javaClass.canonicalName
+                    )
                 }
-            }.invoke(this)
+            } else {
+                JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
+            }
         }
     }
 
     /**
      * @suppress Internal method
      */
-    fun call(
+    fun addRoute(
         method: HttpMethod,
         path: String,
-        handler: (Request, Response) -> Unit
-    ): Kooby.() -> Unit {
-        return {
-            when (method) {
-                HttpMethod.GET -> get(path, handler)
-                HttpMethod.POST -> post(path, handler)
-                HttpMethod.PUT -> put(path, handler)
-                HttpMethod.DELETE -> delete(path, handler)
-                HttpMethod.OPTIONS -> options(path, handler)
-            }
+        handler: suspend HandlerContext.() -> Any
+    ) {
+        when (method) {
+            HttpMethod.GET -> getRequests[path] = handler
+            HttpMethod.POST -> postRequests[path] = handler
+            HttpMethod.PUT -> putRequests[path] = handler
+            HttpMethod.DELETE -> deleteRequests[path] = handler
+            HttpMethod.OPTIONS -> optionsRequests[path] = handler
         }
     }
 
@@ -531,8 +475,32 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 /**
  * A function to generate routes based on definitions from the service manager.
  */
+fun <T : Any> CoroutineRouter.applyRoutes(serviceManager: KVServiceManager<T>) {
+    serviceManager.getRequests.forEach { (path, handler) ->
+        get(path, handler)
+    }
+    serviceManager.postRequests.forEach { (path, handler) ->
+        post(path, handler)
+    }
+    serviceManager.putRequests.forEach { (path, handler) ->
+        put(path, handler)
+    }
+    serviceManager.deleteRequests.forEach { (path, handler) ->
+        delete(path, handler)
+    }
+    serviceManager.optionsRequests.forEach { (path, handler) ->
+        options(path, handler)
+    }
+    serviceManager.webSocketRequests.forEach { (path, handler) ->
+        this.router.ws(path, handler)
+    }
+}
+
+/**
+ * A function to generate routes based on definitions from the service manager.
+ */
 fun <T : Any> Kooby.applyRoutes(serviceManager: KVServiceManager<T>) {
-    serviceManager.routes.forEach {
-        it.invoke(this@applyRoutes)
+    coroutine {
+        applyRoutes(serviceManager)
     }
 }
