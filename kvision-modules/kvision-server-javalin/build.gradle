@@ -1,0 +1,30 @@
+apply plugin: 'kotlin-platform-jvm'
+apply plugin: 'kotlinx-serialization'
+
+dependencies {
+    expectedBy project(":kvision-modules:kvision-common-types")
+    expectedBy project(":kvision-modules:kvision-common-remote")
+    expectedBy project(":kvision-modules:kvision-common-annotations")
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion"
+    compile "io.javalin:javalin:$javalinVersion"
+    compile "com.google.inject:guice:$guiceVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion"
+    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+    testCompile project(":kvision-modules:kvision-common-types")
+    testCompile project(":kvision-modules:kvision-common-remote")
+    testCompile project(":kvision-modules:kvision-common-annotations")
+}
+
+compileKotlin {
+    targetCompatibility = javaVersion
+    sourceCompatibility = javaVersion
+    kotlinOptions {
+        jvmTarget = javaVersion
+    }
+}

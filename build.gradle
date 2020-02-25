@@ -185,6 +185,7 @@ dokka {
             'kvision-modules/kvision-common/src/main/kotlin',
             'kvision-modules/kvision-common-types/src/main/kotlin',
             'kvision-modules/kvision-common-annotations/src/main/kotlin',
+            'kvision-modules/kvision-server-javalin/src/main/kotlin',
             'kvision-modules/kvision-server-jooby/src/main/kotlin',
             'kvision-modules/kvision-server-ktor/src/main/kotlin',
             'kvision-modules/kvision-server-spring-boot/src/main/kotlin',
