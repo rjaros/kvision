@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import com.google.inject.Module
 import io.jooby.AssetSource
 import io.jooby.Kooby
 import io.jooby.di.GuiceModule
@@ -29,9 +30,9 @@ import io.jooby.json.JacksonModule
 /**
  * Initialization function for Jooby server.
  */
-fun Kooby.kvisionInit() {
+fun Kooby.kvisionInit(vararg modules: Module) {
     assets("/", "/assets/index.html")
     assets("/*", AssetSource.create(javaClass.classLoader, "assets"))
-    install(GuiceModule())
+    install(GuiceModule(*modules))
     install(JacksonModule())
 }
