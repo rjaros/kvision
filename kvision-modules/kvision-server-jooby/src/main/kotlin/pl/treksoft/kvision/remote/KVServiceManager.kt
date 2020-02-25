@@ -90,6 +90,18 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     var counter: Int = 0
 
     /**
+     * @suppress internal function
+     */
+    fun initializeService(service: T, ctx: Context) {
+        if (service is WithContext) {
+            service.ctx = ctx
+        }
+        if (service is WithSession) {
+            service.session = ctx.session()
+        }
+    }
+
+    /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
      * @param method a HTTP method
@@ -108,6 +120,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 ctx.body<JsonRpcRequest>()
             }
             val service = ctx.require(serviceClass.java)
+            initializeService(service, ctx)
             try {
                 val result = function.invoke(service)
                 JsonRpcResponse(
@@ -143,6 +156,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             if (jsonRpcRequest.params.size == 1) {
                 val param = getParameter<PAR>(jsonRpcRequest.params[0])
                 val service = ctx.require(serviceClass.java)
+                initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param)
                     JsonRpcResponse(
@@ -182,6 +196,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                 val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                 val service = ctx.require(serviceClass.java)
+                initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2)
                     JsonRpcResponse(
@@ -223,6 +238,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                 val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                 val service = ctx.require(serviceClass.java)
+                initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3)
                     JsonRpcResponse(
@@ -265,6 +281,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                 val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
                 val service = ctx.require(serviceClass.java)
+                initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3, param4)
                     JsonRpcResponse(
@@ -309,6 +326,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
                 val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
                 val service = ctx.require(serviceClass.java)
+                initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3, param4, param5)
                     JsonRpcResponse(
@@ -340,6 +358,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val routeDef = "route${this::class.simpleName}${counter++}"
         webSocketRequests["/kvws/$routeDef"] = { ctx, configurer ->
             val service = ctx.require(serviceClass.java)
+            initializeService(service, ctx)
             val incoming = Channel<String>()
             val outgoing = Channel<String>()
             configurer.onConnect { ws ->
@@ -421,6 +440,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 @Suppress("MagicNumber")
                 val param5 = getParameter<String?>(jsonRpcRequest.params[4])
                 val service = ctx.require(serviceClass.java)
+                initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3, param4, param5)
                     JsonRpcResponse(
