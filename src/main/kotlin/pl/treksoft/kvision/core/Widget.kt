@@ -34,6 +34,7 @@ import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.SnOn
+import pl.treksoft.kvision.utils.emptyOn
 import pl.treksoft.kvision.utils.hooks
 import pl.treksoft.kvision.utils.on
 import pl.treksoft.kvision.utils.snAttrs
@@ -57,6 +58,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     internal val classes = classes.toMutableSet()
     internal val surroundingClasses: MutableSet<String> = mutableSetOf()
     internal val attributes: MutableMap<String, String> = mutableMapOf()
+    internal val internalListenersMap = mutableMapOf<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>()
     internal val listenersMap = mutableMapOf<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>()
     internal var listenerCounter: Int = 0
 
@@ -260,9 +262,19 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @return list of event handlers
      */
     protected open fun getSnOn(): com.github.snabbdom.On? {
-        return if (listenersMap.isNotEmpty()) {
-            val handlers = on(eventTarget ?: this)
-            listenersMap.filter { it.value.isNotEmpty() }.forEach { (event, listeners) ->
+        val map = listenersMap.filter { it.key != "self" && it.value.isNotEmpty() }.toMutableMap()
+        internalListenersMap.filter { it.key != "self" && it.value.isNotEmpty() }
+            .forEach { (event, internalListeners) ->
+                val listeners = map[event]
+                if (listeners != null) {
+                    listeners.putAll(internalListeners)
+                } else {
+                    map[event] = internalListeners
+                }
+            }
+        return if (map.isNotEmpty()) {
+            val handlers = emptyOn()
+            map.forEach { (event, listeners) ->
                 handlers.asDynamic()[event] = if (listeners.size == 1) {
                     listeners.values.first()
                 } else {
@@ -302,6 +314,29 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     /**
+     * @suppress
+     * Internal function
+     */
+    @Suppress("UNCHECKED_CAST")
+    protected fun <T : Widget> setInternalEventListener(block: SnOn<T>.() -> Unit): Int {
+        val handlerCounter = listenerCounter++
+        val blockAsWidget = block as SnOn<Widget>.() -> Unit
+        val handlers = on(this)
+        (handlers::apply)(blockAsWidget)
+        for (key: String in js("Object").keys(handlers)) {
+            val handler = handlers.asDynamic()[key]
+            val map = internalListenersMap[key]
+            if (map != null) {
+                map[handlerCounter] = handler
+            } else {
+                internalListenersMap[key] = mutableMapOf(handlerCounter to handler)
+            }
+        }
+        refresh()
+        return handlerCounter
+    }
+
+    /**
      * Sets an event listener for current widget, keeping the actual type of component.
      * @param T widget type
      * @param block event handler
@@ -320,7 +355,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         val handlerCounter = listenerCounter++
         val blockAsWidget = block as SnOn<Widget>.() -> Unit
-        val handlers = js("{}") as SnOn<Widget>
+        val handlers = on(eventTarget ?: this)
         (handlers::apply)(blockAsWidget)
         for (key: String in js("Object").keys(handlers)) {
             val handler = handlers.asDynamic()[key]

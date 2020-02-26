@@ -157,10 +157,19 @@ inline fun snOpt(noinline block: VNodeData.() -> Unit) = (vNodeData()::apply)(bl
  * Internal function.
  */
 @Suppress("UnsafeCastFromDynamic")
-internal fun on(widget: Widget): SnOn<Widget> {
+internal fun on(target: Widget): SnOn<Widget> {
     val obj = js("{}")
-    obj["self"] = widget
+    obj["self"] = target
     return obj
+}
+
+/**
+ * @suppress
+ * Internal function.
+ */
+@Suppress("UnsafeCastFromDynamic")
+internal fun emptyOn(): SnOn<Widget> {
+    return js("{}")
 }
 
 @Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")

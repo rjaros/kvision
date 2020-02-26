@@ -29,7 +29,6 @@ import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Style
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
 import kotlin.browser.document
@@ -104,7 +103,7 @@ class Root : SimplePanel {
     fun addContextMenu(contextMenu: Widget) {
         contextMenus.add(contextMenu)
         contextMenu.parent = this
-        this.onEvent {
+        this.setInternalEventListener<Root> {
             click = { e ->
                 @Suppress("UnsafeCastFromDynamic")
                 if (!e.asDynamic().dropDownCM) contextMenu.hide()

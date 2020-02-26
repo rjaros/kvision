@@ -26,7 +26,6 @@ import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
@@ -53,7 +52,7 @@ abstract class CheckInput(
 ) : Widget(classes), FormInput {
 
     init {
-        this.onEvent {
+        this.setInternalEventListener<CheckInput> {
             click = {
                 val v = getElementJQuery()?.prop("checked") as Boolean?
                 self.value = (v == true)

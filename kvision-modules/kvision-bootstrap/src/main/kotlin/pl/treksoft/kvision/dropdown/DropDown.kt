@@ -28,7 +28,6 @@ import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.ButtonType
@@ -356,7 +355,7 @@ internal class DropDownButton(
     init {
         this.id = id
         if (!forNavbar && !forDropDown) this.role = "button"
-        onEvent {
+        setInternalEventListener<DropDownButton> {
             click = { e ->
                 if (parent?.parent is ContextMenu) {
                     e.asDynamic().dropDownCM = true
