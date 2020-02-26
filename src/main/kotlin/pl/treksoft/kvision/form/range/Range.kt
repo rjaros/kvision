@@ -161,18 +161,21 @@ open class Range(
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Widget {
-        input.setEventListener(block)
-        return this
+    override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
+        return input.setEventListener(block)
     }
 
     @Deprecated(
         "Use onEvent extension function instead.",
         ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent")
     )
-    override fun setEventListener(block: SnOn<Widget>.() -> Unit): Widget {
+    override fun setEventListener(block: SnOn<Widget>.() -> Unit): Int {
         @Suppress("DEPRECATION")
-        input.setEventListener(block)
+        return input.setEventListener(block)
+    }
+
+    override fun removeEventListener(id: Int): Widget {
+        input.removeEventListener(id)
         return this
     }
 

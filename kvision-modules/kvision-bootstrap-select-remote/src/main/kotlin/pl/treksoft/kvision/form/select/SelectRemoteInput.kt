@@ -29,6 +29,7 @@ import kotlinx.serialization.list
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.remote.CallAgent
 import pl.treksoft.kvision.remote.HttpMethod
 import pl.treksoft.kvision.remote.JsonRpcRequest
@@ -114,7 +115,7 @@ open class SelectRemoteInput<T : Any>(
                 preserveSelected = ajaxOptions?.preserveSelected ?: true
             )
             if (this.ajaxOptions?.emptyRequest == true) {
-                this.setInternalEventListener<SelectRemote<*>> {
+                this.onEvent {
                     shownBsSelect = {
                         val input = self.getElementJQuery()?.parent()?.find("input")
                         input?.trigger("keyup", null)

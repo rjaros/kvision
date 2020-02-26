@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
@@ -151,7 +152,7 @@ open class SpinnerInput(
             ButtonsType.HORIZONTAL -> this.addSurroundingCssClass("kv-spinner-btn-horizontal")
         }
         this.surroundingSpan = true
-        this.setInternalEventListener<SpinnerInput> {
+        this.onEvent {
             change = {
                 self.changeValue()
             }

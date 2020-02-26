@@ -57,8 +57,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     internal val classes = classes.toMutableSet()
     internal val surroundingClasses: MutableSet<String> = mutableSetOf()
     internal val attributes: MutableMap<String, String> = mutableMapOf()
-    internal val internalListeners = mutableListOf<SnOn<Widget>.() -> Unit>()
-    internal val listeners = mutableListOf<SnOn<Widget>.() -> Unit>()
+    internal val listenersMap = mutableMapOf<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>()
+    internal var listenerCounter: Int = 0
 
     override var parent: Container? = null
 
@@ -259,59 +259,14 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * Returns list of event handlers in the form of a Snabbdom *On* object.
      * @return list of event handlers
      */
-    @Suppress("ComplexMethod")
     protected open fun getSnOn(): com.github.snabbdom.On? {
-        return if (internalListeners.size > 0 || listeners.size > 0) {
-            val internalHandlers = on(this)
-            internalListeners.forEach { l -> (internalHandlers::apply)(l) }
+        return if (listenersMap.isNotEmpty()) {
             val handlers = on(eventTarget ?: this)
-            listeners.forEach { l -> (handlers::apply)(l) }
-            if (internalHandlers.click != null) {
-                if (handlers.click == null) {
-                    handlers.click = internalHandlers.click
+            listenersMap.filter { it.value.isNotEmpty() }.forEach { (event, listeners) ->
+                handlers.asDynamic()[event] = if (listeners.size == 1) {
+                    listeners.values.first()
                 } else {
-                    val intc = internalHandlers.click
-                    val c = handlers.click
-                    handlers.click = { e ->
-                        intc?.invoke(e)
-                        c?.invoke(e)
-                    }
-                }
-            }
-            if (internalHandlers.change != null) {
-                if (handlers.change == null) {
-                    handlers.change = internalHandlers.change
-                } else {
-                    val intc = internalHandlers.change
-                    val c = handlers.change
-                    handlers.change = { e ->
-                        intc?.invoke(e)
-                        c?.invoke(e)
-                    }
-                }
-            }
-            if (internalHandlers.input != null) {
-                if (handlers.input == null) {
-                    handlers.input = internalHandlers.input
-                } else {
-                    val intc = internalHandlers.input
-                    val c = handlers.input
-                    handlers.input = { e ->
-                        intc?.invoke(e)
-                        c?.invoke(e)
-                    }
-                }
-            }
-            if (internalHandlers.shownBsSelect != null) {
-                if (handlers.shownBsSelect == null) {
-                    handlers.shownBsSelect = internalHandlers.shownBsSelect
-                } else {
-                    val intc = internalHandlers.shownBsSelect
-                    val c = handlers.shownBsSelect
-                    handlers.shownBsSelect = { e ->
-                        intc?.invoke(e)
-                        c?.invoke(e)
-                    }
+                    listeners.map { arrayOf(it.value) }.toTypedArray()
                 }
             }
             handlers
@@ -347,21 +302,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     /**
-     * @suppress
-     * Internal function
-     */
-    @Suppress("UNCHECKED_CAST")
-    protected fun <T : Widget> setInternalEventListener(block: SnOn<T>.() -> Unit): Widget {
-        internalListeners.add(block as SnOn<Widget>.() -> Unit)
-        refresh()
-        return this
-    }
-
-    /**
      * Sets an event listener for current widget, keeping the actual type of component.
      * @param T widget type
      * @param block event handler
-     * @return current widget
+     * @return id of the handler
      *
      * Example:
      *
@@ -373,16 +317,28 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      *      }
      */
     @Suppress("UNCHECKED_CAST")
-    open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Widget {
-        listeners.add(block as SnOn<Widget>.() -> Unit)
+    open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
+        val handlerCounter = listenerCounter++
+        val blockAsWidget = block as SnOn<Widget>.() -> Unit
+        val handlers = js("{}") as SnOn<Widget>
+        (handlers::apply)(blockAsWidget)
+        for (key: String in js("Object").keys(handlers)) {
+            val handler = handlers.asDynamic()[key]
+            val map = listenersMap[key]
+            if (map != null) {
+                map[handlerCounter] = handler
+            } else {
+                listenersMap[key] = mutableMapOf(handlerCounter to handler)
+            }
+        }
         refresh()
-        return this
+        return handlerCounter
     }
 
     /**
      * Sets an event listener for current widget.
      * @param block event handler
-     * @return current widget
+     * @return id of the handler
      *
      * Example:
      *
@@ -393,9 +349,21 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      *          }
      *      }
      */
-    @Deprecated("Use onEvent extension function instead.", ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent"))
-    open fun setEventListener(block: SnOn<Widget>.() -> Unit): Widget {
-        listeners.add(block)
+    @Deprecated(
+        "Use onEvent extension function instead.",
+        ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent")
+    )
+    open fun setEventListener(block: SnOn<Widget>.() -> Unit): Int {
+        return setEventListener<Widget>(block)
+    }
+
+    /**
+     * Removes event listener from current widget.
+     * @param id the id of the handler returned by onEvent
+     * @return current widget
+     */
+    open fun removeEventListener(id: Int): Widget {
+        listenersMap.forEach { it.value.remove(id) }
         refresh()
         return this
     }
@@ -405,7 +373,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @return current widget
      */
     open fun removeEventListeners(): Widget {
-        listeners.clear()
+        listenersMap.clear()
         refresh()
         return this
     }
@@ -819,6 +787,6 @@ fun Container.widget(classes: Set<String> = setOf(), init: (Widget.() -> Unit)? 
     return widget
 }
 
-inline fun <reified T : Widget> T.onEvent(noinline block: SnOn<T>.() -> Unit): Widget {
+inline fun <reified T : Widget> T.onEvent(noinline block: SnOn<T>.() -> Unit): Int {
     return this.setEventListener(block)
 }

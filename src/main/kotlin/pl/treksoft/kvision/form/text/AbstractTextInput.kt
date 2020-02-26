@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
@@ -42,7 +43,7 @@ abstract class AbstractTextInput(
 ) : Widget(classes), FormInput {
 
     init {
-        this.setInternalEventListener<AbstractTextInput> {
+        this.onEvent {
             input = {
                 self.changeValue()
             }

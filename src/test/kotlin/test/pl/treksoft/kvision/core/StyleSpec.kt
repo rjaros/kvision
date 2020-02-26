@@ -41,7 +41,7 @@ class StyleSpec : DomSpec {
                 widget {
                     style {
                         margin = 2.px
-                        color = Color(Col.SILVER)
+                        color = Color.name(Col.SILVER)
                         overflow = Overflow.SCROLL
                     }
                 }
@@ -62,7 +62,7 @@ class StyleSpec : DomSpec {
                 widget {
                     style("customclass") {
                         margin = 2.px
-                        color = Color(Col.SILVER)
+                        color = Color.name(Col.SILVER)
                         overflow = Overflow.SCROLL
                     }
                 }
@@ -83,7 +83,7 @@ class StyleSpec : DomSpec {
                 widget {
                     style("customclass") {
                         margin = 2.px
-                        color = Color(Col.SILVER)
+                        color = Color.name(Col.SILVER)
                         overflow = Overflow.SCROLL
                         style("image") {
                             marginTop = 10.px
