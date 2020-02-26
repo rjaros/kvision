@@ -178,6 +178,7 @@ dokka {
             'kvision-modules/kvision-tabulator/src/main/kotlin',
             'kvision-modules/kvision-pace/src/main/kotlin',
             'kvision-modules/kvision-bootstrap-typeahead/src/main/kotlin',
+            'kvision-modules/kvision-event-flow/src/main/kotlin',
             'kvision-modules/kvision-remote/src/main/kotlin',
             'kvision-modules/kvision-bootstrap-select-remote/src/main/kotlin',
             'kvision-modules/kvision-tabulator-remote/src/main/kotlin',
