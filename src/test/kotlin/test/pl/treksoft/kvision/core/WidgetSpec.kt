@@ -96,16 +96,29 @@ class WidgetSpec : WSpec {
     fun setEventListener() {
         runW { widget, _ ->
             widget.setEventListener<Widget> { click = { } }
-            assertTrue("Element should have an event listener") { widget.listenersMap.size == 1 }
+            assertTrue("Element should have one event listener") { widget.listenersMap["click"]?.size == 1 }
+            widget.setEventListener<Widget> { click = { } }
+            assertTrue("Element should have two event listeners") { widget.listenersMap["click"]?.size == 2 }
         }
     }
 
     @Test
     fun removeEventListener() {
         runW { widget, _ ->
+            val id = widget.setEventListener<Widget> { click = { } }
+            widget.setEventListener<Widget> { click = { } }
+            widget.removeEventListener(id)
+            assertTrue("One of event listeners is removed") { widget.listenersMap["click"]?.size == 1 }
+        }
+    }
+
+    @Test
+    fun removeEventListeners() {
+        runW { widget, _ ->
+            widget.setEventListener<Widget> { click = { } }
             widget.setEventListener<Widget> { click = { } }
             widget.removeEventListeners()
-            assertTrue("Element should not have any event listener") { widget.listenersMap.size == 0 }
+            assertTrue("Element should not have any event listeners") { widget.listenersMap.isEmpty() }
         }
     }
 

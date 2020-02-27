@@ -358,12 +358,14 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         val handlers = on(eventTarget ?: this)
         (handlers::apply)(blockAsWidget)
         for (key: String in js("Object").keys(handlers)) {
-            val handler = handlers.asDynamic()[key]
-            val map = listenersMap[key]
-            if (map != null) {
-                map[handlerCounter] = handler
-            } else {
-                listenersMap[key] = mutableMapOf(handlerCounter to handler)
+            if (key != "self") {
+                val handler = handlers.asDynamic()[key]
+                val map = listenersMap[key]
+                if (map != null) {
+                    map[handlerCounter] = handler
+                } else {
+                    listenersMap[key] = mutableMapOf(handlerCounter to handler)
+                }
             }
         }
         refresh()
