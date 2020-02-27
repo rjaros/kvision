@@ -138,12 +138,6 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         return input.setEventListener(block)
     }
 
-    @Deprecated("Use onEvent extension function instead.", ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent"))
-    override fun setEventListener(block: SnOn<Widget>.() -> Unit): Int {
-        @Suppress("DEPRECATION")
-        return input.setEventListener(block)
-    }
-
     override fun removeEventListener(id: Int): Widget {
         input.removeEventListener(id)
         return this

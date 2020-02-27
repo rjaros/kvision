@@ -31,9 +31,6 @@ import kotlin.js.Date
 
 const val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
-@Deprecated("Not supported in KVision 2+. Use LocalDateTime or OffsetDateTime instead.", level = DeprecationLevel.ERROR)
-actual typealias Date = Date
-
 actual typealias LocalDateTime = Date
 
 actual typealias LocalDate = Date

@@ -169,9 +169,9 @@ open class SelectRemoteInput<T : Any>(
                             JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, it, state))),
                             HttpMethod.POST
                         ).await()
-                        JSON.plain.parse(RemoteOption.serializer().list, initials.result as String).map {
+                        JSON.plain.parse(RemoteOption.serializer().list, initials.result as String).mapNotNull {
                             it.text
-                        }.filterNotNull().joinToString(", ")
+                        }.joinToString(", ")
                     }
                     val button = getElementJQuery()?.next()
                     button?.removeClass("bs-placeholder")

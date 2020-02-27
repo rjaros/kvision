@@ -317,7 +317,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @suppress
      * Internal function
      */
-    @Suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST", "UnsafeCastFromDynamic")
     protected fun <T : Widget> setInternalEventListener(block: SnOn<T>.() -> Unit): Int {
         val handlerCounter = listenerCounter++
         val blockAsWidget = block as SnOn<Widget>.() -> Unit
@@ -370,28 +370,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         }
         refresh()
         return handlerCounter
-    }
-
-    /**
-     * Sets an event listener for current widget.
-     * @param block event handler
-     * @return id of the handler
-     *
-     * Example:
-     *
-     *      button.setEventListener {
-     *          dblclick = {
-     *              Alert.show("Button double clicked!")
-     *              // self is of type Widget here
-     *          }
-     *      }
-     */
-    @Deprecated(
-        "Use onEvent extension function instead.",
-        ReplaceWith("onEvent(block)", "pl.treksoft.kvision.core.onEvent")
-    )
-    open fun setEventListener(block: SnOn<Widget>.() -> Unit): Int {
-        return setEventListener<Widget>(block)
     }
 
     /**

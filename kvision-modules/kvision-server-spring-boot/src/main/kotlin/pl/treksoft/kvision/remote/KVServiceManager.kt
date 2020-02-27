@@ -35,7 +35,6 @@ import kotlinx.coroutines.reactive.awaitSingle
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
-import org.springframework.security.core.Authentication
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.awaitBody
@@ -143,7 +142,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     )
                 )
             } catch (e: Exception) {
-                if (!(e is ServiceException)) LOG.error(e.message, e)
+                if (e !is ServiceException) LOG.error(e.message, e)
                 ServerResponse.ok().json().bodyValueAndAwait(
                     mapper.writeValueAsString(
                         JsonRpcResponse(
@@ -188,7 +187,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     ServerResponse.ok().json().bodyValueAndAwait(
                         mapper.writeValueAsString(
                             JsonRpcResponse(
@@ -244,7 +243,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     ServerResponse.ok().json().bodyValueAndAwait(
                         mapper.writeValueAsString(
                             JsonRpcResponse(
@@ -302,7 +301,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     ServerResponse.ok().json().bodyValueAndAwait(
                         mapper.writeValueAsString(
                             JsonRpcResponse(
@@ -361,7 +360,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     ServerResponse.ok().json().bodyValueAndAwait(
                         mapper.writeValueAsString(
                             JsonRpcResponse(
@@ -422,7 +421,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     ServerResponse.ok().json().bodyValueAndAwait(
                         mapper.writeValueAsString(
                             JsonRpcResponse(
@@ -531,7 +530,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     ServerResponse.ok().json().bodyValueAndAwait(
                         mapper.writeValueAsString(
                             JsonRpcResponse(

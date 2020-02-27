@@ -29,9 +29,6 @@ import kotlinx.serialization.internal.SerialClassDescImpl
 import kotlin.js.Date
 import kotlin.math.absoluteValue
 
-@Deprecated("Not supported in KVision 2+. Use LocalDateTime or OffsetDateTime instead.", level = DeprecationLevel.ERROR)
-actual typealias Date = Date
-
 actual typealias LocalDateTime = Date
 
 actual typealias LocalDate = Date

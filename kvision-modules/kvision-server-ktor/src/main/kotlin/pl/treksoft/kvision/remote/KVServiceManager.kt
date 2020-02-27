@@ -128,7 +128,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     )
                 )
             } catch (e: Exception) {
-                if (!(e is ServiceException)) LOG.error(e.message, e)
+                if (e !is ServiceException) LOG.error(e.message, e)
                 call.respond(
                     JsonRpcResponse(
                         id = jsonRpcRequest.id,
@@ -168,7 +168,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
@@ -217,7 +217,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
@@ -268,7 +268,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
@@ -320,7 +320,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
@@ -374,7 +374,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
@@ -478,7 +478,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         )
                     )
                 } catch (e: Exception) {
-                    if (!(e is ServiceException)) LOG.error(e.message, e)
+                    if (e !is ServiceException) LOG.error(e.message, e)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
