@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.navbar
 
 import com.github.snabbdom.VNode
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.BsBgColor
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
@@ -70,6 +71,7 @@ enum class NavbarExpand(internal val navbarExpand: String) {
  * @param expand the navbar responsive behavior
  * @param nColor the navbar color
  * @param bgColor the navbar background color
+ * @param collapseOnClick the navbar is auto collapsed when the link is clicked
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
@@ -80,6 +82,7 @@ open class Navbar(
     expand: NavbarExpand? = NavbarExpand.LG,
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
+    collapseOnClick: Boolean = false,
     classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -135,6 +138,19 @@ open class Navbar(
         addInternal(container)
         if (label == null) brandLink.hide()
         counter++
+        if (collapseOnClick) {
+            setInternalEventListener<Navbar> {
+                click = {
+                    val target = jQuery(it.target)
+                    if (target.`is`("a.nav-item.nav-link")) {
+                        val navbar = target.parents("nav.navbar").first()
+                        val toggler = navbar.children("button.navbar-toggler")
+                        val collapse = navbar.children("div.navbar-collapse")
+                        if (collapse.`is`(".show")) toggler.click()
+                    }
+                }
+            }
+        }
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -198,9 +214,10 @@ fun Container.navbar(
     expand: NavbarExpand? = NavbarExpand.LG,
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
+    collapseOnClick: Boolean = false,
     classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
 ): Navbar {
-    val navbar = Navbar(label, link, type, expand, nColor, bgColor, classes, init)
+    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, classes, init)
     this.add(navbar)
     return navbar
 }
