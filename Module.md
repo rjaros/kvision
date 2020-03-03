@@ -89,6 +89,10 @@ Support for Handlebars.js templates is included.
 
 Internationalization classes.
 
+# Package pl.treksoft.kvision.maps
+
+Simple OpenStreetMap component.
+
 # Package pl.treksoft.kvision.modal
 
 Classes supporting general purpose Bootstrap modals with convenient helpers for alert and confirm popup dialogs.
