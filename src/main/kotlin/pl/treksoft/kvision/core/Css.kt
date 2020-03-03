@@ -677,7 +677,7 @@ class TextDecoration(
  * @param blurRadius the blur radius
  * @param color color of the shadow
  */
-class TextShadow private constructor(
+class TextShadow(
     private val hShadow: CssSize? = null, private val vShadow: CssSize? = null,
     private val blurRadius: CssSize? = null, private val color: Color? = null
 ) {
