@@ -17,7 +17,7 @@ which are used as a builder blocks for the application GUI.
 KVision's design is quite similar to many non-web UI programming libraries including Swing, JavaFX, QT, WinForms and Flutter.
 
 KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.org), [Spring Boot](https://spring.io/projects/spring-boot) and [Javalin](https://javalin.io) frameworks on the server side, which
-allows to build full-stack, multiplatform applications with shared common code.
+allows to build fullstack applications with shared common code.
 
 **KVision is being actively developed. Please create an issue for any bugs or feature requests.**
 
