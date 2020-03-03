@@ -16,7 +16,7 @@ which are used as a builder blocks for the application GUI.
 
 KVision's design is quite similar to many non-web UI programming libraries including Swing, JavaFX, QT, WinForms and Flutter.
 
-KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side, which
+KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.org), [Spring Boot](https://spring.io/projects/spring-boot) and [Javalin](https://javalin.io) frameworks on the server side, which
 allows to build full-stack, multiplatform applications with shared common code.
 
 **KVision is being actively developed. Please create an issue for any bugs or feature requests.**
@@ -44,6 +44,7 @@ allows to build full-stack, multiplatform applications with shared common code.
     - [Navigo](https://github.com/krasimir/navigo)
     - [Moment.js](https://momentjs.com/)
     - [Pace](https://github.hubspot.com/pace/docs/welcome/)
+    - [Leaflet](https://leafletjs.com/)
  
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
@@ -51,7 +52,8 @@ allows to build full-stack, multiplatform applications with shared common code.
 - Internationalization support based on [Jed](http://messageformat.github.io/Jed/) library and [gettext](https://www.gnu.org/software/gettext/) translations. 
 - Easy to use Drag & Drop support.
 - Type-safe REST connectivity.
-- Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org) and [Spring Boot](https://spring.io/projects/spring-boot) frameworks on the server side,
+- Support for event Flows.
+- Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.org), [Spring Boot](https://spring.io/projects/spring-boot) and [Javalin](https://javalin.io) frameworks on the server side,
 including support for type-safe websockets connections.
 - Support for building hybrid mobile applications with [Apache Cordova](https://cordova.apache.org/).
 - Support for building cross-platform, desktop applications with [Electron](https://electronjs.org).
