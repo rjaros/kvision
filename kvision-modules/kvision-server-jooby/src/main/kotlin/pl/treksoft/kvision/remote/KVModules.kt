@@ -21,8 +21,11 @@
  */
 package pl.treksoft.kvision.remote
 
+import com.google.inject.AbstractModule
 import com.google.inject.Module
+import com.typesafe.config.Config
 import io.jooby.AssetSource
+import io.jooby.Environment
 import io.jooby.Kooby
 import io.jooby.di.GuiceModule
 import io.jooby.json.JacksonModule
@@ -33,6 +36,14 @@ import io.jooby.json.JacksonModule
 fun Kooby.kvisionInit(vararg modules: Module) {
     assets("/", "/assets/index.html")
     assets("/*", AssetSource.create(javaClass.classLoader, "assets"))
-    install(GuiceModule(*modules))
+    install(GuiceModule(MainModule(this), *modules))
     install(JacksonModule())
+}
+
+internal class MainModule(private val kooby: Kooby) : AbstractModule() {
+    override fun configure() {
+        bind(Kooby::class.java).toInstance(kooby)
+        bind(Environment::class.java).toInstance(kooby.environment)
+        bind(Config::class.java).toInstance(kooby.config)
+    }
 }
