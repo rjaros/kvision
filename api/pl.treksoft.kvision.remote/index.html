@@ -105,15 +105,6 @@
 </tr>
 <tr>
 <td>
-<p><a href="-profile/index.html">Profile</a></p>
-</td>
-<td>
-<code><span class="keyword">actual</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Profile</span></code>
-<p>A user profile.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="-remote-agent/index.html">RemoteAgent</a></p>
 </td>
 <td>
@@ -141,6 +132,20 @@
 </tr>
 <tr>
 <td>
+<p><a href="-with-context/index.html">WithContext</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithContext</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-with-http-session/index.html">WithHttpSession</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithHttpSession</span></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="-with-principal/index.html">WithPrincipal</a></p>
 </td>
 <td>
@@ -148,17 +153,17 @@
 </tr>
 <tr>
 <td>
-<p><a href="-with-profile/index.html">WithProfile</a></p>
-</td>
-<td>
-<code><span class="keyword">interface </span><span class="identifier">WithProfile</span></code></td>
-</tr>
-<tr>
-<td>
 <p><a href="-with-request/index.html">WithRequest</a></p>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">WithRequest</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-with-session/index.html">WithSession</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithSession</span></code></td>
 </tr>
 <tr>
 <td>
@@ -173,6 +178,20 @@
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">WithWebSocketSession</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-with-ws-context/index.html">WithWsContext</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithWsContext</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-with-ws-session/index.html">WithWsSession</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WithWsSession</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -211,15 +230,6 @@
 </tr>
 <tr>
 <td>
-<p><a href="-profile/index.html">Profile</a></p>
-</td>
-<td>
-<code><span class="keyword">actual</span> <span class="keyword">typealias </span><span class="identifier">Profile</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span></code>
-<p>A user profile.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="-transient.html">Transient</a></p>
 </td>
 <td>
@@ -253,6 +263,13 @@
 <td>
 <code><span class="keyword">val </span><span class="identifier">injectorKey</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code></td>
 </tr>
+<tr>
+<td>
+<p><a href="-k-v_-i-n-j-e-c-t-o-r_-k-e-y.html">KV_INJECTOR_KEY</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">KV_INJECTOR_KEY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
 </tbody>
 </table>
 <h3>Functions</h3>
@@ -263,6 +280,7 @@
 <p><a href="apply-routes.html">applyRoutes</a></p>
 </td>
 <td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">applyRoutes</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$applyRoutes(, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.remote.applyRoutes.T)), kotlin.collections.Set(()))/serviceManager">serviceManager</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><a href="apply-routes.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.remote$applyRoutes(, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.remote.applyRoutes.T)), kotlin.collections.Set(()))/roles">roles</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">applyRoutes</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$applyRoutes(, pl.treksoft.kvision.remote.KVServiceManager((pl.treksoft.kvision.remote.applyRoutes.T)))/serviceManager">serviceManager</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><a href="apply-routes.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>A function to generate routes based on definitions from the service manager.</p>
 </td>
@@ -290,10 +308,8 @@
 <p><a href="kvision-init.html">kvisionInit</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">kvisionInit</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Initialization function for Jooby server.</p>
 <code><span class="keyword">fun </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">kvisionInit</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.remote$kvisionInit(, kotlin.Array(()))/modules">modules</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Initialization function for Ktor server.</p>
+<p>Initialization function for Javalin server.</p>
 </td>
 </tr>
 <tr>
@@ -313,15 +329,6 @@
 <code><span class="keyword">fun </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">serviceMatchers</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.remote$serviceMatchers(, kotlin.Array((pl.treksoft.kvision.remote.KVServiceManager((kotlin.Any)))))/services">services</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">serviceMatchers</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.remote$serviceMatchers(kotlin.Array((pl.treksoft.kvision.remote.KVServiceManager((kotlin.Any)))))/services">services</span><span class="symbol">:</span>&nbsp;<a href="-k-v-service-manager/index.html"><span class="identifier">KVServiceManager</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code>
 <p>A function to gather paths for spring security matchers.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="with-profile.html">withProfile</a></p>
-</td>
-<td>
-<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">RESP</span><span class="symbol">&gt;</span> <span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">.</span><span class="identifier">withProfile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote$withProfile(, kotlin.coroutines.SuspendFunction1((pl.treksoft.kvision.remote.Profile, pl.treksoft.kvision.remote.withProfile.RESP)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="keyword">suspend </span><span class="symbol">(</span><a href="-profile/index.html"><span class="identifier">Profile</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="with-profile.html#RESP"><span class="identifier">RESP</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="with-profile.html#RESP"><span class="identifier">RESP</span></a></code>
-<p>A helper extension function for processing with authenticated user profile.</p>
 </td>
 </tr>
 </tbody>

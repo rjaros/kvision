@@ -4,32 +4,6 @@ $dokka.location:pl.treksoft.kvision.cordova$toDirectoryEntry(kotlin.String)pl.t
 $dokka.location:pl.treksoft.kvision.cordova$toFileEntry(kotlin.String)pl.treksoft.kvision.cordova/kotlin.-string/to-file-entry.html
 $dokka.location:pl.treksoft.kvision.form$asJson(kotlin.collections.Map((kotlin.String, kotlin.Any)))pl.treksoft.kvision.form/kotlin.collections.-map/as-json.html
 $dokka.location:pl.treksoft.kvision.form$asMap(kotlin.js.Json)pl.treksoft.kvision.form/kotlin.js.-json/as-map.html
-$dokka.location:pl.treksoft.kvision.remote.Profilepl.treksoft.kvision.remote/-profile/index.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$<init>(kotlin.String, kotlin.collections.MutableMap((kotlin.String, )), kotlin.collections.MutableMap((kotlin.String, )), kotlin.collections.MutableSet((kotlin.String)), kotlin.collections.MutableSet((kotlin.String)), kotlin.String, kotlin.Boolean, kotlin.String)pl.treksoft.kvision.remote/-profile/-profile/-init-.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$attributespl.treksoft.kvision.remote/-profile/-profile/attributes.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$authenticationAttributespl.treksoft.kvision.remote/-profile/-profile/authentication-attributes.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$clientNamepl.treksoft.kvision.remote/-profile/-profile/client-name.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$displayNamepl.treksoft.kvision.remote/-profile/-profile/display-name.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$emailpl.treksoft.kvision.remote/-profile/-profile/email.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$familyNamepl.treksoft.kvision.remote/-profile/-profile/family-name.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$firstNamepl.treksoft.kvision.remote/-profile/-profile/first-name.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$getAuthorities()pl.treksoft.kvision.remote/-profile/-profile/get-authorities.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$getPassword()pl.treksoft.kvision.remote/-profile/-profile/get-password.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$getUsername()pl.treksoft.kvision.remote/-profile/-profile/get-username.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$idpl.treksoft.kvision.remote/-profile/-profile/id.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$isAccountNonExpired()pl.treksoft.kvision.remote/-profile/-profile/is-account-non-expired.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$isAccountNonLocked()pl.treksoft.kvision.remote/-profile/-profile/is-account-non-locked.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$isCredentialsNonExpired()pl.treksoft.kvision.remote/-profile/-profile/is-credentials-non-expired.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$isEnabled()pl.treksoft.kvision.remote/-profile/-profile/is-enabled.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$linkedIdpl.treksoft.kvision.remote/-profile/-profile/linked-id.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$permissionspl.treksoft.kvision.remote/-profile/-profile/permissions.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$pictureUrlpl.treksoft.kvision.remote/-profile/-profile/picture-url.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$profileUrlpl.treksoft.kvision.remote/-profile/-profile/profile-url.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$rememberedpl.treksoft.kvision.remote/-profile/-profile/remembered.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$rolespl.treksoft.kvision.remote/-profile/-profile/roles.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$setPassword(kotlin.String)pl.treksoft.kvision.remote/-profile/-profile/set-password.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$setUsername(kotlin.String)pl.treksoft.kvision.remote/-profile/-profile/set-username.html
-$dokka.location:pl.treksoft.kvision.remote.Profile$usernamepl.treksoft.kvision.remote/-profile/-profile/username.html
 $dokka.location:pl.treksoft.kvision.types$toDateF(kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-date-f.html
 $dokka.location:pl.treksoft.kvision.types$toDateF(kotlin.String, kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-date-f.html
 $dokka.location:pl.treksoft.kvision.types$toDateTimeF(kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-date-time-f.html
@@ -42,7 +16,6 @@ $dokka.location:pl.treksoft.kvision.types$toStringF(java.time.OffsetDateTime)pl
 $dokka.location:pl.treksoft.kvision.types$toStringF(java.time.OffsetTime)pl.treksoft.kvision.types/java.time.-offset-time/to-string-f.html
 $dokka.location:pl.treksoft.kvision.types$toStringF(kotlin.js.Date, kotlin.String)pl.treksoft.kvision.types/kotlin.js.-date/to-string-f.html
 $dokka.location:pl.treksoft.kvision.types$toTimeF(kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-time-f.html
-$dokka.location:pl.treksoft.kvision.types.Datepl.treksoft.kvision.types/-date/index.html
 $dokka.location:pl.treksoft.kvision.types.Decimalpl.treksoft.kvision.types/-decimal/index.html
 $dokka.location:pl.treksoft.kvision.types.LocalDatepl.treksoft.kvision.types/-local-date/index.html
 $dokka.location:pl.treksoft.kvision.types.LocalDateTimepl.treksoft.kvision.types/-local-date-time/index.html
@@ -78,6 +51,7 @@ pl.treksoft.kvision.data
 pl.treksoft.kvision.dropdown
 pl.treksoft.kvision.electron
 pl.treksoft.kvision.electron.nodejs
+pl.treksoft.kvision.event
 pl.treksoft.kvision.form
 pl.treksoft.kvision.form.check
 pl.treksoft.kvision.form.range
@@ -88,6 +62,7 @@ pl.treksoft.kvision.form.time
 pl.treksoft.kvision.form.upload
 pl.treksoft.kvision.html
 pl.treksoft.kvision.i18n
+pl.treksoft.kvision.maps
 pl.treksoft.kvision.modal
 pl.treksoft.kvision.moment
 pl.treksoft.kvision.navbar
