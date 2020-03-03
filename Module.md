@@ -43,6 +43,10 @@ Kotlin bindings for Electron API.
 
 Kotlin bindings for NodeJS API within Electron.
 
+# Package pl.treksoft.kvision.event
+
+Extension functions producing coroutines Flows for KVision event sources.
+
 # Package pl.treksoft.kvision.form
 
 Convenient forms implementation, with support for many different input components and easy to define
