@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.routing.routing
+import kotlin.browser.window
 
 /**
  * The container with only one active (visible) child at any moment.
@@ -80,9 +81,11 @@ open class StackPanel(
         add(panel)
         val currentIndex = counter++
         childrenMap[currentIndex] = panel
-        routing.on(route, { _ ->
-            activeChild = childrenMap[currentIndex]!!
-        }).resolve()
+        window.setTimeout({
+            routing.on(route, { _ ->
+                activeChild = childrenMap[currentIndex]!!
+            }).resolve()
+        }, 0)
         return this
     }
 
