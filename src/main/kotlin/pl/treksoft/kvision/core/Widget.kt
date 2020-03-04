@@ -262,14 +262,18 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @return list of event handlers
      */
     protected open fun getSnOn(): com.github.snabbdom.On? {
-        val map = listenersMap.filter { it.key != "self" && it.value.isNotEmpty() }.toMutableMap()
-        internalListenersMap.filter { it.key != "self" && it.value.isNotEmpty() }
-            .forEach { (event, internalListeners) ->
-                val listeners = map[event]
-                if (listeners != null) {
-                    listeners.putAll(internalListeners)
+        val map = internalListenersMap.filter { it.key != "self" && it.value.isNotEmpty() }.map {
+            val internalListeners = mutableMapOf<Int, SnOn<Widget>.() -> Unit>()
+            internalListeners.putAll(it.value)
+            it.key to internalListeners
+        }.toMap().toMutableMap()
+        listenersMap.filter { it.key != "self" && it.value.isNotEmpty() }
+            .forEach { (event, listeners) ->
+                val internalListeners = map[event]
+                if (internalListeners != null) {
+                    internalListeners.putAll(listeners)
                 } else {
-                    map[event] = internalListeners
+                    map[event] = listeners
                 }
             }
         return if (map.isNotEmpty()) {
