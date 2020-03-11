@@ -8,6 +8,8 @@ sudo: false
 os:
   - linux
 
+install: skip
+
 script:
   - ./gradlew test
 
