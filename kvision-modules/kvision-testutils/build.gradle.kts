@@ -27,7 +27,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 val testJar by tasks.registering(Jar::class) {
     dependsOn("testClasses")
     archiveClassifier.set("tests")
-    from(tasks["compileTestKotlinJs"].outputs)
+    from(kotlin.target.compilations["test"].output.allOutputs)
 }
 
 publishing {
