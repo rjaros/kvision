@@ -29,7 +29,7 @@ import org.w3c.dom.events.Event
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.onEvent
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 inline fun <reified T : Widget> T.eventFlow(event: String): Flow<Pair<T, Event>> = callbackFlow {
     val id = onEvent {
         this.asDynamic()[event] = { e: Event ->
@@ -41,7 +41,7 @@ inline fun <reified T : Widget> T.eventFlow(event: String): Flow<Pair<T, Event>>
     }
 }
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.clickFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {
@@ -54,7 +54,7 @@ inline val <reified T : Widget> T.clickFlow: Flow<T>
         }
     }
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.inputFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {
@@ -67,7 +67,7 @@ inline val <reified T : Widget> T.inputFlow: Flow<T>
         }
     }
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.changeFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {

@@ -180,7 +180,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified T : Any> call(
         url: String,
         data: dynamic = null,
@@ -201,7 +201,7 @@ open class RestClient {
      * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified V : Any> call(
         url: String,
         data: V,
@@ -230,7 +230,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <T : Any, reified V : Any> call(
         url: String,
         data: V,
@@ -263,7 +263,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified T : Any, V : Any> call(
         url: String,
         serializer: SerializationStrategy<V>,
@@ -295,7 +295,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified T : Any, reified V : Any> call(
         url: String,
         data: V,
@@ -470,7 +470,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified T : Any> request(
         url: String,
         data: dynamic = null,
@@ -491,7 +491,7 @@ open class RestClient {
      * @param beforeSend a function to set request parameters
      * @return a promise of the response
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified V : Any> request(
         url: String,
         data: V,
@@ -520,7 +520,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <T : Any, reified V : Any> request(
         url: String,
         data: V,
@@ -553,7 +553,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified T : Any, V : Any> request(
         url: String,
         serializer: SerializationStrategy<V>,
@@ -585,7 +585,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified T : Any, reified V : Any> request(
         url: String,
         data: V,

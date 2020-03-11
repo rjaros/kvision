@@ -216,6 +216,7 @@ open class TabPanel(
         }
         content.remove(content.getChildren()[index])
         activeIndex = content.activeIndex
+        @Suppress("UnsafeCastFromDynamic")
         this@TabPanel.dispatchEvent("tabChange", obj { detail = obj { data = activeIndex } })
         return this
     }

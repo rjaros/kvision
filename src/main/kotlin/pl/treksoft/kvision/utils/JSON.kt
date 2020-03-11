@@ -38,14 +38,14 @@ object JSON {
     val plain = Json(context = serializersModuleOf(Date::class, DateSerializer))
 
     val nonstrict = Json(
-        configuration = JsonConfiguration.Stable.copy(strictMode = false),
+        configuration = JsonConfiguration.Stable.copy(ignoreUnknownKeys = true),
         context = serializersModuleOf(Date::class, DateSerializer)
     )
 
     /**
      * An extension function to convert Serializable object to JS dynamic object
      */
-    @UseExperimental(ImplicitReflectionSerializer::class)
+    @OptIn(ImplicitReflectionSerializer::class)
     inline fun <reified T : Any> T.toObj(): dynamic {
         return this.toObj(T::class.serializer())
     }

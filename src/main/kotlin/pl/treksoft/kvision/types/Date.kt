@@ -25,21 +25,8 @@ import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialDescriptor
-import kotlinx.serialization.internal.SerialClassDescImpl
 import pl.treksoft.kvision.KVManager
 import kotlin.js.Date
-
-const val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
-
-actual typealias LocalDateTime = Date
-
-actual typealias LocalDate = Date
-
-actual typealias LocalTime = Date
-
-actual typealias OffsetDateTime = Date
-
-actual typealias OffsetTime = Date
 
 /**
  * Extension function to convert String to Date with a given date format.
@@ -63,7 +50,7 @@ fun Date.toStringF(format: String = KV_DEFAULT_DATE_FORMAT): String {
 }
 
 object DateSerializer : KSerializer<Date> {
-    override val descriptor: SerialDescriptor = SerialClassDescImpl("kotlin.js.Date")
+    override val descriptor: SerialDescriptor = SerialDescriptor("kotlin.js.Date")
 
     override fun deserialize(decoder: Decoder): Date {
         val str = decoder.decodeString()
@@ -74,7 +61,7 @@ object DateSerializer : KSerializer<Date> {
         }
     }
 
-    override fun serialize(encoder: Encoder, obj: Date) {
-        encoder.encodeString(obj.toStringF())
+    override fun serialize(encoder: Encoder, value: Date) {
+        encoder.encodeString(value.toStringF())
     }
 }

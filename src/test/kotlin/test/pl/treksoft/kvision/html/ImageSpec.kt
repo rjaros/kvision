@@ -35,7 +35,7 @@ class ImageSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", fixed = true)
-            val res = require("./img/placeholder.png")
+            val res = require("img/placeholder.png")
             @Suppress("UnsafeCastFromDynamic")
             val image = Image(res, "Image", true, ImageShape.ROUNDED, true)
             root.add(image)

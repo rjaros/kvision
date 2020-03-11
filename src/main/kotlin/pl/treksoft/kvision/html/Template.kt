@@ -66,7 +66,7 @@ fun <K> Template.setData(obj: K, serializer: SerializationStrategy<K>) {
 /**
  * Extension function to set serializable object as a template data.
  */
-@UseExperimental(ImplicitReflectionSerializer::class)
+@OptIn(ImplicitReflectionSerializer::class)
 inline fun <reified K : Any> Template.setData(obj: K) {
     this.setData(obj, K::class.serializer())
 }

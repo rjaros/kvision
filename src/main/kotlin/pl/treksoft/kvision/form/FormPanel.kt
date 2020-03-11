@@ -114,34 +114,42 @@ open class FormPanel<K : Any>(
      * HTTP method.
      */
     var method by refreshOnUpdate(method)
+
     /**
      * The URL address to send data.
      */
     var action by refreshOnUpdate(action)
+
     /**
      * The form encoding type.
      */
     var enctype by refreshOnUpdate(enctype)
+
     /**
      * The form name.
      */
     var name: String? by refreshOnUpdate()
+
     /**
      * The form target.
      */
     var target: FormTarget? by refreshOnUpdate()
+
     /**
      * Determines if the form is not validated.
      */
     var novalidate: Boolean? by refreshOnUpdate()
+
     /**
      * Determines if the form should have autocomplete.
      */
     var autocomplete: Boolean? by refreshOnUpdate()
+
     /**
      * Determines if the form is condensed.
      */
     var condensed by refreshOnUpdate(condensed)
+
     /**
      * Horizontal form layout ratio.
      */
@@ -155,6 +163,7 @@ open class FormPanel<K : Any>(
         set(value) {
             form.validatorMessage = value
         }
+
     /**
      * Validation function.
      */
@@ -178,6 +187,7 @@ open class FormPanel<K : Any>(
      */
     @Suppress("LeakingThis")
     val form = Form(this, serializer, customSerializers)
+
     /**
      * @suppress
      * Internal property.
@@ -459,7 +469,7 @@ open class FormPanel<K : Any>(
 
     companion object {
 
-        @UseExperimental(ImplicitReflectionSerializer::class)
+        @OptIn(ImplicitReflectionSerializer::class)
         inline fun <reified K : Any> create(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
             type: FormType? = null, condensed: Boolean = false,

@@ -49,7 +49,7 @@ import kotlin.browser.window
  * @param types a set of table types
  * @param classes a set of CSS class names
  */
-@UseExperimental(ImplicitReflectionSerializer::class)
+@OptIn(ImplicitReflectionSerializer::class)
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceManager<E>,
     function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
@@ -72,12 +72,14 @@ open class TabulatorRemote<T : Any, E : Any>(
         options.ajaxRequestFunc = { _, _, params ->
             val page = params.page
             val size = params.size
+
             @Suppress("UnsafeCastFromDynamic")
             val filters = if (params.filters != null) {
                 kotlin.js.JSON.stringify(params.filters)
             } else {
                 null
             }
+
             @Suppress("UnsafeCastFromDynamic")
             val sorters = if (params.sorters != null) {
                 kotlin.js.JSON.stringify(params.sorters)
@@ -85,6 +87,7 @@ open class TabulatorRemote<T : Any, E : Any>(
                 null
             }
             val state = stateFunction?.invoke()
+
             @Suppress("UnsafeCastFromDynamic")
             val data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
             callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name)).then { r: dynamic ->

@@ -1,6 +1,0 @@
-apply from: "../shared.gradle"
-
-dependencies {
-    compile ("org.reduxkotlin:redux-kotlin-js:$reduxKotlinVersion")
-    compile ("org.reduxkotlin:redux-kotlin-thunk-js:$reduxKotlinThunkVersion")
-}

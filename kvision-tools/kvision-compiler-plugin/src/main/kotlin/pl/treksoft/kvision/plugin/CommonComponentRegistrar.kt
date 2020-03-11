@@ -21,7 +21,6 @@
  */
 package pl.treksoft.kvision.plugin
 
-import com.google.auto.service.AutoService
 import de.jensklingenberg.mpapt.common.MpAptProject
 import org.jetbrains.kotlin.codegen.extensions.ClassBuilderInterceptorExtension
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
@@ -30,7 +29,6 @@ import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.extensions.StorageComponentContainerContributor
 import org.jetbrains.kotlin.js.translate.extensions.JsSyntheticTranslateExtension
 
-@AutoService(ComponentRegistrar::class)
 open class CommonComponentRegistrar : ComponentRegistrar {
 
     override fun registerProjectComponents(

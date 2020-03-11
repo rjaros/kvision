@@ -355,7 +355,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      *          }
      *      }
      */
-    @Suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST", "UnsafeCastFromDynamic")
     open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         val handlerCounter = listenerCounter++
         val blockAsWidget = block as SnOn<Widget>.() -> Unit

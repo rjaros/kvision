@@ -80,7 +80,12 @@ class ReduxStore<S : Any, A : RAction>(
             },
             initialState,
             @Suppress("SpreadOperator")
-            KVManagerRedux.compose(KVManagerRedux.applyMiddleware(KVManagerRedux.reduxThunk, *middlewares), rEnhancer())
+            (KVManagerRedux.compose(
+                KVManagerRedux.applyMiddleware<S, RAction, WrapperAction, Any, Any>(
+                    KVManagerRedux.reduxThunk,
+                    *middlewares
+                ), rEnhancer()
+            )).asDynamic()
         )
     }
 

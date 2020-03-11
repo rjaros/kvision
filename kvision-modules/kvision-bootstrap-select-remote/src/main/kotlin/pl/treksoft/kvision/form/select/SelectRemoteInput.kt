@@ -25,7 +25,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ImplicitReflectionSerializer
-import kotlinx.serialization.list
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
 import pl.treksoft.kvision.core.Container
@@ -53,7 +53,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param preload preload all options from remote data source
  * @param classes a set of CSS class names
  */
-@UseExperimental(ImplicitReflectionSerializer::class)
+@OptIn(ImplicitReflectionSerializer::class)
 open class SelectRemoteInput<T : Any>(
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,

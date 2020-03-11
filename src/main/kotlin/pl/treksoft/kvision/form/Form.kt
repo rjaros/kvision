@@ -21,19 +21,22 @@
  */
 package pl.treksoft.kvision.form
 
+import kotlinx.serialization.DynamicObjectParser
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.Mapper
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.modules.serializersModuleOf
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.types.toStringF
+import pl.treksoft.kvision.utils.JSON.toObj
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty1
+import kotlin.js.JSON as NativeJSON
 
 /**
  * Internal data class containing form field parameters.
@@ -44,27 +47,6 @@ internal data class FieldParams<in F : FormControl>(
     val validatorMessage: ((F) -> String?)? = null,
     val validator: ((F) -> Boolean?)? = null
 )
-
-/**
- * A wrapper for a Map with a custom containsKey method implementation.
- * Used with kotlinx.serialization Mapper.
- */
-private class FormMapWrapper<out V>(private val map: Map<String, V>) : Map<String, V> {
-    override fun equals(other: Any?): Boolean = map == other
-    override fun hashCode(): Int = map.hashCode()
-    override fun toString(): String = map.toString()
-    override val size: Int get() = map.size
-    override fun isEmpty(): Boolean = map.isEmpty()
-    override fun containsKey(key: String): Boolean =
-        if (key.indexOf('.') != -1) map.containsKey(key) else
-            !(map.containsKey("$key.time") || map.containsKey("$key.size"))
-
-    override fun containsValue(value: @UnsafeVariance V): Boolean = map.containsValue(value)
-    override fun get(key: String): V? = map[key]
-    override val keys: Set<String> get() = map.keys
-    override val values: Collection<V> get() = map.values
-    override val entries: Set<Map.Entry<String, V>> get() = map.entries
-}
 
 /**
  * The form definition class. Can be used directly or indirectly inside a [FormPanel].
@@ -89,36 +71,26 @@ class Form<K : Any>(
 
     init {
         modelFactory = {
-            val map = it.flatMap { entry ->
-                when (entry.value) {
+            val json = js("{}")
+            it.forEach { (key, value) ->
+                val v = when (value) {
                     is Date -> {
-                        listOf(entry.key to (entry.value as? Date)?.toStringF())
+                        value.toStringF()
                     }
                     is List<*> -> {
                         @Suppress("UNCHECKED_CAST")
-                        (entry.value as? List<KFile>)?.let { list ->
-                            listOf(entry.key to entry.value, "${entry.key}.size" to list.size) +
-                                    list.mapIndexed { index, kFile ->
-                                        listOf(
-                                            "${entry.key}.$index.name" to kFile.name,
-                                            "${entry.key}.$index.size" to kFile.size,
-                                            "${entry.key}.$index.content" to kFile.content
-                                        )
-                                    }.flatten()
-                        } ?: listOf()
+                        ((value as? List<KFile>)?.toObj(KFile.serializer().list))
                     }
-                    else -> listOf(entry.key to entry.value)
+                    else -> value
                 }
-            }.toMap()
+                json[key] = v
+            }
             val serializersModule = if (customSerializers == null) {
                 serializersModuleOf(Date::class, DateSerializer)
             } else {
                 serializersModuleOf(customSerializers + (Date::class to DateSerializer))
             }
-            Mapper(context = serializersModule).unmapNullable(
-                serializer,
-                FormMapWrapper(map)
-            )
+            DynamicObjectParser(serializersModule).parse(json, serializer)
         }
     }
 
@@ -315,7 +287,7 @@ class Form<K : Any>(
         } else {
             serializersModuleOf(customSerializers + (Date::class to DateSerializer))
         }
-        return JSON.parse(
+        return NativeJSON.parse(
             kotlinx.serialization.json.Json(context = serializersModule).stringify(
                 serializer,
                 getData()
@@ -361,7 +333,7 @@ class Form<K : Any>(
     }
 
     companion object {
-        @UseExperimental(ImplicitReflectionSerializer::class)
+        @OptIn(ImplicitReflectionSerializer::class)
         inline fun <reified K : Any> create(
             panel: FormPanel<K>? = null,
             customSerializers: Map<KClass<*>, KSerializer<*>>? = null,

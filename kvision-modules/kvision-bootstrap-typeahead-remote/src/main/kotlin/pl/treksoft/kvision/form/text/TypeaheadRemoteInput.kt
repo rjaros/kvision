@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.form.text
 
 import kotlinx.serialization.ImplicitReflectionSerializer
-import kotlinx.serialization.list
-import kotlinx.serialization.serializer
+import kotlinx.serialization.builtins.list
+import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
 import pl.treksoft.kvision.core.Container
@@ -46,7 +46,7 @@ import kotlin.browser.window
  * @param value text input value
  * @param classes a set of CSS class names
  */
-@UseExperimental(ImplicitReflectionSerializer::class)
+@OptIn(ImplicitReflectionSerializer::class)
 open class TypeaheadRemoteInput<T : Any>(
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?) -> List<String>,
