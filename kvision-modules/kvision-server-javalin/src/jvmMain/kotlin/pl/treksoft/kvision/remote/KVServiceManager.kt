@@ -53,8 +53,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager for Javalin.
  */
-@Suppress("LargeClass", "TooManyFunctions")
-@OptIn(ExperimentalCoroutinesApi::class)
+@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
 
     companion object {
@@ -389,6 +388,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param function a function of the receiver
      * @param route a route
      */
+    @OptIn(ExperimentalCoroutinesApi::class)
     protected actual inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?

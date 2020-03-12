@@ -39,9 +39,7 @@ import kotlin.reflect.KClass
  * Client side agent for JSON-RPC remote calls.
  */
 @Suppress("LargeClass", "TooManyFunctions")
-@OptIn(
-    ImplicitReflectionSerializer::class, ExperimentalCoroutinesApi::class
-)
+@OptIn(ImplicitReflectionSerializer::class, ExperimentalCoroutinesApi::class)
 open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceMgr<T>) :
     RemoteAgent {
 

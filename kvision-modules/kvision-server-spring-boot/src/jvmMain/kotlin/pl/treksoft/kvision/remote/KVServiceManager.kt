@@ -24,7 +24,6 @@ package pl.treksoft.kvision.remote
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -53,8 +52,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager for Spring Boot.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
-@Suppress("LargeClass", "TooManyFunctions")
+@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
 
     companion object {
@@ -450,6 +448,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param function a function of the receiver
      * @param route a route
      */
+    @OptIn(ExperimentalCoroutinesApi::class)
     protected actual inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
@@ -489,7 +488,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     }
                     if (!incoming.isClosedForReceive) incoming.cancel()
                 }
-                launch(start = CoroutineStart.UNDISPATCHED) {
+                launch {
                     function.invoke(service, requestChannel, responseChannel)
                     if (!responseChannel.isClosedForReceive) responseChannel.close()
                 }
@@ -515,8 +514,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
                 val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
                 val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
+
                 @Suppress("MagicNumber")
                 val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
+
                 @Suppress("MagicNumber")
                 val param5 = getParameter<String?>(jsonRpcRequest.params[4])
                 try {
