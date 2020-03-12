@@ -38,7 +38,6 @@ import io.ktor.routing.get
 import io.ktor.routing.options
 import io.ktor.routing.post
 import io.ktor.routing.put
-import io.ktor.util.KtorExperimentalAPI
 import io.ktor.util.pipeline.PipelineContext
 import io.ktor.websocket.WebSocketServerSession
 import io.ktor.websocket.webSocket
@@ -63,9 +62,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager for Ktor.
  */
-@KtorExperimentalAPI
-@OptIn(ExperimentalCoroutinesApi::class)
-@Suppress("LargeClass", "TooManyFunctions")
+@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
 
     companion object {
@@ -399,6 +396,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param function a function of the receiver
      * @param route a route
      */
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Suppress("EmptyCatchBlock")
     protected actual inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
@@ -465,8 +463,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
                 val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
                 val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
+
                 @Suppress("MagicNumber")
                 val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
+
                 @Suppress("MagicNumber")
                 val param5 = getParameter<String?>(jsonRpcRequest.params[4])
                 try {
@@ -532,7 +532,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 /**
  * A function to generate routes based on definitions from the service manager.
  */
-@KtorExperimentalAPI
 fun <T : Any> Route.applyRoutes(serviceManager: KVServiceManager<T>) {
     serviceManager.getRequests.forEach { (path, handler) ->
         get(path, handler)
