@@ -8,28 +8,28 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.core</a>&nbsp;/&nbsp;<a href="./index.html">Component</a><br/>
 <br/>
 <h1>Component</h1>
-<code><span class="keyword">interface </span><span class="identifier">Component</span></code>
+(js) <code><span class="keyword">interface </span><span class="identifier">Component</span></code>
 <p>Base interface for all components.</p>
 <h3>Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="parent.html">parent</a></p>
+(js) 
+<h4><a href="parent.html">parent</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">?</span></code>
 <p>Parent of the current component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="visible.html">visible</a></p>
+(js) 
+<h4><a href="visible.html">visible</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
 <p>Visibility state of the current component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -38,129 +38,129 @@
 <tbody>
 <tr>
 <td>
-<p><a href="add-css-class.html">addCssClass</a></p>
+(js) 
+<h4><a href="add-css-class.html">addCssClass</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Adds given value to the set of CSS classes generated in html code of current component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="add-css-style.html">addCssStyle</a></p>
+(js) 
+<h4><a href="add-css-style.html">addCssStyle</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Adds given style object to the set of CSS classes generated in html code of current component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="add-surrounding-css-class.html">addSurroundingCssClass</a></p>
+(js) 
+<h4><a href="add-surrounding-css-class.html">addSurroundingCssClass</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="add-surrounding-css-style.html">addSurroundingCssStyle</a></p>
+(js) 
+<h4><a href="add-surrounding-css-style.html">addSurroundingCssStyle</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Adds given style object to the set of CSS classes generated in html code of parent component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$addSurroundingCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-attribute.html">getAttribute</a></p>
+(js) 
+<h4><a href="get-attribute.html">getAttribute</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$getAttribute(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
 <p>Returns the value of an additional attribute.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$getAttribute(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-element.html">getElement</a></p>
+(js) 
+<h4><a href="get-element.html">getElement</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElement</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">?</span></code>
 <p>Returns DOM element bound to the current component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElement</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-element-j-query.html">getElementJQuery</a></p>
+(js) 
+<h4><a href="get-element-j-query.html">getElementJQuery</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQuery</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">JQuery</span><span class="symbol">?</span></code>
 <p>Returns JQuery element bound to the current component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQuery</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">JQuery</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-element-j-query-d.html">getElementJQueryD</a></p>
+(js) 
+<h4><a href="get-element-j-query-d.html">getElementJQueryD</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQueryD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code>
 <p>Returns JQuery element bound to the current component as a <em>dynamic</em> type.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getElementJQueryD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-attribute.html">removeAttribute</a></p>
+(js) 
+<h4><a href="remove-attribute.html">removeAttribute</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeAttribute(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Removes the value of additional attribute.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeAttribute(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-css-class.html">removeCssClass</a></p>
+(js) 
+<h4><a href="remove-css-class.html">removeCssClass</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Removes given value from the set of CSS classes generated in html code of current component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-css-style.html">removeCssStyle</a></p>
+(js) 
+<h4><a href="remove-css-style.html">removeCssStyle</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Removes given style object from the set of CSS classes generated in html code of current component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-surrounding-css-class.html">removeSurroundingCssClass</a></p>
+(js) 
+<h4><a href="remove-surrounding-css-class.html">removeSurroundingCssClass</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-surrounding-css-style.html">removeSurroundingCssStyle</a></p>
+(js) 
+<h4><a href="remove-surrounding-css-style.html">removeSurroundingCssStyle</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Removes given style object from the set of CSS classes generated in html code of parent component.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$removeSurroundingCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-attribute.html">setAttribute</a></p>
+(js) 
+<h4><a href="set-attribute.html">setAttribute</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$setAttribute(kotlin.String, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Component$setAttribute(kotlin.String, kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Sets the value of additional attribute.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Component$setAttribute(kotlin.String, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Component$setAttribute(kotlin.String, kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -169,79 +169,80 @@
 <tbody>
 <tr>
 <td>
-<p><a href="../add-bs-bg-color.html">addBsBgColor</a></p>
+(js) 
+<h4><a href="../add-bs-bg-color.html">addBsBgColor</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsBgColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$addBsBgColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsBgColor)/bsBgColor">bsBgColor</span><span class="symbol">:</span>&nbsp;<a href="../-bs-bg-color/index.html"><span class="identifier">BsBgColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../add-bs-border.html">addBsBorder</a></p>
+(js) 
+<h4><a href="../add-bs-border.html">addBsBorder</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsBorder</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$addBsBorder(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsBorder)))/bsBorder">bsBorder</span><span class="symbol">:</span>&nbsp;<a href="../-bs-border/index.html"><span class="identifier">BsBorder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../add-bs-clearfix.html">addBsClearfix</a></p>
+(js) 
+<h4><a href="../add-bs-clearfix.html">addBsClearfix</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsClearfix</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../add-bs-color.html">addBsColor</a></p>
+(js) 
+<h4><a href="../add-bs-color.html">addBsColor</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$addBsColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsColor)/bsColor">bsColor</span><span class="symbol">:</span>&nbsp;<a href="../-bs-color/index.html"><span class="identifier">BsColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../add-bs-rounded.html">addBsRounded</a></p>
+(js) 
+<h4><a href="../add-bs-rounded.html">addBsRounded</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsRounded</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$addBsRounded(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsRounded)))/bsRounded">bsRounded</span><span class="symbol">:</span>&nbsp;<a href="../-bs-rounded/index.html"><span class="identifier">BsRounded</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../remove-bs-bg-color.html">removeBsBgColor</a></p>
+(js) 
+<h4><a href="../remove-bs-bg-color.html">removeBsBgColor</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsBgColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$removeBsBgColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsBgColor)/bsBgColor">bsBgColor</span><span class="symbol">:</span>&nbsp;<a href="../-bs-bg-color/index.html"><span class="identifier">BsBgColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../remove-bs-border.html">removeBsBorder</a></p>
+(js) 
+<h4><a href="../remove-bs-border.html">removeBsBorder</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsBorder</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$removeBsBorder(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsBorder)))/bsBorder">bsBorder</span><span class="symbol">:</span>&nbsp;<a href="../-bs-border/index.html"><span class="identifier">BsBorder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../remove-bs-clearfix.html">removeBsClearfix</a></p>
+(js) 
+<h4><a href="../remove-bs-clearfix.html">removeBsClearfix</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsClearfix</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../remove-bs-color.html">removeBsColor</a></p>
+(js) 
+<h4><a href="../remove-bs-color.html">removeBsColor</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$removeBsColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsColor)/bsColor">bsColor</span><span class="symbol">:</span>&nbsp;<a href="../-bs-color/index.html"><span class="identifier">BsColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../remove-bs-rounded.html">removeBsRounded</a></p>
+(js) 
+<h4><a href="../remove-bs-rounded.html">removeBsRounded</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsRounded</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$removeBsRounded(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsRounded)))/bsRounded">bsRounded</span><span class="symbol">:</span>&nbsp;<a href="../-bs-rounded/index.html"><span class="identifier">BsRounded</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
@@ -253,37 +254,38 @@
 <tbody>
 <tr>
 <td>
-<p><a href="../-container/index.html">Container</a></p>
+(js) 
+<h4><a href="../-container/index.html">Container</a></h4>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">Container</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Base interface for all containers.</p>
-</td>
+<code><span class="keyword">interface </span><span class="identifier">Container</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../../pl.treksoft.kvision.form/-form-control/index.html">FormControl</a></p>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form/-form-control/index.html">FormControl</a></h4>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">FormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Base interface of a form control.</p>
-</td>
+<code><span class="keyword">interface </span><span class="identifier">FormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../../pl.treksoft.kvision.form/-form-input/index.html">FormInput</a></p>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form/-form-input/index.html">FormInput</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">FormInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-widget/index.html">Widget</a></p>
+(js) 
+<h4><a href="../-widget/index.html">Widget</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Widget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-styled-component/index.html"><span class="identifier">StyledComponent</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Component</span></a></code>
 <p>Base widget class. The parent of all component classes.</p>
-</td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Widget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-styled-component/index.html"><span class="identifier">StyledComponent</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Component</span></a></code></td>
 </tr>
 </tbody>
 </table>

@@ -8,7 +8,7 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.utils</a>&nbsp;/&nbsp;<a href="./index.html">Cache</a><br/>
 <br/>
 <h1>Cache</h1>
-<code><span class="keyword">class </span><span class="identifier">Cache</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+(js) <code><span class="keyword">class </span><span class="identifier">Cache</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
 <p>This is a LRU cache that has no performance impact for cache insertions
 once the capacity of the cache has been reached. For cache hit,
 performance is O(1) and for cache eviction, it is O(1).</p>
@@ -17,14 +17,14 @@ performance is O(1) and for cache eviction, it is O(1).</p>
 <tbody>
 <tr>
 <td>
-<p><a href="-init-.html">&lt;init&gt;</a></p>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<code><span class="identifier">Cache</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils.Cache$<init>(kotlin.Int)/capacity">capacity</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;50<span class="symbol">)</span></code>
 <p>This is a LRU cache that has no performance impact for cache insertions
 once the capacity of the cache has been reached. For cache hit,
 performance is O(1) and for cache eviction, it is O(1).</p>
-</td>
+<code><span class="identifier">Cache</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils.Cache$<init>(kotlin.Int)/capacity">capacity</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;50<span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -33,44 +33,31 @@ performance is O(1) and for cache eviction, it is O(1).</p>
 <tbody>
 <tr>
 <td>
-<p><a href="get.html">get</a></p>
+(js) 
+<h4><a href="get.html">get</a></h4>
 </td>
 <td>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils.Cache$get(pl.treksoft.kvision.utils.Cache.K)/key">key</span><span class="symbol">:</span>&nbsp;<a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">?</span></code>
 <p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html">HashMap</a> get is O(1).
 More info: https://stackoverflow.com/a/4578039/2085356</p>
-</td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils.Cache$get(pl.treksoft.kvision.utils.Cache.K)/key">key</span><span class="symbol">:</span>&nbsp;<span class="identifier">K</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set.html">set</a></p>
+(js) 
+<h4><a href="set.html">set</a></h4>
 </td>
 <td>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils.Cache$set(pl.treksoft.kvision.utils.Cache.K, pl.treksoft.kvision.utils.Cache.V)/key">key</span><span class="symbol">:</span>&nbsp;<a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.utils.Cache$set(pl.treksoft.kvision.utils.Cache.K, pl.treksoft.kvision.utils.Cache.V)/value">value</span><span class="symbol">:</span>&nbsp;<a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#K"><span class="identifier">K</span></a><span class="symbol">?</span></code>
 <p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html">HashMap</a> put and remove is O(1).
 More info: https://stackoverflow.com/a/4578039/2085356</p>
-</td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.utils.Cache$set(pl.treksoft.kvision.utils.Cache.K, pl.treksoft.kvision.utils.Cache.V)/key">key</span><span class="symbol">:</span>&nbsp;<span class="identifier">K</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.utils.Cache$set(pl.treksoft.kvision.utils.Cache.K, pl.treksoft.kvision.utils.Cache.V)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">V</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">K</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="to-string.html">toString</a></p>
+(js) 
+<h4><a href="to-string.html">toString</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
 </tr>
 </tbody>
 </table>

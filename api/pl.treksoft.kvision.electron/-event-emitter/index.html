@@ -8,13 +8,14 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.electron</a>&nbsp;/&nbsp;<a href="./index.html">EventEmitter</a><br/>
 <br/>
 <h1>EventEmitter</h1>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">EventEmitter</span></code>
+(js) <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">EventEmitter</span></code>
 <h3>Constructors</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="-init-.html">&lt;init&gt;</a></p>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
 <code><span class="identifier">EventEmitter</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
@@ -26,108 +27,107 @@
 <tbody>
 <tr>
 <td>
-<p><a href="add-listener.html">addListener</a></p>
+(js) 
+<h4><a href="add-listener.html">addListener</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$addListener(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$addListener(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="emit.html">emit</a></p>
+(js) 
+<h4><a href="emit.html">emit</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">emit</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$emit(kotlin.String, kotlin.Array((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$emit(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="event-names.html">eventNames</a></p>
+(js) 
+<h4><a href="event-names.html">eventNames</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">eventNames</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-max-listeners.html">getMaxListeners</a></p>
+(js) 
+<h4><a href="get-max-listeners.html">getMaxListeners</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getMaxListeners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="listener-count.html">listenerCount</a></p>
+(js) 
+<h4><a href="listener-count.html">listenerCount</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">listenerCount</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$listenerCount(kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="listeners.html">listeners</a></p>
+(js) 
+<h4><a href="listeners.html">listeners</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">listeners</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$listeners(kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="on.html">on</a></p>
+(js) 
+<h4><a href="on.html">on</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">on</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$on(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$on(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="once.html">once</a></p>
+(js) 
+<h4><a href="once.html">once</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">once</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$once(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$once(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="prepend-listener.html">prependListener</a></p>
+(js) 
+<h4><a href="prepend-listener.html">prependListener</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">prependListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$prependListener(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$prependListener(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="prepend-once-listener.html">prependOnceListener</a></p>
+(js) 
+<h4><a href="prepend-once-listener.html">prependOnceListener</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">prependOnceListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$prependOnceListener(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$prependOnceListener(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-all-listeners.html">removeAllListeners</a></p>
+(js) 
+<h4><a href="remove-all-listeners.html">removeAllListeners</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAllListeners</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$removeAllListeners(kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-listener.html">removeListener</a></p>
+(js) 
+<h4><a href="remove-listener.html">removeListener</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$removeListener(kotlin.String, kotlin.Function((kotlin.Any)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$removeListener(kotlin.String, kotlin.Function((kotlin.Any)))/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function/index.html"><span class="identifier">Function</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-max-listeners.html">setMaxListeners</a></p>
+(js) 
+<h4><a href="set-max-listeners.html">setMaxListeners</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setMaxListeners</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.EventEmitter$setMaxListeners(kotlin.Number)/n">n</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
 </tr>
 </tbody>
 </table>
@@ -136,297 +136,339 @@
 <tbody>
 <tr>
 <td>
-<p><a href="../-app/index.html">App</a></p>
+(js) 
+<h4><a href="../-app/index.html">App</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">App</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">App</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-auto-updater/index.html">AutoUpdater</a></p>
+(js) 
+<h4><a href="../-auto-updater/index.html">AutoUpdater</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">AutoUpdater</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">AutoUpdater</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-browser-view/index.html">BrowserView</a></p>
+(js) 
+<h4><a href="../-browser-view/index.html">BrowserView</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">BrowserView</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">BrowserView</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-browser-window/index.html">BrowserWindow</a></p>
+(js) 
+<h4><a href="../-browser-window/index.html">BrowserWindow</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">BrowserWindow</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">BrowserWindow</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-browser-window-proxy/index.html">BrowserWindowProxy</a></p>
+(js) 
+<h4><a href="../-browser-window-proxy/index.html">BrowserWindowProxy</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">BrowserWindowProxy</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">BrowserWindowProxy</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-client-request/index.html">ClientRequest</a></p>
+(js) 
+<h4><a href="../-client-request/index.html">ClientRequest</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">ClientRequest</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ClientRequest</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-clipboard/index.html">Clipboard</a></p>
+(js) 
+<h4><a href="../-clipboard/index.html">Clipboard</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">Clipboard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Clipboard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-content-tracing/index.html">ContentTracing</a></p>
+(js) 
+<h4><a href="../-content-tracing/index.html">ContentTracing</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">ContentTracing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">ContentTracing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-cookies/index.html">Cookies</a></p>
+(js) 
+<h4><a href="../-cookies/index.html">Cookies</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Cookies</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Cookies</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-crash-reporter/index.html">CrashReporter</a></p>
+(js) 
+<h4><a href="../-crash-reporter/index.html">CrashReporter</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">CrashReporter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">CrashReporter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-debugger/index.html">Debugger</a></p>
+(js) 
+<h4><a href="../-debugger/index.html">Debugger</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Debugger</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Debugger</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-desktop-capturer/index.html">DesktopCapturer</a></p>
+(js) 
+<h4><a href="../-desktop-capturer/index.html">DesktopCapturer</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">DesktopCapturer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">DesktopCapturer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-dialog/index.html">Dialog</a></p>
+(js) 
+<h4><a href="../-dialog/index.html">Dialog</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">Dialog</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Dialog</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-download-item/index.html">DownloadItem</a></p>
+(js) 
+<h4><a href="../-download-item/index.html">DownloadItem</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">DownloadItem</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DownloadItem</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-global-shortcut/index.html">GlobalShortcut</a></p>
+(js) 
+<h4><a href="../-global-shortcut/index.html">GlobalShortcut</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">GlobalShortcut</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">GlobalShortcut</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-in-app-purchase/index.html">InAppPurchase</a></p>
+(js) 
+<h4><a href="../-in-app-purchase/index.html">InAppPurchase</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">InAppPurchase</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">InAppPurchase</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-incoming-message/index.html">IncomingMessage</a></p>
+(js) 
+<h4><a href="../-incoming-message/index.html">IncomingMessage</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">IncomingMessage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">IncomingMessage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-ipc-main/index.html">IpcMain</a></p>
+(js) 
+<h4><a href="../-ipc-main/index.html">IpcMain</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">IpcMain</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">IpcMain</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-ipc-renderer/index.html">IpcRenderer</a></p>
+(js) 
+<h4><a href="../-ipc-renderer/index.html">IpcRenderer</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">IpcRenderer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">IpcRenderer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-net/index.html">Net</a></p>
+(js) 
+<h4><a href="../-net/index.html">Net</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">Net</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Net</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-notification/index.html">Notification</a></p>
+(js) 
+<h4><a href="../-notification/index.html">Notification</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Notification</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Notification</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-power-monitor/index.html">PowerMonitor</a></p>
+(js) 
+<h4><a href="../-power-monitor/index.html">PowerMonitor</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">PowerMonitor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">PowerMonitor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-power-save-blocker/index.html">PowerSaveBlocker</a></p>
+(js) 
+<h4><a href="../-power-save-blocker/index.html">PowerSaveBlocker</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">PowerSaveBlocker</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">PowerSaveBlocker</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../../pl.treksoft.kvision.electron.nodejs/-process/index.html">Process</a></p>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.electron.nodejs/-process/index.html">Process</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">Process</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Process</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-protocol/index.html">Protocol</a></p>
+(js) 
+<h4><a href="../-protocol/index.html">Protocol</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">Protocol</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Protocol</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-screen/index.html">Screen</a></p>
+(js) 
+<h4><a href="../-screen/index.html">Screen</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">Screen</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Screen</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-session/index.html">Session</a></p>
+(js) 
+<h4><a href="../-session/index.html">Session</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Session</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Session</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-system-preferences/index.html">SystemPreferences</a></p>
+(js) 
+<h4><a href="../-system-preferences/index.html">SystemPreferences</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">SystemPreferences</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">SystemPreferences</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar/index.html">TouchBar</a></p>
+(js) 
+<h4><a href="../-touch-bar/index.html">TouchBar</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBar</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBar</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-button/index.html">TouchBarButton</a></p>
+(js) 
+<h4><a href="../-touch-bar-button/index.html">TouchBarButton</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarButton</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarButton</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-color-picker/index.html">TouchBarColorPicker</a></p>
+(js) 
+<h4><a href="../-touch-bar-color-picker/index.html">TouchBarColorPicker</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarColorPicker</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarColorPicker</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-group/index.html">TouchBarGroup</a></p>
+(js) 
+<h4><a href="../-touch-bar-group/index.html">TouchBarGroup</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarGroup</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarGroup</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-label/index.html">TouchBarLabel</a></p>
+(js) 
+<h4><a href="../-touch-bar-label/index.html">TouchBarLabel</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarLabel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarLabel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-popover/index.html">TouchBarPopover</a></p>
+(js) 
+<h4><a href="../-touch-bar-popover/index.html">TouchBarPopover</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarPopover</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarPopover</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-scrubber/index.html">TouchBarScrubber</a></p>
+(js) 
+<h4><a href="../-touch-bar-scrubber/index.html">TouchBarScrubber</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarScrubber</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarScrubber</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-segmented-control/index.html">TouchBarSegmentedControl</a></p>
+(js) 
+<h4><a href="../-touch-bar-segmented-control/index.html">TouchBarSegmentedControl</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarSegmentedControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarSegmentedControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-slider/index.html">TouchBarSlider</a></p>
+(js) 
+<h4><a href="../-touch-bar-slider/index.html">TouchBarSlider</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarSlider</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarSlider</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-touch-bar-spacer/index.html">TouchBarSpacer</a></p>
+(js) 
+<h4><a href="../-touch-bar-spacer/index.html">TouchBarSpacer</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">TouchBarSpacer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TouchBarSpacer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-tray/index.html">Tray</a></p>
+(js) 
+<h4><a href="../-tray/index.html">Tray</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Tray</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Tray</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-web-contents/index.html">WebContents</a></p>
+(js) 
+<h4><a href="../-web-contents/index.html">WebContents</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">WebContents</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebContents</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-web-frame/index.html">WebFrame</a></p>
+(js) 
+<h4><a href="../-web-frame/index.html">WebFrame</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">WebFrame</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">WebFrame</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-web-request/index.html">WebRequest</a></p>
+(js) 
+<h4><a href="../-web-request/index.html">WebRequest</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">WebRequest</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebRequest</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EventEmitter</span></a></code></td>
 </tr>
 </tbody>
 </table>

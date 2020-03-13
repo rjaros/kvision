@@ -8,49 +8,41 @@
 <a href="../../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../../index.html">pl.treksoft.kvision.tabulator.js</a>&nbsp;/&nbsp;<a href="../index.html">Tabulator</a>&nbsp;/&nbsp;<a href="./index.html">OptionsFiltering</a><br/>
 <br/>
 <h1>OptionsFiltering</h1>
-<code><span class="keyword">interface </span><span class="identifier">OptionsFiltering</span></code>
+(js) <code><span class="keyword">interface </span><span class="identifier">OptionsFiltering</span></code>
 <h3>Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="data-filtered.html">dataFiltered</a></p>
+(js) 
+<h4><a href="data-filtered.html">dataFiltered</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">dataFiltered</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">filters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-filter/index.html"><span class="identifier">Tabulator.Filter</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">rows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">dataFiltered</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">filters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">Filter</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">rows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="data-filtering.html">dataFiltering</a></p>
+(js) 
+<h4><a href="data-filtering.html">dataFiltering</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">dataFiltering</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">filters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-filter/index.html"><span class="identifier">Tabulator.Filter</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">dataFiltering</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">filters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">Filter</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="initial-filter.html">initialFilter</a></p>
+(js) 
+<h4><a href="initial-filter.html">initialFilter</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">initialFilter</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-filter/index.html"><span class="identifier">Tabulator.Filter</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">initialFilter</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">Filter</span><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="initial-header-filter.html">initialHeaderFilter</a></p>
+(js) 
+<h4><a href="initial-header-filter.html">initialHeaderFilter</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">initialHeaderFilter</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Inheritors</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-options.html">Options</a></p>
-</td>
-<td>
-<code><span class="keyword">interface </span><span class="identifier">Options</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-options-general/index.html"><span class="identifier">Tabulator.OptionsGeneral</span></a><span class="symbol">, </span><a href="../-options-history/index.html"><span class="identifier">Tabulator.OptionsHistory</span></a><span class="symbol">, </span><a href="../-options-locale/index.html"><span class="identifier">Tabulator.OptionsLocale</span></a><span class="symbol">, </span><a href="../-options-download/index.html"><span class="identifier">Tabulator.OptionsDownload</span></a><span class="symbol">, </span><a href="../-options-columns/index.html"><span class="identifier">Tabulator.OptionsColumns</span></a><span class="symbol">, </span><a href="../-options-rows/index.html"><span class="identifier">Tabulator.OptionsRows</span></a><span class="symbol">, </span><a href="../-options-data/index.html"><span class="identifier">Tabulator.OptionsData</span></a><span class="symbol">, </span><a href="../-options-sorting/index.html"><span class="identifier">Tabulator.OptionsSorting</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Tabulator.OptionsFiltering</span></a><span class="symbol">, </span><a href="../-options-row-grouping/index.html"><span class="identifier">Tabulator.OptionsRowGrouping</span></a><span class="symbol">, </span><a href="../-options-pagination/index.html"><span class="identifier">Tabulator.OptionsPagination</span></a><span class="symbol">, </span><a href="../-options-persistent-configuration/index.html"><span class="identifier">Tabulator.OptionsPersistentConfiguration</span></a><span class="symbol">, </span><a href="../-options-clipboard/index.html"><span class="identifier">Tabulator.OptionsClipboard</span></a><span class="symbol">, </span><a href="../-options-data-tree/index.html"><span class="identifier">Tabulator.OptionsDataTree</span></a><span class="symbol">, </span><a href="../-options-cell/index.html"><span class="identifier">Tabulator.OptionsCell</span></a></code></td>
 </tr>
 </tbody>
 </table>

@@ -8,124 +8,25 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">FileEntrySync</a><br/>
 <br/>
 <h1>FileEntrySync</h1>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">FileEntrySync</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-entry-sync/index.html"><span class="identifier">EntrySync</span></a></code>
-<h3>Inherited Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-entry-sync/filesystem.html">filesystem</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">filesystem</span><span class="symbol">: </span><a href="../-file-system-sync/index.html"><span class="identifier">FileSystemSync</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/full-path.html">fullPath</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">fullPath</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/is-directory.html">isDirectory</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isDirectory</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/is-file.html">isFile</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isFile</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/name.html">name</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-</tbody>
-</table>
+(js) <code><span class="keyword">interface </span><span class="identifier">FileEntrySync</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-entry-sync/index.html"><span class="identifier">EntrySync</span></a></code>
 <h3>Functions</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="create-writer.html">createWriter</a></p>
+(js) 
+<h4><a href="create-writer.html">createWriter</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">createWriter</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-file-writer-sync/index.html"><span class="identifier">FileWriterSync</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="file.html">file</a></p>
+(js) 
+<h4><a href="file.html">file</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">file</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.files/-file/index.html"><span class="identifier">File</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Inherited Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-entry-sync/copy-to.html">copyTo</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">copyTo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.EntrySync$copyTo(pl.treksoft.kvision.cordova.DirectoryEntrySync, kotlin.String)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry-sync/index.html"><span class="identifier">DirectoryEntrySync</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.EntrySync$copyTo(pl.treksoft.kvision.cordova.DirectoryEntrySync, kotlin.String)/newName">newName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="../-entry-sync/index.html"><span class="identifier">EntrySync</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/get-metadata.html">getMetadata</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getMetadata</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-metadata/index.html"><span class="identifier">Metadata</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/get-parent.html">getParent</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getParent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-directory-entry-sync/index.html"><span class="identifier">DirectoryEntrySync</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/move-to.html">moveTo</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">moveTo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.EntrySync$moveTo(pl.treksoft.kvision.cordova.DirectoryEntrySync, kotlin.String)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry-sync/index.html"><span class="identifier">DirectoryEntrySync</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.EntrySync$moveTo(pl.treksoft.kvision.cordova.DirectoryEntrySync, kotlin.String)/newName">newName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="../-entry-sync/index.html"><span class="identifier">EntrySync</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/remove.html">remove</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-entry-sync/to-u-r-l.html">toURL</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">toURL</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
 </tr>
 </tbody>
 </table>

@@ -8,224 +8,33 @@
 <a href="../../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../../index.html">pl.treksoft.kvision.chart.js</a>&nbsp;/&nbsp;<a href="../index.html">Chart</a>&nbsp;/&nbsp;<a href="./index.html">ChartXAxe</a><br/>
 <br/>
 <h1>ChartXAxe</h1>
-<code><span class="keyword">interface </span><span class="identifier">ChartXAxe</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-common-axe/index.html"><span class="identifier">Chart.CommonAxe</span></a></code>
+(js) <code><span class="keyword">interface </span><span class="identifier">ChartXAxe</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CommonAxe</span></code>
 <h3>Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="bar-percentage.html">barPercentage</a></p>
+(js) 
+<h4><a href="bar-percentage.html">barPercentage</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">barPercentage</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="category-percentage.html">categoryPercentage</a></p>
+(js) 
+<h4><a href="category-percentage.html">categoryPercentage</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">categoryPercentage</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="distribution.html">distribution</a></p>
+(js) 
+<h4><a href="distribution.html">distribution</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">distribution</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Inherited Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-common-axe/after-build-ticks.html">afterBuildTicks</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">afterBuildTicks</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/after-calculate-tick-rotation.html">afterCalculateTickRotation</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">afterCalculateTickRotation</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/after-data-limits.html">afterDataLimits</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">afterDataLimits</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/after-fit.html">afterFit</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">afterFit</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/after-set-dimension.html">afterSetDimension</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">afterSetDimension</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/after-tick-to-label-conversion.html">afterTickToLabelConversion</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">afterTickToLabelConversion</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/after-update.html">afterUpdate</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">afterUpdate</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/bar-thickness.html">barThickness</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">barThickness</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/before-build-ticks.html">beforeBuildTicks</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">beforeBuildTicks</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/before-calculate-tick-rotation.html">beforeCalculateTickRotation</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">beforeCalculateTickRotation</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/before-data-limits.html">beforeDataLimits</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">beforeDataLimits</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/before-fit.html">beforeFit</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">beforeFit</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/before-set-dimension.html">beforeSetDimension</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">beforeSetDimension</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/before-tick-to-label-conversion.html">beforeTickToLabelConversion</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">beforeTickToLabelConversion</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/before-update.html">beforeUpdate</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">beforeUpdate</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">scale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/bounds.html">bounds</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">bounds</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/display.html">display</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">display</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/grid-lines.html">gridLines</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">gridLines</span><span class="symbol">: </span><a href="../-grid-line-options/index.html"><span class="identifier">Chart.GridLineOptions</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/id.html">id</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/max-bar-thickness.html">maxBarThickness</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">maxBarThickness</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/offset.html">offset</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">offset</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/position.html">position</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">position</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/scale-label.html">scaleLabel</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">scaleLabel</span><span class="symbol">: </span><a href="../-scale-title-options/index.html"><span class="identifier">Chart.ScaleTitleOptions</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/stacked.html">stacked</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">stacked</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/ticks.html">ticks</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">ticks</span><span class="symbol">: </span><a href="../-tick-options/index.html"><span class="identifier">Chart.TickOptions</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/time.html">time</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">time</span><span class="symbol">: </span><a href="../-time-scale/index.html"><span class="identifier">Chart.TimeScale</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-common-axe/type.html">type</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">type</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 </tbody>
 </table>

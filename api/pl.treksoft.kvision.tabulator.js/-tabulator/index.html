@@ -8,377 +8,430 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.tabulator.js</a>&nbsp;/&nbsp;<a href="./index.html">Tabulator</a><br/>
 <br/>
 <h1>Tabulator</h1>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Tabulator</span></code>
+(js) <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Tabulator</span></code>
 <h3>Types</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="-ajax-config/index.html">AjaxConfig</a></p>
+(js) 
+<h4><a href="-ajax-config/index.html">AjaxConfig</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">AjaxConfig</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-ajax-content-type/index.html">AjaxContentType</a></p>
+(js) 
+<h4><a href="-ajax-content-type/index.html">AjaxContentType</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">AjaxContentType</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-auto-complete-params/index.html">AutoCompleteParams</a></p>
+(js) 
+<h4><a href="-auto-complete-params/index.html">AutoCompleteParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">AutoCompleteParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-cell-callbacks/index.html">CellCallbacks</a></p>
+(js) 
+<h4><a href="-cell-callbacks/index.html">CellCallbacks</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">CellCallbacks</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-cell-component/index.html">CellComponent</a></p>
+(js) 
+<h4><a href="-cell-component/index.html">CellComponent</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">CellComponent</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-cell-navigation/index.html">CellNavigation</a></p>
+(js) 
+<h4><a href="-cell-navigation/index.html">CellNavigation</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">CellNavigation</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-checkbox-params/index.html">CheckboxParams</a></p>
+(js) 
+<h4><a href="-checkbox-params/index.html">CheckboxParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">CheckboxParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-clipboard-config/index.html">ClipboardConfig</a></p>
+(js) 
+<h4><a href="-clipboard-config/index.html">ClipboardConfig</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">ClipboardConfig</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-column-component/index.html">ColumnComponent</a></p>
+(js) 
+<h4><a href="-column-component/index.html">ColumnComponent</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">ColumnComponent</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-column-definition/index.html">ColumnDefinition</a></p>
+(js) 
+<h4><a href="-column-definition/index.html">ColumnDefinition</a></h4>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">ColumnDefinition</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-column-layout/index.html"><span class="identifier">Tabulator.ColumnLayout</span></a><span class="symbol">, </span><a href="-cell-callbacks/index.html"><span class="identifier">Tabulator.CellCallbacks</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">ColumnDefinition</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ColumnLayout</span><span class="symbol">, </span><span class="identifier">CellCallbacks</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-column-definition-sorter-params/index.html">ColumnDefinitionSorterParams</a></p>
+(js) 
+<h4><a href="-column-definition-sorter-params/index.html">ColumnDefinitionSorterParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">ColumnDefinitionSorterParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-column-layout/index.html">ColumnLayout</a></p>
+(js) 
+<h4><a href="-column-layout/index.html">ColumnLayout</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">ColumnLayout</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-date-time-difference-params/index.html">DateTimeDifferenceParams</a></p>
+(js) 
+<h4><a href="-date-time-difference-params/index.html">DateTimeDifferenceParams</a></h4>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">DateTimeDifferenceParams</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-date-time-params/index.html"><span class="identifier">Tabulator.DateTimeParams</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">DateTimeDifferenceParams</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">DateTimeParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-date-time-params/index.html">DateTimeParams</a></p>
+(js) 
+<h4><a href="-date-time-params/index.html">DateTimeParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">DateTimeParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-download-config/index.html">DownloadConfig</a></p>
+(js) 
+<h4><a href="-download-config/index.html">DownloadConfig</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">DownloadConfig</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-download-c-s-v/index.html">DownloadCSV</a></p>
+(js) 
+<h4><a href="-download-c-s-v/index.html">DownloadCSV</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">DownloadCSV</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-download-options/index.html">DownloadOptions</a></p>
+(js) 
+<h4><a href="-download-options/index.html">DownloadOptions</a></h4>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">DownloadOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-download-c-s-v/index.html"><span class="identifier">Tabulator.DownloadCSV</span></a><span class="symbol">, </span><a href="-download-x-l-x-s/index.html"><span class="identifier">Tabulator.DownloadXLXS</span></a><span class="symbol">, </span><a href="-download-p-d-f/index.html"><span class="identifier">Tabulator.DownloadPDF</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">DownloadOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">DownloadCSV</span><span class="symbol">, </span><span class="identifier">DownloadXLXS</span><span class="symbol">, </span><span class="identifier">DownloadPDF</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-download-p-d-f/index.html">DownloadPDF</a></p>
+(js) 
+<h4><a href="-download-p-d-f/index.html">DownloadPDF</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">DownloadPDF</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-download-x-l-x-s/index.html">DownloadXLXS</a></p>
+(js) 
+<h4><a href="-download-x-l-x-s/index.html">DownloadXLXS</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">DownloadXLXS</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-filter/index.html">Filter</a></p>
+(js) 
+<h4><a href="-filter/index.html">Filter</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">Filter</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-group-component/index.html">GroupComponent</a></p>
+(js) 
+<h4><a href="-group-component/index.html">GroupComponent</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">GroupComponent</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-image-params/index.html">ImageParams</a></p>
+(js) 
+<h4><a href="-image-params/index.html">ImageParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">ImageParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-key-binding/index.html">KeyBinding</a></p>
+(js) 
+<h4><a href="-key-binding/index.html">KeyBinding</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">KeyBinding</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-link-params/index.html">LinkParams</a></p>
+(js) 
+<h4><a href="-link-params/index.html">LinkParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">LinkParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-money-params/index.html">MoneyParams</a></p>
+(js) 
+<h4><a href="-money-params/index.html">MoneyParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">MoneyParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-number-params/index.html">NumberParams</a></p>
+(js) 
+<h4><a href="-number-params/index.html">NumberParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">NumberParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options.html">Options</a></p>
+(js) 
+<h4><a href="-options.html">Options</a></h4>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">Options</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-options-general/index.html"><span class="identifier">Tabulator.OptionsGeneral</span></a><span class="symbol">, </span><a href="-options-history/index.html"><span class="identifier">Tabulator.OptionsHistory</span></a><span class="symbol">, </span><a href="-options-locale/index.html"><span class="identifier">Tabulator.OptionsLocale</span></a><span class="symbol">, </span><a href="-options-download/index.html"><span class="identifier">Tabulator.OptionsDownload</span></a><span class="symbol">, </span><a href="-options-columns/index.html"><span class="identifier">Tabulator.OptionsColumns</span></a><span class="symbol">, </span><a href="-options-rows/index.html"><span class="identifier">Tabulator.OptionsRows</span></a><span class="symbol">, </span><a href="-options-data/index.html"><span class="identifier">Tabulator.OptionsData</span></a><span class="symbol">, </span><a href="-options-sorting/index.html"><span class="identifier">Tabulator.OptionsSorting</span></a><span class="symbol">, </span><a href="-options-filtering/index.html"><span class="identifier">Tabulator.OptionsFiltering</span></a><span class="symbol">, </span><a href="-options-row-grouping/index.html"><span class="identifier">Tabulator.OptionsRowGrouping</span></a><span class="symbol">, </span><a href="-options-pagination/index.html"><span class="identifier">Tabulator.OptionsPagination</span></a><span class="symbol">, </span><a href="-options-persistent-configuration/index.html"><span class="identifier">Tabulator.OptionsPersistentConfiguration</span></a><span class="symbol">, </span><a href="-options-clipboard/index.html"><span class="identifier">Tabulator.OptionsClipboard</span></a><span class="symbol">, </span><a href="-options-data-tree/index.html"><span class="identifier">Tabulator.OptionsDataTree</span></a><span class="symbol">, </span><a href="-options-cell/index.html"><span class="identifier">Tabulator.OptionsCell</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Options</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">OptionsGeneral</span><span class="symbol">, </span><span class="identifier">OptionsHistory</span><span class="symbol">, </span><span class="identifier">OptionsLocale</span><span class="symbol">, </span><span class="identifier">OptionsDownload</span><span class="symbol">, </span><span class="identifier">OptionsColumns</span><span class="symbol">, </span><span class="identifier">OptionsRows</span><span class="symbol">, </span><span class="identifier">OptionsData</span><span class="symbol">, </span><span class="identifier">OptionsSorting</span><span class="symbol">, </span><span class="identifier">OptionsFiltering</span><span class="symbol">, </span><span class="identifier">OptionsRowGrouping</span><span class="symbol">, </span><span class="identifier">OptionsPagination</span><span class="symbol">, </span><span class="identifier">OptionsPersistentConfiguration</span><span class="symbol">, </span><span class="identifier">OptionsClipboard</span><span class="symbol">, </span><span class="identifier">OptionsDataTree</span><span class="symbol">, </span><span class="identifier">OptionsCell</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-cell/index.html">OptionsCell</a></p>
+(js) 
+<h4><a href="-options-cell/index.html">OptionsCell</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsCell</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-cells/index.html">OptionsCells</a></p>
+(js) 
+<h4><a href="-options-cells/index.html">OptionsCells</a></h4>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">OptionsCells</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-cell-callbacks/index.html"><span class="identifier">Tabulator.CellCallbacks</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">OptionsCells</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CellCallbacks</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-clipboard/index.html">OptionsClipboard</a></p>
+(js) 
+<h4><a href="-options-clipboard/index.html">OptionsClipboard</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsClipboard</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-columns/index.html">OptionsColumns</a></p>
+(js) 
+<h4><a href="-options-columns/index.html">OptionsColumns</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsColumns</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-data/index.html">OptionsData</a></p>
+(js) 
+<h4><a href="-options-data/index.html">OptionsData</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsData</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-data-tree/index.html">OptionsDataTree</a></p>
+(js) 
+<h4><a href="-options-data-tree/index.html">OptionsDataTree</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsDataTree</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-download/index.html">OptionsDownload</a></p>
+(js) 
+<h4><a href="-options-download/index.html">OptionsDownload</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsDownload</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-filtering/index.html">OptionsFiltering</a></p>
+(js) 
+<h4><a href="-options-filtering/index.html">OptionsFiltering</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsFiltering</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-general/index.html">OptionsGeneral</a></p>
+(js) 
+<h4><a href="-options-general/index.html">OptionsGeneral</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsGeneral</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-history/index.html">OptionsHistory</a></p>
+(js) 
+<h4><a href="-options-history/index.html">OptionsHistory</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsHistory</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-locale/index.html">OptionsLocale</a></p>
+(js) 
+<h4><a href="-options-locale/index.html">OptionsLocale</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsLocale</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-pagination/index.html">OptionsPagination</a></p>
+(js) 
+<h4><a href="-options-pagination/index.html">OptionsPagination</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsPagination</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-persistent-configuration/index.html">OptionsPersistentConfiguration</a></p>
+(js) 
+<h4><a href="-options-persistent-configuration/index.html">OptionsPersistentConfiguration</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsPersistentConfiguration</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-row-grouping/index.html">OptionsRowGrouping</a></p>
+(js) 
+<h4><a href="-options-row-grouping/index.html">OptionsRowGrouping</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsRowGrouping</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-rows/index.html">OptionsRows</a></p>
+(js) 
+<h4><a href="-options-rows/index.html">OptionsRows</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsRows</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-options-sorting/index.html">OptionsSorting</a></p>
+(js) 
+<h4><a href="-options-sorting/index.html">OptionsSorting</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">OptionsSorting</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-progress-bar-params/index.html">ProgressBarParams</a></p>
+(js) 
+<h4><a href="-progress-bar-params/index.html">ProgressBarParams</a></h4>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">ProgressBarParams</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-traffic-params/index.html"><span class="identifier">Tabulator.TrafficParams</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">ProgressBarParams</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">TrafficParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-row-component/index.html">RowComponent</a></p>
+(js) 
+<h4><a href="-row-component/index.html">RowComponent</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">RowComponent</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-select-label-value/index.html">SelectLabelValue</a></p>
+(js) 
+<h4><a href="-select-label-value/index.html">SelectLabelValue</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">SelectLabelValue</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-select-params/index.html">SelectParams</a></p>
+(js) 
+<h4><a href="-select-params/index.html">SelectParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">SelectParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-select-params-group/index.html">SelectParamsGroup</a></p>
+(js) 
+<h4><a href="-select-params-group/index.html">SelectParamsGroup</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">SelectParamsGroup</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-sorter/index.html">Sorter</a></p>
+(js) 
+<h4><a href="-sorter/index.html">Sorter</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">Sorter</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-star-rating-params/index.html">StarRatingParams</a></p>
+(js) 
+<h4><a href="-star-rating-params/index.html">StarRatingParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">StarRatingParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-tick-cross-params/index.html">TickCrossParams</a></p>
+(js) 
+<h4><a href="-tick-cross-params/index.html">TickCrossParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">TickCrossParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-traffic-params/index.html">TrafficParams</a></p>
+(js) 
+<h4><a href="-traffic-params/index.html">TrafficParams</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">TrafficParams</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-validator/index.html">Validator</a></p>
+(js) 
+<h4><a href="-validator/index.html">Validator</a></h4>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">Validator</span></code></td>
@@ -390,11 +443,12 @@
 <tbody>
 <tr>
 <td>
-<p><a href="-init-.html">&lt;init&gt;</a></p>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<code><span class="identifier">Tabulator</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$<init>(kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.Options)/selector">selector</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$<init>(kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.Options)/options">options</span><span class="symbol">:</span>&nbsp;<a href="-options.html"><span class="identifier">Tabulator.Options</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span></code><br/>
-<code><span class="identifier">Tabulator</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$<init>(, pl.treksoft.kvision.tabulator.js.Tabulator.Options)/selector">selector</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$<init>(, pl.treksoft.kvision.tabulator.js.Tabulator.Options)/options">options</span><span class="symbol">:</span>&nbsp;<a href="-options.html"><span class="identifier">Tabulator.Options</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span></code></td>
+<code><span class="identifier">Tabulator</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$<init>(kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.Options)/selector">selector</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$<init>(kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.Options)/options">options</span><span class="symbol">:</span>&nbsp;<span class="identifier">Options</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span></code><br/>
+<code><span class="identifier">Tabulator</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$<init>(org.w3c.dom.HTMLElement, pl.treksoft.kvision.tabulator.js.Tabulator.Options)/selector">selector</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-h-t-m-l-element/index.html"><span class="identifier">HTMLElement</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$<init>(org.w3c.dom.HTMLElement, pl.treksoft.kvision.tabulator.js.Tabulator.Options)/options">options</span><span class="symbol">:</span>&nbsp;<span class="identifier">Options</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -403,49 +457,56 @@
 <tbody>
 <tr>
 <td>
-<p><a href="browser.html">browser</a></p>
+(js) 
+<h4><a href="browser.html">browser</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">browser</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="browser-slow.html">browserSlow</a></p>
+(js) 
+<h4><a href="browser-slow.html">browserSlow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">browserSlow</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="column-manager.html">columnManager</a></p>
+(js) 
+<h4><a href="column-manager.html">columnManager</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">columnManager</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="footer-manager.html">footerManager</a></p>
+(js) 
+<h4><a href="footer-manager.html">footerManager</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">footerManager</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="modules.html">modules</a></p>
+(js) 
+<h4><a href="modules.html">modules</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">modules</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="options.html">options</a></p>
+(js) 
+<h4><a href="options.html">options</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">options</span><span class="symbol">: </span><a href="-options.html"><span class="identifier">Tabulator.Options</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">options</span><span class="symbol">: </span><span class="identifier">Options</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="row-manager.html">rowManager</a></p>
+(js) 
+<h4><a href="row-manager.html">rowManager</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowManager</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
@@ -457,633 +518,707 @@
 <tbody>
 <tr>
 <td>
-<p><a href="add-column.html">addColumn</a></p>
+(js) 
+<h4><a href="add-column.html">addColumn</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addColumn(pl.treksoft.kvision.tabulator.js.Tabulator.ColumnDefinition, kotlin.Boolean, kotlin.Any)/definition">definition</span><span class="symbol">:</span>&nbsp;<a href="-column-definition/index.html"><span class="identifier">Tabulator.ColumnDefinition</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addColumn(pl.treksoft.kvision.tabulator.js.Tabulator.ColumnDefinition, kotlin.Boolean, kotlin.Any)/insertRightOfTarget">insertRightOfTarget</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addColumn(pl.treksoft.kvision.tabulator.js.Tabulator.ColumnDefinition, kotlin.Boolean, kotlin.Any)/positionTarget">positionTarget</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addColumn(pl.treksoft.kvision.tabulator.js.Tabulator.ColumnDefinition, kotlin.Boolean, kotlin.Any)/definition">definition</span><span class="symbol">:</span>&nbsp;<span class="identifier">ColumnDefinition</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addColumn(pl.treksoft.kvision.tabulator.js.Tabulator.ColumnDefinition, kotlin.Boolean, kotlin.Any)/insertRightOfTarget">insertRightOfTarget</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addColumn(pl.treksoft.kvision.tabulator.js.Tabulator.ColumnDefinition, kotlin.Boolean, kotlin.Any)/positionTarget">positionTarget</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="add-data.html">addData</a></p>
+(js) 
+<h4><a href="add-data.html">addData</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addData(kotlin.Array((kotlin.Any)), kotlin.Boolean, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addData(kotlin.Array((kotlin.Any)), kotlin.Boolean, kotlin.Any)/addToTop">addToTop</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addData(kotlin.Array((kotlin.Any)), kotlin.Boolean, kotlin.Any)/positionTarget">positionTarget</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addData(kotlin.Array((kotlin.Any)), kotlin.Boolean, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addData(kotlin.Array((kotlin.Any)), kotlin.Boolean, kotlin.Any)/addToTop">addToTop</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addData(kotlin.Array((kotlin.Any)), kotlin.Boolean, kotlin.Any)/positionTarget">positionTarget</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="add-filter.html">addFilter</a></p>
+(js) 
+<h4><a href="add-filter.html">addFilter</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addFilter</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addFilter(kotlin.String, kotlin.Any, kotlin.Any)/field">field</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addFilter(kotlin.String, kotlin.Any, kotlin.Any)/type">type</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addFilter(kotlin.String, kotlin.Any, kotlin.Any)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="add-row.html">addRow</a></p>
+(js) 
+<h4><a href="add-row.html">addRow</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addRow(kotlin.Any, kotlin.Boolean, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addRow(kotlin.Any, kotlin.Boolean, kotlin.Any)/addToTop">addToTop</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addRow(kotlin.Any, kotlin.Boolean, kotlin.Any)/positionTarget">positionTarget</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addRow(kotlin.Any, kotlin.Boolean, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addRow(kotlin.Any, kotlin.Boolean, kotlin.Any)/addToTop">addToTop</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$addRow(kotlin.Any, kotlin.Boolean, kotlin.Any)/positionTarget">positionTarget</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="clear-data.html">clearData</a></p>
+(js) 
+<h4><a href="clear-data.html">clearData</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="clear-filter.html">clearFilter</a></p>
+(js) 
+<h4><a href="clear-filter.html">clearFilter</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearFilter</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$clearFilter(kotlin.Boolean)/includeHeaderFilters">includeHeaderFilters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="clear-header-filter.html">clearHeaderFilter</a></p>
+(js) 
+<h4><a href="clear-header-filter.html">clearHeaderFilter</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearHeaderFilter</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="clear-sort.html">clearSort</a></p>
+(js) 
+<h4><a href="clear-sort.html">clearSort</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearSort</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="copy-to-clipboard.html">copyToClipboard</a></p>
+(js) 
+<h4><a href="copy-to-clipboard.html">copyToClipboard</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">copyToClipboard</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$copyToClipboard(kotlin.Any)/type">type</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="delete-column.html">deleteColumn</a></p>
+(js) 
+<h4><a href="delete-column.html">deleteColumn</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">deleteColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$deleteColumn(kotlin.Any)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="delete-row.html">deleteRow</a></p>
+(js) 
+<h4><a href="delete-row.html">deleteRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">deleteRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$deleteRow(kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="deselect-row.html">deselectRow</a></p>
+(js) 
+<h4><a href="deselect-row.html">deselectRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">deselectRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$deselectRow(kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="destroy.html">destroy</a></p>
+(js) 
+<h4><a href="destroy.html">destroy</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">destroy</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="download.html">download</a></p>
+(js) 
+<h4><a href="download.html">download</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">download</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$download(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/downloadType">downloadType</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$download(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/fileName">fileName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$download(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/params">params</span><span class="symbol">:</span>&nbsp;<a href="-download-options/index.html"><span class="identifier">Tabulator.DownloadOptions</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$download(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/set">set</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">download</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$download(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/downloadType">downloadType</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$download(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/fileName">fileName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$download(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/params">params</span><span class="symbol">:</span>&nbsp;<span class="identifier">DownloadOptions</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$download(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/set">set</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="download-to-tab.html">downloadToTab</a></p>
+(js) 
+<h4><a href="download-to-tab.html">downloadToTab</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">downloadToTab</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$downloadToTab(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/downloadType">downloadType</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$downloadToTab(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/fileName">fileName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$downloadToTab(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/params">params</span><span class="symbol">:</span>&nbsp;<a href="-download-options/index.html"><span class="identifier">Tabulator.DownloadOptions</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$downloadToTab(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/set">set</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">downloadToTab</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$downloadToTab(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/downloadType">downloadType</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$downloadToTab(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/fileName">fileName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$downloadToTab(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/params">params</span><span class="symbol">:</span>&nbsp;<span class="identifier">DownloadOptions</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$downloadToTab(kotlin.Any, kotlin.String, pl.treksoft.kvision.tabulator.js.Tabulator.DownloadOptions, kotlin.String)/set">set</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="extend-module.html">extendModule</a></p>
+(js) 
+<h4><a href="extend-module.html">extendModule</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">extendModule</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$extendModule(kotlin.String, kotlin.String, kotlin.Any)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$extendModule(kotlin.String, kotlin.String, kotlin.Any)/property">property</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$extendModule(kotlin.String, kotlin.String, kotlin.Any)/values">values</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-ajax-url.html">getAjaxUrl</a></p>
+(js) 
+<h4><a href="get-ajax-url.html">getAjaxUrl</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getAjaxUrl</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-calc-results.html">getCalcResults</a></p>
+(js) 
+<h4><a href="get-calc-results.html">getCalcResults</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getCalcResults</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-column.html">getColumn</a></p>
+(js) 
+<h4><a href="get-column.html">getColumn</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getColumn(kotlin.Any)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="-column-component/index.html"><span class="identifier">Tabulator.ColumnComponent</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getColumn(kotlin.Any)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ColumnComponent</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-column-definitions.html">getColumnDefinitions</a></p>
+(js) 
+<h4><a href="get-column-definitions.html">getColumnDefinitions</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getColumnDefinitions</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-column-definition/index.html"><span class="identifier">Tabulator.ColumnDefinition</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getColumnDefinitions</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">ColumnDefinition</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-column-layout.html">getColumnLayout</a></p>
+(js) 
+<h4><a href="get-column-layout.html">getColumnLayout</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getColumnLayout</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-column-layout/index.html"><span class="identifier">Tabulator.ColumnLayout</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getColumnLayout</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">ColumnLayout</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-columns.html">getColumns</a></p>
+(js) 
+<h4><a href="get-columns.html">getColumns</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getColumns</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getColumns(kotlin.Boolean)/includeColumnGroups">includeColumnGroups</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-data.html">getData</a></p>
+(js) 
+<h4><a href="get-data.html">getData</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getData(kotlin.Boolean)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-data-count.html">getDataCount</a></p>
+(js) 
+<h4><a href="get-data-count.html">getDataCount</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDataCount</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getDataCount(kotlin.Boolean)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-filters.html">getFilters</a></p>
+(js) 
+<h4><a href="get-filters.html">getFilters</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getFilters</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getFilters(kotlin.Boolean)/includeHeaderFilters">includeHeaderFilters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-filter/index.html"><span class="identifier">Tabulator.Filter</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getFilters</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getFilters(kotlin.Boolean)/includeHeaderFilters">includeHeaderFilters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">Filter</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-grouped-data.html">getGroupedData</a></p>
+(js) 
+<h4><a href="get-grouped-data.html">getGroupedData</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getGroupedData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getGroupedData(kotlin.Boolean)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-groups.html">getGroups</a></p>
+(js) 
+<h4><a href="get-groups.html">getGroups</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getGroups</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-group-component/index.html"><span class="identifier">Tabulator.GroupComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getGroups</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">GroupComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-header-filters.html">getHeaderFilters</a></p>
+(js) 
+<h4><a href="get-header-filters.html">getHeaderFilters</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getHeaderFilters</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-filter/index.html"><span class="identifier">Tabulator.Filter</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getHeaderFilters</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">Filter</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-history-redo-size.html">getHistoryRedoSize</a></p>
+(js) 
+<h4><a href="get-history-redo-size.html">getHistoryRedoSize</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getHistoryRedoSize</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-history-undo-size.html">getHistoryUndoSize</a></p>
+(js) 
+<h4><a href="get-history-undo-size.html">getHistoryUndoSize</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getHistoryUndoSize</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-html.html">getHtml</a></p>
+(js) 
+<h4><a href="get-html.html">getHtml</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getHtml</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getHtml(kotlin.Boolean, kotlin.Boolean, kotlin.Any)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getHtml(kotlin.Boolean, kotlin.Boolean, kotlin.Any)/isStyled">isStyled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getHtml(kotlin.Boolean, kotlin.Boolean, kotlin.Any)/htmlOutputConfig">htmlOutputConfig</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-lang.html">getLang</a></p>
+(js) 
+<h4><a href="get-lang.html">getLang</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLang</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getLang(kotlin.String)/locale">locale</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-locale.html">getLocale</a></p>
+(js) 
+<h4><a href="get-locale.html">getLocale</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLocale</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-page.html">getPage</a></p>
+(js) 
+<h4><a href="get-page.html">getPage</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getPage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-page-max.html">getPageMax</a></p>
+(js) 
+<h4><a href="get-page-max.html">getPageMax</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getPageMax</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-page-size.html">getPageSize</a></p>
+(js) 
+<h4><a href="get-page-size.html">getPageSize</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getPageSize</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-row.html">getRow</a></p>
+(js) 
+<h4><a href="get-row.html">getRow</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getRow(kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getRow(kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">RowComponent</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-row-from-position.html">getRowFromPosition</a></p>
+(js) 
+<h4><a href="get-row-from-position.html">getRowFromPosition</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRowFromPosition</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getRowFromPosition(kotlin.Number, kotlin.Boolean)/position">position</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getRowFromPosition(kotlin.Number, kotlin.Boolean)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-row-position.html">getRowPosition</a></p>
+(js) 
+<h4><a href="get-row-position.html">getRowPosition</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRowPosition</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getRowPosition(kotlin.Any, kotlin.Boolean)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getRowPosition(kotlin.Any, kotlin.Boolean)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-rows.html">getRows</a></p>
+(js) 
+<h4><a href="get-rows.html">getRows</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRows</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getRows(kotlin.Boolean)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRows</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$getRows(kotlin.Boolean)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-selected-data.html">getSelectedData</a></p>
+(js) 
+<h4><a href="get-selected-data.html">getSelectedData</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSelectedData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-selected-rows.html">getSelectedRows</a></p>
+(js) 
+<h4><a href="get-selected-rows.html">getSelectedRows</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSelectedRows</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSelectedRows</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-sorters.html">getSorters</a></p>
+(js) 
+<h4><a href="get-sorters.html">getSorters</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSorters</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="hide-column.html">hideColumn</a></p>
+(js) 
+<h4><a href="hide-column.html">hideColumn</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hideColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$hideColumn(kotlin.Any)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="move-row.html">moveRow</a></p>
+(js) 
+<h4><a href="move-row.html">moveRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">moveRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$moveRow(kotlin.Any, kotlin.Any, kotlin.Boolean)/fromRow">fromRow</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$moveRow(kotlin.Any, kotlin.Any, kotlin.Boolean)/toRow">toRow</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$moveRow(kotlin.Any, kotlin.Any, kotlin.Boolean)/placeAboveTarget">placeAboveTarget</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="navigate-down.html">navigateDown</a></p>
+(js) 
+<h4><a href="navigate-down.html">navigateDown</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">navigateDown</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="navigate-left.html">navigateLeft</a></p>
+(js) 
+<h4><a href="navigate-left.html">navigateLeft</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">navigateLeft</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="navigate-next.html">navigateNext</a></p>
+(js) 
+<h4><a href="navigate-next.html">navigateNext</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">navigateNext</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="navigate-prev.html">navigatePrev</a></p>
+(js) 
+<h4><a href="navigate-prev.html">navigatePrev</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">navigatePrev</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="navigate-right.html">navigateRight</a></p>
+(js) 
+<h4><a href="navigate-right.html">navigateRight</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">navigateRight</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="navigate-up.html">navigateUp</a></p>
+(js) 
+<h4><a href="navigate-up.html">navigateUp</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">navigateUp</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="next-page.html">nextPage</a></p>
+(js) 
+<h4><a href="next-page.html">nextPage</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">nextPage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="previous-page.html">previousPage</a></p>
+(js) 
+<h4><a href="previous-page.html">previousPage</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">previousPage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="print.html">print</a></p>
+(js) 
+<h4><a href="print.html">print</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">print</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$print(kotlin.Boolean, kotlin.Boolean, kotlin.Any)/activeOnly">activeOnly</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$print(kotlin.Boolean, kotlin.Boolean, kotlin.Any)/isStyled">isStyled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$print(kotlin.Boolean, kotlin.Boolean, kotlin.Any)/printConfig">printConfig</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="redo.html">redo</a></p>
+(js) 
+<h4><a href="redo.html">redo</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">redo</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="redraw.html">redraw</a></p>
+(js) 
+<h4><a href="redraw.html">redraw</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">redraw</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$redraw(kotlin.Boolean)/force">force</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-filter.html">removeFilter</a></p>
+(js) 
+<h4><a href="remove-filter.html">removeFilter</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeFilter</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$removeFilter(kotlin.String, kotlin.Any, kotlin.Any)/field">field</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$removeFilter(kotlin.String, kotlin.Any, kotlin.Any)/type">type</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$removeFilter(kotlin.String, kotlin.Any, kotlin.Any)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="replace-data.html">replaceData</a></p>
+(js) 
+<h4><a href="replace-data.html">replaceData</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">replaceData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$replaceData(kotlin.Any, kotlin.Any, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$replaceData(kotlin.Any, kotlin.Any, kotlin.Any)/params">params</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$replaceData(kotlin.Any, kotlin.Any, kotlin.Any)/config">config</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="scroll-to-column.html">scrollToColumn</a></p>
+(js) 
+<h4><a href="scroll-to-column.html">scrollToColumn</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">scrollToColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$scrollToColumn(kotlin.Any, kotlin.Any, kotlin.Boolean)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$scrollToColumn(kotlin.Any, kotlin.Any, kotlin.Boolean)/position">position</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$scrollToColumn(kotlin.Any, kotlin.Any, kotlin.Boolean)/ifVisible">ifVisible</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="scroll-to-row.html">scrollToRow</a></p>
+(js) 
+<h4><a href="scroll-to-row.html">scrollToRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">scrollToRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$scrollToRow(kotlin.Any, kotlin.Any, kotlin.Boolean)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$scrollToRow(kotlin.Any, kotlin.Any, kotlin.Boolean)/position">position</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$scrollToRow(kotlin.Any, kotlin.Any, kotlin.Boolean)/ifVisible">ifVisible</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="search-data.html">searchData</a></p>
+(js) 
+<h4><a href="search-data.html">searchData</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">searchData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchData(kotlin.String, kotlin.Any, kotlin.Any)/field">field</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchData(kotlin.String, kotlin.Any, kotlin.Any)/type">type</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchData(kotlin.String, kotlin.Any, kotlin.Any)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="search-rows.html">searchRows</a></p>
+(js) 
+<h4><a href="search-rows.html">searchRows</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">searchRows</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchRows(kotlin.String, kotlin.Any, kotlin.Any)/field">field</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchRows(kotlin.String, kotlin.Any, kotlin.Any)/type">type</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchRows(kotlin.String, kotlin.Any, kotlin.Any)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">searchRows</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchRows(kotlin.String, kotlin.Any, kotlin.Any)/field">field</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchRows(kotlin.String, kotlin.Any, kotlin.Any)/type">type</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$searchRows(kotlin.String, kotlin.Any, kotlin.Any)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="select-row.html">selectRow</a></p>
+(js) 
+<h4><a href="select-row.html">selectRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">selectRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$selectRow(kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-column-layout.html">setColumnLayout</a></p>
+(js) 
+<h4><a href="set-column-layout.html">setColumnLayout</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setColumnLayout</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setColumnLayout(pl.treksoft.kvision.tabulator.js.Tabulator.ColumnLayout)/layout">layout</span><span class="symbol">:</span>&nbsp;<a href="-column-layout/index.html"><span class="identifier">Tabulator.ColumnLayout</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setColumnLayout</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setColumnLayout(pl.treksoft.kvision.tabulator.js.Tabulator.ColumnLayout)/layout">layout</span><span class="symbol">:</span>&nbsp;<span class="identifier">ColumnLayout</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-columns.html">setColumns</a></p>
+(js) 
+<h4><a href="set-columns.html">setColumns</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setColumns</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setColumns(kotlin.Array((pl.treksoft.kvision.tabulator.js.Tabulator.ColumnDefinition)))/definitions">definitions</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-column-definition/index.html"><span class="identifier">Tabulator.ColumnDefinition</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setColumns</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setColumns(kotlin.Array((pl.treksoft.kvision.tabulator.js.Tabulator.ColumnDefinition)))/definitions">definitions</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">ColumnDefinition</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-data.html">setData</a></p>
+(js) 
+<h4><a href="set-data.html">setData</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setData(kotlin.Any, kotlin.Any, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setData(kotlin.Any, kotlin.Any, kotlin.Any)/params">params</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setData(kotlin.Any, kotlin.Any, kotlin.Any)/config">config</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-data-from-local-file.html">setDataFromLocalFile</a></p>
+(js) 
+<h4><a href="set-data-from-local-file.html">setDataFromLocalFile</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDataFromLocalFile</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setDataFromLocalFile(kotlin.String)/extensions">extensions</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-filter.html">setFilter</a></p>
+(js) 
+<h4><a href="set-filter.html">setFilter</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setFilter</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setFilter(kotlin.Any, kotlin.Any, kotlin.Any)/p1">p1</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setFilter(kotlin.Any, kotlin.Any, kotlin.Any)/p2">p2</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setFilter(kotlin.Any, kotlin.Any, kotlin.Any)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-group-by.html">setGroupBy</a></p>
+(js) 
+<h4><a href="set-group-by.html">setGroupBy</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setGroupBy</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setGroupBy(kotlin.Any)/groups">groups</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-group-header.html">setGroupHeader</a></p>
+(js) 
+<h4><a href="set-group-header.html">setGroupHeader</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setGroupHeader</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setGroupHeader(kotlin.Any)/values">values</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-group-start-open.html">setGroupStartOpen</a></p>
+(js) 
+<h4><a href="set-group-start-open.html">setGroupStartOpen</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setGroupStartOpen</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setGroupStartOpen(kotlin.Any)/values">values</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-header-filter-focus.html">setHeaderFilterFocus</a></p>
+(js) 
+<h4><a href="set-header-filter-focus.html">setHeaderFilterFocus</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setHeaderFilterFocus</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setHeaderFilterFocus(kotlin.Any)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-header-filter-value.html">setHeaderFilterValue</a></p>
+(js) 
+<h4><a href="set-header-filter-value.html">setHeaderFilterValue</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setHeaderFilterValue</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setHeaderFilterValue(kotlin.Any, kotlin.String)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setHeaderFilterValue(kotlin.Any, kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-height.html">setHeight</a></p>
+(js) 
+<h4><a href="set-height.html">setHeight</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setHeight</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setHeight(kotlin.Number)/height">height</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-locale.html">setLocale</a></p>
+(js) 
+<h4><a href="set-locale.html">setLocale</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setLocale</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setLocale(kotlin.Any)/locale">locale</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-max-page.html">setMaxPage</a></p>
+(js) 
+<h4><a href="set-max-page.html">setMaxPage</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setMaxPage</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setMaxPage(kotlin.Number)/max">max</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-page.html">setPage</a></p>
+(js) 
+<h4><a href="set-page.html">setPage</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setPage</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setPage(kotlin.Any)/page">page</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-page-size.html">setPageSize</a></p>
+(js) 
+<h4><a href="set-page-size.html">setPageSize</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setPageSize</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setPageSize(kotlin.Number)/size">size</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-page-to-row.html">setPageToRow</a></p>
+(js) 
+<h4><a href="set-page-to-row.html">setPageToRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setPageToRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setPageToRow(kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-sort.html">setSort</a></p>
+(js) 
+<h4><a href="set-sort.html">setSort</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setSort</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setSort(kotlin.Any, kotlin.Any)/sortList">sortList</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$setSort(kotlin.Any, kotlin.Any)/dir">dir</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="show-column.html">showColumn</a></p>
+(js) 
+<h4><a href="show-column.html">showColumn</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">showColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$showColumn(kotlin.Any)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="toggle-column.html">toggleColumn</a></p>
+(js) 
+<h4><a href="toggle-column.html">toggleColumn</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toggleColumn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$toggleColumn(kotlin.Any)/column">column</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="toggle-select-row.html">toggleSelectRow</a></p>
+(js) 
+<h4><a href="toggle-select-row.html">toggleSelectRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toggleSelectRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$toggleSelectRow(kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="undo.html">undo</a></p>
+(js) 
+<h4><a href="undo.html">undo</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">undo</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="update-data.html">updateData</a></p>
+(js) 
+<h4><a href="update-data.html">updateData</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">updateData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateData(kotlin.Array((kotlin.Any)))/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="update-or-add-data.html">updateOrAddData</a></p>
+(js) 
+<h4><a href="update-or-add-data.html">updateOrAddData</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">updateOrAddData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateOrAddData(kotlin.Array((kotlin.Any)))/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">updateOrAddData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateOrAddData(kotlin.Array((kotlin.Any)))/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="update-or-add-row.html">updateOrAddRow</a></p>
+(js) 
+<h4><a href="update-or-add-row.html">updateOrAddRow</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">updateOrAddRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateOrAddRow(kotlin.Any, kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateOrAddRow(kotlin.Any, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="-row-component/index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">updateOrAddRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateOrAddRow(kotlin.Any, kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateOrAddRow(kotlin.Any, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="update-row.html">updateRow</a></p>
+(js) 
+<h4><a href="update-row.html">updateRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">updateRow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateRow(kotlin.Any, kotlin.Any)/row">row</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.tabulator.js.Tabulator$updateRow(kotlin.Any, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
 </tr>
 </tbody>
 </table>

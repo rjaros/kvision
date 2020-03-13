@@ -8,93 +8,89 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.electron</a>&nbsp;/&nbsp;<a href="./index.html">Dock</a><br/>
 <br/>
 <h1>Dock</h1>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">Dock</span></code>
+(js) <code><span class="keyword">interface </span><span class="identifier">Dock</span></code>
 <h3>Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="bounce.html">bounce</a></p>
+(js) 
+<h4><a href="bounce.html">bounce</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">bounce</span><span class="symbol">: </span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="cancel-bounce.html">cancelBounce</a></p>
+(js) 
+<h4><a href="cancel-bounce.html">cancelBounce</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">cancelBounce</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="download-finished.html">downloadFinished</a></p>
+(js) 
+<h4><a href="download-finished.html">downloadFinished</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">downloadFinished</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">filePath</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-badge.html">getBadge</a></p>
+(js) 
+<h4><a href="get-badge.html">getBadge</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getBadge</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="hide.html">hide</a></p>
+(js) 
+<h4><a href="hide.html">hide</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">hide</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="is-visible.html">isVisible</a></p>
+(js) 
+<h4><a href="is-visible.html">isVisible</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isVisible</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-badge.html">setBadge</a></p>
+(js) 
+<h4><a href="set-badge.html">setBadge</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">setBadge</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">text</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-icon.html">setIcon</a></p>
+(js) 
+<h4><a href="set-icon.html">setIcon</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">setIcon</span><span class="symbol">: </span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-menu.html">setMenu</a></p>
+(js) 
+<h4><a href="set-menu.html">setMenu</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">setMenu</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">menu</span><span class="symbol">:</span>&nbsp;<a href="../-menu/index.html"><span class="identifier">Menu</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="show.html">show</a></p>
+(js) 
+<h4><a href="show.html">show</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">show</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
 </tr>
 </tbody>
 </table>

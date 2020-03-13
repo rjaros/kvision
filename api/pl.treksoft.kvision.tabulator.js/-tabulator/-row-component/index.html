@@ -8,202 +8,230 @@
 <a href="../../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../../index.html">pl.treksoft.kvision.tabulator.js</a>&nbsp;/&nbsp;<a href="../index.html">Tabulator</a>&nbsp;/&nbsp;<a href="./index.html">RowComponent</a><br/>
 <br/>
 <h1>RowComponent</h1>
-<code><span class="keyword">interface </span><span class="identifier">RowComponent</span></code>
+(js) <code><span class="keyword">interface </span><span class="identifier">RowComponent</span></code>
 <h3>Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="delete.html">delete</a></p>
+(js) 
+<h4><a href="delete.html">delete</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">delete</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="deselect.html">deselect</a></p>
+(js) 
+<h4><a href="deselect.html">deselect</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">deselect</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="freeze.html">freeze</a></p>
+(js) 
+<h4><a href="freeze.html">freeze</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">freeze</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-cell.html">getCell</a></p>
+(js) 
+<h4><a href="get-cell.html">getCell</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getCell</span><span class="symbol">: </span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getCell</span><span class="symbol">: </span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">CellComponent</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-cells.html">getCells</a></p>
+(js) 
+<h4><a href="get-cells.html">getCells</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getCells</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-cell-component/index.html"><span class="identifier">Tabulator.CellComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getCells</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">CellComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-data.html">getData</a></p>
+(js) 
+<h4><a href="get-data.html">getData</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getData</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-element.html">getElement</a></p>
+(js) 
+<h4><a href="get-element.html">getElement</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getElement</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getElement</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-h-t-m-l-element/index.html"><span class="identifier">HTMLElement</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-group.html">getGroup</a></p>
+(js) 
+<h4><a href="get-group.html">getGroup</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getGroup</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../-group-component/index.html"><span class="identifier">Tabulator.GroupComponent</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getGroup</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">GroupComponent</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-index.html">getIndex</a></p>
+(js) 
+<h4><a href="get-index.html">getIndex</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getIndex</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-next-row.html">getNextRow</a></p>
+(js) 
+<h4><a href="get-next-row.html">getNextRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getNextRow</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-position.html">getPosition</a></p>
+(js) 
+<h4><a href="get-position.html">getPosition</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getPosition</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">filteredPosition</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-prev-row.html">getPrevRow</a></p>
+(js) 
+<h4><a href="get-prev-row.html">getPrevRow</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getPrevRow</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-table.html">getTable</a></p>
+(js) 
+<h4><a href="get-table.html">getTable</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getTable</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../index.html"><span class="identifier">Tabulator</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-tree-children.html">getTreeChildren</a></p>
+(js) 
+<h4><a href="get-tree-children.html">getTreeChildren</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getTreeChildren</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">Tabulator.RowComponent</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getTreeChildren</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="identifier">RowComponent</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-tree-parent.html">getTreeParent</a></p>
+(js) 
+<h4><a href="get-tree-parent.html">getTreeParent</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getTreeParent</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="is-selected.html">isSelected</a></p>
+(js) 
+<h4><a href="is-selected.html">isSelected</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isSelected</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="move.html">move</a></p>
+(js) 
+<h4><a href="move.html">move</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">move</span><span class="symbol">: </span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">,</span>&nbsp;<span class="identifier">belowTarget</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="normalize-height.html">normalizeHeight</a></p>
+(js) 
+<h4><a href="normalize-height.html">normalizeHeight</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">normalizeHeight</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="page-to.html">pageTo</a></p>
+(js) 
+<h4><a href="page-to.html">pageTo</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">pageTo</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="reformat.html">reformat</a></p>
+(js) 
+<h4><a href="reformat.html">reformat</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">reformat</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="scroll-to.html">scrollTo</a></p>
+(js) 
+<h4><a href="scroll-to.html">scrollTo</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">scrollTo</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="select.html">select</a></p>
+(js) 
+<h4><a href="select.html">select</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">select</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="toggle-select.html">toggleSelect</a></p>
+(js) 
+<h4><a href="toggle-select.html">toggleSelect</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">toggleSelect</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="tree-collapse.html">treeCollapse</a></p>
+(js) 
+<h4><a href="tree-collapse.html">treeCollapse</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">treeCollapse</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="tree-expand.html">treeExpand</a></p>
+(js) 
+<h4><a href="tree-expand.html">treeExpand</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">treeExpand</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="tree-toggle.html">treeToggle</a></p>
+(js) 
+<h4><a href="tree-toggle.html">treeToggle</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">treeToggle</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="unfreeze.html">unfreeze</a></p>
+(js) 
+<h4><a href="unfreeze.html">unfreeze</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">unfreeze</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="update.html">update</a></p>
+(js) 
+<h4><a href="update.html">update</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">update</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>

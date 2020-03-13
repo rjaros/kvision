@@ -8,14 +8,15 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.form.text</a>&nbsp;/&nbsp;<a href="./index.html">TaAjaxOptions</a><br/>
 <br/>
 <h1>TaAjaxOptions</h1>
-<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TaAjaxOptions</span></code>
+(js) <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TaAjaxOptions</span></code>
 <p>Data class for Typeahead AJAX options.</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="-init-.html">&lt;init&gt;</a></p>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
 <code><span class="identifier">TaAjaxOptions</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.text.TaAjaxOptions$<init>(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Any)), kotlin.Function1((kotlin.Any, kotlin.Array((kotlin.String)))), kotlin.Function2((pl.treksoft.jquery.JQueryXHR, kotlin.Any, )), pl.treksoft.kvision.form.text.HttpType, pl.treksoft.kvision.form.text.DataType, kotlin.Boolean)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.TaAjaxOptions$<init>(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Any)), kotlin.Function1((kotlin.Any, kotlin.Array((kotlin.String)))), kotlin.Function2((pl.treksoft.jquery.JQueryXHR, kotlin.Any, )), pl.treksoft.kvision.form.text.HttpType, pl.treksoft.kvision.form.text.DataType, kotlin.Boolean)/preprocessQuery">preprocessQuery</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.TaAjaxOptions$<init>(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Any)), kotlin.Function1((kotlin.Any, kotlin.Array((kotlin.String)))), kotlin.Function2((pl.treksoft.jquery.JQueryXHR, kotlin.Any, )), pl.treksoft.kvision.form.text.HttpType, pl.treksoft.kvision.form.text.DataType, kotlin.Boolean)/preprocessData">preprocessData</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.TaAjaxOptions$<init>(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Any)), kotlin.Function1((kotlin.Any, kotlin.Array((kotlin.String)))), kotlin.Function2((pl.treksoft.jquery.JQueryXHR, kotlin.Any, )), pl.treksoft.kvision.form.text.HttpType, pl.treksoft.kvision.form.text.DataType, kotlin.Boolean)/beforeSend">beforeSend</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="identifier">JQueryXHR</span><span class="symbol">,</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.TaAjaxOptions$<init>(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Any)), kotlin.Function1((kotlin.Any, kotlin.Array((kotlin.String)))), kotlin.Function2((pl.treksoft.jquery.JQueryXHR, kotlin.Any, )), pl.treksoft.kvision.form.text.HttpType, pl.treksoft.kvision.form.text.DataType, kotlin.Boolean)/httpType">httpType</span><span class="symbol">:</span>&nbsp;<a href="../-http-type/index.html"><span class="identifier">HttpType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;HttpType.GET<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.TaAjaxOptions$<init>(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Any)), kotlin.Function1((kotlin.Any, kotlin.Array((kotlin.String)))), kotlin.Function2((pl.treksoft.jquery.JQueryXHR, kotlin.Any, )), pl.treksoft.kvision.form.text.HttpType, pl.treksoft.kvision.form.text.DataType, kotlin.Boolean)/dataType">dataType</span><span class="symbol">:</span>&nbsp;<a href="../-data-type/index.html"><span class="identifier">DataType</span></a>&nbsp;<span class="symbol">=</span>&nbsp;DataType.JSON<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.text.TaAjaxOptions$<init>(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Any)), kotlin.Function1((kotlin.Any, kotlin.Array((kotlin.String)))), kotlin.Function2((pl.treksoft.jquery.JQueryXHR, kotlin.Any, )), pl.treksoft.kvision.form.text.HttpType, pl.treksoft.kvision.form.text.DataType, kotlin.Boolean)/processData">processData</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span></code></td>
@@ -27,80 +28,66 @@
 <tbody>
 <tr>
 <td>
-<p><a href="before-send.html">beforeSend</a></p>
+(js) 
+<h4><a href="before-send.html">beforeSend</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">beforeSend</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">JQueryXHR</span><span class="symbol">,</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span></code>
 <p><a href="http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings">JQuery ajax.beforeSend</a> option</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">beforeSend</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">JQueryXHR</span><span class="symbol">,</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="data-type.html">dataType</a></p>
+(js) 
+<h4><a href="data-type.html">dataType</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">dataType</span><span class="symbol">: </span><a href="../-data-type/index.html"><span class="identifier">DataType</span></a></code>
 <p><a href="http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings">JQuery ajax.dataType</a> option</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">dataType</span><span class="symbol">: </span><a href="../-data-type/index.html"><span class="identifier">DataType</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="http-type.html">httpType</a></p>
+(js) 
+<h4><a href="http-type.html">httpType</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">httpType</span><span class="symbol">: </span><a href="../-http-type/index.html"><span class="identifier">HttpType</span></a></code>
 <p><a href="http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings">JQuery ajax.type</a> option</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">httpType</span><span class="symbol">: </span><a href="../-http-type/index.html"><span class="identifier">HttpType</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="preprocess-data.html">preprocessData</a></p>
+(js) 
+<h4><a href="preprocess-data.html">preprocessData</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">preprocessData</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">?</span></code>
 <p>a function to process received data</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">preprocessData</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="preprocess-query.html">preprocessQuery</a></p>
+(js) 
+<h4><a href="preprocess-query.html">preprocessQuery</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">preprocessQuery</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span></code>
 <p>a function to process query string for sending</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">preprocessQuery</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="process-data.html">processData</a></p>
+(js) 
+<h4><a href="process-data.html">processData</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">processData</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
 <p><a href="http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings">JQuery ajax.processData</a> option</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">processData</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="url.html">url</a></p>
+(js) 
+<h4><a href="url.html">url</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">url</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
 <p>the url address</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">url</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 </tbody>
 </table>

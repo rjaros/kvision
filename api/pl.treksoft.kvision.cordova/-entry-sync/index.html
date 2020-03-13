@@ -8,41 +8,46 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">EntrySync</a><br/>
 <br/>
 <h1>EntrySync</h1>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">EntrySync</span></code>
+(js) <code><span class="keyword">interface </span><span class="identifier">EntrySync</span></code>
 <h3>Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="filesystem.html">filesystem</a></p>
+(js) 
+<h4><a href="filesystem.html">filesystem</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">filesystem</span><span class="symbol">: </span><a href="../-file-system-sync/index.html"><span class="identifier">FileSystemSync</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="full-path.html">fullPath</a></p>
+(js) 
+<h4><a href="full-path.html">fullPath</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">fullPath</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="is-directory.html">isDirectory</a></p>
+(js) 
+<h4><a href="is-directory.html">isDirectory</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isDirectory</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="is-file.html">isFile</a></p>
+(js) 
+<h4><a href="is-file.html">isFile</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isFile</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="name.html">name</a></p>
+(js) 
+<h4><a href="name.html">name</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
@@ -54,59 +59,51 @@
 <tbody>
 <tr>
 <td>
-<p><a href="copy-to.html">copyTo</a></p>
+(js) 
+<h4><a href="copy-to.html">copyTo</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">copyTo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.EntrySync$copyTo(pl.treksoft.kvision.cordova.DirectoryEntrySync, kotlin.String)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry-sync/index.html"><span class="identifier">DirectoryEntrySync</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.EntrySync$copyTo(pl.treksoft.kvision.cordova.DirectoryEntrySync, kotlin.String)/newName">newName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EntrySync</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-metadata.html">getMetadata</a></p>
+(js) 
+<h4><a href="get-metadata.html">getMetadata</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getMetadata</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-metadata/index.html"><span class="identifier">Metadata</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-parent.html">getParent</a></p>
+(js) 
+<h4><a href="get-parent.html">getParent</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getParent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-directory-entry-sync/index.html"><span class="identifier">DirectoryEntrySync</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="move-to.html">moveTo</a></p>
+(js) 
+<h4><a href="move-to.html">moveTo</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">moveTo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.EntrySync$moveTo(pl.treksoft.kvision.cordova.DirectoryEntrySync, kotlin.String)/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="../-directory-entry-sync/index.html"><span class="identifier">DirectoryEntrySync</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.EntrySync$moveTo(pl.treksoft.kvision.cordova.DirectoryEntrySync, kotlin.String)/newName">newName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">EntrySync</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove.html">remove</a></p>
+(js) 
+<h4><a href="remove.html">remove</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="to-u-r-l.html">toURL</a></p>
+(js) 
+<h4><a href="to-u-r-l.html">toURL</a></h4>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">toURL</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
 </tr>
 </tbody>
 </table>
@@ -115,17 +112,19 @@
 <tbody>
 <tr>
 <td>
-<p><a href="../-directory-entry-sync/index.html">DirectoryEntrySync</a></p>
+(js) 
+<h4><a href="../-directory-entry-sync/index.html">DirectoryEntrySync</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">DirectoryEntrySync</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EntrySync</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">DirectoryEntrySync</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EntrySync</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-file-entry-sync/index.html">FileEntrySync</a></p>
+(js) 
+<h4><a href="../-file-entry-sync/index.html">FileEntrySync</a></h4>
 </td>
 <td>
-<code><span class="keyword">external</span> <span class="keyword">interface </span><span class="identifier">FileEntrySync</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EntrySync</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">FileEntrySync</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EntrySync</span></a></code></td>
 </tr>
 </tbody>
 </table>

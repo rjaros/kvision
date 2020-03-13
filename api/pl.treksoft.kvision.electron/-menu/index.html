@@ -8,13 +8,14 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.electron</a>&nbsp;/&nbsp;<a href="./index.html">Menu</a><br/>
 <br/>
 <h1>Menu</h1>
-<code><span class="keyword">open</span> <span class="keyword">external</span> <span class="keyword">class </span><span class="identifier">Menu</span></code>
+(js) <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Menu</span></code>
 <h3>Constructors</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="-init-.html">&lt;init&gt;</a></p>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
 <code><span class="identifier">Menu</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
@@ -26,7 +27,8 @@
 <tbody>
 <tr>
 <td>
-<p><a href="items.html">items</a></p>
+(js) 
+<h4><a href="items.html">items</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">items</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-menu-item/index.html"><span class="identifier">MenuItem</span></a><span class="symbol">&gt;</span></code></td>
@@ -38,69 +40,74 @@
 <tbody>
 <tr>
 <td>
-<p><a href="add-listener.html">addListener</a></p>
+(js) 
+<h4><a href="add-listener.html">addListener</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$addListener(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$addListener(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">event</span><span class="symbol">:</span>&nbsp;<a href="../-event/index.html"><span class="identifier">Event</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code><br/>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$addListener(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$addListener(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">event</span><span class="symbol">:</span>&nbsp;<a href="../-event/index.html"><span class="identifier">Event</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="append.html">append</a></p>
+(js) 
+<h4><a href="append.html">append</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">append</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$append(pl.treksoft.kvision.electron.MenuItem)/menuItem">menuItem</span><span class="symbol">:</span>&nbsp;<a href="../-menu-item/index.html"><span class="identifier">MenuItem</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="close-popup.html">closePopup</a></p>
+(js) 
+<h4><a href="close-popup.html">closePopup</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">closePopup</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$closePopup(pl.treksoft.kvision.electron.BrowserWindow)/browserWindow">browserWindow</span><span class="symbol">:</span>&nbsp;<a href="../-browser-window/index.html"><span class="identifier">BrowserWindow</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;definedExternally<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-menu-item-by-id.html">getMenuItemById</a></p>
+(js) 
+<h4><a href="get-menu-item-by-id.html">getMenuItemById</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getMenuItemById</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$getMenuItemById(kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-menu-item/index.html"><span class="identifier">MenuItem</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="insert.html">insert</a></p>
+(js) 
+<h4><a href="insert.html">insert</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$insert(kotlin.Number, pl.treksoft.kvision.electron.MenuItem)/pos">pos</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$insert(kotlin.Number, pl.treksoft.kvision.electron.MenuItem)/menuItem">menuItem</span><span class="symbol">:</span>&nbsp;<a href="../-menu-item/index.html"><span class="identifier">MenuItem</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="on.html">on</a></p>
+(js) 
+<h4><a href="on.html">on</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">on</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$on(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$on(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">event</span><span class="symbol">:</span>&nbsp;<a href="../-event/index.html"><span class="identifier">Event</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code><br/>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">on</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$on(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$on(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">event</span><span class="symbol">:</span>&nbsp;<a href="../-event/index.html"><span class="identifier">Event</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="once.html">once</a></p>
+(js) 
+<h4><a href="once.html">once</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">once</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$once(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$once(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">event</span><span class="symbol">:</span>&nbsp;<a href="../-event/index.html"><span class="identifier">Event</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code><br/>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">once</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$once(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$once(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">event</span><span class="symbol">:</span>&nbsp;<a href="../-event/index.html"><span class="identifier">Event</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="popup.html">popup</a></p>
+(js) 
+<h4><a href="popup.html">popup</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">popup</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$popup(pl.treksoft.kvision.electron.PopupOptions)/options">options</span><span class="symbol">:</span>&nbsp;<a href="../-popup-options/index.html"><span class="identifier">PopupOptions</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="remove-listener.html">removeListener</a></p>
+(js) 
+<h4><a href="remove-listener.html">removeListener</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$removeListener(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$removeListener(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">event</span><span class="symbol">:</span>&nbsp;<a href="../-event/index.html"><span class="identifier">Event</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code><br/>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$removeListener(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.electron.Menu$removeListener(kotlin.String, kotlin.Function1((pl.treksoft.kvision.electron.Event, kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">event</span><span class="symbol">:</span>&nbsp;<a href="../-event/index.html"><span class="identifier">Event</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code></td>
 </tr>
 </tbody>
@@ -110,45 +117,35 @@
 <tbody>
 <tr>
 <td>
-<p><a href="build-from-template.html">buildFromTemplate</a></p>
+(js) 
+<h4><a href="build-from-template.html">buildFromTemplate</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">buildFromTemplate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu.Companion$buildFromTemplate(kotlin.Array((pl.treksoft.kvision.electron.MenuItemConstructorOptions)))/template">template</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="../-menu-item-constructor-options/index.html"><span class="identifier">MenuItemConstructorOptions</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="get-application-menu.html">getApplicationMenu</a></p>
+(js) 
+<h4><a href="get-application-menu.html">getApplicationMenu</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getApplicationMenu</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Menu</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="send-action-to-first-responder.html">sendActionToFirstResponder</a></p>
+(js) 
+<h4><a href="send-action-to-first-responder.html">sendActionToFirstResponder</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">sendActionToFirstResponder</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu.Companion$sendActionToFirstResponder(kotlin.String)/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="set-application-menu.html">setApplicationMenu</a></p>
+(js) 
+<h4><a href="set-application-menu.html">setApplicationMenu</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">setApplicationMenu</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.electron.Menu.Companion$setApplicationMenu(pl.treksoft.kvision.electron.Menu)/menu">menu</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Menu</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html">createInstance</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">createInstance</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.utils/kotlin.-any/create-instance.html#T"><span class="identifier">T</span></a></code>
-<p>Helper function for creating JavaScript objects from dynamic constructors.</p>
-</td>
 </tr>
 </tbody>
 </table>
