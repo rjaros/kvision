@@ -19,7 +19,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     testImplementation(kotlin("test-js"))
 }
 
