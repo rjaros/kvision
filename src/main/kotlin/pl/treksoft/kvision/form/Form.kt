@@ -311,7 +311,7 @@ class Form<K : Any>(
                     if (markFields) control.validatorError = trans(fieldsParams?.requiredMessage) ?: "Value is required"
                     true
                 } else {
-                    val validatorPassed = control.visible && (fieldsParams?.validator?.invoke(control) ?: true)
+                    val validatorPassed = !control.visible || (fieldsParams?.validator?.invoke(control) ?: true)
                     if (markFields) {
                         control.validatorError = if (!validatorPassed) {
                             trans(fieldsParams?.validatorMessage?.invoke(control)) ?: "Invalid value"
