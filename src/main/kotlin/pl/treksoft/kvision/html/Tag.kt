@@ -53,6 +53,7 @@ enum class TAG(internal val tagName: String) {
     OL("ol"),
     DIV("div"),
     LABEL("label"),
+    A("a"),
 
     I("i"),
     B("b"),
