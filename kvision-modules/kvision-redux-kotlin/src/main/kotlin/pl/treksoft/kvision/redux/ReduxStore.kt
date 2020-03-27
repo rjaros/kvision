@@ -24,9 +24,9 @@ package pl.treksoft.kvision.redux
 import org.reduxkotlin.ActionTypes
 import org.reduxkotlin.Middleware
 import org.reduxkotlin.Store
+import org.reduxkotlin.Thunk
 import org.reduxkotlin.applyMiddleware
 import org.reduxkotlin.createStore
-import org.reduxkotlin.createThunk
 import org.reduxkotlin.createThunkMiddleware
 import pl.treksoft.kvision.state.ObservableState
 
@@ -92,7 +92,7 @@ class ReduxStore<S : Any, A : RAction>(
      */
     fun dispatch(actionCreator: ActionCreator<A, S>) {
         @Suppress("UNCHECKED_CAST")
-        val thunk = createThunk<S> { dispatch, getState, _ -> actionCreator(dispatch as ((A) -> Unit), getState) }
+        val thunk: Thunk<S> = { dispatch, getState, _ -> actionCreator(dispatch as ((A) -> Unit), getState) }
         store.dispatch(thunk)
     }
 
