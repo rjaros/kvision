@@ -111,6 +111,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
 
     protected var lastLanguage: String? = null
 
+    var afterInsertHook: ((VNode) -> Unit)? = null
+    var afterDestroyHook: (() -> Unit)? = null
+
     protected fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true
         val t = block()
@@ -630,6 +633,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
                     content = it.content?.let { translate(it) }).toJs()
             )
         }
+        this.afterInsertHook?.invoke(node)
     }
 
     /**
@@ -651,6 +655,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             val popoverFun = getElementJQueryD()?.popover
             if (popoverFun != undefined) getElementJQueryD()?.popover("dispose")
         }
+        this.afterDestroyHook?.invoke()
     }
 
     /**
