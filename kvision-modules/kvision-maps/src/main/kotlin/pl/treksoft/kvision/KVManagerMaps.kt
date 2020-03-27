@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision
 
+import pl.treksoft.kvision.utils.obj
+
 internal val kVManagerMapsInit = KVManagerMaps.init()
 
 /**
@@ -33,6 +35,15 @@ internal object KVManagerMaps {
     }
 
     internal val leaflet = require("leaflet/dist/leaflet.js")
+
+    init {
+        leaflet.Icon.Default.imagePath = "./"
+        leaflet.Icon.Default.mergeOptions(obj {
+            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png")
+            iconUrl = require("leaflet/dist/images/marker-icon.png")
+            shadowUrl = require("leaflet/dist/images/marker-shadow.png")
+        })
+    }
 
     internal fun init() {}
 }

@@ -35,12 +35,14 @@ import pl.treksoft.kvision.utils.obj
  * @param lat initial latitude value
  * @param lng initial longitude value
  * @param zoom initial zoom
+ * @param showMarker show marker in the initial position
  * @param classes a set of CSS class names
  */
 open class Maps(
     val lat: Number,
     val lng: Number,
     val zoom: Number,
+    val showMarker: Boolean = false,
     classes: Set<String> = setOf(),
     init: (Maps.() -> Unit)? = null
 ) : Widget(classes) {
@@ -63,6 +65,7 @@ open class Maps(
                 this.center = arrayOf(lat, lng)
                 this.zoom = zoom
             })
+            KVManagerMaps.leaflet.marker(arrayOf(lat, lng)).addTo(jsMaps)
             KVManagerMaps.leaflet.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 obj {
@@ -86,10 +89,11 @@ fun Container.maps(
     lat: Number,
     lng: Number,
     zoom: Number,
+    showMarker: Boolean = false,
     classes: Set<String> = setOf(),
     init: (Maps.() -> Unit)? = null
 ): Maps {
-    val maps = Maps(lat, lng, zoom, classes, init)
+    val maps = Maps(lat, lng, zoom, showMarker, classes, init)
     this.add(maps)
     return maps
 }
