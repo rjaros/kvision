@@ -43,12 +43,13 @@ class StyleSpec : DomSpec {
                         margin = 2.px
                         color = Color.name(Col.SILVER)
                         overflow = Overflow.SCROLL
+                        setStyle("box-shadow", "10px 10px")
                     }
                 }
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<style>.kv_styleclass_0 {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}</style><div class=\"kv_styleclass_0\"></div>",
+                "<style>.kv_styleclass_0 {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\nbox-shadow: 10px 10px;\n}</style><div class=\"kv_styleclass_0\"></div>",
                 element?.innerHTML,
                 "Should render correct style element"
             )
