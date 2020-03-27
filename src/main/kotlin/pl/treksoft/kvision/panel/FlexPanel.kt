@@ -105,22 +105,27 @@ open class FlexPanel(
      * CSS flexbox direction.
      */
     var direction by refreshOnUpdate(direction) { refreshSpacing(); refresh() }
+
     /**
      * CSS flexbox wrap mode.
      */
     var wrap by refreshOnUpdate(wrap)
+
     /**
      * CSS flexbox content justification.
      */
     var justify by refreshOnUpdate(justify)
+
     /**
      * CSS flexbox items alignment.
      */
     var alignItems by refreshOnUpdate(alignItems)
+
     /**
      * CSS flexbox content alignment.
      */
     var alignContent by refreshOnUpdate(alignContent)
+
     /**
      * The spacing between columns/rows.
      */
@@ -163,9 +168,13 @@ open class FlexPanel(
         spacing?.let {
             when (direction) {
                 FlexDir.COLUMN -> wrapper.marginBottom = it.px
-                FlexDir.ROWREV -> wrapper.marginLeft = it.px
+                FlexDir.ROWREV -> {
+                    if (justify == FlexJustify.FLEXEND) wrapper.marginRight = it.px else wrapper.marginLeft = it.px
+                }
                 FlexDir.COLUMNREV -> wrapper.marginTop = it.px
-                else -> wrapper.marginRight = it.px
+                else -> {
+                    if (justify == FlexJustify.FLEXEND) wrapper.marginLeft = it.px else wrapper.marginRight = it.px
+                }
             }
         }
         return wrapper
