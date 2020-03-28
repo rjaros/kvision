@@ -185,6 +185,14 @@ open class Upload(
             input.dropZoneEnabled = value
         }
     /**
+     * The placeholder for the upload control.
+     */
+    var placeholder
+        get() = input.placeholder
+        set(value) {
+            input.placeholder = value
+        }
+    /**
      * The label text bound to the spinner input element.
      */
     var label

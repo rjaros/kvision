@@ -64,78 +64,102 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
      * If not set the upload button action will default to form submission.
      */
     var uploadUrl: String? by refreshOnUpdate(uploadUrl) { refreshUploadInput() }
+
     /**
      * Determines if multiple file upload is supported.
      */
     var multiple: Boolean by refreshOnUpdate(multiple) { refresh(); refreshUploadInput() }
+
     /**
      * The extra data that will be passed as data to the AJAX server call via POST.
      */
     var uploadExtraData: ((String, Int) -> dynamic)? by refreshOnUpdate { refreshUploadInput() }
+
     /**
      * Determines if the explorer theme is used.
      */
     var explorerTheme: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+
     /**
      * Determines if the input selection is required.
      */
     var required: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+
     /**
      * Determines if the caption is shown.
      */
     var showCaption: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
     /**
      * Determines if the preview is shown.
      */
     var showPreview: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
     /**
      * Determines if the remove button is shown.
      */
     var showRemove: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
     /**
      * Determines if the upload button is shown.
      */
     var showUpload: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
     /**
      * Determines if the cancel button is shown.
      */
     var showCancel: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
     /**
      * Determines if the file browse button is shown.
      */
     var showBrowse: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
     /**
      * Determines if the click on the preview zone opens file browse window.
      */
     var browseOnZoneClick: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
     /**
      * Determines if the iconic preview is prefered.
      */
     var preferIconicPreview: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+
     /**
      * Allowed file types.
      */
     var allowedFileTypes: Set<String>? by refreshOnUpdate { refreshUploadInput() }
+
     /**
      * Allowed file extensions.
      */
     var allowedFileExtensions: Set<String>? by refreshOnUpdate { refreshUploadInput() }
+
     /**
      * Determines if Drag&Drop zone is enabled.
      */
     var dropZoneEnabled: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
+    /**
+     * The placeholder for the upload control.
+     */
+    var placeholder: String? by refreshOnUpdate { refreshUploadInput() }
+
     /**
      * The name attribute of the generated HTML input element.
      */
     override var name: String? by refreshOnUpdate()
+
     /**
      * Determines if the field is disabled.
      */
     override var disabled by refreshOnUpdate(false) { refresh(); refreshUploadInput() }
+
     /**
      * The size of the input (currently not working)
      */
     override var size: InputSize? by refreshOnUpdate()
+
     /**
      * The validation status of the input.
      */
@@ -331,6 +355,7 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
             }
             this.autoOrientImage = false
             this.purifyHtml = false
+            if (placeholder != null) this.msgPlaceholder = placeholder
             this.language = language
         }
     }
