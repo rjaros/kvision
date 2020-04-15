@@ -28,7 +28,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager.
  */
-actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KClass<T>): KVServiceMgr<T> {
+actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KClass<T>) : KVServiceMgr<T> {
 
     protected val calls: MutableMap<String, Pair<String, HttpMethod>> = mutableMapOf()
     var counter: Int = 0
@@ -120,6 +120,23 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
+        method: HttpMethod, route: String?
+    ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
+        calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
+    }
+
+    /**
+     * Binds a given route with a function of the receiver.
+     * @param function a function of the receiver
+     * @param method a HTTP method
+     * @param route a route
+     */
+    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
+            reified PAR4, reified PAR5, reified PAR6, reified RET> bind(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
         method: HttpMethod, route: String?
     ) {
         if (method == HttpMethod.GET)

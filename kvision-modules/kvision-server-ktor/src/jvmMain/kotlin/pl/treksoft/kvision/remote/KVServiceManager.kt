@@ -392,6 +392,61 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 
     /**
+     * Binds a given route with a function of the receiver.
+     * @param function a function of the receiver
+     * @param method a HTTP method
+     * @param route a route
+     */
+    @Suppress("TooGenericExceptionCaught")
+    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
+            reified PAR4, reified PAR5, reified PAR6, reified RET> bind(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
+        method: HttpMethod, route: String?
+    ) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
+        addRoute(method, "/kv/$routeDef") {
+            val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
+            val jsonRpcRequest = call.receive<JsonRpcRequest>()
+            @Suppress("MagicNumber")
+            if (jsonRpcRequest.params.size == 6) {
+                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
+                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
+                val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
+                val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
+                val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
+                val param6 = getParameter<PAR6>(jsonRpcRequest.params[5])
+                try {
+                    val result = function.invoke(service, param1, param2, param3, param4, param5, param6)
+                    call.respond(
+                        JsonRpcResponse(
+                            id = jsonRpcRequest.id,
+                            result = mapper.writeValueAsString(result)
+                        )
+                    )
+                } catch (e: Exception) {
+                    if (e !is ServiceException) LOG.error(e.message, e)
+                    call.respond(
+                        JsonRpcResponse(
+                            id = jsonRpcRequest.id,
+                            error = e.message ?: "Error",
+                            exceptionType = e.javaClass.canonicalName
+                        )
+                    )
+                }
+            } else {
+                call.respond(
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        error = "Invalid parameters"
+                    )
+                )
+            }
+        }
+    }
+
+    /**
      * Binds a given web socket connetion with a function of the receiver.
      * @param function a function of the receiver
      * @param route a route

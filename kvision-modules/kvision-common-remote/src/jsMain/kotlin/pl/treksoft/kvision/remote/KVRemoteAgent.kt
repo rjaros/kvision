@@ -374,6 +374,81 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceMgr<T>) :
     }
 
     /**
+     * Executes defined call to a remote web service.
+     */
+    @Suppress("LongParameterList")
+    suspend inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified PAR6,
+            reified RET : Any, T> call(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
+        p1: PAR1,
+        p2: PAR2,
+        p3: PAR3,
+        p4: PAR4,
+        p5: PAR5,
+        p6: PAR6
+    ): RET {
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
+        val data3 = serialize(p3)
+        val data4 = serialize(p4)
+        val data5 = serialize(p5)
+        val data6 = serialize(p6)
+        val (url, method) =
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method).then {
+            try {
+                @Suppress("UNCHECKED_CAST")
+                deserialize<RET>(it, RET::class.js.name)
+            } catch (t: NotStandardTypeException) {
+                try {
+                    @Suppress("UNCHECKED_CAST")
+                    tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
+                } catch (t: NotEnumTypeException) {
+                    JSON.nonstrict.parse(RET::class.serializer(), it)
+                }
+            }
+        }.asDeferred().await()
+    }
+
+    /**
+     * Executes defined call to a remote web service.
+     */
+    @Suppress("LongParameterList")
+    suspend inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified PAR6,
+            reified RET : Any, T> call(
+        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> List<RET>,
+        p1: PAR1,
+        p2: PAR2,
+        p3: PAR3,
+        p4: PAR4,
+        p5: PAR5,
+        p6: PAR6
+    ): List<RET> {
+        val data1 = serialize(p1)
+        val data2 = serialize(p2)
+        val data3 = serialize(p3)
+        val data4 = serialize(p4)
+        val data5 = serialize(p5)
+        val data6 = serialize(p6)
+        val (url, method) =
+            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+                ?: throw IllegalStateException("Function not specified!")
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method).then {
+            try {
+                deserializeList<RET>(it, RET::class.js.name)
+            } catch (t: NotStandardTypeException) {
+                try {
+                    @Suppress("UNCHECKED_CAST")
+                    tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
+                } catch (t: NotEnumTypeException) {
+                    JSON.nonstrict.parse(RET::class.serializer().list, it)
+                }
+            }
+        }.asDeferred().await()
+    }
+
+    /**
      * Executes defined web socket connection
      */
     @Suppress("ComplexMethod", "TooGenericExceptionCaught")
