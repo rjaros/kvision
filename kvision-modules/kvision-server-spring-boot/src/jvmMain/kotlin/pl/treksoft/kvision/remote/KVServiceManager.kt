@@ -59,18 +59,18 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val getRequests: MutableMap<String, suspend (ServerRequest, ApplicationContext) -> ServerResponse> =
+    val getRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
         mutableMapOf()
-    val postRequests: MutableMap<String, suspend (ServerRequest, ApplicationContext) -> ServerResponse> =
+    val postRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
         mutableMapOf()
-    val putRequests: MutableMap<String, suspend (ServerRequest, ApplicationContext) -> ServerResponse> =
+    val putRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
         mutableMapOf()
-    val deleteRequests: MutableMap<String, suspend (ServerRequest, ApplicationContext) -> ServerResponse> =
+    val deleteRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
         mutableMapOf()
-    val optionsRequests: MutableMap<String, suspend (ServerRequest, ApplicationContext) -> ServerResponse> =
+    val optionsRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
         mutableMapOf()
     val webSocketsRequests: MutableMap<String, suspend (
-        WebSocketSession, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
+        WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
     ) -> Unit> =
         mutableMapOf()
 
@@ -95,6 +95,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * @suppress internal function
      */
+    @Suppress("DEPRECATION")
     suspend fun initializeService(service: T, req: ServerRequest) {
         if (service is WithRequest) {
             service.serverRequest = req
@@ -121,8 +122,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         method: HttpMethod, route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, ctx ->
+        addRoute(method, "/kv/$routeDef") { req, tlReq, ctx ->
+            tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
             initializeService(service, req)
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(req.queryParam("id").orElse(null)?.toInt() ?: 0, "", listOf())
@@ -168,8 +171,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, ctx ->
+        addRoute(method, "/kv/$routeDef") { req, tlReq, ctx ->
+            tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
             if (jsonRpcRequest.params.size == 1) {
@@ -223,8 +228,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, ctx ->
+        addRoute(method, "/kv/$routeDef") { req, tlReq, ctx ->
+            tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
             if (jsonRpcRequest.params.size == 2) {
@@ -279,8 +286,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, ctx ->
+        addRoute(method, "/kv/$routeDef") { req, tlReq, ctx ->
+            tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
             @Suppress("MagicNumber")
@@ -337,8 +346,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, ctx ->
+        addRoute(method, "/kv/$routeDef") { req, tlReq, ctx ->
+            tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
             @Suppress("MagicNumber")
@@ -397,8 +408,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, ctx ->
+        addRoute(method, "/kv/$routeDef") { req, tlReq, ctx ->
+            tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
             @Suppress("MagicNumber")
@@ -458,8 +471,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { req, ctx ->
+        addRoute(method, "/kv/$routeDef") { req, tlReq, ctx ->
+            tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
             @Suppress("MagicNumber")
@@ -516,11 +531,15 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         route: String?
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        webSocketsRequests[routeDef] = { webSocketSession, ctx, incoming, outgoing ->
+        webSocketsRequests[routeDef] = { webSocketSession, tlWsSession, ctx, incoming, outgoing ->
+            tlWsSession.set(webSocketSession)
             val service = ctx.getBean(serviceClass.java)
+            tlWsSession.remove()
+            @Suppress("DEPRECATION")
             if (service is WithWebSocketSession) {
                 service.webSocketSession = webSocketSession
             }
+            @Suppress("DEPRECATION")
             if (service is WithPrincipal) {
                 val principal = webSocketSession.handshakeInfo.principal.awaitSingle()
                 service.principal = principal
@@ -567,8 +586,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
-        addRoute(HttpMethod.POST, "/kv/$routeDef") { req, ctx ->
+        addRoute(HttpMethod.POST, "/kv/$routeDef") { req, tlReq, ctx ->
+            tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
             initializeService(service, req)
             val jsonRpcRequest = req.awaitBody<JsonRpcRequest>()
             @Suppress("MagicNumber")
@@ -623,7 +644,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     fun addRoute(
         method: HttpMethod,
         path: String,
-        handler: suspend (ServerRequest, ApplicationContext) -> ServerResponse
+        handler: suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse
     ) {
         when (method) {
             HttpMethod.GET -> getRequests[path] = handler

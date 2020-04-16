@@ -35,9 +35,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactor.asFlux
 import kotlinx.coroutines.reactor.asMono
+import org.springframework.beans.factory.config.BeanDefinition
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Scope
 import org.springframework.web.reactive.HandlerMapping
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping
 import org.springframework.web.reactive.socket.WebSocketHandler
@@ -46,13 +48,17 @@ import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAd
 import reactor.core.publisher.Mono
 import kotlin.coroutines.EmptyCoroutineContext
 
+/**
+ * Spring Boot WebSocket handler
+ */
 class KVWebSocketHandler(
     private val services: List<KVServiceManager<*>>,
+    private val threadLocalWebSocketSession: ThreadLocal<WebSocketSession>,
     private val applicationContext: ApplicationContext
 ) : WebSocketHandler, CoroutineScope by CoroutineScope(Dispatchers.Default) {
 
     private fun getHandler(session: WebSocketSession): (suspend (
-        WebSocketSession, ApplicationContext,
+        WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext,
         ReceiveChannel<String>, SendChannel<String>
     ) -> Unit) {
         val uri = session.handshakeInfo.uri.toString()
@@ -79,7 +85,13 @@ class KVWebSocketHandler(
                     requestChannel.close()
                 }
                 launch {
-                    handler.invoke(session, applicationContext, requestChannel, responseChannel)
+                    handler.invoke(
+                        session,
+                        threadLocalWebSocketSession,
+                        applicationContext,
+                        requestChannel,
+                        responseChannel
+                    )
                     if (!responseChannel.isClosedForReceive) responseChannel.close()
                     session.close()
                 }
@@ -89,15 +101,25 @@ class KVWebSocketHandler(
     }
 }
 
+/**
+ * Spring Boot WebSocket configuration
+ */
 @Configuration
 open class KVWebSocketConfig(
-    private var services: List<KVServiceManager<*>>,
-    private var applicationContext: ApplicationContext
+    private val services: List<KVServiceManager<*>>,
+    private val applicationContext: ApplicationContext
 ) {
+    private val threadLocalWebSocketSession = ThreadLocal<WebSocketSession>()
+
+    @Bean
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    open fun webSocketSession(): WebSocketSession {
+        return threadLocalWebSocketSession.get() ?: KVWebSocketSession()
+    }
 
     @Bean
     open fun handlerMapping(): HandlerMapping {
-        val map = mapOf("/kvws/*" to KVWebSocketHandler(services, applicationContext))
+        val map = mapOf("/kvws/*" to KVWebSocketHandler(services, threadLocalWebSocketSession, applicationContext))
         val order = -1
         return SimpleUrlHandlerMapping(map, order)
     }

@@ -22,10 +22,11 @@
 package pl.treksoft.kvision.remote
 
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.beans.factory.config.BeanDefinition
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.support.GenericApplicationContext
+import org.springframework.context.annotation.Scope
 import org.springframework.core.io.Resource
 import org.springframework.http.MediaType.TEXT_HTML
 import org.springframework.stereotype.Component
@@ -35,6 +36,9 @@ import org.springframework.web.reactive.function.server.buildAndAwait
 import org.springframework.web.reactive.function.server.coRouter
 import org.springframework.web.reactive.function.server.router
 
+/**
+ * Default Spring Boot routes
+ */
 @Configuration
 open class KVRouterConfiguration {
     @Value("classpath:/public/index.html")
@@ -57,8 +61,19 @@ open class KVRouterConfiguration {
     }
 }
 
+/**
+ * Default Spring Boot handler
+ */
 @Component
-open class KVHandler(var services: List<KVServiceManager<*>>, var applicationContext: ApplicationContext) {
+open class KVHandler(val services: List<KVServiceManager<*>>, val applicationContext: ApplicationContext) {
+
+    private val threadLocalRequest = ThreadLocal<ServerRequest>()
+
+    @Bean
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    open fun serverRequest(): ServerRequest {
+        return threadLocalRequest.get() ?: KVServerRequest()
+    }
 
     open suspend fun handle(request: ServerRequest): ServerResponse {
         val routeUrl = request.path()
@@ -73,7 +88,7 @@ open class KVHandler(var services: List<KVServiceManager<*>>, var applicationCon
             }
         }.firstOrNull()
         return if (handler != null) {
-            handler(request, applicationContext as GenericApplicationContext)
+            handler(request, threadLocalRequest, applicationContext)
         } else {
             ServerResponse.notFound().buildAndAwait()
         }

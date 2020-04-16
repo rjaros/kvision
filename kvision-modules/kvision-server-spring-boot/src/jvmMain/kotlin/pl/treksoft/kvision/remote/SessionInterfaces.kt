@@ -26,18 +26,22 @@ import org.springframework.web.reactive.socket.WebSocketSession
 import org.springframework.web.server.WebSession
 import java.security.Principal
 
+@Deprecated("Use dependency injection instead.")
 interface WithRequest {
     var serverRequest: ServerRequest
 }
 
+@Deprecated("Use dependency injection instead.")
 interface WithWebSession {
     var webSession: WebSession
 }
 
+@Deprecated("Use dependency injection instead.")
 interface WithPrincipal {
     var principal: Principal
 }
 
+@Deprecated("Use dependency injection instead.")
 interface WithWebSocketSession {
     var webSocketSession: WebSocketSession
 }
