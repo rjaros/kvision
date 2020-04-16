@@ -24,10 +24,12 @@ package pl.treksoft.kvision.remote
 import io.jooby.Context
 import io.jooby.Session
 
+@Deprecated("Use dependency injection instead.")
 interface WithContext {
     var ctx: Context
 }
 
+@Deprecated("Use dependency injection instead.")
 interface WithSession {
     var session: Session
 }

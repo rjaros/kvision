@@ -25,6 +25,8 @@ import com.google.inject.AbstractModule
 import com.google.inject.Guice
 import com.google.inject.Module
 import io.javalin.Javalin
+import io.javalin.http.Context
+import io.javalin.websocket.WsContext
 
 const val KV_INJECTOR_KEY = "pl.treksoft.kvision.injector.key"
 
@@ -37,12 +39,15 @@ fun Javalin.kvisionInit(vararg modules: Module) {
     @Suppress("SpreadOperator")
     val injector = Guice.createInjector(MainModule(this), *modules)
 
-    before {
-        it.attribute(KV_INJECTOR_KEY, injector)
+    before { ctx ->
+        ctx.attribute(KV_INJECTOR_KEY, injector.createChildInjector(ContextModule(ctx), WsContextModule(KVWsContext())))
     }
     wsBefore { ws ->
         ws.onConnect { ctx ->
-            ctx.attribute(KV_INJECTOR_KEY, injector)
+            ctx.attribute(
+                KV_INJECTOR_KEY,
+                injector.createChildInjector(ContextModule(KVContext()), WsContextModule(ctx))
+            )
         }
     }
 }
@@ -50,5 +55,17 @@ fun Javalin.kvisionInit(vararg modules: Module) {
 internal class MainModule(private val javalin: Javalin) : AbstractModule() {
     override fun configure() {
         bind(Javalin::class.java).toInstance(javalin)
+    }
+}
+
+internal class ContextModule(private val ctx: Context) : AbstractModule() {
+    override fun configure() {
+        bind(Context::class.java).toInstance(ctx)
+    }
+}
+
+internal class WsContextModule(private val wsCtx: WsContext) : AbstractModule() {
+    override fun configure() {
+        bind(WsContext::class.java).toInstance(wsCtx)
     }
 }

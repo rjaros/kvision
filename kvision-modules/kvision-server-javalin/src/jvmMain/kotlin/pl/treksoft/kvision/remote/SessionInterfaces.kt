@@ -26,18 +26,22 @@ import io.javalin.websocket.WsContext
 import org.eclipse.jetty.websocket.api.Session
 import javax.servlet.http.HttpSession
 
+@Deprecated("Use dependency injection instead.")
 interface WithContext {
     var ctx: Context
 }
 
+@Deprecated("Use dependency injection instead.")
 interface WithHttpSession {
     var httpSession: HttpSession
 }
 
+@Deprecated("Use dependency injection instead.")
 interface WithWsContext {
     var wsCtx: WsContext
 }
 
+@Deprecated("Use dependency injection instead.")
 interface WithWsSession {
     var wsSession: Session
 }

@@ -22,13 +22,17 @@
 package pl.treksoft.kvision.remote
 
 import com.google.inject.AbstractModule
+import com.google.inject.Injector
 import com.google.inject.Module
 import com.typesafe.config.Config
 import io.jooby.AssetSource
+import io.jooby.Context
 import io.jooby.Environment
 import io.jooby.Kooby
 import io.jooby.di.GuiceModule
 import io.jooby.json.JacksonModule
+
+const val KV_INJECTOR_KEY = "pl.treksoft.kvision.injector.key"
 
 /**
  * Initialization function for Jooby server.
@@ -38,6 +42,10 @@ fun Kooby.kvisionInit(vararg modules: Module) {
     assets("/*", AssetSource.create(javaClass.classLoader, "assets"))
     install(GuiceModule(MainModule(this), *modules))
     install(JacksonModule())
+    before { ctx ->
+        val injector = ctx.require(Injector::class.java).createChildInjector(ContextModule(ctx))
+        ctx.attribute(KV_INJECTOR_KEY, injector)
+    }
 }
 
 internal class MainModule(private val kooby: Kooby) : AbstractModule() {
@@ -45,5 +53,11 @@ internal class MainModule(private val kooby: Kooby) : AbstractModule() {
         bind(Kooby::class.java).toInstance(kooby)
         bind(Environment::class.java).toInstance(kooby.environment)
         bind(Config::class.java).toInstance(kooby.config)
+    }
+}
+
+class ContextModule(private val ctx: Context) : AbstractModule() {
+    override fun configure() {
+        bind(Context::class.java).toInstance(ctx)
     }
 }

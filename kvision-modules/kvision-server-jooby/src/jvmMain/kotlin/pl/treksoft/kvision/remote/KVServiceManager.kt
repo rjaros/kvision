@@ -24,6 +24,7 @@ package pl.treksoft.kvision.remote
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.google.inject.Injector
 import io.jooby.Context
 import io.jooby.CoroutineRouter
 import io.jooby.HandlerContext
@@ -91,6 +92,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * @suppress internal function
      */
+    @Suppress("DEPRECATION")
     fun initializeService(service: T, ctx: Context) {
         if (service is WithContext) {
             service.ctx = ctx
@@ -118,7 +120,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             } else {
                 ctx.body<JsonRpcRequest>()
             }
-            val service = ctx.require(serviceClass.java)
+            val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+            val service = injector.getInstance(serviceClass.java)
             initializeService(service, ctx)
             try {
                 val result = function.invoke(service)
@@ -154,7 +157,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             val jsonRpcRequest = ctx.body<JsonRpcRequest>()
             if (jsonRpcRequest.params.size == 1) {
                 val param = getParameter<PAR>(jsonRpcRequest.params[0])
-                val service = ctx.require(serviceClass.java)
+                val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+                val service = injector.getInstance(serviceClass.java)
                 initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param)
@@ -194,7 +198,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             if (jsonRpcRequest.params.size == 2) {
                 val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                 val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                val service = ctx.require(serviceClass.java)
+                val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+                val service = injector.getInstance(serviceClass.java)
                 initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2)
@@ -236,7 +241,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
                 val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                 val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                val service = ctx.require(serviceClass.java)
+                val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+                val service = injector.getInstance(serviceClass.java)
                 initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3)
@@ -279,7 +285,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
                 val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                 val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
-                val service = ctx.require(serviceClass.java)
+                val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+                val service = injector.getInstance(serviceClass.java)
                 initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3, param4)
@@ -324,7 +331,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
                 val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
                 val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
-                val service = ctx.require(serviceClass.java)
+                val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+                val service = injector.getInstance(serviceClass.java)
                 initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3, param4, param5)
@@ -370,7 +378,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
                 val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
                 val param6 = getParameter<PAR6>(jsonRpcRequest.params[5])
-                val service = ctx.require(serviceClass.java)
+                val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+                val service = injector.getInstance(serviceClass.java)
                 initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3, param4, param5, param6)
@@ -403,7 +412,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         val routeDef = "route${this::class.simpleName}${counter++}"
         webSocketRequests["/kvws/$routeDef"] = { ctx, configurer ->
-            val service = ctx.require(serviceClass.java)
+            val injector = ctx.require(Injector::class.java).createChildInjector(ContextModule(ctx))
+            val service = injector.getInstance(serviceClass.java)
             initializeService(service, ctx)
             val incoming = Channel<String>()
             val outgoing = Channel<String>()
@@ -487,7 +497,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 
                 @Suppress("MagicNumber")
                 val param5 = getParameter<String?>(jsonRpcRequest.params[4])
-                val service = ctx.require(serviceClass.java)
+                val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+                val service = injector.getInstance(serviceClass.java)
                 initializeService(service, ctx)
                 try {
                     val result = function.invoke(service, param1, param2, param3, param4, param5)

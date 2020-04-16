@@ -93,6 +93,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * @suppress internal function
      */
+    @Suppress("DEPRECATION")
     fun initializeService(service: T, ctx: Context) {
         if (service is WithContext) {
             service.ctx = ctx
@@ -105,6 +106,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     /**
      * @suppress internal function
      */
+    @Suppress("DEPRECATION")
     fun initializeWsService(service: T, wsCtx: WsContext) {
         if (service is WithWsContext) {
             service.wsCtx = wsCtx
@@ -529,8 +531,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
                 val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
                 val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
+
                 @Suppress("MagicNumber")
                 val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
+
                 @Suppress("MagicNumber")
                 val param5 = getParameter<String?>(jsonRpcRequest.params[4])
                 val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
