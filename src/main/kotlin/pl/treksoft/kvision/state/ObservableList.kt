@@ -216,4 +216,4 @@ class ObservableListWrapper<T>(val mutableList: MutableList<T> = mutableListOf()
 /**
  * Creates an instance of ObservableList<T>
  */
-fun <T> observableListOf(vararg items: T) = ObservableListWrapper(items.toMutableList())
+fun <T> observableListOf(vararg items: T): ObservableList<T> = ObservableListWrapper(items.toMutableList())

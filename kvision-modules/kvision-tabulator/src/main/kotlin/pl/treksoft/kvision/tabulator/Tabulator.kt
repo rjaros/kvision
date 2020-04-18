@@ -708,7 +708,7 @@ open class Tabulator<T : Any>(
         }
 
         /**
-         * A helper function to create a Tabulator object with correct serializer and general redux store.
+         * A helper function to create a Tabulator object with correct serializer and a general observable store.
          */
         fun <T : Any, S : Any> create(
             store: ObservableState<S>,
@@ -749,7 +749,7 @@ fun <T : Any> Container.tabulator(
 }
 
 /**
- * DSL builder extension function for general redux store.
+ * DSL builder extension function for a general observable store.
  */
 fun <T : Any, S : Any> Container.tabulator(
     store: ObservableState<S>,

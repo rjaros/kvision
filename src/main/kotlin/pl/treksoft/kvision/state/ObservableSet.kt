@@ -122,4 +122,4 @@ class ObservableSetWrapper<T>(val mutableSet: MutableSet<T> = mutableSetOf()) : 
 /**
  * Creates an instance of ObservableSet<T>
  */
-fun <T> observableSetOf(vararg items: T) = ObservableSetWrapper(items.toMutableSet())
+fun <T> observableSetOf(vararg items: T): ObservableSet<T> = ObservableSetWrapper(items.toMutableSet())
