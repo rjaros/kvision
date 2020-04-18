@@ -18,7 +18,6 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     implementation(npm("leaflet", "1.6.0"))
     testImplementation(kotlin("test-js"))
 }

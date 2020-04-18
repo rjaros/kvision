@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("tabulator-tables", "4.5.3"))
+    implementation(npm("tabulator-tables", "4.6.2"))
     testImplementation(kotlin("test-js"))
 }
 

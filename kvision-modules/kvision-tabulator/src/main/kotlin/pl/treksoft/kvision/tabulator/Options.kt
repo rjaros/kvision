@@ -53,6 +53,15 @@ enum class Align(internal val align: String) {
 }
 
 /**
+ * Column align.
+ */
+enum class VAlign(internal val valign: String) {
+    TOP("top"),
+    MIDDLE("middle"),
+    BOTTOM("bottom")
+}
+
+/**
  * Built-in sorters.
  */
 enum class Sorter(internal val sorter: String) {
@@ -165,7 +174,8 @@ enum class Filter(internal val filter: String) {
 enum class Layout(internal val layout: String) {
     FITDATA("fitData"),
     FITDATAFILL("fitDataFill"),
-    FITCOLUMNS("fitColumns")
+    FITCOLUMNS("fitColumns"),
+    FITDATASTRETCH("fitDataStretch")
 }
 
 /**
@@ -353,7 +363,12 @@ data class ColumnDefinition<T : Any>(
     val cellMouseMove: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
     val cellEditing: ((cell: Tabulator.CellComponent) -> Unit)? = null,
     val cellEdited: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null
+    val cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null,
+    val headerMenu: dynamic = null,
+    val headerContextMenu: dynamic = null,
+    val contextMenu: dynamic = null,
+    val hozAlign: Align? = null,
+    val vertAlign: VAlign? = null
 )
 
 internal object EditorRoot {
@@ -519,6 +534,11 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                 cell.checkHeight()
             }
         }
+        if (headerMenu != null) this.headerMenu = headerMenu
+        if (headerContextMenu != null) this.headerContextMenu = headerContextMenu
+        if (contextMenu != null) this.contextMenu = contextMenu
+        if (hozAlign != null) this.hozAlign = hozAlign.align
+        if (vertAlign != null) this.vertAlign = vertAlign.valign
     } as Tabulator.ColumnDefinition
 }
 
@@ -595,11 +615,11 @@ data class TabulatorOptions<T : Any>(
     val paginationDataSent: dynamic = null,
     val paginationAddRow: AddRowMode? = null,
     val paginationButtonCount: Int? = null,
-    var persistenceID: String? = null,
-    var persistenceMode: Boolean? = null,
-    var persistentLayout: Boolean? = null,
-    var persistentSort: Boolean? = null,
-    var persistentFilter: Boolean? = null,
+    val persistenceID: String? = null,
+    val persistenceMode: Boolean? = null,
+    val persistentLayout: Boolean? = null,
+    val persistentSort: Boolean? = null,
+    val persistentFilter: Boolean? = null,
     val locale: String? = null,
     var langs: dynamic = null,
     val localized: ((locale: String, lang: dynamic) -> Unit)? = null,
@@ -700,7 +720,20 @@ data class TabulatorOptions<T : Any>(
     var validationFailed: ((cell: Tabulator.CellComponent, value: Any, validators: dynamic) -> Unit)? = null,
     var ajaxRequesting: ((url: String, params: dynamic) -> Boolean)? = null,
     var ajaxResponse: ((url: String, params: dynamic, response: dynamic) -> Any)? = null,
-    var ajaxError: ((xhr: dynamic, textStatus: String, errorThrown: dynamic) -> Unit)? = null
+    var ajaxError: ((xhr: dynamic, textStatus: String, errorThrown: dynamic) -> Unit)? = null,
+    val persistence: dynamic = null,
+    val persistenceReaderFunc: dynamic = null,
+    val persistenceWriterFunc: dynamic = null,
+    val paginationInitialPage: Int? = null,
+    val columnHeaderVertAlign: VAlign? = null,
+    val maxHeight: String? = null,
+    val minHeight: String? = null,
+    val rowContextMenu: dynamic = null,
+    val dataTreeChildColumnCalcs: Boolean? = null,
+    val dataTreeSelectPropagate: Boolean? = null,
+    val cellHozAlign: Align? = null,
+    val cellVertAlign: VAlign? = null,
+    val headerFilterLiveFilterDelay: Int? = null
 )
 
 /**
@@ -906,5 +939,18 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (ajaxRequesting != null) this.ajaxRequesting = ajaxRequesting
         if (ajaxResponse != null) this.ajaxResponse = ajaxResponse
         if (ajaxError != null) this.ajaxError = ajaxError
+        if (persistence != null) this.persistence = persistence
+        if (persistenceReaderFunc != null) this.persistenceReaderFunc = persistenceReaderFunc
+        if (persistenceWriterFunc != null) this.persistenceWriterFunc = persistenceWriterFunc
+        if (paginationInitialPage != null) this.paginationInitialPage = paginationInitialPage
+        if (columnHeaderVertAlign != null) this.columnHeaderVertAlign = columnHeaderVertAlign.valign
+        if (maxHeight != null) this.maxHeight = maxHeight
+        if (minHeight != null) this.minHeight = minHeight
+        if (rowContextMenu != null) this.rowContextMenu = rowContextMenu
+        if (dataTreeChildColumnCalcs != null) this.dataTreeChildColumnCalcs = dataTreeChildColumnCalcs
+        if (dataTreeSelectPropagate != null) this.dataTreeSelectPropagate = dataTreeSelectPropagate
+        if (cellHozAlign != null) this.cellHozAlign = cellHozAlign.align
+        if (cellVertAlign != null) this.cellVertAlign = cellVertAlign.valign
+        if (headerFilterLiveFilterDelay != null) this.headerFilterLiveFilterDelay = headerFilterLiveFilterDelay
     } as Tabulator.Options
 }

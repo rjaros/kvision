@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("handlebars", "4.7.2"))
+    implementation(npm("handlebars", "4.7.6"))
     implementation(npm("handlebars-loader", "1.7.1"))
     testImplementation(kotlin("test-js"))
 }
