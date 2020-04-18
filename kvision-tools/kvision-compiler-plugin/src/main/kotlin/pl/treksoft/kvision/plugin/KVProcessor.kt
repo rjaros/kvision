@@ -32,6 +32,8 @@ import org.jetbrains.kotlin.cli.common.config.kotlinSourceRoots
 import org.jetbrains.kotlin.descriptors.CallableMemberDescriptor
 import org.jetbrains.kotlin.descriptors.ParameterDescriptor
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
+import org.jetbrains.kotlin.name.FqName
+import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.platform.TargetPlatform
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.types.KotlinType
@@ -87,6 +89,7 @@ class KVProcessor : AbstractProcessor() {
                         appendln("import kotlinx.coroutines.CoroutineStart")
                         appendln("import kotlinx.coroutines.GlobalScope")
                         appendln("import kotlinx.coroutines.launch")
+                        appendln("import pl.treksoft.kvision.remote.HttpMethod")
                         appendln("import pl.treksoft.kvision.remote.KVServiceManager")
                         appendln()
                         appendln("expect class $baseName : $iName")
@@ -95,10 +98,35 @@ class KVProcessor : AbstractProcessor() {
                         appendln("    init {")
                         appendln("        GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {")
                         cl.methods().forEach {
+                            val params = it.allParameters.drop(1)
+                            val wsMethod =
+                                if (params.size == 2)
+                                    params.first().type.toString().startsWith("ReceiveChannel")
+                                else false
+                            val kvBinding =
+                                it.annotations.findAnnotation(FqName("pl.treksoft.kvision.annotations.KVBinding"))
+                            val kvBindingMethod =
+                                it.annotations.findAnnotation(FqName("pl.treksoft.kvision.annotations.KVBindingMethod"))
+                            val kvBindingRoute =
+                                it.annotations.findAnnotation(FqName("pl.treksoft.kvision.annotations.KVBindingRoute"))
+                            val (method, route) = if (kvBinding != null) {
+                                val method = kvBinding.allValueArguments[Name.identifier("method")].toString()
+                                val route = kvBinding.allValueArguments[Name.identifier("route")].toString()
+                                "Http$method" to route
+                            } else if (kvBindingMethod != null) {
+                                val method = kvBindingMethod.allValueArguments[Name.identifier("method")].toString()
+                                "Http$method" to null
+                            } else if (kvBindingRoute != null) {
+                                val route = kvBindingRoute.allValueArguments[Name.identifier("route")].toString()
+                                "HttpMethod.POST" to route
+                            } else {
+                                "HttpMethod.POST" to null
+                            }
                             when {
                                 it.returnType.toString().startsWith("RemoteData") ->
-                                    appendln("            bindTabulatorRemote($iName::${it.name})")
-                                else -> appendln("            bind($iName::${it.name})")
+                                    appendln("            bindTabulatorRemote($iName::${it.name}, $route)")
+                                wsMethod -> appendln("            bind($iName::${it.name}, $route)")
+                                else -> appendln("            bind($iName::${it.name}, $method, $route)")
                             }
                         }
                         appendln("        }")

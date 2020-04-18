@@ -21,5 +21,22 @@
  */
 package pl.treksoft.kvision.annotations
 
+enum class Method {
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    OPTIONS
+}
+
 @Target(AnnotationTarget.CLASS)
 annotation class KVService
+
+@Target(AnnotationTarget.FUNCTION)
+annotation class KVBinding(val method: Method, val route: String)
+
+@Target(AnnotationTarget.FUNCTION)
+annotation class KVBindingMethod(val method: Method)
+
+@Target(AnnotationTarget.FUNCTION)
+annotation class KVBindingRoute(val route: String)

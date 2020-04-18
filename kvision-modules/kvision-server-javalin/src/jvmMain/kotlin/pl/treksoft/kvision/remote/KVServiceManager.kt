@@ -445,7 +445,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
     ) {
-        val routeDef = "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         webSocketRequests["/kvws/$routeDef"] = { ws ->
             ws.onConnect { ctx ->
                 val incoming = Channel<String>()
@@ -521,9 +521,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bindTabulatorRemote(
-        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>
+        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
+        route: String?
     ) {
-        val routeDef = "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(HttpMethod.POST, "/kv/$routeDef") { ctx ->
             val jsonRpcRequest = ctx.body<JsonRpcRequest>()
             @Suppress("MagicNumber")

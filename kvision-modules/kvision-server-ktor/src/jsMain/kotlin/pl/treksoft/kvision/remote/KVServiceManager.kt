@@ -150,9 +150,10 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
      * @param function a function of the receiver
      */
     protected actual inline fun <reified RET> bindTabulatorRemote(
-        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>
+        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
+        route: String?
     ) {
-        val routeDef = "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)
     }
 
@@ -165,7 +166,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
     ) {
-        val routeDef = "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         calls[function.toString().replace("\\s".toRegex(), "")] = Pair("/kvws/$routeDef", HttpMethod.POST)
     }
 

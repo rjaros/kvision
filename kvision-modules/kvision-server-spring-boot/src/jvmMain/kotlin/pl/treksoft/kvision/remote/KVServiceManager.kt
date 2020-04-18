@@ -530,7 +530,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
     ) {
-        val routeDef = "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         webSocketsRequests[routeDef] = { webSocketSession, tlWsSession, ctx, incoming, outgoing ->
             tlWsSession.set(webSocketSession)
             val service = ctx.getBean(serviceClass.java)
@@ -583,9 +583,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      */
     @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bindTabulatorRemote(
-        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>
+        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
+        route: String?
     ) {
-        val routeDef = "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(HttpMethod.POST, "/kv/$routeDef") { req, tlReq, ctx ->
             tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)

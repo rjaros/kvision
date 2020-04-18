@@ -120,7 +120,8 @@ expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) {
      * @param function a function of the receiver
      */
     protected inline fun <reified RET> bindTabulatorRemote(
-        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>
+        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
+        route: String? = null
     )
 
     /**
