@@ -130,7 +130,8 @@ tasks {
             "kvision-tabulator",
             "kvision-tabulator-remote",
             "kvision-server-javalin",
-            "kvision-server-vertx"
+            "kvision-server-vertx",
+            "kvision-toast"
         )
         multiplatform {
             val js by creating {

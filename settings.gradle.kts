@@ -48,6 +48,7 @@ include(
     "kvision-modules:kvision-richtext",
     "kvision-modules:kvision-tabulator",
     "kvision-modules:kvision-tabulator-remote",
+    "kvision-modules:kvision-toast",
     "kvision-modules:kvision-server-javalin",
     "kvision-modules:kvision-server-jooby",
     "kvision-modules:kvision-server-ktor",
