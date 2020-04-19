@@ -43,7 +43,7 @@ class TabulatorSpec : DomSpec {
                 id = 2
                 name = "Name2"
                 age = 50
-            })))
+            }), virtualDom = false))
             root.add(tabulator)
             tabulator.redraw(true)
             val element = document.getElementById("test")
