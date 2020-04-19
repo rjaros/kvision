@@ -125,7 +125,11 @@ class KVProcessor : AbstractProcessor() {
                             when {
                                 it.returnType.toString().startsWith("RemoteData") ->
                                     appendln("            bindTabulatorRemote($iName::${it.name}, $route)")
-                                wsMethod -> appendln("            bind($iName::${it.name}, $route)")
+                                wsMethod -> if (route == null) {
+                                    appendln("            bind($iName::${it.name}, null as String)")
+                                } else {
+                                    appendln("            bind($iName::${it.name}, $route)")
+                                }
                                 else -> appendln("            bind($iName::${it.name}, $method, $route)")
                             }
                         }
