@@ -62,6 +62,7 @@ pl.treksoft.kvision.state
 pl.treksoft.kvision.table
 pl.treksoft.kvision.tabulator
 pl.treksoft.kvision.tabulator.js
+pl.treksoft.kvision.toast
 pl.treksoft.kvision.toolbar
 pl.treksoft.kvision.types
 pl.treksoft.kvision.utils
