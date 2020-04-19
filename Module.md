@@ -154,6 +154,10 @@ Simple and easy to use JavaScript router wrapper.
 
 Clasess supporting HTML tables.
 
+# Package pl.treksoft.kvision.toast
+
+The toast component. 
+
 # Package pl.treksoft.kvision.toolbar
 
 Toolbar and button group components.
