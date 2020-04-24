@@ -56,7 +56,7 @@ open class DateTimeInput(
 
     private var initialized = false
 
-    internal val input = TextInput(value = value?.toStringF(format))
+    val input = TextInput(value = value?.toStringF(format))
     private lateinit var icon: Icon
     private val addon = Div(classes = setOf("input-group-append")) {
         span(classes = setOf("input-group-text", "datepickerbutton")) {
