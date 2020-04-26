@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("bootstrap-select", "1.13.15"))
+    implementation(npm("bootstrap-select", "1.13.16"))
     implementation(npm("ajax-bootstrap-select", "rjaros/Ajax-Bootstrap-Select"))
     testImplementation(kotlin("test-js"))
 }

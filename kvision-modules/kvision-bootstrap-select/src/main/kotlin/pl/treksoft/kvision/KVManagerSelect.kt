@@ -31,6 +31,7 @@ internal object KVManagerSelect {
     internal const val KVNULL = "#kvnull"
 
     init {
+        js("if ($.fn.dropdown === undefined) { $.fn.dropdown={'Constructor' : {'VERSION' : '4.0.0'}}; };")
         require("bootstrap-select/dist/css/bootstrap-select.min.css")
         require("bootstrap-select/dist/js/bootstrap-select.min.js")
         require("./js/locales/bootstrap-select/bootstrap-select-i18n.min.js")
