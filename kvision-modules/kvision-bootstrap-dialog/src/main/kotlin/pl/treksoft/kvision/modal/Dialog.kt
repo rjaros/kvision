@@ -35,12 +35,14 @@ import kotlin.coroutines.resume
  * @param animation determines if animations are used
  * @param escape determines if dialog can be closed with Esc key
  * @param centered determines if modal dialog is vertically centered
+ * @param scrollable determines if modal dialog content is scrollable
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class Dialog<R>(
     caption: String? = null, closeButton: Boolean = true,
-    size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false, scrollable: Boolean = false, escape: Boolean = true,
+    size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
+    scrollable: Boolean = false, escape: Boolean = true,
     classes: Set<String> = setOf(), init: (Dialog<R>.() -> Unit)? = null
 ) : Modal(caption, closeButton, size, animation, escape, centered, scrollable, classes) {
 
