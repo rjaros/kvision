@@ -60,7 +60,7 @@ enum class ModalSize(val className: String) {
 @Suppress("TooManyFunctions")
 open class Modal(
     caption: String? = null, closeButton: Boolean = true,
-    size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false, private val escape: Boolean = true,
+    size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false, scrollable: Boolean = false, private val escape: Boolean = true,
     classes: Set<String> = setOf(), init: (Modal.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -105,7 +105,16 @@ open class Modal(
             dialog.centered = value
         }
 
-    private val dialog = ModalDialog(size, centered)
+    /**
+     * Determines if modal body is scrollable.
+     */
+    var scrollable
+        get() = dialog.scrollable
+        set(value) {
+            dialog.scrollable = value
+        }
+
+    private val dialog = ModalDialog(size, centered, scrollable)
     private val header = SimplePanel(setOf("modal-header"))
     /**
      * @suppress
@@ -284,7 +293,7 @@ open class Modal(
  * @param size modal window size
  * @param centered determines if modal dialog is vertically centered
  */
-internal class ModalDialog(size: ModalSize?, centered: Boolean = false) : SimplePanel(setOf("modal-dialog")) {
+internal class ModalDialog(size: ModalSize?, centered: Boolean = false, scrollable: Boolean = false) : SimplePanel(setOf("modal-dialog")) {
 
     /**
      * Modal window size.
@@ -296,6 +305,11 @@ internal class ModalDialog(size: ModalSize?, centered: Boolean = false) : Simple
      */
     var centered by refreshOnUpdate(centered)
 
+    /**
+     * Determines if content is scrollable.
+     */
+    var scrollable by refreshOnUpdate(scrollable)
+
     override fun getSnClass(): List<StringBoolPair> {
         val cl = super.getSnClass().toMutableList()
         size?.let {
@@ -303,6 +317,9 @@ internal class ModalDialog(size: ModalSize?, centered: Boolean = false) : Simple
         }
         if (centered) {
             cl.add("modal-dialog-centered" to true)
+        }
+        if (scrollable) {
+            cl.add("modal-dialog-scrollable" to true)
         }
         return cl
     }

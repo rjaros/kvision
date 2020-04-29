@@ -40,9 +40,9 @@ import kotlin.coroutines.resume
  */
 open class Dialog<R>(
     caption: String? = null, closeButton: Boolean = true,
-    size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false, escape: Boolean = true,
+    size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false, scrollable: Boolean = false, escape: Boolean = true,
     classes: Set<String> = setOf(), init: (Dialog<R>.() -> Unit)? = null
-) : Modal(caption, closeButton, size, animation, escape, centered, classes) {
+) : Modal(caption, closeButton, size, animation, escape, centered, scrollable, classes) {
 
     internal var resultCallback: ((R?) -> Unit)? = null
 
