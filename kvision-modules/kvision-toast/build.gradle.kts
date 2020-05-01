@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("toastr", "2.1.4"))
+    implementation(npm("toastr", "^2.1.4"))
     testImplementation(kotlin("test-js"))
 }
 

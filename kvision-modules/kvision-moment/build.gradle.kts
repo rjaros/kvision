@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("moment", "2.24.0"))
+    implementation(npm("moment", "^2.24.0"))
     testImplementation(kotlin("test-js"))
 }
 

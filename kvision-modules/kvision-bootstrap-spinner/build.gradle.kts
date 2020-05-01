@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("bootstrap-touchspin", "4.3.0"))
+    implementation(npm("bootstrap-touchspin", "^4.3.0"))
     testImplementation(kotlin("test-js"))
 }
 

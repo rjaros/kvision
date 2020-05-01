@@ -18,7 +18,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("leaflet", "1.6.0"))
+    implementation(npm("leaflet", "^1.6.0"))
     testImplementation(kotlin("test-js"))
 }
 

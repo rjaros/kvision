@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("pc-bootstrap4-datetimepicker", "4.17.50"))
+    implementation(npm("pc-bootstrap4-datetimepicker", "^4.17.50"))
     testImplementation(kotlin("test-js"))
 }
 

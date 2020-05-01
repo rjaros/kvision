@@ -35,20 +35,20 @@ dependencies {
     api("com.github.snabbdom:snabbdom-kotlin:$snabbdomKotlinVersion")
     api("pl.treksoft:navigo-kotlin:$navigoKotlinVersion")
     api("pl.treksoft:jquery-kotlin:$jqueryKotlinVersion")
-    implementation(npm("css-loader", "3.5.2"))
-    implementation(npm("style-loader", "1.1.4"))
-    implementation(npm("less", "3.11.1"))
-    implementation(npm("less-loader", "5.0.0"))
-    implementation(npm("imports-loader", "0.8.0"))
-    implementation(npm("uglifyjs-webpack-plugin", "2.2.0"))
-    implementation(npm("file-loader", "6.0.0"))
-    implementation(npm("url-loader", "4.1.0"))
-    implementation(npm("jquery", "^3.5.0"))
-    implementation(npm("fecha", "4.2.0"))
-    implementation(npm("snabbdom", "0.7.4"))
-    implementation(npm("snabbdom-virtualize", "0.7.0"))
-    implementation(npm("jquery-resizable-dom", "0.35.0"))
-    implementation(npm("navigo", "7.1.2"))
+    implementation(npm("css-loader", "^3.5.2"))
+    implementation(npm("style-loader", "^1.1.4"))
+    implementation(npm("less", "^3.11.1"))
+    implementation(npm("less-loader", "^5.0.0"))
+    implementation(npm("imports-loader", "^0.8.0"))
+    implementation(npm("uglifyjs-webpack-plugin", "^2.2.0"))
+    implementation(npm("file-loader", "^6.0.0"))
+    implementation(npm("url-loader", "^4.1.0"))
+    implementation(npm("jquery", "^3.4.1"))
+    implementation(npm("fecha", "^4.2.0"))
+    implementation(npm("snabbdom", "^0.7.4"))
+    implementation(npm("snabbdom-virtualize", "^0.7.0"))
+    implementation(npm("jquery-resizable-dom", "^0.35.0"))
+    implementation(npm("navigo", "^7.1.2"))
     testImplementation(kotlin("test-js"))
 }
 
@@ -83,6 +83,18 @@ fun copyResources() {
 }
 
 tasks {
+    withType<org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask> {
+        doLast {
+            yarnLock.parentFile.resolve("package.json").apply {
+                writeText(readText().replace(
+                    "\"dependencies\": {},",
+                    "\"dependencies\": {},\n  \"resolutions\": { \"moment\": \"2.24.0\", \"jquery\": \"3.4.1\" },"
+                ))
+            }
+            org.jetbrains.kotlin.gradle.targets.js.yarn.YarnWorkspaces()
+                .yarnExec(project, yarnLock.parentFile, "Relaunching Yarn to fix resolutions")
+        }
+    }
     getByName("JsJar", Jar::class) {
         from("${project.buildDir}/js/packages/kvision/package.json")
     }

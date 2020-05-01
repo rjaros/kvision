@@ -16,10 +16,10 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("popper.js", "1.16.1"))
-    implementation(npm("bootstrap", "4.4.1"))
-    implementation(npm("awesome-bootstrap-checkbox", "1.0.1"))
-    implementation(npm("element-resize-event", "3.0.3"))
+    implementation(npm("popper.js", "^1.16.1"))
+    implementation(npm("bootstrap", "^4.4.1"))
+    implementation(npm("awesome-bootstrap-checkbox", "^1.0.1"))
+    implementation(npm("element-resize-event", "^3.0.3"))
     testImplementation(kotlin("test-js"))
 }
 

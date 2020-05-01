@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("eam_bootstrap-3-typeahead", "0.0.2"))
+    implementation(npm("eam_bootstrap-3-typeahead", "^0.0.2"))
     testImplementation(kotlin("test-js"))
 }
 

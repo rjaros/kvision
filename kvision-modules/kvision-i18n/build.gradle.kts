@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("jed", "1.1.1"))
+    implementation(npm("jed", "^1.1.1"))
     testImplementation(kotlin("test-js"))
 }
 

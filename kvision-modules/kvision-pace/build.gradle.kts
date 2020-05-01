@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("pace-progressbar", "1.0.9"))
+    implementation(npm("pace-progressbar", "^1.0.9"))
     testImplementation(kotlin("test-js"))
 }
 
