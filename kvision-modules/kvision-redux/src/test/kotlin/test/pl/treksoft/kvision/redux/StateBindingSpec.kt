@@ -25,8 +25,7 @@ import pl.treksoft.kvision.html.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.redux.createReduxStore
-import pl.treksoft.kvision.state.stateBinding
-import pl.treksoft.kvision.state.stateUpdate
+import pl.treksoft.kvision.state.bind
 import redux.RAction
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -57,51 +56,22 @@ class StateBindingSpec : DomSpec {
             val store = createReduxStore(::stateReducer, State(10))
 
             val container = SimplePanel()
-            container.stateBinding(store) { state ->
+            container.bind(store) { state ->
                 div("${state.counter}")
             }
             root.add(container)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><div></div><div>10</div></div>",
+                "<div><div>10</div></div>",
                 element?.innerHTML,
                 "Should render initial state of the container"
             )
             store.dispatch(StateAction.Inc)
             assertEqualsHtml(
-                "<div><div></div><div>11</div></div>",
+                "<div><div>11</div></div>",
                 element?.innerHTML,
                 "Should render changed state of the container"
             )
         }
     }
-
-    @Test
-    fun stateUpdate() {
-        run {
-            val root = Root("test", fixed = true)
-            val store = createReduxStore(::stateReducer, State(10))
-
-            val container = SimplePanel()
-            container.stateUpdate(store) { state ->
-                div("${state.counter}")
-            } updateWith { state, d ->
-                d.content = "${state.counter}"
-            }
-            root.add(container)
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                "<div><div></div><div>10</div></div>",
-                element?.innerHTML,
-                "Should render initial state of the container"
-            )
-            store.dispatch(StateAction.Inc)
-            assertEqualsHtml(
-                "<div><div></div><div>11</div></div>",
-                element?.innerHTML,
-                "Should render changed state of the container"
-            )
-        }
-    }
-
 }

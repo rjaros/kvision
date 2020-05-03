@@ -33,6 +33,7 @@ import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.SnOn
 import pl.treksoft.kvision.utils.emptyOn
 import pl.treksoft.kvision.utils.hooks
@@ -70,22 +71,27 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             field = value
             if (oldField != field) refresh()
         }
+
     /**
      * A title attribute of generated HTML element.
      */
     var title: String? by refreshOnUpdate()
+
     /**
      * An ID attribute of generated HTML element.
      */
     var id: String? by refreshOnUpdate()
+
     /**
      * A role attribute of generated HTML element.
      */
     var role: String? by refreshOnUpdate()
+
     /**
      * A tabindex attribute of generated HTML element.
      */
     var tabindex: Int? by refreshOnUpdate()
+
     /**
      * Determines if the current widget is draggable.
      */
@@ -111,8 +117,18 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
 
     protected var lastLanguage: String? = null
 
+    /**
+     * A function called after the widget is inserted to the DOM.
+     */
     var afterInsertHook: ((VNode) -> Unit)? = null
+    /**
+     * A function called after the widget is removed from the DOM.
+     */
     var afterDestroyHook: (() -> Unit)? = null
+    /**
+     * A function called after the widget is disposed.
+     */
+    var afterDisposeHook: (() -> Unit)? = null
 
     protected fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true
@@ -758,6 +774,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     override fun dispose() {
+        afterDisposeHook?.invoke()
     }
 
     protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }): RefreshDelegateProvider<T> =
@@ -797,6 +814,26 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
 
     companion object {
         private var counter: Long = 0
+
+        /**
+         * An extension function which binds the widget to the observable state.
+         * Used by [pl.treksoft.kvision.state.bind]
+         */
+        internal fun <S : Any, W : Widget> W.bindState(
+            observableState: ObservableState<S>,
+            factory: (W.(S) -> Unit)
+        ): W {
+            val unsubscribe = observableState.subscribe {
+                this.singleRender {
+                    (this as? Container)?.removeAll()
+                    this.factory(it)
+                }
+            }
+            this.afterDisposeHook = {
+                unsubscribe()
+            }
+            return this
+        }
     }
 }
 

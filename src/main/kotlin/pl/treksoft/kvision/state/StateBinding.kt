@@ -5,6 +5,22 @@ package pl.treksoft.kvision.state
 
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.core.Widget.Companion.bindState
+
+/**
+ * An extension function which binds the widget to the observable state.
+ *
+ * @param S the state type
+ * @param W the widget type
+ * @param observableState the state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S : Any, W : Widget> W.bind(
+    observableState: ObservableState<S>,
+    factory: (W.(S) -> Unit)
+): W {
+    return this.bindState(observableState, factory)
+}
 
 /**
  * A class which binds the given container to the observable state.
@@ -16,6 +32,7 @@ import pl.treksoft.kvision.core.Widget
  * @param container the container
  * @param factory a function which re-creates the view based on the given state
  */
+@Deprecated("Use bind function instead.")
 class StateBinding<S : Any, CONT : Container, CONTENT>(
     observableState: ObservableState<S>,
     private val container: CONT,
@@ -64,6 +81,11 @@ class StateBinding<S : Any, CONT : Container, CONTENT>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Suppress("DEPRECATION")
+@Deprecated(
+    "Use bind function instead.",
+    replaceWith = ReplaceWith("bind(observableState, factory)", "pl.treksoft.kvision.state.bind")
+)
 fun <S : Any, CONT : Container> CONT.stateBinding(
     observableState: ObservableState<S>,
     factory: (CONT.(S) -> Unit)
@@ -76,6 +98,8 @@ fun <S : Any, CONT : Container> CONT.stateBinding(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Suppress("DEPRECATION")
+@Deprecated("Use bind function instead.")
 fun <S : Any, CONT : Container, CONTENT> CONT.stateUpdate(
     observableState: ObservableState<S>,
     factory: (CONT.(S) -> CONTENT)
@@ -86,6 +110,7 @@ fun <S : Any, CONT : Container, CONTENT> CONT.stateUpdate(
 /**
  * A helper class for updateable content.
  */
+@Deprecated("Use bind function instead.")
 class Updateable<S : Any, CONTENT>(private val setUpdateState: ((S, CONTENT) -> Unit) -> Unit) {
     infix fun updateWith(updateState: (S, CONTENT) -> Unit) {
         setUpdateState(updateState)

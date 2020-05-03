@@ -24,6 +24,7 @@ package test.pl.treksoft.kvision.state
 import pl.treksoft.kvision.html.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.state.observableListOf
 import pl.treksoft.kvision.state.stateBinding
 import pl.treksoft.kvision.state.stateUpdate
@@ -33,6 +34,35 @@ import kotlin.test.Test
 
 class StateBindingSpec : DomSpec {
 
+    @Test
+    fun bind() {
+        run {
+            val root = Root("test", fixed = true)
+            val container = SimplePanel()
+            val observableList = observableListOf(1, 2, 3)
+            container.bind(observableList) { state ->
+                setAttribute("data-count", "${state.size}")
+                state.forEach {
+                    div("$it")
+                }
+            }
+            root.add(container)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div data-count=\"3\"><div>1</div><div>2</div><div>3</div></div>",
+                element?.innerHTML,
+                "Should render initial state of the widget"
+            )
+            observableList.add(4)
+            assertEqualsHtml(
+                "<div data-count=\"4\"><div>1</div><div>2</div><div>3</div><div>4</div></div>",
+                element?.innerHTML,
+                "Should render changed state of the widget"
+            )
+        }
+    }
+
+    @Suppress("DEPRECATION")
     @Test
     fun stateBinding() {
         run {
@@ -60,6 +90,7 @@ class StateBindingSpec : DomSpec {
         }
     }
 
+    @Suppress("DEPRECATION")
     @Test
     fun stateUpdate() {
         run {
