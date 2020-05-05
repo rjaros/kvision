@@ -83,18 +83,21 @@ fun copyResources() {
 }
 
 tasks {
+    /*
+    // Forcing specific npm package versions (not required at the moment but commented for future use)
     withType<org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask> {
         doLast {
             yarnLock.parentFile.resolve("package.json").apply {
                 writeText(readText().replace(
                     "\"dependencies\": {},",
-                    "\"dependencies\": {},\n  \"resolutions\": { \"moment\": \"2.24.0\", \"jquery\": \"3.4.1\" },"
+                    "\"dependencies\": {},\n  \"resolutions\": { \"jquery\": \"3.4.1\" },"
                 ))
             }
             org.jetbrains.kotlin.gradle.targets.js.yarn.YarnWorkspaces()
                 .yarnExec(project, yarnLock.parentFile, "Relaunching Yarn to fix resolutions")
         }
     }
+    */
     getByName("JsJar", Jar::class) {
         from("${project.buildDir}/js/packages/kvision/package.json")
     }
