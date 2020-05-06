@@ -32,7 +32,7 @@ class HeaderCellSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val cell = HeaderCell("This is a header cell")
             root.add(cell)
             val element = document.getElementById("test")

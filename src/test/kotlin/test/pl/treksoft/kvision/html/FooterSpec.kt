@@ -32,7 +32,7 @@ class FooterSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val footer = Footer("This is a footer")
             root.add(footer)
             val element = document.getElementById("test")

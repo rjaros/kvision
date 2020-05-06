@@ -32,7 +32,7 @@ class DivSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val div = Div("This is a div")
             root.add(div)
             val element = document.getElementById("test")

@@ -36,7 +36,7 @@ class AlertSpec : DomSpec {
     @Test
     fun render() {
         run {
-            Root("test", fixed = true)
+            Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             Alert.show("Alert caption", "Alert content", animation = false)
             val alert = document.getElementById("test")?.let { jQuery(it).parent().parent().find(".modal")[0] }
             assertNotNull(alert, "Should show alert window")

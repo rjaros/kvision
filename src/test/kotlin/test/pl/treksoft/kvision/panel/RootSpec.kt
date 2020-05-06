@@ -41,7 +41,7 @@ class RootSpec : DomSpec {
     @Test
     fun getSnClassFluid() {
         run {
-            Root("test", fixed = true)
+            Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val rootElem = document.getElementById("test")
             assertTrue("Fluid root child has correct css class") { rootElem?.className == "container" }
         }
@@ -50,7 +50,7 @@ class RootSpec : DomSpec {
     @Test
     fun getRoot() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val r = root.getRoot()
             assertTrue("Should return self") { r == root }
         }

@@ -32,7 +32,7 @@ class RangeInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val ri = RangeInput(12, 10, 20, 2).apply {
                 name = "name"
                 id = "idri"

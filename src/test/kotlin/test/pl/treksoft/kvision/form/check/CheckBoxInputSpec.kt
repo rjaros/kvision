@@ -32,7 +32,7 @@ class CheckBoxInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val ci = CheckBoxInput(value = true).apply {
                 name = "name"
                 id = "idti"

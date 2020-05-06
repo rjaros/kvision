@@ -34,7 +34,7 @@ class RichTextSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val hai = RichText(value = "abc", label = "Field").apply {
                 placeholder = "place"
                 id = "idti"

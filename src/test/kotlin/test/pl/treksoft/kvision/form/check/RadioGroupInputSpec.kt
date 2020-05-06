@@ -33,7 +33,7 @@ class RadioGroupInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val ci = RadioGroupInput(options = listOf("a" to "A", "b" to "B"), value = "a").apply {
                 disabled = true
                 inline = true

@@ -35,7 +35,7 @@ class DateTimeInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val data = Date()
             val dti = DateTimeInput(value = data).apply {
                 placeholder = "place"

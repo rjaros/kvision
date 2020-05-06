@@ -32,7 +32,7 @@ class HelpTextSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val fl = HelpText("Form Error")
             root.add(fl)
             val element = document.getElementById("test")

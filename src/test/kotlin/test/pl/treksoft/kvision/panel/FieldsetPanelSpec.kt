@@ -33,7 +33,7 @@ class FieldsetPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val fieldSet = FieldsetPanel("Legend") {
                 div("Lorem ipsum")
             }

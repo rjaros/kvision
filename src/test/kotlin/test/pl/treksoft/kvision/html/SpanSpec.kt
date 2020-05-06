@@ -32,7 +32,7 @@ class SpanSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val span = Span("This is a label")
             root.add(span)
             val element = document.getElementById("test")

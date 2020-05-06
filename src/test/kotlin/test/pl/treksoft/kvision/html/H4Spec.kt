@@ -32,7 +32,7 @@ class H4Spec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val h4 = H4("This is h4 header")
             root.add(h4)
             val element = document.getElementById("test")

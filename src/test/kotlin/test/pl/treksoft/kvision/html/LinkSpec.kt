@@ -32,7 +32,7 @@ class LinkSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val link = Link("Google", "http://www.google.com")
             root.add(link)
             val element = document.getElementById("test")

@@ -35,7 +35,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
             root.add(dd)
             dd.list.getElementJQueryD()?.dropdown("toggle")
@@ -52,7 +52,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun renderDropUp() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag").apply { direction = Direction.DROPUP }
             root.add(dd)
             dd.list.getElementJQueryD()?.dropdown("toggle")
@@ -69,7 +69,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun renderHeaderElement() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val dd = DropDown("Dropdown", listOf("abc" to DD.HEADER.option), "flag")
             root.add(dd)
             dd.list.getElementJQueryD()?.dropdown("toggle")
@@ -86,7 +86,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun renderSeparatorElement() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val dd = DropDown("Dropdown", listOf("abc" to DD.SEPARATOR.option), "flag")
             root.add(dd)
             dd.list.getElementJQueryD()?.dropdown("toggle")
@@ -103,7 +103,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun renderDisabledElement() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val dd = DropDown("Dropdown", listOf("abc" to DD.DISABLED.option), "flag")
             root.add(dd)
             dd.list.getElementJQueryD()?.dropdown("toggle")
@@ -120,7 +120,7 @@ class DropDownSpec : DomSpec {
     @Test
     fun toggle() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag")
             root.add(dd)
             val visible = dd.getElementJQuery()?.hasClass("show") ?: false

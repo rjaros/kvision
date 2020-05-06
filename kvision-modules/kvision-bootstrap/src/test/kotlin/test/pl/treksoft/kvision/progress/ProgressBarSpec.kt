@@ -33,7 +33,7 @@ class ProgressBarSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val progressBar =
                 ProgressBar(50, style = ProgressBarStyle.SUCCESS, striped = true, content = "Processing ...")
             root.add(progressBar)

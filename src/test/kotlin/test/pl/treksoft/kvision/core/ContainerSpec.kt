@@ -34,7 +34,7 @@ class ContainerSpec : DomSpec {
     @Test
     fun add() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
@@ -52,7 +52,7 @@ class ContainerSpec : DomSpec {
     @Test
     fun addAll() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
@@ -69,7 +69,7 @@ class ContainerSpec : DomSpec {
     @Test
     fun remove() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
@@ -88,7 +88,7 @@ class ContainerSpec : DomSpec {
     @Test
     fun removeAll() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"
@@ -107,7 +107,7 @@ class ContainerSpec : DomSpec {
     @Test
     fun getChildren() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val container = SimplePanel()
             val child1 = Widget()
             child1.id = "child1"

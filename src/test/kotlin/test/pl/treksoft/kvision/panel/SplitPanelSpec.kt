@@ -34,7 +34,7 @@ class SplitPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val splitPanel = SplitPanel(Direction.VERTICAL)
             root.add(splitPanel)
             val label1 = Span("abc")

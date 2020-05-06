@@ -34,7 +34,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Span("abc")
@@ -53,7 +53,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun setActiveIndex() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Span("abc")
@@ -73,7 +73,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun removeTab() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Span("abc")
@@ -95,7 +95,7 @@ class TabPanelSpec : DomSpec {
     @Test
     fun tabClick() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val tabs = TabPanel()
             root.add(tabs)
             val label1 = Span("abc")

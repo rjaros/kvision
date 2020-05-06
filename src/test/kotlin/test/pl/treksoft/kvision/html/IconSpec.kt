@@ -32,7 +32,7 @@ class IconSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val icon = Icon("fas fa-check")
             root.add(icon)
             val element = document.getElementById("test")

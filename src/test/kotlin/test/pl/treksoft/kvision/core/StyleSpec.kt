@@ -37,7 +37,7 @@ class StyleSpec : DomSpec {
     @Test
     fun render() {
         run {
-            Root("test", fixed = true) {
+            Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED) {
                 widget {
                     style {
                         margin = 2.px
@@ -59,7 +59,7 @@ class StyleSpec : DomSpec {
     @Test
     fun renderCustomClass() {
         run {
-            Root("test", fixed = true) {
+            Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED) {
                 widget {
                     style("customclass") {
                         margin = 2.px
@@ -80,7 +80,7 @@ class StyleSpec : DomSpec {
     @Test
     fun renderSubclass() {
         run {
-            Root("test", fixed = true) {
+            Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED) {
                 widget {
                     style("customclass") {
                         margin = 2.px

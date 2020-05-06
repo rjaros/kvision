@@ -32,7 +32,7 @@ class FieldLabelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val fl = FieldLabel("input", "Label")
             root.add(fl)
             val element = document.getElementById("test")

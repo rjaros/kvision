@@ -32,7 +32,7 @@ class TextAreaSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val ti = TextArea(cols = 5, rows = 2, value = "abc", label = "Label").apply {
                 placeholder = "place"
                 name = "name"

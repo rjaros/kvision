@@ -33,7 +33,7 @@ class CustomTagSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val tag = CustomTag("custom-element", "This is <b>custom element</b>", rich = false, align = Align.CENTER)
             root.add(tag)
             val element = document.getElementById("test")

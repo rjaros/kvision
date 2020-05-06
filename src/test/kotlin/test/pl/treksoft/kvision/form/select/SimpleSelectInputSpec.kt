@@ -32,7 +32,7 @@ class SimpleSelectInputSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val si = SimpleSelectInput(listOf("test1" to "Test 1", "test2" to "Test 2"), "test1", true).apply {
                 name = "name"
                 id = "idti"

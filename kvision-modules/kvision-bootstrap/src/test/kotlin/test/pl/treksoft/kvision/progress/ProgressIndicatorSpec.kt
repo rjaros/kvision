@@ -33,7 +33,7 @@ class ProgressIndicatorSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val ind = ProgressIndicator(50, style = ProgressBarStyle.SUCCESS, striped = true)
             root.add(ind)
             val element = document.getElementById("test")

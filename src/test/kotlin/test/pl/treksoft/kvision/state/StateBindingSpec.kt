@@ -37,7 +37,7 @@ class StateBindingSpec : DomSpec {
     @Test
     fun bind() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val container = SimplePanel()
             val observableList = observableListOf(1, 2, 3)
             container.bind(observableList) { state ->
@@ -66,7 +66,7 @@ class StateBindingSpec : DomSpec {
     @Test
     fun stateBinding() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val container = SimplePanel()
             val observableList = observableListOf(1, 2, 3)
             container.stateBinding(observableList) { state ->
@@ -94,7 +94,7 @@ class StateBindingSpec : DomSpec {
     @Test
     fun stateUpdate() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val container = SimplePanel()
             val observableList = observableListOf(1)
             container.stateUpdate(observableList) { state ->

@@ -34,7 +34,7 @@ class VPanelSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val vPanel = VPanel(justify = FlexJustify.SPACEBETWEEN)
             root.add(vPanel)
             vPanel.add(Span("abc"), 1)

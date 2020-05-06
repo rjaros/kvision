@@ -35,7 +35,7 @@ class WidgetWrapperSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val widget = Widget()
             val wrapper = WidgetWrapper(widget)
             wrapper.width = 100 to UNIT.em

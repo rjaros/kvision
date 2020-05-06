@@ -33,7 +33,7 @@ class CheckBoxSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val ci = CheckBox(value = true, label = "Label").apply {
                 name = "name"
                 style = CheckBoxStyle.DANGER

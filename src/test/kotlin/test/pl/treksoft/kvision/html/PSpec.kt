@@ -32,7 +32,7 @@ class PSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val par = P("This is a paragraph")
             root.add(par)
             val element = document.getElementById("test")

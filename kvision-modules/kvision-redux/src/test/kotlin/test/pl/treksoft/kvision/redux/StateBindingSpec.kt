@@ -52,7 +52,7 @@ class StateBindingSpec : DomSpec {
     @Test
     fun stateBinding() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val store = createReduxStore(::stateReducer, State(10))
 
             val container = SimplePanel()

@@ -143,7 +143,7 @@ class WidgetSpec : WSpec {
     @Test
     fun getRoot() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val widget = Widget()
             root.add(widget)
             val r = widget.getRoot()

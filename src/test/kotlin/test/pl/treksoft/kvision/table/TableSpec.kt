@@ -36,7 +36,7 @@ class TableSpec : DomSpec {
     @Test
     fun render() {
         run {
-            val root = Root("test", fixed = true)
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val table = Table(listOf("a", "b")) {
                 row {
                     cell("A")
