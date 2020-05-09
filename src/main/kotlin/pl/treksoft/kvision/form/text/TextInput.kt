@@ -24,6 +24,7 @@ package pl.treksoft.kvision.form.text
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.utils.set
 
 /**
  * Text input types.
@@ -53,6 +54,7 @@ open class TextInput(type: TextInputType = TextInputType.TEXT, value: String? = 
      * Text input type.
      */
     var type by refreshOnUpdate(type)
+
     /**
      * Determines if autocomplete is enabled for the input element.
      */
@@ -85,10 +87,12 @@ open class TextInput(type: TextInputType = TextInputType.TEXT, value: String? = 
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.textInput(
-    type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf(),
+    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (TextInput.() -> Unit)? = null
 ): TextInput {
-    val textInput = TextInput(type, value, classes).apply { init?.invoke(this) }
+    val textInput = TextInput(type, value, classes ?: className.set).apply { init?.invoke(this) }
     this.add(textInput)
     return textInput
 }

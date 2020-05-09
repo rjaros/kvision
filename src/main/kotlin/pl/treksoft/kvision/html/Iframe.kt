@@ -26,6 +26,7 @@ import org.w3c.dom.Window
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.utils.set
 
 /**
  * Iframe sandbox options.
@@ -59,26 +60,32 @@ open class Iframe(
      * The iframe document address.
      */
     var src by refreshOnUpdate(src)
+
     /**
      * The HTML content of the iframe.
      */
     var srcdoc by refreshOnUpdate(srcdoc)
+
     /**
      * The name of the iframe.
      */
     var name by refreshOnUpdate(name)
+
     /**
      * The width of the iframe.
      */
     var iframeWidth by refreshOnUpdate(iframeWidth)
+
     /**
      * The height of the iframe.
      */
     var iframeHeight by refreshOnUpdate(iframeHeight)
+
     /**
      * A set of Sandbox options.
      */
     var sandbox by refreshOnUpdate(sandbox)
+
     /**
      * A current location URL of the iframe.
      */
@@ -141,11 +148,17 @@ open class Iframe(
  */
 fun Container.iframe(
     src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
-    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null, classes: Set<String> = setOf(),
+    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Iframe.() -> Unit)? = null
 ): Iframe {
     val iframe =
-        Iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes).apply { init?.invoke(this) }
+        Iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes ?: className.set).apply {
+            init?.invoke(
+                this
+            )
+        }
     this.add(iframe)
     return iframe
 }

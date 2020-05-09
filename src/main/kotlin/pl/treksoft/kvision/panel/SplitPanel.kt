@@ -30,6 +30,7 @@ import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 
 /**
  * Split panel direction.
@@ -107,9 +108,11 @@ open class SplitPanel(
  */
 fun Container.splitPanel(
     direction: Direction = Direction.VERTICAL,
-    classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SplitPanel.() -> Unit)? = null
 ): SplitPanel {
-    val splitPanel = SplitPanel(direction, classes, init)
+    val splitPanel = SplitPanel(direction, classes ?: className.set, init)
     this.add(splitPanel)
     return splitPanel
 }

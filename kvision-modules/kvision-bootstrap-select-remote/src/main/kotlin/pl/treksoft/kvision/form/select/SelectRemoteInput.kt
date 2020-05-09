@@ -36,6 +36,7 @@ import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 import kotlin.browser.window
 
 external fun decodeURIComponent(encodedURI: String): String
@@ -197,7 +198,9 @@ fun <T : Any> Container.selectRemoteInput(
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     preload: Boolean = false,
-    classes: Set<String> = setOf(), init: (SelectRemoteInput<T>.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SelectRemoteInput<T>.() -> Unit)? = null
 ): SelectRemoteInput<T> {
     val selectRemoteInput =
         SelectRemoteInput(
@@ -208,7 +211,7 @@ fun <T : Any> Container.selectRemoteInput(
             multiple,
             ajaxOptions,
             preload,
-            classes
+            classes ?: className.set
         ).apply {
             init?.invoke(this)
         }

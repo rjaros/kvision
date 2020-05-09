@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.utils.px
+import pl.treksoft.kvision.utils.set
 
 /**
  * CSS flexbox directions.
@@ -237,9 +238,13 @@ open class FlexPanel(
 fun Container.flexPanel(
     direction: FlexDir? = null, wrap: FlexWrap? = null, justify: FlexJustify? = null,
     alignItems: FlexAlignItems? = null, alignContent: FlexAlignContent? = null,
-    spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
+    spacing: Int? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (FlexPanel.() -> Unit)? = null
 ): FlexPanel {
-    val flexPanel = FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes, init)
+    val flexPanel =
+        FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes ?: className.set, init)
     this.add(flexPanel)
     return flexPanel
 }

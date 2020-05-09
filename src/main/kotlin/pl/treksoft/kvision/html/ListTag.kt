@@ -28,6 +28,7 @@ import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
 
@@ -64,10 +65,12 @@ open class ListTag(
      * List type.
      */
     var type by refreshOnUpdate(type)
+
     /**
      * List of elements.
      */
     var elements by refreshOnUpdate(elements)
+
     /**
      * Determines if [elements] can contain HTML code.
      */
@@ -158,9 +161,11 @@ open class ListTag(
  */
 fun Container.listTag(
     type: ListType, elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ListTag.() -> Unit)? = null
 ): ListTag {
-    val listTag = ListTag(type, elements, rich, classes, init)
+    val listTag = ListTag(type, elements, rich, classes ?: className.set, init)
     this.add(listTag)
     return listTag
 }

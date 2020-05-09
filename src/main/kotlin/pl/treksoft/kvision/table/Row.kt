@@ -23,6 +23,7 @@ package pl.treksoft.kvision.table
 
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.utils.set
 
 /**
  * HTML table row component.
@@ -46,9 +47,11 @@ open class Row(classes: Set<String> = setOf(), init: (Row.() -> Unit)? = null) :
  * It takes the same parameters as the constructor of the built component.
  */
 fun Table.row(
-    classes: Set<String> = setOf(), init: (Row.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Row.() -> Unit)? = null
 ): Row {
-    val row = Row(classes, init)
+    val row = Row(classes ?: className.set, init)
     this.add(row)
     return row
 }

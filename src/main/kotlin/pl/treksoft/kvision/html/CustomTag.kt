@@ -23,6 +23,7 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * HTML custom tag component.
@@ -71,11 +72,13 @@ fun Container.customTag(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     attributes: Map<String, String> = mapOf(),
     init: (CustomTag.() -> Unit)? = null
 ): CustomTag {
-    val customTag = CustomTag(elementName, content, rich, align, classes, attributes).apply { init?.invoke(this) }
+    val customTag =
+        CustomTag(elementName, content, rich, align, classes ?: className.set, attributes).apply { init?.invoke(this) }
     this.add(customTag)
     return customTag
 }

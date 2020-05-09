@@ -117,7 +117,7 @@ open class RadioGroup(
 
     private val idc = "kv_form_radiogroup_$counter"
     final override val input = RadioInput()
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     internal val container = SimplePanel(setOf("kv-radiogroup-container"))

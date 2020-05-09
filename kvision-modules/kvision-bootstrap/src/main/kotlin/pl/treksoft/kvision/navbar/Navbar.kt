@@ -32,6 +32,7 @@ import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 
 /**
  * Navbar types.
@@ -99,6 +100,7 @@ open class Navbar(
                 brandLink.hide()
             }
         }
+
     /**
      * The navbar header link.
      */
@@ -112,14 +114,17 @@ open class Navbar(
      * The navbar type.
      */
     var type by refreshOnUpdate(type)
+
     /**
      * The navbar responsive behavior.
      */
     var expand by refreshOnUpdate(expand)
+
     /**
      * The navbar color.
      */
     var nColor by refreshOnUpdate(nColor)
+
     /**
      * The navbar background color.
      */
@@ -215,15 +220,21 @@ fun Container.navbar(
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
     collapseOnClick: Boolean = false,
-    classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Navbar.() -> Unit)? = null
 ): Navbar {
-    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, classes, init)
+    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, classes ?: className.set, init)
     this.add(navbar)
     return navbar
 }
 
-fun Navbar.navText(label: String, classes: Set<String> = setOf()): Span {
-    val text = Span(label, classes = classes + "navbar-text")
+fun Navbar.navText(
+    label: String,
+    classes: Set<String>? = null,
+    className: String? = null
+): Span {
+    val text = Span(label, classes = (classes ?: className.set) + "navbar-text")
     this.add(text)
     return text
 }

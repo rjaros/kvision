@@ -25,6 +25,7 @@ import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.html.Link
+import pl.treksoft.kvision.utils.set
 
 /**
  * The Bootstrap Nav container.
@@ -63,9 +64,12 @@ open class Nav(rightAlign: Boolean = false, classes: Set<String> = setOf(), init
  * It takes the same parameters as the constructor of the built component.
  */
 fun Navbar.nav(
-    rightAlign: Boolean = false, classes: Set<String> = setOf(), init: (Nav.() -> Unit)? = null
+    rightAlign: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Nav.() -> Unit)? = null
 ): Nav {
-    val nav = Nav(rightAlign, classes).apply { init?.invoke(this) }
+    val nav = Nav(rightAlign, classes ?: className.set).apply { init?.invoke(this) }
     this.add(nav)
     return nav
 }
@@ -77,9 +81,11 @@ fun Navbar.nav(
  */
 fun Nav.navLink(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, classes + "nav-item" + "nav-link").apply {
+    val link = Link(label, url, icon, image, null, true, (classes ?: className.set) + "nav-item" + "nav-link").apply {
         init?.invoke(this)
     }
     this.add(link)
@@ -93,10 +99,18 @@ fun Nav.navLink(
  */
 fun Nav.navLinkDisabled(
     label: String, icon: String? = null, image: ResString? = null,
-    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Link.() -> Unit)? = null
 ): Link {
     val link =
-        Link(label, "javascript:void(0)", icon, image, classes + "nav-item" + "nav-link" + "disabled").apply {
+        Link(
+            label,
+            "javascript:void(0)",
+            icon,
+            image, null, true,
+            (classes ?: className.set) + "nav-item" + "nav-link" + "disabled"
+        ).apply {
             tabindex = -1
             setAttribute("aria-disabled", "true")
             init?.invoke(this)

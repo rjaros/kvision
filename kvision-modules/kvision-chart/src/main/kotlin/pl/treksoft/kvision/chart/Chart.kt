@@ -24,9 +24,10 @@ package pl.treksoft.kvision.chart
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.chart.js.Chart.ChartConfiguration
 import pl.treksoft.kvision.chart.js.PluginServiceGlobalRegistration
-import pl.treksoft.kvision.chart.js.Chart as JsChart
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.utils.set
+import pl.treksoft.kvision.chart.js.Chart as JsChart
 
 /**
  * Chart component.
@@ -133,10 +134,11 @@ fun Container.chart(
     configuration: Configuration,
     chartWidth: Int? = null,
     chartHeight: Int? = null,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Chart.() -> Unit)? = null
 ): Chart {
-    val chart = Chart(configuration, chartWidth, chartHeight, classes).apply { init?.invoke(this) }
+    val chart = Chart(configuration, chartWidth, chartHeight, classes ?: className.set).apply { init?.invoke(this) }
     this.add(chart)
     return chart
 }

@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * Simple component rendered as *div*.
@@ -57,10 +58,11 @@ fun Container.div(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Div.() -> Unit)? = null
 ): Div {
-    val div = Div(content, rich, align, classes).apply { init?.invoke(this) }
+    val div = Div(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
     this.add(div)
     return div
 }

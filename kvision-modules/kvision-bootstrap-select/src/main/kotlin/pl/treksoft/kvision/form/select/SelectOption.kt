@@ -24,6 +24,7 @@ package pl.treksoft.kvision.form.select
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.utils.set
 
 /**
  * The helper component for adding options to [Select] or [SelectOptGroup].
@@ -47,26 +48,32 @@ open class SelectOption(
      * The value of the option.
      */
     var value by refreshOnUpdate(value)
+
     /**
      * The label of the option.
      */
     var label by refreshOnUpdate(label)
+
     /**
      * The subtext after the label of the option.
      */
     var subtext by refreshOnUpdate(subtext)
+
     /**
      * The icon before the label of the option.
      */
     var icon by refreshOnUpdate(icon)
+
     /**
      * Determines if the option should be rendered as divider.
      */
     var divider by refreshOnUpdate(divider)
+
     /**
      * Determines if the option should be disabled.
      */
     var disabled by refreshOnUpdate(disabled)
+
     /**
      * Determines if the option is selected.
      */
@@ -114,10 +121,12 @@ open class SelectOption(
 fun Select.selectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-    classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set).apply {
             init?.invoke(
                 this
             )
@@ -134,10 +143,12 @@ fun Select.selectOption(
 fun SelectInput.selectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-    classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set).apply {
             init?.invoke(
                 this
             )
@@ -154,10 +165,12 @@ fun SelectInput.selectOption(
 fun SelectOptGroup.selectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-    classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes).apply {
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set).apply {
             init?.invoke(
                 this
             )

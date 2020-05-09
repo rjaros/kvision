@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * Simple component rendered as *span*.
@@ -57,10 +58,11 @@ fun Container.span(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Span.() -> Unit)? = null
 ): Span {
-    val span = Span(content, rich, align, classes).apply { init?.invoke(this) }
+    val span = Span(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
     this.add(span)
     return span
 }

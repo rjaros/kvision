@@ -38,6 +38,7 @@ import pl.treksoft.kvision.utils.SnOn
 import pl.treksoft.kvision.utils.emptyOn
 import pl.treksoft.kvision.utils.hooks
 import pl.treksoft.kvision.utils.on
+import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.utils.snAttrs
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
@@ -121,10 +122,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * A function called after the widget is inserted to the DOM.
      */
     var afterInsertHook: ((VNode) -> Unit)? = null
+
     /**
      * A function called after the widget is removed from the DOM.
      */
     var afterDestroyHook: (() -> Unit)? = null
+
     /**
      * A function called after the widget is disposed.
      */
@@ -756,13 +759,26 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     protected open fun createLabelWithIcon(
         label: String, icon: String? = null,
-        image: ResString? = null
+        image: ResString? = null,
+        separator: String? = null
     ): Array<out Any> {
         val translatedLabel = translate(label)
         return if (icon != null) {
-            arrayOf(KVManager.virtualize("<i class='$icon'></i>"), " $translatedLabel")
+            if (separator == null) {
+                arrayOf(KVManager.virtualize("<i class='$icon'></i>"), " $translatedLabel")
+            } else {
+                arrayOf(KVManager.virtualize("<i class='$icon'></i>"), KVManager.virtualize(separator), translatedLabel)
+            }
         } else if (image != null) {
-            arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " $translatedLabel")
+            if (separator == null) {
+                arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " $translatedLabel")
+            } else {
+                arrayOf(
+                    KVManager.virtualize("<img src='$image' alt='' />"),
+                    KVManager.virtualize(separator),
+                    translatedLabel
+                )
+            }
         } else {
             arrayOf(translatedLabel)
         }
@@ -842,8 +858,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.widget(classes: Set<String> = setOf(), init: (Widget.() -> Unit)? = null): Widget {
-    val widget = Widget(classes).apply { init?.invoke(this) }
+fun Container.widget(
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Widget.() -> Unit)? = null
+): Widget {
+    val widget = Widget(classes ?: className.set).apply { init?.invoke(this) }
     this.add(widget)
     return widget
 }

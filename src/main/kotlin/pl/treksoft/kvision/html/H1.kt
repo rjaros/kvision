@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * Simple component rendered as *h1*.
@@ -57,10 +58,11 @@ fun Container.h1(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (H1.() -> Unit)? = null
 ): H1 {
-    val h1 = H1(content, rich, align, classes).apply { init?.invoke(this) }
+    val h1 = H1(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
     this.add(h1)
     return h1
 }

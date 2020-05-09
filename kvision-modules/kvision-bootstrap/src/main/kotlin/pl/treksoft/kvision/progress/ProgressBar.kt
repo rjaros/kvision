@@ -24,6 +24,7 @@ package pl.treksoft.kvision.progress
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 
 /**
  * The Bootstrap progress bar.
@@ -57,6 +58,7 @@ open class ProgressBar(
         set(value) {
             indicator.progress = value
         }
+
     /**
      * The minimal progress.
      */
@@ -65,6 +67,7 @@ open class ProgressBar(
         set(value) {
             indicator.min = value
         }
+
     /**
      * The maximal progress.
      */
@@ -73,6 +76,7 @@ open class ProgressBar(
         set(value) {
             indicator.max = value
         }
+
     /**
      * The style of the progress bar.
      */
@@ -81,6 +85,7 @@ open class ProgressBar(
         set(value) {
             indicator.style = value
         }
+
     /**
      * Determines if the progress bar is striped.
      */
@@ -89,6 +94,7 @@ open class ProgressBar(
         set(value) {
             indicator.striped = value
         }
+
     /**
      * Determines if the progress bar is animated.
      */
@@ -97,6 +103,7 @@ open class ProgressBar(
         set(value) {
             indicator.animated = value
         }
+
     /**
      * Text content of the progress bar.
      */
@@ -105,6 +112,7 @@ open class ProgressBar(
         set(value) {
             indicator.content = value
         }
+
     /**
      * Determines if [content] can contain HTML code.
      */
@@ -113,6 +121,7 @@ open class ProgressBar(
         set(value) {
             indicator.rich = value
         }
+
     /**
      * Text align of the progress bar.
      */
@@ -141,7 +150,9 @@ fun Container.progressBar(
     progress: Int, min: Int = DEFAULT_MIN, max: Int = DEFAULT_MAX, style: ProgressBarStyle? = null,
     striped: Boolean = false, animated: Boolean = false,
     content: String? = null, rich: Boolean = false, align: Align? = null,
-    classes: Set<String> = setOf(), init: (ProgressBar.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ProgressBar.() -> Unit)? = null
 ): ProgressBar {
     val progressBar = ProgressBar(
         progress,
@@ -153,7 +164,7 @@ fun Container.progressBar(
         content,
         rich,
         align,
-        classes
+        classes ?: className.set
     ).apply { init?.invoke(this) }
     this.add(progressBar)
     return progressBar

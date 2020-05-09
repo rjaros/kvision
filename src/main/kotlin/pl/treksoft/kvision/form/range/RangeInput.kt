@@ -30,6 +30,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
+import pl.treksoft.kvision.utils.set
 
 internal const val DEFAULT_STEP = 1
 
@@ -52,6 +53,7 @@ open class RangeInput(
      * Range input value.
      */
     var value by refreshOnUpdate(value ?: (min as Number?)) { refreshState() }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -59,38 +61,47 @@ open class RangeInput(
      * bound to the range input value.
      */
     var startValue by refreshOnUpdate(value) { this.value = it; refresh() }
+
     /**
      * Minimal value.
      */
     var min by refreshOnUpdate(min)
+
     /**
      * Maximal value.
      */
     var max by refreshOnUpdate(max)
+
     /**
      * Step value.
      */
     var step by refreshOnUpdate(step)
+
     /**
      * The name attribute of the generated HTML input element.
      */
     override var name: String? by refreshOnUpdate()
+
     /**
      * Determines if the field is disabled.
      */
     override var disabled by refreshOnUpdate(false)
+
     /**
      * Determines if the range input is automatically focused.
      */
     var autofocus: Boolean? by refreshOnUpdate()
+
     /**
      * Determines if the range input is read-only.
      */
     var readonly: Boolean? by refreshOnUpdate()
+
     /**
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
+
     /**
      * The validation status of the input.
      */
@@ -221,9 +232,11 @@ open class RangeInput(
  */
 fun Container.rangeInput(
     value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
-    classes: Set<String> = setOf(), init: (RangeInput.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (RangeInput.() -> Unit)? = null
 ): RangeInput {
-    val rangeInput = RangeInput(value, min, max, step, classes).apply { init?.invoke(this) }
+    val rangeInput = RangeInput(value, min, max, step, classes ?: className.set).apply { init?.invoke(this) }
     this.add(rangeInput)
     return rangeInput
 }

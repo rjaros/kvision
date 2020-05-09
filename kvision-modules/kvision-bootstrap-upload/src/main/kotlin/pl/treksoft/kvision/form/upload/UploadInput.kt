@@ -36,6 +36,7 @@ import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.utils.getContent
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 import kotlin.reflect.KProperty1
 
 /**
@@ -369,10 +370,11 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
 fun Container.uploadInput(
     uploadUrl: String? = null,
     multiple: Boolean = false,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (UploadInput.() -> Unit)? = null
 ): UploadInput {
-    val uploadInput = UploadInput(uploadUrl, multiple, classes).apply {
+    val uploadInput = UploadInput(uploadUrl, multiple, classes ?: className.set).apply {
         init?.invoke(
             this
         )

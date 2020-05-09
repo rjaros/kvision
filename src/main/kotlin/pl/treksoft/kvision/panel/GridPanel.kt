@@ -25,6 +25,7 @@ import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.WidgetWrapper
+import pl.treksoft.kvision.utils.set
 
 /**
  * CSS grid justification options.
@@ -113,46 +114,57 @@ open class GridPanel(
      * CSS grid auto columns.
      */
     var autoColumns by refreshOnUpdate(autoColumns)
+
     /**
      * CSS grid auto rows.
      */
     var autoRows by refreshOnUpdate(autoRows)
+
     /**
      * CSS grid auto flow.
      */
     var autoFlow by refreshOnUpdate(autoFlow)
+
     /**
      * CSS grid columns template.
      */
     var templateColumns by refreshOnUpdate(templateColumns)
+
     /**
      * CSS grid rows template.
      */
     var templateRows by refreshOnUpdate(templateRows)
+
     /**
      * CSS grid areas template.
      */
     var templateAreas by refreshOnUpdate(templateAreas)
+
     /**
      * CSS grid column gap.
      */
     var columnGap by refreshOnUpdate(columnGap)
+
     /**
      * CSS grid row gap.
      */
     var rowGap by refreshOnUpdate(rowGap)
+
     /**
      * CSS grid items justification.
      */
     var justifyItems by refreshOnUpdate(justifyItems)
+
     /**
      * CSS grid items alignment.
      */
     var alignItems by refreshOnUpdate(alignItems)
+
     /**
      * CSS grid content justification.
      */
     var justifyContent by refreshOnUpdate(justifyContent)
+
     /**
      * CSS grid content alignment.
      */
@@ -267,11 +279,14 @@ fun Container.gridPanel(
     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: GridJustify? = null,
     alignItems: GridAlign? = null, justifyContent: GridJustifyContent? = null,
-    alignContent: GridAlignContent? = null, classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
+    alignContent: GridAlignContent? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (GridPanel.() -> Unit)? = null
 ): GridPanel {
     val gridPanel = GridPanel(
         autoColumns, autoRows, autoFlow, templateColumns, templateRows, templateAreas,
-        columnGap, rowGap, justifyItems, alignItems, justifyContent, alignContent, classes, init
+        columnGap, rowGap, justifyItems, alignItems, justifyContent, alignContent, classes ?: className.set, init
     )
     this.add(gridPanel)
     return gridPanel

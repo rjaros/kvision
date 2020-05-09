@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.check
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * The basic input component rendered as HTML *input type="radio"*.
@@ -42,9 +43,11 @@ open class RadioInput(
  */
 fun Container.radioInput(
     value: Boolean = false,
-    classes: Set<String> = setOf(), init: (CheckInput.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (CheckInput.() -> Unit)? = null
 ): RadioInput {
-    val checkBoxInput = RadioInput(value, classes).apply { init?.invoke(this) }
+    val checkBoxInput = RadioInput(value, classes ?: className.set).apply { init?.invoke(this) }
     this.add(checkBoxInput)
     return checkBoxInput
 }

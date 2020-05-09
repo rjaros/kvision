@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * The container with horizontal layout.
@@ -59,10 +60,11 @@ fun Container.hPanel(
     justify: FlexJustify? = null,
     alignItems: FlexAlignItems? = null,
     spacing: Int? = null,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (HPanel.() -> Unit)? = null
 ): HPanel {
-    val hpanel = HPanel(wrap, justify, alignItems, spacing, classes, init)
+    val hpanel = HPanel(wrap, justify, alignItems, spacing, classes ?: className.set, init)
     this.add(hpanel)
     return hpanel
 }

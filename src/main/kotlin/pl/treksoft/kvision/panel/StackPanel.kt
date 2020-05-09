@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.routing.routing
+import pl.treksoft.kvision.utils.set
 import kotlin.browser.window
 
 /**
@@ -130,9 +131,12 @@ open class StackPanel(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.stackPanel(
-    activateLast: Boolean = true, classes: Set<String> = setOf(), init: (StackPanel.() -> Unit)? = null
+    activateLast: Boolean = true,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (StackPanel.() -> Unit)? = null
 ): StackPanel {
-    val stackPanel = StackPanel(activateLast, classes, init)
+    val stackPanel = StackPanel(activateLast, classes ?: className.set, init)
     this.add(stackPanel)
     return stackPanel
 }

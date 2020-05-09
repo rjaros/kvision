@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * Simple component rendered as *ol*.
@@ -51,9 +52,11 @@ open class Ol(
  */
 fun Container.ol(
     elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String> = setOf(), init: (Ol.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Ol.() -> Unit)? = null
 ): Ol {
-    val ol = Ol(elements, rich, classes).apply { init?.invoke(this) }
+    val ol = Ol(elements, rich, classes ?: className.set).apply { init?.invoke(this) }
     this.add(ol)
     return ol
 }

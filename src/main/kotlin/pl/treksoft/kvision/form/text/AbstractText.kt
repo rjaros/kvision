@@ -113,7 +113,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
      */
     protected val idc = "kv_form_text_$counter"
     abstract override val input: AbstractTextInput
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

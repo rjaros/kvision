@@ -25,6 +25,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.px
+import pl.treksoft.kvision.utils.set
 
 /**
  * Button group sizes.
@@ -52,6 +53,7 @@ open class ButtonGroup(
      * Button group size.
      */
     var size by refreshOnUpdate(size)
+
     /**
      * Vertical alignment.
      */
@@ -84,9 +86,11 @@ open class ButtonGroup(
  */
 fun Container.buttonGroup(
     size: ButtonGroupSize? = null, vertical: Boolean = false,
-    classes: Set<String> = setOf(), init: (ButtonGroup.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ButtonGroup.() -> Unit)? = null
 ): ButtonGroup {
-    val group = ButtonGroup(size, vertical, classes).apply { init?.invoke(this) }
+    val group = ButtonGroup(size, vertical, classes ?: className.set).apply { init?.invoke(this) }
     this.add(group)
     return group
 }
@@ -97,9 +101,11 @@ fun Container.buttonGroup(
  * It creates button groups with size and vertical parameters of the toolbar.
  */
 fun Toolbar.buttonGroup(
-    classes: Set<String> = setOf(), init: (ButtonGroup.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ButtonGroup.() -> Unit)? = null
 ): ButtonGroup {
-    val group = ButtonGroup(this.size, this.vertical, classes).apply {
+    val group = ButtonGroup(this.size, this.vertical, classes ?: className.set).apply {
         marginRight = this@buttonGroup.spacing.px
         init?.invoke(this)
     }

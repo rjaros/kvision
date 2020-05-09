@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.utils.set
 
 /**
  * The HTML fieldset container.
@@ -74,10 +75,11 @@ open class FieldsetPanel(
  */
 fun Container.fieldsetPanel(
     legend: String? = null,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (FieldsetPanel.() -> Unit)? = null
 ): FieldsetPanel {
-    val fieldsetPanel = FieldsetPanel(legend, classes, init)
+    val fieldsetPanel = FieldsetPanel(legend, classes ?: className.set, init)
     this.add(fieldsetPanel)
     return fieldsetPanel
 }

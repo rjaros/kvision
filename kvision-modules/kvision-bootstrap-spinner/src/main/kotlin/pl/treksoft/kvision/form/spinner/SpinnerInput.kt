@@ -32,6 +32,7 @@ import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 
 /**
  * Spinner buttons layout types.
@@ -80,6 +81,7 @@ open class SpinnerInput(
      * Spinner value.
      */
     var value by refreshOnUpdate(value) { refreshState() }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -87,54 +89,67 @@ open class SpinnerInput(
      * bound to the spinner input value.
      */
     var startValue by refreshOnUpdate(value) { this.value = it; refresh() }
+
     /**
      * Minimal value.
      */
     var min by refreshOnUpdate(min) { refreshSpinner() }
+
     /**
      * Maximal value.
      */
     var max by refreshOnUpdate(max) { refreshSpinner() }
+
     /**
      * Step value.
      */
     var step by refreshOnUpdate(step) { refreshSpinner() }
+
     /**
      * Number of decimal digits value.
      */
     var decimals by refreshOnUpdate(decimals) { refreshSpinner() }
+
     /**
      * Spinner force rounding type.
      */
     var forceType by refreshOnUpdate(forceType) { refreshSpinner() }
+
     /**
      * The style of the up/down buttons.
      */
     var buttonStyle by refreshOnUpdate(buttonStyle) { refreshSpinner() }
+
     /**
      * The placeholder for the spinner input.
      */
     var placeholder: String? by refreshOnUpdate()
+
     /**
      * The name attribute of the generated HTML input element.
      */
     override var name: String? by refreshOnUpdate()
+
     /**
      * Determines if the field is disabled.
      */
     override var disabled by refreshOnUpdate(false)
+
     /**
      * Determines if the spinner is automatically focused.
      */
     var autofocus: Boolean? by refreshOnUpdate()
+
     /**
      * Determines if the spinner is read-only.
      */
     var readonly: Boolean? by refreshOnUpdate()
+
     /**
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
+
     /**
      * The validation status of the input.
      */
@@ -323,11 +338,23 @@ open class SpinnerInput(
 fun Container.spinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
-    forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null, classes: Set<String> = setOf(),
+    forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (SpinnerInput.() -> Unit)? = null
 ): SpinnerInput {
     val spinnerInput =
-        SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, buttonStyle, classes).apply {
+        SpinnerInput(
+            value,
+            min,
+            max,
+            step,
+            decimals,
+            buttonsType,
+            forceType,
+            buttonStyle,
+            classes ?: className.set
+        ).apply {
             init?.invoke(
                 this
             )

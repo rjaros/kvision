@@ -36,6 +36,7 @@ import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.toDateF
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 import kotlin.js.Date
 
 internal const val DEFAULT_STEPPING = 5
@@ -78,10 +79,12 @@ open class DateTimeInput(
             input.value = value?.toStringF(format)
             refreshState()
         }
+
     /**
      * Date/time format.
      */
     var format by refreshOnUpdate(format) { refreshDatePicker() }
+
     /**
      * The placeholder for the date/time input.
      */
@@ -90,6 +93,7 @@ open class DateTimeInput(
         set(value) {
             input.placeholder = value
         }
+
     /**
      * The name attribute of the generated HTML input element.
      */
@@ -98,6 +102,7 @@ open class DateTimeInput(
         set(value) {
             input.name = value
         }
+
     /**
      * Determines if the field is disabled.
      */
@@ -106,6 +111,7 @@ open class DateTimeInput(
         set(value) {
             input.disabled = value
         }
+
     /**
      * Determines if the text input is automatically focused.
      */
@@ -114,6 +120,7 @@ open class DateTimeInput(
         set(value) {
             input.autofocus = value
         }
+
     /**
      * Determines if the date/time input is read-only.
      */
@@ -122,6 +129,7 @@ open class DateTimeInput(
         set(value) {
             input.readonly = value
         }
+
     /**
      * The size of the input.
      */
@@ -130,6 +138,7 @@ open class DateTimeInput(
         set(value) {
             input.size = value
         }
+
     /**
      * The validation status of the input.
      */
@@ -139,46 +148,57 @@ open class DateTimeInput(
             input.validationStatus = value
             refresh()
         }
+
     /**
      * Days of the week that should be disabled. Multiple values should be comma separated.
      */
     var daysOfWeekDisabled by refreshOnUpdate(arrayOf<Int>()) { refreshDatePicker() }
+
     /**
      * Determines if *Clear* button should be visible.
      */
     var showClear by refreshOnUpdate(true) { refreshDatePicker() }
+
     /**
      * Determines if *Close* button should be visible.
      */
     var showClose by refreshOnUpdate(true) { refreshDatePicker() }
+
     /**
      * Determines if *Today* button should be visible.
      */
     var showTodayButton by refreshOnUpdate(true) { refreshDatePicker() }
+
     /**
      * The increment used to build the hour view.
      */
     var stepping by refreshOnUpdate(DEFAULT_STEPPING) { refreshDatePicker() }
+
     /**
      * Prevents date selection before this date.
      */
     var minDate: Date? by refreshOnUpdate { refreshDatePicker() }
+
     /**
      * Prevents date selection after this date.
      */
     var maxDate: Date? by refreshOnUpdate { refreshDatePicker() }
+
     /**
      * Shows date and time pickers side by side.
      */
     var sideBySide by refreshOnUpdate(false) { refreshDatePicker() }
+
     /**
      * An array of enabled dates.
      */
     var enabledDates by refreshOnUpdate(arrayOf<Date>()) { refreshDatePicker() }
+
     /**
      * An array of disabled dates.
      */
     var disabledDates by refreshOnUpdate(arrayOf<Date>()) { refreshDatePicker() }
+
     /**
      * Allow date picker for readonly component.
      */
@@ -392,10 +412,12 @@ open class DateTimeInput(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.dateTimeInput(
-    value: Date? = null, format: String = "YYYY-MM-DD HH:mm", classes: Set<String> = setOf(),
+    value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (DateTimeInput.() -> Unit)? = null
 ): DateTimeInput {
-    val dateTimeInput = DateTimeInput(value, format, classes).apply { init?.invoke(this) }
+    val dateTimeInput = DateTimeInput(value, format, classes ?: className.set).apply { init?.invoke(this) }
     this.add(dateTimeInput)
     return dateTimeInput
 }

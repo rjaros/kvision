@@ -35,6 +35,7 @@ import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 
 /**
  * Useful options for use in DropDown's *elements* parameter.
@@ -84,6 +85,7 @@ open class DropDown(
             button.text = value
         }
     private var elements by refreshOnUpdate(elements) { setChildrenFromElements() }
+
     /**
      * The icon of the dropdown button.
      */
@@ -92,6 +94,7 @@ open class DropDown(
         set(value) {
             button.icon = value
         }
+
     /**
      * The style of the dropdown button.
      */
@@ -100,6 +103,7 @@ open class DropDown(
         set(value) {
             button.style = value
         }
+
     /**
      * The size of the dropdown button.
      */
@@ -108,6 +112,7 @@ open class DropDown(
         set(value) {
             button.size = value
         }
+
     /**
      * Determines if the dropdown button takes all the space horizontally.
      */
@@ -116,6 +121,7 @@ open class DropDown(
         set(value) {
             button.block = value
         }
+
     /**
      * Determines if the dropdown is disabled.
      */
@@ -124,6 +130,7 @@ open class DropDown(
         set(value) {
             button.disabled = value
         }
+
     /**
      * The image on the dropdown button.
      */
@@ -132,10 +139,12 @@ open class DropDown(
         set(value) {
             button.image = value
         }
+
     /**
      * The direction of the dropdown.
      */
     var direction by refreshOnUpdate(direction)
+
     /**
      * Width of the dropdown button.
      */
@@ -254,7 +263,9 @@ fun Container.dropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
     disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-    classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (DropDown.() -> Unit)? = null
 ): DropDown {
     val dropDown =
         DropDown(
@@ -266,7 +277,7 @@ fun Container.dropDown(
             disabled,
             forNavbar,
             forDropDown,
-            classes
+            classes ?: className.set
         ).apply { init?.invoke(this) }
     this.add(dropDown)
     return dropDown
@@ -279,9 +290,11 @@ fun Container.dropDown(
  */
 fun DropDown.ddLink(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, classes + "dropdown-item").apply {
+    val link = Link(label, url, icon, image, null, true, (classes ?: className.set) + "dropdown-item").apply {
         init?.invoke(this)
     }
     this.add(link)
@@ -295,9 +308,11 @@ fun DropDown.ddLink(
  */
 fun ContextMenu.cmLink(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, classes + "dropdown-item").apply {
+    val link = Link(label, url, icon, image, null, true, (classes ?: className.set) + "dropdown-item").apply {
         init?.invoke(this)
     }
     this.add(link)
@@ -311,9 +326,17 @@ fun ContextMenu.cmLink(
  */
 fun DropDown.ddLinkDisabled(
     label: String, icon: String? = null, image: ResString? = null,
-    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, "javascript:void(0)", icon, image, classes + "dropdown-item" + "disabled").apply {
+    val link = Link(
+        label,
+        "javascript:void(0)",
+        icon,
+        image, null, true,
+        (classes ?: className.set) + "dropdown-item" + "disabled"
+    ).apply {
         tabindex = -1
         setAttribute("aria-disabled", "true")
         init?.invoke(this)
@@ -329,9 +352,17 @@ fun DropDown.ddLinkDisabled(
  */
 fun ContextMenu.cmLinkDisabled(
     label: String, icon: String? = null, image: ResString? = null,
-    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, "javascript:void(0)", icon, image, classes + "dropdown-item" + "disabled").apply {
+    val link = Link(
+        label,
+        "javascript:void(0)",
+        icon,
+        image, null, true,
+        (classes ?: className.set) + "dropdown-item" + "disabled"
+    ).apply {
         tabindex = -1
         setAttribute("aria-disabled", "true")
         init?.invoke(this)

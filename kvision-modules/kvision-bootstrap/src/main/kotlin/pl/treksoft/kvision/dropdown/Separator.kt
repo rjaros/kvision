@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.dropdown
 
 import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.utils.set
 
 /**
  * Menu separator component.
@@ -36,8 +37,11 @@ open class Separator(classes: Set<String> = setOf()) : Div(classes = classes + "
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun ContextMenu.separator(classes: Set<String> = setOf()): Separator {
-    val separator = Separator(classes)
+fun ContextMenu.separator(
+    classes: Set<String>? = null,
+    className: String? = null
+): Separator {
+    val separator = Separator(classes ?: className.set)
     this.add(separator)
     return separator
 }
@@ -47,8 +51,11 @@ fun ContextMenu.separator(classes: Set<String> = setOf()): Separator {
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun DropDown.separator(classes: Set<String> = setOf()): Separator {
-    val separator = Separator(classes)
+fun DropDown.separator(
+    classes: Set<String>? = null,
+    className: String? = null
+): Separator {
+    val separator = Separator(classes ?: className.set)
     this.add(separator)
     return separator
 }

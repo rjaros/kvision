@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.utils.set
 
 /**
  * Image shapes.
@@ -56,18 +57,22 @@ open class Image(
      * URL of the image.
      */
     var src by refreshOnUpdate(src)
+
     /**
      * The alternative text of the image.
      */
     var alt by refreshOnUpdate(alt)
+
     /**
      * Determines if the image is rendered as responsive.
      */
     var responsive by refreshOnUpdate(responsive)
+
     /**
      * The shape of the image.
      */
     var shape by refreshOnUpdate(shape)
+
     /**
      * Determines if the image is rendered as centered.
      */
@@ -108,9 +113,12 @@ open class Image(
  */
 fun Container.image(
     src: ResString, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
-    centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null
+    centered: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Image.() -> Unit)? = null
 ): Image {
-    val image = Image(src, alt, responsive, shape, centered, classes).apply { init?.invoke(this) }
+    val image = Image(src, alt, responsive, shape, centered, classes ?: className.set).apply { init?.invoke(this) }
     this.add(image)
     return image
 }

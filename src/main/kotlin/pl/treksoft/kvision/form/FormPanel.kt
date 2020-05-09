@@ -33,6 +33,7 @@ import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.FieldsetPanel
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.types.KFile
+import pl.treksoft.kvision.utils.set
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KClass
@@ -504,11 +505,13 @@ open class FormPanel<K : Any>(
 inline fun <reified K : Any> Container.formPanel(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     type: FormType? = null, condensed: Boolean = false,
-    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
+    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
+    classes: Set<String>? = null, className: String? = null,
     customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
     noinline init: (FormPanel<K>.() -> Unit)? = null
 ): FormPanel<K> {
-    val formPanel = create<K>(method, action, enctype, type, condensed, horizRatio, classes, customSerializers)
+    val formPanel =
+        create<K>(method, action, enctype, type, condensed, horizRatio, classes ?: className.set, customSerializers)
     init?.invoke(formPanel)
     this.add(formPanel)
     return formPanel

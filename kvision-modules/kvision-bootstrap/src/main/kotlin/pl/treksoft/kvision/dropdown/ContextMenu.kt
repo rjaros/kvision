@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.px
+import pl.treksoft.kvision.utils.set
 
 /**
  * Context menu component.
@@ -103,9 +104,11 @@ fun Widget.setContextMenu(contextMenu: ContextMenu): Widget {
  */
 fun Widget.contextMenu(
     fixedPosition: Boolean = false,
-    classes: Set<String> = setOf(), init: (ContextMenu.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ContextMenu.() -> Unit)? = null
 ): ContextMenu {
-    val contextMenu = ContextMenu(this, fixedPosition, classes).apply { init?.invoke(this) }
+    val contextMenu = ContextMenu(this, fixedPosition, classes ?: className.set).apply { init?.invoke(this) }
     this.setContextMenu(contextMenu)
     return contextMenu
 }

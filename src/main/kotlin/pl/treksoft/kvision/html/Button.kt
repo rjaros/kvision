@@ -28,6 +28,7 @@ import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.utils.set
 
 /**
  * Button styles.
@@ -88,30 +89,37 @@ open class Button(
      * Button label.
      */
     var text by refreshOnUpdate(text)
+
     /**
      * Button icon.
      */
     var icon by refreshOnUpdate(icon)
+
     /**
      * Button style.
      */
     var style by refreshOnUpdate(style)
+
     /**
      * Button types.
      */
     var type by refreshOnUpdate(type)
+
     /**
      * Determines if button is disabled.
      */
     var disabled by refreshOnUpdate(disabled)
+
     /**
      * Button image.
      */
     var image: ResString? by refreshOnUpdate()
+
     /**
      * Button size.
      */
     var size: ButtonSize? by refreshOnUpdate()
+
     /**
      * Determines if the button takes all the space horizontally.
      */
@@ -155,6 +163,7 @@ open class Button(
         }
         return this
     }
+
     /**
      * Makes the button focused.
      */
@@ -181,10 +190,11 @@ fun Container.button(
     style: ButtonStyle = ButtonStyle.PRIMARY,
     type: ButtonType = ButtonType.BUTTON,
     disabled: Boolean = false,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Button.() -> Unit)? = null
 ): Button {
-    val button = Button(text, icon, style, type, disabled, classes).apply { init?.invoke(this) }
+    val button = Button(text, icon, style, type, disabled, classes ?: className.set).apply { init?.invoke(this) }
     this.add(button)
     return button
 }

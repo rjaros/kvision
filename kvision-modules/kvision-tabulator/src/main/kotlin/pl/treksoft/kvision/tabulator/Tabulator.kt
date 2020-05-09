@@ -33,6 +33,7 @@ import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.utils.syncWithList
 import kotlin.browser.window
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
@@ -739,10 +740,11 @@ fun <T : Any> Container.tabulator(
     dataUpdateOnEdit: Boolean = true,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, classes)
+    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, classes ?: className.set)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
@@ -756,10 +758,11 @@ fun <T : Any, S : Any> Container.tabulator(
     dataFactory: (S) -> List<T>,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator.create(store, dataFactory, options, types, classes)
+    val tabulator = Tabulator.create(store, dataFactory, options, types, classes ?: className.set)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
@@ -771,10 +774,12 @@ fun <T : Any, S : Any> Container.tabulator(
 fun <T : Any> Container.tabulator(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator(dataUpdateOnEdit = false, options = options, types = types, classes = classes)
+    val tabulator =
+        Tabulator(dataUpdateOnEdit = false, options = options, types = types, classes = classes ?: className.set)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator

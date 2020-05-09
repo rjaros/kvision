@@ -31,6 +31,7 @@ import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.html.link
 import pl.treksoft.kvision.routing.routing
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.html.icon as cicon
 
 /**
@@ -273,10 +274,11 @@ fun Container.tabPanel(
     tabPosition: TabPosition = TabPosition.TOP,
     sideTabSize: SideTabSize = SideTabSize.SIZE_3,
     scrollableTabs: Boolean = false,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (TabPanel.() -> Unit)? = null
 ): TabPanel {
-    val tabPanel = TabPanel(tabPosition, sideTabSize, scrollableTabs, classes, init)
+    val tabPanel = TabPanel(tabPosition, sideTabSize, scrollableTabs, classes ?: className.set, init)
     this.add(tabPanel)
     return tabPanel
 }

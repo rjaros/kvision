@@ -27,6 +27,7 @@ import pl.treksoft.kvision.KVManagerMaps
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 
 /**
  * Maps component.
@@ -90,10 +91,11 @@ fun Container.maps(
     lng: Number,
     zoom: Number,
     showMarker: Boolean = false,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Maps.() -> Unit)? = null
 ): Maps {
-    val maps = Maps(lat, lng, zoom, showMarker, classes, init)
+    val maps = Maps(lat, lng, zoom, showMarker, classes ?: className.set, init)
     this.add(maps)
     return maps
 }

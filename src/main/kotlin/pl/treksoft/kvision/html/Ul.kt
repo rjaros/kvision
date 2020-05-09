@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * Simple component rendered as *ul*.
@@ -51,9 +52,11 @@ open class Ul(
  */
 fun Container.ul(
     elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String> = setOf(), init: (Ul.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Ul.() -> Unit)? = null
 ): Ul {
-    val ul = Ul(elements, rich, classes).apply { init?.invoke(this) }
+    val ul = Ul(elements, rich, classes ?: className.set).apply { init?.invoke(this) }
     this.add(ul)
     return ul
 }

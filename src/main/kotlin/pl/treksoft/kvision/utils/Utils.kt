@@ -200,3 +200,11 @@ fun <T> MutableList<T>.syncWithList(list: List<T>) {
         }
     }
 }
+
+/**
+ * Utility extension property to generate a set of strings to simplify the notation when using classes parameter.
+ */
+val String?.set: Set<String>
+    get() {
+        return this?.split(Regex("\\s+"))?.toSet() ?: setOf()
+    }

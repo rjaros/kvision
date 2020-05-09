@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 
 internal const val KVNULL = "#kvnull"
 
@@ -57,6 +58,7 @@ open class SimpleSelectInput(
      * Text input value.
      */
     var value by refreshOnUpdate(value) { refreshState() }
+
     /**
      * The value of the selected child option.
      *
@@ -64,26 +66,32 @@ open class SimpleSelectInput(
      * bound to the select component.
      */
     var startValue by refreshOnUpdate(value) { this.value = it; selectOption() }
+
     /**
      * The name attribute of the generated HTML input element.
      */
     override var name: String? by refreshOnUpdate()
+
     /**
      * Determines if the field is disabled.
      */
     override var disabled by refreshOnUpdate(false)
+
     /**
      * Determines if the text input is automatically focused.
      */
     var autofocus: Boolean? by refreshOnUpdate()
+
     /**
      * Determines if an empty option is automatically generated.
      */
     var emptyOption by refreshOnUpdate(emptyOption) { setChildrenFromOptions() }
+
     /**
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
+
     /**
      * The validation status of the input.
      */
@@ -208,9 +216,12 @@ open class SimpleSelectInput(
  */
 fun Container.simpleSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-    classes: Set<String> = setOf(), init: (SimpleSelectInput.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SimpleSelectInput.() -> Unit)? = null
 ): SimpleSelectInput {
-    val simpleSelectInput = SimpleSelectInput(options, value, emptyOption, classes).apply { init?.invoke(this) }
+    val simpleSelectInput =
+        SimpleSelectInput(options, value, emptyOption, classes ?: className.set).apply { init?.invoke(this) }
     this.add(simpleSelectInput)
     return simpleSelectInput
 }

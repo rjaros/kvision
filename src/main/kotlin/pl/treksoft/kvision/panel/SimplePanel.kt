@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.utils.set
 
 /**
  * Basic container class, rendered as a DIV element with all children directly within.
@@ -108,8 +109,12 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.simplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> Unit)? = null): SimplePanel {
-    val simplePanel = SimplePanel(classes, init)
+fun Container.simplePanel(
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SimplePanel.() -> Unit)? = null
+): SimplePanel {
+    val simplePanel = SimplePanel(classes ?: className.set, init)
     this.add(simplePanel)
     return simplePanel
 }

@@ -24,6 +24,7 @@ package pl.treksoft.kvision.form.text
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.utils.set
 
 /**
  * Basic textarea component.
@@ -41,10 +42,12 @@ open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = 
      * Number of columns.
      */
     var cols by refreshOnUpdate(cols)
+
     /**
      * Number of rows.
      */
     var rows by refreshOnUpdate(rows)
+
     /**
      * Determines if hard wrapping is enabled for the textarea element.
      */
@@ -77,10 +80,12 @@ open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = 
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.textAreaInput(
-    cols: Int? = null, rows: Int? = null, value: String? = null, classes: Set<String> = setOf(),
+    cols: Int? = null, rows: Int? = null, value: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (TextAreaInput.() -> Unit)? = null
 ): TextAreaInput {
-    val textAreaInput = TextAreaInput(cols, rows, value, classes).apply { init?.invoke(this) }
+    val textAreaInput = TextAreaInput(cols, rows, value, classes ?: className.set).apply { init?.invoke(this) }
     this.add(textAreaInput)
     return textAreaInput
 }

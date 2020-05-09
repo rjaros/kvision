@@ -140,7 +140,7 @@ open class Range(
         this.id = idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

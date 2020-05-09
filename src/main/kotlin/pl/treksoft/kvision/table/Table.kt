@@ -29,6 +29,7 @@ import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
 
@@ -85,14 +86,17 @@ open class Table(
      * Table headers names.
      */
     var headerNames by refreshOnUpdate(headerNames) { refreshHeaders() }
+
     /**
      * Table types.
      */
     var types by refreshOnUpdate(types)
+
     /**
      * Table caption.
      */
     var caption by refreshOnUpdate(caption)
+
     /**
      * Determines if the table is responsive.
      */
@@ -210,10 +214,13 @@ open class Table(
 fun Container.table(
     headerNames: List<String>? = null,
     types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
-    theadType: TheadType? = null, classes: Set<String> = setOf(), init: (Table.() -> Unit)? = null
+    theadType: TheadType? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Table.() -> Unit)? = null
 ): Table {
     val table =
-        Table(headerNames, types, caption, responsiveType, theadType, classes, init)
+        Table(headerNames, types, caption, responsiveType, theadType, classes ?: className.set, init)
     this.add(table)
     return table
 }

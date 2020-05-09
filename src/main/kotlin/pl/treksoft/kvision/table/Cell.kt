@@ -24,6 +24,7 @@ package pl.treksoft.kvision.table
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.utils.set
 
 /**
  * HTML table cell component.
@@ -58,9 +59,11 @@ fun Row.cell(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(), init: (Cell.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Cell.() -> Unit)? = null
 ): Cell {
-    val cell = Cell(content, rich, align, classes, init)
+    val cell = Cell(content, rich, align, classes ?: className.set, init)
     this.add(cell)
     return cell
 }
@@ -74,9 +77,11 @@ fun Row.thcell(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(), init: (HeaderCell.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (HeaderCell.() -> Unit)? = null
 ): HeaderCell {
-    val headerCell = HeaderCell(content, rich, align, Scope.ROW, classes, init)
+    val headerCell = HeaderCell(content, rich, align, Scope.ROW, classes ?: className.set, init)
     this.add(headerCell)
     return headerCell
 }

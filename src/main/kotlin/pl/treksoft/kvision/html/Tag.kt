@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 
 /**
  * HTML tags.
@@ -131,27 +132,33 @@ open class Tag(
      * Tag type.
      */
     var type by refreshOnUpdate(type)
+
     /**
      * Text content of the tag.
      */
     override var content by refreshOnUpdate(content)
+
     /**
      * Determines if [content] can contain HTML code.
      */
     override var rich by refreshOnUpdate(rich)
+
     /**
      * Text align.
      */
     var align by refreshOnUpdate(align)
+
     /**
      * @suppress
      * Internal property
      */
     override var templateDataObj: Any? = null
+
     /**
      * Handlebars template.
      */
     override var template: ((Any?) -> String)? by refreshOnUpdate()
+
     /**
      * Handlebars templates for i18n.
      */
@@ -207,10 +214,12 @@ open class Tag(
  */
 fun Container.tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-    classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
+    attributes: Map<String, String> = mapOf(),
     init: (Tag.() -> Unit)? = null
 ): Tag {
-    val tag = Tag(type, content, rich, align, classes, attributes, init)
+    val tag = Tag(type, content, rich, align, classes ?: className.set, attributes, init)
     this.add(tag)
     return tag
 }

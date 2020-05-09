@@ -24,6 +24,7 @@ package pl.treksoft.kvision.navbar
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.utils.set
 
 /**
  * The Bootstrap Nav form container.
@@ -62,9 +63,12 @@ open class NavForm(rightAlign: Boolean = false, classes: Set<String> = setOf(), 
  * It takes the same parameters as the constructor of the built component.
  */
 fun Navbar.navForm(
-    rightAlign: Boolean = false, classes: Set<String> = setOf(), init: (NavForm.() -> Unit)? = null
+    rightAlign: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (NavForm.() -> Unit)? = null
 ): NavForm {
-    val navForm = NavForm(rightAlign, classes).apply { init?.invoke(this) }
+    val navForm = NavForm(rightAlign, classes ?: className.set).apply { init?.invoke(this) }
     this.add(navForm)
     return navForm
 }

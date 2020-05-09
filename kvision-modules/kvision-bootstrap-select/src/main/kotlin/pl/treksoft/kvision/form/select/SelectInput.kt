@@ -35,6 +35,7 @@ import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.asString
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 
 /**
  * Select width types. See [Bootstrap Select width](http://silviomoreto.github.io/bootstrap-select/examples/#width).
@@ -77,18 +78,22 @@ open class SelectInput(
      * A list of options (value to label pairs) for the select control.
      */
     var options by refreshOnUpdate(options) { setChildrenFromOptions() }
+
     /**
      * A value of the selected option.
      */
     var value by refreshOnUpdate(value) { refreshState() }
+
     /**
      * The name attribute of the generated HTML select element.
      */
     override var name: String? by refreshOnUpdate()
+
     /**
      * Determines if multiple value selection is allowed.
      */
     var multiple by refreshOnUpdate(multiple)
+
     /**
      * Additional options for remote (AJAX) data source.
      */
@@ -98,50 +103,62 @@ open class SelectInput(
         }
         refresh()
     }
+
     /**
      * Maximal number of selected options.
      */
     var maxOptions: Int? by refreshOnUpdate()
+
     /**
      * Determines if live search is available.
      */
     var liveSearch by refreshOnUpdate(false)
+
     /**
      * The placeholder for the select control.
      */
     var placeholder: String? by refreshOnUpdate()
+
     /**
      * The style of the select control.
      */
     var style: ButtonStyle? by refreshOnUpdate()
+
     /**
      * The width of the select control.
      */
     var selectWidth: CssSize? by refreshOnUpdate()
+
     /**
      * The width type of the select control.
      */
     var selectWidthType: SelectWidthType? by refreshOnUpdate()
+
     /**
      * The dropdown align of the select control.
      */
     var dropdownAlign by refreshOnUpdate(SelectDropdownAlign.LEFT)
+
     /**
      * Determines if an empty option is automatically generated.
      */
     var emptyOption by refreshOnUpdate(false) { setChildrenFromOptions() }
+
     /**
      * Determines if the field is disabled.
      */
     override var disabled by refreshOnUpdate(false)
+
     /**
      * Determines if the select is automatically focused.
      */
     var autofocus: Boolean? by refreshOnUpdate()
+
     /**
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
+
     /**
      * The validation status of the input.
      */
@@ -389,9 +406,12 @@ open class SelectInput(
 fun Container.selectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-    classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SelectInput.() -> Unit)? = null
 ): SelectInput {
-    val selectInput = SelectInput(options, value, multiple, ajaxOptions, classes).apply { init?.invoke(this) }
+    val selectInput =
+        SelectInput(options, value, multiple, ajaxOptions, classes ?: className.set).apply { init?.invoke(this) }
     this.add(selectInput)
     return selectInput
 }

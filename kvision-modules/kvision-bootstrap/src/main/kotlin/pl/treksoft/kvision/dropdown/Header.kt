@@ -23,6 +23,7 @@ package pl.treksoft.kvision.dropdown
 
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.utils.set
 
 /**
  * Menu header component.
@@ -39,8 +40,12 @@ open class Header(content: String? = null, classes: Set<String> = setOf()) :
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun ContextMenu.header(content: String? = null, classes: Set<String> = setOf()): Header {
-    val header = Header(content, classes)
+fun ContextMenu.header(
+    content: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null
+): Header {
+    val header = Header(content, classes ?: className.set)
     this.add(header)
     return header
 }
@@ -50,8 +55,12 @@ fun ContextMenu.header(content: String? = null, classes: Set<String> = setOf()):
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun DropDown.header(content: String? = null, classes: Set<String> = setOf()): Header {
-    val header = Header(content, classes)
+fun DropDown.header(
+    content: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null
+): Header {
+    val header = Header(content, classes ?: className.set)
     this.add(header)
     return header
 }

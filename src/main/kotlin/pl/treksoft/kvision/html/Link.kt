@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 
 /**
  * Link component.
@@ -36,32 +37,52 @@ import pl.treksoft.kvision.panel.SimplePanel
  * @param url link URL address
  * @param icon link icon
  * @param image link image
+ * @param separator a separator between label and icon/image (defaults to space)
+ * @param labelFirst determines if the label is put before children elements (defaults to true)
  * @param classes a set of CSS class names
  */
 open class Link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
+    separator: String? = null, labelFirst: Boolean = true,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
     /**
      * Link label.
      */
     var label by refreshOnUpdate(label)
+
     /**
      * Link URL address.
      */
     var url by refreshOnUpdate(url)
+
     /**
      * Link icon.
      */
     var icon by refreshOnUpdate(icon)
+
     /**
      * Link image.
      */
     var image by refreshOnUpdate(image)
 
+    /**
+     * A separator between label and icon/image.
+     */
+    var separator by refreshOnUpdate(separator)
+
+    /**
+     * Determines if the label is put before children elements.
+     */
+    var labelFirst by refreshOnUpdate(labelFirst)
+
     override fun render(): VNode {
-        val t = createLabelWithIcon(label, icon, image)
-        return render("a", t + childrenVNodes())
+        val t = createLabelWithIcon(label, icon, image, separator)
+        return if (labelFirst) {
+            render("a", t + childrenVNodes())
+        } else {
+            render("a", childrenVNodes() + t)
+        }
     }
 
     override fun getSnAttrs(): List<StringPair> {
@@ -92,9 +113,13 @@ open class Link(
  */
 fun Container.link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
+    separator: String? = null, labelFirst: Boolean = true,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, classes).apply { init?.invoke(this) }
+    val link =
+        Link(label, url, icon, image, separator, labelFirst, classes ?: className.set).apply { init?.invoke(this) }
     this.add(link)
     return link
 }

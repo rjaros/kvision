@@ -26,6 +26,7 @@ import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
 
 enum class ShowHintOnFocus {
     NO,
@@ -183,14 +184,17 @@ open class TypeaheadInput(
 fun Container.typeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf(),
+    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (TypeaheadInput.() -> Unit)? = null
 ): TypeaheadInput {
-    val typeaheadInput = TypeaheadInput(options, taAjaxOptions, items, minLength, delay, type, value, classes).apply {
-        init?.invoke(
-            this
-        )
-    }
+    val typeaheadInput =
+        TypeaheadInput(options, taAjaxOptions, items, minLength, delay, type, value, classes ?: className.set).apply {
+            init?.invoke(
+                this
+            )
+        }
     this.add(typeaheadInput)
     return typeaheadInput
 }

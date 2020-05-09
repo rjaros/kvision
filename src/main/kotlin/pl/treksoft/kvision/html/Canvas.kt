@@ -27,6 +27,7 @@ import org.w3c.dom.HTMLCanvasElement
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.utils.set
 
 /**
  * Canvas component.
@@ -43,6 +44,7 @@ open class Canvas(
      * The width of the canvas.
      */
     var canvasWidth by refreshOnUpdate(canvasWidth)
+
     /**
      * The height of the canvas.
      */
@@ -84,11 +86,13 @@ open class Canvas(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.canvas(
-    canvasWidth: Int? = null, canvasHeight: Int? = null, classes: Set<String> = setOf(),
+    canvasWidth: Int? = null, canvasHeight: Int? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Canvas.() -> Unit)? = null
 ): Canvas {
     val canvas =
-        Canvas(canvasWidth, canvasHeight, classes).apply { init?.invoke(this) }
+        Canvas(canvasWidth, canvasHeight, classes ?: className.set).apply { init?.invoke(this) }
     this.add(canvas)
     return canvas
 }

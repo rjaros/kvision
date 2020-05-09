@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.utils.set
 import kotlin.browser.document
 
 /**
@@ -122,9 +123,12 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.richTextInput(
-    value: String? = null, classes: Set<String> = setOf(), init: (RichTextInput.() -> Unit)? = null
+    value: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (RichTextInput.() -> Unit)? = null
 ): RichTextInput {
-    val richTextInput = RichTextInput(value, classes).apply { init?.invoke(this) }
+    val richTextInput = RichTextInput(value, classes ?: className.set).apply { init?.invoke(this) }
     this.add(richTextInput)
     return richTextInput
 }

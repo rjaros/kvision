@@ -24,6 +24,7 @@ package pl.treksoft.kvision.table
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.utils.set
 
 enum class Scope(internal val scope: String) {
     ROW("row"),
@@ -69,9 +70,11 @@ fun Row.headerCell(
     rich: Boolean = false,
     align: Align? = null,
     scope: Scope? = null,
-    classes: Set<String> = setOf(), init: (HeaderCell.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (HeaderCell.() -> Unit)? = null
 ): HeaderCell {
-    val cell = HeaderCell(content, rich, align, scope, classes, init)
+    val cell = HeaderCell(content, rich, align, scope, classes ?: className.set, init)
     this.add(cell)
     return cell
 }

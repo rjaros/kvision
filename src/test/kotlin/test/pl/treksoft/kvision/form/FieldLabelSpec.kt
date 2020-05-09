@@ -33,7 +33,7 @@ class FieldLabelSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val fl = FieldLabel("input", "Label")
+            val fl = FieldLabel("input", "Label", classes = setOf("control-label"))
             root.add(fl)
             val element = document.getElementById("test")
             assertEqualsHtml(

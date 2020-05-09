@@ -39,6 +39,7 @@ import pl.treksoft.kvision.modal.CloseIcon
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.px
+import pl.treksoft.kvision.utils.set
 
 internal const val DEFAULT_Z_INDEX = 900
 internal const val WINDOW_HEADER_HEIGHT = 40
@@ -84,6 +85,7 @@ open class Window(
             captionTag.content = value
             checkHeaderVisibility()
         }
+
     /**
      * Window content width.
      */
@@ -92,6 +94,7 @@ open class Window(
         set(value) {
             width = value
         }
+
     /**
      * Window content height.
      */
@@ -100,6 +103,7 @@ open class Window(
         set(value) {
             content.height = value
         }
+
     /**
      * Window content height.
      */
@@ -108,14 +112,17 @@ open class Window(
         set(value) {
             content.overflow = value
         }
+
     /**
      * Determines if the window is resizable.
      */
     var isResizable by refreshOnUpdate(isResizable) { checkIsResizable() }
+
     /**
      * Determines if the window is draggable.
      */
     var isDraggable by refreshOnUpdate(isDraggable) { checkIsDraggable(); checkHeaderVisibility() }
+
     /**
      * Determines if Close button is visible.
      */
@@ -125,6 +132,7 @@ open class Window(
             closeIcon.visible = value
             checkHeaderVisibility()
         }
+
     /**
      * Determines if Maximize button is visible.
      */
@@ -134,6 +142,7 @@ open class Window(
             maximizeIcon.visible = value
             checkHeaderVisibility()
         }
+
     /**
      * Determines if Maximize button is visible.
      */
@@ -143,6 +152,7 @@ open class Window(
             minimizeIcon.visible = value
             checkHeaderVisibility()
         }
+
     /**
      * Window icon.
      */
@@ -426,7 +436,8 @@ fun Container.window(
     maximizeButton: Boolean = false,
     minimizeButton: Boolean = false,
     icon: String? = null,
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (Window.() -> Unit)? = null
 ): Window {
     val window =
@@ -440,7 +451,7 @@ fun Container.window(
             maximizeButton,
             minimizeButton,
             icon,
-            classes,
+            classes ?: className.set,
             init
         )
     this.add(window)

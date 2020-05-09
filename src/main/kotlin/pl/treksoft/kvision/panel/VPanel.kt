@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.panel
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.utils.set
 
 /**
  * The container with vertical layout.
@@ -55,9 +56,11 @@ open class VPanel(
  */
 fun Container.vPanel(
     justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
-    classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (VPanel.() -> Unit)? = null
 ): VPanel {
-    val vpanel = VPanel(justify, alignItems, spacing, classes, init)
+    val vpanel = VPanel(justify, alignItems, spacing, classes ?: className.set, init)
     this.add(vpanel)
     return vpanel
 }

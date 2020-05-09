@@ -25,6 +25,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.utils.set
 
 /**
  * Helper class for HTML label element.
@@ -37,7 +38,7 @@ import pl.treksoft.kvision.html.Tag
  */
 open class FieldLabel(
     internal val forId: String, content: String? = null, rich: Boolean = false,
-    classes: Set<String> = setOf("control-label")
+    classes: Set<String> = setOf()
 ) : Tag(
     TAG.LABEL,
     content, rich, classes = classes
@@ -55,9 +56,11 @@ open class FieldLabel(
  */
 fun Container.fieldLabel(
     forId: String, content: String? = null, rich: Boolean = false,
-    classes: Set<String> = setOf("control-label"), init: (FieldLabel.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (FieldLabel.() -> Unit)? = null
 ): FieldLabel {
-    val fieldLabel = FieldLabel(forId, content, rich, classes).apply { init?.invoke(this) }
+    val fieldLabel = FieldLabel(forId, content, rich, classes ?: className.set).apply { init?.invoke(this) }
     this.add(fieldLabel)
     return fieldLabel
 }

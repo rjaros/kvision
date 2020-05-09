@@ -27,6 +27,7 @@ import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.utils.set
 
 /**
  * Bootstrap grid sizes.
@@ -175,9 +176,11 @@ open class ResponsiveGridPanel(
 fun Container.responsiveGridPanel(
     gridSize: GridSize = GridSize.MD,
     rows: Int = 0, cols: Int = 0, align: Align? = null,
-    classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ResponsiveGridPanel.() -> Unit)? = null
 ): ResponsiveGridPanel {
-    val responsiveGridPanel = ResponsiveGridPanel(gridSize, rows, cols, align, classes, init)
+    val responsiveGridPanel = ResponsiveGridPanel(gridSize, rows, cols, align, classes ?: className.set, init)
     this.add(responsiveGridPanel)
     return responsiveGridPanel
 }

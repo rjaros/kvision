@@ -30,6 +30,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.JsonRpcRequest
 import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.utils.JSON
+import pl.treksoft.kvision.utils.set
 import kotlin.browser.window
 
 /**
@@ -86,12 +87,14 @@ fun <T : Any> Container.typeaheadRemoteInput(
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf(),
+    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (TypeaheadRemoteInput<T>.() -> Unit)? = null
 ): TypeaheadRemoteInput<T> {
     val typeaheadRemoteInput =
         TypeaheadRemoteInput(
-            serviceManager, function, stateFunction, items, minLength, delay, type, value, classes
+            serviceManager, function, stateFunction, items, minLength, delay, type, value, classes ?: className.set
         ).apply {
             init?.invoke(this)
         }

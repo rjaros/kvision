@@ -24,6 +24,7 @@ package pl.treksoft.kvision.form.select
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 
 /**
  * The helper container for adding option groups to [Select].
@@ -46,14 +47,17 @@ open class SelectOptGroup(
      * A label for the group.
      */
     var label by refreshOnUpdate(label)
+
     /**
      * A list of options (label to value pairs) for the group.
      */
     var options by refreshOnUpdate(options) { setChildrenFromOptions() }
+
     /**
      * Maximal number of selected options in the group.
      */
     var maxOptions by refreshOnUpdate(maxOptions)
+
     /**
      * Determines if the group is disabled.
      */
@@ -97,10 +101,13 @@ open class SelectOptGroup(
  */
 fun Select.selectOptGroup(
     label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
-    disabled: Boolean = false, classes: Set<String> = setOf(), init: (SelectOptGroup.() -> Unit)? = null
+    disabled: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SelectOptGroup.() -> Unit)? = null
 ): SelectOptGroup {
     val selectOptGroup =
-        SelectOptGroup(label, options, maxOptions, disabled, classes).apply { init?.invoke(this) }
+        SelectOptGroup(label, options, maxOptions, disabled, classes ?: className.set).apply { init?.invoke(this) }
     this.add(selectOptGroup)
     return selectOptGroup
 }
@@ -112,10 +119,13 @@ fun Select.selectOptGroup(
  */
 fun SelectInput.selectOptGroup(
     label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
-    disabled: Boolean = false, classes: Set<String> = setOf(), init: (SelectOptGroup.() -> Unit)? = null
+    disabled: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SelectOptGroup.() -> Unit)? = null
 ): SelectOptGroup {
     val selectOptGroup =
-        SelectOptGroup(label, options, maxOptions, disabled, classes).apply { init?.invoke(this) }
+        SelectOptGroup(label, options, maxOptions, disabled, classes ?: className.set).apply { init?.invoke(this) }
     this.add(selectOptGroup)
     return selectOptGroup
 }

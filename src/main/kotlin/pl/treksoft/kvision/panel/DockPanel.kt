@@ -24,6 +24,7 @@ package pl.treksoft.kvision.panel
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.utils.perc
+import pl.treksoft.kvision.utils.set
 
 /**
  * Dock layout directions.
@@ -50,21 +51,25 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * Internal property.
      */
     protected var leftComponent: Component? = null
+
     /**
      * @suppress
      * Internal property.
      */
     protected var centerComponent: Component? = null
+
     /**
      * @suppress
      * Internal property.
      */
     protected var rightComponent: Component? = null
+
     /**
      * @suppress
      * Internal property.
      */
     protected var upComponent: Component? = null
+
     /**
      * @suppress
      * Internal property.
@@ -83,6 +88,7 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
         @Suppress("MagicNumber")
         height = 100.perc
     }
+
     /**
      * @suppress
      * Internal property.
@@ -204,8 +210,12 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.dockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit)? = null): DockPanel {
-    val dockPanel = DockPanel(classes, init)
+fun Container.dockPanel(
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (DockPanel.() -> Unit)? = null
+): DockPanel {
+    val dockPanel = DockPanel(classes ?: className.set, init)
     this.add(dockPanel)
     return dockPanel
 }

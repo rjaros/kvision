@@ -23,6 +23,7 @@ package pl.treksoft.kvision.toolbar
 
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.utils.set
 
 /**
  * The Bootstrap toolbar.
@@ -53,9 +54,11 @@ open class Toolbar(
  */
 fun Container.toolbar(
     size: ButtonGroupSize? = null, spacing: Int = 2, vertical: Boolean = false,
-    classes: Set<String> = setOf(), init: (Toolbar.() -> Unit)? = null
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Toolbar.() -> Unit)? = null
 ): Toolbar {
-    val toolbar = Toolbar(size, spacing, vertical, classes).apply { init?.invoke(this) }
+    val toolbar = Toolbar(size, spacing, vertical, classes ?: className.set).apply { init?.invoke(this) }
     this.add(toolbar)
     return toolbar
 }

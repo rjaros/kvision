@@ -34,6 +34,7 @@ import pl.treksoft.kvision.remote.RemoteFilter
 import pl.treksoft.kvision.remote.RemoteSorter
 import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.utils.JSON
+import pl.treksoft.kvision.utils.set
 import kotlin.browser.window
 
 /**
@@ -114,10 +115,12 @@ fun <T : Any, E : Any> Container.tabulatorRemote(
     stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
+    classes: Set<String>? = null,
+    className: String? = null,
     init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
-    val tabulatorRemote = TabulatorRemote(serviceManager, function, stateFunction, options, types, classes)
+    val tabulatorRemote =
+        TabulatorRemote(serviceManager, function, stateFunction, options, types, classes ?: className.set)
     init?.invoke(tabulatorRemote)
     this.add(tabulatorRemote)
     return tabulatorRemote
