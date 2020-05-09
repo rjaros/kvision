@@ -30,7 +30,7 @@ import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class ListSpec : DomSpec {
+class ListTagSpec : DomSpec {
 
     @Test
     fun renderElements() {
