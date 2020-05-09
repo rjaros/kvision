@@ -61,7 +61,7 @@ suspend fun <K : Any> Form<K>.getDataWithFileContent(): K {
             value.getValue()
         }
     })
-    return this.modelFactory(map.withDefault { null })
+    return this.modelFactory?.invoke(map.withDefault { null }) ?: throw IllegalStateException("Serializer not defined")
 }
 
 /**

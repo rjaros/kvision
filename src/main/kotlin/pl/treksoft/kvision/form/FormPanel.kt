@@ -102,13 +102,14 @@ enum class FormTarget(internal val target: String) {
  * @param horizRatio  horizontal form layout ratio
  * @param classes set of CSS class names
  * @param serializer a serializer for model type
+ * @param customSerializers a map of custom serializers for model type
  */
 @Suppress("TooManyFunctions")
 open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
-    serializer: KSerializer<K>, customSerializers: Map<KClass<*>, KSerializer<*>>? = null
+    serializer: KSerializer<K>? = null, customSerializers: Map<KClass<*>, KSerializer<*>>? = null
 ) : SimplePanel(classes) {
 
     /**
@@ -512,6 +513,33 @@ inline fun <reified K : Any> Container.formPanel(
 ): FormPanel<K> {
     val formPanel =
         create<K>(method, action, enctype, type, condensed, horizRatio, classes ?: className.set, customSerializers)
+    init?.invoke(formPanel)
+    this.add(formPanel)
+    return formPanel
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * Simplified version of formPanel container without data model support.
+ */
+fun Container.form(
+    method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
+    type: FormType? = null, condensed: Boolean = false,
+    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
+    classes: Set<String>? = null, className: String? = null,
+    init: (FormPanel<Any>.() -> Unit)? = null
+): FormPanel<Any> {
+    val formPanel =
+        FormPanel<Any>(
+            method,
+            action,
+            enctype,
+            type,
+            condensed,
+            horizRatio,
+            classes ?: className.set
+        )
     init?.invoke(formPanel)
     this.add(formPanel)
     return formPanel

@@ -55,42 +55,45 @@ internal data class FieldParams<in F : FormControl>(
  * @param K model class type
  * @param panel optional instance of [FormPanel]
  * @param serializer a serializer for model type
+ * @param customSerializers a map of custom serializers for model type
  */
 @Suppress("TooManyFunctions")
 class Form<K : Any>(
     private val panel: FormPanel<K>? = null,
-    private val serializer: KSerializer<K>,
+    private val serializer: KSerializer<K>? = null,
     private val customSerializers: Map<KClass<*>, KSerializer<*>>? = null
 ) {
 
-    val modelFactory: (Map<String, Any?>) -> K
+    val modelFactory: ((Map<String, Any?>) -> K)?
     val fields: MutableMap<String, FormControl> = mutableMapOf()
     internal val fieldsParams: MutableMap<String, Any> = mutableMapOf()
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
 
     init {
-        modelFactory = {
-            val json = js("{}")
-            it.forEach { (key, value) ->
-                val v = when (value) {
-                    is Date -> {
-                        value.toStringF()
+        modelFactory = serializer?.let {
+            {
+                val json = js("{}")
+                it.forEach { (key, value) ->
+                    val v = when (value) {
+                        is Date -> {
+                            value.toStringF()
+                        }
+                        is List<*> -> {
+                            @Suppress("UNCHECKED_CAST")
+                            ((value as? List<KFile>)?.toObj(KFile.serializer().list))
+                        }
+                        else -> value
                     }
-                    is List<*> -> {
-                        @Suppress("UNCHECKED_CAST")
-                        ((value as? List<KFile>)?.toObj(KFile.serializer().list))
-                    }
-                    else -> value
+                    json[key] = v
                 }
-                json[key] = v
+                val serializersModule = if (customSerializers == null) {
+                    serializersModuleOf(Date::class, DateSerializer)
+                } else {
+                    serializersModuleOf(customSerializers + (Date::class to DateSerializer))
+                }
+                DynamicObjectParser(serializersModule).parse(json, serializer)
             }
-            val serializersModule = if (customSerializers == null) {
-                serializersModuleOf(Date::class, DateSerializer)
-            } else {
-                serializersModuleOf(customSerializers + (Date::class to DateSerializer))
-            }
-            DynamicObjectParser(serializersModule).parse(json, serializer)
         }
     }
 
@@ -274,7 +277,7 @@ class Form<K : Any>(
      */
     fun getData(): K {
         val map = fields.entries.associateBy({ it.key }, { it.value.getValue() })
-        return modelFactory(map.withDefault { null })
+        return modelFactory?.invoke(map.withDefault { null }) ?: throw IllegalStateException("Serializer not defined")
     }
 
     /**
@@ -282,17 +285,21 @@ class Form<K : Any>(
      * @return data model as JSON
      */
     fun getDataJson(): Json {
-        val serializersModule = if (customSerializers == null) {
-            serializersModuleOf(Date::class, DateSerializer)
-        } else {
-            serializersModuleOf(customSerializers + (Date::class to DateSerializer))
-        }
-        return NativeJSON.parse(
-            kotlinx.serialization.json.Json(context = serializersModule).stringify(
-                serializer,
-                getData()
+        return if (serializer != null) {
+            val serializersModule = if (customSerializers == null) {
+                serializersModuleOf(Date::class, DateSerializer)
+            } else {
+                serializersModuleOf(customSerializers + (Date::class to DateSerializer))
+            }
+            NativeJSON.parse(
+                kotlinx.serialization.json.Json(context = serializersModule).stringify(
+                    serializer,
+                    getData()
+                )
             )
-        )
+        } else {
+            NativeJSON.parse("{}")
+        }
     }
 
     /**
