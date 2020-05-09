@@ -31,7 +31,7 @@ import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.types.DateSerializer
-import pl.treksoft.kvision.utils.JSON.toObj
+import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
 import kotlin.js.Date
 import kotlin.js.Promise
@@ -131,7 +131,7 @@ open class RestClient {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
-        return remoteCall(url, data.toObj(serializer), method, contentType, beforeSend)
+        return remoteCall(url, JSON.plain.stringify(serializer, data), method, contentType, beforeSend)
     }
 
 
@@ -157,7 +157,13 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
-        return remoteCall(url, data.toObj(serializer), method, contentType, beforeSend).then { result: dynamic ->
+        return remoteCall(
+            url,
+            JSON.plain.stringify(serializer, data),
+            method,
+            contentType,
+            beforeSend
+        ).then { result: dynamic ->
             val transformed = if (transform != null) {
                 transform(result)
             } else {
@@ -413,7 +419,7 @@ open class RestClient {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<Response<dynamic>> {
-        return remoteRequest(url, data.toObj(serializer), method, contentType, beforeSend)
+        return remoteRequest(url, JSON.plain.stringify(serializer, data), method, contentType, beforeSend)
     }
 
 
@@ -441,7 +447,7 @@ open class RestClient {
     ): Promise<Response<T>> {
         return remoteRequest(
             url,
-            data.toObj(serializer),
+            JSON.plain.stringify(serializer, data),
             method,
             contentType,
             beforeSend
