@@ -21,9 +21,9 @@
  */
 package test.pl.treksoft.kvision.form.select
 
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.select.SelectWidthType
 import pl.treksoft.kvision.form.select.SelectInput
+import pl.treksoft.kvision.form.select.SelectWidthType
+import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
@@ -44,7 +44,7 @@ class SelectInputSpec : DomSpec {
             root.add(selectInput)
             val element = document.getElementById("test")
             assertTrue(
-                true == element?.innerHTML?.startsWith("<div class=\"dropdown bootstrap-select show-tick fit-width\"><select class=\"selectpicker\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\" tabindex=\"-98\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select>"),
+                true == element?.innerHTML?.startsWith("<div class=\"dropdown bootstrap-select show-tick fit-width\"><select class=\"selectpicker\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select>"),
                 "Should render correct select input"
             )
         }
