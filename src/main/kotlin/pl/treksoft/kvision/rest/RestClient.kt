@@ -32,6 +32,7 @@ import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.utils.JSON
+import pl.treksoft.kvision.utils.JSON.toObj
 import pl.treksoft.kvision.utils.obj
 import kotlin.js.Date
 import kotlin.js.Promise
@@ -131,7 +132,8 @@ open class RestClient {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
-        return remoteCall(url, JSON.plain.stringify(serializer, data), method, contentType, beforeSend)
+        val data = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        return remoteCall(url, data, method, contentType, beforeSend)
     }
 
 
@@ -157,9 +159,10 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
+        val data = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
         return remoteCall(
             url,
-            JSON.plain.stringify(serializer, data),
+            data,
             method,
             contentType,
             beforeSend
@@ -419,7 +422,8 @@ open class RestClient {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<Response<dynamic>> {
-        return remoteRequest(url, JSON.plain.stringify(serializer, data), method, contentType, beforeSend)
+        val data = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        return remoteRequest(url, data, method, contentType, beforeSend)
     }
 
 
@@ -445,9 +449,10 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
+        val data = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
         return remoteRequest(
             url,
-            JSON.plain.stringify(serializer, data),
+            data,
             method,
             contentType,
             beforeSend
