@@ -49,7 +49,7 @@ class KVisionGradleSubplugin : KotlinGradleSubplugin<AbstractCompile> {
     override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
         groupId = "pl.treksoft",
         artifactId = "kvision-compiler-plugin",
-        version = "3.7.3"
+        version = "3.8.0"
     )
 
 }
