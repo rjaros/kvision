@@ -139,6 +139,7 @@ tasks {
             "kvision-maps",
             "kvision-moment",
             "kvision-pace",
+            "kvision-react",
             "kvision-redux",
             "kvision-redux-kotlin",
             "kvision-richtext",

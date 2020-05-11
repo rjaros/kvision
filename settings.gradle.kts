@@ -43,6 +43,7 @@ include(
     "kvision-modules:kvision-maps",
     "kvision-modules:kvision-moment",
     "kvision-modules:kvision-pace",
+    "kvision-modules:kvision-react",
     "kvision-modules:kvision-redux",
     "kvision-modules:kvision-redux-kotlin",
     "kvision-modules:kvision-richtext",
