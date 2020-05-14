@@ -381,7 +381,7 @@ internal class DropDownButton(
     val forDropDown: Boolean = false,
     classes: Set<String> = setOf()
 ) :
-    Button(text, icon, style, ButtonType.BUTTON, disabled, classes) {
+    Button(text, icon, style, ButtonType.BUTTON, disabled, null, true, classes) {
 
     init {
         this.id = id

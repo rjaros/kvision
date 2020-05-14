@@ -27,7 +27,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -78,12 +78,15 @@ enum class ButtonType(internal val buttonType: String) {
  * @param icon button icon
  * @param style button style
  * @param disabled button state
+ * @param separator a separator between label and icon/image (defaults to space)
+ * @param labelFirst determines if the label is put before children elements (defaults to true)
  * @param classes a set of CSS class names
  */
 open class Button(
     text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.PRIMARY, type: ButtonType = ButtonType.BUTTON,
-    disabled: Boolean = false, classes: Set<String> = setOf()
-) : Widget(classes) {
+    disabled: Boolean = false, separator: String? = null, labelFirst: Boolean = true,
+    classes: Set<String> = setOf()
+) : SimplePanel(classes) {
 
     /**
      * Button label.
@@ -125,9 +128,23 @@ open class Button(
      */
     var block by refreshOnUpdate(false)
 
+    /**
+     * A separator between label and icon/image.
+     */
+    var separator by refreshOnUpdate(separator)
+
+    /**
+     * Determines if the label is put before children elements.
+     */
+    var labelFirst by refreshOnUpdate(labelFirst)
+
     override fun render(): VNode {
-        val t = createLabelWithIcon(text, icon, image)
-        return render("button", t)
+        val t = createLabelWithIcon(text, icon, image, separator)
+        return if (labelFirst) {
+            render("button", t + childrenVNodes())
+        } else {
+            render("button", childrenVNodes() + t)
+        }
     }
 
     override fun getSnClass(): List<StringBoolPair> {
@@ -190,11 +207,15 @@ fun Container.button(
     style: ButtonStyle = ButtonStyle.PRIMARY,
     type: ButtonType = ButtonType.BUTTON,
     disabled: Boolean = false,
+    separator: String? = null,
+    labelFirst: Boolean = true,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Button.() -> Unit)? = null
 ): Button {
-    val button = Button(text, icon, style, type, disabled, classes ?: className.set).apply { init?.invoke(this) }
+    val button = Button(text, icon, style, type, disabled, separator, labelFirst, classes ?: className.set).apply {
+        init?.invoke(this)
+    }
     this.add(button)
     return button
 }
