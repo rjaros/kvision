@@ -50,7 +50,7 @@ enum class ImageShape(internal val className: String) {
  * @param classes a set of CSS class names
  */
 open class Image(
-    src: ResString, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
+    src: ResString?, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
     centered: Boolean = false, classes: Set<String> = setOf()
 ) : Widget(classes) {
     /**
@@ -84,7 +84,9 @@ open class Image(
 
     override fun getSnAttrs(): List<StringPair> {
         val pr = super.getSnAttrs().toMutableList()
-        pr.add("src" to src)
+        src?.let {
+            pr.add("src" to it)
+        }
         alt?.let {
             pr.add("alt" to translate(it))
         }
@@ -112,7 +114,7 @@ open class Image(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.image(
-    src: ResString, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
+    src: ResString?, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
     centered: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
