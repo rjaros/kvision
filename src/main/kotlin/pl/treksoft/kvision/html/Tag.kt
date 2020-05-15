@@ -55,6 +55,7 @@ enum class TAG(internal val tagName: String) {
     DIV("div"),
     LABEL("label"),
     A("a"),
+    IMG("img"),
 
     I("i"),
     B("b"),
