@@ -132,8 +132,8 @@ open class RestClient {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
-        val data = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
-        return remoteCall(url, data, method, contentType, beforeSend)
+        val dataSer = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        return remoteCall(url, dataSer, method, contentType, beforeSend)
     }
 
 
@@ -159,10 +159,10 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
-        val data = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        val dataSer = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
         return remoteCall(
             url,
-            data,
+            dataSer,
             method,
             contentType,
             beforeSend
@@ -422,8 +422,8 @@ open class RestClient {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<Response<dynamic>> {
-        val data = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
-        return remoteRequest(url, data, method, contentType, beforeSend)
+        val dataSer = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        return remoteRequest(url, dataSer, method, contentType, beforeSend)
     }
 
 
@@ -449,10 +449,10 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
-        val data = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        val dataSer = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
         return remoteRequest(
             url,
-            data,
+            dataSer,
             method,
             contentType,
             beforeSend
