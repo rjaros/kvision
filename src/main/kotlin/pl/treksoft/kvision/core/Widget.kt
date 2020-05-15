@@ -27,6 +27,7 @@ import com.github.snabbdom.h
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.DragEvent
 import org.w3c.dom.Node
+import org.w3c.dom.events.MouseEvent
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.KVManager
@@ -868,6 +869,20 @@ fun Container.widget(
     return widget
 }
 
+/**
+ * An extension function for defining event handlers.
+ */
 inline fun <reified T : Widget> T.onEvent(noinline block: SnOn<T>.() -> Unit): Int {
     return this.setEventListener(block)
+}
+
+/**
+ * An extension function for defining on click event handlers.
+ */
+inline fun <reified T : Widget> T.onClick(noinline handler: T.(MouseEvent) -> Unit): Int {
+    return this.setEventListener<T> {
+        click = { e ->
+            self.handler(e)
+        }
+    }
 }
