@@ -199,11 +199,8 @@ open class Tag(
         return cl
     }
 
-    operator fun String.unaryPlus() {
-        if (content == null)
-            content = this
-        else
-            content += translate(this)
+    override operator fun String.unaryPlus() {
+        add(TextNode(this, rich))
     }
 }
 

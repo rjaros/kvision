@@ -21,8 +21,8 @@
  */
 package test.pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
@@ -118,6 +118,25 @@ class ContainerSpec : DomSpec {
             root.add(container)
             val childern = container.getChildren()
             assertTrue("Returns children of current element") { childern.size == 2 }
+        }
+    }
+
+    @Test
+    fun unaryPlus() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val container = SimplePanel {
+                +"This is test 1"
+                +" "
+                +"This is test 2"
+            }
+            root.add(container)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div>This is test 1 This is test 2</div>",
+                element?.innerHTML,
+                "Should render correct text nodes"
+            )
         }
     }
 }

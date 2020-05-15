@@ -80,7 +80,7 @@ class TagSpec : DomSpec {
     }
 
     @Test
-    fun renderUnaryPlus() {
+    fun unaryPlus() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val tag = Tag(TAG.H1, rich = true) {
@@ -91,7 +91,7 @@ class TagSpec : DomSpec {
             assertEqualsHtml(
                 "<h1><span>This is <b>h1</b></span></h1>",
                 element?.innerHTML,
-                "Should render correct html tag with children"
+                "Should render correct HTML markup for children"
             )
         }
     }

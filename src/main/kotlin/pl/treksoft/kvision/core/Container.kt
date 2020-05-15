@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.core
 
+import pl.treksoft.kvision.html.TextNode
+
 /**
  * Base interface for all containers.
  */
@@ -66,4 +68,11 @@ interface Container : Component {
      * @return list of children
      */
     fun getChildren(): List<Component>
+
+    /**
+     * An operator to add a text node to the container.
+     */
+    operator fun String.unaryPlus() {
+        add(TextNode(this))
+    }
 }
