@@ -42,7 +42,7 @@ const val HTTP_UNAUTHORIZED = 401
 open class CallAgent {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
-    private val urlPrefix: String = if (kvUrlPrefix != undefined) kvUrlPrefix else ""
+    private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
     private var counter = 1
 
     /**
@@ -66,7 +66,7 @@ open class CallAgent {
             JSON.plain.stringify(jsonRpcRequest)
         }
         return Promise { resolve, reject ->
-            jQuery.ajax(urlPrefix + url, obj {
+            jQuery.ajax(urlPrefix + url.drop(1), obj {
                 this.contentType = "application/json"
                 this.data = jsonData
                 this.method = method.name
@@ -125,7 +125,7 @@ open class CallAgent {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
         return Promise { resolve, reject ->
-            jQuery.ajax(urlPrefix + url, obj {
+            jQuery.ajax(urlPrefix + url.drop(1), obj {
                 this.contentType = if (contentType != "multipart/form-data") contentType else false
                 this.data = data
                 this.method = method.name

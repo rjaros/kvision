@@ -33,6 +33,8 @@ import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.serializer
 import kotlinx.serialization.stringify
+import org.w3c.dom.get
+import kotlin.browser.window
 import kotlin.reflect.KClass
 
 /**
@@ -456,6 +458,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceMgr<T>) :
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         noinline handler: suspend (SendChannel<PAR1>, ReceiveChannel<PAR2>) -> Unit
     ) {
+        val kvUrlPrefix = window["kv_remote_url_prefix"]
+        val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
         val (url, _) =
             serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
@@ -464,7 +468,7 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceMgr<T>) :
         val responseChannel = Channel<PAR2>()
         try {
             coroutineScope {
-                socket.connect(getWebSocketUrl(url))
+                socket.connect(getWebSocketUrl(urlPrefix + url.drop(1)))
                 lateinit var responseJob: Job
                 lateinit var handlerJob: Job
                 val requestJob = launch {
@@ -532,6 +536,8 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceMgr<T>) :
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<List<PAR2>>) -> Unit,
         noinline handler: suspend (SendChannel<PAR1>, ReceiveChannel<List<PAR2>>) -> Unit
     ) {
+        val kvUrlPrefix = window["kv_remote_url_prefix"]
+        val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
         val (url, _) =
             serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
@@ -540,7 +546,7 @@ open class KVRemoteAgent<T : Any>(val serviceManager: KVServiceMgr<T>) :
         val responseChannel = Channel<List<PAR2>>()
         try {
             coroutineScope {
-                socket.connect(getWebSocketUrl(url))
+                socket.connect(getWebSocketUrl(urlPrefix + url.drop(1)))
                 lateinit var responseJob: Job
                 lateinit var handlerJob: Job
                 val requestJob = launch {
