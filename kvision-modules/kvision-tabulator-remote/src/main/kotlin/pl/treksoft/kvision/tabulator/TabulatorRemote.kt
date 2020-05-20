@@ -61,7 +61,7 @@ open class TabulatorRemote<T : Any, E : Any>(
 ) : Tabulator<T>(null, false, options, types, classes) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
-    private val urlPrefix: String = if (kvUrlPrefix != undefined) kvUrlPrefix else ""
+    private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
 
     init {
         val (url, method) =
@@ -69,7 +69,7 @@ open class TabulatorRemote<T : Any, E : Any>(
                 ?: throw IllegalStateException("Function not specified!")
 
         val callAgent = CallAgent()
-        options.ajaxURL = urlPrefix + url
+        options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params ->
             val page = params.page
             val size = params.size

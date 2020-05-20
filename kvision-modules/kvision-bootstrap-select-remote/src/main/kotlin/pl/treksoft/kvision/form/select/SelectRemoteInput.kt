@@ -67,7 +67,7 @@ open class SelectRemoteInput<T : Any>(
 ) : SelectInput(null, value, multiple, null, classes) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
-    private val urlPrefix: String = if (kvUrlPrefix != undefined) kvUrlPrefix else ""
+    private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
 
     private val url: String
     private val labelsCache = mutableMapOf<String, String>()
@@ -84,7 +84,7 @@ open class SelectRemoteInput<T : Any>(
             }
             val tempAjaxOptions = ajaxOptions ?: AjaxOptions()
             this.ajaxOptions = tempAjaxOptions.copy(
-                url = urlPrefix + url,
+                url = urlPrefix + url.drop(1),
                 preprocessData = {
                     @Suppress("UnsafeCastFromDynamic")
                     JSON.plain.parse(RemoteOption.serializer().list, it.result as String).map {

@@ -57,14 +57,14 @@ open class TypeaheadRemoteInput<T : Any>(
 ) : TypeaheadInput(null, null, items, minLength, delay, type, value, classes) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
-    private val urlPrefix: String = if (kvUrlPrefix != undefined) kvUrlPrefix else ""
+    private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
 
     init {
         val (url, method) =
             serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         this.ajaxOptions = TaAjaxOptions(
-            urlPrefix + url,
+            urlPrefix + url.drop(1),
             preprocessQuery = { query ->
                 val state = stateFunction?.invoke()
                 JSON.plain.stringify(JsonRpcRequest(0, url, listOf(query, state)))
