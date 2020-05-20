@@ -29,6 +29,7 @@ import pl.treksoft.kvision.form.FormHorizontalRatio
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.NumberFormControl
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -46,7 +47,7 @@ import pl.treksoft.kvision.utils.SnOn
 open class Range(
     value: Number? = null, name: String? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
     label: String? = null, rich: Boolean = false
-) : SimplePanel(setOf("form-group")), NumberFormControl {
+) : SimplePanel(setOf("form-group")), NumberFormControl, ObservableState<Number?> {
 
     /**
      * Range input value.
@@ -210,6 +211,12 @@ open class Range(
         input.addSurroundingCssClass("col-sm-${horizontalRatio.fields}")
         invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
         invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
+    }
+
+    override fun getState(): Number? = input.getState()
+
+    override fun subscribe(observer: (Number?) -> Unit): () -> Unit {
+        return input.subscribe(observer)
     }
 
     companion object {

@@ -30,6 +30,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.set
 
 internal const val DEFAULT_STEP = 1
@@ -47,12 +48,14 @@ internal const val DEFAULT_STEP = 1
 open class RangeInput(
     value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
     classes: Set<String> = setOf()
-) : Widget(classes + "form-control-range"), FormInput {
+) : Widget(classes + "form-control-range"), FormInput, ObservableState<Number?> {
+
+    protected val observers = mutableListOf<(Number?) -> Unit>()
 
     /**
      * Range input value.
      */
-    var value by refreshOnUpdate(value ?: (min as Number?)) { refreshState() }
+    var value by refreshOnUpdate(value ?: (min as Number?)) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value attribute of the generated HTML input element.
@@ -222,6 +225,16 @@ open class RangeInput(
      */
     override fun blur() {
         getElementJQuery()?.blur()
+    }
+
+    override fun getState(): Number? = value
+
+    override fun subscribe(observer: (Number?) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
     }
 }
 

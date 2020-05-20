@@ -27,6 +27,7 @@ import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerReact
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.set
 import react.RBuilder
 import react.dom.render as ReactRender
@@ -41,12 +42,15 @@ class React<S>(
     state: S,
     classes: Set<String> = setOf(),
     private val builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
-) : Widget(classes) {
+) : Widget(classes), ObservableState<S> {
+
+    private val observers = mutableListOf<(S) -> Unit>()
 
     var state = state
         set(value) {
             field = value
             refreshFunction?.invoke()
+            observers.forEach { it(state) }
         }
 
     private var refreshFunction: (() -> Unit)? = null
@@ -74,6 +78,16 @@ class React<S>(
     override fun afterDestroy() {
         vnode?.elm?.let {
             KVManagerReact.reactDom.unmountComponentAtNode(it)
+        }
+    }
+
+    override fun getState(): S = state
+
+    override fun subscribe(observer: (S) -> Unit): () -> Unit {
+        observers += observer
+        observer(state)
+        return {
+            observers -= observer
         }
     }
 }

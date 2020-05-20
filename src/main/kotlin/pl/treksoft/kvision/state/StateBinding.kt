@@ -15,7 +15,7 @@ import pl.treksoft.kvision.core.Widget.Companion.bindState
  * @param observableState the state
  * @param factory a function which re-creates the view based on the given state
  */
-fun <S : Any, W : Widget> W.bind(
+fun <S, W : Widget> W.bind(
     observableState: ObservableState<S>,
     factory: (W.(S) -> Unit)
 ): W {

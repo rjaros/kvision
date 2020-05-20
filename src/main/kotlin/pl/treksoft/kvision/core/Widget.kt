@@ -1017,7 +1017,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
          * An extension function which binds the widget to the observable state.
          * Used by [pl.treksoft.kvision.state.bind]
          */
-        internal fun <S : Any, W : Widget> W.bindState(
+        internal fun <S, W : Widget> W.bindState(
             observableState: ObservableState<S>,
             factory: (W.(S) -> Unit)
         ): W {

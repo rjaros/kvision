@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 
 /**
  * The form field component rendered as a group of HTML *input type="radio"* elements with the same name attribute.
@@ -51,7 +52,9 @@ open class RadioGroup(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     label: String? = null,
     rich: Boolean = false
-) : SimplePanel(setOf("form-group")), StringFormControl {
+) : SimplePanel(setOf("form-group")), StringFormControl, ObservableState<String?> {
+
+    protected val observers = mutableListOf<(String?) -> Unit>()
 
     /**
      * A list of options (label to value pairs) for the group.
@@ -61,7 +64,7 @@ open class RadioGroup(
     /**
      * A value of the selected option.
      */
-    override var value by refreshOnUpdate(value) { setValueToChildren(it) }
+    override var value by refreshOnUpdate(value) { setValueToChildren(it); observers.forEach { ob -> ob(it) } }
 
     /**
      * Determines if the options are rendered inline.
@@ -73,6 +76,7 @@ open class RadioGroup(
         set(value) {
             setDisabledToChildren(value)
         }
+
     /**
      * The label text of the options group.
      */
@@ -81,6 +85,7 @@ open class RadioGroup(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -224,6 +229,16 @@ open class RadioGroup(
         container.addCssClass("col-sm-${horizontalRatio.fields}")
         invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
         invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
+    }
+
+    override fun getState(): String? = value
+
+    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
     }
 
     companion object {

@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.remote.RemoteOption
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -60,7 +61,7 @@ open class SelectRemote<T : Any>(
     preload: Boolean = false,
     label: String? = null,
     rich: Boolean = false
-) : SimplePanel(setOf("form-group")), StringFormControl {
+) : SimplePanel(setOf("form-group")), StringFormControl, ObservableState<String?> {
     /**
      * A value of the selected option.
      */
@@ -252,6 +253,12 @@ open class SelectRemote<T : Any>(
 
     override fun blur() {
         input.blur()
+    }
+
+    override fun getState(): String? = input.getState()
+
+    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
+        return input.subscribe(observer)
     }
 
     companion object {

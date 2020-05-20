@@ -28,6 +28,7 @@ import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 
 /**
  * The input component rendered as a group of HTML *input type="radio"* elements with the same name attribute.
@@ -44,7 +45,9 @@ import pl.treksoft.kvision.panel.SimplePanel
 @Suppress("TooManyFunctions")
 open class RadioGroupInput(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false
-) : SimplePanel(setOf("form-group")), FormInput {
+) : SimplePanel(setOf("form-group")), FormInput, ObservableState<String?> {
+
+    protected val observers = mutableListOf<(String?) -> Unit>()
 
     /**
      * A list of options (label to value pairs) for the group.
@@ -54,7 +57,7 @@ open class RadioGroupInput(
     /**
      * A value of the selected option.
      */
-    var value by refreshOnUpdate(value) { setValueToChildren(it) }
+    var value by refreshOnUpdate(value) { setValueToChildren(it); observers.forEach { ob -> ob(it) } }
 
     /**
      * Determines if the options are rendered inline.
@@ -170,6 +173,16 @@ open class RadioGroupInput(
 
     override fun blur() {
         getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
+    }
+
+    override fun getState(): String? = value
+
+    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
     }
 
     companion object {

@@ -30,6 +30,7 @@ import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.FormHorizontalRatio
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -55,7 +56,7 @@ enum class CheckBoxStyle(internal val className: String) {
 open class CheckBox(
     value: Boolean = false, name: String? = null, label: String? = null,
     rich: Boolean = false
-) : SimplePanel(setOf("form-check", "abc-checkbox")), BoolFormControl {
+) : SimplePanel(setOf("form-check", "abc-checkbox")), BoolFormControl, ObservableState<Boolean> {
 
     /**
      * The selection state of the checkbox.
@@ -65,6 +66,7 @@ open class CheckBox(
         set(value) {
             input.value = value
         }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -76,6 +78,7 @@ open class CheckBox(
         set(value) {
             input.startValue = value
         }
+
     /**
      * The label text bound to the input element.
      */
@@ -84,6 +87,7 @@ open class CheckBox(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -92,14 +96,17 @@ open class CheckBox(
         set(value) {
             flabel.rich = value
         }
+
     /**
      * The style (one of Bootstrap standard colors) of the input.
      */
     var style: CheckBoxStyle? by refreshOnUpdate()
+
     /**
      * Determines if the checkbox is rendered as a circle.
      */
     var circled by refreshOnUpdate(false)
+
     /**
      * Determines if the checkbox is rendered inline.
      */
@@ -187,6 +194,12 @@ open class CheckBox(
 
     override fun styleForVerticalFormPanel() {
         addCssClass("form-group")
+    }
+
+    override fun getState(): Boolean = input.getState()
+
+    override fun subscribe(observer: (Boolean) -> Unit): () -> Unit {
+        return input.subscribe(observer)
     }
 
     companion object {

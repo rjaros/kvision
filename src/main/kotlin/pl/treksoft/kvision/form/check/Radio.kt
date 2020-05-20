@@ -30,6 +30,7 @@ import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.FormHorizontalRatio
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -56,7 +57,7 @@ enum class RadioStyle(internal val className: String) {
 open class Radio(
     value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
     rich: Boolean = false
-) : SimplePanel(classes = setOf("form-check")), BoolFormControl {
+) : SimplePanel(classes = setOf("form-check")), BoolFormControl, ObservableState<Boolean> {
 
     /**
      * The selection state of the radio button.
@@ -202,6 +203,12 @@ open class Radio(
 
     override fun styleForVerticalFormPanel() {
         addCssClass("form-group")
+    }
+
+    override fun getState(): Boolean = input.getState()
+
+    override fun subscribe(observer: (Boolean) -> Unit): () -> Unit {
+        return input.subscribe(observer)
     }
 
     companion object {

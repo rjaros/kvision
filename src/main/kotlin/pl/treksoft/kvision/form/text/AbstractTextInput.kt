@@ -28,6 +28,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
+import pl.treksoft.kvision.state.ObservableState
 
 /**
  * Base class for basic text components.
@@ -39,7 +40,9 @@ import pl.treksoft.kvision.form.ValidationStatus
 abstract class AbstractTextInput(
     value: String? = null,
     classes: Set<String> = setOf()
-) : Widget(classes), FormInput {
+) : Widget(classes), FormInput, ObservableState<String?> {
+
+    protected val observers = mutableListOf<(String?) -> Unit>()
 
     init {
         this.setInternalEventListener<AbstractTextInput> {
@@ -52,7 +55,8 @@ abstract class AbstractTextInput(
     /**
      * Text input value.
      */
-    var value by refreshOnUpdate(value) { refreshState() }
+    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -60,34 +64,42 @@ abstract class AbstractTextInput(
      * bound to the text input value.
      */
     var startValue by refreshOnUpdate(value) { this.value = it; refresh() }
+
     /**
      * The placeholder for the text input.
      */
     var placeholder: String? by refreshOnUpdate()
+
     /**
      * The name attribute of the generated HTML input element.
      */
     override var name: String? by refreshOnUpdate()
+
     /**
      * Maximal length of the text input value.
      */
     var maxlength: Int? by refreshOnUpdate()
+
     /**
      * Determines if the field is disabled.
      */
     override var disabled by refreshOnUpdate(false)
+
     /**
      * Determines if the text input is automatically focused.
      */
     var autofocus: Boolean? by refreshOnUpdate()
+
     /**
      * Determines if the text input is read-only.
      */
     var readonly: Boolean? by refreshOnUpdate()
+
     /**
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
+
     /**
      * The validation status of the input.
      */
@@ -173,5 +185,15 @@ abstract class AbstractTextInput(
      */
     override fun blur() {
         getElementJQuery()?.blur()
+    }
+
+    override fun getState(): String? = value
+
+    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
     }
 }

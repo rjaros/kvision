@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.html.ButtonStyle
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 
@@ -75,12 +76,14 @@ open class SpinnerInput(
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
     classes: Set<String> = setOf()
-) : Widget(classes + "form-control"), FormInput {
+) : Widget(classes + "form-control"), FormInput, ObservableState<Number?> {
+
+    protected val observers = mutableListOf<(Number?) -> Unit>()
 
     /**
      * Spinner value.
      */
-    var value by refreshOnUpdate(value) { refreshState() }
+    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value attribute of the generated HTML input element.
@@ -327,6 +330,16 @@ open class SpinnerInput(
      */
     override fun blur() {
         getElementJQuery()?.blur()
+    }
+
+    override fun getState(): Number? = value
+
+    override fun subscribe(observer: (Number?) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
     }
 }
 

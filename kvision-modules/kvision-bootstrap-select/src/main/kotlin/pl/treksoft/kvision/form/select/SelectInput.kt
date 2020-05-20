@@ -33,6 +33,7 @@ import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.asString
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
@@ -72,7 +73,9 @@ open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
     classes: Set<String> = setOf()
-) : SimplePanel(classes), FormInput {
+) : SimplePanel(classes), FormInput, ObservableState<String?> {
+
+    protected val observers = mutableListOf<(String?) -> Unit>()
 
     /**
      * A list of options (value to label pairs) for the select control.
@@ -82,7 +85,7 @@ open class SelectInput(
     /**
      * A value of the selected option.
      */
-    var value by refreshOnUpdate(value) { refreshState() }
+    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The name attribute of the generated HTML select element.
@@ -395,6 +398,16 @@ open class SelectInput(
      */
     override fun blur() {
         getElementJQuery()?.blur()
+    }
+
+    override fun getState(): String? = value
+
+    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
     }
 }
 

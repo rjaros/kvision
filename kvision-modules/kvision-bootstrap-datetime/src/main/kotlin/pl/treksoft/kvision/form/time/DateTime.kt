@@ -28,6 +28,7 @@ import pl.treksoft.kvision.form.DateFormControl
 import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.SnOn
 import kotlin.js.Date
 
@@ -44,7 +45,7 @@ import kotlin.js.Date
 open class DateTime(
     value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false
-) : SimplePanel(setOf("form-group")), DateFormControl {
+) : SimplePanel(setOf("form-group")), DateFormControl, ObservableState<Date?> {
 
     /**
      * Date/time input value.
@@ -262,6 +263,12 @@ open class DateTime(
 
     override fun blur() {
         input.blur()
+    }
+
+    override fun getState(): Date? = input.getState()
+
+    override fun subscribe(observer: (Date?) -> Unit): () -> Unit {
+        return input.subscribe(observer)
     }
 
     companion object {

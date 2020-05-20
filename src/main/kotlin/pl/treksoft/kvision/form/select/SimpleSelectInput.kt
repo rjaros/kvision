@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.set
 
 internal const val KVNULL = "#kvnull"
@@ -47,7 +48,9 @@ internal const val KVNULL = "#kvnull"
 open class SimpleSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
     classes: Set<String> = setOf()
-) : SimplePanel(classes + "form-control"), FormInput {
+) : SimplePanel(classes + "form-control"), FormInput, ObservableState<String?> {
+
+    protected val observers = mutableListOf<(String?) -> Unit>()
 
     /**
      * A list of options (value to label pairs) for the select control.
@@ -57,7 +60,7 @@ open class SimpleSelectInput(
     /**
      * Text input value.
      */
-    var value by refreshOnUpdate(value) { refreshState() }
+    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value of the selected child option.
@@ -206,6 +209,16 @@ open class SimpleSelectInput(
      */
     override fun blur() {
         getElementJQuery()?.blur()
+    }
+
+    override fun getState(): String? = value
+
+    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
     }
 }
 

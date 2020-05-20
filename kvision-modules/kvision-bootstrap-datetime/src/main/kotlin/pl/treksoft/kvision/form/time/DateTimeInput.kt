@@ -33,6 +33,7 @@ import pl.treksoft.kvision.html.icon
 import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.types.toDateF
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.obj
@@ -53,7 +54,7 @@ internal const val DEFAULT_STEPPING = 5
 open class DateTimeInput(
     value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
     classes: Set<String> = setOf()
-) : SimplePanel(classes + "input-group" + "date"), FormInput {
+) : SimplePanel(classes + "input-group" + "date"), FormInput, ObservableState<Date?> {
 
     private var initialized = false
 
@@ -403,6 +404,14 @@ open class DateTimeInput(
      */
     override fun blur() {
         input.blur()
+    }
+
+    override fun getState(): Date? = input.getState()?.toDateF(format)
+
+    override fun subscribe(observer: (Date?) -> Unit): () -> Unit {
+        return input.subscribe { str ->
+            observer(str?.toDateF(format))
+        }
     }
 }
 

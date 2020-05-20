@@ -29,6 +29,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
+import pl.treksoft.kvision.state.ObservableState
 
 /**
  * Type of the check input control (checkbox or radio).
@@ -49,7 +50,9 @@ enum class CheckInputType(internal val type: String) {
 abstract class CheckInput(
     type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
     classes: Set<String> = setOf()
-) : Widget(classes), FormInput {
+) : Widget(classes), FormInput, ObservableState<Boolean> {
+
+    protected val observers = mutableListOf<(Boolean) -> Unit>()
 
     init {
         this.setInternalEventListener<CheckInput> {
@@ -67,7 +70,8 @@ abstract class CheckInput(
     /**
      * The selection state of the input.
      */
-    var value by refreshOnUpdate(value) { refreshState() }
+    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -75,26 +79,32 @@ abstract class CheckInput(
      * bound to the input selection state.
      */
     var startValue by refreshOnUpdate(value) { this.value = it; refresh() }
+
     /**
      * The type of the generated HTML input element.
      */
     var type by refreshOnUpdate(type)
+
     /**
      * The name attribute of the generated HTML input element.
      */
     override var name: String? by refreshOnUpdate()
+
     /**
      * Determines if the field is disabled.
      */
     override var disabled by refreshOnUpdate(false)
+
     /**
      * The additional String value used for the radio button group.
      */
     var extraValue: String? by refreshOnUpdate()
+
     /**
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
+
     /**
      * The validation status of the input.
      */
@@ -168,5 +178,15 @@ abstract class CheckInput(
      */
     override fun blur() {
         getElementJQuery()?.blur()
+    }
+
+    override fun getState(): Boolean = value
+
+    override fun subscribe(observer: (Boolean) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
     }
 }
