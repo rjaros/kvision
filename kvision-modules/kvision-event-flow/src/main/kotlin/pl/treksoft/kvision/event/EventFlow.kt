@@ -24,11 +24,17 @@ package pl.treksoft.kvision.event
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import org.w3c.dom.events.Event
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.onEvent
+import pl.treksoft.kvision.state.ObservableState
 
+/**
+ * Extension property returning Flow<Pair<Widget, Event>> for a given event
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 inline fun <reified T : Widget> T.eventFlow(event: String): Flow<Pair<T, Event>> = callbackFlow {
     val id = onEvent {
@@ -41,6 +47,9 @@ inline fun <reified T : Widget> T.eventFlow(event: String): Flow<Pair<T, Event>>
     }
 }
 
+/**
+ * Extension property returning Flow<Widget> for a click event.
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.clickFlow: Flow<T>
     get() = callbackFlow {
@@ -54,6 +63,9 @@ inline val <reified T : Widget> T.clickFlow: Flow<T>
         }
     }
 
+/**
+ * Extension property returning Flow<Widget> for an input event.
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.inputFlow: Flow<T>
     get() = callbackFlow {
@@ -67,6 +79,9 @@ inline val <reified T : Widget> T.inputFlow: Flow<T>
         }
     }
 
+/**
+ * Extension property returning Flow<Widget> for a change event.
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.changeFlow: Flow<T>
     get() = callbackFlow {
@@ -78,4 +93,13 @@ inline val <reified T : Widget> T.changeFlow: Flow<T>
         awaitClose {
             removeEventListener(id)
         }
+    }
+
+/**
+ * Extension property returning StateFlow<S> for an ObservableState<S>.
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
+inline val <S> ObservableState<S>.stateFlow: StateFlow<S>
+    get() = MutableStateFlow(getState()).apply {
+        this@stateFlow.subscribe { this.value = it }
     }
