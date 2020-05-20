@@ -28,6 +28,8 @@ import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
+import pl.treksoft.jquery.JQueryAjaxSettings
+import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.CallAgent
 import pl.treksoft.kvision.remote.HttpMethod
@@ -72,12 +74,14 @@ open class SelectRemoteInput<T : Any>(
     private val url: String
     private val labelsCache = mutableMapOf<String, String>()
     private var initRun = false
+    private var beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> dynamic)?
 
     init {
         val (_url, method) =
             serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         this.url = _url
+        this.beforeSend = ajaxOptions?.beforeSend
         if (!preload) {
             val data = obj {
                 q = "{{{q}}}"
@@ -103,9 +107,10 @@ open class SelectRemoteInput<T : Any>(
                     }.toTypedArray()
                 },
                 data = data,
-                beforeSend = { _, b ->
+                beforeSend = { xhr, b ->
+                    beforeSend?.invoke(xhr, b)
                     @Suppress("UnsafeCastFromDynamic")
-                    val q = decodeURIComponent(b.data.substring(2))
+                    val q = decodeURIComponent(b.asDynamic().data.substring(2))
                     val state = stateFunction?.invoke()
                     b.data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(q, this.value, state)))
                     true
@@ -131,7 +136,8 @@ open class SelectRemoteInput<T : Any>(
                 val values = callAgent.remoteCall(
                     url,
                     JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, null, state))),
-                    HttpMethod.POST
+                    HttpMethod.POST,
+                    beforeSend = beforeSend
                 ).await()
                 JSON.plain.parse(RemoteOption.serializer().list, values.result as String).forEach {
                     add(
@@ -168,7 +174,8 @@ open class SelectRemoteInput<T : Any>(
                         val initials = callAgent.remoteCall(
                             url,
                             JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, it, state))),
-                            HttpMethod.POST
+                            HttpMethod.POST,
+                            beforeSend = beforeSend
                         ).await()
                         JSON.plain.parse(RemoteOption.serializer().list, initials.result as String).mapNotNull {
                             it.text

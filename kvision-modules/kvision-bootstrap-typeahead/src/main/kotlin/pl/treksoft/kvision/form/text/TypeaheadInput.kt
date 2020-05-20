@@ -119,7 +119,7 @@ open class TypeaheadInput(
                     val data = ajaxOptions.preprocessQuery?.invoke(query) ?: obj {
                         this.query = query
                     }
-                    jQuery.ajax(ajaxOptions.url, obj {
+                    jQuery.ajax(ajaxOptions.url!!, obj {
                         this.contentType = "application/json"
                         this.data = data
                         this.method = ajaxOptions.httpType.type

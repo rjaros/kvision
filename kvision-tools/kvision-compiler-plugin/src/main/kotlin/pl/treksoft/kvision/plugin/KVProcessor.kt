@@ -158,12 +158,14 @@ class KVProcessor : AbstractProcessor() {
                         appendln("//")
                         appendln("package $packageName")
                         appendln()
+                        appendln("import pl.treksoft.jquery.JQueryAjaxSettings")
+                        appendln("import pl.treksoft.jquery.JQueryXHR")
                         appendln("import pl.treksoft.kvision.remote.KVRemoteAgent")
                         getTypes(cl.methods()).sorted().forEach {
                             appendln("import $it")
                         }
                         appendln()
-                        appendln("actual class $baseName : $iName, KVRemoteAgent<$baseName>(${baseName}Manager) {")
+                        appendln("actual class $baseName(beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, beforeSend) {")
                         cl.methods().forEach {
                             val name = it.name
                             val params = it.allParameters.drop(1)

@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form.text
 
+import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 
 /**
@@ -59,10 +60,10 @@ enum class DataType(internal val type: String) {
  * [JQuery ajax.processData](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings) option
  */
 data class TaAjaxOptions(
-    val url: String,
+    val url: String? = null,
     val preprocessQuery: ((String) -> dynamic)? = null,
     val preprocessData: ((dynamic) -> Array<String>)? = null,
-    val beforeSend: ((JQueryXHR, dynamic) -> dynamic)? = null,
+    val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> dynamic)? = null,
     val httpType: HttpType = HttpType.GET,
     val dataType: DataType = DataType.JSON,
     val processData: Boolean = true

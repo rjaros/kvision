@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form.select
 
+import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.kvision.KVManagerSelect.AJAX_REQUEST_DELAY
 import pl.treksoft.kvision.KVManagerSelect.KVNULL
@@ -85,7 +86,7 @@ enum class DataType(internal val type: String) {
 data class AjaxOptions(
     val url: String? = null,
     val preprocessData: ((dynamic) -> dynamic)? = null,
-    val beforeSend: ((JQueryXHR, dynamic) -> dynamic)? = null,
+    val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> dynamic)? = null,
     val data: dynamic = null,
     val httpType: HttpType = HttpType.GET,
     val dataType: DataType = DataType.JSON,

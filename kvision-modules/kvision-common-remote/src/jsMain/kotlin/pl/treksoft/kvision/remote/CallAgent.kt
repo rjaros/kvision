@@ -57,7 +57,8 @@ open class CallAgent {
     fun jsonRpcCall(
         url: String,
         data: List<String?> = listOf(),
-        method: HttpMethod = HttpMethod.POST
+        method: HttpMethod = HttpMethod.POST,
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<String> {
         val jsonRpcRequest = JsonRpcRequest(counter++, url, data)
         val jsonData = if (method == HttpMethod.GET) {
@@ -103,6 +104,7 @@ open class CallAgent {
                 this.xhrFields = obj {
                     this.withCredentials = true
                 }
+                this.beforeSend = beforeSend
             })
         }
     }

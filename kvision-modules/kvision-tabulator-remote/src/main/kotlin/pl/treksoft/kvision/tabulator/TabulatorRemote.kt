@@ -24,6 +24,8 @@ package pl.treksoft.kvision.tabulator
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
+import pl.treksoft.jquery.JQueryAjaxSettings
+import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.CallAgent
 import pl.treksoft.kvision.remote.HttpMethod
@@ -69,6 +71,10 @@ open class TabulatorRemote<T : Any, E : Any>(
                 ?: throw IllegalStateException("Function not specified!")
 
         val callAgent = CallAgent()
+
+        @Suppress("UnsafeCastFromDynamic")
+        val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = options.ajaxConfig.beforeSend
+        options.ajaxConfig.beforeSend = undefined
         options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params ->
             val page = params.page
@@ -91,15 +97,16 @@ open class TabulatorRemote<T : Any, E : Any>(
 
             @Suppress("UnsafeCastFromDynamic")
             val data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
-            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name)).then { r: dynamic ->
-                val result = kotlin.js.JSON.parse<dynamic>(r.result as String)
-                @Suppress("UnsafeCastFromDynamic")
-                if (page != null) {
-                    result
-                } else {
-                    result.data
+            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name), beforeSend = beforeSend)
+                .then { r: dynamic ->
+                    val result = kotlin.js.JSON.parse<dynamic>(r.result as String)
+                    @Suppress("UnsafeCastFromDynamic")
+                    if (page != null) {
+                        result
+                    } else {
+                        result.data
+                    }
                 }
-            }
         }
     }
 }

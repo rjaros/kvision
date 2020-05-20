@@ -45,6 +45,7 @@ import kotlin.browser.window
  * @param delay a delay between lookups
  * @param type text input type (default "text")
  * @param value text input value
+ * @param taAjaxOptions AJAX options for remote data source
  * @param classes a set of CSS class names
  */
 @OptIn(ImplicitReflectionSerializer::class)
@@ -53,7 +54,9 @@ open class TypeaheadRemoteInput<T : Any>(
     function: suspend T.(String?, String?) -> List<String>,
     private val stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf()
+    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    taAjaxOptions: TaAjaxOptions? = null,
+    classes: Set<String> = setOf()
 ) : TypeaheadInput(null, null, items, minLength, delay, type, value, classes) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
@@ -63,8 +66,9 @@ open class TypeaheadRemoteInput<T : Any>(
         val (url, method) =
             serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
-        this.ajaxOptions = TaAjaxOptions(
-            urlPrefix + url.drop(1),
+        val tempAjaxOptions = taAjaxOptions ?: TaAjaxOptions()
+        this.ajaxOptions = tempAjaxOptions.copy(
+            url = urlPrefix + url.drop(1),
             preprocessQuery = { query ->
                 val state = stateFunction?.invoke()
                 JSON.plain.stringify(JsonRpcRequest(0, url, listOf(query, state)))
@@ -88,13 +92,23 @@ fun <T : Any> Container.typeaheadRemoteInput(
     stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null,
+    taAjaxOptions: TaAjaxOptions? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (TypeaheadRemoteInput<T>.() -> Unit)? = null
 ): TypeaheadRemoteInput<T> {
     val typeaheadRemoteInput =
         TypeaheadRemoteInput(
-            serviceManager, function, stateFunction, items, minLength, delay, type, value, classes ?: className.set
+            serviceManager,
+            function,
+            stateFunction,
+            items,
+            minLength,
+            delay,
+            type,
+            value,
+            taAjaxOptions,
+            classes ?: className.set
         ).apply {
             init?.invoke(this)
         }
