@@ -161,6 +161,20 @@ fun CssSize.asString(): String {
     }
 }
 
+/**
+ * Extension operator to increase CssSize units.
+ */
+operator fun CssSize?.plus(i: Number): CssSize {
+    return this?.let { CssSize(it.first.toDouble() + i.toDouble(), it.second) } ?: CssSize(i, UNIT.px)
+}
+
+/**
+ * Extension operator to decrease CssSize units.
+ */
+operator fun CssSize?.minus(i: Number): CssSize {
+    return this?.let { CssSize(it.first.toDouble() - i.toDouble(), it.second) } ?: CssSize(i, UNIT.px)
+}
+
 private val hex = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f")
 
 /**
@@ -208,3 +222,12 @@ val String?.set: Set<String>
     get() {
         return this?.split(Regex("\\s+"))?.toSet() ?: setOf()
     }
+
+/**
+ * Utility extension function to convert string from kebab-case to camelCase.
+ */
+fun String.toCamelCase(): String {
+    return this.replace(Regex("(\\-\\w)")) {
+        it.value.drop(1).toUpperCase()
+    }
+}

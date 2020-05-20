@@ -35,16 +35,13 @@ import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.state.ObservableState
-import pl.treksoft.kvision.utils.SnOn
-import pl.treksoft.kvision.utils.emptyOn
-import pl.treksoft.kvision.utils.hooks
-import pl.treksoft.kvision.utils.on
-import pl.treksoft.kvision.utils.set
-import pl.treksoft.kvision.utils.snAttrs
-import pl.treksoft.kvision.utils.snClasses
-import pl.treksoft.kvision.utils.snOpt
-import pl.treksoft.kvision.utils.snStyle
+import pl.treksoft.kvision.utils.*
 import kotlin.reflect.KProperty
+
+enum class Easing(internal val easing: String) {
+    SWING("swing"),
+    LINEAR("linear")
+}
 
 /**
  * Base widget class. The parent of all component classes.
@@ -439,6 +436,162 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     /**
+     * Shows current widget with animation effect.
+     * @param duration a duration of the animation
+     * @param easing an easing function to use
+     * @param complete a callback function called after the animation completes
+     * @return current widget
+     */
+    open fun showAnim(
+        duration: Int = 400,
+        easing: Easing = Easing.SWING,
+        complete: (() -> Unit)? = null
+    ): Widget {
+        this.display = Display.NONE
+        this.visible = true
+        val jq = getElementJQuery()
+        if (jq != null) {
+            jq.show(duration, easing.easing) {
+                this.display = null
+                complete?.invoke()
+            }
+        } else {
+            this.display = null
+            complete?.invoke()
+        }
+        return this
+    }
+
+    /**
+     * Hides current widget with animation effect.
+     * @param duration a duration of the animation
+     * @param easing an easing function to use
+     * @param complete a callback function called after the animation completes
+     * @return current widget
+     */
+    open fun hideAnim(
+        duration: Int = 400,
+        easing: Easing = Easing.SWING,
+        complete: (() -> Unit)? = null
+    ): Widget {
+        val jq = getElementJQuery()
+        if (jq != null) {
+            jq.hide(duration, easing.easing) {
+                this.visible = false
+                complete?.invoke()
+            }
+        } else {
+            this.visible = false
+            complete?.invoke()
+        }
+        return this
+    }
+
+    /**
+     * Shows current widget with slide down effect.
+     * @param duration a duration of the animation
+     * @param easing an easing function to use
+     * @param complete a callback function called after the animation completes
+     * @return current widget
+     */
+    open fun slideDown(
+        duration: Int = 400,
+        easing: Easing = Easing.SWING,
+        complete: (() -> Unit)? = null
+    ): Widget {
+        this.display = Display.NONE
+        this.visible = true
+        val jq = getElementJQuery()
+        if (jq != null) {
+            jq.slideDown(duration, easing.easing) {
+                this.display = null
+                complete?.invoke()
+            }
+        } else {
+            this.display = null
+            complete?.invoke()
+        }
+        return this
+    }
+
+    /**
+     * Hides current widget with slide up effect.
+     * @param duration a duration of the animation
+     * @param easing an easing function to use
+     * @param complete a callback function called after the animation completes
+     * @return current widget
+     */
+    open fun slideUp(
+        duration: Int = 400,
+        easing: Easing = Easing.SWING,
+        complete: (() -> Unit)? = null
+    ): Widget {
+        val jq = getElementJQuery()
+        if (jq != null) {
+            jq.slideUp(duration, easing.easing) {
+                this.visible = false
+                complete?.invoke()
+            }
+        } else {
+            this.visible = false
+            complete?.invoke()
+        }
+        return this
+    }
+
+    /**
+     * Shows current widget with fade in effect.
+     * @param duration a duration of the animation
+     * @param easing an easing function to use
+     * @param complete a callback function called after the animation completes
+     * @return current widget
+     */
+    open fun fadeIn(
+        duration: Int = 400,
+        easing: Easing = Easing.SWING,
+        complete: (() -> Unit)? = null
+    ): Widget {
+        this.display = Display.NONE
+        this.visible = true
+        val jq = getElementJQuery()
+        if (jq != null) {
+            jq.fadeIn(duration, easing.easing) {
+                this.display = null
+                complete?.invoke()
+            }
+        } else {
+            this.display = null
+            complete?.invoke()
+        }
+        return this
+    }
+
+    /**
+     * Hides current widget with fade out effect.
+     * @param duration a duration of the animation
+     * @param easing an easing function to use
+     * @param complete a callback function called after the animation completes
+     * @return current widget
+     */
+    open fun fadeOut(
+        duration: Int = 400,
+        easing: Easing = Easing.SWING,
+        complete: (() -> Unit)? = null
+    ): Widget {
+        val jq = getElementJQuery()
+        if (jq != null) {
+            jq.fadeOut(duration, easing.easing) {
+                this.visible = false
+                complete?.invoke()
+            }
+        } else {
+            this.visible = false
+            complete?.invoke()
+        }
+        return this
+    }
+
+    /**
      * Enables tooltip for the current widget.
      * @param options tooltip options
      * @return current widget
@@ -751,6 +904,34 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
                 e.stopPropagation()
                 callback(e)
             }
+        }
+    }
+
+    /**
+     * Animate the widget changing CSS properties.
+     * @param duration a duration of the animation
+     * @param easing an easing function to use
+     * @param complete a callback function called after the animation completes
+     * @param styles changing properties values
+     */
+    open fun animate(
+        duration: Int = 400,
+        easing: Easing = Easing.SWING,
+        complete: (() -> Unit)? = null,
+        styles: StyledComponent.() -> Unit
+    ) {
+        val widget = Widget()
+        widget.styles()
+        val stylesList = widget.getSnStyle()
+        val obj = js("{}")
+        stylesList.forEach { (key, value) ->
+            obj[key.toCamelCase()] = value
+        }
+        @Suppress("UnsafeCastFromDynamic")
+        getElementJQuery()?.animate(obj, duration, easing.easing) {
+            widget.dispose()
+            this.styles()
+            complete?.invoke()
         }
     }
 

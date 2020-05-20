@@ -23,6 +23,7 @@ package test.pl.treksoft.kvision.utils
 
 import pl.treksoft.kvision.types.toDateF
 import pl.treksoft.kvision.types.toStringF
+import pl.treksoft.kvision.utils.toCamelCase
 import pl.treksoft.kvision.utils.toHexString
 import test.pl.treksoft.kvision.SimpleSpec
 import kotlin.js.Date
@@ -70,6 +71,14 @@ class UtilsSpec : SimpleSpec {
             val sec = date.getSeconds()
             val sec2 = if (sec < 10) "0$sec" else "$sec"
             assertEquals("$y-$m2-$d2 $h2:$min2:$sec2", res, "Should convert Date value to String")
+        }
+    }
+
+    @Test
+    fun toCamelCase() {
+        run {
+            val marginTop = "margin-top".toCamelCase()
+            assertEquals("marginTop", marginTop, "Should convert a kebab-case string to camelCase")
         }
     }
 }
