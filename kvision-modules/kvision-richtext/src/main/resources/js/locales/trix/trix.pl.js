@@ -23,6 +23,8 @@
 		strike:"Przekreślenie",
 		undo:"Cofnij",
 		unlink:"Usuń link",
-		urlPlaceholder:"Wprowadź adres URL…"
+		urlPlaceholder:"Wprowadź adres URL…",
+		url:"URL",
+		attachFiles:"Załącz pliki"
 	}
 }(jQuery));
