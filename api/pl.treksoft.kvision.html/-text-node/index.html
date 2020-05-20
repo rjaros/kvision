@@ -1,0 +1,244 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>TextNode - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.html</a>&nbsp;/&nbsp;<a href="./index.html">TextNode</a><br/>
+<br/>
+<h1>TextNode</h1>
+(js) <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TextNode</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code>
+<p>Simple component for rendering text DOM node.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">TextNode</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.html.TextNode$<init>(kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.html.TextNode, kotlin.Unit)))/content">content</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.TextNode$<init>(kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.html.TextNode, kotlin.Unit)))/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.html.TextNode$<init>(kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.html.TextNode, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">TextNode</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="content.html">content</a></h4>
+</td>
+<td>
+<p>Text content of the tag.</p>
+<code><span class="keyword">var </span><span class="identifier">content</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="rich.html">rich</a></h4>
+</td>
+<td>
+<p>Determines if <a href="content.html">content</a> can contain HTML code.</p>
+<code><span class="keyword">var </span><span class="identifier">rich</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="render.html">render</a></h4>
+</td>
+<td>
+<p>Renders current component as a Snabbdom vnode.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/change-flow.html">changeFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning Flow for a change event.</p>
+<code><span class="keyword">val </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">changeFlow</span><span class="symbol">: </span><span class="identifier">Flow</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/click-flow.html">clickFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning Flow for a click event.</p>
+<code><span class="keyword">val </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">clickFlow</span><span class="symbol">: </span><span class="identifier">Flow</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/input-flow.html">inputFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning Flow for an input event.</p>
+<code><span class="keyword">val </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">inputFlow</span><span class="symbol">: </span><span class="identifier">Flow</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-bg-color.html">addBsBgColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsBgColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$addBsBgColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsBgColor)/bsBgColor">bsBgColor</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-bg-color/index.html"><span class="identifier">BsBgColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-border.html">addBsBorder</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsBorder</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$addBsBorder(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsBorder)))/bsBorder">bsBorder</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-border/index.html"><span class="identifier">BsBorder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-clearfix.html">addBsClearfix</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsClearfix</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-color.html">addBsColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$addBsColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsColor)/bsColor">bsColor</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-color/index.html"><span class="identifier">BsColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-rounded.html">addBsRounded</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsRounded</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$addBsRounded(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsRounded)))/bsRounded">bsRounded</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-rounded/index.html"><span class="identifier">BsRounded</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.state/bind.html">bind</a></h4>
+</td>
+<td>
+<p>An extension function which binds the widget to the observable state.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">, </span><span class="identifier">W</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">W</span><span class="symbol">.</span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.state$bind(pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.bind.S)), kotlin.Function2((pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.bind.S, kotlin.Unit)))/observableState">observableState</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.state$bind(pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.bind.S)), kotlin.Function2((pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.bind.S, kotlin.Unit)))/factory">factory</span><span class="symbol">:</span>&nbsp;<span class="identifier">W</span><span class="symbol">.</span><span class="symbol">(</span><span class="identifier">S</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">W</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.dropdown/context-menu.html">contextMenu</a></h4>
+</td>
+<td>
+<p>DSL builder extension function.</p>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">.</span><span class="identifier">contextMenu</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown$contextMenu(pl.treksoft.kvision.core.Widget, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.dropdown.ContextMenu, kotlin.Unit)))/fixedPosition">fixedPosition</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown$contextMenu(pl.treksoft.kvision.core.Widget, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.dropdown.ContextMenu, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown$contextMenu(pl.treksoft.kvision.core.Widget, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.dropdown.ContextMenu, kotlin.Unit)))/className">className</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown$contextMenu(pl.treksoft.kvision.core.Widget, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.dropdown.ContextMenu, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../pl.treksoft.kvision.dropdown/-context-menu/index.html"><span class="identifier">ContextMenu</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.dropdown/-context-menu/index.html"><span class="identifier">ContextMenu</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/event-flow.html">eventFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning Flow&lt;Pair&lt;Widget, Event&gt;&gt; for a given event</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">eventFlow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.event$eventFlow(pl.treksoft.kvision.event.eventFlow.T, kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Flow</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom.events/-event/index.html"><span class="identifier">Event</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/on-click.html">onClick</a></h4>
+</td>
+<td>
+<p>An extension function for defining on click event handlers.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">onClick</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$onClick(pl.treksoft.kvision.core.onClick.T, kotlin.Function2((pl.treksoft.kvision.core.onClick.T, org.w3c.dom.events.MouseEvent, kotlin.Unit)))/handler">handler</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">.</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom.events/-mouse-event/index.html"><span class="identifier">MouseEvent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/on-event.html">onEvent</a></h4>
+</td>
+<td>
+<p>An extension function for defining event handlers.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">onEvent</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$onEvent(pl.treksoft.kvision.core.onEvent.T, kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.core.onEvent.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-bg-color.html">removeBsBgColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsBgColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$removeBsBgColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsBgColor)/bsBgColor">bsBgColor</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-bg-color/index.html"><span class="identifier">BsBgColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-border.html">removeBsBorder</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsBorder</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$removeBsBorder(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsBorder)))/bsBorder">bsBorder</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-border/index.html"><span class="identifier">BsBorder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-clearfix.html">removeBsClearfix</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsClearfix</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-color.html">removeBsColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$removeBsColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsColor)/bsColor">bsColor</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-color/index.html"><span class="identifier">BsColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-rounded.html">removeBsRounded</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsRounded</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$removeBsRounded(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsRounded)))/bsRounded">bsRounded</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-rounded/index.html"><span class="identifier">BsRounded</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.dropdown/set-context-menu.html">setContextMenu</a></h4>
+</td>
+<td>
+<p>Sets context menu for the current widget.</p>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">.</span><span class="identifier">setContextMenu</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown$setContextMenu(pl.treksoft.kvision.core.Widget, pl.treksoft.kvision.dropdown.ContextMenu)/contextMenu">contextMenu</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.dropdown/-context-menu/index.html"><span class="identifier">ContextMenu</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/style.html">style</a></h4>
+</td>
+<td>
+<p>DSL builder extension function.</p>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">.</span><span class="identifier">style</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$style(pl.treksoft.kvision.core.Widget, kotlin.String, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/className">className</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core$style(pl.treksoft.kvision.core.Widget, kotlin.String, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../pl.treksoft.kvision.core/-style/index.html"><span class="identifier">Style</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.core/-style/index.html"><span class="identifier">Style</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
