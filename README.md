@@ -54,8 +54,9 @@ allows to build fullstack applications with shared common code.
 - Supports an observer pattern for data bindings.
 - Internationalization support based on [Jed](http://messageformat.github.io/Jed/) library and [gettext](https://www.gnu.org/software/gettext/) translations. 
 - Easy to use Drag & Drop support.
+- Support for jQuery animations and effects.
 - Type-safe REST connectivity.
-- Support for event Flows.
+- Support for event Flows and StateFlow for observables.
 - Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot),
  [Javalin](https://javalin.io) and [Vert.x](https://vertx.io) frameworks on the server side,
 including support for type-safe websockets connections.
@@ -69,7 +70,9 @@ boilerplate code for server-side interfaces.
 
 ## Examples and documentation
 
-Ready to explore, rich set of [KVision examples](https://github.com/rjaros/kvision-examples) is available in the separate project.
+Ready to explore, rich set of [KVision examples](https://github.com/rjaros/kvision-examples) is available in the separate project. 
+
+See also the complete frontend implementation of [RealWorld example application](https://github.com/rjaros/kvision-realworld-example-app). 
 
 The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook. 
 
