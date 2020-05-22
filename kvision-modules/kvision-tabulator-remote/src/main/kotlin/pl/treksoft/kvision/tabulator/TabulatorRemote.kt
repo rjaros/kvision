@@ -73,8 +73,8 @@ open class TabulatorRemote<T : Any, E : Any>(
         val callAgent = CallAgent()
 
         @Suppress("UnsafeCastFromDynamic")
-        val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = options.ajaxConfig.beforeSend
-        options.ajaxConfig.beforeSend = undefined
+        val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = options.ajaxConfig?.beforeSend
+        if (beforeSend != null) options.ajaxConfig.beforeSend = undefined
         options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params ->
             val page = params.page
