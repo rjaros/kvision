@@ -31,10 +31,10 @@ import pl.treksoft.kvision.utils.perc
  * Progress bar styles.
  */
 enum class ProgressBarStyle(internal val className: String) {
-    SUCCESS("progress-bar-success"),
-    INFO("progress-bar-info"),
-    WARNING("progress-bar-warning"),
-    DANGER("progress-bar-danger")
+    SUCCESS("bg-success"),
+    INFO("bg-info"),
+    WARNING("bg-warning"),
+    DANGER("bg-danger")
 }
 
 internal const val DEFAULT_MIN = 0
@@ -110,7 +110,7 @@ internal class ProgressIndicator(
             cl.add("progress-bar-striped" to true)
         }
         if (animated) {
-            cl.add("active" to true)
+            cl.add("progress-bar-animated" to true)
         }
         return cl
     }

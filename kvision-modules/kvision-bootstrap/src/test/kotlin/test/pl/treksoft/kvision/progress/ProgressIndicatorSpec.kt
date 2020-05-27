@@ -38,13 +38,13 @@ class ProgressIndicatorSpec : DomSpec {
             root.add(ind)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"progress-bar progress-bar-success progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 50%;\"></div>",
+                "<div class=\"progress-bar bg-success progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 50%;\"></div>",
                 element?.innerHTML,
                 "Should render correct progress bar indicator"
             )
             ind.max = 200
             assertEqualsHtml(
-                "<div class=\"progress-bar progress-bar-success progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"200\" style=\"width: 25%;\"></div>",
+                "<div class=\"progress-bar bg-success progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"200\" style=\"width: 25%;\"></div>",
                 element?.innerHTML,
                 "Should render correct progress bar indicator after max value change"
             )
