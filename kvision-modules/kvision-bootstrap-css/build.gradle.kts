@@ -16,7 +16,7 @@ kotlin {
 dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("bootstrap", "^4.4.1"))
+    implementation(npm("bootstrap", "^4.5.0"))
     testImplementation(kotlin("test-js"))
 }
 
