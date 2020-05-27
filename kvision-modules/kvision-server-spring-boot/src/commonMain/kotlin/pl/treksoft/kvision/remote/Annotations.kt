@@ -28,3 +28,15 @@ expect annotation class Id()
 @OptIn(ExperimentalMultiplatform::class)
 @OptionalExpectation
 expect annotation class Transient()
+
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+expect annotation class Table(val value: String)
+
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+expect annotation class Column(val value: String)
+
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+expect annotation class PersistenceConstructor()
