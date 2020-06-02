@@ -326,10 +326,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
                 vnode = v
                 afterInsertInternal(v)
                 afterInsert(v)
+                afterInsertHook?.invoke(v)
             }
             destroy = {
                 afterDestroyInternal()
                 afterDestroy()
+                afterDestroyHook?.invoke()
                 vnode = null
                 vnode
             }
@@ -806,7 +808,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
                     content = it.content?.let { translate(it) }).toJs()
             )
         }
-        this.afterInsertHook?.invoke(node)
     }
 
     /**
@@ -828,7 +829,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             val popoverFun = getElementJQueryD()?.popover
             if (popoverFun != undefined) getElementJQueryD()?.popover("dispose")
         }
-        this.afterDestroyHook?.invoke()
     }
 
     /**
