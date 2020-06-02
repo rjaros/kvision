@@ -72,7 +72,7 @@ boilerplate code for server-side interfaces.
 
 Ready to explore, rich set of [KVision examples](https://github.com/rjaros/kvision-examples) is available in the separate project. 
 
-See also the complete frontend implementation of [RealWorld example application](https://github.com/rjaros/kvision-realworld-example-app). 
+See also the complete frontend implementation of [RealWorld example application](https://github.com/rjaros/kvision-realworld-example-app) and a [fullstack version](https://github.com/rjaros/kvision-realworld-example-app-fullstack) built with Spring Webflux and R2DBC.  
 
 The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook. 
 
