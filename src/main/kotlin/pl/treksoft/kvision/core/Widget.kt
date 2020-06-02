@@ -1019,11 +1019,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
          */
         internal fun <S, W : Widget> W.bindState(
             observableState: ObservableState<S>,
+            removeChildren: Boolean = true,
             factory: (W.(S) -> Unit)
         ): W {
             val unsubscribe = observableState.subscribe {
                 this.singleRender {
-                    (this as? Container)?.removeAll()
+                    if (removeChildren) (this as? Container)?.removeAll()
                     this.factory(it)
                 }
             }
