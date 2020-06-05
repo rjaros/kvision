@@ -108,6 +108,67 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
     }
 
     /**
+     * DSL function to add components at the UP position.
+     * @param builder DSL builder function
+     */
+    open fun up(builder: Container.() -> Unit) {
+        object : Container by this@DockPanel {
+            override fun add(child: Component): Container {
+                return add(child, Side.UP)
+            }
+        }.builder()
+    }
+
+    /**
+     * DSL function to add components at the DOWN position.
+     * @param builder DSL builder function
+     */
+    open fun down(builder: Container.() -> Unit) {
+        object : Container by this@DockPanel {
+            override fun add(child: Component): Container {
+                return add(child, Side.DOWN)
+            }
+        }.builder()
+    }
+
+    /**
+     * DSL function to add components on the LEFT side.
+     * @param builder DSL builder function
+     */
+    open fun left(builder: Container.() -> Unit) {
+        object : Container by this@DockPanel {
+            override fun add(child: Component): Container {
+                return add(child, Side.LEFT)
+            }
+        }.builder()
+    }
+
+    /**
+     * DSL function to add components on the RIGHT side.
+     * @param builder DSL builder function
+     */
+    open fun right(builder: Container.() -> Unit) {
+        object : Container by this@DockPanel {
+            override fun add(child: Component): Container {
+                return add(child, Side.RIGHT)
+            }
+        }.builder()
+    }
+
+    /**
+     * DSL function to add components in CENTER.
+     * @param builder DSL builder function
+     */
+    open fun center(builder: Container.() -> Unit) {
+        val tempPanel = object : Container by this@DockPanel {
+            override fun add(child: Component): Container {
+                return add(child, Side.CENTER)
+            }
+        }
+        tempPanel.builder()
+    }
+
+    /**
      * Adds a component to the dock container.
      * @param child child component
      * @param position position in the dock
