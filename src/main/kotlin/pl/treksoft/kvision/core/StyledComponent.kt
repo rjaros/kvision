@@ -374,7 +374,7 @@ abstract class StyledComponent {
      * @return the list of attributes and their values
      */
     @Suppress("ComplexMethod", "LongMethod")
-    protected open fun getSnStyle(): List<StringPair> {
+    open fun getSnStyle(): List<StringPair> {
         val cacheKey = getCacheKey()
         return globalStyleCache[cacheKey] ?: run {
             val snstyle = mutableListOf<StringPair>()
