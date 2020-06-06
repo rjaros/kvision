@@ -125,6 +125,8 @@ tasks {
             "kvision-bootstrap-typeahead",
             "kvision-bootstrap-typeahead-remote",
             "kvision-bootstrap-upload",
+            "kvision-onsenui",
+            "kvision-onsenui-css",
             "kvision-common-annotations",
             "kvision-common-remote",
             "kvision-common-types",

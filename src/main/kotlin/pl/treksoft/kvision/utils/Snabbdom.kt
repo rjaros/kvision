@@ -136,6 +136,22 @@ interface BtOn : On {
     var tabChange: ((KvEvent) -> Unit)?
     var tabClosing: ((KvEvent) -> Unit)?
     var tabClosed: ((KvEvent) -> Unit)?
+    var onsPrepush: ((KvEvent) -> Unit)?
+    var onsPrepop: ((KvEvent) -> Unit)?
+    var onsPostpush: ((KvEvent) -> Unit)?
+    var onsPostpop: ((KvEvent) -> Unit)?
+    var onsInit: ((KvEvent) -> Unit)?
+    var onsShow: ((KvEvent) -> Unit)?
+    var onsHide: ((KvEvent) -> Unit)?
+    var onsDestroy: ((KvEvent) -> Unit)?
+    var onsPreopen: ((KvEvent) -> Unit)?
+    var onsPreclose: ((KvEvent) -> Unit)?
+    var onsPostopen: ((KvEvent) -> Unit)?
+    var onsPostclose: ((KvEvent) -> Unit)?
+    var onsModechange: ((KvEvent) -> Unit)?
+    var onsPrechange: ((KvEvent) -> Unit)?
+    var onsPostchange: ((KvEvent) -> Unit)?
+    var onsReactive: ((KvEvent) -> Unit)?
 }
 
 /**

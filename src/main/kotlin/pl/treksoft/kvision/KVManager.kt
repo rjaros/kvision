@@ -57,6 +57,10 @@ object KVManager {
             require("kvision-kvision-fontawesome").pl.treksoft.kvision.KVManagerFontAwesome
         } catch (e: Throwable) {
         }
+        try {
+            require("kvision-kvision-onsenui-css").pl.treksoft.kvision.KVManagerOnsenuiCss
+        } catch (e: Throwable) {
+        }
         require("./css/style.css")
         require("jquery-resizable-dom")
     }

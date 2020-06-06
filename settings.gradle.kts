@@ -32,6 +32,8 @@ include(
     "kvision-modules:kvision-bootstrap-typeahead",
     "kvision-modules:kvision-bootstrap-typeahead-remote",
     "kvision-modules:kvision-bootstrap-upload",
+    "kvision-modules:kvision-onsenui",
+    "kvision-modules:kvision-onsenui-css",
     "kvision-modules:kvision-chart",
     "kvision-modules:kvision-cordova",
     "kvision-modules:kvision-datacontainer",
