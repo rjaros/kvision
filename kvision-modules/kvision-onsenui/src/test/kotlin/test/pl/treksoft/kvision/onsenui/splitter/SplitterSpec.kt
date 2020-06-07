@@ -19,48 +19,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.react
+package test.pl.treksoft.kvision.onsenui.splitter
 
-import kotlinx.html.js.onChangeFunction
-import org.w3c.dom.HTMLInputElement
+import pl.treksoft.kvision.html.div
+import pl.treksoft.kvision.onsenui.core.page
+import pl.treksoft.kvision.onsenui.splitter.splitter
+import pl.treksoft.kvision.onsenui.splitter.splitterContent
+import pl.treksoft.kvision.onsenui.splitter.splitterSide
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.react.react
-import react.dom.input
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class ReactSpec : DomSpec {
+class SplitterSpec : DomSpec {
 
     @Test
-    fun react() {
+    fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val react = root.react("initial") { getState, changeState ->
-                input {
-                    attrs {
-                        value = getState()
-                        onChangeFunction = { e ->
-                            val target = e.target as HTMLInputElement
-                            changeState {
-                                target.value
-                            }
-                        }
+            root.splitter {
+                splitterSide {
+                    page {
+                        div("menu")
+                    }
+                }
+                splitterContent {
+                    page {
+                        div("content")
                     }
                 }
             }
+
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><input value=\"initial\"></div>",
+                "<ons-splitter data-device-back-button-handler-id=\"2\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><ons-splitter-side side=\"left\" mode=\"split\" style=\"width: 80%;\"><ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><div>menu</div></div><span></span></ons-page></ons-splitter-side><ons-splitter-content style=\"left: 80%;\"><ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><div>content</div></div><span></span></ons-page></ons-splitter-content><ons-splitter-mask style=\"display: none;\"></ons-splitter-mask></ons-splitter>",
                 element?.innerHTML,
-                "Should render React input component"
-            )
-            react.state = "changed"
-            assertEqualsHtml(
-                "<div><input value=\"changed\"></div>",
-                element?.innerHTML,
-                "Should render React input component with changed state"
+                "Should render Onsen UI splitter component"
             )
         }
     }

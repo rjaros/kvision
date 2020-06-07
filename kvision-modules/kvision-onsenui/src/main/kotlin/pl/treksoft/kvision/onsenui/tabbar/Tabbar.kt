@@ -52,7 +52,7 @@ enum class TabsPosition(internal val type: String) {
  */
 open class Tabbar(
     tabPosition: TabsPosition? = null,
-    animation: Boolean = true,
+    animation: Boolean? = null,
     swipeable: Boolean? = null,
     classes: Set<String> = setOf(),
     init: (Tabbar.() -> Unit)? = null
@@ -66,7 +66,7 @@ open class Tabbar(
     /**
      *  Determines if the transitions are animated.
      */
-    var animation: Boolean by refreshOnUpdate(animation)
+    var animation: Boolean? by refreshOnUpdate(animation)
 
     /**
      * Determines if the tab bar can be scrolled by drag or swipe.
@@ -123,7 +123,7 @@ open class Tabbar(
         tabPosition?.let {
             sn.add("position" to it.type)
         }
-        if (!animation) {
+        if (animation == false) {
             sn.add("animation" to "none")
         }
         if (swipeable == true) {
@@ -208,7 +208,7 @@ open class Tabbar(
     }
 
     /**
-     * Get the active tab index.
+     * Gets the active tab index.
      * @return active tab index
      */
     @Suppress("UnsafeCastFromDynamic")

@@ -19,48 +19,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.react
+package test.pl.treksoft.kvision.onsenui.core
 
-import kotlinx.html.js.onChangeFunction
-import org.w3c.dom.HTMLInputElement
+import pl.treksoft.kvision.onsenui.core.page
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.react.react
-import react.dom.input
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class ReactSpec : DomSpec {
+class PageSpec : DomSpec {
 
     @Test
-    fun react() {
+    fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val react = root.react("initial") { getState, changeState ->
-                input {
-                    attrs {
-                        value = getState()
-                        onChangeFunction = { e ->
-                            val target = e.target as HTMLInputElement
-                            changeState {
-                                target.value
-                            }
-                        }
-                    }
-                }
+            root.page {
             }
+
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><input value=\"initial\"></div>",
+                "<ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"></div><span></span></ons-page>",
                 element?.innerHTML,
-                "Should render React input component"
-            )
-            react.state = "changed"
-            assertEqualsHtml(
-                "<div><input value=\"changed\"></div>",
-                element?.innerHTML,
-                "Should render React input component with changed state"
+                "Should render Onsen UI page component"
             )
         }
     }

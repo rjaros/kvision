@@ -152,6 +152,8 @@ interface BtOn : On {
     var onsPrechange: ((KvEvent) -> Unit)?
     var onsPostchange: ((KvEvent) -> Unit)?
     var onsReactive: ((KvEvent) -> Unit)?
+    var onsRefresh: ((KvEvent) -> Unit)?
+    var onsOverscroll: ((KvEvent) -> Unit)?
 }
 
 /**

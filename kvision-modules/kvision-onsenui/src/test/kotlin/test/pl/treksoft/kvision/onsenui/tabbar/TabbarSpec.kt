@@ -19,48 +19,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.react
+package test.pl.treksoft.kvision.onsenui.tabbar
 
-import kotlinx.html.js.onChangeFunction
-import org.w3c.dom.HTMLInputElement
+import pl.treksoft.kvision.onsenui.core.page
+import pl.treksoft.kvision.onsenui.tabbar.tab
+import pl.treksoft.kvision.onsenui.tabbar.tabbar
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.react.react
-import react.dom.input
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class ReactSpec : DomSpec {
+class TabbarSpec : DomSpec {
 
     @Test
-    fun react() {
+    fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val react = root.react("initial") { getState, changeState ->
-                input {
-                    attrs {
-                        value = getState()
-                        onChangeFunction = { e ->
-                            val target = e.target as HTMLInputElement
-                            changeState {
-                                target.value
-                            }
+            root.page {
+                tabbar {
+                    tab("tab 1") {
+                        page {
+                        }
+                    }
+                    tab("tab 2") {
+                        page {
                         }
                     }
                 }
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><input value=\"initial\"></div>",
+                "<ons-page class=\"page page--wrapper\"><div class=\"page__background\"></div><div class=\"page__content\" style=\"\"><ons-tabbar><div class=\"tabbar__content ons-tabbar__content ons-swiper\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><div class=\"ons-swiper-target\" style=\"transform: translate3d(0px, 0px, 0px);\"></div><div class=\"ons-swiper-blocker\"></div></div><div class=\"tabbar ons-tabbar__footer ons-swiper-tabbar\"><ons-tab page=\"kv_ons_tab_0\" label=\"tab 1\" active=\"\"></ons-tab><ons-tab page=\"kv_ons_tab_1\" label=\"tab 2\"></ons-tab><div class=\"tabbar__border\"></div></div></ons-tabbar></div><span></span></ons-page>",
                 element?.innerHTML,
-                "Should render React input component"
-            )
-            react.state = "changed"
-            assertEqualsHtml(
-                "<div><input value=\"changed\"></div>",
-                element?.innerHTML,
-                "Should render React input component with changed state"
+                "Should render Onsen UI tab bar component"
             )
         }
     }

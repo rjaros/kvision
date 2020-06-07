@@ -167,6 +167,6 @@ fun Page.toolbar(
     init: (Toolbar.() -> Unit)? = null
 ): Toolbar {
     val toolbar = Toolbar(label, inline, static, classes ?: className.set, init)
-    this.toolbar = toolbar
+    this.toolbarPanel = toolbar
     return toolbar
 }

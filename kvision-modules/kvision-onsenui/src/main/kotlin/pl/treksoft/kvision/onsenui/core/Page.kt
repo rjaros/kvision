@@ -51,7 +51,7 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
     /**
      * The page toolbar.
      */
-    var toolbar: Toolbar? = null
+    var toolbarPanel: Toolbar? = null
         set(value) {
             field = value
             value?.parent = this
@@ -101,7 +101,7 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
     }
 
     override fun render(): VNode {
-        val toolbarArr = toolbar?.let { arrayOf(it.renderVNode()) } ?: emptyArray()
+        val toolbarArr = toolbarPanel?.let { arrayOf(it.renderVNode()) } ?: emptyArray()
         return render(
             "ons-page",
             toolbarArr + arrayOf(backgroundPanel.renderVNode(), contentPanel.renderVNode(), fixedPanel.renderVNode())
