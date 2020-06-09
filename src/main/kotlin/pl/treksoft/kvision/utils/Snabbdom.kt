@@ -48,6 +48,13 @@ inline fun obj(init: dynamic.() -> Unit): dynamic {
 }
 
 /**
+ * Helper function for creating JavaScript objects with given type.
+ */
+inline fun <T> obj(init: T.() -> Unit): T {
+    return (js("{}") as T).apply(init)
+}
+
+/**
  * Helper function for creating JavaScript objects from dynamic constructors.
  */
 @Suppress("UNUSED_VARIABLE")
