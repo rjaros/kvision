@@ -19,40 +19,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.onsenui.tabbar
+package test.pl.treksoft.kvision.onsenui.core
 
 import pl.treksoft.kvision.onsenui.core.page
-import pl.treksoft.kvision.onsenui.tabbar.tab
-import pl.treksoft.kvision.onsenui.tabbar.tabbar
+import pl.treksoft.kvision.onsenui.core.pullHook
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.utils.px
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class TabbarSpec : DomSpec {
+class PullHookSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
             root.page {
-                tabbar {
-                    tab("tab 1") {
-                        page {
-                        }
-                    }
-                    tab("tab 2") {
-                        page {
-                        }
-                    }
+                pullHook {
+                    pullHeight = 100.px
                 }
             }
+
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-page class=\"page page--wrapper\"><div class=\"page__background\"></div><div class=\"page__content\" style=\"\"><ons-tabbar id=\"kv_ons_tabbar_0\"><div class=\"tabbar__content ons-tabbar__content ons-swiper\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><div class=\"ons-swiper-target\" style=\"transform: translate3d(0px, 0px, 0px);\"></div><div class=\"ons-swiper-blocker\"></div></div><div class=\"tabbar ons-tabbar__footer ons-swiper-tabbar\"><ons-tab page=\"kv_ons_tab_0\" label=\"tab 1\" active=\"\"></ons-tab><ons-tab page=\"kv_ons_tab_1\" label=\"tab 2\"></ons-tab><div class=\"tabbar__border\"></div></div></ons-tabbar></div><span></span></ons-page>",
+                "<ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><ons-pull-hook state=\"initial\" height=\"100px\" style=\"display: none; height: 100px; line-height: 100px;\"></ons-pull-hook></div><span></span></ons-page>",
                 element?.innerHTML,
-                "Should render Onsen UI tab bar component"
+                "Should render Onsen UI pull hook component"
             )
         }
     }

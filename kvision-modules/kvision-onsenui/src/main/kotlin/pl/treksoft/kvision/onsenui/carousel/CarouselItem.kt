@@ -32,7 +32,7 @@ import pl.treksoft.kvision.utils.set
  * A carousel item component.
  *
  * @constructor Creates a carousel item component.
- * @param content the content of the button.
+ * @param content the content of the component.
  * @param rich whether [content] can contain HTML code
  * @param align text align
  * @param classes a set of CSS class names

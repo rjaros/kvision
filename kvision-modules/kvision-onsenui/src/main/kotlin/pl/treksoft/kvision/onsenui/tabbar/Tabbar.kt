@@ -110,6 +110,7 @@ open class Tabbar(
     protected var tabbarStyleCallback: (Widget.(Int) -> Unit)? = null
 
     init {
+        this.id = "kv_ons_tabbar_${counter++}"
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -157,9 +158,11 @@ open class Tabbar(
                 val style = widget.getSnStyle().joinToString(";") { (key, value) -> "$key: $value" }
                 getElementJQuery()?.find(".tabbar")?.attr("style", style)
             }
+            e.stopPropagation()
         }
         this.getElementJQuery()?.on("postchange") { e, _ ->
             this.dispatchEvent("onsPostchange", obj { detail = e })
+            e.stopPropagation()
         }
         this.getElementJQuery()?.on("reactive") { e, _ ->
             this.dispatchEvent("onsReactive", obj { detail = e })
@@ -246,6 +249,10 @@ open class Tabbar(
      */
     open fun tabbarStyleClear() {
         tabbarStyleCallback = null
+    }
+
+    companion object {
+        internal var counter = 0
     }
 }
 

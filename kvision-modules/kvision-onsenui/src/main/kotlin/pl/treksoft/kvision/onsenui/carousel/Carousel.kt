@@ -131,12 +131,6 @@ open class Carousel(
      */
     val swiperPanel = SimplePanel(setOf("ons-swiper-target"))
 
-    init {
-        swiperPanel.parent = this
-        @Suppress("LeakingThis")
-        init?.invoke(this)
-    }
-
     /**
      * A dynamic property returning the number of carousel items.
      */
@@ -148,6 +142,12 @@ open class Carousel(
      */
     protected var onSwipeCallback: ((Number) -> Unit)? = null
 
+    init {
+        swiperPanel.parent = this
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
     override fun render(): VNode {
         return render("ons-carousel", arrayOf(swiperPanel.renderVNode()))
     }
@@ -157,8 +157,13 @@ open class Carousel(
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
+        this.getElementJQuery()?.on("prechange") { e, _ ->
+            this.dispatchEvent("onsPrechange", obj { detail = e })
+            e.stopPropagation()
+        }
         this.getElementJQuery()?.on("postchange") { e, _ ->
             this.dispatchEvent("onsPostchange", obj { detail = e })
+            e.stopPropagation()
         }
         this.getElementJQuery()?.on("refresh") { e, _ ->
             this.dispatchEvent("onsRefresh", obj { detail = e })
