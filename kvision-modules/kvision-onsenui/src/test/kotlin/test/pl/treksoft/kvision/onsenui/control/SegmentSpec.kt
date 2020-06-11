@@ -23,7 +23,6 @@ package test.pl.treksoft.kvision.onsenui.control
 
 import pl.treksoft.kvision.html.button
 import pl.treksoft.kvision.onsenui.control.segment
-import pl.treksoft.kvision.onsenui.core.page
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
@@ -36,17 +35,15 @@ class SegmentSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            root.page {
-                segment {
-                    button("a")
-                    button("b")
-                    button("c")
-                }
+            root.segment {
+                button("a")
+                button("b")
+                button("c")
             }
 
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><ons-segment class=\"segment\"><button class=\"btn btn-primary segment__item\" type=\"button\"><input class=\"segment__input\" type=\"radio\" value=\"0\" name=\"ons-segment-gen-0\"><div class=\"segment__button\">a</div></button><button class=\"btn btn-primary segment__item\" type=\"button\"><input class=\"segment__input\" type=\"radio\" value=\"1\" name=\"ons-segment-gen-0\"><div class=\"segment__button\">b</div></button><button class=\"btn btn-primary segment__item\" type=\"button\"><input class=\"segment__input\" type=\"radio\" value=\"2\" name=\"ons-segment-gen-0\"><div class=\"segment__button\">c</div></button></ons-segment></div><span></span></ons-page>",
+                "<ons-segment class=\"segment\"><button class=\"btn btn-primary segment__item\" type=\"button\"><input class=\"segment__input\" type=\"radio\" value=\"0\" name=\"ons-segment-gen-0\"><div class=\"segment__button\">a</div></button><button class=\"btn btn-primary segment__item\" type=\"button\"><input class=\"segment__input\" type=\"radio\" value=\"1\" name=\"ons-segment-gen-0\"><div class=\"segment__button\">b</div></button><button class=\"btn btn-primary segment__item\" type=\"button\"><input class=\"segment__input\" type=\"radio\" value=\"2\" name=\"ons-segment-gen-0\"><div class=\"segment__button\">c</div></button></ons-segment>",
                 element?.innerHTML,
                 "Should render Onsen UI segment component"
             )

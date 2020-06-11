@@ -23,7 +23,6 @@ package test.pl.treksoft.kvision.onsenui.carousel
 
 import pl.treksoft.kvision.onsenui.carousel.carousel
 import pl.treksoft.kvision.onsenui.carousel.carouselItem
-import pl.treksoft.kvision.onsenui.core.page
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
@@ -36,16 +35,14 @@ class CarouselItemSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            root.page {
-                carousel {
-                    carouselItem("item 1")
-                    carouselItem("item 2")
-                }
+            root.carousel {
+                carouselItem("item 1")
+                carouselItem("item 2")
             }
 
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><ons-carousel class=\"ons-swiper\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><div class=\"ons-swiper-target\" style=\"transform: translate3d(0px, 0px, 0px);\"><ons-carousel-item style=\"width: 100%;\">item 1</ons-carousel-item><ons-carousel-item style=\"width: 100%;\">item 2</ons-carousel-item></div><div class=\"ons-swiper-blocker\"></div></ons-carousel></div><span></span></ons-page>",
+                "<ons-carousel class=\"ons-swiper\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><div class=\"ons-swiper-target\" style=\"transform: translate3d(0px, 0px, 0px);\"><ons-carousel-item style=\"width: 100%;\">item 1</ons-carousel-item><ons-carousel-item style=\"width: 100%;\">item 2</ons-carousel-item></div><div class=\"ons-swiper-blocker\"></div></ons-carousel>",
                 element?.innerHTML,
                 "Should render Onsen UI carousel component with items"
             )

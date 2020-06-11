@@ -19,29 +19,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.onsenui.carousel
+package test.pl.treksoft.kvision.onsenui.control
 
-import pl.treksoft.kvision.onsenui.carousel.carousel
+import pl.treksoft.kvision.onsenui.control.FloatPosition
+import pl.treksoft.kvision.onsenui.control.fab
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class CarouselSpec : DomSpec {
+class FabSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            root.carousel {
-            }
+            root.fab("fa-plus", FloatPosition.BOTTOM_RIGHT)
 
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-carousel class=\"ons-swiper\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><div class=\"ons-swiper-target\" style=\"transform: translate3d(0px, 0px, 0px);\"></div><div class=\"ons-swiper-blocker\"></div></ons-carousel>",
+                "<ons-fab position=\"bottom right\"><ons-icon icon=\"fa-plus\"></ons-icon></ons-fab>",
                 element?.innerHTML,
-                "Should render Onsen UI carousel component"
+                "Should render Onsen UI fab component"
             )
         }
     }

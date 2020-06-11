@@ -162,6 +162,8 @@ interface BtOn : On {
     var onsRefresh: ((KvEvent) -> Unit)?
     var onsOverscroll: ((KvEvent) -> Unit)?
     var onsChangestate: ((KvEvent) -> Unit)?
+    var onsOpen: ((KvEvent) -> Unit)?
+    var onsClose: ((KvEvent) -> Unit)?
 }
 
 /**
