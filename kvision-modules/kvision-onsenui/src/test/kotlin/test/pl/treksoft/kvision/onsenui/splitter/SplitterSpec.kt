@@ -53,8 +53,8 @@ class SplitterSpec : DomSpec {
 
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-splitter data-device-back-button-handler-id=\"2\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><ons-splitter-side side=\"left\" mode=\"split\" style=\"width: 80%;\"><ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><div>menu</div></div><span></span></ons-page></ons-splitter-side><ons-splitter-content style=\"left: 80%;\"><ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><div>content</div></div><span></span></ons-page></ons-splitter-content><ons-splitter-mask style=\"display: none;\"></ons-splitter-mask></ons-splitter>",
-                element?.innerHTML,
+                "<ons-splitter style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"><ons-splitter-side side=\"left\" mode=\"split\" style=\"width: 80%;\"><ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><div>menu</div></div><span></span></ons-page></ons-splitter-side><ons-splitter-content style=\"left: 80%;\"><ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><div>content</div></div><span></span></ons-page></ons-splitter-content><ons-splitter-mask style=\"display: none;\"></ons-splitter-mask></ons-splitter>",
+                element?.innerHTML?.replace(Regex("data-device-back-button-handler-id=\"[0-9]+\""),""),
                 "Should render Onsen UI splitter component"
             )
         }

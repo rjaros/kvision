@@ -26,19 +26,11 @@ import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.html.CustomTag
+import pl.treksoft.kvision.onsenui.FloatDirection
+import pl.treksoft.kvision.onsenui.FloatPosition
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
-
-/**
- * Floating directions.
- */
-enum class FloatDirection(internal val type: String) {
-    UP("up"),
-    DOWN("down"),
-    LEFT("left"),
-    RIGHT("right")
-}
 
 /**
  * An Onsen UI speed dial component.
@@ -61,7 +53,7 @@ open class SpeedDial(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (SpeedDial.() -> Unit)? = null
-) : Div(content, rich, null, classes) {
+) : CustomTag("ons-speed-dial", content, rich, null, classes) {
 
     /**
      * An icon placed on the speed dial button.
@@ -129,9 +121,9 @@ open class SpeedDial(
         init?.invoke(this)
     }
 
-    override fun render(elementName: String, children: Array<dynamic>): VNode {
+    override fun childrenVNodes(): Array<VNode> {
         val iconArr = fabWidget?.let { arrayOf(it.renderVNode()) } ?: emptyArray()
-        return super.render("ons-speed-dial", iconArr + children)
+        return iconArr + super.childrenVNodes()
     }
 
     override fun getSnAttrs(): List<StringPair> {

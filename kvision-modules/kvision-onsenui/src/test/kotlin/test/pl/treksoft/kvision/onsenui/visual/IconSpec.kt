@@ -21,7 +21,7 @@
  */
 package test.pl.treksoft.kvision.onsenui.visual
 
-import pl.treksoft.kvision.html.icon
+import pl.treksoft.kvision.onsenui.visual.icon
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec

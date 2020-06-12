@@ -33,6 +33,9 @@ import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 import kotlin.js.Promise
 
+/**
+ * The carousel directions.
+ */
 enum class CarouselDirection(internal val type: String) {
     HORIZONTAL("horizontal"),
     VERTICAL("vertical")

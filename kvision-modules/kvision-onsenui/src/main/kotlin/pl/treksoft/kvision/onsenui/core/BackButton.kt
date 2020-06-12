@@ -27,6 +27,7 @@ import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
+import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.utils.set
 
@@ -47,7 +48,7 @@ open class BackButton(
     align: Align? = null,
     classes: Set<String> = setOf(),
     init: (BackButton.() -> Unit)? = null
-) : Div(content, rich, align, classes) {
+) : CustomTag("ons-back-button", content, rich, align, classes) {
 
     /**
      * A modifier attribute to specify custom styles.
@@ -56,10 +57,6 @@ open class BackButton(
 
     init {
         init?.invoke(this)
-    }
-
-    override fun render(elementName: String, children: Array<dynamic>): VNode {
-        return super.render("ons-back-button", children)
     }
 
     override fun getSnAttrs(): List<StringPair> {

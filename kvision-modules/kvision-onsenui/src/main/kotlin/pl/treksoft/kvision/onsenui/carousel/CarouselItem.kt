@@ -22,10 +22,9 @@
 
 package pl.treksoft.kvision.onsenui.carousel
 
-import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.html.Align
-import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -44,15 +43,11 @@ open class CarouselItem(
     align: Align? = null,
     classes: Set<String> = setOf(),
     init: (CarouselItem.() -> Unit)? = null
-) : Div(content, rich, align, classes) {
+) : CustomTag("ons-carousel-item", content, rich, align, classes) {
 
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
-    }
-
-    override fun render(elementName: String, children: Array<dynamic>): VNode {
-        return super.render("ons-carousel-item", children)
     }
 
     /**

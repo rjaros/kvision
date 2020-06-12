@@ -26,19 +26,10 @@ import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.html.CustomTag
+import pl.treksoft.kvision.onsenui.FloatPosition
 import pl.treksoft.kvision.onsenui.visual.Icon
 import pl.treksoft.kvision.utils.set
-
-/**
- * Floating positions.
- */
-enum class FloatPosition(internal val type: String) {
-    TOP_LEFT("top left"),
-    TOP_RIGHT("top right"),
-    BOTTOM_LEFT("bottom left"),
-    BOTTOM_RIGHT("bottom right")
-}
 
 /**
  * An Onsen UI fab component.
@@ -59,7 +50,7 @@ open class Fab(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (Fab.() -> Unit)? = null
-) : Div(content, rich, null, classes) {
+) : CustomTag("ons-fab", content, rich, null, classes) {
 
     /**
      * The name of the icon placed on the button.
@@ -115,9 +106,9 @@ open class Fab(
         init?.invoke(this)
     }
 
-    override fun render(elementName: String, children: Array<dynamic>): VNode {
+    override fun childrenVNodes(): Array<VNode> {
         val iconArr = iconWidget?.let { arrayOf(it.renderVNode()) } ?: emptyArray()
-        return super.render("ons-fab", iconArr + children)
+        return iconArr + super.childrenVNodes()
     }
 
     override fun getSnAttrs(): List<StringPair> {

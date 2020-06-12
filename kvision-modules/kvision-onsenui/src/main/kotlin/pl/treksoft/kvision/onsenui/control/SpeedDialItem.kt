@@ -25,7 +25,7 @@ package pl.treksoft.kvision.onsenui.control
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.onsenui.visual.Icon
 import pl.treksoft.kvision.utils.set
 
@@ -46,7 +46,7 @@ open class SpeedDialItem(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (SpeedDialItem.() -> Unit)? = null
-) : Div(content, rich, null, classes) {
+) : CustomTag("ons-speed-dial-item", content, rich, null, classes) {
 
     /**
      * An icon placed on the speed dial item.
@@ -82,9 +82,9 @@ open class SpeedDialItem(
         init?.invoke(this)
     }
 
-    override fun render(elementName: String, children: Array<dynamic>): VNode {
+    override fun childrenVNodes(): Array<VNode> {
         val iconArr = iconWidget?.let { arrayOf(it.renderVNode()) } ?: emptyArray()
-        return super.render("ons-speed-dial-item", iconArr + children)
+        return iconArr + super.childrenVNodes()
     }
 
     override fun getSnAttrs(): List<StringPair> {

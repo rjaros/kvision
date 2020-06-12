@@ -22,10 +22,10 @@
 
 package pl.treksoft.kvision.onsenui.toolbar
 
-import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
+import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.utils.set
 
@@ -50,7 +50,7 @@ open class ToolbarButton(
     disabled: Boolean? = null,
     classes: Set<String> = setOf(),
     init: (ToolbarButton.() -> Unit)? = null
-) : Div(content, rich, align, classes) {
+) : CustomTag("ons-toolbar-button", content, rich, align, classes) {
 
     /**
      *  The icon placed on the toolbar button.
@@ -77,10 +77,6 @@ open class ToolbarButton(
     val isDisabled: Boolean?
         @Suppress("UnsafeCastFromDynamic")
         get() = getElement()?.asDynamic()?.disabled
-
-    override fun render(elementName: String, children: Array<dynamic>): VNode {
-        return super.render("ons-toolbar-button", children)
-    }
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()

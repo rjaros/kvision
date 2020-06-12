@@ -25,6 +25,26 @@ package pl.treksoft.kvision.onsenui
 import pl.treksoft.kvision.KVManagerOnsenui.ons
 
 /**
+ * Floating directions.
+ */
+enum class FloatDirection(internal val type: String) {
+    UP("up"),
+    DOWN("down"),
+    LEFT("left"),
+    RIGHT("right")
+}
+
+/**
+ * Floating positions.
+ */
+enum class FloatPosition(internal val type: String) {
+    TOP_LEFT("top left"),
+    TOP_RIGHT("top right"),
+    BOTTOM_LEFT("bottom left"),
+    BOTTOM_RIGHT("bottom right")
+}
+
+/**
  * Back button event type.
  */
 external interface BackButtonEvent {

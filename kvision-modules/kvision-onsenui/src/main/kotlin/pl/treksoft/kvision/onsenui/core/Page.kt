@@ -28,6 +28,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.onsenui.BackButtonEvent
+import pl.treksoft.kvision.onsenui.dialog.Dialog
 import pl.treksoft.kvision.onsenui.splitter.SplitterContent
 import pl.treksoft.kvision.onsenui.splitter.SplitterSide
 import pl.treksoft.kvision.onsenui.tabbar.Tab
@@ -292,6 +293,21 @@ fun SplitterContent.page(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Tab.page(
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Page.() -> Unit)? = null
+): Page {
+    val page = Page(classes ?: className.set, init)
+    this.add(page)
+    return page
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Dialog.page(
     classes: Set<String>? = null,
     className: String? = null,
     init: (Page.() -> Unit)? = null

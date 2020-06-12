@@ -164,6 +164,10 @@ interface BtOn : On {
     var onsChangestate: ((KvEvent) -> Unit)?
     var onsOpen: ((KvEvent) -> Unit)?
     var onsClose: ((KvEvent) -> Unit)?
+    var onsPreshow: ((KvEvent) -> Unit)?
+    var onsPrehide: ((KvEvent) -> Unit)?
+    var onsPostshow: ((KvEvent) -> Unit)?
+    var onsPosthide: ((KvEvent) -> Unit)?
 }
 
 /**

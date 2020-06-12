@@ -26,7 +26,7 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
-import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.utils.asString
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
@@ -48,7 +48,7 @@ open class PullHook(
     align: Align? = null,
     classes: Set<String> = setOf(),
     init: (PullHook.() -> Unit)? = null
-) : Div(content, rich, align, classes) {
+) : CustomTag("ons-pull-hook", content, rich, align, classes) {
 
     /**
      * When pulled down further than this value it will switch to the "preaction" state.
@@ -96,10 +96,6 @@ open class PullHook(
 
     init {
         init?.invoke(this)
-    }
-
-    override fun render(elementName: String, children: Array<dynamic>): VNode {
-        return super.render("ons-pull-hook", children)
     }
 
     override fun getSnAttrs(): List<StringPair> {

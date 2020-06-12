@@ -21,7 +21,7 @@
  */
 package test.pl.treksoft.kvision.onsenui.control
 
-import pl.treksoft.kvision.onsenui.control.FloatPosition
+import pl.treksoft.kvision.onsenui.FloatPosition
 import pl.treksoft.kvision.onsenui.control.speedDial
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
