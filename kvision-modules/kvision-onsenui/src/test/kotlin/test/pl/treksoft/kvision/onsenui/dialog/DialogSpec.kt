@@ -41,8 +41,8 @@ class DialogSpec : DomSpec {
             dialog.showDialog()
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-dialog style=\"display: block; z-index: 10001;\" status-bar-fill=\"\"><div class=\"dialog-mask\" style=\"z-index: 20000; opacity: 0;\"></div><div class=\"dialog\" style=\"z-index: 20001; transform: translate3d(-50%, -1px, 0px);\"><div class=\"dialog-container\"><div>test</div></div></div></ons-dialog>",
-                element?.innerHTML?.replace(Regex("data-device-back-button-handler-id=\"[0-9]+\""), ""),
+                "<ons-dialog style=\"display: block; z-index: 10001;\" status-bar-fill=\"\"><div class=\"dialog-mask\" style=\"z-index: 20000; opacity: 0;\"></div><div class=\"dialog\" style=\"z-index: 20001; \"><div class=\"dialog-container\"><div>test</div></div></div></ons-dialog>",
+                element?.innerHTML?.replace(Regex("data-device-back-button-handler-id=\"[0-9]+\""), "")?.replace(Regex("transform: translate3d\\([^)]+\\);"),""),
                 "Should render Onsen UI dialog component"
             )
             dialog.hideDialog()

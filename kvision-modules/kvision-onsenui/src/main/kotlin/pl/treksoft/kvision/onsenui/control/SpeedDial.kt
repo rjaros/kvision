@@ -65,7 +65,7 @@ open class SpeedDial(
                 if (fabWidget != null) {
                     fabWidget?.icon = value
                 } else {
-                    fabWidget = Fab(icon = value)
+                    fabWidget = Fab(icon = value).apply { this.parent = this@SpeedDial }
                 }
             } else {
                 fabWidget?.dispose()
@@ -115,7 +115,7 @@ open class SpeedDial(
     /**
      * An internal floating button widget.
      */
-    protected var fabWidget: Fab? = icon?.let { Fab(icon = it) }
+    protected var fabWidget: Fab? = icon?.let { Fab(icon = it).apply { this.parent = this@SpeedDial } }
 
     init {
         init?.invoke(this)
@@ -216,6 +216,11 @@ open class SpeedDial(
             }
         }
         return this
+    }
+
+    override fun dispose() {
+        super.dispose()
+        fabWidget?.dispose()
     }
 }
 

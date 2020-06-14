@@ -42,8 +42,8 @@ class ActionSheetSpec : DomSpec {
             actionSheet.showActionSheet()
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-action-sheet title=\"test\" style=\"display: block; z-index: 10001;\" ><div class=\"action-sheet-mask\" style=\"z-index: 20000; opacity: 0;\"></div><div class=\"action-sheet\" style=\"z-index: 20001; transform: translate3d(0px, -1px, 0px);\"><div class=\"action-sheet-title\">test</div><ons-action-sheet-button>button 1</ons-action-sheet-button><ons-action-sheet-button>button 2</ons-action-sheet-button></div></ons-action-sheet>",
-                element?.innerHTML?.replace(Regex("data-device-back-button-handler-id=\"[0-9]+\""), ""),
+                "<ons-action-sheet title=\"test\" style=\"display: block; z-index: 10001;\" ><div class=\"action-sheet-mask\" style=\"z-index: 20000; opacity: 0;\"></div><div class=\"action-sheet\" style=\"z-index: 20001; \"><div class=\"action-sheet-title\">test</div><ons-action-sheet-button>button 1</ons-action-sheet-button><ons-action-sheet-button>button 2</ons-action-sheet-button></div></ons-action-sheet>",
+                element?.innerHTML?.replace(Regex("data-device-back-button-handler-id=\"[0-9]+\""), "")?.replace(Regex("transform: translate3d\\([^)]+\\);"),""),
                 "Should render Onsen UI action sheet component"
             )
             actionSheet.hideActionSheet()

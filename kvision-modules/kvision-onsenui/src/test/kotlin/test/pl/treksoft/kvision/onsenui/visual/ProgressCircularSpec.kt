@@ -19,33 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.onsenui.dialog
+package test.pl.treksoft.kvision.onsenui.visual
 
-import pl.treksoft.kvision.html.div
-import pl.treksoft.kvision.onsenui.dialog.toast
+import pl.treksoft.kvision.onsenui.visual.progressBar
+import pl.treksoft.kvision.onsenui.visual.progressCircular
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class ToastSpec : DomSpec {
+class ProgressCircularSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val toast = root.toast {
-                div("test")
-            }
-            toast.showToast()
+            root.progressCircular(30, 50)
+
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-toast style=\"display: block; z-index: 10000;\"><div class=\"toast\" style=\" opacity: 0;\"><div class=\"toast__message\"><div>test</div></div></div></ons-toast>",
-                element?.innerHTML?.replace(Regex("data-device-back-button-handler-id=\"[0-9]+\""), "")?.replace(Regex("transform: translate3d\\([^)]+\\);"),""),
-                "Should render Onsen UI toast component"
+                "<ons-progress-circular value=\"30\" secondary-value=\"50\"></ons-progress-circular>",
+                element?.innerHTML,
+                "Should render Onsen UI circular progress indicator component"
             )
-            toast.hideToast()
         }
     }
 }

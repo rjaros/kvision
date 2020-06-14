@@ -25,55 +25,26 @@ package pl.treksoft.kvision.onsenui.visual
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.html.Div
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.set
 
 /**
- * An icon component.
+ * A card component.
  *
- * @constructor Creates an icon component.
- * @param icon the name of the icon
- * @param size the size of the icon
- * @param rotate a number of degrees to rotate the icon - valid values are 90, 180 and 270
- * @param fixedWidth whether the icons to have the same width
- * @param spin whether the icon should be spinning
+ * @constructor Creates a card component.
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-open class Icon(
-    icon: String,
-    size: String? = null,
-    rotate: Number? = null,
-    fixedWidth: Boolean? = null,
-    spin: Boolean? = null,
+open class Card(
     classes: Set<String> = setOf(),
-    init: (Icon.() -> Unit)? = null
-) : Widget(classes) {
+    init: (Card.() -> Unit)? = null
+) : SimplePanel(classes) {
 
     /**
-     * The name of the icon.
+     * A modifier attribute to specify custom styles.
      */
-    var icon: String by refreshOnUpdate(icon)
-
-    /**
-     * The size of the icon.
-     */
-    var size: String? by refreshOnUpdate(size)
-
-    /**
-     * A number of degrees to rotate the icon. Valid values are 90, 180 and 270.
-     */
-    var rotate: Number? by refreshOnUpdate(rotate)
-
-    /**
-     * Whether the icons to have the same width.
-     */
-    var fixedWidth: Boolean? by refreshOnUpdate(fixedWidth)
-
-    /**
-     * Whether the icons should be spinning.
-     */
-    var spin: Boolean? by refreshOnUpdate(spin)
+    var modifier: String? by refreshOnUpdate()
 
     init {
         @Suppress("LeakingThis")
@@ -81,26 +52,39 @@ open class Icon(
     }
 
     override fun render(): VNode {
-        return render("ons-icon")
+        return render("ons-card", childrenVNodes())
     }
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
-        sn.add("icon" to icon)
-        size?.let {
-            sn.add("size" to it)
-        }
-        rotate?.let {
-            sn.add("rotate" to it.toString())
-        }
-        if (fixedWidth == true) {
-            sn.add("fixed-width" to "fixed-width")
-        }
-        if (spin == true) {
-            sn.add("spin" to "spin")
+        modifier?.let {
+            sn.add("modifier" to it)
         }
         return sn
     }
+
+    /**
+     * DSL builder function to add title section of the card.
+     * @param builder a builder extension function
+     */
+    open fun title(builder: Div.() -> Unit): Div {
+        val titleDiv = Div(classes = setOf("title"))
+        titleDiv.builder()
+        add(titleDiv)
+        return titleDiv
+    }
+
+    /**
+     * DSL builder function to add content section of the card.
+     * @param builder a builder extension function
+     */
+    open fun content(builder: Div.() -> Unit): Div {
+        val contentDiv = Div(classes = setOf("content"))
+        contentDiv.builder()
+        add(contentDiv)
+        return contentDiv
+    }
+
 }
 
 /**
@@ -108,17 +92,12 @@ open class Icon(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.icon(
-    icon: String,
-    size: String? = null,
-    rotate: Number? = null,
-    fixedWidth: Boolean? = null,
-    spin: Boolean? = null,
+fun Container.card(
     classes: Set<String>? = null,
     className: String? = null,
-    init: (Icon.() -> Unit)? = null
-): Icon {
-    val iconComp = Icon(icon, size, rotate, fixedWidth, spin, classes ?: className.set, init)
-    this.add(iconComp)
-    return iconComp
+    init: (Card.() -> Unit)? = null
+): Card {
+    val card = Card(classes ?: className.set, init)
+    this.add(card)
+    return card
 }

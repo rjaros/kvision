@@ -53,6 +53,7 @@ enum class CarouselDirection(internal val type: String) {
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@Suppress("LeakingThis")
 open class Carousel(
     direction: CarouselDirection? = null,
     fullscreen: Boolean? = null,
@@ -147,7 +148,6 @@ open class Carousel(
 
     init {
         swiperPanel.parent = this
-        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
@@ -322,6 +322,11 @@ open class Carousel(
     open fun onSwipeClear() {
         onSwipeCallback = null
         getElement()?.asDynamic()?.onSwipe = undefined
+    }
+
+    override fun dispose() {
+        super.dispose()
+        swiperPanel.dispose()
     }
 }
 

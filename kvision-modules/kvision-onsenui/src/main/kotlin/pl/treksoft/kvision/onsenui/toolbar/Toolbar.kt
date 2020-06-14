@@ -151,6 +151,13 @@ open class Toolbar(
     open fun hideToolbar() {
         return getElement()?.asDynamic()?.hide()
     }
+
+    override fun dispose() {
+        super.dispose()
+        leftPanel.dispose()
+        centerPanel.dispose()
+        rightPanel.dispose()
+    }
 }
 
 /**

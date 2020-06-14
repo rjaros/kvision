@@ -58,7 +58,7 @@ open class SpeedDialItem(
                 if (iconWidget != null) {
                     iconWidget?.icon = value
                 } else {
-                    iconWidget = Icon(value)
+                    iconWidget = Icon(value).apply { this.parent = this@SpeedDialItem }
                 }
             } else {
                 iconWidget?.dispose()
@@ -76,7 +76,7 @@ open class SpeedDialItem(
      */
     var modifier: String? by refreshOnUpdate()
 
-    protected var iconWidget: Icon? = icon?.let { Icon(it) }
+    protected var iconWidget: Icon? = icon?.let { Icon(it).apply { this.parent = this@SpeedDialItem } }
 
     init {
         init?.invoke(this)
@@ -108,6 +108,11 @@ open class SpeedDialItem(
             }
         }
         return this
+    }
+
+    override fun dispose() {
+        super.dispose()
+        iconWidget?.dispose()
     }
 }
 

@@ -213,6 +213,14 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
     internal fun dispatchDestroyEvent() {
         this.dispatchEvent("onsDestroy", obj { })
     }
+
+    override fun dispose() {
+        super.dispose()
+        toolbarPanel?.dispose()
+        backgroundPanel.dispose()
+        contentPanel.dispose()
+        fixedPanel.dispose()
+    }
 }
 
 /**

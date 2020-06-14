@@ -62,7 +62,7 @@ open class Fab(
                 if (iconWidget != null) {
                     iconWidget?.icon = value
                 } else {
-                    iconWidget = Icon(value)
+                    iconWidget = Icon(value).apply { this.parent = this@Fab }
                 }
             } else {
                 iconWidget?.dispose()
@@ -100,7 +100,7 @@ open class Fab(
     /**
      * An internal icon widget.
      */
-    protected var iconWidget: Icon? = icon?.let { Icon(it) }
+    protected var iconWidget: Icon? = icon?.let { Icon(it).apply { this.parent = this@Fab } }
 
     init {
         init?.invoke(this)
@@ -159,6 +159,11 @@ open class Fab(
             }
         }
         return this
+    }
+
+    override fun dispose() {
+        super.dispose()
+        iconWidget?.dispose()
     }
 }
 

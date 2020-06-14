@@ -23,57 +23,66 @@
 package pl.treksoft.kvision.onsenui.visual
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.Color
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.set
 
+enum class RippleSize(internal val type: String) {
+    COVER("cover"),
+    CONTAIN("contain")
+}
+
 /**
- * An icon component.
+ * A ripple effect component.
  *
- * @constructor Creates an icon component.
- * @param icon the name of the icon
- * @param size the size of the icon
- * @param rotate a number of degrees to rotate the icon - valid values are 90, 180 and 270
- * @param fixedWidth whether the icons to have the same width
- * @param spin whether the icon should be spinning
+ * @constructor Creates a ripple effect component.
+ * @param rippleColor the color of the ripple effect
+ * @param rippleBackground the color of the background
+ * @param size sizing of the wave on ripple effect
+ * @param center whether the wave effect position is moved to the center of the target element
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-open class Icon(
-    icon: String,
-    size: String? = null,
-    rotate: Number? = null,
-    fixedWidth: Boolean? = null,
-    spin: Boolean? = null,
+open class Ripple(
+    rippleColor: Color? = null,
+    rippleBackground: Color? = null,
+    size: RippleSize? = null,
+    center: Boolean? = null,
     classes: Set<String> = setOf(),
-    init: (Icon.() -> Unit)? = null
+    init: (Ripple.() -> Unit)? = null
 ) : Widget(classes) {
 
     /**
-     * The name of the icon.
+     * The color of the ripple effect.
      */
-    var icon: String by refreshOnUpdate(icon)
+    var rippleColor: Color? by refreshOnUpdate(rippleColor)
 
     /**
-     * The size of the icon.
+     * The color of the background.
      */
-    var size: String? by refreshOnUpdate(size)
+    var rippleBackground: Color? by refreshOnUpdate(rippleBackground)
 
     /**
-     * A number of degrees to rotate the icon. Valid values are 90, 180 and 270.
+     * Sizing of the wave on the ripple effect.
      */
-    var rotate: Number? by refreshOnUpdate(rotate)
+    var size: RippleSize? by refreshOnUpdate(size)
 
     /**
-     * Whether the icons to have the same width.
+     * Whether the wave effect position is moved to the center of the target element.
      */
-    var fixedWidth: Boolean? by refreshOnUpdate(fixedWidth)
+    var center: Boolean? by refreshOnUpdate(center)
 
     /**
-     * Whether the icons should be spinning.
+     * A modifier attribute to specify custom styles.
      */
-    var spin: Boolean? by refreshOnUpdate(spin)
+    var modifier: String? by refreshOnUpdate()
+
+    /**
+     * Whether the ripple effect is disabled.
+     */
+    var disabled: Boolean? by refreshOnUpdate()
 
     init {
         @Suppress("LeakingThis")
@@ -81,23 +90,28 @@ open class Icon(
     }
 
     override fun render(): VNode {
-        return render("ons-icon")
+        return render("ons-ripple")
     }
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
-        sn.add("icon" to icon)
+        rippleColor?.let {
+            sn.add("color" to it.asString())
+        }
+        rippleBackground?.let {
+            sn.add("background" to it.asString())
+        }
         size?.let {
-            sn.add("size" to it)
+            sn.add("size" to it.type)
         }
-        rotate?.let {
-            sn.add("rotate" to it.toString())
+        if (center == true) {
+            sn.add("center" to "center")
         }
-        if (fixedWidth == true) {
-            sn.add("fixed-width" to "fixed-width")
+        modifier?.let {
+            sn.add("modifier" to it)
         }
-        if (spin == true) {
-            sn.add("spin" to "spin")
+        if (disabled == true) {
+            sn.add("disabled" to "disabled")
         }
         return sn
     }
@@ -108,17 +122,16 @@ open class Icon(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.icon(
-    icon: String,
-    size: String? = null,
-    rotate: Number? = null,
-    fixedWidth: Boolean? = null,
-    spin: Boolean? = null,
+fun Container.ripple(
+    rippleColor: Color? = null,
+    rippleBackground: Color? = null,
+    size: RippleSize? = null,
+    center: Boolean? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (Icon.() -> Unit)? = null
-): Icon {
-    val iconComp = Icon(icon, size, rotate, fixedWidth, spin, classes ?: className.set, init)
-    this.add(iconComp)
-    return iconComp
+    init: (Ripple.() -> Unit)? = null
+): Ripple {
+    val ripple = Ripple(rippleColor, rippleBackground, size, center, classes ?: className.set, init)
+    this.add(ripple)
+    return ripple
 }

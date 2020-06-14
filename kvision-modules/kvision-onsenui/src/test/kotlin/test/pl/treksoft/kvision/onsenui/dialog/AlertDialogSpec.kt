@@ -43,8 +43,8 @@ class AlertDialogSpec : DomSpec {
             dialog.showDialog()
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-alert-dialog style=\"display: block; z-index: 10001;\" ><div class=\"alert-dialog-mask\" style=\"z-index: 20000; opacity: 0;\"></div><div class=\"alert-dialog\" style=\"z-index: 20001; transform: translate3d(-50%, -50%, 0px) scale3d(1.3, 1.3, 1); opacity: 0;\"><div class=\"alert-dialog-container\"><div class=\"alert-dialog-title\">title</div><div class=\"alert-dialog-content\"><div>test</div></div><div class=\"alert-dialog-footer\"><ons-alert-dialog-button>OK</ons-alert-dialog-button></div></div></div></ons-alert-dialog>",
-                element?.innerHTML?.replace(Regex("data-device-back-button-handler-id=\"[0-9]+\""), ""),
+                "<ons-alert-dialog style=\"display: block; z-index: 10001;\" ><div class=\"alert-dialog-mask\" style=\"z-index: 20000; opacity: 0;\"></div><div class=\"alert-dialog\" style=\"z-index: 20001;  scale3d(1.3, 1.3, 1); opacity: 0;\"><div class=\"alert-dialog-container\"><div class=\"alert-dialog-title\">title</div><div class=\"alert-dialog-content\"><div>test</div></div><div class=\"alert-dialog-footer\"><ons-alert-dialog-button>OK</ons-alert-dialog-button></div></div></div></ons-alert-dialog>",
+                element?.innerHTML?.replace(Regex("data-device-back-button-handler-id=\"[0-9]+\""), "")?.replace(Regex("transform: translate3d\\([^)]+\\)"),""),
                 "Should render Onsen UI alert dialog component"
             )
             dialog.hideDialog()

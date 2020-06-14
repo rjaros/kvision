@@ -29,51 +29,42 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.set
 
 /**
- * An icon component.
+ * A circular progress indicator component.
  *
- * @constructor Creates an icon component.
- * @param icon the name of the icon
- * @param size the size of the icon
- * @param rotate a number of degrees to rotate the icon - valid values are 90, 180 and 270
- * @param fixedWidth whether the icons to have the same width
- * @param spin whether the icon should be spinning
+ * @constructor Creates a circular progress indicator component.
+ * @param value the current progress (should be a value between 0 and 100)
+ * @param secondaryValue the current secondary progress (should be a value between 0 and 100)
+ * @param indeterminate whether infinite looping animation is shown
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-open class Icon(
-    icon: String,
-    size: String? = null,
-    rotate: Number? = null,
-    fixedWidth: Boolean? = null,
-    spin: Boolean? = null,
+open class ProgressCircular(
+    value: Number? = null,
+    secondaryValue: Number? = null,
+    indeterminate: Boolean? = null,
     classes: Set<String> = setOf(),
-    init: (Icon.() -> Unit)? = null
+    init: (ProgressCircular.() -> Unit)? = null
 ) : Widget(classes) {
 
     /**
-     * The name of the icon.
+     * The current progress (should be a value between 0 and 100).
      */
-    var icon: String by refreshOnUpdate(icon)
+    var value: Number? by refreshOnUpdate(value)
 
     /**
-     * The size of the icon.
+     * The current secondary progress (should be a value between 0 and 100).
      */
-    var size: String? by refreshOnUpdate(size)
+    var secondaryValue: Number? by refreshOnUpdate(secondaryValue)
 
     /**
-     * A number of degrees to rotate the icon. Valid values are 90, 180 and 270.
+     * Whether infinite looping animation is shown.
      */
-    var rotate: Number? by refreshOnUpdate(rotate)
+    var indeterminate: Boolean? by refreshOnUpdate(indeterminate)
 
     /**
-     * Whether the icons to have the same width.
+     * A modifier attribute to specify custom styles.
      */
-    var fixedWidth: Boolean? by refreshOnUpdate(fixedWidth)
-
-    /**
-     * Whether the icons should be spinning.
-     */
-    var spin: Boolean? by refreshOnUpdate(spin)
+    var modifier: String? by refreshOnUpdate()
 
     init {
         @Suppress("LeakingThis")
@@ -81,23 +72,22 @@ open class Icon(
     }
 
     override fun render(): VNode {
-        return render("ons-icon")
+        return render("ons-progress-circular")
     }
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
-        sn.add("icon" to icon)
-        size?.let {
-            sn.add("size" to it)
+        value?.let {
+            sn.add("value" to it.toString())
         }
-        rotate?.let {
-            sn.add("rotate" to it.toString())
+        secondaryValue?.let {
+            sn.add("secondary-value" to it.toString())
         }
-        if (fixedWidth == true) {
-            sn.add("fixed-width" to "fixed-width")
+        if (indeterminate == true) {
+            sn.add("indeterminate" to "indeterminate")
         }
-        if (spin == true) {
-            sn.add("spin" to "spin")
+        modifier?.let {
+            sn.add("modifier" to it)
         }
         return sn
     }
@@ -108,17 +98,15 @@ open class Icon(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.icon(
-    icon: String,
-    size: String? = null,
-    rotate: Number? = null,
-    fixedWidth: Boolean? = null,
-    spin: Boolean? = null,
+fun Container.progressCircular(
+    value: Number? = null,
+    secondaryValue: Number? = null,
+    indeterminate: Boolean? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (Icon.() -> Unit)? = null
-): Icon {
-    val iconComp = Icon(icon, size, rotate, fixedWidth, spin, classes ?: className.set, init)
-    this.add(iconComp)
-    return iconComp
+    init: (ProgressCircular.() -> Unit)? = null
+): ProgressCircular {
+    val progressCircular = ProgressCircular(value, secondaryValue, indeterminate, classes ?: className.set, init)
+    this.add(progressCircular)
+    return progressCircular
 }
