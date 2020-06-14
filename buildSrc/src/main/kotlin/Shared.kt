@@ -56,6 +56,7 @@ private fun KotlinJsTarget.kotlinJsTargets(isProductionBuild: Boolean) {
     browser {
         testTask {
             useKarma {
+                useConfigDirectory("karma.config.d")
                 useChromeHeadless()
             }
         }

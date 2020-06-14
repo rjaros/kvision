@@ -443,3 +443,28 @@ ul.typeahead > li.active > a {
     text-decoration: none;
     background-color: #f8f9fa;
 }
+
+#toast-container .toast {
+    background-color: #030303;
+    max-width: inherit;
+}
+
+#toast-container .toast-success {
+  background-color: #51A351;
+}
+
+#toast-container .toast-error {
+  background-color: #BD362F;
+}
+
+#toast-container .toast-info {
+  background-color: #2F96B4;
+}
+
+#toast-container .toast-warning {
+  background-color: #F89406;
+}
+
+#toast-container .toast-progress {
+  background-color: #000000;
+}

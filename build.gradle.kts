@@ -49,6 +49,8 @@ dependencies {
     implementation(npm("snabbdom-virtualize", "^0.7.0"))
     implementation(npm("jquery-resizable-dom", "^0.35.0"))
     implementation(npm("navigo", "^7.1.2"))
+    testImplementation(npm("karma-qunit", "^4.1.1"))
+    testImplementation(npm("qunit", "^2.10.0"))
     testImplementation(kotlin("test-js"))
 }
 
