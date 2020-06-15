@@ -45,6 +45,15 @@ enum class FloatPosition(internal val type: String) {
 }
 
 /**
+ * Grid row and column vertical align.
+ */
+enum class GridVerticalAlign(internal val type: String) {
+    TOP("top"),
+    BOTTOM("bottom"),
+    CENTER("center")
+}
+
+/**
  * Back button event type.
  */
 external interface BackButtonEvent {
