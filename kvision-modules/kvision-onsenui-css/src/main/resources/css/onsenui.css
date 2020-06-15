@@ -1,0 +1,5 @@
+.text-justify  { text-align: justify !important; }
+.text-left   { text-align: left !important; }
+.text-right  { text-align: right !important; }
+.text-center { text-align: center !important; }
+.text-nowrap   { white-space: nowrap !important; }

@@ -32,6 +32,7 @@ internal object KVManagerOnsenuiCss {
         require("onsenui/css/material-design-iconic-font/css/material-design-iconic-font.min.css")
         require("onsenui/css/onsenui-core.min.css")
         require("onsenui/css/onsen-css-components.min.css")
+        require("./css/onsenui.css")
     }
 
     internal fun init() {}
