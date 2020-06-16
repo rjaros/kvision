@@ -20,43 +20,74 @@
  * SOFTWARE.
  */
 
-package pl.treksoft.kvision.onsenui.toolbar
+package pl.treksoft.kvision.onsenui.form
 
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.CustomTag
-import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.utils.set
 
 /**
- * A button component designed to be placed inside the toolbar.
+ * Onsen UI button types.
+ */
+enum class OnsButtonType(internal val type: String) {
+    OUTLINE("outline"),
+    LIGHT("light"),
+    CTA("cta"),
+    QUIET("quiet"),
+    FLAT("flat")
+}
+
+/**
+ * A button component.
  *
- * @constructor Creates a toolbar button component.
+ * @constructor Creates a button component.
  * @param content the content of the button.
  * @param rich whether [content] can contain HTML code
  * @param align text align
- * @param icon an icon placed on the toolbar button
+ * @param icon an icon placed on the button
+ * @param buttonType a type of the button
+ * @param large whether the button is large
+ * @param ripple specify if the button will have a ripple effect
  * @param disabled specify if the button should be disabled
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-@Suppress("LeakingThis")
-open class ToolbarButton(
+open class Button(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
     icon: String? = null,
+    buttonType: OnsButtonType? = null,
+    large: Boolean? = null,
+    ripple: Boolean? = null,
     disabled: Boolean? = null,
     classes: Set<String> = setOf(),
-    init: (ToolbarButton.() -> Unit)? = null
-) : CustomTag("ons-toolbar-button", content, rich, align, classes) {
+    init: (Button.() -> Unit)? = null
+) : CustomTag("ons-button", content, rich, align, classes) {
 
     /**
      *  The icon placed on the toolbar button.
      */
     var icon: String? by refreshOnUpdate(icon)
+
+    /**
+     * A type of the button.
+     */
+    var buttonType: OnsButtonType? by refreshOnUpdate(buttonType)
+
+    /**
+     * Whether the button is large.
+     */
+    var large: Boolean? by refreshOnUpdate(large)
+
+    /**
+     *  Specify if the button will have a ripple effect.
+     */
+    var ripple: Boolean? by refreshOnUpdate(ripple)
 
     /**
      *  Specify if the button should be disabled.
@@ -69,6 +100,7 @@ open class ToolbarButton(
     var modifier: String? by refreshOnUpdate()
 
     init {
+        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
@@ -79,20 +111,6 @@ open class ToolbarButton(
         @Suppress("UnsafeCastFromDynamic")
         get() = getElement()?.asDynamic()?.disabled
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        icon?.let {
-            sn.add("icon" to it)
-        }
-        if (disabled == true) {
-            sn.add("disabled" to "disabled")
-        }
-        modifier?.let {
-            sn.add("modifier" to it)
-        }
-        return sn
-    }
-
     override fun getSnClass(): List<StringBoolPair> {
         val sn = super.getSnClass().toMutableList()
         if (content != null) {
@@ -101,11 +119,38 @@ open class ToolbarButton(
         return sn
     }
 
+    override fun getSnAttrs(): List<StringPair> {
+        val sn = super.getSnAttrs().toMutableList()
+        icon?.let {
+            sn.add("icon" to it)
+        }
+        if (ripple == true) {
+            sn.add("ripple" to "ripple")
+        }
+        if (disabled == true) {
+            sn.add("disabled" to "disabled")
+        }
+        val modifiers = mutableListOf<String>()
+        buttonType?.let {
+            modifiers.add(it.type)
+        }
+        if (large == true) {
+            modifiers.add("large")
+        }
+        modifier?.let {
+            modifiers.add(it)
+        }
+        if (modifiers.isNotEmpty()) {
+            sn.add("modifier" to modifiers.joinToString(" "))
+        }
+        return sn
+    }
+
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: ToolbarButton.(MouseEvent) -> Unit): ToolbarButton {
-        this.setEventListener<ToolbarButton> {
+    open fun onClick(handler: Button.(MouseEvent) -> Unit): Button {
+        this.setEventListener<Button> {
             click = { e ->
                 self.handler(e)
             }
@@ -119,17 +164,20 @@ open class ToolbarButton(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Div.toolbarButton(
+fun Container.button(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
     icon: String? = null,
+    buttonType: OnsButtonType? = null,
+    large: Boolean? = null,
+    ripple: Boolean? = null,
     disabled: Boolean? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (ToolbarButton.() -> Unit)? = null
-): ToolbarButton {
-    val toolbarButton = ToolbarButton(content, rich, align, icon, disabled, classes ?: className.set, init)
-    this.add(toolbarButton)
-    return toolbarButton
+    init: (Button.() -> Unit)? = null
+): Button {
+    val button = Button(content, rich, align, icon, buttonType, large, ripple, disabled, classes ?: className.set, init)
+    this.add(button)
+    return button
 }

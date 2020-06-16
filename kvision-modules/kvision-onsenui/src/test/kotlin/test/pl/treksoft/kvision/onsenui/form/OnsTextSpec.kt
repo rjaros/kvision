@@ -19,35 +19,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.onsenui.toolbar
+package test.pl.treksoft.kvision.onsenui.form
 
-import pl.treksoft.kvision.onsenui.core.page
-import pl.treksoft.kvision.onsenui.toolbar.toolbar
-import pl.treksoft.kvision.onsenui.toolbar.toolbarButton
+import pl.treksoft.kvision.form.text.TextInputType
+import pl.treksoft.kvision.onsenui.form.button
+import pl.treksoft.kvision.onsenui.form.onsText
+import pl.treksoft.kvision.onsenui.form.onsTextInput
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class ToolbarButtonSpec : DomSpec {
+class OnsTextSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            root.page {
-                toolbar("center") {
-                    right {
-                        toolbarButton("test")
-                    }
-                }
+            val text = root.onsText(TextInputType.EMAIL, placeholder = "password", label = "Label") {
+                this.autofocus = true
             }
+            val id = text.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-page class=\"page\"><ons-toolbar><div class=\"left toolbar__left\"></div><div class=\"center toolbar__center\">center</div><div class=\"right toolbar__right\"><ons-toolbar-button class=\"kv-button-with-text\">test</ons-toolbar-button></div></ons-toolbar><div class=\"page__background\"></div><div class=\"page__content\"></div><span></span></ons-page>",
+                "<div class=\"kv-ons-form-group form-group\"><label class=\"control-label\" for=\"${id}\">Label</label><ons-input class=\"kv-ons-form-control form-control\" placeholder=\"password\" autofocus=\"autofocus\" type=\"email\" input-id=\"${id}\" modifier=\"underbar\"></ons-input></div>",
                 element?.innerHTML,
-                "Should render Onsen UI toolbar button component"
+                "Should render Onsen UI text form component"
             )
         }
     }

@@ -19,20 +19,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package pl.treksoft.kvision
+package test.pl.treksoft.kvision.onsenui.form
 
-internal val kVManagerOnsenuiCssInit = KVManagerOnsenuiCss.init()
+import pl.treksoft.kvision.onsenui.form.button
+import pl.treksoft.kvision.panel.ContainerType
+import pl.treksoft.kvision.panel.Root
+import test.pl.treksoft.kvision.DomSpec
+import kotlin.browser.document
+import kotlin.test.Test
 
-/**
- * Internal singleton object which initializes and configures KVision OnsenUI CSS module.
- */
-internal object KVManagerOnsenuiCss {
-    init {
-        require("onsenui/css/ionicons/css/ionicons.min.css")
-        require("onsenui/css/material-design-iconic-font/css/material-design-iconic-font.min.css")
-        require("onsenui/css/onsenui-core.min.css")
-        require("onsenui/css/onsen-css-components.min.css")
+class ButtonSpec : DomSpec {
+
+    @Test
+    fun render() {
+        run {
+            val root = Root("test", containerType = ContainerType.FIXED)
+            root.button("test", icon = "fa-times")
+
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<ons-button class=\"kv-button-with-text\" icon=\"fa-times\">test</ons-button>",
+                element?.innerHTML,
+                "Should render Onsen UI button component"
+            )
+        }
     }
-
-    internal fun init() {}
 }

@@ -19,20 +19,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package pl.treksoft.kvision
+package test.pl.treksoft.kvision.onsenui.form
 
-internal val kVManagerOnsenuiCssInit = KVManagerOnsenuiCss.init()
+import pl.treksoft.kvision.form.text.TextInputType
+import pl.treksoft.kvision.onsenui.form.button
+import pl.treksoft.kvision.onsenui.form.onsTextInput
+import pl.treksoft.kvision.panel.ContainerType
+import pl.treksoft.kvision.panel.Root
+import test.pl.treksoft.kvision.DomSpec
+import kotlin.browser.document
+import kotlin.test.Test
 
-/**
- * Internal singleton object which initializes and configures KVision OnsenUI CSS module.
- */
-internal object KVManagerOnsenuiCss {
-    init {
-        require("onsenui/css/ionicons/css/ionicons.min.css")
-        require("onsenui/css/material-design-iconic-font/css/material-design-iconic-font.min.css")
-        require("onsenui/css/onsenui-core.min.css")
-        require("onsenui/css/onsen-css-components.min.css")
+class OnsTextInputSpec : DomSpec {
+
+    @Test
+    fun render() {
+        run {
+            val root = Root("test", containerType = ContainerType.FIXED)
+            root.onsTextInput(TextInputType.PASSWORD, placeholder = "password") {
+                this.autocomplete = false
+            }
+
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<ons-input class=\"kv-ons-form-control form-control\" placeholder=\"password\" type=\"password\" autocomplete=\"off\"></ons-input>",
+                element?.innerHTML,
+                "Should render Onsen UI text input component"
+            )
+        }
     }
-
-    internal fun init() {}
 }

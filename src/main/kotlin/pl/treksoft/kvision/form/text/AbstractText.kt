@@ -36,9 +36,10 @@ import pl.treksoft.kvision.utils.SnOn
  * @constructor
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param classes a set of CSS class names
  */
-abstract class AbstractText(label: String? = null, rich: Boolean = false) :
-    SimplePanel(setOf("form-group")), StringFormControl, ObservableState<String?> {
+abstract class AbstractText(label: String? = null, rich: Boolean = false, classes: Set<String> = setOf()) :
+    SimplePanel(classes + "form-group"), StringFormControl, ObservableState<String?> {
 
     /**
      * Text input value.
@@ -48,6 +49,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         set(value) {
             input.value = value
         }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -59,6 +61,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         set(value) {
             input.startValue = value
         }
+
     /**
      * The placeholder for the text input.
      */
@@ -67,6 +70,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         set(value) {
             input.placeholder = value
         }
+
     /**
      * Maximal length of the text input value.
      */
@@ -75,6 +79,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         set(value) {
             input.maxlength = value
         }
+
     /**
      * Determines if the text input is automatically focused.
      */
@@ -83,6 +88,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         set(value) {
             input.autofocus = value
         }
+
     /**
      * Determines if the text input is read-only.
      */
@@ -91,6 +97,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         set(value) {
             input.readonly = value
         }
+
     /**
      * The label text bound to the text input element.
      */
@@ -98,7 +105,9 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
         get() = flabel.content
         set(value) {
             flabel.content = value
+            flabel.visible = value != null
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -114,7 +123,8 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false) :
      */
     protected val idc = "kv_form_text_$counter"
     abstract override val input: AbstractTextInput
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel =
+        FieldLabel(idc, label, rich, setOf("control-label")).apply { visible = label != null }
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

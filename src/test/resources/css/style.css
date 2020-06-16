@@ -1,3 +1,9 @@
+.text-justify  { text-align: justify !important; }
+.text-left   { text-align: left !important; }
+.text-right  { text-align: right !important; }
+.text-center { text-align: center !important; }
+.text-nowrap   { white-space: nowrap !important; }
+
 .splitpanel-vertical {
   display: flex;
   flex-direction: row;
@@ -467,4 +473,12 @@ ul.typeahead > li.active > a {
 
 #toast-container .toast-progress {
   background-color: #000000;
+}
+
+ons-button.kv-button-with-text > ons-icon {
+    margin-right: 5px;
+}
+
+ons-toolbar-button.kv-button-with-text > ons-icon {
+    margin-right: 5px;
 }
