@@ -28,8 +28,8 @@ import kotlin.properties.Delegates
  * The observable value class.
  * @param value the initial value
  */
-class ObservableValue<T>(value: T) : ObservableState<T> {
-    private val observers = mutableListOf<(T) -> Unit>()
+open class ObservableValue<T>(value: T) : ObservableState<T> {
+    protected val observers = mutableListOf<(T) -> Unit>()
 
     /**
      * The observed variable.
