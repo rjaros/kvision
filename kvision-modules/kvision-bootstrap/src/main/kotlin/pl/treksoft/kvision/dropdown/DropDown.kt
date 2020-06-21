@@ -156,7 +156,7 @@ open class DropDown(
         }
 
     private val idc = "kv_dropdown_$counter"
-    internal val button: DropDownButton = DropDownButton(
+    val button: DropDownButton = DropDownButton(
         idc, text, icon, style, disabled, forNavbar, forDropDown
     )
 
@@ -371,7 +371,20 @@ fun ContextMenu.cmLinkDisabled(
     return link
 }
 
-internal class DropDownButton(
+/**
+ * A drop down button component.
+ *
+ * @constructor
+ * @param id the id of the element
+ * @param text the dropdown button text
+ * @param icon the icon of the dropdown button
+ * @param style the style of the dropdown button
+ * @param disabled determines if the component is disabled on start
+ * @param forNavbar determines if the component will be used in a navbar
+ * @param forDropDown determines if the component will be used in a dropdown
+ * @param classes a set of CSS class names
+ */
+class DropDownButton(
     id: String,
     text: String,
     icon: String? = null,
