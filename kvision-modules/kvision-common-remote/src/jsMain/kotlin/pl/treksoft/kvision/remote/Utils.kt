@@ -66,9 +66,15 @@ object JSON {
  * Creates a websocket URL from current window.location and given path.
  */
 fun getWebSocketUrl(url: String): String {
-    val location = window.location
-    val scheme = if (location.protocol == "https:") "wss" else "ws"
-    val port = if (location.port == "8088") ":8080"
-    else if (location.port != "0" && location.port != "") ":${location.port}" else ""
-    return "$scheme://${location.hostname}$port$url"
+    return if (url.startsWith("https://")) {
+        "wss" + url.drop(5)
+    } else if (url.startsWith("http://")) {
+        "ws" + url.drop(4)
+    } else {
+        val location = window.location
+        val scheme = if (location.protocol == "https:") "wss" else "ws"
+        val port = if (location.port == "8088") ":8080"
+        else if (location.port != "0" && location.port != "") ":${location.port}" else ""
+        "$scheme://${location.hostname}$port/$url"
+    }
 }
