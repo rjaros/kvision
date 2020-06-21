@@ -23,7 +23,7 @@ package pl.treksoft.kvision.chart
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.chart.js.Chart.ChartConfiguration
-import pl.treksoft.kvision.chart.js.PluginServiceGlobalRegistration
+import pl.treksoft.kvision.chart.js.Chart.PluginServiceGlobalRegistration
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.set

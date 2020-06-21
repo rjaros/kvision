@@ -166,6 +166,24 @@ enum class LineJoin(internal val mode: String) {
 }
 
 /**
+ * Legend align options.
+ */
+enum class LegendAlign(internal val mode: String) {
+    CENTER("center"),
+    END("end"),
+    START("start")
+}
+
+/**
+ * Title and body align options.
+ */
+enum class TooltipAlign(internal val mode: String) {
+    CENTER("center"),
+    LEFT("left"),
+    RIGHT("right")
+}
+
+/**
  * Chart hover options.
  */
 data class HoverOptions(
@@ -287,7 +305,9 @@ data class LegendOptions(
     val reverse: Boolean = false,
     val onClick: ((event: MouseEvent, legendItem: Chart.ChartLegendLabelItem) -> Unit)? = null,
     val onHover: ((event: MouseEvent, legendItem: Chart.ChartLegendLabelItem) -> Unit)? = null,
-    val labels: LegendLabelOptions? = null
+    val labels: LegendLabelOptions? = null,
+    val align: LegendAlign? = null,
+    val onLeave: ((event: MouseEvent, legendItem: Chart.ChartLegendLabelItem) -> Unit)? = null
 )
 
 /**
@@ -302,6 +322,8 @@ fun LegendOptions.toJs(): dynamic {
         if (onClick != null) this.onClick = onClick
         if (onHover != null) this.onHover = onHover
         if (labels != null) this.labels = labels.toJs()
+        if (align != null) this.align = align.mode
+        if (onLeave != null) this.onLeave = onLeave
     }
 }
 
@@ -317,7 +339,8 @@ data class TitleOptions(
     val fontFamily: String? = null,
     val padding: Int = 10,
     val lineHeight: String? = null,
-    val text: List<String>? = null
+    val text: List<String>? = null,
+    val fullWidth: Boolean? = null
 )
 
 /**
@@ -334,6 +357,7 @@ fun TitleOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
         this.padding = padding
         if (lineHeight != null) this.lineHeight = lineHeight
         if (text != null) this.text = text.map(i18nTranslator).toTypedArray()
+        if (fullWidth != null) this.fullWidth = fullWidth
     }
 }
 
@@ -416,7 +440,10 @@ data class TooltipOptions(
     val multiKeyBackground: Color? = null,
     val displayColors: Boolean = true,
     val borderColor: Color? = null,
-    val borderWidth: Int = 0
+    val borderWidth: Int = 0,
+    val titleAlign: TooltipAlign? = null,
+    val bodyAlign: TooltipAlign? = null,
+    val footerAlign: TooltipAlign? = null
 )
 
 /**
@@ -460,6 +487,9 @@ fun TooltipOptions.toJs(): dynamic {
         this.displayColors = displayColors
         if (borderColor != null) this.borderColor = borderColor.asString()
         this.borderWidth = borderWidth
+        if (titleAlign != null) this.titleAlign = titleAlign.mode
+        if (bodyAlign != null) this.bodyAlign = bodyAlign.mode
+        if (footerAlign != null) this.footerAlign = footerAlign.mode
     }
 }
 
@@ -612,7 +642,9 @@ data class GridLineOptions(
     val zeroLineColor: Color? = null,
     val zeroLineBorderDash: List<Int>? = null,
     val zeroLineBorderDashOffset: Int = 0,
-    val offsetGridLines: Boolean = false
+    val offsetGridLines: Boolean = false,
+    val circular: Boolean? = null,
+    val z: Number? = null
 )
 
 /**
@@ -634,6 +666,8 @@ fun GridLineOptions.toJs(): dynamic {
         if (zeroLineBorderDash != null) this.zeroLineBorderDash = zeroLineBorderDash.toTypedArray()
         this.zeroLineBorderDashOffset = zeroLineBorderDashOffset
         this.offsetGridLines = offsetGridLines
+        if (circular != null) this.circular = circular
+        if (z != null) this.z = z
     }
 }
 
@@ -646,7 +680,9 @@ data class ScaleTitleOptions(
     val fontSize: Int = 12,
     val fontStyle: FontStyle? = null,
     val fontColor: Color? = null,
-    val fontFamily: String? = null
+    val fontFamily: String? = null,
+    val lineHeight: Number? = null,
+    val padding: Number? = null
 )
 
 /**
@@ -660,6 +696,8 @@ fun ScaleTitleOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (fontStyle != null) this.fontStyle = fontStyle.name
         if (fontColor != null) this.fontColor = fontColor.asString()
         if (fontFamily != null) this.fontFamily = fontFamily
+        if (lineHeight != null) this.lineHeight = lineHeight
+        if (padding != null) this.padding = padding
     }
 }
 
@@ -675,7 +713,10 @@ data class TickOptions(
     val fontFamily: String? = null,
     val reverse: Boolean = false,
     val minor: dynamic = null,
-    val major: dynamic = null
+    val major: dynamic = null,
+    val lineHeight: Number? = null,
+    val padding: Number? = null,
+    val z: Number? = null
 )
 
 /**
@@ -692,6 +733,9 @@ fun TickOptions.toJs(): dynamic {
         this.reverse = reverse
         if (minor != null) this.minor = minor
         if (major != null) this.major = major
+        if (lineHeight != null) this.lineHeight = lineHeight
+        if (padding != null) this.padding = padding
+        if (z != null) this.z = z
     }
 }
 
@@ -752,7 +796,8 @@ data class ChartOptions(
     val cutoutPercentage: Int? = null,
     val circumference: Double? = null,
     val rotation: Double? = null,
-    val plugins: dynamic = null
+    val plugins: dynamic = null,
+    val scale: dynamic = null
 )
 
 /**
@@ -785,6 +830,7 @@ fun ChartOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (circumference != null) this.circumference = circumference
         if (rotation != null) this.rotation = rotation
         if (plugins != null) this.plugins = plugins
+        if (scale != null) this.scale = scale
     }
 }
 
@@ -826,7 +872,20 @@ data class DataSets(
     val hideInLegendAndTooltip: Boolean? = null,
     val showLine: Boolean? = null,
     val stack: String? = null,
-    val spanGaps: Boolean? = null
+    val spanGaps: Boolean? = null,
+    val barPercentage: Number? = null,
+    val barThickness: dynamic = null,
+    val borderAlign: dynamic = null,
+    val categoryPercentage: Number? = null,
+    val hitRadius: List<Int>? = null,
+    val hoverRadius: Number? = null,
+    val maxBarThickness: Number? = null,
+    val minBarLegth: Number? = null,
+    val order: Number? = null,
+    val pointRotation: List<Int>? = null,
+    val radius: List<Int>? = null,
+    val rotation: List<Int>? = null,
+    val weight: Number? = null
 )
 
 /**
@@ -881,6 +940,19 @@ fun DataSets.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (showLine != null) this.showLine = showLine
         if (stack != null) this.stack = stack
         if (spanGaps != null) this.spanGaps = spanGaps
+        if (barPercentage != null) this.barPercentage = barPercentage
+        if (barThickness != null) this.barThickness = barThickness
+        if (borderAlign != null) this.borderAlign = borderAlign
+        if (categoryPercentage != null) this.categoryPercentage = categoryPercentage
+        if (hitRadius != null) this.hitRadius = hitRadius.toTypedArray().checkSingleValue()
+        if (hoverRadius != null) this.hoverRadius = hoverRadius
+        if (maxBarThickness != null) this.maxBarThickness = maxBarThickness
+        if (minBarLegth != null) this.minBarLegth = minBarLegth
+        if (order != null) this.order = order
+        if (pointRotation != null) this.pointRotation = pointRotation.toTypedArray().checkSingleValue()
+        if (radius != null) this.radius = radius.toTypedArray().checkSingleValue()
+        if (rotation != null) this.rotation = rotation.toTypedArray().checkSingleValue()
+        if (weight != null) this.weight = weight
     }
 }
 
