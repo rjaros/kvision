@@ -21,40 +21,43 @@
  */
 package test.pl.treksoft.kvision.maps
 
+import pl.treksoft.kvision.maps.LatLng
+import pl.treksoft.kvision.maps.LatLngBounds
 import pl.treksoft.kvision.maps.Maps
+import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.px
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
+import kotlin.test.assertTrue
 
 class MapsSpec : DomSpec {
 
-//    @Test
-    fun renderResponsive() {
-        val imageUrl = "https://svn.apache.org/repos/asf/comdev/project-logos/originals/isis.svg"
-        val svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg")
-        svgElement.setAttribute("viewBox", "0 0 200 200")
-        svgElement.innerHTML = "<rect width='200' height='200'/><rect x='75' y='23' width='50' height='50' style='fill:red'/><rect x='75' y='123' width='50' height='50' style='fill:#0013ff'/>"
-        val svgElementBounds = arrayOf(arrayOf(32, -130), arrayOf(13, -100))
-        //      KVManagerMaps.leaflet.svgOverlay(svgElement, svgElementBounds).addTo(map);
-
+    @Test
+    fun renderSvg() {
         run {
-            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val maps = Maps(53.65425, 10.1545, 15)
+            val svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+            svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+            svgElement.setAttribute("viewBox", "0 0 200 200")
+            val svgString = "<rect width='200' height='200'/><rect x='75' y='23' width='50' height='50' style='fill:red'/><rect x='75' y='123' width='50' height='50' style='fill:#0013ff'/>"
+            svgElement.innerHTML = svgString
+            val svgElementBounds = LatLngBounds(
+                    LatLng(40.712216, -74.22655),
+                    LatLng(40.773941, -74.12544))
+
+            val root = Root("test", containerType = ContainerType.FIXED)
+            val maps = Maps(40.75, -74.2, 13)
                     .apply {
                         width = 300.px
                         height = 600.px
                     }
-            maps.imageOverlay(imageUrl, svgElementBounds, maps)
+            maps.svgOverlay(svgElement, svgElementBounds)
             root.add(maps)
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                    "<div style=\"width: 300px; height: 600px;\"><canvas height=\"0\" class=\"chartjs-render-monitor\" width=\"0\" style=\"display: block; width: 0px; height: 0px;\"></canvas></div>",
-                    element?.innerHTML,
-                    "Should render correct responsive chart"
-            )
+            val element = document.getElementById("test")!!
+            assertTrue(
+                    element.innerHTML.contains(svgString),
+                    "Must contain svg xml passed in")
         }
     }
 

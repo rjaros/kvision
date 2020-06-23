@@ -22,38 +22,13 @@
 package pl.treksoft.kvision.maps
 
 import com.github.snabbdom.VNode
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerMaps
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
-
-data class LatLng(val lat: Number, val lng: Number)
-
-fun LatLng.toArray() = arrayOf(lat, lng)
-
-data class LatLngBounds(val corner1: LatLng, val corner2: LatLng)
-
-fun LatLngBounds.toArray() = arrayOf(corner1.toArray(), corner2.toArray())
-
-data class ImageOverlayOptions(
-    val opacity: Number? = null,
-    val alt: String? = null,
-    val interactive: Boolean? = null,
-    val crossOrigin: Boolean? = null
-    // other options ...
-)
-
-fun ImageOverlayOptions.toJs(): dynamic {
-    return obj {
-        if (opacity != null) this.opacity = opacity
-        if (alt != null) this.alt = alt
-        if (interactive != null) this.interactive = interactive
-        if (crossOrigin != null) this.crossOrigin = crossOrigin
-        // other options ...
-    }
-}
 
 /**
  * Maps component.
@@ -115,37 +90,18 @@ open class Maps(
         mapObjects.add(overlay)
     }
 
+    fun svgOverlay(svgElement: Element, bounds: LatLngBounds, options: ImageOverlayOptions? = null) {
+        val overlay = KVManagerMaps.leaflet.svgOverlay(svgElement, bounds.toArray(), options?.toJs())
+        if (jsMaps != null) {
+            overlay.addTo(jsMaps)
+        }
+        mapObjects.add(overlay)
+    }
+
     override fun afterDestroy() {
         jsMaps?.remove()
     }
 
-    fun imageOverlay(
-            imageUrl: String,
-            imageBounds: Array<Array<Int>>,
-            maps: Maps) :Maps {
-        val opacity = 1
-        val _L = KVManagerMaps.leaflet
-        val iol = _L.ImageOverlay(imageUrl, imageBounds, opacity)
-        iol.addTo(maps)
-        return maps
-    }
-
-    fun svgOverlay(
-            imageUrl: String,
-            top: Number,
-            left: Number,
-            bottom: Number,
-            right: Number,
-            maps: Maps) :Maps {
-        val origin = arrayOf(top, left)
-        val corner = arrayOf(bottom, right)
-        val imageBounds = arrayOf(origin, corner)
-        val opacity = 1
-        val _L = KVManagerMaps.leaflet
-        val iol = _L.SVGOverlay(imageUrl, imageBounds, opacity)
-        iol.addTo(maps)
-        return maps
-    }
 }
 
 /**
