@@ -1,0 +1,132 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+package pl.treksoft.kvision.maps
+
+import com.github.snabbdom.VNode
+import org.w3c.dom.HTMLElement
+import pl.treksoft.kvision.KVManagerMaps
+import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.utils.obj
+import pl.treksoft.kvision.utils.set
+
+/**
+ * Maps component.
+ *
+ * @constructor
+ * @param lat initial latitude value
+ * @param lng initial longitude value
+ * @param zoom initial zoom
+ * @param showMarker show marker in the initial position
+ * @param classes a set of CSS class names
+ */
+open class SVG(
+        val lat: Number,
+        val lng: Number,
+        val zoom: Number,
+        val imageUrl: String,
+        val imageBounds: Array<Array<Double>>,
+        val showMarker: Boolean = false,
+        classes: Set<String> = setOf(),
+        init: (SVG.() -> Unit)? = null
+) : Widget(classes) {
+
+    var jsMaps: dynamic = null
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
+    override fun afterInsert(node: VNode) {
+        createMaps()
+    }
+
+    @Suppress("UnsafeCastFromDynamic")
+    protected fun createMaps() {
+        (this.getElement() as? HTMLElement)?.let {
+            jsMaps = KVManagerMaps.leaflet.map(it, obj {
+                this.center = arrayOf(lat, lng)
+                this.zoom = zoom
+            })
+            KVManagerMaps.leaflet.imageOverlay(imageUrl, imageBounds).addTo(jsMaps)
+            KVManagerMaps.leaflet.tileLayer(
+                    "https://kroki.io",
+                    obj {
+                        this.attribution =
+                                "&copy; <a href=\"https://kroki.io/\">Kroki.io</a>"
+                    }).addTo(jsMaps)
+        }
+    }
+
+    override fun afterDestroy() {
+        jsMaps?.remove()
+    }
+
+    fun imageOverlay(
+            imageUrl: String,
+            imageBounds: Array<Array<Int>>,
+            maps: Maps) {
+//        val opacity = 1
+        val _L = KVManagerMaps.leaflet
+        _L.ImageOverlay(imageUrl, imageBounds).addTo(maps)
+    }
+
+    fun svgOverlay(
+            imageUrl: String,
+            top: Number,
+            left: Number,
+            bottom: Number,
+            right: Number,
+            maps: Maps): Maps {
+        val origin = arrayOf(top, left)
+        val corner = arrayOf(bottom, right)
+        val imageBounds = arrayOf(origin, corner)
+        val opacity = 1
+        val _L = KVManagerMaps.leaflet
+        val iol = _L.SVGOverlay(imageUrl, imageBounds, opacity)
+        iol.addTo(maps)
+        return maps
+    }
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun Container.svg(
+        lat: Number,
+        lng: Number,
+        zoom: Number,
+        imageUrl: String,
+        imageBounds: Array<Array<Double>>,
+        showMarker: Boolean = false,
+        classes: Set<String>? = null,
+        className: String? = null,
+        init: (SVG.() -> Unit)? = null
+): SVG {
+    val svg = SVG(lat, lng, zoom, imageUrl,
+            imageBounds, showMarker, classes ?: className.set, init)
+    this.add(svg)
+    return svg
+}

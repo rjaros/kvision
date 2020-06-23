@@ -30,7 +30,7 @@ import kotlin.test.Test
 
 class MapsSpec : DomSpec {
 
-    @Test
+//    @Test
     fun renderResponsive() {
         val imageUrl = "https://svn.apache.org/repos/asf/comdev/project-logos/originals/isis.svg"
         val svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
