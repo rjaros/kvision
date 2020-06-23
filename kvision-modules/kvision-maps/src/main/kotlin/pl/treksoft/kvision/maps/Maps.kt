@@ -29,6 +29,32 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 
+data class LatLng(val lat: Number, val lng: Number)
+
+fun LatLng.toArray() = arrayOf(lat, lng)
+
+data class LatLngBounds(val corner1: LatLng, val corner2: LatLng)
+
+fun LatLngBounds.toArray() = arrayOf(corner1.toArray(), corner2.toArray())
+
+data class ImageOverlayOptions(
+    val opacity: Number? = null,
+    val alt: String? = null,
+    val interactive: Boolean? = null,
+    val crossOrigin: Boolean? = null
+    // other options ...
+)
+
+fun ImageOverlayOptions.toJs(): dynamic {
+    return obj {
+        if (opacity != null) this.opacity = opacity
+        if (alt != null) this.alt = alt
+        if (interactive != null) this.interactive = interactive
+        if (crossOrigin != null) this.crossOrigin = crossOrigin
+        // other options ...
+    }
+}
+
 /**
  * Maps component.
  *
@@ -50,6 +76,8 @@ open class Maps(
 
     var jsMaps: dynamic = null
 
+    private var mapObjects = mutableListOf<dynamic>()
+
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -57,6 +85,9 @@ open class Maps(
 
     override fun afterInsert(node: VNode) {
         createMaps()
+        mapObjects.forEach {
+            it.addTo(jsMaps)
+        }
     }
 
     @Suppress("UnsafeCastFromDynamic")
@@ -74,6 +105,14 @@ open class Maps(
                         "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
                 }).addTo(jsMaps)
         }
+    }
+
+    fun imageOverlay(url: String, bounds: LatLngBounds, options: ImageOverlayOptions? = null) {
+        val overlay = KVManagerMaps.leaflet.imageOverlay(url, bounds.toArray(), options?.toJs())
+        if (jsMaps != null) {
+            overlay.addTo(jsMaps)
+        }
+        mapObjects.add(overlay)
     }
 
     override fun afterDestroy() {
