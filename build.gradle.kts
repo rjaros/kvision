@@ -102,6 +102,7 @@ tasks {
     */
     getByName("JsJar", Jar::class) {
         from("${project.buildDir}/js/packages/kvision/package.json")
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
     getByName("compileTestKotlinJs") {
         doLast {
