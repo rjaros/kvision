@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.form.check
 
+import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
@@ -32,6 +33,7 @@ import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.utils.obj
 
 /**
  * The form field component rendered as a group of HTML *input type="radio"* elements with the same name attribute.
@@ -64,7 +66,12 @@ open class RadioGroup(
     /**
      * A value of the selected option.
      */
-    override var value by refreshOnUpdate(value) { setValueToChildren(it); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(value) {
+        setValueToChildren(it)
+        observers.forEach { ob -> ob(it) }
+        @Suppress("UnsafeCastFromDynamic")
+        dispatchEvent("change", obj { detail = obj { data = it } })
+    }
 
     /**
      * Determines if the options are rendered inline.
@@ -204,14 +211,49 @@ open class RadioGroup(
                     name = tname
                     eventTarget = this@RadioGroup
                     setEventListener<Radio> {
-                        change = {
+                        change = { ev ->
                             this@RadioGroup.value = self.extraValue
+                            ev.stopPropagation()
                         }
                     }
                 }
             }
             container.addAll(c)
         }
+    }
+
+    override fun add(child: Component): SimplePanel {
+        if (child is Radio) {
+            child.eventTarget = this
+            child.name = name
+            child.setEventListener<Radio> {
+                change = { ev ->
+                    this@RadioGroup.value = self.extraValue
+                    ev.stopPropagation()
+                }
+            }
+        }
+        container.add(child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): SimplePanel {
+        children.forEach { add(it) }
+        return this
+    }
+
+    override fun remove(child: Component): SimplePanel {
+        container.remove(child)
+        return this
+    }
+
+    override fun removeAll(): SimplePanel {
+        container.removeAll()
+        return this
+    }
+
+    override fun getChildren(): List<Component> {
+        return container.getChildren()
     }
 
     override fun focus() {
