@@ -60,7 +60,7 @@ open class OnsNumber(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsNumber.() -> Unit)? = null
-) : SimplePanel(setOf("form-group", "kv-ons-form-group")), NumberFormControl, ObservableState<Number?> {
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), NumberFormControl, ObservableState<Number?> {
 
     /**
      * Number input value.

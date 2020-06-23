@@ -57,7 +57,7 @@ open class OnsDateTime(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsDateTime.() -> Unit)? = null
-) : SimplePanel(setOf("form-group", "kv-ons-form-group")), DateFormControl, ObservableState<Date?> {
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), DateFormControl, ObservableState<Date?> {
 
     /**
      * Date/time input value.

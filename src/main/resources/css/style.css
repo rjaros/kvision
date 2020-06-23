@@ -519,6 +519,7 @@ label.required-label + ons-input > span.text-input__label::after {
 
 .kv-ons-checkbox {
     display: flex;
+    align-items: center;
 }
 
 .kv-ons-checkbox label {

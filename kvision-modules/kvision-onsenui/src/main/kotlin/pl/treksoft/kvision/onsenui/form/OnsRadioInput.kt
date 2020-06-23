@@ -76,13 +76,23 @@ open class OnsRadioInput(
         return sn
     }
 
+    override fun afterInsert(node: VNode) {
+        if ((getElementJQuery()?.find("input")?.length?.toInt() ?: 0) > 0) {
+            refreshState()
+        } else {
+            window.setTimeout({
+                refreshState()
+            }, 0)
+        }
+    }
+
     override fun refreshState() {
-        window.setTimeout({
+        if ((getElementJQuery()?.find("input")?.length?.toInt() ?: 0) > 0) {
             val v = getElementJQuery()?.prop("checked") as Boolean?
             if (this.value != v) {
                 getElementJQuery()?.prop("checked", this.value)
             }
-        }, 0)
+        }
     }
 }
 

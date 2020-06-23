@@ -37,6 +37,7 @@ import pl.treksoft.kvision.utils.set
  *
  * @constructor Creates a form field radio button component.
  * @param value radio button input value
+ * @param extraValue the additional String value used for the radio button group
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param classes a set of CSS class names
@@ -44,11 +45,12 @@ import pl.treksoft.kvision.utils.set
  */
 open class OnsRadio(
     value: Boolean = false,
+    extraValue: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsRadio.() -> Unit)? = null
-) : SimplePanel(setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")), BoolFormControl,
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")), BoolFormControl,
     ObservableState<Boolean> {
 
     /**
@@ -70,6 +72,15 @@ open class OnsRadio(
         get() = input.startValue
         set(value) {
             input.startValue = value
+        }
+
+    /**
+     * The additional String value used for the radio button group.
+     */
+    var extraValue
+        get() = input.extraValue
+        set(value) {
+            input.extraValue = value
         }
 
     /**
@@ -103,6 +114,7 @@ open class OnsRadio(
     final override val input: OnsRadioInput =
         OnsRadioInput(value, idc, classes).apply {
             this.name = name
+            this.extraValue = extraValue
         }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
@@ -167,13 +179,14 @@ open class OnsRadio(
  */
 fun Container.onsRadio(
     value: Boolean = false,
+    extraValue: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (OnsRadio.() -> Unit)? = null
 ): OnsRadio {
-    val onsRadio = OnsRadio(value, label, rich, classes ?: className.set, init)
+    val onsRadio = OnsRadio(value, extraValue, label, rich, classes ?: className.set, init)
     this.add(onsRadio)
     return onsRadio
 }

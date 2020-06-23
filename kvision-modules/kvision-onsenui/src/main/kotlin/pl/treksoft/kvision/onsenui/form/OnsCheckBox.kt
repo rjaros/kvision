@@ -48,7 +48,8 @@ open class OnsCheckBox(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsCheckBox.() -> Unit)? = null
-) : SimplePanel(setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")), BoolFormControl, ObservableState<Boolean> {
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")), BoolFormControl,
+    ObservableState<Boolean> {
 
     /**
      * Checkbox input value.
