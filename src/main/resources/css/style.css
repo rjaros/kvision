@@ -516,3 +516,11 @@ label.required-label + ons-input > span.text-input__label::after {
     content: " *";
     color: #dc3545;
 }
+
+.kv-ons-checkbox {
+    display: flex;
+}
+
+.kv-ons-checkbox label {
+    margin-left: 5px;
+}

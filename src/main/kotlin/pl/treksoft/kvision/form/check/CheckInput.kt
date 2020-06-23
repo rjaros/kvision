@@ -147,7 +147,7 @@ abstract class CheckInput(
         refreshState()
     }
 
-    private fun refreshState() {
+    protected open fun refreshState() {
         val v = getElementJQuery()?.prop("checked") as Boolean?
         if (this.value != v) {
             getElementJQuery()?.prop("checked", this.value)
