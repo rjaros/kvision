@@ -1,1 +1,0 @@
-config.frameworks = [ "qunit" ];

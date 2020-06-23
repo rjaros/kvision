@@ -40,12 +40,12 @@ import pl.treksoft.kvision.utils.set
  * @param classes a set of CSS class names
  */
 open class Maps(
-    val lat: Number,
-    val lng: Number,
-    val zoom: Number,
-    val showMarker: Boolean = false,
-    classes: Set<String> = setOf(),
-    init: (Maps.() -> Unit)? = null
+        val lat: Number,
+        val lng: Number,
+        val zoom: Number,
+        val showMarker: Boolean = false,
+        classes: Set<String> = setOf(),
+        init: (Maps.() -> Unit)? = null
 ) : Widget(classes) {
 
     var jsMaps: dynamic = null
@@ -68,16 +68,44 @@ open class Maps(
             })
             KVManagerMaps.leaflet.marker(arrayOf(lat, lng)).addTo(jsMaps)
             KVManagerMaps.leaflet.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                obj {
-                    this.attribution =
-                        "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
-                }).addTo(jsMaps)
+                    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    obj {
+                        this.attribution =
+                                "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+                    }).addTo(jsMaps)
         }
     }
 
     override fun afterDestroy() {
         jsMaps?.remove()
+    }
+
+    fun imageOverlay(
+            imageUrl: String,
+            imageBounds: Array<Array<Int>>,
+            maps: Maps) :Maps {
+        val opacity = 1
+        val _L = KVManagerMaps.leaflet
+        val iol = _L.ImageOverlay(imageUrl, imageBounds, opacity)
+        iol.addTo(maps)
+        return maps
+    }
+
+    fun svgOverlay(
+            imageUrl: String,
+            top: Number,
+            left: Number,
+            bottom: Number,
+            right: Number,
+            maps: Maps) :Maps {
+        val origin = arrayOf(top, left)
+        val corner = arrayOf(bottom, right)
+        val imageBounds = arrayOf(origin, corner)
+        val opacity = 1
+        val _L = KVManagerMaps.leaflet
+        val iol = _L.SVGOverlay(imageUrl, imageBounds, opacity)
+        iol.addTo(maps)
+        return maps
     }
 }
 
@@ -87,13 +115,13 @@ open class Maps(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.maps(
-    lat: Number,
-    lng: Number,
-    zoom: Number,
-    showMarker: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Maps.() -> Unit)? = null
+        lat: Number,
+        lng: Number,
+        zoom: Number,
+        showMarker: Boolean = false,
+        classes: Set<String>? = null,
+        className: String? = null,
+        init: (Maps.() -> Unit)? = null
 ): Maps {
     val maps = Maps(lat, lng, zoom, showMarker, classes ?: className.set, init)
     this.add(maps)
