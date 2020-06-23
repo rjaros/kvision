@@ -4,6 +4,10 @@
 .text-center { text-align: center !important; }
 .text-nowrap   { white-space: nowrap !important; }
 
+.text-danger {
+    color: #dc3545 !important;
+}
+
 .splitpanel-vertical {
   display: flex;
   flex-direction: row;
@@ -484,13 +488,31 @@ ons-toolbar-button.kv-button-with-text > ons-icon {
 }
 
 .kv-ons-form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.kv-ons-form-group .control-label {
+    font-size: 12px;
+}
+
+.page--material .kv-ons-form-group .control-label {
+    color: #3d5afe;
 }
 
 .kv-ons-label {
     display: inline-block;
     margin-bottom: 0.5rem;
 }
+
 .kv-ons-form-control {
     width: 100%;
+}
+
+ons-input.kv-ons-form-control[float="float"][modifier~="material"] {
+    margin-top: 16px;
+}
+
+label.required-label + ons-input > span.text-input__label::after {
+    content: " *";
+    color: #dc3545;
 }

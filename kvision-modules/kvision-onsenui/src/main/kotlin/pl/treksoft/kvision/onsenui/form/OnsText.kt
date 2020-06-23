@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.onsenui.form
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.Display
 import pl.treksoft.kvision.form.text.AbstractText
 import pl.treksoft.kvision.form.text.TextInputType
 import pl.treksoft.kvision.onsenui.OnsenUi
@@ -70,9 +71,9 @@ open class OnsText(
         set(value) {
             input.floatLabel = value
             if (input.floatLabel == true && OnsenUi.isAndroid()) {
-                flabel.visible = false
+                flabel.display = Display.NONE
             } else {
-                flabel.visible = flabel.content != null
+                flabel.display = if (flabel.content != null) null else Display.NONE
             }
         }
 
@@ -105,7 +106,7 @@ open class OnsText(
         input.eventTarget = this
         this.addInternal(input)
         this.addInternal(invalidFeedback)
-        if (input.floatLabel == true && OnsenUi.isAndroid()) flabel.visible = false
+        if (input.floatLabel == true && OnsenUi.isAndroid()) flabel.display = Display.NONE
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
