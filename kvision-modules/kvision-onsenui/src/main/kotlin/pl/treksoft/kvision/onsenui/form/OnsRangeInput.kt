@@ -25,36 +25,30 @@ package pl.treksoft.kvision.onsenui.form
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
-import pl.treksoft.kvision.form.text.TextInput
-import pl.treksoft.kvision.form.text.TextInputType
+import pl.treksoft.kvision.form.range.RangeInput
 import pl.treksoft.kvision.utils.set
 
 /**
- * OnsenUI text input component.
+ * OnsenUI range input component.
  *
- * @constructor Creates a text input component.
- * @param type text input type (default "text")
- * @param value text input value
- * @param placeholder the placeholder for the text input
- * @param floatLabel whether the placeholder will be animated in Material Design
+ * @constructor Creates a range input component.
+ * @param value number input value
+ * @param min minimal value (default 0)
+ * @param max maximal value (default 100)
+ * @param step step value (default 1)
  * @param inputId the ID of the input element
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-open class OnsTextInput(
-    type: TextInputType = TextInputType.TEXT,
-    value: String? = null,
-    placeholder: String? = null,
-    floatLabel: Boolean? = null,
+open class OnsRangeInput(
+    value: Number? = null,
+    min: Number = 0,
+    max: Number = 100,
+    step: Number = DEFAULT_STEP,
     inputId: String? = null,
     classes: Set<String> = setOf(),
-    init: (OnsTextInput.() -> Unit)? = null
-) : TextInput(type, value, classes + "kv-ons-form-control") {
-
-    /**
-     * Whether the placeholder will be animated in Material Design.
-     */
-    var floatLabel: Boolean? by refreshOnUpdate(floatLabel)
+    init: (OnsRangeInput.() -> Unit)? = null
+) : RangeInput(value, min, max, step, classes + "kv-ons-form-control") {
 
     /**
      * The ID of the input element.
@@ -67,24 +61,16 @@ open class OnsTextInput(
     var modifier: String? by refreshOnUpdate()
 
     init {
-        this.placeholder = placeholder
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
     override fun render(): VNode {
-        return if (type == TextInputType.SEARCH) {
-            render("ons-search-input")
-        } else {
-            render("ons-input")
-        }
+        return render("ons-range")
     }
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
-        if (floatLabel == true) {
-            sn.add("float" to "float")
-        }
         inputId?.let {
             sn.add("input-id" to it)
         }
@@ -100,17 +86,18 @@ open class OnsTextInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.onsTextInput(
-    type: TextInputType = TextInputType.TEXT,
-    value: String? = null,
-    placeholder: String? = null,
-    floatLabel: Boolean? = null,
+fun Container.onsRangeInput(
+    value: Number? = null,
+    min: Number = 0,
+    max: Number = 100,
+    step: Number = DEFAULT_STEP,
     inputId: String? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (OnsTextInput.() -> Unit)? = null
-): OnsTextInput {
-    val onsTextInput = OnsTextInput(type, value, placeholder, floatLabel, inputId, classes ?: className.set, init)
-    this.add(onsTextInput)
-    return onsTextInput
+    init: (OnsRangeInput.() -> Unit)? = null
+): OnsRangeInput {
+    val onsRangeInput =
+        OnsRangeInput(value, min, max, step, inputId, classes ?: className.set, init)
+    this.add(onsRangeInput)
+    return onsRangeInput
 }
