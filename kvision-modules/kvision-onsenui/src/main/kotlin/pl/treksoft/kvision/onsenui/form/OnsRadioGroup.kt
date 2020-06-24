@@ -48,9 +48,10 @@ import pl.treksoft.kvision.utils.set
  * @param label label text of the options group
  * @param rich determines if [label] can contain HTML code
  */
-@Suppress("TooManyFunctions")
 open class OnsRadioGroup(
-    options: List<StringPair>? = null, value: String? = null, name: String? = null,
+    options: List<StringPair>? = null,
+    value: String? = null,
+    name: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String> = setOf(),
@@ -286,7 +287,8 @@ open class OnsRadioGroup(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.onsRadioGroup(
-    options: List<StringPair>? = null, value: String? = null, name: String? = null,
+    options: List<StringPair>? = null,
+    value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,

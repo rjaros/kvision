@@ -37,6 +37,7 @@ import pl.treksoft.kvision.utils.set
  *
  * @constructor Creates a form field checkbox component.
  * @param value checkbox input value
+ * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param classes a set of CSS class names
@@ -44,6 +45,7 @@ import pl.treksoft.kvision.utils.set
  */
 open class OnsCheckBox(
     value: Boolean = false,
+    name: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String> = setOf(),
@@ -73,7 +75,7 @@ open class OnsCheckBox(
         }
 
     /**
-     * The label text bound to the number input element.
+     * The label text bound to the checkbox input element.
      */
     var label
         get() = flabel.content
@@ -103,13 +105,12 @@ open class OnsCheckBox(
     final override val input: OnsCheckBoxInput =
         OnsCheckBoxInput(value, idc, classes).apply {
             this.name = name
+            this.eventTarget = this@OnsCheckBox
         }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
-        @Suppress("LeakingThis")
-        input.eventTarget = this
         this.addInternal(input)
         this.addInternal(flabel)
         this.addInternal(invalidFeedback)
@@ -167,6 +168,7 @@ open class OnsCheckBox(
  */
 fun Container.onsCheckBox(
     value: Boolean = false,
+    name: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String>? = null,
@@ -174,7 +176,7 @@ fun Container.onsCheckBox(
     init: (OnsCheckBox.() -> Unit)? = null
 ): OnsCheckBox {
     val onsCheckBox =
-        OnsCheckBox(value, label, rich, classes ?: className.set, init)
+        OnsCheckBox(value, name, label, rich, classes ?: className.set, init)
     this.add(onsCheckBox)
     return onsCheckBox
 }

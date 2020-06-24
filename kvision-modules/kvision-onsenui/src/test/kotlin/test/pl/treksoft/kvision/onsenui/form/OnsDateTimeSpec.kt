@@ -35,10 +35,10 @@ class OnsDateTimeSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val text = root.onsDateTime(mode = DateTimeMode.DATE, label = "Label") {
+            val datetime = root.onsDateTime(mode = DateTimeMode.DATE, label = "Label") {
                 this.autofocus = true
             }
-            val id = text.input.inputId
+            val id = datetime.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div class=\"form-group kv-ons-form-group\"><label class=\"control-label\" for=\"$id\">Label</label><ons-input class=\"kv-ons-form-control\" type=\"date\" input-id=\"$id\" modifier=\"underbar\" autofocus=\"autofocus\"></ons-input></div>",

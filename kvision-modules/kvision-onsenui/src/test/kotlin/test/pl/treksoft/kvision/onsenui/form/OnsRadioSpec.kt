@@ -34,8 +34,8 @@ class OnsRadioSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val text = root.onsRadio(false, label = "A radio button")
-            val id = text.input.inputId
+            val radio = root.onsRadio(false, label = "A radio button")
+            val id = radio.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div class=\"form-group kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" input-id=\"$id\"></ons-radio><label for=\"$id\">A radio button</label></div>",

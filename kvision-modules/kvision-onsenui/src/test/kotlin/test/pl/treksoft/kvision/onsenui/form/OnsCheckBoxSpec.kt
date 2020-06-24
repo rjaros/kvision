@@ -34,8 +34,8 @@ class OnsCheckBoxSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val text = root.onsCheckBox(false, label = "A checkbox")
-            val id = text.input.inputId
+            val checkbox = root.onsCheckBox(false, label = "A checkbox")
+            val id = checkbox.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div class=\"form-group kv-ons-form-group kv-ons-checkbox\"><ons-checkbox type=\"checkbox\" input-id=\"$id\"></ons-checkbox><label for=\"$id\">A checkbox</label></div>",

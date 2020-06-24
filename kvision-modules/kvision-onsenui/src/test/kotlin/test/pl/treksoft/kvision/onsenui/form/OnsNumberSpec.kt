@@ -34,10 +34,10 @@ class OnsNumberSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val text = root.onsNumber(min = 0, max = 100, step = 10, label = "Label") {
+            val number = root.onsNumber(min = 0, max = 100, step = 10, label = "Label") {
                 this.autofocus = true
             }
-            val id = text.input.inputId
+            val id = number.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div class=\"form-group kv-ons-form-group\"><label class=\"control-label\" for=\"$id\">Label</label><ons-input class=\"kv-ons-form-control\" type=\"number\" min=\"0\" max=\"100\" step=\"10\" input-id=\"$id\" modifier=\"underbar\" autofocus=\"autofocus\"></ons-input></div>",

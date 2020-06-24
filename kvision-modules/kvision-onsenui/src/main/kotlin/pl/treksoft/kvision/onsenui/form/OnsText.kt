@@ -99,11 +99,10 @@ open class OnsText(
         OnsTextInput(type, value, placeholder, floatLabel, idc, classes).apply {
             modifier = "underbar"
             this.name = name
+            this.eventTarget = this@OnsText
         }
 
     init {
-        @Suppress("LeakingThis")
-        input.eventTarget = this
         this.addInternal(input)
         this.addInternal(invalidFeedback)
         if (input.floatLabel == true && OnsenUi.isAndroid()) flabel.display = Display.NONE

@@ -43,7 +43,6 @@ import pl.treksoft.kvision.utils.set
  * @param value selected option
  * @param name the name attribute of the generated HTML input element
  */
-@Suppress("TooManyFunctions")
 open class OnsRadioGroupInput(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     classes: Set<String> = setOf(),

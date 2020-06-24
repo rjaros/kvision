@@ -44,6 +44,7 @@ import pl.treksoft.kvision.utils.set
  * @param step step value (default 1)
  * @param placeholder the placeholder for the number input
  * @param floatLabel whether the placeholder will be animated in Material Design
+ * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param classes a set of CSS class names
@@ -56,6 +57,7 @@ open class OnsNumber(
     step: Number = DEFAULT_STEP,
     placeholder: String? = null,
     floatLabel: Boolean? = null,
+    name: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String> = setOf(),
@@ -192,13 +194,12 @@ open class OnsNumber(
         OnsNumberInput(value, min, max, step, placeholder, floatLabel, idc, classes).apply {
             modifier = "underbar"
             this.name = name
+            this.eventTarget = this@OnsNumber
         }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
-        @Suppress("LeakingThis")
-        input.eventTarget = this
         this.addInternal(flabel)
         this.addInternal(input)
         this.addInternal(invalidFeedback)
@@ -266,6 +267,7 @@ fun Container.onsNumber(
     step: Number = DEFAULT_STEP,
     placeholder: String? = null,
     floatLabel: Boolean? = null,
+    name: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String>? = null,
@@ -273,7 +275,7 @@ fun Container.onsNumber(
     init: (OnsNumber.() -> Unit)? = null
 ): OnsNumber {
     val onsNumber =
-        OnsNumber(value, min, max, step, placeholder, floatLabel, label, rich, classes ?: className.set, init)
+        OnsNumber(value, min, max, step, placeholder, floatLabel, name, label, rich, classes ?: className.set, init)
     this.add(onsNumber)
     return onsNumber
 }

@@ -42,6 +42,7 @@ import kotlin.js.Date
  * @param min minimal value
  * @param max maximal value
  * @param step step value
+ * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param classes a set of CSS class names
@@ -53,6 +54,7 @@ open class OnsDateTime(
     min: Date? = null,
     max: Date? = null,
     step: Number? = null,
+    name: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String> = setOf(),
@@ -166,13 +168,12 @@ open class OnsDateTime(
         OnsDateTimeInput(value, mode, min, max, step, idc, classes).apply {
             modifier = "underbar"
             this.name = name
+            this.eventTarget = this@OnsDateTime
         }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
-        @Suppress("LeakingThis")
-        input.eventTarget = this
         this.addInternal(flabel)
         this.addInternal(input)
         this.addInternal(invalidFeedback)
@@ -238,6 +239,7 @@ fun Container.onsDateTime(
     min: Date? = null,
     max: Date? = null,
     step: Number? = null,
+    name: String? = null,
     label: String? = null,
     rich: Boolean = false,
     classes: Set<String>? = null,
@@ -245,7 +247,7 @@ fun Container.onsDateTime(
     init: (OnsDateTime.() -> Unit)? = null
 ): OnsDateTime {
     val onsDateTime =
-        OnsDateTime(value, mode, min, max, step, label, rich, classes ?: className.set, init)
+        OnsDateTime(value, mode, min, max, step, name, label, rich, classes ?: className.set, init)
     this.add(onsDateTime)
     return onsDateTime
 }
