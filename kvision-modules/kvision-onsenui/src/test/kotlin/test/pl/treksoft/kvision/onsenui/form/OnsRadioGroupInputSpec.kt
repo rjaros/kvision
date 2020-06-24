@@ -19,36 +19,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision.form.check
+package test.pl.treksoft.kvision.onsenui.form
 
-import pl.treksoft.kvision.form.check.Radio
-import pl.treksoft.kvision.form.check.RadioGroup
+import pl.treksoft.kvision.onsenui.form.OnsRadio
+import pl.treksoft.kvision.onsenui.form.onsRadioGroupInput
+import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class RadioGroupSpec : DomSpec {
+class OnsRadioGroupInputSpec : DomSpec {
 
     @Test
     fun render() {
         run {
-            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val ci = RadioGroup(options = listOf("a" to "A", "b" to "B"), value = "a", label = "Label").apply {
-                disabled = true
-                inline = true
-            }
-            root.add(ci)
+            val root = Root("test", containerType = ContainerType.FIXED)
+            val r = root.onsRadioGroupInput(listOf("1" to "Option 1", "2" to "Option 2"), value = "2", name = "test")
+
+            val inputId1 = (r.getChildren().firstOrNull() as? OnsRadio)?.input?.inputId
+            val inputId2 = (r.getChildren().lastOrNull() as? OnsRadio)?.input?.inputId
             val element = document.getElementById("test")
-            val id = ci.flabel.forId
-            val rid1 = ci.container.getChildren().filterIsInstance<Radio>().first().input.id
-            val rid2 = ci.container.getChildren().filterIsInstance<Radio>().last().input.id
             assertEqualsHtml(
-                "<div class=\"form-group kv-radiogroup-inline\"><label class=\"control-label\" for=\"$id\">Label</label><div id=\"$id\" class=\"kv-radiogroup-container\"><div class=\"form-check abc-radio\"><input class=\"form-check-input\" id=\"$rid1\" type=\"radio\" name=\"$id\" disabled=\"disabled\" value=\"a\"><label class=\"form-check-label\" for=\"$rid1\">A</label></div><div class=\"form-check abc-radio\"><input class=\"form-check-input\" id=\"$rid2\" type=\"radio\" name=\"$id\" disabled=\"disabled\" value=\"b\"><label class=\"form-check-label\" for=\"$rid2\">B</label></div></div></div>",
+                "<div class=\"form-group kv-ons-form-group\"><div class=\"form-group kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" name=\"test\" value=\"1\" input-id=\"$inputId1\"></ons-radio><label for=\"$inputId1\">Option 1</label></div><div class=\"form-group kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" name=\"test\" value=\"2\" input-id=\"$inputId2\"></ons-radio><label for=\"$inputId2\">Option 2</label></div></div>",
                 element?.innerHTML,
-                "Should render correct radio button group form control"
+                "Should render Onsen UI radio group input component"
             )
         }
     }
-
 }

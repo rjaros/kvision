@@ -137,7 +137,9 @@ open class OnsRadioGroup(
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
-    internal val container = SimplePanel(setOf("kv-radiogroup-container"))
+    internal val container = SimplePanel(setOf("kv-radiogroup-container")) {
+        id = idc
+    }
 
     init {
         this.addInternal(flabel)
