@@ -34,7 +34,15 @@ class SimpleSelectSpec : DomSpec {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
             val select =
-                SimpleSelect(listOf("test1" to "Test 1", "test2" to "Test 2"), "test1", true, "select", "Label").apply {
+                SimpleSelect(
+                    listOf("test1" to "Test 1", "test2" to "Test 2"),
+                    "test1",
+                    true,
+                    false,
+                    null,
+                    "select",
+                    "Label"
+                ).apply {
                     name = "name"
                     id = "idti"
                     disabled = true

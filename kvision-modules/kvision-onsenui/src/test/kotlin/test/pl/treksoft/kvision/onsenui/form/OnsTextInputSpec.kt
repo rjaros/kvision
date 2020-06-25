@@ -22,7 +22,6 @@
 package test.pl.treksoft.kvision.onsenui.form
 
 import pl.treksoft.kvision.form.text.TextInputType
-import pl.treksoft.kvision.onsenui.form.button
 import pl.treksoft.kvision.onsenui.form.onsTextInput
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root

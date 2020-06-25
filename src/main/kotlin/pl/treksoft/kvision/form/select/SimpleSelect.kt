@@ -40,6 +40,8 @@ import pl.treksoft.kvision.utils.SnOn
  * @param options an optional list of options (value to label pairs) for the select control
  * @param value selected value
  * @param emptyOption determines if an empty option is automatically generated
+ * @param multiple allows multiple value selection (multiple values are comma delimited)
+ * @param selectSize the number of visible options
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
@@ -47,6 +49,8 @@ import pl.treksoft.kvision.utils.SnOn
 @Suppress("TooManyFunctions")
 open class SimpleSelect(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
     name: String? = null, label: String? = null, rich: Boolean = false
 ) : SimplePanel(setOf("form-group")), StringFormControl, ObservableState<String?> {
 
@@ -58,6 +62,7 @@ open class SimpleSelect(
         set(value) {
             input.options = value
         }
+
     /**
      * A value of the selected option.
      */
@@ -66,6 +71,7 @@ open class SimpleSelect(
         set(value) {
             input.value = value
         }
+
     /**
      * The value of the selected child option.
      *
@@ -77,6 +83,7 @@ open class SimpleSelect(
         set(value) {
             input.startValue = value
         }
+
     /**
      * Determines if an empty option is automatically generated.
      */
@@ -85,6 +92,25 @@ open class SimpleSelect(
         set(value) {
             input.emptyOption = value
         }
+
+    /**
+     * Determines if multiple value selection is allowed.
+     */
+    var multiple
+        get() = input.multiple
+        set(value) {
+            input.multiple = value
+        }
+
+    /**
+     * The number of visible options.
+     */
+    var selectSize
+        get() = input.selectSize
+        set(value) {
+            input.selectSize = value
+        }
+
     /**
      * Determines if the select is automatically focused.
      */
@@ -93,6 +119,7 @@ open class SimpleSelect(
         set(value) {
             input.autofocus = value
         }
+
     /**
      * The label text bound to the select element.
      */
@@ -101,6 +128,7 @@ open class SimpleSelect(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -112,7 +140,7 @@ open class SimpleSelect(
 
     private val idc = "kv_form_simpleselect_$counter"
     final override val input: SimpleSelectInput = SimpleSelectInput(
-        options, value, emptyOption
+        options, value, emptyOption, multiple, selectSize
     ).apply {
         this.id = idc
         this.name = name
@@ -204,12 +232,15 @@ fun Container.simpleSelect(
     options: List<StringPair>? = null,
     value: String? = null,
     emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
     init: (SimpleSelect.() -> Unit)? = null
 ): SimpleSelect {
-    val simpleSelect = SimpleSelect(options, value, emptyOption, name, label, rich).apply { init?.invoke(this) }
+    val simpleSelect =
+        SimpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich).apply { init?.invoke(this) }
     this.add(simpleSelect)
     return simpleSelect
 }

@@ -41,12 +41,16 @@ internal const val KVNULL = "#kvnull"
  *
  * @constructor
  * @param options an optional list of options (value to label pairs) for the select control
- * @param value text input value
+ * @param value select input value
  * @param emptyOption determines if an empty option is automatically generated
+ * @param multiple allows multiple value selection (multiple values are comma delimited)
+ * @param selectSize the number of visible options
  * @param classes a set of CSS class names
  */
 open class SimpleSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes + "form-control"), FormInput, ObservableState<String?> {
 
@@ -91,6 +95,16 @@ open class SimpleSelectInput(
     var emptyOption by refreshOnUpdate(emptyOption) { setChildrenFromOptions() }
 
     /**
+     * Determines if multiple value selection is allowed.
+     */
+    var multiple by refreshOnUpdate(multiple)
+
+    /**
+     * The number of visible options.
+     */
+    var selectSize: Int? by refreshOnUpdate(selectSize)
+
+    /**
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
@@ -104,7 +118,29 @@ open class SimpleSelectInput(
         setChildrenFromOptions()
         this.setInternalEventListener<SimpleSelectInput> {
             change = {
-                self.changeValue()
+                val v = getElementJQuery()?.`val`()
+                self.value = v?.let {
+                    calculateValue(it)
+                }
+            }
+        }
+    }
+
+    protected open fun calculateValue(v: Any): String? {
+        return if (this.multiple) {
+            @Suppress("UNCHECKED_CAST")
+            val arr = v as? Array<String>
+            if (arr != null && arr.isNotEmpty()) {
+                arr.filter { it.isNotEmpty() }.joinToString(",")
+            } else {
+                null
+            }
+        } else {
+            val vs = v as String?
+            if (vs != null && vs.isNotEmpty() && vs != KVNULL) {
+                vs
+            } else {
+                null
             }
         }
     }
@@ -118,9 +154,10 @@ open class SimpleSelectInput(
         if (emptyOption) {
             super.add(Tag(TAG.OPTION, "", attributes = mapOf("value" to KVNULL)))
         }
+        val valueSet = if (this.multiple) value?.split(",") ?: emptySet() else setOf(value)
         options?.let {
             val c = it.map {
-                val attributes = if (it.first == value) {
+                val attributes = if (valueSet.contains(it.first)) {
                     mapOf("value" to it.first, "selected" to "selected")
                 } else {
                     mapOf("value" to it.first)
@@ -132,9 +169,10 @@ open class SimpleSelectInput(
     }
 
     private fun selectOption() {
+        val valueSet = if (this.multiple) value?.split(",") ?: emptySet() else setOf(value)
         children.forEach { child ->
             if (child is Tag && child.type == TAG.OPTION) {
-                if (value != null && child.getAttribute("value") == value) {
+                if (valueSet.contains(child.getAttribute("value"))) {
                     child.setAttribute("selected", "selected")
                 } else {
                     child.removeAttribute("selected")
@@ -159,6 +197,12 @@ open class SimpleSelectInput(
         name?.let {
             sn.add("name" to it)
         }
+        if (multiple) {
+            sn.add("multiple" to "multiple")
+        }
+        selectSize?.let {
+            sn.add("size" to it.toString())
+        }
         autofocus?.let {
             if (it) {
                 sn.add("autofocus" to "autofocus")
@@ -174,27 +218,14 @@ open class SimpleSelectInput(
         refreshState()
     }
 
-    /**
-     * @suppress
-     * Internal function
-     */
     protected open fun refreshState() {
         value?.let {
-            getElementJQuery()?.`val`(it)
+            if (this.multiple) {
+                getElementJQuery()?.`val`(it.split(",").toTypedArray())
+            } else {
+                getElementJQuery()?.`val`(it)
+            }
         } ?: getElementJQueryD()?.`val`(null)
-    }
-
-    /**
-     * @suppress
-     * Internal function
-     */
-    protected open fun changeValue() {
-        val v = getElementJQuery()?.`val`() as String?
-        if (v != null && v.isNotEmpty() && v != KVNULL) {
-            this.value = v
-        } else {
-            this.value = null
-        }
     }
 
     /**
@@ -229,12 +260,21 @@ open class SimpleSelectInput(
  */
 fun Container.simpleSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (SimpleSelectInput.() -> Unit)? = null
 ): SimpleSelectInput {
     val simpleSelectInput =
-        SimpleSelectInput(options, value, emptyOption, classes ?: className.set).apply { init?.invoke(this) }
+        SimpleSelectInput(
+            options,
+            value,
+            emptyOption,
+            multiple,
+            selectSize,
+            classes ?: className.set
+        ).apply { init?.invoke(this) }
     this.add(simpleSelectInput)
     return simpleSelectInput
 }

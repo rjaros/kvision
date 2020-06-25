@@ -41,6 +41,8 @@ import pl.treksoft.kvision.utils.set
  * @param options an optional list of options (label to value pairs) for the group
  * @param value selected option
  * @param emptyOption determines if an empty option is automatically generated
+ * @param multiple allows multiple value selection (multiple values are comma delimited)
+ * @param selectSize the number of visible options
  * @param name the name attribute of the generated HTML input element
  * @param label label text of the options group
  * @param rich determines if [label] can contain HTML code
@@ -51,6 +53,8 @@ open class OnsSelect(
     options: List<StringPair>? = null,
     value: String? = null,
     emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
@@ -97,6 +101,24 @@ open class OnsSelect(
         }
 
     /**
+     * Determines if multiple value selection is allowed.
+     */
+    var multiple
+        get() = input.multiple
+        set(value) {
+            input.multiple = value
+        }
+
+    /**
+     * The number of visible options.
+     */
+    var selectSize
+        get() = input.selectSize
+        set(value) {
+            input.selectSize = value
+        }
+
+    /**
      * Determines if the select is automatically focused.
      */
     var autofocus
@@ -133,11 +155,12 @@ open class OnsSelect(
         }
 
     private val idc = "kv_ons_form_select_$counter"
-    final override val input: OnsSelectInput = OnsSelectInput(options, value, emptyOption, idc).apply {
-        modifier = "underbar"
-        this.name = name
-        this.eventTarget = this@OnsSelect
-    }
+    final override val input: OnsSelectInput =
+        OnsSelectInput(options, value, emptyOption, multiple, selectSize, idc).apply {
+            modifier = "underbar"
+            this.name = name
+            this.eventTarget = this@OnsSelect
+        }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
@@ -225,6 +248,8 @@ fun Container.onsSelect(
     options: List<StringPair>? = null,
     value: String? = null,
     emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
@@ -232,7 +257,8 @@ fun Container.onsSelect(
     className: String? = null,
     init: (OnsSelect.() -> Unit)? = null
 ): OnsSelect {
-    val onsSelect = OnsSelect(options, value, emptyOption, name, label, rich, classes ?: className.set, init)
+    val onsSelect =
+        OnsSelect(options, value, emptyOption, multiple, selectSize, name, label, rich, classes ?: className.set, init)
     this.add(onsSelect)
     return onsSelect
 }

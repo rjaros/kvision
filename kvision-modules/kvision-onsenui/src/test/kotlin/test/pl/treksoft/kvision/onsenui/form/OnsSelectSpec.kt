@@ -41,10 +41,10 @@ class OnsSelectSpec : DomSpec {
                 name = "test"
             )
 
-            val id = select.input.inputId
+            val id = select.input.selectId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"form-group kv-ons-form-group\"><label class=\"control-label\" for=\"$id\">Label</label><ons-select class=\"kv-ons-form-control form-control select-underbar select--underbar\" name=\"test\" input-id=\"$id\" modifier=\"underbar\"><option value=\"1\">Option 1</option><option value=\"2\" selected=\"selected\">Option 2</option></ons-select></div>",
+                "<div class=\"form-group kv-ons-form-group\"><label class=\"control-label\" for=\"$id\">Label</label><ons-select class=\"kv-ons-form-control form-control select-underbar select--underbar\" name=\"test\" select-id=\"$id\" modifier=\"underbar\"><option value=\"1\">Option 1</option><option value=\"2\" selected=\"selected\">Option 2</option></ons-select></div>",
                 element?.innerHTML,
                 "Should render Onsen UI select form component"
             )

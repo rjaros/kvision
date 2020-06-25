@@ -36,7 +36,9 @@ import kotlin.browser.window
  * @param options an optional list of options (value to label pairs) for the select control
  * @param value text input value
  * @param emptyOption determines if an empty option is automatically generated
- * @param inputId the ID of the input element
+ * @param multiple allows multiple value selection (multiple values are comma delimited)
+ * @param selectSize the number of visible options
+ * @param selectId the ID of the select element
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
@@ -44,15 +46,17 @@ open class OnsSelectInput(
     options: List<StringPair>? = null,
     value: String? = null,
     emptyOption: Boolean = false,
-    inputId: String? = null,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
+    selectId: String? = null,
     classes: Set<String> = setOf(),
     init: (OnsSelectInput.() -> Unit)? = null
-) : SimpleSelectInput(options, value, emptyOption, classes + "kv-ons-form-control") {
+) : SimpleSelectInput(options, value, emptyOption, multiple, selectSize, classes + "kv-ons-form-control") {
 
     /**
-     * The ID of the input element.
+     * The ID of the select element.
      */
-    var inputId: String? by refreshOnUpdate(inputId)
+    var selectId: String? by refreshOnUpdate(selectId)
 
     /**
      * A modifier attribute to specify custom styles.
@@ -64,14 +68,19 @@ open class OnsSelectInput(
         init?.invoke(this)
     }
 
+    override fun calculateValue(v: Any): String? {
+        val vInt = getElementJQuery()?.find("select")?.`val`()
+        return vInt?.let { super.calculateValue(it) }
+    }
+
     override fun render(): VNode {
         return render("ons-select", childrenVNodes())
     }
 
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
-        inputId?.let {
-            sn.add("input-id" to it)
+        selectId?.let {
+            sn.add("select-id" to it)
         }
         modifier?.let {
             sn.add("modifier" to it)
@@ -92,7 +101,11 @@ open class OnsSelectInput(
     override fun refreshState() {
         if ((getElementJQuery()?.find("select")?.length?.toInt() ?: 0) > 0) {
             value?.let {
-                getElementJQuery()?.`val`(it)
+                if (this.multiple) {
+                    getElementJQuery()?.find("select")?.`val`(it.split(",").toTypedArray())
+                } else {
+                    getElementJQuery()?.`val`(it)
+                }
             } ?: getElementJQueryD()?.`val`(null)
         }
     }
@@ -107,13 +120,15 @@ fun Container.onsSelectInput(
     options: List<StringPair>? = null,
     value: String? = null,
     emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
     inputId: String? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (OnsSelectInput.() -> Unit)? = null
 ): OnsSelectInput {
     val onsSelectInput =
-        OnsSelectInput(options, value, emptyOption, inputId, classes ?: className.set, init)
+        OnsSelectInput(options, value, emptyOption, multiple, selectSize, inputId, classes ?: className.set, init)
     this.add(onsSelectInput)
     return onsSelectInput
 }
