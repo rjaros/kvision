@@ -56,7 +56,7 @@ enum class OnsButtonType(internal val type: String) {
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-open class Button(
+open class OnsButton(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
@@ -66,7 +66,7 @@ open class Button(
     ripple: Boolean? = null,
     disabled: Boolean? = null,
     classes: Set<String> = setOf(),
-    init: (Button.() -> Unit)? = null
+    init: (OnsButton.() -> Unit)? = null
 ) : CustomTag("ons-button", content, rich, align, classes) {
 
     /**
@@ -149,8 +149,8 @@ open class Button(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: Button.(MouseEvent) -> Unit): Button {
-        this.setEventListener<Button> {
+    open fun onClick(handler: OnsButton.(MouseEvent) -> Unit): OnsButton {
+        this.setEventListener<OnsButton> {
             click = { e ->
                 self.handler(e)
             }
@@ -164,7 +164,7 @@ open class Button(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.button(
+fun Container.onsButton(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
@@ -175,9 +175,10 @@ fun Container.button(
     disabled: Boolean? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (Button.() -> Unit)? = null
-): Button {
-    val button = Button(content, rich, align, icon, buttonType, large, ripple, disabled, classes ?: className.set, init)
-    this.add(button)
-    return button
+    init: (OnsButton.() -> Unit)? = null
+): OnsButton {
+    val onsButton =
+        OnsButton(content, rich, align, icon, buttonType, large, ripple, disabled, classes ?: className.set, init)
+    this.add(onsButton)
+    return onsButton
 }

@@ -21,20 +21,20 @@
  */
 package test.pl.treksoft.kvision.onsenui.form
 
-import pl.treksoft.kvision.onsenui.form.button
+import pl.treksoft.kvision.onsenui.form.onsButton
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
 import kotlin.browser.document
 import kotlin.test.Test
 
-class ButtonSpec : DomSpec {
+class OnsButtonSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            root.button("test", icon = "fa-times")
+            root.onsButton("test", icon = "fa-times")
 
             val element = document.getElementById("test")
             assertEqualsHtml(
