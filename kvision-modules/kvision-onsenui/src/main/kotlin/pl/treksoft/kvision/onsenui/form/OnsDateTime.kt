@@ -164,12 +164,11 @@ open class OnsDateTime(
         }
 
     protected val idc = "kv_ons_form_datetime_${counter}"
-    final override val input: OnsDateTimeInput =
-        OnsDateTimeInput(value, mode, min, max, step, idc, classes).apply {
-            modifier = "underbar"
-            this.name = name
-            this.eventTarget = this@OnsDateTime
-        }
+    final override val input: OnsDateTimeInput = OnsDateTimeInput(value, mode, min, max, step, idc).apply {
+        modifier = "underbar"
+        this.name = name
+        this.eventTarget = this@OnsDateTime
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 

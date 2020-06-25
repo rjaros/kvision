@@ -152,11 +152,10 @@ open class OnsRange(
         }
 
     protected val idc = "kv_ons_form_range_${counter}"
-    final override val input: OnsRangeInput =
-        OnsRangeInput(value, min, max, step, idc, classes).apply {
-            this.name = name
-            this.eventTarget = this@OnsRange
-        }
+    final override val input: OnsRangeInput = OnsRangeInput(value, min, max, step, idc).apply {
+        this.name = name
+        this.eventTarget = this@OnsRange
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 

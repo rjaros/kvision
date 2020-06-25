@@ -113,12 +113,11 @@ open class OnsRadio(
         }
 
     protected val idc = "kv_ons_form_radio_${counter}"
-    final override val input: OnsRadioInput =
-        OnsRadioInput(value, idc, classes).apply {
-            this.name = name
-            this.extraValue = extraValue
-            this.eventTarget = this@OnsRadio
-        }
+    final override val input: OnsRadioInput = OnsRadioInput(value, idc).apply {
+        this.name = name
+        this.extraValue = extraValue
+        this.eventTarget = this@OnsRadio
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 

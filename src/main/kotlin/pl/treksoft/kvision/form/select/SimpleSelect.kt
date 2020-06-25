@@ -112,7 +112,7 @@ open class SimpleSelect(
 
     private val idc = "kv_form_simpleselect_$counter"
     final override val input: SimpleSelectInput = SimpleSelectInput(
-        options, value, emptyOption, setOf("form-control")
+        options, value, emptyOption
     ).apply {
         this.id = idc
         this.name = name

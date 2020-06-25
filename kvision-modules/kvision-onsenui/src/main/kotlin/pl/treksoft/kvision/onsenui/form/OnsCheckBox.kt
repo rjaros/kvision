@@ -102,11 +102,10 @@ open class OnsCheckBox(
         }
 
     protected val idc = "kv_ons_form_checkbox_${counter}"
-    final override val input: OnsCheckBoxInput =
-        OnsCheckBoxInput(value, idc, classes).apply {
-            this.name = name
-            this.eventTarget = this@OnsCheckBox
-        }
+    final override val input: OnsCheckBoxInput = OnsCheckBoxInput(value, idc).apply {
+        this.name = name
+        this.eventTarget = this@OnsCheckBox
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 

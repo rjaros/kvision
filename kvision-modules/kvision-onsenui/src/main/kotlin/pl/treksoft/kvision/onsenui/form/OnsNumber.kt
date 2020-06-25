@@ -191,7 +191,7 @@ open class OnsNumber(
 
     protected val idc = "kv_ons_form_number_${counter}"
     final override val input: OnsNumberInput =
-        OnsNumberInput(value, min, max, step, placeholder, floatLabel, idc, classes).apply {
+        OnsNumberInput(value, min, max, step, placeholder, floatLabel, idc).apply {
             modifier = "underbar"
             this.name = name
             this.eventTarget = this@OnsNumber

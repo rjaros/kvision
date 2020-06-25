@@ -102,11 +102,10 @@ open class OnsSwitch(
         }
 
     protected val idc = "kv_ons_form_switch_${counter}"
-    final override val input: OnsSwitchInput =
-        OnsSwitchInput(value, idc, classes).apply {
-            this.name = name
-            this.eventTarget = this@OnsSwitch
-        }
+    final override val input: OnsSwitchInput = OnsSwitchInput(value, idc).apply {
+        this.name = name
+        this.eventTarget = this@OnsSwitch
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich)
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 

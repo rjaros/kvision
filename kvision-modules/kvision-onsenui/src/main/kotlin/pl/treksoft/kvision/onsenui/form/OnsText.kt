@@ -95,12 +95,11 @@ open class OnsText(
             input.autocomplete = value
         }
 
-    final override val input: OnsTextInput =
-        OnsTextInput(type, value, placeholder, floatLabel, idc, classes).apply {
-            modifier = "underbar"
-            this.name = name
-            this.eventTarget = this@OnsText
-        }
+    final override val input: OnsTextInput = OnsTextInput(type, value, placeholder, floatLabel, idc).apply {
+        modifier = "underbar"
+        this.name = name
+        this.eventTarget = this@OnsText
+    }
 
     init {
         this.addInternal(input)
