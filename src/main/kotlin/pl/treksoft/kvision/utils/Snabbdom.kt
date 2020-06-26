@@ -168,6 +168,27 @@ interface BtOn : On {
     var onsPrehide: ((KvEvent) -> Unit)?
     var onsPostshow: ((KvEvent) -> Unit)?
     var onsPosthide: ((KvEvent) -> Unit)?
+    var dragleft: ((KvEvent) -> Unit)?
+    var dragright: ((KvEvent) -> Unit)?
+    var dragup: ((KvEvent) -> Unit)?
+    var dragdown: ((KvEvent) -> Unit)?
+    var gesture: ((KvEvent) -> Unit)?
+    var hold: ((KvEvent) -> Unit)?
+    var release: ((KvEvent) -> Unit)?
+    var swipe: ((KvEvent) -> Unit)?
+    var swipeleft: ((KvEvent) -> Unit)?
+    var swiperight: ((KvEvent) -> Unit)?
+    var swipeup: ((KvEvent) -> Unit)?
+    var swipedown: ((KvEvent) -> Unit)?
+    var tap: ((KvEvent) -> Unit)?
+    var doubletap: ((KvEvent) -> Unit)?
+    var touch: ((KvEvent) -> Unit)?
+    var transform: ((KvEvent) -> Unit)?
+    var transformstart: ((KvEvent) -> Unit)?
+    var transformend: ((KvEvent) -> Unit)?
+    var pinchin: ((KvEvent) -> Unit)?
+    var pinchout: ((KvEvent) -> Unit)?
+    var rotate: ((KvEvent) -> Unit)?
 }
 
 /**

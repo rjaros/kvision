@@ -23,6 +23,7 @@
 package pl.treksoft.kvision.onsenui
 
 import pl.treksoft.kvision.KVManagerOnsenui.ons
+import pl.treksoft.kvision.core.Widget
 
 /**
  * Floating directions.
@@ -384,5 +385,19 @@ object OnsenUi {
      */
     fun isLandscape(): Boolean {
         return ons.orientation.isLandscape()
+    }
+}
+
+/**
+ * Enable gesture detector for a given Widget.
+ */
+@Suppress("UnsafeCastFromDynamic")
+fun Widget.enableGestureDetector() {
+    if (this.getElement() != null) {
+        ons.GestureDetector(this.getElement())
+    } else {
+        this.afterInsertHook = {
+            ons.GestureDetector(it.elm)
+        }
     }
 }
