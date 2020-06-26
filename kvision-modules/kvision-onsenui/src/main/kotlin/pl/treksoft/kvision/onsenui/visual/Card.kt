@@ -65,22 +65,26 @@ open class Card(
 
     /**
      * DSL builder function to add title section of the card.
+     * @param content the content of the title section
+     * @param rich whether [content] can contain HTML code
      * @param builder a builder extension function
      */
-    open fun title(builder: Div.() -> Unit): Div {
-        val titleDiv = Div(classes = setOf("title"))
-        titleDiv.builder()
+    open fun title(content: String? = null, rich: Boolean = false, builder: (Div.() -> Unit)? = null): Div {
+        val titleDiv = Div(content, rich, classes = setOf("title"))
+        builder?.invoke(titleDiv)
         add(titleDiv)
         return titleDiv
     }
 
     /**
      * DSL builder function to add content section of the card.
+     * @param content the content of the content section
+     * @param rich whether [content] can contain HTML code
      * @param builder a builder extension function
      */
-    open fun content(builder: Div.() -> Unit): Div {
-        val contentDiv = Div(classes = setOf("content"))
-        contentDiv.builder()
+    open fun content(content: String? = null, rich: Boolean = false, builder: (Div.() -> Unit)? = null): Div {
+        val contentDiv = Div(content, rich, classes = setOf("content"))
+        builder?.invoke(contentDiv)
         add(contentDiv)
         return contentDiv
     }
