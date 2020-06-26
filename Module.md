@@ -45,7 +45,7 @@ Kotlin bindings for NodeJS API within Electron.
 
 # Package pl.treksoft.kvision.event
 
-Extension functions producing coroutines Flows for KVision event sources.
+Extension functions producing coroutines Flows for KVision event and data sources.
 
 # Package pl.treksoft.kvision.form
 
@@ -100,6 +100,54 @@ Classes supporting general purpose Bootstrap modals with convenient helpers for 
 # Package pl.treksoft.kvision.navbar
 
 Bootstrap navbar components.
+
+# Package pl.treksoft.kvision.onsenui
+
+Onsen UI helper utility functions.
+
+# Package pl.treksoft.kvision.onsenui.carousel
+
+Onsen UI carousel component.
+
+# Package pl.treksoft.kvision.onsenui.control
+
+Onsen UI control components (action button, speed dial, segment).
+
+# Package pl.treksoft.kvision.onsenui.core
+
+Onsen UI main structural components (page, navigator).
+
+# Package pl.treksoft.kvision.onsenui.dialog
+
+Onsen UI dialogs, toasts, popovers and notifications.
+
+# Package pl.treksoft.kvision.onsenui.form
+
+Onsen UI form components.
+
+# Package pl.treksoft.kvision.onsenui.grid
+
+Onsen UI grid layout components.
+
+# Package pl.treksoft.kvision.onsenui.list
+
+Onsen UI list component.
+
+# Package pl.treksoft.kvision.onsenui.splitter
+
+Onsen UI splitter component.
+
+# Package pl.treksoft.kvision.onsenui.tabbar
+
+Onsen UI tabbar component.
+
+# Package pl.treksoft.kvision.onsenui.toolbar
+
+Onsen UI toolbar component.
+
+# Package pl.treksoft.kvision.onsenui.visual
+
+Onsen UI visual components (card, icon, progress bars and ripple).
 
 # Package pl.treksoft.kvision.pace
 
