@@ -21,9 +21,7 @@
  */
 package test.pl.treksoft.kvision.maps
 
-import pl.treksoft.kvision.maps.LatLng
-import pl.treksoft.kvision.maps.LatLngBounds
-import pl.treksoft.kvision.maps.Maps
+import pl.treksoft.kvision.maps.*
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.px
@@ -42,22 +40,64 @@ class MapsSpec : DomSpec {
             svgElement.setAttribute("viewBox", "0 0 200 200")
             val svgString = "<rect width='200' height='200'/><rect x='75' y='23' width='50' height='50' style='fill:red'/><rect x='75' y='123' width='50' height='50' style='fill:#0013ff'/>"
             svgElement.innerHTML = svgString
-            val svgElementBounds = LatLngBounds(
-                    LatLng(40.712216, -74.22655),
-                    LatLng(40.773941, -74.12544))
+            val bounds = LatLngBounds(
+                    LatLng(0, 0),
+                    LatLng(0.1, 0.1))
 
             val root = Root("test", containerType = ContainerType.FIXED)
-            val maps = Maps(40.75, -74.2, 13)
+            val map = Maps(
+                    0,
+                    0,
+                    11,
+                    baseLayerProvider = BaseLayerProvider.EMPTY,
+                    crs = CRS.Simple
+            )
                     .apply {
                         width = 300.px
                         height = 600.px
                     }
-            maps.svgOverlay(svgElement, svgElementBounds)
-            root.add(maps)
+            map.svgOverlay(svgElement, bounds)
+            root.add(map)
             val element = document.getElementById("test")!!
             assertTrue(
                     element.innerHTML.contains(svgString),
                     "Must contain svg xml passed in")
+        }
+    }
+
+    @Test
+    fun renderImage() {
+        run {
+            //GIVEN
+            val imageUrl = "https://www.w3.org/Icons/SVG/svg-logo-h.svg"
+
+            val bounds = LatLngBounds(
+                    LatLng(0, 0),
+                    LatLng(0.1, 0.1))
+
+            val root = Root("test", containerType = ContainerType.FIXED)
+
+            //WHEN
+            val map = Maps(
+                    0,
+                    0,
+                    11,
+                    baseLayerProvider = BaseLayerProvider.EMPTY,
+                    crs = CRS.Simple
+            )
+                    .apply {
+                        width = 300.px
+                        height = 600.px
+                    }
+            map.imageOverlay(imageUrl, bounds)
+            root.add(map)
+
+            // then
+            val expected = "<title>SVG logo combined with the W3C logo, set horizontally</title>"
+            val element = document.getElementById("test")!!
+            assertTrue(
+                    element.innerHTML.contains(expected),
+                    "Must contain expected string")
         }
     }
 

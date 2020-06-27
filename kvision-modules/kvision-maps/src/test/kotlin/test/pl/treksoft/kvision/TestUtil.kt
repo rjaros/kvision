@@ -24,6 +24,7 @@ package test.pl.treksoft.kvision
 import org.w3c.dom.Element
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import kotlin.browser.document
 import kotlin.test.assertEquals
@@ -86,7 +87,7 @@ interface WSpec : DomSpec {
 
     fun runW(code: (widget: Widget, element: Element?) -> Unit) {
         run {
-            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val root = Root("test", containerType = ContainerType.FIXED)
             val widget = Widget()
             widget.id = "test_id"
             root.add(widget)

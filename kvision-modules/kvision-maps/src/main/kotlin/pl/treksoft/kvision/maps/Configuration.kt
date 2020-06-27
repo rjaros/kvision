@@ -31,16 +31,57 @@ data class LatLngBounds(val corner1: LatLng, val corner2: LatLng)
 
 fun LatLngBounds.toArray() = arrayOf(corner1.toArray(), corner2.toArray())
 
-private val b = false
-
 data class Point(val x: Number, val y: Number, val round: Boolean = false)
 
-data class ICRS(val crs: String)
+private val ORIGIN = Point(0, 0)
 
-interface ILayer {}
+data class ICRS(val crs: String)
+enum class CRS(internal val crs: String) {
+    EPSG3395("EPSG3395"),
+    EPSG3857("EPSG3857"),
+    EPSG4326("EPSG4326"),
+    Simple("Simple")
+}
+
+interface ILayer {}  //TODO flesh out with subclasses and functions?
+
+enum class Position(val position: String) {
+    TOP_LEFT("topleft"),
+    TOP_RIGHT("topright"),
+    BOTTOM_LEFT("bottomleft"),
+    BOTTOM_RIGHT("bottomright")
+}
+
+data class Icon(val iconName: String)
+
+private val DEFAULT_ICON = Icon("DefaultIcon_TBD") //TODO L.Icon.Default()
+
+// for more see: https://leaflet-extras.github.io/leaflet-providers/preview/
+enum class BaseLayerProvider(
+        val label: String,
+        val url: String,
+        val attribution: String,
+        val subdomains: String? = "",
+        val maxZoom: Int? = 19) {
+    EMPTY("Empty", "", ""),
+    OSM("OpenStreetMap", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"),
+    EWI("Esri.WorldImagery", "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x})",
+            "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"),
+    EWT("Esri.WorldTopoMap", "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+            "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"),
+    MTB("MtbMap", "http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png",
+            "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &amp; USGS"),
+    CDBV("CartoDB.Voyager", "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+            "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
+            "abcd",
+            19),
+    HB("Hike Bike", "https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png",
+            "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors")
+}
 
 data class AttributionOptions(
-        val position: String = "bottomright",
+        val position: Position = Position.BOTTOM_RIGHT,
         val prefix: String = "Powered by Leaflet")
 
 data class ClassExtendOptions(
@@ -49,41 +90,22 @@ data class ClassExtendOptions(
         val static: Any? = null)
 
 data class ControlOptions(
-        val position: String = "topright")
+        val position: Position = Position.TOP_RIGHT)
 
 data class DivIconOptions(
         val className: String = "leaflet-div-icon",
         val html: String = "",
-        val iconAnchor: Point,
-        val iconSize: Point)
+        val iconAnchor: Point? = null,
+        val iconSize: Point? = null)
 
 data class FitBoundsOptions(
-        val animate: Boolean?,
-        val padding: Point = Point(0, 0),
-        val paddingBottomRight: Point = Point(0, 0),
-        val paddingTopLeft: Point = Point(0, 0),
-        val pan: PanOptions,
+        val animate: Boolean? = null,
+        val padding: Point = ORIGIN,
+        val paddingBottomRight: Point = ORIGIN,
+        val paddingTopLeft: Point = ORIGIN,
+        val pan: PanOptions? = null,
         val reset: Boolean = false,
-        val zoom: ZoomOptions)
-
-//TODO rework function definitions http://definitelytyped.org/docs/leaflet--leaflet/interfaces/l.geojsonoptions.html
-/*
-obj {
-    this.style = { featureData: dynamic ->
-    // ...
-    }
-    this.pointToLayer = { featureData: dynamic, latlng: dynamic ->
-    // ...
-    }
-    // other props
-}
- */
-data class GeoJSONOptions(
-        val coordsToLatLng: Function<Array<Any>>,
-        val filter: Function<Array<Any>>,
-        val onEachFeature: Function<Array<Any>>,
-        val pointToLayer: Function<Array<Any>>,
-        val style: Function<Array<Any>>)
+        val zoom: ZoomOptions? = null)
 
 data class IconOptions(
         val className: String = "",
@@ -118,7 +140,7 @@ fun ImageOverlayOptions.toJs(): dynamic {
 data class LayersOptions(
         val autoZIndex: Boolean = true,
         val collapsed: Boolean = true,
-        val position: String = "topright")
+        val position: Position = Position.TOP_RIGHT)
 
 data class LocateOptions(
         val enableHighAccuracy: Boolean = false,
@@ -144,26 +166,43 @@ data class MapOption(
         val keyboard: Boolean = true,
         val keyboardPanOffset: Number = 80,
         val keyboardZoomOffset: Number = 1,
-        val layers: Array<ILayer>,
-        val markerZoomAnimation: Boolean?,
-        val maxBounds: LatLngBounds?,
-        val maxZoom: Number?,
-        val minZoom: Number?,
+        val layers: Array<ILayer>? = null,
+        val markerZoomAnimation: Boolean? = null,
+        val maxBounds: LatLngBounds? = null,
+        val maxZoom: Number? = null,
+        val minZoom: Number? = null,
         val scrollWheelZoom: Boolean = true,
         val tap: Boolean = true,
         val tapTolerance: Number = 15,
         val touchZoom: Boolean = true,
         val trackResize: Boolean = true,
         val worldCopyJump: Boolean = false,
-        val zoom: Number?,
-        val zoomAnimation: Number?,
+        val zoom: Number? = null,
+        val zoomAnimation: Number? = null,
         val zoomAnimationThreshold: Number = 4,
-        val zoomControl: Boolean = true)
+        val zoomControl: Boolean = true) {
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is MapOption) return false
+
+        if (layers != null) {
+            if (other.layers == null) return false
+            if (!layers.contentEquals(other.layers)) return false
+        } else if (other.layers != null) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return layers?.contentHashCode() ?: 0
+    }
+}
 
 data class MarkerOptions(
         val clickable: Boolean = true,
         val draggable: Boolean = false,
-        //TODO   val icon : Icon = L.Icon.Default(),
+        val icon: Icon? = DEFAULT_ICON,
         val keyboard: Boolean = true,
         val opacity: Number = 1.0,
         val riseOffset: Number = 250,
@@ -172,7 +211,7 @@ data class MarkerOptions(
         val zIndexOffset: Number = 0)
 
 data class PanOptions(
-        val animate: Boolean?,
+        val animate: Boolean? = null,
         val duration: Number = 0.25,
         val easeLinearity: Number = 0.25,
         val noMoveStart: Boolean = false)
@@ -181,11 +220,11 @@ data class PathOptions(
         val clickable: Boolean = true,
         val color: String = "#03f",
         val dashArray: String?,
-        val fill: Boolean?,
-        val fillColor: String, // same as color
+        val fill: Boolean? = null,
+        val fillColor: String = color, // default to color
         val fillOpacity: Number = 0.2,
         val opacity: Number = 0.5,
-        val pointerEvents: Boolean?,
+        val pointerEvents: Boolean? = null,
         val stroke: Boolean = true,
         val weight: Number = 5)
 
@@ -197,8 +236,8 @@ data class PopupOptions(
         val autoPan: Boolean = true,
         val autoPanPadding: Point = Point(5, 5),
         val closeButton: Boolean = true,
-        val closeOnClick: Boolean?,
-        val maxHeight: Number?,
+        val closeOnClick: Boolean? = null,
+        val maxHeight: Number? = null,
         val maxWidth: Number = 300,
         val minWidth: Number = 50,
         val offset: Point = Point(0, 6),
@@ -208,7 +247,7 @@ data class ScaleOptions(
         val imperial: Boolean = true,
         val maxWidth: Number = 100,
         val metric: Boolean = true,
-        val position: String = "bottomleft",
+        val position: Position = Position.BOTTOM_LEFT,
         val updateWhenIdle: Boolean = false)
 
 data class TileLayerOptions(
@@ -226,23 +265,37 @@ data class TileLayerOptions(
         val tms: Boolean = false,
         val unloadInvisibleTiles: Boolean = false, //WHEN mobile WebKit THEN true
         val updateWhenIdle: Boolean = false,
-        val zIndex: Number?,
+        val zIndex: Number? = null,
         val zoomOffset: Number = 0,
-        val zoomReverse: Boolean = false)
+        val zoomReverse: Boolean = false) {
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is TileLayerOptions) return false
+
+        if (!subdomains.contentEquals(other.subdomains)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return subdomains.contentHashCode()
+    }
+}
 
 data class WMSOptions(
-        val format: String = "false",
-        val layers: String = "",
-        val styles: String = "image/jpeg",
+        val format: String? = "false",
+        val layers: String? = "",
+        val styles: String? = "image/jpeg",
         val transparent: Boolean = false, // "1.1.1" What's this?
-        val version: String?)
+        val version: String? = null)
 
 data class ZoomOptions(
-        val position: String = "topright"
+        val position: Position = Position.TOP_RIGHT
 )
 
 data class ZoomPanOptions(
-        val animate: Boolean?,
-        val pan: PanOptions?,
+        val animate: Boolean? = null,
+        val pan: PanOptions? = null,
         val reset: Boolean = false,
-        val zoom: ZoomOptions?)
+        val zoom: ZoomOptions? = null)
