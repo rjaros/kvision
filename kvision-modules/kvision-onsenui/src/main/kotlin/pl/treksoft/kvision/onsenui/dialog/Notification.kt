@@ -268,3 +268,31 @@ fun showToast(
     @Suppress("UnsafeCastFromDynamic")
     return ons.notification.toast(message, options)
 }
+
+/**
+ * Displays a dynamic action sheet.
+ * @param title a title of the action sheet
+ * @param cancelable whether the action sheet can be canceled
+ * @param animation determines if the transitions are animated
+ */
+fun showActionSheet(
+    title: String? = null,
+    cancelable: Boolean? = null,
+    animation: Boolean? = null,
+    buttons: List<dynamic>? = null
+): Promise<Int> {
+    val options = obj {
+        this.title = title
+        cancelable?.let {
+            this.cancelable = it
+        }
+        animation?.let {
+            this.animation = it
+        }
+        buttons?.let {
+            this.buttons = it.toTypedArray()
+        }
+    }
+    @Suppress("UnsafeCastFromDynamic")
+    return ons.openActionSheet(options)
+}
