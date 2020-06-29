@@ -198,6 +198,7 @@ open class Dialog(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Suppress("unused")
 fun Container.dialog(
     cancelable: Boolean? = null,
     animation: Boolean? = null,

@@ -172,6 +172,7 @@ open class Toast(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Suppress("unused")
 fun Container.toast(
     animation: ToastAnimation? = null,
     classes: Set<String>? = null,

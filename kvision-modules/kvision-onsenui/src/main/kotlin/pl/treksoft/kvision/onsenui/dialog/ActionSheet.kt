@@ -208,6 +208,7 @@ open class ActionSheet(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Suppress("unused")
 fun Container.actionSheet(
     actionSheetTitle: String? = null,
     cancelable: Boolean? = null,

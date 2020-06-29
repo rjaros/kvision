@@ -170,6 +170,7 @@ open class Modal(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Suppress("unused")
 fun Container.modal(
     animation: ModalAnimation? = null,
     classes: Set<String>? = null,

@@ -24,7 +24,6 @@ package pl.treksoft.kvision.onsenui.dialog
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.Display
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.onsenui.BackButtonEvent
@@ -166,17 +165,17 @@ open class Popover(
      * @param target a target component
      * @param options a parameter object
      */
-    open fun showPopover(target: Widget, options: dynamic = undefined): Promise<Unit>? {
+    open fun showOnsPopover(target: Widget, options: dynamic = undefined): Promise<Unit>? {
         this.show()
         @Suppress("UnsafeCastFromDynamic")
         return getElement()?.asDynamic()?.show(target.getElement(), options)
     }
 
     /**
-     * Hides the dialog.
+     * Hides the popover.
      * @param options a parameter object
      */
-    open fun hidePopover(options: dynamic = undefined): Promise<Unit>? {
+    open fun hideOnsPopover(options: dynamic = undefined): Promise<Unit>? {
         @Suppress("UnsafeCastFromDynamic")
         return getElement()?.asDynamic()?.hide(options)
     }
@@ -217,6 +216,7 @@ open class Popover(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Suppress("unused")
 fun Container.popover(
     direction: FloatDirection? = null,
     cancelable: Boolean? = null,
