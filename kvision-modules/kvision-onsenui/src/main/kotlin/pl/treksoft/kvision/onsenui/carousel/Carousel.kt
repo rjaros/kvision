@@ -48,6 +48,7 @@ enum class CarouselDirection(internal val type: String) {
  * @param direction a carousel direction
  * @param fullscreen whether the carousel should fill the whole screen
  * @param overscrollable whether the carousel should scroll past first and last items
+ * @param autoScroll whether the carousel will be automatically scrolled to the closest item border
  * @param animation determines if the transitions are animated
  * @param swipeable determines if the carousel can be scrolled by drag or swipe
  * @param classes a set of CSS class names
@@ -58,6 +59,7 @@ open class Carousel(
     direction: CarouselDirection? = null,
     fullscreen: Boolean? = null,
     overscrollable: Boolean? = null,
+    autoScroll: Boolean? = null,
     animation: Boolean? = null,
     swipeable: Boolean? = null,
     initialIndex: Int? = null,
@@ -113,7 +115,7 @@ open class Carousel(
     /**
      * Whether the carousel will be automatically scrolled to the closest item border.
      */
-    var autoScroll: Boolean? by refreshOnUpdate()
+    var autoScroll: Boolean? by refreshOnUpdate(autoScroll)
 
     /**
      * Specifies how much the user must drag the carousel in order for it to auto scroll to the next item.
@@ -339,6 +341,7 @@ fun Container.carousel(
     direction: CarouselDirection? = null,
     fullscreen: Boolean? = null,
     overscrollable: Boolean? = null,
+    autoScroll: Boolean? = null,
     animation: Boolean? = null,
     swipeable: Boolean? = null,
     initialIndex: Int? = null,
@@ -350,6 +353,7 @@ fun Container.carousel(
         direction,
         fullscreen,
         overscrollable,
+        autoScroll,
         animation,
         swipeable,
         initialIndex,
