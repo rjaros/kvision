@@ -30,6 +30,7 @@ import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 import kotlin.browser.document
+import kotlin.browser.window
 
 /**
  * An Onsen UI lazy repeat helper component.
@@ -106,7 +107,9 @@ open class OnsLazyRepeat(
                 destroyItemCallback?.invoke(index, element)
             }
         }
-        getElement()?.asDynamic()?.delegate = delegate
+        window.setTimeout({
+            getElement()?.asDynamic()?.delegate = delegate
+        }, 0)
     }
 
     /**
