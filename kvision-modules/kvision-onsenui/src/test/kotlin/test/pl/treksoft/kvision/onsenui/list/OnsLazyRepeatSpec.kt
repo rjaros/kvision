@@ -21,8 +21,8 @@
  */
 package test.pl.treksoft.kvision.onsenui.list
 
+import pl.treksoft.kvision.onsenui.OnsenUi
 import pl.treksoft.kvision.onsenui.core.page
-import pl.treksoft.kvision.onsenui.list.OnsListItem
 import pl.treksoft.kvision.onsenui.list.onsLazyRepeat
 import pl.treksoft.kvision.onsenui.list.onsList
 import pl.treksoft.kvision.panel.ContainerType
@@ -40,13 +40,13 @@ class OnsLazyRepeatSpec : DomSpec {
             root.page {
                 onsList {
                     onsLazyRepeat(1) {
-                        OnsListItem("item $it")
+                        OnsenUi.createElement("<ons-list-item>item $it</ons-list-item>")
                     }
                 }
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><ons-list class=\"list lazy-list\" style=\"padding-top: 0px; visibility: hidden;\"><ons-lazy-repeat></ons-lazy-repeat><ons-list-item class=\"list-item\" style=\"visibility: hidden;\"><div class=\"center list-item__center\">item 0</div></ons-list-item></ons-list></div><span></span></ons-page>",
+                "<ons-page class=\"page\"><div class=\"page__background\"></div><div class=\"page__content\"><ons-list class=\"list\"><ons-lazy-repeat></ons-lazy-repeat></ons-list></div><span></span></ons-page>",
                 element?.innerHTML,
                 "Should render Onsen UI lazy repeat component"
             )
