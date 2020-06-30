@@ -112,7 +112,7 @@ open class RangeInput(
 
     init {
         this.setInternalEventListener<RangeInput> {
-            change = {
+            input = {
                 self.changeValue()
             }
         }
