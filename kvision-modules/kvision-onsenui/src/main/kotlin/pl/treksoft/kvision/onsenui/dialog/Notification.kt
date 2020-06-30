@@ -240,7 +240,7 @@ fun showToast(
     className: String? = null,
     modifier: String? = null,
     callback: (() -> Unit)? = null
-): Promise<Unit> {
+): Promise<Int> {
     val options = obj {
         buttonLabel?.let {
             this.buttonLabel = it
