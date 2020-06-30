@@ -175,7 +175,8 @@ enum class Layout(internal val layout: String) {
     FITDATA("fitData"),
     FITDATAFILL("fitDataFill"),
     FITCOLUMNS("fitColumns"),
-    FITDATASTRETCH("fitDataStretch")
+    FITDATASTRETCH("fitDataStretch"),
+    FITDATATABLE("fitDataTable"),
 }
 
 /**
@@ -257,12 +258,12 @@ data class DownloadConfig(
  * An extension function to convert download config class to JS object.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-fun DownloadConfig.toJs(): Tabulator.DownloadConfig {
+fun DownloadConfig.toJs(): Tabulator.AddditionalExportOptions {
     return obj {
         if (columnGroups != null) this.columnGroups = columnGroups
         if (rowGroups != null) this.rowGroups = rowGroups
         if (columnCalcs != null) this.columnCalcs = columnCalcs
-    } as Tabulator.DownloadConfig
+    } as Tabulator.AddditionalExportOptions
 }
 
 /**

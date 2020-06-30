@@ -39,11 +39,20 @@ import kotlin.browser.window
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 
 /**
- * Tabulator download data set option.
+ * Tabulator data set option.
  */
-enum class DownloadSet(internal val set: String) {
+enum class DataSet(internal val set: String) {
+    VISIBLE("visible"),
+    ACTIVE("active")
+}
+
+/**
+ * Tabulator row range lookup set option.
+ */
+enum class RowRangeLookup(internal val set: String) {
     ALL("all"),
     VISIBLE("visible"),
+    SELECTED("selected"),
     ACTIVE("active")
 }
 
@@ -274,13 +283,13 @@ open class Tabulator<T : Any>(
 
     /**
      * Returns the current data in the table.
-     * @param active return only visible data
+     * @param dataSet selected data set
      * @return current data
      */
     @Suppress("UNCHECKED_CAST")
-    open fun getData(active: Boolean): List<T>? {
+    open fun getData(dataSet: DataSet?): List<T>? {
         return if (jsTabulator != null) {
-            jsTabulator?.getData(active)?.toList() as? List<T>
+            jsTabulator?.getData(dataSet?.set)?.toList() as? List<T>
         } else {
             data
         }
@@ -328,35 +337,37 @@ open class Tabulator<T : Any>(
 
     /**
      * Get the number of data rows.
-     * @param activeOnly return only the number of visible rows
+     * @param dataSet selected data set
      * @return the number of data rows
      */
-    open fun getDataCount(activeOnly: Boolean = false): Int = jsTabulator?.getDataCount(activeOnly)?.toInt() ?: 0
+    open fun getDataCount(dataSet: DataSet?): Int {
+        return jsTabulator?.getDataCount(dataSet?.set)?.toInt() ?: 0
+    }
 
     /**
      * Get the HTML code of the table.
-     * @param activeOnly include only visible rows
+     * @param rowRangeLookup the selected range of rows
      * @param isStyled return styled output
      * @param htmlOutputConfig override output configuration
      * @return the HTML code of the table
      */
     open fun getHtml(
-        activeOnly: Boolean = false,
+        rowRangeLookup: RowRangeLookup,
         isStyled: Boolean = false,
         htmlOutputConfig: dynamic = null
-    ): String? = jsTabulator?.getHtml(activeOnly, isStyled, htmlOutputConfig)
+    ): String? = jsTabulator?.getHtml(rowRangeLookup.set, isStyled, htmlOutputConfig)
 
     /**
      * Print the table.
-     * @param activeOnly include only visible rows
+     * @param rowRangeLookup the selected range of rows
      * @param isStyled styled output
      * @param printConfig override print configuration
      */
     open fun print(
-        activeOnly: Boolean = false,
+        rowRangeLookup: RowRangeLookup,
         isStyled: Boolean = false,
         printConfig: dynamic = null
-    ): Unit? = jsTabulator?.print(activeOnly, isStyled, printConfig)
+    ): Unit? = jsTabulator?.print(rowRangeLookup.set, isStyled, printConfig)
 
     /**
      * Download the table content as CSV
@@ -369,7 +380,7 @@ open class Tabulator<T : Any>(
     @Suppress("UnsafeCastFromDynamic")
     open fun downloadCSV(
         fileName: String? = null,
-        dataSet: DownloadSet = DownloadSet.ACTIVE,
+        dataSet: RowRangeLookup = RowRangeLookup.ACTIVE,
         delimiter: Char = ',',
         includeBOM: Boolean = false,
         newTab: Boolean = false
@@ -396,7 +407,7 @@ open class Tabulator<T : Any>(
     @Suppress("UnsafeCastFromDynamic")
     open fun downloadJSON(
         fileName: String? = null,
-        dataSet: DownloadSet = DownloadSet.ACTIVE,
+        dataSet: RowRangeLookup = RowRangeLookup.ACTIVE,
         newTab: Boolean = false
     ): Unit? {
         return if (newTab) {
@@ -416,7 +427,7 @@ open class Tabulator<T : Any>(
     @Suppress("UnsafeCastFromDynamic")
     open fun downloadHTML(
         fileName: String? = null,
-        dataSet: DownloadSet = DownloadSet.ACTIVE,
+        dataSet: RowRangeLookup = RowRangeLookup.ACTIVE,
         style: Boolean = false,
         newTab: Boolean = false
     ): Unit? {
@@ -442,7 +453,7 @@ open class Tabulator<T : Any>(
         position: RowPosition? = null,
         ifVisible: Boolean? = null
     ) {
-        jsTabulator?.scrollToRow(row, position, ifVisible)
+        jsTabulator?.scrollToRow(row, position?.position, ifVisible)
     }
 
     /**
