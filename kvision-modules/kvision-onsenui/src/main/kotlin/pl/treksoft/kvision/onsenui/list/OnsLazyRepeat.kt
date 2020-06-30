@@ -25,11 +25,8 @@ package pl.treksoft.kvision.onsenui.list
 import com.github.snabbdom.VNode
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.panel.ContainerType
-import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.document
 import kotlin.browser.window
 
 /**
@@ -47,7 +44,7 @@ open class OnsLazyRepeat(
     /**
      * A callback function for creating new list items.
      */
-    protected var createItemContentCallback: ((Int) -> Widget)? = null
+    protected var createItemContentCallback: ((Int) -> HTMLElement)? = null
 
     /**
      * A callback function returning a number of items.
@@ -64,15 +61,9 @@ open class OnsLazyRepeat(
      */
     protected var destroyItemCallback: ((Int, HTMLElement) -> Unit)? = null
 
-    /**
-     * @suppress
-     * Internal variable
-     */
-    protected val root: Root
+    private var countItems: Int = 0
 
     init {
-        val el = document.createElement("div") as HTMLElement
-        root = Root(el, containerType = ContainerType.NONE, addRow = false)
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -85,16 +76,14 @@ open class OnsLazyRepeat(
         val delegate = obj {}
         if (createItemContentCallback != null) {
             delegate.createItemContent = { index: Int ->
-                val widget = createItemContentCallback!!.invoke(index)
-                root.add(widget)
-                val element = widget.getElement()
-                root.removeAll()
-                element
+                createItemContentCallback!!.invoke(index)
             }
         }
         if (countItemsCallback != null) {
             delegate.countItems = {
-                countItemsCallback?.invoke()
+                val count = countItemsCallback?.invoke()
+                countItems = count ?: 0
+                count
             }
         }
         if (calculateItemHeightCallback != null) {
@@ -109,6 +98,18 @@ open class OnsLazyRepeat(
         }
         window.setTimeout({
             getElement()?.asDynamic()?.delegate = delegate
+            window.setTimeout({
+                val childCount = parent?.getElement()?.childNodes?.length
+                if (countItems > 0) {
+                    if (childCount == 1 ||
+                        (childCount == 2 &&
+                                (parent?.getElement()?.lastChild as? HTMLElement)?.style?.visibility == "hidden")
+                    ) {
+                        (parent as? OnsList)?.hide()
+                        (parent as? OnsList)?.show()
+                    }
+                }
+            }, 1000)
         }, 0)
     }
 
@@ -116,16 +117,12 @@ open class OnsLazyRepeat(
      * Sets a callback function for creating new list items.
      * @param callback a callback function
      */
-    open fun createItemContent(callback: (index: Int) -> Widget) {
+    open fun createItemContent(callback: (index: Int) -> HTMLElement) {
         this.createItemContentCallback = callback
         val delegate = getElement()?.asDynamic()?.delegate
         if (delegate != null) {
             delegate.createItemContent = { index: Int ->
-                val widget = createItemContentCallback!!.invoke(index)
-                root.add(widget)
-                val element = widget.getElement()
-                root.removeAll()
-                element
+                createItemContentCallback!!.invoke(index)
             }
         }
     }
@@ -204,7 +201,7 @@ fun OnsList.onsLazyRepeat(
     itemsCount: Int,
     classes: Set<String>? = null,
     className: String? = null,
-    createItemContentCallback: (index: Int) -> Widget
+    createItemContentCallback: (index: Int) -> HTMLElement
 ): OnsLazyRepeat {
     val onsLazyRepeat = OnsLazyRepeat(classes ?: className.set) {
         countItems { itemsCount }

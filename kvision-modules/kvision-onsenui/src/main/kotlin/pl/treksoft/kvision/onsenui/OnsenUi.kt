@@ -22,6 +22,7 @@
 
 package pl.treksoft.kvision.onsenui
 
+import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerOnsenui.ons
 import pl.treksoft.kvision.core.Widget
 
@@ -385,6 +386,14 @@ object OnsenUi {
      */
     fun isLandscape(): Boolean {
         return ons.orientation.isLandscape()
+    }
+
+    /**
+     * Create HTML element from a given template.
+     * @param template a HTML template string
+     */
+    fun createElement(template: String): HTMLElement {
+        return ons.createElement(template)
     }
 }
 
