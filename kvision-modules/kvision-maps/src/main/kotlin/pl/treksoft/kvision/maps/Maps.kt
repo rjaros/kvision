@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2020-present Jörg Rade
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,16 +41,17 @@ import pl.treksoft.kvision.KVManagerMaps.leaflet as L
  * @param baseLayerProvider tile providing service
  * @param crs Coordinate Reference System
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class Maps(
-        private val lat: Number,
-        private val lng: Number,
-        private val zoom: Number,
-        private val showMarker: Boolean = false,
-        val baseLayerProvider: BaseLayerProvider,
-        val crs: CRS,
-        classes: Set<String> = setOf(),
-        init: (Maps.() -> Unit)? = null
+    private val lat: Number,
+    private val lng: Number,
+    private val zoom: Number,
+    private val showMarker: Boolean = false,
+    val baseLayerProvider: BaseLayerProvider,
+    val crs: CRS,
+    classes: Set<String> = setOf(),
+    init: (Maps.() -> Unit)? = null
 ) : Widget(classes) {
 
     private var map: dynamic = null
@@ -61,13 +63,17 @@ open class Maps(
         init?.invoke(this)
     }
 
+    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         createMaps()
         mapObjects.forEach {
-            it.addTo(map) as Unit
+            it.addTo(map)
         }
     }
 
+    /**
+     * Create a native map instance.
+     */
     @Suppress("UnsafeCastFromDynamic")
     fun createMaps() {
         (this.getElement() as? HTMLElement)?.let {
@@ -103,6 +109,12 @@ open class Maps(
         return L.tileLayer(provider.url, obj)
     }
 
+    /**
+     * Adds an image overlay.
+     * @param url an image url
+     * @param bounds a rectangle bounds
+     * @param options an overlay options
+     */
     fun imageOverlay(url: String, bounds: LatLngBounds, options: ImageOverlayOptions? = null) {
         val overlay = L.imageOverlay(url, bounds.toArray(), options?.toJs())
         if (map != null) {
@@ -111,6 +123,12 @@ open class Maps(
         mapObjects.add(overlay)
     }
 
+    /**
+     * Adds a SVG overlay.
+     * @param svgElement a SVG element
+     * @param bounds a rectangle bounds
+     * @param options an overlay options
+     */
     fun svgOverlay(svgElement: Element, bounds: LatLngBounds, options: ImageOverlayOptions? = null) {
         val overlay = L.svgOverlay(svgElement, bounds.toArray(), options?.toJs())
         if (map != null) {
@@ -119,6 +137,11 @@ open class Maps(
         mapObjects.add(overlay)
     }
 
+    /**
+     * Adds a marker.
+     * @param latLng marker coordinates
+     * @param htmlPopup a popup HTML content
+     */
     fun addMarker(latLng: LatLng, htmlPopup: String? = "not set") {
         L.marker(latLng.toArray()).addTo(featureGroup).bindPopup(htmlPopup)
         if (map != null)
@@ -141,15 +164,15 @@ open class Maps(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.maps(
-        lat: Number,
-        lng: Number,
-        zoom: Number,
-        showMarker: Boolean = false,
-        baseLayerProvider: BaseLayerProvider = BaseLayerProvider.OSM,
-        crs: CRS = CRS.EPSG3857,
-        classes: Set<String>? = null,
-        className: String? = null,
-        init: (Maps.() -> Unit)? = null
+    lat: Number,
+    lng: Number,
+    zoom: Number,
+    showMarker: Boolean = false,
+    baseLayerProvider: BaseLayerProvider = BaseLayerProvider.OSM,
+    crs: CRS = CRS.EPSG3857,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Maps.() -> Unit)? = null
 ): Maps {
     val maps = Maps(lat, lng, zoom, showMarker, baseLayerProvider, crs, classes ?: className.set, init)
     this.add(maps)

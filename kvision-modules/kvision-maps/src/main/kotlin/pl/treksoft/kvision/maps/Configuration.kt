@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2020-present Jörg Rade
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,73 +59,94 @@ private val DEFAULT_ICON = Icon("DefaultIcon_TBD") //TODO L.Icon.Default()
 
 // for more see: https://leaflet-extras.github.io/leaflet-providers/preview/
 enum class BaseLayerProvider(
-        val label: String,
-        val url: String,
-        val attribution: String,
-        val subdomains: String? = "",
-        val maxZoom: Int? = 19) {
+    val label: String,
+    val url: String,
+    val attribution: String,
+    val subdomains: String? = "",
+    val maxZoom: Int? = 19
+) {
     EMPTY("Empty", "", ""),
-    OSM("OpenStreetMap", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"),
-    EWI("Esri.WorldImagery", "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x})",
-            "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"),
-    EWT("Esri.WorldTopoMap", "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
-            "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"),
-    MTB("MtbMap", "http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png",
-            "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &amp; USGS"),
-    CDBV("CartoDB.Voyager", "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-            "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
-            "abcd",
-            19),
-    HB("Hike Bike", "https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png",
-            "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors")
+    OSM(
+        "OpenStreetMap", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+    ),
+    EWI(
+        "Esri.WorldImagery",
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x})",
+        "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+    ),
+    EWT(
+        "Esri.WorldTopoMap",
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+        "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"
+    ),
+    MTB(
+        "MtbMap", "http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png",
+        "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &amp; USGS"
+    ),
+    CDBV(
+        "CartoDB.Voyager", "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+        "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
+        "abcd",
+        19
+    ),
+    HB(
+        "Hike Bike", "https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png",
+        "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+    )
 }
 
 data class AttributionOptions(
-        val position: Position = Position.BOTTOM_RIGHT,
-        val prefix: String = "Powered by Leaflet")
+    val position: Position = Position.BOTTOM_RIGHT,
+    val prefix: String = "Powered by Leaflet"
+)
 
 data class ClassExtendOptions(
-        val includes: Any? = null,
-        val options: Any? = null,
-        val static: Any? = null)
+    val includes: Any? = null,
+    val options: Any? = null,
+    val static: Any? = null
+)
 
 data class ControlOptions(
-        val position: Position = Position.TOP_RIGHT)
+    val position: Position = Position.TOP_RIGHT
+)
 
 data class DivIconOptions(
-        val className: String = "leaflet-div-icon",
-        val html: String = "",
-        val iconAnchor: Point? = null,
-        val iconSize: Point? = null)
+    val className: String = "leaflet-div-icon",
+    val html: String = "",
+    val iconAnchor: Point? = null,
+    val iconSize: Point? = null
+)
 
 data class FitBoundsOptions(
-        val animate: Boolean? = null,
-        val padding: Point = ORIGIN,
-        val paddingBottomRight: Point = ORIGIN,
-        val paddingTopLeft: Point = ORIGIN,
-        val pan: PanOptions? = null,
-        val reset: Boolean = false,
-        val zoom: ZoomOptions? = null)
+    val animate: Boolean? = null,
+    val padding: Point = ORIGIN,
+    val paddingBottomRight: Point = ORIGIN,
+    val paddingTopLeft: Point = ORIGIN,
+    val pan: PanOptions? = null,
+    val reset: Boolean = false,
+    val zoom: ZoomOptions? = null
+)
 
 data class IconOptions(
-        val className: String = "",
-        val iconAnchor: Point? = null,
-        val iconRetinaUrl: String = "",
-        val iconSize: Point? = null,
-        val iconUrl: String = "",
-        val popupAnchor: Point? = null,
-        val shadowAnchor: Point? = null,
-        val shadowRetinaUrl: String = "",
-        val shadowSize: Point? = null,
-        val shadowUrl: String = "")
+    val className: String = "",
+    val iconAnchor: Point? = null,
+    val iconRetinaUrl: String = "",
+    val iconSize: Point? = null,
+    val iconUrl: String = "",
+    val popupAnchor: Point? = null,
+    val shadowAnchor: Point? = null,
+    val shadowRetinaUrl: String = "",
+    val shadowSize: Point? = null,
+    val shadowUrl: String = ""
+)
 
 data class ImageOverlayOptions(
-        val opacity: Number? = null,
-        val alt: String? = null,
-        val interactive: Boolean? = null,
-        val crossOrigin: Boolean? = null
-        // other options ...
+    val opacity: Number? = null,
+    val alt: String? = null,
+    val interactive: Boolean? = null,
+    val crossOrigin: Boolean? = null
+    // other options ...
 )
 
 fun ImageOverlayOptions.toJs(): dynamic {
@@ -138,49 +160,52 @@ fun ImageOverlayOptions.toJs(): dynamic {
 }
 
 data class LayersOptions(
-        val autoZIndex: Boolean = true,
-        val collapsed: Boolean = true,
-        val position: Position = Position.TOP_RIGHT)
+    val autoZIndex: Boolean = true,
+    val collapsed: Boolean = true,
+    val position: Position = Position.TOP_RIGHT
+)
 
 data class LocateOptions(
-        val enableHighAccuracy: Boolean = false,
-        val maxZoom: Number = Float.POSITIVE_INFINITY,
-        val maximumAge: Number = 0,
-        val setView: Boolean = false,
-        val timeout: Number = 10000,
-        val watch: Boolean = false)
+    val enableHighAccuracy: Boolean = false,
+    val maxZoom: Number = Float.POSITIVE_INFINITY,
+    val maximumAge: Number = 0,
+    val setView: Boolean = false,
+    val timeout: Number = 10000,
+    val watch: Boolean = false
+)
 
 data class MapOption(
-        val attributionControl: Boolean = true,
-        val boxZoom: Boolean = true,
-        val center: LatLng? = null,
-        val closePopupOnClick: Boolean = true,
-        val crs: ICRS = ICRS("L.CRS.EPSG3857"),
-        val doubleClickZoom: Boolean = true,
-        val dragging: Boolean = true,
-        val fadeAnimation: Boolean?,
-        val inertia: Boolean = true,
-        val inertiaDeceleration: Number = 3000,
-        val inertiaMaxSpeed: Number = 1500,
-        val inertiaThreshold: Number = 14, // 32 for touch devices
-        val keyboard: Boolean = true,
-        val keyboardPanOffset: Number = 80,
-        val keyboardZoomOffset: Number = 1,
-        val layers: Array<ILayer>? = null,
-        val markerZoomAnimation: Boolean? = null,
-        val maxBounds: LatLngBounds? = null,
-        val maxZoom: Number? = null,
-        val minZoom: Number? = null,
-        val scrollWheelZoom: Boolean = true,
-        val tap: Boolean = true,
-        val tapTolerance: Number = 15,
-        val touchZoom: Boolean = true,
-        val trackResize: Boolean = true,
-        val worldCopyJump: Boolean = false,
-        val zoom: Number? = null,
-        val zoomAnimation: Number? = null,
-        val zoomAnimationThreshold: Number = 4,
-        val zoomControl: Boolean = true) {
+    val attributionControl: Boolean = true,
+    val boxZoom: Boolean = true,
+    val center: LatLng? = null,
+    val closePopupOnClick: Boolean = true,
+    val crs: ICRS = ICRS("L.CRS.EPSG3857"),
+    val doubleClickZoom: Boolean = true,
+    val dragging: Boolean = true,
+    val fadeAnimation: Boolean?,
+    val inertia: Boolean = true,
+    val inertiaDeceleration: Number = 3000,
+    val inertiaMaxSpeed: Number = 1500,
+    val inertiaThreshold: Number = 14, // 32 for touch devices
+    val keyboard: Boolean = true,
+    val keyboardPanOffset: Number = 80,
+    val keyboardZoomOffset: Number = 1,
+    val layers: Array<ILayer>? = null,
+    val markerZoomAnimation: Boolean? = null,
+    val maxBounds: LatLngBounds? = null,
+    val maxZoom: Number? = null,
+    val minZoom: Number? = null,
+    val scrollWheelZoom: Boolean = true,
+    val tap: Boolean = true,
+    val tapTolerance: Number = 15,
+    val touchZoom: Boolean = true,
+    val trackResize: Boolean = true,
+    val worldCopyJump: Boolean = false,
+    val zoom: Number? = null,
+    val zoomAnimation: Number? = null,
+    val zoomAnimationThreshold: Number = 4,
+    val zoomControl: Boolean = true
+) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -200,74 +225,81 @@ data class MapOption(
 }
 
 data class MarkerOptions(
-        val clickable: Boolean = true,
-        val draggable: Boolean = false,
-        val icon: Icon? = DEFAULT_ICON,
-        val keyboard: Boolean = true,
-        val opacity: Number = 1.0,
-        val riseOffset: Number = 250,
-        val riseOnHover: Boolean = false,
-        val title: String = "",
-        val zIndexOffset: Number = 0)
+    val clickable: Boolean = true,
+    val draggable: Boolean = false,
+    val icon: Icon? = DEFAULT_ICON,
+    val keyboard: Boolean = true,
+    val opacity: Number = 1.0,
+    val riseOffset: Number = 250,
+    val riseOnHover: Boolean = false,
+    val title: String = "",
+    val zIndexOffset: Number = 0
+)
 
 data class PanOptions(
-        val animate: Boolean? = null,
-        val duration: Number = 0.25,
-        val easeLinearity: Number = 0.25,
-        val noMoveStart: Boolean = false)
+    val animate: Boolean? = null,
+    val duration: Number = 0.25,
+    val easeLinearity: Number = 0.25,
+    val noMoveStart: Boolean = false
+)
 
 data class PathOptions(
-        val clickable: Boolean = true,
-        val color: String = "#03f",
-        val dashArray: String?,
-        val fill: Boolean? = null,
-        val fillColor: String = color, // default to color
-        val fillOpacity: Number = 0.2,
-        val opacity: Number = 0.5,
-        val pointerEvents: Boolean? = null,
-        val stroke: Boolean = true,
-        val weight: Number = 5)
+    val clickable: Boolean = true,
+    val color: String = "#03f",
+    val dashArray: String?,
+    val fill: Boolean? = null,
+    val fillColor: String = color, // default to color
+    val fillOpacity: Number = 0.2,
+    val opacity: Number = 0.5,
+    val pointerEvents: Boolean? = null,
+    val stroke: Boolean = true,
+    val weight: Number = 5
+)
 
 data class PolylineOptions(
-        val noClip: Boolean = false,
-        val smoothFactor: Number = 1.0)
+    val noClip: Boolean = false,
+    val smoothFactor: Number = 1.0
+)
 
 data class PopupOptions(
-        val autoPan: Boolean = true,
-        val autoPanPadding: Point = Point(5, 5),
-        val closeButton: Boolean = true,
-        val closeOnClick: Boolean? = null,
-        val maxHeight: Number? = null,
-        val maxWidth: Number = 300,
-        val minWidth: Number = 50,
-        val offset: Point = Point(0, 6),
-        val zoomAnimation: Boolean = true)
+    val autoPan: Boolean = true,
+    val autoPanPadding: Point = Point(5, 5),
+    val closeButton: Boolean = true,
+    val closeOnClick: Boolean? = null,
+    val maxHeight: Number? = null,
+    val maxWidth: Number = 300,
+    val minWidth: Number = 50,
+    val offset: Point = Point(0, 6),
+    val zoomAnimation: Boolean = true
+)
 
 data class ScaleOptions(
-        val imperial: Boolean = true,
-        val maxWidth: Number = 100,
-        val metric: Boolean = true,
-        val position: Position = Position.BOTTOM_LEFT,
-        val updateWhenIdle: Boolean = false)
+    val imperial: Boolean = true,
+    val maxWidth: Number = 100,
+    val metric: Boolean = true,
+    val position: Position = Position.BOTTOM_LEFT,
+    val updateWhenIdle: Boolean = false
+)
 
 data class TileLayerOptions(
-        val attribution: String = "",
-        val continuousWorld: Boolean = false,
-        val detectRetina: Boolean = true,
-        val errorTileUrl: String = "",
-        val maxZoom: Number = 18,
-        val minZoom: Number = 0,
-        val noWrap: Boolean = false,
-        val opacity: Number = 1.0,
-        val reuseTiles: Boolean = false,
-        val subdomains: Array<String> = arrayOf("abc"),
-        val tileSize: Number = 256,
-        val tms: Boolean = false,
-        val unloadInvisibleTiles: Boolean = false, //WHEN mobile WebKit THEN true
-        val updateWhenIdle: Boolean = false,
-        val zIndex: Number? = null,
-        val zoomOffset: Number = 0,
-        val zoomReverse: Boolean = false) {
+    val attribution: String = "",
+    val continuousWorld: Boolean = false,
+    val detectRetina: Boolean = true,
+    val errorTileUrl: String = "",
+    val maxZoom: Number = 18,
+    val minZoom: Number = 0,
+    val noWrap: Boolean = false,
+    val opacity: Number = 1.0,
+    val reuseTiles: Boolean = false,
+    val subdomains: Array<String> = arrayOf("abc"),
+    val tileSize: Number = 256,
+    val tms: Boolean = false,
+    val unloadInvisibleTiles: Boolean = false, //WHEN mobile WebKit THEN true
+    val updateWhenIdle: Boolean = false,
+    val zIndex: Number? = null,
+    val zoomOffset: Number = 0,
+    val zoomReverse: Boolean = false
+) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -284,18 +316,20 @@ data class TileLayerOptions(
 }
 
 data class WMSOptions(
-        val format: String? = "false",
-        val layers: String? = "",
-        val styles: String? = "image/jpeg",
-        val transparent: Boolean = false, // "1.1.1" What's this?
-        val version: String? = null)
+    val format: String? = "false",
+    val layers: String? = "",
+    val styles: String? = "image/jpeg",
+    val transparent: Boolean = false, // "1.1.1" What's this?
+    val version: String? = null
+)
 
 data class ZoomOptions(
-        val position: Position = Position.TOP_RIGHT
+    val position: Position = Position.TOP_RIGHT
 )
 
 data class ZoomPanOptions(
-        val animate: Boolean? = null,
-        val pan: PanOptions? = null,
-        val reset: Boolean = false,
-        val zoom: ZoomOptions? = null)
+    val animate: Boolean? = null,
+    val pan: PanOptions? = null,
+    val reset: Boolean = false,
+    val zoom: ZoomOptions? = null
+)
