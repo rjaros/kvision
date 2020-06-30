@@ -22,38 +22,12 @@
 package pl.treksoft.kvision.maps
 
 import com.github.snabbdom.VNode
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
-import pl.treksoft.kvision.KVManagerMaps
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
-
-data class LatLng(val lat: Number, val lng: Number)
-
-fun LatLng.toArray() = arrayOf(lat, lng)
-
-data class LatLngBounds(val corner1: LatLng, val corner2: LatLng)
-
-fun LatLngBounds.toArray() = arrayOf(corner1.toArray(), corner2.toArray())
-
-data class ImageOverlayOptions(
-    val opacity: Number? = null,
-    val alt: String? = null,
-    val interactive: Boolean? = null,
-    val crossOrigin: Boolean? = null
-    // other options ...
-)
-
-fun ImageOverlayOptions.toJs(): dynamic {
-    return obj {
-        if (opacity != null) this.opacity = opacity
-        if (alt != null) this.alt = alt
-        if (interactive != null) this.interactive = interactive
-        if (crossOrigin != null) this.crossOrigin = crossOrigin
-        // other options ...
-    }
-}
+import pl.treksoft.kvision.KVManagerMaps.leaflet as L
 
 /**
  * Maps component.
@@ -63,20 +37,24 @@ fun ImageOverlayOptions.toJs(): dynamic {
  * @param lng initial longitude value
  * @param zoom initial zoom
  * @param showMarker show marker in the initial position
+ * @param baseLayerProvider tile providing service
+ * @param crs Coordinate Reference System
  * @param classes a set of CSS class names
  */
 open class Maps(
-    val lat: Number,
-    val lng: Number,
-    val zoom: Number,
-    val showMarker: Boolean = false,
-    classes: Set<String> = setOf(),
-    init: (Maps.() -> Unit)? = null
+        private val lat: Number,
+        private val lng: Number,
+        private val zoom: Number,
+        private val showMarker: Boolean = false,
+        val baseLayerProvider: BaseLayerProvider,
+        val crs: CRS,
+        classes: Set<String> = setOf(),
+        init: (Maps.() -> Unit)? = null
 ) : Widget(classes) {
 
-    var jsMaps: dynamic = null
-
-    private var mapObjects = mutableListOf<dynamic>()
+    private var map: dynamic = null
+    private val mapObjects = mutableListOf<dynamic>()
+    private val featureGroup: dynamic = L.featureGroup()
 
     init {
         @Suppress("LeakingThis")
@@ -86,38 +64,75 @@ open class Maps(
     override fun afterInsert(node: VNode) {
         createMaps()
         mapObjects.forEach {
-            it.addTo(jsMaps)
+            it.addTo(map) as Unit
         }
     }
 
     @Suppress("UnsafeCastFromDynamic")
-    protected fun createMaps() {
+    fun createMaps() {
         (this.getElement() as? HTMLElement)?.let {
-            jsMaps = KVManagerMaps.leaflet.map(it, obj {
-                this.center = arrayOf(lat, lng)
-                this.zoom = zoom
-            })
-            KVManagerMaps.leaflet.marker(arrayOf(lat, lng)).addTo(jsMaps)
-            KVManagerMaps.leaflet.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                obj {
-                    this.attribution =
-                        "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
-                }).addTo(jsMaps)
+            map = L.map(it)
+            val center = arrayOf(lat, lng)
+            map.setView(center, zoom)
+
+            val tileLayer = buildTileLayer(baseLayerProvider)
+            tileLayer.addTo(map)
+
+            if (baseLayerProvider != BaseLayerProvider.EMPTY) {
+                featureGroup.addTo(map)
+                val baseLayers = buildBaseLayerList()
+                val mapInfo = { }.asDynamic()
+                mapInfo["position"] = Position.TOP_LEFT.position
+                L.control.layers(baseLayers, null, mapInfo).addTo(map)
+                fitAllMarkers()
+            }
         }
     }
 
+    private fun buildBaseLayerList(): dynamic {
+        val obj = {}.asDynamic()
+        BaseLayerProvider.values().forEach {
+            obj[it.label] = buildTileLayer(it)
+        }
+        return obj
+    }
+
+    private fun buildTileLayer(provider: BaseLayerProvider): dynamic {
+        val obj = {}.asDynamic()
+        obj["attribution"] = provider.attribution
+        return L.tileLayer(provider.url, obj)
+    }
+
     fun imageOverlay(url: String, bounds: LatLngBounds, options: ImageOverlayOptions? = null) {
-        val overlay = KVManagerMaps.leaflet.imageOverlay(url, bounds.toArray(), options?.toJs())
-        if (jsMaps != null) {
-            overlay.addTo(jsMaps)
+        val overlay = L.imageOverlay(url, bounds.toArray(), options?.toJs())
+        if (map != null) {
+            overlay.addTo(map)
         }
         mapObjects.add(overlay)
     }
 
-    override fun afterDestroy() {
-        jsMaps?.remove()
+    fun svgOverlay(svgElement: Element, bounds: LatLngBounds, options: ImageOverlayOptions? = null) {
+        val overlay = L.svgOverlay(svgElement, bounds.toArray(), options?.toJs())
+        if (map != null) {
+            overlay.addTo(map)
+        }
+        mapObjects.add(overlay)
     }
+
+    fun addMarker(latLng: LatLng, htmlPopup: String? = "not set") {
+        L.marker(latLng.toArray()).addTo(featureGroup).bindPopup(htmlPopup)
+        if (map != null)
+            fitAllMarkers()
+    }
+
+    private fun fitAllMarkers() {
+        map.fitBounds(featureGroup.getBounds())
+    }
+
+    override fun afterDestroy() {
+        map?.remove()
+    }
+
 }
 
 /**
@@ -126,15 +141,17 @@ open class Maps(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.maps(
-    lat: Number,
-    lng: Number,
-    zoom: Number,
-    showMarker: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Maps.() -> Unit)? = null
+        lat: Number,
+        lng: Number,
+        zoom: Number,
+        showMarker: Boolean = false,
+        baseLayerProvider: BaseLayerProvider = BaseLayerProvider.OSM,
+        crs: CRS = CRS.EPSG3857,
+        classes: Set<String>? = null,
+        className: String? = null,
+        init: (Maps.() -> Unit)? = null
 ): Maps {
-    val maps = Maps(lat, lng, zoom, showMarker, classes ?: className.set, init)
+    val maps = Maps(lat, lng, zoom, showMarker, baseLayerProvider, crs, classes ?: className.set, init)
     this.add(maps)
     return maps
 }
