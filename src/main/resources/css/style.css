@@ -504,11 +504,11 @@ ons-toolbar-button.kv-button-with-text > ons-icon {
     margin-bottom: 0.5rem;
 }
 
-.kv-ons-form-control {
+.kv-ons-form-group .kv-ons-form-control {
     width: 100%;
 }
 
-ons-input.kv-ons-form-control[float="float"][modifier~="material"] {
+.kv-ons-form-group ons-input.kv-ons-form-control[float="float"][modifier~="material"] {
     margin-top: 16px;
 }
 
