@@ -58,12 +58,14 @@ enum class NavAnimation(internal val type: String) {
  * @constructor Creates a navigator component.
  * @param animation an animation type.
  * @param swipeable an iOS swipe to pop feature
+ * @param forceSwipeable force iOS swipe on Android platform
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class Navigator(
     animation: NavAnimation? = null,
     swipeable: Boolean? = null,
+    forceSwipeable: Boolean? = null,
     classes: Set<String> = setOf(),
     init: (Navigator.() -> Unit)? = null
 ) : SimplePanel(classes) {
@@ -77,6 +79,11 @@ open class Navigator(
      * An iOS swipe to pop feature.
      */
     var swipeable: Boolean? by refreshOnUpdate(swipeable)
+
+    /**
+     * Force iOS swipe on Android platform.
+     */
+    var forceSwipeable: Boolean? by refreshOnUpdate(forceSwipeable)
 
     /**
      * The width of swipeable area calculated from the edge (in pixels).
@@ -126,7 +133,9 @@ open class Navigator(
         animation?.let {
             sn.add("animation" to it.type)
         }
-        if (swipeable == true) {
+        if (forceSwipeable == true) {
+            sn.add("swipeable" to "force")
+        } else if (swipeable == true) {
             sn.add("swipeable" to "swipeable")
         }
         swipeTargetWidth?.let {
@@ -161,6 +170,9 @@ open class Navigator(
             this.dispatchEvent("onsPostpush", obj { detail = e })
         }
         this.getElementJQuery()?.on("postpop") { e, _ ->
+            (children.last() as? Page)?.dispatchDestroyEvent()
+            children.removeAt(children.size - 1).clearParent()
+            refreshPageStack()
             this.dispatchEvent("onsPostpop", obj { detail = e })
         }
     }
@@ -195,11 +207,7 @@ open class Navigator(
     @Suppress("UnsafeCastFromDynamic")
     open fun popPage(options: dynamic = undefined): Promise<Unit>? {
         return if (children.size > 1) {
-            getElement()?.asDynamic()?.popPage(options).then {
-                (children.last() as? Page)?.dispatchDestroyEvent()
-                children.removeAt(children.size - 1).clearParent()
-                refreshPageStack()
-            }
+            getElement()?.asDynamic()?.popPage(options)
         } else {
             null
         }
@@ -377,11 +385,12 @@ open class Navigator(
 fun Root.navigator(
     animation: NavAnimation? = null,
     swipeable: Boolean? = null,
+    forceSwipeable: Boolean? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Navigator.() -> Unit)? = null
 ): Navigator {
-    val navigator = Navigator(animation, swipeable, classes ?: className.set, init)
+    val navigator = Navigator(animation, swipeable, forceSwipeable, classes ?: className.set, init)
     this.add(navigator)
     return navigator
 }
@@ -394,11 +403,12 @@ fun Root.navigator(
 fun SplitterContent.navigator(
     animation: NavAnimation? = null,
     swipeable: Boolean? = null,
+    forceSwipeable: Boolean? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Navigator.() -> Unit)? = null
 ): Navigator {
-    val navigator = Navigator(animation, swipeable, classes ?: className.set, init)
+    val navigator = Navigator(animation, swipeable, forceSwipeable, classes ?: className.set, init)
     this.add(navigator)
     return navigator
 }
@@ -411,11 +421,12 @@ fun SplitterContent.navigator(
 fun Tab.navigator(
     animation: NavAnimation? = null,
     swipeable: Boolean? = null,
+    forceSwipeable: Boolean? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Navigator.() -> Unit)? = null
 ): Navigator {
-    val navigator = Navigator(animation, swipeable, classes ?: className.set, init)
+    val navigator = Navigator(animation, swipeable, forceSwipeable, classes ?: className.set, init)
     this.add(navigator)
     return navigator
 }
