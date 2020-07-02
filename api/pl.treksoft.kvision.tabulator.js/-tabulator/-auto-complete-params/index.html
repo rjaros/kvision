@@ -8,7 +8,7 @@
 <a href="../../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../../index.html">pl.treksoft.kvision.tabulator.js</a>&nbsp;/&nbsp;<a href="../index.html">Tabulator</a>&nbsp;/&nbsp;<a href="./index.html">AutoCompleteParams</a><br/>
 <br/>
 <h1>AutoCompleteParams</h1>
-(js) <code><span class="keyword">interface </span><span class="identifier">AutoCompleteParams</span></code>
+(js) <code><span class="keyword">interface </span><span class="identifier">AutoCompleteParams</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">SharedEditorParams</span><span class="symbol">, </span><span class="identifier">SharedSelectAutoCompleteEditorParams</span></code>
 <h3>Properties</h3>
 <table>
 <tbody>
@@ -19,6 +19,14 @@
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">allowEmpty</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="empty-placeholder.html">emptyPlaceholder</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">emptyPlaceholder</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
@@ -42,7 +50,15 @@
 <h4><a href="search-func.html">searchFunc</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">searchFunc</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">term</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">values</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">searchFunc</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">term</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">values</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="searching-placeholder.html">searchingPlaceholder</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">searchingPlaceholder</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
@@ -58,7 +74,15 @@
 <h4><a href="values.html">values</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">values</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">values</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="vertical-navigation.html">verticalNavigation</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">verticalNavigation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 </tbody>
 </table>

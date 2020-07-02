@@ -66,7 +66,7 @@
 <h4><a href="callback.html">callback</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">callback</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">index</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">values</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">callback</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">,</span>&nbsp;<span class="identifier">index</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">,</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span><span class="symbol">)</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -191,6 +191,14 @@
 <tr>
 <td>
 (js) 
+<h4><a href="sample-size.html">sampleSize</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">sampleSize</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
 <h4><a href="show-label-backdrop.html">showLabelBackdrop</a></h4>
 </td>
 <td>
@@ -202,7 +210,7 @@
 <h4><a href="source.html">source</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">source</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">source</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>

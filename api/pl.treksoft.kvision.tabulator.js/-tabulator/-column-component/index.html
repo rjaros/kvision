@@ -18,7 +18,7 @@
 <h4><a href="delete.html">delete</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">delete</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">delete</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
@@ -51,6 +51,14 @@
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getField</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-header-filter-value.html">getHeaderFilterValue</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getHeaderFilterValue</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -95,10 +103,10 @@
 <tr>
 <td>
 (js) 
-<h4><a href="get-visibility.html">getVisibility</a></h4>
+<h4><a href="get-width.html">getWidth</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getVisibility</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">getWidth</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -115,6 +123,22 @@
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">hide</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="is-visible.html">isVisible</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">isVisible</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="move.html">move</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">move</span><span class="symbol">: </span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">,</span>&nbsp;<span class="identifier">after</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -143,6 +167,14 @@
 <tr>
 <td>
 (js) 
+<h4><a href="set-width.html">setWidth</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">setWidth</span><span class="symbol">: </span><span class="symbol">(</span><span class="keyword">dynamic</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
 <h4><a href="show.html">show</a></h4>
 </td>
 <td>
@@ -155,6 +187,22 @@
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">toggle</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="update-definition.html">updateDefinition</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">updateDefinition</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">definition</span><span class="symbol">:</span>&nbsp;<span class="identifier">ColumnDefinition</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html"><span class="identifier">Promise</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="validate.html">validate</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">validate</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="keyword">dynamic</span></code></td>
 </tr>
 </tbody>
 </table>

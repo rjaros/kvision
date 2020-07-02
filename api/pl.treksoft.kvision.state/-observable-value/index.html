@@ -8,7 +8,7 @@
 <a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.state</a>&nbsp;/&nbsp;<a href="./index.html">ObservableValue</a><br/>
 <br/>
 <h1>ObservableValue</h1>
-(js) <code><span class="keyword">class </span><span class="identifier">ObservableValue</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+(js) <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ObservableValue</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
 <p>The observable value class.</p>
 <h3>Parameters</h3>
 <p><a name="value"></a>
@@ -33,6 +33,14 @@
 <tr>
 <td>
 (js) 
+<h4><a href="observers.html">observers</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">observers</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
 <h4><a href="value.html">value</a></h4>
 </td>
 <td>
@@ -51,7 +59,7 @@
 </td>
 <td>
 <p>Get current state.</p>
-<code><span class="keyword">fun </span><span class="identifier">getState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
 </tr>
 <tr>
 <td>
@@ -60,7 +68,7 @@
 </td>
 <td>
 <p>Subscribe for the state change notifications.</p>
-<code><span class="keyword">fun </span><span class="identifier">subscribe</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.state.ObservableValue$subscribe(kotlin.Function1((pl.treksoft.kvision.state.ObservableValue.T, kotlin.Unit)))/observer">observer</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">subscribe</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.state.ObservableValue$subscribe(kotlin.Function1((pl.treksoft.kvision.state.ObservableValue.T, kotlin.Unit)))/observer">observer</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>

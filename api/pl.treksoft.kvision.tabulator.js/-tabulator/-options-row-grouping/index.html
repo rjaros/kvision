@@ -42,7 +42,7 @@
 <h4><a href="group-click.html">groupClick</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupClick</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">group</span><span class="symbol">:</span>&nbsp;<span class="identifier">GroupComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupClick</span><span class="symbol">: </span><a href="../../-group-event-callback.html"><span class="identifier">GroupEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -58,7 +58,7 @@
 <h4><a href="group-context.html">groupContext</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupContext</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">group</span><span class="symbol">:</span>&nbsp;<span class="identifier">GroupComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupContext</span><span class="symbol">: </span><a href="../../-group-event-callback.html"><span class="identifier">GroupEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -66,7 +66,7 @@
 <h4><a href="group-dbl-click.html">groupDblClick</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupDblClick</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">group</span><span class="symbol">:</span>&nbsp;<span class="identifier">GroupComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupDblClick</span><span class="symbol">: </span><a href="../../-group-event-callback.html"><span class="identifier">GroupEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -74,7 +74,7 @@
 <h4><a href="group-dbl-tap.html">groupDblTap</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupDblTap</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">group</span><span class="symbol">:</span>&nbsp;<span class="identifier">GroupComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupDblTap</span><span class="symbol">: </span><a href="../../-group-event-callback.html"><span class="identifier">GroupEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -83,6 +83,14 @@
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupHeader</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="group-header-print.html">groupHeaderPrint</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupHeaderPrint</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 <tr>
 <td>
@@ -98,7 +106,7 @@
 <h4><a href="group-tap.html">groupTap</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupTap</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">group</span><span class="symbol">:</span>&nbsp;<span class="identifier">GroupComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupTap</span><span class="symbol">: </span><a href="../../-group-event-callback.html"><span class="identifier">GroupEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -106,7 +114,7 @@
 <h4><a href="group-tap-hold.html">groupTapHold</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupTapHold</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">group</span><span class="symbol">:</span>&nbsp;<span class="identifier">GroupComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">groupTapHold</span><span class="symbol">: </span><a href="../../-group-event-callback.html"><span class="identifier">GroupEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>

@@ -18,7 +18,7 @@
 <h4><a href="add-row-pos.html">addRowPos</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">addRowPos</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">addRowPos</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -47,10 +47,26 @@
 <tr>
 <td>
 (js) 
+<h4><a href="movable-rows-connected-elements.html">movableRowsConnectedElements</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsConnectedElements</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
 <h4><a href="movable-rows-connected-tables.html">movableRowsConnectedTables</a></h4>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsConnectedTables</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="movable-rows-element-drop.html">movableRowsElementDrop</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">movableRowsElementDrop</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom.events/-mouse-event/index.html"><span class="identifier">MouseEvent</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">element</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-h-t-m-l-element/index.html"><span class="identifier">HTMLElement</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -146,7 +162,7 @@
 <h4><a href="row-added.html">rowAdded</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowAdded</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowAdded</span><span class="symbol">: </span><a href="../../-row-changed-callback.html"><span class="identifier">RowChangedCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -154,7 +170,7 @@
 <h4><a href="row-click.html">rowClick</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowClick</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowClick</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -162,7 +178,7 @@
 <h4><a href="row-context.html">rowContext</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowContext</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowContext</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -170,7 +186,7 @@
 <h4><a href="row-dbl-click.html">rowDblClick</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDblClick</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDblClick</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -178,7 +194,7 @@
 <h4><a href="row-dbl-tap.html">rowDblTap</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDblTap</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDblTap</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -186,7 +202,7 @@
 <h4><a href="row-deleted.html">rowDeleted</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDeleted</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDeleted</span><span class="symbol">: </span><a href="../../-row-changed-callback.html"><span class="identifier">RowChangedCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -194,7 +210,7 @@
 <h4><a href="row-deselected.html">rowDeselected</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDeselected</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowDeselected</span><span class="symbol">: </span><a href="../../-row-changed-callback.html"><span class="identifier">RowChangedCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -207,10 +223,34 @@
 <tr>
 <td>
 (js) 
+<h4><a href="row-formatter-clipboard.html">rowFormatterClipboard</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowFormatterClipboard</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="row-formatter-html-output.html">rowFormatterHtmlOutput</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowFormatterHtmlOutput</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="row-formatter-print.html">rowFormatterPrint</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowFormatterPrint</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
 <h4><a href="row-mouse-enter.html">rowMouseEnter</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseEnter</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseEnter</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -218,7 +258,7 @@
 <h4><a href="row-mouse-leave.html">rowMouseLeave</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseLeave</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseLeave</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -226,7 +266,7 @@
 <h4><a href="row-mouse-move.html">rowMouseMove</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseMove</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseMove</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -234,7 +274,7 @@
 <h4><a href="row-mouse-out.html">rowMouseOut</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseOut</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseOut</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -242,7 +282,7 @@
 <h4><a href="row-mouse-over.html">rowMouseOver</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseOver</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMouseOver</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -250,7 +290,7 @@
 <h4><a href="row-moved.html">rowMoved</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMoved</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowMoved</span><span class="symbol">: </span><a href="../../-row-changed-callback.html"><span class="identifier">RowChangedCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -258,7 +298,7 @@
 <h4><a href="row-resized.html">rowResized</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowResized</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowResized</span><span class="symbol">: </span><a href="../../-row-changed-callback.html"><span class="identifier">RowChangedCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -266,7 +306,7 @@
 <h4><a href="row-selected.html">rowSelected</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowSelected</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowSelected</span><span class="symbol">: </span><a href="../../-row-changed-callback.html"><span class="identifier">RowChangedCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -282,7 +322,7 @@
 <h4><a href="row-tap.html">rowTap</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowTap</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowTap</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -290,7 +330,7 @@
 <h4><a href="row-tap-hold.html">rowTapHold</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowTapHold</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">e</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowTapHold</span><span class="symbol">: </span><a href="../../-row-event-callback.html"><span class="identifier">RowEventCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -298,7 +338,7 @@
 <h4><a href="row-updated.html">rowUpdated</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowUpdated</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">RowComponent</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">rowUpdated</span><span class="symbol">: </span><a href="../../-row-changed-callback.html"><span class="identifier">RowChangedCallback</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -314,7 +354,7 @@
 <h4><a href="scroll-to-row-position.html">scrollToRowPosition</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">scrollToRowPosition</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">scrollToRowPosition</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -346,7 +386,7 @@
 <h4><a href="selectable-range-mode.html">selectableRangeMode</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">selectableRangeMode</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">selectableRangeMode</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -355,6 +395,14 @@
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">selectableRollingSelection</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="tab-end-new-row.html">tabEndNewRow</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">tabEndNewRow</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
 </tr>
 </tbody>
 </table>

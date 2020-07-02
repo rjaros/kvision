@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>OnsDateTime.setEventListener - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.onsenui.form</a>&nbsp;/&nbsp;<a href="index.html">OnsDateTime</a>&nbsp;/&nbsp;<a href="./set-event-listener.html">setEventListener</a><br/>
+<br/>
+<h1>setEventListener</h1>
+(js) <a name="pl.treksoft.kvision.onsenui.form.OnsDateTime$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.onsenui.form.OnsDateTime.setEventListener.T)), kotlin.Unit)))"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.onsenui.form.OnsDateTime$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.onsenui.form.OnsDateTime.setEventListener.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Sets an event listener for current widget, keeping the actual type of component.</p>
+<h3>Parameters</h3>
+<p><a name="T"></a>
+<code>T</code> - widget type</p>
+<p><a name="block"></a>
+<code>block</code> - event handler</p>
+<p><strong>Return</strong><br/>
+<p>id of the handler</p>
+
+
+<p>Example:</p>
+
+
+<pre><code>    button.setEventListener&lt;Button&gt; {
+        dblclick = {
+            Alert.show("Button double clicked!")
+            // self is of type Button here
+        }
+    }</code></pre></p>
+</BODY>
+</HTML>
