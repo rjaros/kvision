@@ -43,7 +43,8 @@ enum class HttpMethod {
     POST,
     PUT,
     DELETE,
-    OPTIONS
+    OPTIONS,
+    HEAD
 }
 
 /**
