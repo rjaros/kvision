@@ -39,6 +39,7 @@ import pl.treksoft.kvision.KVManagerMaps.leaflet as L
  * @param zoom initial zoom
  * @param showMarker show marker in the initial position
  * @param baseLayerProvider tile providing service
+ * @param showLayersList show layers selection list
  * @param crs Coordinate Reference System
  * @param classes a set of CSS class names
  * @param init an initializer extension function
@@ -49,6 +50,7 @@ open class Maps(
     private val zoom: Number,
     private val showMarker: Boolean = false,
     val baseLayerProvider: BaseLayerProvider,
+    private val showLayersList: Boolean = true,
     val crs: CRS,
     classes: Set<String> = setOf(),
     init: (Maps.() -> Unit)? = null
@@ -84,8 +86,11 @@ open class Maps(
             val tileLayer = buildTileLayer(baseLayerProvider)
             tileLayer.addTo(map)
 
-            if (baseLayerProvider != BaseLayerProvider.EMPTY) {
-                featureGroup.addTo(map)
+            if (showMarker) {
+                addMarker(LatLng(lat, lng))
+            }
+            featureGroup.addTo(map)
+            if (showLayersList) {
                 val baseLayers = buildBaseLayerList()
                 val mapInfo = { }.asDynamic()
                 mapInfo["position"] = Position.TOP_LEFT.position
@@ -142,14 +147,16 @@ open class Maps(
      * @param latLng marker coordinates
      * @param htmlPopup a popup HTML content
      */
-    fun addMarker(latLng: LatLng, htmlPopup: String? = "not set") {
-        L.marker(latLng.toArray()).addTo(featureGroup).bindPopup(htmlPopup)
+    fun addMarker(latLng: LatLng, htmlPopup: String? = null) {
+        val marker = L.marker(latLng.toArray()).addTo(featureGroup)
+        if (htmlPopup != null) marker.bindPopup(htmlPopup)
         if (map != null)
             fitAllMarkers()
     }
 
+    @Suppress("UnsafeCastFromDynamic")
     private fun fitAllMarkers() {
-        map.fitBounds(featureGroup.getBounds())
+        if (featureGroup.getBounds().isValid()) map.fitBounds(featureGroup.getBounds())
     }
 
     override fun afterDestroy() {
@@ -169,12 +176,13 @@ fun Container.maps(
     zoom: Number,
     showMarker: Boolean = false,
     baseLayerProvider: BaseLayerProvider = BaseLayerProvider.OSM,
+    showLayersList: Boolean = true,
     crs: CRS = CRS.EPSG3857,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Maps.() -> Unit)? = null
 ): Maps {
-    val maps = Maps(lat, lng, zoom, showMarker, baseLayerProvider, crs, classes ?: className.set, init)
+    val maps = Maps(lat, lng, zoom, showMarker, baseLayerProvider, showLayersList, crs, classes ?: className.set, init)
     this.add(maps)
     return maps
 }
