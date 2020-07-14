@@ -91,11 +91,15 @@ Internationalization classes.
 
 # Package pl.treksoft.kvision.maps
 
-Simple OpenStreetMap component.
+A maps component based on Leaflet library.
 
 # Package pl.treksoft.kvision.modal
 
 Classes supporting general purpose Bootstrap modals with convenient helpers for alert and confirm popup dialogs.
+
+# Package pl.treksoft.kvision.moment
+
+A set of tools for parsing, validating, manipulating, and formatting dates based on Moment Library.
 
 # Package pl.treksoft.kvision.navbar
 
@@ -162,6 +166,10 @@ CSS grid and Bootstrap responsive 12 columns gid).
 
 Bootstrap progress bar component.
 
+# Package pl.treksoft.kvision.react
+
+KVision bindings for embedded React components.
+
 # Package pl.treksoft.kvision.redux
 
 Predictable state container based on Redux library.
@@ -169,14 +177,6 @@ Predictable state container based on Redux library.
 # Package pl.treksoft.kvision.remote
 
 A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.
-
-# Package pl.treksoft.kvision.maps
-
-A maps component based on Leaflet library.
-
-# Package pl.treksoft.kvision.moment
-
-A set of tools for parsing, validating, manipulating, and formatting dates based on Moment Library.
 
 # Package pl.treksoft.kvision.state
 
