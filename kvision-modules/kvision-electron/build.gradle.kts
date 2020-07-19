@@ -20,6 +20,7 @@ dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
     api("me.kgustave:node-kt:$nodeKtVersion")
+    implementation(npm("electron", "^8.4.0"))
     testImplementation(kotlin("test-js"))
 }
 
@@ -41,3 +42,11 @@ publishing {
 }
 
 setupPublication()
+
+tasks {
+    getByName("JsJar", Jar::class) {
+        from("${rootProject.buildDir}/js/packages/kvision-${project.name}/package.json") {
+            filter { it.replace("\"main\": \"kotlin/kvision-kvision", "\"main\": \"kvision-kvision") }
+        }
+    }
+}
