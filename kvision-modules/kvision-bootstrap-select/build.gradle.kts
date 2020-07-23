@@ -40,31 +40,10 @@ publishing {
 
 setupPublication()
 
-fun copyResources() {
-    copy {
-        from("$buildDir/processedResources/Js/main")
-        into("${rootProject.buildDir}/js/packages/kvision-${project.name}/kotlin")
-    }
-    copy {
-        from("$buildDir/processedResources/Js/main")
-        into("${rootProject.buildDir}/js/packages/kvision-${project.name}/kotlin-dce")
-    }
-}
-
 tasks {
     getByName("JsJar", Jar::class) {
         from("${rootProject.buildDir}/js/packages/kvision-${project.name}/package.json") {
             filter { it.replace("\"main\": \"kotlin/kvision-kvision", "\"main\": \"kvision-kvision") }
-        }
-    }
-    getByName("compileTestKotlinJs") {
-        doLast {
-            copyResources()
-        }
-    }
-    getByName("processDceKotlinJs") {
-        doLast {
-            copyResources()
         }
     }
 }

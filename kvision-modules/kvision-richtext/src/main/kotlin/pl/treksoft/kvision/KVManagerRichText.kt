@@ -53,7 +53,7 @@ internal object KVManagerRichText {
             }
             orig()
         }
-        require("./js/locales/trix/trix.pl.js")
+        require("kvision-assets/js/locales/trix/trix.pl.js")
     }
 
     internal fun init() {}

@@ -20,7 +20,7 @@ dependencies {
     implementation(kotlin("stdlib-js"))
     api(rootProject)
     api("me.kgustave:node-kt:$nodeKtVersion")
-    implementation(npm("electron", "^8.4.0"))
+    implementation(npm("electron", "^8.4.1"))
     testImplementation(kotlin("test-js"))
 }
 

@@ -35,6 +35,9 @@ dependencies {
     api("com.github.snabbdom:snabbdom-kotlin:$snabbdomKotlinVersion")
     api("pl.treksoft:navigo-kotlin:$navigoKotlinVersion")
     api("pl.treksoft:jquery-kotlin:$jqueryKotlinVersion")
+//    for local development
+//    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.1.tgz"))
+    implementation(npm("kvision-assets", "^1.0.1"))
     implementation(npm("css-loader", "^3.5.2"))
     implementation(npm("style-loader", "^1.1.4"))
     implementation(npm("less", "^3.11.1"))
@@ -73,17 +76,6 @@ publishing {
 
 setupPublication()
 
-fun copyResources() {
-    copy {
-        from("$buildDir/processedResources/Js/main")
-        into("${rootProject.buildDir}/js/packages/kvision/kotlin")
-    }
-    copy {
-        from("$buildDir/processedResources/Js/main")
-        into("${rootProject.buildDir}/js/packages/kvision/kotlin-dce")
-    }
-}
-
 tasks {
     /*
     // Forcing specific npm package versions (not required at the moment but commented for future use)
@@ -103,16 +95,6 @@ tasks {
     getByName("JsJar", Jar::class) {
         from("${project.buildDir}/js/packages/kvision/package.json")
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    }
-    getByName("compileTestKotlinJs") {
-        doLast {
-            copyResources()
-        }
-    }
-    getByName("processDceKotlinJs") {
-        doLast {
-            copyResources()
-        }
     }
     val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
         outputFormat = "html"
