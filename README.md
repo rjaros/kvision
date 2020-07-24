@@ -110,8 +110,8 @@ If you are interested in the documentation for KVision 1.x (based on Bootstrap 3
 
 To build complete application optimized for production run:
 
-        ./gradlew -Pprod=true zip                       (on Linux)
-        gradlew.bat -Pprod=true zip                     (on Windows)
+        ./gradlew zip                       (on Linux)
+        gradlew.bat zip                     (on Windows)
         
 Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
 
