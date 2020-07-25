@@ -40,35 +40,3 @@ publishing {
 }
 
 setupPublication()
-
-fun copyResources() {
-    copy {
-        from("$buildDir/processedResources/Js/main")
-        into("${rootProject.buildDir}/js/packages/kvision-${project.name}/kotlin")
-    }
-    copy {
-        from("$buildDir/processedResources/Js/main")
-        into("${rootProject.buildDir}/js/packages/kvision-${project.name}/kotlin-dce")
-    }
-    copy {
-        from("${rootProject.projectDir}/kvision-modules/kvision-bootstrap-select/src/main/resources")
-        into("${rootProject.buildDir}/js/packages/kvision-${project.name}/kotlin")
-    }
-    copy {
-        from("${rootProject.projectDir}/kvision-modules/kvision-bootstrap-select/src/main/resources")
-        into("${rootProject.buildDir}/js/packages/kvision-${project.name}/kotlin-dce")
-    }
-}
-
-tasks {
-    getByName("compileTestKotlinJs") {
-        doLast {
-            copyResources()
-        }
-    }
-    getByName("processDceKotlinJs") {
-        doLast {
-            copyResources()
-        }
-    }
-}

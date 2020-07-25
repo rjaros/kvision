@@ -27,7 +27,7 @@ import org.w3c.dom.events.Event
 import org.w3c.dom.get
 import pl.treksoft.kvision.require
 import pl.treksoft.kvision.utils.obj
-import kotlin.browser.window
+import kotlinx.browser.window
 
 class PaceAjaxOptions(
     trackMethods: Array<dynamic>? = null,

@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.serializer
@@ -44,7 +44,7 @@ interface RemoteAgent {
      * @suppress
      * Internal function
      */
-    @OptIn(ImplicitReflectionSerializer::class)
+    @OptIn(UnsafeSerializationApi::class)
     @Suppress("ComplexMethod", "TooGenericExceptionCaught", "NestedBlockDepth")
     fun trySerialize(kClass: KClass<Any>, value: Any): String {
         return if (value is List<*>) {

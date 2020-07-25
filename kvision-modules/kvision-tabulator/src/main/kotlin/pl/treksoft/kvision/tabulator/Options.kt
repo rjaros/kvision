@@ -31,8 +31,8 @@ import pl.treksoft.kvision.tabulator.EditorRoot.disposeTimer
 import pl.treksoft.kvision.tabulator.EditorRoot.root
 import pl.treksoft.kvision.tabulator.js.Tabulator
 import pl.treksoft.kvision.utils.obj
-import kotlin.browser.document
-import kotlin.browser.window
+import kotlinx.browser.document
+import kotlinx.browser.window
 import kotlin.js.Promise
 
 /**

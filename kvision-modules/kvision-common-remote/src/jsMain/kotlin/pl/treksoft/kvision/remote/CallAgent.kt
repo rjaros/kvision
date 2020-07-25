@@ -21,13 +21,12 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.serialization.ImplicitReflectionSerializer
+import kotlinx.browser.window
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
-import kotlin.browser.window
 import kotlin.js.Promise
 import kotlin.js.JSON as NativeJSON
 
@@ -52,7 +51,6 @@ open class CallAgent {
      * @param method a HTTP method
      * @return a promise of the result
      */
-    @OptIn(ImplicitReflectionSerializer::class)
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
     fun jsonRpcCall(
         url: String,

@@ -33,7 +33,7 @@ import org.w3c.files.Blob
 import org.w3c.files.BlobPropertyBag
 import org.w3c.files.FileReader
 import pl.treksoft.kvision.utils.obj
-import kotlin.browser.window
+import kotlinx.browser.window
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

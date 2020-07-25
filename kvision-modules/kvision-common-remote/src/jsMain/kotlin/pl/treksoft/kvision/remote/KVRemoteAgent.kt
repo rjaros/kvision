@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.browser.window
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.asDeferred
@@ -29,21 +30,20 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.serialization.ImplicitReflectionSerializer
+import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.serializer
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
-import kotlin.browser.window
 import kotlin.reflect.KClass
 
 /**
  * Client side agent for JSON-RPC remote calls.
  */
 @Suppress("LargeClass", "TooManyFunctions")
-@OptIn(ImplicitReflectionSerializer::class, ExperimentalCoroutinesApi::class)
+@OptIn(UnsafeSerializationApi::class, ExperimentalCoroutinesApi::class)
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
     val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null

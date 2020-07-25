@@ -26,7 +26,7 @@ import redux.Enhancer
 import redux.Middleware
 import redux.Reducer
 import redux.Store
-import kotlin.browser.window
+import kotlinx.browser.window
 
 internal val kVManagerReduxInit = KVManagerRedux.init()
 

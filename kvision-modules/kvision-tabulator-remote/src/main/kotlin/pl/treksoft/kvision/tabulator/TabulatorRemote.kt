@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision.tabulator
 
-import kotlinx.serialization.ImplicitReflectionSerializer
+import kotlinx.browser.window
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
@@ -37,7 +37,6 @@ import pl.treksoft.kvision.remote.RemoteSorter
 import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.window
 
 /**
  * Tabulator component connected to the multiplatform service.
@@ -52,7 +51,6 @@ import kotlin.browser.window
  * @param types a set of table types
  * @param classes a set of CSS class names
  */
-@OptIn(ImplicitReflectionSerializer::class)
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceManager<E>,
     function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,

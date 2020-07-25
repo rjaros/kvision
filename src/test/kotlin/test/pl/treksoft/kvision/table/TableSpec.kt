@@ -28,7 +28,7 @@ import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.table.cell
 import pl.treksoft.kvision.table.row
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class TableSpec : DomSpec {

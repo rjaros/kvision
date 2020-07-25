@@ -27,7 +27,7 @@ import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.window
+import kotlinx.browser.window
 
 /**
  * An Onsen UI lazy repeat helper component.

@@ -29,15 +29,13 @@ kotlin {
                 api(project(":kvision-modules:kvision-common-types"))
                 api(project(":kvision-modules:kvision-common-remote"))
                 api(project(":kvision-modules:kvision-common-remote"))
-                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializationVersion")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
             }
         }
         val jsMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-js"))
-                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serializationVersion")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
             }
         }
         val jvmMain by getting {
@@ -47,8 +45,6 @@ kotlin {
                 implementation(kotlin("stdlib-jdk7"))
                 implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
-                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutinesVersion")
                 api("org.springframework.boot:spring-boot-starter:$springBootVersion")
                 api("org.springframework.boot:spring-boot-starter-webflux:$springBootVersion")

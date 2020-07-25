@@ -35,7 +35,7 @@ import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.utils.syncWithList
-import kotlin.browser.window
+import kotlinx.browser.window
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 
 /**

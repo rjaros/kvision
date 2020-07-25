@@ -25,7 +25,7 @@ import pl.treksoft.kvision.html.div
 import pl.treksoft.kvision.panel.FieldsetPanel
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class FieldsetPanelSpec : DomSpec {

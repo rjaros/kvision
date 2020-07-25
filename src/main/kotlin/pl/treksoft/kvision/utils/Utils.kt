@@ -25,7 +25,7 @@ package pl.treksoft.kvision.utils
 
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.UNIT
-import kotlin.browser.window
+import kotlinx.browser.window
 
 /**
  * Extension property to convert Int to CSS px units.

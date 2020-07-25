@@ -29,7 +29,7 @@ import pl.treksoft.kvision.redux.createReduxStore
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.state.stateBinding
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 data class State(val counter: Int)

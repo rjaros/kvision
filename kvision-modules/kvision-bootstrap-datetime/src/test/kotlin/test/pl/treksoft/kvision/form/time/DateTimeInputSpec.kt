@@ -25,7 +25,7 @@ import pl.treksoft.kvision.form.time.DateTimeInput
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.types.toStringF
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.js.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals

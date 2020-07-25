@@ -26,7 +26,7 @@ import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.routing.routing
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.window
+import kotlinx.browser.window
 
 /**
  * The container with only one active (visible) child at any moment.

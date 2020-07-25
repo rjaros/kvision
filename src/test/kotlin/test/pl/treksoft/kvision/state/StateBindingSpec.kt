@@ -29,7 +29,7 @@ import pl.treksoft.kvision.state.observableListOf
 import pl.treksoft.kvision.state.stateBinding
 import pl.treksoft.kvision.state.stateUpdate
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class StateBindingSpec : DomSpec {

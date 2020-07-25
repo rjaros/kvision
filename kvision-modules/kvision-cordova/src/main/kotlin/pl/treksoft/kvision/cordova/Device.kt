@@ -23,7 +23,7 @@
 package pl.treksoft.kvision.cordova
 
 import org.w3c.dom.events.Event
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

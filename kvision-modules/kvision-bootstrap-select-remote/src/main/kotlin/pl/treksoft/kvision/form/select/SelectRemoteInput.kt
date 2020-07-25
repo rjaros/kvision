@@ -21,10 +21,10 @@
  */
 package pl.treksoft.kvision.form.select
 
+import kotlinx.browser.window
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
-import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.stringify
 import org.w3c.dom.get
@@ -39,7 +39,6 @@ import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.window
 
 external fun decodeURIComponent(encodedURI: String): String
 
@@ -56,7 +55,6 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param preload preload all options from remote data source
  * @param classes a set of CSS class names
  */
-@OptIn(ImplicitReflectionSerializer::class)
 open class SelectRemoteInput<T : Any>(
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,

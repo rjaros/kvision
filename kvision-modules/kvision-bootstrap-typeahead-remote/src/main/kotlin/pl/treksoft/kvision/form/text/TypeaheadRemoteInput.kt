@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision.form.text
 
-import kotlinx.serialization.ImplicitReflectionSerializer
+import kotlinx.browser.window
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.stringify
@@ -31,7 +31,6 @@ import pl.treksoft.kvision.remote.JsonRpcRequest
 import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.window
 
 /**
  * The Typeahead control connected to the multiplatform service.
@@ -48,7 +47,6 @@ import kotlin.browser.window
  * @param taAjaxOptions AJAX options for remote data source
  * @param classes a set of CSS class names
  */
-@OptIn(ImplicitReflectionSerializer::class)
 open class TypeaheadRemoteInput<T : Any>(
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?) -> List<String>,

@@ -28,15 +28,13 @@ kotlin {
                 api(project(":kvision-modules:kvision-common-types"))
                 api(project(":kvision-modules:kvision-common-remote"))
                 api(project(":kvision-modules:kvision-common-remote"))
-                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializationVersion")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
             }
         }
         val jsMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-js"))
-                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serializationVersion")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
             }
         }
         val jvmMain by getting {
@@ -45,8 +43,6 @@ kotlin {
                 implementation(kotlin("stdlib"))
                 implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
-                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 api("io.jooby:jooby-netty:$joobyVersion")
                 api("io.jooby:jooby-guice:$joobyVersion")
                 api("io.jooby:jooby-jackson:$joobyVersion")

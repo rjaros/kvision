@@ -4,10 +4,11 @@ plugins {
 
 repositories {
     jcenter()
+    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
     mavenLocal()
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4-M3")
     implementation(gradleApi())
 }

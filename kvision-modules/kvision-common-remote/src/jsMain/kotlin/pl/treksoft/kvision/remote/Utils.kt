@@ -21,12 +21,13 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.browser.window
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.modules.serializersModuleOf
 import pl.treksoft.kvision.types.JsonDateSerializer
-import kotlin.browser.window
+import kotlinx.browser.window
 import kotlin.js.Date
 
 /**

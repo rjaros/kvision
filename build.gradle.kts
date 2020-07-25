@@ -92,10 +92,10 @@ tasks {
         }
     }
     */
-    getByName("JsJar", Jar::class) {
-        from("${project.buildDir}/js/packages/kvision/package.json")
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    }
+//    getByName("JsJar", Jar::class) {
+//        from("${project.buildDir}/js/packages/kvision/package.json")
+//        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//    }
     val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
         outputFormat = "html"
         outputDirectory = "$buildDir/kdoc"

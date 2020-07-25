@@ -23,7 +23,7 @@ package pl.treksoft.kvision
 
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.utils.obj
-import kotlin.browser.window
+import kotlinx.browser.window
 
 internal val kVManagerRichTextInit = KVManagerRichText.init()
 

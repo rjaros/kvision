@@ -22,8 +22,8 @@
 
 package pl.treksoft.kvision.cordova
 
-import kotlin.browser.document
-import kotlin.browser.window
+import kotlinx.browser.document
+import kotlinx.browser.window
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

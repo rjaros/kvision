@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.form
 
 import kotlinx.serialization.DynamicObjectParser
-import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.modules.serializersModuleOf
 import kotlinx.serialization.serializer
@@ -340,7 +340,7 @@ class Form<K : Any>(
     }
 
     companion object {
-        @OptIn(ImplicitReflectionSerializer::class)
+        @OptIn(UnsafeSerializationApi::class)
         inline fun <reified K : Any> create(
             panel: FormPanel<K>? = null,
             customSerializers: Map<KClass<*>, KSerializer<*>>? = null,

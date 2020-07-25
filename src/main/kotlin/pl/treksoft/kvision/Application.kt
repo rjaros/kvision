@@ -22,8 +22,8 @@
 package pl.treksoft.kvision
 
 import pl.treksoft.kvision.panel.Root
-import kotlin.browser.document
-import kotlin.browser.window
+import kotlinx.browser.document
+import kotlinx.browser.window
 
 /**
  * Base class for KVision applications.

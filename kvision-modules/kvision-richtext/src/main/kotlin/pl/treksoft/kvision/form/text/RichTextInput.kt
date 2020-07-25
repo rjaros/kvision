@@ -26,7 +26,7 @@ import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.document
+import kotlinx.browser.document
 
 /**
  * Basic rich text component.

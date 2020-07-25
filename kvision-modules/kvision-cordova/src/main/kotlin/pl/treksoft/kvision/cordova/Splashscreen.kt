@@ -22,7 +22,7 @@
 
 package pl.treksoft.kvision.cordova
 
-import kotlin.browser.window
+import kotlinx.browser.window
 
 /**
  * Main object for Cordova splashscreen.
