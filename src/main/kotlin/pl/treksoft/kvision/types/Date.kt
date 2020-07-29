@@ -21,10 +21,11 @@
  */
 package pl.treksoft.kvision.types
 
-import kotlinx.serialization.Decoder
-import kotlinx.serialization.Encoder
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import pl.treksoft.kvision.KVManager
 import kotlin.js.Date
 
@@ -50,7 +51,7 @@ fun Date.toStringF(format: String = KV_DEFAULT_DATE_FORMAT): String {
 }
 
 object DateSerializer : KSerializer<Date> {
-    override val descriptor: SerialDescriptor = SerialDescriptor("kotlin.js.Date")
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("kotlin.js.Date")
 
     override fun deserialize(decoder: Decoder): Date {
         val str = decoder.decodeString()

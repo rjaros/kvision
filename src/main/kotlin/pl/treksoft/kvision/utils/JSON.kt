@@ -24,7 +24,6 @@ package pl.treksoft.kvision.utils
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.modules.serializersModuleOf
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.types.DateSerializer
@@ -35,12 +34,12 @@ import kotlin.js.Date
  */
 object JSON {
 
-    val plain = Json(context = serializersModuleOf(Date::class, DateSerializer))
+    val plain = Json { serializersModule = serializersModuleOf(Date::class, DateSerializer) }
 
-    val nonstrict = Json(
-        configuration = JsonConfiguration.Stable.copy(ignoreUnknownKeys = true),
-        context = serializersModuleOf(Date::class, DateSerializer)
-    )
+    val nonstrict = Json {
+        ignoreUnknownKeys = true
+        serializersModule = serializersModuleOf(Date::class, DateSerializer)
+    }
 
     /**
      * An extension function to convert Serializable object to JS dynamic object
@@ -55,6 +54,6 @@ object JSON {
      * @param serializer a serializer for T
      */
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return kotlin.js.JSON.parse(plain.stringify(serializer, this))
+        return kotlin.js.JSON.parse(plain.encodeToString(serializer, this))
     }
 }

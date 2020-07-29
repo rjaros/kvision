@@ -22,7 +22,7 @@
 package pl.treksoft.kvision.tabulator
 
 import kotlinx.browser.window
-import kotlinx.serialization.stringify
+import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
@@ -94,7 +94,7 @@ open class TabulatorRemote<T : Any, E : Any>(
             val state = stateFunction?.invoke()
 
             @Suppress("UnsafeCastFromDynamic")
-            val data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
+            val data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
             callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name), beforeSend = beforeSend)
                 .then { r: dynamic ->
                     val result = kotlin.js.JSON.parse<dynamic>(r.result as String)

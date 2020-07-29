@@ -22,9 +22,9 @@
 package pl.treksoft.kvision.form.text
 
 import kotlinx.browser.window
-import kotlinx.serialization.builtins.list
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.stringify
+import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.JsonRpcRequest
@@ -69,10 +69,10 @@ open class TypeaheadRemoteInput<T : Any>(
             url = urlPrefix + url.drop(1),
             preprocessQuery = { query ->
                 val state = stateFunction?.invoke()
-                JSON.plain.stringify(JsonRpcRequest(0, url, listOf(query, state)))
+                JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(query, state)))
             },
             preprocessData = {
-                JSON.plain.parse(String.serializer().list, it.result as String).toTypedArray()
+                JSON.plain.decodeFromString(ListSerializer(String.serializer()), it.result as String).toTypedArray()
             },
             httpType = HttpType.valueOf(method.name)
         )

@@ -23,7 +23,7 @@ package pl.treksoft.kvision.remote
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.UnsafeSerializationApi
-import kotlinx.serialization.builtins.list
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.types.JsonDateSerializer
@@ -52,46 +52,52 @@ interface RemoteAgent {
                 when {
                     value[0] is String ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(String.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(String.serializer()) as KSerializer<Any>, value)
                     value[0] is Date ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(JsonDateSerializer.list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(JsonDateSerializer) as KSerializer<Any>, value)
                     value[0] is Int ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(Int.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(Int.serializer()) as KSerializer<Any>, value)
                     value[0] is Long ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(Long.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(Long.serializer()) as KSerializer<Any>, value)
                     value[0] is Boolean ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(Boolean.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(Boolean.serializer()) as KSerializer<Any>, value)
                     value[0] is Float ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(Float.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(Float.serializer()) as KSerializer<Any>, value)
                     value[0] is Double ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(Double.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(Double.serializer()) as KSerializer<Any>, value)
                     value[0] is Char ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(Char.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(Char.serializer()) as KSerializer<Any>, value)
                     value[0] is Short ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(Short.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(Short.serializer()) as KSerializer<Any>, value)
                     value[0] is Byte ->
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(Byte.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(Byte.serializer()) as KSerializer<Any>, value)
                     value[0] is Enum<*> -> "[" + value.joinToString(",") { "\"$it\"" } + "]"
                     else -> try {
                         @Suppress("UNCHECKED_CAST")
-                        JSON.plain.stringify(kClass.serializer().list as KSerializer<Any>, value)
+                        JSON.plain.encodeToString(ListSerializer(kClass.serializer()) as KSerializer<Any>, value)
                     } catch (e: Throwable) {
                         try {
                             @Suppress("UNCHECKED_CAST")
-                            JSON.plain.stringify(value[0]!!::class.serializer().list as KSerializer<Any>, value)
+                            JSON.plain.encodeToString(
+                                ListSerializer(value[0]!!::class.serializer()) as KSerializer<Any>,
+                                value
+                            )
                         } catch (e: Throwable) {
                             try {
                                 @Suppress("UNCHECKED_CAST")
-                                JSON.plain.stringify(String.serializer().list as KSerializer<Any>, value)
+                                JSON.plain.encodeToString(
+                                    ListSerializer(String.serializer()) as KSerializer<Any>,
+                                    value
+                                )
                             } catch (e: Throwable) {
                                 value.toString()
                             }
@@ -109,7 +115,7 @@ interface RemoteAgent {
                 is Date -> "\"${value.toStringInternal()}\""
                 else -> try {
                     @Suppress("UNCHECKED_CAST")
-                    JSON.plain.stringify(kClass.serializer(), value)
+                    JSON.plain.encodeToString(kClass.serializer(), value)
                 } catch (e: Throwable) {
                     value.toString()
                 }
@@ -124,14 +130,14 @@ interface RemoteAgent {
     @Suppress("UNCHECKED_CAST", "ComplexMethod")
     fun <RET> deserialize(value: String, jsType: String): RET {
         return when (jsType) {
-            "String" -> JSON.plain.parse(String.serializer(), value) as RET
-            "Number" -> JSON.plain.parse(Double.serializer(), value) as RET
-            "Long" -> JSON.plain.parse(Long.serializer(), value) as RET
-            "Boolean" -> JSON.plain.parse(Boolean.serializer(), value) as RET
-            "BoxedChar" -> JSON.plain.parse(Char.serializer(), value) as RET
-            "Short" -> JSON.plain.parse(Short.serializer(), value) as RET
-            "Date" -> JSON.plain.parse(JsonDateSerializer, value) as RET
-            "Byte" -> JSON.plain.parse(Byte.serializer(), value) as RET
+            "String" -> JSON.plain.decodeFromString(String.serializer(), value) as RET
+            "Number" -> JSON.plain.decodeFromString(Double.serializer(), value) as RET
+            "Long" -> JSON.plain.decodeFromString(Long.serializer(), value) as RET
+            "Boolean" -> JSON.plain.decodeFromString(Boolean.serializer(), value) as RET
+            "BoxedChar" -> JSON.plain.decodeFromString(Char.serializer(), value) as RET
+            "Short" -> JSON.plain.decodeFromString(Short.serializer(), value) as RET
+            "Date" -> JSON.plain.decodeFromString(JsonDateSerializer, value) as RET
+            "Byte" -> JSON.plain.decodeFromString(Byte.serializer(), value) as RET
             else -> throw NotStandardTypeException(jsType)
         }
     }
@@ -143,14 +149,14 @@ interface RemoteAgent {
     @Suppress("UNCHECKED_CAST", "ComplexMethod")
     fun <RET> deserializeList(value: String, jsType: String): List<RET> {
         return when (jsType) {
-            "String" -> JSON.plain.parse(String.serializer().list, value) as List<RET>
-            "Number" -> JSON.plain.parse(Double.serializer().list, value) as List<RET>
-            "Long" -> JSON.plain.parse(Long.serializer().list, value) as List<RET>
-            "Boolean" -> JSON.plain.parse(Boolean.serializer().list, value) as List<RET>
-            "BoxedChar" -> JSON.plain.parse(Char.serializer().list, value) as List<RET>
-            "Short" -> JSON.plain.parse(Short.serializer().list, value) as List<RET>
-            "Date" -> JSON.plain.parse(JsonDateSerializer.list, value) as List<RET>
-            "Byte" -> JSON.plain.parse(Byte.serializer().list, value) as List<RET>
+            "String" -> JSON.plain.decodeFromString(ListSerializer(String.serializer()), value) as List<RET>
+            "Number" -> JSON.plain.decodeFromString(ListSerializer(Double.serializer()), value) as List<RET>
+            "Long" -> JSON.plain.decodeFromString(ListSerializer(Long.serializer()), value) as List<RET>
+            "Boolean" -> JSON.plain.decodeFromString(ListSerializer(Boolean.serializer()), value) as List<RET>
+            "BoxedChar" -> JSON.plain.decodeFromString(ListSerializer(Char.serializer()), value) as List<RET>
+            "Short" -> JSON.plain.decodeFromString(ListSerializer(Short.serializer()), value) as List<RET>
+            "Date" -> JSON.plain.decodeFromString(ListSerializer(JsonDateSerializer), value) as List<RET>
+            "Byte" -> JSON.plain.decodeFromString(ListSerializer(Byte.serializer()), value) as List<RET>
             else -> throw NotStandardTypeException(jsType)
         }
     }
@@ -163,7 +169,8 @@ interface RemoteAgent {
     fun tryDeserializeEnum(kClass: KClass<Any>, value: String): Any {
         return try {
             if (kClass.asDynamic().jClass.`$metadata$`.interfaces[0].name == "Enum") {
-                findEnumValue(kClass, JSON.plain.parse(String.serializer(), value)) ?: throw NotEnumTypeException()
+                findEnumValue(kClass, JSON.plain.decodeFromString(String.serializer(), value))
+                    ?: throw NotEnumTypeException()
             } else {
                 throw NotEnumTypeException()
             }
@@ -180,8 +187,9 @@ interface RemoteAgent {
     fun tryDeserializeEnumList(kClass: KClass<Any>, value: String): List<Any> {
         return try {
             if (kClass.asDynamic().jClass.`$metadata$`.interfaces[0].name == "Enum") {
-                JSON.plain.parse(String.serializer().list, value).map {
-                    findEnumValue(kClass, JSON.plain.parse(String.serializer(), it)) ?: throw NotEnumTypeException()
+                JSON.plain.decodeFromString(ListSerializer(String.serializer()), value).map {
+                    findEnumValue(kClass, JSON.plain.decodeFromString(String.serializer(), it))
+                        ?: throw NotEnumTypeException()
                 }
             } else {
                 throw NotEnumTypeException()

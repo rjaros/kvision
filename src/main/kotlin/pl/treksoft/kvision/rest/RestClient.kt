@@ -22,10 +22,11 @@
 package pl.treksoft.kvision.rest
 
 import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.DynamicObjectParser
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.UnsafeSerializationApi
-import kotlinx.serialization.modules.serializersModuleOf
+import kotlinx.serialization.decodeFromDynamic
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
@@ -108,10 +109,11 @@ open class RestClient {
             } else {
                 result
             }
-            DynamicObjectParser(context = serializersModuleOf(Date::class, DateSerializer)).parse(
-                transformed,
-                deserializer
-            )
+            Json {
+                serializersModule = SerializersModule {
+                    contextual(Date::class, DateSerializer)
+                }
+            }.decodeFromDynamic(deserializer, transformed)
         }
     }
 
@@ -133,7 +135,8 @@ open class RestClient {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
-        val dataSer = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        val dataSer =
+            if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.encodeToString(serializer, data)
         return remoteCall(url, dataSer, method, contentType, beforeSend)
     }
 
@@ -160,7 +163,8 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
-        val dataSer = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        val dataSer =
+            if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.encodeToString(serializer, data)
         return remoteCall(
             url,
             dataSer,
@@ -173,10 +177,11 @@ open class RestClient {
             } else {
                 result
             }
-            DynamicObjectParser(context = serializersModuleOf(Date::class, DateSerializer)).parse(
-                transformed,
-                deserializer
-            )
+            Json {
+                serializersModule = SerializersModule {
+                    contextual(Date::class, DateSerializer)
+                }
+            }.decodeFromDynamic(deserializer, transformed)
         }
     }
 
@@ -397,10 +402,11 @@ open class RestClient {
                 result.data
             }
             Response(
-                DynamicObjectParser(context = serializersModuleOf(Date::class, DateSerializer)).parse(
-                    transformed,
-                    deserializer
-                ), result.textStatus, result.jqXHR
+                Json {
+                    serializersModule = SerializersModule {
+                        contextual(Date::class, DateSerializer)
+                    }
+                }.decodeFromDynamic(deserializer, transformed), result.textStatus, result.jqXHR
             )
         }
     }
@@ -423,7 +429,8 @@ open class RestClient {
         contentType: String = "application/json",
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<Response<dynamic>> {
-        val dataSer = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        val dataSer =
+            if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.encodeToString(serializer, data)
         return remoteRequest(url, dataSer, method, contentType, beforeSend)
     }
 
@@ -450,7 +457,8 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
-        val dataSer = if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.stringify(serializer, data)
+        val dataSer =
+            if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.encodeToString(serializer, data)
         return remoteRequest(
             url,
             dataSer,
@@ -464,10 +472,11 @@ open class RestClient {
                 result.data
             }
             Response(
-                DynamicObjectParser(context = serializersModuleOf(Date::class, DateSerializer)).parse(
-                    transformed,
-                    deserializer
-                ), result.textStatus, result.jqXHR
+                Json {
+                    serializersModule = SerializersModule {
+                        contextual(Date::class, DateSerializer)
+                    }
+                }.decodeFromDynamic(deserializer, transformed), result.textStatus, result.jqXHR
             )
         }
     }

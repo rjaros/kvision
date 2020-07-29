@@ -25,8 +25,8 @@ import kotlinx.browser.window
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
-import kotlinx.serialization.builtins.list
-import kotlinx.serialization.stringify
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
@@ -89,7 +89,7 @@ open class SelectRemoteInput<T : Any>(
                 url = urlPrefix + url.drop(1),
                 preprocessData = {
                     @Suppress("UnsafeCastFromDynamic")
-                    JSON.plain.parse(RemoteOption.serializer().list, it.result as String).map {
+                    JSON.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), it.result as String).map {
                         obj {
                             this.value = it.value
                             if (it.text != null) this.text = it.text
@@ -110,7 +110,7 @@ open class SelectRemoteInput<T : Any>(
                     @Suppress("UnsafeCastFromDynamic")
                     val q = decodeURIComponent(b.asDynamic().data.substring(2))
                     val state = stateFunction?.invoke()
-                    b.data = JSON.plain.stringify(JsonRpcRequest(0, url, listOf(q, this.value, state)))
+                    b.data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(q, this.value, state)))
                     true
                 },
                 httpType = HttpType.valueOf(method.name),
@@ -133,22 +133,23 @@ open class SelectRemoteInput<T : Any>(
                 val state = stateFunction?.invoke()
                 val values = callAgent.remoteCall(
                     url,
-                    JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, null, state))),
+                    JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, null, state))),
                     HttpMethod.POST,
                     beforeSend = beforeSend
                 ).await()
-                JSON.plain.parse(RemoteOption.serializer().list, values.result as String).forEach {
-                    add(
-                        SelectOption(
-                            it.value,
-                            it.text,
-                            it.subtext,
-                            it.icon,
-                            it.divider,
-                            it.disabled,
-                            false,
-                            it.className?.let { setOf(it) } ?: setOf()))
-                }
+                JSON.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), values.result as String)
+                    .forEach {
+                        add(
+                            SelectOption(
+                                it.value,
+                                it.text,
+                                it.subtext,
+                                it.icon,
+                                it.divider,
+                                it.disabled,
+                                false,
+                                it.className?.let { setOf(it) } ?: setOf()))
+                    }
             }
         }
     }
@@ -171,11 +172,14 @@ open class SelectRemoteInput<T : Any>(
                         val state = stateFunction?.invoke()
                         val initials = callAgent.remoteCall(
                             url,
-                            JSON.plain.stringify(JsonRpcRequest(0, url, listOf(null, it, state))),
+                            JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, it, state))),
                             HttpMethod.POST,
                             beforeSend = beforeSend
                         ).await()
-                        JSON.plain.parse(RemoteOption.serializer().list, initials.result as String).mapNotNull {
+                        JSON.plain.decodeFromString(
+                            ListSerializer(RemoteOption.serializer()),
+                            initials.result as String
+                        ).mapNotNull {
                             it.text
                         }.joinToString(", ")
                     }

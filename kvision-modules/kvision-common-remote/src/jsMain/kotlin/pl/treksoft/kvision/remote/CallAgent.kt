@@ -22,7 +22,7 @@
 package pl.treksoft.kvision.remote
 
 import kotlinx.browser.window
-import kotlinx.serialization.stringify
+import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
@@ -62,7 +62,7 @@ open class CallAgent {
         val jsonData = if (method == HttpMethod.GET) {
             obj { id = jsonRpcRequest.id }
         } else {
-            JSON.plain.stringify(jsonRpcRequest)
+            JSON.plain.encodeToString(jsonRpcRequest)
         }
         return Promise { resolve, reject ->
             jQuery.ajax(urlPrefix + url.drop(1), obj {

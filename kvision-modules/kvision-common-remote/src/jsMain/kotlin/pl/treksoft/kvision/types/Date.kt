@@ -21,19 +21,19 @@
  */
 package pl.treksoft.kvision.types
 
-import kotlinx.serialization.Decoder
-import kotlinx.serialization.Encoder
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import kotlin.js.Date
 import kotlin.math.absoluteValue
-
 
 /**
  * JSON date serializer.
  */
 internal object JsonDateSerializer : KSerializer<Date> {
-    override val descriptor: SerialDescriptor = SerialDescriptor("kotlin.js.Date")
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("kotlin.js.Date")
 
     override fun deserialize(decoder: Decoder): Date {
         return decoder.decodeString().toDateInternal()

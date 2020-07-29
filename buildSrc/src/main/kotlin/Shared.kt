@@ -18,6 +18,7 @@ fun Project.repositories() {
         maven { url = uri("https://kotlin.bintray.com/kotlinx") }
         maven { url = uri("https://dl.bintray.com/kotlin/kotlin-js-wrappers") }
         maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
         maven {
             url = uri("https://dl.bintray.com/gbaldeck/kotlin")
             metadataSources {
