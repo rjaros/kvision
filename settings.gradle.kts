@@ -57,6 +57,7 @@ include(
     "kvision-modules:kvision-server-ktor",
     "kvision-modules:kvision-server-spring-boot",
     "kvision-modules:kvision-server-vertx",
+    "kvision-modules:kvision-server-micronaut",
     "kvision-modules:kvision-testutils",
     "kvision-tools:kvision-compiler-plugin",
     "kvision-tools:kvision-gradle-plugin"

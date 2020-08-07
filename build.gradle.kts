@@ -132,7 +132,11 @@ tasks {
             "kvision-richtext",
             "kvision-tabulator",
             "kvision-tabulator-remote",
+            "kvision-server-jooby",
             "kvision-server-javalin",
+            "kvision-server-ktor",
+            "kvision-server-micronaut",
+            "kvision-server-spring-boot",
             "kvision-server-vertx",
             "kvision-toast"
         )
