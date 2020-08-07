@@ -27,7 +27,6 @@ kotlin {
                 api(project(":kvision-modules:kvision-common-annotations"))
                 api(project(":kvision-modules:kvision-common-types"))
                 api(project(":kvision-modules:kvision-common-remote"))
-                api(project(":kvision-modules:kvision-common-remote"))
                 api("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializationVersion")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion")
             }
