@@ -17,7 +17,7 @@ which are used as a builder blocks for the application GUI.
 KVision's design is quite similar to many non-web UI programming libraries including Swing, JavaFX, QT, WinForms and Flutter.
 
 KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot), 
-[Javalin](https://javalin.io) and [Vert.x](https://vertx.io) frameworks on the server side, which
+[Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side, which
 allows to build fullstack applications with shared common code.
 
 **KVision is being actively developed. Please create an issue for any bugs or feature requests.**
@@ -59,7 +59,7 @@ allows to build fullstack applications with shared common code.
 - Type-safe REST connectivity.
 - Support for event Flows and StateFlow for observables.
 - Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot),
- [Javalin](https://javalin.io) and [Vert.x](https://vertx.io) frameworks on the server side,
+ [Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side,
 including support for type-safe websockets connections.
 - Support for building hybrid mobile applications with [Apache Cordova](https://cordova.apache.org/).
 - Support for building cross-platform, desktop applications with [Electron](https://electronjs.org).
