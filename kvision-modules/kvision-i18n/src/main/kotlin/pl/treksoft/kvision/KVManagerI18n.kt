@@ -27,10 +27,5 @@ internal val kVManagerI18nInit = KVManagerI18n.init()
  * Internal singleton object which initializes and configures KVision i18n module.
  */
 internal object KVManagerI18n {
-
-    init {
-        require("jed")
-    }
-
     internal fun init() {}
 }

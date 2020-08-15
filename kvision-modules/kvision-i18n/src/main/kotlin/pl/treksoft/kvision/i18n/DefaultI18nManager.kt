@@ -21,24 +21,31 @@
  */
 package pl.treksoft.kvision.i18n
 
-external class Jed(json: dynamic) {
-    fun gettext(key: String): String
-    fun ngettext(singularKey: String, pluralKey: String, value: Int): String
-    fun sprintf(format: String, value: Int): String
-}
+import pl.treksoft.kvision.require
 
 class DefaultI18nManager(translations: Map<String, dynamic>) : I18nManager {
 
-    private val cache: Map<String, Jed> = translations.map { it.key to Jed(it.value) }.toMap()
+    private val i18n = require("gettext.js").default()
+
+    init {
+        translations.forEach {
+            val json = it.value
+            json[""].language = it.key
+            @Suppress("UnsafeCastFromDynamic")
+            i18n.loadJSON(json, "messages")
+        }
+    }
 
     override fun gettext(key: String): String {
-        return cache[I18n.language]?.gettext(key) ?: key
+        i18n.setLocale(I18n.language)
+        @Suppress("UnsafeCastFromDynamic")
+        return i18n.gettext(key) ?: key
     }
 
     override fun ngettext(singularKey: String, pluralKey: String, value: Int): String {
-        return cache[I18n.language]?.run {
-            sprintf(ngettext(singularKey, pluralKey, value), value)
-        } ?: if (value == 1) singularKey else pluralKey
+        i18n.setLocale(I18n.language)
+        @Suppress("UnsafeCastFromDynamic")
+        return i18n.ngettext(singularKey, pluralKey, value) ?: if (value == 1) singularKey else pluralKey
     }
 
 }
