@@ -21,7 +21,9 @@
  */
 package pl.treksoft.kvision.panel
 
+import pl.treksoft.kvision.core.AlignItems
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -34,15 +36,21 @@ import pl.treksoft.kvision.utils.set
  * @param justify flexbox content justification
  * @param alignItems flexbox items alignment
  * @param spacing spacing between columns/rows
+ * @param noWrappers do not use additional div wrappers for child items
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class HPanel(
-    wrap: FlexWrap? = null, justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
-    classes: Set<String> = setOf(), init: (HPanel.() -> Unit)? = null
+    wrap: pl.treksoft.kvision.core.FlexWrap? = null,
+    justify: JustifyContent? = null,
+    alignItems: AlignItems? = null,
+    spacing: Int? = null,
+    noWrappers: Boolean = false,
+    classes: Set<String> = setOf(),
+    init: (HPanel.() -> Unit)? = null
 ) : FlexPanel(
     null,
-    wrap, justify, alignItems, null, spacing, classes
+    wrap, justify, alignItems, null, spacing, noWrappers, classes
 ) {
     init {
         @Suppress("LeakingThis")
@@ -56,15 +64,16 @@ open class HPanel(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.hPanel(
-    wrap: FlexWrap? = null,
-    justify: FlexJustify? = null,
-    alignItems: FlexAlignItems? = null,
+    wrap: pl.treksoft.kvision.core.FlexWrap? = null,
+    justify: JustifyContent? = null,
+    alignItems: AlignItems? = null,
     spacing: Int? = null,
+    noWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (HPanel.() -> Unit)? = null
 ): HPanel {
-    val hpanel = HPanel(wrap, justify, alignItems, spacing, classes ?: className.set, init)
+    val hpanel = HPanel(wrap, justify, alignItems, spacing, noWrappers, classes ?: className.set, init)
     this.add(hpanel)
     return hpanel
 }

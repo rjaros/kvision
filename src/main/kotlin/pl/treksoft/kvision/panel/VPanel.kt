@@ -21,7 +21,10 @@
  */
 package pl.treksoft.kvision.panel
 
+import pl.treksoft.kvision.core.AlignItems
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.FlexDirection
+import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -33,15 +36,17 @@ import pl.treksoft.kvision.utils.set
  * @param justify flexbox content justification
  * @param alignItems flexbox items alignment
  * @param spacing spacing between columns/rows
+ * @param noWrappers do not use additional div wrappers for child items
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class VPanel(
-    justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
+    justify: JustifyContent? = null, alignItems: AlignItems? = null, spacing: Int? = null,
+    noWrappers: Boolean = false,
     classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
 ) : FlexPanel(
-    FlexDir.COLUMN,
-    null, justify, alignItems, null, spacing, classes
+    FlexDirection.COLUMN,
+    null, justify, alignItems, null, spacing, noWrappers, classes
 ) {
     init {
         @Suppress("LeakingThis")
@@ -55,12 +60,13 @@ open class VPanel(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.vPanel(
-    justify: FlexJustify? = null, alignItems: FlexAlignItems? = null, spacing: Int? = null,
+    justify: JustifyContent? = null, alignItems: AlignItems? = null, spacing: Int? = null,
+    noWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (VPanel.() -> Unit)? = null
 ): VPanel {
-    val vpanel = VPanel(justify, alignItems, spacing, classes ?: className.set, init)
+    val vpanel = VPanel(justify, alignItems, spacing, noWrappers, classes ?: className.set, init)
     this.add(vpanel)
     return vpanel
 }

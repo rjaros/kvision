@@ -21,8 +21,8 @@
  */
 package test.pl.treksoft.kvision.panel
 
+import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.html.Span
-import pl.treksoft.kvision.panel.FlexJustify
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.VPanel
 import test.pl.treksoft.kvision.DomSpec
@@ -35,7 +35,7 @@ class VPanelSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val vPanel = VPanel(justify = FlexJustify.SPACEBETWEEN)
+            val vPanel = VPanel(justify = JustifyContent.SPACEBETWEEN)
             root.add(vPanel)
             vPanel.add(Span("abc"), 1)
             vPanel.add(Span("def"), 2)

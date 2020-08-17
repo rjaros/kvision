@@ -348,6 +348,131 @@ abstract class StyledComponent {
      */
     open var cursor: Cursor? by refreshOnUpdate()
 
+    /**
+     * CSS flexbox direction.
+     */
+    open var flexDirection: FlexDirection? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox wrap mode.
+     */
+    open var flexWrap: FlexWrap? by refreshOnUpdate()
+
+    /**
+     * CSS grid items justification.
+     */
+    open var justifyItems: JustifyItems? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox/grid content justification.
+     */
+    open var justifyContent: JustifyContent? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox/grid items alignment.
+     */
+    open var alignItems: AlignItems? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox/grid content alignment.
+     */
+    open var alignContent: AlignContent? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox item order.
+     */
+    open var order: Int? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox item grow.
+     */
+    open var flexGrow: Int? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox item shrink.
+     */
+    open var flexShrink: Int? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox item basis.
+     */
+    open var flexBasis: Int? by refreshOnUpdate()
+
+    /**
+     * CSS flexbox items self-alignment.
+     */
+    open var alignSelf: AlignItems? by refreshOnUpdate()
+
+    /**
+     * CSS grid items self-justification.
+     */
+    open var justifySelf: JustifyItems? by refreshOnUpdate()
+
+    /**
+     * CSS grid auto columns.
+     */
+    open var gridAutoColumns: String? by refreshOnUpdate()
+
+    /**
+     * CSS grid auto rows.
+     */
+    open var gridAutoRows: String? by refreshOnUpdate()
+
+    /**
+     * CSS grid auto flow.
+     */
+    open var gridAutoFlow: GridAutoFlow? by refreshOnUpdate()
+
+    /**
+     * CSS grid columns template.
+     */
+    open var gridTemplateColumns: String? by refreshOnUpdate()
+
+    /**
+     * CSS grid rows template.
+     */
+    open var gridTemplateRows: String? by refreshOnUpdate()
+
+    /**
+     * CSS grid areas template.
+     */
+    open var gridTemplateAreas: List<String>? by refreshOnUpdate()
+
+    /**
+     * CSS grid column gap.
+     */
+    open var gridColumnGap: Int? by refreshOnUpdate()
+
+    /**
+     * CSS grid row gap.
+     */
+    open var gridRowGap: Int? by refreshOnUpdate()
+
+    /**
+     * CSS grid column start.
+     */
+    open var gridColumnStart: Int? by refreshOnUpdate()
+
+    /**
+     * CSS grid row start.
+     */
+    open var gridRowStart: Int? by refreshOnUpdate()
+
+    /**
+     * CSS grid column end.
+     */
+    open var gridColumnEnd: String? by refreshOnUpdate()
+
+    /**
+     * CSS grid row end.
+     */
+    open var gridRowEnd: String? by refreshOnUpdate()
+
+    /**
+     * CSS grid area.
+     */
+    open var gridArea: String? by refreshOnUpdate()
+
     private var snStyleCache: List<StringPair>? = null
 
     /**
@@ -548,6 +673,81 @@ abstract class StyledComponent {
             }
             cursor?.let {
                 snstyle.add("cursor" to it.cursor)
+            }
+            flexDirection?.let {
+                snstyle.add("flex-direction" to it.dir)
+            }
+            flexWrap?.let {
+                snstyle.add("flex-wrap" to it.wrap)
+            }
+            justifyItems?.let {
+                snstyle.add("justify-items" to it.justify)
+            }
+            justifyContent?.let {
+                snstyle.add("justify-content" to it.justifyContent)
+            }
+            alignItems?.let {
+                snstyle.add("align-items" to it.alignItems)
+            }
+            alignContent?.let {
+                snstyle.add("align-content" to it.alignContent)
+            }
+            order?.let {
+                snstyle.add("order" to "$it")
+            }
+            flexGrow?.let {
+                snstyle.add("flex-grow" to "$it")
+            }
+            flexShrink?.let {
+                snstyle.add("flex-shrink" to "$it")
+            }
+            flexBasis?.let {
+                snstyle.add("flex-basis" to "$it%")
+            }
+            alignSelf?.let {
+                snstyle.add("align-self" to it.alignItems)
+            }
+            justifySelf?.let {
+                snstyle.add("justify-self" to it.justify)
+            }
+            gridAutoColumns?.let {
+                snstyle.add("grid-auto-columns" to it)
+            }
+            gridAutoRows?.let {
+                snstyle.add("grid-auto-rows" to it)
+            }
+            gridAutoFlow?.let {
+                snstyle.add("grid-auto-flow" to it.flow)
+            }
+            gridTemplateColumns?.let {
+                snstyle.add("grid-template-columns" to it)
+            }
+            gridTemplateRows?.let {
+                snstyle.add("grid-template-rows" to it)
+            }
+            gridTemplateAreas?.let {
+                snstyle.add("grid-template-areas" to it.joinToString("\n"))
+            }
+            gridColumnGap?.let {
+                snstyle.add("grid-column-gap" to "${it}px")
+            }
+            gridRowGap?.let {
+                snstyle.add("grid-row-gap" to "${it}px")
+            }
+            gridColumnStart?.let {
+                snstyle.add("grid-column-start" to "$it")
+            }
+            gridRowStart?.let {
+                snstyle.add("grid-row-start" to "$it")
+            }
+            gridColumnEnd?.let {
+                snstyle.add("grid-column-end" to it)
+            }
+            gridRowEnd?.let {
+                snstyle.add("grid-row-end" to it)
+            }
+            gridArea?.let {
+                snstyle.add("grid-area" to it)
             }
             if (customStyles.isNotEmpty()) {
                 snstyle += customStyles.toList()

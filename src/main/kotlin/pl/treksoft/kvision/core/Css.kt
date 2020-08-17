@@ -557,6 +557,87 @@ enum class Cursor(internal val cursor: String) {
 }
 
 /**
+ * CSS flexbox directions.
+ */
+enum class FlexDirection(internal val dir: String) {
+    ROW("row"),
+    ROWREV("row-reverse"),
+    COLUMN("column"),
+    COLUMNREV("column-reverse")
+}
+
+/**
+ * CSS flexbox wrap modes.
+ */
+enum class FlexWrap(internal val wrap: String) {
+    NOWRAP("nowrap"),
+    WRAP("wrap"),
+    WRAPREV("wrap-reverse")
+}
+/**
+ * CSS grid items justification options.
+ */
+enum class JustifyItems(internal val justify: String) {
+    START("start"),
+    END("end"),
+    CENTER("center"),
+    STRETCH("stretch")
+}
+
+/**
+ * CSS flexbox/grid content justification options.
+ */
+enum class JustifyContent(internal val justifyContent: String) {
+    FLEXSTART("flex-start"),
+    FLEXEND("flex-end"),
+    CENTER("center"),
+    SPACEBETWEEN("space-between"),
+    SPACEAROUND("space-around"),
+    SPACEEVENLY("space-evenly"),
+    START("start"),
+    END("end"),
+    STRETCH("stretch")
+}
+
+/**
+ * CSS flexbox/grid items alignments options.
+ */
+enum class AlignItems(internal val alignItems: String) {
+    FLEXSTART("flex-start"),
+    FLEXEND("flex-end"),
+    CENTER("center"),
+    BASELINE("baseline"),
+    STRETCH("stretch"),
+    START("start"),
+    END("end")
+}
+
+/**
+ * CSS flexbox/grid content alignment options.
+ */
+enum class AlignContent(internal val alignContent: String) {
+    FLEXSTART("flex-start"),
+    FLEXEND("flex-end"),
+    CENTER("center"),
+    SPACEBETWEEN("space-between"),
+    SPACEAROUND("space-around"),
+    STRETCH("stretch"),
+    START("start"),
+    END("end"),
+    SPACEEVENLY("space-evenly")
+}
+
+/**
+ * CSS grid flow options.
+ */
+enum class GridAutoFlow(internal val flow: String) {
+    ROW("row"),
+    COLUMN("column"),
+    ROWDENSE("row dense"),
+    COLUMNDENSE("column dense")
+}
+
+/**
  * Type-safe definition of CSS border.
  * @param width width of the border
  * @param style style of the border

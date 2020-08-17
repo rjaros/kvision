@@ -21,8 +21,11 @@
  */
 package pl.treksoft.kvision.panel
 
+import pl.treksoft.kvision.core.AlignItems
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.FlexDirection
+import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.utils.perc
 import pl.treksoft.kvision.utils.set
 
@@ -81,7 +84,7 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * Internal property.
      */
     protected val mainContainer = FlexPanel(
-        direction = FlexDir.COLUMN, justify = FlexJustify.SPACEBETWEEN, alignItems = FlexAlignItems.STRETCH
+        direction = FlexDirection.COLUMN, justify = JustifyContent.SPACEBETWEEN, alignItems = AlignItems.STRETCH
     ) {
         @Suppress("MagicNumber")
         width = 100.perc
@@ -93,7 +96,7 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * @suppress
      * Internal property.
      */
-    protected val subContainer = FlexPanel(justify = FlexJustify.SPACEBETWEEN, alignItems = FlexAlignItems.STRETCH) {
+    protected val subContainer = FlexPanel(justify = JustifyContent.SPACEBETWEEN, alignItems = AlignItems.STRETCH) {
         @Suppress("MagicNumber")
         width = 100.perc
         @Suppress("MagicNumber")

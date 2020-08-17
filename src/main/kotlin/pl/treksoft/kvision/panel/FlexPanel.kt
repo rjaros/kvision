@@ -21,67 +21,47 @@
  */
 package pl.treksoft.kvision.panel
 
+import pl.treksoft.kvision.core.AlignContent
+import pl.treksoft.kvision.core.AlignItems
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.Display
+import pl.treksoft.kvision.core.FlexDirection
+import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.utils.px
 import pl.treksoft.kvision.utils.set
 
-/**
- * CSS flexbox directions.
- */
-enum class FlexDir(internal val dir: String) {
-    ROW("row"),
-    ROWREV("row-reverse"),
-    COLUMN("column"),
-    COLUMNREV("column-reverse")
-}
+@Deprecated(
+    "Use pl.treksoft.kvision.core.FlexDirection instead.",
+    replaceWith = ReplaceWith("FlexDirection", "pl.treksoft.kvision.core.FlexDirection")
+)
+typealias FlexDir = FlexDirection
 
-/**
- * CSS flexbox wrap modes.
- */
-enum class FlexWrap(internal val wrap: String) {
-    NOWRAP("nowrap"),
-    WRAP("wrap"),
-    WRAPREV("wrap-reverse")
-}
+@Deprecated(
+    "Use pl.treksoft.kvision.core.FlexWrap instead.",
+    replaceWith = ReplaceWith("FlexWrap", "pl.treksoft.kvision.core.FlexWrap")
+)
+typealias FlexWrap = pl.treksoft.kvision.core.FlexWrap
 
-/**
- * CSS flexbox justification options.
- */
-enum class FlexJustify(internal val justify: String) {
-    FLEXSTART("flex-start"),
-    FLEXEND("flex-end"),
-    CENTER("center"),
-    SPACEBETWEEN("space-between"),
-    SPACEAROUND("space-around"),
-    SPACEEVENLY("space-evenly")
-}
+@Deprecated(
+    "Use pl.treksoft.kvision.core.JustifyContent instead.",
+    replaceWith = ReplaceWith("JustifyContent", "pl.treksoft.kvision.core.JustifyContent")
+)
+typealias FlexJustify = JustifyContent
 
-/**
- * CSS flexbox alignments options.
- */
-enum class FlexAlignItems(internal val alignItems: String) {
-    FLEXSTART("flex-start"),
-    FLEXEND("flex-end"),
-    CENTER("center"),
-    BASELINE("baseline"),
-    STRETCH("stretch")
-}
+@Deprecated(
+    "Use pl.treksoft.kvision.core.AlignItems instead.",
+    replaceWith = ReplaceWith("AlignItems", "pl.treksoft.kvision.core.AlignItems")
+)
+typealias FlexAlignItems = AlignItems
 
-/**
- * CSS flexbox content alignment options.
- */
-enum class FlexAlignContent(internal val alignContent: String) {
-    FLEXSTART("flex-start"),
-    FLEXEND("flex-end"),
-    CENTER("center"),
-    SPACEBETWEEN("space-between"),
-    SPACEAROUND("space-around"),
-    STRETCH("stretch")
-}
+@Deprecated(
+    "Use pl.treksoft.kvision.core.AlignContent instead.",
+    replaceWith = ReplaceWith("AlignContent", "pl.treksoft.kvision.core.AlignContent")
+)
+typealias FlexAlignContent = AlignContent
 
 /**
  * The container with CSS flexbox layout support.
@@ -93,39 +73,22 @@ enum class FlexAlignContent(internal val alignContent: String) {
  * @param alignItems flexbox items alignment
  * @param alignContent flexbox content alignment
  * @param spacing spacing between columns/rows
+ * @param noWrappers do not use additional div wrappers for child items
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@Suppress("LeakingThis")
 open class FlexPanel(
-    direction: FlexDir? = null, wrap: FlexWrap? = null, justify: FlexJustify? = null,
-    alignItems: FlexAlignItems? = null, alignContent: FlexAlignContent? = null,
-    spacing: Int? = null, classes: Set<String> = setOf(), init: (FlexPanel.() -> Unit)? = null
+    direction: FlexDirection? = null,
+    wrap: pl.treksoft.kvision.core.FlexWrap? = null,
+    justify: JustifyContent? = null,
+    alignItems: AlignItems? = null,
+    alignContent: AlignContent? = null,
+    spacing: Int? = null,
+    private val noWrappers: Boolean = false,
+    classes: Set<String> = setOf(),
+    init: (FlexPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
-
-    /**
-     * CSS flexbox direction.
-     */
-    var direction by refreshOnUpdate(direction) { refreshSpacing(); refresh() }
-
-    /**
-     * CSS flexbox wrap mode.
-     */
-    var wrap by refreshOnUpdate(wrap)
-
-    /**
-     * CSS flexbox content justification.
-     */
-    var justify by refreshOnUpdate(justify)
-
-    /**
-     * CSS flexbox items alignment.
-     */
-    var alignItems by refreshOnUpdate(alignItems)
-
-    /**
-     * CSS flexbox content alignment.
-     */
-    var alignContent by refreshOnUpdate(alignContent)
 
     /**
      * The spacing between columns/rows.
@@ -133,7 +96,12 @@ open class FlexPanel(
     var spacing by refreshOnUpdate(spacing) { refreshSpacing(); refresh() }
 
     init {
-        @Suppress("LeakingThis")
+        this.display = Display.FLEX
+        this.flexDirection = direction
+        this.flexWrap = wrap
+        this.justifyContent = justify
+        this.alignItems = alignItems
+        this.alignContent = alignContent
         init?.invoke(this)
     }
 
@@ -150,10 +118,21 @@ open class FlexPanel(
     @Suppress("LongParameterList")
     fun add(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
-        basis: Int? = null, alignSelf: FlexAlignItems? = null, classes: Set<String> = setOf()
+        basis: Int? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
     ): FlexPanel {
-        val wrapper = FlexWrapper(child, order, grow, shrink, basis, alignSelf, classes)
-        addInternal(applySpacing(wrapper))
+        val wrapper = if (noWrappers) {
+            child
+        } else {
+            WidgetWrapper(child, classes).apply {
+                this.order = order
+                this.flexGrow = grow
+                this.flexShrink = shrink
+                this.flexBasis = basis
+                this.alignSelf = alignSelf
+            }
+        }
+        (wrapper as? Widget)?.let { applySpacing(it) }
+        addInternal(wrapper)
         return this
     }
 
@@ -167,14 +146,16 @@ open class FlexPanel(
         wrapper.marginBottom = null
         wrapper.marginLeft = null
         spacing?.let {
-            when (direction) {
-                FlexDir.COLUMN -> wrapper.marginBottom = it.px
-                FlexDir.ROWREV -> {
-                    if (justify == FlexJustify.FLEXEND) wrapper.marginRight = it.px else wrapper.marginLeft = it.px
+            when (flexDirection) {
+                FlexDirection.COLUMN -> wrapper.marginBottom = it.px
+                FlexDirection.ROWREV -> {
+                    if (justifyContent == JustifyContent.FLEXEND) wrapper.marginRight = it.px else wrapper.marginLeft =
+                        it.px
                 }
-                FlexDir.COLUMNREV -> wrapper.marginTop = it.px
+                FlexDirection.COLUMNREV -> wrapper.marginTop = it.px
                 else -> {
-                    if (justify == FlexJustify.FLEXEND) wrapper.marginLeft = it.px else wrapper.marginRight = it.px
+                    if (justifyContent == JustifyContent.FLEXEND) wrapper.marginLeft = it.px else wrapper.marginRight =
+                        it.px
                 }
             }
         }
@@ -191,9 +172,13 @@ open class FlexPanel(
     }
 
     override fun remove(child: Component): FlexPanel {
-        children.find { (it as FlexWrapper).wrapped == child }?.let {
-            super.remove(it)
-            it.dispose()
+        if (children.contains(child)) {
+            super.remove(child)
+        } else {
+            children.find { (it as? WidgetWrapper)?.wrapped == child }?.let {
+                super.remove(it)
+                it.dispose()
+            }
         }
         return this
     }
@@ -207,27 +192,6 @@ open class FlexPanel(
         refresh()
         return this
     }
-
-    override fun getSnStyle(): List<StringPair> {
-        val snstyle = super.getSnStyle().toMutableList()
-        snstyle.add("display" to "flex")
-        direction?.let {
-            snstyle.add("flex-direction" to it.dir)
-        }
-        wrap?.let {
-            snstyle.add("flex-wrap" to it.wrap)
-        }
-        justify?.let {
-            snstyle.add("justify-content" to it.justify)
-        }
-        alignItems?.let {
-            snstyle.add("align-items" to it.alignItems)
-        }
-        alignContent?.let {
-            snstyle.add("align-content" to it.alignContent)
-        }
-        return snstyle
-    }
 }
 
 /**
@@ -236,46 +200,26 @@ open class FlexPanel(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.flexPanel(
-    direction: FlexDir? = null, wrap: FlexWrap? = null, justify: FlexJustify? = null,
-    alignItems: FlexAlignItems? = null, alignContent: FlexAlignContent? = null,
+    direction: FlexDirection? = null, wrap: pl.treksoft.kvision.core.FlexWrap? = null, justify: JustifyContent? = null,
+    alignItems: AlignItems? = null, alignContent: AlignContent? = null,
     spacing: Int? = null,
+    noWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (FlexPanel.() -> Unit)? = null
 ): FlexPanel {
     val flexPanel =
-        FlexPanel(direction, wrap, justify, alignItems, alignContent, spacing, classes ?: className.set, init)
+        FlexPanel(
+            direction,
+            wrap,
+            justify,
+            alignItems,
+            alignContent,
+            spacing,
+            noWrappers,
+            classes ?: className.set,
+            init
+        )
     this.add(flexPanel)
     return flexPanel
-}
-
-/**
- * Helper class form CSS flexbox layout.
- */
-internal class FlexWrapper(
-    delegate: Component, private val order: Int? = null, private val grow: Int? = null,
-    private val shrink: Int? = null, private val basis: Int? = null,
-    private val alignSelf: FlexAlignItems? = null,
-    classes: Set<String> = setOf()
-) : WidgetWrapper(delegate, classes) {
-
-    override fun getSnStyle(): List<StringPair> {
-        val snstyle = super.getSnStyle().toMutableList()
-        order?.let {
-            snstyle.add("order" to "$it")
-        }
-        grow?.let {
-            snstyle.add("flex-grow" to "$it")
-        }
-        shrink?.let {
-            snstyle.add("flex-shrink" to "$it")
-        }
-        basis?.let {
-            snstyle.add("flex-basis" to "$it%")
-        }
-        alignSelf?.let {
-            snstyle.add("align-self" to it.alignItems)
-        }
-        return snstyle
-    }
 }

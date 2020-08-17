@@ -21,9 +21,9 @@
  */
 package test.pl.treksoft.kvision.panel
 
+import pl.treksoft.kvision.core.FlexDirection
+import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.html.Span
-import pl.treksoft.kvision.panel.FlexDir
-import pl.treksoft.kvision.panel.FlexJustify
 import pl.treksoft.kvision.panel.FlexPanel
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
@@ -36,7 +36,7 @@ class FlexPanelSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val flexPanel = FlexPanel(FlexDir.ROWREV, justify = FlexJustify.SPACEEVENLY)
+            val flexPanel = FlexPanel(FlexDirection.ROWREV, justify = JustifyContent.SPACEEVENLY)
             root.add(flexPanel)
             flexPanel.add(Span("abc"), 1)
             flexPanel.add(Span("def"), 2)
