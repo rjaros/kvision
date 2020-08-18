@@ -27,7 +27,7 @@ import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.FlexPanel
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class FlexPanelSpec : DomSpec {

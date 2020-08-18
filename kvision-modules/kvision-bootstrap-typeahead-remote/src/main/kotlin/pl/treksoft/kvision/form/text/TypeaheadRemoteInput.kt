@@ -21,17 +21,16 @@
  */
 package pl.treksoft.kvision.form.text
 
-import kotlinx.serialization.ImplicitReflectionSerializer
-import kotlinx.serialization.builtins.list
+import kotlinx.browser.window
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.stringify
+import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.JsonRpcRequest
 import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.window
 
 /**
  * The Typeahead control connected to the multiplatform service.
@@ -48,7 +47,6 @@ import kotlin.browser.window
  * @param taAjaxOptions AJAX options for remote data source
  * @param classes a set of CSS class names
  */
-@OptIn(ImplicitReflectionSerializer::class)
 open class TypeaheadRemoteInput<T : Any>(
     serviceManager: KVServiceManager<T>,
     function: suspend T.(String?, String?) -> List<String>,
@@ -71,10 +69,10 @@ open class TypeaheadRemoteInput<T : Any>(
             url = urlPrefix + url.drop(1),
             preprocessQuery = { query ->
                 val state = stateFunction?.invoke()
-                JSON.plain.stringify(JsonRpcRequest(0, url, listOf(query, state)))
+                JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(query, state)))
             },
             preprocessData = {
-                JSON.plain.parse(String.serializer().list, it.result as String).toTypedArray()
+                JSON.plain.decodeFromString(ListSerializer(String.serializer()), it.result as String).toTypedArray()
             },
             httpType = HttpType.valueOf(method.name)
         )

@@ -26,7 +26,7 @@ import pl.treksoft.kvision.dropdown.Direction
 import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

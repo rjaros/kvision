@@ -25,7 +25,7 @@ import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.modal.Confirm
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull

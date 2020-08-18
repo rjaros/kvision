@@ -24,7 +24,7 @@ package test.pl.treksoft.kvision.form.text
 import pl.treksoft.kvision.form.text.TextAreaInput
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class TextAreaInputSpec : DomSpec {

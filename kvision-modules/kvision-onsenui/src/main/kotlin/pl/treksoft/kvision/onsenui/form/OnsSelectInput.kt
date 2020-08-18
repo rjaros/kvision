@@ -27,7 +27,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.select.SimpleSelectInput
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.window
+import kotlinx.browser.window
 
 /**
  * OnsenUI select input component.

@@ -21,11 +21,11 @@
  */
 package pl.treksoft.kvision.form
 
-import kotlinx.serialization.DynamicObjectParser
-import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.builtins.list
-import kotlinx.serialization.modules.serializersModuleOf
+import kotlinx.serialization.UnsafeSerializationApi
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.decodeFromDynamic
+import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.types.DateSerializer
@@ -81,18 +81,21 @@ class Form<K : Any>(
                         }
                         is List<*> -> {
                             @Suppress("UNCHECKED_CAST")
-                            ((value as? List<KFile>)?.toObj(KFile.serializer().list))
+                            ((value as? List<KFile>)?.toObj(ListSerializer(KFile.serializer())))
                         }
                         else -> value
                     }
                     json[key] = v
                 }
-                val serializersModule = if (customSerializers == null) {
-                    serializersModuleOf(Date::class, DateSerializer)
-                } else {
-                    serializersModuleOf(customSerializers + (Date::class to DateSerializer))
-                }
-                DynamicObjectParser(serializersModule).parse(json, serializer)
+                kotlinx.serialization.json.Json {
+                    serializersModule = SerializersModule {
+                        contextual(Date::class, DateSerializer)
+                        customSerializers?.forEach { (kclass, serializer) ->
+                            @Suppress("UNCHECKED_CAST")
+                            contextual(kclass as KClass<Any>, serializer as KSerializer<Any>)
+                        }
+                    }
+                }.decodeFromDynamic(serializer, json)
             }
         }
     }
@@ -286,13 +289,16 @@ class Form<K : Any>(
      */
     fun getDataJson(): Json {
         return if (serializer != null) {
-            val serializersModule = if (customSerializers == null) {
-                serializersModuleOf(Date::class, DateSerializer)
-            } else {
-                serializersModuleOf(customSerializers + (Date::class to DateSerializer))
-            }
             NativeJSON.parse(
-                kotlinx.serialization.json.Json(context = serializersModule).stringify(
+                kotlinx.serialization.json.Json {
+                    serializersModule = SerializersModule {
+                        contextual(Date::class, DateSerializer)
+                        customSerializers?.map {
+                            @Suppress("UNCHECKED_CAST")
+                            contextual(it.key as KClass<Any>, it.value as KSerializer<Any>)
+                        }
+                    }
+                }.encodeToString(
                     serializer,
                     getData()
                 )
@@ -340,7 +346,7 @@ class Form<K : Any>(
     }
 
     companion object {
-        @OptIn(ImplicitReflectionSerializer::class)
+        @OptIn(UnsafeSerializationApi::class)
         inline fun <reified K : Any> create(
             panel: FormPanel<K>? = null,
             customSerializers: Map<KClass<*>, KSerializer<*>>? = null,

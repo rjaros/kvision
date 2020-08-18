@@ -23,7 +23,7 @@ package pl.treksoft.kvision.test
 
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.panel.Root
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 

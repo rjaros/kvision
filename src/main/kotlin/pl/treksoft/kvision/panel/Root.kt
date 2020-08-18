@@ -31,7 +31,7 @@ import pl.treksoft.kvision.core.Style
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
-import kotlin.browser.document
+import kotlinx.browser.document
 
 /**
  * Root container types.

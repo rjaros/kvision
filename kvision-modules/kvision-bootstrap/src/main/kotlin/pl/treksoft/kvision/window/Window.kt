@@ -284,14 +284,14 @@ open class Window(
                                 this@Window.top = (dragStartY + (me).pageY - dragMouseY).toInt().px
                             }
                         }
-                        kotlin.browser.window.addEventListener("mousemove", moveCallback)
+                        kotlinx.browser.window.addEventListener("mousemove", moveCallback)
                         var upCallback: ((Event) -> Unit)? = null
                         upCallback = {
                             isDrag = false
-                            kotlin.browser.window.removeEventListener("mousemove", moveCallback)
-                            kotlin.browser.window.removeEventListener("mouseup", upCallback)
+                            kotlinx.browser.window.removeEventListener("mousemove", moveCallback)
+                            kotlinx.browser.window.removeEventListener("mouseup", upCallback)
                         }
-                        kotlin.browser.window.addEventListener("mouseup", upCallback)
+                        kotlinx.browser.window.addEventListener("mouseup", upCallback)
                     }
                 }
             }

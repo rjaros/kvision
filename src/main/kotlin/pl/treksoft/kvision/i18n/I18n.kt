@@ -22,7 +22,7 @@
 package pl.treksoft.kvision.i18n
 
 import pl.treksoft.kvision.panel.Root
-import kotlin.browser.window
+import kotlinx.browser.window
 
 /**
  * A singleton object used for translations.

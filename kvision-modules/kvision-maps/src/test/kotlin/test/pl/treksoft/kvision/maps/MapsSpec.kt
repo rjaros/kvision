@@ -31,7 +31,7 @@ import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.px
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

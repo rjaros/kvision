@@ -21,12 +21,11 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.browser.window
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.modules.serializersModuleOf
 import pl.treksoft.kvision.types.JsonDateSerializer
-import kotlin.browser.window
 import kotlin.js.Date
 
 /**
@@ -46,19 +45,19 @@ fun obj(init: dynamic.() -> Unit): dynamic {
  */
 object JSON {
 
-    val plain = Json(context = serializersModuleOf(Date::class, JsonDateSerializer))
+    val plain = Json { serializersModule = serializersModuleOf(Date::class, JsonDateSerializer) }
 
-    val nonstrict = Json(
-        configuration = JsonConfiguration.Stable.copy(ignoreUnknownKeys = true),
-        context = serializersModuleOf(Date::class, JsonDateSerializer)
-    )
+    val nonstrict = Json {
+        ignoreUnknownKeys = true
+        serializersModule = serializersModuleOf(Date::class, JsonDateSerializer)
+    }
 
     /**
      * An extension function to convert Serializable object to JS dynamic object
      * @param serializer a serializer for T
      */
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return kotlin.js.JSON.parse(plain.stringify(serializer, this))
+        return kotlin.js.JSON.parse(plain.encodeToString(serializer, this))
     }
 }
 

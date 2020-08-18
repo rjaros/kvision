@@ -26,7 +26,7 @@ import pl.treksoft.kvision.tabulator.TabulatorOptions
 import pl.treksoft.kvision.tabulator.Tabulator
 import pl.treksoft.kvision.utils.obj
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class TabulatorSpec : DomSpec {

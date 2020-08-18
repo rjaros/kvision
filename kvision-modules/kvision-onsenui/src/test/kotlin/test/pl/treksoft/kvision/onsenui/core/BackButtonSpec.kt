@@ -27,7 +27,7 @@ import pl.treksoft.kvision.onsenui.toolbar.toolbar
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class BackButtonSpec : DomSpec {

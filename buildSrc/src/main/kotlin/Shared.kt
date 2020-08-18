@@ -8,7 +8,7 @@ import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.targets.js.KotlinJsTarget
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
 
 fun Project.repositories() {
     repositories {
@@ -17,6 +17,8 @@ fun Project.repositories() {
         maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
         maven { url = uri("https://kotlin.bintray.com/kotlinx") }
         maven { url = uri("https://dl.bintray.com/kotlin/kotlin-js-wrappers") }
+        maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
         maven {
             url = uri("https://dl.bintray.com/gbaldeck/kotlin")
             metadataSources {
@@ -30,7 +32,7 @@ fun Project.repositories() {
 }
 
 fun KotlinJsProjectExtension.kotlinJsTargets() {
-    target {
+    js {
         val isProductionBuild = project.extra.get("production") as Boolean
         kotlinJsTargets(isProductionBuild)
     }
@@ -43,7 +45,7 @@ fun KotlinMultiplatformExtension.kotlinJsTargets() {
     }
 }
 
-private fun KotlinJsTarget.kotlinJsTargets(isProductionBuild: Boolean) {
+private fun KotlinJsTargetDsl.kotlinJsTargets(isProductionBuild: Boolean) {
     compilations.all {
         kotlinOptions {
             moduleKind = "umd"
@@ -56,7 +58,6 @@ private fun KotlinJsTarget.kotlinJsTargets(isProductionBuild: Boolean) {
     browser {
         testTask {
             useKarma {
-                useConfigDirectory("karma.config.d")
                 useChromeHeadless()
             }
         }

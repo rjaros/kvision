@@ -41,11 +41,3 @@ publishing {
 }
 
 setupPublication()
-
-tasks {
-    getByName("JsJar", Jar::class) {
-        from("${rootProject.buildDir}/js/packages/kvision-${project.name}/package.json") {
-            filter { it.replace("\"main\": \"kotlin/kvision-kvision", "\"main\": \"kvision-kvision") }
-        }
-    }
-}

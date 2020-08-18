@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.browser.window
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.asDeferred
@@ -29,21 +30,20 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.serialization.ImplicitReflectionSerializer
-import kotlinx.serialization.builtins.list
+import kotlinx.serialization.UnsafeSerializationApi
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.serializer
-import kotlinx.serialization.stringify
 import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
-import kotlin.browser.window
 import kotlin.reflect.KClass
 
 /**
  * Client side agent for JSON-RPC remote calls.
  */
 @Suppress("LargeClass", "TooManyFunctions")
-@OptIn(ImplicitReflectionSerializer::class, ExperimentalCoroutinesApi::class)
+@OptIn(UnsafeSerializationApi::class, ExperimentalCoroutinesApi::class)
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
     val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
@@ -61,13 +61,13 @@ open class KVRemoteAgent<T : Any>(
         return callAgent.jsonRpcCall(url, method = method, beforeSend = beforeSend).then {
             try {
                 @Suppress("UNCHECKED_CAST")
-                deserialize<RET>(it, RET::class.js.name)
+                deserialize(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer(), it)
+                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -84,13 +84,13 @@ open class KVRemoteAgent<T : Any>(
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method, beforeSend = beforeSend).then {
             try {
-                deserializeList<RET>(it, RET::class.js.name)
+                deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer().list, it)
+                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -109,13 +109,13 @@ open class KVRemoteAgent<T : Any>(
         return callAgent.jsonRpcCall(url, listOf(data), method, beforeSend).then {
             try {
                 @Suppress("UNCHECKED_CAST")
-                deserialize<RET>(it, RET::class.js.name)
+                deserialize(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer(), it)
+                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -133,13 +133,13 @@ open class KVRemoteAgent<T : Any>(
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method, beforeSend).then {
             try {
-                deserializeList<RET>(it, RET::class.js.name)
+                deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer().list, it)
+                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -159,13 +159,13 @@ open class KVRemoteAgent<T : Any>(
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method, beforeSend).then {
             try {
                 @Suppress("UNCHECKED_CAST")
-                deserialize<RET>(it, RET::class.js.name)
+                deserialize(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer(), it)
+                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -184,13 +184,13 @@ open class KVRemoteAgent<T : Any>(
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method, beforeSend).then {
             try {
-                deserializeList<RET>(it, RET::class.js.name)
+                deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer().list, it)
+                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -211,13 +211,13 @@ open class KVRemoteAgent<T : Any>(
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, beforeSend).then {
             try {
                 @Suppress("UNCHECKED_CAST")
-                deserialize<RET>(it, RET::class.js.name)
+                deserialize(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer(), it)
+                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -237,13 +237,13 @@ open class KVRemoteAgent<T : Any>(
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, beforeSend).then {
             try {
-                deserializeList<RET>(it, RET::class.js.name)
+                deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer().list, it)
+                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -265,13 +265,13 @@ open class KVRemoteAgent<T : Any>(
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, beforeSend).then {
             try {
                 @Suppress("UNCHECKED_CAST")
-                deserialize<RET>(it, RET::class.js.name)
+                deserialize(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer(), it)
+                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -296,13 +296,13 @@ open class KVRemoteAgent<T : Any>(
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, beforeSend).then {
             try {
-                deserializeList<RET>(it, RET::class.js.name)
+                deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer().list, it)
+                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -332,13 +332,13 @@ open class KVRemoteAgent<T : Any>(
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, beforeSend).then {
             try {
                 @Suppress("UNCHECKED_CAST")
-                deserialize<RET>(it, RET::class.js.name)
+                deserialize(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer(), it)
+                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -367,13 +367,13 @@ open class KVRemoteAgent<T : Any>(
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, beforeSend).then {
             try {
-                deserializeList<RET>(it, RET::class.js.name)
+                deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer().list, it)
+                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -405,13 +405,13 @@ open class KVRemoteAgent<T : Any>(
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, beforeSend).then {
             try {
                 @Suppress("UNCHECKED_CAST")
-                deserialize<RET>(it, RET::class.js.name)
+                deserialize(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer(), it)
+                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -442,13 +442,13 @@ open class KVRemoteAgent<T : Any>(
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, beforeSend).then {
             try {
-                deserializeList<RET>(it, RET::class.js.name)
+                deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
                 try {
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.parse(RET::class.serializer().list, it)
+                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -478,7 +478,7 @@ open class KVRemoteAgent<T : Any>(
                 val requestJob = launch {
                     for (par1 in requestChannel) {
                         val param = serialize(par1)
-                        val str = JSON.plain.stringify(
+                        val str = JSON.plain.encodeToString(
                             JsonRpcRequest(
                                 0,
                                 url,
@@ -498,13 +498,13 @@ open class KVRemoteAgent<T : Any>(
                         val data = kotlin.js.JSON.parse<JsonRpcResponse>(str).result ?: ""
                         val par2 = try {
                             @Suppress("UNCHECKED_CAST")
-                            deserialize<PAR2>(data, PAR2::class.js.name)
+                            deserialize(data, PAR2::class.js.name)
                         } catch (t: NotStandardTypeException) {
                             try {
                                 @Suppress("UNCHECKED_CAST")
                                 tryDeserializeEnum(PAR2::class as KClass<Any>, data) as PAR2
                             } catch (t: NotEnumTypeException) {
-                                JSON.nonstrict.parse(PAR2::class.serializer(), data)
+                                JSON.nonstrict.decodeFromString(PAR2::class.serializer(), data)
                             }
                         }
                         responseChannel.send(par2)
@@ -556,7 +556,7 @@ open class KVRemoteAgent<T : Any>(
                 val requestJob = launch {
                     for (par1 in requestChannel) {
                         val param = serialize(par1)
-                        val str = JSON.plain.stringify(
+                        val str = JSON.plain.encodeToString(
                             JsonRpcRequest(
                                 0,
                                 url,
@@ -575,13 +575,13 @@ open class KVRemoteAgent<T : Any>(
                         val str = socket.receiveOrNull() ?: break
                         val data = kotlin.js.JSON.parse<JsonRpcResponse>(str).result ?: ""
                         val par2 = try {
-                            deserializeList<PAR2>(data, PAR2::class.js.name)
+                            deserializeList(data, PAR2::class.js.name)
                         } catch (t: NotStandardTypeException) {
                             try {
                                 @Suppress("UNCHECKED_CAST")
                                 tryDeserializeEnumList(PAR2::class as KClass<Any>, data) as List<PAR2>
                             } catch (t: NotEnumTypeException) {
-                                JSON.nonstrict.parse(PAR2::class.serializer().list, data)
+                                JSON.nonstrict.decodeFromString(ListSerializer(PAR2::class.serializer()), data)
                             }
                         }
                         responseChannel.send(par2)

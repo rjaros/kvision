@@ -29,9 +29,9 @@ import com.github.snabbdom.datasetModule
 import com.github.snabbdom.eventListenersModule
 import com.github.snabbdom.propsModule
 import com.github.snabbdom.styleModule
+import kotlinx.browser.document
+import kotlinx.dom.clear
 import org.w3c.dom.HTMLElement
-import kotlin.browser.document
-import kotlin.dom.clear
 
 /**
  * @suppress

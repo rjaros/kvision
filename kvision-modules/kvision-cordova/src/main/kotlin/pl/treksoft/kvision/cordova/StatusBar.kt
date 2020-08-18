@@ -23,7 +23,7 @@
 package pl.treksoft.kvision.cordova
 
 import pl.treksoft.kvision.utils.toHexString
-import kotlin.browser.window
+import kotlinx.browser.window
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

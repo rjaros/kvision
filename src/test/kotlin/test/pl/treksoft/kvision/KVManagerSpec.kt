@@ -26,7 +26,7 @@ import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.utils.snAttrs
 import pl.treksoft.kvision.utils.snOpt
 import pl.treksoft.kvision.utils.snStyle
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

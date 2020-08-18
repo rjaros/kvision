@@ -28,7 +28,7 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.check.CheckInput
 import pl.treksoft.kvision.form.check.CheckInputType
 import pl.treksoft.kvision.utils.set
-import kotlin.browser.window
+import kotlinx.browser.window
 
 /**
  * OnsenUI radio button input component.

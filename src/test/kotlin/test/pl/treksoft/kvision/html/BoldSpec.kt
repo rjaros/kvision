@@ -24,7 +24,7 @@ package test.pl.treksoft.kvision.html
 import pl.treksoft.kvision.html.Bold
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class BoldSpec : DomSpec {

@@ -25,7 +25,7 @@ import pl.treksoft.kvision.form.select.SelectInput
 import pl.treksoft.kvision.form.select.SelectWidthType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
