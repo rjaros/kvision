@@ -53,7 +53,7 @@ allows to build fullstack applications with shared common code.
 - Supports [React](https://reactjs.org/) components with KVision DSL and built-in state management.
 - Full support for [Onsen UI](https://onsen.io/) mobile web components with type-safe Kotlin API and DSL builders.
 - Supports an observer pattern for data bindings.
-- Internationalization support based on [Jed](http://messageformat.github.io/Jed/) library and [gettext](https://www.gnu.org/software/gettext/) translations. 
+- Internationalization support based on [gettext](https://www.gnu.org/software/gettext/) translations and [gettext.js](https://github.com/guillaumepotier/gettext.js) library. 
 - Easy to use Drag & Drop support.
 - Support for jQuery animations and effects.
 - Type-safe REST connectivity.
