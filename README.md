@@ -119,12 +119,15 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
 
 ### Hello world
 
+```kotlin
         root("root") {
             span("Hello world!")
         }
+```
 
 ### Basic components interactions using type safe DSL builders
 
+```kotlin
         root("root") {
             hPanel(spacing = 20, alignItems = FlexAlignItems.CENTER) {
                 val label = span("Not yet clicked.")
@@ -134,9 +137,11 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
                 }
             }
         }
+```
 
 ### Tab panel with JavaScript routing
 
+```kotlin
         val firstPanel = Div("First")
         val secondPanel = Div("Second")
         val thirdPanel = Div("Third")
@@ -148,9 +153,11 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
                 addTab("Third", thirdPanel, route = "/third")
             }
         }
+```
 
 ### Type safe forms
 
+```kotlin
         @Serializable
         data class Model(val username: String? = null, val password: String? = null)
 
@@ -165,9 +172,11 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
                 })
             }
         }
-        
+```        
+
 ### Observer design pattern
 
+```kotlin
         data class Data(val text: String)
         
         val model = observableListOf(
@@ -181,3 +190,4 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
             }, HPanel(spacing = 10))
         }
         model.reverse()
+```
