@@ -27,6 +27,7 @@ import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
 import kotlin.js.Promise
 import kotlin.js.JSON as NativeJSON
 

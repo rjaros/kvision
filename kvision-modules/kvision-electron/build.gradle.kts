@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("js")
     id("maven-publish")
@@ -13,14 +9,24 @@ repositories()
 val nodeJsVersion: String by project
 
 kotlin {
-    kotlinJsTargets()
+    js {
+        compilations.all {
+            kotlinOptions {
+                moduleKind = "umd"
+            }
+        }
+        nodejs {
+            testTask {
+                useKarma()
+            }
+        }
+    }
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
     api(rootProject)
     api("org.jetbrains.kotlinx:kotlinx-nodejs:$nodeJsVersion")
-    implementation(npm("electron", "^8.4.1"))
+    implementation(npm("electron", "^9.2.1"))
     testImplementation(kotlin("test-js"))
 }
 

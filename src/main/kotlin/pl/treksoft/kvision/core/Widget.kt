@@ -30,6 +30,7 @@ import org.w3c.dom.Node
 import org.w3c.dom.events.MouseEvent
 import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.i18n.I18n.trans

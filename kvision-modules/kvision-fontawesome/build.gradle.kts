@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("js")
     id("maven-publish")
@@ -14,9 +10,8 @@ kotlin {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("@fortawesome/fontawesome-free", "^5.13.0"))
+    implementation(npm("@fortawesome/fontawesome-free", "^5.14.0"))
     testImplementation(kotlin("test-js"))
 }
 

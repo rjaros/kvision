@@ -23,6 +23,7 @@ package pl.treksoft.kvision.form.time
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.form.FormInput

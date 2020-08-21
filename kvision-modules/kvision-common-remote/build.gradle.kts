@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
@@ -22,20 +18,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
             }
         }
         val jsMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-js"))
                 implementation("pl.treksoft:jquery-kotlin:$jqueryKotlinVersion")
             }
         }
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib"))
                 implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
             }
         }

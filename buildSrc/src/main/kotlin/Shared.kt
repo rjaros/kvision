@@ -2,7 +2,6 @@ import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
@@ -19,13 +18,6 @@ fun Project.repositories() {
         maven { url = uri("https://dl.bintray.com/kotlin/kotlin-js-wrappers") }
         maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
         maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
-        maven {
-            url = uri("https://dl.bintray.com/gbaldeck/kotlin")
-            metadataSources {
-                mavenPom()
-                artifact()
-            }
-        }
         maven { url = uri("https://dl.bintray.com/rjaros/kotlin") }
         mavenLocal()
     }
@@ -33,26 +25,20 @@ fun Project.repositories() {
 
 fun KotlinJsProjectExtension.kotlinJsTargets() {
     js {
-        val isProductionBuild = project.extra.get("production") as Boolean
-        kotlinJsTargets(isProductionBuild)
+        kotlinJsTargets()
     }
 }
 
 fun KotlinMultiplatformExtension.kotlinJsTargets() {
     js {
-        val isProductionBuild = project.extra.get("production") as Boolean
-        kotlinJsTargets(isProductionBuild)
+        kotlinJsTargets()
     }
 }
 
-private fun KotlinJsTargetDsl.kotlinJsTargets(isProductionBuild: Boolean) {
+private fun KotlinJsTargetDsl.kotlinJsTargets() {
     compilations.all {
         kotlinOptions {
             moduleKind = "umd"
-            sourceMap = !isProductionBuild
-            if (!isProductionBuild) {
-                sourceMapEmbedSources = "always"
-            }
         }
     }
     browser {

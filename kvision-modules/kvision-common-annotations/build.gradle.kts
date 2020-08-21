@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("multiplatform")
     id("maven-publish")
@@ -18,18 +14,15 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
             }
         }
         val jsMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-js"))
             }
         }
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib"))
             }
         }
     }

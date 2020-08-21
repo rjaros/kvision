@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("js")
     id("maven-publish")
@@ -14,10 +10,9 @@ kotlin {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
     api(rootProject)
     implementation(npm("popper.js", "^1.16.1"))
-    implementation(npm("bootstrap", "^4.5.0"))
+    implementation(npm("bootstrap", "^4.5.2"))
     implementation(npm("awesome-bootstrap-checkbox", "^1.0.1"))
     implementation(npm("element-resize-event", "^3.0.3"))
     testImplementation(kotlin("test-js"))

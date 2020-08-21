@@ -21,35 +21,31 @@
  */
 package pl.treksoft.kvision.gradle
 
-import org.gradle.api.Project
-import org.gradle.api.tasks.compile.AbstractCompile
-import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
+import org.gradle.api.provider.Provider
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
-import org.jetbrains.kotlin.gradle.plugin.KotlinGradleSubplugin
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
 import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
 import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 
-class KVisionGradleSubplugin : KotlinGradleSubplugin<AbstractCompile> {
-    override fun apply(
-        project: Project,
-        kotlinCompile: AbstractCompile,
-        javaCompile: AbstractCompile?,
-        variantData: Any?,
-        androidProjectHandler: Any?,
-        kotlinCompilation: KotlinCompilation<KotlinCommonOptions>?
-    ): List<SubpluginOption> {
-        return emptyList()
-    }
+class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
 
-    override fun isApplicable(project: Project, task: AbstractCompile) =
-        project.plugins.hasPlugin(KVisionGradlePlugin::class.java)
+    override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
+        val project = kotlinCompilation.target.project
+        return project.provider {
+            val options = mutableListOf<SubpluginOption>()
+            options
+        }
+    }
 
     override fun getCompilerPluginId(): String = "KVisionPlugin"
 
     override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
         groupId = "pl.treksoft",
         artifactId = "kvision-compiler-plugin",
-        version = "3.13.0"
+        version = "3.13.0-SNAPSHOT"
     )
 
+    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean {
+        return true
+    }
 }

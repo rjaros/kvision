@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.form
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.decodeFromDynamic
 import kotlinx.serialization.modules.SerializersModule
@@ -57,6 +57,7 @@ internal data class FieldParams<in F : FormControl>(
  * @param serializer a serializer for model type
  * @param customSerializers a map of custom serializers for model type
  */
+@OptIn(ExperimentalSerializationApi::class)
 @Suppress("TooManyFunctions")
 class Form<K : Any>(
     private val panel: FormPanel<K>? = null,
@@ -346,13 +347,12 @@ class Form<K : Any>(
     }
 
     companion object {
-        @OptIn(UnsafeSerializationApi::class)
         inline fun <reified K : Any> create(
             panel: FormPanel<K>? = null,
             customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
             noinline init: (Form<K>.() -> Unit)? = null
         ): Form<K> {
-            val form = Form(panel, K::class.serializer(), customSerializers)
+            val form = Form(panel, serializer(), customSerializers)
             init?.invoke(form)
             return form
         }

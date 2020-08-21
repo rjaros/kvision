@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("js")
     id("maven-publish")
@@ -14,9 +10,8 @@ kotlin {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
     api(rootProject)
-    implementation(npm("bootstrap", "^4.5.0"))
+    implementation(npm("bootstrap", "^4.5.2"))
     testImplementation(kotlin("test-js"))
 }
 

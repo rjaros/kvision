@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
@@ -24,23 +20,19 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
                 api(project(":kvision-modules:kvision-common-annotations"))
                 api(project(":kvision-modules:kvision-common-types"))
                 api(project(":kvision-modules:kvision-common-remote"))
-                api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
             }
         }
         val jsMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-js"))
             }
         }
         val jvmMain by getting {
-            dependsOn(commonMain)
             dependencies {
-                implementation(kotlin("stdlib"))
                 implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
                 api("io.vertx:vertx-web:$vertxVersion")

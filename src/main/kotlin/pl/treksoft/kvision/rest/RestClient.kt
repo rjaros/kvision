@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.rest
 
 import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.decodeFromDynamic
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
@@ -31,6 +31,7 @@ import kotlinx.serialization.serializer
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
 import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.JSON.toObj
@@ -94,6 +95,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
+    @OptIn(ExperimentalSerializationApi::class)
     fun <T : Any> remoteCall(
         url: String,
         data: dynamic = null,
@@ -153,6 +155,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
+    @OptIn(ExperimentalSerializationApi::class)
     fun <T : Any, V : Any> remoteCall(
         url: String,
         serializer: SerializationStrategy<V>,
@@ -195,7 +198,6 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified T : Any> call(
         url: String,
         data: dynamic = null,
@@ -204,7 +206,7 @@ open class RestClient {
         noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
-        return remoteCall(url, data, T::class.serializer(), method, contentType, beforeSend, transform)
+        return remoteCall(url, data, serializer(), method, contentType, beforeSend, transform)
     }
 
     /**
@@ -216,7 +218,6 @@ open class RestClient {
      * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified V : Any> call(
         url: String,
         data: V,
@@ -226,7 +227,7 @@ open class RestClient {
     ): Promise<dynamic> {
         return remoteCall(
             url,
-            V::class.serializer(),
+            serializer(),
             data,
             method,
             contentType,
@@ -245,7 +246,6 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <T : Any, reified V : Any> call(
         url: String,
         data: V,
@@ -257,7 +257,7 @@ open class RestClient {
     ): Promise<T> {
         return remoteCall(
             url,
-            V::class.serializer(),
+            serializer(),
             data,
             deserializer,
             method,
@@ -278,7 +278,6 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified T : Any, V : Any> call(
         url: String,
         serializer: SerializationStrategy<V>,
@@ -292,7 +291,7 @@ open class RestClient {
             url,
             serializer,
             data,
-            T::class.serializer(),
+            serializer(),
             method,
             contentType,
             beforeSend,
@@ -310,7 +309,6 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified T : Any, reified V : Any> call(
         url: String,
         data: V,
@@ -321,9 +319,9 @@ open class RestClient {
     ): Promise<T> {
         return remoteCall(
             url,
-            V::class.serializer(),
+            serializer(),
             data,
-            T::class.serializer(),
+            serializer(),
             method,
             contentType,
             beforeSend,
@@ -386,6 +384,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
+    @OptIn(ExperimentalSerializationApi::class)
     fun <T : Any> remoteRequest(
         url: String,
         data: dynamic = null,
@@ -447,6 +446,7 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
+    @OptIn(ExperimentalSerializationApi::class)
     fun <T : Any, V : Any> remoteRequest(
         url: String,
         serializer: SerializationStrategy<V>,
@@ -491,7 +491,6 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified T : Any> request(
         url: String,
         data: dynamic = null,
@@ -500,7 +499,7 @@ open class RestClient {
         noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
-        return remoteRequest(url, data, T::class.serializer(), method, contentType, beforeSend, transform)
+        return remoteRequest(url, data, serializer(), method, contentType, beforeSend, transform)
     }
 
     /**
@@ -512,7 +511,6 @@ open class RestClient {
      * @param beforeSend a function to set request parameters
      * @return a promise of the response
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified V : Any> request(
         url: String,
         data: V,
@@ -522,7 +520,7 @@ open class RestClient {
     ): Promise<Response<dynamic>> {
         return remoteRequest(
             url,
-            V::class.serializer(),
+            serializer(),
             data,
             method,
             contentType,
@@ -541,7 +539,6 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <T : Any, reified V : Any> request(
         url: String,
         data: V,
@@ -553,7 +550,7 @@ open class RestClient {
     ): Promise<Response<T>> {
         return remoteRequest(
             url,
-            V::class.serializer(),
+            serializer(),
             data,
             deserializer,
             method,
@@ -574,7 +571,6 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified T : Any, V : Any> request(
         url: String,
         serializer: SerializationStrategy<V>,
@@ -588,7 +584,7 @@ open class RestClient {
             url,
             serializer,
             data,
-            T::class.serializer(),
+            serializer(),
             method,
             contentType,
             beforeSend,
@@ -606,7 +602,6 @@ open class RestClient {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified T : Any, reified V : Any> request(
         url: String,
         data: V,
@@ -617,9 +612,9 @@ open class RestClient {
     ): Promise<Response<T>> {
         return remoteRequest(
             url,
-            V::class.serializer(),
+            serializer(),
             data,
-            T::class.serializer(),
+            serializer(),
             method,
             contentType,
             beforeSend,

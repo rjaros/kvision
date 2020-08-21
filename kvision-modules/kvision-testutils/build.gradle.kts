@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("js")
     id("maven-publish")
@@ -14,7 +10,6 @@ kotlin {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
     api(rootProject)
     testImplementation(kotlin("test-js"))
 }
@@ -25,9 +20,9 @@ val sourcesJar by tasks.registering(Jar::class) {
 }
 
 val testJar by tasks.registering(Jar::class) {
-//    dependsOn("testClasses")
+    dependsOn("testClasses")
     archiveClassifier.set("tests")
-    from(kotlin.target.compilations["test"].output.allOutputs)
+    from(kotlin.js().compilations["test"].output.allOutputs)
 }
 
 publishing {

@@ -86,9 +86,6 @@ class KVProcessor : AbstractProcessor() {
                         appendLine("//")
                         appendLine("package $packageName")
                         appendLine()
-                        appendLine("import kotlinx.coroutines.CoroutineStart")
-                        appendLine("import kotlinx.coroutines.GlobalScope")
-                        appendLine("import kotlinx.coroutines.launch")
                         appendLine("import pl.treksoft.kvision.remote.HttpMethod")
                         appendLine("import pl.treksoft.kvision.remote.KVServiceManager")
                         appendLine()
@@ -96,7 +93,6 @@ class KVProcessor : AbstractProcessor() {
                         appendLine()
                         appendLine("object ${baseName}Manager : KVServiceManager<$baseName>($baseName::class) {")
                         appendLine("    init {")
-                        appendLine("        GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {")
                         cl.methods().forEach {
                             val params = it.allParameters.drop(1)
                             val wsMethod =
@@ -124,16 +120,15 @@ class KVProcessor : AbstractProcessor() {
                             }
                             when {
                                 it.returnType.toString().startsWith("RemoteData") ->
-                                    appendLine("            bindTabulatorRemote($iName::${it.name}, $route)")
+                                    appendLine("        bindTabulatorRemote($iName::${it.name}, $route)")
                                 wsMethod -> if (route == null) {
-                                    appendLine("            bind($iName::${it.name}, null as String?)")
+                                    appendLine("        bind($iName::${it.name}, null as String?)")
                                 } else {
-                                    appendLine("            bind($iName::${it.name}, $route)")
+                                    appendLine("        bind($iName::${it.name}, $route)")
                                 }
-                                else -> appendLine("            bind($iName::${it.name}, $method, $route)")
+                                else -> appendLine("        bind($iName::${it.name}, $method, $route)")
                             }
                         }
-                        appendLine("        }")
                         appendLine("    }")
                         appendLine("}")
                     }.toString()

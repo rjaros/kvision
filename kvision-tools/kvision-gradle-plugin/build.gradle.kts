@@ -14,7 +14,7 @@ gradlePlugin {
         isAutomatedPublishing = false
         create("simplePlugin") {
             id = "pl.treksoft.kvision"
-            implementationClass = "pl.treksoft.kvision.gradle.KVisionGradlePlugin"
+            implementationClass = "pl.treksoft.kvision.gradle.KVisionGradleSubplugin"
         }
     }
 }

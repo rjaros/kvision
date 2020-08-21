@@ -17,7 +17,7 @@
 4. Change the version number at the bottom of `kvision-tools/kvision-gradle-plugin/src/main/kotlin/pl/treksoft/kvision/gradle/KVisionGradleSubplugin.kt` file to the same number and suffix (keep those version numbers always in sync). 
 5. Make your changes to KVision code.
 6. Run tests with `./gradlew test` command to check if everything is OK.
-7. Compile and publish artifacts to your local Maven repository with `./gradlew -Pprod=true publishToMavenLocal` command.
+7. Compile and publish artifacts to your local Maven repository with `./gradlew publishToMavenLocal` command.
 8. Use your version of KVision by specifying the correct version number in your application (in `gradle.properties` file). Remember to clean your project every time you publish new version of the framework.
 
 ## How to create new module

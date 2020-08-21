@@ -22,6 +22,8 @@
 package test.pl.treksoft.kvision.panel
 
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.get
 import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.TabPanel

@@ -25,8 +25,7 @@
 @file:Suppress(
     "INTERFACE_WITH_SUPERCLASS",
     "OVERRIDING_FINAL_MEMBER",
-    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
-    "CONFLICTING_OVERLOADS"
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE"
 )
 
 package pl.treksoft.kvision.electron.electron
@@ -180,22 +179,6 @@ external interface App : EventEmitter {
         listener: (event: Event, accessibilitySupportEnabled: Boolean) -> Unit
     ): App /* this */
 
-    fun on(event: String /* 'activate' */, listener: (event: Event, hasVisibleWindows: Boolean) -> Unit): App /* this */
-    fun once(
-        event: String /* 'activate' */,
-        listener: (event: Event, hasVisibleWindows: Boolean) -> Unit
-    ): App /* this */
-
-    fun addListener(
-        event: String /* 'activate' */,
-        listener: (event: Event, hasVisibleWindows: Boolean) -> Unit
-    ): App /* this */
-
-    fun removeListener(
-        event: String /* 'activate' */,
-        listener: (event: Event, hasVisibleWindows: Boolean) -> Unit
-    ): App /* this */
-
     fun on(
         event: String /* 'activity-was-continued' | 'continue-activity' | 'update-activity-state' */,
         listener: (event: Event, type: String, userInfo: Any) -> Unit
@@ -334,22 +317,6 @@ external interface App : EventEmitter {
     fun removeListener(
         event: String /* 'gpu-info-update' | 'will-finish-launching' | 'window-all-closed' */,
         listener: Function<*>
-    ): App /* this */
-
-    fun on(event: String /* 'gpu-process-crashed' */, listener: (event: Event, killed: Boolean) -> Unit): App /* this */
-    fun once(
-        event: String /* 'gpu-process-crashed' */,
-        listener: (event: Event, killed: Boolean) -> Unit
-    ): App /* this */
-
-    fun addListener(
-        event: String /* 'gpu-process-crashed' */,
-        listener: (event: Event, killed: Boolean) -> Unit
-    ): App /* this */
-
-    fun removeListener(
-        event: String /* 'gpu-process-crashed' */,
-        listener: (event: Event, killed: Boolean) -> Unit
     ): App /* this */
 
     fun on(
@@ -376,10 +343,6 @@ external interface App : EventEmitter {
     fun once(event: String /* 'open-file' */, listener: (event: Event, path: String) -> Unit): App /* this */
     fun addListener(event: String /* 'open-file' */, listener: (event: Event, path: String) -> Unit): App /* this */
     fun removeListener(event: String /* 'open-file' */, listener: (event: Event, path: String) -> Unit): App /* this */
-    fun on(event: String /* 'open-url' */, listener: (event: Event, url: String) -> Unit): App /* this */
-    fun once(event: String /* 'open-url' */, listener: (event: Event, url: String) -> Unit): App /* this */
-    fun addListener(event: String /* 'open-url' */, listener: (event: Event, url: String) -> Unit): App /* this */
-    fun removeListener(event: String /* 'open-url' */, listener: (event: Event, url: String) -> Unit): App /* this */
     fun on(event: String /* 'quit' */, listener: (event: Event, exitCode: Number) -> Unit): App /* this */
     fun once(event: String /* 'quit' */, listener: (event: Event, exitCode: Number) -> Unit): App /* this */
     fun addListener(event: String /* 'quit' */, listener: (event: Event, exitCode: Number) -> Unit): App /* this */
@@ -406,26 +369,6 @@ external interface App : EventEmitter {
     fun removeListener(
         event: String /* 'remote-get-builtin' | 'remote-require' */,
         listener: (event: Event, webContents: WebContents, moduleName: String) -> Unit
-    ): App /* this */
-
-    fun on(
-        event: String /* 'remote-get-global' */,
-        listener: (event: Event, webContents: WebContents, globalName: String) -> Unit
-    ): App /* this */
-
-    fun once(
-        event: String /* 'remote-get-global' */,
-        listener: (event: Event, webContents: WebContents, globalName: String) -> Unit
-    ): App /* this */
-
-    fun addListener(
-        event: String /* 'remote-get-global' */,
-        listener: (event: Event, webContents: WebContents, globalName: String) -> Unit
-    ): App /* this */
-
-    fun removeListener(
-        event: String /* 'remote-get-global' */,
-        listener: (event: Event, webContents: WebContents, globalName: String) -> Unit
     ): App /* this */
 
     fun on(
@@ -532,21 +475,6 @@ external interface App : EventEmitter {
     fun once(event: String /* 'session-created' */, listener: (session: Session) -> Unit): App /* this */
     fun addListener(event: String /* 'session-created' */, listener: (session: Session) -> Unit): App /* this */
     fun removeListener(event: String /* 'session-created' */, listener: (session: Session) -> Unit): App /* this */
-    fun on(event: String /* 'will-continue-activity' */, listener: (event: Event, type: String) -> Unit): App /* this */
-    fun once(
-        event: String /* 'will-continue-activity' */,
-        listener: (event: Event, type: String) -> Unit
-    ): App /* this */
-
-    fun addListener(
-        event: String /* 'will-continue-activity' */,
-        listener: (event: Event, type: String) -> Unit
-    ): App /* this */
-
-    fun removeListener(
-        event: String /* 'will-continue-activity' */,
-        listener: (event: Event, type: String) -> Unit
-    ): App /* this */
 
     fun addRecentDocument(path: String)
     fun clearRecentDocuments()
@@ -807,26 +735,6 @@ external open class BrowserWindow(options: BrowserWindowConstructorOptions = def
     open fun removeListener(
         event: String /* 'rotate-gesture' */,
         listener: (event: Event, rotation: Number) -> Unit
-    ): BrowserWindow /* this */
-
-    open fun on(
-        event: String /* 'swipe' */,
-        listener: (event: Event, direction: String) -> Unit
-    ): BrowserWindow /* this */
-
-    open fun once(
-        event: String /* 'swipe' */,
-        listener: (event: Event, direction: String) -> Unit
-    ): BrowserWindow /* this */
-
-    open fun addListener(
-        event: String /* 'swipe' */,
-        listener: (event: Event, direction: String) -> Unit
-    ): BrowserWindow /* this */
-
-    open fun removeListener(
-        event: String /* 'swipe' */,
-        listener: (event: Event, direction: String) -> Unit
     ): BrowserWindow /* this */
 
     open fun on(
@@ -2156,26 +2064,6 @@ external interface Screen : EventEmitter {
         listener: (event: Event, display: Display, changedMetrics: Array<String>) -> Unit
     ): Screen /* this */
 
-    fun on(
-        event: String /* 'display-removed' */,
-        listener: (event: Event, oldDisplay: Display) -> Unit
-    ): Screen /* this */
-
-    fun once(
-        event: String /* 'display-removed' */,
-        listener: (event: Event, oldDisplay: Display) -> Unit
-    ): Screen /* this */
-
-    fun addListener(
-        event: String /* 'display-removed' */,
-        listener: (event: Event, oldDisplay: Display) -> Unit
-    ): Screen /* this */
-
-    fun removeListener(
-        event: String /* 'display-removed' */,
-        listener: (event: Event, oldDisplay: Display) -> Unit
-    ): Screen /* this */
-
     fun dipToScreenPoint(point: Point): Point
     fun dipToScreenRect(window: BrowserWindow?, rect: Rectangle): Rectangle
     fun getAllDisplays(): Array<Display>
@@ -2424,26 +2312,6 @@ external interface SystemPreferences : EventEmitter {
     fun removeListener(
         event: String /* 'high-contrast-color-scheme-changed' */,
         listener: (event: Event, highContrastColorScheme: Boolean) -> Unit
-    ): SystemPreferences /* this */
-
-    fun on(
-        event: String /* 'inverted-color-scheme-changed' */,
-        listener: (event: Event, invertedColorScheme: Boolean) -> Unit
-    ): SystemPreferences /* this */
-
-    fun once(
-        event: String /* 'inverted-color-scheme-changed' */,
-        listener: (event: Event, invertedColorScheme: Boolean) -> Unit
-    ): SystemPreferences /* this */
-
-    fun addListener(
-        event: String /* 'inverted-color-scheme-changed' */,
-        listener: (event: Event, invertedColorScheme: Boolean) -> Unit
-    ): SystemPreferences /* this */
-
-    fun removeListener(
-        event: String /* 'inverted-color-scheme-changed' */,
-        listener: (event: Event, invertedColorScheme: Boolean) -> Unit
     ): SystemPreferences /* this */
 
     fun askForMediaAccess(mediaType: String /* 'microphone' | 'camera' */): Promise<Boolean>
@@ -3335,26 +3203,6 @@ external open class WebContents : EventEmitter {
     ): WebContents /* this */
 
     open fun on(
-        event: String /* 'remote-get-global' */,
-        listener: (event: IpcMainEvent, globalName: String) -> Unit
-    ): WebContents /* this */
-
-    open fun once(
-        event: String /* 'remote-get-global' */,
-        listener: (event: IpcMainEvent, globalName: String) -> Unit
-    ): WebContents /* this */
-
-    open fun addListener(
-        event: String /* 'remote-get-global' */,
-        listener: (event: IpcMainEvent, globalName: String) -> Unit
-    ): WebContents /* this */
-
-    open fun removeListener(
-        event: String /* 'remote-get-global' */,
-        listener: (event: IpcMainEvent, globalName: String) -> Unit
-    ): WebContents /* this */
-
-    open fun on(
         event: String /* 'remote-get-guest-web-contents' */,
         listener: (event: IpcMainEvent, guestWebContents: WebContents) -> Unit
     ): WebContents /* this */
@@ -3472,26 +3320,6 @@ external open class WebContents : EventEmitter {
     open fun removeListener(
         event: String /* 'will-attach-webview' */,
         listener: (event: Event, webPreferences: WebPreferences, params: Record<String, String>) -> Unit
-    ): WebContents /* this */
-
-    open fun on(
-        event: String /* 'zoom-changed' */,
-        listener: (event: Event, zoomDirection: String /* 'in' | 'out' */) -> Unit
-    ): WebContents /* this */
-
-    open fun once(
-        event: String /* 'zoom-changed' */,
-        listener: (event: Event, zoomDirection: String /* 'in' | 'out' */) -> Unit
-    ): WebContents /* this */
-
-    open fun addListener(
-        event: String /* 'zoom-changed' */,
-        listener: (event: Event, zoomDirection: String /* 'in' | 'out' */) -> Unit
-    ): WebContents /* this */
-
-    open fun removeListener(
-        event: String /* 'zoom-changed' */,
-        listener: (event: Event, zoomDirection: String /* 'in' | 'out' */) -> Unit
     ): WebContents /* this */
 
     open fun addWorkSpace(path: String)

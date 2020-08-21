@@ -22,7 +22,6 @@
 package pl.treksoft.kvision.html
 
 import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.utils.JSON.toObj
@@ -67,7 +66,6 @@ fun <K> Template.setData(obj: K, serializer: SerializationStrategy<K>) {
 /**
  * Extension function to set serializable object as a template data.
  */
-@OptIn(UnsafeSerializationApi::class)
 inline fun <reified K : Any> Template.setData(obj: K) {
-    this.setData(obj, K::class.serializer())
+    this.setData(obj, serializer())
 }

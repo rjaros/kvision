@@ -21,11 +21,13 @@
  */
 package test.pl.treksoft.kvision
 
+import kotlinx.browser.document
 import org.w3c.dom.Element
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.get
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.Root
-import kotlinx.browser.document
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 

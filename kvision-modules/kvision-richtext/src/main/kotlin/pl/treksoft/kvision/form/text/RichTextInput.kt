@@ -23,6 +23,7 @@ package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.utils.set

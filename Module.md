@@ -37,6 +37,10 @@ Bootstrap dropdown component with support for navigation bars and context menus.
 
 # Package pl.treksoft.kvision.electron
 
+Globals for Electron API.
+
+# Package pl.treksoft.kvision.electron.electron
+
 Kotlin bindings for Electron API.
 
 # Package pl.treksoft.kvision.electron.nodejs

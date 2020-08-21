@@ -22,6 +22,8 @@
 package test.pl.treksoft.kvision.modal
 
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.get
 import pl.treksoft.kvision.modal.Alert
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec

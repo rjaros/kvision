@@ -23,6 +23,7 @@ package pl.treksoft.kvision.navbar
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.jquery.invoke
 import pl.treksoft.kvision.core.BsBgColor
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container

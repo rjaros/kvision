@@ -23,7 +23,6 @@ package pl.treksoft.kvision.form
 
 import com.github.snabbdom.VNode
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
@@ -471,7 +470,6 @@ open class FormPanel<K : Any>(
 
     companion object {
 
-        @OptIn(UnsafeSerializationApi::class)
         inline fun <reified K : Any> create(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
             type: FormType? = null, condensed: Boolean = false,
@@ -488,7 +486,7 @@ open class FormPanel<K : Any>(
                     condensed,
                     horizRatio,
                     classes,
-                    K::class.serializer(),
+                    serializer<K>(),
                     customSerializers
                 )
             init?.invoke(formPanel)

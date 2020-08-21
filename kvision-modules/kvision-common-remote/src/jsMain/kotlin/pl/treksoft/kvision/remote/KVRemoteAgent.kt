@@ -30,7 +30,7 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.serialization.UnsafeSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.serializer
@@ -43,7 +43,7 @@ import kotlin.reflect.KClass
  * Client side agent for JSON-RPC remote calls.
  */
 @Suppress("LargeClass", "TooManyFunctions")
-@OptIn(UnsafeSerializationApi::class, ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class, InternalSerializationApi::class)
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
     val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null

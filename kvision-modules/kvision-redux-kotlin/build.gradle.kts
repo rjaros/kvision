@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     kotlin("js")
     id("maven-publish")
@@ -18,7 +14,6 @@ kotlin {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
     api(rootProject)
     api("org.reduxkotlin:redux-kotlin-js:$reduxKotlinVersion")
     api("org.reduxkotlin:redux-kotlin-thunk-js:$reduxKotlinThunkVersion")

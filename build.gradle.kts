@@ -1,7 +1,3 @@
-buildscript {
-    extra.set("production", (findProperty("prod") ?: findProperty("production") ?: "false") == "true")
-}
-
 plugins {
     val kotlinVersion: String by System.getProperties()
     id("kotlinx-serialization") version kotlinVersion
@@ -29,9 +25,8 @@ kotlin {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
     api(project(":kvision-modules:kvision-common-types"))
-    api("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serializationVersion")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-core-js:$serializationVersion")
     api("com.github.snabbdom:snabbdom-kotlin:$snabbdomKotlinVersion")
     api("pl.treksoft:navigo-kotlin:$navigoKotlinVersion")
     api("pl.treksoft:jquery-kotlin:$jqueryKotlinVersion")
@@ -46,14 +41,12 @@ dependencies {
     implementation(npm("uglifyjs-webpack-plugin", "^2.2.0"))
     implementation(npm("file-loader", "^6.0.0"))
     implementation(npm("url-loader", "^4.1.0"))
-    implementation(npm("jquery", "^3.4.1"))
+    implementation(npm("jquery", "^3.5.1"))
     implementation(npm("fecha", "^4.2.0"))
     implementation(npm("snabbdom", "^0.7.4"))
     implementation(npm("snabbdom-virtualize", "^0.7.0"))
     implementation(npm("jquery-resizable-dom", "^0.35.0"))
     implementation(npm("navigo", "^7.1.2"))
-    testImplementation(npm("karma-qunit", "^4.1.1"))
-    testImplementation(npm("qunit", "^2.10.0"))
     testImplementation(kotlin("test-js"))
 }
 
@@ -92,58 +85,155 @@ tasks {
         }
     }
     */
-//    getByName("JsJar", Jar::class) {
-//        from("${project.buildDir}/js/packages/kvision/package.json")
-//        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//    }
-    val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
-        outputFormat = "html"
-        outputDirectory = "$buildDir/kdoc"
-        subProjects = listOf(
-            "kvision-bootstrap",
-            "kvision-bootstrap-css",
-            "kvision-bootstrap-datetime",
-            "kvision-bootstrap-dialog",
-            "kvision-bootstrap-select",
-            "kvision-bootstrap-select-remote",
-            "kvision-bootstrap-spinner",
-            "kvision-bootstrap-typeahead",
-            "kvision-bootstrap-typeahead-remote",
-            "kvision-bootstrap-upload",
-            "kvision-onsenui",
-            "kvision-onsenui-css",
-            "kvision-common-annotations",
-            "kvision-common-remote",
-            "kvision-common-types",
-            "kvision-chart",
-            "kvision-cordova",
-            "kvision-datacontainer",
-            "kvision-electron",
-            "kvision-event-flow",
-            "kvision-fontawesome",
-            "kvision-handlebars",
-            "kvision-i18n",
-            "kvision-maps",
-            "kvision-moment",
-            "kvision-pace",
-            "kvision-react",
-            "kvision-redux",
-            "kvision-redux-kotlin",
-            "kvision-richtext",
-            "kvision-tabulator",
-            "kvision-tabulator-remote",
-            "kvision-server-jooby",
-            "kvision-server-javalin",
-            "kvision-server-ktor",
-            "kvision-server-micronaut",
-            "kvision-server-spring-boot",
-            "kvision-server-vertx",
-            "kvision-toast"
-        )
-        multiplatform {
-            val js by creating {
-                includes = listOf("Module.md")
-                reportUndocumented = false
+}
+tasks.dokkaHtml {
+    outputDirectory = "$buildDir/kdoc"
+    dokkaSourceSets {
+        register("kvision") {
+            includes = listOf("Module.md")
+            displayName = "JS"
+            platform = "js"
+            includeNonPublic = false
+            skipDeprecated = false
+            reportUndocumented = false
+            this.sourceRoot {
+                this.path = "src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-css/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-datetime/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-dialog/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-select/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-select-remote/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-spinner/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-typeahead/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-typeahead-remote/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-bootstrap-upload/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-chart/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-chart/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-common-remote/src/jsMain/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-common-types/src/jsMain/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-cordova/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-datacontainer/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-electron/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-event-flow/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-fontawesome/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-handlebars/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-i18n/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-maps/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-moment/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-onsenui/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-onsenui-css/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-pace/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-react/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-redux/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-richtext/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-server-ktor/src/jsMain/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-tabulator/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-tabulator-remote/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-testutils/src/main/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-toast/src/main/kotlin"
+            }
+        }
+        register("kvision-common") {
+            includes = listOf("Module.md")
+            displayName = "Common"
+            platform = "common"
+            includeNonPublic = false
+            skipDeprecated = false
+            reportUndocumented = false
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-common-annotations/src/commonMain/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-common-remote/src/commonMain/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-common-types/src/commonMain/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-server-ktor/src/commonMain/kotlin"
+            }
+        }
+        register("kvision-jvm") {
+            includes = listOf("Module.md")
+            displayName = "JVM"
+            platform = "jvm"
+            includeNonPublic = false
+            skipDeprecated = false
+            reportUndocumented = false
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-common-types/src/jvmMain/kotlin"
+            }
+            this.sourceRoot {
+                this.path = "kvision-modules/kvision-server-ktor/src/jvmMain/kotlin"
             }
         }
     }

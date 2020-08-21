@@ -22,7 +22,6 @@
 package pl.treksoft.kvision.utils
 
 import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.UnsafeSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.serializersModuleOf
 import kotlinx.serialization.serializer
@@ -44,9 +43,8 @@ object JSON {
     /**
      * An extension function to convert Serializable object to JS dynamic object
      */
-    @OptIn(UnsafeSerializationApi::class)
     inline fun <reified T : Any> T.toObj(): dynamic {
-        return this.toObj(T::class.serializer())
+        return this.toObj(serializer())
     }
 
     /**

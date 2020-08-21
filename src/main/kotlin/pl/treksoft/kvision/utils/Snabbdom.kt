@@ -58,10 +58,10 @@ inline fun <T> obj(init: T.() -> Unit): T {
  * Helper function for creating JavaScript objects from dynamic constructors.
  */
 @Suppress("UNUSED_VARIABLE")
-inline fun <reified T> Any?.createInstance(vararg args: dynamic): T {
-    val jsClass = this
+fun <T> Any?.createInstance(vararg args: dynamic): T {
+    val jsClassConstructor = this
     val argsArray = (listOf<dynamic>(null) + args).toTypedArray()
-    return js("new (Function.prototype.bind.apply(jsClass, argsArray))").unsafeCast<T>()
+    return js("new (Function.prototype.bind.apply(jsClassConstructor, argsArray))").unsafeCast<T>()
 }
 
 /**
@@ -75,7 +75,7 @@ inline fun vNodeData(): VNodeData = js("{}")
  * @suppress
  * Internal interface.
  */
-interface KvJQueryEventObject : JQueryEventObject {
+external interface KvJQueryEventObject : JQueryEventObject {
     val clickedIndex: Int
     val width: Int
     val height: Int
@@ -93,7 +93,7 @@ class KvEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, 
  * @suppress
  * Internal interface.
  */
-interface BtOn : On {
+external interface BtOn : On {
     var showBsDropdown: ((KvEvent) -> Unit)?
     var shownBsDropdown: ((KvEvent) -> Unit)?
     var hideBsDropdown: ((KvEvent) -> Unit)?
@@ -195,7 +195,7 @@ interface BtOn : On {
  * @suppress
  * Internal interface.
  */
-interface SnOn<T> : BtOn {
+external interface SnOn<T> : BtOn {
     var self: T
 }
 
