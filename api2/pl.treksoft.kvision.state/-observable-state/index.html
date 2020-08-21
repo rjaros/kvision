@@ -1,0 +1,380 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ObservableState - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.state</a>&nbsp;/&nbsp;<a href="./index.html">ObservableState</a><br/>
+<br/>
+<h1>ObservableState</h1>
+(js) <code><span class="keyword">interface </span><span class="identifier">ObservableState</span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span></code>
+<p>An interface of observable state.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="get-state.html">getState</a></h4>
+</td>
+<td>
+<p>Get current state.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">S</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="subscribe.html">subscribe</a></h4>
+</td>
+<td>
+<p>Subscribe for the state change notifications.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">subscribe</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.state.ObservableState$subscribe(kotlin.Function1((pl.treksoft.kvision.state.ObservableState.S, kotlin.Unit)))/observer">observer</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">S</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/state-flow.html">stateFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning StateFlow for an ObservableState.</p>
+<code><span class="keyword">val </span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">stateFlow</span><span class="symbol">: </span><span class="identifier">StateFlow</span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.text/-abstract-text/index.html">AbstractText</a></h4>
+</td>
+<td>
+<p>Base class for form field text components.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractText</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-string-form-control/index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.text/-abstract-text-input/index.html">AbstractTextInput</a></h4>
+</td>
+<td>
+<p>Base class for basic text components.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractTextInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.check/-check-box/index.html">CheckBox</a></h4>
+</td>
+<td>
+<p>The form field component rendered as HTML <em>input type="checkbox"</em>.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">CheckBox</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-bool-form-control/index.html"><span class="identifier">BoolFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.check/-check-input/index.html">CheckInput</a></h4>
+</td>
+<td>
+<p>The basic input component rendered as HTML <em>input type="checkbox"</em> or <em>input type="radio"</em>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CheckInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.time/-date-time/index.html">DateTime</a></h4>
+</td>
+<td>
+<p>Form field date/time chooser component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DateTime</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-date-form-control/index.html"><span class="identifier">DateFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.time/-date-time-input/index.html">DateTimeInput</a></h4>
+</td>
+<td>
+<p>Basic date/time chooser component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DateTimeInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../-observable-list/index.html">ObservableList</a></h4>
+</td>
+<td>
+<p>Observable list interface.</p>
+<code><span class="keyword">interface </span><span class="identifier">ObservableList</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../-observable-list-wrapper/index.html">ObservableListWrapper</a></h4>
+</td>
+<td>
+<p>Simple observable list implementation.</p>
+<code><span class="keyword">class </span><span class="identifier">ObservableListWrapper</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-observable-list/index.html"><span class="identifier">ObservableList</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../-observable-set/index.html">ObservableSet</a></h4>
+</td>
+<td>
+<p>Observable set interface.</p>
+<code><span class="keyword">interface </span><span class="identifier">ObservableSet</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../-observable-set-wrapper/index.html">ObservableSetWrapper</a></h4>
+</td>
+<td>
+<p>Simple observable set implementation.</p>
+<code><span class="keyword">class </span><span class="identifier">ObservableSetWrapper</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-observable-set/index.html"><span class="identifier">ObservableSet</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../-observable-value/index.html">ObservableValue</a></h4>
+</td>
+<td>
+<p>The observable value class.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ObservableValue</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-check-box/index.html">OnsCheckBox</a></h4>
+</td>
+<td>
+<p>Onsen UI form field checkbox component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsCheckBox</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-bool-form-control/index.html"><span class="identifier">BoolFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-date-time/index.html">OnsDateTime</a></h4>
+</td>
+<td>
+<p>Onsen UI form field date/time component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsDateTime</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-date-form-control/index.html"><span class="identifier">DateFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-date-time-input/index.html">OnsDateTimeInput</a></h4>
+</td>
+<td>
+<p>OnsenUI date/time input component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsDateTimeInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-number/index.html">OnsNumber</a></h4>
+</td>
+<td>
+<p>Onsen UI form field number component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsNumber</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-number-form-control/index.html"><span class="identifier">NumberFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-number-input/index.html">OnsNumberInput</a></h4>
+</td>
+<td>
+<p>OnsenUI number input component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsNumberInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-radio/index.html">OnsRadio</a></h4>
+</td>
+<td>
+<p>Onsen UI form field radio button component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsRadio</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-bool-form-control/index.html"><span class="identifier">BoolFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-radio-group/index.html">OnsRadioGroup</a></h4>
+</td>
+<td>
+<p>The form field component rendered as a group of OnsenUI radio buttons with the same name attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsRadioGroup</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-string-form-control/index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-radio-group-input/index.html">OnsRadioGroupInput</a></h4>
+</td>
+<td>
+<p>The input component rendered as a group of Onsen UI radio buttons with the same name attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsRadioGroupInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-range/index.html">OnsRange</a></h4>
+</td>
+<td>
+<p>Onsen UI form field range component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsRange</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-number-form-control/index.html"><span class="identifier">NumberFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-select/index.html">OnsSelect</a></h4>
+</td>
+<td>
+<p>Onsen UI form field select component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsSelect</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-string-form-control/index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-switch/index.html">OnsSwitch</a></h4>
+</td>
+<td>
+<p>Onsen UI form field switch component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsSwitch</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-bool-form-control/index.html"><span class="identifier">BoolFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.check/-radio/index.html">Radio</a></h4>
+</td>
+<td>
+<p>The form field component rendered as HTML <em>input type="radio"</em>.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Radio</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-bool-form-control/index.html"><span class="identifier">BoolFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.check/-radio-group/index.html">RadioGroup</a></h4>
+</td>
+<td>
+<p>The form field component rendered as a group of HTML <em>input type="radio"</em> elements with the same name attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RadioGroup</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-string-form-control/index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.check/-radio-group-input/index.html">RadioGroupInput</a></h4>
+</td>
+<td>
+<p>The input component rendered as a group of HTML <em>input type="radio"</em> elements with the same name attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RadioGroupInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.range/-range/index.html">Range</a></h4>
+</td>
+<td>
+<p>The form field component for range input control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Range</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-number-form-control/index.html"><span class="identifier">NumberFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.range/-range-input/index.html">RangeInput</a></h4>
+</td>
+<td>
+<p>Range input component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RangeInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.react/-react/index.html">React</a></h4>
+</td>
+<td>
+<p>React component for KVision with support for state holder.</p>
+<code><span class="keyword">class </span><span class="identifier">React</span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.redux/-redux-store/index.html">ReduxStore</a></h4>
+</td>
+<td>
+<p>A class implementing redux pattern backed by the Redux Kotlin library.</p>
+<code><span class="keyword">class </span><span class="identifier">ReduxStore</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.redux/-r-action.html"><span class="identifier">RAction</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-select/index.html">Select</a></h4>
+</td>
+<td>
+<p>The form field component for Select control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Select</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-string-form-control/index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-select-input/index.html">SelectInput</a></h4>
+</td>
+<td>
+<p>The basic component for Select control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SelectInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-select-remote/index.html">SelectRemote</a></h4>
+</td>
+<td>
+<p>The form field component for SelectRemote control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SelectRemote</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-string-form-control/index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-simple-select/index.html">SimpleSelect</a></h4>
+</td>
+<td>
+<p>The form field component for SimpleSelect control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SimpleSelect</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-string-form-control/index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-simple-select-input/index.html">SimpleSelectInput</a></h4>
+</td>
+<td>
+<p>Simple select component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SimpleSelectInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.spinner/-spinner/index.html">Spinner</a></h4>
+</td>
+<td>
+<p>The form field component for spinner control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Spinner</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-number-form-control/index.html"><span class="identifier">NumberFormControl</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.spinner/-spinner-input/index.html">SpinnerInput</a></h4>
+</td>
+<td>
+<p>The basic component for spinner control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SpinnerInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-widget/index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

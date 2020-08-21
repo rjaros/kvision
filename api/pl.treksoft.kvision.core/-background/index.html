@@ -1,64 +1,173 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Background - kvision</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.core</a>&nbsp;/&nbsp;<a href="./index.html">Background</a><br/>
-<br/>
-<h1>Background</h1>
-(js) <code><span class="keyword">class </span><span class="identifier">Background</span></code>
-<p>Type-safe definition of CSS background.</p>
-<h3>Parameters</h3>
-<p><a name="color"></a>
-<code>color</code> - color of the background</p>
-<p><a name="image"></a>
-<code>image</code> - background image</p>
-<p><a name="positionX"></a>
-<code>positionX</code> - horizontal position of the background image</p>
-<p><a name="positionY"></a>
-<code>positionY</code> - vertical position of the background image</p>
-<p><a name="sizeX"></a>
-<code>sizeX</code> - horizontal size of the background image</p>
-<p><a name="sizeY"></a>
-<code>sizeY</code> - vertical size of the background image</p>
-<p><a name="size"></a>
-<code>size</code> - resize of the background image</p>
-<p><a name="repeat"></a>
-<code>repeat</code> - repeat option of the background image</p>
-<p><a name="origin"></a>
-<code>origin</code> - origin option of the background image</p>
-<p><a name="clip"></a>
-<code>clip</code> - clipping option of the background image</p>
-<p><a name="attachment"></a>
-<code>attachment</code> - attachment option of the background image</p>
-<h3>Constructors</h3>
-<table>
-<tbody>
-<tr>
-<td>
-(js) 
-<h4><a href="-init-.html">&lt;init&gt;</a></h4>
-</td>
-<td>
-<p>Type-safe definition of CSS background.</p>
-<code><span class="identifier">Background</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/color">color</span><span class="symbol">:</span>&nbsp;<a href="../-color/index.html"><span class="identifier">Color</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/image">image</span><span class="symbol">:</span>&nbsp;<a href="../-res-string.html"><span class="identifier">ResString</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/positionX">positionX</span><span class="symbol">:</span>&nbsp;<a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/positionY">positionY</span><span class="symbol">:</span>&nbsp;<a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/sizeX">sizeX</span><span class="symbol">:</span>&nbsp;<a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/sizeY">sizeY</span><span class="symbol">:</span>&nbsp;<a href="../-css-size.html"><span class="identifier">CssSize</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/size">size</span><span class="symbol">:</span>&nbsp;<a href="../-bg-size/index.html"><span class="identifier">BgSize</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/repeat">repeat</span><span class="symbol">:</span>&nbsp;<a href="../-bg-repeat/index.html"><span class="identifier">BgRepeat</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/origin">origin</span><span class="symbol">:</span>&nbsp;<a href="../-bg-origin/index.html"><span class="identifier">BgOrigin</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/clip">clip</span><span class="symbol">:</span>&nbsp;<a href="../-bg-clip/index.html"><span class="identifier">BgClip</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Background$<init>(pl.treksoft.kvision.core.Color, kotlin.String, kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), pl.treksoft.kvision.core.BgSize, pl.treksoft.kvision.core.BgRepeat, pl.treksoft.kvision.core.BgOrigin, pl.treksoft.kvision.core.BgClip, pl.treksoft.kvision.core.BgAttach)/attachment">attachment</span><span class="symbol">:</span>&nbsp;<a href="../-bg-attach/index.html"><span class="identifier">BgAttach</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-(js) 
-<h4><a href="to-string.html">toString</a></h4>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Background</title>
+    <link href="../../../styles/style.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../../scripts/navigationLoader.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/platformContentHandler.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+    <script>var pathToRoot = "../../../";</script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="logo"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="searchBar"></div>
+        <script type="text/javascript" src="../../../scripts/pages.js"></script>
+        <script type="text/javascript" src="../../../scripts/main.js"></script>
+        <div id="content" pageIds="pl.treksoft.kvision.core/Background///PointingToDeclaration/">
+          <div class="breadcrumbs">//<a href="../../index.html">kvision</a>/<a href="../index.html">pl.treksoft.kvision.core</a>/<a href="index.html">Background</a></div>
+          <div class="cover ">
+            <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector js-like" data-active="" data-filter=":/kvision">JS</button></div>
+            <h1 class="cover"><a data-name="background"></a>Background</h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":/kvision"><div class="block"><div class="block">Type-safe definition of CSS background.</div></div><div class="symbol monospace">class <a href="index.html">Background</a>(color: <a href="../-color/index.html">Color</a>?,image: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?,positionX: <a href="">&lt;ERROR CLASS&gt;</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>, <a href="../-u-n-i-t/index.html">UNIT</a>&gt;?,positionY: <a href="">&lt;ERROR CLASS&gt;</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>, <a href="../-u-n-i-t/index.html">UNIT</a>&gt;?,sizeX: <a href="">&lt;ERROR CLASS&gt;</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>, <a href="../-u-n-i-t/index.html">UNIT</a>&gt;?,sizeY: <a href="">&lt;ERROR CLASS&gt;</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>, <a href="../-u-n-i-t/index.html">UNIT</a>&gt;?,size: <a href="../-bg-size/index.html">BgSize</a>?,repeat: <a href="../-bg-repeat/index.html">BgRepeat</a>?,origin: <a href="../-bg-origin/index.html">BgOrigin</a>?,clip: <a href="../-bg-clip/index.html">BgClip</a>?,attachment: <a href="../-bg-attach/index.html">BgAttach</a>?)<span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
+                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Content copied to clipboard</span></div></span></div></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+            <div class="tabs-section-body">
+              <h2 class=""><a data-name="parameters"></a>Parameters</h2>
+              <div data-togglable="Parameters">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":/kvision"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>attachment</div><div class="title"><div data-togglable="Parameters">attachment option of the background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>clip</div><div class="title"><div data-togglable="Parameters">clipping option of the background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>color</div><div class="title"><div data-togglable="Parameters">color of the background</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>image</div><div class="title"><div data-togglable="Parameters">background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>origin</div><div class="title"><div data-togglable="Parameters">origin option of the background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>positionX</div><div class="title"><div data-togglable="Parameters">horizontal position of the background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>positionY</div><div class="title"><div data-togglable="Parameters">vertical position of the background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>repeat</div><div class="title"><div data-togglable="Parameters">repeat option of the background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>size</div><div class="title"><div data-togglable="Parameters">resize of the background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>sizeX</div><div class="title"><div data-togglable="Parameters">horizontal size of the background image</div></div></div></div><a data-name="pl.treksoft.kvision.core/Background///PointingToDeclaration/"></a><div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="platform-dependent-row keyValue"><div>sizeY</div><div class="title"><div data-togglable="Parameters">vertical size of the background image</div></div></div></div></div></div></div></div>
+              </div>
+              <h2 class="tabbedcontent"><a data-name="constructors"></a>Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="pl.treksoft.kvision.core/Background/&lt;init&gt;/#pl.treksoft.kvision.core.Color?#kotlin.String?#[kotlin.Number,pl.treksoft.kvision.core.UNIT]?#[kotlin.Number,pl.treksoft.kvision.core.UNIT]?#[kotlin.Number,pl.treksoft.kvision.core.UNIT]?#[kotlin.Number,pl.treksoft.kvision.core.UNIT]?#pl.treksoft.kvision.core.BgSize?#pl.treksoft.kvision.core.BgRepeat?#pl.treksoft.kvision.core.BgOrigin?#pl.treksoft.kvision.core.BgClip?#pl.treksoft.kvision.core.BgAttach?/PointingToDeclaration/"></a>
+                <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+                  <div class="main-subrow TabbedContent"><span><a href="-init-.html">&lt;init&gt;</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.core/Background/&lt;init&gt;/#pl.treksoft.kvision.core.Color?#kotlin.String?#[kotlin.Number,pl.treksoft.kvision.core.UNIT]?#[kotlin.Number,pl.treksoft.kvision.core.UNIT]?#[kotlin.Number,pl.treksoft.kvision.core.UNIT]?#[kotlin.Number,pl.treksoft.kvision.core.UNIT]?#pl.treksoft.kvision.core.BgSize?#pl.treksoft.kvision.core.BgRepeat?#pl.treksoft.kvision.core.BgOrigin?#pl.treksoft.kvision.core.BgClip?#pl.treksoft.kvision.core.BgAttach?/PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                      </span></span>
+                    <div class="platform-tags">
+                      <div class="platform-tag js-like">JS</div>
+                    </div>
+                  </div>
+                  <div class="platform-dependent-row keyValue">
+                    <div></div>
+                    <div class="title">
+                      <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Constructors"><div class="content sourceset-depenent-content" data-active="" data-togglable=":/kvision"><div class="brief ">color of the background</div><div class="symbol monospace">fun <a href="-init-.html">&lt;init&gt;</a>(color: <a href="../-color/index.html">Color</a>?, image: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, positionX: <a href="">&lt;ERROR CLASS&gt;</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>, <a href="../-u-n-i-t/index.html">UNIT</a>&gt;?, positionY: <a href="">&lt;ERROR CLASS&gt;</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>, <a href="../-u-n-i-t/index.html">UNIT</a>&gt;?, sizeX: <a href="">&lt;ERROR CLASS&gt;</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>, <a href="../-u-n-i-t/index.html">UNIT</a>&gt;?, sizeY: <a href="">&lt;ERROR CLASS&gt;</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>, <a href="../-u-n-i-t/index.html">UNIT</a>&gt;?, size: <a href="../-bg-size/index.html">BgSize</a>?, repeat: <a href="../-bg-repeat/index.html">BgRepeat</a>?, origin: <a href="../-bg-origin/index.html">BgOrigin</a>?, clip: <a href="../-bg-clip/index.html">BgClip</a>?, attachment: <a href="../-bg-attach/index.html">BgAttach</a>?)<span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
+                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Content copied to clipboard</span></div></span></div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class=""><a data-name="functions"></a>Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="kotlin/Any/equals/#kotlin.Any?/PointingToDeclaration/"></a>
+                <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+                  <div class="main-subrow "><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html">equals</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="kotlin/Any/equals/#kotlin.Any?/PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                      </span></span>
+                    <div class="platform-tags">
+                      <div class="platform-tag js-like">JS</div>
+                    </div>
+                  </div>
+                  <div class="platform-dependent-row keyValue">
+                    <div></div>
+                    <div class="title"><div class="divergent-group" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"></div>
+<span class="pull-right"></span></div>
+
+  <div class="main-subrow">
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":/kvision"><div class="symbol monospace">open operator override fun <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html">equals</a>(other: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>?): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
+                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                  </div>
+                </div>
+<a data-name="kotlin/Any/hashCode/#/PointingToDeclaration/"></a>
+                <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+                  <div class="main-subrow "><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/hash-code.html">hashCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="kotlin/Any/hashCode/#/PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                      </span></span>
+                    <div class="platform-tags">
+                      <div class="platform-tag js-like">JS</div>
+                    </div>
+                  </div>
+                  <div class="platform-dependent-row keyValue">
+                    <div></div>
+                    <div class="title"><div class="divergent-group" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"></div>
+<span class="pull-right"></span></div>
+
+  <div class="main-subrow">
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":/kvision"><div class="symbol monospace">open override fun <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/hash-code.html">hashCode</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
+                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                  </div>
+                </div>
+<a data-name="pl.treksoft.kvision.core/Background/toString/#/PointingToDeclaration/"></a>
+                <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+                  <div class="main-subrow "><span><a href="to-string.html">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.core/Background/toString/#/PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                      </span></span>
+                    <div class="platform-tags">
+                      <div class="platform-tag js-like">JS</div>
+                    </div>
+                  </div>
+                  <div class="platform-dependent-row keyValue">
+                    <div></div>
+                    <div class="title"><div class="divergent-group" data-filterable-current=":/kvision" data-filterable-set=":/kvision"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"></div>
+<span class="pull-right"></span></div>
+
+  <div class="main-subrow">
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":/kvision"><div class="symbol monospace">open override fun <a href="to-string.html">toString</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
+                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#container"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.3337 9.66683H0.666992L6.00033 3.66683L11.3337 9.66683Z" fill="black"/>
+    <path d="M0.666992 0.333496H11.3337V1.66683H0.666992V0.333496Z" fill="black"/>
+</svg></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 0H2.3949L4.84076 2.44586L0 7.28662L0.713376 8L5.55414 3.15924L8 5.6051V0Z" fill="black"/>
+</svg></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

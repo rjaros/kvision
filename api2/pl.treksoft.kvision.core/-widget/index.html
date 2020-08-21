@@ -1,0 +1,1095 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Widget - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.core</a>&nbsp;/&nbsp;<a href="./index.html">Widget</a><br/>
+<br/>
+<h1>Widget</h1>
+(js) <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Widget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-styled-component/index.html"><span class="identifier">StyledComponent</span></a><span class="symbol">, </span><a href="../-component/index.html"><span class="identifier">Component</span></a></code>
+<p>Base widget class. The parent of all component classes.</p>
+<p>A simple widget is rendered as HTML DIV element.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="-refresh-delegate/index.html">RefreshDelegate</a></h4>
+</td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">RefreshDelegate</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="-refresh-delegate-provider/index.html">RefreshDelegateProvider</a></h4>
+</td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">RefreshDelegateProvider</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Creates basic Widget with given CSS class names.</p>
+<code><span class="identifier">Widget</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$<init>(kotlin.collections.Set((kotlin.String)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;setOf()<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="after-destroy-hook.html">afterDestroyHook</a></h4>
+</td>
+<td>
+<p>A function called after the widget is removed from the DOM.</p>
+<code><span class="keyword">var </span><span class="identifier">afterDestroyHook</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="after-dispose-hook.html">afterDisposeHook</a></h4>
+</td>
+<td>
+<p>A function called after the widget is disposed.</p>
+<code><span class="keyword">var </span><span class="identifier">afterDisposeHook</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="after-insert-hook.html">afterInsertHook</a></h4>
+</td>
+<td>
+<p>A function called after the widget is inserted to the DOM.</p>
+<code><span class="keyword">var </span><span class="identifier">afterInsertHook</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">VNode</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="draggable.html">draggable</a></h4>
+</td>
+<td>
+<p>Determines if the current widget is draggable.</p>
+<code><span class="keyword">var </span><span class="identifier">draggable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="event-target.html">eventTarget</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">eventTarget</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="id.html">id</a></h4>
+</td>
+<td>
+<p>An ID attribute of generated HTML element.</p>
+<code><span class="keyword">var </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="last-language.html">lastLanguage</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">lastLanguage</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="parent.html">parent</a></h4>
+</td>
+<td>
+<p>Parent of the current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="popover-options.html">popoverOptions</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">popoverOptions</span><span class="symbol">: </span><a href="../-popover-options/index.html"><span class="identifier">PopoverOptions</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="role.html">role</a></h4>
+</td>
+<td>
+<p>A role attribute of generated HTML element.</p>
+<code><span class="keyword">var </span><span class="identifier">role</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="surrounding-span.html">surroundingSpan</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">surroundingSpan</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="tabindex.html">tabindex</a></h4>
+</td>
+<td>
+<p>A tabindex attribute of generated HTML element.</p>
+<code><span class="keyword">var </span><span class="identifier">tabindex</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="title.html">title</a></h4>
+</td>
+<td>
+<p>A title attribute of generated HTML element.</p>
+<code><span class="keyword">var </span><span class="identifier">title</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="tooltip-options.html">tooltipOptions</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">tooltipOptions</span><span class="symbol">: </span><a href="../-tooltip-options/index.html"><span class="identifier">TooltipOptions</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="visible.html">visible</a></h4>
+</td>
+<td>
+<p>Visibility state of the current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">visible</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="vnode.html">vnode</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">vnode</span><span class="symbol">: </span><span class="identifier">VNode</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="add-css-class.html">addCssClass</a></h4>
+</td>
+<td>
+<p>Adds given value to the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$addCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="add-css-style.html">addCssStyle</a></h4>
+</td>
+<td>
+<p>Adds given style object to the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$addCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="add-surrounding-css-class.html">addSurroundingCssClass</a></h4>
+</td>
+<td>
+<p>Adds given value to the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$addSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="add-surrounding-css-style.html">addSurroundingCssStyle</a></h4>
+</td>
+<td>
+<p>Adds given style object to the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addSurroundingCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$addSurroundingCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="after-create.html">afterCreate</a></h4>
+</td>
+<td>
+<p>Method called after creating Snabbdom vnode.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">afterCreate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$afterCreate(com.github.snabbdom.VNode)/node">node</span><span class="symbol">:</span>&nbsp;<span class="identifier">VNode</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="after-destroy.html">afterDestroy</a></h4>
+</td>
+<td>
+<p>Method called after destroying Snabbdom vnode.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">afterDestroy</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="after-insert.html">afterInsert</a></h4>
+</td>
+<td>
+<p>Method called after inserting Snabbdom vnode into the DOM.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">afterInsert</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$afterInsert(com.github.snabbdom.VNode)/node">node</span><span class="symbol">:</span>&nbsp;<span class="identifier">VNode</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="animate.html">animate</a></h4>
+</td>
+<td>
+<p>Animate the widget changing CSS properties.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">animate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$animate(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)), kotlin.Function1((pl.treksoft.kvision.core.StyledComponent, kotlin.Unit)))/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;400<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$animate(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)), kotlin.Function1((pl.treksoft.kvision.core.StyledComponent, kotlin.Unit)))/easing">easing</span><span class="symbol">:</span>&nbsp;<a href="../-easing/index.html"><span class="identifier">Easing</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Easing.SWING<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$animate(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)), kotlin.Function1((pl.treksoft.kvision.core.StyledComponent, kotlin.Unit)))/complete">complete</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$animate(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)), kotlin.Function1((pl.treksoft.kvision.core.StyledComponent, kotlin.Unit)))/styles">styles</span><span class="symbol">:</span>&nbsp;<a href="../-styled-component/index.html"><span class="identifier">StyledComponent</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="clear-drag-drop-data.html">clearDragDropData</a></h4>
+</td>
+<td>
+<p>Clears D&D data for the current widget. It also makes it not draggable.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">clearDragDropData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="disable-popover.html">disablePopover</a></h4>
+</td>
+<td>
+<p>Disables popover for the current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">disablePopover</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="disable-tooltip.html">disableTooltip</a></h4>
+</td>
+<td>
+<p>Disables tooltip for the current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">disableTooltip</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="dispatch-event.html">dispatchEvent</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">dispatchEvent</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$dispatchEvent(kotlin.String, org.w3c.dom.CustomEventInit)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$dispatchEvent(kotlin.String, org.w3c.dom.CustomEventInit)/eventInitDict">eventInitDict</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-custom-event-init/index.html"><span class="identifier">CustomEventInit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="enable-popover.html">enablePopover</a></h4>
+</td>
+<td>
+<p>Enables popover for the current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">enablePopover</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$enablePopover(pl.treksoft.kvision.core.PopoverOptions)/options">options</span><span class="symbol">:</span>&nbsp;<a href="../-popover-options/index.html"><span class="identifier">PopoverOptions</span></a>&nbsp;<span class="symbol">=</span>&nbsp;PopoverOptions()<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="enable-tooltip.html">enableTooltip</a></h4>
+</td>
+<td>
+<p>Enables tooltip for the current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">enableTooltip</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$enableTooltip(pl.treksoft.kvision.core.TooltipOptions)/options">options</span><span class="symbol">:</span>&nbsp;<a href="../-tooltip-options/index.html"><span class="identifier">TooltipOptions</span></a>&nbsp;<span class="symbol">=</span>&nbsp;TooltipOptions()<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="fade-in.html">fadeIn</a></h4>
+</td>
+<td>
+<p>Shows current widget with fade in effect.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">fadeIn</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$fadeIn(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;400<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$fadeIn(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/easing">easing</span><span class="symbol">:</span>&nbsp;<a href="../-easing/index.html"><span class="identifier">Easing</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Easing.SWING<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$fadeIn(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/complete">complete</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="fade-out.html">fadeOut</a></h4>
+</td>
+<td>
+<p>Hides current widget with fade out effect.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">fadeOut</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$fadeOut(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;400<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$fadeOut(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/easing">easing</span><span class="symbol">:</span>&nbsp;<a href="../-easing/index.html"><span class="identifier">Easing</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Easing.SWING<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$fadeOut(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/complete">complete</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-attribute.html">getAttribute</a></h4>
+</td>
+<td>
+<p>Returns the value of an additional attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$getAttribute(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-element.html">getElement</a></h4>
+</td>
+<td>
+<p>Returns DOM element bound to the current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElement</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-element-j-query.html">getElementJQuery</a></h4>
+</td>
+<td>
+<p>Returns JQuery element bound to the current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElementJQuery</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">JQuery</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-element-j-query-d.html">getElementJQueryD</a></h4>
+</td>
+<td>
+<p>Returns JQuery element bound to the current component as a <em>dynamic</em> type.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getElementJQueryD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-sn-attrs.html">getSnAttrs</a></h4>
+</td>
+<td>
+<p>Returns list of element attributes in the form of a List.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnAttrs</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-string-pair.html"><span class="identifier">StringPair</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-sn-class.html">getSnClass</a></h4>
+</td>
+<td>
+<p>Returns list of CSS class names for current widget in the form of a List.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-string-bool-pair.html"><span class="identifier">StringBoolPair</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-sn-hooks.html">getSnHooks</a></h4>
+</td>
+<td>
+<p>Returns list of hooks in the form of a Snabbdom <em>Hooks</em> object.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnHooks</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Hooks</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-sn-on.html">getSnOn</a></h4>
+</td>
+<td>
+<p>Returns list of event handlers in the form of a Snabbdom <em>On</em> object.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSnOn</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">On</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="hide.html">hide</a></h4>
+</td>
+<td>
+<p>Makes current widget invisible.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hide</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="hide-anim.html">hideAnim</a></h4>
+</td>
+<td>
+<p>Hides current widget with animation effect.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hideAnim</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$hideAnim(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;400<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$hideAnim(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/easing">easing</span><span class="symbol">:</span>&nbsp;<a href="../-easing/index.html"><span class="identifier">Easing</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Easing.SWING<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$hideAnim(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/complete">complete</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="hide-popover.html">hidePopover</a></h4>
+</td>
+<td>
+<p>Hides popover for the current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hidePopover</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="hide-tooltip.html">hideTooltip</a></h4>
+</td>
+<td>
+<p>Hides tooltip for the current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hideTooltip</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="refresh-on-update.html">refreshOnUpdate</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">RefreshDelegateProvider</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">refreshOnUpdate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/initialValue">initialValue</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$refreshOnUpdate(pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Function1((pl.treksoft.kvision.core.Widget.refreshOnUpdate.T, kotlin.Unit)))/refreshFunction">refreshFunction</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ this.refresh() }<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">RefreshDelegateProvider</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="remove-attribute.html">removeAttribute</a></h4>
+</td>
+<td>
+<p>Removes the value of additional attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeAttribute(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="remove-css-class.html">removeCssClass</a></h4>
+</td>
+<td>
+<p>Removes given value from the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="remove-css-style.html">removeCssStyle</a></h4>
+</td>
+<td>
+<p>Removes given style object from the set of CSS classes generated in html code of current component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="remove-event-listener.html">removeEventListener</a></h4>
+</td>
+<td>
+<p>Removes event listener from current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeEventListener(kotlin.Int)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="remove-event-listeners.html">removeEventListeners</a></h4>
+</td>
+<td>
+<p>Removes all event listeners from current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeEventListeners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="remove-surrounding-css-class.html">removeSurroundingCssClass</a></h4>
+</td>
+<td>
+<p>Removes given value from the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssClass</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeSurroundingCssClass(kotlin.String)/css">css</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="remove-surrounding-css-style.html">removeSurroundingCssStyle</a></h4>
+</td>
+<td>
+<p>Removes given style object from the set of CSS classes generated in html code of parent component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">removeSurroundingCssStyle</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$removeSurroundingCssStyle(pl.treksoft.kvision.core.Style)/css">css</span><span class="symbol">:</span>&nbsp;<a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="render.html">render</a></h4>
+</td>
+<td>
+<p>Renders current component as a Snabbdom vnode.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String)/elementName">elementName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String, kotlin.Array((kotlin.Any)))/elementName">elementName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$render(kotlin.String, kotlin.Array((kotlin.Any)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="keyword">dynamic</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">VNode</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="set-attribute.html">setAttribute</a></h4>
+</td>
+<td>
+<p>Sets the value of additional attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setAttribute</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setAttribute(kotlin.String, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setAttribute(kotlin.String, kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="set-drag-drop-data.html">setDragDropData</a></h4>
+</td>
+<td>
+<p>Sets D&D data for the current widget. It also makes it draggable.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDragDropData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDragDropData(kotlin.String, kotlin.String)/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDragDropData(kotlin.String, kotlin.String)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="set-drop-target.html">setDropTarget</a></h4>
+</td>
+<td>
+<p>Sets the current widget as a D&D drop target.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTarget</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.String, kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.String, kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-drag-event/index.html"><span class="identifier">DragEvent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTarget</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.collections.Set((kotlin.String)), kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/formats">formats</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTarget(kotlin.collections.Set((kotlin.String)), kotlin.Function1((org.w3c.dom.DragEvent, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-drag-event/index.html"><span class="identifier">DragEvent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="set-drop-target-data.html">setDropTargetData</a></h4>
+</td>
+<td>
+<p>Sets the current widget as a D&D drop target with helper callback accepting String data.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDropTargetData</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTargetData(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Unit)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setDropTargetData(kotlin.String, kotlin.Function1((kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="set-event-listener.html">setEventListener</a></h4>
+</td>
+<td>
+<p>Sets an event listener for current widget, keeping the actual type of component.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">setEventListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$setEventListener(kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.core.Widget.setEventListener.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="show.html">show</a></h4>
+</td>
+<td>
+<p>Makes current widget visible.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">show</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="show-anim.html">showAnim</a></h4>
+</td>
+<td>
+<p>Shows current widget with animation effect.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">showAnim</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$showAnim(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;400<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$showAnim(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/easing">easing</span><span class="symbol">:</span>&nbsp;<a href="../-easing/index.html"><span class="identifier">Easing</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Easing.SWING<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$showAnim(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/complete">complete</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="show-popover.html">showPopover</a></h4>
+</td>
+<td>
+<p>Shows popover for the current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">showPopover</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="show-tooltip.html">showTooltip</a></h4>
+</td>
+<td>
+<p>Shows tooltip for the current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">showTooltip</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="single-render.html">singleRender</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">singleRender</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$singleRender(kotlin.Function0((pl.treksoft.kvision.core.Widget.singleRender.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="slide-down.html">slideDown</a></h4>
+</td>
+<td>
+<p>Shows current widget with slide down effect.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">slideDown</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$slideDown(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;400<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$slideDown(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/easing">easing</span><span class="symbol">:</span>&nbsp;<a href="../-easing/index.html"><span class="identifier">Easing</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Easing.SWING<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$slideDown(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/complete">complete</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="slide-up.html">slideUp</a></h4>
+</td>
+<td>
+<p>Hides current widget with slide up effect.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">slideUp</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$slideUp(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;400<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$slideUp(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/easing">easing</span><span class="symbol">:</span>&nbsp;<a href="../-easing/index.html"><span class="identifier">Easing</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Easing.SWING<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core.Widget$slideUp(kotlin.Int, pl.treksoft.kvision.core.Easing, kotlin.Function0((kotlin.Unit)))/complete">complete</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="toggle-visible.html">toggleVisible</a></h4>
+</td>
+<td>
+<p>Toggles visibility of current widget.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toggleVisible</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="translate.html">translate</a></h4>
+</td>
+<td>
+<p>Translates given text with I18n trans function and sets lastLanguage marker.</p>
+<code><span class="keyword">fun </span><span class="identifier">translate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$translate(kotlin.String)/text">text</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code><code><span class="keyword">fun </span><span class="identifier">translate</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core.Widget$translate(kotlin.String)/text">text</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/change-flow.html">changeFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning Flow for a change event.</p>
+<code><span class="keyword">val </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">changeFlow</span><span class="symbol">: </span><span class="identifier">Flow</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/click-flow.html">clickFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning Flow for a click event.</p>
+<code><span class="keyword">val </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">clickFlow</span><span class="symbol">: </span><span class="identifier">Flow</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/input-flow.html">inputFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning Flow for an input event.</p>
+<code><span class="keyword">val </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">inputFlow</span><span class="symbol">: </span><span class="identifier">Flow</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../add-bs-bg-color.html">addBsBgColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsBgColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$addBsBgColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsBgColor)/bsBgColor">bsBgColor</span><span class="symbol">:</span>&nbsp;<a href="../-bs-bg-color/index.html"><span class="identifier">BsBgColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../add-bs-border.html">addBsBorder</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsBorder</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$addBsBorder(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsBorder)))/bsBorder">bsBorder</span><span class="symbol">:</span>&nbsp;<a href="../-bs-border/index.html"><span class="identifier">BsBorder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../add-bs-clearfix.html">addBsClearfix</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsClearfix</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../add-bs-color.html">addBsColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$addBsColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsColor)/bsColor">bsColor</span><span class="symbol">:</span>&nbsp;<a href="../-bs-color/index.html"><span class="identifier">BsColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../add-bs-rounded.html">addBsRounded</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsRounded</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$addBsRounded(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsRounded)))/bsRounded">bsRounded</span><span class="symbol">:</span>&nbsp;<a href="../-bs-rounded/index.html"><span class="identifier">BsRounded</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.state/bind.html">bind</a></h4>
+</td>
+<td>
+<p>An extension function which binds the widget to the observable state.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">, </span><span class="identifier">W</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">W</span><span class="symbol">.</span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.state$bind(pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.bind.S)), kotlin.Boolean, kotlin.Function2((pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.bind.S, kotlin.Unit)))/observableState">observableState</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.state$bind(pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.bind.S)), kotlin.Boolean, kotlin.Function2((pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.bind.S, kotlin.Unit)))/removeChildren">removeChildren</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.state$bind(pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.ObservableState((pl.treksoft.kvision.state.bind.S)), kotlin.Boolean, kotlin.Function2((pl.treksoft.kvision.state.bind.W, pl.treksoft.kvision.state.bind.S, kotlin.Unit)))/factory">factory</span><span class="symbol">:</span>&nbsp;<span class="identifier">W</span><span class="symbol">.</span><span class="symbol">(</span><span class="identifier">S</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">W</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.dropdown/context-menu.html">contextMenu</a></h4>
+</td>
+<td>
+<p>DSL builder extension function.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">.</span><span class="identifier">contextMenu</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown$contextMenu(pl.treksoft.kvision.core.Widget, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.dropdown.ContextMenu, kotlin.Unit)))/fixedPosition">fixedPosition</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown$contextMenu(pl.treksoft.kvision.core.Widget, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.dropdown.ContextMenu, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown$contextMenu(pl.treksoft.kvision.core.Widget, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.dropdown.ContextMenu, kotlin.Unit)))/className">className</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.dropdown$contextMenu(pl.treksoft.kvision.core.Widget, kotlin.Boolean, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.dropdown.ContextMenu, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../pl.treksoft.kvision.dropdown/-context-menu/index.html"><span class="identifier">ContextMenu</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../../pl.treksoft.kvision.dropdown/-context-menu/index.html"><span class="identifier">ContextMenu</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui/enable-gesture-detector.html">enableGestureDetector</a></h4>
+</td>
+<td>
+<p>Enable gesture detector for a given Widget.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">.</span><span class="identifier">enableGestureDetector</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.event/event-flow.html">eventFlow</a></h4>
+</td>
+<td>
+<p>Extension property returning Flow&lt;Pair&lt;Widget, Event&gt;&gt; for a given event</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">eventFlow</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.event$eventFlow(pl.treksoft.kvision.event.eventFlow.T, kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Flow</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom.events/-event/index.html"><span class="identifier">Event</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../on-click.html">onClick</a></h4>
+</td>
+<td>
+<p>An extension function for defining on click event handlers.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">onClick</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$onClick(pl.treksoft.kvision.core.onClick.T, kotlin.Function2((pl.treksoft.kvision.core.onClick.T, org.w3c.dom.events.MouseEvent, kotlin.Unit)))/handler">handler</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">.</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom.events/-mouse-event/index.html"><span class="identifier">MouseEvent</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../on-event.html">onEvent</a></h4>
+</td>
+<td>
+<p>An extension function for defining event handlers.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">onEvent</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$onEvent(pl.treksoft.kvision.core.onEvent.T, kotlin.Function1((pl.treksoft.kvision.utils.SnOn((pl.treksoft.kvision.core.onEvent.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SnOn</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../remove-bs-bg-color.html">removeBsBgColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsBgColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$removeBsBgColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsBgColor)/bsBgColor">bsBgColor</span><span class="symbol">:</span>&nbsp;<a href="../-bs-bg-color/index.html"><span class="identifier">BsBgColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../remove-bs-border.html">removeBsBorder</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsBorder</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$removeBsBorder(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsBorder)))/bsBorder">bsBorder</span><span class="symbol">:</span>&nbsp;<a href="../-bs-border/index.html"><span class="identifier">BsBorder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../remove-bs-clearfix.html">removeBsClearfix</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsClearfix</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../remove-bs-color.html">removeBsColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$removeBsColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsColor)/bsColor">bsColor</span><span class="symbol">:</span>&nbsp;<a href="../-bs-color/index.html"><span class="identifier">BsColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../remove-bs-rounded.html">removeBsRounded</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsRounded</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$removeBsRounded(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsRounded)))/bsRounded">bsRounded</span><span class="symbol">:</span>&nbsp;<a href="../-bs-rounded/index.html"><span class="identifier">BsRounded</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.dropdown/set-context-menu.html">setContextMenu</a></h4>
+</td>
+<td>
+<p>Sets context menu for the current widget.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">.</span><span class="identifier">setContextMenu</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.dropdown$setContextMenu(pl.treksoft.kvision.core.Widget, pl.treksoft.kvision.dropdown.ContextMenu)/contextMenu">contextMenu</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.dropdown/-context-menu/index.html"><span class="identifier">ContextMenu</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../style.html">style</a></h4>
+</td>
+<td>
+<p>DSL builder extension function.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">.</span><span class="identifier">style</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$style(pl.treksoft.kvision.core.Widget, kotlin.String, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/className">className</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.core$style(pl.treksoft.kvision.core.Widget, kotlin.String, kotlin.Function1((pl.treksoft.kvision.core.Style, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-style/index.html"><span class="identifier">Style</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../-style/index.html"><span class="identifier">Style</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.text/-abstract-text-input/index.html">AbstractTextInput</a></h4>
+</td>
+<td>
+<p>Base class for basic text components.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractTextInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.html/-canvas/index.html">Canvas</a></h4>
+</td>
+<td>
+<p>Canvas component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Canvas</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.chart/-chart/index.html">Chart</a></h4>
+</td>
+<td>
+<p>Chart component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Chart</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.check/-check-input/index.html">CheckInput</a></h4>
+</td>
+<td>
+<p>The basic input component rendered as HTML <em>input type="checkbox"</em> or <em>input type="radio"</em>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CheckInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.modal/-close-icon/index.html">CloseIcon</a></h4>
+</td>
+<td>
+<p>Helper class for close icon component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">CloseIcon</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.data/-data-container/index.html">DataContainer</a></h4>
+</td>
+<td>
+<p>A container class with support for mutable/observable data model.</p>
+<code><span class="keyword">class </span><span class="identifier">DataContainer</span><span class="symbol">&lt;</span><span class="identifier">M</span><span class="symbol">, </span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.data/-data-updatable/index.html"><span class="identifier">DataUpdatable</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.visual/-icon/index.html">Icon</a></h4>
+</td>
+<td>
+<p>An icon component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Icon</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.html/-iframe/index.html">Iframe</a></h4>
+</td>
+<td>
+<p>Iframe component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Iframe</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.html/-image/index.html">Image</a></h4>
+</td>
+<td>
+<p>Image component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Image</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.maps/-maps/index.html">Maps</a></h4>
+</td>
+<td>
+<p>Maps component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Maps</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.window/-maximize-icon/index.html">MaximizeIcon</a></h4>
+</td>
+<td>
+<p>Helper class for maximize icon component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">MaximizeIcon</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.window/-minimize-icon/index.html">MinimizeIcon</a></h4>
+</td>
+<td>
+<p>Helper class for minimize icon component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">MinimizeIcon</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-date-time-input/index.html">OnsDateTimeInput</a></h4>
+</td>
+<td>
+<p>OnsenUI date/time input component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsDateTimeInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.list/-ons-lazy-repeat/index.html">OnsLazyRepeat</a></h4>
+</td>
+<td>
+<p>An Onsen UI lazy repeat helper component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsLazyRepeat</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-number-input/index.html">OnsNumberInput</a></h4>
+</td>
+<td>
+<p>OnsenUI number input component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsNumberInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.visual/-progress-bar/index.html">ProgressBar</a></h4>
+</td>
+<td>
+<p>A progress bar component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ProgressBar</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.visual/-progress-circular/index.html">ProgressCircular</a></h4>
+</td>
+<td>
+<p>A circular progress indicator component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ProgressCircular</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.range/-range-input/index.html">RangeInput</a></h4>
+</td>
+<td>
+<p>Range input component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RangeInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.react/-react/index.html">React</a></h4>
+</td>
+<td>
+<p>React component for KVision with support for state holder.</p>
+<code><span class="keyword">class </span><span class="identifier">React</span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.visual/-ripple/index.html">Ripple</a></h4>
+</td>
+<td>
+<p>A ripple effect component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Ripple</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-select-option/index.html">SelectOption</a></h4>
+</td>
+<td>
+<p>The helper component for adding options to <a href="../../pl.treksoft.kvision.form.select/-select/index.html">Select</a> or <a href="../../pl.treksoft.kvision.form.select/-select-opt-group/index.html">SelectOptGroup</a>.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SelectOption</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html">SimplePanel</a></h4>
+</td>
+<td>
+<p>Basic container class, rendered as a DIV element with all children directly within.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SimplePanel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../-container/index.html"><span class="identifier">Container</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.spinner/-spinner-input/index.html">SpinnerInput</a></h4>
+</td>
+<td>
+<p>The basic component for spinner control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SpinnerInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.state/-state-binding/index.html">StateBinding</a></h4>
+</td>
+<td>
+<p>A class which binds the given container to the observable state.</p>
+<code><span class="keyword">class </span><s><span class="identifier">StateBinding</span></s><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">CONT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-container/index.html"><span class="identifier">Container</span></a><span class="symbol">, </span><span class="identifier">CONTENT</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.tabulator/-tabulator/index.html">Tabulator</a></h4>
+</td>
+<td>
+<p>Tabulator component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Tabulator</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.html/-text-node/index.html">TextNode</a></h4>
+</td>
+<td>
+<p>Simple component for rendering text DOM node.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TextNode</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.upload/-upload-input/index.html">UploadInput</a></h4>
+</td>
+<td>
+<p>The file upload component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">UploadInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Widget</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

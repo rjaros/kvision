@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SecurityMgr - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.remote</a>&nbsp;/&nbsp;<a href="./index.html">SecurityMgr</a><br/>
+<br/>
+<h1>SecurityMgr</h1>
+(js) <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">SecurityMgr</span></code>
+<p>Form login dispatcher.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Form login dispatcher.</p>
+<code><span class="identifier">SecurityMgr</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="after-error.html">afterError</a></h4>
+</td>
+<td>
+<p>Method called after error.</p>
+<code><span class="keyword">open</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">afterError</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="after-login.html">afterLogin</a></h4>
+</td>
+<td>
+<p>Method called after successful login.</p>
+<code><span class="keyword">open</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">afterLogin</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="login.html">login</a></h4>
+</td>
+<td>
+<p>Login user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">login</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="with-auth.html">withAuth</a></h4>
+</td>
+<td>
+<p>Executes given block of code after successful authentication.</p>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">withAuth</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.remote.SecurityMgr$withAuth(kotlin.coroutines.SuspendFunction0((pl.treksoft.kvision.remote.SecurityMgr.withAuth.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="keyword">suspend </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

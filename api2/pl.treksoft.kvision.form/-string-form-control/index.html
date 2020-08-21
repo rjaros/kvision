@@ -1,0 +1,213 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>StringFormControl - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.form</a>&nbsp;/&nbsp;<a href="./index.html">StringFormControl</a><br/>
+<br/>
+<h1>StringFormControl</h1>
+(js) <code><span class="keyword">interface </span><span class="identifier">StringFormControl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-form-control/index.html"><span class="identifier">FormControl</span></a></code>
+<p>Base interface of a form control with a text value.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="value.html">value</a></h4>
+</td>
+<td>
+<p>Text value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">value</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="get-value.html">getValue</a></h4>
+</td>
+<td>
+<p>Returns the value of the control.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getValue</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="get-value-as-string.html">getValueAsString</a></h4>
+</td>
+<td>
+<p>Returns the value of the control as a String.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getValueAsString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="set-value.html">setValue</a></h4>
+</td>
+<td>
+<p>Sets the value of the control.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setValue</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.StringFormControl$setValue(kotlin.Any)/v">v</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-bg-color.html">addBsBgColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsBgColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$addBsBgColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsBgColor)/bsBgColor">bsBgColor</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-bg-color/index.html"><span class="identifier">BsBgColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-border.html">addBsBorder</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsBorder</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$addBsBorder(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsBorder)))/bsBorder">bsBorder</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-border/index.html"><span class="identifier">BsBorder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-clearfix.html">addBsClearfix</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsClearfix</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-color.html">addBsColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$addBsColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsColor)/bsColor">bsColor</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-color/index.html"><span class="identifier">BsColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/add-bs-rounded.html">addBsRounded</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">addBsRounded</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$addBsRounded(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsRounded)))/bsRounded">bsRounded</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-rounded/index.html"><span class="identifier">BsRounded</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-bg-color.html">removeBsBgColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsBgColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$removeBsBgColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsBgColor)/bsBgColor">bsBgColor</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-bg-color/index.html"><span class="identifier">BsBgColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-border.html">removeBsBorder</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsBorder</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$removeBsBorder(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsBorder)))/bsBorder">bsBorder</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-border/index.html"><span class="identifier">BsBorder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-clearfix.html">removeBsClearfix</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsClearfix</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-color.html">removeBsColor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsColor</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.core$removeBsColor(pl.treksoft.kvision.core.Component, pl.treksoft.kvision.core.BsColor)/bsColor">bsColor</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-color/index.html"><span class="identifier">BsColor</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.core/remove-bs-rounded.html">removeBsRounded</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../pl.treksoft.kvision.core/-component/index.html"><span class="identifier">Component</span></a><span class="symbol">.</span><span class="identifier">removeBsRounded</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="pl.treksoft.kvision.core$removeBsRounded(pl.treksoft.kvision.core.Component, kotlin.Array((pl.treksoft.kvision.core.BsRounded)))/bsRounded">bsRounded</span><span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.core/-bs-rounded/index.html"><span class="identifier">BsRounded</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.text/-abstract-text/index.html">AbstractText</a></h4>
+</td>
+<td>
+<p>Base class for form field text components.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractText</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-radio-group/index.html">OnsRadioGroup</a></h4>
+</td>
+<td>
+<p>The form field component rendered as a group of OnsenUI radio buttons with the same name attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsRadioGroup</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.onsenui.form/-ons-select/index.html">OnsSelect</a></h4>
+</td>
+<td>
+<p>Onsen UI form field select component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">OnsSelect</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.check/-radio-group/index.html">RadioGroup</a></h4>
+</td>
+<td>
+<p>The form field component rendered as a group of HTML <em>input type="radio"</em> elements with the same name attribute.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RadioGroup</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-select/index.html">Select</a></h4>
+</td>
+<td>
+<p>The form field component for Select control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Select</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-select-remote/index.html">SelectRemote</a></h4>
+</td>
+<td>
+<p>The form field component for SelectRemote control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SelectRemote</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="../../pl.treksoft.kvision.form.select/-simple-select/index.html">SimpleSelect</a></h4>
+</td>
+<td>
+<p>The form field component for SimpleSelect control.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SimpleSelect</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">StringFormControl</span></a><span class="symbol">, </span><a href="../../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

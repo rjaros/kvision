@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Camera.getPicture - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="index.html">Camera</a>&nbsp;/&nbsp;<a href="./get-picture.html">getPicture</a><br/>
+<br/>
+<h1>getPicture</h1>
+(js) <a name="pl.treksoft.kvision.cordova.Camera$getPicture(pl.treksoft.kvision.cordova.CameraOptions)"></a>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getPicture</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Camera$getPicture(pl.treksoft.kvision.cordova.CameraOptions)/options">options</span><span class="symbol">:</span>&nbsp;<a href="../-camera-options/index.html"><span class="identifier">CameraOptions</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-camera-exception/index.html"><span class="identifier">CameraException</span></a><span class="symbol">&gt;</span></code>
+<p>Suspending function to get picture from the camera.</p>
+<p>Note: On Android platform you must also use <a href="add-camera-result-callback.html">addCameraResultCallback</a> listener.</p>
+<h3>Parameters</h3>
+<p><a name="options"></a>
+<code>options</code> - camera options</p>
+<p><strong>Return</strong><br/>
+a <a href="../-result/index.html">Result</a> class containing the picture or the exception</p>
+(js) <a name="pl.treksoft.kvision.cordova.Camera$getPicture(pl.treksoft.kvision.cordova.CameraOptions, kotlin.Function1((pl.treksoft.kvision.cordova.Result((kotlin.String, pl.treksoft.kvision.cordova.CameraException)), kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">getPicture</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Camera$getPicture(pl.treksoft.kvision.cordova.CameraOptions, kotlin.Function1((pl.treksoft.kvision.cordova.Result((kotlin.String, pl.treksoft.kvision.cordova.CameraException)), kotlin.Unit)))/options">options</span><span class="symbol">:</span>&nbsp;<a href="../-camera-options/index.html"><span class="identifier">CameraOptions</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Camera$getPicture(pl.treksoft.kvision.cordova.CameraOptions, kotlin.Function1((pl.treksoft.kvision.cordova.Result((kotlin.String, pl.treksoft.kvision.cordova.CameraException)), kotlin.Unit)))/resultCallback">resultCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-camera-exception/index.html"><span class="identifier">CameraException</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>A function to get picture from the camera.</p>
+<p>Note: On Android platform you must also use <a href="add-camera-result-callback.html">addCameraResultCallback</a> listener.</p>
+<h3>Parameters</h3>
+<p><a name="options"></a>
+<code>options</code> - camera options</p>
+<p><a name="resultCallback"></a>
+<code>resultCallback</code> - a callback function to get the <a href="../-result/index.html">Result</a>, containing the picture or the exception</p>
+</BODY>
+</HTML>

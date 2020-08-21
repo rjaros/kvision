@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>AnimationOptions - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.chart</a>&nbsp;/&nbsp;<a href="./index.html">AnimationOptions</a><br/>
+<br/>
+<h1>AnimationOptions</h1>
+(js) <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">AnimationOptions</span></code>
+<p>Chart animation options.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Chart animation options.</p>
+<code><span class="identifier">AnimationOptions</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.chart.AnimationOptions$<init>(kotlin.Int, pl.treksoft.kvision.chart.Eeasing, kotlin.Function1((pl.treksoft.kvision.chart.js.Chart.ChartAnimationObject, kotlin.Unit)), kotlin.Function1((pl.treksoft.kvision.chart.js.Chart.ChartAnimationObject, kotlin.Unit)))/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;1000<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.chart.AnimationOptions$<init>(kotlin.Int, pl.treksoft.kvision.chart.Eeasing, kotlin.Function1((pl.treksoft.kvision.chart.js.Chart.ChartAnimationObject, kotlin.Unit)), kotlin.Function1((pl.treksoft.kvision.chart.js.Chart.ChartAnimationObject, kotlin.Unit)))/easing">easing</span><span class="symbol">:</span>&nbsp;<a href="../-eeasing/index.html"><span class="identifier">Eeasing</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Eeasing.EASEOUTQUART<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.chart.AnimationOptions$<init>(kotlin.Int, pl.treksoft.kvision.chart.Eeasing, kotlin.Function1((pl.treksoft.kvision.chart.js.Chart.ChartAnimationObject, kotlin.Unit)), kotlin.Function1((pl.treksoft.kvision.chart.js.Chart.ChartAnimationObject, kotlin.Unit)))/onProgress">onProgress</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="identifier">obj</span><span class="symbol">:</span>&nbsp;<span class="identifier">ChartAnimationObject</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.chart.AnimationOptions$<init>(kotlin.Int, pl.treksoft.kvision.chart.Eeasing, kotlin.Function1((pl.treksoft.kvision.chart.js.Chart.ChartAnimationObject, kotlin.Unit)), kotlin.Function1((pl.treksoft.kvision.chart.js.Chart.ChartAnimationObject, kotlin.Unit)))/onComplete">onComplete</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="identifier">obj</span><span class="symbol">:</span>&nbsp;<span class="identifier">ChartAnimationObject</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="duration.html">duration</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">duration</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="easing.html">easing</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">easing</span><span class="symbol">: </span><a href="../-eeasing/index.html"><span class="identifier">Eeasing</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="on-complete.html">onComplete</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">onComplete</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">obj</span><span class="symbol">:</span>&nbsp;<span class="identifier">ChartAnimationObject</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="on-progress.html">onProgress</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">onProgress</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><span class="identifier">obj</span><span class="symbol">:</span>&nbsp;<span class="identifier">ChartAnimationObject</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="../to-js.html">toJs</a></h4>
+</td>
+<td>
+<p>An extension function to convert configuration class to JS object.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">AnimationOptions</span></a><span class="symbol">.</span><span class="identifier">toJs</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="keyword">dynamic</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

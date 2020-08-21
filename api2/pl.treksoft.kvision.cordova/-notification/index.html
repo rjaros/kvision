@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Notification - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">Notification</a><br/>
+<br/>
+<h1>Notification</h1>
+(js) <code><span class="keyword">object </span><span class="identifier">Notification</span></code>
+<p>Main object for Cordova notifications.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="alert.html">alert</a></h4>
+</td>
+<td>
+<p>Show alert dialog.</p>
+<code><span class="keyword">fun </span><span class="identifier">alert</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$alert(kotlin.String, kotlin.String, kotlin.String, kotlin.Function0((kotlin.Unit)))/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$alert(kotlin.String, kotlin.String, kotlin.String, kotlin.Function0((kotlin.Unit)))/title">title</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$alert(kotlin.String, kotlin.String, kotlin.String, kotlin.Function0((kotlin.Unit)))/buttonLabel">buttonLabel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$alert(kotlin.String, kotlin.String, kotlin.String, kotlin.Function0((kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="beep.html">beep</a></h4>
+</td>
+<td>
+<p>Play a beep sound.</p>
+<code><span class="keyword">fun </span><span class="identifier">beep</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$beep(kotlin.Int)/times">times</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;1<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="confirm.html">confirm</a></h4>
+</td>
+<td>
+<p>Show confirm dialog.</p>
+<code><span class="keyword">fun </span><span class="identifier">confirm</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$confirm(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Function1((kotlin.Int, kotlin.Unit)))/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$confirm(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Function1((kotlin.Int, kotlin.Unit)))/title">title</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$confirm(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Function1((kotlin.Int, kotlin.Unit)))/buttonLabels">buttonLabels</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$confirm(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Function1((kotlin.Int, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="prompt.html">prompt</a></h4>
+</td>
+<td>
+<p>Show prompt dialog.</p>
+<code><span class="keyword">fun </span><span class="identifier">prompt</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$prompt(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.cordova.PromptResponse, kotlin.Unit)))/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$prompt(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.cordova.PromptResponse, kotlin.Unit)))/title">title</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$prompt(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.cordova.PromptResponse, kotlin.Unit)))/buttonLabels">buttonLabels</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$prompt(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.cordova.PromptResponse, kotlin.Unit)))/defaultText">defaultText</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.Notification$prompt(kotlin.String, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.cordova.PromptResponse, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-prompt-response/index.html"><span class="identifier">PromptResponse</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

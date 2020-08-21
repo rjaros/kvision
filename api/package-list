@@ -1,35 +1,6 @@
 $dokka.format:html
 $dokka.linkExtension:html
-$dokka.location:pl.treksoft.kvision.cordova$toBlob(org.khronos.webgl.ArrayBuffer)pl.treksoft.kvision.cordova/org.khronos.webgl.-array-buffer/to-blob.html
-$dokka.location:pl.treksoft.kvision.cordova$toDirectoryEntry(kotlin.String)pl.treksoft.kvision.cordova/kotlin.-string/to-directory-entry.html
-$dokka.location:pl.treksoft.kvision.cordova$toFileEntry(kotlin.String)pl.treksoft.kvision.cordova/kotlin.-string/to-file-entry.html
-$dokka.location:pl.treksoft.kvision.form$asJson(kotlin.collections.Map((kotlin.String, kotlin.Any)))pl.treksoft.kvision.form/kotlin.collections.-map/as-json.html
-$dokka.location:pl.treksoft.kvision.form$asMap(kotlin.js.Json)pl.treksoft.kvision.form/kotlin.js.-json/as-map.html
-$dokka.location:pl.treksoft.kvision.types$toDateF(kotlin.String, kotlin.String)pl.treksoft.kvision.types/kotlin.-string/to-date-f.html
-$dokka.location:pl.treksoft.kvision.types$toStringF(kotlin.js.Date, kotlin.String)pl.treksoft.kvision.types/kotlin.js.-date/to-string-f.html
-$dokka.location:pl.treksoft.kvision.utils$asString(kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)))pl.treksoft.kvision.utils/kotlin.-pair/as-string.html
-$dokka.location:pl.treksoft.kvision.utils$ch#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/ch.html
-$dokka.location:pl.treksoft.kvision.utils$cm#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/cm.html
-$dokka.location:pl.treksoft.kvision.utils$createInstance(kotlin.Any, kotlin.Array((kotlin.Any)))pl.treksoft.kvision.utils/kotlin.-any/create-instance.html
-$dokka.location:pl.treksoft.kvision.utils$em#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/em.html
-$dokka.location:pl.treksoft.kvision.utils$getContent(org.w3c.files.File)pl.treksoft.kvision.utils/org.w3c.files.-file/get-content.html
-$dokka.location:pl.treksoft.kvision.utils$in#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/in.html
-$dokka.location:pl.treksoft.kvision.utils$minus(kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Number)pl.treksoft.kvision.utils/kotlin.-pair/minus.html
-$dokka.location:pl.treksoft.kvision.utils$mm#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/mm.html
-$dokka.location:pl.treksoft.kvision.utils$pc#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/pc.html
-$dokka.location:pl.treksoft.kvision.utils$perc#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/perc.html
-$dokka.location:pl.treksoft.kvision.utils$plus(kotlin.Pair((kotlin.Number, pl.treksoft.kvision.core.UNIT)), kotlin.Number)pl.treksoft.kvision.utils/kotlin.-pair/plus.html
-$dokka.location:pl.treksoft.kvision.utils$pt#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/pt.html
-$dokka.location:pl.treksoft.kvision.utils$px#kotlin.Intpl.treksoft.kvision.utils/kotlin.-int/px.html
-$dokka.location:pl.treksoft.kvision.utils$rem#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/rem.html
-$dokka.location:pl.treksoft.kvision.utils$set#kotlin.Stringpl.treksoft.kvision.utils/kotlin.-string/set.html
-$dokka.location:pl.treksoft.kvision.utils$syncWithList(kotlin.collections.MutableList((pl.treksoft.kvision.utils.syncWithList.T)), kotlin.collections.List((pl.treksoft.kvision.utils.syncWithList.T)))pl.treksoft.kvision.utils/kotlin.collections.-mutable-list/sync-with-list.html
-$dokka.location:pl.treksoft.kvision.utils$toCamelCase(kotlin.String)pl.treksoft.kvision.utils/kotlin.-string/to-camel-case.html
-$dokka.location:pl.treksoft.kvision.utils$toHexString(kotlin.Int)pl.treksoft.kvision.utils/kotlin.-int/to-hex-string.html
-$dokka.location:pl.treksoft.kvision.utils$vh#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/vh.html
-$dokka.location:pl.treksoft.kvision.utils$vmax#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/vmax.html
-$dokka.location:pl.treksoft.kvision.utils$vmin#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/vmin.html
-$dokka.location:pl.treksoft.kvision.utils$vw#kotlin.Numberpl.treksoft.kvision.utils/kotlin.-number/vw.html
+
 pl.treksoft.kvision
 pl.treksoft.kvision.annotations
 pl.treksoft.kvision.chart
@@ -39,6 +10,7 @@ pl.treksoft.kvision.core
 pl.treksoft.kvision.data
 pl.treksoft.kvision.dropdown
 pl.treksoft.kvision.electron
+pl.treksoft.kvision.electron.electron
 pl.treksoft.kvision.electron.nodejs
 pl.treksoft.kvision.event
 pl.treksoft.kvision.form
@@ -84,3 +56,4 @@ pl.treksoft.kvision.toolbar
 pl.treksoft.kvision.types
 pl.treksoft.kvision.utils
 pl.treksoft.kvision.window
+

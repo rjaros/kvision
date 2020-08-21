@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MediaCapture - kvision</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kvision</a>&nbsp;/&nbsp;<a href="../index.html">pl.treksoft.kvision.cordova</a>&nbsp;/&nbsp;<a href="./index.html">MediaCapture</a><br/>
+<br/>
+<h1>MediaCapture</h1>
+(js) <code><span class="keyword">object </span><span class="identifier">MediaCapture</span></code>
+<p>Main media capture object.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="-capture-error-code/index.html">CaptureErrorCode</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">CaptureErrorCode</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="add-pending-capture-listener.html">addPendingCaptureListener</a></h4>
+</td>
+<td>
+<p>Add listeners for pending capture Cordova events.</p>
+<code><span class="keyword">fun </span><span class="identifier">addPendingCaptureListener</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaCapture$addPendingCaptureListener(kotlin.Function1((pl.treksoft.kvision.cordova.Result((kotlin.collections.List((pl.treksoft.kvision.cordova.MediaFile)), pl.treksoft.kvision.cordova.CaptureException)), kotlin.Unit)))/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-media-file/index.html"><span class="identifier">MediaFile</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="../-capture-exception/index.html"><span class="identifier">CaptureException</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="capture-audio.html">captureAudio</a></h4>
+</td>
+<td>
+<p>Capture audio file(s).</p>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">captureAudio</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaCapture$captureAudio(kotlin.Number, kotlin.Number)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a>&nbsp;<span class="symbol">=</span>&nbsp;1<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaCapture$captureAudio(kotlin.Number, kotlin.Number)/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-media-file/index.html"><span class="identifier">MediaFile</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="../-capture-exception/index.html"><span class="identifier">CaptureException</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="capture-image.html">captureImage</a></h4>
+</td>
+<td>
+<p>Capture image file(s).</p>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">captureImage</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaCapture$captureImage(kotlin.Number)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a>&nbsp;<span class="symbol">=</span>&nbsp;1<span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-media-file/index.html"><span class="identifier">MediaFile</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="../-capture-exception/index.html"><span class="identifier">CaptureException</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="capture-video.html">captureVideo</a></h4>
+</td>
+<td>
+<p>Capture video file(s).</p>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">captureVideo</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaCapture$captureVideo(kotlin.Number, kotlin.Number, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a>&nbsp;<span class="symbol">=</span>&nbsp;1<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaCapture$captureVideo(kotlin.Number, kotlin.Number, kotlin.Boolean)/duration">duration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html"><span class="identifier">Number</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.cordova.MediaCapture$captureVideo(kotlin.Number, kotlin.Number, kotlin.Boolean)/lowQuality">lowQuality</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-media-file/index.html"><span class="identifier">MediaFile</span></a><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="../-capture-exception/index.html"><span class="identifier">CaptureException</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

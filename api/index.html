@@ -1,509 +1,859 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>kvision</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="./index.html">kvision</a><br/>
-<br/>
-<p>KVision - object oriented web framework for Kotlin/JS.</p>
-<h3>Packages</h3>
-<table>
-<tbody>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision/index.html">pl.treksoft.kvision</a></h4>
-</td>
-<td>
-<p>KVision main Application class and some helper interfaces necessary to support Hot Module Replacement (HMR).</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.annotations/index.html">pl.treksoft.kvision.annotations</a></h4>
-</td>
-<td>
-<p>Annotations for use with KVision compiler plugin.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.chart/index.html">pl.treksoft.kvision.chart</a></h4>
-</td>
-<td>
-<p>Full-featured chart component based on chart.js library.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.chart.js/index.html">pl.treksoft.kvision.chart.js</a></h4>
-</td>
-<td>
-<p>Kotlin bindings for chart.js API.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.cordova/index.html">pl.treksoft.kvision.cordova</a></h4>
-</td>
-<td>
-<p>Kotlin bindings for core Apache Cordova API.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.core/index.html">pl.treksoft.kvision.core</a></h4>
-</td>
-<td>
-<p>KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders, 
-backgrounds, fonts, text and position) and the main Widget class.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.data/index.html">pl.treksoft.kvision.data</a></h4>
-</td>
-<td>
-<p>Base component and container class with data binding support for observable data model.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.dropdown/index.html">pl.treksoft.kvision.dropdown</a></h4>
-</td>
-<td>
-<p>Bootstrap dropdown component with support for navigation bars and context menus.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.electron/index.html">pl.treksoft.kvision.electron</a></h4>
-</td>
-<td>
-<p>Kotlin bindings for Electron API.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.electron.nodejs/index.html">pl.treksoft.kvision.electron.nodejs</a></h4>
-</td>
-<td>
-<p>Kotlin bindings for NodeJS API within Electron.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.event/index.html">pl.treksoft.kvision.event</a></h4>
-</td>
-<td>
-<p>Extension functions producing coroutines Flows for KVision event and data sources.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.form/index.html">pl.treksoft.kvision.form</a></h4>
-</td>
-<td>
-<p>Convenient forms implementation, with support for many different input components and easy to define
-validation.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.form.check/index.html">pl.treksoft.kvision.form.check</a></h4>
-</td>
-<td>
-<p>Checkbox, radiobutton and radiobutton group components.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.form.range/index.html">pl.treksoft.kvision.form.range</a></h4>
-</td>
-<td>
-<p>Range input component.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.form.select/index.html">pl.treksoft.kvision.form.select</a></h4>
-</td>
-<td>
-<p>Contains a simple select component as well as a full-featured component with support for remote (AJAX) data source.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.form.spinner/index.html">pl.treksoft.kvision.form.spinner</a></h4>
-</td>
-<td>
-<p>Spinner input component.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.form.text/index.html">pl.treksoft.kvision.form.text</a></h4>
-</td>
-<td>
-<p>Text input components, with password, text area, rich text area and typeahead support.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.form.time/index.html">pl.treksoft.kvision.form.time</a></h4>
-</td>
-<td>
-<p>Full-featured date and time input components.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.form.upload/index.html">pl.treksoft.kvision.form.upload</a></h4>
-</td>
-<td>
-<p>Full-featured file upload component with drag &amp; drop, preview and AJAX upload mode.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.html/index.html">pl.treksoft.kvision.html</a></h4>
-</td>
-<td>
-<p>Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links, lists and iframe. 
-Support for Handlebars.js templates is included.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.i18n/index.html">pl.treksoft.kvision.i18n</a></h4>
-</td>
-<td>
-<p>Internationalization classes.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.maps/index.html">pl.treksoft.kvision.maps</a></h4>
-</td>
-<td>
-<p>A maps component based on Leaflet library.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.modal/index.html">pl.treksoft.kvision.modal</a></h4>
-</td>
-<td>
-<p>Classes supporting general purpose Bootstrap modals with convenient helpers for alert and confirm popup dialogs.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.moment/index.html">pl.treksoft.kvision.moment</a></h4>
-</td>
-<td>
-<p>A set of tools for parsing, validating, manipulating, and formatting dates based on Moment Library.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.navbar/index.html">pl.treksoft.kvision.navbar</a></h4>
-</td>
-<td>
-<p>Bootstrap navbar components.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui/index.html">pl.treksoft.kvision.onsenui</a></h4>
-</td>
-<td>
-<p>Onsen UI helper utility functions.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.carousel/index.html">pl.treksoft.kvision.onsenui.carousel</a></h4>
-</td>
-<td>
-<p>Onsen UI carousel component.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.control/index.html">pl.treksoft.kvision.onsenui.control</a></h4>
-</td>
-<td>
-<p>Onsen UI control components (action button, speed dial, segment).</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.core/index.html">pl.treksoft.kvision.onsenui.core</a></h4>
-</td>
-<td>
-<p>Onsen UI main structural components (page, navigator).</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.dialog/index.html">pl.treksoft.kvision.onsenui.dialog</a></h4>
-</td>
-<td>
-<p>Onsen UI dialogs, toasts, popovers and notifications.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.form/index.html">pl.treksoft.kvision.onsenui.form</a></h4>
-</td>
-<td>
-<p>Onsen UI form components.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.grid/index.html">pl.treksoft.kvision.onsenui.grid</a></h4>
-</td>
-<td>
-<p>Onsen UI grid layout components.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.list/index.html">pl.treksoft.kvision.onsenui.list</a></h4>
-</td>
-<td>
-<p>Onsen UI list component.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.splitter/index.html">pl.treksoft.kvision.onsenui.splitter</a></h4>
-</td>
-<td>
-<p>Onsen UI splitter component.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.tabbar/index.html">pl.treksoft.kvision.onsenui.tabbar</a></h4>
-</td>
-<td>
-<p>Onsen UI tabbar component.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.toolbar/index.html">pl.treksoft.kvision.onsenui.toolbar</a></h4>
-</td>
-<td>
-<p>Onsen UI toolbar component.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.onsenui.visual/index.html">pl.treksoft.kvision.onsenui.visual</a></h4>
-</td>
-<td>
-<p>Onsen UI visual components (card, icon, progress bars and ripple).</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.pace/index.html">pl.treksoft.kvision.pace</a></h4>
-</td>
-<td>
-<p>Automatic progress bar module.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.panel/index.html">pl.treksoft.kvision.panel</a></h4>
-</td>
-<td>
-<p>Rich set of container classes, supporting both simple use cases and sophisticated layouts (including CSS flexbox,
-CSS grid and Bootstrap responsive 12 columns gid).</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.progress/index.html">pl.treksoft.kvision.progress</a></h4>
-</td>
-<td>
-<p>Bootstrap progress bar component.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.react/index.html">pl.treksoft.kvision.react</a></h4>
-</td>
-<td>
-<p>KVision bindings for embedded React components.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.redux/index.html">pl.treksoft.kvision.redux</a></h4>
-</td>
-<td>
-<p>Predictable state container based on Redux library.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.remote/index.html">pl.treksoft.kvision.remote</a></h4>
-</td>
-<td>
-<p>A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.rest/index.html">pl.treksoft.kvision.rest</a></h4>
-</td>
-<td>
-<p>RESTful API client with support for type-safe connectivity.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.routing/index.html">pl.treksoft.kvision.routing</a></h4>
-</td>
-<td>
-<p>Simple and easy to use JavaScript router wrapper.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.state/index.html">pl.treksoft.kvision.state</a></h4>
-</td>
-<td>
-<p>Classes supporting the observer pattern, including the implementation of the observable list. </p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.table/index.html">pl.treksoft.kvision.table</a></h4>
-</td>
-<td>
-<p>Clasess supporting HTML tables.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.tabulator/index.html">pl.treksoft.kvision.tabulator</a></h4>
-</td>
-<td>
-<p>Full-featured grid/table component based on the Tabulator library.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.tabulator.js/index.html">pl.treksoft.kvision.tabulator.js</a></h4>
-</td>
-<td>
-<p>Kotlin bindings for Tabulator API.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.toast/index.html">pl.treksoft.kvision.toast</a></h4>
-</td>
-<td>
-<p>The toast component. </p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.toolbar/index.html">pl.treksoft.kvision.toolbar</a></h4>
-</td>
-<td>
-<p>Toolbar and button group components.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.types/index.html">pl.treksoft.kvision.types</a></h4>
-</td>
-<td>
-<p>Multiplatform type definitions.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.utils/index.html">pl.treksoft.kvision.utils</a></h4>
-</td>
-<td>
-<p>Interfaces and helper functions for Snabbdom virtual dom implementation and a few useful extension functions.</p>
-</td>
-</tr>
-<tr>
-<td>
-(js) 
-<h4><a href="pl.treksoft.kvision.window/index.html">pl.treksoft.kvision.window</a></h4>
-</td>
-<td>
-<p>Floating, resizable window component.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Index</h3>
-<a href="alltypes/index.html">All Types</a>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>kvision</title>
+    <link href="../styles/style.css" rel="Stylesheet">
+    <script type="text/javascript" src="../scripts/navigationLoader.js" async="async"></script>
+    <script type="text/javascript" src="../scripts/platformContentHandler.js" async="async"></script>
+    <script type="text/javascript" src="../scripts/sourceset_dependencies.js" async="async"></script>
+    <script type="text/javascript" src="../scripts/clipboard.js" async="async"></script>
+    <link href="../styles/jetbrains-mono.css" rel="Stylesheet">
+    <script>var pathToRoot = "../";</script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="logo"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="searchBar"></div>
+        <script type="text/javascript" src="../scripts/pages.js"></script>
+        <script type="text/javascript" src="../scripts/main.js"></script>
+        <div id="content" pageIds="////PointingToDeclaration/">
+          <div class="breadcrumbs">//<a href="index.html">kvision</a></div>
+          <div class="cover ">
+            <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector js-like" data-active="" data-filter=":/kvision">JS</button><button class="platform-tag platform-selector common-like" data-active="" data-filter=":/kvision-common">Common</button><button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":/kvision-jvm">JVM</button></div>
+            <h1 class="cover"><a data-name="kvision"></a>kvision</h1>
+          </div>
+          <h2 class=""><a data-name="packages"></a>Packages</h2>
+          <div class="table"><a data-name="pl.treksoft.kvision////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision/index.html">pl.treksoft.kvision</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.annotations////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision-common" data-filterable-set=":/kvision-common">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.annotations/index.html">pl.treksoft.kvision.annotations</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.annotations////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag common-like">Common</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.chart////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.chart/index.html">pl.treksoft.kvision.chart</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.chart////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.chart.js////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.chart.js/index.html">pl.treksoft.kvision.chart.js</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.chart.js////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.cordova////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.cordova/index.html">pl.treksoft.kvision.cordova</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.cordova////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.core////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.core/index.html">pl.treksoft.kvision.core</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.core////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.data////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.data/index.html">pl.treksoft.kvision.data</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.data////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.dropdown////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.dropdown/index.html">pl.treksoft.kvision.dropdown</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.dropdown////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.electron////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.electron.html">pl.treksoft.kvision.electron</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.electron////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.electron.electron////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.electron.electron/index.html">pl.treksoft.kvision.electron.electron</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.electron.electron////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.electron.nodejs////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.electron.nodejs/index.html">pl.treksoft.kvision.electron.nodejs</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.electron.nodejs////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.event////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.event/index.html">pl.treksoft.kvision.event</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.event////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.form////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.form/index.html">pl.treksoft.kvision.form</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.form////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.form.check////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.form.check/index.html">pl.treksoft.kvision.form.check</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.form.check////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.form.range////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.form.range/index.html">pl.treksoft.kvision.form.range</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.form.range////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.form.select////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.form.select/index.html">pl.treksoft.kvision.form.select</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.form.select////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.form.spinner////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.form.spinner/index.html">pl.treksoft.kvision.form.spinner</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.form.spinner////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.form.text////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.form.text/index.html">pl.treksoft.kvision.form.text</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.form.text////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.form.time////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.form.time/index.html">pl.treksoft.kvision.form.time</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.form.time////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.form.upload////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.form.upload/index.html">pl.treksoft.kvision.form.upload</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.form.upload////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.html////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.html/index.html">pl.treksoft.kvision.html</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.html////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.i18n////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.i18n/index.html">pl.treksoft.kvision.i18n</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.i18n////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.maps////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.maps/index.html">pl.treksoft.kvision.maps</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.maps////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.modal////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.modal/index.html">pl.treksoft.kvision.modal</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.modal////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.moment////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.moment/index.html">pl.treksoft.kvision.moment</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.moment////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.navbar////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.navbar/index.html">pl.treksoft.kvision.navbar</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.navbar////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui/index.html">pl.treksoft.kvision.onsenui</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.carousel////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.carousel/index.html">pl.treksoft.kvision.onsenui.carousel</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.carousel////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.control////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.control/index.html">pl.treksoft.kvision.onsenui.control</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.control////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.core////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.core/index.html">pl.treksoft.kvision.onsenui.core</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.core////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.dialog////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.dialog/index.html">pl.treksoft.kvision.onsenui.dialog</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.dialog////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.form////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.form/index.html">pl.treksoft.kvision.onsenui.form</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.form////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.grid////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.grid/index.html">pl.treksoft.kvision.onsenui.grid</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.grid////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.list////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.list/index.html">pl.treksoft.kvision.onsenui.list</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.list////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.splitter////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.splitter/index.html">pl.treksoft.kvision.onsenui.splitter</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.splitter////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.tabbar////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.tabbar/index.html">pl.treksoft.kvision.onsenui.tabbar</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.tabbar////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.toolbar////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.toolbar/index.html">pl.treksoft.kvision.onsenui.toolbar</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.toolbar////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.onsenui.visual////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.onsenui.visual/index.html">pl.treksoft.kvision.onsenui.visual</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.onsenui.visual////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.pace////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.pace/index.html">pl.treksoft.kvision.pace</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.pace////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.panel////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.panel/index.html">pl.treksoft.kvision.panel</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.panel////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.progress////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.progress/index.html">pl.treksoft.kvision.progress</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.progress////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.react////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.react/index.html">pl.treksoft.kvision.react</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.react////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.redux////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.redux/index.html">pl.treksoft.kvision.redux</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.redux////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.remote////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision :/kvision-common :/kvision-jvm" data-filterable-set=":/kvision :/kvision-common :/kvision-jvm">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.remote/index.html">pl.treksoft.kvision.remote</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.remote////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+            </div>
+<a data-name="pl.treksoft.kvision.rest////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.rest/index.html">pl.treksoft.kvision.rest</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.rest////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.routing////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.routing/index.html">pl.treksoft.kvision.routing</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.routing////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.state////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.state/index.html">pl.treksoft.kvision.state</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.state////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.table////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.table/index.html">pl.treksoft.kvision.table</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.table////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.tabulator////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.tabulator/index.html">pl.treksoft.kvision.tabulator</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.tabulator////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.tabulator.js////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.tabulator.js/index.html">pl.treksoft.kvision.tabulator.js</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.tabulator.js////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.toast////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.toast/index.html">pl.treksoft.kvision.toast</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.toast////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.toolbar////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.toolbar/index.html">pl.treksoft.kvision.toolbar</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.toolbar////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.types////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision :/kvision-common :/kvision-jvm" data-filterable-set=":/kvision :/kvision-common :/kvision-jvm">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.types/index.html">pl.treksoft.kvision.types</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.types////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+            </div>
+<a data-name="pl.treksoft.kvision.utils////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.utils/index.html">pl.treksoft.kvision.utils</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.utils////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+<a data-name="pl.treksoft.kvision.window////PointingToDeclaration/"></a>
+            <div class="table-row" data-filterable-current=":/kvision" data-filterable-set=":/kvision">
+              <div class="main-subrow "><span><a href="pl.treksoft.kvision.window/index.html">pl.treksoft.kvision.window</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="pl.treksoft.kvision.window////PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
+    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
+</svg></span>
+                    <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
+</svg><span>Link copied to clipboard</span></div>
+                  </span></span>
+                <div class="platform-tags">
+                  <div class="platform-tag js-like">JS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#container"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.3337 9.66683H0.666992L6.00033 3.66683L11.3337 9.66683Z" fill="black"/>
+    <path d="M0.666992 0.333496H11.3337V1.66683H0.666992V0.333496Z" fill="black"/>
+</svg></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 0H2.3949L4.84076 2.44586L0 7.28662L0.713376 8L5.55414 3.15924L8 5.6051V0Z" fill="black"/>
+</svg></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

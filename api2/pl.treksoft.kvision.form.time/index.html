@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>pl.treksoft.kvision.form.time - kvision</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kvision</a>&nbsp;/&nbsp;<a href="./index.html">pl.treksoft.kvision.form.time</a><br/>
+<br/>
+<h2>Package pl.treksoft.kvision.form.time</h2>
+<p>Full-featured date and time input components.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="-date-time/index.html">DateTime</a></h4>
+</td>
+<td>
+<p>Form field date/time chooser component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DateTime</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../pl.treksoft.kvision.form/-date-form-control/index.html"><span class="identifier">DateFormControl</span></a><span class="symbol">, </span><a href="../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="-date-time-input/index.html">DateTimeInput</a></h4>
+</td>
+<td>
+<p>Basic date/time chooser component.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DateTimeInput</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../pl.treksoft.kvision.panel/-simple-panel/index.html"><span class="identifier">SimplePanel</span></a><span class="symbol">, </span><a href="../pl.treksoft.kvision.form/-form-input/index.html"><span class="identifier">FormInput</span></a><span class="symbol">, </span><a href="../pl.treksoft.kvision.state/-observable-state/index.html"><span class="identifier">ObservableState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+(js) 
+<h4><a href="date-time.html">dateTime</a></h4>
+</td>
+<td>
+<p>DSL builder extension function.</p>
+<code><span class="keyword">fun </span><a href="../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">dateTime</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTime(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.time.DateTime, kotlin.Unit)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTime(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.time.DateTime, kotlin.Unit)))/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTime(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.time.DateTime, kotlin.Unit)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;"YYYY-MM-DD HH:mm"<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTime(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.time.DateTime, kotlin.Unit)))/label">label</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTime(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.time.DateTime, kotlin.Unit)))/rich">rich</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTime(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Function1((pl.treksoft.kvision.form.time.DateTime, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="-date-time/index.html"><span class="identifier">DateTime</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="-date-time/index.html"><span class="identifier">DateTime</span></a></code></td>
+</tr>
+<tr>
+<td>
+(js) 
+<h4><a href="date-time-input.html">dateTimeInput</a></h4>
+</td>
+<td>
+<p>DSL builder extension function.</p>
+<code><span class="keyword">fun </span><a href="../pl.treksoft.kvision.core/-container/index.html"><span class="identifier">Container</span></a><span class="symbol">.</span><span class="identifier">dateTimeInput</span><span class="symbol">(</span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTimeInput(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.time.DateTimeInput, kotlin.Unit)))/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-date/index.html"><span class="identifier">Date</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTimeInput(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.time.DateTimeInput, kotlin.Unit)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;"YYYY-MM-DD HH:mm"<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTimeInput(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.time.DateTimeInput, kotlin.Unit)))/classes">classes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTimeInput(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.time.DateTimeInput, kotlin.Unit)))/className">className</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="pl.treksoft.kvision.form.time$dateTimeInput(pl.treksoft.kvision.core.Container, kotlin.js.Date, kotlin.String, kotlin.collections.Set((kotlin.String)), kotlin.String, kotlin.Function1((pl.treksoft.kvision.form.time.DateTimeInput, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="-date-time-input/index.html"><span class="identifier">DateTimeInput</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="-date-time-input/index.html"><span class="identifier">DateTimeInput</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
