@@ -150,7 +150,7 @@ open class SelectInput(
     /**
      * Determines if the field is disabled.
      */
-    override var disabled by refreshOnUpdate(false)
+    override var disabled by refreshOnUpdate(false) { refresh(); refreshSelectInput() }
 
     /**
      * Determines if the select is automatically focused.
