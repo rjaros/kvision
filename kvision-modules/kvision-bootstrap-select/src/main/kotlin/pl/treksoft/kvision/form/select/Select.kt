@@ -176,6 +176,15 @@ open class Select(
             flabel.rich = value
         }
 
+    /**
+     * The index of currently selected option or -1 if none.
+     */
+    var selectedIndex
+        get() = input.selectedIndex
+        set(value) {
+            input.selectedIndex = value
+        }
+
     private val idc = "kv_form_select_$counter"
     final override val input: SelectInput = SelectInput(
         options, value, multiple, ajaxOptions,

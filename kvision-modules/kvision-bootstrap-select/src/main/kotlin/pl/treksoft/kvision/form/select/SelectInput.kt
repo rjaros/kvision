@@ -167,6 +167,20 @@ open class SelectInput(
      */
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
+    /**
+     * The index of currently selected option or -1 if none.
+     */
+    @Suppress("UnsafeCastFromDynamic")
+    var selectedIndex: Int
+        get() = getElement()?.asDynamic()?.selectedIndex ?: -1
+        set(value) {
+            getElement()?.asDynamic()?.selectedIndex = value
+            if (value == -1) this.value = null
+            options?.getOrNull(value)?.let {
+                this.value = it.first
+            }
+        }
+
     init {
         setChildrenFromOptions()
         this.setInternalEventListener<SelectInput> {
