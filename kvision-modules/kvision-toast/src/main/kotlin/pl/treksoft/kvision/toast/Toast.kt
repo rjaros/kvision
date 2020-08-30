@@ -117,7 +117,7 @@ internal fun ToastOptions.toJs(): dynamic {
         if (rtl != null) this.rtl = rtl
         if (onShown != null) this.onShown = onShown
         if (onHidden != null) this.onHidden = onHidden
-        if (onClick != null) this.onClick = onClick
+        if (onClick != null) this.onclick = onClick
         if (onCloseClick != null) this.onCloseClick = onCloseClick
     }
 }
