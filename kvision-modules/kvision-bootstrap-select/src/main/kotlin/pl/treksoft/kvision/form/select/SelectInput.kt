@@ -172,7 +172,11 @@ open class SelectInput(
      */
     @Suppress("UnsafeCastFromDynamic")
     var selectedIndex: Int
-        get() = getElement()?.asDynamic()?.selectedIndex ?: -1
+        get() = getElement()?.asDynamic()?.selectedIndex
+            ?: value?.let { v ->
+                val emptyIndex = if (emptyOption) 1 else 0
+                options?.map(StringPair::first)?.indexOf(v)?.let { it + emptyIndex }
+            } ?: -1
         set(value) {
             getElement()?.asDynamic()?.selectedIndex = value
             if (value == -1) this.value = null
