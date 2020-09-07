@@ -24,7 +24,6 @@ package pl.treksoft.kvision.form.text
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.jquery.invoke
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
@@ -41,6 +40,7 @@ enum class ShowHintOnFocus {
  * @constructor
  * @param options a static list of options
  * @param taAjaxOptions AJAX options for remote data source
+ * @param source source function for data source
  * @param items the max number of items to display in the dropdown
  * @param minLength the minimum character length needed before triggering dropdown
  * @param delay a delay between lookups
@@ -51,6 +51,7 @@ enum class ShowHintOnFocus {
 @Suppress("TooManyFunctions")
 open class TypeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
+    source: ((String, (Array<String>) -> Unit) -> Unit)?,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf()
 ) : TextInput(type, value, classes) {
@@ -63,7 +64,12 @@ open class TypeaheadInput(
     /**
      * AJAX options for remote data source
      */
-    var ajaxOptions by refreshOnUpdate(taAjaxOptions) { refreshTypeahead() }
+    var taAjaxOptions by refreshOnUpdate(taAjaxOptions) { refreshTypeahead() }
+
+    /**
+     * Source function for data source
+     */
+    var source by refreshOnUpdate(source) { refreshTypeahead() }
 
     /**
      * The max number of items to display in the dropdown
@@ -115,8 +121,8 @@ open class TypeaheadInput(
             options != null -> {
                 options?.toTypedArray()?.asDynamic()
             }
-            ajaxOptions != null -> { query: String, callback: (Array<String>) -> Unit ->
-                ajaxOptions?.let { ajaxOptions ->
+            taAjaxOptions != null -> { query: String, callback: (Array<String>) -> Unit ->
+                taAjaxOptions?.let { ajaxOptions ->
                     val data = ajaxOptions.preprocessQuery?.invoke(query) ?: obj {
                         this.query = query
                     }
@@ -147,6 +153,7 @@ open class TypeaheadInput(
                     })
                 }
             }
+            source != null -> source
             else -> {
                 emptyArray<String>().asDynamic()
             }
@@ -184,18 +191,28 @@ open class TypeaheadInput(
  */
 fun Container.typeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
+    source: ((String, (Array<String>) -> Unit) -> Unit)?,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (TypeaheadInput.() -> Unit)? = null
 ): TypeaheadInput {
-    val typeaheadInput =
-        TypeaheadInput(options, taAjaxOptions, items, minLength, delay, type, value, classes ?: className.set).apply {
-            init?.invoke(
-                this
-            )
-        }
+    val typeaheadInput = TypeaheadInput(
+        options,
+        taAjaxOptions,
+        source,
+        items,
+        minLength,
+        delay,
+        type,
+        value,
+        classes ?: className.set
+    ).apply {
+        init?.invoke(
+            this
+        )
+    }
     this.add(typeaheadInput)
     return typeaheadInput
 }

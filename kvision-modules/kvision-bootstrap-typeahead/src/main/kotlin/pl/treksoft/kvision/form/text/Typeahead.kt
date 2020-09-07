@@ -29,6 +29,7 @@ import pl.treksoft.kvision.core.Container
  * @constructor
  * @param options a static list of options
  * @param taAjaxOptions AJAX options for remote data source
+ * @param source source function for data source
  * @param items the max number of items to display in the dropdown
  * @param minLength the minimum character length needed before triggering dropdown
  * @param delay a delay between lookups
@@ -40,6 +41,7 @@ import pl.treksoft.kvision.core.Container
  */
 open class Typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
+    source: ((String, (Array<String>) -> Unit) -> Unit)?,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false
@@ -57,10 +59,19 @@ open class Typeahead(
     /**
      * AJAX options for remote data source
      */
-    var ajaxOptions
-        get() = input.ajaxOptions
+    var taAjaxOptions
+        get() = input.taAjaxOptions
         set(value) {
-            input.ajaxOptions = value
+            input.taAjaxOptions = value
+        }
+
+    /**
+     * Source function for data source
+     */
+    var source
+        get() = input.source
+        set(value) {
+            input.source = value
         }
 
     /**
@@ -103,9 +114,9 @@ open class Typeahead(
      * A delay between lookups.
      */
     var delay
-        get() = input.ajaxOptions
+        get() = input.taAjaxOptions
         set(value) {
-            input.ajaxOptions = value
+            input.taAjaxOptions = value
         }
 
     /**
@@ -125,6 +136,7 @@ open class Typeahead(
         set(value) {
             input.type = value
         }
+
     /**
      * Determines if autocomplete is enabled for the input element.
      */
@@ -135,7 +147,7 @@ open class Typeahead(
         }
 
     final override val input: TypeaheadInput =
-        TypeaheadInput(options, taAjaxOptions, items, minLength, delay, type, value).apply {
+        TypeaheadInput(options, taAjaxOptions, source, items, minLength, delay, type, value).apply {
             this.id = idc
             this.name = name
         }
@@ -155,13 +167,15 @@ open class Typeahead(
  */
 fun Container.typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
+    source: ((String, (Array<String>) -> Unit) -> Unit)?,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false, init: (Typeahead.() -> Unit)? = null
 ): Typeahead {
-    val typeahead = Typeahead(options, taAjaxOptions, items, minLength, delay, type, value, name, label, rich).apply {
-        init?.invoke(this)
-    }
+    val typeahead =
+        Typeahead(options, taAjaxOptions, source, items, minLength, delay, type, value, name, label, rich).apply {
+            init?.invoke(this)
+        }
     this.add(typeahead)
     return typeahead
 }

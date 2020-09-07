@@ -89,9 +89,9 @@ open class TypeaheadRemote<T : Any>(
      * A delay between lookups.
      */
     var delay
-        get() = input.ajaxOptions
+        get() = input.taAjaxOptions
         set(value) {
-            input.ajaxOptions = value
+            input.taAjaxOptions = value
         }
 
     /**
