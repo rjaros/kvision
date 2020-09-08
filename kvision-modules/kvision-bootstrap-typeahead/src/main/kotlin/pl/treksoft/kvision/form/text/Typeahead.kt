@@ -41,7 +41,7 @@ import pl.treksoft.kvision.core.Container
  */
 open class Typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
-    source: ((String, (Array<String>) -> Unit) -> Unit)?,
+    source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false
@@ -167,7 +167,7 @@ open class Typeahead(
  */
 fun Container.typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
-    source: ((String, (Array<String>) -> Unit) -> Unit)?,
+    source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false, init: (Typeahead.() -> Unit)? = null

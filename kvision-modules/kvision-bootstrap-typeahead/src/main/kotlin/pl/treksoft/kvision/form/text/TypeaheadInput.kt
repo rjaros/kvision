@@ -51,7 +51,7 @@ enum class ShowHintOnFocus {
 @Suppress("TooManyFunctions")
 open class TypeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
-    source: ((String, (Array<String>) -> Unit) -> Unit)?,
+    source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf()
 ) : TextInput(type, value, classes) {
@@ -191,7 +191,7 @@ open class TypeaheadInput(
  */
 fun Container.typeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
-    source: ((String, (Array<String>) -> Unit) -> Unit)?,
+    source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null,
     classes: Set<String>? = null,
