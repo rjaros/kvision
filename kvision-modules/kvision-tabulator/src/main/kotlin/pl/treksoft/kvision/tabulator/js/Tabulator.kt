@@ -964,7 +964,7 @@ open external class Tabulator {
         var dataLoaded: ((data: Any) -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
-        var dataEdited: ((data: Any) -> Unit)?
+        var dataChanged: ((data: Any) -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
         var pageLoaded: ((pageno: Number) -> Unit)?
@@ -1872,5 +1872,7 @@ open external class Tabulator {
         var isValid: () -> Boolean
         var clearValidation: () -> Unit
         var validate: () -> Boolean
+        var getInitialValue: () -> Any
+        var restoreInitialValue: () -> Any
     }
 }

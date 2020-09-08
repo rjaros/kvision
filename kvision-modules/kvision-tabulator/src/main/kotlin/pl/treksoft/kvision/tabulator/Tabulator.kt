@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.tabulator
 
 import com.github.snabbdom.VNode
+import kotlinx.browser.window
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerTabulator
 import pl.treksoft.kvision.core.Container
@@ -35,16 +36,7 @@ import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.utils.syncWithList
-import kotlinx.browser.window
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
-
-/**
- * Tabulator data set option.
- */
-enum class DataSet(internal val set: String) {
-    VISIBLE("visible"),
-    ACTIVE("active")
-}
 
 /**
  * Tabulator row range lookup set option.
@@ -202,8 +194,8 @@ open class Tabulator<T : Any>(
                 this.dispatchEvent("tabulatorDataLoaded", obj { detail = data })
             }
         }
-        if (options.dataEdited == null) {
-            options.dataEdited = { data ->
+        if (options.dataChanged == null) {
+            options.dataChanged = { data ->
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("tabulatorDataEdited", obj { detail = data })
                 if (dataUpdateOnEdit && this.data is MutableList<T>) {
@@ -283,13 +275,13 @@ open class Tabulator<T : Any>(
 
     /**
      * Returns the current data in the table.
-     * @param dataSet selected data set
+     * @param rowRangeLookup selected data set
      * @return current data
      */
     @Suppress("UNCHECKED_CAST")
-    open fun getData(dataSet: DataSet?): List<T>? {
+    open fun getData(rowRangeLookup: RowRangeLookup?): List<T>? {
         return if (jsTabulator != null) {
-            jsTabulator?.getData(dataSet?.set)?.toList() as? List<T>
+            jsTabulator?.getData(rowRangeLookup?.set)?.toList() as? List<T>
         } else {
             data
         }
@@ -337,11 +329,11 @@ open class Tabulator<T : Any>(
 
     /**
      * Get the number of data rows.
-     * @param dataSet selected data set
+     * @param rowRangeLookup selected data set
      * @return the number of data rows
      */
-    open fun getDataCount(dataSet: DataSet?): Int {
-        return jsTabulator?.getDataCount(dataSet?.set)?.toInt() ?: 0
+    open fun getDataCount(rowRangeLookup: RowRangeLookup?): Int {
+        return jsTabulator?.getDataCount(rowRangeLookup?.set)?.toInt() ?: 0
     }
 
     /**

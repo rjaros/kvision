@@ -246,6 +246,15 @@ enum class AddRowMode(internal val mode: String) {
 }
 
 /**
+ * Text direction.
+ */
+enum class TextDirection(internal val dir: String) {
+    AUTO("auto"),
+    LTR("ltr"),
+    RTL("rtl")
+}
+
+/**
  * Download config options.
  */
 data class DownloadConfig(
@@ -369,7 +378,11 @@ data class ColumnDefinition<T : Any>(
     val headerContextMenu: dynamic = null,
     val contextMenu: dynamic = null,
     val hozAlign: Align? = null,
-    val vertAlign: VAlign? = null
+    val vertAlign: VAlign? = null,
+    val clickMenu: dynamic = null,
+    val headerHozAlign: Align? = null,
+    val accessor: dynamic = null,
+    val accessorParams: dynamic = null,
 )
 
 internal object EditorRoot {
@@ -540,6 +553,10 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (contextMenu != null) this.contextMenu = contextMenu
         if (hozAlign != null) this.hozAlign = hozAlign.align
         if (vertAlign != null) this.vertAlign = vertAlign.valign
+        if (clickMenu != null) this.clickMenu = clickMenu
+        if (headerHozAlign != null) this.headerHozAlign = headerHozAlign.align
+        if (accessor != null) this.accessor = accessor
+        if (accessorParams != null) this.accessorParams = accessorParams
     } as Tabulator.ColumnDefinition
 }
 
@@ -712,7 +729,7 @@ data class TabulatorOptions<T : Any>(
     var htmlImported: (() -> Unit)? = null,
     var dataLoading: ((data: List<T>) -> Unit)? = null,
     var dataLoaded: ((data: List<T>) -> Unit)? = null,
-    var dataEdited: ((data: List<T>) -> Unit)? = null,
+    var dataChanged: ((data: List<T>) -> Unit)? = null,
     var pageLoaded: ((pageno: Int) -> Unit)? = null,
     var dataSorting: ((sorters: Array<Tabulator.Sorter>) -> Unit)? = null,
     var dataSorted: ((sorters: Array<Tabulator.Sorter>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
@@ -734,7 +751,15 @@ data class TabulatorOptions<T : Any>(
     val dataTreeSelectPropagate: Boolean? = null,
     val cellHozAlign: Align? = null,
     val cellVertAlign: VAlign? = null,
-    val headerFilterLiveFilterDelay: Int? = null
+    val headerFilterLiveFilterDelay: Int? = null,
+    val textDirection: TextDirection? = null,
+    val virtualDomHoz: Boolean? = null,
+    val autoColumnsDefinitions: dynamic = null,
+    val rowClickMenu: dynamic = null,
+    val headerHozAlign: Align? = null,
+    val headerSortElement: String? = null,
+    val dataTreeFilter: Boolean? = null,
+    val dataTreeSort: Boolean? = null,
 )
 
 /**
@@ -925,12 +950,12 @@ fun <T : Any> TabulatorOptions<T>.toJs(
             }
         }
         if (dataLoadedFun != null) this.dataLoaded = dataLoadedFun
-        val dataEditedFun = dataEdited?.let {
+        val dataChangedFun = dataChanged?.let {
             { data: Array<T> ->
                 it(data.toList())
             }
         }
-        if (dataEditedFun != null) this.dataEdited = dataEditedFun
+        if (dataChangedFun != null) this.dataChanged = dataChangedFun
         if (pageLoaded != null) this.pageLoaded = pageLoaded
         if (dataSorting != null) this.dataSorting = dataSorting
         if (dataSorted != null) this.dataSorted = dataSorted
@@ -953,5 +978,13 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (cellHozAlign != null) this.cellHozAlign = cellHozAlign.align
         if (cellVertAlign != null) this.cellVertAlign = cellVertAlign.valign
         if (headerFilterLiveFilterDelay != null) this.headerFilterLiveFilterDelay = headerFilterLiveFilterDelay
+        if (textDirection != null) this.textDirection = textDirection.dir
+        if (virtualDomHoz != null) this.virtualDomHoz = virtualDomHoz
+        if (autoColumnsDefinitions != null) this.autoColumnsDefinitions = autoColumnsDefinitions
+        if (rowClickMenu != null) this.rowClickMenu = rowClickMenu
+        if (headerHozAlign != null) this.headerHozAlign = headerHozAlign.align
+        if (headerSortElement != null) this.headerSortElement = headerSortElement
+        if (dataTreeFilter != null) this.dataTreeFilter = dataTreeFilter
+        if (dataTreeSort != null) this.dataTreeSort = dataTreeSort
     } as Tabulator.Options
 }
