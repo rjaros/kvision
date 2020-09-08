@@ -160,9 +160,9 @@ open class OnsRange(
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
-        this.addInternal(flabel)
-        this.addInternal(input)
-        this.addInternal(invalidFeedback)
+        this.addPrivate(flabel)
+        this.addPrivate(input)
+        this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")
         init?.invoke(this)
         counter++

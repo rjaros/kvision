@@ -122,9 +122,9 @@ open class OnsRadio(
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
-        this.addInternal(input)
-        this.addInternal(flabel)
-        this.addInternal(invalidFeedback)
+        this.addPrivate(input)
+        this.addPrivate(flabel)
+        this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")
         init?.invoke(this)
         counter++

@@ -104,7 +104,7 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
     }
 
     init {
-        this.addInternal(mainContainer)
+        this.addPrivate(mainContainer)
         mainContainer.add(subContainer, 2, grow = 1, basis = 0)
         @Suppress("LeakingThis")
         init?.invoke(this)

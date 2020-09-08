@@ -127,9 +127,9 @@ open class Radio(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this.eventTarget ?: this
-        this.addInternal(input)
-        this.addInternal(flabel)
-        this.addInternal(invalidFeedback)
+        this.addPrivate(input)
+        this.addPrivate(flabel)
+        this.addPrivate(invalidFeedback)
         counter++
     }
 

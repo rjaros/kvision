@@ -104,22 +104,22 @@ open class TabPanel(
     init {
         when (tabPosition) {
             TabPosition.TOP -> {
-                this.addInternal(nav)
-                this.addInternal(content)
+                this.addPrivate(nav)
+                this.addPrivate(content)
             }
             TabPosition.LEFT -> {
                 this.addSurroundingCssClass("container-fluid")
                 this.addCssClass("row")
                 val sizes = calculateSideClasses()
-                this.addInternal(WidgetWrapper(nav, setOf(sizes.first, "pl-0", "pr-0")))
-                this.addInternal(WidgetWrapper(content, setOf(sizes.second, "pl-0", "pr-0")))
+                this.addPrivate(WidgetWrapper(nav, setOf(sizes.first, "pl-0", "pr-0")))
+                this.addPrivate(WidgetWrapper(content, setOf(sizes.second, "pl-0", "pr-0")))
             }
             TabPosition.RIGHT -> {
                 this.addSurroundingCssClass("container-fluid")
                 this.addCssClass("row")
                 val sizes = calculateSideClasses()
-                this.addInternal(WidgetWrapper(content, setOf(sizes.second, "pl-0", "pr-0")))
-                this.addInternal(WidgetWrapper(nav, setOf(sizes.first, "pl-0", "pr-0")))
+                this.addPrivate(WidgetWrapper(content, setOf(sizes.second, "pl-0", "pr-0")))
+                this.addPrivate(WidgetWrapper(nav, setOf(sizes.first, "pl-0", "pr-0")))
             }
         }
         @Suppress("LeakingThis")

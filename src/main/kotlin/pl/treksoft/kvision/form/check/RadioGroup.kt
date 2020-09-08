@@ -137,9 +137,9 @@ open class RadioGroup(
     }
 
     init {
-        this.addInternal(flabel)
-        this.addInternal(container)
-        this.addInternal(invalidFeedback)
+        this.addPrivate(flabel)
+        this.addPrivate(container)
+        this.addPrivate(invalidFeedback)
         setChildrenFromOptions()
         setValueToChildren(value)
         setNameToChildren(name)

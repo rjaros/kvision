@@ -200,9 +200,9 @@ open class OnsNumber(
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
-        this.addInternal(flabel)
-        this.addInternal(input)
-        this.addInternal(invalidFeedback)
+        this.addPrivate(flabel)
+        this.addPrivate(input)
+        this.addPrivate(invalidFeedback)
         if (input.floatLabel == true && OnsenUi.isAndroid()) flabel.display = Display.NONE
         @Suppress("LeakingThis")
         init?.invoke(this)

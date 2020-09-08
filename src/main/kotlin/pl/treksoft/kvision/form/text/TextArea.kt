@@ -72,8 +72,8 @@ open class TextArea(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addInternal(input)
-        this.addInternal(invalidFeedback)
+        this.addPrivate(input)
+        this.addPrivate(invalidFeedback)
     }
 }
 

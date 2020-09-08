@@ -36,6 +36,7 @@ import pl.treksoft.kvision.utils.set
  */
 open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> Unit)? = null) : Widget(classes),
     Container {
+    protected val privateChildren: MutableList<Component> = mutableListOf()
     protected val children: MutableList<Component> = mutableListOf()
 
     init {
@@ -52,7 +53,20 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
      * @return array of children vnodes
      */
     protected open fun childrenVNodes(): Array<VNode> {
-        return children.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+        return (privateChildren + children).filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+    }
+
+    /**
+     * Protected and final method to add given component to the current container as a private child (not removable).
+     * @param child child component
+     * @return current container
+     */
+    protected fun addPrivate(child: Component): SimplePanel {
+        privateChildren.add(child)
+        child.parent?.remove(child)
+        child.parent = this
+        refresh()
+        return this
     }
 
     /**

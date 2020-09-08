@@ -139,9 +139,9 @@ open class Navbar(
     }
 
     init {
-        addInternal(brandLink)
-        addInternal(NavbarButton(idc))
-        addInternal(container)
+        addPrivate(brandLink)
+        addPrivate(NavbarButton(idc))
+        addPrivate(container)
         if (label == null) brandLink.hide()
         counter++
         if (collapseOnClick) {

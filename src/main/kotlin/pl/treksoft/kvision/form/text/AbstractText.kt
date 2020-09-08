@@ -128,7 +128,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false, classe
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
-        this.addInternal(flabel)
+        this.addPrivate(flabel)
         counter++
     }
 

@@ -68,8 +68,8 @@ open class DateTimeInput(
     }
 
     init {
-        addInternal(input)
-        addInternal(addon)
+        addPrivate(input)
+        addPrivate(addon)
     }
 
     /**

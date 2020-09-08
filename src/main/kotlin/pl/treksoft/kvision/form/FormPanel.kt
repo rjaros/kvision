@@ -201,7 +201,7 @@ open class FormPanel<K : Any>(
     private var currentFieldset: FieldsetPanel? = null
 
     init {
-        this.addInternal(validationAlert)
+        this.addPrivate(validationAlert)
     }
 
     override fun render(): VNode {
@@ -405,7 +405,6 @@ open class FormPanel<K : Any>(
 
     override fun removeAll(): FormPanel<K> {
         super.removeAll()
-        this.addInternal(validationAlert)
         form.removeAll()
         return this
     }

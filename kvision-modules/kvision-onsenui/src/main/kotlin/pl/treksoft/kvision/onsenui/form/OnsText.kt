@@ -102,8 +102,8 @@ open class OnsText(
     }
 
     init {
-        this.addInternal(input)
-        this.addInternal(invalidFeedback)
+        this.addPrivate(input)
+        this.addPrivate(invalidFeedback)
         if (input.floatLabel == true && OnsenUi.isAndroid()) flabel.display = Display.NONE
         @Suppress("LeakingThis")
         init?.invoke(this)

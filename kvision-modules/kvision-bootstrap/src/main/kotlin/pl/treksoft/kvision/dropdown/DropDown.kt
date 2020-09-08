@@ -170,8 +170,8 @@ open class DropDown(
             this.direction = Direction.DROPRIGHT
         }
         setChildrenFromElements()
-        this.addInternal(button)
-        this.addInternal(list)
+        this.addPrivate(button)
+        this.addPrivate(list)
         counter++
     }
 

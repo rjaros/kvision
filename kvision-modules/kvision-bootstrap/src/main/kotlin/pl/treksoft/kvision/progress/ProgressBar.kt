@@ -134,7 +134,7 @@ open class ProgressBar(
     internal val indicator = ProgressIndicator(progress, min, max, style, striped, animated, content, rich, align)
 
     init {
-        addInternal(indicator)
+        addPrivate(indicator)
 
         @Suppress("LeakingThis")
         init?.invoke(this)

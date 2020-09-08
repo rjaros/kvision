@@ -187,9 +187,9 @@ open class Spinner(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addInternal(flabel)
-        this.addInternal(input)
-        this.addInternal(invalidFeedback)
+        this.addPrivate(flabel)
+        this.addPrivate(input)
+        this.addPrivate(invalidFeedback)
         counter++
     }
 

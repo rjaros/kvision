@@ -238,8 +238,8 @@ open class Window(
         }
         iconsContainer.add(closeIcon)
         checkHeaderVisibility()
-        addInternal(header)
-        addInternal(content)
+        addPrivate(header)
+        addPrivate(content)
         checkIsDraggable()
         if (isResizable) {
             @Suppress("LeakingThis")

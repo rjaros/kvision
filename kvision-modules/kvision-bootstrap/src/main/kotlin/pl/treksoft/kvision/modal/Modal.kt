@@ -141,7 +141,7 @@ open class Modal(
         this.hide()
         this.role = "dialog"
         this.tabindex = -1
-        this.addInternal(dialog)
+        this.addPrivate(dialog)
         val content = SimplePanel(setOf("modal-content"))
         dialog.role = "document"
         dialog.add(content)
