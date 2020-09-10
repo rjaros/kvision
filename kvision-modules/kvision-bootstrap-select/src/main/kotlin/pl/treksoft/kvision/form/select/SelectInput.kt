@@ -34,6 +34,7 @@ import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.asString
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
@@ -446,3 +447,17 @@ fun Container.selectInput(
     this.add(selectInput)
     return selectInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.selectInput(
+    state: ObservableState<S>,
+    options: List<StringPair>? = null, value: String? = null,
+    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SelectInput.(S) -> Unit)
+) = selectInput(options, value, multiple, ajaxOptions, classes, className).bind(state, true, init)

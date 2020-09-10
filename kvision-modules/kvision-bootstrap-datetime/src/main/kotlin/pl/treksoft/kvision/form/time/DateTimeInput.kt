@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.form.time
 
 import com.github.snabbdom.VNode
-import pl.treksoft.jquery.jQuery
 import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.form.FormInput
@@ -35,6 +35,7 @@ import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.types.toDateF
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.obj
@@ -431,3 +432,16 @@ fun Container.dateTimeInput(
     this.add(dateTimeInput)
     return dateTimeInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.dateTimeInput(
+    state: ObservableState<S>,
+    value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (DateTimeInput.(S) -> Unit)
+) = dateTimeInput(value, format, classes, className).bind(state, true, init)

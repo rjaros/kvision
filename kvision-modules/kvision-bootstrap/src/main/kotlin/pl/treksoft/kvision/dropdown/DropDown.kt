@@ -34,6 +34,8 @@ import pl.treksoft.kvision.html.ButtonType
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 
@@ -282,6 +284,32 @@ fun Container.dropDown(
     this.add(dropDown)
     return dropDown
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.dropDown(
+    state: ObservableState<S>,
+    text: String, elements: List<StringPair>? = null, icon: String? = null,
+    style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
+    disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (DropDown.(S) -> Unit)
+) = dropDown(
+    text,
+    elements,
+    icon,
+    style,
+    direction,
+    disabled,
+    forNavbar,
+    forDropDown,
+    classes,
+    className
+).bind(state, true, init)
 
 /**
  * DSL builder extension function for a link in a dropdown list.

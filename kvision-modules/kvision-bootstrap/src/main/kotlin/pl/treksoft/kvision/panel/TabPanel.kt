@@ -30,6 +30,8 @@ import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.html.link
 import pl.treksoft.kvision.routing.routing
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.html.icon as cicon
@@ -282,3 +284,18 @@ fun Container.tabPanel(
     this.add(tabPanel)
     return tabPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.tabPanel(
+    state: ObservableState<S>,
+    tabPosition: TabPosition = TabPosition.TOP,
+    sideTabSize: SideTabSize = SideTabSize.SIZE_3,
+    scrollableTabs: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (TabPanel.(S) -> Unit)
+) = tabPanel(tabPosition, sideTabSize, scrollableTabs, classes, className).bind(state, true, init)

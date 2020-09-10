@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.navbar
 
 import com.github.snabbdom.VNode
-import pl.treksoft.jquery.jQuery
 import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.BsBgColor
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
@@ -33,6 +33,8 @@ import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -229,6 +231,25 @@ fun Container.navbar(
     this.add(navbar)
     return navbar
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.navbar(
+    state: ObservableState<S>,
+    label: String? = null,
+    link: String? = null,
+    type: NavbarType? = null,
+    expand: NavbarExpand? = NavbarExpand.LG,
+    nColor: NavbarColor = NavbarColor.LIGHT,
+    bgColor: BsBgColor = BsBgColor.LIGHT,
+    collapseOnClick: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Navbar.(S) -> Unit)
+) = navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, classes, className).bind(state, true, init)
 
 fun Navbar.navText(
     label: String,

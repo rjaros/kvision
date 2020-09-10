@@ -26,6 +26,8 @@ import pl.treksoft.kvision.chart.js.Chart.ChartConfiguration
 import pl.treksoft.kvision.chart.js.Chart.PluginServiceGlobalRegistration
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.chart.js.Chart as JsChart
 
@@ -142,3 +144,18 @@ fun Container.chart(
     this.add(chart)
     return chart
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.chart(
+    state: ObservableState<S>,
+    configuration: Configuration,
+    chartWidth: Int? = null,
+    chartHeight: Int? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Chart.(S) -> Unit)
+) = chart(configuration, chartWidth, chartHeight, classes, className).bind(state, true, init)

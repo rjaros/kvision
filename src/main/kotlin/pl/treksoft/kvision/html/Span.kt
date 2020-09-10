@@ -22,6 +22,8 @@
 package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -66,3 +68,18 @@ fun Container.span(
     this.add(span)
     return span
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.span(
+    state: ObservableState<S>,
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Span.(S) -> Unit)
+) = span(content, rich, align, classes, className).bind(state, true, init)

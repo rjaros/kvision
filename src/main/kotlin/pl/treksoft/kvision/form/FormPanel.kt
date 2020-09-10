@@ -31,6 +31,8 @@ import pl.treksoft.kvision.form.FormPanel.Companion.create
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.FieldsetPanel
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.utils.set
 import kotlin.js.Date
@@ -516,6 +518,31 @@ inline fun <reified K : Any> Container.formPanel(
 }
 
 /**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+inline fun <reified K : Any, S> Container.formPanel(
+    state: ObservableState<S>,
+    method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
+    type: FormType? = null, condensed: Boolean = false,
+    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
+    classes: Set<String>? = null, className: String? = null,
+    customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
+    noinline init: (FormPanel<K>.(S) -> Unit)
+) = formPanel<K>(
+    method,
+    action,
+    enctype,
+    type,
+    condensed,
+    horizRatio,
+    classes,
+    className,
+    customSerializers
+).bind(state, true, init)
+
+/**
  * DSL builder extension function.
  *
  * Simplified version of formPanel container without data model support.
@@ -541,3 +568,25 @@ fun Container.form(
     this.add(formPanel)
     return formPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * Simplified version of formPanel container without data model support.
+ */
+fun <S> Container.form(
+    state: ObservableState<S>,
+    method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
+    type: FormType? = null, condensed: Boolean = false,
+    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
+    classes: Set<String>? = null, className: String? = null,
+    init: (FormPanel<Any>.(S) -> Unit)
+) = form(
+    method,
+    action,
+    enctype,
+    type,
+    condensed,
+    horizRatio,
+    classes, className
+).bind(state, true, init)

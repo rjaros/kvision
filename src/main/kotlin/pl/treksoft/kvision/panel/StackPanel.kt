@@ -22,11 +22,13 @@
 package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
+import kotlinx.browser.window
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.routing.routing
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
-import kotlinx.browser.window
 
 /**
  * The container with only one active (visible) child at any moment.
@@ -140,3 +142,16 @@ fun Container.stackPanel(
     this.add(stackPanel)
     return stackPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.stackPanel(
+    state: ObservableState<S>,
+    activateLast: Boolean = true,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (StackPanel.(S) -> Unit)
+) = stackPanel(activateLast, classes, className).bind(state, true, init)

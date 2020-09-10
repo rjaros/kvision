@@ -22,6 +22,8 @@
 package pl.treksoft.kvision.form.check
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -51,3 +53,16 @@ fun Container.checkBoxInput(
     this.add(checkBoxInput)
     return checkBoxInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.checkBoxInput(
+    state: ObservableState<S>,
+    value: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (CheckInput.(S) -> Unit)
+) = checkBoxInput(value, classes, className).bind(state, true, init)

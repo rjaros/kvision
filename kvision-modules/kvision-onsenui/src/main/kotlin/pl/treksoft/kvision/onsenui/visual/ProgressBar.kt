@@ -26,6 +26,8 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -110,3 +112,18 @@ fun Container.progressBar(
     this.add(progressBar)
     return progressBar
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.progressBar(
+    state: ObservableState<S>,
+    value: Number? = null,
+    secondaryValue: Number? = null,
+    indeterminate: Boolean? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ProgressBar.(S) -> Unit)
+) = progressBar(value, secondaryValue, indeterminate, classes, className).bind(state, true, init)

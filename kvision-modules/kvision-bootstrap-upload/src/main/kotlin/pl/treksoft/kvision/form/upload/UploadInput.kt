@@ -33,6 +33,8 @@ import pl.treksoft.kvision.form.FormPanel
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.i18n.I18n
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.utils.getContent
 import pl.treksoft.kvision.utils.obj
@@ -382,6 +384,20 @@ fun Container.uploadInput(
     this.add(uploadInput)
     return uploadInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.uploadInput(
+    state: ObservableState<S>,
+    uploadUrl: String? = null,
+    multiple: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (UploadInput.(S) -> Unit)
+) = uploadInput(uploadUrl, multiple, classes, className).bind(state, true, init)
 
 /**
  * Returns file with the content read.

@@ -25,6 +25,8 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -64,3 +66,16 @@ fun Container.fieldLabel(
     this.add(fieldLabel)
     return fieldLabel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.fieldLabel(
+    state: ObservableState<S>,
+    forId: String, content: String? = null, rich: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (FieldLabel.(S) -> Unit)
+) = fieldLabel(forId, content, rich, classes, className).bind(state, true, init)

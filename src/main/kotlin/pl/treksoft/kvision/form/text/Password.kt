@@ -22,6 +22,8 @@
 package pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 
 /**
  * Form field password component.
@@ -53,3 +55,17 @@ fun Container.password(
     this.add(password)
     return password
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.password(
+    state: ObservableState<S>,
+    value: String? = null,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Password.(S) -> Unit)
+) = password(value, name, label, rich).bind(state, true, init)

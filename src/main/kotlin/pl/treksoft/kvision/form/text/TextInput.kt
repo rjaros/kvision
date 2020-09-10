@@ -24,6 +24,8 @@ package pl.treksoft.kvision.form.text
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -96,3 +98,16 @@ fun Container.textInput(
     this.add(textInput)
     return textInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.textInput(
+    state: ObservableState<S>,
+    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (TextInput.(S) -> Unit)
+) = textInput(type, value, classes, className).bind(state, true, init)

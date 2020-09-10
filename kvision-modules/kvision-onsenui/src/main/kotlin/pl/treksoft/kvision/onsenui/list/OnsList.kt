@@ -26,6 +26,8 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -103,3 +105,17 @@ fun Container.onsList(
     this.add(onsList)
     return onsList
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.onsList(
+    state: ObservableState<S>,
+    inset: Boolean = false,
+    noborder: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (OnsList.(S) -> Unit)
+) = onsList(inset, noborder, classes, className).bind(state, true, init)

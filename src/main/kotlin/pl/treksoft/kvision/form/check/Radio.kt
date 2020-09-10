@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.FormHorizontalRatio
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -67,6 +68,7 @@ open class Radio(
         set(value) {
             input.value = value
         }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -78,6 +80,7 @@ open class Radio(
         set(value) {
             input.startValue = value
         }
+
     /**
      * The additional String value used for the radio button group.
      */
@@ -86,6 +89,7 @@ open class Radio(
         set(value) {
             input.extraValue = value
         }
+
     /**
      * The label text bound to the input element.
      */
@@ -94,6 +98,7 @@ open class Radio(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -102,14 +107,17 @@ open class Radio(
         set(value) {
             flabel.rich = value
         }
+
     /**
      * The style (one of Bootstrap standard colors) of the input.
      */
     var style: RadioStyle? by refreshOnUpdate()
+
     /**
      * Determines if the radio button is rendered as a square.
      */
     var squared by refreshOnUpdate(false)
+
     /**
      * Determines if the radio button is rendered inline.
      */
@@ -229,3 +237,14 @@ fun Container.radio(
     this.add(radio)
     return radio
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.radio(
+    state: ObservableState<S>,
+    value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
+    rich: Boolean = false, init: (Radio.(S) -> Unit)
+) = radio(value, extraValue, name, label, rich).bind(state, true, init)

@@ -26,6 +26,8 @@ import org.w3c.dom.Window
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -162,3 +164,17 @@ fun Container.iframe(
     this.add(iframe)
     return iframe
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.iframe(
+    state: ObservableState<S>,
+    src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
+    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Iframe.(S) -> Unit)
+) = iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes, className).bind(state, true, init)

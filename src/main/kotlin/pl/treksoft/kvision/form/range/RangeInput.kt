@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 internal const val DEFAULT_STEP = 1
@@ -253,3 +254,16 @@ fun Container.rangeInput(
     this.add(rangeInput)
     return rangeInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.rangeInput(
+    state: ObservableState<S>,
+    value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (RangeInput.(S) -> Unit)
+) = rangeInput(value, min, max, step, classes, className).bind(state, true, init)

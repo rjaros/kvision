@@ -27,6 +27,8 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -221,3 +223,17 @@ fun Container.tag(
     this.add(tag)
     return tag
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.tag(
+    state: ObservableState<S>,
+    type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    attributes: Map<String, String> = mapOf(),
+    init: (Tag.(S) -> Unit)
+) = tag(type, content, rich, align, classes, className, attributes).bind(state, true, init)

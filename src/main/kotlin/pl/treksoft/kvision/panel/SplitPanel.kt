@@ -29,6 +29,8 @@ import pl.treksoft.kvision.core.StyledComponent
 import pl.treksoft.kvision.core.UNIT
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 
@@ -116,6 +118,19 @@ fun Container.splitPanel(
     this.add(splitPanel)
     return splitPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.splitPanel(
+    state: ObservableState<S>,
+    direction: Direction = Direction.VERTICAL,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SplitPanel.(S) -> Unit)
+) = splitPanel(direction, classes, className).bind(state, true, init)
 
 internal class Splitter(private val splitPanel: SplitPanel, direction: Direction) : Tag(
     TAG.DIV,

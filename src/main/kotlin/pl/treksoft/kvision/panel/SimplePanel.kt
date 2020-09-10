@@ -25,6 +25,8 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -115,6 +117,7 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
     override fun dispose() {
         children.forEach { it.dispose() }
         removeAll()
+        super.dispose()
     }
 }
 
@@ -132,3 +135,15 @@ fun Container.simplePanel(
     this.add(simplePanel)
     return simplePanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.simplePanel(
+    state: ObservableState<S>,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SimplePanel.(S) -> Unit)
+) = simplePanel(classes, className).bind(state, true, init)

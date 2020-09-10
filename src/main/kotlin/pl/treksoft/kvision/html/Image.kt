@@ -27,6 +27,8 @@ import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -124,3 +126,17 @@ fun Container.image(
     this.add(image)
     return image
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.image(
+    state: ObservableState<S>,
+    src: ResString?, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
+    centered: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Image.(S) -> Unit)
+) = image(src, alt, responsive, shape, centered, classes, className).bind(state, true, init)

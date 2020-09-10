@@ -23,6 +23,8 @@ package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 
 /**
  * Icon component with support for FontAwesome and Bootstrap glyphicons.
@@ -56,3 +58,14 @@ fun Container.icon(
     this.add(i)
     return i
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.icon(
+    state: ObservableState<S>,
+    icon: String,
+    init: (Icon.(S) -> Unit)
+) = icon(icon).bind(state, true, init)

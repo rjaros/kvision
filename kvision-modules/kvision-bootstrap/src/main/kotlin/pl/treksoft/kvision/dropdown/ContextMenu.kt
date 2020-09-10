@@ -26,6 +26,8 @@ import pl.treksoft.kvision.core.Display
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.px
 import pl.treksoft.kvision.utils.set
 
@@ -112,3 +114,16 @@ fun Widget.contextMenu(
     this.setContextMenu(contextMenu)
     return contextMenu
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Widget.contextMenu(
+    state: ObservableState<S>,
+    fixedPosition: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ContextMenu.(S) -> Unit)
+) = contextMenu(fixedPosition, classes, className).bind(state, true, init)

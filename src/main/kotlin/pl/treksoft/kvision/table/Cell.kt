@@ -24,6 +24,8 @@ package pl.treksoft.kvision.table
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -69,19 +71,16 @@ fun Row.cell(
 }
 
 /**
- * DSL builder extension function.
+ * DSL builder extension function for observable state.
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Row.thcell(
+fun <S> Row.cell(
+    state: ObservableState<S>,
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (HeaderCell.() -> Unit)? = null
-): HeaderCell {
-    val headerCell = HeaderCell(content, rich, align, Scope.ROW, classes ?: className.set, init)
-    this.add(headerCell)
-    return headerCell
-}
+    init: (Cell.(S) -> Unit)
+) = cell(content, rich, align, classes, className).bind(state, true, init)

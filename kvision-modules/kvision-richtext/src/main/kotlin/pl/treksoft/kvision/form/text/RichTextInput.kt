@@ -22,12 +22,14 @@
 package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
-import pl.treksoft.jquery.jQuery
+import kotlinx.browser.document
 import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
-import kotlinx.browser.document
 
 /**
  * Basic rich text component.
@@ -133,3 +135,16 @@ fun Container.richTextInput(
     this.add(richTextInput)
     return richTextInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.richTextInput(
+    state: ObservableState<S>,
+    value: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (RichTextInput.(S) -> Unit)
+) = richTextInput(value, classes, className).bind(state, true, init)

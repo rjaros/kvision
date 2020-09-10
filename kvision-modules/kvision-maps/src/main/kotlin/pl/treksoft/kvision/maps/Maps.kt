@@ -27,6 +27,8 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.KVManagerMaps.leaflet as L
 
@@ -186,3 +188,22 @@ fun Container.maps(
     this.add(maps)
     return maps
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.maps(
+    state: ObservableState<S>,
+    lat: Number,
+    lng: Number,
+    zoom: Number,
+    showMarker: Boolean = false,
+    baseLayerProvider: BaseLayerProvider = BaseLayerProvider.OSM,
+    showLayersList: Boolean = true,
+    crs: CRS = CRS.EPSG3857,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Maps.(S) -> Unit)
+) = maps(lat, lng, zoom, showMarker, baseLayerProvider, showLayersList, crs, classes, className).bind(state, true, init)

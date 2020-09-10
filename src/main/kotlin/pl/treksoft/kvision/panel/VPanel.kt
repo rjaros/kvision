@@ -25,6 +25,8 @@ import pl.treksoft.kvision.core.AlignItems
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.FlexDirection
 import pl.treksoft.kvision.core.JustifyContent
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -70,3 +72,17 @@ fun Container.vPanel(
     this.add(vpanel)
     return vpanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.vPanel(
+    state: ObservableState<S>,
+    justify: JustifyContent? = null, alignItems: AlignItems? = null, spacing: Int? = null,
+    noWrappers: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (VPanel.(S) -> Unit)
+) = vPanel(justify, alignItems, spacing, noWrappers, classes, className).bind(state, true, init)

@@ -23,6 +23,8 @@ package pl.treksoft.kvision.table
 
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -55,3 +57,15 @@ fun Table.row(
     this.add(row)
     return row
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Table.row(
+    state: ObservableState<S>,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Row.(S) -> Unit)
+) = row(classes, className).bind(state, true, init)

@@ -27,6 +27,8 @@ import org.w3c.dom.HTMLCanvasElement
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -96,3 +98,16 @@ fun Container.canvas(
     this.add(canvas)
     return canvas
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.canvas(
+    state: ObservableState<S>,
+    canvasWidth: Int? = null, canvasHeight: Int? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Canvas.(S) -> Unit)
+) = canvas(canvasWidth, canvasHeight, classes, className).bind(state, true, init)

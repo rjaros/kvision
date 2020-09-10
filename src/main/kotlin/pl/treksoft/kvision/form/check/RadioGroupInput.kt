@@ -30,6 +30,7 @@ import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
 
 /**
@@ -231,3 +232,14 @@ fun Container.radioGroupInput(
     this.add(radioGroupInput)
     return radioGroupInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.radioGroupInput(
+    state: ObservableState<S>,
+    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
+    init: (RadioGroupInput.(S) -> Unit)
+) = radioGroupInput(options, value, name, inline).bind(state, true, init)

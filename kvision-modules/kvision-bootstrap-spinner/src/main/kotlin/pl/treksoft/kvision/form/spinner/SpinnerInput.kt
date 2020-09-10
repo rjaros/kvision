@@ -32,6 +32,7 @@ import pl.treksoft.kvision.form.InputSize
 import pl.treksoft.kvision.form.ValidationStatus
 import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 
@@ -375,3 +376,29 @@ fun Container.spinnerInput(
     this.add(spinnerInput)
     return spinnerInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.spinnerInput(
+    state: ObservableState<S>,
+    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
+    decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
+    forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SpinnerInput.(S) -> Unit)
+) = spinnerInput(
+    value,
+    min,
+    max,
+    step,
+    decimals,
+    buttonsType,
+    forceType,
+    buttonStyle,
+    classes,
+    className
+).bind(state, true, init)

@@ -29,6 +29,8 @@ import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.KFilesFormControl
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.types.KFile
 import pl.treksoft.kvision.utils.SnOn
 
@@ -55,6 +57,7 @@ open class Upload(
         set(value) {
             input.value = value
         }
+
     /**
      * The optional URL for the upload processing action.
      * If not set the upload button action will default to form submission.
@@ -64,6 +67,7 @@ open class Upload(
         set(value) {
             input.uploadUrl = value
         }
+
     /**
      * Determines if multiple file upload is supported.
      */
@@ -72,6 +76,7 @@ open class Upload(
         set(value) {
             input.multiple = value
         }
+
     /**
      * The extra data that will be passed as data to the AJAX server call via POST.
      */
@@ -80,6 +85,7 @@ open class Upload(
         set(value) {
             input.uploadExtraData = value
         }
+
     /**
      * Determines if the explorer theme is used.
      */
@@ -88,6 +94,7 @@ open class Upload(
         set(value) {
             input.explorerTheme = value
         }
+
     /**
      * Determines if the input selection is required.
      */
@@ -96,6 +103,7 @@ open class Upload(
         set(value) {
             input.required = value
         }
+
     /**
      * Determines if the caption is shown.
      */
@@ -104,6 +112,7 @@ open class Upload(
         set(value) {
             input.showCaption = value
         }
+
     /**
      * Determines if the preview is shown.
      */
@@ -112,6 +121,7 @@ open class Upload(
         set(value) {
             input.showPreview = value
         }
+
     /**
      * Determines if the remove button is shown.
      */
@@ -120,6 +130,7 @@ open class Upload(
         set(value) {
             input.showRemove = value
         }
+
     /**
      * Determines if the upload button is shown.
      */
@@ -128,6 +139,7 @@ open class Upload(
         set(value) {
             input.showUpload = value
         }
+
     /**
      * Determines if the cancel button is shown.
      */
@@ -136,6 +148,7 @@ open class Upload(
         set(value) {
             input.showCancel = value
         }
+
     /**
      * Determines if the file browse button is shown.
      */
@@ -144,6 +157,7 @@ open class Upload(
         set(value) {
             input.showBrowse = value
         }
+
     /**
      * Determines if the click on the preview zone opens file browse window.
      */
@@ -152,6 +166,7 @@ open class Upload(
         set(value) {
             input.browseOnZoneClick = value
         }
+
     /**
      * Determines if the iconic preview is prefered.
      */
@@ -160,6 +175,7 @@ open class Upload(
         set(value) {
             input.preferIconicPreview = value
         }
+
     /**
      * Allowed file types.
      */
@@ -168,6 +184,7 @@ open class Upload(
         set(value) {
             input.allowedFileTypes = value
         }
+
     /**
      * Allowed file extensions.
      */
@@ -176,6 +193,7 @@ open class Upload(
         set(value) {
             input.allowedFileExtensions = value
         }
+
     /**
      * Determines if Drag&Drop zone is enabled.
      */
@@ -184,6 +202,7 @@ open class Upload(
         set(value) {
             input.dropZoneEnabled = value
         }
+
     /**
      * The placeholder for the upload control.
      */
@@ -192,6 +211,7 @@ open class Upload(
         set(value) {
             input.placeholder = value
         }
+
     /**
      * The label text bound to the spinner input element.
      */
@@ -200,6 +220,7 @@ open class Upload(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -338,3 +359,17 @@ fun Container.upload(
     this.add(upload)
     return upload
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.upload(
+    state: ObservableState<S>,
+    uploadUrl: String? = null,
+    multiple: Boolean = false,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Upload.(S) -> Unit)
+) = upload(uploadUrl, multiple, label, rich).bind(state, true, init)

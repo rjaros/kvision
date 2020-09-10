@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.FormHorizontalRatio
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -220,3 +221,14 @@ fun Container.checkBox(
     this.add(checkBox)
     return checkBox
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.checkBox(
+    state: ObservableState<S>,
+    value: Boolean = false, name: String? = null, label: String? = null,
+    rich: Boolean = false, init: (CheckBox.(S) -> Unit)
+) = checkBox(value, name, label, rich).bind(state, true, init)

@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -253,3 +254,21 @@ fun Container.simpleSelect(
     this.add(simpleSelect)
     return simpleSelect
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.simpleSelect(
+    state: ObservableState<S>,
+    options: List<StringPair>? = null,
+    value: String? = null,
+    emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (SimpleSelect.(S) -> Unit)
+) = simpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich).bind(state, true, init)

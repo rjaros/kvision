@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -63,6 +64,7 @@ open class Select(
         set(value) {
             input.options = value
         }
+
     /**
      * A value of the selected option.
      */
@@ -71,6 +73,7 @@ open class Select(
         set(value) {
             input.value = value
         }
+
     /**
      * Determines if multiple value selection is allowed.
      */
@@ -79,6 +82,7 @@ open class Select(
         set(value) {
             input.multiple = value
         }
+
     /**
      * Additional options for remote (AJAX) data source.
      */
@@ -87,6 +91,7 @@ open class Select(
         set(value) {
             input.ajaxOptions = value
         }
+
     /**
      * Maximal number of selected options.
      */
@@ -95,6 +100,7 @@ open class Select(
         set(value) {
             input.maxOptions = value
         }
+
     /**
      * Determines if live search is available.
      */
@@ -103,6 +109,7 @@ open class Select(
         set(value) {
             input.liveSearch = value
         }
+
     /**
      * The placeholder for the select control.
      */
@@ -111,6 +118,7 @@ open class Select(
         set(value) {
             input.placeholder = value
         }
+
     /**
      * The style of the select control.
      */
@@ -119,6 +127,7 @@ open class Select(
         set(value) {
             input.style = value
         }
+
     /**
      * The width of the select control.
      */
@@ -127,6 +136,7 @@ open class Select(
         set(value) {
             input.selectWidth = value
         }
+
     /**
      * The width type of the select control.
      */
@@ -135,6 +145,7 @@ open class Select(
         set(value) {
             input.selectWidthType = value
         }
+
     /**
      * The dropdown align of the select control.
      */
@@ -143,6 +154,7 @@ open class Select(
         set(value) {
             input.dropdownAlign = value
         }
+
     /**
      * Determines if an empty option is automatically generated.
      */
@@ -151,6 +163,7 @@ open class Select(
         set(value) {
             input.emptyOption = value
         }
+
     /**
      * Determines if the select is automatically focused.
      */
@@ -159,6 +172,7 @@ open class Select(
         set(value) {
             input.autofocus = value
         }
+
     /**
      * The label text bound to the select element.
      */
@@ -167,6 +181,7 @@ open class Select(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -307,3 +322,15 @@ fun Container.select(
     this.add(select)
     return select
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.select(
+    state: ObservableState<S>,
+    options: List<StringPair>? = null, value: String? = null, name: String? = null,
+    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
+    rich: Boolean = false, init: (Select.(S) -> Unit)
+) = select(options, value, name, multiple, ajaxOptions, label, rich).bind(state, true, init)

@@ -29,6 +29,7 @@ import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.SnOn
 import kotlin.js.Date
 
@@ -55,6 +56,7 @@ open class DateTime(
         set(value) {
             input.value = value
         }
+
     /**
      * Date/time format.
      */
@@ -63,6 +65,7 @@ open class DateTime(
         set(value) {
             input.format = value
         }
+
     /**
      * The placeholder for the date/time input.
      */
@@ -71,6 +74,7 @@ open class DateTime(
         set(value) {
             input.placeholder = value
         }
+
     /**
      * Determines if the date/time input is automatically focused.
      */
@@ -79,6 +83,7 @@ open class DateTime(
         set(value) {
             input.autofocus = value
         }
+
     /**
      * Determines if the date/time input is read-only.
      */
@@ -87,6 +92,7 @@ open class DateTime(
         set(value) {
             input.readonly = value
         }
+
     /**
      * Days of the week that should be disabled. Multiple values should be comma separated.
      */
@@ -95,6 +101,7 @@ open class DateTime(
         set(value) {
             input.daysOfWeekDisabled = value
         }
+
     /**
      * Determines if *Clear* button should be visible.
      */
@@ -103,6 +110,7 @@ open class DateTime(
         set(value) {
             input.showClear = value
         }
+
     /**
      * Determines if *Close* button should be visible.
      */
@@ -111,6 +119,7 @@ open class DateTime(
         set(value) {
             input.showClose = value
         }
+
     /**
      * Determines if *Today* button should be visible.
      */
@@ -119,6 +128,7 @@ open class DateTime(
         set(value) {
             input.showTodayButton = value
         }
+
     /**
      * The increment used to build the hour view.
      */
@@ -127,6 +137,7 @@ open class DateTime(
         set(value) {
             input.stepping = value
         }
+
     /**
      * Prevents date selection before this date.
      */
@@ -135,6 +146,7 @@ open class DateTime(
         set(value) {
             input.minDate = value
         }
+
     /**
      * Prevents date selection after this date.
      */
@@ -143,6 +155,7 @@ open class DateTime(
         set(value) {
             input.maxDate = value
         }
+
     /**
      * Shows date and time pickers side by side.
      */
@@ -151,6 +164,7 @@ open class DateTime(
         set(value) {
             input.sideBySide = value
         }
+
     /**
      * An array of enabled dates.
      */
@@ -159,6 +173,7 @@ open class DateTime(
         set(value) {
             input.enabledDates = value
         }
+
     /**
      * An array of disabled dates.
      */
@@ -167,6 +182,7 @@ open class DateTime(
         set(value) {
             input.disabledDates = value
         }
+
     /**
      * Allow date picker for readonly component..
      */
@@ -175,6 +191,7 @@ open class DateTime(
         set(value) {
             input.ignoreReadonly = value
         }
+
     /**
      * The label text bound to the input element.
      */
@@ -183,6 +200,7 @@ open class DateTime(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -289,3 +307,14 @@ fun Container.dateTime(
     this.add(dateTime)
     return dateTime
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.dateTime(
+    state: ObservableState<S>,
+    value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
+    rich: Boolean = false, init: (DateTime.(S) -> Unit)
+) = dateTime(value, name, format, label, rich).bind(state, true, init)

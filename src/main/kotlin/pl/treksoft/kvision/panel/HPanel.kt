@@ -24,6 +24,8 @@ package pl.treksoft.kvision.panel
 import pl.treksoft.kvision.core.AlignItems
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.JustifyContent
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -77,3 +79,20 @@ fun Container.hPanel(
     this.add(hpanel)
     return hpanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.hPanel(
+    state: ObservableState<S>,
+    wrap: pl.treksoft.kvision.core.FlexWrap? = null,
+    justify: JustifyContent? = null,
+    alignItems: AlignItems? = null,
+    spacing: Int? = null,
+    noWrappers: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (HPanel.(S) -> Unit)
+) = hPanel(wrap, justify, alignItems, spacing, noWrappers, classes, className).bind(state, true, init)

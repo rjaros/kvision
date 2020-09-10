@@ -24,6 +24,8 @@ package pl.treksoft.kvision.progress
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -169,3 +171,30 @@ fun Container.progressBar(
     this.add(progressBar)
     return progressBar
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.progressBar(
+    state: ObservableState<S>,
+    progress: Int, min: Int = DEFAULT_MIN, max: Int = DEFAULT_MAX, style: ProgressBarStyle? = null,
+    striped: Boolean = false, animated: Boolean = false,
+    content: String? = null, rich: Boolean = false, align: Align? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ProgressBar.(S) -> Unit)
+) = progressBar(
+    progress,
+    min,
+    max,
+    style,
+    striped,
+    animated,
+    content,
+    rich,
+    align,
+    classes,
+    className
+).bind(state, true, init)

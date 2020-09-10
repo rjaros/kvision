@@ -25,6 +25,8 @@ import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -83,3 +85,16 @@ fun Container.fieldsetPanel(
     this.add(fieldsetPanel)
     return fieldsetPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.fieldsetPanel(
+    state: ObservableState<S>,
+    legend: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (FieldsetPanel.(S) -> Unit)
+) = fieldsetPanel(legend, classes, className).bind(state, true, init)

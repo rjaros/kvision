@@ -30,6 +30,7 @@ import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.NumberFormControl
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -57,6 +58,7 @@ open class Range(
         set(value) {
             input.value = value
         }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -68,6 +70,7 @@ open class Range(
         set(value) {
             input.startValue = value
         }
+
     /**
      * Minimal value.
      */
@@ -76,6 +79,7 @@ open class Range(
         set(value) {
             input.min = value
         }
+
     /**
      * Maximal value.
      */
@@ -84,6 +88,7 @@ open class Range(
         set(value) {
             input.max = value
         }
+
     /**
      * Step value.
      */
@@ -92,6 +97,7 @@ open class Range(
         set(value) {
             input.step = value
         }
+
     /**
      * Determines if the text input is automatically focused.
      */
@@ -100,6 +106,7 @@ open class Range(
         set(value) {
             input.autofocus = value
         }
+
     /**
      * Determines if the range input is read-only.
      */
@@ -108,6 +115,7 @@ open class Range(
         set(value) {
             input.readonly = value
         }
+
     /**
      * The label text bound to the range input element.
      */
@@ -116,6 +124,7 @@ open class Range(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -248,3 +257,20 @@ fun Container.range(
     this.add(range)
     return range
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.range(
+    state: ObservableState<S>,
+    value: Number? = null,
+    name: String? = null,
+    min: Number = 0,
+    max: Number = 100,
+    step: Number = DEFAULT_STEP,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Range.(S) -> Unit)
+) = range(value, name, min, max, step, label, rich).bind(state, true, init)

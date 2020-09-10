@@ -22,6 +22,8 @@
 package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -60,3 +62,16 @@ fun Container.ul(
     this.add(ul)
     return ul
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.ul(
+    state: ObservableState<S>,
+    elements: List<String>? = null, rich: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Ul.(S) -> Unit)
+) = ul(elements, rich, classes, className).bind(state, true, init)

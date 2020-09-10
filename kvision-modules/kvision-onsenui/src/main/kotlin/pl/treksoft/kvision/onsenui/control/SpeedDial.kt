@@ -29,6 +29,8 @@ import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.onsenui.FloatDirection
 import pl.treksoft.kvision.onsenui.FloatPosition
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 
@@ -243,3 +245,20 @@ fun Container.speedDial(
     this.add(speedDial)
     return speedDial
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.speedDial(
+    state: ObservableState<S>,
+    icon: String? = null,
+    floatPosition: FloatPosition? = null,
+    floatDirection: FloatDirection? = null,
+    content: String? = null,
+    rich: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SpeedDial.(S) -> Unit)
+) = speedDial(icon, floatPosition, floatDirection, content, rich, classes, className).bind(state, true, init)

@@ -25,6 +25,8 @@ import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 
@@ -216,3 +218,30 @@ fun Container.typeaheadInput(
     this.add(typeaheadInput)
     return typeaheadInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.typeaheadInput(
+    state: ObservableState<S>,
+    options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
+    source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
+    items: Int? = 8, minLength: Int = 1, delay: Int = 0,
+    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (TypeaheadInput.(S) -> Unit)
+) = typeaheadInput(
+    options,
+    taAjaxOptions,
+    source,
+    items,
+    minLength,
+    delay,
+    type,
+    value,
+    classes,
+    className
+).bind(state, true, init)

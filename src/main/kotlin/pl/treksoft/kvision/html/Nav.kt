@@ -22,6 +22,8 @@
 package pl.treksoft.kvision.html
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -66,3 +68,18 @@ fun Container.nav(
     this.add(nav)
     return nav
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.nav(
+    state: ObservableState<S>,
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Nav.(S) -> Unit)
+) = nav(content, rich, align, classes, className).bind(state, true, init)

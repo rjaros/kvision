@@ -37,6 +37,8 @@ import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.modal.CloseIcon
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.px
 import pl.treksoft.kvision.utils.set
@@ -457,3 +459,36 @@ fun Container.window(
     this.add(window)
     return window
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.window(
+    state: ObservableState<S>,
+    caption: String? = null,
+    contentWidth: CssSize? = CssSize(0, UNIT.auto),
+    contentHeight: CssSize? = CssSize(0, UNIT.auto),
+    isResizable: Boolean = true,
+    isDraggable: Boolean = true,
+    closeButton: Boolean = false,
+    maximizeButton: Boolean = false,
+    minimizeButton: Boolean = false,
+    icon: String? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Window.(S) -> Unit)
+) = window(
+    caption,
+    contentWidth,
+    contentHeight,
+    isResizable,
+    isDraggable,
+    closeButton,
+    maximizeButton,
+    minimizeButton,
+    icon,
+    classes,
+    className
+).bind(state, true, init)

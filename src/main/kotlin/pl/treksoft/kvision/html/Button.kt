@@ -28,6 +28,8 @@ import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -219,3 +221,22 @@ fun Container.button(
     this.add(button)
     return button
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.button(
+    state: ObservableState<S>,
+    text: String,
+    icon: String? = null,
+    style: ButtonStyle = ButtonStyle.PRIMARY,
+    type: ButtonType = ButtonType.BUTTON,
+    disabled: Boolean = false,
+    separator: String? = null,
+    labelFirst: Boolean = true,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Button.(S) -> Unit)
+) = button(text, icon, style, type, disabled, separator, labelFirst, classes, className).bind(state, true, init)

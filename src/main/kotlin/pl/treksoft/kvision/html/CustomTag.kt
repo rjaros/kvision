@@ -23,6 +23,8 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -82,3 +84,20 @@ fun Container.customTag(
     this.add(customTag)
     return customTag
 }
+
+/**
+ * DSL builder extension function for observable state for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.customTag(
+    state: ObservableState<S>,
+    elementName: String,
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    attributes: Map<String, String> = mapOf(),
+    init: (CustomTag.(S) -> Unit)
+) = customTag(elementName, content, rich, align, classes, className, attributes).bind(state, true, init)

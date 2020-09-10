@@ -30,6 +30,8 @@ import pl.treksoft.kvision.core.FlexDirection
 import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.WidgetWrapper
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.px
 import pl.treksoft.kvision.utils.set
 
@@ -223,3 +225,29 @@ fun Container.flexPanel(
     this.add(flexPanel)
     return flexPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.flexPanel(
+    state: ObservableState<S>,
+    direction: FlexDirection? = null, wrap: pl.treksoft.kvision.core.FlexWrap? = null, justify: JustifyContent? = null,
+    alignItems: AlignItems? = null, alignContent: AlignContent? = null,
+    spacing: Int? = null,
+    noWrappers: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (FlexPanel.(S) -> Unit)
+) = flexPanel(
+    direction,
+    wrap,
+    justify,
+    alignItems,
+    alignContent,
+    spacing,
+    noWrappers,
+    classes,
+    className
+).bind(state, true, init)

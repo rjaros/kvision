@@ -25,6 +25,8 @@ import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.html.Link
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -73,6 +75,19 @@ fun Navbar.nav(
     this.add(nav)
     return nav
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Navbar.nav(
+    state: ObservableState<S>,
+    rightAlign: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Nav.(S) -> Unit)
+) = nav(rightAlign, classes, className).bind(state, true, init)
 
 /**
  * DSL builder extension function for a link in a nav list.

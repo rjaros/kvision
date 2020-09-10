@@ -24,6 +24,8 @@ package pl.treksoft.kvision.toolbar
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.px
 import pl.treksoft.kvision.utils.set
 
@@ -96,6 +98,19 @@ fun Container.buttonGroup(
 }
 
 /**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.buttonGroup(
+    state: ObservableState<S>,
+    size: ButtonGroupSize? = null, vertical: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ButtonGroup.(S) -> Unit)
+) = buttonGroup(size, vertical, classes, className).bind(state, true, init)
+
+/**
  * DSL builder extension function for toolbar.
  *
  * It creates button groups with size and vertical parameters of the toolbar.
@@ -112,3 +127,15 @@ fun Toolbar.buttonGroup(
     this.add(group)
     return group
 }
+
+/**
+ * DSL builder extension function for toolbar for observable state.
+ *
+ * It creates button groups with size and vertical parameters of the toolbar.
+ */
+fun <S> Toolbar.buttonGroup(
+    state: ObservableState<S>,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ButtonGroup.(S) -> Unit)
+) = buttonGroup(classes, className).bind(state, true, init)

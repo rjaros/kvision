@@ -32,6 +32,7 @@ import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 internal const val KVNULL = "#kvnull"
@@ -296,3 +297,25 @@ fun Container.simpleSelectInput(
     this.add(simpleSelectInput)
     return simpleSelectInput
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.simpleSelectInput(
+    state: ObservableState<S>,
+    options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (SimpleSelectInput.(S) -> Unit)
+) = simpleSelectInput(
+    options,
+    value,
+    emptyOption,
+    multiple,
+    selectSize,
+    classes, className
+).bind(state, true, init)

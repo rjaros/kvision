@@ -29,13 +29,14 @@ import org.w3c.dom.DragEvent
 import org.w3c.dom.Node
 import org.w3c.dom.events.MouseEvent
 import pl.treksoft.jquery.JQuery
-import pl.treksoft.jquery.jQuery
 import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.KVManager
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.*
 import kotlin.reflect.KProperty
 
@@ -1051,6 +1052,18 @@ fun Container.widget(
     this.add(widget)
     return widget
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.widget(
+    state: ObservableState<S>,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (Widget.(S) -> Unit)
+) = widget(classes, className).bind(state, true, init)
 
 /**
  * An extension function for defining event handlers.

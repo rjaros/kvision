@@ -30,6 +30,8 @@ import pl.treksoft.kvision.core.GridAutoFlow
 import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.core.JustifyItems
 import pl.treksoft.kvision.core.WidgetWrapper
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 @Deprecated(
@@ -213,3 +215,37 @@ fun Container.gridPanel(
     this.add(gridPanel)
     return gridPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.gridPanel(
+    state: ObservableState<S>,
+    autoColumns: String? = null, autoRows: String? = null, autoFlow: GridAutoFlow? = null,
+    templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
+    columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
+    alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
+    alignContent: AlignContent? = null,
+    noWrappers: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (GridPanel.(S) -> Unit)
+) = gridPanel(
+    autoColumns,
+    autoRows,
+    autoFlow,
+    templateColumns,
+    templateRows,
+    templateAreas,
+    columnGap,
+    rowGap,
+    justifyItems,
+    alignItems,
+    justifyContent,
+    alignContent,
+    noWrappers,
+    classes,
+    className,
+).bind(state, true, init)

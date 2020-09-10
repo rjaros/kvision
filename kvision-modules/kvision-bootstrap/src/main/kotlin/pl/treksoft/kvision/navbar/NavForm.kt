@@ -24,6 +24,8 @@ package pl.treksoft.kvision.navbar
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -72,3 +74,16 @@ fun Navbar.navForm(
     this.add(navForm)
     return navForm
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Navbar.navForm(
+    state: ObservableState<S>,
+    rightAlign: Boolean = false,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (NavForm.(S) -> Unit)
+) = navForm(rightAlign, classes, className).bind(state, true, init)

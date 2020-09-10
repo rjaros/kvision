@@ -27,6 +27,8 @@ import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
 
 /**
@@ -184,3 +186,17 @@ fun Container.responsiveGridPanel(
     this.add(responsiveGridPanel)
     return responsiveGridPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.responsiveGridPanel(
+    state: ObservableState<S>,
+    gridSize: GridSize = GridSize.MD,
+    rows: Int = 0, cols: Int = 0, align: Align? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (ResponsiveGridPanel.(S) -> Unit)
+) = responsiveGridPanel(gridSize, rows, cols, align, classes, className).bind(state, true, init)

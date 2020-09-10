@@ -31,6 +31,7 @@ import pl.treksoft.kvision.form.NumberFormControl
 import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.SnOn
 
 /**
@@ -63,6 +64,7 @@ open class Spinner(
         set(value) {
             input.value = value
         }
+
     /**
      * The value attribute of the generated HTML input element.
      *
@@ -74,6 +76,7 @@ open class Spinner(
         set(value) {
             input.startValue = value
         }
+
     /**
      * Minimal value.
      */
@@ -82,6 +85,7 @@ open class Spinner(
         set(value) {
             input.min = value
         }
+
     /**
      * Maximal value.
      */
@@ -90,6 +94,7 @@ open class Spinner(
         set(value) {
             input.max = value
         }
+
     /**
      * Step value.
      */
@@ -98,6 +103,7 @@ open class Spinner(
         set(value) {
             input.step = value
         }
+
     /**
      * Number of decimal digits value.
      */
@@ -106,6 +112,7 @@ open class Spinner(
         set(value) {
             input.decimals = value
         }
+
     /**
      * Spinner force rounding type.
      */
@@ -114,6 +121,7 @@ open class Spinner(
         set(value) {
             input.forceType = value
         }
+
     /**
      * The style of the up/down buttons.
      */
@@ -122,6 +130,7 @@ open class Spinner(
         set(value) {
             input.buttonStyle = value
         }
+
     /**
      * The placeholder for the spinner input.
      */
@@ -130,6 +139,7 @@ open class Spinner(
         set(value) {
             input.placeholder = value
         }
+
     /**
      * Determines if the spinner is automatically focused.
      */
@@ -138,6 +148,7 @@ open class Spinner(
         set(value) {
             input.autofocus = value
         }
+
     /**
      * Determines if the spinner is read-only.
      */
@@ -146,6 +157,7 @@ open class Spinner(
         set(value) {
             input.readonly = value
         }
+
     /**
      * The label text bound to the spinner input element.
      */
@@ -154,6 +166,7 @@ open class Spinner(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -292,3 +305,25 @@ fun Container.spinner(
     this.add(spinner)
     return spinner
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.spinner(
+    state: ObservableState<S>,
+    value: Number? = null,
+    name: String? = null,
+    min: Number? = null,
+    max: Number? = null,
+    step: Number = DEFAULT_STEP,
+    decimals: Int = 0,
+    buttonsType: ButtonsType = ButtonsType.VERTICAL,
+    forceType: ForceType = ForceType.NONE,
+    buttonStyle: ButtonStyle? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Spinner.(S) -> Unit)
+) = spinner(value, name, min, max, step, decimals, buttonsType, forceType, buttonStyle, label, rich)
+    .bind(state, true, init)

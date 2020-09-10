@@ -22,6 +22,8 @@
 package pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 
 /**
  * Form field rich text component.
@@ -75,3 +77,17 @@ fun Container.richText(
     this.add(richText)
     return richText
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.richText(
+    state: ObservableState<S>,
+    value: String? = null,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (RichText.(S) -> Unit)
+) = richText(value, name, label, rich).bind(state, true, init)

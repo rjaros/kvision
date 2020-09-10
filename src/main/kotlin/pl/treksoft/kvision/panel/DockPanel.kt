@@ -26,6 +26,8 @@ import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.FlexDirection
 import pl.treksoft.kvision.core.JustifyContent
+import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.perc
 import pl.treksoft.kvision.utils.set
 
@@ -283,3 +285,15 @@ fun Container.dockPanel(
     this.add(dockPanel)
     return dockPanel
 }
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.dockPanel(
+    state: ObservableState<S>,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (DockPanel.(S) -> Unit)
+) = dockPanel(classes, className).bind(state, true, init)
