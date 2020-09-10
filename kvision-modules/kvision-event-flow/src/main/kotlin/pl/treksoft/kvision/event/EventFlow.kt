@@ -22,15 +22,20 @@
 package pl.treksoft.kvision.event
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.w3c.dom.events.Event
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.state.ObservableState
+import pl.treksoft.kvision.state.ObservableValue
 
 /**
  * Extension property returning Flow<Pair<Widget, Event>> for a given event
@@ -96,10 +101,64 @@ inline val <reified T : Widget> T.changeFlow: Flow<T>
     }
 
 /**
- * Extension property returning StateFlow<S> for an ObservableState<S>.
+ * Extension property returning a StateFlow<S> for an ObservableState<S>.
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 inline val <S> ObservableState<S>.stateFlow: StateFlow<S>
     get() = MutableStateFlow(getState()).apply {
         this@stateFlow.subscribe { this.value = it }
+    }
+
+/**
+ * Extension property returning an ObservableState<S> for a StateFlow<S>.
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
+inline val <S>StateFlow<S>.observableState: ObservableState<S>
+    get() = object : ObservableValue<S>(this.value) {
+
+        var job: Job? = null
+
+        override fun subscribe(observer: (S) -> Unit): () -> Unit {
+            observers += observer
+            observer(value)
+            if (job == null) {
+                job = this@observableState.onEach {
+                    this.value = it
+                }.launchIn(GlobalScope)
+            }
+            return {
+                observers -= observer
+                if (observers.isEmpty()) {
+                    job?.cancel()
+                    job = null
+                }
+            }
+        }
+    }
+
+/**
+ * Extension property returning an ObservableState<S?> for a Flow<S>.
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
+inline val <S>Flow<S>.observableState: ObservableState<S?>
+    get() = object : ObservableValue<S?>(null) {
+
+        var job: Job? = null
+
+        override fun subscribe(observer: (S?) -> Unit): () -> Unit {
+            observers += observer
+            observer(value)
+            if (job == null) {
+                job = this@observableState.onEach {
+                    this.value = it
+                }.launchIn(GlobalScope)
+            }
+            return {
+                observers -= observer
+                if (observers.isEmpty()) {
+                    job?.cancel()
+                    job = null
+                }
+            }
+        }
     }
