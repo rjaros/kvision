@@ -8,40 +8,40 @@ Object oriented web framework for Kotlin/JS.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Chat: on slack](https://img.shields.io/badge/chat-on%20slack-green.svg)](https://kotlinlang.slack.com/?redir=%2Fmessages%2FCL4C1SLKC)
 
-#### Easy
+### Easy
 
 KVision allows you to build modern web applications with the [Kotlin](https://kotlinlang.org) language, 
 without any use of HTML, CSS or JavaScript.
 
-#### Rich
+### Rich
 
 It gives you a hierarchy of almost 100 ready to use GUI components, 
 which can be used as a builder blocks for the application UI. 
 Hundreds of features are available with easy to learn and consistent API.  
 
-#### Flexible
+### Flexible
 
 KVision fully supports both reactive and imperative programming models. It gives you everything you may need for the state management of your apps. 
 From simple observables to advanced redux stores. From simple event callbacks to functional event flows.
 
-#### Fullstack
+### Fullstack
 
 KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot), 
 [Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side, which
 allows to build fullstack applications with shared code for data model and business logic.
 
-#### Familiar
+### Familiar
 
 KVision's basic design is quite similar to many non-web UI programming libraries including Swing, JavaFX, QT, WinForms and Flutter.
 
-#### Verified
+### Verified
 
 KVision applications are already running on production websites used by hundreds of users every day. Visit these example sites to see it in action:
 - [PeUP - Platforma e-Usług Publicznych](https://peup.finn.pl)
 - [Rejestr Zamówień Publicznych Powiatu Zwoleńskiego](https://bip.zwolenpowiat.finn.pl/bipkod/025/001)
 - [Rejestry publiczne Powiatu Kołobrzeskiego](https://www.spkolobrzeg.finn.pl/bipkod/6171350)
 
-#### Growing
+### Growing
 
 KVision is being **actively** developed. Please create an issue for any bugs or feature requests.
 
