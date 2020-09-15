@@ -8,19 +8,42 @@ Object oriented web framework for Kotlin/JS.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Chat: on slack](https://img.shields.io/badge/chat-on%20slack-green.svg)](https://kotlinlang.slack.com/?redir=%2Fmessages%2FCL4C1SLKC)
 
+#### Easy
+
 KVision allows you to build modern web applications with the [Kotlin](https://kotlinlang.org) language, 
 without any use of HTML, CSS or JavaScript.
 
-KVision prefers the imperative style of programming. It's object oriented and supports many well known OOP design patterns. It gives you a hierarchy of many different components, 
-which are used as a builder blocks for the application GUI.
+#### Rich
 
-KVision's design is quite similar to many non-web UI programming libraries including Swing, JavaFX, QT, WinForms and Flutter.
+It gives you a hierarchy of almost 100 ready to use GUI components, 
+which can be used as a builder blocks for the application UI. 
+Hundreds of features are available with easy to learn and consistent API.  
+
+#### Flexible
+
+KVision fully supports both reactive and imperative programming models. It gives you everything you may need for the state management of your apps. 
+From simple observables to advanced redux stores. From simple event callbacks to functional event flows.
+
+#### Fullstack
 
 KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot), 
 [Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side, which
-allows to build fullstack applications with shared common code.
+allows to build fullstack applications with shared code for data model and business logic.
 
-**KVision is being actively developed. Please create an issue for any bugs or feature requests.**
+#### Familiar
+
+KVision's basic design is quite similar to many non-web UI programming libraries including Swing, JavaFX, QT, WinForms and Flutter.
+
+#### Verified
+
+KVision applications are already running on production websites used by hundreds of users every day. Visit these example sites to see it in action:
+- [PeUP - Platforma e-Usług Publicznych](https://peup.finn.pl)
+- [Rejestr Zamówień Publicznych Powiatu Zwoleńskiego](https://bip.zwolenpowiat.finn.pl/bipkod/025/001)
+- [Rejestry publiczne Powiatu Kołobrzeskiego](https://www.spkolobrzeg.finn.pl/bipkod/6171350)
+
+#### Growing
+
+KVision is being **actively** developed. Please create an issue for any bugs or feature requests.
 
 ## Features
 
@@ -50,14 +73,13 @@ allows to build fullstack applications with shared common code.
  
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
+- Support for observer pattern, data binding, event Flows and StateFlow for observables.
 - Supports [React](https://reactjs.org/) components with KVision DSL and built-in state management.
 - Full support for [Onsen UI](https://onsen.io/) mobile web components with type-safe Kotlin API and DSL builders.
-- Supports an observer pattern for data bindings.
 - Internationalization support based on [gettext](https://www.gnu.org/software/gettext/) translations and [gettext.js](https://github.com/guillaumepotier/gettext.js) library. 
 - Easy to use Drag & Drop support.
 - Support for jQuery animations and effects.
 - Type-safe REST connectivity.
-- Support for event Flows and StateFlow for observables.
 - Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot),
  [Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side,
 including support for type-safe websockets connections.
@@ -176,20 +198,18 @@ Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
         }
 ```        
 
-### Observer design pattern
+### State management
 
 ```kotlin
-        data class Data(val text: String)
-        
-        val model = observableListOf(
-            Data("One"),
-            Data("Two"),
-            Data("Three")
-        )
         root("root") {
-            dataContainer(model, { data, _, _ ->
-                Span(data.text)
-            }, HPanel(spacing = 10))
+            vPanel(spacing = 10) {
+                val state = ObservableValue("Hello world")
+                div(state) {
+                    +it
+                }
+                button("Add dot").onClick {
+                    state.value += "."
+                }
+            }
         }
-        model.reverse()
 ```
