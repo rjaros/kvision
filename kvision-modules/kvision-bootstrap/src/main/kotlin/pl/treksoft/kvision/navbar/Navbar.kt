@@ -150,7 +150,7 @@ open class Navbar(
             setInternalEventListener<Navbar> {
                 click = {
                     val target = jQuery(it.target)
-                    if (target.`is`("a.nav-item.nav-link")) {
+                    if (target.`is`("a.nav-item.nav-link") || target.`is`("a.dropdown-item")) {
                         val navbar = target.parents("nav.navbar").first()
                         val toggler = navbar.children("button.navbar-toggler")
                         val collapse = navbar.children("div.navbar-collapse")
