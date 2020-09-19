@@ -431,7 +431,7 @@ class DropDownButton(
             click = { e ->
                 if (parent?.parent is ContextMenu) {
                     e.asDynamic().dropDownCM = true
-                } else if (forDropDown || forNavbar) {
+                } else if (forDropDown) {
                     (parent as DropDown).list.getElementJQuery()?.toggle()
                     e.stopPropagation()
                 }
