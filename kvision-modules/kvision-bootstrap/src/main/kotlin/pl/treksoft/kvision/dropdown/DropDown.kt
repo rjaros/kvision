@@ -71,12 +71,14 @@ enum class Direction(internal val direction: String) {
  * @param forNavbar determines if the component will be used in a navbar
  * @param forDropDown determines if the component will be used in a dropdown
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN, disabled: Boolean = false,
-    val forNavbar: Boolean = false, val forDropDown: Boolean = false, classes: Set<String> = setOf()
+    val forNavbar: Boolean = false, val forDropDown: Boolean = false,
+    classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
 ) : SimplePanel(classes) {
     /**
      * Label of the dropdown button.
@@ -175,6 +177,8 @@ open class DropDown(
         this.addPrivate(button)
         this.addPrivate(list)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun add(child: Component): SimplePanel {
