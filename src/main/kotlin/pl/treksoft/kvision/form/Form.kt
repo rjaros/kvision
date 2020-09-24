@@ -24,7 +24,7 @@ package pl.treksoft.kvision.form
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.decodeFromDynamic
+import kotlinx.serialization.json.decodeFromDynamic
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans

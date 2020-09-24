@@ -24,14 +24,13 @@ package pl.treksoft.kvision.rest
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.decodeFromDynamic
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromDynamic
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import pl.treksoft.jquery.jQuery
-import pl.treksoft.jquery.invoke
 import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.JSON.toObj

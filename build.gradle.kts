@@ -26,7 +26,7 @@ kotlin {
 
 dependencies {
     api(project(":kvision-modules:kvision-common-types"))
-    api("org.jetbrains.kotlinx:kotlinx-serialization-core-js:$serializationVersion")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
     api("com.github.snabbdom:snabbdom-kotlin:$snabbdomKotlinVersion")
     api("pl.treksoft:navigo-kotlin:$navigoKotlinVersion")
     api("pl.treksoft:jquery-kotlin:$jqueryKotlinVersion")
