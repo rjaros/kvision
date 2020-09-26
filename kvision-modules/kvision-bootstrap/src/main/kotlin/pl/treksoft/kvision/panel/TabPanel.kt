@@ -379,7 +379,7 @@ fun <S> Container.tabPanel(
 ) = tabPanel(tabPosition, sideTabSize, scrollableTabs, draggableTabs, classes, className).bind(state, true, init)
 
 
-internal class TabPanelNav(private val tabPanel: TabPanel, classes: Set<String>) : SimplePanel(classes) {
+internal class TabPanelNav(internal val tabPanel: TabPanel, classes: Set<String>) : SimplePanel(classes) {
 
     override fun render(): VNode {
         return render("ul", childrenVNodes())

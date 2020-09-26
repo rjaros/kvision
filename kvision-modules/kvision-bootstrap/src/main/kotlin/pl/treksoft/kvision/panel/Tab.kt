@@ -105,7 +105,7 @@ open class Tab(
         visible = closable
         setEventListener<Icon> {
             click = { e ->
-                val tabPanel = (this@Tab.parent?.parent as? TabPanel)
+                val tabPanel = (this@Tab.parent as? TabPanelNav)?.tabPanel
                 val actIndex = tabPanel?.getTabIndex(this@Tab) ?: -1
                 e.asDynamic().data = actIndex
                 @Suppress("UnsafeCastFromDynamic")
@@ -127,13 +127,13 @@ open class Tab(
     internal val tabId = counter++
 
     protected val routingHandler = { _: Any ->
-        (this.parent?.parent as? TabPanel)?.activeTab = this
+        (this@Tab.parent as? TabPanelNav)?.tabPanel?.activeTab = this
     }
 
     init {
         addPrivate(link)
         onClick { e ->
-            (this.parent?.parent as? TabPanel)?.activeTab = this
+            (this@Tab.parent as? TabPanelNav)?.tabPanel?.activeTab = this
             e.preventDefault()
             if (route != null) {
                 routing.navigate(route)
