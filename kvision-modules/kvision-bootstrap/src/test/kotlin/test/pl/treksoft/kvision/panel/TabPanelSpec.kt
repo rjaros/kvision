@@ -21,15 +21,19 @@
  */
 package test.pl.treksoft.kvision.panel
 
-import pl.treksoft.jquery.jQuery
-import pl.treksoft.jquery.invoke
-import pl.treksoft.jquery.get
-import pl.treksoft.kvision.html.Span
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.panel.TabPanel
-import test.pl.treksoft.kvision.DomSpec
 import kotlinx.browser.document
+import pl.treksoft.jquery.get
+import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.html.Span
+import pl.treksoft.kvision.html.span
+import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.panel.Tab
+import pl.treksoft.kvision.panel.TabPanel
+import pl.treksoft.kvision.panel.tab
+import test.pl.treksoft.kvision.DomSpec
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class TabPanelSpec : DomSpec {
 
@@ -42,7 +46,7 @@ class TabPanelSpec : DomSpec {
             val label1 = Span("abc")
             val label2 = Span("def")
             tabs.addTab("ABC", label1)
-            tabs.addTab("DEF", label2)
+            tabs.add(Tab("DEF", label2))
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">DEF</a></li></ul><div><span>abc</span></div></div>",
@@ -56,19 +60,100 @@ class TabPanelSpec : DomSpec {
     fun setActiveIndex() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val tabs = TabPanel()
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab("DEF") {
+                    span("def")
+                }
+            }
             root.add(tabs)
-            val label1 = Span("abc")
-            val label2 = Span("def")
-            tabs.addTab("ABC", label1)
-            tabs.addTab("DEF", label2)
             tabs.activeIndex = 1
             val element = document.getElementById("test")
             assertEqualsHtml(
                 "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li></ul><div><span>def</span></div></div>",
                 element?.innerHTML,
-                "Should change selected tab"
+                "Should change selected tab by index"
             )
+        }
+    }
+
+    @Test
+    fun setActiveTab() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            lateinit var tab: Tab
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab = tab("DEF") {
+                    span("def")
+                }
+            }
+            root.add(tabs)
+            tabs.activeTab = tab
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li></ul><div><span>def</span></div></div>",
+                element?.innerHTML,
+                "Should change selected tab by Tab component"
+            )
+        }
+    }
+
+    @Test
+    fun getSize() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab("DEF") {
+                    span("def")
+                }
+            }
+            root.add(tabs)
+            assertEquals(2, tabs.getSize(), "Should return number of tabs")
+            assertEquals(2, tabs.getTabs().size, "Should return a list of tabs")
+        }
+    }
+
+    @Test
+    fun getTab() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            lateinit var tab: Tab
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab = tab("DEF") {
+                    span("def")
+                }
+            }
+            root.add(tabs)
+            assertEquals(tab, tabs.getTab(1), "Should get correct tab by index")
+        }
+    }
+
+    @Test
+    fun getTabIndex() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            lateinit var tab: Tab
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab = tab("DEF") {
+                    span("def")
+                }
+            }
+            root.add(tabs)
+            assertEquals(1, tabs.getTabIndex(tab), "Should return correct index of the given tab")
         }
     }
 
@@ -76,12 +161,15 @@ class TabPanelSpec : DomSpec {
     fun removeTab() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val tabs = TabPanel()
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab("DEF") {
+                    span("def")
+                }
+            }
             root.add(tabs)
-            val label1 = Span("abc")
-            val label2 = Span("def")
-            tabs.addTab("ABC", label1)
-            tabs.addTab("DEF", label2)
             tabs.activeIndex = 1
             tabs.removeTab(1)
             val element = document.getElementById("test")
@@ -93,20 +181,65 @@ class TabPanelSpec : DomSpec {
         }
     }
 
+    @Test
+    fun findTabWithComponent() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            lateinit var span: Span
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab("DEF") {
+                    span = span("def")
+                }
+            }
+            root.add(tabs)
+            val tab = tabs.findTabWithComponent(span)
+            assertEquals(1, tabs.getTabIndex(tab!!), "Should find correct tab with the given child component")
+        }
+    }
+
+    @Test
+    fun moveTab() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab("DEF") {
+                    span("def")
+                }
+            }
+            root.add(tabs)
+            tabs.activeIndex = 1
+            tabs.moveTab(1, 0)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li></ul><div><span>def</span></div></div>",
+                element?.innerHTML,
+                "Should move the tab to different index"
+            )
+        }
+    }
 
     @Test
     fun tabClick() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val tabs = TabPanel()
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab("DEF") {
+                    span("def")
+                }
+            }
             root.add(tabs)
-            val label1 = Span("abc")
-            val label2 = Span("def")
-            tabs.addTab("ABC", label1)
-            tabs.addTab("DEF", label2)
             tabs.removeTab(0)
             val label3 = Span("ghi")
-            tabs.addTab("GHI", label3)
+            tabs.add(Tab("GHI").add(label3))
             jQuery("#test a")[1]?.click()
             val element = document.getElementById("test")
             assertEqualsHtml(
