@@ -21,15 +21,7 @@
  */
 package pl.treksoft.kvision.panel
 
-import pl.treksoft.kvision.core.AlignContent
-import pl.treksoft.kvision.core.AlignItems
-import pl.treksoft.kvision.core.Component
-import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.Display
-import pl.treksoft.kvision.core.GridAutoFlow
-import pl.treksoft.kvision.core.JustifyContent
-import pl.treksoft.kvision.core.JustifyItems
-import pl.treksoft.kvision.core.WidgetWrapper
+import pl.treksoft.kvision.core.*
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
@@ -133,18 +125,36 @@ open class GridPanel(
         val wrapper = if (noWrappers) {
             child
         } else {
-            WidgetWrapper(child, classes).apply {
-                this.gridColumnStart = columnStart
-                this.gridRowStart = rowStart
-                this.gridColumnEnd = columnEnd
-                this.gridRowEnd = rowEnd
-                this.gridArea = area
-                this.justifySelf = justifySelf
-                this.alignSelf = alignSelf
-            }
+            WidgetWrapper(child, classes)
+        }
+        (wrapper as? Widget)?.let {
+            it.gridColumnStart = columnStart
+            it.gridRowStart = rowStart
+            it.gridColumnEnd = columnEnd
+            it.gridRowEnd = rowEnd
+            it.gridArea = area
+            it.justifySelf = justifySelf
+            it.alignSelf = alignSelf
         }
         addInternal(wrapper)
         return this
+    }
+
+    /**
+     * DSL function to add components with additional options.
+     * @param builder DSL builder function
+     */
+    open fun options(
+        columnStart: Int? = null, rowStart: Int? = null,
+        columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
+        alignSelf: AlignItems? = null, classes: Set<String> = setOf(),
+        builder: Container.() -> Unit
+    ) {
+        object : Container by this@GridPanel {
+            override fun add(child: Component): Container {
+                return add(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, classes)
+            }
+        }.builder()
     }
 
     override fun add(child: Component): GridPanel {

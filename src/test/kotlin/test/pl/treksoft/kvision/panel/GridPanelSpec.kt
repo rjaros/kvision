@@ -21,11 +21,12 @@
  */
 package test.pl.treksoft.kvision.panel
 
+import kotlinx.browser.document
 import pl.treksoft.kvision.html.Span
+import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.panel.GridPanel
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
 import kotlin.test.Test
 
 class GridPanelSpec : DomSpec {
@@ -44,6 +45,31 @@ class GridPanelSpec : DomSpec {
                 "<div style=\"display: grid;\"><div style=\"grid-column-start: 1; grid-row-start: 1;\"><span>abc</span></div><div style=\"grid-column-start: 2; grid-row-start: 2;\"><span>def</span></div><div style=\"grid-column-start: 3; grid-row-start: 3;\"><span>ghi</span></div></div>",
                 element?.innerHTML?.replace("  ", " "),
                 "Should render correct grid panel"
+            )
+        }
+    }
+
+    @Test
+    fun renderWithDSL() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val gridPanel = GridPanel {
+                options(1, 1) {
+                    span("abc")
+                }
+                options(2, 2) {
+                    span("def")
+                }
+                options(3, 3) {
+                    span("ghi")
+                }
+            }
+            root.add(gridPanel)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div style=\"display: grid;\"><div style=\"grid-column-start: 1; grid-row-start: 1;\"><span>abc</span></div><div style=\"grid-column-start: 2; grid-row-start: 2;\"><span>def</span></div><div style=\"grid-column-start: 3; grid-row-start: 3;\"><span>ghi</span></div></div>",
+                element?.innerHTML?.replace("  ", " "),
+                "Should render correct grid panel with DSL"
             )
         }
     }

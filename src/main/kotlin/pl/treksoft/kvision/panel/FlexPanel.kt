@@ -125,17 +125,34 @@ open class FlexPanel(
         val wrapper = if (noWrappers) {
             child
         } else {
-            WidgetWrapper(child, classes).apply {
-                this.order = order
-                this.flexGrow = grow
-                this.flexShrink = shrink
-                this.flexBasis = basis
-                this.alignSelf = alignSelf
-            }
+            WidgetWrapper(child, classes)
         }
-        (wrapper as? Widget)?.let { applySpacing(it) }
+        (wrapper as? Widget)?.let {
+            applySpacing(it)
+            it.order = order
+            it.flexGrow = grow
+            it.flexShrink = shrink
+            it.flexBasis = basis
+            it.alignSelf = alignSelf
+        }
         addInternal(wrapper)
         return this
+    }
+
+    /**
+     * DSL function to add components with additional options.
+     * @param builder DSL builder function
+     */
+    open fun options(
+        order: Int? = null, grow: Int? = null, shrink: Int? = null,
+        basis: Int? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf(),
+        builder: Container.() -> Unit
+    ) {
+        object : Container by this@FlexPanel {
+            override fun add(child: Component): Container {
+                return add(child, order, grow, shrink, basis, alignSelf, classes)
+            }
+        }.builder()
     }
 
     private fun refreshSpacing() {

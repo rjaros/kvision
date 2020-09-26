@@ -21,13 +21,14 @@
  */
 package test.pl.treksoft.kvision.panel
 
+import kotlinx.browser.document
 import pl.treksoft.kvision.core.FlexDirection
 import pl.treksoft.kvision.core.JustifyContent
 import pl.treksoft.kvision.html.Span
+import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.panel.FlexPanel
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
 import kotlin.test.Test
 
 class FlexPanelSpec : DomSpec {
@@ -46,6 +47,31 @@ class FlexPanelSpec : DomSpec {
                 "<div style=\"display: flex; flex-direction: row-reverse; justify-content: space-evenly;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",
                 element?.innerHTML,
                 "Should render correct flex panel"
+            )
+        }
+    }
+
+    @Test
+    fun renderWithDSL() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val flexPanel = FlexPanel(FlexDirection.ROWREV, justify = JustifyContent.SPACEEVENLY) {
+                options(order = 1) {
+                    span("abc")
+                }
+                options(order = 2) {
+                    span("def")
+                }
+                options(order = 3) {
+                    span("ghi")
+                }
+            }
+            root.add(flexPanel)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div style=\"display: flex; flex-direction: row-reverse; justify-content: space-evenly;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",
+                element?.innerHTML,
+                "Should render correct flex panel with DSL"
             )
         }
     }
