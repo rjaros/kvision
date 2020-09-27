@@ -95,6 +95,21 @@ open class ResponsiveGridPanel(
         return this
     }
 
+    /**
+     * DSL function to add components with additional options.
+     * @param builder DSL builder function
+     */
+    open fun options(
+        col: Int, row: Int, size: Int = 0, offset: Int = 0,
+        builder: Container.() -> Unit
+    ) {
+        object : Container by this@ResponsiveGridPanel {
+            override fun add(child: Component): Container {
+                return add(child, col, row, size, offset)
+            }
+        }.builder()
+    }
+
     override fun add(child: Component): ResponsiveGridPanel {
         return this.add(child, this.cols, 0)
     }
