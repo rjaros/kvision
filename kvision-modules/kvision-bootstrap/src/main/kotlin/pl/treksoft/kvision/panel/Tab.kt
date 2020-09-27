@@ -139,7 +139,7 @@ open class Tab(
                 routing.navigate(route)
             }
         }
-        if (route != null) routing.on(route, routingHandler).resolve()
+        if (route != null) routing.on(route, routingHandler)
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

@@ -28,6 +28,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
 import pl.treksoft.kvision.core.WidgetWrapper
 import pl.treksoft.kvision.html.Tag
+import pl.treksoft.kvision.routing.routing
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.obj
@@ -241,6 +242,9 @@ open class TabPanel(
                     }
                 }
             }
+        }
+        if (tab.route != null) {
+            routing.resolve()
         }
     }
 
