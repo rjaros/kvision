@@ -773,7 +773,11 @@ fun <T : Any> TabulatorOptions<T>.toJs(
     val tmpCellEditCancelled = allColumns?.find { it.editorComponentFunction != null }?.let {
         { cell: Tabulator.CellComponent ->
             cellEditCancelled?.invoke(cell)
-            cell.getTable().redraw(true)
+            try {
+                cell.getTable().redraw(true)
+            } catch (e: Throwable) {
+                console.log("Table redraw failed. Probably it's not visible anymore.")
+            }
         }
     } ?: cellEditCancelled
 
