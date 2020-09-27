@@ -92,6 +92,21 @@ open class StackPanel(
         return this
     }
 
+    /**
+     * DSL function to add components with additional options.
+     * @param builder DSL builder function
+     */
+    open fun route(
+        route: String,
+        builder: Container.() -> Unit
+    ) {
+        object : Container by this@StackPanel {
+            override fun add(child: Component): Container {
+                return add(child, route)
+            }
+        }.builder()
+    }
+
     override fun add(child: Component): StackPanel {
         super.add(child)
         if (activateLast) activeIndex = children.size - 1
