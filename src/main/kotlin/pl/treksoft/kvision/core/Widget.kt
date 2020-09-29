@@ -1024,10 +1024,14 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             removeChildren: Boolean = true,
             factory: (W.(S) -> Unit)
         ): W {
+            var oldState: S? = null
             val unsubscribe = observableState.subscribe {
-                this.singleRender {
-                    if (removeChildren) (this as? Container)?.removeAll()
-                    this.factory(it)
+                if (it != oldState) {
+                    oldState = it
+                    this.singleRender {
+                        if (removeChildren) (this as? Container)?.removeAll()
+                        this.factory(it)
+                    }
                 }
             }
             this.afterDisposeHook = {
