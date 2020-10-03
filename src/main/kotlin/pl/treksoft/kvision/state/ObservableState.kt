@@ -35,3 +35,18 @@ interface ObservableState<S> {
      */
     fun subscribe(observer: (S) -> Unit): () -> Unit
 }
+
+/**
+ *  Returns a sub-store of the original ObservableState
+ *  @param extractor an extractor function
+ */
+fun <S, T> ObservableState<S>.sub(extractor: (S) -> T): ObservableState<T> {
+    val observableValue = ObservableValue(extractor(this.getState()))
+    this.subscribe { s ->
+        val newValue = extractor(s)
+        if (observableValue.value != newValue) {
+            observableValue.value = extractor(s)
+        }
+    }
+    return observableValue
+}

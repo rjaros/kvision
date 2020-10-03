@@ -21,18 +21,107 @@
  */
 package test.pl.treksoft.kvision.state
 
+import kotlinx.browser.document
 import pl.treksoft.kvision.html.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
+import pl.treksoft.kvision.panel.simplePanel
+import pl.treksoft.kvision.state.ObservableValue
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.state.observableListOf
+import pl.treksoft.kvision.state.observableSetOf
 import pl.treksoft.kvision.state.stateBinding
 import pl.treksoft.kvision.state.stateUpdate
+import pl.treksoft.kvision.state.sub
 import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
 import kotlin.test.Test
+import kotlin.test.assertEquals
+
+data class ComplexStore(val a: Int, val b: String, val c: Boolean)
 
 class StateBindingSpec : DomSpec {
+
+    @Test
+    fun observableValue() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val observableValue = ObservableValue(1)
+            root.simplePanel(observableValue) { state ->
+                div("$state")
+            }
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><div>1</div></div>",
+                element?.innerHTML,
+                "Should render initial value"
+            )
+            observableValue.value++
+            assertEqualsHtml(
+                "<div><div>2</div></div>",
+                element?.innerHTML,
+                "Should render changed value"
+            )
+        }
+    }
+
+    @Test
+    fun sub() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val observableValue = ObservableValue(ComplexStore(1, "2", true))
+            var counter = 0
+            root.simplePanel(observableValue.sub { it.a }) { state ->
+                counter++
+                div("$state")
+            }
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><div>1</div></div>",
+                element?.innerHTML,
+                "Should render initial value"
+            )
+            observableValue.value = observableValue.value.copy(b = "3")
+            assertEqualsHtml(
+                "<div><div>1</div></div>",
+                element?.innerHTML,
+                "Should render the same value"
+            )
+            assertEquals(1, counter, "The content should not be rendered twice")
+        }
+    }
+
+    @Test
+    fun subSet() {
+        run {
+            val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            val observableSet = observableSetOf(1, 2, 3)
+            var counter = 0
+            root.simplePanel(observableSet.sub { it.minus(1) }) { state ->
+                counter++
+                div("$state")
+            }
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><div>[2, 3]</div></div>",
+                element?.innerHTML,
+                "Should render initial set value"
+            )
+            observableSet.add(4)
+            assertEqualsHtml(
+                "<div><div>[2, 3, 4]</div></div>",
+                element?.innerHTML,
+                "Should render changed set value"
+            )
+            assertEquals(2, counter, "The content should be rendered again")
+            observableSet.remove(1)
+            assertEqualsHtml(
+                "<div><div>[2, 3, 4]</div></div>",
+                element?.innerHTML,
+                "Should render the same set value"
+            )
+            assertEquals(2, counter, "The content should not be rendered again")
+        }
+    }
 
     @Test
     fun bind() {
