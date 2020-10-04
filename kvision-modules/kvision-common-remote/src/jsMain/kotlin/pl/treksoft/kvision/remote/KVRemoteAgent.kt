@@ -47,7 +47,7 @@ import kotlin.reflect.KClass
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
     val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
-) : RemoteAgent {
+) : RemoteAgent() {
 
     val callAgent = CallAgent()
 
@@ -643,17 +643,6 @@ open class KVRemoteAgent<T : Any>(
             block()
         } catch (e: Exception) {
             console.log(e)
-        }
-    }
-
-    /**
-     * @suppress
-     * Internal function
-     */
-    inline fun <reified PAR> serialize(value: PAR): String? {
-        return value?.let {
-            @Suppress("UNCHECKED_CAST")
-            trySerialize((PAR::class as KClass<Any>), it as Any)
         }
     }
 

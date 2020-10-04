@@ -21,11 +21,9 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.serializer
+import kotlinx.serialization.encodeToString
 import pl.treksoft.kvision.types.JsonDateSerializer
 import pl.treksoft.kvision.types.toStringInternal
 import kotlin.js.Date
@@ -38,84 +36,20 @@ class NotEnumTypeException : Exception("Not the Enum type!")
 /**
  * Interface for client side agent for JSON-RPC remote calls.
  */
-interface RemoteAgent {
+open class RemoteAgent {
 
     /**
      * @suppress
      * Internal function
      */
-    @OptIn(InternalSerializationApi::class)
-    @Suppress("ComplexMethod", "TooGenericExceptionCaught", "NestedBlockDepth")
-    fun trySerialize(kClass: KClass<Any>, value: Any): String {
-        return if (value is List<*>) {
-            if (value.size > 0) {
-                when {
-                    value[0] is String ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(String.serializer()) as KSerializer<Any>, value)
-                    value[0] is Date ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(JsonDateSerializer) as KSerializer<Any>, value)
-                    value[0] is Int ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(Int.serializer()) as KSerializer<Any>, value)
-                    value[0] is Long ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(Long.serializer()) as KSerializer<Any>, value)
-                    value[0] is Boolean ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(Boolean.serializer()) as KSerializer<Any>, value)
-                    value[0] is Float ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(Float.serializer()) as KSerializer<Any>, value)
-                    value[0] is Double ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(Double.serializer()) as KSerializer<Any>, value)
-                    value[0] is Char ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(Char.serializer()) as KSerializer<Any>, value)
-                    value[0] is Short ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(Short.serializer()) as KSerializer<Any>, value)
-                    value[0] is Byte ->
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(Byte.serializer()) as KSerializer<Any>, value)
-                    value[0] is Enum<*> -> "[" + value.joinToString(",") { "\"$it\"" } + "]"
-                    else -> try {
-                        @Suppress("UNCHECKED_CAST")
-                        JSON.plain.encodeToString(ListSerializer(kClass.serializer()) as KSerializer<Any>, value)
-                    } catch (e: Throwable) {
-                        try {
-                            @Suppress("UNCHECKED_CAST")
-                            JSON.plain.encodeToString(
-                                ListSerializer(value[0]!!::class.serializer()) as KSerializer<Any>,
-                                value
-                            )
-                        } catch (e: Throwable) {
-                            try {
-                                @Suppress("UNCHECKED_CAST")
-                                JSON.plain.encodeToString(
-                                    ListSerializer(String.serializer()) as KSerializer<Any>,
-                                    value
-                                )
-                            } catch (e: Throwable) {
-                                value.toString()
-                            }
-                        }
-                    }
-                }
-            } else {
-                "[]"
-            }
-        } else {
+    inline fun <reified PAR> serialize(value: PAR): String? {
+        return value?.let {
             when (value) {
                 is Enum<*> -> "\"$value\""
                 is String -> value
-                is Char -> "\"$value\""
                 is Date -> "\"${value.toStringInternal()}\""
                 else -> try {
-                    @Suppress("UNCHECKED_CAST")
-                    JSON.plain.encodeToString(kClass.serializer(), value)
+                    JSON.plain.encodeToString(value)
                 } catch (e: Throwable) {
                     value.toString()
                 }

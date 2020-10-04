@@ -30,6 +30,7 @@ import kotlin.js.Date
 import kotlin.math.absoluteValue
 
 /**
+ * @suppress internal object
  * JSON date serializer.
  */
 internal object JsonDateSerializer : KSerializer<Date> {
@@ -44,6 +45,9 @@ internal object JsonDateSerializer : KSerializer<Date> {
     }
 }
 
+/**
+ * @suppress internal function
+ */
 @Suppress("ComplexMethod", "MagicNumber")
 internal fun String.toDateInternal(): Date {
     val dt = this.split(':', 'T', '-', '+')
@@ -80,7 +84,10 @@ internal fun String.toDateInternal(): Date {
     }
 }
 
-internal fun Date.toStringInternal(): String {
+/**
+ * @suppress internal function
+ */
+fun Date.toStringInternal(): String {
     @Suppress("MagicNumber")
     val tz = this.getTimezoneOffset() / 60
     val sign = if (tz > 0) "-" else "+"
