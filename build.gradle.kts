@@ -47,6 +47,8 @@ dependencies {
     implementation(npm("snabbdom-virtualize", "^0.7.0"))
     implementation(npm("jquery-resizable-dom", "^0.35.0"))
     implementation(npm("navigo", "^7.1.2"))
+    implementation(npm("gettext.js", "^1.0.0"))
+    implementation(npm("gettext-extract", "^2.0.1"))
     testImplementation(kotlin("test-js"))
 }
 
