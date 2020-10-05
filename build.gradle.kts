@@ -180,6 +180,9 @@ tasks.dokkaHtml {
                 this.path = "kvision-modules/kvision-pace/src/main/kotlin"
             }
             this.sourceRoot {
+                this.path = "kvision-modules/kvision-print/src/main/kotlin"
+            }
+            this.sourceRoot {
                 this.path = "kvision-modules/kvision-react/src/main/kotlin"
             }
             this.sourceRoot {
