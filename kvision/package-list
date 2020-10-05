@@ -23,6 +23,7 @@ pl.treksoft.kvision.form.time
 pl.treksoft.kvision.form.upload
 pl.treksoft.kvision.html
 pl.treksoft.kvision.i18n
+pl.treksoft.kvision.jackson
 pl.treksoft.kvision.maps
 pl.treksoft.kvision.modal
 pl.treksoft.kvision.moment
@@ -41,6 +42,7 @@ pl.treksoft.kvision.onsenui.toolbar
 pl.treksoft.kvision.onsenui.visual
 pl.treksoft.kvision.pace
 pl.treksoft.kvision.panel
+pl.treksoft.kvision.print
 pl.treksoft.kvision.progress
 pl.treksoft.kvision.react
 pl.treksoft.kvision.redux
