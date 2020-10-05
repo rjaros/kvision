@@ -166,6 +166,10 @@ Automatic progress bar module.
 Rich set of container classes, supporting both simple use cases and sophisticated layouts (including CSS flexbox,
 CSS grid and Bootstrap responsive 12 columns gid).
 
+# Package pl.treksoft.kvision.print
+
+Printing support.
+
 # Package pl.treksoft.kvision.progress
 
 Bootstrap progress bar component.
@@ -208,7 +212,7 @@ Clasess supporting HTML tables.
 
 # Package pl.treksoft.kvision.toast
 
-The toast component. 
+The toast component.
 
 # Package pl.treksoft.kvision.toolbar
 
