@@ -70,6 +70,7 @@ KVision is being **actively** developed. Please create an issue for any bugs or 
     - [Pace](https://github.hubspot.com/pace/docs/welcome/)
     - [Leaflet](https://leafletjs.com/)
     - [Toastr](https://codeseven.github.io/toastr/)
+    - [Print.js](https://printjs.crabbly.com/)
  
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
