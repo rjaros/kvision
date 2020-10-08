@@ -102,6 +102,41 @@ fun <S> Row.headerCell(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+fun Table.headerCell(
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    scope: Scope? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (HeaderCell.() -> Unit)? = null
+): HeaderCell {
+    val headerCell = HeaderCell(content, rich, align, scope, classes ?: className.set, init)
+    this.theadRow.add(headerCell)
+    return headerCell
+}
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Table.headerCell(
+    state: ObservableState<S>,
+    content: String? = null,
+    rich: Boolean = false,
+    align: Align? = null,
+    scope: Scope? = null,
+    classes: Set<String>? = null,
+    className: String? = null,
+    init: (HeaderCell.(S) -> Unit)
+) = headerCell(content, rich, align, scope, classes, className).bind(state, true, init)
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
 fun Row.thcell(
     content: String? = null,
     rich: Boolean = false,

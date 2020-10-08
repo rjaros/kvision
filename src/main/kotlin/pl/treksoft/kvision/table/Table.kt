@@ -104,7 +104,7 @@ open class Table(
      */
     var responsiveType by refreshOnUpdate(responsiveType)
 
-    private val theadRow = Tag(TAG.TR)
+    internal val theadRow = Tag(TAG.TR)
     private val thead = Tag(TAG.THEAD).apply {
         if (theadType != null) addCssClass(theadType.type)
         add(theadRow)
@@ -199,6 +199,7 @@ open class Table(
     }
 
     override fun removeAll(): SimplePanel {
+        theadRow.removeAll()
         tbody.removeAll()
         return this
     }
