@@ -109,6 +109,23 @@ fun <S> Container.react(
 }
 
 /**
+ * DSL builder extension function for binding to ObservableState
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+fun <S> Container.reactBind(
+    state: ObservableState<S>,
+    classes: Set<String>? = null,
+    className: String? = null,
+    builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
+): React<S> {
+    val react = React(state.getState(), classes ?: className.set, builder)
+    state.subscribe { react.state = it }
+    this.add(react)
+    return react
+}
+
+/**
  * DSL builder extension function.
  *
  * It takes the same parameters as the constructor of the built component.
