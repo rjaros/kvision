@@ -21,9 +21,9 @@
  */
 package pl.treksoft.kvision
 
-import pl.treksoft.kvision.panel.Root
 import kotlinx.browser.document
 import kotlinx.browser.window
+import pl.treksoft.kvision.panel.Root
 
 /**
  * Base class for KVision applications.
@@ -55,7 +55,7 @@ abstract class Application {
 /**
  * Main function for creating KVision applications.
  */
-fun startApplication(builder: () -> Application) {
+fun startApplication(builder: () -> Application, hot: Hot? = null) {
     @Suppress("UnsafeCastFromDynamic")
     if (window.asDynamic().__karma__) return
 
@@ -68,16 +68,16 @@ fun startApplication(builder: () -> Application) {
 
     var application: Application? = null
 
-    val state: dynamic = module.hot?.let { hot ->
-        hot.accept()
+    val state: dynamic = hot?.let {
+        it.accept()
 
-        hot.dispose { data ->
+        it.dispose { data ->
             Root.disposeAllRoots()
             data.appState = application?.dispose()
             application = null
         }
 
-        hot.data
+        it.data
     }
 
     if (document.body != null) {

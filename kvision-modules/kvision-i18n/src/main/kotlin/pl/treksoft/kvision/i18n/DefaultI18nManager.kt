@@ -29,7 +29,8 @@ class DefaultI18nManager(translations: Map<String, dynamic>) : I18nManager {
 
     init {
         translations.forEach {
-            val json = it.value
+            @Suppress("UnsafeCastFromDynamic")
+            val json = JSON.parse<dynamic>(JSON.stringify(it.value))
             json[""].language = it.key
             @Suppress("UnsafeCastFromDynamic")
             i18n.loadJSON(json, "messages")
