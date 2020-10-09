@@ -24,6 +24,7 @@ package pl.treksoft.kvision
 import kotlinx.browser.document
 import kotlinx.browser.window
 import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.routing.Routing
 
 /**
  * Base class for KVision applications.
@@ -60,6 +61,9 @@ fun startApplication(builder: () -> Application, hot: Hot? = null) {
     if (window.asDynamic().__karma__) return
 
     fun start(state: dynamic): Application? {
+        if (state?.appState != undefined) {
+            Routing.start()
+        }
         val application = builder()
         @Suppress("UnsafeCastFromDynamic")
         application.start(state?.appState ?: emptyMap())
@@ -73,6 +77,7 @@ fun startApplication(builder: () -> Application, hot: Hot? = null) {
 
         it.dispose { data ->
             Root.disposeAllRoots()
+            Routing.shutdown()
             data.appState = application?.dispose()
             application = null
         }
