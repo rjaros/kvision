@@ -37,6 +37,7 @@ import pl.treksoft.kvision.remote.RemoteSorter
 import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.set
+import kotlin.reflect.KClass
 
 /**
  * Tabulator component connected to the multiplatform service.
@@ -57,8 +58,9 @@ open class TabulatorRemote<T : Any, E : Any>(
     stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf()
-) : Tabulator<T>(null, false, options, types, classes) {
+    classes: Set<String> = setOf(),
+    kClass: KClass<T>? = null,
+) : Tabulator<T>(null, false, options, types, classes, kClass) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
@@ -114,18 +116,18 @@ open class TabulatorRemote<T : Any, E : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun <T : Any, E : Any> Container.tabulatorRemote(
+inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
     serviceManager: KVServiceManager<E>,
-    function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
-    stateFunction: (() -> String)? = null,
+    noinline function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
+    noinline stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     classes: Set<String>? = null,
     className: String? = null,
-    init: (TabulatorRemote<T, E>.() -> Unit)? = null
+    noinline init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
     val tabulatorRemote =
-        TabulatorRemote(serviceManager, function, stateFunction, options, types, classes ?: className.set)
+        TabulatorRemote(serviceManager, function, stateFunction, options, types, classes ?: className.set, T::class)
     init?.invoke(tabulatorRemote)
     this.add(tabulatorRemote)
     return tabulatorRemote

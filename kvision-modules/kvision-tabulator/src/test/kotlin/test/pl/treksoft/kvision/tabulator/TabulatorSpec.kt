@@ -21,12 +21,12 @@
  */
 package test.pl.treksoft.kvision.tabulator
 
+import kotlinx.browser.document
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.tabulator.TabulatorOptions
 import pl.treksoft.kvision.tabulator.Tabulator
+import pl.treksoft.kvision.tabulator.TabulatorOptions
 import pl.treksoft.kvision.utils.obj
 import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
 import kotlin.test.Test
 
 class TabulatorSpec : DomSpec {
