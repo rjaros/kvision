@@ -6,6 +6,7 @@ pluginManagement {
         maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
         maven { url = uri("https://kotlin.bintray.com/kotlinx") }
         maven { url = uri("https://dl.bintray.com/rjaros/kotlin") }
+        maven("https://dl.bintray.com/mpetuska/lt.petuska")
         mavenLocal()
     }
     resolutionStrategy {
@@ -61,5 +62,6 @@ include(
     "kvision-modules:kvision-server-micronaut",
     "kvision-modules:kvision-testutils",
     "kvision-tools:kvision-compiler-plugin",
-    "kvision-tools:kvision-gradle-plugin"
+    "kvision-tools:kvision-gradle-plugin",
+    "kvision-assets"
 )
