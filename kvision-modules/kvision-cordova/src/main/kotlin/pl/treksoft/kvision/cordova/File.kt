@@ -187,7 +187,7 @@ object File {
         val mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
         val ab = ArrayBuffer(byteString.length)
         val ia = Uint8Array(ab)
-        for (i in 0 until byteString.length) {
+        for (i in byteString.indices) {
             ia[i] = byteString[i].toByte()
         }
         return Blob(arrayOf(ab), BlobPropertyBag(type = mimeString))
@@ -400,7 +400,7 @@ suspend fun DirectoryEntry.readEntries(): Result<List<Entry>, FileException> {
 @Suppress("UnsafeCastFromDynamic")
 suspend fun FileEntry.readAsText(): Result<String, FileException> {
     return this.file().flatMap { file ->
-        suspendCoroutine<Result<String, FileException>> { continuation ->
+        suspendCoroutine { continuation ->
             val reader = FileReader()
             reader.onloadend = { e ->
                 continuation.resume(Result.success(e.target.asDynamic().result))
@@ -419,7 +419,7 @@ suspend fun FileEntry.readAsText(): Result<String, FileException> {
 @Suppress("UnsafeCastFromDynamic")
 suspend fun FileEntry.readAsDataURL(): Result<String, FileException> {
     return this.file().flatMap { file ->
-        suspendCoroutine<Result<String, FileException>> { continuation ->
+        suspendCoroutine { continuation ->
             val reader = FileReader()
             reader.onloadend = { e ->
                 continuation.resume(Result.success(e.target.asDynamic().result))
@@ -438,7 +438,7 @@ suspend fun FileEntry.readAsDataURL(): Result<String, FileException> {
 @Suppress("UnsafeCastFromDynamic")
 suspend fun FileEntry.readAsArrayBuffer(): Result<ArrayBuffer, FileException> {
     return this.file().flatMap { file ->
-        suspendCoroutine<Result<ArrayBuffer, FileException>> { continuation ->
+        suspendCoroutine { continuation ->
             val reader = FileReader()
             reader.onloadend = { e ->
                 continuation.resume(Result.success(e.target.asDynamic().result))
@@ -461,7 +461,7 @@ suspend fun FileEntry.readAsArrayBuffer(): Result<ArrayBuffer, FileException> {
 @Suppress("UnsafeCastFromDynamic")
 suspend fun FileEntry.write(data: Blob): Result<FileEntry, FileException> {
     return this.createWriter().flatMap { writer ->
-        suspendCoroutine<Result<FileEntry, FileException>> { continuation ->
+        suspendCoroutine { continuation ->
             writer.onwriteend = {
                 continuation.resume(Result.success(this))
             }
@@ -512,7 +512,7 @@ suspend fun FileEntry.append(data: Blob): Result<FileEntry, FileException> {
         } catch (e: Exception) {
             console.log("File doesn't exist!")
         }
-        suspendCoroutine<Result<FileEntry, FileException>> { continuation ->
+        suspendCoroutine { continuation ->
             writer.onwriteend = {
                 continuation.resume(Result.success(this))
             }

@@ -206,8 +206,8 @@ open class Tabbar(
      * @param visible whether the tab bar is visible
      */
     @Suppress("UnsafeCastFromDynamic")
-    open fun setTabbarVisibility(visible: Boolean): Unit {
-        return getElement()?.asDynamic()?.setTabbarVisibility(visible)
+    open fun setTabbarVisibility(visible: Boolean) {
+        getElement()?.asDynamic()?.setTabbarVisibility(visible)
     }
 
     /**
