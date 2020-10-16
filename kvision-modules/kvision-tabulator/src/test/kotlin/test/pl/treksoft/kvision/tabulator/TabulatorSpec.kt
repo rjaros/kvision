@@ -35,6 +35,7 @@ class TabulatorSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
+            @Suppress("UnsafeCastFromDynamic")
             val tabulator = Tabulator<Any>(options = TabulatorOptions(data = arrayOf(obj {
                 id = 1
                 name = "Name"

@@ -41,6 +41,7 @@ import pl.treksoft.kvision.utils.set
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@Suppress("LeakingThis")
 open class AlertDialog(
     dialogTitle: String? = null,
     cancelable: Boolean? = null,
@@ -83,7 +84,6 @@ open class AlertDialog(
         titlePanel.parent = this
         contentPanel.parent = this
         footerPanel.parent = this
-        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 

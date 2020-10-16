@@ -44,7 +44,7 @@ enum class CRS(internal val crs: String) {
     Simple("Simple")
 }
 
-interface ILayer {}  //TODO flesh out with subclasses and functions?
+interface ILayer //TODO flesh out with subclasses and functions?
 
 enum class Position(val position: String) {
     TOP_LEFT("topleft"),

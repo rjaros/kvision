@@ -21,15 +21,14 @@
  */
 package test.pl.treksoft.kvision.redux
 
+import kotlinx.browser.document
 import pl.treksoft.kvision.html.div
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.redux.RAction
 import pl.treksoft.kvision.redux.createReduxStore
 import pl.treksoft.kvision.state.bind
-import pl.treksoft.kvision.state.stateBinding
 import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
 import kotlin.test.Test
 
 data class State(val counter: Int)

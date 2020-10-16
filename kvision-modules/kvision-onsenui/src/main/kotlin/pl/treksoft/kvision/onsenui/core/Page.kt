@@ -125,15 +125,19 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback
         }
         this.getElementJQuery()?.on("init") { e, _ ->
+            @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("onsInit", obj { detail = e })
         }
         this.getElementJQuery()?.on("show") { e, _ ->
+            @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("onsShow", obj { detail = e })
         }
         this.getElementJQuery()?.on("hide") { e, _ ->
+            @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("onsHide", obj { detail = e })
         }
         this.getElementJQuery()?.on("destroy") { e, _ ->
+            @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("onsDestroy", obj { detail = e })
         }
     }

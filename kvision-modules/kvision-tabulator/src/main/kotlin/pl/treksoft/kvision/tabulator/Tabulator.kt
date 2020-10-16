@@ -346,6 +346,7 @@ open class Tabulator<T : Any>(
      * @param htmlOutputConfig override output configuration
      * @return the HTML code of the table
      */
+    @Suppress("UnsafeCastFromDynamic")
     open fun getHtml(
         rowRangeLookup: RowRangeLookup,
         isStyled: Boolean = false,
@@ -358,6 +359,7 @@ open class Tabulator<T : Any>(
      * @param isStyled styled output
      * @param printConfig override print configuration
      */
+    @Suppress("UnsafeCastFromDynamic")
     open fun print(
         rowRangeLookup: RowRangeLookup,
         isStyled: Boolean = false,
@@ -742,8 +744,11 @@ open class Tabulator<T : Any>(
             val data = dataFactory(store.getState())
             val tabulator = Tabulator(data, false, options, types, classes, T::class)
             init?.invoke(tabulator)
-            store.subscribe { s ->
+            val unsubscribe = store.subscribe { s ->
                 tabulator.replaceData(dataFactory(s).toTypedArray())
+            }
+            tabulator.afterDisposeHook = {
+                unsubscribe()
             }
             return tabulator
         }

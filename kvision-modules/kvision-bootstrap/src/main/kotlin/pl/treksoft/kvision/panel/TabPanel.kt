@@ -201,7 +201,6 @@ open class TabPanel(
 
     /**
      * Move the tab to a different position.
-     * @param tab a Tab component
      * @param fromIndex source tab index
      * @param toIndex destination tab index
      */

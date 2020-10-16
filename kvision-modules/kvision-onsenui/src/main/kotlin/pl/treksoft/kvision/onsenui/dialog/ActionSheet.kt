@@ -39,7 +39,7 @@ import kotlin.js.Promise
  * An action sheet component.
  *
  * @constructor Creates an action sheet component.
- * @param title a title of the action sheet
+ * @param actionSheetTitle a title of the action sheet
  * @param cancelable whether the action sheet can be canceled
  * @param animation determines if the transitions are animated
  * @param classes a set of CSS class names

@@ -43,8 +43,7 @@ import java.io.File
 class KVProcessor : AbstractProcessor() {
 
     override fun isTargetPlatformSupported(platform: TargetPlatform): Boolean {
-        val targetName = platform.first().platformName
-        return when (targetName) {
+        return when (val targetName = platform.first().platformName) {
             KotlinPlatformValues.JS -> false
             KotlinPlatformValues.JVM -> true
             KotlinPlatformValues.NATIVE -> false

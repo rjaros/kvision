@@ -39,6 +39,6 @@ internal object RequestHolder {
 open class HttpRequestBeanFactory {
     @Bean
     open fun httpRequest(): HttpRequest<*> {
-        return RequestHolder.threadLocalRequest.get() ?: SimpleHttpRequest<String>(HttpMethod.GET, "/", "")
+        return RequestHolder.threadLocalRequest.get() ?: SimpleHttpRequest(HttpMethod.GET, "/", "")
     }
 }

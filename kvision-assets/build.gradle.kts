@@ -28,14 +28,12 @@ npmPublishing {
         bugs {
           url = "https://github.com/rjaros/kvision/issues"
         }
-      }
     }
-  }
-  
-  repositories {
-    repository("npmjs") {
-      registry = uri("https://registry.npmjs.org")
-      authToken = System.getenv("NPM_AUTH_TOKEN")
+
+    repositories {
+        repository("npmjs") {
+            registry = uri("https://registry.npmjs.org")
+            authToken = System.getenv("NPM_AUTH_TOKEN")
+        }
     }
-  }
 }
