@@ -24,7 +24,6 @@ package pl.treksoft.kvision.form
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.json.decodeFromDynamic
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans
@@ -58,7 +57,7 @@ internal data class FieldParams<in F : FormControl>(
  * @param customSerializers a map of custom serializers for model type
  */
 @OptIn(ExperimentalSerializationApi::class)
-@Suppress("TooManyFunctions")
+@Suppress("TooManyFunctions", "UnsafeCastFromDynamic")
 class Form<K : Any>(
     private val panel: FormPanel<K>? = null,
     private val serializer: KSerializer<K>? = null,
@@ -81,12 +80,12 @@ class Form<K : Any>(
                             value.toStringF()
                         }
                         is List<*> -> {
-                            @Suppress("UNCHECKED_CAST")
+                            @Suppress("UNCHECKED_CAST", "UnsafeCastFromDynamic")
                             ((value as? List<KFile>)?.toObj(ListSerializer(KFile.serializer())))
                         }
                         else -> value
                     }
-                    json[key] = v
+                    if (v != null) json[key] = v
                 }
                 kotlinx.serialization.json.Json {
                     serializersModule = SerializersModule {
@@ -96,7 +95,7 @@ class Form<K : Any>(
                             contextual(kclass as KClass<Any>, serializer as KSerializer<Any>)
                         }
                     }
-                }.decodeFromDynamic(serializer, json)
+                }.decodeFromString(serializer, kotlin.js.JSON.stringify(json))
             }
         }
     }
@@ -292,6 +291,7 @@ class Form<K : Any>(
         return if (serializer != null) {
             NativeJSON.parse(
                 kotlinx.serialization.json.Json {
+                    encodeDefaults = true
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                         customSerializers?.map {
