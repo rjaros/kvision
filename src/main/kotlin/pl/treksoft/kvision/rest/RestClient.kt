@@ -111,6 +111,8 @@ open class RestClient {
             }
             @Suppress("UnsafeCastFromDynamic")
             Json {
+                ignoreUnknownKeys = true
+                isLenient = true
                 serializersModule = SerializersModule {
                     contextual(Date::class, DateSerializer)
                 }
@@ -181,6 +183,8 @@ open class RestClient {
             }
             @Suppress("UnsafeCastFromDynamic")
             Json {
+                ignoreUnknownKeys = true
+                isLenient = true
                 serializersModule = SerializersModule {
                     contextual(Date::class, DateSerializer)
                 }
@@ -403,6 +407,8 @@ open class RestClient {
             Response(
                 @Suppress("UnsafeCastFromDynamic")
                 Json {
+                    ignoreUnknownKeys = true
+                    isLenient = true
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                     }
@@ -476,6 +482,8 @@ open class RestClient {
             Response(
                 @Suppress("UnsafeCastFromDynamic")
                 Json {
+                    ignoreUnknownKeys = true
+                    isLenient = true
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                     }
