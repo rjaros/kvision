@@ -90,7 +90,7 @@ including support for type-safe websockets connections.
 [Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html). Kotlin compiler plugin for Gradle is available to automatically generate 
 boilerplate code for server-side interfaces.
 - [Karma](https://karma-runner.github.io/) testing framework support.
-- IDE support (IntelliJ IDEA). The [KVision Project Wizard](https://github.com/JakubNeukirch/kvision-project-wizard) is being developed as a separate project (thanks to @JakubNeukirch).
+- IDE support (IntelliJ IDEA). The [KVision Project Wizard](https://github.com/JakubNeukirch/kvision-project-wizard) is being developed as a separate project (thanks to [@JakubNeukirch](https://github.com/JakubNeukirch)).
 
 ## Examples and documentation
 
