@@ -15,8 +15,8 @@ dependencies {
     api(rootProject)
     api("org.jetbrains:kotlin-react:$kotlinReactVersion")
     api("org.jetbrains:kotlin-react-dom:$kotlinReactVersion")
-    implementation(npm("react", "16.13.1"))
-    implementation(npm("react-dom", "16.13.1"))
+    implementation(npm("react", "17.0.1"))
+    implementation(npm("react-dom", "17.0.1"))
     testImplementation(kotlin("test-js"))
 }
 
