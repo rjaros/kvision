@@ -11,7 +11,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("chart.js", "^2.9.3"))
+    implementation(npm("chart.js", "^2.9.4"))
     testImplementation(kotlin("test-js"))
 }
 

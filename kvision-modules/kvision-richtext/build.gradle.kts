@@ -11,7 +11,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("trix", "^1.2.4"))
+    implementation(npm("trix", "^1.3.0"))
     testImplementation(kotlin("test-js"))
 }
 

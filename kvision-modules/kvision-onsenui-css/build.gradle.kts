@@ -11,7 +11,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("onsenui", "^2.10.10"))
+    implementation(npm("onsenui", "^2.11.1"))
     testImplementation(kotlin("test-js"))
 }
 

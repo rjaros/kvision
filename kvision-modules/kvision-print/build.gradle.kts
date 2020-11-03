@@ -11,7 +11,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("print-js", "^1.4.0"))
+    implementation(npm("print-js", "^1.5.0"))
     testImplementation(kotlin("test-js"))
 }
 

@@ -11,7 +11,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("@fortawesome/fontawesome-free", "^5.14.0"))
+    implementation(npm("@fortawesome/fontawesome-free", "^5.15.1"))
     testImplementation(kotlin("test-js"))
 }
 
