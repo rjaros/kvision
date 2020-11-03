@@ -25,7 +25,6 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromDynamic
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 import pl.treksoft.jquery.JQueryAjaxSettings
@@ -110,11 +109,12 @@ open class RestClient {
             } else {
                 result
             }
+            @Suppress("UnsafeCastFromDynamic")
             Json {
                 serializersModule = SerializersModule {
                     contextual(Date::class, DateSerializer)
                 }
-            }.decodeFromDynamic(deserializer, transformed)
+            }.decodeFromString(deserializer, NativeJSON.stringify(transformed))
         }
     }
 
@@ -179,11 +179,12 @@ open class RestClient {
             } else {
                 result
             }
+            @Suppress("UnsafeCastFromDynamic")
             Json {
                 serializersModule = SerializersModule {
                     contextual(Date::class, DateSerializer)
                 }
-            }.decodeFromDynamic(deserializer, transformed)
+            }.decodeFromString(deserializer, NativeJSON.stringify(transformed))
         }
     }
 
@@ -400,11 +401,13 @@ open class RestClient {
                 result.data
             }
             Response(
+                @Suppress("UnsafeCastFromDynamic")
                 Json {
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                     }
-                }.decodeFromDynamic(deserializer, transformed), result.textStatus, result.jqXHR
+                }.decodeFromString(deserializer, NativeJSON.stringify(transformed)),
+                result.textStatus, result.jqXHR
             )
         }
     }
@@ -471,11 +474,13 @@ open class RestClient {
                 result.data
             }
             Response(
+                @Suppress("UnsafeCastFromDynamic")
                 Json {
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                     }
-                }.decodeFromDynamic(deserializer, transformed), result.textStatus, result.jqXHR
+                }.decodeFromString(deserializer, NativeJSON.stringify(transformed)),
+                result.textStatus, result.jqXHR
             )
         }
     }
