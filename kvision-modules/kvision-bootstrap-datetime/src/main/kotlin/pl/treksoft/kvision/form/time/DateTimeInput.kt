@@ -207,6 +207,21 @@ open class DateTimeInput(
      */
     var ignoreReadonly by refreshOnUpdate(false) { refreshDatePicker() }
 
+    /**
+     * Show as inline.
+     */
+    var inline by refreshOnUpdate(false) { refreshDatePicker() }
+
+    /**
+     * Keep the popup open after selecting a date.
+     */
+    var keepOpen by refreshOnUpdate(false) { refreshDatePicker() }
+
+    /**
+     * Focus text input when the popup is opened.
+     */
+    var focusOnShow by refreshOnUpdate(true) { refreshDatePicker() }
+
     private fun refreshState() {
         if (initialized) getElementJQueryD().data("DateTimePicker").date(value)
     }
@@ -231,6 +246,8 @@ open class DateTimeInput(
         if (initialized) {
             getElementJQueryD()?.data("DateTimePicker").destroy()
         }
+        input.visible = !inline
+        addon.visible = !inline
         initDateTimePicker()
         icon.icon = getIconClass(format)
     }
@@ -274,7 +291,8 @@ open class DateTimeInput(
         val language = I18n.language
         val self = this
         getElementJQueryD()?.datetimepicker(obj {
-            this.useCurrent = false
+            this.useCurrent = inline
+            this.defaultDate = if (inline) this@DateTimeInput.value else undefined
             this.format = format
             this.stepping = stepping
             this.showClear = showClear
@@ -287,6 +305,9 @@ open class DateTimeInput(
             if (daysOfWeekDisabled.isNotEmpty()) this.daysOfWeekDisabled = daysOfWeekDisabled
             if (enabledDates.isNotEmpty()) this.enabledDates = enabledDates
             if (disabledDates.isNotEmpty()) this.disabledDates = disabledDates
+            this.inline = inline
+            this.keepOpen = keepOpen
+            this.focusOnShow = focusOnShow
             this.locale = language
             this.icons = obj {
                 this.time = "far fa-clock"

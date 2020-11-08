@@ -184,12 +184,39 @@ open class DateTime(
         }
 
     /**
-     * Allow date picker for readonly component..
+     * Allow date picker for readonly component.
      */
     var ignoreReadonly
         get() = input.ignoreReadonly
         set(value) {
             input.ignoreReadonly = value
+        }
+
+    /**
+     * Show as inline.
+     */
+    var inline
+        get() = input.inline
+        set(value) {
+            input.inline = value
+        }
+
+    /**
+     * Keep the popup open after selecting a date.
+     */
+    var keepOpen
+        get() = input.keepOpen
+        set(value) {
+            input.keepOpen = value
+        }
+
+    /**
+     * Focus text input when the popup is opened.
+     */
+    var focusOnShow
+        get() = input.focusOnShow
+        set(value) {
+            input.focusOnShow = value
         }
 
     /**
