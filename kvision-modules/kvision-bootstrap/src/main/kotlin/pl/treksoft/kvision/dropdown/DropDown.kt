@@ -326,7 +326,7 @@ fun DropDown.ddLink(
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, (classes ?: className.set) + "dropdown-item").apply {
+    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item").apply {
         init?.invoke(this)
     }
     this.add(link)
@@ -344,7 +344,7 @@ fun ContextMenu.cmLink(
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, (classes ?: className.set) + "dropdown-item").apply {
+    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item").apply {
         init?.invoke(this)
     }
     this.add(link)
@@ -366,7 +366,7 @@ fun DropDown.ddLinkDisabled(
         label,
         "javascript:void(0)",
         icon,
-        image, null, true,
+        image, null, true, null,
         (classes ?: className.set) + "dropdown-item" + "disabled"
     ).apply {
         tabindex = -1
@@ -392,7 +392,7 @@ fun ContextMenu.cmLinkDisabled(
         label,
         "javascript:void(0)",
         icon,
-        image, null, true,
+        image, null, true, null,
         (classes ?: className.set) + "dropdown-item" + "disabled"
     ).apply {
         tabindex = -1

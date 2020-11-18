@@ -33,11 +33,11 @@ class LinkSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
-            val link = Link("Google", "http://www.google.com")
+            val link = Link("Google", "http://www.google.com", target = "_blank")
             root.add(link)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<a href=\"http://www.google.com\">Google</a>",
+                "<a href=\"http://www.google.com\" target=\"_blank\">Google</a>",
                 element?.innerHTML,
                 "Should render correct html link"
             )

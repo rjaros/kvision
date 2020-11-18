@@ -100,9 +100,10 @@ fun Nav.navLink(
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, (classes ?: className.set) + "nav-item" + "nav-link").apply {
-        init?.invoke(this)
-    }
+    val link =
+        Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "nav-item" + "nav-link").apply {
+            init?.invoke(this)
+        }
     this.add(link)
     return link
 }
@@ -123,7 +124,7 @@ fun Nav.navLinkDisabled(
             label,
             "javascript:void(0)",
             icon,
-            image, null, true,
+            image, null, true, null,
             (classes ?: className.set) + "nav-item" + "nav-link" + "disabled"
         ).apply {
             tabindex = -1

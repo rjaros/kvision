@@ -41,11 +41,12 @@ import pl.treksoft.kvision.utils.set
  * @param image link image
  * @param separator a separator between label and icon/image (defaults to space)
  * @param labelFirst determines if the label is put before children elements (defaults to true)
+ * @param target link target
  * @param classes a set of CSS class names
  */
 open class Link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    separator: String? = null, labelFirst: Boolean = true,
+    separator: String? = null, labelFirst: Boolean = true, target: String? = null,
     classes: Set<String> = setOf()
 ) : SimplePanel(classes) {
     /**
@@ -78,6 +79,11 @@ open class Link(
      */
     var labelFirst by refreshOnUpdate(labelFirst)
 
+    /**
+     * Link target
+     */
+    var target by refreshOnUpdate(target)
+
     override fun render(): VNode {
         val t = createLabelWithIcon(label, icon, image, separator)
         return if (labelFirst) {
@@ -91,6 +97,9 @@ open class Link(
         val pr = super.getSnAttrs().toMutableList()
         url?.let {
             pr.add("href" to it)
+        }
+        target?.let {
+            pr.add("target" to it)
         }
         return pr
     }
@@ -115,13 +124,22 @@ open class Link(
  */
 fun Container.link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    separator: String? = null, labelFirst: Boolean = true,
+    separator: String? = null, labelFirst: Boolean = true, target: String? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
     val link =
-        Link(label, url, icon, image, separator, labelFirst, classes ?: className.set).apply { init?.invoke(this) }
+        Link(
+            label,
+            url,
+            icon,
+            image,
+            separator,
+            labelFirst,
+            target,
+            classes ?: className.set
+        ).apply { init?.invoke(this) }
     this.add(link)
     return link
 }
@@ -134,8 +152,8 @@ fun Container.link(
 fun <S> Container.link(
     state: ObservableState<S>,
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    separator: String? = null, labelFirst: Boolean = true,
+    separator: String? = null, labelFirst: Boolean = true, target: String? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Link.(S) -> Unit)
-) = link(label, url, icon, image, separator, labelFirst, classes, className).bind(state, true, init)
+) = link(label, url, icon, image, separator, labelFirst, target, classes, className).bind(state, true, init)
