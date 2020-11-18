@@ -50,6 +50,7 @@ enum class TAG(internal val tagName: String) {
     SECTION("section"),
     HEADER("header"),
     FOOTER("footer"),
+    ARTICLE("article"),
     NAV("nav"),
     PRE("pre"),
     UL("ul"),
