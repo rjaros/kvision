@@ -3,47 +3,47 @@
 
 Object oriented web framework for Kotlin/JS.
 
+[https://kvision.io](https://kvision.io)
+
 [![Travis CI](https://travis-ci.com/rjaros/kvision.svg?branch=master)](https://travis-ci.com/rjaros/kvision)
 [![Download](https://api.bintray.com/packages/rjaros/kotlin/kvision/images/download.svg) ](https://bintray.com/rjaros/kotlin/kvision/_latestVersion)
+[![API](https://img.shields.io/badge/API-dokka-green)](https://rjaros.github.io/kvision/kvision/index.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Chat: on slack](https://img.shields.io/badge/chat-on%20slack-green.svg)](https://kotlinlang.slack.com/?redir=%2Fmessages%2FCL4C1SLKC)
-
-### Easy
+[![Slack](https://img.shields.io/badge/slack-channel-green?logo=slack)](https://kotlinlang.slack.com/?redir=%2Fmessages%2FCL4C1SLKC)
 
 KVision allows you to build modern web applications with the [Kotlin](https://kotlinlang.org) language, 
-without any use of HTML, CSS or JavaScript.
-
-### Rich
-
-It gives you a hierarchy of almost 100 ready to use GUI components, 
-which can be used as a builder blocks for the application UI. 
-Hundreds of features are available with easy to learn and consistent API.  
-
-### Flexible
+without any use of HTML, CSS or JavaScript. It gives you a rich hierarchy of ready to use GUI components, 
+which can be used as builder blocks for the application UI. 
 
 KVision fully supports both reactive and imperative programming models. It gives you everything you may need for the state management of your apps. 
-From simple observables to advanced redux stores. From simple event callbacks to functional event flows.
-
-### Fullstack
 
 KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot), 
 [Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side, which
 allows to build fullstack applications with shared code for data model and business logic.
 
-### Familiar
+KVision is being actively developed. Please create an issue for any bugs or feature requests.
 
-KVision's basic design is quite similar to many non-web UI programming libraries including Swing, JavaFX, QT, WinForms and Flutter.
+## Sample code
 
-### Verified
+```kotlin
+class App : Application() {
 
-KVision applications are already running on production websites used by hundreds of users every day. Visit these example sites to see it in action:
-- [PeUP - Platforma e-Usług Publicznych](https://peup.finn.pl)
-- [Rejestr Zamówień Publicznych Powiatu Zwoleńskiego](https://bip.zwolenpowiat.finn.pl/bipkod/025/001)
-- [Rejestry publiczne Powiatu Kołobrzeskiego](https://www.spkolobrzeg.finn.pl/bipkod/6171350)
+    val state = ObservableValue("Hello world")
 
-### Growing
-
-KVision is being **actively** developed. Please create an issue for any bugs or feature requests.
+    override fun start() {
+        root("root") {
+            vPanel {
+                h1(state) {
+                    +it
+                }
+                button("Add an exclamation mark").onClick {
+                    state.value += "!"
+                }
+            }
+        }
+    }
+}
+```
 
 ## Features
 
@@ -100,14 +100,10 @@ See also the complete frontend implementation of [RealWorld example application]
 
 The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook. 
 
-Since version 3.13.0 the API documentation, generated with new Dokka 1.4, is available at [https://rjaros.github.io/kvision/kvision/index.html](https://rjaros.github.io/kvision/kvision/index.html).
-
-Older API documentation is still available at [https://rjaros.github.io/kvision/api/](https://rjaros.github.io/kvision/api/).
+The API documentation, generated with new Dokka 1.4, is available at [https://rjaros.github.io/kvision/kvision/index.html](https://rjaros.github.io/kvision/kvision/index.html).
 
 You can also look at [KVision blog posts at dev.to](https://dev.to/t/kvision/latest) and you can talk with KVision 
 developers on Kotlin Slack [#kvision](https://kotlinlang.slack.com/messages/kvision/) channel.
-
-If you are interested in the documentation for KVision 1.x (based on Bootstrap 3), you can [find the guide here](https://kvision.gitbook.io/kvision-guide/v/kvision-1.x/) and the [API docs here](https://rjaros.github.io/kvision/api1/).
 
 ## Quickstart
 
@@ -140,77 +136,6 @@ To build complete application optimized for production run:
         
 Application package will be saved as build/libs/showcase-1.0.0-SNAPSHOT.zip.
 
-## Code samples
+## Leave us a star
 
-### Hello world
-
-```kotlin
-        root("root") {
-            span("Hello world!")
-        }
-```
-
-### Basic components interactions using type safe DSL builders
-
-```kotlin
-        root("root") {
-            hPanel(spacing = 20, alignItems = FlexAlignItems.CENTER) {
-                val label = span("Not yet clicked.")
-                var count = 0
-                button("Click me").onClick {
-                    label.content = "You clicked the button ${++count} times."
-                }
-            }
-        }
-```
-
-### Tab panel with JavaScript routing
-
-```kotlin
-        val firstPanel = Div("First")
-        val secondPanel = Div("Second")
-        val thirdPanel = Div("Third")
-
-        root("root") {
-            tabPanel {
-                addTab("First", firstPanel, route = "/first")
-                addTab("Second", secondPanel, route = "/second")
-                addTab("Third", thirdPanel, route = "/third")
-            }
-        }
-```
-
-### Type safe forms
-
-```kotlin
-        @Serializable
-        data class Model(val username: String? = null, val password: String? = null)
-
-        root("root") {
-            formPanel {
-                add(Model::username, Text(label = "Username"), required = true)
-                add(Model::password, Password(label = "Password"), required = true)
-                add(Button("OK").onClick {
-                    val data: Model = this@FormPanel.getData()
-                    println("Username: ${data.username}")
-                    println("Password: ${data.password}")
-                })
-            }
-        }
-```        
-
-### State management
-
-```kotlin
-        root("root") {
-            vPanel(spacing = 10) {
-                val state = ObservableValue("Hello world")
-                div(state) {
-                    +it
-                }
-                button("Add dot").onClick {
-                    state.value += "."
-                }
-            }
-        }
-```
+If you like this project, please give it a star on GitHub. Thank you!
