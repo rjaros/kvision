@@ -160,10 +160,12 @@ open class FlexPanel(
     }
 
     private fun applySpacing(wrapper: Widget): Widget {
-        wrapper.marginTop = null
-        wrapper.marginRight = null
-        wrapper.marginBottom = null
-        wrapper.marginLeft = null
+        if (!noWrappers) {
+            wrapper.marginTop = null
+            wrapper.marginRight = null
+            wrapper.marginBottom = null
+            wrapper.marginLeft = null
+        }
         spacing?.let {
             when (flexDirection) {
                 FlexDirection.COLUMN -> wrapper.marginBottom = it.px
