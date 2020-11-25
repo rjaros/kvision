@@ -24,6 +24,7 @@ package pl.treksoft.kvision.form
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.json.encodeToDynamic
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans
@@ -65,6 +66,7 @@ class Form<K : Any>(
 ) {
 
     val modelFactory: ((Map<String, Any?>) -> K)?
+    val jsonFactory: ((K) -> dynamic)?
     val fields: MutableMap<String, FormControl> = mutableMapOf()
     internal val fieldsParams: MutableMap<String, Any> = mutableMapOf()
     internal var validatorMessage: ((Form<K>) -> String?)? = null
@@ -96,6 +98,19 @@ class Form<K : Any>(
                         }
                     }
                 }.decodeFromString(serializer, kotlin.js.JSON.stringify(json))
+            }
+        }
+        jsonFactory = serializer?.let {
+            {
+                kotlinx.serialization.json.Json {
+                    serializersModule = SerializersModule {
+                        contextual(Date::class, DateSerializer)
+                        customSerializers?.forEach { (kclass, serializer) ->
+                            @Suppress("UNCHECKED_CAST")
+                            contextual(kclass as KClass<Any>, serializer as KSerializer<Any>)
+                        }
+                    }
+                }.encodeToDynamic(serializer, it)
             }
         }
     }
@@ -261,9 +276,10 @@ class Form<K : Any>(
      */
     fun setData(model: K) {
         fields.forEach { it.value.setValue(null) }
-        for (key in js("Object").keys(model)) {
+        val json = jsonFactory?.invoke(model) ?: throw IllegalStateException("Serializer not defined")
+        for (key in js("Object").keys(json)) {
             @Suppress("UnsafeCastFromDynamic")
-            fields[key]?.setValue(model.asDynamic()[key])
+            fields[key]?.setValue(json[key])
         }
     }
 

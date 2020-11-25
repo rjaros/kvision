@@ -182,7 +182,15 @@ internal class KVWebSocketSession : WebSocketSession {
         throw IllegalStateException("Empty implementation")
     }
 
+    override fun isOpen(): Boolean {
+        throw IllegalStateException("Empty implementation")
+    }
+
     override fun close(status: CloseStatus): Mono<Void> {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun closeStatus(): Mono<CloseStatus> {
         throw IllegalStateException("Empty implementation")
     }
 

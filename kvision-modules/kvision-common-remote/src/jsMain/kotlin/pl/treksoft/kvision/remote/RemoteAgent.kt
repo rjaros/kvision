@@ -21,9 +21,11 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.serializer
 import pl.treksoft.kvision.types.JsonDateSerializer
 import pl.treksoft.kvision.types.toStringInternal
 import kotlin.js.Date
@@ -50,6 +52,29 @@ open class RemoteAgent {
                 is Date -> "\"${value.toStringInternal()}\""
                 else -> try {
                     JSON.plain.encodeToString(value)
+                } catch (e: Throwable) {
+                    value.toString()
+                }
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     * Internal function
+     * Workaround for KT-41282
+     */
+    @InternalSerializationApi
+    inline fun <reified PAR : Any> serializeNotNull(value: PAR): String {
+        return when (value) {
+            is Enum<*> -> "\"$value\""
+            is String -> value
+            is Date -> "\"${value.toStringInternal()}\""
+            else -> try {
+                JSON.plain.encodeToString(value)
+            } catch (e: Throwable) {
+                try {
+                    JSON.plain.encodeToString(PAR::class.serializer(), value)
                 } catch (e: Throwable) {
                     value.toString()
                 }

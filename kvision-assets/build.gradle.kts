@@ -1,5 +1,6 @@
 plugins {
-    id("lt.petuska.npm.publish") version "0.1.1"
+    val npmPublishVersion: String by System.getProperties()
+    id("lt.petuska.npm.publish") version npmPublishVersion
 }
 
 npmPublishing {
@@ -13,11 +14,11 @@ npmPublishing {
                 }
             }
             packageJson {
-                version = "1.0.1"
+                version = "1.0.2"
                 description = "The assets for the KVision framework"
                 keywords = jsonArray("kvision", "kotlin")
-                homepage = "https://github.com/rjaros/kvision#readme"
-                license = "MIT"
+                homepage = "https://kvision.io"
+                licence = "MIT"
                 repository {
                     type = "git"
                     url = "git+https://github.com/rjaros/kvision.git"
@@ -29,7 +30,7 @@ npmPublishing {
                     url = "https://github.com/rjaros/kvision/issues"
                 }
             }
-  
+
             repositories {
                 repository("npmjs") {
                     registry = uri("https://registry.npmjs.org")

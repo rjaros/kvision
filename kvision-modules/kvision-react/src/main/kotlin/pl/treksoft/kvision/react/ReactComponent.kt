@@ -22,11 +22,13 @@
 
 package pl.treksoft.kvision.react
 
+import pl.treksoft.kvision.utils.obj
+import react.Component
 import react.RBuilder
-import react.RComponent
 import react.RProps
 import react.RState
 import react.ReactElement
+import react.buildElements
 import react.setState
 
 /**
@@ -37,14 +39,46 @@ external interface ReactComponentProps : RProps {
 }
 
 /**
- * Internal React component wrapper
+ * @suppress Internal class for React components
  */
-internal class ReactComponent : RComponent<ReactComponentProps, RState>() {
-    override fun RBuilder.render() {
+@OptIn(ExperimentalJsExport::class)
+@JsExport
+internal abstract class KVRComponent<P : ReactComponentProps, S : RState> : Component<P, S>() {
+    init {
+        state = obj<S> { init(props) }
+    }
+
+    open fun S.init(props: P) {}
+
+    @JsName("RBuilder_children")
+    fun RBuilder.children() {
+        props.children()
+    }
+
+    fun <T> RBuilder.children(value: T) {
+        props.children(value)
+    }
+
+    @JsName("RBuilder_render")
+    fun RBuilder.render() {
         props.renderFunction(this) {
             setState {
             }
         }
+    }
+
+    override fun render() = buildElements { render() }
+}
+
+/**
+ * Internal React component wrapper
+ */
+@OptIn(ExperimentalJsExport::class)
+@JsExport
+internal class ReactComponent : KVRComponent<ReactComponentProps, RState>() {
+    @Suppress("RedundantOverride")
+    override fun render(): dynamic {
+        return super.render()
     }
 }
 

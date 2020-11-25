@@ -38,6 +38,7 @@ import org.w3c.dom.get
 import pl.treksoft.jquery.JQueryAjaxSettings
 import pl.treksoft.jquery.JQueryXHR
 import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
 
 /**
  * Client side agent for JSON-RPC remote calls.
@@ -56,7 +57,8 @@ open class KVRemoteAgent<T : Any>(
      */
     suspend inline fun <reified RET : Any, T> call(noinline function: suspend T.() -> RET): RET {
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method, beforeSend = beforeSend).then {
             try {
@@ -80,7 +82,8 @@ open class KVRemoteAgent<T : Any>(
         noinline function: suspend T.() -> List<RET>
     ): List<RET> {
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, method = method, beforeSend = beforeSend).then {
             try {
@@ -104,7 +107,8 @@ open class KVRemoteAgent<T : Any>(
     ): RET {
         val data = serialize(p)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method, beforeSend).then {
             try {
@@ -129,7 +133,8 @@ open class KVRemoteAgent<T : Any>(
     ): List<RET> {
         val data = serialize(p)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data), method, beforeSend).then {
             try {
@@ -154,7 +159,8 @@ open class KVRemoteAgent<T : Any>(
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method, beforeSend).then {
             try {
@@ -180,7 +186,8 @@ open class KVRemoteAgent<T : Any>(
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2), method, beforeSend).then {
             try {
@@ -206,7 +213,8 @@ open class KVRemoteAgent<T : Any>(
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, beforeSend).then {
             try {
@@ -233,7 +241,8 @@ open class KVRemoteAgent<T : Any>(
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, beforeSend).then {
             try {
@@ -260,7 +269,8 @@ open class KVRemoteAgent<T : Any>(
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, beforeSend).then {
             try {
@@ -292,7 +302,8 @@ open class KVRemoteAgent<T : Any>(
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, beforeSend).then {
             try {
@@ -327,7 +338,8 @@ open class KVRemoteAgent<T : Any>(
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, beforeSend).then {
             try {
@@ -363,7 +375,8 @@ open class KVRemoteAgent<T : Any>(
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, beforeSend).then {
             try {
@@ -400,7 +413,8 @@ open class KVRemoteAgent<T : Any>(
         val data5 = serialize(p5)
         val data6 = serialize(p6)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, beforeSend).then {
             try {
@@ -438,7 +452,8 @@ open class KVRemoteAgent<T : Any>(
         val data5 = serialize(p5)
         val data6 = serialize(p6)
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, beforeSend).then {
             try {
@@ -465,7 +480,8 @@ open class KVRemoteAgent<T : Any>(
         val kvUrlPrefix = window["kv_remote_url_prefix"]
         val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
         val (url, _) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         val socket = Socket()
         val requestChannel = Channel<PAR1>()
@@ -477,7 +493,7 @@ open class KVRemoteAgent<T : Any>(
                 lateinit var handlerJob: Job
                 val requestJob = launch {
                     for (par1 in requestChannel) {
-                        val param = serialize(par1)
+                        val param = serializeNotNull(par1)
                         val str = JSON.plain.encodeToString(
                             JsonRpcRequest(
                                 0,
@@ -495,7 +511,7 @@ open class KVRemoteAgent<T : Any>(
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = kotlin.js.JSON.parse<JsonRpcResponse>(str).result ?: ""
+                        val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
                         val par2 = try {
                             @Suppress("UNCHECKED_CAST")
                             deserialize(data, PAR2::class.js.name)
@@ -543,7 +559,8 @@ open class KVRemoteAgent<T : Any>(
         val kvUrlPrefix = window["kv_remote_url_prefix"]
         val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
         val (url, _) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         val socket = Socket()
         val requestChannel = Channel<PAR1>()
@@ -555,7 +572,7 @@ open class KVRemoteAgent<T : Any>(
                 lateinit var handlerJob: Job
                 val requestJob = launch {
                     for (par1 in requestChannel) {
-                        val param = serialize(par1)
+                        val param = serializeNotNull(par1)
                         val str = JSON.plain.encodeToString(
                             JsonRpcRequest(
                                 0,
@@ -573,7 +590,7 @@ open class KVRemoteAgent<T : Any>(
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = kotlin.js.JSON.parse<JsonRpcResponse>(str).result ?: ""
+                        val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
                         val par2 = try {
                             deserializeList(data, PAR2::class.js.name)
                         } catch (t: NotStandardTypeException) {

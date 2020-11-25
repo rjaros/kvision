@@ -34,6 +34,7 @@ import pl.treksoft.jquery.JQueryEventObject
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
+import kotlin.reflect.KClass
 
 /**
  * JavaScript Object type
@@ -65,6 +66,45 @@ fun <T> Any?.createInstance(vararg args: dynamic): T {
 }
 
 /**
+ * Helper function to enumerate properties of a data class.
+ */
+@Suppress("UnsafeCastFromDynamic")
+fun getAllPropertyNames(obj: Any): List<String> {
+    val prototype = js("Object").getPrototypeOf(obj)
+    val prototypeProps: Array<String> = js("Object").getOwnPropertyNames(prototype)
+    val isLegacy = prototypeProps.filterNot { prototype.propertyIsEnumerable(it) }.toSet() == setOf("constructor")
+    return if (isLegacy) {
+        val ownProps: Array<String> = js("Object").getOwnPropertyNames(obj)
+        ownProps.toList()
+    } else {
+        prototypeProps.filter { it != "constructor" }.filterNot { prototype.propertyIsEnumerable(it) }.toList()
+    }
+}
+
+/**
+ * Helper extension function to convert a data class to a plain JS object.
+ */
+fun toPlainObj(data: Any): dynamic {
+    val properties = getAllPropertyNames(data)
+    val ret = js("{}")
+    properties.forEach {
+        ret[it] = data.asDynamic()[it]
+    }
+    return ret
+}
+
+/**
+ * Helper function to convert a plain JS object to a data class.
+ */
+fun <T : Any> toKotlinObj(data: dynamic, kClass: KClass<T>): T {
+    val newT = kClass.js.createInstance<T>()
+    for (key in js("Object").keys(data)) {
+        newT.asDynamic()[key] = data[key]
+    }
+    return newT
+}
+
+/**
  * @suppress
  * Internal function
  */
@@ -84,9 +124,8 @@ external interface KvJQueryEventObject : JQueryEventObject {
 /**
  * Helper class for defining custom events.
  */
-@Suppress("UnsafeCastFromDynamic")
-class KvEvent(type: String, eventInitDict: CustomEventInit) : CustomEvent(type, eventInitDict) {
-    override val detail: KvJQueryEventObject = js("{}")
+external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExternally) : CustomEvent {
+    override val detail: KvJQueryEventObject
 }
 
 /**

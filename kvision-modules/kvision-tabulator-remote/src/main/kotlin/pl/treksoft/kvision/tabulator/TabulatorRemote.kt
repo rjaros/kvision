@@ -38,6 +38,7 @@ import pl.treksoft.kvision.table.TableType
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.set
 import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
 
 /**
  * Tabulator component connected to the multiplatform service.
@@ -67,7 +68,7 @@ open class TabulatorRemote<T : Any, E : Any>(
 
     init {
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
 
         val callAgent = CallAgent()

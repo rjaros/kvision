@@ -36,6 +36,8 @@ import pl.treksoft.kvision.utils.createInstance
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 import pl.treksoft.kvision.utils.syncWithList
+import pl.treksoft.kvision.utils.toKotlinObj
+import pl.treksoft.kvision.utils.toPlainObj
 import kotlin.reflect.KClass
 import pl.treksoft.kvision.tabulator.js.Tabulator as JsTabulator
 
@@ -89,7 +91,7 @@ open class Tabulator<T : Any>(
     init {
         if (data != null) {
             @Suppress("UnsafeCastFromDynamic")
-            options.data = data.toTypedArray()
+            options.data = data.map { toPlainObjTabulator(it) }.toTypedArray()
             if (data is ObservableList) {
                 data.onUpdate += {
                     replaceData(data.toTypedArray())
@@ -223,7 +225,7 @@ open class Tabulator<T : Any>(
         (this.getElement() as? HTMLElement)?.let {
             jsTabulator =
                 KVManagerTabulator.getConstructor()
-                    .createInstance(it, options.toJs(this::translate))
+                    .createInstance(it, options.toJs(this::translate, kClass))
             if (currentPage != null) {
                 jsTabulator?.setPageSize(pageSize ?: 0)
                 jsTabulator?.setPage(currentPage)
@@ -258,12 +260,12 @@ open class Tabulator<T : Any>(
      * @param data new data
      */
     open fun replaceData(data: Array<T>) {
-        @Suppress("UnsafeCastFromDynamic")
-        options.data = data
+        val jsData = data.map { toPlainObjTabulator(it) }.toTypedArray()
+        options.data = jsData
         if ((getElementJQuery()?.find(".tabulator-editing")?.length?.toInt() ?: 0) > 0) {
             this.removeCustomEditors()
         }
-        jsTabulator?.replaceData(data, null, null)
+        jsTabulator?.replaceData(jsData, null, null)
     }
 
     /**
@@ -271,9 +273,9 @@ open class Tabulator<T : Any>(
      * @param data new data
      */
     open fun setData(data: Array<T>) {
-        @Suppress("UnsafeCastFromDynamic")
-        options.data = data
-        jsTabulator?.setData(data, null, null)
+        val jsData = data.map { toPlainObjTabulator(it) }.toTypedArray()
+        options.data = jsData
+        jsTabulator?.setData(jsData, null, null)
     }
 
     /**
@@ -500,7 +502,7 @@ open class Tabulator<T : Any>(
             jsTabulator?.setFilter({ data: dynamic, _: dynamic ->
                 filter?.let {
                     @Suppress("UnsafeCastFromDynamic")
-                    it(data)
+                    it(fixData(data as T))
                 }
             }, null, null)
         }
@@ -675,7 +677,7 @@ open class Tabulator<T : Any>(
         insertRightOfTarget: Boolean? = null,
         positionTarget: String? = null
     ) {
-        jsTabulator?.addColumn(columnDefinition.toJs(this::translate), insertRightOfTarget, positionTarget)
+        jsTabulator?.addColumn(columnDefinition.toJs(this::translate, kClass), insertRightOfTarget, positionTarget)
     }
 
     /**
@@ -702,15 +704,35 @@ open class Tabulator<T : Any>(
     protected fun fixData(data: List<T>?): List<T>? {
         return if (kClass != null) {
             data?.map {
-                val newT = kClass.js.createInstance<T>()
-                for (key in js("Object").keys(it)) {
-                    newT.asDynamic()[key] = it.asDynamic()[key]
-                }
-                newT
+                toKotlinObjTabulator(it, kClass)
             }
         } else {
             data
         }
+    }
+
+    protected fun fixData(data: T): T {
+        return if (kClass != null) {
+            toKotlinObjTabulator(data, kClass)
+        } else {
+            data
+        }
+    }
+
+    protected fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
+        if (data._children != null) {
+            data._children =
+                data._children.unsafeCast<Array<dynamic>>().map { toKotlinObjTabulator(it, kClass) }.toTypedArray()
+        }
+        return toKotlinObj(data, kClass)
+    }
+
+    protected fun toPlainObjTabulator(data: T): T {
+        val obj = toPlainObj(data)
+        if (obj._children != null) {
+            obj._children = obj._children.unsafeCast<Array<T>>().map { toPlainObjTabulator(it) }.toTypedArray()
+        }
+        return obj
     }
 
     companion object {

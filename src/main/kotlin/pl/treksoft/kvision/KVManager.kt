@@ -46,19 +46,19 @@ external fun require(name: String): dynamic
 object KVManager {
     init {
         try {
-            require("kvision-kvision-bootstrap-css").pl.treksoft.kvision.KVManagerBootstrapCss
+            require("kvision-kvision-bootstrap-css-jsLegacy").pl.treksoft.kvision.KVManagerBootstrapCss
         } catch (e: Throwable) {
         }
         try {
-            require("kvision-kvision-bootstrap").pl.treksoft.kvision.KVManagerBootstrap
+            require("kvision-kvision-bootstrap-jsLegacy").pl.treksoft.kvision.KVManagerBootstrap
         } catch (e: Throwable) {
         }
         try {
-            require("kvision-kvision-fontawesome").pl.treksoft.kvision.KVManagerFontAwesome
+            require("kvision-kvision-fontawesome-jsLegacy").pl.treksoft.kvision.KVManagerFontAwesome
         } catch (e: Throwable) {
         }
         try {
-            require("kvision-kvision-onsenui-css").pl.treksoft.kvision.KVManagerOnsenuiCss
+            require("kvision-kvision-onsenui-css-jsLegacy").pl.treksoft.kvision.KVManagerOnsenuiCss
         } catch (e: Throwable) {
         }
         require("kvision-assets/css/style.css")

@@ -26,7 +26,6 @@ import pl.treksoft.kvision.state.ObservableState
 import redux.Reducer
 import redux.Store
 import redux.WrapperAction
-import redux.rEnhancer
 
 typealias RAction = redux.RAction
 typealias Dispatch<A> = (A) -> WrapperAction
@@ -84,7 +83,7 @@ class ReduxStore<S : Any, A : RAction>(
                 KVManagerRedux.applyMiddleware<S, RAction, WrapperAction, Any, Any>(
                     KVManagerRedux.reduxThunk,
                     *middlewares
-                ), rEnhancer()
+                ), KVManagerRedux.rEnhancer()
             )).asDynamic()
         )
     }

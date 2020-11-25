@@ -31,6 +31,7 @@ import pl.treksoft.kvision.remote.JsonRpcRequest
 import pl.treksoft.kvision.remote.KVServiceManager
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.set
+import kotlin.reflect.KFunction
 
 /**
  * The Typeahead control connected to the multiplatform service.
@@ -62,7 +63,7 @@ open class TypeaheadRemoteInput<T : Any>(
 
     init {
         val (url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         val tempAjaxOptions = taAjaxOptions ?: TaAjaxOptions()
         this.taAjaxOptions = tempAjaxOptions.copy(

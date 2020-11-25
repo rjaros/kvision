@@ -22,6 +22,8 @@
 
 package pl.treksoft.kvision.tabulator
 
+import kotlinx.browser.document
+import kotlinx.browser.window
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.form.FormControl
@@ -31,9 +33,9 @@ import pl.treksoft.kvision.tabulator.EditorRoot.disposeTimer
 import pl.treksoft.kvision.tabulator.EditorRoot.root
 import pl.treksoft.kvision.tabulator.js.Tabulator
 import pl.treksoft.kvision.utils.obj
-import kotlinx.browser.document
-import kotlinx.browser.window
+import pl.treksoft.kvision.utils.toKotlinObj
 import kotlin.js.Promise
+import kotlin.reflect.KClass
 
 /**
  * Tooltip generation mode.
@@ -396,7 +398,8 @@ internal object EditorRoot {
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod", "MagicNumber")
 fun <T : Any> ColumnDefinition<T>.toJs(
-    i18nTranslator: (String) -> (String)
+    i18nTranslator: (String) -> (String),
+    kClass: KClass<T>?
 ): Tabulator.ColumnDefinition {
     val tmpEditorFunction = editorComponentFunction?.let {
         { cell: Tabulator.CellComponent,
@@ -404,7 +407,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
           success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, _: dynamic ->
             cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
-            @Suppress("UNCHECKED_CAST") val data = cell.getData() as T
+            if (kClass == null) throw IllegalStateException("The data class type is unknown")
+            val data = toKotlinObj(cell.getData(), kClass)
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, { value ->
@@ -440,7 +444,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
           onRendered: (callback: () -> Unit) -> Unit ->
             cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
-            @Suppress("UNCHECKED_CAST") val data = cell.getData() as T
+            if (kClass == null) throw IllegalStateException("The data class type is unknown")
+            val data = toKotlinObj(cell.getData(), kClass)
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, data)
@@ -459,7 +464,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
     return obj {
         this.title = i18nTranslator(title)
         if (field != null) this.field = field
-        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator) }.toTypedArray()
+        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator, kClass) }.toTypedArray()
         if (visible != null) this.visible = visible
         if (align != null) this.align = align.align
         if (width != null) this.width = width
@@ -767,7 +772,8 @@ data class TabulatorOptions<T : Any>(
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod")
 fun <T : Any> TabulatorOptions<T>.toJs(
-    i18nTranslator: (String) -> (String)
+    i18nTranslator: (String) -> (String),
+    kClass: KClass<T>?
 ): Tabulator.Options {
     val allColumns = this.columns?.let { c -> c + c.mapNotNull { it.columns }.flatten() }
     val tmpCellEditCancelled = allColumns?.find { it.editorComponentFunction != null }?.let {
@@ -795,7 +801,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (downloadConfig != null) this.downloadConfig = downloadConfig.toJs()
         if (reactiveData != null) this.reactiveData = reactiveData
         if (autoResize != null) this.autoResize = autoResize
-        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator) }.toTypedArray()
+        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator, kClass) }.toTypedArray()
         if (autoColumns != null) {
             this.autoColumns = autoColumns
         } else if (columns == null) {

@@ -19,14 +19,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package pl.treksoft.kvision
 
+import kotlinext.js.Object
+import kotlinext.js.assign
+import kotlinx.browser.window
+import pl.treksoft.kvision.utils.obj
 import redux.Action
 import redux.Enhancer
 import redux.Middleware
+import redux.RAction
 import redux.Reducer
 import redux.Store
-import kotlinx.browser.window
+import redux.StoreCreator
+import redux.WrapperAction
 
 internal val kVManagerReduxInit = KVManagerRedux.init()
 
@@ -63,6 +70,32 @@ internal object KVManagerRedux {
             redux.compose
         }
         return composeEnhancers(function1, function2)
+    }
+
+    @Suppress("UnsafeCastFromDynamic")
+    internal fun <S> rEnhancer(): Enhancer<S, Action, Action, RAction, WrapperAction> = { next ->
+        { reducer, initialState ->
+            fun wrapperReducer(reducer: Reducer<S, RAction>): Reducer<S, WrapperAction> {
+                return { state, action -> reducer(state, action.asDynamic().action) }
+            }
+
+            val store = (next.unsafeCast<StoreCreator<S, WrapperAction, WrapperAction>>())(
+                wrapperReducer(reducer),
+                initialState
+            )
+            assign(Object.assign(kotlinext.js.js {}, store)) {
+                dispatch = { raction: RAction ->
+                    val result = store.dispatch(obj {
+                        type = raction::class.simpleName
+                        action = raction
+                    }.unsafeCast<WrapperAction>())
+                    result
+                }
+                replaceReducer = { nextReducer: Reducer<S, RAction> ->
+                    store.replaceReducer(wrapperReducer(nextReducer))
+                }
+            }.unsafeCast<Store<S, RAction, WrapperAction>>()
+        }
     }
 
     internal fun init() {}

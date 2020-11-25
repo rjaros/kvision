@@ -39,6 +39,7 @@ import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
+import kotlin.reflect.KFunction
 
 external fun decodeURIComponent(encodedURI: String): String
 
@@ -76,7 +77,7 @@ open class SelectRemoteInput<T : Any>(
 
     init {
         val (_url, method) =
-            serviceManager.getCalls()[function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         this.url = _url
         this.beforeSend = ajaxOptions?.beforeSend
