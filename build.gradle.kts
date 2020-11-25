@@ -32,7 +32,13 @@ dependencies {
     api("pl.treksoft:jquery-kotlin:$jqueryKotlinVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.1.tgz"))
-    implementation(npm("kvision-assets", "^1.0.1"))
+//  Empty NPM placeholders
+    implementation(npm("kvision-kvision-bootstrap-jsLegacy", "npm:kvision-bootstrap@^0.0.1"))
+    implementation(npm("kvision-kvision-bootstrap-css-jsLegacy", "npm:kvision-bootstrap-css@^0.0.1"))
+    implementation(npm("kvision-kvision-fontawesome-jsLegacy", "npm:kvision-fontawesome@^0.0.1"))
+    implementation(npm("kvision-kvision-onsenui-css-jsLegacy", "npm:kvision-onsenui-css@^0.0.1"))
+//
+    implementation(npm("kvision-assets", "^1.0.2"))
     implementation(npm("css-loader", "^3.5.2"))
     implementation(npm("style-loader", "^1.1.4"))
     implementation(npm("less", "^3.11.1"))

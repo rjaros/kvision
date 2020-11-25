@@ -62,5 +62,9 @@ include(
     "kvision-modules:kvision-testutils",
     "kvision-tools:kvision-compiler-plugin",
     "kvision-tools:kvision-gradle-plugin",
-    "kvision-assets"
+    "kvision-assets",
+    "kvision-npm-placeholders:kvision-bootstrap",
+    "kvision-npm-placeholders:kvision-bootstrap-css",
+    "kvision-npm-placeholders:kvision-fontawesome",
+    "kvision-npm-placeholders:kvision-onsenui-css"
 )
