@@ -191,7 +191,7 @@ open class OnsDateTimeInput(
             sn.add("max" to it.toStringF(mode.format))
         }
         step?.let {
-            sn.add("step" to it.toString())
+            sn.add("step" to "$it")
         }
         inputId?.let {
             sn.add("input-id" to it)
@@ -245,7 +245,7 @@ open class OnsDateTimeInput(
      */
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
-        if (v != null && v.isNotEmpty()) {
+        if (v != null && v != "") {
             this.value = v.toDateF(mode.format)
         } else {
             this.value = null

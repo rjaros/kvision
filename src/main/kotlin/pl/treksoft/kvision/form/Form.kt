@@ -93,8 +93,7 @@ class Form<K : Any>(
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                         customSerializers?.forEach { (kclass, serializer) ->
-                            @Suppress("UNCHECKED_CAST")
-                            contextual(kclass as KClass<Any>, serializer as KSerializer<Any>)
+                            contextual(kclass.unsafeCast<KClass<Any>>(), serializer.unsafeCast<KSerializer<Any>>())
                         }
                     }
                 }.decodeFromString(serializer, kotlin.js.JSON.stringify(json))
@@ -106,8 +105,7 @@ class Form<K : Any>(
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                         customSerializers?.forEach { (kclass, serializer) ->
-                            @Suppress("UNCHECKED_CAST")
-                            contextual(kclass as KClass<Any>, serializer as KSerializer<Any>)
+                            contextual(kclass.unsafeCast<KClass<Any>>(), serializer.unsafeCast<KSerializer<Any>>())
                         }
                     }
                 }.encodeToDynamic(serializer, it)
@@ -311,8 +309,7 @@ class Form<K : Any>(
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                         customSerializers?.map {
-                            @Suppress("UNCHECKED_CAST")
-                            contextual(it.key as KClass<Any>, it.value as KSerializer<Any>)
+                            contextual(it.key.unsafeCast<KClass<Any>>(), it.value.unsafeCast<KSerializer<Any>>())
                         }
                     }
                 }.encodeToString(

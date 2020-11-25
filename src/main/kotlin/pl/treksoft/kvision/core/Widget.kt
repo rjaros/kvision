@@ -268,7 +268,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             snattrs.add("role" to it)
         }
         tabindex?.let {
-            snattrs.add("tabindex" to it.toString())
+            snattrs.add("tabindex" to "$it")
         }
         if (draggable == true) {
             snattrs.add("draggable" to "true")
@@ -1013,7 +1013,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     companion object {
-        private var counter: Long = 0
+        private var counter: Int = 0
 
         /**
          * An extension function which binds the widget to the observable state.

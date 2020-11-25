@@ -113,10 +113,10 @@ open class Iframe(
             pr.add("name" to it)
         }
         iframeWidth?.let {
-            pr.add("width" to it.toString())
+            pr.add("width" to "$it")
         }
         iframeHeight?.let {
-            pr.add("height" to it.toString())
+            pr.add("height" to "$it")
         }
         sandbox?.let {
             pr.add("sandbox" to it.joinToString(" ") { it.option })

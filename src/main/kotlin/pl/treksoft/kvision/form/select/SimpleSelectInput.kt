@@ -150,13 +150,13 @@ open class SimpleSelectInput(
             @Suppress("UNCHECKED_CAST")
             val arr = v as? Array<String>
             if (arr != null && arr.isNotEmpty()) {
-                arr.filter { it.isNotEmpty() }.joinToString(",")
+                arr.filter { it != "" }.joinToString(",")
             } else {
                 null
             }
         } else {
             val vs = v as String?
-            if (vs != null && vs.isNotEmpty() && vs != KVNULL) {
+            if (vs != null && vs != "" && vs != KVNULL) {
                 vs
             } else {
                 null
@@ -220,7 +220,7 @@ open class SimpleSelectInput(
             sn.add("multiple" to "multiple")
         }
         selectSize?.let {
-            sn.add("size" to it.toString())
+            sn.add("size" to "$it")
         }
         autofocus?.let {
             if (it) {

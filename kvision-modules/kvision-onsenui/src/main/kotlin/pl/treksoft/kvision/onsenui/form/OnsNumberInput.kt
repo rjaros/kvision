@@ -175,13 +175,13 @@ open class OnsNumberInput(
         val sn = super.getSnAttrs().toMutableList()
         sn.add("type" to "number")
         startValue?.let {
-            sn.add("value" to it.toString())
+            sn.add("value" to "$it")
         }
         min?.let {
-            sn.add("min" to it.toString())
+            sn.add("min" to "$it")
         }
         max?.let {
-            sn.add("max" to it.toString())
+            sn.add("max" to "$it")
         }
         sn.add("step" to step.toString())
         placeholder?.let {
@@ -232,7 +232,7 @@ open class OnsNumberInput(
      */
     protected open fun refreshState() {
         value?.let {
-            getElementJQuery()?.`val`(it.toString())
+            getElementJQuery()?.`val`("$it")
         } ?: getElementJQueryD()?.`val`(null)
     }
 
@@ -242,7 +242,7 @@ open class OnsNumberInput(
      */
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
-        if (v != null && v.isNotEmpty()) {
+        if (v != null && v != "") {
             this.value = v.toDoubleOrNull()
         } else {
             this.value = null

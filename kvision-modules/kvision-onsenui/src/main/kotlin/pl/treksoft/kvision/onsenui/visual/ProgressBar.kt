@@ -80,10 +80,10 @@ open class ProgressBar(
     override fun getSnAttrs(): List<StringPair> {
         val sn = super.getSnAttrs().toMutableList()
         value?.let {
-            sn.add("value" to it.toString())
+            sn.add("value" to "$it")
         }
         secondaryValue?.let {
-            sn.add("secondary-value" to it.toString())
+            sn.add("secondary-value" to "$it")
         }
         if (indeterminate == true) {
             sn.add("indeterminate" to "indeterminate")

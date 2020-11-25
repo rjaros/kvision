@@ -73,7 +73,7 @@ open class TypeaheadRemoteInput<T : Any>(
                 JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(query, state)))
             },
             preprocessData = {
-                JSON.plain.decodeFromString(ListSerializer(String.serializer()), it.result as String).toTypedArray()
+                JSON.plain.decodeFromString(ListSerializer(String.serializer()), it.result.unsafeCast<String>()).toTypedArray()
             },
             httpType = HttpType.valueOf(method.name)
         )

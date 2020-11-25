@@ -142,7 +142,7 @@ open class Navigator(
             sn.add("swipe-target-width" to "${it}px")
         }
         swipeThreshold?.let {
-            sn.add("swipe-threshold" to it.toString())
+            sn.add("swipe-threshold" to "$it")
         }
         return sn
     }

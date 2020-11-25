@@ -64,10 +64,10 @@ open class Canvas(
     override fun getSnAttrs(): List<StringPair> {
         val pr = super.getSnAttrs().toMutableList()
         canvasWidth?.let {
-            pr.add("width" to it.toString())
+            pr.add("width" to "$it")
         }
         canvasHeight?.let {
-            pr.add("height" to it.toString())
+            pr.add("height" to "$it")
         }
         return pr
     }

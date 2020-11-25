@@ -197,7 +197,7 @@ open class SpinnerInput(
         val sn = super.getSnAttrs().toMutableList()
         sn.add("type" to "text")
         startValue?.let {
-            sn.add("value" to it.toString())
+            sn.add("value" to "$it")
         }
         placeholder?.let {
             sn.add("placeholder" to translate(it))
@@ -218,7 +218,7 @@ open class SpinnerInput(
         if (disabled) {
             sn.add("disabled" to "disabled")
             value?.let {
-                sn.add("value" to it.toString())
+                sn.add("value" to "$it")
             }
         }
         return sn
@@ -226,7 +226,7 @@ open class SpinnerInput(
 
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
-        if (v != null && v.isNotEmpty()) {
+        if (v != null && v != "") {
             this.value = v.toDoubleOrNull()
             this.value?.let {
                 if (min != null && it.toDouble() < (min?.toDouble() ?: 0.0)) this.value = min
@@ -287,7 +287,7 @@ open class SpinnerInput(
 
     private fun refreshState() {
         value?.let {
-            getElementJQuery()?.`val`(it.toString())
+            getElementJQuery()?.`val`("$it")
         } ?: getElementJQueryD()?.`val`(null)
     }
 

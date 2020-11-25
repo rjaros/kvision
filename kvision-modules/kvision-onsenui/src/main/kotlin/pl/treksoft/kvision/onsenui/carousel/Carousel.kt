@@ -198,7 +198,7 @@ open class Carousel(
             sn.add("swipeable" to "swipeable")
         }
         initialIndex?.let {
-            sn.add("initial-index" to it.toString())
+            sn.add("initial-index" to "$it")
         }
         if (centered == true) {
             sn.add("centered" to "centered")
@@ -213,7 +213,7 @@ open class Carousel(
             sn.add("auto-scroll" to "auto-scroll")
         }
         autoScrollRatio?.let {
-            sn.add("auto-scroll-ratio" to it.toString())
+            sn.add("auto-scroll-ratio" to "$it")
         }
         if (disabled == true) {
             sn.add("disabled" to "disabled")

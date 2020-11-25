@@ -203,13 +203,13 @@ open class SelectInput(
             @Suppress("UNCHECKED_CAST")
             val arr = v as? Array<String>
             if (arr != null && arr.isNotEmpty()) {
-                arr.filter { it.isNotEmpty() }.joinToString(",")
+                arr.filter { it != "" }.joinToString(",")
             } else {
                 null
             }
         } else {
             val vs = v as String
-            if (KVNULL == vs || vs.isEmpty()) {
+            if (KVNULL == vs || vs == "") {
                 null
             } else {
                 vs

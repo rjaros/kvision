@@ -91,7 +91,7 @@ open class Icon(
             sn.add("size" to it)
         }
         rotate?.let {
-            sn.add("rotate" to it.toString())
+            sn.add("rotate" to "$it")
         }
         if (fixedWidth == true) {
             sn.add("fixed-width" to "fixed-width")

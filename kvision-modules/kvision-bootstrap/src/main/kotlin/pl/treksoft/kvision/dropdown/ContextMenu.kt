@@ -55,7 +55,7 @@ open class ContextMenu(
             @Suppress("LeakingThis")
             root.addContextMenu(this)
         } else {
-            println("At least one Root object is required to create a context menu!")
+            console.log("At least one Root object is required to create a context menu!")
         }
         @Suppress("LeakingThis")
         init?.invoke(this)

@@ -78,7 +78,7 @@ open class Segment(
             sn.add("tabbar-id" to it)
         }
         activeIndex?.let {
-            sn.add("active-index" to it.toString())
+            sn.add("active-index" to "$it")
         }
         if (disabled == true) {
             sn.add("disabled" to "disabled")

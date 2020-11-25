@@ -131,7 +131,7 @@ open class Tab(
 
     override fun add(child: Component): SimplePanel {
         return if (child is Page || child is Navigator) {
-            content = child as Widget
+            content = child.unsafeCast<Widget>()
             this
         } else {
             super.add(child)

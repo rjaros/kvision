@@ -100,7 +100,7 @@ open class TabulatorRemote<T : Any, E : Any>(
             val data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
             callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name), beforeSend = beforeSend)
                 .then { r: dynamic ->
-                    val result = kotlin.js.JSON.parse<dynamic>(r.result as String)
+                    val result = kotlin.js.JSON.parse<dynamic>(r.result.unsafeCast<String>())
                     @Suppress("UnsafeCastFromDynamic")
                     if (page != null) {
                         result

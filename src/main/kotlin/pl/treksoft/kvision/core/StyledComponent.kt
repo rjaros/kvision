@@ -540,7 +540,7 @@ abstract class StyledComponent {
                 snstyle.add("bottom" to it.asString())
             }
             zIndex?.let {
-                snstyle.add("z-index" to it.toString())
+                snstyle.add("z-index" to "$it")
             }
             overflow?.let {
                 snstyle.add("overflow" to it.overflow)
@@ -600,7 +600,7 @@ abstract class StyledComponent {
                 snstyle.add("color" to it.asString())
             }
             opacity?.let {
-                snstyle.add("opacity" to it.toString())
+                snstyle.add("opacity" to "$it")
             }
             background?.let {
                 snstyle.add("background" to it.asString())
@@ -789,9 +789,9 @@ abstract class StyledComponent {
 
     protected open fun getCacheKey(): String {
         return ((propertyValues.map {
-            it.toString()
+            "$it"
         }) + (customStyles.map {
-            it.toString()
+            "$it"
         })).joinToString("###KvSep###")
     }
 

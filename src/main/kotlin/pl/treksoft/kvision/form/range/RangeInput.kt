@@ -138,7 +138,7 @@ open class RangeInput(
         val sn = super.getSnAttrs().toMutableList()
         sn.add("type" to "range")
         startValue?.let {
-            sn.add("value" to it.toString())
+            sn.add("value" to "$it")
         }
         name?.let {
             sn.add("name" to it)
@@ -207,7 +207,7 @@ open class RangeInput(
      */
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
-        if (v != null && v.isNotEmpty()) {
+        if (v != null && v != "") {
             this.value = v.toDoubleOrNull()
         } else {
             this.value = null

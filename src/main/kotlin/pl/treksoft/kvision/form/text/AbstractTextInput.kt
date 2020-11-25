@@ -166,7 +166,7 @@ abstract class AbstractTextInput(
      */
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
-        if (v != null && v.isNotEmpty()) {
+        if (v != null && v != "") {
             this.value = v
         } else {
             this.value = null

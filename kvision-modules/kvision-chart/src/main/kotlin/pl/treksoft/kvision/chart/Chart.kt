@@ -116,13 +116,11 @@ open class Chart(
     companion object {
 
         fun registerPlugin(plugin: dynamic) {
-            @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-            JsChart.plugins.register(plugin as PluginServiceGlobalRegistration)
+            JsChart.plugins.register(plugin.unsafeCast<PluginServiceGlobalRegistration>())
         }
 
         fun unregisterPlugin(plugin: dynamic) {
-            @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-            JsChart.plugins.unregister(plugin as PluginServiceGlobalRegistration)
+            JsChart.plugins.unregister(plugin.unsafeCast<PluginServiceGlobalRegistration>())
         }
     }
 }

@@ -168,7 +168,7 @@ open class SplitterSide(
             sn.add("side" to it.type)
         }
         openThreshold?.let {
-            sn.add("open-threshold" to it.toString())
+            sn.add("open-threshold" to "$it")
         }
         swipeTargetWidth?.let {
             sn.add("swipe-target-width" to "${it}px")

@@ -73,7 +73,7 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
             this.getElementJQuery()?.on("trix-change") { _, _ ->
                 if (trixId != null) {
                     val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
-                    value = if (v != null && v.isNotEmpty()) {
+                    value = if (v != null && v != "") {
                         v
                     } else {
                         null
