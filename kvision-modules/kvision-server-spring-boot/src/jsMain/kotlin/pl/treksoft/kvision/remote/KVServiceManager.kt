@@ -45,7 +45,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         method: HttpMethod, route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kv/$routeDef", method)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -61,7 +61,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kv/$routeDef", method)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -77,7 +77,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kv/$routeDef", method)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -93,7 +93,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kv/$routeDef", method)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -109,7 +109,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kv/$routeDef", method)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -126,7 +126,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kv/$routeDef", method)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -143,7 +143,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kv/$routeDef", method)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", method)
     }
 
     /**
@@ -155,7 +155,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kv/$routeDef", HttpMethod.POST)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kv/$routeDef", HttpMethod.POST)
     }
 
     /**
@@ -168,7 +168,7 @@ actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KCl
         route: String?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[(function as KFunction<*>).name] = Pair("/kvws/$routeDef", HttpMethod.POST)
+        calls[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")] = Pair("/kvws/$routeDef", HttpMethod.POST)
     }
 
     /**
