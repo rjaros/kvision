@@ -44,15 +44,45 @@ class Progress<T>(
     init: (Progress<T>.() -> Unit)? = null
 ) : SimplePanel(classes + "progress") {
 
+    /**
+     * @constructor
+     * @param min the minimal value
+     * @param max the maximal value
+     * @param classes a set of CSS class names
+     * @param init an initializer extension function
+     */
+    constructor(min: T, max: T, classes: Set<String> = setOf(), init: (Progress<T>.() -> Unit)? = null) : this(
+        Bounds(
+            min,
+            max
+        ), classes, init
+    )
+
     val bounds = ObservableValue(bounds)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     fun setBounds(min: T, max: T) {
         bounds.value = Bounds(min, max)
     }
 
-    init {
-        @Suppress("LeakingThis")
-        init?.invoke(this)
+    /**
+     * Returns the first progress bar.
+     */
+    fun getFirstProgressBar(): ProgressBarTag<T>? {
+        return getChildren().find { it is ProgressBarTag<*> }?.let {
+            it.unsafeCast<ProgressBarTag<T>>()
+        }
+    }
+
+    /**
+     * Returns the list of all progress bars.
+     */
+    fun getProgressBars(): List<ProgressBarTag<T>> {
+        return getChildren().filterIsInstance<ProgressBarTag<T>>()
     }
 }
 
