@@ -405,7 +405,7 @@ fun Widget.enableGestureDetector() {
     if (this.getElement() != null) {
         ons.GestureDetector(this.getElement())
     } else {
-        this.afterInsertHook = {
+        this.addAfterInsertHook {
             ons.GestureDetector(it.elm)
         }
     }

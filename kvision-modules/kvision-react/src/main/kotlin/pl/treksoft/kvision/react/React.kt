@@ -120,10 +120,7 @@ fun <S> Container.reactBind(
     builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
 ): React<S> {
     val react = React(state.getState(), classes ?: className.set, builder)
-    val unsubscribe = state.subscribe { react.state = it }
-    react.afterDisposeHook = {
-        unsubscribe()
-    }
+    react.addAfterDisposeHook(state.subscribe { react.state = it })
     this.add(react)
     return react
 }

@@ -121,7 +121,7 @@ open class Tab(
             if (content?.getElement() != null) {
                 done(content?.getElement())
             } else {
-                content?.afterInsertHook = {
+                content?.addAfterInsertHook {
                     @Suppress("UnsafeCastFromDynamic")
                     done(it.elm)
                 }

@@ -118,20 +118,49 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
 
     protected var lastLanguage: String? = null
 
-    /**
-     * A function called after the widget is inserted to the DOM.
-     */
-    var afterInsertHook: ((VNode) -> Unit)? = null
+    @Deprecated("use addAfterInsertHooks instead", ReplaceWith("addAfterInsertHook"))
+    var afterInsertHook: ((VNode) -> Unit)
+        get() {
+            throw UnsupportedOperationException()
+        }
+        set(value) {
+            addAfterInsertHook(value)
+        }
 
+    @Deprecated("use addAfterDestroyHook instead", ReplaceWith("addAfterDestroyHook"))
+    var afterDestroyHook: (() -> Unit)
+        get() {
+            throw UnsupportedOperationException()
+        }
+        set(value) {
+            addAfterDestroyHook(value)
+        }
+
+    @Deprecated("use addAfterDisposeHook instead", ReplaceWith("addAfterDisposeHook"))
+    var afterDisposeHook: () -> Unit
+        get() {
+            throw UnsupportedOperationException()
+        }
+        set(value) {
+            addAfterDisposeHook(value)
+        }
+
+    private val afterInsertHooks: MutableList<(VNode) -> Unit> = mutableListOf()
+    private val afterDestroyHooks: MutableList<() -> Unit> = mutableListOf()
+    private val afterDisposeHooks: MutableList<() -> Unit> = mutableListOf()
+
+    /**
+     * The supplied function is called after the widget is disposed.
+     */
+    fun addAfterDisposeHook(hook: () -> Unit) = afterDisposeHooks.add(hook)
+    /**
+     * The supplied function is called after the widget is destroyed.
+     */
+    fun addAfterDestroyHook(hook: () -> Unit) = afterDestroyHooks.add(hook)
     /**
      * A function called after the widget is removed from the DOM.
      */
-    var afterDestroyHook: (() -> Unit)? = null
-
-    /**
-     * A function called after the widget is disposed.
-     */
-    var afterDisposeHook: (() -> Unit)? = null
+    fun addAfterInsertHook(hook: (VNode) -> Unit) = afterInsertHooks.add(hook)
 
     protected fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true
@@ -328,12 +357,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
                 vnode = v
                 afterInsertInternal(v)
                 afterInsert(v)
-                afterInsertHook?.invoke(v)
+                afterInsertHooks.forEach { it(v) }
             }
             destroy = {
                 afterDestroyInternal()
                 afterDestroy()
-                afterDestroyHook?.invoke()
+                afterDestroyHooks.forEach { it() }
                 vnode = null
                 vnode
             }
@@ -974,7 +1003,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     override fun dispose() {
-        afterDisposeHook?.invoke()
+        afterDisposeHooks.forEach { it() }
     }
 
     protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }): RefreshDelegateProvider<T> =
@@ -1024,15 +1053,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             removeChildren: Boolean = true,
             factory: (W.(S) -> Unit)
         ): W {
-            val unsubscribe = observableState.subscribe {
-                this.singleRender {
+            this.addAfterDisposeHook(observableState.subscribe {
+                singleRender {
                     if (removeChildren) (this as? Container)?.removeAll()
-                    this.factory(it)
+                    factory(it)
                 }
-            }
-            this.afterDisposeHook = {
-                unsubscribe()
-            }
+            })
             return this
         }
     }
