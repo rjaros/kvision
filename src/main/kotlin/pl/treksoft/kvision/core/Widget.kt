@@ -248,30 +248,19 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         }
     }
 
-    private fun getSnAttrsInternal(): List<StringPair> {
-        if (lastLanguage != null && lastLanguage != I18n.language) snAttrsCache = null
-        return snAttrsCache ?: {
-            val s = getSnAttrs()
-            snAttrsCache = s
-            s
-        }()
-    }
+    private fun getSnAttrsInternal(): List<StringPair> =
+        snAttrsCache.let { cache ->
+            if (cache == null || lastLanguage != null && lastLanguage != I18n.language) {
+                getSnAttrs().also { snAttrsCache = it }
+            } else {
+                cache
+            }
+        }
 
-    private fun getSnClassInternal(): List<StringBoolPair> {
-        return snClassCache ?: {
-            val s = getSnClass()
-            snClassCache = s
-            s
-        }()
-    }
+    private fun getSnClassInternal(): List<StringBoolPair> = snClassCache ?: getSnClass().also { snClassCache = it }
 
-    private fun getSnHooksInternal(): com.github.snabbdom.Hooks? {
-        return snHooksCache ?: {
-            val s = getSnHooks()
-            snHooksCache = s
-            s
-        }()
-    }
+    private fun getSnHooksInternal(): com.github.snabbdom.Hooks? =
+        snHooksCache ?: getSnHooks().also { snHooksCache = it }
 
     /**
      * Returns list of CSS class names for current widget in the form of a List<StringBoolPair>.
