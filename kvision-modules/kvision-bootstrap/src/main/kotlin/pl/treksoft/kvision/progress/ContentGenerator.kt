@@ -29,5 +29,5 @@ import pl.treksoft.kvision.html.Tag
  * Generic interface for progress content generator.
  */
 fun interface ContentGenerator<T> {
-    fun generateContent(tag: Tag, value: T, bounds: Bounds<T>)
+    fun generateContent(tag: Tag, value: T, bounds: Bounds<out T>)
 }

@@ -27,12 +27,17 @@ package pl.treksoft.kvision.progress
  * An implementation of the @see ProgressBarTag, which works with plain old numbers
  */
 class NumberProgressBarTag(
-    private val progress: Progress<Number>,
+    private val progress: Progress<out Number>,
     initialValue: Number = 0,
     private val contentGenerator: ContentGenerator<Number>,
     style: ProgressBarStyle? = null,
     classes: Set<String> = setOf(),
+    init: (NumberProgressBarTag.() -> Unit)? = null
 ) : ProgressBarTag<Number>(classes, style) {
+
+    init {
+        init?.invoke(this)
+    }
 
     override var value: Number = initialValue
         set(value) {
@@ -63,9 +68,10 @@ class NumberProgressBarTag(
     }
 }
 
-fun Progress<Number>.progressNumeric(
+fun Progress<out Number>.progressNumeric(
     initialValue: Number = 0,
     contentGenerator: ContentGenerator<Number> = ContentGenerator { _, _, _ -> },
     style: ProgressBarStyle? = null,
     classes: Set<String> = setOf(),
-) = NumberProgressBarTag(this, initialValue, contentGenerator, style, classes).also { add(it) }
+    init: (NumberProgressBarTag.() -> Unit)? = null
+) = NumberProgressBarTag(this, initialValue, contentGenerator, style, classes, init).also { add(it) }

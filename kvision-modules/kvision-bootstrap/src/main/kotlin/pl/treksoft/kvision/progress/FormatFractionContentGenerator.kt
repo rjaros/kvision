@@ -39,7 +39,7 @@ class FormatFractionContentGenerator(
     }
 ) :
     ContentGenerator<Number> {
-    override fun generateContent(tag: Tag, value: Number, bounds: Bounds<Number>) {
+    override fun generateContent(tag: Tag, value: Number, bounds: Bounds<out Number>) {
         tag.content = numberFormat.format(bounds.fraction(value.toDouble()))
     }
 }

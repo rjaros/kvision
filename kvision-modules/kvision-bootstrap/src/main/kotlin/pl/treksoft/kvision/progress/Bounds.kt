@@ -31,7 +31,7 @@ data class Bounds<T>(val min: T, val max: T)
 /**
  * Calculate fraction for the given value and bounds.
  */
-fun Bounds<Number>.fraction(value: Double): Double {
+fun Bounds<out Number>.fraction(value: Double): Double {
     val minDouble = min.toDouble()
     val maxDouble = max.toDouble()
     return (value - minDouble) / (maxDouble - minDouble)

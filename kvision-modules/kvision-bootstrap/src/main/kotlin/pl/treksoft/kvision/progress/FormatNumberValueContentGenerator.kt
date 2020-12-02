@@ -33,7 +33,7 @@ import pl.treksoft.kvision.utils.Intl
  */
 class FormatNumberValueContentGenerator(private val numberFormat: Intl.NumberFormat = Intl.NumberFormat()) :
     ContentGenerator<Number> {
-    override fun generateContent(tag: Tag, value: Number, bounds: Bounds<Number>) {
+    override fun generateContent(tag: Tag, value: Number, bounds: Bounds<out Number>) {
         tag.content = numberFormat.format(value)
     }
 }
