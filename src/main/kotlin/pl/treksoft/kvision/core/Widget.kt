@@ -124,6 +124,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             throw UnsupportedOperationException()
         }
         set(value) {
+            afterInsertHooks.clear()
             addAfterInsertHook(value)
         }
 
@@ -133,6 +134,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             throw UnsupportedOperationException()
         }
         set(value) {
+            afterDestroyHooks.clear()
             addAfterDestroyHook(value)
         }
 
@@ -142,6 +144,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             throw UnsupportedOperationException()
         }
         set(value) {
+            afterDisposeHooks.clear()
             addAfterDisposeHook(value)
         }
 
