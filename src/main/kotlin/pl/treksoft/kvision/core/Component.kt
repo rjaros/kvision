@@ -62,6 +62,13 @@ interface Component {
     fun removeCssClass(css: String): Component
 
     /**
+     * Checks whether the given value is present in the set of CSS classes.
+     * @param css CSS class name
+     * @return whether the value is preset
+     */
+    fun hasCssClass(css: String): Boolean
+
+    /**
      * Removes given style object from the set of CSS classes generated in html code of current component.
      * @param css CSS style object
      * @return current component

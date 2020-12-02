@@ -21,25 +21,20 @@
  * SOFTWARE.
  */
 
-package pl.treksoft.kvision.progress
+package pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.html.Tag
-import pl.treksoft.kvision.utils.Intl
-import pl.treksoft.kvision.utils.numberFormat
+import kotlin.reflect.KProperty
 
-/**
- * Uses a `Intl.NumberFormat` to format the fraction of a value within bounds. E.g. if value = 2, bounds=[1,10], then
- * the fraction is 0.2 which is formatted using a given `numberFormat`.
- *
- * @param numberFormat the number format to be used. Defaults to formatting as percentage
- */
-class FormatFractionContentGenerator(
-    private val numberFormat: Intl.NumberFormat = numberFormat {
-        style = "percent"
+class AttributeDelegate(private val attributeName: String) {
+    operator fun getValue(thisRef: Widget, property: KProperty<*>): String? {
+        return thisRef.getAttribute(attributeName)
     }
-) :
-    ContentGenerator<Number> {
-    override fun generateContent(tag: Tag, value: Number, bounds: Bounds<Number>) {
-        tag.content = numberFormat.format(bounds.fraction(value.toDouble()))
+
+    operator fun setValue(thisRef: Widget, property: KProperty<*>, value: String?) {
+        if (value == null) {
+            thisRef.removeAttribute(attributeName)
+        } else {
+            thisRef.setAttribute(attributeName, value)
+        }
     }
 }
