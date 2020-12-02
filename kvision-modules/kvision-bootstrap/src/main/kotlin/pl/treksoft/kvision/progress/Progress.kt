@@ -34,7 +34,7 @@ import pl.treksoft.kvision.state.bind
  *
  * @constructor
  * @param T the type that describes the progress, typically @see Number
- * @param bounds bound of the progress
+ * @param bounds bounds of the progress
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
