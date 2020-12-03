@@ -23,6 +23,8 @@ package test.pl.treksoft.kvision
 
 import kotlinx.browser.document
 import org.w3c.dom.Element
+import org.w3c.dom.asList
+import pl.treksoft.jquery.JQuery
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.jquery.invoke
 import pl.treksoft.jquery.get
@@ -70,8 +72,8 @@ interface DomSpec : TestSpec {
 
     fun assertEqualsHtml(expected: String?, actual: String?, message: String?) {
         if (expected != null && actual != null) {
-            val exp = jQuery(expected)
-            val act = jQuery(actual)
+            val exp = jQuery(expected).normalizeClassListRecursive()
+            val act = jQuery(actual).normalizeClassListRecursive()
             val result = exp[0]?.isEqualNode(act[0])
             if (result == true) {
                 assertTrue(result == true, message)
@@ -82,6 +84,18 @@ interface DomSpec : TestSpec {
             assertEquals(expected, actual, message)
         }
     }
+}
+
+private fun JQuery.normalizeClassList(): JQuery {
+    each { _, elem ->
+        elem.setAttribute("class", elem.classList.asList().sorted().joinToString(" "))
+    }
+    return this
+}
+
+private fun JQuery.normalizeClassListRecursive(): JQuery {
+    jQuery("*", this).addBack().normalizeClassList()
+    return this
 }
 
 interface WSpec : DomSpec {

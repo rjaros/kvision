@@ -300,6 +300,16 @@ inline fun snClasses(pairs: List<StringBoolPair>): Classes {
 }
 
 /**
+ * Helper function for creating classes parameters for Snabbdom.
+ */
+@Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
+inline fun snClasses(classes: Iterable<String>): Classes {
+    return obj {
+        classes.forEach { this[it] = true }
+    }
+}
+
+/**
  * Helper function for creating attributes parameters for Snabbdom.
  */
 @Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
