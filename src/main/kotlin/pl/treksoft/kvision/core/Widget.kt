@@ -267,7 +267,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * Returns list of CSS class names for current widget in the form of a List<StringBoolPair>.
      * @return list of CSS class names
      */
-    @Deprecated("use buildSnClassSet instead", ReplaceWith("buildSnClassSet"))
+    @Deprecated("use buildClassSet instead", ReplaceWith("buildClassSet"))
     protected open fun getSnClass(): List<StringBoolPair> {
         return emptyList()
     }
