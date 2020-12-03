@@ -735,6 +735,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         return this
     }
 
+    override fun hasCssClass(css: String): Boolean = this.classes.contains(css)
+
     override fun addSurroundingCssClass(css: String): Widget {
         this.surroundingClasses.add(css)
         refresh()
