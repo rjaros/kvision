@@ -272,6 +272,10 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         return emptyList()
     }
 
+    /**
+     * Builds a list of CSS class names for the current widget with a delegated ClassSetBuilder.
+     * @param classSetBuilder a delegated builder
+     */
     protected open fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         classSetBuilder.addAll(classes)
         if (!visible) {
