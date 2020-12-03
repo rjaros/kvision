@@ -35,6 +35,7 @@ import pl.treksoft.kvision.utils.set
 /**
  * Progress bar styles.
  */
+@Suppress("DEPRECATION")
 @Deprecated(
     "Use Progress component instead with BsBgColor enum value.",
     replaceWith = ReplaceWith("BsBgColor", "pl.treksoft.kvision.core.BsBgColor")
