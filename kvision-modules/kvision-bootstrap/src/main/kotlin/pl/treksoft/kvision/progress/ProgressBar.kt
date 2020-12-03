@@ -32,6 +32,20 @@ import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.perc
 import pl.treksoft.kvision.utils.set
 
+/**
+ * Progress bar styles.
+ */
+@Deprecated(
+    "Use Progress component instead with BsBgColor enum value.",
+    replaceWith = ReplaceWith("BsBgColor", "pl.treksoft.kvision.core.BsBgColor")
+)
+enum class ProgressBarStyle(internal val className: String) {
+    SUCCESS("bg-success"),
+    INFO("bg-info"),
+    WARNING("bg-warning"),
+    DANGER("bg-danger")
+}
+
 internal const val DEFAULT_MIN = 0
 internal const val DEFAULT_MAX = 100
 

@@ -24,25 +24,16 @@
 package pl.treksoft.kvision.progress
 
 import pl.treksoft.kvision.core.AttributeDelegate
+import pl.treksoft.kvision.core.BsBgColor
 import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.utils.perc
 
 /**
- * Progress bar styles.
- */
-enum class ProgressBarStyle(internal val className: String) {
-    SUCCESS("bg-success"),
-    INFO("bg-info"),
-    WARNING("bg-warning"),
-    DANGER("bg-danger")
-}
-
-/**
  * A base class for the progress bar tag. This class only exposes utility methods in order to set the typical
  * attributes used by the bootstrap progress bar in a type-safe manner.
  */
-abstract class ProgressBarTag<T>(classes: Set<String> = setOf(), style: ProgressBarStyle? = null) :
+abstract class ProgressBarTag<T>(classes: Set<String> = setOf(), bgColor: BsBgColor? = null) :
     Div(classes = classes) {
     init {
         role = "progressbar"
@@ -51,7 +42,7 @@ abstract class ProgressBarTag<T>(classes: Set<String> = setOf(), style: Progress
     /**
      * The style of the progress bar.
      */
-    var style by refreshOnUpdate(style)
+    var style by refreshOnUpdate(bgColor)
 
     /**
      * Determines if the progress bar is striped.
