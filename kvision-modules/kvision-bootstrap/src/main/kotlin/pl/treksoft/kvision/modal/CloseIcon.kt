@@ -23,7 +23,7 @@ package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManager
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 
@@ -36,10 +36,9 @@ open class CloseIcon : Widget(setOf()) {
         return render("button", arrayOf(KVManager.virtualize("<span aria-hidden='true'>&times;</span>")))
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("close" to true)
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("close")
     }
 
     override fun getSnAttrs(): List<StringPair> {

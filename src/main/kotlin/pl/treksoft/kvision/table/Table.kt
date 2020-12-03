@@ -23,9 +23,9 @@ package pl.treksoft.kvision.table
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.panel.SimplePanel
@@ -175,12 +175,11 @@ open class Table(
         return listOf(captionElement, thead, tbody).mapNotNull { it?.renderVNode() }.toTypedArray()
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         types.forEach {
-            cl.add(it.type to true)
+            classSetBuilder.add(it.type)
         }
-        return cl
     }
 
     override fun add(child: Component): SimplePanel {

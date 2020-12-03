@@ -22,8 +22,9 @@
 package pl.treksoft.kvision.form.check
 
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.BoolFormControl
 import pl.treksoft.kvision.form.FieldLabel
@@ -37,7 +38,7 @@ import pl.treksoft.kvision.utils.SnOn
 /**
  * Radio style options.
  */
-enum class RadioStyle(internal val className: String) {
+enum class RadioStyle(override val className: String) : CssClass {
     PRIMARY("abc-radio-primary"),
     SUCCESS("abc-radio-success"),
     INFO("abc-radio-info"),
@@ -156,26 +157,23 @@ open class Radio(
         return this
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         if (!squared) {
-            cl.add("abc-radio" to true)
-            style?.let {
-                cl.add(it.className to true)
-            }
+            classSetBuilder.add("abc-radio")
+            classSetBuilder.add(style)
         } else {
-            cl.add("abc-checkbox" to true)
+            classSetBuilder.add("abc-checkbox")
             style?.let {
-                cl.add(it.className.replace("radio", "checkbox") to true)
+                classSetBuilder.add(it.className.replace("radio", "checkbox"))
             }
         }
         if (inline) {
-            cl.add("form-check-inline" to true)
+            classSetBuilder.add("form-check-inline")
         }
         if (validatorError != null) {
-            cl.add("text-danger" to true)
+            classSetBuilder.add("text-danger")
         }
-        return cl
     }
 
     /**

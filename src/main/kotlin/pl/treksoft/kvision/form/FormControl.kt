@@ -23,13 +23,14 @@ package pl.treksoft.kvision.form
 
 import org.w3c.files.File
 import pl.treksoft.kvision.core.Component
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.types.KFile
 import kotlin.js.Date
 
 /**
  * Input controls sizes.
  */
-enum class InputSize(val className: String) {
+enum class InputSize(override val className: String) : CssClass {
     LARGE("form-control-lg"),
     SMALL("form-control-sm")
 }
@@ -37,7 +38,7 @@ enum class InputSize(val className: String) {
 /**
  * Input controls validation status.
  */
-enum class ValidationStatus(val className: String) {
+enum class ValidationStatus(override val className: String) : CssClass {
     VALID("is-valid"),
     INVALID("is-invalid")
 }

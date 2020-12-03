@@ -22,9 +22,10 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.state.ObservableState
@@ -34,7 +35,7 @@ import pl.treksoft.kvision.utils.set
 /**
  * Image shapes.
  */
-enum class ImageShape(internal val className: String) {
+enum class ImageShape(override val className: String) : CssClass {
     ROUNDED("rounded"),
     CIRCLE("rounded-circle"),
     THUMBNAIL("img-thumbnail")
@@ -95,18 +96,15 @@ open class Image(
         return pr
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         if (responsive) {
-            cl.add("img-fluid" to true)
+            classSetBuilder.add("img-fluid")
         }
         if (centered) {
-            cl.add("center-block" to true)
+            classSetBuilder.add("center-block")
         }
-        shape?.let {
-            cl.add(it.className to true)
-        }
-        return cl
+        classSetBuilder.add(shape)
     }
 }
 

@@ -23,15 +23,15 @@ package pl.treksoft.kvision.panel
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
+import kotlinx.browser.document
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.Application
 import pl.treksoft.kvision.KVManager
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Style
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.snClasses
 import pl.treksoft.kvision.utils.snOpt
-import kotlinx.browser.document
 
 /**
  * Root container types.
@@ -201,13 +201,11 @@ class Root : SimplePanel {
         return contextMenus.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        return if (containerType == ContainerType.NONE) {
-            super.getSnClass()
-        } else {
-            super.getSnClass() + (containerType.type to true)
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        if (containerType != ContainerType.NONE) {
+            classSetBuilder.add(containerType.type)
         }
-
     }
 
     internal fun reRender(): Root {

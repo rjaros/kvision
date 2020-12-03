@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.navbar
 
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.state.ObservableState
@@ -50,13 +50,12 @@ open class Nav(rightAlign: Boolean = false, classes: Set<String> = setOf(), init
         init?.invoke(this)
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("navbar-nav" to true)
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("navbar-nav")
         if (rightAlign) {
-            cl.add("ml-auto" to true)
+            classSetBuilder.add("ml-auto")
         }
-        return cl
     }
 }
 

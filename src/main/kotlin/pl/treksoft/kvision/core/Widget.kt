@@ -112,7 +112,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     protected var vnode: VNode? = null
 
     private var snAttrsCache: List<StringPair>? = null
-    private var snClassCache: List<StringBoolPair>? = null
+    private var snClassCache: LazyCache<Set<String>> = LazyCache { buildClassSet(this::buildClassSet) }
     private var snOnCache: com.github.snabbdom.On? = null
     private var snHooksCache: com.github.snabbdom.Hooks? = null
 
@@ -245,7 +245,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             key = vnkey
             attrs = snAttrs(getSnAttrsInternal())
             style = snStyle(getSnStyleInternal())
-            `class` = snClasses(getSnClassInternal())
+            `class` = snClasses(snClassCache.value)
             on = getSnOn()
             hook = getSnHooksInternal()
         }
@@ -260,8 +260,6 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             }
         }
 
-    private fun getSnClassInternal(): List<StringBoolPair> = snClassCache ?: getSnClass().also { snClassCache = it }
-
     private fun getSnHooksInternal(): com.github.snabbdom.Hooks? =
         snHooksCache ?: getSnHooks().also { snHooksCache = it }
 
@@ -269,8 +267,18 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * Returns list of CSS class names for current widget in the form of a List<StringBoolPair>.
      * @return list of CSS class names
      */
+    @Deprecated("use buildSnClassSet instead", ReplaceWith("buildSnClassSet"))
     protected open fun getSnClass(): List<StringBoolPair> {
-        return classes.map { c -> c to true } + if (visible) listOf() else listOf("hidden" to true)
+        return emptyList()
+    }
+
+    protected open fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        classSetBuilder.addAll(classes)
+        if (!visible) {
+            classSetBuilder.add("hidden")
+        }
+        @Suppress("DEPRECATION")
+        getSnClass().forEach { classSetBuilder.add(it.first) }
     }
 
     /**
@@ -801,7 +809,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     override fun refresh(): Widget {
         super.refresh()
         snAttrsCache = null
-        snClassCache = null
+        snClassCache.clear()
         snOnCache = null
         snHooksCache = null
         getRoot()?.reRender()

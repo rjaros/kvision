@@ -23,8 +23,9 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManager
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
@@ -106,7 +107,7 @@ enum class TAG(internal val tagName: String) {
 /**
  * CSS align attributes.
  */
-enum class Align(val className: String) {
+enum class Align(override val className: String) : CssClass {
     LEFT("text-left"),
     CENTER("text-center"),
     RIGHT("text-right"),
@@ -195,12 +196,9 @@ open class Tag(
         }
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        align?.let {
-            cl.add(it.className to true)
-        }
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add(align)
     }
 
     override operator fun String.unaryPlus() {

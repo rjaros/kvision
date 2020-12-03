@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.onsenui.form
 
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.DateFormControl
 import pl.treksoft.kvision.form.FieldLabel
@@ -181,12 +181,11 @@ open class OnsDateTime(
         counter++
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         if (validatorError != null) {
-            cl.add("text-danger" to true)
+            classSetBuilder.add("text-danger")
         }
-        return cl
     }
 
     @Suppress("UNCHECKED_CAST")

@@ -24,8 +24,8 @@ package pl.treksoft.kvision.form.time
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.invoke
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.text.TextInput
 import pl.treksoft.kvision.html.Div
@@ -234,12 +234,9 @@ open class DateTimeInput(
         }
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        validationStatus?.let {
-            cl.add(it.className to true)
-        }
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add(validationStatus)
     }
 
     protected open fun refreshDatePicker() {

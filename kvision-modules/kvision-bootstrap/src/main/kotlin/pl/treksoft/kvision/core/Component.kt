@@ -111,7 +111,7 @@ fun Component.removeBsColor(bsColor: BsColor) {
     this.removeCssClass(bsColor.className)
 }
 
-enum class BsBgColor(internal val className: String) {
+enum class BsBgColor(override val className: String) : CssClass {
     PRIMARY("bg-primary"),
     SECONDARY("bg-secondary"),
     SUCCESS("bg-success"),

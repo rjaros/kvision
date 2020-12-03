@@ -25,9 +25,10 @@ import com.github.snabbdom.VNode
 import pl.treksoft.jquery.invoke
 import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.BsBgColor
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.Span
@@ -40,7 +41,7 @@ import pl.treksoft.kvision.utils.set
 /**
  * Navbar types.
  */
-enum class NavbarType(internal val navbarType: String) {
+enum class NavbarType(override val className: String) : CssClass {
     FIXEDTOP("fixed-top"),
     FIXEDBOTTOM("fixed-bottom"),
     STICKYTOP("sticky-top")
@@ -57,7 +58,7 @@ enum class NavbarColor(internal val navbarColor: String) {
 /**
  * Navbar responsive behavior.
  */
-enum class NavbarExpand(internal val navbarExpand: String) {
+enum class NavbarExpand(override val className: String) : CssClass {
     ALWAYS("navbar-expand"),
     XL("navbar-expand-xl"),
     LG("navbar-expand-lg"),
@@ -191,18 +192,13 @@ open class Navbar(
         return container.getChildren()
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("navbar" to true)
-        type?.let {
-            cl.add(it.navbarType to true)
-        }
-        expand?.let {
-            cl.add(it.navbarExpand to true)
-        }
-        cl.add(nColor.navbarColor to true)
-        cl.add(bgColor.className to true)
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("navbar")
+        classSetBuilder.add(type)
+        classSetBuilder.add(expand)
+        classSetBuilder.add(nColor.navbarColor)
+        classSetBuilder.add(bgColor.className)
     }
 
     companion object {

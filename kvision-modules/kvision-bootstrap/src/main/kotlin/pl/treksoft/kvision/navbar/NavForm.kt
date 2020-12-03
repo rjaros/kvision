@@ -21,7 +21,7 @@
  */
 package pl.treksoft.kvision.navbar
 
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.state.ObservableState
@@ -49,13 +49,12 @@ open class NavForm(rightAlign: Boolean = false, classes: Set<String> = setOf(), 
         init?.invoke(this)
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("form-inline" to true)
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("form-inline")
         if (rightAlign) {
-            cl.add("ml-auto" to true)
+            classSetBuilder.add("ml-auto")
         }
-        return cl
     }
 }
 
