@@ -157,11 +157,11 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     fun addAfterDisposeHook(hook: () -> Unit) = afterDisposeHooks.add(hook)
     /**
-     * The supplied function is called after the widget is destroyed.
+     * The supplied function is called after the widget is removed from the DOM.
      */
     fun addAfterDestroyHook(hook: () -> Unit) = afterDestroyHooks.add(hook)
     /**
-     * A function called after the widget is removed from the DOM.
+     * The supplied function is called after the widget is inserted into the DOM.
      */
     fun addAfterInsertHook(hook: (VNode) -> Unit) = afterInsertHooks.add(hook)
 
