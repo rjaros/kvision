@@ -22,11 +22,11 @@
 package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.ButtonStyle
@@ -241,11 +241,10 @@ open class DropDown(
         }
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        if (forNavbar) cl.add("nav-item" to true)
-        cl.add(direction.direction to true)
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        if (forNavbar) classSetBuilder.add("nav-item")
+        classSetBuilder.add(direction.direction)
     }
 
     /**
@@ -452,11 +451,12 @@ class DropDownButton(
         }
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        return when {
-            forNavbar -> listOf("nav-link" to true, "dropdown-toggle" to true)
-            forDropDown -> super.getSnClass() + listOf("dropdown-item" to true, "dropdown-toggle" to true)
-            else -> super.getSnClass() + ("dropdown-toggle" to true)
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        classSetBuilder.add("dropdown-toggle")
+        when {
+            forNavbar -> classSetBuilder.add("nav-link")
+            forDropDown -> classSetBuilder.run { super.buildClassSet(this); add("dropdown-item") }
+            else -> super.buildClassSet(classSetBuilder)
         }
     }
 

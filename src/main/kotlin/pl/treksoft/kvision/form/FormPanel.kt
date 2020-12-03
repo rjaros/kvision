@@ -24,8 +24,8 @@ package pl.treksoft.kvision.form
 import com.github.snabbdom.VNode
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.FormPanel.Companion.create
 import pl.treksoft.kvision.html.Div
@@ -210,14 +210,13 @@ open class FormPanel<K : Any>(
         return render("form", childrenVNodes())
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         if (type != null) {
-            cl.add(type.formType to true)
-            if (type == FormType.HORIZONTAL) cl.add("container-fluid" to true)
+            classSetBuilder.add(type.formType)
+            if (type == FormType.HORIZONTAL) classSetBuilder.add("container-fluid")
         }
-        if (condensed) cl.add("kv-form-condensed" to true)
-        return cl
+        if (condensed) classSetBuilder.add("kv-form-condensed")
     }
 
     override fun getSnAttrs(): List<StringPair> {

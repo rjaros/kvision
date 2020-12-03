@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.form
 
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.CustomTag
@@ -111,12 +111,11 @@ open class OnsButton(
         @Suppress("UnsafeCastFromDynamic")
         get() = getElement()?.asDynamic()?.disabled
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val sn = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         if (content != null) {
-            sn.add("kv-button-with-text" to true)
+            classSetBuilder.add("kv-button-with-text")
         }
-        return sn
     }
 
     override fun getSnAttrs(): List<StringPair> {

@@ -24,9 +24,9 @@ package pl.treksoft.kvision.html
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
 import pl.treksoft.kvision.KVManager
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -144,15 +144,14 @@ open class ListTag(
         }
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         @Suppress("NON_EXHAUSTIVE_WHEN")
         when (type) {
-            ListType.UNSTYLED -> cl.add("list-unstyled" to true)
-            ListType.INLINE -> cl.add("list-inline" to true)
-            ListType.DL_HORIZ -> cl.add("dl-horizontal" to true)
+            ListType.UNSTYLED -> classSetBuilder.add("list-unstyled")
+            ListType.INLINE -> classSetBuilder.add("list-inline")
+            ListType.DL_HORIZ -> classSetBuilder.add("dl-horizontal")
         }
-        return cl
     }
 }
 

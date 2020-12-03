@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.html
 
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
 
@@ -39,10 +39,9 @@ open class Icon(icon: String) : Tag(TAG.SPAN) {
      */
     var icon by refreshOnUpdate(icon)
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        icon.split(" ").forEach { cl.add(it to true) }
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.addAll(icon.split(" "))
     }
 }
 

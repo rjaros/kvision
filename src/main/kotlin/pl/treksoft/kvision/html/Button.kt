@@ -23,9 +23,10 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
@@ -35,7 +36,7 @@ import pl.treksoft.kvision.utils.set
 /**
  * Button styles.
  */
-enum class ButtonStyle(val className: String) {
+enum class ButtonStyle(override val className: String) : CssClass {
     PRIMARY("btn-primary"),
     SECONDARY("btn-secondary"),
     SUCCESS("btn-success"),
@@ -58,7 +59,7 @@ enum class ButtonStyle(val className: String) {
 /**
  * Button sizes.
  */
-enum class ButtonSize(internal val className: String) {
+enum class ButtonSize(override val className: String) : CssClass {
     LARGE("btn-lg"),
     SMALL("btn-sm")
 }
@@ -149,17 +150,14 @@ open class Button(
         }
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("btn" to true)
-        cl.add(style.className to true)
-        size?.let {
-            cl.add(it.className to true)
-        }
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("btn")
+        classSetBuilder.add(style)
+        classSetBuilder.add(size)
         if (block) {
-            cl.add("btn-block" to true)
+            classSetBuilder.add("btn-block")
         }
-        return cl
     }
 
     override fun getSnAttrs(): List<StringPair> {

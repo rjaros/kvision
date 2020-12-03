@@ -23,8 +23,8 @@ package pl.treksoft.kvision.form.range
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.HTMLInputElement
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
@@ -123,15 +123,10 @@ open class RangeInput(
         return render("input")
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        validationStatus?.let {
-            cl.add(it.className to true)
-        }
-        size?.let {
-            cl.add(it.className to true)
-        }
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add(validationStatus)
+        classSetBuilder.add(size)
     }
 
     override fun getSnAttrs(): List<StringPair> {

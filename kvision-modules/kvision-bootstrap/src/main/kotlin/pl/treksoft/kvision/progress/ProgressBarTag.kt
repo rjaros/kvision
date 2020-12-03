@@ -25,7 +25,7 @@ package pl.treksoft.kvision.progress
 
 import pl.treksoft.kvision.core.AttributeDelegate
 import pl.treksoft.kvision.core.BsBgColor
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.utils.perc
 
@@ -63,19 +63,16 @@ abstract class ProgressBarTag<T>(classes: Set<String> = setOf(), bgColor: BsBgCo
      */
     abstract var value: T
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("progress-bar" to true)
-        style?.let {
-            cl.add(it.className to true)
-        }
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("progress-bar")
+        classSetBuilder.add(style)
         if (striped || animated) {
-            cl.add("progress-bar-striped" to true)
+            classSetBuilder.add("progress-bar-striped")
         }
         if (animated) {
-            cl.add("progress-bar-animated" to true)
+            classSetBuilder.add("progress-bar-animated")
         }
-        return cl
     }
 
     protected fun setFraction(fraction: Double) {

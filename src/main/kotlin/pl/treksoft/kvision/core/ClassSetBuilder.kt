@@ -5,6 +5,13 @@ package pl.treksoft.kvision.core
  */
 interface ClassSetBuilder {
     fun add(value: String)
+
+    fun add(value: CssClass?) {
+        if (value != null) {
+            add(value.className)
+        }
+    }
+
     fun addAll(values: Collection<String>)
 }
 

@@ -21,9 +21,9 @@
  */
 package pl.treksoft.kvision.form.check
 
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
@@ -102,14 +102,13 @@ open class RadioGroupInput(
         counter++
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         if (inline) {
-            cl.add("kv-radiogroup-inline" to true)
+            classSetBuilder.add("kv-radiogroup-inline")
         } else {
-            cl.add("kv-radiogroup" to true)
+            classSetBuilder.add("kv-radiogroup")
         }
-        return cl
     }
 
     private fun setValueToChildren(value: String?) {

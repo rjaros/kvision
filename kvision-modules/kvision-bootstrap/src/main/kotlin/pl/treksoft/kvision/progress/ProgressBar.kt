@@ -21,8 +21,9 @@
  */
 package pl.treksoft.kvision.progress
 
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.Div
@@ -40,7 +41,7 @@ import pl.treksoft.kvision.utils.set
     "Use Progress component instead with BsBgColor enum value.",
     replaceWith = ReplaceWith("BsBgColor", "pl.treksoft.kvision.core.BsBgColor")
 )
-enum class ProgressBarStyle(internal val className: String) {
+enum class ProgressBarStyle(override val className: String) : CssClass {
     SUCCESS("bg-success"),
     INFO("bg-info"),
     WARNING("bg-warning"),
@@ -234,19 +235,16 @@ internal class ProgressIndicator(
         width = percent.perc
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("progress-bar" to true)
-        style?.let {
-            cl.add(it.className to true)
-        }
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("progress-bar")
+        classSetBuilder.add(style)
         if (striped || animated) {
-            cl.add("progress-bar-striped" to true)
+            classSetBuilder.add("progress-bar-striped")
         }
         if (animated) {
-            cl.add("progress-bar-animated" to true)
+            classSetBuilder.add("progress-bar-animated")
         }
-        return cl
     }
 
     override fun getSnAttrs(): List<StringPair> {

@@ -21,8 +21,9 @@
  */
 package pl.treksoft.kvision.toolbar
 
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -32,7 +33,7 @@ import pl.treksoft.kvision.utils.set
 /**
  * Button group sizes.
  */
-enum class ButtonGroupSize(internal val className: String) {
+enum class ButtonGroupSize(override val className: String) : CssClass {
     LARGE("btn-group-lg"),
     SMALL("btn-group-sm")
 }
@@ -67,17 +68,10 @@ open class ButtonGroup(
         init?.invoke(this)
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        if (vertical) {
-            cl.add("btn-group-vertical" to true)
-        } else {
-            cl.add("btn-group" to true)
-        }
-        size?.let {
-            cl.add(it.className to true)
-        }
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add(if (vertical) "btn-group-vertical" else "btn-group")
+        classSetBuilder.add(size)
     }
 }
 

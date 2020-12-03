@@ -23,10 +23,10 @@ package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManagerSelect.KVNULL
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
@@ -282,16 +282,11 @@ open class SelectInput(
         getElementJQueryD()?.selectpicker("toggle")
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("selectpicker" to true)
-        validationStatus?.let {
-            cl.add(it.className to true)
-        }
-        size?.let {
-            cl.add(it.className to true)
-        }
-        return cl
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("selectpicker")
+        classSetBuilder.add(validationStatus)
+        classSetBuilder.add(size)
     }
 
     protected fun refreshSelectInput() {

@@ -22,9 +22,10 @@
 package pl.treksoft.kvision.modal
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.html.Button
 import pl.treksoft.kvision.html.TAG
@@ -38,7 +39,7 @@ import pl.treksoft.kvision.utils.obj
 /**
  * Modal window sizes.
  */
-enum class ModalSize(val className: String) {
+enum class ModalSize(override val className: String) : CssClass {
     XLARGE("modal-xl"),
     LARGE("modal-lg"),
     SMALL("modal-sm")
@@ -224,13 +225,12 @@ open class Modal(
         return this
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        cl.add("modal" to true)
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("modal")
         if (animation) {
-            cl.add("fade" to true)
+            classSetBuilder.add("fade")
         }
-        return cl
     }
 
     @Suppress("UnsafeCastFromDynamic")
@@ -320,17 +320,14 @@ internal class ModalDialog(size: ModalSize?, centered: Boolean = false, scrollab
      */
     var scrollable by refreshOnUpdate(scrollable)
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        size?.let {
-            cl.add(it.className to true)
-        }
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add(size)
         if (centered) {
-            cl.add("modal-dialog-centered" to true)
+            classSetBuilder.add("modal-dialog-centered")
         }
         if (scrollable) {
-            cl.add("modal-dialog-scrollable" to true)
+            classSetBuilder.add("modal-dialog-scrollable")
         }
-        return cl
     }
 }

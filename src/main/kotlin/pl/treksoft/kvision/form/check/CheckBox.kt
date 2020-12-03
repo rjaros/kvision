@@ -22,8 +22,9 @@
 package pl.treksoft.kvision.form.check
 
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
+import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.BoolFormControl
 import pl.treksoft.kvision.form.FieldLabel
@@ -37,7 +38,7 @@ import pl.treksoft.kvision.utils.SnOn
 /**
  * Checkbox style options.
  */
-enum class CheckBoxStyle(internal val className: String) {
+enum class CheckBoxStyle(override val className: String) : CssClass {
     PRIMARY("abc-checkbox-primary"),
     SUCCESS("abc-checkbox-success"),
     INFO("abc-checkbox-info"),
@@ -145,21 +146,18 @@ open class CheckBox(
         return this
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
-        style?.let {
-            cl.add(it.className to true)
-        }
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        classSetBuilder.add(style)
         if (circled) {
-            cl.add("abc-checkbox-circle" to true)
+            classSetBuilder.add("abc-checkbox-circle")
         }
         if (inline) {
-            cl.add("form-check-inline" to true)
+            classSetBuilder.add("form-check-inline")
         }
         if (validatorError != null) {
-            cl.add("text-danger" to true)
+            classSetBuilder.add("text-danger")
         }
-        return cl
     }
 
     /**

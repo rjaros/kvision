@@ -25,8 +25,8 @@ import com.github.snabbdom.VNode
 import kotlinx.browser.window
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerTabulator
+import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringBoolPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.i18n.I18n
 import pl.treksoft.kvision.state.ObservableList
@@ -210,12 +210,11 @@ open class Tabulator<T : Any>(
         }
     }
 
-    override fun getSnClass(): List<StringBoolPair> {
-        val cl = super.getSnClass().toMutableList()
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
         types.forEach {
-            cl.add(it.type to true)
+            classSetBuilder.add(it.type)
         }
-        return cl
     }
 
     /**
