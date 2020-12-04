@@ -23,9 +23,9 @@
 package pl.treksoft.kvision.onsenui.core
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.onsenui.BackButtonEvent
 import pl.treksoft.kvision.onsenui.dialog.Dialog
@@ -109,12 +109,11 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
         )
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

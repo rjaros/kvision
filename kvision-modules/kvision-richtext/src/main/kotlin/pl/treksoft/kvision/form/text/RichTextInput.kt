@@ -25,8 +25,8 @@ import com.github.snabbdom.VNode
 import kotlinx.browser.document
 import pl.treksoft.jquery.invoke
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
@@ -46,23 +46,22 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
         return render("trix-editor")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         placeholder?.let {
-            sn.add("placeholder" to translate(it))
+            attributeSetBuilder.add("placeholder", translate(it))
         }
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         autofocus?.let {
             if (it) {
-                sn.add("autofocus" to "autofocus")
+                attributeSetBuilder.add("autofocus")
             }
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
     }
 
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")

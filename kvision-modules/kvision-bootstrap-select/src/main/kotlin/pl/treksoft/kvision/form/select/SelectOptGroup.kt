@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.set
@@ -81,16 +82,15 @@ open class SelectOptGroup(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("label" to translate(label))
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add("label", translate(label))
         maxOptions?.let {
-            sn.add("data-max-options" to "" + it)
+            attributeSetBuilder.add("data-max-options", "" + it)
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
     }
 }
 

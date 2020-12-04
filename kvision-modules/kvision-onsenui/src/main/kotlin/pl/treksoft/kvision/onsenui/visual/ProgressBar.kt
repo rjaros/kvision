@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.visual
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -77,21 +77,20 @@ open class ProgressBar(
         return render("ons-progress-bar")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         value?.let {
-            sn.add("value" to "$it")
+            attributeSetBuilder.add("value", "$it")
         }
         secondaryValue?.let {
-            sn.add("secondary-value" to "$it")
+            attributeSetBuilder.add("secondary-value", "$it")
         }
         if (indeterminate == true) {
-            sn.add("indeterminate" to "indeterminate")
+            attributeSetBuilder.add("indeterminate")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 }
 

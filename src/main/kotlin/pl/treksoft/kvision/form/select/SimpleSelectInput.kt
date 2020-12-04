@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
@@ -206,26 +207,25 @@ open class SimpleSelectInput(
         classSetBuilder.add(size)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         if (multiple) {
-            sn.add("multiple" to "multiple")
+            attributeSetBuilder.add("multiple")
         }
         selectSize?.let {
-            sn.add("size" to "$it")
+            attributeSetBuilder.add("size", "$it")
         }
         autofocus?.let {
             if (it) {
-                sn.add("autofocus" to "autofocus")
+                attributeSetBuilder.add("autofocus")
             }
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

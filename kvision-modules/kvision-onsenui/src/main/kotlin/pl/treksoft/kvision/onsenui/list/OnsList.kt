@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.list
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -70,8 +70,8 @@ open class OnsList(
         return render("ons-list", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         val modifiers = mutableListOf<String>()
         if (inset == true) {
             modifiers.add("inset")
@@ -83,9 +83,8 @@ open class OnsList(
             modifiers.add(it)
         }
         if (modifiers.isNotEmpty()) {
-            sn.add("modifier" to modifiers.joinToString(" "))
+            attributeSetBuilder.add("modifier", modifiers.joinToString(" "))
         }
-        return sn
     }
 }
 

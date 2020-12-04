@@ -24,35 +24,48 @@ package pl.treksoft.kvision.onsenui
 
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerOnsenui.ons
+import pl.treksoft.kvision.core.DomAttribute
 import pl.treksoft.kvision.core.Widget
 
 /**
  * Floating directions.
  */
-enum class FloatDirection(internal val type: String) {
+enum class FloatDirection(override val attributeValue: String) : DomAttribute {
     UP("up"),
     DOWN("down"),
     LEFT("left"),
-    RIGHT("right")
+    RIGHT("right"),
+    ;
+
+    override val attributeName: String
+        get() = "direction"
 }
 
 /**
  * Floating positions.
  */
-enum class FloatPosition(internal val type: String) {
+enum class FloatPosition(override val attributeValue: String) : DomAttribute {
     TOP_LEFT("top left"),
     TOP_RIGHT("top right"),
     BOTTOM_LEFT("bottom left"),
-    BOTTOM_RIGHT("bottom right")
+    BOTTOM_RIGHT("bottom right"),
+    ;
+
+    override val attributeName: String
+        get() = "position"
 }
 
 /**
  * Grid row and column vertical align.
  */
-enum class GridVerticalAlign(internal val type: String) {
+enum class GridVerticalAlign(override val attributeValue: String) : DomAttribute {
     TOP("top"),
     BOTTOM("bottom"),
-    CENTER("center")
+    CENTER("center"),
+    ;
+
+    override val attributeName: String
+        get() = "vertical-align"
 }
 
 /**

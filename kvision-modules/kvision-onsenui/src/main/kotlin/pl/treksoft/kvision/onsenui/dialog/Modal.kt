@@ -23,9 +23,10 @@
 package pl.treksoft.kvision.onsenui.dialog
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Display
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.DomAttribute
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.onsenui.BackButtonEvent
 import pl.treksoft.kvision.panel.Root
@@ -35,10 +36,14 @@ import pl.treksoft.kvision.utils.obj
 import pl.treksoft.kvision.utils.set
 import kotlin.js.Promise
 
-enum class ModalAnimation(internal val type: String) {
+enum class ModalAnimation(override val attributeValue: String) : DomAttribute {
     NONE("none"),
     FADE("fade"),
-    LIFT("lift")
+    LIFT("lift"),
+    ;
+
+    override val attributeName: String
+        get() = "animation"
 }
 
 /**
@@ -106,12 +111,9 @@ open class Modal(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        animation?.let {
-            sn.add("animation" to it.type)
-        }
-        return sn
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add(animation)
     }
 
     /**

@@ -23,8 +23,8 @@ package pl.treksoft.kvision.window
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManager
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 
 /**
@@ -41,7 +41,9 @@ open class MinimizeIcon : Widget(setOf()) {
         classSetBuilder.add("close")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + listOf("type" to "button", "aria-label" to "Minimize")
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", "button")
+        attributeSetBuilder.add("aria-label", "Minimize")
     }
 }

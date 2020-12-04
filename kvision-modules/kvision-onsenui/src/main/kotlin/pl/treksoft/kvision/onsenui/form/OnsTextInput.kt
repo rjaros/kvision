@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.form
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.text.TextInput
 import pl.treksoft.kvision.form.text.TextInputType
 import pl.treksoft.kvision.utils.set
@@ -80,18 +80,17 @@ open class OnsTextInput(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         if (floatLabel == true) {
-            sn.add("float" to "float")
+            attributeSetBuilder.add("float")
         }
         inputId?.let {
-            sn.add("input-id" to it)
+            attributeSetBuilder.add("input-id", it)
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 }
 

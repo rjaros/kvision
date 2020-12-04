@@ -23,9 +23,9 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -93,15 +93,14 @@ open class Link(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val pr = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         url?.let {
-            pr.add("href" to it)
+            attributeSetBuilder.add("href", it)
         }
         target?.let {
-            pr.add("target" to it)
+            attributeSetBuilder.add("target", it)
         }
-        return pr
     }
 
     /**

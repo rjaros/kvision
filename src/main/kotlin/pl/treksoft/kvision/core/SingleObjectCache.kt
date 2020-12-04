@@ -23,17 +23,39 @@
 
 package pl.treksoft.kvision.core
 
+interface SingleObjectCache<T : Any> {
+    val value: T
+    fun clear()
+
+    /**
+     * Creates a new cache, that wraps the old cache and automatically calls @see clear before retrieving a value if
+     * shouldClear returns true
+     */
+    fun clearOn(shouldClear: () -> Boolean): SingleObjectCache<T> = AutoClearCache(this, shouldClear)
+}
+
 /**
  * A cache that behaves like a resettable `Lazy`: It generates a value from a given initializer lazily, however that
  * cache can be cleared, so that the value will be regenerated when queried next
  */
-class LazyCache<T : Any>(val initializer: () -> T) {
-    val value: T
+class LazyCache<T : Any>(val initializer: () -> T) : SingleObjectCache<T> {
+    override val value: T
         get() = _value ?: initializer().also { _value = it }
 
     private var _value: T? = null
 
-    fun clear() {
+    override fun clear() {
         _value = null
     }
+}
+
+private class AutoClearCache<T : Any>(val delegate: SingleObjectCache<T>, val shouldClear: () -> Boolean) :
+    SingleObjectCache<T> by delegate {
+    override val value: T
+        get() {
+            if (shouldClear()) {
+                delegate.clear()
+            }
+            return delegate.value
+        }
 }

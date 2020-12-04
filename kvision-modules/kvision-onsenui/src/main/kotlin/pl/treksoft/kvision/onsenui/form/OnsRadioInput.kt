@@ -23,12 +23,12 @@
 package pl.treksoft.kvision.onsenui.form
 
 import com.github.snabbdom.VNode
+import kotlinx.browser.window
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.check.CheckInput
 import pl.treksoft.kvision.form.check.CheckInputType
 import pl.treksoft.kvision.utils.set
-import kotlinx.browser.window
 
 /**
  * OnsenUI radio button input component.
@@ -65,15 +65,14 @@ open class OnsRadioInput(
         return render("ons-radio")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         inputId?.let {
-            sn.add("input-id" to it)
+            attributeSetBuilder.add("input-id", it)
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

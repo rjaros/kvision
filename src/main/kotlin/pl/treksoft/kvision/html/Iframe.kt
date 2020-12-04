@@ -23,8 +23,8 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.Window
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -101,27 +101,26 @@ open class Iframe(
         return render("iframe")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val pr = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         src?.let {
-            pr.add("src" to it)
+            attributeSetBuilder.add("src", it)
         }
         srcdoc?.let {
-            pr.add("srcdoc" to it)
+            attributeSetBuilder.add("srcdoc", it)
         }
         name?.let {
-            pr.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         iframeWidth?.let {
-            pr.add("width" to "$it")
+            attributeSetBuilder.add("width", "$it")
         }
         iframeHeight?.let {
-            pr.add("height" to "$it")
+            attributeSetBuilder.add("height", "$it")
         }
         sandbox?.let {
-            pr.add("sandbox" to it.joinToString(" ") { it.option })
+            attributeSetBuilder.add("sandbox", it.joinToString(" ") { it.option })
         }
-        return pr
     }
 
     @Suppress("UnsafeCastFromDynamic")

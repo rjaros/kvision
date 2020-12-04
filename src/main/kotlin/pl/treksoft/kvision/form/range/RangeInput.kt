@@ -23,9 +23,9 @@ package pl.treksoft.kvision.form.range
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.HTMLInputElement
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
@@ -129,32 +129,31 @@ open class RangeInput(
         classSetBuilder.add(size)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("type" to "range")
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", "range")
         startValue?.let {
-            sn.add("value" to "$it")
+            attributeSetBuilder.add("value", "$it")
         }
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
-        sn.add("min" to "$min")
-        sn.add("max" to "$max")
-        sn.add("step" to "$step")
+        attributeSetBuilder.add("min", "$min")
+        attributeSetBuilder.add("max", "$max")
+        attributeSetBuilder.add("step", "$step")
         autofocus?.let {
             if (it) {
-                sn.add("autofocus" to "autofocus")
+                attributeSetBuilder.add("autofocus")
             }
         }
         readonly?.let {
             if (it) {
-                sn.add("readonly" to "readonly")
+                attributeSetBuilder.add("readonly")
             }
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

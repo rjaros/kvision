@@ -24,8 +24,9 @@ package pl.treksoft.kvision.onsenui.core
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManagerOnsenui.ons
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Display
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.DomAttribute
 import pl.treksoft.kvision.onsenui.BackButtonEvent
 import pl.treksoft.kvision.onsenui.splitter.SplitterContent
 import pl.treksoft.kvision.onsenui.tabbar.Tab
@@ -39,7 +40,7 @@ import kotlin.js.Promise
 /**
  * Navigator animation types.
  */
-enum class NavAnimation(internal val type: String) {
+enum class NavAnimation(override val attributeValue: String) : DomAttribute {
     NONE("none"),
     FADE("fade"),
     LIFT("lift"),
@@ -49,7 +50,11 @@ enum class NavAnimation(internal val type: String) {
     SLIDEMD("slide-md"),
     FADEIOS("fade-ios"),
     LIFTIOS("lift-ios"),
-    SLIDEIOS("slide-ios")
+    SLIDEIOS("slide-ios"),
+    ;
+
+    override val attributeName: String
+        get() = "animation"
 }
 
 /**
@@ -128,23 +133,20 @@ open class Navigator(
         return render("ons-navigator", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        animation?.let {
-            sn.add("animation" to it.type)
-        }
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add(animation)
         if (forceSwipeable == true) {
-            sn.add("swipeable" to "force")
+            attributeSetBuilder.add("swipeable", "force")
         } else if (swipeable == true) {
-            sn.add("swipeable" to "swipeable")
+            attributeSetBuilder.add("swipeable")
         }
         swipeTargetWidth?.let {
-            sn.add("swipe-target-width" to "${it}px")
+            attributeSetBuilder.add("swipe-target-width", "${it}px")
         }
         swipeThreshold?.let {
-            sn.add("swipe-threshold" to "$it")
+            attributeSetBuilder.add("swipe-threshold", "$it")
         }
-        return sn
     }
 
     @Suppress("UnsafeCastFromDynamic")

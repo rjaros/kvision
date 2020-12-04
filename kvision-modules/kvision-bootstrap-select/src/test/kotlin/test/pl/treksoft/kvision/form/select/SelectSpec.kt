@@ -21,16 +21,16 @@
  */
 package test.pl.treksoft.kvision.form.select
 
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.form.select.SelectWidthType
-import pl.treksoft.kvision.form.select.Select
-import test.pl.treksoft.kvision.DomSpec
 import kotlinx.browser.document
+import pl.treksoft.kvision.form.select.Select
+import pl.treksoft.kvision.form.select.SelectWidthType
+import pl.treksoft.kvision.panel.Root
+import test.pl.treksoft.kvision.DomSpec
+import test.pl.treksoft.kvision.removeAllAfter
 import kotlin.test.Test
-import kotlin.test.assertTrue
+
 
 class SelectSpec : DomSpec {
-
     @Test
     fun render() {
         run {
@@ -42,13 +42,24 @@ class SelectSpec : DomSpec {
                 emptyOption = true
             }
             root.add(select)
-            val element = document.getElementById("test")
+            removeAllAfter(requireNotNull(document.querySelector("select")))
+
             val id = select.input.id
-            assertTrue(
-                true == element?.innerHTML?.startsWith("<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"dropdown bootstrap-select show-tick form-control fit-width\"><select class=\"form-control selectpicker\" id=\"$id\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select>"),
+            assertEqualsHtml(
+                """
+                <div class="form-group">
+                    <label class="control-label" for="$id">Label</label>
+                    <div class="dropdown bootstrap-select show-tick form-control fit-width">
+                        <select class="form-control selectpicker" id="$id" multiple="multiple" data-live-search="true" title="Choose ..." data-style="btn-default" data-width="fit">
+                            <option value="#kvnull"></option>
+                            <option value="test1">Test 1</option>
+                            <option value="test2">Test 2</option>
+                        </select>
+                    </div>
+                </div>""".replace("\n\\s*".toRegex(), ""),
+                document.getElementById("test")?.innerHTML,
                 "Should render correct select form control"
             )
         }
     }
-
 }

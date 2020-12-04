@@ -23,9 +23,9 @@
 package pl.treksoft.kvision.onsenui.dialog
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.set
@@ -94,14 +94,13 @@ open class AlertDialog(
         )
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         val modRowfooter = if (rowfooter == true) "rowfooter" else null
         val modList = listOfNotNull(modifier, modRowfooter)
         if (modList.isNotEmpty()) {
-            sn.add("modifier" to modList.joinToString(" "))
+            attributeSetBuilder.add("modifier", modList.joinToString(" "))
         }
-        return sn
     }
 
     override fun add(child: Component): SimplePanel {
