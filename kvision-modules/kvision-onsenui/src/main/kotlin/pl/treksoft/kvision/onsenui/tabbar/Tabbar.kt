@@ -23,7 +23,8 @@
 package pl.treksoft.kvision.onsenui.tabbar
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.AttributeSetBuilder
+import pl.treksoft.kvision.core.DomAttribute
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.onsenui.core.Page
 import pl.treksoft.kvision.panel.SimplePanel
@@ -34,10 +35,14 @@ import kotlin.js.Promise
 /**
  * Tab bar position.
  */
-enum class TabsPosition(internal val type: String) {
+enum class TabsPosition(override val attributeValue: String) : DomAttribute {
     AUTO("auto"),
     TOP("top"),
-    BOTTOM("bottom")
+    BOTTOM("bottom"),
+    ;
+
+    override val attributeName: String
+        get() = "position"
 }
 
 /**
@@ -119,30 +124,27 @@ open class Tabbar(
         return render("ons-tabbar", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        tabPosition?.let {
-            sn.add("position" to it.type)
-        }
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add(tabPosition)
         if (animation == false) {
-            sn.add("animation" to "none")
+            attributeSetBuilder.add("animation", "none")
         }
         if (swipeable == true) {
-            sn.add("swipeable" to "swipeable")
+            attributeSetBuilder.add("swipeable")
         }
         ignoreEdgeWidth?.let {
-            sn.add("ignore-edge-width" to "${it}px")
+            attributeSetBuilder.add("ignore-edge-width", "${it}px")
         }
         if (hideTabs == true) {
-            sn.add("hide-tabs" to "hide-tabs")
+            attributeSetBuilder.add("hide-tabs")
         }
         if (tabBorder == true) {
-            sn.add("tab-border" to "tab-border")
+            attributeSetBuilder.add("tab-border")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     @Suppress("UnsafeCastFromDynamic")

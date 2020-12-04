@@ -23,15 +23,20 @@
 package pl.treksoft.kvision.onsenui.visual
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Color
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.DomAttribute
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.set
 
-enum class RippleSize(internal val type: String) {
+enum class RippleSize(override val attributeValue: String) : DomAttribute {
     COVER("cover"),
-    CONTAIN("contain")
+    CONTAIN("contain"),
+    ;
+
+    override val attributeName: String
+        get() = "size"
 }
 
 /**
@@ -93,27 +98,24 @@ open class Ripple(
         return render("ons-ripple")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         rippleColor?.let {
-            sn.add("color" to it.asString())
+            attributeSetBuilder.add("color", it.asString())
         }
         rippleBackground?.let {
-            sn.add("background" to it.asString())
+            attributeSetBuilder.add("background", it.asString())
         }
-        size?.let {
-            sn.add("size" to it.type)
-        }
+        attributeSetBuilder.add(size)
         if (center == true) {
-            sn.add("center" to "center")
+            attributeSetBuilder.add("center")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
     }
 }
 

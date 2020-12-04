@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.form
 
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.Tag
 import pl.treksoft.kvision.state.ObservableState
@@ -46,8 +46,9 @@ open class FieldLabel(
     content, rich, classes = classes
 ) {
 
-    override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + ("for" to forId)
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add("for", forId)
     }
 }
 

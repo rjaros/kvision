@@ -21,6 +21,8 @@
  */
 package pl.treksoft.kvision.core
 
+import com.github.snabbdom.Attrs
+import com.github.snabbdom.Classes
 import com.github.snabbdom.VNode
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.h
@@ -37,7 +39,15 @@ import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
-import pl.treksoft.kvision.utils.*
+import pl.treksoft.kvision.utils.SnOn
+import pl.treksoft.kvision.utils.emptyOn
+import pl.treksoft.kvision.utils.hooks
+import pl.treksoft.kvision.utils.on
+import pl.treksoft.kvision.utils.set
+import pl.treksoft.kvision.utils.snClasses
+import pl.treksoft.kvision.utils.snOpt
+import pl.treksoft.kvision.utils.snStyle
+import pl.treksoft.kvision.utils.toCamelCase
 import kotlin.reflect.KProperty
 
 enum class Easing(internal val easing: String) {
@@ -111,8 +121,11 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     private var vnkey = "kv_widget_${counter++}"
     protected var vnode: VNode? = null
 
-    private var snAttrsCache: List<StringPair>? = null
-    private var snClassCache: LazyCache<Set<String>> = LazyCache { buildClassSet(this::buildClassSet) }
+    private var snAttrsCache: SingleObjectCache<Attrs> =
+        LazyCache { buildAttributeSet(this::buildAttributesSet) }
+            .clearOn { lastLanguage != null && lastLanguage != I18n.language }
+
+    private var snClassCache: SingleObjectCache<Classes> = LazyCache { buildClassSet(this::buildClassSet) }
     private var snOnCache: com.github.snabbdom.On? = null
     private var snHooksCache: com.github.snabbdom.Hooks? = null
 
@@ -243,22 +256,13 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     private fun getSnOpt(): VNodeData {
         return snOpt {
             key = vnkey
-            attrs = snAttrs(getSnAttrsInternal())
+            attrs = snAttrsCache.value
             style = snStyle(getSnStyleInternal())
-            `class` = snClasses(snClassCache.value)
+            `class` = snClassCache.value
             on = getSnOn()
             hook = getSnHooksInternal()
         }
     }
-
-    private fun getSnAttrsInternal(): List<StringPair> =
-        snAttrsCache.let { cache ->
-            if (cache == null || lastLanguage != null && lastLanguage != I18n.language) {
-                getSnAttrs().also { snAttrsCache = it }
-            } else {
-                cache
-            }
-        }
 
     private fun getSnHooksInternal(): com.github.snabbdom.Hooks? =
         snHooksCache ?: getSnHooks().also { snHooksCache = it }
@@ -289,27 +293,28 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * Returns list of element attributes in the form of a List<StringPair>.
      * @return list of element attributes
      */
-    protected open fun getSnAttrs(): List<StringPair> {
-        val snattrs = mutableListOf<StringPair>()
+    @Deprecated("use buildAttributesSet instead", ReplaceWith("buildAttributesSet"))
+    protected open fun getSnAttrs(): List<StringPair> = emptyList()
+
+    protected open fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        attributeSetBuilder.addAll(attributes)
         id?.let {
-            snattrs.add("id" to it)
+            attributeSetBuilder.add("id", it)
         }
         title?.let {
-            snattrs.add("title" to translate(it))
+            attributeSetBuilder.add("title", translate(it))
         }
         role?.let {
-            snattrs.add("role" to it)
+            attributeSetBuilder.add("role", it)
         }
         tabindex?.let {
-            snattrs.add("tabindex" to "$it")
+            attributeSetBuilder.add("tabindex", it.toString())
         }
         if (draggable == true) {
-            snattrs.add("draggable" to "true")
+            attributeSetBuilder.add("draggable", "true")
         }
-        if (attributes.isNotEmpty()) {
-            snattrs += attributes.toList()
-        }
-        return snattrs
+        @Suppress("DEPRECATION")
+        getSnAttrs().forEach { attributeSetBuilder.add(it.first, it.second) }
     }
 
     /**
@@ -812,7 +817,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
 
     override fun refresh(): Widget {
         super.refresh()
-        snAttrsCache = null
+        snAttrsCache.clear()
         snClassCache.clear()
         snOnCache = null
         snHooksCache = null

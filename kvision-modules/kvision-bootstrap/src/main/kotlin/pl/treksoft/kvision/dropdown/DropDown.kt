@@ -22,6 +22,7 @@
 package pl.treksoft.kvision.dropdown
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
@@ -460,23 +461,31 @@ class DropDownButton(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val inherited = super.getSnAttrs()
-        return if (forDropDown || forNavbar) {
-            inherited.filter { it.first != "type" }
-        } else {
-            inherited
-        } + listOf(
-            "data-toggle" to "dropdown", "aria-haspopup" to "true",
-            "aria-expanded" to "false", "href" to "javascript:void(0)"
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(
+            if (forDropDown || forNavbar) {
+                object : AttributeSetBuilder {
+                    override fun add(name: String, value: String) {
+                        if (name != "type") attributeSetBuilder.add(name, value)
+                    }
+                }
+            } else {
+                attributeSetBuilder
+            }
         )
+        attributeSetBuilder.add("data-toggle", "dropdown")
+        attributeSetBuilder.add("aria-haspopup", "true")
+        attributeSetBuilder.add("aria-expanded", "false")
+        attributeSetBuilder.add("href", "javascript:void(0)")
     }
 }
 
 internal class DropDownDiv(private val ariaId: String) : Div(
     null, false, null, setOf("dropdown-menu")
 ) {
-    override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + listOf("aria-labelledby" to ariaId)
+
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add("aria-labelledby", ariaId)
     }
 }

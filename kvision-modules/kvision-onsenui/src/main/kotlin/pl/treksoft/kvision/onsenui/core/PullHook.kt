@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.core
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.utils.asString
@@ -98,21 +98,20 @@ open class PullHook(
         init?.invoke(this)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         pullHeight?.let {
-            sn.add("height" to it.asString())
+            attributeSetBuilder.add("height", it.asString())
         }
         thresholdHeight?.let {
-            sn.add("threshold-height" to it.asString())
+            attributeSetBuilder.add("threshold-height", it.asString())
         }
         if (fixedContent == true) {
-            sn.add("fixed-content" to "fixed-content")
+            attributeSetBuilder.add("fixed-content")
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
     }
 
     @Suppress("UnsafeCastFromDynamic")

@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.dialog
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.onsenui.BackButtonEvent
 import pl.treksoft.kvision.onsenui.FloatDirection
@@ -134,30 +134,27 @@ open class Popover(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        direction?.let {
-            sn.add("direction" to it.type)
-        }
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add(direction)
         if (cancelable == true) {
-            sn.add("cancelable" to "cancelable")
+            attributeSetBuilder.add("cancelable")
         }
         if (animation == false) {
-            sn.add("animation" to "none")
+            attributeSetBuilder.add("animation", "none")
         }
         maskColor?.let {
-            sn.add("mask-color" to it)
+            attributeSetBuilder.add("mask-color", it)
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         if (coverTarget == true) {
-            sn.add("cover-target" to "cover-target")
+            attributeSetBuilder.add("cover-target")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     /**

@@ -23,9 +23,9 @@ package pl.treksoft.kvision.form.spinner
 
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.JQuery
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
@@ -188,35 +188,34 @@ open class SpinnerInput(
     }
 
     @Suppress("ComplexMethod")
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("type" to "text")
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", "text")
         startValue?.let {
-            sn.add("value" to "$it")
+            attributeSetBuilder.add("value", "$it")
         }
         placeholder?.let {
-            sn.add("placeholder" to translate(it))
+            attributeSetBuilder.add("placeholder", translate(it))
         }
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         autofocus?.let {
             if (it) {
-                sn.add("autofocus" to "autofocus")
+                attributeSetBuilder.add("autofocus")
             }
         }
         readonly?.let {
             if (it) {
-                sn.add("readonly" to "readonly")
+                attributeSetBuilder.add("readonly")
             }
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
             value?.let {
-                sn.add("value" to "$it")
+                attributeSetBuilder.add("value", "$it")
             }
         }
-        return sn
     }
 
     protected open fun changeValue() {

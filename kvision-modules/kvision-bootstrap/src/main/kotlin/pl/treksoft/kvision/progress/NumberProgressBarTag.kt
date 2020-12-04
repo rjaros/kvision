@@ -47,10 +47,8 @@ class NumberProgressBarTag(
             update()
         }
 
-    private val unsubscribe: () -> Unit
-
     init {
-        unsubscribe = progress.bounds.subscribe { update() }
+        addAfterDisposeHook(progress.bounds.subscribe { update() })
         update()
     }
 
@@ -62,11 +60,6 @@ class NumberProgressBarTag(
         ariaMin = bounds.min.toString()
         ariaValue = value.toString()
         contentGenerator.generateContent(this, value, bounds)
-    }
-
-    override fun dispose() {
-        super.dispose()
-        unsubscribe()
     }
 }
 

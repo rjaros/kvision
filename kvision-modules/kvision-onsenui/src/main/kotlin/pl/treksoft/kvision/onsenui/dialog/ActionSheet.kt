@@ -23,9 +23,9 @@
 package pl.treksoft.kvision.onsenui.dialog
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Display
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.onsenui.BackButtonEvent
 import pl.treksoft.kvision.panel.Root
@@ -129,27 +129,26 @@ open class ActionSheet(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         actionSheetTitle?.let {
-            sn.add("title" to it)
+            attributeSetBuilder.add("title", it)
         }
         if (cancelable == true) {
-            sn.add("cancelable" to "cancelable")
+            attributeSetBuilder.add("cancelable")
         }
         if (animation == false) {
-            sn.add("animation" to "none")
+            attributeSetBuilder.add("animation", "none")
         }
         maskColor?.let {
-            sn.add("mask-color" to it)
+            attributeSetBuilder.add("mask-color", it)
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     /**

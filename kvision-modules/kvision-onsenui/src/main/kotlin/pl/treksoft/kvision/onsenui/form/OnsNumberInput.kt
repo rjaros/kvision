@@ -23,9 +23,9 @@
 package pl.treksoft.kvision.onsenui.form
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
@@ -166,55 +166,50 @@ open class OnsNumberInput(
         classSetBuilder.add(size)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("type" to "number")
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", "number")
         startValue?.let {
-            sn.add("value" to "$it")
+            attributeSetBuilder.add("value", "$it")
         }
         min?.let {
-            sn.add("min" to "$it")
+            attributeSetBuilder.add("min", "$it")
         }
         max?.let {
-            sn.add("max" to "$it")
+            attributeSetBuilder.add("max", "$it")
         }
-        sn.add("step" to step.toString())
+        attributeSetBuilder.add("step", step.toString())
         placeholder?.let {
-            sn.add("placeholder" to translate(it))
+            attributeSetBuilder.add("placeholder", translate(it))
         }
         if (floatLabel == true) {
-            sn.add("float" to "float")
+            attributeSetBuilder.add("float")
         }
         inputId?.let {
-            sn.add("input-id" to it)
+            attributeSetBuilder.add("input-id", it)
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         autofocus?.let {
             if (it) {
-                sn.add("autofocus" to "autofocus")
+                attributeSetBuilder.add("autofocus")
             }
         }
         readonly?.let {
             if (it) {
-                sn.add("readonly" to "readonly")
+                attributeSetBuilder.add("readonly")
             }
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         autocomplete?.let {
-            if (it) {
-                sn.add("autocomplete" to "on")
-            } else {
-                sn.add("autocomplete" to "off")
-            }
+            attributeSetBuilder.add("autocomplete", if (it) "on" else "off")
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

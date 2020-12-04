@@ -21,8 +21,8 @@
  */
 package pl.treksoft.kvision.html
 
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
@@ -53,12 +53,11 @@ open class Label(
         init?.invoke(this)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         forId?.let {
-            sn.add("for" to it)
+            attributeSetBuilder.add("for", it)
         }
-        return sn
     }
 }
 

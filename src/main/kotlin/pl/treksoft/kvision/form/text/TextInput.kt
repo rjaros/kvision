@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
@@ -66,20 +66,15 @@ open class TextInput(type: TextInputType = TextInputType.TEXT, value: String? = 
         return render("input")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("type" to type.type)
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", type.type)
         startValue?.let {
-            sn.add("value" to it)
+            attributeSetBuilder.add("value", it)
         }
         autocomplete?.let {
-            if (it) {
-                sn.add("autocomplete" to "on")
-            } else {
-                sn.add("autocomplete" to "off")
-            }
+            attributeSetBuilder.add("autocomplete", if (it) "on" else "off")
         }
-        return sn
     }
 }
 

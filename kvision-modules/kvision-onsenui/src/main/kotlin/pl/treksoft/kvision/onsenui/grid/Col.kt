@@ -22,8 +22,8 @@
 
 package pl.treksoft.kvision.onsenui.grid
 
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.onsenui.GridVerticalAlign
@@ -67,15 +67,14 @@ open class Col(
         init?.invoke(this)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         colWidth?.let {
-            sn.add("width" to it.asString())
+            attributeSetBuilder.add("width", it.asString())
         }
         colVerticalAlign?.let {
-            sn.add("vertical-align" to it.type)
+            attributeSetBuilder.add("vertical-align", it.attributeValue)
         }
-        return sn
     }
 }
 

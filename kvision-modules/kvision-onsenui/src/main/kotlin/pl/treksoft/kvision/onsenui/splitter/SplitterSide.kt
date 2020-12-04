@@ -25,8 +25,9 @@ package pl.treksoft.kvision.onsenui.splitter
 import com.github.snabbdom.VNode
 import org.w3c.dom.HTMLElement
 import pl.treksoft.kvision.KVManagerOnsenui.ons
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.DomAttribute
 import pl.treksoft.kvision.onsenui.core.Page
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.asString
@@ -38,27 +39,39 @@ import kotlin.js.Promise
 /**
  * Splitter side animation types.
  */
-enum class SideAnimation(internal val type: String) {
+enum class SideAnimation(override val attributeValue: String) : DomAttribute {
     OVERLAY("overlay"),
     PUSH("push"),
-    REVEAL("reveal")
+    REVEAL("reveal"),
+    ;
+
+    override val attributeName: String
+        get() = "animation"
 }
 
 /**
  * Splitter side collapse types.
  */
-enum class Collapse(internal val type: String) {
+enum class Collapse(override val attributeValue: String) : DomAttribute {
     COLLAPSE("collapse"),
     PORTRAIT("portrait"),
-    LANDSCAPE("landscape")
+    LANDSCAPE("landscape"),
+    ;
+
+    override val attributeName: String
+        get() = "collapse"
 }
 
 /**
  * Splitter side positions.
  */
-enum class Side(internal val type: String) {
+enum class Side(override val attributeValue: String) : DomAttribute {
     LEFT("left"),
-    RIGHT("right")
+    RIGHT("right"),
+    ;
+
+    override val attributeName: String
+        get() = "side"
 }
 
 /**
@@ -153,30 +166,23 @@ open class SplitterSide(
         return render("ons-splitter-side", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        animation?.let {
-            sn.add("animation" to it.type)
-        }
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
+        attributeSetBuilder.add(animation)
         if (swipeable == true) {
-            sn.add("swipeable" to "swipeable")
+            attributeSetBuilder.add("swipeable")
         }
-        collapse?.let {
-            sn.add("collapse" to it.type)
-        }
-        side?.let {
-            sn.add("side" to it.type)
-        }
+        attributeSetBuilder.add(collapse)
+        attributeSetBuilder.add(side)
         openThreshold?.let {
-            sn.add("open-threshold" to "$it")
+            attributeSetBuilder.add("open-threshold", "$it")
         }
         swipeTargetWidth?.let {
-            sn.add("swipe-target-width" to "${it}px")
+            attributeSetBuilder.add("swipe-target-width", "${it}px")
         }
         sideWidth?.let {
-            sn.add("width" to it.asString())
+            attributeSetBuilder.add("width", it.asString())
         }
-        return sn
     }
 
     @Suppress("UnsafeCastFromDynamic")

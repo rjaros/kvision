@@ -24,9 +24,10 @@
 package test.pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.core.ClassSetBuilderImpl
+import pl.treksoft.kvision.core.buildClassSet
+import test.pl.treksoft.kvision.toKeyValuePairString
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class ClassSetBuilderImplSpec {
     @Test
@@ -35,7 +36,7 @@ class ClassSetBuilderImplSpec {
         val actual = ClassSetBuilderImpl().classes
 
         // evaluation
-        assertEquals(actual.sorted().joinToString(), "")
+        assertEquals("", toKeyValuePairString(actual), "")
     }
 
     @Test
@@ -47,7 +48,7 @@ class ClassSetBuilderImplSpec {
         }.classes
 
         // evaluation
-        assertEquals("value1,value2", actual.sorted().joinToString(","))
+        assertEquals("value1=true,value2=true", toKeyValuePairString(actual))
     }
 
     @Test
@@ -58,7 +59,7 @@ class ClassSetBuilderImplSpec {
         }.classes
 
         // evaluation
-        assertEquals("value1,value2", actual.sorted().joinToString(","))
+        assertEquals("value1=true,value2=true", toKeyValuePairString(actual))
     }
 
     @Test
@@ -72,6 +73,18 @@ class ClassSetBuilderImplSpec {
         builder.add("value2")
 
         // evaluation
-        assertEquals("value1", actual.sorted().joinToString(","))
+        assertEquals("value1=true", toKeyValuePairString(actual))
+    }
+
+    @Test
+    fun buildClassSet_buildsClassesUsingGivenFunction() {
+        // execution
+        val actual = buildClassSet {
+            it.add("value1")
+            it.add("value2")
+        }
+
+        // evaluation
+        assertEquals("value1=true,value2=true", toKeyValuePairString(actual))
     }
 }

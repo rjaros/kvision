@@ -22,7 +22,7 @@
 
 package pl.treksoft.kvision.onsenui.list
 
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.utils.set
@@ -55,12 +55,11 @@ open class OnsListHeader(
         init?.invoke(this)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 }
 

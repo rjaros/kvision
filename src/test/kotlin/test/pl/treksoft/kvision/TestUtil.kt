@@ -25,9 +25,9 @@ import kotlinx.browser.document
 import org.w3c.dom.Element
 import org.w3c.dom.asList
 import pl.treksoft.jquery.JQuery
-import pl.treksoft.jquery.jQuery
-import pl.treksoft.jquery.invoke
 import pl.treksoft.jquery.get
+import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.panel.Root
 import kotlin.test.assertEquals
@@ -112,5 +112,13 @@ interface WSpec : DomSpec {
     }
 
 }
+
+fun toKeyValuePairString(obj: dynamic) =
+    js("Object")
+        .entries(obj)
+        .unsafeCast<Array<Array<Any?>>>()
+        .map { pair -> pair.map { it.toString() } }
+        .apply { sortedBy { it[0] } }
+        .joinToString(",") { it.joinToString("=") }
 
 external fun require(name: String): dynamic

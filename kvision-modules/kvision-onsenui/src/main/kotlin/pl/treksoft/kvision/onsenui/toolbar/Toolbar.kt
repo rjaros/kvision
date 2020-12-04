@@ -23,7 +23,7 @@
 package pl.treksoft.kvision.onsenui.toolbar
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.onsenui.core.Page
 import pl.treksoft.kvision.panel.SimplePanel
@@ -113,18 +113,17 @@ open class Toolbar(
         rightPanel.builder()
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         if (inline == true) {
-            sn.add("inline" to "inline")
+            attributeSetBuilder.add("inline")
         }
         if (static == true) {
-            sn.add("static" to "static")
+            attributeSetBuilder.add("static")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     /**

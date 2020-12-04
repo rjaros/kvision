@@ -22,11 +22,11 @@
 package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -85,15 +85,14 @@ open class Image(
         return render("img")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val pr = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         src?.let {
-            pr.add("src" to it)
+            attributeSetBuilder.add("src", it)
         }
         alt?.let {
-            pr.add("alt" to translate(it))
+            attributeSetBuilder.add("alt", translate(it))
         }
-        return pr
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {

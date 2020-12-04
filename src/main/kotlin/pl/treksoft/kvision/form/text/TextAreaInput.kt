@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.set
@@ -61,18 +61,17 @@ open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = 
         } ?: render("textarea")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributesSet(attributeSetBuilder)
         cols?.let {
-            sn.add("cols" to ("" + it))
+            attributeSetBuilder.add("cols", ("" + it))
         }
         rows?.let {
-            sn.add("rows" to ("" + it))
+            attributeSetBuilder.add("rows", ("" + it))
         }
         if (wrapHard) {
-            sn.add("wrap" to "hard")
+            attributeSetBuilder.add("wrap", "hard")
         }
-        return sn
     }
 }
 

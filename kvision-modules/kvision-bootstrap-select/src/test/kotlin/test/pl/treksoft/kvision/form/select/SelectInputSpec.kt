@@ -21,13 +21,13 @@
  */
 package test.pl.treksoft.kvision.form.select
 
+import kotlinx.browser.document
 import pl.treksoft.kvision.form.select.SelectInput
 import pl.treksoft.kvision.form.select.SelectWidthType
 import pl.treksoft.kvision.panel.Root
 import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
+import test.pl.treksoft.kvision.removeAllAfter
 import kotlin.test.Test
-import kotlin.test.assertTrue
 
 class SelectInputSpec : DomSpec {
 
@@ -42,12 +42,13 @@ class SelectInputSpec : DomSpec {
                 emptyOption = true
             }
             root.add(selectInput)
+            removeAllAfter(requireNotNull(document.querySelector("select")))
             val element = document.getElementById("test")
-            assertTrue(
-                true == element?.innerHTML?.startsWith("<div class=\"dropdown bootstrap-select show-tick fit-width\"><select class=\"selectpicker\" multiple=\"multiple\" data-live-search=\"true\" title=\"Choose ...\" data-style=\"btn-default\" data-width=\"fit\"><option value=\"#kvnull\"></option><option value=\"test1\">Test 1</option><option value=\"test2\">Test 2</option></select>"),
+            assertEqualsHtml(
+                """<div class="dropdown bootstrap-select show-tick fit-width"><select class="selectpicker" multiple="multiple" data-live-search="true" title="Choose ..." data-style="btn-default" data-width="fit"><option value="#kvnull"></option><option value="test1">Test 1</option><option value="test2">Test 2</option></select>""",
+                element?.innerHTML,
                 "Should render correct select input"
             )
         }
     }
-
 }
