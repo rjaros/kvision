@@ -48,7 +48,7 @@ class NumberProgressBarTag(
         }
 
     init {
-        addAfterDisposeHook(progress.bounds.subscribe { update() })
+        addBeforeDisposeHook(progress.bounds.subscribe { update() })
         update()
     }
 

@@ -207,6 +207,7 @@ open class Popover(
     }
 
     override fun dispose() {
+        super.dispose()
         Root.removeModal(this)
     }
 }

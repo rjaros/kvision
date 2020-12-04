@@ -269,6 +269,15 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
         removeAt(Side.DOWN)
         return this
     }
+
+    override fun disposeAll(): Container {
+        leftComponent?.dispose()
+        centerComponent?.dispose()
+        rightComponent?.dispose()
+        upComponent?.dispose()
+        downComponent?.dispose()
+        return removeAll()
+    }
 }
 
 /**

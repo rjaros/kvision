@@ -64,6 +64,12 @@ interface Container : Component {
     fun removeAll(): Container
 
     /**
+     * Removes all children from the current container and disposes them.
+     * @return current container
+     */
+    fun disposeAll(): Container
+
+    /**
      * Returns a list of children of the current container.
      * @return list of children
      */

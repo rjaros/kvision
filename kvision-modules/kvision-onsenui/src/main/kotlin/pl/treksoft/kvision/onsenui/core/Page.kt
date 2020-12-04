@@ -162,6 +162,11 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        contentPanel.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return contentPanel.getChildren()
     }

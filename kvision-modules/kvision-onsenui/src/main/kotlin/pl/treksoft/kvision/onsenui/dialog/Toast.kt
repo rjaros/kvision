@@ -163,6 +163,7 @@ open class Toast(
     }
 
     override fun dispose() {
+        super.dispose()
         Root.removeModal(this)
     }
 }

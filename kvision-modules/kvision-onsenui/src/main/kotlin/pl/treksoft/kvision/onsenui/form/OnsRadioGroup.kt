@@ -253,6 +253,11 @@ open class OnsRadioGroup(
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        container.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return container.getChildren()
     }

@@ -144,7 +144,7 @@ open class ResponsiveGridPanel(
     @Suppress("ComplexMethod", "NestedBlockDepth")
     private fun refreshRowContainers() {
         singleRender {
-            clearRowContainers()
+            disposeAll()
             val num = MAX_COLUMNS / cols
             for (i in 1..rows) {
                 val rowContainer = SimplePanel(setOf("row"))
@@ -177,11 +177,6 @@ open class ResponsiveGridPanel(
                 addInternal(rowContainer)
             }
         }
-    }
-
-    private fun clearRowContainers() {
-        children.forEach { it.dispose() }
-        removeAll()
     }
 }
 

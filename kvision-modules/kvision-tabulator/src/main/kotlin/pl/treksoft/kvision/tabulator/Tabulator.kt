@@ -765,7 +765,7 @@ open class Tabulator<T : Any>(
             val data = dataFactory(store.getState())
             val tabulator = Tabulator(data, false, options, types, classes, T::class)
             init?.invoke(tabulator)
-            tabulator.addAfterDisposeHook(store.subscribe { s ->
+            tabulator.addBeforeDisposeHook(store.subscribe { s ->
                 tabulator.replaceData(dataFactory(s).toTypedArray())
             })
             return tabulator

@@ -124,6 +124,11 @@ open class AlertDialog(
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        contentPanel.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return contentPanel.getChildren()
     }

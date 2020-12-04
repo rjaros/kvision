@@ -189,6 +189,7 @@ open class Dialog(
     }
 
     override fun dispose() {
+        super.dispose()
         Root.removeModal(this)
     }
 }

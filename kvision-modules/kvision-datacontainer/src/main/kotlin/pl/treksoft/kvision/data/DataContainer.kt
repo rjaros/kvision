@@ -104,6 +104,11 @@ class DataContainer<M, C : Component, CONT : Container>(
         return this
     }
 
+    override fun disposeAll(): Container {
+        this.container.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return this.container.getChildren()
     }
@@ -121,7 +126,7 @@ class DataContainer<M, C : Component, CONT : Container>(
             if (it is DataComponent) it.container = this
         }
         singleRender {
-            container.removeAll()
+            container.disposeAll()
             val indexed = model.mapIndexed { index, m -> m to index }
             val sorted = if (sorter != null) {
                 when (sorterType()) {

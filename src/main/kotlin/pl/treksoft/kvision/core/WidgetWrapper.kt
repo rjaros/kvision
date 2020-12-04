@@ -51,6 +51,7 @@ class WidgetWrapper(internal var wrapped: Component?, classes: Set<String> = set
     }
 
     override fun dispose() {
+        super.dispose()
         wrapped?.clearParent()
         wrapped = null
     }

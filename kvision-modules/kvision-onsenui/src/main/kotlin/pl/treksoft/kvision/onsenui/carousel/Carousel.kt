@@ -244,6 +244,11 @@ open class Carousel(
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        swiperPanel.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return swiperPanel.getChildren()
     }

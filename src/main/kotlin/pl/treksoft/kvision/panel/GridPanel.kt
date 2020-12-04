@@ -181,11 +181,29 @@ open class GridPanel(
     override fun removeAll(): GridPanel {
         children.map {
             it.clearParent()
-            it.dispose()
+            (it as? WidgetWrapper)?.dispose()
         }
         children.clear()
         refresh()
         return this
+    }
+
+    override fun disposeAll(): GridPanel {
+        children.map {
+            (it as? WidgetWrapper)?.let {
+                it.wrapped?.dispose()
+            }
+        }
+        return removeAll()
+    }
+
+    override fun dispose() {
+        children.map {
+            (it as? WidgetWrapper)?.let {
+                it.wrapped?.dispose()
+            }
+        }
+        super.dispose()
     }
 }
 

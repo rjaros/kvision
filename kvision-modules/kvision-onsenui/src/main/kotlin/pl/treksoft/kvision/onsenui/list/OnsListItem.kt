@@ -204,6 +204,11 @@ open class OnsListItem(
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        centerPanel.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return centerPanel.getChildren()
     }

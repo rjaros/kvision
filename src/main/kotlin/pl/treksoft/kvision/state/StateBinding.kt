@@ -42,7 +42,7 @@ class StateBinding<S : Any, CONT : Container, CONTENT>(
 ) : Widget(setOf()) {
 
     init {
-        addAfterDisposeHook(observableState.subscribe(this::update))
+        addBeforeDisposeHook(observableState.subscribe(this::update))
     }
 
     private var updateState: ((S, CONTENT) -> Unit)? = null
@@ -55,7 +55,7 @@ class StateBinding<S : Any, CONT : Container, CONTENT>(
     fun update(state: S) {
         singleRender {
             if (updateState == null || content == null) {
-                container.removeAll()
+                container.disposeAll()
                 container.add(this)
                 content = container.factory(state)
             } else {

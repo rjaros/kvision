@@ -110,14 +110,23 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
         return this
     }
 
+    override fun disposeAll(): Container {
+        children.forEach { it.dispose() }
+        return removeAll()
+    }
+
     override fun getChildren(): List<Component> {
         return children
     }
 
     override fun dispose() {
-        children.forEach { it.dispose() }
-        removeAll()
         super.dispose()
+        children.forEach { it.dispose() }
+        privateChildren.forEach { it.dispose() }
+        children.map { it.clearParent() }
+        children.clear()
+        privateChildren.map { it.clearParent() }
+        privateChildren.clear()
     }
 }
 

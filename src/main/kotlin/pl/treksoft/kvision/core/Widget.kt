@@ -138,24 +138,24 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             addAfterDestroyHook(value)
         }
 
-    @Deprecated("use addAfterDisposeHook instead", ReplaceWith("addAfterDisposeHook"))
+    @Deprecated("use addBeforeDisposeHook instead", ReplaceWith("addBeforeDisposeHook"))
     var afterDisposeHook: () -> Unit
         get() {
             throw UnsupportedOperationException()
         }
         set(value) {
-            afterDisposeHooks.clear()
-            addAfterDisposeHook(value)
+            beforeDisposeHooks.clear()
+            addBeforeDisposeHook(value)
         }
 
     private val afterInsertHooks: MutableList<(VNode) -> Unit> = mutableListOf()
     private val afterDestroyHooks: MutableList<() -> Unit> = mutableListOf()
-    private val afterDisposeHooks: MutableList<() -> Unit> = mutableListOf()
+    private val beforeDisposeHooks: MutableList<() -> Unit> = mutableListOf()
 
     /**
-     * The supplied function is called after the widget is disposed.
+     * The supplied function is called before the widget is disposed.
      */
-    fun addAfterDisposeHook(hook: () -> Unit) = afterDisposeHooks.add(hook)
+    fun addBeforeDisposeHook(hook: () -> Unit) = beforeDisposeHooks.add(hook)
     /**
      * The supplied function is called after the widget is removed from the DOM.
      */
@@ -1009,7 +1009,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     override fun dispose() {
-        afterDisposeHooks.forEach { it() }
+        beforeDisposeHooks.forEach { it() }
     }
 
     protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }): RefreshDelegateProvider<T> =
@@ -1059,9 +1059,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             removeChildren: Boolean = true,
             factory: (W.(S) -> Unit)
         ): W {
-            this.addAfterDisposeHook(observableState.subscribe {
+            this.addBeforeDisposeHook(observableState.subscribe {
                 singleRender {
-                    if (removeChildren) (this as? Container)?.removeAll()
+                    if (removeChildren) (this as? Container)?.disposeAll()
                     factory(it)
                 }
             })

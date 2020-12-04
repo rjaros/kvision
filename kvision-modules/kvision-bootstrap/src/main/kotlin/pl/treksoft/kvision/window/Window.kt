@@ -369,6 +369,11 @@ open class Window(
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        content.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return content.getChildren()
     }

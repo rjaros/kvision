@@ -161,6 +161,7 @@ open class Modal(
     }
 
     override fun dispose() {
+        super.dispose()
         Root.removeModal(this)
     }
 }

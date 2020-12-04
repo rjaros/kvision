@@ -188,6 +188,11 @@ open class Navbar(
         return this
     }
 
+    override fun disposeAll(): Navbar {
+        container.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return container.getChildren()
     }

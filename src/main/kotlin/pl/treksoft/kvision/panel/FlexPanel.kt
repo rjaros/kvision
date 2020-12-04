@@ -207,11 +207,29 @@ open class FlexPanel(
     override fun removeAll(): FlexPanel {
         children.map {
             it.clearParent()
-            it.dispose()
+            (it as? WidgetWrapper)?.dispose()
         }
         children.clear()
         refresh()
         return this
+    }
+
+    override fun disposeAll(): FlexPanel {
+        children.map {
+            (it as? WidgetWrapper)?.let {
+                it.wrapped?.dispose()
+            }
+        }
+        return removeAll()
+    }
+
+    override fun dispose() {
+        children.map {
+            (it as? WidgetWrapper)?.let {
+                it.wrapped?.dispose()
+            }
+        }
+        super.dispose()
     }
 }
 

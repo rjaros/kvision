@@ -327,6 +327,12 @@ open class TabPanel(
         return this
     }
 
+    override fun disposeAll(): TabPanel {
+        tabs.forEach { it.dispose() }
+        removeAll()
+        return this
+    }
+
     /**
      * Returns first child component by tab index.
      * @param index tab index

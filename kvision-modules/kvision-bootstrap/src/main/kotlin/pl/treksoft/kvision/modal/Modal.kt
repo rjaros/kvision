@@ -192,6 +192,11 @@ open class Modal(
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        body.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return body.getChildren()
     }
@@ -290,6 +295,7 @@ open class Modal(
     }
 
     override fun dispose() {
+        super.dispose()
         removeModal(this)
     }
 }

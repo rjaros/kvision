@@ -201,6 +201,11 @@ open class DropDown(
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        list.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return list.getChildren()
     }

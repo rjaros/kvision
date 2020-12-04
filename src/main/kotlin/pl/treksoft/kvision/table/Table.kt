@@ -203,6 +203,12 @@ open class Table(
         return this
     }
 
+    override fun disposeAll(): Container {
+        theadRow.disposeAll()
+        tbody.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return tbody.getChildren()
     }

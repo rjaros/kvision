@@ -263,6 +263,11 @@ open class Select(
         return this
     }
 
+    override fun disposeAll(): Container {
+        input.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return input.getChildren()
     }

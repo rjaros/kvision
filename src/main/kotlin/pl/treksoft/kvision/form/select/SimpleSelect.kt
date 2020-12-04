@@ -209,6 +209,11 @@ open class SimpleSelect(
         return this
     }
 
+    override fun disposeAll(): SimplePanel {
+        input.disposeAll()
+        return this
+    }
+
     override fun getChildren(): List<Component> {
         return input.getChildren()
     }
