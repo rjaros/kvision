@@ -23,6 +23,9 @@
 
 package pl.treksoft.kvision.core
 
+import com.github.snabbdom.Classes
+import pl.treksoft.kvision.utils.snClasses
+
 /**
  * A builder in order to create a set of CSS-classes
  */
@@ -39,8 +42,8 @@ interface ClassSetBuilder {
 }
 
 internal class ClassSetBuilderImpl : ClassSetBuilder {
-    val classes: Set<String>
-        get() = HashSet(_classes)
+    val classes: Classes
+        get() = snClasses(_classes)
 
     private val _classes: MutableSet<String> = HashSet()
 
@@ -53,5 +56,5 @@ internal class ClassSetBuilderImpl : ClassSetBuilder {
     }
 }
 
-fun buildClassSet(delegate: (builder: ClassSetBuilder) -> Unit): Set<String> =
+fun buildClassSet(delegate: (builder: ClassSetBuilder) -> Unit): Classes =
     ClassSetBuilderImpl().also { delegate(it) }.classes
