@@ -186,6 +186,7 @@ open class ProgressBar(
  * @param align content align
  * @param classes a set of CSS class names
  */
+@Suppress("DEPRECATION")
 internal class ProgressIndicator(
     progress: Int, min: Int = DEFAULT_MIN, max: Int = DEFAULT_MAX, style: ProgressBarStyle? = null,
     striped: Boolean = false, animated: Boolean = false,
