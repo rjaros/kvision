@@ -129,8 +129,8 @@ open class ActionSheet(
         }
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         actionSheetTitle?.let {
             attributeSetBuilder.add("title", it)
         }

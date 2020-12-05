@@ -120,8 +120,8 @@ abstract class CheckInput(
         classSetBuilder.add(size)
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", type.type)
         if (startValue) {
             attributeSetBuilder.add("checked")

@@ -77,8 +77,8 @@ open class ProgressCircular(
         return render("ons-progress-circular")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         value?.let {
             attributeSetBuilder.add("value", "$it")
         }

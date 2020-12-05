@@ -94,8 +94,8 @@ open class AlertDialog(
         )
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         val modRowfooter = if (rowfooter == true) "rowfooter" else null
         val modList = listOfNotNull(modifier, modRowfooter)
         if (modList.isNotEmpty()) {

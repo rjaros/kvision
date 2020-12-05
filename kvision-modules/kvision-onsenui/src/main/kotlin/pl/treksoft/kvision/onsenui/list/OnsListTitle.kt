@@ -56,8 +56,8 @@ open class OnsListTitle(
         init?.invoke(this)
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         modifier?.let {
             attributeSetBuilder.add("modifier", it)
         }

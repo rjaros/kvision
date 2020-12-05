@@ -65,8 +65,8 @@ open class OnsRadioInput(
         return render("ons-radio")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         inputId?.let {
             attributeSetBuilder.add("input-id", it)
         }

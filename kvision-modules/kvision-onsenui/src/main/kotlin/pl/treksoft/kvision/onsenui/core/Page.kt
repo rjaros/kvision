@@ -109,8 +109,8 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
         )
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         modifier?.let {
             attributeSetBuilder.add("modifier", it)
         }

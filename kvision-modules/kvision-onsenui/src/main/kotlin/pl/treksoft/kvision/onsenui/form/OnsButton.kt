@@ -118,8 +118,8 @@ open class OnsButton(
         }
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         icon?.let {
             attributeSetBuilder.add("icon", it)
         }

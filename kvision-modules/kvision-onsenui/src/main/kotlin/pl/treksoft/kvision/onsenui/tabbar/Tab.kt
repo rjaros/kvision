@@ -94,8 +94,8 @@ open class Tab(
         return render("ons-tab", childrenVNodes())
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("page", idc)
         label?.let {
             attributeSetBuilder.add("label", it)

@@ -180,8 +180,8 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
         classSetBuilder.add(size)
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "file")
         name?.let {
             attributeSetBuilder.add("name", it)

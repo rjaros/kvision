@@ -88,8 +88,8 @@ open class SelectOption(
     }
 
     @Suppress("ComplexMethod")
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         if (!divider) {
             value?.let {
                 attributeSetBuilder.add("value", it)

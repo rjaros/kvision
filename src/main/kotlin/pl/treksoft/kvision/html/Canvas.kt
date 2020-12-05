@@ -61,8 +61,8 @@ open class Canvas(
         return render("canvas")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         canvasWidth?.let {
             attributeSetBuilder.add("width", "$it")
         }

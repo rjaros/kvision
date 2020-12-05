@@ -113,9 +113,9 @@ open class Toast(
         }
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         attributeSetBuilder.add(animation)
-        super.buildAttributesSet(attributeSetBuilder)
+        super.buildAttributeSet(attributeSetBuilder)
     }
 
     /**

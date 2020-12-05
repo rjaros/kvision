@@ -160,8 +160,8 @@ open class Button(
         }
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", type.buttonType)
         if (disabled) {
             attributeSetBuilder.add("disabled")

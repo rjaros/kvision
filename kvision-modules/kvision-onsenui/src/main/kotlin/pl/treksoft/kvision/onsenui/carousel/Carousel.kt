@@ -180,8 +180,8 @@ open class Carousel(
         }
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         direction?.let {
             attributeSetBuilder.add("direction", it.type)
         }

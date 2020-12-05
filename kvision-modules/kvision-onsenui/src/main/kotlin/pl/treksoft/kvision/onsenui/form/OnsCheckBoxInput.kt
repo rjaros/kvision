@@ -65,8 +65,8 @@ open class OnsCheckBoxInput(
         return render("ons-checkbox")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         inputId?.let {
             attributeSetBuilder.add("input-id", it)
         }

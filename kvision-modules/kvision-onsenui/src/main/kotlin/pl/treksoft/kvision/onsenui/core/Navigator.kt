@@ -133,8 +133,8 @@ open class Navigator(
         return render("ons-navigator", childrenVNodes())
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add(animation)
         if (forceSwipeable == true) {
             attributeSetBuilder.add("swipeable", "force")

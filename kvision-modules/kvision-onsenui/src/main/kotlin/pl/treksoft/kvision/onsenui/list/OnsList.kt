@@ -70,8 +70,8 @@ open class OnsList(
         return render("ons-list", childrenVNodes())
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         val modifiers = mutableListOf<String>()
         if (inset == true) {
             modifiers.add("inset")

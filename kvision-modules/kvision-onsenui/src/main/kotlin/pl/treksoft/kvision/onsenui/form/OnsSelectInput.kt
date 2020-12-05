@@ -78,8 +78,8 @@ open class OnsSelectInput(
         return render("ons-select", childrenVNodes())
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         selectId?.let {
             attributeSetBuilder.add("select-id", it)
         }

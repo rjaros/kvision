@@ -77,8 +77,8 @@ open class ProgressBar(
         return render("ons-progress-bar")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         value?.let {
             attributeSetBuilder.add("value", "$it")
         }

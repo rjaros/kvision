@@ -273,8 +273,8 @@ internal class NavbarButton(private val idc: String, private val toggle: String 
         return render("button", childrenVNodes())
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "button")
         attributeSetBuilder.add("data-toggle", "collapse")
         attributeSetBuilder.add("data-target", "#$idc")

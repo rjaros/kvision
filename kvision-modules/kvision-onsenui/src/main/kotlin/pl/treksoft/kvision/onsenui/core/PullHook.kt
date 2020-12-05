@@ -98,8 +98,8 @@ open class PullHook(
         init?.invoke(this)
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         pullHeight?.let {
             attributeSetBuilder.add("height", it.asString())
         }

@@ -46,8 +46,8 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
         return render("trix-editor")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         placeholder?.let {
             attributeSetBuilder.add("placeholder", translate(it))
         }

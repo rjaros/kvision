@@ -72,8 +72,8 @@ open class Segment(
         return render("ons-segment", childrenVNodes())
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         tabbar?.id?.let {
             attributeSetBuilder.add("tabbar-id", it)
         }

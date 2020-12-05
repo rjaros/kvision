@@ -166,8 +166,8 @@ open class SplitterSide(
         return render("ons-splitter-side", childrenVNodes())
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add(animation)
         if (swipeable == true) {
             attributeSetBuilder.add("swipeable")

@@ -53,8 +53,8 @@ open class Label(
         init?.invoke(this)
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         forId?.let {
             attributeSetBuilder.add("for", it)
         }

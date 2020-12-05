@@ -41,8 +41,8 @@ open class MinimizeIcon : Widget(setOf()) {
         classSetBuilder.add("close")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "button")
         attributeSetBuilder.add("aria-label", "Minimize")
     }

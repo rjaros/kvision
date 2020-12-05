@@ -207,8 +207,8 @@ open class SimpleSelectInput(
         classSetBuilder.add(size)
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         name?.let {
             attributeSetBuilder.add("name", it)
         }

@@ -67,8 +67,8 @@ open class Col(
         init?.invoke(this)
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         colWidth?.let {
             attributeSetBuilder.add("width", it.asString())
         }

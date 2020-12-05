@@ -79,8 +79,8 @@ open class ToolbarButton(
         @Suppress("UnsafeCastFromDynamic")
         get() = getElement()?.asDynamic()?.disabled
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         icon?.let {
             attributeSetBuilder.add("icon", it)
         }

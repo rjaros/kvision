@@ -124,8 +124,8 @@ open class Tabbar(
         return render("ons-tabbar", childrenVNodes())
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add(tabPosition)
         if (animation == false) {
             attributeSetBuilder.add("animation", "none")

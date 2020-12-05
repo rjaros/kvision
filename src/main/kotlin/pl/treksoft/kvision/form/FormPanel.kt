@@ -228,8 +228,8 @@ open class FormPanel<K : Any>(
         if (condensed) classSetBuilder.add("kv-form-condensed")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add(method)
         action?.let {
             attributeSetBuilder.add("action", it)

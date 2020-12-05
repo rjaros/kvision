@@ -461,8 +461,8 @@ class DropDownButton(
         }
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(
             if (forDropDown || forNavbar) {
                 object : AttributeSetBuilder {
                     override fun add(name: String, value: String) {
@@ -484,8 +484,8 @@ internal class DropDownDiv(private val ariaId: String) : Div(
     null, false, null, setOf("dropdown-menu")
 ) {
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("aria-labelledby", ariaId)
     }
 }

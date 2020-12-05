@@ -122,7 +122,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     protected var vnode: VNode? = null
 
     private var snAttrsCache: SingleObjectCache<Attrs> =
-        LazyCache { buildAttributeSet(this::buildAttributesSet) }
+        LazyCache { pl.treksoft.kvision.core.buildAttributeSet(this::buildAttributeSet) }
             .clearOn { lastLanguage != null && lastLanguage != I18n.language }
 
     private var snClassCache: SingleObjectCache<Classes> = LazyCache { buildClassSet(this::buildClassSet) }
@@ -293,10 +293,14 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * Returns list of element attributes in the form of a List<StringPair>.
      * @return list of element attributes
      */
-    @Deprecated("use buildAttributesSet instead", ReplaceWith("buildAttributesSet"))
+    @Deprecated("use buildAttributeSet instead", ReplaceWith("buildAttributeSet"))
     protected open fun getSnAttrs(): List<StringPair> = emptyList()
 
-    protected open fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
+    /**
+     * Builds a list of element attributes for the current widget with a delegated AttributeSetBuilder.
+     * @param attributeSetBuilder a delegated builder
+     */
+    protected open fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         attributeSetBuilder.addAll(attributes)
         id?.let {
             attributeSetBuilder.add("id", it)

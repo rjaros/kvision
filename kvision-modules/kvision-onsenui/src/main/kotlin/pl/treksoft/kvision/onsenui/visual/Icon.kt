@@ -84,8 +84,8 @@ open class Icon(
         return render("ons-icon")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("icon", icon)
         size?.let {
             attributeSetBuilder.add("size", it)

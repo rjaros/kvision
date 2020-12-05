@@ -98,8 +98,8 @@ open class Ripple(
         return render("ons-ripple")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         rippleColor?.let {
             attributeSetBuilder.add("color", it.asString())
         }

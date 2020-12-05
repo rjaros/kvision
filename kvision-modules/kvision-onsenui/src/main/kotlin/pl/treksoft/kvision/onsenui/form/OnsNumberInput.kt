@@ -166,8 +166,8 @@ open class OnsNumberInput(
         classSetBuilder.add(size)
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "number")
         startValue?.let {
             attributeSetBuilder.add("value", "$it")

@@ -113,8 +113,8 @@ open class Toolbar(
         rightPanel.builder()
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         if (inline == true) {
             attributeSetBuilder.add("inline")
         }

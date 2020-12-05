@@ -247,8 +247,8 @@ internal class ProgressIndicator(
         }
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("aria-valuenow", "$progress")
         attributeSetBuilder.add("aria-valuemin", "$min")
         attributeSetBuilder.add("aria-valuemax", "$max")

@@ -82,8 +82,8 @@ open class SelectOptGroup(
         }
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("label", translate(label))
         maxOptions?.let {
             attributeSetBuilder.add("data-max-options", "" + it)

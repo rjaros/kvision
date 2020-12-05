@@ -66,8 +66,8 @@ open class TextInput(type: TextInputType = TextInputType.TEXT, value: String? = 
         return render("input")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", type.type)
         startValue?.let {
             attributeSetBuilder.add("value", it)

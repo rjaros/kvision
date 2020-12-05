@@ -61,8 +61,8 @@ open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = 
         } ?: render("textarea")
     }
 
-    override fun buildAttributesSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributesSet(attributeSetBuilder)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         cols?.let {
             attributeSetBuilder.add("cols", ("" + it))
         }
