@@ -24,12 +24,12 @@ package pl.treksoft.kvision.navbar
 import com.github.snabbdom.VNode
 import pl.treksoft.jquery.invoke
 import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.BsBgColor
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssClass
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Link
 import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.html.span
@@ -278,14 +278,13 @@ internal class NavbarButton(private val idc: String, private val toggle: String 
         return render("button", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        return super.getSnAttrs() + listOf(
-            "type" to "button",
-            "data-toggle" to "collapse",
-            "data-target" to "#$idc",
-            "aria-controls" to idc,
-            "aria-expanded" to "false",
-            "aria-label" to toggle
-        )
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", "button")
+        attributeSetBuilder.add("data-toggle", "collapse")
+        attributeSetBuilder.add("data-target", "#$idc")
+        attributeSetBuilder.add("aria-controls", idc)
+        attributeSetBuilder.add("aria-expanded", "false")
+        attributeSetBuilder.add("aria-label", toggle)
     }
 }

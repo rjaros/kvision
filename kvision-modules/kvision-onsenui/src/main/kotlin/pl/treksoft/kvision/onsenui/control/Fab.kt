@@ -24,8 +24,8 @@ package pl.treksoft.kvision.onsenui.control
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.onsenui.FloatPosition
 import pl.treksoft.kvision.onsenui.visual.Icon
@@ -111,21 +111,18 @@ open class Fab(
         return iconArr + super.childrenVNodes()
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        floatPosition?.let {
-            sn.add("position" to it.type)
-        }
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add(floatPosition)
         if (ripple == true) {
-            sn.add("ripple" to "ripple")
+            attributeSetBuilder.add("ripple")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
     }
 
     /**

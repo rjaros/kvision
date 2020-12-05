@@ -21,10 +21,10 @@
  */
 package pl.treksoft.kvision.progress
 
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssClass
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.SimplePanel
@@ -247,12 +247,11 @@ internal class ProgressIndicator(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("aria-valuenow" to "$progress")
-        sn.add("aria-valuemin" to "$min")
-        sn.add("aria-valuemax" to "$max")
-        return sn
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("aria-valuenow", "$progress")
+        attributeSetBuilder.add("aria-valuemin", "$min")
+        attributeSetBuilder.add("aria-valuemax", "$max")
     }
 }
 

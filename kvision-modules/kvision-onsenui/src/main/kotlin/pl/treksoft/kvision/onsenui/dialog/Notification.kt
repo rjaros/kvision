@@ -246,7 +246,7 @@ fun showToast(
             this.buttonLabel = it
         }
         animation?.let {
-            this.animation = it.type
+            this.animation = it.attributeValue
         }
         timeout?.let {
             this.timeout = it

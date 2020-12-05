@@ -23,11 +23,11 @@ package pl.treksoft.kvision.html
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssClass
 import pl.treksoft.kvision.core.ResString
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -160,13 +160,12 @@ open class Button(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val snattrs = super.getSnAttrs().toMutableList()
-        snattrs.add("type" to type.buttonType)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", type.buttonType)
         if (disabled) {
-            snattrs.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return snattrs
     }
 
     /**

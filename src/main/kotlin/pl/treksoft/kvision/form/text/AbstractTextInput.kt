@@ -22,8 +22,8 @@
 package pl.treksoft.kvision.form.text
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
@@ -111,32 +111,31 @@ abstract class AbstractTextInput(
         classSetBuilder.add(size)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         placeholder?.let {
-            sn.add("placeholder" to translate(it))
+            attributeSetBuilder.add("placeholder", translate(it))
         }
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         autofocus?.let {
             if (it) {
-                sn.add("autofocus" to "autofocus")
+                attributeSetBuilder.add("autofocus")
             }
         }
         maxlength?.let {
-            sn.add("maxlength" to ("" + it))
+            attributeSetBuilder.add("maxlength", ("" + it))
         }
         readonly?.let {
             if (it) {
-                sn.add("readonly" to "readonly")
+                attributeSetBuilder.add("readonly")
             }
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
-    }
+            }
 
     override fun afterInsert(node: VNode) {
         refreshState()

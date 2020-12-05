@@ -24,8 +24,8 @@ package pl.treksoft.kvision.html
 import com.github.snabbdom.VNode
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.HTMLCanvasElement
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -61,15 +61,14 @@ open class Canvas(
         return render("canvas")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val pr = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         canvasWidth?.let {
-            pr.add("width" to "$it")
+            attributeSetBuilder.add("width", "$it")
         }
         canvasHeight?.let {
-            pr.add("height" to "$it")
+            attributeSetBuilder.add("height", "$it")
         }
-        return pr
     }
 
     override fun afterInsertInternal(node: VNode) {

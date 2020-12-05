@@ -24,9 +24,10 @@ package pl.treksoft.kvision.form
 import com.github.snabbdom.VNode
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.DomAttribute
 import pl.treksoft.kvision.form.FormPanel.Companion.create
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.FieldsetPanel
@@ -66,9 +67,13 @@ enum class FormHorizontalRatio(val labels: Int, val fields: Int) {
 /**
  * Form methods.
  */
-enum class FormMethod(internal val method: String) {
+enum class FormMethod(override val attributeValue: String) : DomAttribute {
     GET("get"),
-    POST("post")
+    POST("post"),
+    ;
+
+    override val attributeName: String
+        get() = "method"
 }
 
 /**
@@ -83,11 +88,15 @@ enum class FormEnctype(internal val enctype: String) {
 /**
  * Form targets.
  */
-enum class FormTarget(internal val target: String) {
+enum class FormTarget(override val attributeValue: String) : DomAttribute {
     BLANK("_blank"),
     SELF("_self"),
     PARENT("_parent"),
-    TOP("_top")
+    TOP("_top"),
+    ;
+
+    override val attributeName: String
+        get() = "target"
 }
 
 /**
@@ -219,30 +228,25 @@ open class FormPanel<K : Any>(
         if (condensed) classSetBuilder.add("kv-form-condensed")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        method?.let {
-            sn.add("method" to it.method)
-        }
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add(method)
         action?.let {
-            sn.add("action" to it)
+            attributeSetBuilder.add("action", it)
         }
         enctype?.let {
-            sn.add("enctype" to it.enctype)
+            attributeSetBuilder.add("enctype", it.enctype)
         }
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
-        target?.let {
-            sn.add("target" to it.target)
-        }
+        attributeSetBuilder.add(target)
         if (autocomplete == false) {
-            sn.add("autocomplete" to "off")
+            attributeSetBuilder.add("autocomplete", "off")
         }
         if (novalidate == true) {
-            sn.add("novalidate" to "novalidate")
+            attributeSetBuilder.add("novalidate")
         }
-        return sn
     }
 
     protected fun <C : FormControl> addInternal(

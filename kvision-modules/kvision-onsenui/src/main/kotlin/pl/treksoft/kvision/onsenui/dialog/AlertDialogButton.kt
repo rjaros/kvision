@@ -23,7 +23,7 @@
 package pl.treksoft.kvision.onsenui.dialog
 
 import org.w3c.dom.events.MouseEvent
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.utils.set
@@ -63,15 +63,14 @@ open class AlertDialogButton(
         init?.invoke(this)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         icon?.let {
-            sn.add("icon" to it)
+            attributeSetBuilder.add("icon", it)
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     /**

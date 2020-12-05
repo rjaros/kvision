@@ -23,9 +23,9 @@
 package pl.treksoft.kvision.onsenui.dialog
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.Display
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.onsenui.BackButtonEvent
 import pl.treksoft.kvision.panel.Root
@@ -122,24 +122,23 @@ open class Dialog(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         if (cancelable == true) {
-            sn.add("cancelable" to "cancelable")
+            attributeSetBuilder.add("cancelable")
         }
         if (animation == false) {
-            sn.add("animation" to "none")
+            attributeSetBuilder.add("animation", "none")
         }
         maskColor?.let {
-            sn.add("mask-color" to it)
+            attributeSetBuilder.add("mask-color", it)
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     /**

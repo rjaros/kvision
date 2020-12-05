@@ -23,9 +23,9 @@
 package pl.treksoft.kvision.onsenui.list
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Color
 import pl.treksoft.kvision.core.Component
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Div
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.set
@@ -154,22 +154,22 @@ open class OnsListItem(
         )
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         if (lockOnDrag == true) {
-            sn.add("lock-on-drag" to "lock-on-drag")
+            attributeSetBuilder.add("lock-on-drag")
         }
         if (tappable == true) {
-            sn.add("tappable" to "tappable")
+            attributeSetBuilder.add("tappable")
         }
         tapBackgroundColor?.let {
-            sn.add("tap-background-color" to it.asString())
+            attributeSetBuilder.add("tap-background-color", it.asString())
         }
         if (expandablePanel.content != null || expandablePanel.getChildren().isNotEmpty()) {
-            sn.add("expandable" to "expandable")
+            attributeSetBuilder.add("expandable")
         }
         if (animation == false) {
-            sn.add("animation" to "none")
+            attributeSetBuilder.add("animation", "none")
         }
         val modifiers = mutableListOf<String>()
         divider?.let {
@@ -179,9 +179,8 @@ open class OnsListItem(
             modifiers.add(it)
         }
         if (modifiers.isNotEmpty()) {
-            sn.add("modifier" to modifiers.joinToString(" "))
+            attributeSetBuilder.add("modifier", modifiers.joinToString(" "))
         }
-        return sn
     }
 
     override fun add(child: Component): SimplePanel {

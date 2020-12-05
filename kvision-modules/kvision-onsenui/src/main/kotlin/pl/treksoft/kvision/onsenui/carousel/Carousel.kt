@@ -23,10 +23,10 @@
 package pl.treksoft.kvision.onsenui.carousel
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.CssSize
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
@@ -180,48 +180,47 @@ open class Carousel(
         }
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         direction?.let {
-            sn.add("direction" to it.type)
+            attributeSetBuilder.add("direction", it.type)
         }
         if (fullscreen == true) {
-            sn.add("fullscreen" to "fullscreen")
+            attributeSetBuilder.add("fullscreen")
         }
         if (overscrollable == true) {
-            sn.add("overscrollable" to "overscrollable")
+            attributeSetBuilder.add("overscrollable")
         }
         if (animation == false) {
-            sn.add("animation" to "none")
+            attributeSetBuilder.add("animation", "none")
         }
         if (swipeable == true) {
-            sn.add("swipeable" to "swipeable")
+            attributeSetBuilder.add("swipeable")
         }
         initialIndex?.let {
-            sn.add("initial-index" to "$it")
+            attributeSetBuilder.add("initial-index", "$it")
         }
         if (centered == true) {
-            sn.add("centered" to "centered")
+            attributeSetBuilder.add("centered")
         }
         itemWidth?.let {
-            sn.add("item-width" to it.asString())
+            attributeSetBuilder.add("item-width", it.asString())
         }
         itemHeight?.let {
-            sn.add("item-height" to it.asString())
+            attributeSetBuilder.add("item-height", it.asString())
         }
         if (autoScroll == true) {
-            sn.add("auto-scroll" to "auto-scroll")
+            attributeSetBuilder.add("auto-scroll")
         }
         autoScrollRatio?.let {
-            sn.add("auto-scroll-ratio" to "$it")
+            attributeSetBuilder.add("auto-scroll-ratio", "$it")
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         if (autoRefresh == true) {
-            sn.add("auto-refresh" to "auto-refresh")
+            attributeSetBuilder.add("auto-refresh")
         }
-        return sn
     }
 
     override fun add(child: Component): SimplePanel {

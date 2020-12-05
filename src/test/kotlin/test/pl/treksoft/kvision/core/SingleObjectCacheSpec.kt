@@ -24,13 +24,14 @@
 package test.pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.core.LazyCache
+import pl.treksoft.kvision.core.SingleObjectCache
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class LazyCacheSpec {
+class SingleObjectCacheSpec {
     private var invocationCount = 0
-    private lateinit var lazyCache: LazyCache<Int>
+    private lateinit var lazyCache: SingleObjectCache<Int>
 
     @BeforeTest
     fun setUp() {
@@ -87,5 +88,33 @@ class LazyCacheSpec {
 
         // evaluation
         assertEquals(invocationCount, 0, "invocation count")
+    }
+
+    @Test
+    fun clearOn_clearsIfFunctionReturnsTrue() {
+        // setup
+        val value1 = lazyCache.value
+
+        // execution
+        val value2 = lazyCache.clearOn { true }.value
+
+        // evaluation
+        assertEquals(value1, 10, "returned value 1")
+        assertEquals(value2, 11, "returned value 2")
+        assertEquals(invocationCount, 2, "invocation count")
+    }
+
+    @Test
+    fun clearOn_doesNotClearIfFunctionReturnsFalse() {
+        // setup
+        val value1 = lazyCache.value
+
+        // execution
+        val value2 = lazyCache.clearOn { false }.value
+
+        // evaluation
+        assertEquals(value1, 10, "returned value 1")
+        assertEquals(value2, 10, "returned value 2")
+        assertEquals(invocationCount, 1, "invocation count")
     }
 }

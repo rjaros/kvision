@@ -24,7 +24,7 @@ package pl.treksoft.kvision.onsenui.control
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.onsenui.visual.Icon
 import pl.treksoft.kvision.utils.set
@@ -87,15 +87,14 @@ open class SpeedDialItem(
         return iconArr + super.childrenVNodes()
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         if (ripple == true) {
-            sn.add("ripple" to "ripple")
+            attributeSetBuilder.add("ripple")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     /**

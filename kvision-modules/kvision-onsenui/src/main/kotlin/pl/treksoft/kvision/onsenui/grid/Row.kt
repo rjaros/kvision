@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.grid
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.onsenui.GridVerticalAlign
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.set
@@ -57,12 +57,9 @@ open class Row(
         return render("ons-row", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        rowVerticalAlign?.let {
-            sn.add("vertical-align" to it.type)
-        }
-        return sn
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add(rowVerticalAlign)
     }
 }
 

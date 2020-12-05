@@ -23,8 +23,8 @@ package pl.treksoft.kvision.form.check
 
 import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
@@ -120,22 +120,21 @@ abstract class CheckInput(
         classSetBuilder.add(size)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("type" to type.type)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", type.type)
         if (startValue) {
-            sn.add("checked" to "checked")
+            attributeSetBuilder.add("checked")
         }
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         extraValue?.let {
-            sn.add("value" to it)
+            attributeSetBuilder.add("value", it)
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

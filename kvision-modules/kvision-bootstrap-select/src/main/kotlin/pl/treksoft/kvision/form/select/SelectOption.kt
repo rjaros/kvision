@@ -22,7 +22,7 @@
 package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
-import pl.treksoft.kvision.core.StringPair
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.set
 
@@ -88,28 +88,27 @@ open class SelectOption(
     }
 
     @Suppress("ComplexMethod")
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         if (!divider) {
             value?.let {
-                sn.add("value" to it)
+                attributeSetBuilder.add("value", it)
             }
             subtext?.let {
-                sn.add("data-subtext" to translate(it))
+                attributeSetBuilder.add("data-subtext", translate(it))
             }
             icon?.let {
-                sn.add("data-icon" to it)
+                attributeSetBuilder.add("data-icon", it)
             }
             if (disabled) {
-                sn.add("disabled" to "disabled")
+                attributeSetBuilder.add("disabled")
             }
             if (selected) {
-                sn.add("selected" to "selected")
+                attributeSetBuilder.add("selected")
             }
         } else {
-            sn.add("data-divider" to "true")
+            attributeSetBuilder.add("data-divider", "true")
         }
-        return sn
     }
 }
 

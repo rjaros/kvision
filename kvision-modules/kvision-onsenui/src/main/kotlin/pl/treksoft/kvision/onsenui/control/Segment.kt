@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.control
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.onsenui.tabbar.Tabbar
 import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.utils.obj
@@ -72,21 +72,20 @@ open class Segment(
         return render("ons-segment", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         tabbar?.id?.let {
-            sn.add("tabbar-id" to it)
+            attributeSetBuilder.add("tabbar-id", it)
         }
         activeIndex?.let {
-            sn.add("active-index" to "$it")
+            attributeSetBuilder.add("active-index", "$it")
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     @Suppress("UnsafeCastFromDynamic")

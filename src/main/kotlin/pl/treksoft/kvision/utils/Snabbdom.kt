@@ -318,3 +318,10 @@ inline fun snAttrs(pairs: List<StringPair>): Attrs {
         pairs.forEach { (key, value) -> this[key] = value }
     }
 }
+
+@Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
+inline fun snAttrs(pairs: Map<String, String>): Attrs {
+    return obj {
+        pairs.forEach { (key, value) -> this[key] = value }
+    }
+}

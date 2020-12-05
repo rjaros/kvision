@@ -23,6 +23,7 @@ package pl.treksoft.kvision.form.select
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManagerSelect.KVNULL
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Component
 import pl.treksoft.kvision.core.Container
@@ -296,59 +297,54 @@ open class SelectInput(
     }
 
     @Suppress("ComplexMethod")
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         if (multiple) {
-            sn.add("multiple" to "multiple")
+            attributeSetBuilder.add("multiple")
         }
         maxOptions?.let {
-            sn.add("data-max-options" to "" + it)
+            attributeSetBuilder.add("data-max-options", "" + it)
         }
         if (liveSearch) {
-            sn.add("data-live-search" to "true")
+            attributeSetBuilder.add("data-live-search", "true")
         }
         placeholder?.let {
-            sn.add("title" to translate(it))
+            attributeSetBuilder.add("title", translate(it))
         }
-        autofocus?.let {
-            if (it) {
-                sn.add("autofocus" to "autofocus")
-            }
+        if (autofocus == true) {
+            attributeSetBuilder.add("autofocus")
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         val btnStyle = style?.className ?: "btn-default"
-        when (size) {
-            InputSize.LARGE -> {
-                sn.add("data-style" to "$btnStyle btn-lg")
+        attributeSetBuilder.add(
+            "data-style",
+            when (size) {
+                InputSize.LARGE -> "$btnStyle btn-lg"
+                InputSize.SMALL -> "$btnStyle btn-sm"
+                else -> btnStyle
             }
-            InputSize.SMALL -> {
-                sn.add("data-style" to "$btnStyle btn-sm")
-            }
-            else -> {
-                sn.add("data-style" to btnStyle)
-            }
-        }
+        )
+
         selectWidthType?.let {
-            sn.add("data-width" to it.value)
+            attributeSetBuilder.add("data-width", it.value)
         } ?: selectWidth?.let {
-            sn.add("data-width" to it.asString())
+            attributeSetBuilder.add("data-width", it.asString())
         }
         when (dropdownAlign) {
             SelectDropdownAlign.RIGHT -> {
-                sn.add("data-dropdown-align-right" to "true")
+                attributeSetBuilder.add("data-dropdown-align-right", "true")
             }
             SelectDropdownAlign.AUTO -> {
-                sn.add("data-dropdown-align-right" to "auto")
+                attributeSetBuilder.add("data-dropdown-align-right", "auto")
             }
             else -> {
             }
         }
-        return sn
     }
 
     @Suppress("UnsafeCastFromDynamic")

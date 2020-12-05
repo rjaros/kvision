@@ -23,9 +23,9 @@
 package pl.treksoft.kvision.onsenui.form
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.FormInput
 import pl.treksoft.kvision.form.InputSize
@@ -169,55 +169,53 @@ open class OnsDateTimeInput(
         classSetBuilder.add(size)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        when (mode) {
-            DateTimeMode.DATE -> sn.add("type" to "date")
-            DateTimeMode.TIME -> sn.add("type" to "time")
-            DateTimeMode.DATETIME -> sn.add("type" to "datetime-local")
-        }
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add(
+            "type",
+            when (mode) {
+                DateTimeMode.DATE -> "date"
+                DateTimeMode.TIME -> "time"
+                DateTimeMode.DATETIME -> "datetime-local"
+            }
+        )
         startValue?.let {
-            sn.add("value" to it.toStringF(mode.format))
+            attributeSetBuilder.add("value", it.toStringF(mode.format))
         }
         min?.let {
-            sn.add("min" to it.toStringF(mode.format))
+            attributeSetBuilder.add("min", it.toStringF(mode.format))
         }
         max?.let {
-            sn.add("max" to it.toStringF(mode.format))
+            attributeSetBuilder.add("max", it.toStringF(mode.format))
         }
         step?.let {
-            sn.add("step" to "$it")
+            attributeSetBuilder.add("step", "$it")
         }
         inputId?.let {
-            sn.add("input-id" to it)
+            attributeSetBuilder.add("input-id", it)
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         autofocus?.let {
             if (it) {
-                sn.add("autofocus" to "autofocus")
+                attributeSetBuilder.add("autofocus")
             }
         }
         readonly?.let {
             if (it) {
-                sn.add("readonly" to "readonly")
+                attributeSetBuilder.add("readonly")
             }
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         autocomplete?.let {
-            if (it) {
-                sn.add("autocomplete" to "on")
-            } else {
-                sn.add("autocomplete" to "off")
-            }
+            attributeSetBuilder.add("autocomplete", if (it) "on" else "off")
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

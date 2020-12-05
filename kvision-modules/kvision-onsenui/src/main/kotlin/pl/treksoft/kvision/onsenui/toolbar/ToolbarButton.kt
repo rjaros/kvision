@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.toolbar
 
 import org.w3c.dom.events.MouseEvent
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.html.Align
 import pl.treksoft.kvision.html.CustomTag
 import pl.treksoft.kvision.html.Div
@@ -79,18 +79,17 @@ open class ToolbarButton(
         @Suppress("UnsafeCastFromDynamic")
         get() = getElement()?.asDynamic()?.disabled
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         icon?.let {
-            sn.add("icon" to it)
+            attributeSetBuilder.add("icon", it)
         }
         if (disabled == true) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {

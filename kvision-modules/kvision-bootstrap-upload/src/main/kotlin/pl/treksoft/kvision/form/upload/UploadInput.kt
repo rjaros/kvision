@@ -23,9 +23,9 @@ package pl.treksoft.kvision.form.upload
 
 import com.github.snabbdom.VNode
 import org.w3c.files.File
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.ClassSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.form.Form
 import pl.treksoft.kvision.form.FormInput
@@ -180,19 +180,18 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
         classSetBuilder.add(size)
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("type" to "file")
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("type", "file")
         name?.let {
-            sn.add("name" to it)
+            attributeSetBuilder.add("name", it)
         }
         if (multiple) {
-            sn.add("multiple" to "true")
+            attributeSetBuilder.add("multiple", "true")
         }
         if (disabled) {
-            sn.add("disabled" to "disabled")
+            attributeSetBuilder.add("disabled")
         }
-        return sn
     }
 
     private fun getValue(): List<KFile>? {

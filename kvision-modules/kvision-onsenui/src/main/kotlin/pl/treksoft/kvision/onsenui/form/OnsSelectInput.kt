@@ -23,11 +23,12 @@
 package pl.treksoft.kvision.onsenui.form
 
 import com.github.snabbdom.VNode
+import kotlinx.browser.window
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.form.select.SimpleSelectInput
 import pl.treksoft.kvision.utils.set
-import kotlinx.browser.window
 
 /**
  * OnsenUI select input component.
@@ -77,15 +78,14 @@ open class OnsSelectInput(
         return render("ons-select", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
         selectId?.let {
-            sn.add("select-id" to it)
+            attributeSetBuilder.add("select-id", it)
         }
         modifier?.let {
-            sn.add("modifier" to it)
+            attributeSetBuilder.add("modifier", it)
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

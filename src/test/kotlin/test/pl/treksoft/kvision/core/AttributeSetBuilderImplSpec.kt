@@ -23,68 +23,68 @@
 
 package test.pl.treksoft.kvision.core
 
-import pl.treksoft.kvision.core.ClassSetBuilderImpl
-import pl.treksoft.kvision.core.buildClassSet
+import com.github.snabbdom.Attrs
+import pl.treksoft.kvision.core.AttributeSetBuilderImpl
+import pl.treksoft.kvision.core.buildAttributeSet
 import test.pl.treksoft.kvision.toKeyValuePairString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class ClassSetBuilderImplSpec {
+class AttributeSetBuilderImplSpec {
     @Test
-    fun addNothing_returnsEmptySet() {
+    fun addNothing_returnsEmptyMap() {
         // execution
-        val actual = ClassSetBuilderImpl().classes
+        val actual: Attrs = AttributeSetBuilderImpl().attributes
 
         // evaluation
-        assertEquals("", toKeyValuePairString(actual), "")
+        assertEquals("", toKeyValuePairString(actual))
     }
 
     @Test
     fun add_addsValueToSet() {
         // execution
-        val actual = ClassSetBuilderImpl().also {
-            it.add("value1")
-            it.add("value2")
-        }.classes
+        val actual: Attrs = AttributeSetBuilderImpl().also {
+            it.add("key1")
+            it.add("key2", "value2")
+        }.attributes
 
         // evaluation
-        assertEquals("value1=true,value2=true", toKeyValuePairString(actual))
+        assertEquals("key1=key1,key2=value2", toKeyValuePairString(actual))
     }
 
     @Test
     fun addAll_addsValuesToSet() {
         // execution
-        val actual = ClassSetBuilderImpl().also {
-            it.addAll(listOf("value1", "value2"))
-        }.classes
+        val actual: Attrs = AttributeSetBuilderImpl().also {
+            it.addAll(mapOf("key1" to "value1", "key2" to "value2"))
+        }.attributes
 
         // evaluation
-        assertEquals("value1=true,value2=true", toKeyValuePairString(actual))
+        assertEquals("key1=value1,key2=value2", toKeyValuePairString(actual))
     }
 
     @Test
     fun addAfterQueryingValue_doesNotChanceValue() {
         // setup
-        val builder = ClassSetBuilderImpl()
+        val builder = AttributeSetBuilderImpl()
         builder.add("value1")
 
         // execution
-        val actual = builder.classes
+        val actual: Attrs = builder.attributes
         builder.add("value2")
 
         // evaluation
-        assertEquals("value1=true", toKeyValuePairString(actual))
+        assertEquals("value1=value1", toKeyValuePairString(actual))
     }
 
     @Test
-    fun buildClassSet_buildsClassesUsingGivenFunction() {
+    fun buildAttributeSet_buildsUsingSuppliedFunction() {
         // execution
-        val actual = buildClassSet {
-            it.add("value1")
-            it.add("value2")
-        }
+        val actual: Attrs = buildAttributeSet { it.add("value") }
 
         // evaluation
-        assertEquals("value1=true,value2=true", toKeyValuePairString(actual))
+        assertEquals("value=value", toKeyValuePairString(actual))
     }
 }
+
+

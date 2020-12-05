@@ -23,38 +23,35 @@
 
 package pl.treksoft.kvision.core
 
-import com.github.snabbdom.Classes
-import pl.treksoft.kvision.utils.snClasses
+import com.github.snabbdom.Attrs
+import pl.treksoft.kvision.utils.snAttrs
 
-/**
- * A builder in order to create a set of CSS-classes
- */
-interface ClassSetBuilder {
-    fun add(value: String)
-
-    fun add(value: CssClass?) {
-        if (value != null) {
-            add(value.className)
+interface AttributeSetBuilder {
+    fun add(name: String, value: String = name)
+    fun addAll(attributes: Map<String, String>) {
+        attributes.forEach { (key, value) -> add(key, value) }
+    }
+    fun add(attribute: DomAttribute?) {
+        if (attribute != null) {
+            add(attribute.attributeName, attribute.attributeValue)
         }
     }
-
-    fun addAll(values: Collection<String>)
 }
 
-internal class ClassSetBuilderImpl : ClassSetBuilder {
-    val classes: Classes
-        get() = snClasses(_classes)
+internal class AttributeSetBuilderImpl : AttributeSetBuilder {
+    val attributes: Attrs
+        get() = snAttrs(_attributes)
 
-    private val _classes: MutableSet<String> = HashSet()
+    private val _attributes: MutableMap<String, String> = HashMap()
 
-    override fun add(value: String) {
-        _classes.add(value)
+    override fun add(name: String, value: String) {
+        _attributes.put(name, value)
     }
 
-    override fun addAll(values: Collection<String>) {
-        _classes.addAll(values)
+    override fun addAll(attributes: Map<String, String>) {
+        this._attributes.putAll(attributes)
     }
 }
 
-fun buildClassSet(delegate: (builder: ClassSetBuilder) -> Unit): Classes =
-    ClassSetBuilderImpl().also { delegate(it) }.classes
+fun buildAttributeSet(delegate: (builder: AttributeSetBuilder) -> Unit): Attrs =
+    AttributeSetBuilderImpl().also { delegate(it) }.attributes

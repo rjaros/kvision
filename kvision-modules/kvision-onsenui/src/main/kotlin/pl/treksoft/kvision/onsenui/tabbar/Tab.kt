@@ -24,8 +24,8 @@ package pl.treksoft.kvision.onsenui.tabbar
 
 import com.github.snabbdom.VNode
 import pl.treksoft.kvision.KVManagerOnsenui.ons
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Component
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.onsenui.core.Navigator
 import pl.treksoft.kvision.onsenui.core.Page
@@ -94,25 +94,24 @@ open class Tab(
         return render("ons-tab", childrenVNodes())
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("page" to idc)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("page", idc)
         label?.let {
-            sn.add("label" to it)
+            attributeSetBuilder.add("label", it)
         }
         icon?.let {
-            sn.add("icon" to it)
+            attributeSetBuilder.add("icon", it)
         }
         activeIcon?.let {
-            sn.add("active-icon" to it)
+            attributeSetBuilder.add("active-icon", it)
         }
         badge?.let {
-            sn.add("badge" to it)
+            attributeSetBuilder.add("badge", it)
         }
         if (active == true) {
-            sn.add("active" to "active")
+            attributeSetBuilder.add("active")
         }
-        return sn
     }
 
     override fun afterInsert(node: VNode) {

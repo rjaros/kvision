@@ -21,15 +21,16 @@
  */
 package test.pl.treksoft.kvision
 
-import org.w3c.dom.Element
-import pl.treksoft.jquery.jQuery
-import pl.treksoft.jquery.invoke
-import pl.treksoft.jquery.get
-import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.panel.Root
 import kotlinx.browser.document
+import org.w3c.dom.Element
+import org.w3c.dom.Node
 import org.w3c.dom.asList
 import pl.treksoft.jquery.JQuery
+import pl.treksoft.jquery.get
+import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.Root
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -111,6 +112,16 @@ interface WSpec : DomSpec {
         }
     }
 
+}
+
+fun removeAllAfter(referenceElement: Node) {
+    var element = referenceElement
+    while(true) {
+        while(element.nextSibling?.also { it.parentNode?.removeChild(it) } != null) {
+            // intentionally blank
+        }
+        element = element.parentNode ?: return
+    }
 }
 
 external fun require(name: String): dynamic

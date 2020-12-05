@@ -23,8 +23,8 @@
 package pl.treksoft.kvision.onsenui.visual
 
 import com.github.snabbdom.VNode
+import pl.treksoft.kvision.core.AttributeSetBuilder
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.utils.set
 
@@ -84,22 +84,21 @@ open class Icon(
         return render("ons-icon")
     }
 
-    override fun getSnAttrs(): List<StringPair> {
-        val sn = super.getSnAttrs().toMutableList()
-        sn.add("icon" to icon)
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("icon", icon)
         size?.let {
-            sn.add("size" to it)
+            attributeSetBuilder.add("size", it)
         }
         rotate?.let {
-            sn.add("rotate" to "$it")
+            attributeSetBuilder.add("rotate", "$it")
         }
         if (fixedWidth == true) {
-            sn.add("fixed-width" to "fixed-width")
+            attributeSetBuilder.add("fixed-width")
         }
         if (spin == true) {
-            sn.add("spin" to "spin")
+            attributeSetBuilder.add("spin")
         }
-        return sn
     }
 }
 
