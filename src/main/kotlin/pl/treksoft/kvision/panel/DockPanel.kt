@@ -107,7 +107,7 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
 
     init {
         this.addPrivate(mainContainer)
-        mainContainer.add(subContainer, 2, grow = 1, basis = 0)
+        mainContainer.add(subContainer, 2, grow = 1, basis = 0.perc)
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -185,27 +185,27 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
             Side.UP -> {
                 upComponent?.let { mainContainer.remove(it) }
                 upComponent = child
-                mainContainer.add(child, 1, basis = 0)
+                mainContainer.add(child, 1, basis = 0.perc)
             }
             Side.CENTER -> {
                 centerComponent?.let { subContainer.remove(it) }
                 centerComponent = child
-                subContainer.add(child, 2, grow = 1, basis = 0)
+                subContainer.add(child, 2, grow = 1, basis = 0.perc)
             }
             Side.LEFT -> {
                 leftComponent?.let { subContainer.remove(it) }
                 leftComponent = child
-                subContainer.add(child, 1, basis = 0)
+                subContainer.add(child, 1, basis = 0.perc)
             }
             Side.RIGHT -> {
                 rightComponent?.let { subContainer.remove(it) }
                 rightComponent = child
-                subContainer.add(child, 3, basis = 0)
+                subContainer.add(child, 3, basis = 0.perc)
             }
             Side.DOWN -> {
                 downComponent?.let { mainContainer.remove(it) }
                 downComponent = child
-                mainContainer.add(child, 3, basis = 0)
+                mainContainer.add(child, 3, basis = 0.perc)
             }
         }
         return this

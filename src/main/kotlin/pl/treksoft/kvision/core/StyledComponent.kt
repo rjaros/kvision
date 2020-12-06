@@ -396,7 +396,7 @@ abstract class StyledComponent {
     /**
      * CSS flexbox item basis.
      */
-    open var flexBasis: Int? by refreshOnUpdate()
+    open var flexBasis: CssSize? by refreshOnUpdate()
 
     /**
      * CSS flexbox items self-alignment.
@@ -702,7 +702,7 @@ abstract class StyledComponent {
                 snstyle.add("flex-shrink" to "$it")
             }
             flexBasis?.let {
-                snstyle.add("flex-basis" to "$it%")
+                snstyle.add("flex-basis" to it.asString())
             }
             alignSelf?.let {
                 snstyle.add("align-self" to it.alignItems)
