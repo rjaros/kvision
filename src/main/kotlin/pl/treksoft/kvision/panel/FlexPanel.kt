@@ -34,6 +34,7 @@ import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
 import pl.treksoft.kvision.utils.px
 import pl.treksoft.kvision.utils.set
+import pl.treksoft.kvision.core.CssSize
 
 @Deprecated(
     "Use pl.treksoft.kvision.core.FlexDirection instead.",
@@ -120,7 +121,7 @@ open class FlexPanel(
     @Suppress("LongParameterList")
     fun add(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
-        basis: Int? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
+        basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
     ): FlexPanel {
         val wrapper = if (noWrappers) {
             child
@@ -145,7 +146,7 @@ open class FlexPanel(
      */
     open fun options(
         order: Int? = null, grow: Int? = null, shrink: Int? = null,
-        basis: Int? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf(),
+        basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf(),
         builder: Container.() -> Unit
     ) {
         object : Container by this@FlexPanel {
