@@ -103,37 +103,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param method a HTTP method
      * @param route a route
      */
-    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified RET> bind(
         noinline function: suspend T.() -> RET,
         method: HttpMethod, route: String?
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") {
-            val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
-            val jsonRpcRequest = if (method == HttpMethod.GET) {
-                JsonRpcRequest(call.request.queryParameters["id"]?.toInt() ?: 0, "", listOf())
-            } else {
-                call.receive()
-            }
-            try {
-                val result = function.invoke(service)
-                call.respond(
-                    JsonRpcResponse(
-                        id = jsonRpcRequest.id,
-                        result = mapper.writeValueAsString(result)
-                    )
-                )
-            } catch (e: Exception) {
-                if (e !is ServiceException) LOG.error(e.message, e)
-                call.respond(
-                    JsonRpcResponse(
-                        id = jsonRpcRequest.id,
-                        error = e.message ?: "Error",
-                        exceptionType = e.javaClass.canonicalName
-                    )
-                )
-            }
+        bind(method, route, requiredParameterCount = 0) {
+            function.invoke(this)
         }
     }
 
@@ -143,45 +118,14 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param method a HTTP method
      * @param route a route
      */
-    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR, reified RET> bind(
         noinline function: suspend T.(PAR) -> RET,
         method: HttpMethod, route: String?
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") {
-            val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
-            val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            if (jsonRpcRequest.params.size == 1) {
-                val param = getParameter<PAR>(jsonRpcRequest.params[0])
-                try {
-                    val result = function.invoke(service, param)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
-                        )
-                    )
-                } catch (e: Exception) {
-                    if (e !is ServiceException) LOG.error(e.message, e)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = e.message ?: "Error",
-                            exceptionType = e.javaClass.canonicalName
-                        )
-                    )
-                }
-            } else {
-                call.respond(
-                    JsonRpcResponse(
-                        id = jsonRpcRequest.id,
-                        error = "Invalid parameters"
-                    )
-                )
-            }
+        bind(method, route, requiredParameterCount = 1) {
+            function.invoke(this, getParameter(it[0]))
         }
     }
 
@@ -191,48 +135,17 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param method a HTTP method
      * @param route a route
      */
-    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2) -> RET,
         method: HttpMethod, route: String?
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") {
-            val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
-            val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            if (jsonRpcRequest.params.size == 2) {
-                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                try {
-                    val result = function.invoke(service, param1, param2)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
-                        )
-                    )
-                } catch (e: Exception) {
-                    if (e !is ServiceException) LOG.error(e.message, e)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = e.message ?: "Error",
-                            exceptionType = e.javaClass.canonicalName
-                        )
-                    )
-                }
-            } else {
-                call.respond(
-                    JsonRpcResponse(
-                        id = jsonRpcRequest.id,
-                        error = "Invalid parameters"
-                    )
-                )
-            }
+        bind(method, route, requiredParameterCount = 2) {
+            function.invoke(this, getParameter(it[0]), getParameter(it[1]))
         }
     }
+
 
     /**
      * Binds a given route with a function of the receiver.
@@ -240,48 +153,14 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param method a HTTP method
      * @param route a route
      */
-    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
         method: HttpMethod, route: String?
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") {
-            val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
-            val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            @Suppress("MagicNumber")
-            if (jsonRpcRequest.params.size == 3) {
-                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                try {
-                    val result = function.invoke(service, param1, param2, param3)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
-                        )
-                    )
-                } catch (e: Exception) {
-                    if (e !is ServiceException) LOG.error(e.message, e)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = e.message ?: "Error",
-                            exceptionType = e.javaClass.canonicalName
-                        )
-                    )
-                }
-            } else {
-                call.respond(
-                    JsonRpcResponse(
-                        id = jsonRpcRequest.id,
-                        error = "Invalid parameters"
-                    )
-                )
-            }
+        bind(method, route, requiredParameterCount = 3) {
+            function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]))
         }
     }
 
@@ -291,49 +170,14 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param method a HTTP method
      * @param route a route
      */
-    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
         method: HttpMethod, route: String?
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") {
-            val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
-            val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            @Suppress("MagicNumber")
-            if (jsonRpcRequest.params.size == 4) {
-                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
-                try {
-                    val result = function.invoke(service, param1, param2, param3, param4)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
-                        )
-                    )
-                } catch (e: Exception) {
-                    if (e !is ServiceException) LOG.error(e.message, e)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = e.message ?: "Error",
-                            exceptionType = e.javaClass.canonicalName
-                        )
-                    )
-                }
-            } else {
-                call.respond(
-                    JsonRpcResponse(
-                        id = jsonRpcRequest.id,
-                        error = "Invalid parameters"
-                    )
-                )
-            }
+        bind(method, route, requiredParameterCount = 4) {
+            function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]), getParameter(it[3]))
         }
     }
 
@@ -343,7 +187,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param method a HTTP method
      * @param route a route
      */
-    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
@@ -351,43 +194,15 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") {
-            val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
-            val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            @Suppress("MagicNumber")
-            if (jsonRpcRequest.params.size == 5) {
-                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
-                val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
-                try {
-                    val result = function.invoke(service, param1, param2, param3, param4, param5)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
-                        )
-                    )
-                } catch (e: Exception) {
-                    if (e !is ServiceException) LOG.error(e.message, e)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = e.message ?: "Error",
-                            exceptionType = e.javaClass.canonicalName
-                        )
-                    )
-                }
-            } else {
-                call.respond(
-                    JsonRpcResponse(
-                        id = jsonRpcRequest.id,
-                        error = "Invalid parameters"
-                    )
-                )
-            }
+        bind(method, route, requiredParameterCount = 5) {
+            function.invoke(
+                this,
+                getParameter(it[0]),
+                getParameter(it[1]),
+                getParameter(it[2]),
+                getParameter(it[3]),
+                getParameter(it[4])
+            )
         }
     }
 
@@ -397,7 +212,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * @param method a HTTP method
      * @param route a route
      */
-    @Suppress("TooGenericExceptionCaught")
     protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
             reified PAR4, reified PAR5, reified PAR6, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
@@ -405,20 +219,40 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
+        bind(method, route, requiredParameterCount = 6) {
+            function.invoke(
+                this,
+                getParameter(it[0]),
+                getParameter(it[1]),
+                getParameter(it[2]),
+                getParameter(it[3]),
+                getParameter(it[4]),
+                getParameter(it[5])
+            )
+        }
+    }
+
+    /**
+     * Binds a given route with a function that just receives all arguments unparsed as a List<String?>
+     * @param method a HTTP method
+     * @param route a route
+     * @param requiredParameterCount the required number of parameters. The [function] will only be called, if the number of parameters is exactly equal to this number
+     * @param function a function of the receiver
+     */
+    @Suppress("TooGenericExceptionCaught")
+    protected fun bind(
+        method: HttpMethod,
+        route: String?,
+        requiredParameterCount: Int,
+        function: suspend T.(params: List<String?>) -> Any?
+    ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") {
             val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            @Suppress("MagicNumber")
-            if (jsonRpcRequest.params.size == 6) {
-                val param1 = getParameter<PAR1>(jsonRpcRequest.params[0])
-                val param2 = getParameter<PAR2>(jsonRpcRequest.params[1])
-                val param3 = getParameter<PAR3>(jsonRpcRequest.params[2])
-                val param4 = getParameter<PAR4>(jsonRpcRequest.params[3])
-                val param5 = getParameter<PAR5>(jsonRpcRequest.params[4])
-                val param6 = getParameter<PAR6>(jsonRpcRequest.params[5])
+            if (jsonRpcRequest.params.size == requiredParameterCount) {
                 try {
-                    val result = function.invoke(service, param1, param2, param3, param4, param5, param6)
+                    val result = function.invoke(service, jsonRpcRequest.params)
                     call.respond(
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
@@ -510,48 +344,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
         route: String?
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(HttpMethod.POST, "/kv/$routeDef") {
-            val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
-            val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            @Suppress("MagicNumber")
-            if (jsonRpcRequest.params.size == 5) {
-                val param1 = getParameter<Int?>(jsonRpcRequest.params[0])
-                val param2 = getParameter<Int?>(jsonRpcRequest.params[1])
-                val param3 = getParameter<List<RemoteFilter>?>(jsonRpcRequest.params[2])
-
-                @Suppress("MagicNumber")
-                val param4 = getParameter<List<RemoteSorter>?>(jsonRpcRequest.params[3])
-
-                @Suppress("MagicNumber")
-                val param5 = getParameter<String?>(jsonRpcRequest.params[4])
-                try {
-                    val result = function.invoke(service, param1, param2, param3, param4, param5)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
-                        )
-                    )
-                } catch (e: Exception) {
-                    if (e !is ServiceException) LOG.error(e.message, e)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = e.message ?: "Error",
-                            exceptionType = e.javaClass.canonicalName
-                        )
-                    )
-                }
-            } else {
-                call.respond(
-                    JsonRpcResponse(
-                        id = jsonRpcRequest.id,
-                        error = "Invalid parameters"
-                    )
-                )
-            }
-        }
+        bind(function, HttpMethod.POST, route)
     }
 
     /**
