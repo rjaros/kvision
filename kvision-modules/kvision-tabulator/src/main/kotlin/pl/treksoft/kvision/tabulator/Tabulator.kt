@@ -523,26 +523,26 @@ open class Tabulator<T : Any>(
     }
 
     /**
-     * Select the row given by id.
+     * Select the row.
      * @param row row id
      */
-    open fun selectRow(row: Int) {
+    open fun selectRow(row: dynamic = undefined) {
         jsTabulator?.selectRow(row)
     }
 
     /**
-     * Deselect the row given by id.
+     * Deselect the row.
      * @param row row id
      */
-    open fun deselectRow(row: Int) {
+    open fun deselectRow(row: dynamic = undefined) {
         jsTabulator?.deselectRow(row)
     }
 
     /**
-     * Toggle selection status of the row given by id.
+     * Toggle selection status of the row.
      * @param row row id
      */
-    open fun toggleSelectRow(row: Int) {
+    open fun toggleSelectRow(row: dynamic = undefined) {
         jsTabulator?.toggleSelectRow(row)
     }
 
