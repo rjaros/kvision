@@ -13,6 +13,7 @@ dependencies {
     api(rootProject)
     implementation(npm("pc-bootstrap4-datetimepicker", "^4.17.51"))
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

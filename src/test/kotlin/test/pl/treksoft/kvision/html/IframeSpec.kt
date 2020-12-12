@@ -24,7 +24,7 @@ package test.pl.treksoft.kvision.html
 import pl.treksoft.kvision.html.Iframe
 import pl.treksoft.kvision.html.Sandbox
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

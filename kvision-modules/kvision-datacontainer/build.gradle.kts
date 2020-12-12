@@ -12,6 +12,7 @@ kotlin {
 dependencies {
     api(rootProject)
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

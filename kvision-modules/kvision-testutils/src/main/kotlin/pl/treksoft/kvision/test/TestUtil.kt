@@ -19,17 +19,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.pl.treksoft.kvision
+package pl.treksoft.kvision.test
 
-import org.w3c.dom.Element
-import pl.treksoft.jquery.jQuery
-import pl.treksoft.jquery.invoke
-import pl.treksoft.jquery.get
-import pl.treksoft.kvision.core.Widget
-import pl.treksoft.kvision.panel.Root
 import kotlinx.browser.document
+import org.w3c.dom.Element
+import org.w3c.dom.Node
 import org.w3c.dom.asList
 import pl.treksoft.jquery.JQuery
+import pl.treksoft.jquery.get
+import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.core.Widget
+import pl.treksoft.kvision.panel.Root
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -57,9 +58,11 @@ interface SimpleSpec : TestSpec {
 
 interface DomSpec : TestSpec {
 
+    fun getTestId() = "test"
+
     override fun beforeTest() {
         val fixture = "<div style=\"display: none\" id=\"pretest\">" +
-                "<div id=\"test\"></div></div>"
+                "<div id=\"${getTestId()}\"></div></div>"
         document.body?.insertAdjacentHTML("afterbegin", fixture)
     }
 
@@ -72,8 +75,8 @@ interface DomSpec : TestSpec {
 
     fun assertEqualsHtml(expected: String?, actual: String?, message: String?) {
         if (expected != null && actual != null) {
-            val exp = jQuery(expected.replace("position: ;","position: absolute;")).normalizeClassListRecursive()
-            val act = jQuery(actual.replace("position: ;","position: absolute;")).normalizeClassListRecursive()
+            val exp = jQuery(expected).normalizeClassListRecursive()
+            val act = jQuery(actual).normalizeClassListRecursive()
             val result = exp[0]?.isEqualNode(act[0])
             if (result == true) {
                 assertTrue(result == true, message)
@@ -84,18 +87,6 @@ interface DomSpec : TestSpec {
             assertEquals(expected, actual, message)
         }
     }
-}
-
-private fun JQuery.normalizeClassList(): JQuery {
-    each { _, elem ->
-        elem.setAttribute("class", elem.classList.asList().sorted().joinToString(" "))
-    }
-    return this
-}
-
-private fun JQuery.normalizeClassListRecursive(): JQuery {
-    jQuery("*", this).addBack().normalizeClassList()
-    return this
 }
 
 interface WSpec : DomSpec {
@@ -112,5 +103,35 @@ interface WSpec : DomSpec {
     }
 
 }
+
+fun removeAllAfter(referenceElement: Node) {
+    var element = referenceElement
+    while(true) {
+        while(element.nextSibling?.also { it.parentNode?.removeChild(it) } != null) {
+            // intentionally blank
+        }
+        element = element.parentNode ?: return
+    }
+}
+
+private fun JQuery.normalizeClassList(): JQuery {
+    each { _, elem ->
+        elem.setAttribute("class", elem.classList.asList().sorted().joinToString(" "))
+    }
+    return this
+}
+
+private fun JQuery.normalizeClassListRecursive(): JQuery {
+    jQuery("*", this).addBack().normalizeClassList()
+    return this
+}
+
+fun toKeyValuePairString(obj: dynamic) =
+    js("Object")
+        .entries(obj)
+        .unsafeCast<Array<Array<Any?>>>()
+        .map { pair -> pair.map { it.toString() } }
+        .apply { sortedBy { it[0] } }
+        .joinToString(",") { it.joinToString("=") }
 
 external fun require(name: String): dynamic

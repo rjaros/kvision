@@ -13,6 +13,7 @@ dependencies {
     api(rootProject)
     implementation(npm("eam_bootstrap-3-typeahead", "^0.0.2"))
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

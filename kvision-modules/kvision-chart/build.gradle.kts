@@ -13,6 +13,7 @@ dependencies {
     api(rootProject)
     implementation(npm("chart.js", "^2.9.4"))
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

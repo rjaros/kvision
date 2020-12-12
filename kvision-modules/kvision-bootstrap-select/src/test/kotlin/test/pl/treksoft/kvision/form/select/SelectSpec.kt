@@ -25,8 +25,8 @@ import kotlinx.browser.document
 import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.form.select.SelectWidthType
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
-import test.pl.treksoft.kvision.removeAllAfter
+import pl.treksoft.kvision.test.DomSpec
+import pl.treksoft.kvision.test.removeAllAfter
 import kotlin.test.Test
 
 

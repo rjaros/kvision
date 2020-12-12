@@ -25,7 +25,7 @@ import pl.treksoft.kvision.onsenui.FloatPosition
 import pl.treksoft.kvision.onsenui.control.speedDial
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

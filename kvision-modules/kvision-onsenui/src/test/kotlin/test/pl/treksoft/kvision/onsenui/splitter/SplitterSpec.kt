@@ -28,7 +28,7 @@ import pl.treksoft.kvision.onsenui.splitter.splitterContent
 import pl.treksoft.kvision.onsenui.splitter.splitterSide
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

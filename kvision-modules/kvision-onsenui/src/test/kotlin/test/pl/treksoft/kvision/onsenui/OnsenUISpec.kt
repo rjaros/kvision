@@ -23,7 +23,7 @@ package test.pl.treksoft.kvision.onsenui
 
 import pl.treksoft.kvision.onsenui.OnsenUi
 import pl.treksoft.kvision.onsenui.Platform
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

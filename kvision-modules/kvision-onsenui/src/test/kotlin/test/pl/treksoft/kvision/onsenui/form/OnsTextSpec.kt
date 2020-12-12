@@ -25,7 +25,7 @@ import pl.treksoft.kvision.form.text.TextInputType
 import pl.treksoft.kvision.onsenui.form.onsText
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

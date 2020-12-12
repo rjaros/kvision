@@ -13,6 +13,7 @@ dependencies {
     api(rootProject)
     implementation(npm("tabulator-tables", "^4.9.1"))
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

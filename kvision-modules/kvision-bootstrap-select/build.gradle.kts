@@ -14,6 +14,7 @@ dependencies {
     implementation(npm("bootstrap-select", "^1.13.18"))
     implementation(npm("ajax-bootstrap-select", "^1.4.5"))
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

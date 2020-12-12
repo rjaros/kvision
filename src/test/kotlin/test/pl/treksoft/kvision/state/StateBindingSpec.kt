@@ -33,7 +33,7 @@ import pl.treksoft.kvision.state.observableSetOf
 import pl.treksoft.kvision.state.stateBinding
 import pl.treksoft.kvision.state.stateUpdate
 import pl.treksoft.kvision.state.sub
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

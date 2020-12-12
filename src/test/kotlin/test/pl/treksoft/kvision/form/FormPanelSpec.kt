@@ -23,7 +23,7 @@ package test.pl.treksoft.kvision.form
 
 import pl.treksoft.kvision.form.FormPanel
 import pl.treksoft.kvision.form.text.Text
-import test.pl.treksoft.kvision.SimpleSpec
+import pl.treksoft.kvision.test.SimpleSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull

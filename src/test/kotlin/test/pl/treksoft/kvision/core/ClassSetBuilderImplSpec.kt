@@ -25,7 +25,7 @@ package test.pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.core.ClassSetBuilderImpl
 import pl.treksoft.kvision.core.buildClassSet
-import test.pl.treksoft.kvision.toKeyValuePairString
+import pl.treksoft.kvision.test.toKeyValuePairString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

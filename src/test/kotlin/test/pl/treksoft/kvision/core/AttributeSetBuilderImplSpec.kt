@@ -26,7 +26,7 @@ package test.pl.treksoft.kvision.core
 import com.github.snabbdom.Attrs
 import pl.treksoft.kvision.core.AttributeSetBuilderImpl
 import pl.treksoft.kvision.core.buildAttributeSet
-import test.pl.treksoft.kvision.toKeyValuePairString
+import pl.treksoft.kvision.test.toKeyValuePairString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

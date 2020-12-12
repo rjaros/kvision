@@ -18,6 +18,7 @@ dependencies {
     implementation(npm("react", "17.0.1"))
     implementation(npm("react-dom", "17.0.1"))
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
