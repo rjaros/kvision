@@ -13,6 +13,7 @@ val coroutinesVersion: String by project
 val javalinVersion: String by project
 val guiceVersion: String by project
 val jacksonModuleKotlinVersion: String by project
+val logbackVersion: String by project
 
 kotlin {
     kotlinJsTargets()
@@ -39,6 +40,7 @@ kotlin {
                 api("io.javalin:javalin:$javalinVersion")
                 api("com.google.inject:guice:$guiceVersion")
                 api("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
+                api("ch.qos.logback:logback-classic:$logbackVersion")
             }
         }
     }

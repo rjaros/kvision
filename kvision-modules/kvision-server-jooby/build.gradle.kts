@@ -12,6 +12,7 @@ val serializationVersion: String by project
 val coroutinesVersion: String by project
 val joobyVersion: String by project
 val jacksonModuleKotlinVersion: String by project
+val logbackVersion: String by project
 
 kotlin {
     kotlinJsTargets()
@@ -38,6 +39,7 @@ kotlin {
                 api("io.jooby:jooby-guice:$joobyVersion")
                 api("io.jooby:jooby-jackson:$joobyVersion")
                 api("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
+                api("ch.qos.logback:logback-classic:$logbackVersion")
             }
         }
     }

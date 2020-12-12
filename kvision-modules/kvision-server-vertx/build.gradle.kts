@@ -13,6 +13,7 @@ val coroutinesVersion: String by project
 val vertxVersion: String by project
 val guiceVersion: String by project
 val jacksonModuleKotlinVersion: String by project
+val logbackVersion: String by project
 
 kotlin {
     kotlinJsTargets()
@@ -40,6 +41,7 @@ kotlin {
                 api("io.vertx:vertx-lang-kotlin-coroutines:$vertxVersion")
                 api("com.google.inject:guice:$guiceVersion")
                 api("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
+                api("ch.qos.logback:logback-classic:$logbackVersion")
             }
         }
     }
