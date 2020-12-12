@@ -107,7 +107,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.() -> RET,
         method: HttpMethod, route: String?
     ) {
-        bind(method, route, requiredParameterCount = 0) {
+        bind(method, route) {
+            requireParameterCountEqualTo(it, 0)
             function.invoke(this)
         }
     }
@@ -124,7 +125,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route, requiredParameterCount = 1) {
+        bind(method, route) {
+            requireParameterCountEqualTo(it, 1)
             function.invoke(this, getParameter(it[0]))
         }
     }
@@ -141,7 +143,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route, requiredParameterCount = 2) {
+        bind(method, route) {
+            requireParameterCountEqualTo(it, 2)
             function.invoke(this, getParameter(it[0]), getParameter(it[1]))
         }
     }
@@ -159,7 +162,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route, requiredParameterCount = 3) {
+        bind(method, route) {
+            requireParameterCountEqualTo(it, 3)
             function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]))
         }
     }
@@ -176,7 +180,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route, requiredParameterCount = 4) {
+        bind(method, route) {
+            requireParameterCountEqualTo(it, 4)
             function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]), getParameter(it[3]))
         }
     }
@@ -194,7 +199,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route, requiredParameterCount = 5) {
+        bind(method, route) {
+            requireParameterCountEqualTo(it, 5)
             function.invoke(
                 this,
                 getParameter(it[0]),
@@ -219,7 +225,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route, requiredParameterCount = 6) {
+        bind(method, route) {
+            requireParameterCountEqualTo(it, 6)
             function.invoke(
                 this,
                 getParameter(it[0]),
@@ -236,44 +243,41 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      * Binds a given route with a function that just receives all arguments unparsed as a List<String?>
      * @param method a HTTP method
      * @param route a route
-     * @param requiredParameterCount the required number of parameters. The [function] will only be called, if the number of parameters is exactly equal to this number
      * @param function a function of the receiver
      */
     @Suppress("TooGenericExceptionCaught")
     protected fun bind(
         method: HttpMethod,
         route: String?,
-        requiredParameterCount: Int,
         function: suspend T.(params: List<String?>) -> Any?
     ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") {
             val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
             val jsonRpcRequest = call.receive<JsonRpcRequest>()
-            if (jsonRpcRequest.params.size == requiredParameterCount) {
-                try {
-                    val result = function.invoke(service, jsonRpcRequest.params)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            result = mapper.writeValueAsString(result)
-                        )
+            try {
+                val result = function.invoke(service, jsonRpcRequest.params)
+                call.respond(
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        result = mapper.writeValueAsString(result)
                     )
-                } catch (e: Exception) {
-                    if (e !is ServiceException) LOG.error(e.message, e)
-                    call.respond(
-                        JsonRpcResponse(
-                            id = jsonRpcRequest.id,
-                            error = e.message ?: "Error",
-                            exceptionType = e.javaClass.canonicalName
-                        )
-                    )
-                }
-            } else {
+                )
+            } catch (e: IllegalParameterCountException) {
                 call.respond(
                     JsonRpcResponse(
                         id = jsonRpcRequest.id,
                         error = "Invalid parameters"
+                    )
+                )
+            }
+            catch (e: Exception) {
+                if (e !is ServiceException) LOG.error(e.message, e)
+                call.respond(
+                    JsonRpcResponse(
+                        id = jsonRpcRequest.id,
+                        error = e.message ?: "Error",
+                        exceptionType = e.javaClass.canonicalName
                     )
                 )
             }
@@ -377,6 +381,21 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         } ?: null as T
     }
 }
+
+class IllegalParameterCountException(val actualParameterCount: Int, val expectedParamterCount: Int) :
+    RuntimeException() {
+    override val message: String
+        get() = "Expected <$expectedParamterCount> parameters, but got <$actualParameterCount> parameters"
+}
+
+fun requireParameterCountEqualTo(actualParameterCount: Int, expectedParamterCount: Int) {
+    if (actualParameterCount != expectedParamterCount) {
+        throw IllegalParameterCountException(actualParameterCount, expectedParamterCount)
+    }
+}
+
+fun requireParameterCountEqualTo(params: Collection<*>, expectedParameterCount: Int) =
+    requireParameterCountEqualTo(params.size, expectedParameterCount)
 
 /**
  * A function to generate routes based on definitions from the service manager.
