@@ -21,10 +21,10 @@
  */
 package test.pl.treksoft.kvision.window
 
-import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.window.Window
-import test.pl.treksoft.kvision.DomSpec
 import kotlinx.browser.document
+import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.test.DomSpec
+import pl.treksoft.kvision.window.Window
 import kotlin.test.Test
 
 class WindowSpec : DomSpec {

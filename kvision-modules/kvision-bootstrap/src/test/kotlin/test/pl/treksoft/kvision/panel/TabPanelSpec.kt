@@ -31,7 +31,7 @@ import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.Tab
 import pl.treksoft.kvision.panel.TabPanel
 import pl.treksoft.kvision.panel.tab
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

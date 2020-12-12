@@ -21,13 +21,13 @@
  */
 package test.pl.treksoft.kvision.dropdown
 
+import kotlinx.browser.document
 import pl.treksoft.kvision.dropdown.ContextMenu
 import pl.treksoft.kvision.dropdown.setContextMenu
 import pl.treksoft.kvision.html.link
 import pl.treksoft.kvision.panel.Root
+import pl.treksoft.kvision.test.DomSpec
 import pl.treksoft.kvision.utils.obj
-import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
 import kotlin.test.Test
 
 class ContextMenuSpec : DomSpec {

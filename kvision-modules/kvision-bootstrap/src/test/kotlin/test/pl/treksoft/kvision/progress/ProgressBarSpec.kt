@@ -27,7 +27,7 @@ import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.progress.FormatFractionContentGenerator
 import pl.treksoft.kvision.progress.progress
 import pl.treksoft.kvision.progress.progressNumeric
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 
 class ProgressBarSpec : DomSpec {
@@ -39,7 +39,7 @@ class ProgressBarSpec : DomSpec {
         root = Root("test", containerType = pl.treksoft.kvision.panel.ContainerType.FIXED)
         element = requireNotNull(document.getElementById("test"))
     }
-    
+
     @Test
     fun simpleProgress_rendersCorrectly() {
         run {

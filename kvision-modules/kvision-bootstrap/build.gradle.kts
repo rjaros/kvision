@@ -16,6 +16,7 @@ dependencies {
     implementation(npm("awesome-bootstrap-checkbox", "^1.0.1"))
     implementation(npm("element-resize-event", "^3.0.3"))
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

@@ -21,12 +21,12 @@
  */
 package test.pl.treksoft.kvision.modal
 
-import pl.treksoft.jquery.jQuery
+import kotlinx.browser.document
 import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
 import pl.treksoft.kvision.modal.Modal
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull

@@ -21,6 +21,7 @@
  */
 package test.pl.treksoft.kvision.navbar
 
+import kotlinx.browser.document
 import pl.treksoft.kvision.html.TAG
 import pl.treksoft.kvision.html.link
 import pl.treksoft.kvision.html.tag
@@ -29,8 +30,7 @@ import pl.treksoft.kvision.navbar.Navbar
 import pl.treksoft.kvision.navbar.NavbarColor
 import pl.treksoft.kvision.navbar.NavbarType
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
-import kotlinx.browser.document
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 
 class NavbarSpec : DomSpec {
