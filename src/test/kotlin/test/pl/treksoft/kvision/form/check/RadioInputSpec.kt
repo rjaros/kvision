@@ -23,7 +23,7 @@ package test.pl.treksoft.kvision.form.check
 
 import pl.treksoft.kvision.form.check.RadioInput
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

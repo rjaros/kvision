@@ -24,7 +24,7 @@ package test.pl.treksoft.kvision.form.time
 import pl.treksoft.kvision.form.time.DateTime
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.types.toStringF
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.js.Date
 import kotlin.test.Test

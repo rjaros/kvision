@@ -25,7 +25,7 @@ import pl.treksoft.kvision.types.toDateF
 import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.utils.toCamelCase
 import pl.treksoft.kvision.utils.toHexString
-import test.pl.treksoft.kvision.SimpleSpec
+import pl.treksoft.kvision.test.SimpleSpec
 import kotlin.js.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals

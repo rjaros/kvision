@@ -26,7 +26,7 @@ import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.html.span
 import pl.treksoft.kvision.panel.GridPanel
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 
 class GridPanelSpec : DomSpec {

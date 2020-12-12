@@ -27,7 +27,7 @@ import pl.treksoft.kvision.chart.Configuration
 import pl.treksoft.kvision.chart.DataSets
 import pl.treksoft.kvision.chart.ChartOptions
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

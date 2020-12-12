@@ -17,6 +17,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     implementation(npm("bootstrap-fileinput", "^5.1.3"))
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

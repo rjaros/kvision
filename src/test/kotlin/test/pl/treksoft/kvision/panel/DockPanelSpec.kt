@@ -25,7 +25,7 @@ import pl.treksoft.kvision.html.Span
 import pl.treksoft.kvision.panel.DockPanel
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.panel.Side
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

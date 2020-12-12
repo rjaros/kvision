@@ -27,7 +27,7 @@ import pl.treksoft.kvision.onsenui.grid.row
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.utils.perc
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

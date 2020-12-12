@@ -25,7 +25,7 @@ import kotlinx.browser.document
 import pl.treksoft.kvision.onsenui.visual.progressCircular
 import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 
 class ProgressCircularSpec : DomSpec {

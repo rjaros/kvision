@@ -28,7 +28,7 @@ import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.redux.RAction
 import pl.treksoft.kvision.redux.createReduxStore
 import pl.treksoft.kvision.state.bind
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlin.test.Test
 
 data class State(val counter: Int)

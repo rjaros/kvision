@@ -26,7 +26,7 @@ import pl.treksoft.jquery.invoke
 import pl.treksoft.jquery.get
 import pl.treksoft.kvision.form.upload.UploadInput
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

@@ -11,7 +11,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    testImplementation(kotlin("test-js"))
+    implementation(kotlin("test-js"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

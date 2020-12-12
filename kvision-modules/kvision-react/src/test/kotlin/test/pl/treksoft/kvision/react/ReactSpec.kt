@@ -27,7 +27,7 @@ import pl.treksoft.kvision.panel.ContainerType
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.react.react
 import react.dom.input
-import test.pl.treksoft.kvision.DomSpec
+import pl.treksoft.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 

@@ -23,7 +23,7 @@ package test.pl.treksoft.kvision.redux
 
 import pl.treksoft.kvision.redux.RAction
 import pl.treksoft.kvision.redux.createReduxStore
-import test.pl.treksoft.kvision.SimpleSpec
+import pl.treksoft.kvision.test.SimpleSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

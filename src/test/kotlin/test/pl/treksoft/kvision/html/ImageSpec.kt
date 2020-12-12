@@ -24,8 +24,8 @@ package test.pl.treksoft.kvision.html
 import pl.treksoft.kvision.html.Image
 import pl.treksoft.kvision.html.ImageShape
 import pl.treksoft.kvision.panel.Root
-import test.pl.treksoft.kvision.DomSpec
-import test.pl.treksoft.kvision.require
+import pl.treksoft.kvision.test.DomSpec
+import pl.treksoft.kvision.test.require
 import kotlinx.browser.document
 import kotlin.test.Test
 
