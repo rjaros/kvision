@@ -46,22 +46,19 @@ fun serviceMatchers(vararg services: KVServiceManager<*>): ServerWebExchangeMatc
  * A function to gather paths for spring security matchers.
  */
 @Suppress("SpreadOperator")
-fun getServerWebExchangeMatcher(vararg services: KVServiceManager<*>): Array<ServerWebExchangeMatcher> {
-    val matchers = mutableListOf<ServerWebExchangeMatcher>()
-    val getPaths = services.flatMap { it.getRequests.keys }.toTypedArray()
-    if (getPaths.isNotEmpty()) matchers.add(ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, *getPaths))
-    val postPaths = services.flatMap { it.postRequests.keys }.toTypedArray()
-    if (postPaths.isNotEmpty()) matchers.add(ServerWebExchangeMatchers.pathMatchers(HttpMethod.POST, *postPaths))
-    val putPaths = services.flatMap { it.putRequests.keys }.toTypedArray()
-    if (putPaths.isNotEmpty()) matchers.add(ServerWebExchangeMatchers.pathMatchers(HttpMethod.PUT, *putPaths))
-    val deletePaths = services.flatMap { it.deleteRequests.keys }.toTypedArray()
-    if (deletePaths.isNotEmpty()) matchers.add(ServerWebExchangeMatchers.pathMatchers(HttpMethod.DELETE, *deletePaths))
-    val optionsPaths = services.flatMap { it.optionsRequests.keys }.toTypedArray()
-    if (optionsPaths.isNotEmpty()) matchers.add(
-        ServerWebExchangeMatchers.pathMatchers(
-            HttpMethod.OPTIONS,
-            *optionsPaths
-        )
-    )
-    return matchers.toTypedArray()
-}
+fun getServerWebExchangeMatcher(vararg services: KVServiceManager<*>): Array<ServerWebExchangeMatcher> =
+    pl.treksoft.kvision.remote.HttpMethod
+        .values()
+        .asSequence()
+        .mapNotNull { method ->
+            val paths = services.asSequence().flatMap { service ->
+                service.routeMapRegistry.asSequence(method).map(RouteMapEntry<*>::path)
+            }.toList()
+            if (paths.isEmpty()) {
+                null
+            } else {
+                HttpMethod.resolve(method.name)?.let { springMethod ->
+                    ServerWebExchangeMatchers.pathMatchers(springMethod, *paths.toTypedArray())
+                }
+            }
+        }.toList().toTypedArray()

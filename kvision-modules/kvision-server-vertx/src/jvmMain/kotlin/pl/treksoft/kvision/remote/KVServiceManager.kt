@@ -38,7 +38,10 @@ import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.treksoft.kvision.types.*
+import java.lang.IllegalArgumentException
 import kotlin.reflect.KClass
+
+typealias RequestHandler = (RoutingContext) -> Unit
 
 /**
  * Multiplatform service manager for Vert.x.
@@ -52,13 +55,24 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         const val KV_WS_OUTGOING_KEY = "pl.treksoft.kvision.ws.outgoing.key"
     }
 
-    val getRequests: MutableMap<String, (RoutingContext) -> Unit> = mutableMapOf()
-    val postRequests: MutableMap<String, (RoutingContext) -> Unit> = mutableMapOf()
-    val putRequests: MutableMap<String, (RoutingContext) -> Unit> = mutableMapOf()
-    val deleteRequests: MutableMap<String, (RoutingContext) -> Unit> =
-        mutableMapOf()
-    val optionsRequests: MutableMap<String, (RoutingContext) -> Unit> =
-        mutableMapOf()
+    val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
+
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
+
     val webSocketRequests: MutableMap<String, (Injector, ServerWebSocket) -> Unit> =
         mutableMapOf()
 
@@ -515,15 +529,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     fun addRoute(
         method: HttpMethod,
         path: String,
-        handler: (RoutingContext) -> Unit
+        handler: RequestHandler
     ) {
-        when (method) {
-            HttpMethod.GET -> getRequests[path] = handler
-            HttpMethod.POST -> postRequests[path] = handler
-            HttpMethod.PUT -> putRequests[path] = handler
-            HttpMethod.DELETE -> deleteRequests[path] = handler
-            HttpMethod.OPTIONS -> optionsRequests[path] = handler
-        }
+        routeMapRegistry.addRoute(method, path, handler)
     }
 
     /**
@@ -545,19 +553,13 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
  * A function to generate routes based on definitions from the service manager.
  */
 fun <T : Any> Vertx.applyRoutes(router: Router, serviceManager: KVServiceManager<T>) {
-    serviceManager.getRequests.forEach { (path, handler) ->
-        router.route(io.vertx.core.http.HttpMethod.GET, path).handler(handler)
-    }
-    serviceManager.postRequests.forEach { (path, handler) ->
-        router.route(io.vertx.core.http.HttpMethod.POST, path).handler(handler)
-    }
-    serviceManager.putRequests.forEach { (path, handler) ->
-        router.route(io.vertx.core.http.HttpMethod.PUT, path).handler(handler)
-    }
-    serviceManager.deleteRequests.forEach { (path, handler) ->
-        router.route(io.vertx.core.http.HttpMethod.DELETE, path).handler(handler)
-    }
-    serviceManager.optionsRequests.forEach { (path, handler) ->
-        router.route(io.vertx.core.http.HttpMethod.OPTIONS, path).handler(handler)
+    serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
+        try {
+            io.vertx.core.http.HttpMethod.valueOf(method.name)
+        } catch (e: IllegalArgumentException) {
+            null
+        }?.let {
+            router.route(it, path).handler(handler)
+        }
     }
 }

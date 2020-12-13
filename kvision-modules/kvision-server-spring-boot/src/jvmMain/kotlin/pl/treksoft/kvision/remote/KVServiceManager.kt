@@ -40,6 +40,7 @@ import org.springframework.web.reactive.socket.WebSocketSession
 import pl.treksoft.kvision.types.*
 import kotlin.reflect.KClass
 
+typealias RequestHandler = suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse
 /**
  * Multiplatform service manager for Spring Boot.
  */
@@ -50,16 +51,24 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val getRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
-        mutableMapOf()
-    val postRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
-        mutableMapOf()
-    val putRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
-        mutableMapOf()
-    val deleteRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
-        mutableMapOf()
-    val optionsRequests: MutableMap<String, suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse> =
-        mutableMapOf()
+    val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
+
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
+
     val webSocketsRequests: MutableMap<String, suspend (
         WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
     ) -> Unit> =
@@ -620,15 +629,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     fun addRoute(
         method: HttpMethod,
         path: String,
-        handler: suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse
+        handler: RequestHandler
     ) {
-        when (method) {
-            HttpMethod.GET -> getRequests[path] = handler
-            HttpMethod.POST -> postRequests[path] = handler
-            HttpMethod.PUT -> putRequests[path] = handler
-            HttpMethod.DELETE -> deleteRequests[path] = handler
-            HttpMethod.OPTIONS -> optionsRequests[path] = handler
-        }
+        routeMapRegistry.addRoute(method, path, handler)
     }
 
     /**

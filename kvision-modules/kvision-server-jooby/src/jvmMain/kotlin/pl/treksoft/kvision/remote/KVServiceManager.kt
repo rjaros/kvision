@@ -41,6 +41,7 @@ import org.slf4j.LoggerFactory
 import pl.treksoft.kvision.types.*
 import kotlin.reflect.KClass
 
+typealias RequestHandler = suspend HandlerContext.() -> Any
 
 /**
  * Multiplatform service manager for Jooby.
@@ -52,13 +53,24 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val getRequests: MutableMap<String, suspend HandlerContext.() -> Any> = mutableMapOf()
-    val postRequests: MutableMap<String, suspend HandlerContext.() -> Any> = mutableMapOf()
-    val putRequests: MutableMap<String, suspend HandlerContext.() -> Any> = mutableMapOf()
-    val deleteRequests: MutableMap<String, suspend HandlerContext.() -> Any> =
-        mutableMapOf()
-    val optionsRequests: MutableMap<String, suspend HandlerContext.() -> Any> =
-        mutableMapOf()
+    val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
+
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
+
     val webSocketRequests: MutableMap<String, (ctx: Context, configurer: WebSocketConfigurer) -> Unit> =
         mutableMapOf()
 
@@ -502,15 +514,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     fun addRoute(
         method: HttpMethod,
         path: String,
-        handler: suspend HandlerContext.() -> Any
+        handler: RequestHandler
     ) {
-        when (method) {
-            HttpMethod.GET -> getRequests[path] = handler
-            HttpMethod.POST -> postRequests[path] = handler
-            HttpMethod.PUT -> putRequests[path] = handler
-            HttpMethod.DELETE -> deleteRequests[path] = handler
-            HttpMethod.OPTIONS -> optionsRequests[path] = handler
-        }
+        routeMapRegistry.addRoute(method, path, handler)
     }
 
     /**
@@ -532,20 +538,14 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
  * A function to generate routes based on definitions from the service manager.
  */
 fun <T : Any> CoroutineRouter.applyRoutes(serviceManager: KVServiceManager<T>) {
-    serviceManager.getRequests.forEach { (path, handler) ->
-        get(path, handler)
-    }
-    serviceManager.postRequests.forEach { (path, handler) ->
-        post(path, handler)
-    }
-    serviceManager.putRequests.forEach { (path, handler) ->
-        put(path, handler)
-    }
-    serviceManager.deleteRequests.forEach { (path, handler) ->
-        delete(path, handler)
-    }
-    serviceManager.optionsRequests.forEach { (path, handler) ->
-        options(path, handler)
+    serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
+        when(method) {
+            HttpMethod.GET -> get(path, handler)
+            HttpMethod.POST -> post(path, handler)
+            HttpMethod.PUT -> put(path, handler)
+            HttpMethod.DELETE -> delete(path, handler)
+            HttpMethod.OPTIONS -> options(path, handler)
+        }
     }
     serviceManager.webSocketRequests.forEach { (path, handler) ->
         this.router.ws(path, handler)

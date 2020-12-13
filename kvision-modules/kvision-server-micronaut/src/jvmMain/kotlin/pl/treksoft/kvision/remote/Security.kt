@@ -22,16 +22,11 @@
 
 package pl.treksoft.kvision.remote
 
-import io.micronaut.http.HttpMethod
 import io.micronaut.http.HttpRequest
 
 fun <T> HttpRequest<T>.matches(vararg services: KVServiceManager<*>): Boolean {
-    return when (this.method) {
-        HttpMethod.GET -> services.flatMap { it.getRequests.keys }.contains(this.uri.path)
-        HttpMethod.POST -> services.flatMap { it.postRequests.keys }.contains(this.uri.path)
-        HttpMethod.PUT -> services.flatMap { it.putRequests.keys }.contains(this.uri.path)
-        HttpMethod.DELETE -> services.flatMap { it.deleteRequests.keys }.contains(this.uri.path)
-        HttpMethod.OPTIONS -> services.flatMap { it.optionsRequests.keys }.contains(this.uri.path)
-        else -> false
-    }
+    val kVisionMethod = HttpMethod.fromStringOrNull(this.method.name) ?: return false
+    return services.asSequence().flatMap { service ->
+        service.routeMapRegistry.asSequence(kVisionMethod).map(RouteMapEntry<*>::path)
+    }.contains(this.uri.path)
 }
