@@ -70,7 +70,7 @@ class LocalDateTimeSerializer : JsonSerializer<LocalDateTime>() {
     @Throws(IOException::class)
     override fun serialize(value: LocalDateTime, gen: JsonGenerator, provider: SerializerProvider) {
         try {
-            val s = value.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            val s = value.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS"))
             gen.writeString(s)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
@@ -85,7 +85,7 @@ class LocalDateTimeDeserializer : JsonDeserializer<LocalDateTime>() {
         val str = p.text
         try {
             @Suppress("MagicNumber")
-            return LocalDateTime.parse(str.dropLast(6), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            return LocalDateTime.parse(str.dropLast(6), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS"))
         } catch (e: DateTimeParseException) {
             System.err.println(e)
             return null
@@ -97,7 +97,7 @@ class LocalDateSerializer : JsonSerializer<LocalDate>() {
     @Throws(IOException::class)
     override fun serialize(value: LocalDate, gen: JsonGenerator, provider: SerializerProvider) {
         try {
-            val s = value.atStartOfDay().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            val s = value.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS"))
             gen.writeString(s)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
@@ -112,7 +112,7 @@ class LocalDateDeserializer : JsonDeserializer<LocalDate>() {
         val str = p.text
         try {
             @Suppress("MagicNumber")
-            return LocalDate.parse(str.dropLast(6), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            return LocalDate.parse(str.dropLast(6), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS"))
         } catch (e: DateTimeParseException) {
             System.err.println(e)
             return null
@@ -124,7 +124,7 @@ class LocalTimeSerializer : JsonSerializer<LocalTime>() {
     @Throws(IOException::class)
     override fun serialize(value: LocalTime, gen: JsonGenerator, provider: SerializerProvider) {
         try {
-            val s = value.atDate(LocalDate.now()).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            val s = value.atDate(LocalDate.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS"))
             gen.writeString(s)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
@@ -139,7 +139,7 @@ class LocalTimeDeserializer : JsonDeserializer<LocalTime>() {
         val str = p.text
         try {
             @Suppress("MagicNumber")
-            return LocalTime.parse(str.dropLast(6), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            return LocalTime.parse(str.dropLast(6), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS"))
         } catch (e: DateTimeParseException) {
             System.err.println(e)
             return null
@@ -151,7 +151,7 @@ class OffsetDateTimeSerializer : JsonSerializer<OffsetDateTime>() {
     @Throws(IOException::class)
     override fun serialize(value: OffsetDateTime, gen: JsonGenerator, provider: SerializerProvider) {
         try {
-            val s = value.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+            val s = value.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"))
             gen.writeString(s)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
@@ -165,7 +165,7 @@ class OffsetDateTimeDeserializer : JsonDeserializer<OffsetDateTime>() {
     override fun deserialize(p: JsonParser, ctx: DeserializationContext): OffsetDateTime? {
         val str = p.text
         return try {
-            OffsetDateTime.parse(str, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+            OffsetDateTime.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"))
         } catch (e: DateTimeParseException) {
             System.err.println(e)
             null
@@ -177,7 +177,7 @@ class OffsetTimeSerializer : JsonSerializer<OffsetTime>() {
     @Throws(IOException::class)
     override fun serialize(value: OffsetTime, gen: JsonGenerator, provider: SerializerProvider) {
         try {
-            val s = value.atDate(LocalDate.now()).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+            val s = value.atDate(LocalDate.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"))
             gen.writeString(s)
         } catch (e: DateTimeParseException) {
             System.err.println(e)
@@ -191,7 +191,7 @@ class OffsetTimeDeserializer : JsonDeserializer<OffsetTime>() {
     override fun deserialize(p: JsonParser, ctx: DeserializationContext): OffsetTime? {
         val str = p.text
         return try {
-            OffsetTime.parse(str, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+            OffsetTime.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"))
         } catch (e: DateTimeParseException) {
             System.err.println(e)
             null
