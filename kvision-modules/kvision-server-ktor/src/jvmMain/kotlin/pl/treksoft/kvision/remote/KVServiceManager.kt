@@ -21,26 +21,13 @@
  */
 package pl.treksoft.kvision.remote
 
-import com.fasterxml.jackson.databind.module.SimpleModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import io.ktor.application.ApplicationCall
-import io.ktor.application.call
-import io.ktor.http.cio.websocket.CloseReason
-import io.ktor.http.cio.websocket.Frame
-import io.ktor.http.cio.websocket.close
-import io.ktor.http.cio.websocket.readText
-import io.ktor.request.receive
-import io.ktor.response.respond
-import io.ktor.routing.Route
-import io.ktor.routing.delete
-import io.ktor.routing.get
-import io.ktor.routing.options
-import io.ktor.routing.post
-import io.ktor.routing.put
-import io.ktor.util.pipeline.PipelineContext
-import io.ktor.websocket.WebSocketServerSession
-import io.ktor.websocket.webSocket
+import io.ktor.application.*
+import io.ktor.http.cio.websocket.*
+import io.ktor.request.*
+import io.ktor.response.*
+import io.ktor.routing.*
+import io.ktor.util.pipeline.*
+import io.ktor.websocket.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ClosedSendChannelException
@@ -51,12 +38,6 @@ import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.treksoft.kvision.types.*
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.OffsetDateTime
-import java.time.OffsetTime
 import kotlin.reflect.KClass
 
 /**
@@ -79,22 +60,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     val webSocketRequests: MutableMap<String, suspend WebSocketServerSession.() -> Unit> =
         mutableMapOf()
 
-    val mapper = jacksonObjectMapper().apply {
-        val module = SimpleModule()
-        module.addSerializer(LocalDateTime::class.java, LocalDateTimeSerializer())
-        module.addSerializer(LocalDate::class.java, LocalDateSerializer())
-        module.addSerializer(LocalTime::class.java, LocalTimeSerializer())
-        module.addSerializer(OffsetDateTime::class.java, OffsetDateTimeSerializer())
-        module.addSerializer(OffsetTime::class.java, OffsetTimeSerializer())
-        module.addSerializer(BigDecimal::class.java, BigDecimalSerializer())
-        module.addDeserializer(LocalDateTime::class.java, LocalDateTimeDeserializer())
-        module.addDeserializer(LocalDate::class.java, LocalDateDeserializer())
-        module.addDeserializer(LocalTime::class.java, LocalTimeDeserializer())
-        module.addDeserializer(OffsetDateTime::class.java, OffsetDateTimeDeserializer())
-        module.addDeserializer(OffsetTime::class.java, OffsetTimeDeserializer())
-        module.addDeserializer(BigDecimal::class.java, BigDecimalDeserializer())
-        this.registerModule(module)
-    }
+    val mapper = createDefaultObjectMapper()
     var counter: Int = 0
 
     /**

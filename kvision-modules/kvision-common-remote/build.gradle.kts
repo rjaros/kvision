@@ -29,6 +29,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
+                api(project(":kvision-modules:kvision-common-types"))
                 implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
             }
         }

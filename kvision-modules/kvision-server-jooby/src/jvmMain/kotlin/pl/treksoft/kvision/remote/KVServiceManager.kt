@@ -21,9 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import com.fasterxml.jackson.databind.module.SimpleModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.inject.Injector
 import io.jooby.Context
 import io.jooby.CoroutineRouter
@@ -42,12 +39,6 @@ import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.treksoft.kvision.types.*
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.OffsetDateTime
-import java.time.OffsetTime
 import kotlin.reflect.KClass
 
 
@@ -71,22 +62,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     val webSocketRequests: MutableMap<String, (ctx: Context, configurer: WebSocketConfigurer) -> Unit> =
         mutableMapOf()
 
-    val mapper = jacksonObjectMapper().apply {
-        val module = SimpleModule()
-        module.addSerializer(LocalDateTime::class.java, LocalDateTimeSerializer())
-        module.addSerializer(LocalDate::class.java, LocalDateSerializer())
-        module.addSerializer(LocalTime::class.java, LocalTimeSerializer())
-        module.addSerializer(OffsetDateTime::class.java, OffsetDateTimeSerializer())
-        module.addSerializer(OffsetTime::class.java, OffsetTimeSerializer())
-        module.addSerializer(BigDecimal::class.java, BigDecimalSerializer())
-        module.addDeserializer(LocalDateTime::class.java, LocalDateTimeDeserializer())
-        module.addDeserializer(LocalDate::class.java, LocalDateDeserializer())
-        module.addDeserializer(LocalTime::class.java, LocalTimeDeserializer())
-        module.addDeserializer(OffsetDateTime::class.java, OffsetDateTimeDeserializer())
-        module.addDeserializer(OffsetTime::class.java, OffsetTimeDeserializer())
-        module.addDeserializer(BigDecimal::class.java, BigDecimalDeserializer())
-        this.registerModule(module)
-    }
+    val mapper = createDefaultObjectMapper()
     var counter: Int = 0
 
     /**
