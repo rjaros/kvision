@@ -76,21 +76,19 @@ open class KVHandler(val services: List<KVServiceManager<*>>, val applicationCon
     }
 
     open suspend fun handle(request: ServerRequest): ServerResponse {
-        val routeUrl = request.path()
-        val handler = services.mapNotNull {
-            when (request.method()?.name) {
-                "GET" -> it.getRequests[routeUrl]
-                "POST" -> it.postRequests[routeUrl]
-                "PUT" -> it.putRequests[routeUrl]
-                "DELETE" -> it.deleteRequests[routeUrl]
-                "OPTIONS" -> it.optionsRequests[routeUrl]
-                else -> null
-            }
-        }.firstOrNull()
-        return if (handler != null) {
-            handler(request, threadLocalRequest, applicationContext)
-        } else {
-            ServerResponse.notFound().buildAndAwait()
+
+        fun getHandler(): RequestHandler? {
+            val springMethod = request.method() ?: return null
+            val kvMethod = HttpMethod.fromStringOrNull(springMethod.name) ?: return null
+            val routeUrl = request.path()
+            return services.asSequence()
+                .mapNotNull { it.routeMapRegistry.findHandler(kvMethod, routeUrl) }
+                .firstOrNull()
         }
+        return (getHandler() ?: return ServerResponse.notFound().buildAndAwait())(
+            request,
+            threadLocalRequest,
+            applicationContext
+        )
     }
 }

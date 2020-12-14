@@ -14,6 +14,8 @@ val coroutinesVersion: String by project
 val micronautVersion: String by project
 val jacksonModuleKotlinVersion: String by project
 val logbackVersion: String by project
+val testNgVersion: String by project
+val hamcrestVersion: String by project
 
 kotlin {
     kotlinJsTargets()
@@ -45,6 +47,12 @@ kotlin {
                 api("io.micronaut:micronaut-websocket")
                 api("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
                 api("ch.qos.logback:logback-classic:$logbackVersion")
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation("org.testng:testng:$testNgVersion")
+                implementation("org.hamcrest:hamcrest:$hamcrestVersion")
             }
         }
     }

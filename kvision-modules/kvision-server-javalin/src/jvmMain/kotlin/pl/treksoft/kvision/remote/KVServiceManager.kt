@@ -21,9 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import com.fasterxml.jackson.databind.module.SimpleModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.inject.Injector
 import io.javalin.Javalin
 import io.javalin.core.security.Role
@@ -42,13 +39,9 @@ import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.treksoft.kvision.types.*
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.OffsetDateTime
-import java.time.OffsetTime
 import kotlin.reflect.KClass
+
+typealias RequestHandler = (Context) -> Unit
 
 /**
  * Multiplatform service manager for Javalin.
@@ -62,32 +55,28 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         const val KV_WS_OUTGOING_KEY = "pl.treksoft.kvision.ws.outgoing.key"
     }
 
-    val getRequests: MutableMap<String, (Context) -> Unit> = mutableMapOf()
-    val postRequests: MutableMap<String, (Context) -> Unit> = mutableMapOf()
-    val putRequests: MutableMap<String, (Context) -> Unit> = mutableMapOf()
-    val deleteRequests: MutableMap<String, (Context) -> Unit> =
-        mutableMapOf()
-    val optionsRequests: MutableMap<String, (Context) -> Unit> =
-        mutableMapOf()
+    val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
+
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
+    @Suppress("DEPRECATION")
+    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
+    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
+
     val webSocketRequests: MutableMap<String, (WsHandler) -> Unit> =
         mutableMapOf()
 
-    val mapper = jacksonObjectMapper().apply {
-        val module = SimpleModule()
-        module.addSerializer(LocalDateTime::class.java, LocalDateTimeSerializer())
-        module.addSerializer(LocalDate::class.java, LocalDateSerializer())
-        module.addSerializer(LocalTime::class.java, LocalTimeSerializer())
-        module.addSerializer(OffsetDateTime::class.java, OffsetDateTimeSerializer())
-        module.addSerializer(OffsetTime::class.java, OffsetTimeSerializer())
-        module.addSerializer(BigDecimal::class.java, BigDecimalSerializer())
-        module.addDeserializer(LocalDateTime::class.java, LocalDateTimeDeserializer())
-        module.addDeserializer(LocalDate::class.java, LocalDateDeserializer())
-        module.addDeserializer(LocalTime::class.java, LocalTimeDeserializer())
-        module.addDeserializer(OffsetDateTime::class.java, OffsetDateTimeDeserializer())
-        module.addDeserializer(OffsetTime::class.java, OffsetTimeDeserializer())
-        module.addDeserializer(BigDecimal::class.java, BigDecimalDeserializer())
-        this.registerModule(module)
-    }
+    val mapper = createDefaultObjectMapper()
     var counter: Int = 0
 
     /**
@@ -569,15 +558,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     fun addRoute(
         method: HttpMethod,
         path: String,
-        handler: (Context) -> Unit
+        handler: RequestHandler
     ) {
-        when (method) {
-            HttpMethod.GET -> getRequests[path] = handler
-            HttpMethod.POST -> postRequests[path] = handler
-            HttpMethod.PUT -> putRequests[path] = handler
-            HttpMethod.DELETE -> deleteRequests[path] = handler
-            HttpMethod.OPTIONS -> optionsRequests[path] = handler
-        }
+        routeMapRegistry.addRoute(method, path, handler)
     }
 
     /**
@@ -599,20 +582,14 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
  * A function to generate routes based on definitions from the service manager.
  */
 fun <T : Any> Javalin.applyRoutes(serviceManager: KVServiceManager<T>, roles: Set<Role> = setOf()) {
-    serviceManager.getRequests.forEach { (path, handler) ->
-        get(path, handler, roles)
-    }
-    serviceManager.postRequests.forEach { (path, handler) ->
-        post(path, handler, roles)
-    }
-    serviceManager.putRequests.forEach { (path, handler) ->
-        put(path, handler, roles)
-    }
-    serviceManager.deleteRequests.forEach { (path, handler) ->
-        delete(path, handler, roles)
-    }
-    serviceManager.optionsRequests.forEach { (path, handler) ->
-        options(path, handler, roles)
+    serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
+        when(method) {
+            HttpMethod.GET -> get(path, handler)
+            HttpMethod.POST -> post(path, handler)
+            HttpMethod.PUT -> put(path, handler)
+            HttpMethod.DELETE -> delete(path, handler)
+            HttpMethod.OPTIONS -> options(path, handler)
+        }
     }
     serviceManager.webSocketRequests.forEach { (path, handler) ->
         ws(path, handler, roles)

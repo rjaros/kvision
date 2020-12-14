@@ -28,7 +28,16 @@ enum class HttpMethod {
     POST,
     PUT,
     DELETE,
-    OPTIONS
+    OPTIONS,
+    ;
+    companion object {
+        fun fromStringOrNull(txt: String): HttpMethod? =
+            try {
+                valueOf(txt)
+            } catch (e: IllegalArgumentException) {
+                null
+            }
+    }
 }
 
 class ServiceException(message: String) : Exception(message)
