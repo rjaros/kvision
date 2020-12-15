@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.micronaut.context.ApplicationContext
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
@@ -37,34 +38,18 @@ import kotlin.reflect.KClass
 
 typealias RequestHandler =
         suspend (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> HttpResponse<String>
+
 /**
  * Multiplatform service manager for Micronaut.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T> {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
     val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
-
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
-
     val webSocketsRequests: MutableMap<String, suspend (
         WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
     ) -> Unit> = mutableMapOf()

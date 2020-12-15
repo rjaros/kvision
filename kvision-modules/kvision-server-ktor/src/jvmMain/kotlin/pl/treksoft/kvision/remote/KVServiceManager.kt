@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.ktor.application.*
 import io.ktor.http.cio.websocket.*
 import io.ktor.request.*
@@ -37,7 +38,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pl.treksoft.kvision.types.*
 import kotlin.reflect.KClass
 
 typealias RequestHandler = suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit
@@ -46,29 +46,13 @@ typealias RequestHandler = suspend PipelineContext<Unit, ApplicationCall>.(Unit)
  * Multiplatform service manager for Ktor.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T> {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
     val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
-
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
     val webSocketRequests: MutableMap<String, suspend WebSocketServerSession.() -> Unit> =
         mutableMapOf()
 
@@ -248,8 +232,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         error = "Invalid parameters"
                     )
                 )
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 if (e !is ServiceException) LOG.error(e.message, e)
                 call.respond(
                     JsonRpcResponse(
@@ -359,7 +342,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
  */
 fun <T : Any> Route.applyRoutes(serviceManager: KVServiceManager<T>) {
     serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
-        when(method) {
+        when (method) {
             HttpMethod.GET -> get(path, handler)
             HttpMethod.POST -> post(path, handler)
             HttpMethod.PUT -> put(path, handler)

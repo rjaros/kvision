@@ -28,7 +28,7 @@ import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.JsonRpcRequest
-import pl.treksoft.kvision.remote.KVServiceManager
+import pl.treksoft.kvision.remote.KVServiceMgr
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.set
 import kotlin.reflect.KFunction
@@ -49,7 +49,7 @@ import kotlin.reflect.KFunction
  * @param classes a set of CSS class names
  */
 open class TypeaheadRemoteInput<T : Any>(
-    serviceManager: KVServiceManager<T>,
+    serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     private val stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
@@ -63,7 +63,8 @@ open class TypeaheadRemoteInput<T : Any>(
 
     init {
         val (url, method) =
-            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         val tempAjaxOptions = taAjaxOptions ?: TaAjaxOptions()
         this.taAjaxOptions = tempAjaxOptions.copy(
@@ -73,7 +74,8 @@ open class TypeaheadRemoteInput<T : Any>(
                 JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(query, state)))
             },
             preprocessData = {
-                JSON.plain.decodeFromString(ListSerializer(String.serializer()), it.result.unsafeCast<String>()).toTypedArray()
+                JSON.plain.decodeFromString(ListSerializer(String.serializer()), it.result.unsafeCast<String>())
+                    .toTypedArray()
             },
             httpType = HttpType.valueOf(method.name)
         )
@@ -86,7 +88,7 @@ open class TypeaheadRemoteInput<T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.typeaheadRemoteInput(
-    serviceManager: KVServiceManager<T>,
+    serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,

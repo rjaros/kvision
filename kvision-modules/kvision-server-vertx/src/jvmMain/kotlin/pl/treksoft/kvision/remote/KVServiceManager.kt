@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.inject.Injector
 import io.vertx.core.Vertx
 import io.vertx.core.http.ServerWebSocket
@@ -37,8 +38,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pl.treksoft.kvision.types.*
-import java.lang.IllegalArgumentException
 import kotlin.reflect.KClass
 
 typealias RequestHandler = (RoutingContext) -> Unit
@@ -47,34 +46,14 @@ typealias RequestHandler = (RoutingContext) -> Unit
  * Multiplatform service manager for Vert.x.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T> {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
-        const val KV_WS_INCOMING_KEY = "pl.treksoft.kvision.ws.incoming.key"
-        const val KV_WS_OUTGOING_KEY = "pl.treksoft.kvision.ws.outgoing.key"
     }
 
     val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
-
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
-
-    val webSocketRequests: MutableMap<String, (Injector, ServerWebSocket) -> Unit> =
-        mutableMapOf()
+    val webSocketRequests: MutableMap<String, (Injector, ServerWebSocket) -> Unit> = mutableMapOf()
 
     val mapper = createDefaultObjectMapper()
     var counter: Int = 0
@@ -127,7 +106,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         bind(method, route) {
             requireParameterCountEqualTo(it, 2)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]),)
+            function.invoke(this, getParameter(it[0]), getParameter(it[1]))
         }
     }
 
@@ -237,6 +216,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             } else {
                 ctx.bodyAsJson.mapTo(JsonRpcRequest::class.java)
             }
+
             @Suppress("MagicNumber")
             val injector = ctx.get<Injector>(KV_INJECTOR_KEY)
             val service = injector.getInstance(serviceClass.java)

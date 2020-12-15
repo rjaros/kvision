@@ -22,7 +22,9 @@
 
 package pl.treksoft.kvision.remote
 
-@Suppress("unused")
+/**
+ * Base interface for multiplatform service manager.
+ */
 interface KVServiceMgr<T : Any> {
-    fun getCalls(): Map<String, Pair<String, HttpMethod>>
+    fun getCalls(): Map<String, Pair<String, HttpMethod>> = emptyMap()
 }

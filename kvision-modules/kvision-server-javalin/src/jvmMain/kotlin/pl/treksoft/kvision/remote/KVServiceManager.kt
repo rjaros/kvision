@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.inject.Injector
 import io.javalin.Javalin
 import io.javalin.core.security.Role
@@ -38,7 +39,6 @@ import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pl.treksoft.kvision.types.*
 import kotlin.reflect.KClass
 
 typealias RequestHandler = (Context) -> Unit
@@ -47,7 +47,7 @@ typealias RequestHandler = (Context) -> Unit
  * Multiplatform service manager for Javalin.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T> {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -56,25 +56,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 
     val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
-
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
-
-    val webSocketRequests: MutableMap<String, (WsHandler) -> Unit> =
-        mutableMapOf()
+    val webSocketRequests: MutableMap<String, (WsHandler) -> Unit> = mutableMapOf()
 
     val mapper = createDefaultObjectMapper()
     var counter: Int = 0
@@ -261,6 +243,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             } else {
                 ctx.body<JsonRpcRequest>()
             }
+
             @Suppress("MagicNumber")
             val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)
@@ -408,12 +391,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
  */
 fun <T : Any> Javalin.applyRoutes(serviceManager: KVServiceManager<T>, roles: Set<Role> = setOf()) {
     serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
-        when(method) {
-            HttpMethod.GET -> get(path, handler)
-            HttpMethod.POST -> post(path, handler)
-            HttpMethod.PUT -> put(path, handler)
-            HttpMethod.DELETE -> delete(path, handler)
-            HttpMethod.OPTIONS -> options(path, handler)
+        when (method) {
+            HttpMethod.GET -> get(path, handler, roles)
+            HttpMethod.POST -> post(path, handler, roles)
+            HttpMethod.PUT -> put(path, handler, roles)
+            HttpMethod.DELETE -> delete(path, handler, roles)
+            HttpMethod.OPTIONS -> options(path, handler, roles)
         }
     }
     serviceManager.webSocketRequests.forEach { (path, handler) ->

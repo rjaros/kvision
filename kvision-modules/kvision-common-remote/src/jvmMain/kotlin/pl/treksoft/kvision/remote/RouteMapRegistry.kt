@@ -24,7 +24,6 @@ package pl.treksoft.kvision.remote
 
 import java.util.*
 import kotlin.collections.HashMap
-import kotlin.reflect.KProperty
 
 /**
  * Stores a mapping from an HTTP-method+path to a handler
@@ -41,7 +40,7 @@ interface RouteMapRegistry<T> {
  */
 fun <T> createRouteMapRegistry(): RouteMapRegistry<T> = RouteMapRegistryImpl()
 
-data class RouteMapEntry<T> internal constructor(val method: HttpMethod, val path: String, val handler: T)
+data class RouteMapEntry<T>(val method: HttpMethod, val path: String, val handler: T)
 
 private class RouteMapRegistryImpl<T> : RouteMapRegistry<T> {
     private val map: MutableMap<HttpMethod, MutableMap<String, T>> = EnumMap(HttpMethod::class.java)
@@ -64,10 +63,4 @@ private class RouteMapRegistryImpl<T> : RouteMapRegistry<T> {
         map.asSequence().flatMap { (method, mappings) ->
             mappings.asSequence().map { RouteMapEntry(method, it.key, it.value) }
         }
-}
-
-@Deprecated("this is only a helper class for transition of old properties")
-class RouteMapDelegate<T>(val delegate: RouteMapRegistry<T>, val method: HttpMethod) {
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): MutableMap<String, T> =
-        delegate.asSequence(method).associateByTo(HashMap(), RouteMapEntry<T>::path, RouteMapEntry<T>::handler)
 }

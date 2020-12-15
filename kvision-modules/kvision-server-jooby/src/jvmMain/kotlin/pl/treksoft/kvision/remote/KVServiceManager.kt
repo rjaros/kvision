@@ -21,6 +21,7 @@
  */
 package pl.treksoft.kvision.remote
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.inject.Injector
 import io.jooby.Context
 import io.jooby.CoroutineRouter
@@ -38,7 +39,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pl.treksoft.kvision.types.*
 import kotlin.reflect.KClass
 
 typealias RequestHandler = suspend HandlerContext.() -> Any
@@ -47,30 +47,13 @@ typealias RequestHandler = suspend HandlerContext.() -> Any
  * Multiplatform service manager for Jooby.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T> {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
     val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
-
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val getRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.GET)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val postRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.POST)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val putRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.PUT)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val deleteRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.DELETE)
-    @Suppress("DEPRECATION")
-    @Deprecated("use routeMapRegistry instead", ReplaceWith("routeMapRegistry"))
-    val optionsRequests by RouteMapDelegate(routeMapRegistry, HttpMethod.OPTIONS)
-
     val webSocketRequests: MutableMap<String, (ctx: Context, configurer: WebSocketConfigurer) -> Unit> =
         mutableMapOf()
 
@@ -384,7 +367,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
  */
 fun <T : Any> CoroutineRouter.applyRoutes(serviceManager: KVServiceManager<T>) {
     serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
-        when(method) {
+        when (method) {
             HttpMethod.GET -> get(path, handler)
             HttpMethod.POST -> post(path, handler)
             HttpMethod.PUT -> put(path, handler)
