@@ -94,5 +94,5 @@ fun Date.toStringInternal(): String {
     return "" + this.getFullYear() + "-" + ("0" + (this.getMonth() + 1)).takeLast(2) + "-" +
             ("0" + this.getDate()).takeLast(2) + "T" + ("0" + this.getHours()).takeLast(2) + ":" +
             ("0" + this.getMinutes()).takeLast(2) + ":" + ("0" + this.getSeconds()).takeLast(2) + "." +
-            this.getMilliseconds() + sign + ("0${tz.absoluteValue}").takeLast(2) + ":00"
+            ("00" + this.getMilliseconds()).takeLast(3) + sign + ("0${tz.absoluteValue}").takeLast(2) + ":00"
 }
