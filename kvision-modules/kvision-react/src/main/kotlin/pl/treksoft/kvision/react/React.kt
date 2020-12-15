@@ -30,6 +30,7 @@ import pl.treksoft.kvision.core.Widget
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.set
 import react.RBuilder
+import react.child
 import react.dom.render as ReactRender
 
 /**
@@ -49,11 +50,11 @@ class React<S>(
     var state = state
         set(value) {
             field = value
-            refreshFunction?.invoke()
+            refreshFunction?.invoke(value)
             observers.forEach { it(state) }
         }
 
-    private var refreshFunction: (() -> Unit)? = null
+    private var refreshFunction: ((S) -> Unit)? = null
 
     @Suppress("UnsafeCastFromDynamic")
     internal constructor(
@@ -63,15 +64,13 @@ class React<S>(
 
     override fun afterInsert(node: VNode) {
         ReactRender(node.elm as HTMLElement) {
-            reactComponent {
-                this.renderFunction = { rBuilder, refresh ->
-                    refreshFunction = refresh
-                    rBuilder.builder({ state }) { changeState: (S) -> S ->
-                        state = changeState(state)
-                        refresh()
-                    }
+            child(reactWrapper<S> { refresh ->
+                refreshFunction = refresh
+                builder({ state }) { changeState: (S) -> S ->
+                    state = changeState(state)
+                    refresh(state)
                 }
-            }
+            })
         }
     }
 
