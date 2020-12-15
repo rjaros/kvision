@@ -1853,9 +1853,9 @@ open external class Tabulator {
     }
 
     interface CellComponent {
-        var getValue: () -> Any
-        var getOldValue: () -> Any
-        var restoreOldValue: () -> Any
+        var getValue: () -> Any?
+        var getOldValue: () -> Any?
+        var restoreOldValue: () -> Any?
         var getElement: () -> HTMLElement
         var getTable: () -> Tabulator
         var getRow: () -> RowComponent
@@ -1872,7 +1872,7 @@ open external class Tabulator {
         var isValid: () -> Boolean
         var clearValidation: () -> Unit
         var validate: () -> Boolean
-        var getInitialValue: () -> Any
-        var restoreInitialValue: () -> Any
+        var getInitialValue: () -> Any?
+        var restoreInitialValue: () -> Any?
     }
 }
