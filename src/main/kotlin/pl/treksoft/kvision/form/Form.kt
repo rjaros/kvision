@@ -373,6 +373,18 @@ class Form<K : Any>(
         return fieldWithError == null && validatorPassed
     }
 
+    /**
+     * Clear validation information from all fields.
+     */
+    fun clearValidation() {
+        fieldsParams.forEach { entry ->
+            fields[entry.key]?.let { control ->
+                control.validatorError = null
+            }
+        }
+        panel?.validatorError = null
+    }
+
     companion object {
         inline fun <reified K : Any> create(
             panel: FormPanel<K>? = null,

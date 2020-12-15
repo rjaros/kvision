@@ -472,6 +472,13 @@ open class FormPanel<K : Any>(
         return form.validate(markFields)
     }
 
+    /**
+     * Clear validation information from all fields.
+     */
+    open fun clearValidation() {
+        form.clearValidation()
+    }
+
     companion object {
 
         inline fun <reified K : Any> create(
