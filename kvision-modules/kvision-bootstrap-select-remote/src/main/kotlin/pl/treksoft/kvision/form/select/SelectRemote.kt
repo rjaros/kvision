@@ -29,7 +29,7 @@ import pl.treksoft.kvision.form.FieldLabel
 import pl.treksoft.kvision.form.InvalidFeedback
 import pl.treksoft.kvision.form.StringFormControl
 import pl.treksoft.kvision.panel.SimplePanel
-import pl.treksoft.kvision.remote.KVServiceManager
+import pl.treksoft.kvision.remote.KVServiceMgr
 import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.utils.SnOn
@@ -51,7 +51,7 @@ import pl.treksoft.kvision.utils.SnOn
  */
 @Suppress("TooManyFunctions")
 open class SelectRemote<T : Any>(
-    serviceManager: KVServiceManager<T>,
+    serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
     value: String? = null,
@@ -70,6 +70,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.value = value
         }
+
     /**
      * Determines if multiple value selection is allowed.
      */
@@ -78,6 +79,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.multiple = value
         }
+
     /**
      * Maximal number of selected options.
      */
@@ -86,6 +88,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.maxOptions = value
         }
+
     /**
      * The placeholder for the select control.
      */
@@ -94,6 +97,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.placeholder = value
         }
+
     /**
      * The style of the select control.
      */
@@ -102,6 +106,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.style = value
         }
+
     /**
      * The width of the select control.
      */
@@ -110,6 +115,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.selectWidth = value
         }
+
     /**
      * The width type of the select control.
      */
@@ -118,6 +124,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.selectWidthType = value
         }
+
     /**
      * The dropdown align of the select control.
      */
@@ -126,6 +133,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.dropdownAlign = value
         }
+
     /**
      * Determines if an empty option is automatically generated.
      */
@@ -134,6 +142,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.emptyOption = value
         }
+
     /**
      * Determines if the select is automatically focused.
      */
@@ -142,6 +151,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             input.autofocus = value
         }
+
     /**
      * The label text bound to the select element.
      */
@@ -150,6 +160,7 @@ open class SelectRemote<T : Any>(
         set(value) {
             flabel.content = value
         }
+
     /**
      * Determines if [label] can contain HTML code.
      */
@@ -276,7 +287,7 @@ open class SelectRemote<T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.selectRemote(
-    serviceManager: KVServiceManager<T>,
+    serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
     value: String? = null,
     name: String? = null, multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, preload: Boolean = false,

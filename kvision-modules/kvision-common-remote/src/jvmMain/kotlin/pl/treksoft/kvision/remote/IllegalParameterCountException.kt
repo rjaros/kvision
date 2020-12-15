@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2020 Yannik Hampe
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,14 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package pl.treksoft.kvision.remote
 
-import io.micronaut.http.HttpRequest
-
-fun <T> HttpRequest<T>.matches(vararg services: KVServiceManager<*>): Boolean {
-    val kVisionMethod = HttpMethod.fromStringOrNull(this.method.name) ?: return false
-    return services.asSequence().flatMap { service ->
-        service.routeMapRegistry.asSequence(kVisionMethod).map(RouteMapEntry<*>::path)
-    }.contains(this.uri.path)
+class IllegalParameterCountException(val actualParameterCount: Int, val expectedParamterCount: Int) :
+    RuntimeException() {
+    override val message: String
+        get() = "Expected <$expectedParamterCount> parameters, but got <$actualParameterCount> parameters"
 }
+
+fun requireParameterCountEqualTo(actualParameterCount: Int, expectedParamterCount: Int) {
+    if (actualParameterCount != expectedParamterCount) {
+        throw IllegalParameterCountException(actualParameterCount, expectedParamterCount)
+    }
+}
+
+fun requireParameterCountEqualTo(params: Collection<*>, expectedParameterCount: Int) =
+    requireParameterCountEqualTo(params.size, expectedParameterCount)
+

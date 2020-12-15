@@ -13,7 +13,6 @@ dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-bootstrap-typeahead"))
     api(project(":kvision-modules:kvision-common-remote"))
-    compileOnly(project(":kvision-modules:kvision-server-javalin"))
     testImplementation(kotlin("test-js"))
 }
 

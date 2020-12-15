@@ -22,7 +22,7 @@
 package pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.core.Container
-import pl.treksoft.kvision.remote.KVServiceManager
+import pl.treksoft.kvision.remote.KVServiceMgr
 
 /**
  * Form field typeahead component connected to the multiplatform service.
@@ -41,7 +41,7 @@ import pl.treksoft.kvision.remote.KVServiceManager
  * @param rich determines if [label] can contain HTML code
  */
 open class TypeaheadRemote<T : Any>(
-    serviceManager: KVServiceManager<T>,
+    serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     private val stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
@@ -140,7 +140,7 @@ open class TypeaheadRemote<T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.typeaheadRemote(
-    serviceManager: KVServiceManager<T>,
+    serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,

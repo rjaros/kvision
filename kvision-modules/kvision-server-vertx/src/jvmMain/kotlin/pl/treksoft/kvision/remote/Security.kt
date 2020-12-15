@@ -28,19 +28,13 @@ import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 
 fun Router.serviceRoute(service: KVServiceManager<*>, handler: Handler<RoutingContext>) {
-    service.getRequests.keys.forEach {
-        this.route(HttpMethod.GET, it).handler(handler)
-    }
-    service.postRequests.keys.forEach {
-        this.route(HttpMethod.POST, it).handler(handler)
-    }
-    service.putRequests.keys.forEach {
-        this.route(HttpMethod.PUT, it).handler(handler)
-    }
-    service.deleteRequests.keys.forEach {
-        this.route(HttpMethod.DELETE, it).handler(handler)
-    }
-    service.optionsRequests.keys.forEach {
-        this.route(HttpMethod.OPTIONS, it).handler(handler)
+    service.routeMapRegistry.asSequence().forEach { (method, path, _) ->
+        try {
+            HttpMethod.valueOf(method.name)
+        } catch (e: IllegalArgumentException) {
+            null
+        }?.let {
+            this.route(it, path).handler(handler)
+        }
     }
 }

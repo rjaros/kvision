@@ -34,7 +34,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.CallAgent
 import pl.treksoft.kvision.remote.HttpMethod
 import pl.treksoft.kvision.remote.JsonRpcRequest
-import pl.treksoft.kvision.remote.KVServiceManager
+import pl.treksoft.kvision.remote.KVServiceMgr
 import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.obj
@@ -57,7 +57,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param classes a set of CSS class names
  */
 open class SelectRemoteInput<T : Any>(
-    serviceManager: KVServiceManager<T>,
+    serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     private val stateFunction: (() -> String)? = null,
     value: String? = null,
@@ -77,7 +77,8 @@ open class SelectRemoteInput<T : Any>(
 
     init {
         val (_url, method) =
-            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
         this.url = _url
         this.beforeSend = ajaxOptions?.beforeSend
@@ -201,7 +202,7 @@ open class SelectRemoteInput<T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.selectRemoteInput(
-    serviceManager: KVServiceManager<T>,
+    serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
     value: String? = null,

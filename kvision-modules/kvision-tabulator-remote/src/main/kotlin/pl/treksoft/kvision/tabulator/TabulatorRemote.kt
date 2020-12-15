@@ -30,7 +30,7 @@ import pl.treksoft.kvision.core.Container
 import pl.treksoft.kvision.remote.CallAgent
 import pl.treksoft.kvision.remote.HttpMethod
 import pl.treksoft.kvision.remote.JsonRpcRequest
-import pl.treksoft.kvision.remote.KVServiceManager
+import pl.treksoft.kvision.remote.KVServiceMgr
 import pl.treksoft.kvision.remote.RemoteData
 import pl.treksoft.kvision.remote.RemoteFilter
 import pl.treksoft.kvision.remote.RemoteSorter
@@ -54,7 +54,7 @@ import kotlin.reflect.KFunction
  * @param classes a set of CSS class names
  */
 open class TabulatorRemote<T : Any, E : Any>(
-    serviceManager: KVServiceManager<E>,
+    serviceManager: KVServiceMgr<E>,
     function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
     stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
@@ -68,7 +68,8 @@ open class TabulatorRemote<T : Any, E : Any>(
 
     init {
         val (url, method) =
-            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")]
+            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
+                .replace("\\s".toRegex(), "")]
                 ?: throw IllegalStateException("Function not specified!")
 
         val callAgent = CallAgent()
@@ -78,8 +79,11 @@ open class TabulatorRemote<T : Any, E : Any>(
         if (beforeSend != null) options.ajaxConfig.beforeSend = undefined
         options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params ->
-            val page = params.page
-            val size = params.size
+            @Suppress("UnsafeCastFromDynamic")
+            val page = if (params.page != null) "" + params.page else null
+
+            @Suppress("UnsafeCastFromDynamic")
+            val size = if (params.size != null) "" + params.size else null
 
             @Suppress("UnsafeCastFromDynamic")
             val filters = if (params.filters != null) {
@@ -118,7 +122,7 @@ open class TabulatorRemote<T : Any, E : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
-    serviceManager: KVServiceManager<E>,
+    serviceManager: KVServiceMgr<E>,
     noinline function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
     noinline stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
