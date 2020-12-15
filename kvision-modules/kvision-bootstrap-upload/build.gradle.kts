@@ -1,5 +1,6 @@
 plugins {
     kotlin("js")
+    id("kotlinx-serialization")
     id("maven-publish")
 }
 

@@ -21,14 +21,24 @@
  */
 package test.pl.treksoft.kvision.form.upload
 
-import pl.treksoft.jquery.jQuery
-import pl.treksoft.jquery.invoke
+import kotlinx.browser.document
+import kotlinx.serialization.Serializable
 import pl.treksoft.jquery.get
+import pl.treksoft.jquery.invoke
+import pl.treksoft.jquery.jQuery
+import pl.treksoft.kvision.form.Form
 import pl.treksoft.kvision.form.upload.Upload
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.test.DomSpec
-import kotlinx.browser.document
+import pl.treksoft.kvision.types.KFile
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
+
+@Serializable
+data class DataForm(
+    val a: List<KFile>? = null
+)
 
 class UploadSpec : DomSpec {
 
@@ -55,4 +65,19 @@ class UploadSpec : DomSpec {
         }
     }
 
+    @Test
+    fun workInForm() {
+        run {
+            val form = Form.create<DataForm>()
+            val data = DataForm(a = listOf(KFile("file", 5)))
+            form.setData(data)
+            val result = form.getData()
+            assertNull(result.a, "Form should return null without adding any control")
+            val uploadField = Upload()
+            form.add(DataForm::a, uploadField)
+            form.setData(data)
+            val result2 = form.getData()
+            assertEquals(listOf(KFile("file", 5)), result2.a, "Form should return initial value")
+        }
+    }
 }

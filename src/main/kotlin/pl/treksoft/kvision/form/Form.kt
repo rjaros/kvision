@@ -30,7 +30,9 @@ import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.types.DateSerializer
 import pl.treksoft.kvision.types.KFile
+import pl.treksoft.kvision.types.toDateF
 import pl.treksoft.kvision.types.toStringF
+import pl.treksoft.kvision.utils.JSON
 import pl.treksoft.kvision.utils.JSON.toObj
 import kotlin.js.Date
 import kotlin.js.Json
@@ -276,8 +278,20 @@ class Form<K : Any>(
         fields.forEach { it.value.setValue(null) }
         val json = jsonFactory?.invoke(model) ?: throw IllegalStateException("Serializer not defined")
         for (key in js("Object").keys(json)) {
-            @Suppress("UnsafeCastFromDynamic")
-            fields[key]?.setValue(json[key])
+            val jsonValue = json[key]
+            if (jsonValue != null) {
+                val formField = fields[key]
+                when (formField) {
+                    is DateFormControl -> formField.value = (jsonValue.unsafeCast<String>()).toDateF()
+                    is KFilesFormControl -> {
+                        formField.value = JSON.plain.decodeFromString(
+                            ListSerializer(KFile.serializer()),
+                            kotlin.js.JSON.stringify(jsonValue)
+                        )
+                    }
+                    else -> formField?.setValue(jsonValue)
+                }
+            }
         }
     }
 

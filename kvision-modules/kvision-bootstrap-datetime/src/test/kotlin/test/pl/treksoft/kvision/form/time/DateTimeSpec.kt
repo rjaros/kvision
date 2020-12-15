@@ -21,13 +21,23 @@
  */
 package test.pl.treksoft.kvision.form.time
 
+import kotlinx.browser.document
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import pl.treksoft.kvision.form.Form
 import pl.treksoft.kvision.form.time.DateTime
 import pl.treksoft.kvision.panel.Root
-import pl.treksoft.kvision.types.toStringF
 import pl.treksoft.kvision.test.DomSpec
-import kotlinx.browser.document
+import pl.treksoft.kvision.types.toStringF
 import kotlin.js.Date
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
+
+@Serializable
+data class DataForm(
+    @Contextual val a: Date? = null
+)
 
 class DateTimeSpec : DomSpec {
 
@@ -55,6 +65,27 @@ class DateTimeSpec : DomSpec {
                 "<div class=\"form-group text-danger\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"input-group date is-invalid\"><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"\" type=\"text\" value=\"$datastr\"><div class=\"input-group-append\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div></div><div class=\"invalid-feedback\">Validation Error</div></div>",
                 element?.innerHTML,
                 "Should render correct date time input form control with validation error"
+            )
+        }
+    }
+
+    @Test
+    fun workInForm() {
+        run {
+            val form = Form.create<DataForm>()
+            val now = Date()
+            val data = DataForm(a = now)
+            form.setData(data)
+            val result = form.getData()
+            assertNull(result.a, "Form should return null without adding any control")
+            val dateTimeField = DateTime()
+            form.add(DataForm::a, dateTimeField)
+            form.setData(data)
+            val result2 = form.getData()
+            assertEquals(
+                now.toStringF("YYYY-MM-DD HH:mm"),
+                result2.a?.toStringF("YYYY-MM-DD HH:mm"),
+                "Form should return initial value"
             )
         }
     }

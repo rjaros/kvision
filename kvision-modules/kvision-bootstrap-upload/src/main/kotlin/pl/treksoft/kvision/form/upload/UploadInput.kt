@@ -54,12 +54,18 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     Widget(classes + "form-control"), FormInput {
 
     /**
+     * Temporary external value (used in tests)
+     */
+    protected var tmpValue: List<KFile>? = null
+
+    /**
      * File input value.
      */
     var value: List<KFile>?
         get() = getValue()
         set(value) {
             if (value == null) resetInput()
+            tmpValue = value
         }
 
     /**
@@ -195,8 +201,8 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     }
 
     private fun getValue(): List<KFile>? {
-        val v = getFiles()
-        return if (v.isNotEmpty()) v else null
+        val v = getFiles() ?: tmpValue
+        return if (v.isNullOrEmpty()) null else v
     }
 
     @Suppress("UnsafeCastFromDynamic")
@@ -293,17 +299,21 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
         return nativeFiles[kFile]
     }
 
-    private fun getFiles(): List<KFile> {
+    private fun getFiles(): List<KFile>? {
         nativeFiles.clear()
         val fileStack = getElementJQueryD()?.fileinput("getFileStack")
-        val list = mutableListOf<KFile>()
-        for (key in js("Object").keys(fileStack)) {
-            val nativeFile = fileStack[key].file as File
-            val kFile = KFile(nativeFile.name, nativeFile.size.toInt(), null)
-            nativeFiles[kFile] = nativeFile
-            list += kFile
+        return if (fileStack != null) {
+            val list = mutableListOf<KFile>()
+            for (key in js("Object").keys(fileStack)) {
+                val nativeFile = fileStack[key].file as File
+                val kFile = KFile(nativeFile.name, nativeFile.size.toInt(), null)
+                nativeFiles[kFile] = nativeFile
+                list += kFile
+            }
+            list
+        } else {
+            null
         }
-        return list
     }
 
     /**
