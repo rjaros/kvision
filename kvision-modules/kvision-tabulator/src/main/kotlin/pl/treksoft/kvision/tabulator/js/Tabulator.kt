@@ -291,6 +291,8 @@ open external class Tabulator {
         definedExternally
 
     open fun validate(): dynamic = definedExternally
+    open fun refreshFilters(): dynamic = definedExternally
+    open fun clearHistory(): dynamic = definedExternally
 
     interface Options : OptionsGeneral, OptionsMenu, OptionsHistory, OptionsLocale, OptionsDownload, OptionsColumns,
         OptionsRows, OptionsData, OptionsSorting, OptionsFiltering, OptionsRowGrouping, OptionsPagination,

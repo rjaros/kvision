@@ -385,6 +385,7 @@ data class ColumnDefinition<T : Any>(
     val headerHozAlign: Align? = null,
     val accessor: dynamic = null,
     val accessorParams: dynamic = null,
+    val maxWidth: Int? = null,
 )
 
 internal object EditorRoot {
@@ -562,6 +563,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (headerHozAlign != null) this.headerHozAlign = headerHozAlign.align
         if (accessor != null) this.accessor = accessor
         if (accessorParams != null) this.accessorParams = accessorParams
+        if (maxWidth != null) this.maxWidth = maxWidth
     } as Tabulator.ColumnDefinition
 }
 
@@ -765,6 +767,7 @@ data class TabulatorOptions<T : Any>(
     val headerSortElement: String? = null,
     val dataTreeFilter: Boolean? = null,
     val dataTreeSort: Boolean? = null,
+    val columnMaxWidth: Int? = null,
 )
 
 /**
@@ -996,5 +999,6 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (headerSortElement != null) this.headerSortElement = headerSortElement
         if (dataTreeFilter != null) this.dataTreeFilter = dataTreeFilter
         if (dataTreeSort != null) this.dataTreeSort = dataTreeSort
+        if (columnMaxWidth != null) this.columnMaxWidth = columnMaxWidth
     } as Tabulator.Options
 }
