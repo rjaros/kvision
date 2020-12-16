@@ -1,6 +1,6 @@
 {
-  "kvision": "3.17.2",
-  "kotlin": "1.4.20",
+  "kvision": "3.18.0",
+  "kotlin": "1.4.21",
   "serialization": "1.0.1",
   "coroutines": "1.4.2",
   "template-javalin": {
@@ -9,14 +9,14 @@
     "jooby": "2.9.4"
   },
   "template-ktor": {
-    "ktor": "1.4.1"
+    "ktor": "1.4.3"
   },
   "template-micronaut": {
-    "micronaut": "2.2.0"
+    "micronaut": "2.2.1"
   },
   "template-spring-boot": {
-    "spring-boot": "2.4.0",
-    "spring-data-r2dbc": "1.2.1",
+    "spring-boot": "2.4.1",
+    "spring-data-r2dbc": "1.2.2",
     "r2dbc-postgresql": "0.8.6.RELEASE",
     "r2dbc-h2": "0.8.4.RELEASE"
   },
