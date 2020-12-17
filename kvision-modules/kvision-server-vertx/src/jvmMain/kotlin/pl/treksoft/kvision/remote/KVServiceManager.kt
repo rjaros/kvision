@@ -65,8 +65,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
      */
     @Suppress("TooGenericExceptionCaught")
     override fun bind(method: HttpMethod, route: String?, function: suspend T.(params: List<String?>) -> Any?) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
         addRoute(method, "/kv/$routeDef") { ctx ->
             val jsonRpcRequest = if (method == HttpMethod.GET) {
