@@ -55,7 +55,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
     val webSocketRequests: MutableMap<String, (Injector, ServerWebSocket) -> Unit> = mutableMapOf()
 
-    val mapper = createDefaultObjectMapper()
     var counter: Int = 0
 
     /**
@@ -84,7 +83,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     val result = function.invoke(service, jsonRpcRequest.params)
                     JsonRpcResponse(
                         id = jsonRpcRequest.id,
-                        result = mapper.writeValueAsString(result)
+                        result = deSerializer.serializeNullableToString(result)
                     )
                 } catch (e: IllegalParameterCountException) {
                     JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
@@ -147,9 +146,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         coroutineScope {
                             launch {
                                 for (p in incoming) {
-                                    val jsonRpcRequest = getParameter<JsonRpcRequest>(p)
+                                    val jsonRpcRequest = deSerializer.deserialize<JsonRpcRequest>(p)
                                     if (jsonRpcRequest.params.size == 1) {
-                                        val par = getParameter<PAR1>(jsonRpcRequest.params[0])
+                                        val par = deSerializer.deserialize<PAR1>(jsonRpcRequest.params[0])
                                         requestChannel.send(par)
                                     }
                                 }
@@ -157,10 +156,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             }
                             launch {
                                 for (p in responseChannel) {
-                                    val text = mapper.writeValueAsString(
+                                    val text = deSerializer.serializeNonNullToString(
                                         JsonRpcResponse(
                                             id = 0,
-                                            result = mapper.writeValueAsString(p)
+                                            result = deSerializer.serializeNullableToString(p)
                                         )
                                     )
                                     outgoing.send(text)
@@ -188,10 +187,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         routeMapRegistry.addRoute(method, path, handler)
     }
-
-    override fun <T> getParameter(str: String?, type: Class<T>): T =
-        if (str == null || type == String::class) type.cast(str)
-        else mapper.readValue(str, type)
 }
 
 /**

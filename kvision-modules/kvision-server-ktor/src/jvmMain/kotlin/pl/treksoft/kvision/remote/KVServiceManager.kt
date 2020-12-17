@@ -56,7 +56,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     val webSocketRequests: MutableMap<String, suspend WebSocketServerSession.() -> Unit> =
         mutableMapOf()
 
-    val mapper = createDefaultObjectMapper()
     var counter: Int = 0
 
     /**
@@ -80,7 +79,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 call.respond(
                     JsonRpcResponse(
                         id = jsonRpcRequest.id,
-                        result = mapper.writeValueAsString(result)
+                        result = deSerializer.serializeNullableToString(result)
                     )
                 )
             } catch (e: IllegalParameterCountException) {
@@ -125,9 +124,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 launch {
                     for (p in incoming) {
                         (p as? Frame.Text)?.readText()?.let { text ->
-                            val jsonRpcRequest = getParameter<JsonRpcRequest>(text)
+                            val jsonRpcRequest = deSerializer.deserialize<JsonRpcRequest>(text)
                             if (jsonRpcRequest.params.size == 1) {
-                                val par = getParameter<PAR1>(jsonRpcRequest.params[0])
+                                val par = deSerializer.deserialize<PAR1>(jsonRpcRequest.params[0])
                                 requestChannel.send(par)
                             }
                         }
@@ -136,10 +135,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
                 launch {
                     for (p in responseChannel) {
-                        val text = mapper.writeValueAsString(
+                        val text = deSerializer.serializeNonNullToString(
                             JsonRpcResponse(
                                 id = 0,
-                                result = mapper.writeValueAsString(p)
+                                result = deSerializer.serializeNullableToString(p)
                             )
                         )
                         outgoing.send(Frame.Text(text))
@@ -168,10 +167,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ) {
         routeMapRegistry.addRoute(method, path, handler)
     }
-
-    override fun <T> getParameter(str: String?, type: Class<T>): T =
-        if (str == null || type == String::class) type.cast(str)
-        else mapper.readValue(str, type)
 }
 
 /**

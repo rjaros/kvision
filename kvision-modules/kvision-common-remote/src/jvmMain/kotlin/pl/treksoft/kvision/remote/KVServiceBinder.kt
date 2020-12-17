@@ -25,23 +25,12 @@ package pl.treksoft.kvision.remote
 /**
  * Binds HTTP calls to kotlin functions
  */
-abstract class KVServiceBinder<T> {
+abstract class KVServiceBinder<T>(protected val deSerializer: ObjectDeSerializer = jacksonObjectDeSerializer()) {
     /**
      * Bind the given HTTP call defined by [method] and an optional [route] (auto-generated if null) to a function that
      * receives the parameters of the call as String array.
      */
     abstract fun bind(method: HttpMethod, route: String? = null, function: suspend T.(params: List<String?>) -> Any?)
-
-    /**
-     * Deserialize the a parameter of type [type] from [str]
-     */
-    abstract fun <T> getParameter(str: String?, type: Class<T>): T
-
-    /**
-     * Deserialize the parameter of type [T] from [txt]
-     */
-    inline fun <reified T> getParameter(txt: String?): T = getParameter(txt, T::class.java)
-
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
@@ -69,7 +58,7 @@ abstract class KVServiceBinder<T> {
         expectMethodSupportsParameters(method)
         bind(method, route) {
             requireParameterCountEqualTo(it, 1)
-            function.invoke(this, getParameter(it[0]))
+            function.invoke(this, deserialize(it[0]))
         }
     }
 
@@ -87,7 +76,7 @@ abstract class KVServiceBinder<T> {
         expectMethodSupportsParameters(method)
         bind(method, route) {
             requireParameterCountEqualTo(it, 2)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]))
+            function.invoke(this, deserialize(it[0]), deserialize(it[1]))
         }
     }
 
@@ -105,7 +94,7 @@ abstract class KVServiceBinder<T> {
         expectMethodSupportsParameters(method)
         bind(method, route) {
             requireParameterCountEqualTo(it, 3)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]))
+            function.invoke(this, deserialize(it[0]), deserialize(it[1]), deserialize(it[2]))
         }
     }
 
@@ -123,13 +112,7 @@ abstract class KVServiceBinder<T> {
         expectMethodSupportsParameters(method)
         bind(method, route) {
             requireParameterCountEqualTo(it, 4)
-            function.invoke(
-                this,
-                getParameter(it[0]),
-                getParameter(it[1]),
-                getParameter(it[2]),
-                getParameter(it[3])
-            )
+            function.invoke(this, deserialize(it[0]), deserialize(it[1]), deserialize(it[2]), deserialize(it[3]))
         }
     }
 
@@ -149,11 +132,11 @@ abstract class KVServiceBinder<T> {
             requireParameterCountEqualTo(it, 5)
             function.invoke(
                 this,
-                getParameter(it[0]),
-                getParameter(it[1]),
-                getParameter(it[2]),
-                getParameter(it[3]),
-                getParameter(it[4]),
+                deserialize(it[0]),
+                deserialize(it[1]),
+                deserialize(it[2]),
+                deserialize(it[3]),
+                deserialize(it[4]),
             )
         }
     }
@@ -174,12 +157,12 @@ abstract class KVServiceBinder<T> {
             requireParameterCountEqualTo(it, 6)
             function.invoke(
                 this,
-                getParameter(it[0]),
-                getParameter(it[1]),
-                getParameter(it[2]),
-                getParameter(it[3]),
-                getParameter(it[4]),
-                getParameter(it[5]),
+                deserialize(it[0]),
+                deserialize(it[1]),
+                deserialize(it[2]),
+                deserialize(it[3]),
+                deserialize(it[4]),
+                deserialize(it[5]),
             )
         }
     }
@@ -194,6 +177,18 @@ abstract class KVServiceBinder<T> {
     ) {
         bind(function, HttpMethod.POST, route)
     }
+
+    /**
+     * Deserialize the a parameter of type [type] from [str]
+     */
+    @PublishedApi
+    internal fun <T> deserialize(str: String?, type: Class<T>): T = deSerializer.deserialize(str, type)
+
+    /**
+     * Deserialize the parameter of type [T] from [txt]
+     */
+    @PublishedApi
+    internal inline fun <reified T> deserialize(txt: String?): T = deserialize(txt, T::class.java)
 }
 
 

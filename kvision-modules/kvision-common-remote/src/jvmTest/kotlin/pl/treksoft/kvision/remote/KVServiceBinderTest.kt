@@ -122,13 +122,16 @@ class KVServiceBinderTest {
 
 private typealias Handler = suspend Any.(params: List<String?>) -> Any?
 
-private class KVServiceBinderImpl : KVServiceBinder<Any>() {
+private class KVServiceBinderImpl : KVServiceBinder<Any>(TestObjectDeSerializer) {
     val log = ArrayList<BindCallLogEntry>()
+
     override fun bind(method: HttpMethod, route: String?, function: Handler) {
         log += BindCallLogEntry(method, route, function)
     }
+}
 
-    override fun <T> getParameter(str: String?, type: Class<T>): T =
+private object TestObjectDeSerializer : ObjectDeSerializer {
+    override fun <T> deserialize(str: String?, type: Class<T>): T =
         type.cast(
             if (str == null) null
             else when (type) {
@@ -141,6 +144,9 @@ private class KVServiceBinderImpl : KVServiceBinder<Any>() {
                 else -> throw UnsupportedOperationException("unknown type: <$type>")
             }
         )
+
+    override fun serializeNonNullToString(obj: Any): String = throw UnsupportedOperationException()
+
 }
 
 private class BindCallLogEntry(val method: HttpMethod, val route: String?, val function: Handler)
