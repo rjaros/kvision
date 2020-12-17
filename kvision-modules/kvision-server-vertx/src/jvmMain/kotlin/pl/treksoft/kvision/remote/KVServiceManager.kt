@@ -21,7 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.inject.Injector
 import io.vertx.core.Vertx
 import io.vertx.core.http.ServerWebSocket
@@ -46,7 +45,8 @@ typealias RequestHandler = (RoutingContext) -> Unit
  * Multiplatform service manager for Vert.x.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T> {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
+    KVServiceBinder<T>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -60,153 +60,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 
     /**
      * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified RET> bind(
-        noinline function: suspend T.() -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 0)
-            function.invoke(this)
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR, reified RET> bind(
-        noinline function: suspend T.(PAR) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 1)
-            function.invoke(this, getParameter(it[0]))
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 2)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]))
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 3)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]))
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 4)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]), getParameter(it[3]))
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
-            reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 5)
-            function.invoke(
-                this,
-                getParameter(it[0]),
-                getParameter(it[1]),
-                getParameter(it[2]),
-                getParameter(it[3]),
-                getParameter(it[4]),
-            )
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
-            reified PAR4, reified PAR5, reified PAR6, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 6)
-            function.invoke(
-                this,
-                getParameter(it[0]),
-                getParameter(it[1]),
-                getParameter(it[2]),
-                getParameter(it[3]),
-                getParameter(it[4]),
-                getParameter(it[5]),
-            )
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
      * @param method a HTTP method
      * @param route a route
      * @param function a function of the receiver
      */
     @Suppress("TooGenericExceptionCaught")
-    protected fun bind(method: HttpMethod, route: String?, function: suspend T.(params: List<String?>) -> Any?) {
+    override fun bind(method: HttpMethod, route: String?, function: suspend T.(params: List<String?>) -> Any?) {
         if (method == HttpMethod.GET)
             throw UnsupportedOperationException("GET method is only supported for methods without parameters")
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
@@ -320,17 +179,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     }
 
     /**
-     * Binds a given function of the receiver as a tabulator component source
-     * @param function a function of the receiver
-     */
-    protected actual inline fun <reified RET> bindTabulatorRemote(
-        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
-        route: String?
-    ) {
-        bind(function, HttpMethod.POST, route)
-    }
-
-    /**
      * @suppress Internal method
      */
     fun addRoute(
@@ -341,19 +189,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         routeMapRegistry.addRoute(method, path, handler)
     }
 
-    /**
-     * @suppress Internal method
-     */
-    protected inline fun <reified T> getParameter(str: String?): T {
-        return str?.let {
-            if (T::class == String::class) {
-                str as T
-            } else {
-                mapper.readValue(str)
-            }
-        } ?: null as T
-    }
-
+    override fun <T> getParameter(str: String?, type: Class<T>): T =
+        if (str == null || type == String::class) type.cast(str)
+        else mapper.readValue(str, type)
 }
 
 /**

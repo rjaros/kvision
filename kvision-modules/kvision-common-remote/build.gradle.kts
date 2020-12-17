@@ -11,6 +11,8 @@ val serializationVersion: String by project
 val coroutinesVersion: String by project
 val jacksonModuleKotlinVersion: String by project
 val jqueryKotlinVersion: String by project
+val testNgVersion: String by project
+val hamcrestVersion: String by project
 
 kotlin {
     kotlinJsTargets()
@@ -31,6 +33,12 @@ kotlin {
             dependencies {
                 api(project(":kvision-modules:kvision-common-types"))
                 implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation("org.testng:testng:$testNgVersion")
+                implementation("org.hamcrest:hamcrest:$hamcrestVersion")
             }
         }
     }
