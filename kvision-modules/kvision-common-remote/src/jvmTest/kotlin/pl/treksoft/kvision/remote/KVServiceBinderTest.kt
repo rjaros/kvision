@@ -28,7 +28,8 @@ val PARAM_4_FUN: F_4 = { a, b, c, d -> listOf(this, a, b, c, d) }
 val PARAM_5_FUN: F_5 = { a, b, c, d, e -> listOf(this, a, b, c, d, e) }
 val PARAM_6_FUN: F_6 = { a, b, c, d, e, f -> listOf(this, a, b, c, d, e, f) }
 
-private typealias BindingInitializer = KVServiceBinder<Any>.(method: HttpMethod, route: String?) -> Unit
+private typealias RouteHandler = Any.(params: List<String?>) -> List<Any?>
+private typealias BindingInitializer = KVServiceBinder<Any, RouteHandler>.(method: HttpMethod, route: String?) -> Unit
 
 // Array of some helper functions, for binding each of the seven sample request handler implementations, so we can
 // easily iterate them in the tests:
@@ -76,15 +77,15 @@ class KVServiceBinderTest {
     ) {
         // setup
         val route = "someRoute"
-        
+
         // execution
         binder.invoke(serviceBinder, method, route)
-        val logEntry = serviceBinder.log.single()
-        val actualArgs = runBlocking { logEntry.function.invoke(HANDLER_THIS, args) as List<Any?> }
+        val actualEntry = serviceBinder.routeMapRegistry.asSequence().single()
+        val actualArgs = actualEntry.handler.invoke(HANDLER_THIS, args)
 
         // evaluation
-        assertThat(logEntry.method, equalTo(method))
-        assertThat(logEntry.route, equalTo(route))
+        assertThat(actualEntry.method, equalTo(method))
+        assertThat(actualEntry.path, equalTo("/kv/$route"))
         assertThat(actualArgs, contains(*SAMPLE_PARSED_ARGS.subList(0, args.size + 1).toTypedArray()))
     }
 
@@ -118,16 +119,23 @@ class KVServiceBinderTest {
     @DataProvider
     fun provide_bindingInitializersWithArgs(): Array<BindingInitializer> =
         BINDING_INITIALIZERS.copyOfRange(1, BINDING_INITIALIZERS.size)
+
+    @Test
+    fun bind_generatesRouteName_ifNoneGiven() {
+        // execution
+        serviceBinder.bind(PARAM_0_FUN, HttpMethod.GET)
+
+        // evaluation
+        assertThat(serviceBinder.routeMapRegistry.asSequence().single().path, equalTo("/kv/routeKVServiceBinderImpl0"))
+    }
 }
 
-private typealias Handler = suspend Any.(params: List<String?>) -> Any?
-
-private class KVServiceBinderImpl : KVServiceBinder<Any>(TestObjectDeSerializer) {
-    val log = ArrayList<BindCallLogEntry>()
-
-    override fun bind(method: HttpMethod, route: String?, function: Handler) {
-        log += BindCallLogEntry(method, route, function)
-    }
+private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler>(TestObjectDeSerializer) {
+    override fun createRequestHandler(
+        method: HttpMethod,
+        function: suspend Any.(params: List<String?>) -> Any?
+    ): RouteHandler =
+        { runBlocking { function.invoke(HANDLER_THIS, it) as List<Any?> } }
 }
 
 private object TestObjectDeSerializer : ObjectDeSerializer {
@@ -148,5 +156,3 @@ private object TestObjectDeSerializer : ObjectDeSerializer {
     override fun serializeNonNullToString(obj: Any): String = throw UnsupportedOperationException()
 
 }
-
-private class BindCallLogEntry(val method: HttpMethod, val route: String?, val function: Handler)

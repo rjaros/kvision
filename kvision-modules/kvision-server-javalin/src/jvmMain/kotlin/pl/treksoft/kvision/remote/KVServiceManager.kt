@@ -47,7 +47,7 @@ typealias RequestHandler = (Context) -> Unit
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T>() {
+    KVServiceBinder<T, RequestHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -55,10 +55,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         const val KV_WS_OUTGOING_KEY = "pl.treksoft.kvision.ws.outgoing.key"
     }
 
-    val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
     val webSocketRequests: MutableMap<String, (WsHandler) -> Unit> = mutableMapOf()
-
-    var counter: Int = 0
 
     /**
      * @suppress internal function
@@ -86,16 +83,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param method a HTTP method
-     * @param route a route
-     * @param function a function of the receiver
-     */
     @Suppress("TooGenericExceptionCaught")
-    override fun bind(method: HttpMethod, route: String?, function: suspend T.(params: List<String?>) -> Any?) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { ctx ->
+    override fun createRequestHandler(
+        method: HttpMethod,
+        function: suspend T.(params: List<String?>) -> Any?
+    ): RequestHandler =
+        { ctx ->
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.queryParam<Int>("id").get(), "", listOf())
             } else {
@@ -125,7 +118,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
             ctx.json(future)
         }
-    }
 
     /**
      * Binds a given web socket connection with a function of the receiver.
@@ -137,7 +129,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: generateRouteName()
         webSocketRequests["/kvws/$routeDef"] = { ws ->
             ws.onConnect { ctx ->
                 val incoming = Channel<String>()
@@ -205,17 +197,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
         }
-    }
-
-    /**
-     * @suppress Internal method
-     */
-    fun addRoute(
-        method: HttpMethod,
-        path: String,
-        handler: RequestHandler
-    ) {
-        routeMapRegistry.addRoute(method, path, handler)
     }
 }
 

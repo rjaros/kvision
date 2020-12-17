@@ -46,27 +46,20 @@ typealias RequestHandler = (RoutingContext) -> Unit
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T>() {
+    KVServiceBinder<T, RequestHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
     val webSocketRequests: MutableMap<String, (Injector, ServerWebSocket) -> Unit> = mutableMapOf()
 
-    var counter: Int = 0
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param method a HTTP method
-     * @param route a route
-     * @param function a function of the receiver
-     */
     @Suppress("TooGenericExceptionCaught")
-    override fun bind(method: HttpMethod, route: String?, function: suspend T.(params: List<String?>) -> Any?) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") { ctx ->
+    override fun createRequestHandler(
+        method: HttpMethod,
+        function: suspend T.(params: List<String?>) -> Any?
+    ): RequestHandler =
+        { ctx ->
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.request().getParam("id").toInt(), "", listOf())
             } else {
@@ -95,7 +88,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 ctx.response().putHeader("Content-Type", "application/json").end(Json.encode(response))
             }
         }
-    }
 
     /**
      * Binds a given web socket connection with a function of the receiver.
@@ -107,7 +99,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: generateRouteName()
         webSocketRequests["/kvws/$routeDef"] = { injector, ws ->
             val incoming = Channel<String>()
             val outgoing = Channel<String>()
@@ -173,17 +165,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
         }
-    }
-
-    /**
-     * @suppress Internal method
-     */
-    fun addRoute(
-        method: HttpMethod,
-        path: String,
-        handler: RequestHandler
-    ) {
-        routeMapRegistry.addRoute(method, path, handler)
     }
 }
 

@@ -24,13 +24,31 @@ package pl.treksoft.kvision.remote
 
 /**
  * Binds HTTP calls to kotlin functions
+ *
+ * @param T the receiver of bound functions
+ * @param RH the platform specific request handler
  */
-abstract class KVServiceBinder<T>(protected val deSerializer: ObjectDeSerializer = jacksonObjectDeSerializer()) {
+abstract class KVServiceBinder<T, RH>(
+    protected val deSerializer: ObjectDeSerializer = jacksonObjectDeSerializer(),
+    routeNameGenerator: NameGenerator? = null
+) {
+    protected val generateRouteName: NameGenerator =
+        routeNameGenerator ?: createNameGenerator("route${javaClass.simpleName}")
+    val routeMapRegistry = createRouteMapRegistry<RH>()
+
+    protected abstract fun createRequestHandler(
+        method: HttpMethod,
+        function: suspend T.(params: List<String?>) -> Any?
+    ): RH
+
     /**
      * Bind the given HTTP call defined by [method] and an optional [route] (auto-generated if null) to a function that
      * receives the parameters of the call as String array.
      */
-    abstract fun bind(method: HttpMethod, route: String? = null, function: suspend T.(params: List<String?>) -> Any?)
+    @PublishedApi
+    internal fun bind(method: HttpMethod, route: String? = null, function: suspend T.(params: List<String?>) -> Any?) {
+        routeMapRegistry.addRoute(method, "/kv/${route ?: generateRouteName()}", createRequestHandler(method, function))
+    }
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
