@@ -21,7 +21,6 @@
  */
 package pl.treksoft.kvision.remote
 
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.inject.Injector
 import io.jooby.Context
 import io.jooby.CoroutineRouter
@@ -47,18 +46,15 @@ typealias RequestHandler = suspend HandlerContext.() -> Any
  * Multiplatform service manager for Jooby.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T> {
+actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
+    KVServiceBinder<T, RequestHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    val routeMapRegistry = createRouteMapRegistry<RequestHandler>()
     val webSocketRequests: MutableMap<String, (ctx: Context, configurer: WebSocketConfigurer) -> Unit> =
         mutableMapOf()
-
-    val mapper = createDefaultObjectMapper()
-    var counter: Int = 0
 
     /**
      * @suppress internal function
@@ -73,157 +69,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified RET> bind(
-        noinline function: suspend T.() -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 0)
-            function.invoke(this)
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR, reified RET> bind(
-        noinline function: suspend T.(PAR) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 1)
-            function.invoke(this, getParameter(it[0]))
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 2)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]))
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 3)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]))
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 4)
-            function.invoke(this, getParameter(it[0]), getParameter(it[1]), getParameter(it[2]), getParameter(it[3]))
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
-            reified PAR4, reified PAR5, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 5)
-            function.invoke(
-                this,
-                getParameter(it[0]),
-                getParameter(it[1]),
-                getParameter(it[2]),
-                getParameter(it[3]),
-                getParameter(it[4]),
-            )
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param function a function of the receiver
-     * @param method a HTTP method
-     * @param route a route
-     */
-    protected actual inline fun <reified PAR1, reified PAR2, reified PAR3,
-            reified PAR4, reified PAR5, reified PAR6, reified RET> bind(
-        noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
-        method: HttpMethod, route: String?
-    ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bind(method, route) {
-            requireParameterCountEqualTo(it, 6)
-            function.invoke(
-                this,
-                getParameter(it[0]),
-                getParameter(it[1]),
-                getParameter(it[2]),
-                getParameter(it[3]),
-                getParameter(it[4]),
-                getParameter(it[5]),
-            )
-        }
-    }
-
-    /**
-     * Binds a given route with a function of the receiver.
-     * @param method a HTTP method
-     * @param route a route
-     * @param function a function of the receiver
-     */
     @Suppress("TooGenericExceptionCaught")
-    protected fun bind(method: HttpMethod, route: String?, function: suspend T.(params: List<String?>) -> Any?) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        addRoute(method, "/kv/$routeDef") {
+    override fun createRequestHandler(
+        method: HttpMethod,
+        function: suspend T.(params: List<String?>) -> Any?
+    ): RequestHandler =
+        {
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.query("id").intValue(), "", listOf())
             } else {
@@ -236,7 +87,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 val result = function.invoke(service, jsonRpcRequest.params)
                 JsonRpcResponse(
                     id = jsonRpcRequest.id,
-                    result = mapper.writeValueAsString(result)
+                    result = deSerializer.serializeNullableToString(result)
                 )
             } catch (e: IllegalParameterCountException) {
                 JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
@@ -247,7 +98,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     exceptionType = e.javaClass.canonicalName
                 )
             }
-        }
     }
 
     /**
@@ -260,7 +110,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
+        val routeDef = route ?: generateRouteName()
         webSocketRequests["/kvws/$routeDef"] = { ctx, configurer ->
             val injector = ctx.require(Injector::class.java).createChildInjector(ContextModule(ctx))
             val service = injector.getInstance(serviceClass.java)
@@ -282,9 +132,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             coroutineScope {
                                 launch {
                                     for (p in incoming) {
-                                        val jsonRpcRequest = getParameter<JsonRpcRequest>(p)
+                                        val jsonRpcRequest = deSerializer.deserialize<JsonRpcRequest>(p)
                                         if (jsonRpcRequest.params.size == 1) {
-                                            val par = getParameter<PAR1>(jsonRpcRequest.params[0])
+                                            val par = deSerializer.deserialize<PAR1>(jsonRpcRequest.params[0])
                                             requestChannel.send(par)
                                         }
                                     }
@@ -292,10 +142,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                                 }
                                 launch(Dispatchers.IO) {
                                     for (p in responseChannel) {
-                                        val text = mapper.writeValueAsString(
+                                        val text = deSerializer.serializeNonNullToString(
                                             JsonRpcResponse(
                                                 id = 0,
-                                                result = mapper.writeValueAsString(p)
+                                                result = deSerializer.serializeNullableToString(p)
                                             )
                                         )
                                         outgoing.send(text)
@@ -324,42 +174,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
         }
     }
-
-    /**
-     * Binds a given function of the receiver as a tabulator component source
-     * @param function a function of the receiver
-     */
-    protected actual inline fun <reified RET> bindTabulatorRemote(
-        noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
-        route: String?
-    ) {
-        bind(function, HttpMethod.POST, route)
-    }
-
-    /**
-     * @suppress Internal method
-     */
-    fun addRoute(
-        method: HttpMethod,
-        path: String,
-        handler: RequestHandler
-    ) {
-        routeMapRegistry.addRoute(method, path, handler)
-    }
-
-    /**
-     * @suppress Internal method
-     */
-    protected inline fun <reified T> getParameter(str: String?): T {
-        return str?.let {
-            if (T::class == String::class) {
-                str as T
-            } else {
-                mapper.readValue(str)
-            }
-        } ?: null as T
-    }
-
 }
 
 /**
