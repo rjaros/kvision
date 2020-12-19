@@ -41,21 +41,20 @@ import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 
 typealias RequestHandler = (Context) -> Unit
+typealias WebsocketHandler = (WsHandler) -> Unit
 
 /**
  * Multiplatform service manager for Javalin.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T, RequestHandler>() {
+    KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
         const val KV_WS_INCOMING_KEY = "pl.treksoft.kvision.ws.incoming.key"
         const val KV_WS_OUTGOING_KEY = "pl.treksoft.kvision.ws.outgoing.key"
     }
-
-    val webSocketRequests: MutableMap<String, (WsHandler) -> Unit> = mutableMapOf()
 
     /**
      * @suppress internal function
@@ -119,18 +118,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             ctx.json(future)
         }
 
-    /**
-     * Binds a given web socket connection with a function of the receiver.
-     * @param function a function of the receiver
-     * @param route a route
-     */
-    @OptIn(ExperimentalCoroutinesApi::class)
-    protected actual inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
-        noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
-        route: String?
-    ) {
-        val routeDef = route ?: generateRouteName()
-        webSocketRequests["/kvws/$routeDef"] = { ws ->
+    override fun <REQ, RES> createWebsocketHandler(
+        requestMessageType: Class<REQ>,
+        responseMessageType: Class<RES>,
+        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit
+    ): WebsocketHandler =
+        { ws ->
             ws.onConnect { ctx ->
                 val incoming = Channel<String>()
                 val outgoing = Channel<String>()
@@ -148,14 +141,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                             ctx.session.close()
                         }
                         launch {
-                            val requestChannel = Channel<PAR1>()
-                            val responseChannel = Channel<PAR2>()
+                            val requestChannel = Channel<REQ>()
+                            val responseChannel = Channel<RES>()
                             coroutineScope {
                                 launch {
                                     for (p in incoming) {
                                         val jsonRpcRequest = deSerializer.deserialize<JsonRpcRequest>(p)
                                         if (jsonRpcRequest.params.size == 1) {
-                                            val par = deSerializer.deserialize<PAR1>(jsonRpcRequest.params[0])
+                                            val par = deSerializer.deserialize(
+                                                jsonRpcRequest.params[0], requestMessageType
+                                            )
                                             requestChannel.send(par)
                                         }
                                     }
@@ -197,7 +192,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
         }
-    }
 }
 
 /**
