@@ -27,9 +27,11 @@ package pl.treksoft.kvision.remote
  *
  * @param T the receiver of bound functions
  * @param RH the platform specific request handler
+ *
  */
 abstract class KVServiceBinder<T, RH>(
-    protected val deSerializer: ObjectDeSerializer = jacksonObjectDeSerializer(),
+//  deSerializer has to public instead of protected because of https://youtrack.jetbrains.com/issue/KT-22625
+    val deSerializer: ObjectDeSerializer = jacksonObjectDeSerializer(),
     routeNameGenerator: NameGenerator? = null
 ) {
     protected val generateRouteName: NameGenerator =
@@ -49,6 +51,7 @@ abstract class KVServiceBinder<T, RH>(
     internal fun bind(method: HttpMethod, route: String? = null, function: suspend T.(params: List<String?>) -> Any?) {
         routeMapRegistry.addRoute(method, "/kv/${route ?: generateRouteName()}", createRequestHandler(method, function))
     }
+
     /**
      * Binds a given route with a function of the receiver.
      * @param function a function of the receiver
