@@ -44,6 +44,10 @@ kotlin {
     }
 }
 
+tasks.withType<Test> {
+    useTestNG()
+}
+
 publishing {
     publications.withType<MavenPublication> {
         if (name == "kotlinMultiplatform") artifactId = "kvision-common-remote"
