@@ -64,7 +64,7 @@ class KVWebSocketHandler(
         val uri = session.handshakeInfo.uri.toString()
         val route = uri.substring(uri.lastIndexOf('/') + 1)
         return services.mapNotNull {
-            it.webSocketsRequests[route]
+            it.webSocketRequests["/kvws/$route"]
         }.first()
     }
 
