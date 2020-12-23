@@ -22,14 +22,18 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
+
 /**
  * Binds HTTP calls to kotlin functions
  *
  * @param T the receiver of bound functions
  * @param RH the platform specific request handler
+ * @param WH the platform specific websocket handler
  *
  */
-abstract class KVServiceBinder<T, RH>(
+abstract class KVServiceBinder<T, RH, WH>(
 //  deSerializer has to public instead of protected because of https://youtrack.jetbrains.com/issue/KT-22625
     val deSerializer: ObjectDeSerializer = jacksonObjectDeSerializer(),
     routeNameGenerator: NameGenerator? = null
@@ -37,11 +41,18 @@ abstract class KVServiceBinder<T, RH>(
     protected val generateRouteName: NameGenerator =
         routeNameGenerator ?: createNameGenerator("route${javaClass.simpleName}")
     val routeMapRegistry = createRouteMapRegistry<RH>()
+    val webSocketRequests: MutableMap<String, WH> = HashMap()
 
     protected abstract fun createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> Any?
     ): RH
+
+    protected abstract fun <REQ, RES> createWebsocketHandler(
+        requestMessageType: Class<REQ>,
+        responseMessageType: Class<RES>,
+        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit
+    ): WH
 
     /**
      * Bind the given HTTP call defined by [method] and an optional [route] (auto-generated if null) to a function that
@@ -198,6 +209,35 @@ abstract class KVServiceBinder<T, RH>(
     ) {
         bind(function, HttpMethod.POST, route)
     }
+
+    /**
+     * Binds a given web socket connection with a function of the receiver.
+     * @param requestMessageType the type of each message received via websocket
+     * @param responseMessageType the type of each message to be sent via websocket
+     * @param function a function of the receiver
+     * @param route a route
+     */
+    fun <REQ, RES> bindWebsocket(
+        requestMessageType: Class<REQ>,
+        responseMessageType: Class<RES>,
+        route: String? = null,
+        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
+    ) {
+        webSocketRequests["/kvws/${route ?: generateRouteName()}"] =
+            createWebsocketHandler(requestMessageType, responseMessageType, function)
+    }
+
+    /**
+     * Binds a given web socket connection with a function of the receiver.
+     * @param PAR1 the type of each message received via websocket
+     * @param PAR2 the type of each message to be sent via websocket
+     * @param function a function of the receiver
+     * @param route a route
+     */
+    inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
+        noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
+        route: String? = null
+    ) = bindWebsocket(PAR1::class.java, PAR2::class.java, route, function)
 
     /**
      * Deserialize the a parameter of type [type] from [str]

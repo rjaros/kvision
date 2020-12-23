@@ -22,13 +22,22 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.produceIn
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.*
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.DataProvider
 import org.testng.annotations.Test
-import kotlin.collections.ArrayList
 
 
 // The bind-method can bind to functions with args of various types up to 6 parameters.
@@ -51,7 +60,8 @@ val PARAM_5_FUN: F_5 = { a, b, c, d, e -> listOf(this, a, b, c, d, e) }
 val PARAM_6_FUN: F_6 = { a, b, c, d, e, f -> listOf(this, a, b, c, d, e, f) }
 
 private typealias RouteHandler = Any.(params: List<String?>) -> List<Any?>
-private typealias BindingInitializer = KVServiceBinder<Any, RouteHandler>.(method: HttpMethod, route: String?) -> Unit
+private typealias WebsocketHandler = Any.(ReceiveChannel<Any?>, SendChannel<Any?>) -> Any
+private typealias BindingInitializer = KVServiceBinder<Any, RouteHandler, *>.(method: HttpMethod, route: String?) -> Unit
 
 // Array of some helper functions, for binding each of the seven sample request handler implementations, so we can
 // easily iterate them in the tests:
@@ -150,14 +160,75 @@ class KVServiceBinderTest {
         // evaluation
         assertThat(serviceBinder.routeMapRegistry.asSequence().single().path, equalTo("/kv/routeKVServiceBinderImpl0"))
     }
+
+    @Test
+    fun bind_delegatesToHandlingFunction_forWebsockets() {
+        // setup
+        val handler: suspend Any.(ReceiveChannel<Any>, SendChannel<Pair<Any, Any>>) -> Unit =
+            { requestChannel, responseChannel ->
+                val service = this
+                GlobalScope.launch {
+                    responseChannel.send(service to requestChannel.receive())
+                }
+            }
+        val receiveChannel = Channel<Any>()
+        val responseChannel = Channel<Any?>()
+        val clientServerMessage = "a message from client to server"
+
+        // execution
+        serviceBinder.bind(handler)
+        val entry = serviceBinder.webSocketRequests.entries.single()
+        entry.value(HANDLER_THIS, receiveChannel, responseChannel)
+        val response = runBlocking {
+            receiveChannel.send(clientServerMessage)
+            responseChannel.receive() as Pair<*, *>
+        }
+
+        // evaluation
+        assertThat(response.first, sameInstance(HANDLER_THIS))
+        assertThat(response.second, sameInstance(clientServerMessage))
+    }
+
+    @Test(dataProvider = "provide_route_expectedUrl_forWebsockets")
+    fun bind_registersCorrectUrl_forWebsockets(route: String?, expectedUrl: String) {
+        // execution
+        serviceBinder.bind({ _: ReceiveChannel<Any>, _: SendChannel<Any> -> }, route)
+
+        // evaluation
+        assertThat(serviceBinder.webSocketRequests.keys.single(), equalTo(expectedUrl))
+    }
+
+    @DataProvider
+    fun provide_route_expectedUrl_forWebsockets(): Array<Array<Any?>> = arrayOf(
+        arrayOf("someRoute", "/kvws/someRoute"),
+        arrayOf(null, "/kvws/routeKVServiceBinderImpl0")
+    )
 }
 
-private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler>(TestObjectDeSerializer) {
+private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, WebsocketHandler>(TestObjectDeSerializer) {
     override fun createRequestHandler(
         method: HttpMethod,
         function: suspend Any.(params: List<String?>) -> Any?
     ): RouteHandler =
         { runBlocking { function.invoke(HANDLER_THIS, it) as List<Any?> } }
+
+    @InternalCoroutinesApi
+    @FlowPreview
+    override fun <REQ, RES> createWebsocketHandler(
+        requestMessageType: Class<REQ>,
+        responseMessageType: Class<RES>,
+        function: suspend Any.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit
+    ): WebsocketHandler {
+        return { receiveChannel, sendChannel ->
+            runBlocking {
+                function.invoke(
+                    HANDLER_THIS,
+                    receiveChannel.consumeAsFlow().map { requestMessageType.cast(it) }.produceIn(GlobalScope),
+                    sendChannel
+                )
+            }
+        }
+    }
 }
 
 private object TestObjectDeSerializer : ObjectDeSerializer {

@@ -37,21 +37,20 @@ import kotlin.reflect.KClass
 
 typealias RequestHandler =
         suspend (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> HttpResponse<String>
+typealias WebsocketHandler = suspend (
+    WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
+) -> Unit
 
 /**
  * Multiplatform service manager for Micronaut.
  */
 @Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T, RequestHandler>() {
+    KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
-
-    val webSocketsRequests: MutableMap<String, suspend (
-        WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
-    ) -> Unit> = mutableMapOf()
 
     override fun createRequestHandler(
         method: HttpMethod,
@@ -92,29 +91,24 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             )
         }
 
-    /**
-     * Binds a given web socket connetion with a function of the receiver.
-     * @param function a function of the receiver
-     * @param route a route
-     */
     @OptIn(ExperimentalCoroutinesApi::class)
-    protected actual inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
-        noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
-        route: String?
-    ) {
-        val routeDef = route ?: generateRouteName()
-        webSocketsRequests[routeDef] = { webSocketSession, tlWsSession, ctx, incoming, outgoing ->
+    override fun <REQ, RES> createWebsocketHandler(
+        requestMessageType: Class<REQ>,
+        responseMessageType: Class<RES>,
+        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit
+    ): WebsocketHandler =
+        { webSocketSession, tlWsSession, ctx, incoming, outgoing ->
             tlWsSession.set(webSocketSession)
             val service = ctx.getBean(serviceClass.java)
             tlWsSession.remove()
-            val requestChannel = Channel<PAR1>()
-            val responseChannel = Channel<PAR2>()
+            val requestChannel = Channel<REQ>()
+            val responseChannel = Channel<RES>()
             coroutineScope {
                 launch {
                     for (p in incoming) {
                         val jsonRpcRequest = deSerializer.deserialize<JsonRpcRequest>(p)
                         if (jsonRpcRequest.params.size == 1) {
-                            val par = deSerializer.deserialize<PAR1>(jsonRpcRequest.params[0])
+                            val par = deSerializer.deserialize(jsonRpcRequest.params[0], requestMessageType)
                             requestChannel.send(par)
                         }
                     }
@@ -138,5 +132,4 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
         }
-    }
 }
