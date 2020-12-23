@@ -31,7 +31,7 @@ import io.ktor.application.ApplicationCallPipeline
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
-import io.ktor.http.cio.websocket.Frame
+import io.ktor.http.cio.websocket.*
 import io.ktor.http.content.defaultResource
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
@@ -110,6 +110,10 @@ class DummyWebSocketServerSession : WebSocketServerSession {
     override val call: ApplicationCall
         get() = throw UnsupportedOperationException()
     override val coroutineContext: CoroutineContext
+        get() = throw UnsupportedOperationException()
+
+    @ExperimentalWebSocketExtensionApi
+    override val extensions: List<WebSocketExtension<*>>
         get() = throw UnsupportedOperationException()
     override val incoming: ReceiveChannel<Frame>
         get() = throw UnsupportedOperationException()
