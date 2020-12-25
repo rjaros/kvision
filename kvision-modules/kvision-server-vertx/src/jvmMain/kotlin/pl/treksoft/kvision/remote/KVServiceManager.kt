@@ -125,36 +125,14 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                         if (!ws.isClosed) ws.close()
                     }
                     launch {
-                        val requestChannel = Channel<REQ>()
-                        val responseChannel = Channel<RES>()
-                        coroutineScope {
-                            launch {
-                                for (p in incoming) {
-                                    val jsonRpcRequest = deSerializer.deserialize<JsonRpcRequest>(p)
-                                    if (jsonRpcRequest.params.size == 1) {
-                                        val par = deSerializer.deserialize(jsonRpcRequest.params[0], requestMessageType)
-                                        requestChannel.send(par)
-                                    }
-                                }
-                                requestChannel.close()
-                            }
-                            launch {
-                                for (p in responseChannel) {
-                                    val text = deSerializer.serializeNonNullToString(
-                                        JsonRpcResponse(
-                                            id = 0,
-                                            result = deSerializer.serializeNullableToString(p)
-                                        )
-                                    )
-                                    outgoing.send(text)
-                                }
-                            }
-                            launch {
-                                function.invoke(service, requestChannel, responseChannel)
-                                if (!responseChannel.isClosedForReceive) responseChannel.close()
-                            }
-                        }
-                        if (!outgoing.isClosedForReceive) outgoing.close()
+                        handleWebsocketConnection(
+                            deSerializer = deSerializer,
+                            rawIn = incoming,
+                            rawOut = outgoing,
+                            parsedInType = requestMessageType,
+                            service = service,
+                            function = function
+                        )
                     }
                 }
             }

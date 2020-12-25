@@ -28,13 +28,8 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.util.pipeline.*
 import io.ktor.websocket.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ClosedSendChannelException
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
@@ -88,8 +83,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
         }
 
-
-    @OptIn(ExperimentalCoroutinesApi::class)
     override fun <REQ, RES> createWebsocketHandler(
         requestMessageType: Class<REQ>,
         responseMessageType: Class<RES>,
@@ -97,44 +90,17 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ): WebsocketHandler =
         {
             val wsInjector = call.injector.createChildInjector(WsSessionModule(this))
-            val service = wsInjector.getInstance(serviceClass.java)
-            val requestChannel = Channel<REQ>()
-            val responseChannel = Channel<RES>()
-            val session = this
-            coroutineScope {
-                launch {
-                    for (p in incoming) {
-                        (p as? Frame.Text)?.readText()?.let { text ->
-                            val jsonRpcRequest = deSerializer.deserialize<JsonRpcRequest>(text)
-                            if (jsonRpcRequest.params.size == 1) {
-                                val par = deSerializer.deserialize(jsonRpcRequest.params[0], requestMessageType)
-                                requestChannel.send(par)
-                            }
-                        }
-                    }
-                    requestChannel.close()
-                }
-                launch {
-                    for (p in responseChannel) {
-                        val text = deSerializer.serializeNonNullToString(
-                            JsonRpcResponse(
-                                id = 0,
-                                result = deSerializer.serializeNullableToString(p)
-                            )
-                        )
-                        outgoing.send(Frame.Text(text))
-                    }
-                    try {
-                        session.close(CloseReason(CloseReason.Codes.NORMAL, ""))
-                    } catch (e: ClosedSendChannelException) {
-                    }
-                    session.close()
-                }
-                launch {
-                    function.invoke(service, requestChannel, responseChannel)
-                    if (!responseChannel.isClosedForReceive) responseChannel.close()
-                }
-            }
+
+            handleWebsocketConnection(
+                deSerializer = deSerializer,
+                rawIn = incoming,
+                rawInToText = { (it as? Frame.Text)?.readText() },
+                rawOut = outgoing,
+                rawOutFromText = { Frame.Text(it) },
+                parsedInType = requestMessageType,
+                service = wsInjector.getInstance(serviceClass.java),
+                function = function
+            )
         }
 }
 

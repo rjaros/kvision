@@ -33,6 +33,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
@@ -134,45 +135,19 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 initializeWsService(service, ctx)
                 GlobalScope.launch {
                     coroutineScope {
-                        launch(Dispatchers.IO) {
-                            for (text in outgoing) {
-                                ctx.send(text)
-                            }
+                        launch {
+                            outgoing.consumeEach { ctx.send(it) }
                             ctx.session.close()
                         }
                         launch {
-                            val requestChannel = Channel<REQ>()
-                            val responseChannel = Channel<RES>()
-                            coroutineScope {
-                                launch {
-                                    for (p in incoming) {
-                                        val jsonRpcRequest = deSerializer.deserialize<JsonRpcRequest>(p)
-                                        if (jsonRpcRequest.params.size == 1) {
-                                            val par = deSerializer.deserialize(
-                                                jsonRpcRequest.params[0], requestMessageType
-                                            )
-                                            requestChannel.send(par)
-                                        }
-                                    }
-                                    requestChannel.close()
-                                }
-                                launch(Dispatchers.IO) {
-                                    for (p in responseChannel) {
-                                        val text = deSerializer.serializeNonNullToString(
-                                            JsonRpcResponse(
-                                                id = 0,
-                                                result = deSerializer.serializeNullableToString(p)
-                                            )
-                                        )
-                                        outgoing.send(text)
-                                    }
-                                }
-                                launch {
-                                    function.invoke(service, requestChannel, responseChannel)
-                                    if (!responseChannel.isClosedForReceive) responseChannel.close()
-                                }
-                            }
-                            if (!outgoing.isClosedForReceive) outgoing.close()
+                            handleWebsocketConnection(
+                                deSerializer = deSerializer,
+                                rawIn = incoming,
+                                rawOut = outgoing,
+                                parsedInType = requestMessageType,
+                                service = service,
+                                function = function
+                            )
                         }
                     }
                 }
