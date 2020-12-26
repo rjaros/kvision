@@ -72,7 +72,7 @@ open class OnsRadioGroupInput(
             setDisabledToChildren(value)
         }
 
-    override var name
+    override var name: String?
         get() = getNameFromChildren()
         set(value) {
             setNameToChildren(value)
@@ -122,7 +122,7 @@ open class OnsRadioGroupInput(
         getChildren().filterIsInstance<OnsRadio>().forEach { it.disabled = disabled }
     }
 
-    private fun getNameFromChildren(): String? {
+    private fun getNameFromChildren(): String {
         return getChildren().filterIsInstance<OnsRadio>().firstOrNull()?.name ?: this.idc
     }
 

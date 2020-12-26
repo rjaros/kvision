@@ -102,7 +102,7 @@ open class RadioGroup(
         set(value) {
             flabel.rich = value
         }
-    override var name
+    override var name: String?
         get() = getNameFromChildren()
         set(value) {
             setNameToChildren(value)
@@ -175,7 +175,7 @@ open class RadioGroup(
         container.getChildren().filterIsInstance<Radio>().forEach { it.disabled = disabled }
     }
 
-    private fun getNameFromChildren(): String? {
+    private fun getNameFromChildren(): String {
         return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.name ?: this.idc
     }
 

@@ -49,6 +49,7 @@ enum class DividerType(internal val type: String) {
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@Suppress("LeakingThis")
 open class OnsListItem(
     content: String? = null,
     rich: Boolean = false,
@@ -131,7 +132,6 @@ open class OnsListItem(
         centerPanel.parent = this
         rightPanel.parent = this
         expandablePanel.parent = this
-        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 

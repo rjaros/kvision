@@ -122,7 +122,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     protected var vnode: VNode? = null
 
     private var snAttrsCache: SingleObjectCache<Attrs> =
-        LazyCache { pl.treksoft.kvision.core.buildAttributeSet(this::buildAttributeSet) }
+        LazyCache { buildAttributeSet(this::buildAttributeSet) }
             .clearOn { lastLanguage != null && lastLanguage != I18n.language }
 
     private var snClassCache: SingleObjectCache<Classes> = LazyCache { buildClassSet(this::buildClassSet) }

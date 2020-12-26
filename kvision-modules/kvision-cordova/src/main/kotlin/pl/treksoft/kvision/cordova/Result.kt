@@ -103,7 +103,7 @@ sealed class Result<out V : Any, out E : Exception> {
     abstract fun get(): V
 
     class Success<out V : Any>(val value: V) : Result<V, Nothing>() {
-        override fun component1(): V? = value
+        override fun component1(): V = value
 
         override fun get(): V = value
 
@@ -118,7 +118,7 @@ sealed class Result<out V : Any, out E : Exception> {
     }
 
     class Failure<out E : Exception>(val error: E) : Result<Nothing, E>() {
-        override fun component2(): E? = error
+        override fun component2(): E = error
 
         override fun get() = throw error
 

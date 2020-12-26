@@ -222,7 +222,7 @@ class Root : SimplePanel {
         }
     }
 
-    override fun getRoot(): Root? {
+    override fun getRoot(): Root {
         return this
     }
 
@@ -294,6 +294,7 @@ class Root : SimplePanel {
  * @param init an initializer extension function
  * @return the created Root container
  */
+@Suppress("unused")
 fun Application.root(
     id: String,
     containerType: ContainerType = ContainerType.FLUID,
@@ -312,6 +313,7 @@ fun Application.root(
  * @param init an initializer extension function
  * @return the created Root container
  */
+@Suppress("unused")
 fun Application.root(
     element: HTMLElement,
     containerType: ContainerType = ContainerType.FLUID,
@@ -331,7 +333,7 @@ fun Application.root(
  * @param init an initializer extension function
  * @return the created Root container
  */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "unused")
 @Deprecated("Use builder function without fixed parameter")
 fun Application.root(
     id: String,
@@ -353,7 +355,7 @@ fun Application.root(
  * @param init an initializer extension function
  * @return the created Root container
  */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "usused")
 @Deprecated("Use builder function without fixed parameter")
 fun Application.root(
     element: HTMLElement,

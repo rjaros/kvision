@@ -60,7 +60,7 @@ fun startApplication(builder: () -> Application, hot: Hot? = null) {
     @Suppress("UnsafeCastFromDynamic")
     if (window.asDynamic().__karma__) return
 
-    fun start(state: dynamic): Application? {
+    fun start(state: dynamic): Application {
         if (state?.appState != undefined) {
             Routing.start()
         }

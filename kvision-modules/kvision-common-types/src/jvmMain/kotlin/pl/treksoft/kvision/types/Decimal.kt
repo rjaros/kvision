@@ -41,7 +41,7 @@ class BigDecimalSerializer : JsonSerializer<BigDecimal>() {
 
 class BigDecimalDeserializer : JsonDeserializer<BigDecimal>() {
     @Throws(IOException::class)
-    override fun deserialize(p: JsonParser, ctx: DeserializationContext): BigDecimal? {
+    override fun deserialize(p: JsonParser, ctx: DeserializationContext): BigDecimal {
         return p.doubleValue.toBigDecimal()
     }
 }

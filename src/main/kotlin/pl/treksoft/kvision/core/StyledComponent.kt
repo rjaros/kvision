@@ -487,11 +487,11 @@ abstract class StyledComponent {
     }
 
     internal fun getSnStyleInternal(): List<StringPair> {
-        return snStyleCache ?: {
+        return snStyleCache ?: run {
             val s = getSnStyle()
             snStyleCache = s
             s
-        }()
+        }
     }
 
     /**

@@ -513,13 +513,14 @@ open class KVRemoteAgent<T : Any>(
                         val str = socket.receiveOrNull() ?: break
                         val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
                         val par2 = try {
-                            @Suppress("UNCHECKED_CAST")
+                            @Suppress("UnsafeCastFromDynamic")
                             deserialize(data, PAR2::class.js.name)
                         } catch (t: NotStandardTypeException) {
                             try {
-                                @Suppress("UNCHECKED_CAST")
+                                @Suppress("UnsafeCastFromDynamic", "UNCHECKED_CAST")
                                 tryDeserializeEnum(PAR2::class as KClass<Any>, data) as PAR2
                             } catch (t: NotEnumTypeException) {
+                                @Suppress("UnsafeCastFromDynamic")
                                 JSON.nonstrict.decodeFromString(PAR2::class.serializer(), data)
                             }
                         }
@@ -592,12 +593,14 @@ open class KVRemoteAgent<T : Any>(
                         val str = socket.receiveOrNull() ?: break
                         val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
                         val par2 = try {
+                            @Suppress("UnsafeCastFromDynamic")
                             deserializeList(data, PAR2::class.js.name)
                         } catch (t: NotStandardTypeException) {
                             try {
-                                @Suppress("UNCHECKED_CAST")
+                                @Suppress("UnsafeCastFromDynamic", "UNCHECKED_CAST")
                                 tryDeserializeEnumList(PAR2::class as KClass<Any>, data) as List<PAR2>
                             } catch (t: NotEnumTypeException) {
+                                @Suppress("UnsafeCastFromDynamic")
                                 JSON.nonstrict.decodeFromString(ListSerializer(PAR2::class.serializer()), data)
                             }
                         }

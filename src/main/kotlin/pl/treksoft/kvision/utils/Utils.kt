@@ -227,7 +227,7 @@ val String?.set: Set<String>
  * Utility extension function to convert string from kebab-case to camelCase.
  */
 fun String.toCamelCase(): String {
-    return this.replace(Regex("(\\-\\w)")) {
+    return this.replace(Regex("(-\\w)")) {
         it.value.drop(1).toUpperCase()
     }
 }

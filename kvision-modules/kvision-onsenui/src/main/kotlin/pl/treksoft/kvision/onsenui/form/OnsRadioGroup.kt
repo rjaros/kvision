@@ -99,7 +99,7 @@ open class OnsRadioGroup(
             flabel.rich = value
         }
 
-    override var name
+    override var name: String?
         get() = getNameFromChildren()
         set(value) {
             setNameToChildren(value)
@@ -177,7 +177,7 @@ open class OnsRadioGroup(
         container.getChildren().filterIsInstance<OnsRadio>().forEach { it.disabled = disabled }
     }
 
-    private fun getNameFromChildren(): String? {
+    private fun getNameFromChildren(): String {
         return container.getChildren().filterIsInstance<OnsRadio>().firstOrNull()?.name ?: this.idc
     }
 

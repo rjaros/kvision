@@ -731,6 +731,7 @@ open class Tabulator<T : Any>(
         if (obj._children != null) {
             obj._children = obj._children.unsafeCast<Array<T>>().map { toPlainObjTabulator(it) }.toTypedArray()
         }
+        @Suppress("UnsafeCastFromDynamic")
         return obj
     }
 

@@ -280,8 +280,7 @@ class Form<K : Any>(
         for (key in js("Object").keys(json)) {
             val jsonValue = json[key]
             if (jsonValue != null) {
-                val formField = fields[key]
-                when (formField) {
+                when (val formField = fields[key]) {
                     is DateFormControl -> formField.value = (jsonValue.unsafeCast<String>()).toDateF()
                     is KFilesFormControl -> {
                         formField.value = JSON.plain.decodeFromString(

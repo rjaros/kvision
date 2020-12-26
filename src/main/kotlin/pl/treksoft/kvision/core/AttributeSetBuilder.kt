@@ -45,7 +45,7 @@ internal class AttributeSetBuilderImpl : AttributeSetBuilder {
     private val _attributes: MutableMap<String, String> = HashMap()
 
     override fun add(name: String, value: String) {
-        _attributes.put(name, value)
+        _attributes[name] = value
     }
 
     override fun addAll(attributes: Map<String, String>) {

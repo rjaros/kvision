@@ -77,7 +77,7 @@ open class RadioGroupInput(
         set(value) {
             setDisabledToChildren(value)
         }
-    override var name
+    override var name: String?
         get() = getNameFromChildren()
         set(value) {
             setNameToChildren(value)
@@ -127,7 +127,7 @@ open class RadioGroupInput(
         getChildren().filterIsInstance<Radio>().forEach { it.disabled = disabled }
     }
 
-    private fun getNameFromChildren(): String? {
+    private fun getNameFromChildren(): String {
         return getChildren().filterIsInstance<Radio>().firstOrNull()?.name ?: this.idc
     }
 
