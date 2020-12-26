@@ -28,7 +28,6 @@ import io.vertx.core.json.Json
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 import io.vertx.kotlin.coroutines.dispatcher
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -45,7 +44,6 @@ typealias WebsocketHandler = (Injector, ServerWebSocket) -> Unit
 /**
  * Multiplatform service manager for Vert.x.
  */
-@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
     KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
@@ -53,7 +51,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    @Suppress("TooGenericExceptionCaught")
     override fun createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> Any?
@@ -65,7 +62,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 ctx.bodyAsJson.mapTo(JsonRpcRequest::class.java)
             }
 
-            @Suppress("MagicNumber")
             val injector = ctx.get<Injector>(KV_INJECTOR_KEY)
             val service = injector.getInstance(serviceClass.java)
             GlobalScope.launch(ctx.vertx().dispatcher()) {
@@ -88,7 +84,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
         }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     override fun <REQ, RES> createWebsocketHandler(
         requestMessageType: Class<REQ>,
         responseMessageType: Class<RES>,
@@ -142,6 +137,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 /**
  * A function to generate routes based on definitions from the service manager.
  */
+@Suppress("unused")
 fun <T : Any> Vertx.applyRoutes(router: Router, serviceManager: KVServiceManager<T>) {
     serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
         try {

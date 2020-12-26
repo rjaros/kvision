@@ -27,8 +27,6 @@ import io.javalin.core.security.Role
 import io.javalin.http.Context
 import io.javalin.websocket.WsContext
 import io.javalin.websocket.WsHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -47,7 +45,6 @@ typealias WebsocketHandler = (WsHandler) -> Unit
 /**
  * Multiplatform service manager for Javalin.
  */
-@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
     KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
@@ -83,7 +80,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
-    @Suppress("TooGenericExceptionCaught")
     override fun createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> Any?
@@ -94,8 +90,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             } else {
                 ctx.body<JsonRpcRequest>()
             }
-
-            @Suppress("MagicNumber")
             val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)
             initializeService(service, ctx)

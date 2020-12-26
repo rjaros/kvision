@@ -25,18 +25,15 @@ import io.micronaut.context.ApplicationContext
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.websocket.WebSocketSession
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 
 typealias RequestHandler =
         suspend (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> HttpResponse<String>
+
 typealias WebsocketHandler = suspend (
     WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
 ) -> Unit
@@ -44,7 +41,6 @@ typealias WebsocketHandler = suspend (
 /**
  * Multiplatform service manager for Micronaut.
  */
-@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
     KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
@@ -100,7 +96,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             tlWsSession.set(webSocketSession)
             val service = ctx.getBean(serviceClass.java)
             tlWsSession.remove()
-            
+
             handleWebsocketConnection(
                 deSerializer = deSerializer,
                 rawIn = incoming,

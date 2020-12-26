@@ -29,14 +29,12 @@ import io.jooby.Kooby
 import io.jooby.WebSocketConfigurer
 import io.jooby.body
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -48,7 +46,6 @@ typealias WebsocketHandler = (ctx: Context, configurer: WebSocketConfigurer) -> 
 /**
  * Multiplatform service manager for Jooby.
  */
-@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
     KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
@@ -69,7 +66,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
-    @Suppress("TooGenericExceptionCaught")
     override fun createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> Any?
@@ -98,9 +94,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     exceptionType = e.javaClass.canonicalName
                 )
             }
-    }
+        }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     override fun <REQ, RES> createWebsocketHandler(
         requestMessageType: Class<REQ>,
         responseMessageType: Class<RES>,

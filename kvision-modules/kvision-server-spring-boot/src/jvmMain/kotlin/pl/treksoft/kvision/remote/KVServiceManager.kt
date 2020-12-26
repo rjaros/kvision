@@ -21,12 +21,8 @@
  */
 package pl.treksoft.kvision.remote
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.awaitSingle
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -46,7 +42,6 @@ typealias WebsocketHandler = suspend (
 /**
  * Multiplatform service manager for Spring Boot.
  */
-@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
     KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
@@ -107,7 +102,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }))
         }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     override fun <REQ, RES> createWebsocketHandler(
         requestMessageType: Class<REQ>,
         responseMessageType: Class<RES>,

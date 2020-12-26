@@ -40,7 +40,6 @@ typealias WebsocketHandler = suspend WebSocketServerSession.() -> Unit
 /**
  * Multiplatform service manager for Ktor.
  */
-@Suppress("LargeClass", "TooManyFunctions", "BlockingMethodInNonBlockingContext")
 actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
     KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
@@ -48,7 +47,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    @Suppress("TooGenericExceptionCaught")
     override fun createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> Any?
