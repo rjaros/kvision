@@ -92,7 +92,6 @@ class KVWebSocketHandler(
                         requestChannel,
                         responseChannel
                     )
-                    if (!responseChannel.isClosedForReceive) responseChannel.close()
                     session.close()
                 }
             }

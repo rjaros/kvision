@@ -28,7 +28,6 @@ import io.micronaut.websocket.annotation.OnClose
 import io.micronaut.websocket.annotation.OnMessage
 import io.micronaut.websocket.annotation.OnOpen
 import io.micronaut.websocket.annotation.ServerWebSocket
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
@@ -50,7 +49,6 @@ class KVServerWebSocket {
     @Inject
     lateinit var applicationContext: ApplicationContext
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @OnOpen
     suspend fun onOpen(path: String, session: WebSocketSession) {
         kvManagers.services.mapNotNull {
@@ -73,7 +71,6 @@ class KVServerWebSocket {
                         requestChannel,
                         responseChannel
                     )
-                    if (!responseChannel.isClosedForReceive) responseChannel.close()
                 }
                 sessions[session.id + "###" + path] = responseChannel to requestChannel
             }
