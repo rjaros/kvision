@@ -25,21 +25,14 @@ import com.google.inject.AbstractModule
 import com.google.inject.Guice
 import com.google.inject.Injector
 import com.google.inject.Module
-import io.ktor.application.Application
-import io.ktor.application.ApplicationCall
-import io.ktor.application.ApplicationCallPipeline
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.features.ContentNegotiation
+import io.ktor.application.*
+import io.ktor.features.*
 import io.ktor.http.cio.websocket.*
-import io.ktor.http.content.defaultResource
-import io.ktor.http.content.resources
-import io.ktor.http.content.static
-import io.ktor.jackson.jackson
-import io.ktor.routing.routing
-import io.ktor.util.AttributeKey
-import io.ktor.websocket.WebSocketServerSession
-import io.ktor.websocket.WebSockets
+import io.ktor.http.content.*
+import io.ktor.routing.*
+import io.ktor.serialization.*
+import io.ktor.util.*
+import io.ktor.websocket.*
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlin.coroutines.CoroutineContext
@@ -49,7 +42,7 @@ import kotlin.coroutines.CoroutineContext
  */
 fun Application.kvisionInit(vararg modules: Module) {
     install(ContentNegotiation) {
-        jackson()
+        json()
     }
     install(WebSockets)
     routing {

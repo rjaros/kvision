@@ -98,7 +98,7 @@ open class TabulatorRemote<T : Any, E : Any>(
             } else {
                 null
             }
-            val state = stateFunction?.invoke()
+            val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
 
             @Suppress("UnsafeCastFromDynamic")
             val data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))

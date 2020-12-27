@@ -12,7 +12,6 @@ val serializationVersion: String by project
 val coroutinesVersion: String by project
 val springBootVersion: String by project
 val springDataRelationalVersion: String by project
-val jacksonModuleKotlinVersion: String by project
 val logbackVersion: String by project
 
 kotlin {
@@ -42,7 +41,6 @@ kotlin {
                 api("org.springframework.boot:spring-boot-starter-webflux:$springBootVersion")
                 api("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
                 api("org.springframework.data:spring-data-relational:$springDataRelationalVersion")
-                api("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
                 api("ch.qos.logback:logback-classic:$logbackVersion")
             }
         }

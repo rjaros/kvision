@@ -24,6 +24,8 @@ package pl.treksoft.kvision.remote
 
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.serializer
 
 /**
  * Binds HTTP calls to kotlin functions
@@ -35,23 +37,25 @@ import kotlinx.coroutines.channels.SendChannel
  */
 abstract class KVServiceBinder<T, RH, WH>(
 //  deSerializer has to public instead of protected because of https://youtrack.jetbrains.com/issue/KT-22625
-    val deSerializer: ObjectDeSerializer = jacksonObjectDeSerializer(),
+    val deSerializer: ObjectDeSerializer = kotlinxObjectDeSerializer(),
     routeNameGenerator: NameGenerator? = null
 ) {
-    protected val generateRouteName: NameGenerator =
+    @PublishedApi
+    internal val generateRouteName: NameGenerator =
         routeNameGenerator ?: createNameGenerator("route${javaClass.simpleName}")
     val routeMapRegistry = createRouteMapRegistry<RH>()
     val webSocketRequests: MutableMap<String, WH> = HashMap()
 
-    protected abstract fun createRequestHandler(
+    abstract fun <RET> createRequestHandler(
         method: HttpMethod,
-        function: suspend T.(params: List<String?>) -> Any?
+        function: suspend T.(params: List<String?>) -> RET,
+        serializer: KSerializer<RET>
     ): RH
 
-    protected abstract fun <REQ, RES> createWebsocketHandler(
-        requestMessageType: Class<REQ>,
-        responseMessageType: Class<RES>,
-        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit
+    abstract fun <REQ, RES> createWebsocketHandler(
+        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
+        requestSerializer: KSerializer<REQ>,
+        responseSerializer: KSerializer<RES>
     ): WH
 
     /**
@@ -59,8 +63,16 @@ abstract class KVServiceBinder<T, RH, WH>(
      * receives the parameters of the call as String array.
      */
     @PublishedApi
-    internal fun bind(method: HttpMethod, route: String? = null, function: suspend T.(params: List<String?>) -> Any?) {
-        routeMapRegistry.addRoute(method, "/kv/${route ?: generateRouteName()}", createRequestHandler(method, function))
+    internal inline fun <reified RET> bind(
+        method: HttpMethod,
+        route: String? = null,
+        noinline function: suspend T.(params: List<String?>) -> RET
+    ) {
+        routeMapRegistry.addRoute(
+            method,
+            "/kv/${route ?: generateRouteName()}",
+            createRequestHandler(method, function, kvSerializersModule.serializer())
+        )
     }
 
     /**
@@ -218,13 +230,13 @@ abstract class KVServiceBinder<T, RH, WH>(
      * @param route a route
      */
     fun <REQ, RES> bindWebsocket(
-        requestMessageType: Class<REQ>,
-        responseMessageType: Class<RES>,
         route: String? = null,
         function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
+        requestSerializer: KSerializer<REQ>,
+        responseSerializer: KSerializer<RES>,
     ) {
         webSocketRequests["/kvws/${route ?: generateRouteName()}"] =
-            createWebsocketHandler(requestMessageType, responseMessageType, function)
+            createWebsocketHandler(function, requestSerializer, responseSerializer)
     }
 
     /**
@@ -237,19 +249,15 @@ abstract class KVServiceBinder<T, RH, WH>(
     inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String? = null
-    ) = bindWebsocket(PAR1::class.java, PAR2::class.java, route, function)
-
-    /**
-     * Deserialize the a parameter of type [type] from [str]
-     */
-    @PublishedApi
-    internal fun <T> deserialize(str: String?, type: Class<T>): T = deSerializer.deserialize(str, type)
+    ) = bindWebsocket(route, function, kvSerializersModule.serializer(), kvSerializersModule.serializer())
 
     /**
      * Deserialize the parameter of type [T] from [txt]
      */
     @PublishedApi
-    internal inline fun <reified T> deserialize(txt: String?): T = deserialize(txt, T::class.java)
+    internal inline fun <reified T> deserialize(txt: String?): T {
+        return deSerializer.deserialize(txt)
+    }
 }
 
 

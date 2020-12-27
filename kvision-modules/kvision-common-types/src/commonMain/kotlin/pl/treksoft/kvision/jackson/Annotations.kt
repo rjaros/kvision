@@ -27,21 +27,25 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform enum class for Jackson JsonTypeInfo annotation.
  */
-expect enum class Id {
+@Deprecated("This enum is not required anymore")
+enum class Id {
     CLASS
 }
 
 /**
  * Multiplatform enum class for Jackson JsonTypeInfo annotation.
  */
-expect enum class As {
+@Deprecated("This enum is not required anymore")
+enum class As {
     PROPERTY
 }
 
 /**
  * Multiplatform version of Jackson JsonTypeInfo annotation.
  */
-expect annotation class JsonTypeInfo(
+@Suppress("DEPRECATION")
+@Deprecated("This annotation is not required anymore")
+annotation class JsonTypeInfo(
     val use: Id,
     val include: As,
     val property: String,

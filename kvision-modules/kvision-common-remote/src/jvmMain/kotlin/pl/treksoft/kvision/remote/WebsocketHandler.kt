@@ -30,6 +30,7 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.serialization.KSerializer
 
 /**
  * Convenience function for cases were the raw channels work with strings. See the overloaded method for details.
@@ -38,7 +39,8 @@ suspend fun <T, OBJECTS_IN, OBJECTS_OUT> handleWebsocketConnection(
     deSerializer: ObjectDeSerializer,
     rawIn: ReceiveChannel<String>,
     rawOut: SendChannel<String>,
-    parsedInType: Class<OBJECTS_IN>,
+    serializerIn: KSerializer<OBJECTS_IN>,
+    serializerOut: KSerializer<OBJECTS_OUT>,
     service: T,
     function: suspend T.(ReceiveChannel<OBJECTS_IN>, SendChannel<OBJECTS_OUT>) -> Unit
 ) {
@@ -48,7 +50,8 @@ suspend fun <T, OBJECTS_IN, OBJECTS_OUT> handleWebsocketConnection(
         rawInToText = { it },
         rawOut = rawOut,
         rawOutFromText = { it },
-        parsedInType = parsedInType,
+        serializerIn = serializerIn,
+        serializerOut = serializerOut,
         service = service,
         function = function
     )
@@ -76,28 +79,23 @@ suspend fun <T, RAW_IN, RAW_OUT, OBJECTS_IN, OBJECTS_OUT> handleWebsocketConnect
     rawInToText: (RAW_IN) -> String?,
     rawOut: SendChannel<RAW_OUT>,
     rawOutFromText: (String) -> RAW_OUT,
-    parsedInType: Class<OBJECTS_IN>,
+    serializerIn: KSerializer<OBJECTS_IN>,
+    serializerOut: KSerializer<OBJECTS_OUT>,
     service: T,
     function: suspend T.(ReceiveChannel<OBJECTS_IN>, SendChannel<OBJECTS_OUT>) -> Unit
 ) {
-    fun serializeMessage(message: Any?) = deSerializer.serializeNonNullToString(
-        JsonRpcResponse(
-            id = 0,
-            result = deSerializer.serializeNullableToString(message)
-        )
-    )
     coroutineScope {
         val parsedIn = rawIn
             .consumeAsFlow()
             .mapNotNull { rawInToText(it) }
             .mapNotNull { deSerializer.deserialize<JsonRpcRequest>(it).params.singleOrNull() }
-            .map { deSerializer.deserialize(it, parsedInType) }
+            .map { deSerializer.deserialize(it, serializerIn) }
             .produceIn(this)
 
         val parsedOut = Channel<OBJECTS_OUT>()
         parsedOut
             .consumeAsFlow()
-            .map { rawOutFromText(serializeMessage(it)) }
+            .map { rawOutFromText(serializeMessage(it, deSerializer, serializerOut)) }
             .pipe(this, rawOut)
 
         launch {
@@ -116,3 +114,11 @@ private suspend fun <T> Flow<T>.pipe(scope: CoroutineScope, channel: SendChannel
         onCompletion { channel.close(it) }.collect { channel.send(it) }
     }
 }
+
+private fun <T> serializeMessage(message: T?, deSerializer: ObjectDeSerializer, serializer: KSerializer<T>) =
+    deSerializer.serializeNonNull(
+        JsonRpcResponse(
+            id = 0,
+            result = deSerializer.serializeNullableToString(message, serializer)
+        )
+    )

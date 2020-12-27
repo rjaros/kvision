@@ -110,9 +110,10 @@ open class SelectRemoteInput<T : Any>(
                 beforeSend = { xhr, b ->
                     beforeSend?.invoke(xhr, b)
                     @Suppress("UnsafeCastFromDynamic")
-                    val q = decodeURIComponent(b.asDynamic().data.substring(2))
-                    val state = stateFunction?.invoke()
-                    b.data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(q, this.value, state)))
+                    val q = kotlin.js.JSON.stringify(decodeURIComponent(b.asDynamic().data.substring(2)))
+                    val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
+                    val svalue = kotlin.js.JSON.stringify(this.value)
+                    b.data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(q, svalue, state)))
                     true
                 },
                 httpType = HttpType.valueOf(method.name),
@@ -132,7 +133,7 @@ open class SelectRemoteInput<T : Any>(
         } else {
             GlobalScope.launch {
                 val callAgent = CallAgent()
-                val state = stateFunction?.invoke()
+                val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
                 val values = callAgent.remoteCall(
                     url,
                     JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, null, state))),
@@ -171,10 +172,11 @@ open class SelectRemoteInput<T : Any>(
                 GlobalScope.launch {
                     val labels = labelsCache.getOrPut(it) {
                         val callAgent = CallAgent()
-                        val state = stateFunction?.invoke()
+                        val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
+                        val svalue = kotlin.js.JSON.stringify(it)
                         val initials = callAgent.remoteCall(
                             url,
-                            JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, it, state))),
+                            JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, svalue, state))),
                             HttpMethod.POST,
                             beforeSend = beforeSend
                         ).await()

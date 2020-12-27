@@ -48,7 +48,6 @@ open class RemoteAgent {
         return value?.let {
             when (value) {
                 is Enum<*> -> "\"$value\""
-                is String -> value
                 is Date -> "\"${value.toStringInternal()}\""
                 else -> try {
                     JSON.plain.encodeToString(value)
@@ -68,7 +67,6 @@ open class RemoteAgent {
     inline fun <reified PAR : Any> serializeNotNull(value: PAR): String {
         return when (value) {
             is Enum<*> -> "\"$value\""
-            is String -> value
             is Date -> "\"${value.toStringInternal()}\""
             else -> try {
                 JSON.plain.encodeToString(value)

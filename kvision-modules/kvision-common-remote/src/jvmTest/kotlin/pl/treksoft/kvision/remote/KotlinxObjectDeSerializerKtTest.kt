@@ -22,48 +22,59 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.PairSerializer
+import kotlinx.serialization.builtins.serializer
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.*
+import org.hamcrest.Matchers.equalTo
 import org.testng.annotations.DataProvider
 import org.testng.annotations.Test
 
-class JacksonObjectDeSerializerKtTest {
-    private val deSerializer = jacksonObjectDeSerializer()
+class KotlinxObjectDeSerializerKtTest {
+    private val deSerializer = kotlinxObjectDeSerializer()
 
     @Test(dataProvider = "provide_obj_expectedString")
-    fun serialize_serializesAsExpected(obj: Any?, expectedString: String?) {
+    fun serialize_serializesAsExpected(obj: Any?, serializer: KSerializer<Any>, expectedString: String?) {
         // execution
-        val actual = deSerializer.serializeNullableToString(obj)
+        val actual = deSerializer.serializeNullableToString(obj, serializer)
 
         // evaluation
         assertThat(actual, equalTo(expectedString))
     }
 
     @Test(dataProvider = "provide_string_type_expectedObject")
-    fun deserialize_deserializesAsExpected(str: String?, type: Class<*>, expectedObject: Any?) {
+    fun deserialize_deserializesAsExpected(str: String?, serializer: KSerializer<Any>, expectedObject: Any?) {
         // execution
-        val actual = deSerializer.deserialize(str, type)
+        val actual = deSerializer.deserialize(str, serializer)
 
         // evaluation
         assertThat(actual, equalTo(expectedObject))
     }
-    
+
     @DataProvider
     fun provide_obj_expectedString(): Array<Array<Any?>> = arrayOf(
-        arrayOf("simple string", "\"simple string\""),
-        arrayOf("special {[]} chars", "\"special {[]} chars\""),
-        arrayOf(42, "42"),
-        arrayOf("firstValue" to "secondValue", """{"first":"firstValue","second":"secondValue"}"""),
-        arrayOf(null, null)
+        arrayOf("simple string", String.serializer(), "\"simple string\""),
+        arrayOf("special {[]} chars", String.serializer(), "\"special {[]} chars\""),
+        arrayOf(42, Int.serializer(), "42"),
+        arrayOf(
+            "firstValue" to "secondValue",
+            PairSerializer(String.serializer(), String.serializer()),
+            """{"first":"firstValue","second":"secondValue"}"""
+        ),
+        arrayOf(null, String.serializer(), null)
     )
 
     @DataProvider
     fun provide_string_type_expectedObject(): Array<Array<Any?>> = arrayOf(
-        arrayOf("simple string", String::class.java, "simple string"),
-        arrayOf("special {[]} chars", String::class.java, "special {[]} chars"),
-        arrayOf("42", Integer::class.java, 42),
-        arrayOf("""{"first":"firstValue","second":"secondValue"}""", Pair::class.java, "firstValue" to "secondValue"),
-        arrayOf(null, String::class.java, null),
-        arrayOf(null, Integer::class.java, null),
+        arrayOf("\"simple string\"", String.serializer(), "simple string"),
+        arrayOf("\"special {[]} chars\"", String.serializer(), "special {[]} chars"),
+        arrayOf("42", Int.serializer(), 42),
+        arrayOf(
+            """{"first":"firstValue","second":"secondValue"}""",
+            PairSerializer(String.serializer(), String.serializer()),
+            "firstValue" to "secondValue"
+        ),
+        arrayOf(null, String.serializer(), null),
+        arrayOf(null, Int.serializer(), null),
     )
 }

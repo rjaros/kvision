@@ -35,6 +35,7 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
+import kotlinx.serialization.KSerializer
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
@@ -80,9 +81,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
     }
 
-    override fun createRequestHandler(
+    override fun <RET> createRequestHandler(
         method: HttpMethod,
-        function: suspend T.(params: List<String?>) -> Any?
+        function: suspend T.(params: List<String?>) -> RET,
+        serializer: KSerializer<RET>
     ): RequestHandler =
         { ctx ->
             val jsonRpcRequest = if (method == HttpMethod.GET) {
@@ -98,7 +100,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     val result = function.invoke(service, jsonRpcRequest.params)
                     JsonRpcResponse(
                         id = jsonRpcRequest.id,
-                        result = deSerializer.serializeNullableToString(result)
+                        result = deSerializer.serializeNullableToString(result, serializer)
                     )
                 } catch (e: IllegalParameterCountException) {
                     JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
@@ -114,9 +116,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
 
     override fun <REQ, RES> createWebsocketHandler(
-        requestMessageType: Class<REQ>,
-        responseMessageType: Class<RES>,
-        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit
+        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
+        requestSerializer: KSerializer<REQ>,
+        responseSerializer: KSerializer<RES>,
     ): WebsocketHandler =
         { ws ->
             ws.onConnect { ctx ->
@@ -138,7 +140,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                                 deSerializer = deSerializer,
                                 rawIn = incoming,
                                 rawOut = outgoing,
-                                parsedInType = requestMessageType,
+                                serializerIn = requestSerializer,
+                                serializerOut = responseSerializer,
                                 service = service,
                                 function = function
                             )

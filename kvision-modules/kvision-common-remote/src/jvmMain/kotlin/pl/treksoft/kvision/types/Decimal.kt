@@ -19,32 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package pl.treksoft.kvision.types
 
-package pl.treksoft.kvision.jackson
-
-import kotlin.reflect.KClass
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+import java.math.BigDecimal
 
 /**
- * @suppress dummy actual
+ * @suppress internal object
+ * JSON BigDecimal serializer.
  */
-actual enum class Id {
-    CLASS
+internal object JsonBigDecimalSerializer : KSerializer<BigDecimal> {
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("java.math.BigDecimal")
+
+    override fun deserialize(decoder: Decoder): BigDecimal {
+        return decoder.decodeDouble().toBigDecimal()
+    }
+
+    override fun serialize(encoder: Encoder, value: BigDecimal) {
+        encoder.encodeDouble(value.toDouble())
+    }
 }
-
-/**
- * @suppress dummy actual
- */
-actual enum class As {
-    PROPERTY
-}
-
-/**
- * @suppress dummy actual
- */
-actual annotation class JsonTypeInfo(
-    actual val use: Id,
-    actual val include: As,
-    actual val property: String,
-    actual val defaultImpl: KClass<*>,
-    actual val visible: Boolean
-)

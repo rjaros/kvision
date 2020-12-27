@@ -27,6 +27,7 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.websocket.WebSocketSession
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.serialization.KSerializer
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
@@ -48,9 +49,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    override fun createRequestHandler(
+    override fun <RET> createRequestHandler(
         method: HttpMethod,
-        function: suspend T.(params: List<String?>) -> Any?
+        function: suspend T.(params: List<String?>) -> RET,
+        serializer: KSerializer<RET>
     ): RequestHandler =
         { req, tlReq, ctx ->
             tlReq.set(req)
@@ -63,12 +65,12 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
 
             HttpResponse.ok(
-                deSerializer.serializeNonNullToString(
+                deSerializer.serializeNonNull(
                     try {
                         val result = function.invoke(service, jsonRpcRequest.params)
                         JsonRpcResponse(
                             id = jsonRpcRequest.id,
-                            result = deSerializer.serializeNullableToString(result)
+                            result = deSerializer.serializeNullableToString(result, serializer)
                         )
                     } catch (e: IllegalParameterCountException) {
                         JsonRpcResponse(
@@ -88,9 +90,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         }
 
     override fun <REQ, RES> createWebsocketHandler(
-        requestMessageType: Class<REQ>,
-        responseMessageType: Class<RES>,
-        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit
+        function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
+        requestSerializer: KSerializer<REQ>,
+        responseSerializer: KSerializer<RES>,
     ): WebsocketHandler =
         { webSocketSession, tlWsSession, ctx, incoming, outgoing ->
             tlWsSession.set(webSocketSession)
@@ -101,7 +103,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 deSerializer = deSerializer,
                 rawIn = incoming,
                 rawOut = outgoing,
-                parsedInType = requestMessageType,
+                serializerIn = requestSerializer,
+                serializerOut = responseSerializer,
                 service = service,
                 function = function
             )

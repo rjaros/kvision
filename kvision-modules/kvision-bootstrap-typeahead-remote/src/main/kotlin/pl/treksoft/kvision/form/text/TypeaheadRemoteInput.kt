@@ -70,8 +70,9 @@ open class TypeaheadRemoteInput<T : Any>(
         this.taAjaxOptions = tempAjaxOptions.copy(
             url = urlPrefix + url.drop(1),
             preprocessQuery = { query ->
-                val state = stateFunction?.invoke()
-                JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(query, state)))
+                val squery = kotlin.js.JSON.stringify(query)
+                val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
+                JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(squery, state)))
             },
             preprocessData = {
                 JSON.plain.decodeFromString(ListSerializer(String.serializer()), it.result.unsafeCast<String>())

@@ -22,13 +22,13 @@
  */
 package pl.treksoft.kvision.remote
 
+import kotlinx.serialization.KSerializer
+
 interface ObjectDeSerializer {
-    fun <T> deserialize(str: String?, type: Class<T>): T
-    fun serializeNonNullToString(obj: Any): String
+    fun <T> deserialize(str: String?, serializer: KSerializer<T>): T
+    fun <T> serializeNonNullToString(obj: T, serializer: KSerializer<T>): String
 
-    fun serializeNullableToString(obj: Any?): String? =
+    fun <T> serializeNullableToString(obj: T?, serializer: KSerializer<T>): String? =
         if (obj == null) null
-        else serializeNonNullToString(obj)
+        else serializeNonNullToString(obj, serializer)
 }
-
-inline fun <reified T> ObjectDeSerializer.deserialize(str: String?) = deserialize(str, T::class.java)

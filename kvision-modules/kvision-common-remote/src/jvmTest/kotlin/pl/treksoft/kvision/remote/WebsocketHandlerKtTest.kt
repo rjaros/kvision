@@ -1,20 +1,49 @@
+/*
+ * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2020 Yannik Hampe
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package pl.treksoft.kvision.remote
 
-import com.fasterxml.jackson.core.JsonParseException
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.builtins.serializer
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.*
+import org.hamcrest.Matchers.empty
+import org.hamcrest.Matchers.equalTo
 import org.testng.Assert
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 
 @ExperimentalCoroutinesApi
 class WebsocketHandlerKtTest {
-    private val deSerializer = jacksonObjectDeSerializer()
+    private val deSerializer = kotlinxObjectDeSerializer()
     private lateinit var service: DummyService
     private lateinit var rawClientToServer: Channel<String>
     private lateinit var rawServerToClient: Channel<String>
@@ -79,7 +108,7 @@ class WebsocketHandlerKtTest {
     @Test
     fun closesOnInvalidDataFromClient() {
         // execution (and expect evaluation)
-        Assert.expectThrows(JsonParseException::class.java) {
+        Assert.expectThrows(SerializationException::class.java) {
             runTest {
                 rawClientToServer.send("invalid")
             }
@@ -115,7 +144,8 @@ class WebsocketHandlerKtTest {
                 deSerializer,
                 rawClientToServer,
                 rawServerToClient,
-                String::class.java,
+                String.serializer(),
+                String.serializer(),
                 service,
                 { receiveChannel, sendChannel -> service.serviceMethod(receiveChannel, sendChannel) }
             )
@@ -123,10 +153,10 @@ class WebsocketHandlerKtTest {
     }
 
     private suspend fun sendMessage(message: String) {
-        rawClientToServer.send(deSerializer.serializeNonNullToString(JsonRpcRequest(
+        rawClientToServer.send(deSerializer.serializeNonNull(JsonRpcRequest(
             id = 42,
             method = "dummy",
-            params = listOf(message)
+            params = listOf(deSerializer.serializeNonNull(message))
         )))
     }
 }

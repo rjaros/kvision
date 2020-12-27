@@ -8,7 +8,6 @@ repositories()
 
 // Versions
 val serializationVersion: String by project
-val jacksonModuleKotlinVersion: String by project
 
 kotlin {
     kotlinJsTargets()
@@ -25,7 +24,6 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
             }
         }
     }
