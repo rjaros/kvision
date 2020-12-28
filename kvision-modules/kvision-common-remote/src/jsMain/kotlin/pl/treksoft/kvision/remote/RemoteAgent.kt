@@ -45,16 +45,10 @@ open class RemoteAgent {
      * Internal function
      */
     inline fun <reified PAR> serialize(value: PAR): String? {
-        return value?.let {
-            when (value) {
-                is Enum<*> -> "\"$value\""
-                is Date -> "\"${value.toStringInternal()}\""
-                else -> try {
-                    JSON.plain.encodeToString(value)
-                } catch (e: Throwable) {
-                    value.toString()
-                }
-            }
+        return try {
+            JSON.plain.encodeToString(value)
+        } catch (e: Throwable) {
+            JSON.plain.encodeToString(String.serializer(), value.toString())
         }
     }
 
@@ -65,17 +59,14 @@ open class RemoteAgent {
      */
     @InternalSerializationApi
     inline fun <reified PAR : Any> serializeNotNull(value: PAR): String {
-        return when (value) {
-            is Enum<*> -> "\"$value\""
-            is Date -> "\"${value.toStringInternal()}\""
-            else -> try {
-                JSON.plain.encodeToString(value)
+        return try {
+            JSON.plain.encodeToString(value)
+        } catch (e: Throwable) {
+            try {
+                JSON.plain.encodeToString(PAR::class.serializer(), value)
             } catch (e: Throwable) {
-                try {
-                    JSON.plain.encodeToString(PAR::class.serializer(), value)
-                } catch (e: Throwable) {
-                    value.toString()
-                }
+                val maybeDate = (value as? Date)?.toStringInternal() ?: value.toString()
+                JSON.plain.encodeToString(String.serializer(), maybeDate)
             }
         }
     }
