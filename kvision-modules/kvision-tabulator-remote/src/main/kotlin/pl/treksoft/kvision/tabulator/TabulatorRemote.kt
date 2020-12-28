@@ -107,6 +107,9 @@ open class TabulatorRemote<T : Any, E : Any>(
                     val result = kotlin.js.JSON.parse<dynamic>(r.result.unsafeCast<String>())
                     @Suppress("UnsafeCastFromDynamic")
                     if (page != null) {
+                        if (result.data == undefined) {
+                            result.data = js("[]")
+                        }
                         result
                     } else {
                         result.data
