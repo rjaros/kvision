@@ -1,18 +1,18 @@
 {
-  "kvision": "3.18.0",
+  "kvision": "3.19.0",
   "kotlin": "1.4.21",
   "serialization": "1.0.1",
   "coroutines": "1.4.2",
   "template-javalin": {
   },
   "template-jooby": {
-    "jooby": "2.9.4"
+    "jooby": "2.9.5"
   },
   "template-ktor": {
-    "ktor": "1.4.3"
+    "ktor": "1.5.0"
   },
   "template-micronaut": {
-    "micronaut": "2.2.1"
+    "micronaut": "2.2.2"
   },
   "template-spring-boot": {
     "spring-boot": "2.4.1",
