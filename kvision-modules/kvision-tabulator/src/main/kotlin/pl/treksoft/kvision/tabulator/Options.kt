@@ -745,7 +745,7 @@ data class TabulatorOptions<T : Any>(
     var validationFailed: ((cell: Tabulator.CellComponent, value: Any, validators: dynamic) -> Unit)? = null,
     var ajaxRequesting: ((url: String, params: dynamic) -> Boolean)? = null,
     var ajaxResponse: ((url: String, params: dynamic, response: dynamic) -> Any)? = null,
-    var ajaxError: ((xhr: dynamic, textStatus: String, errorThrown: dynamic) -> Unit)? = null,
+    var ajaxError: ((errorThrown: dynamic) -> Unit)? = null,
     val persistence: dynamic = null,
     val persistenceReaderFunc: dynamic = null,
     val persistenceWriterFunc: dynamic = null,
