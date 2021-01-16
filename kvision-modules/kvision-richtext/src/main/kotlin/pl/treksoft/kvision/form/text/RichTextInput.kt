@@ -105,11 +105,14 @@ open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) 
     override fun refreshState() {
         val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
         if (value != v) {
-            val editor = this.getElement().asDynamic().editor
-            if (editor != undefined) {
-                value?.let {
-                    editor.loadHTML(it)
-                } ?: editor.loadHTML("")
+            val element = this.getElement()
+            if (element != null) {
+                val editor = element.asDynamic().editor
+                if (editor != undefined) {
+                    value?.let {
+                        editor.loadHTML(it)
+                    } ?: editor.loadHTML("")
+                }
             }
         }
     }
