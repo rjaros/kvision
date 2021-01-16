@@ -24,7 +24,6 @@ package pl.treksoft.kvision.form
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.json.encodeToDynamic
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 import pl.treksoft.kvision.i18n.I18n.trans
@@ -92,25 +91,27 @@ class Form<K : Any>(
                     if (v != null) json[key] = v
                 }
                 kotlinx.serialization.json.Json {
+                    encodeDefaults = true
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                         customSerializers?.forEach { (kclass, serializer) ->
                             contextual(kclass.unsafeCast<KClass<Any>>(), serializer.unsafeCast<KSerializer<Any>>())
                         }
                     }
-                }.decodeFromString(serializer, kotlin.js.JSON.stringify(json))
+                }.decodeFromString(serializer, NativeJSON.stringify(json))
             }
         }
         jsonFactory = serializer?.let {
             {
-                kotlinx.serialization.json.Json {
+                NativeJSON.parse(kotlinx.serialization.json.Json {
+                    encodeDefaults = true
                     serializersModule = SerializersModule {
                         contextual(Date::class, DateSerializer)
                         customSerializers?.forEach { (kclass, serializer) ->
                             contextual(kclass.unsafeCast<KClass<Any>>(), serializer.unsafeCast<KSerializer<Any>>())
                         }
                     }
-                }.encodeToDynamic(serializer, it)
+                }.encodeToString(serializer, it))
             }
         }
     }
