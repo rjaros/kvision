@@ -22,8 +22,11 @@
 package pl.treksoft.kvision.form.text
 
 import pl.treksoft.kvision.core.Container
+import pl.treksoft.kvision.form.FormHorizontalRatio
+import pl.treksoft.kvision.panel.SimplePanel
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
+import pl.treksoft.kvision.utils.px
 
 /**
  * Form field rich text component.
@@ -53,12 +56,26 @@ open class RichText(
         this.name = name
     }
 
+    val wrapper = SimplePanel(setOf("kv-richtext-container"))
+
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(input)
+        wrapper.add(input)
+        this.addPrivate(wrapper)
         this.addPrivate(invalidFeedback)
     }
+
+    override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
+        addCssClass("row")
+        flabel.addCssClass("col-sm-${horizontalRatio.labels}")
+        flabel.addCssClass("col-form-label")
+        wrapper.addCssClass("col-sm-${horizontalRatio.fields}")
+        wrapper.marginLeft = (-15).px
+        invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
+        invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
+    }
+
 }
 
 /**
