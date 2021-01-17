@@ -1,5 +1,5 @@
 {
-  "kvision": "3.19.0",
+  "kvision": "3.19.1",
   "kotlin": "1.4.21",
   "serialization": "1.0.1",
   "coroutines": "1.4.2",
@@ -12,11 +12,11 @@
     "ktor": "1.5.0"
   },
   "template-micronaut": {
-    "micronaut": "2.2.2"
+    "micronaut": "2.2.3"
   },
   "template-spring-boot": {
-    "spring-boot": "2.4.1",
-    "spring-data-r2dbc": "1.2.2",
+    "spring-boot": "2.4.2",
+    "spring-data-r2dbc": "1.2.3",
     "r2dbc-postgresql": "0.8.6.RELEASE",
     "r2dbc-h2": "0.8.4.RELEASE"
   },
