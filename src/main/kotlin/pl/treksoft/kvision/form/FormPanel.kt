@@ -402,7 +402,12 @@ open class FormPanel<K : Any>(
      */
     open fun remove(key: KProperty1<K, *>): FormPanel<K> {
         form.getControl(key)?.let {
-            super.remove(it)
+            val parent = it.parent
+            if (parent is FieldsetPanel) {
+                parent.remove(it)
+            } else {
+                super.remove(it)
+            }
         }
         form.remove(key)
         return this
