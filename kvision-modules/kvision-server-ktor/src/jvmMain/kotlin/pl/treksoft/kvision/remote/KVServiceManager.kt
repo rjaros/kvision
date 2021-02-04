@@ -55,7 +55,11 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ): RequestHandler =
         {
             val service = call.injector.createChildInjector(DummyWsSessionModule()).getInstance(serviceClass.java)
-            val jsonRpcRequest = call.receive<JsonRpcRequest>()
+            val jsonRpcRequest = if (method == HttpMethod.GET) {
+                JsonRpcRequest(call.request.queryParameters["id"]?.toInt() ?: 0, "", listOf())
+            } else {
+                call.receive()
+            }
             try {
                 val result = function.invoke(service, jsonRpcRequest.params)
                 call.respond(
