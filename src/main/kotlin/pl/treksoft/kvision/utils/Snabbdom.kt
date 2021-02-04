@@ -42,6 +42,18 @@ import kotlin.reflect.KClass
 external class Object
 
 /**
+ * JavaScript delete operator
+ */
+external fun delete(p: dynamic): Boolean
+
+/**
+ * A helper function for JavaScript delete operator
+ */
+fun delete(thing: dynamic, key: String) {
+  delete(thing[key])
+}
+
+/**
  * Helper function for creating JavaScript objects.
  */
 inline fun obj(init: dynamic.() -> Unit): dynamic {

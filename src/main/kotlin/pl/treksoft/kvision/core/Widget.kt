@@ -39,15 +39,7 @@ import pl.treksoft.kvision.i18n.I18n.trans
 import pl.treksoft.kvision.panel.Root
 import pl.treksoft.kvision.state.ObservableState
 import pl.treksoft.kvision.state.bind
-import pl.treksoft.kvision.utils.SnOn
-import pl.treksoft.kvision.utils.emptyOn
-import pl.treksoft.kvision.utils.hooks
-import pl.treksoft.kvision.utils.on
-import pl.treksoft.kvision.utils.set
-import pl.treksoft.kvision.utils.snClasses
-import pl.treksoft.kvision.utils.snOpt
-import pl.treksoft.kvision.utils.snStyle
-import pl.treksoft.kvision.utils.toCamelCase
+import pl.treksoft.kvision.utils.*
 import kotlin.reflect.KProperty
 
 enum class Easing(internal val easing: String) {
@@ -64,14 +56,14 @@ enum class Easing(internal val easing: String) {
  * @param classes Set of CSS class names
  */
 @Suppress("TooManyFunctions", "LargeClass")
-open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component {
-    private val propertyValues: MutableMap<String, Any?> = mutableMapOf()
+open class Widget(internal val intClasses: Set<String>? = null) : StyledComponent(), Component {
+    private val propertyValues = js("{}")
 
-    internal val classes = classes.toMutableSet()
-    internal val surroundingClasses: MutableSet<String> = mutableSetOf()
-    internal val attributes: MutableMap<String, String> = mutableMapOf()
-    internal val internalListenersMap = mutableMapOf<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>()
-    internal val listenersMap = mutableMapOf<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>()
+    internal var classes: MutableSet<String>? = null
+    internal var surroundingClasses: MutableSet<String>? = null
+    internal var attributes: MutableMap<String, String>? = null
+    internal var internalListenersMap : MutableMap<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>? = null
+    internal var listenersMap : MutableMap<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>? = null
     internal var listenerCounter: Int = 0
 
     override var parent: Container? = null
@@ -137,7 +129,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             throw UnsupportedOperationException()
         }
         set(value) {
-            afterInsertHooks.clear()
+            afterInsertHooks?.clear()
             addAfterInsertHook(value)
         }
 
@@ -147,7 +139,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             throw UnsupportedOperationException()
         }
         set(value) {
-            afterDestroyHooks.clear()
+            afterDestroyHooks?.clear()
             addAfterDestroyHook(value)
         }
 
@@ -157,26 +149,37 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             throw UnsupportedOperationException()
         }
         set(value) {
-            beforeDisposeHooks.clear()
+            beforeDisposeHooks?.clear()
             addBeforeDisposeHook(value)
         }
 
-    private val afterInsertHooks: MutableList<(VNode) -> Unit> = mutableListOf()
-    private val afterDestroyHooks: MutableList<() -> Unit> = mutableListOf()
-    private val beforeDisposeHooks: MutableList<() -> Unit> = mutableListOf()
+    private var afterInsertHooks: MutableList<(VNode) -> Unit>? = null
+    private var afterDestroyHooks: MutableList<() -> Unit>? = null
+    private var beforeDisposeHooks: MutableList<() -> Unit>? = null
 
     /**
      * The supplied function is called before the widget is disposed.
      */
-    fun addBeforeDisposeHook(hook: () -> Unit) = beforeDisposeHooks.add(hook)
+    fun addBeforeDisposeHook(hook: () -> Unit) = (beforeDisposeHooks ?: run {
+        beforeDisposeHooks = mutableListOf()
+        beforeDisposeHooks!!
+    }).add(hook)
+
     /**
      * The supplied function is called after the widget is removed from the DOM.
      */
-    fun addAfterDestroyHook(hook: () -> Unit) = afterDestroyHooks.add(hook)
+    fun addAfterDestroyHook(hook: () -> Unit) = (afterDestroyHooks ?: run {
+        afterDestroyHooks = mutableListOf()
+        afterDestroyHooks!!
+    }).add(hook)
+
     /**
      * The supplied function is called after the widget is inserted into the DOM.
      */
-    fun addAfterInsertHook(hook: (VNode) -> Unit) = afterInsertHooks.add(hook)
+    fun addAfterInsertHook(hook: (VNode) -> Unit) = (afterInsertHooks ?: run {
+        afterInsertHooks = mutableListOf()
+        afterInsertHooks!!
+    }).add(hook)
 
     protected fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true
@@ -187,7 +190,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     override fun renderVNode(): VNode {
-        return if (surroundingClasses.isEmpty()) {
+        return if (surroundingClasses == null) {
             if (surroundingSpan) {
                 h("span", arrayOf(render()))
             } else {
@@ -195,7 +198,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
             }
         } else {
             val opt = snOpt {
-                `class` = snClasses(surroundingClasses.map { c -> c to true })
+                `class` = snClasses(surroundingClasses!!.map { c -> c to true })
             }
             if (surroundingSpan) {
                 h("div", opt, arrayOf(h("span", arrayOf(render()))))
@@ -281,7 +284,11 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @param classSetBuilder a delegated builder
      */
     protected open fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        classSetBuilder.addAll(classes)
+        if (classes == null && intClasses != null) {
+            classSetBuilder.addAll(intClasses)
+        } else if (classes != null) {
+            classSetBuilder.addAll(classes!!)
+        }
         if (!visible) {
             classSetBuilder.add("hidden")
         }
@@ -301,7 +308,8 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @param attributeSetBuilder a delegated builder
      */
     protected open fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
-        attributeSetBuilder.addAll(attributes)
+        if (attributes == null) attributes = mutableMapOf()
+        attributeSetBuilder.addAll(attributes!!)
         id?.let {
             attributeSetBuilder.add("id", it)
         }
@@ -326,13 +334,14 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @return list of event handlers
      */
     protected open fun getSnOn(): com.github.snabbdom.On? {
-        val map = internalListenersMap.filter { it.key != "self" && it.value.isNotEmpty() }.map {
+        if (internalListenersMap == null && listenersMap == null) return null
+        val map = internalListenersMap?.filter { it.key != "self" && it.value.isNotEmpty() }?.map {
             val internalListeners = mutableMapOf<Int, SnOn<Widget>.() -> Unit>()
             internalListeners.putAll(it.value)
             it.key to internalListeners
-        }.toMap().toMutableMap()
-        listenersMap.filter { it.key != "self" && it.value.isNotEmpty() }
-            .forEach { (event, listeners) ->
+        }?.toMap()?.toMutableMap() ?: mutableMapOf()
+        listenersMap?.filter { it.key != "self" && it.value.isNotEmpty() }
+            ?.forEach { (event, listeners) ->
                 val internalListeners = map[event]
                 if (internalListeners != null) {
                     internalListeners.putAll(listeners)
@@ -370,12 +379,12 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
                 vnode = v
                 afterInsertInternal(v)
                 afterInsert(v)
-                afterInsertHooks.forEach { it(v) }
+                afterInsertHooks?.forEach { it(v) }
             }
             destroy = {
                 afterDestroyInternal()
                 afterDestroy()
-                afterDestroyHooks.forEach { it() }
+                afterDestroyHooks?.forEach { it() }
                 vnode = null
                 vnode
             }
@@ -389,17 +398,20 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     @Suppress("UNCHECKED_CAST", "UnsafeCastFromDynamic")
     protected fun <T : Widget> setInternalEventListener(block: SnOn<T>.() -> Unit): Int {
+        if (internalListenersMap == null) internalListenersMap = mutableMapOf()
         val handlerCounter = listenerCounter++
         val blockAsWidget = block as SnOn<Widget>.() -> Unit
         val handlers = on(this)
         (handlers::apply)(blockAsWidget)
         for (key: String in js("Object").keys(handlers)) {
-            val handler = handlers.asDynamic()[key]
-            val map = internalListenersMap[key]
-            if (map != null) {
-                map[handlerCounter] = handler
-            } else {
-                internalListenersMap[key] = mutableMapOf(handlerCounter to handler)
+            if (key != "self") {
+                val handler = handlers.asDynamic()[key]
+                val map = internalListenersMap!![key]
+                if (map != null) {
+                    map[handlerCounter] = handler
+                } else {
+                    internalListenersMap!![key] = mutableMapOf(handlerCounter to handler)
+                }
             }
         }
         refresh()
@@ -423,6 +435,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      */
     @Suppress("UNCHECKED_CAST", "UnsafeCastFromDynamic")
     open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
+        if (listenersMap == null) listenersMap = mutableMapOf()
         val handlerCounter = listenerCounter++
         val blockAsWidget = block as SnOn<Widget>.() -> Unit
         val handlers = on(eventTarget ?: this)
@@ -430,11 +443,11 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         for (key: String in js("Object").keys(handlers)) {
             if (key != "self") {
                 val handler = handlers.asDynamic()[key]
-                val map = listenersMap[key]
+                val map = listenersMap!![key]
                 if (map != null) {
                     map[handlerCounter] = handler
                 } else {
-                    listenersMap[key] = mutableMapOf(handlerCounter to handler)
+                    listenersMap!![key] = mutableMapOf(handlerCounter to handler)
                 }
             }
         }
@@ -448,7 +461,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @return current widget
      */
     open fun removeEventListener(id: Int): Widget {
-        listenersMap.forEach { it.value.remove(id) }
+        listenersMap?.forEach { it.value.remove(id) }
         refresh()
         return this
     }
@@ -458,7 +471,7 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
      * @return current widget
      */
     open fun removeEventListeners(): Widget {
-        listenersMap.clear()
+        listenersMap?.clear()
         refresh()
         return this
     }
@@ -745,27 +758,31 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     override fun addCssClass(css: String): Widget {
-        this.classes.add(css)
+        if (classes == null) classes = intClasses?.toMutableSet() ?: mutableSetOf()
+        classes!!.add(css)
         refresh()
         return this
     }
 
     override fun removeCssClass(css: String): Widget {
-        this.classes.remove(css)
+        if (classes == null) classes = intClasses?.toMutableSet() ?: mutableSetOf()
+        classes!!.remove(css)
         refresh()
         return this
     }
 
-    override fun hasCssClass(css: String): Boolean = this.classes.contains(css)
+    override fun hasCssClass(css: String): Boolean = this.classes?.contains(css) ?: false
 
     override fun addSurroundingCssClass(css: String): Widget {
-        this.surroundingClasses.add(css)
+        if (this.surroundingClasses == null) this.surroundingClasses = mutableSetOf()
+        this.surroundingClasses!!.add(css)
         refresh()
         return this
     }
 
     override fun removeSurroundingCssClass(css: String): Widget {
-        this.surroundingClasses.remove(css)
+        if (this.surroundingClasses == null) this.surroundingClasses = mutableSetOf()
+        this.surroundingClasses!!.remove(css)
         refresh()
         return this
     }
@@ -787,17 +804,19 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     override fun getAttribute(name: String): String? {
-        return this.attributes[name]
+        return this.attributes?.get(name)
     }
 
     override fun setAttribute(name: String, value: String): Widget {
-        this.attributes[name] = value
+        if (attributes == null) attributes = mutableMapOf()
+        attributes!![name] = value
         refresh()
         return this
     }
 
     override fun removeAttribute(name: String): Widget {
-        this.attributes.remove(name)
+        if (attributes == null) attributes = mutableMapOf()
+        attributes!!.remove(name)
         refresh()
         return this
     }
@@ -992,17 +1011,24 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     ): Array<out Any> {
         val translatedLabel = translate(label)
         return if (icon != null) {
+            val iconClasses = icon.split(" ").toSet()
+            val iconOpt = snOpt {
+                `class` = snClasses(iconClasses.map { c -> c to true })
+            }
             if (separator == null) {
-                arrayOf(KVManager.virtualize("<i class='$icon'></i>"), " $translatedLabel")
+                arrayOf(h("i", iconOpt), " $translatedLabel")
             } else {
-                arrayOf(KVManager.virtualize("<i class='$icon'></i>"), KVManager.virtualize(separator), translatedLabel)
+                arrayOf(h("i", iconOpt), KVManager.virtualize(separator), translatedLabel)
             }
         } else if (image != null) {
+            val imageOpt = snOpt {
+                attrs = snAttrs(mapOf("src" to image, "alt" to ""))
+            }
             if (separator == null) {
-                arrayOf(KVManager.virtualize("<img src='$image' alt='' />"), " $translatedLabel")
+                arrayOf(h("img", imageOpt), " $translatedLabel")
             } else {
                 arrayOf(
-                    KVManager.virtualize("<img src='$image' alt='' />"),
+                    h("img", imageOpt),
                     KVManager.virtualize(separator),
                     translatedLabel
                 )
@@ -1018,15 +1044,17 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
     }
 
     override fun dispose() {
-        beforeDisposeHooks.forEach { it() }
+        beforeDisposeHooks?.forEach { it() }
     }
 
-    protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }): RefreshDelegateProvider<T> =
+    @Suppress("NOTHING_TO_INLINE")
+    protected inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit) = { this.refresh() }): RefreshDelegateProvider<T> =
         RefreshDelegateProvider(null, refreshFunction)
 
-    protected fun <T> refreshOnUpdate(
+    @Suppress("NOTHING_TO_INLINE")
+    protected inline fun <T> refreshOnUpdate(
         initialValue: T,
-        refreshFunction: ((T) -> Unit) = { this.refresh() }
+        noinline refreshFunction: ((T) -> Unit) = { this.refresh() }
     ): RefreshDelegateProvider<T> =
         RefreshDelegateProvider(initialValue, refreshFunction)
 
@@ -1044,9 +1072,9 @@ open class Widget(classes: Set<String> = setOf()) : StyledComponent(), Component
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]
             return if (value != null) {
-                value as T
+                value.unsafeCast<T>()
             } else {
-                null as T
+                null.unsafeCast<T>()
             }
         }
 

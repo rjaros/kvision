@@ -220,7 +220,7 @@ fun <T> MutableList<T>.syncWithList(list: List<T>) {
  */
 val String?.set: Set<String>
     get() {
-        return this?.split(Regex("\\s+"))?.toSet() ?: setOf()
+        return this?.split(" ")?.toSet() ?: setOf()
     }
 
 /**

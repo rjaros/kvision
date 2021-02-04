@@ -24,13 +24,13 @@
 package pl.treksoft.kvision.core
 
 import com.github.snabbdom.Attrs
-import pl.treksoft.kvision.utils.snAttrs
 
 interface AttributeSetBuilder {
     fun add(name: String, value: String = name)
     fun addAll(attributes: Map<String, String>) {
         attributes.forEach { (key, value) -> add(key, value) }
     }
+
     fun add(attribute: DomAttribute?) {
         if (attribute != null) {
             add(attribute.attributeName, attribute.attributeValue)
@@ -39,17 +39,14 @@ interface AttributeSetBuilder {
 }
 
 internal class AttributeSetBuilderImpl : AttributeSetBuilder {
+    @Suppress("UnsafeCastFromDynamic")
     val attributes: Attrs
-        get() = snAttrs(_attributes)
+        get() = js("Object").assign(js("{}"), _attributes)
 
-    private val _attributes: MutableMap<String, String> = HashMap()
+    private val _attributes = js("{}")
 
     override fun add(name: String, value: String) {
         _attributes[name] = value
-    }
-
-    override fun addAll(attributes: Map<String, String>) {
-        this._attributes.putAll(attributes)
     }
 }
 

@@ -34,7 +34,7 @@ import kotlin.reflect.KProperty
 @Suppress("TooManyFunctions")
 open class Style(className: String? = null, parentStyle: Style? = null, init: (Style.() -> Unit)? = null) :
     StyledComponent() {
-    private val propertyValues: MutableMap<String, Any?> = mutableMapOf()
+    private val propertyValues = js("{}")
 
     private val newClassName: String = if (parentStyle == null) {
         className ?: "kv_styleclass_${counter++}"
@@ -61,10 +61,12 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
         } + "\n}"
     }
 
-    protected fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    @Suppress("NOTHING_TO_INLINE")
+    protected inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
         RefreshDelegateProvider<T>(null, refreshFunction)
 
-    protected fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    @Suppress("NOTHING_TO_INLINE")
+    protected inline fun <T> refreshOnUpdate(initialValue: T, noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
         RefreshDelegateProvider(initialValue, refreshFunction)
 
     protected inner class RefreshDelegateProvider<T>(
@@ -81,9 +83,9 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]
             return if (value != null) {
-                value as T
+                value.unsafeCast<T>()
             } else {
-                null as T
+                null.unsafeCast<T>()
             }
         }
 

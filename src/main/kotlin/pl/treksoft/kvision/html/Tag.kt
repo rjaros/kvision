@@ -129,7 +129,7 @@ enum class Align(override val className: String) : CssClass {
  */
 open class Tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-    classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
+    classes: Set<String> = setOf(), attributes: Map<String, String>? = null,
     init: (Tag.() -> Unit)? = null
 ) : SimplePanel(classes), Template {
 
@@ -170,7 +170,10 @@ open class Tag(
     override var templates: Map<String, (Any?) -> String> by refreshOnUpdate(mapOf())
 
     init {
-        this.attributes += attributes
+        if (attributes != null) {
+            if (this.attributes == null) this.attributes = mutableMapOf()
+            this.attributes!! += attributes
+        }
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -215,7 +218,7 @@ fun Container.tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    attributes: Map<String, String> = mapOf(),
+    attributes: Map<String, String>? = null,
     init: (Tag.() -> Unit)? = null
 ): Tag {
     val tag = Tag(type, content, rich, align, classes ?: className.set, attributes, init)
@@ -233,6 +236,6 @@ fun <S> Container.tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    attributes: Map<String, String> = mapOf(),
+    attributes: Map<String, String>? = null,
     init: (Tag.(S) -> Unit)
 ) = tag(type, content, rich, align, classes, className, attributes).bind(state, true, init)

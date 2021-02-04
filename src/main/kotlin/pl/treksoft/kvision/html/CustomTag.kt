@@ -44,7 +44,7 @@ open class CustomTag(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(), attributes: Map<String, String> = mapOf(),
+    classes: Set<String> = setOf(), attributes: Map<String, String>? = null,
     init: (CustomTag.() -> Unit)? = null
 ) :
     Tag(TAG.DIV, content, rich, align, classes, attributes) {
@@ -76,7 +76,7 @@ fun Container.customTag(
     align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    attributes: Map<String, String> = mapOf(),
+    attributes: Map<String, String>? = null,
     init: (CustomTag.() -> Unit)? = null
 ): CustomTag {
     val customTag =
@@ -98,6 +98,6 @@ fun <S> Container.customTag(
     align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    attributes: Map<String, String> = mapOf(),
+    attributes: Map<String, String>? = null,
     init: (CustomTag.(S) -> Unit)
 ) = customTag(elementName, content, rich, align, classes, className, attributes).bind(state, true, init)

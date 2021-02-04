@@ -23,6 +23,7 @@ package pl.treksoft.kvision.core
 
 import pl.treksoft.kvision.utils.Cache
 import pl.treksoft.kvision.utils.asString
+import pl.treksoft.kvision.utils.delete
 import kotlin.reflect.KProperty
 
 /**
@@ -30,8 +31,8 @@ import kotlin.reflect.KProperty
  */
 @Suppress("LargeClass")
 abstract class StyledComponent {
-    private val propertyValues: MutableMap<String, Any?> = mutableMapOf()
-    internal val customStyles: MutableMap<String, String> = mutableMapOf()
+    private val propertyValues = js("{}")
+    private val customStyles = js("{}")
 
     /**
      * Width of the current component.
@@ -749,8 +750,8 @@ abstract class StyledComponent {
             gridArea?.let {
                 snstyle.add("grid-area" to it)
             }
-            if (customStyles.isNotEmpty()) {
-                snstyle += customStyles.toList()
+            for (key in js("Object").keys(customStyles).unsafeCast<Array<String>>()) {
+                snstyle.add(Pair(key, customStyles[key]))
             }
             globalStyleCache[cacheKey] = snstyle
             return snstyle
@@ -763,6 +764,7 @@ abstract class StyledComponent {
      * @return the value of the style
      */
     fun getStyle(name: String): String? {
+        @Suppress("UnsafeCastFromDynamic")
         return this.customStyles[name]
     }
 
@@ -782,23 +784,22 @@ abstract class StyledComponent {
      * @param name the name of the style
      */
     fun removeStyle(name: String): StyledComponent {
-        this.customStyles.remove(name)
+        delete(this.customStyles, name)
         refresh()
         return this
     }
 
     protected open fun getCacheKey(): String {
-        return ((propertyValues.map {
-            "$it"
-        }) + (customStyles.map {
-            "$it"
-        })).joinToString("###KvSep###")
+        @Suppress("UnsafeCastFromDynamic")
+        return JSON.stringify(propertyValues) + JSON.stringify(customStyles)
     }
 
-    private fun <T> refreshOnUpdate(refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    @Suppress("NOTHING_TO_INLINE")
+    private inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
         RefreshDelegateProvider<T>(null, refreshFunction)
 
-    private fun <T> refreshOnUpdate(initialValue: T, refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    @Suppress("NOTHING_TO_INLINE")
+    private inline fun <T> refreshOnUpdate(initialValue: T, noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
         RefreshDelegateProvider(initialValue, refreshFunction)
 
     private inner class RefreshDelegateProvider<T>(
@@ -815,9 +816,9 @@ abstract class StyledComponent {
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]
             return if (value != null) {
-                value as T
+                value.unsafeCast<T>()
             } else {
-                null as T
+                null.unsafeCast<T>()
             }
         }
 

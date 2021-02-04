@@ -24,7 +24,6 @@
 package pl.treksoft.kvision.core
 
 import com.github.snabbdom.Classes
-import pl.treksoft.kvision.utils.snClasses
 
 /**
  * A builder in order to create a set of CSS-classes
@@ -42,17 +41,18 @@ interface ClassSetBuilder {
 }
 
 internal class ClassSetBuilderImpl : ClassSetBuilder {
+    @Suppress("UnsafeCastFromDynamic")
     val classes: Classes
-        get() = snClasses(_classes)
+        get() = js("Object").assign(js("{}"), _classes)
 
-    private val _classes: MutableSet<String> = HashSet()
+    private val _classes = js("{}")
 
     override fun add(value: String) {
-        _classes.add(value)
+        _classes[value] = true
     }
 
     override fun addAll(values: Collection<String>) {
-        _classes.addAll(values)
+        values.forEach { _classes[it] = true }
     }
 }
 
