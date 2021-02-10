@@ -22,8 +22,6 @@
 package io.kvision.window
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.events.Event
-import org.w3c.dom.events.MouseEvent
 import io.kvision.KVManagerBootstrap
 import io.kvision.core.Component
 import io.kvision.core.Container
@@ -42,6 +40,8 @@ import io.kvision.state.bind
 import io.kvision.utils.obj
 import io.kvision.utils.px
 import io.kvision.utils.set
+import org.w3c.dom.events.Event
+import org.w3c.dom.events.MouseEvent
 
 internal const val DEFAULT_Z_INDEX = 900
 internal const val WINDOW_HEADER_HEIGHT = 40
@@ -394,13 +394,6 @@ open class Window(
      */
     open fun toFront() {
         if ((zIndex ?: 0) < zIndexCounter) zIndex = ++zIndexCounter
-    }
-
-    /**
-     * Makes the current window focused.
-     */
-    open fun focus() {
-        getElementJQuery()?.focus()
     }
 
     /**

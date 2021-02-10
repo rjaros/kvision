@@ -21,10 +21,10 @@
  */
 package io.kvision.form
 
-import org.w3c.files.File
 import io.kvision.core.Component
 import io.kvision.core.CssClass
 import io.kvision.types.KFile
+import org.w3c.files.File
 import kotlin.js.Date
 
 /**
@@ -60,16 +60,6 @@ interface FormInput : Component {
      * Input control validation status.
      */
     var validationStatus: ValidationStatus?
-
-    /**
-     * Makes the input element focused.
-     */
-    fun focus()
-
-    /**
-     * Makes the input element blur.
-     */
-    fun blur()
 }
 
 /**
@@ -167,16 +157,6 @@ interface FormControl : Component {
             input.validationStatus = if (value != null) ValidationStatus.INVALID else null
             refresh()
         }
-
-    /**
-     * Makes the input element focused.
-     */
-    fun focus()
-
-    /**
-     * Makes the input element blur.
-     */
-    fun blur()
 
     /**
      * Style form control element for vertical form panel.

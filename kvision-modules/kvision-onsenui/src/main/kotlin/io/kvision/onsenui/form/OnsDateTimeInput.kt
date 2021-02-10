@@ -253,20 +253,6 @@ open class OnsDateTimeInput(
         return value?.toStringF(mode.format)
     }
 
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
-    }
-
     override fun getState(): Date? = value
 
     override fun subscribe(observer: (Date?) -> Unit): () -> Unit {

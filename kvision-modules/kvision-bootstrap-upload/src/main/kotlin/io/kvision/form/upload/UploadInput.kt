@@ -22,7 +22,6 @@
 package io.kvision.form.upload
 
 import com.github.snabbdom.VNode
-import org.w3c.files.File
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -39,6 +38,7 @@ import io.kvision.types.KFile
 import io.kvision.utils.getContent
 import io.kvision.utils.obj
 import io.kvision.utils.set
+import org.w3c.files.File
 import kotlin.reflect.KProperty1
 
 /**
@@ -322,20 +322,6 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
      */
     fun getValueAsString(): String? {
         return value?.joinToString(",") { it.name }
-    }
-
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
     }
 
     private fun getSettingsObj(): dynamic {

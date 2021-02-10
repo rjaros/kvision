@@ -22,9 +22,9 @@
 package io.kvision.core
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.Node
 import io.kvision.jquery.JQuery
 import io.kvision.panel.Root
+import org.w3c.dom.Node
 
 /**
  * Base interface for all components.
@@ -35,6 +35,7 @@ interface Component {
      * Parent of the current component.
      */
     var parent: Container?
+
     /**
      * Visibility state of the current component.
      */
@@ -171,4 +172,18 @@ interface Component {
      * Cleans resources allocated by the current component.
      */
     fun dispose()
+
+    /**
+     * Makes the element focused.
+     */
+    fun focus() {
+        getElementJQuery()?.focus()
+    }
+
+    /**
+     * Makes the element blur.
+     */
+    fun blur() {
+        getElementJQuery()?.blur()
+    }
 }

@@ -22,7 +22,6 @@
 package io.kvision.form.spinner
 
 import com.github.snabbdom.VNode
-import io.kvision.jquery.JQuery
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -31,6 +30,7 @@ import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.html.ButtonStyle
+import io.kvision.jquery.JQuery
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.obj
@@ -311,20 +311,6 @@ open class SpinnerInput(
                 this.verticaldown = "<i class=\"fas fa-caret-down\"></i>"
             }
         }
-    }
-
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
     }
 
     override fun getState(): Number? = value

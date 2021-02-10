@@ -247,20 +247,6 @@ open class OnsNumberInput(
         return value?.toString()
     }
 
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
-    }
-
     override fun getState(): Number? = value
 
     override fun subscribe(observer: (Number?) -> Unit): () -> Unit {
