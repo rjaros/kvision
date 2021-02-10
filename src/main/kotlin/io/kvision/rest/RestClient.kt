@@ -21,22 +21,19 @@
  */
 package io.kvision.rest
 
+import io.kvision.jquery.JQueryAjaxSettings
+import io.kvision.jquery.JQueryXHR
+import io.kvision.jquery.jQuery
+import io.kvision.types.DateSerializer
+import io.kvision.utils.obj
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
-import io.kvision.jquery.jQuery
-import io.kvision.types.DateSerializer
-import io.kvision.utils.JSON
-import io.kvision.utils.JSON.toObj
-import io.kvision.utils.obj
 import kotlin.js.Date
 import kotlin.js.Promise
-import kotlin.js.JSON as NativeJSON
 
 enum class HttpMethod {
     GET,
@@ -60,7 +57,16 @@ const val HTTP_UNAUTHORIZED = 401
 /**
  * An agent responsible for remote calls.
  */
-open class RestClient {
+open class RestClient(protected val module: SerializersModule? = null) {
+
+    protected val Json = Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+        serializersModule = SerializersModule {
+            contextual(Date::class, DateSerializer)
+            module?.let { this.include(it) }
+        }
+    }
 
     /**
      * Makes a remote call to the remote server.
@@ -110,13 +116,7 @@ open class RestClient {
                 result
             }
             @Suppress("UnsafeCastFromDynamic")
-            Json {
-                ignoreUnknownKeys = true
-                isLenient = true
-                serializersModule = SerializersModule {
-                    contextual(Date::class, DateSerializer)
-                }
-            }.decodeFromString(deserializer, NativeJSON.stringify(transformed))
+            Json.decodeFromString(deserializer, JSON.stringify(transformed))
         }
     }
 
@@ -139,7 +139,7 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
         val dataSer =
-            if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.encodeToString(serializer, data)
+            if (method == HttpMethod.GET) data.toObj(serializer) else Json.encodeToString(serializer, data)
         return remoteCall(url, dataSer, method, contentType, beforeSend)
     }
 
@@ -168,7 +168,7 @@ open class RestClient {
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
         val dataSer =
-            if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.encodeToString(serializer, data)
+            if (method == HttpMethod.GET) data.toObj(serializer) else Json.encodeToString(serializer, data)
         return remoteCall(
             url,
             dataSer,
@@ -182,13 +182,7 @@ open class RestClient {
                 result
             }
             @Suppress("UnsafeCastFromDynamic")
-            Json {
-                ignoreUnknownKeys = true
-                isLenient = true
-                serializersModule = SerializersModule {
-                    contextual(Date::class, DateSerializer)
-                }
-            }.decodeFromString(deserializer, NativeJSON.stringify(transformed))
+            Json.decodeFromString(deserializer, JSON.stringify(transformed))
         }
     }
 
@@ -363,7 +357,7 @@ open class RestClient {
                 this.error =
                     { xhr: JQueryXHR, _: String, errorText: String ->
                         val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
-                            NativeJSON.stringify(xhr.responseJSON)
+                            JSON.stringify(xhr.responseJSON)
                         } else if (xhr.responseText != undefined) {
                             xhr.responseText
                         } else {
@@ -406,13 +400,7 @@ open class RestClient {
             }
             Response(
                 @Suppress("UnsafeCastFromDynamic")
-                Json {
-                    ignoreUnknownKeys = true
-                    isLenient = true
-                    serializersModule = SerializersModule {
-                        contextual(Date::class, DateSerializer)
-                    }
-                }.decodeFromString(deserializer, NativeJSON.stringify(transformed)),
+                Json.decodeFromString(deserializer, JSON.stringify(transformed)),
                 result.textStatus, result.jqXHR
             )
         }
@@ -437,7 +425,7 @@ open class RestClient {
         beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<Response<dynamic>> {
         val dataSer =
-            if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.encodeToString(serializer, data)
+            if (method == HttpMethod.GET) data.toObj(serializer) else Json.encodeToString(serializer, data)
         return remoteRequest(url, dataSer, method, contentType, beforeSend)
     }
 
@@ -466,7 +454,7 @@ open class RestClient {
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
         val dataSer =
-            if (method == HttpMethod.GET) data.toObj(serializer) else JSON.plain.encodeToString(serializer, data)
+            if (method == HttpMethod.GET) data.toObj(serializer) else Json.encodeToString(serializer, data)
         return remoteRequest(
             url,
             dataSer,
@@ -481,13 +469,7 @@ open class RestClient {
             }
             Response(
                 @Suppress("UnsafeCastFromDynamic")
-                Json {
-                    ignoreUnknownKeys = true
-                    isLenient = true
-                    serializersModule = SerializersModule {
-                        contextual(Date::class, DateSerializer)
-                    }
-                }.decodeFromString(deserializer, NativeJSON.stringify(transformed)),
+                Json.decodeFromString(deserializer, JSON.stringify(transformed)),
                 result.textStatus, result.jqXHR
             )
         }
@@ -633,4 +615,13 @@ open class RestClient {
             transform
         )
     }
+
+    /**
+     * An extension function to convert Serializable object to JS dynamic object
+     * @param serializer a serializer for T
+     */
+    protected fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
+        return JSON.parse(Json.encodeToString(serializer, this))
+    }
+
 }
