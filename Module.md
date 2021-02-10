@@ -2,230 +2,230 @@
 
 KVision - object oriented web framework for Kotlin/JS.
 
-# Package pl.treksoft.kvision
+# Package io.kvision
 
 KVision main Application class and some helper interfaces necessary to support Hot Module Replacement (HMR).
 
-# Package pl.treksoft.kvision.annotations
+# Package io.kvision.annotations
 
 Annotations for use with KVision compiler plugin.
 
-# Package pl.treksoft.kvision.core
+# Package io.kvision.core
 
 KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders, 
 backgrounds, fonts, text and position) and the main Widget class.
 
-# Package pl.treksoft.kvision.chart
+# Package io.kvision.chart
 
 Full-featured chart component based on chart.js library.
 
-# Package pl.treksoft.kvision.chart.js
+# Package io.kvision.chart.js
 
 Kotlin bindings for chart.js API.
 
-# Package pl.treksoft.kvision.cordova
+# Package io.kvision.cordova
 
 Kotlin bindings for core Apache Cordova API.
 
-# Package pl.treksoft.kvision.data
+# Package io.kvision.data
 
 Base component and container class with data binding support for observable data model.
 
-# Package pl.treksoft.kvision.dropdown
+# Package io.kvision.dropdown
 
 Bootstrap dropdown component with support for navigation bars and context menus.
 
-# Package pl.treksoft.kvision.electron
+# Package io.kvision.electron
 
 Globals for Electron API.
 
-# Package pl.treksoft.kvision.electron.electron
+# Package io.kvision.electron.electron
 
 Kotlin bindings for Electron API.
 
-# Package pl.treksoft.kvision.electron.nodejs
+# Package io.kvision.electron.nodejs
 
 Kotlin bindings for NodeJS API within Electron.
 
-# Package pl.treksoft.kvision.event
+# Package io.kvision.event
 
 Extension functions producing coroutines Flows for KVision event and data sources.
 
-# Package pl.treksoft.kvision.form
+# Package io.kvision.form
 
 Convenient forms implementation, with support for many different input components and easy to define
 validation.
 
-# Package pl.treksoft.kvision.form.check
+# Package io.kvision.form.check
 
 Checkbox, radiobutton and radiobutton group components.
 
-# Package pl.treksoft.kvision.form.range
+# Package io.kvision.form.range
 
 Range input component.
 
-# Package pl.treksoft.kvision.form.select
+# Package io.kvision.form.select
 
 Contains a simple select component as well as a full-featured component with support for remote (AJAX) data source.
 
-# Package pl.treksoft.kvision.form.spinner
+# Package io.kvision.form.spinner
 
 Spinner input component.
 
-# Package pl.treksoft.kvision.form.text
+# Package io.kvision.form.text
 
 Text input components, with password, text area, rich text area and typeahead support.
 
-# Package pl.treksoft.kvision.form.time
+# Package io.kvision.form.time
 
 Full-featured date and time input components.
 
-# Package pl.treksoft.kvision.form.upload
+# Package io.kvision.form.upload
 
 Full-featured file upload component with drag & drop, preview and AJAX upload mode.
 
-# Package pl.treksoft.kvision.html
+# Package io.kvision.html
 
 Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links, lists and iframe. 
 Support for Handlebars.js templates is included.
 
-# Package pl.treksoft.kvision.i18n
+# Package io.kvision.i18n
 
 Internationalization classes.
 
-# Package pl.treksoft.kvision.maps
+# Package io.kvision.maps
 
 A maps component based on Leaflet library.
 
-# Package pl.treksoft.kvision.modal
+# Package io.kvision.modal
 
 Classes supporting general purpose Bootstrap modals with convenient helpers for alert and confirm popup dialogs.
 
-# Package pl.treksoft.kvision.moment
+# Package io.kvision.moment
 
 A set of tools for parsing, validating, manipulating, and formatting dates based on Moment Library.
 
-# Package pl.treksoft.kvision.navbar
+# Package io.kvision.navbar
 
 Bootstrap navbar components.
 
-# Package pl.treksoft.kvision.onsenui
+# Package io.kvision.onsenui
 
 Onsen UI helper utility functions.
 
-# Package pl.treksoft.kvision.onsenui.carousel
+# Package io.kvision.onsenui.carousel
 
 Onsen UI carousel component.
 
-# Package pl.treksoft.kvision.onsenui.control
+# Package io.kvision.onsenui.control
 
 Onsen UI control components (action button, speed dial, segment).
 
-# Package pl.treksoft.kvision.onsenui.core
+# Package io.kvision.onsenui.core
 
 Onsen UI main structural components (page, navigator).
 
-# Package pl.treksoft.kvision.onsenui.dialog
+# Package io.kvision.onsenui.dialog
 
 Onsen UI dialogs, toasts, popovers and notifications.
 
-# Package pl.treksoft.kvision.onsenui.form
+# Package io.kvision.onsenui.form
 
 Onsen UI form components.
 
-# Package pl.treksoft.kvision.onsenui.grid
+# Package io.kvision.onsenui.grid
 
 Onsen UI grid layout components.
 
-# Package pl.treksoft.kvision.onsenui.list
+# Package io.kvision.onsenui.list
 
 Onsen UI list component.
 
-# Package pl.treksoft.kvision.onsenui.splitter
+# Package io.kvision.onsenui.splitter
 
 Onsen UI splitter component.
 
-# Package pl.treksoft.kvision.onsenui.tabbar
+# Package io.kvision.onsenui.tabbar
 
 Onsen UI tabbar component.
 
-# Package pl.treksoft.kvision.onsenui.toolbar
+# Package io.kvision.onsenui.toolbar
 
 Onsen UI toolbar component.
 
-# Package pl.treksoft.kvision.onsenui.visual
+# Package io.kvision.onsenui.visual
 
 Onsen UI visual components (card, icon, progress bars and ripple).
 
-# Package pl.treksoft.kvision.pace
+# Package io.kvision.pace
 
 Automatic progress bar module.
 
-# Package pl.treksoft.kvision.panel
+# Package io.kvision.panel
 
 Rich set of container classes, supporting both simple use cases and sophisticated layouts (including CSS flexbox,
 CSS grid and Bootstrap responsive 12 columns gid).
 
-# Package pl.treksoft.kvision.print
+# Package io.kvision.print
 
 Printing support.
 
-# Package pl.treksoft.kvision.progress
+# Package io.kvision.progress
 
 Bootstrap progress bar component.
 
-# Package pl.treksoft.kvision.react
+# Package io.kvision.react
 
 KVision bindings for embedded React components.
 
-# Package pl.treksoft.kvision.redux
+# Package io.kvision.redux
 
 Predictable state container based on Redux library.
 
-# Package pl.treksoft.kvision.remote
+# Package io.kvision.remote
 
 A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.
 
-# Package pl.treksoft.kvision.state
+# Package io.kvision.state
 
 Classes supporting the observer pattern, including the implementation of the observable list. 
 
-# Package pl.treksoft.kvision.tabulator
+# Package io.kvision.tabulator
 
 Full-featured grid/table component based on the Tabulator library.
 
-# Package pl.treksoft.kvision.tabulator.js
+# Package io.kvision.tabulator.js
 
 Kotlin bindings for Tabulator API.
 
-# Package pl.treksoft.kvision.rest
+# Package io.kvision.rest
 
 RESTful API client with support for type-safe connectivity.
 
-# Package pl.treksoft.kvision.routing
+# Package io.kvision.routing
 
 Simple and easy to use JavaScript router wrapper.
 
-# Package pl.treksoft.kvision.table
+# Package io.kvision.table
 
 Clasess supporting HTML tables.
 
-# Package pl.treksoft.kvision.toast
+# Package io.kvision.toast
 
 The toast component.
 
-# Package pl.treksoft.kvision.toolbar
+# Package io.kvision.toolbar
 
 Toolbar and button group components.
 
-# Package pl.treksoft.kvision.types
+# Package io.kvision.types
 
 Multiplatform type definitions.
 
-# Package pl.treksoft.kvision.utils
+# Package io.kvision.utils
 
 Interfaces and helper functions for Snabbdom virtual dom implementation and a few useful extension functions.
 
-# Package pl.treksoft.kvision.window
+# Package io.kvision.window
 
 Floating, resizable window component.
