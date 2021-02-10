@@ -52,6 +52,7 @@ data class TooltipOptions(
     val rich: Boolean? = null,
     val animation: Boolean? = null,
     val delay: Int? = null,
+    val hideDelay: Int? = null,
     val placement: Placement? = null,
     val triggers: List<Trigger>? = null,
     val sanitize: Boolean? = null
@@ -67,7 +68,19 @@ fun TooltipOptions.toJs(): dynamic {
         if (this@toJs.title != null) this.title = this@toJs.title
         if (this@toJs.rich != null) this.html = this@toJs.rich
         if (this@toJs.animation != null) this.animation = this@toJs.animation
-        if (this@toJs.delay != null) this.delay = this@toJs.delay
+        if (this@toJs.delay != null && this@toJs.hideDelay != null) {
+            this.delay = obj {
+                show = this@toJs.delay
+                hide = this@toJs.hideDelay
+            }
+        } else if (this@toJs.delay != null) {
+            this.delay = this@toJs.delay
+        } else if (this@toJs.hideDelay != null) {
+            this.delay = obj {
+                show = 0
+                hide = this@toJs.hideDelay
+            }
+        }
         if (this@toJs.placement != null) this.placement = this@toJs.placement.placement
         if (trigger != null) this.trigger = trigger
         if (this@toJs.sanitize != null) this.sanitize = this@toJs.sanitize
@@ -83,6 +96,7 @@ data class PopoverOptions(
     val rich: Boolean? = null,
     val animation: Boolean? = null,
     val delay: Int? = null,
+    val hideDelay: Int? = null,
     val placement: Placement? = null,
     val triggers: List<Trigger>? = null,
     val sanitize: Boolean? = null
@@ -99,7 +113,19 @@ fun PopoverOptions.toJs(): dynamic {
         if (this@toJs.title != null) this.title = this@toJs.title
         if (this@toJs.rich != null) this.html = this@toJs.rich
         if (this@toJs.animation != null) this.animation = this@toJs.animation
-        if (this@toJs.delay != null) this.delay = this@toJs.delay
+        if (this@toJs.delay != null && this@toJs.hideDelay != null) {
+            this.delay = obj {
+                show = this@toJs.delay
+                hide = this@toJs.hideDelay
+            }
+        } else if (this@toJs.delay != null) {
+            this.delay = this@toJs.delay
+        } else if (this@toJs.hideDelay != null) {
+            this.delay = obj {
+                show = 0
+                hide = this@toJs.hideDelay
+            }
+        }
         if (this@toJs.placement != null) this.placement = this@toJs.placement.placement
         if (trigger != null) this.trigger = trigger
         if (this@toJs.sanitize != null) this.sanitize = this@toJs.sanitize
