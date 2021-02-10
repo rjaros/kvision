@@ -23,8 +23,6 @@ package io.kvision.panel
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
-import kotlinx.browser.document
-import org.w3c.dom.HTMLElement
 import io.kvision.Application
 import io.kvision.KVManager
 import io.kvision.core.ClassSetBuilder
@@ -32,6 +30,8 @@ import io.kvision.core.Style
 import io.kvision.core.Widget
 import io.kvision.utils.snClasses
 import io.kvision.utils.snOpt
+import kotlinx.browser.document
+import org.w3c.dom.HTMLElement
 
 /**
  * Root container types.
@@ -110,42 +110,6 @@ class Root : SimplePanel {
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
-
-    /**
-     * @constructor
-     * @param id ID attribute of element in the main HTML file
-     * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
-     * otherwise it's rendered with "container" class (default is false)
-     * @param containerType Bootstrap container type
-     * @param addRow if true, a <div class="row"> element is rendered inside the root container
-     * @param init an initializer extension function
-     */
-    @Deprecated("Use constructor without fixed parameter")
-    constructor(
-        id: String,
-        fixed: Boolean = false,
-        containerType: ContainerType = if (fixed) ContainerType.FIXED else ContainerType.FLUID,
-        addRow: Boolean = !fixed,
-        init: (Root.() -> Unit)? = null
-    ) : this(id, containerType, addRow, init)
-
-    /**
-     * @constructor
-     * @param element HTML element in the DOM tree
-     * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
-     * otherwise it's rendered with "container" class (default is false)
-     * @param containerType Bootstrap container type
-     * @param addRow if true, a <div class="row"> element is rendered inside the root container
-     * @param init an initializer extension function
-     */
-    @Deprecated("Use constructor without fixed parameter")
-    constructor(
-        element: HTMLElement,
-        fixed: Boolean = false,
-        containerType: ContainerType = if (fixed) ContainerType.FIXED else ContainerType.FLUID,
-        addRow: Boolean = !fixed,
-        init: (Root.() -> Unit)? = null
-    ) : this(element, containerType, addRow, init)
 
     init {
         roots.add(this)
@@ -321,48 +285,4 @@ fun Application.root(
     init: Root.() -> Unit
 ): Root {
     return Root(element, containerType, addRow, init)
-}
-
-/**
- * Create new Root container based on ID
- * @param id ID attribute of element in the main HTML file
- * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
- * otherwise it's rendered with "container" class (default is false)
- * @param containerType Bootstrap container type
- * @param addRow if true, a <div class="row"> element is rendered inside the root container
- * @param init an initializer extension function
- * @return the created Root container
- */
-@Suppress("DEPRECATION", "unused")
-@Deprecated("Use builder function without fixed parameter")
-fun Application.root(
-    id: String,
-    fixed: Boolean = false,
-    containerType: ContainerType = if (fixed) ContainerType.FIXED else ContainerType.FLUID,
-    addRow: Boolean = !fixed,
-    init: Root.() -> Unit
-): Root {
-    return Root(id, fixed, containerType, addRow, init)
-}
-
-/**
- * Create new Root container based on HTML element
- * @param element HTML element in the DOM tree
- * @param fixed if false, the container is rendered with Bootstrap "container-fluid" class,
- * otherwise it's rendered with "container" class (default is false)
- * @param containerType Bootstrap container type
- * @param addRow if true, a <div class="row"> element is rendered inside the root container
- * @param init an initializer extension function
- * @return the created Root container
- */
-@Suppress("DEPRECATION", "usused")
-@Deprecated("Use builder function without fixed parameter")
-fun Application.root(
-    element: HTMLElement,
-    fixed: Boolean = false,
-    containerType: ContainerType = if (fixed) ContainerType.FIXED else ContainerType.FLUID,
-    addRow: Boolean = !fixed,
-    init: Root.() -> Unit
-): Root {
-    return Root(element, fixed, containerType, addRow, init)
 }

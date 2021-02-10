@@ -54,19 +54,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
-    /**
-     * @suppress internal function
-     */
-    @Suppress("DEPRECATION")
-    fun initializeService(service: T, ctx: Context) {
-        if (service is WithContext) {
-            service.ctx = ctx
-        }
-        if (service is WithSession) {
-            service.session = ctx.session()
-        }
-    }
-
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
@@ -80,7 +67,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
             val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
             val service = injector.getInstance(serviceClass.java)
-            initializeService(service, ctx)
             try {
                 val result = function.invoke(service, jsonRpcRequest.params)
                 JsonRpcResponse(
@@ -106,7 +92,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         { ctx, configurer ->
             val injector = ctx.require(Injector::class.java).createChildInjector(ContextModule(ctx))
             val service = injector.getInstance(serviceClass.java)
-            initializeService(service, ctx)
             val incoming = Channel<String>()
             val outgoing = Channel<String>()
             configurer.onConnect { ws ->

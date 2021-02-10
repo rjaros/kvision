@@ -21,7 +21,6 @@
  */
 package test.io.kvision.state
 
-import kotlinx.browser.document
 import io.kvision.html.div
 import io.kvision.panel.Root
 import io.kvision.panel.SimplePanel
@@ -30,10 +29,9 @@ import io.kvision.state.ObservableValue
 import io.kvision.state.bind
 import io.kvision.state.observableListOf
 import io.kvision.state.observableSetOf
-import io.kvision.state.stateBinding
-import io.kvision.state.stateUpdate
 import io.kvision.state.sub
 import io.kvision.test.DomSpec
+import kotlinx.browser.document
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -150,61 +148,4 @@ class StateBindingSpec : DomSpec {
             )
         }
     }
-
-    @Suppress("DEPRECATION")
-    @Test
-    fun stateBinding() {
-        run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val container = SimplePanel()
-            val observableList = observableListOf(1, 2, 3)
-            container.stateBinding(observableList) { state ->
-                state.forEach {
-                    div("$it")
-                }
-            }
-            root.add(container)
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                "<div><div></div><div>1</div><div>2</div><div>3</div></div>",
-                element?.innerHTML,
-                "Should render initial state of the container"
-            )
-            observableList.add(4)
-            assertEqualsHtml(
-                "<div><div></div><div>1</div><div>2</div><div>3</div><div>4</div></div>",
-                element?.innerHTML,
-                "Should render changed state of the container"
-            )
-        }
-    }
-
-    @Suppress("DEPRECATION")
-    @Test
-    fun stateUpdate() {
-        run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val container = SimplePanel()
-            val observableList = observableListOf(1)
-            container.stateUpdate(observableList) { state ->
-                div("${state[0]}")
-            } updateWith { state, d ->
-                d.content = "${state[0]}"
-            }
-            root.add(container)
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                "<div><div></div><div>1</div></div>",
-                element?.innerHTML,
-                "Should render initial state of the container"
-            )
-            observableList[0] = 2
-            assertEqualsHtml(
-                "<div><div></div><div>2</div></div>",
-                element?.innerHTML,
-                "Should render changed state of the container"
-            )
-        }
-    }
-
 }

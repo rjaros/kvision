@@ -25,7 +25,6 @@ import com.google.inject.Injector
 import io.javalin.Javalin
 import io.javalin.core.security.Role
 import io.javalin.http.Context
-import io.javalin.websocket.WsContext
 import io.javalin.websocket.WsHandler
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
@@ -55,32 +54,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         const val KV_WS_OUTGOING_KEY = "io.kvision.ws.outgoing.key"
     }
 
-    /**
-     * @suppress internal function
-     */
-    @Suppress("DEPRECATION")
-    fun initializeService(service: T, ctx: Context) {
-        if (service is WithContext) {
-            service.ctx = ctx
-        }
-        if (service is WithHttpSession) {
-            service.httpSession = ctx.req.session
-        }
-    }
-
-    /**
-     * @suppress internal function
-     */
-    @Suppress("DEPRECATION")
-    fun initializeWsService(service: T, wsCtx: WsContext) {
-        if (service is WithWsContext) {
-            service.wsCtx = wsCtx
-        }
-        if (service is WithWsSession) {
-            service.wsSession = wsCtx.session
-        }
-    }
-
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
@@ -94,7 +67,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
             val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)
-            initializeService(service, ctx)
             val future = GlobalScope.future {
                 try {
                     val result = function.invoke(service, jsonRpcRequest.params)
@@ -128,7 +100,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 ctx.attribute(KV_WS_OUTGOING_KEY, outgoing)
                 val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
                 val service = injector.getInstance(serviceClass.java)
-                initializeWsService(service, ctx)
                 GlobalScope.launch {
                     coroutineScope {
                         launch {

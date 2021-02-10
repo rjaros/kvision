@@ -21,50 +21,11 @@
  */
 package io.kvision.panel
 
-import io.kvision.core.AlignContent
-import io.kvision.core.AlignItems
-import io.kvision.core.Component
-import io.kvision.core.Container
-import io.kvision.core.Display
-import io.kvision.core.FlexDirection
-import io.kvision.core.JustifyContent
-import io.kvision.core.Widget
-import io.kvision.core.WidgetWrapper
+import io.kvision.core.*
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.px
 import io.kvision.utils.set
-import io.kvision.core.CssSize
-
-@Deprecated(
-    "Use io.kvision.core.FlexDirection instead.",
-    replaceWith = ReplaceWith("FlexDirection", "io.kvision.core.FlexDirection")
-)
-typealias FlexDir = FlexDirection
-
-@Deprecated(
-    "Use io.kvision.core.FlexWrap instead.",
-    replaceWith = ReplaceWith("FlexWrap", "io.kvision.core.FlexWrap")
-)
-typealias FlexWrap = io.kvision.core.FlexWrap
-
-@Deprecated(
-    "Use io.kvision.core.JustifyContent instead.",
-    replaceWith = ReplaceWith("JustifyContent", "io.kvision.core.JustifyContent")
-)
-typealias FlexJustify = JustifyContent
-
-@Deprecated(
-    "Use io.kvision.core.AlignItems instead.",
-    replaceWith = ReplaceWith("AlignItems", "io.kvision.core.AlignItems")
-)
-typealias FlexAlignItems = AlignItems
-
-@Deprecated(
-    "Use io.kvision.core.AlignContent instead.",
-    replaceWith = ReplaceWith("AlignContent", "io.kvision.core.AlignContent")
-)
-typealias FlexAlignContent = AlignContent
 
 /**
  * The container with CSS flexbox layout support.

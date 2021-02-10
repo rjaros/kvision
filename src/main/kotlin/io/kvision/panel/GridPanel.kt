@@ -26,36 +26,6 @@ import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
 
-@Deprecated(
-    "Use io.kvision.core.JustifyItems instead.",
-    replaceWith = ReplaceWith("JustifyItems", "io.kvision.core.JustifyItems")
-)
-typealias GridJustify = JustifyItems
-
-@Deprecated(
-    "Use io.kvision.core.AlignItems instead.",
-    replaceWith = ReplaceWith("AlignItems", "io.kvision.core.AlignItems")
-)
-typealias GridAlign = AlignItems
-
-@Deprecated(
-    "Use io.kvision.core.JustifyContent instead.",
-    replaceWith = ReplaceWith("JustifyContent", "io.kvision.core.JustifyContent")
-)
-typealias GridJustifyContent = JustifyContent
-
-@Deprecated(
-    "Use io.kvision.core.AlignContent instead.",
-    replaceWith = ReplaceWith("AlignContent", "io.kvision.core.AlignContent")
-)
-typealias GridAlignContent = AlignContent
-
-@Deprecated(
-    "Use io.kvision.core.GridAutoFlow instead.",
-    replaceWith = ReplaceWith("GridAutoFlow", "io.kvision.core.GridAutoFlow")
-)
-typealias GridFlow = GridAutoFlow
-
 /**
  * The container with CSS grid layout support.
  *

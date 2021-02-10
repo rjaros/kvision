@@ -27,7 +27,6 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.ResString
 import io.kvision.core.WidgetWrapper
-import io.kvision.html.Tag
 import io.kvision.routing.routing
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
@@ -331,24 +330,6 @@ open class TabPanel(
         tabs.forEach { it.dispose() }
         removeAll()
         return this
-    }
-
-    /**
-     * Returns first child component by tab index.
-     * @param index tab index
-     */
-    @Deprecated("Tabs can have more than one child components. Use getTab method instead to manage Tab content.")
-    open fun getChildComponent(index: Int): Component? {
-        return getTab(index)?.getChildren()?.firstOrNull()
-    }
-
-    /**
-     * Returns tab header component by tab index.
-     * @param index tab index
-     */
-    @Deprecated("Use getTab method instead.", replaceWith = ReplaceWith("getTab"))
-    open fun getNavComponent(index: Int): Tag? {
-        return getTab(index)
     }
 }
 

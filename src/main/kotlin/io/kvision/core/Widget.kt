@@ -123,36 +123,6 @@ open class Widget(internal val intClasses: Set<String>? = null) : StyledComponen
 
     protected var lastLanguage: String? = null
 
-    @Deprecated("use addAfterInsertHooks instead", ReplaceWith("addAfterInsertHook"))
-    var afterInsertHook: ((VNode) -> Unit)
-        get() {
-            throw UnsupportedOperationException()
-        }
-        set(value) {
-            afterInsertHooks?.clear()
-            addAfterInsertHook(value)
-        }
-
-    @Deprecated("use addAfterDestroyHook instead", ReplaceWith("addAfterDestroyHook"))
-    var afterDestroyHook: (() -> Unit)
-        get() {
-            throw UnsupportedOperationException()
-        }
-        set(value) {
-            afterDestroyHooks?.clear()
-            addAfterDestroyHook(value)
-        }
-
-    @Deprecated("use addBeforeDisposeHook instead", ReplaceWith("addBeforeDisposeHook"))
-    var afterDisposeHook: () -> Unit
-        get() {
-            throw UnsupportedOperationException()
-        }
-        set(value) {
-            beforeDisposeHooks?.clear()
-            addBeforeDisposeHook(value)
-        }
-
     private var afterInsertHooks: MutableList<(VNode) -> Unit>? = null
     private var afterDestroyHooks: MutableList<() -> Unit>? = null
     private var beforeDisposeHooks: MutableList<() -> Unit>? = null
@@ -271,15 +241,6 @@ open class Widget(internal val intClasses: Set<String>? = null) : StyledComponen
         snHooksCache ?: getSnHooks().also { snHooksCache = it }
 
     /**
-     * Returns list of CSS class names for current widget in the form of a List<StringBoolPair>.
-     * @return list of CSS class names
-     */
-    @Deprecated("use buildClassSet instead", ReplaceWith("buildClassSet"))
-    protected open fun getSnClass(): List<StringBoolPair> {
-        return emptyList()
-    }
-
-    /**
      * Builds a list of CSS class names for the current widget with a delegated ClassSetBuilder.
      * @param classSetBuilder a delegated builder
      */
@@ -292,16 +253,7 @@ open class Widget(internal val intClasses: Set<String>? = null) : StyledComponen
         if (!visible) {
             classSetBuilder.add("hidden")
         }
-        @Suppress("DEPRECATION")
-        getSnClass().forEach { classSetBuilder.add(it.first) }
     }
-
-    /**
-     * Returns list of element attributes in the form of a List<StringPair>.
-     * @return list of element attributes
-     */
-    @Deprecated("use buildAttributeSet instead", ReplaceWith("buildAttributeSet"))
-    protected open fun getSnAttrs(): List<StringPair> = emptyList()
 
     /**
      * Builds a list of element attributes for the current widget with a delegated AttributeSetBuilder.
@@ -325,8 +277,6 @@ open class Widget(internal val intClasses: Set<String>? = null) : StyledComponen
         if (draggable == true) {
             attributeSetBuilder.add("draggable", "true")
         }
-        @Suppress("DEPRECATION")
-        getSnAttrs().forEach { attributeSetBuilder.add(it.first, it.second) }
     }
 
     /**
