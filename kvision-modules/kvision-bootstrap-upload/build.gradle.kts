@@ -6,8 +6,6 @@ plugins {
     id("de.marcphilipp.nexus-publish")
 }
 
-repositories()
-
 val coroutinesVersion: String by project
 
 kotlin {

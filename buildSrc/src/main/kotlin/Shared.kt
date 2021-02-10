@@ -35,6 +35,7 @@ private fun KotlinJsTargetDsl.kotlinJsTargets() {
     compilations.all {
         kotlinOptions {
             moduleKind = "umd"
+            sourceMap = project.hasProperty("SNAPSHOT")
         }
     }
     browser {
@@ -52,6 +53,7 @@ fun KotlinMultiplatformExtension.kotlinJvmTargets() {
             kotlinOptions {
                 jvmTarget = "1.8"
                 freeCompilerArgs = listOf("-Xjsr305=strict")
+                useIR = true
             }
         }
     }
@@ -84,7 +86,10 @@ fun MavenPom.defaultPom() {
 
 fun Project.setupSigning() {
     extensions.getByType<SigningExtension>().run {
-        sign(extensions.getByType<PublishingExtension>().publications)
+        isRequired = !project.hasProperty("SNAPSHOT")
+        if (isRequired) {
+            sign(extensions.getByType<PublishingExtension>().publications)
+        }
     }
 }
 

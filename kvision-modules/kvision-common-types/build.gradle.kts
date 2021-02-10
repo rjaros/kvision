@@ -6,8 +6,6 @@ plugins {
     id("de.marcphilipp.nexus-publish")
 }
 
-repositories()
-
 // Versions
 val serializationVersion: String by project
 

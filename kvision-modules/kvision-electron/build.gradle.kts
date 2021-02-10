@@ -5,8 +5,6 @@ plugins {
     id("de.marcphilipp.nexus-publish")
 }
 
-repositories()
-
 // Versions
 val nodeJsVersion: String by project
 

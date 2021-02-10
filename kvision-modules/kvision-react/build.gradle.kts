@@ -5,8 +5,6 @@ plugins {
     id("de.marcphilipp.nexus-publish")
 }
 
-repositories()
-
 val kotlinReactVersion: String by project
 
 kotlin {

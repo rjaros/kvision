@@ -7,8 +7,6 @@ plugins {
 
 val mpaptRuntimeVersion: String by project
 
-repositories()
-
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("de.jensklingenberg:mpapt-runtime:$mpaptRuntimeVersion")

@@ -9,8 +9,6 @@ plugins {
 val kotlinVersion: String by System.getProperties()
 val autoServiceVersion: String by project
 
-repositories()
-
 gradlePlugin {
     plugins {
         isAutomatedPublishing = false

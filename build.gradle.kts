@@ -9,7 +9,13 @@ plugins {
     id("org.jetbrains.dokka") version dokkaVersion
 }
 
-repositories()
+allprojects {
+    repositories()
+    version = project.properties["versionNumber"]!!
+    if (hasProperty("SNAPSHOT")) {
+        version = "$version-SNAPSHOT"
+    }
+}
 
 // Versions
 val kotlinVersion: String by System.getProperties()
@@ -80,23 +86,6 @@ publishing {
 setupSigning()
 setupPublication()
 
-tasks {
-    /*
-    // Forcing specific npm package versions (not required at the moment but commented for future use)
-    withType<org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask> {
-        doLast {
-            yarnLock.parentFile.resolve("package.json").apply {
-                writeText(readText().replace(
-                    "\"dependencies\": {},",
-                    "\"dependencies\": {},\n  \"resolutions\": { \"jquery\": \"3.4.1\" },"
-                ))
-            }
-            org.jetbrains.kotlin.gradle.targets.js.yarn.YarnWorkspaces()
-                .yarnExec(project, yarnLock.parentFile, "Relaunching Yarn to fix resolutions")
-        }
-    }
-    */
-}
 tasks.dokkaHtml {
     outputDirectory = "$buildDir/kdoc"
     dokkaSourceSets {

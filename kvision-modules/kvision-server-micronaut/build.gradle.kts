@@ -7,8 +7,6 @@ plugins {
     kotlin("kapt")
 }
 
-repositories()
-
 // Versions
 val kotlinVersion: String by System.getProperties()
 val serializationVersion: String by project

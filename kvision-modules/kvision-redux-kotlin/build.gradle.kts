@@ -5,8 +5,6 @@ plugins {
     id("de.marcphilipp.nexus-publish")
 }
 
-repositories()
-
 // Versions
 val reduxKotlinVersion: String by project
 val reduxKotlinThunkVersion: String by project
