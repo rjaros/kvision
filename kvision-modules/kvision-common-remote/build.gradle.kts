@@ -2,6 +2,8 @@ plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
     id("maven-publish")
+    id("signing")
+    id("de.marcphilipp.nexus-publish")
 }
 
 repositories()
@@ -25,7 +27,7 @@ kotlin {
         }
         val jsMain by getting {
             dependencies {
-                implementation("pl.treksoft:jquery-kotlin:$jqueryKotlinVersion")
+                implementation("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
             }
         }
         val jvmMain by getting {
@@ -55,4 +57,5 @@ publishing {
     }
 }
 
+setupSigning()
 setupPublication()

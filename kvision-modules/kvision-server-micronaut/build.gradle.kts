@@ -2,6 +2,8 @@ plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
     id("maven-publish")
+    id("signing")
+    id("de.marcphilipp.nexus-publish")
     kotlin("kapt")
 }
 
@@ -65,12 +67,13 @@ publishing {
     }
 }
 
+setupSigning()
 setupPublication()
 
 kapt {
     arguments {
-        arg("micronaut.processing.annotations", "pl.treksoft.kvision.remote")
-        arg("micronaut.processing.group", "pl.treksoft")
+        arg("micronaut.processing.annotations", "io.kvision.remote")
+        arg("micronaut.processing.group", "io.kvision")
         arg("micronaut.processing.module", "kvision-server-micronaut")
     }
 }

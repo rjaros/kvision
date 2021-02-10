@@ -2,6 +2,8 @@ plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
     id("maven-publish")
+    id("signing")
+    id("de.marcphilipp.nexus-publish")
 }
 
 repositories()
@@ -52,4 +54,5 @@ publishing {
     }
 }
 
+setupSigning()
 setupPublication()

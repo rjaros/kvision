@@ -2,6 +2,8 @@ plugins {
     kotlin("jvm")
     id("java-gradle-plugin")
     id("maven-publish")
+    id("signing")
+    id("de.marcphilipp.nexus-publish")
 }
 
 val kotlinVersion: String by System.getProperties()
@@ -13,8 +15,8 @@ gradlePlugin {
     plugins {
         isAutomatedPublishing = false
         create("simplePlugin") {
-            id = "pl.treksoft.kvision"
-            implementationClass = "pl.treksoft.kvision.gradle.KVisionGradleSubplugin"
+            id = "io.kvision"
+            implementationClass = "io.kvision.gradle.KVisionGradleSubplugin"
         }
     }
 }
@@ -41,4 +43,5 @@ publishing {
     }
 }
 
+setupSigning()
 setupPublication()

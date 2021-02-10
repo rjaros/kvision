@@ -3,6 +3,8 @@ plugins {
     id("kotlinx-serialization") version kotlinVersion
     kotlin("js")
     id("maven-publish")
+    id("signing")
+    id("de.marcphilipp.nexus-publish")
     val dokkaVersion: String by System.getProperties()
     id("org.jetbrains.dokka") version dokkaVersion
 }
@@ -27,9 +29,9 @@ kotlin {
 dependencies {
     api(project(":kvision-modules:kvision-common-types"))
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
-    api("com.github.snabbdom:snabbdom-kotlin:$snabbdomKotlinVersion")
-    api("pl.treksoft:navigo-kotlin:$navigoKotlinVersion")
-    api("pl.treksoft:jquery-kotlin:$jqueryKotlinVersion")
+    api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
+    api("io.kvision:navigo-kotlin:$navigoKotlinVersion")
+    api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.1.tgz"))
 //  Empty NPM placeholders
@@ -52,7 +54,6 @@ dependencies {
     implementation(npm("snabbdom", "^0.7.4"))
     implementation(npm("snabbdom-virtualize", "^0.7.0"))
     implementation(npm("jquery-resizable-dom", "^0.35.0"))
-    implementation(npm("navigo", "^7.1.2"))
     implementation(npm("gettext.js", "^1.0.0"))
     implementation(npm("gettext-extract", "^2.0.1"))
     testImplementation(kotlin("test-js"))
@@ -76,6 +77,7 @@ publishing {
     }
 }
 
+setupSigning()
 setupPublication()
 
 tasks {

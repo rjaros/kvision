@@ -1,6 +1,8 @@
 plugins {
     kotlin("js")
     id("maven-publish")
+    id("signing")
+    id("de.marcphilipp.nexus-publish")
 }
 
 repositories()
@@ -47,4 +49,5 @@ publishing {
     }
 }
 
+setupSigning()
 setupPublication()

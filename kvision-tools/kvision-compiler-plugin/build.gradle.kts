@@ -1,6 +1,8 @@
 plugins {
     kotlin("jvm")
     id("maven-publish")
+    id("signing")
+    id("de.marcphilipp.nexus-publish")
 }
 
 val mpaptRuntimeVersion: String by project
@@ -30,4 +32,5 @@ publishing {
     }
 }
 
+setupSigning()
 setupPublication()
