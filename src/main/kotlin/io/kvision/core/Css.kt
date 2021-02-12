@@ -280,6 +280,7 @@ enum class Display(internal val display: String) {
     TABLECELL("table-cell"),
     TABLECOLUMN("table-column"),
     TABLEROW("table-row"),
+    CONTENTS("contents"),
     NONE("none"),
     INITIAL("initial"),
     INHERIT("inherit")
