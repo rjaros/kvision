@@ -30,7 +30,7 @@ internal val kVManagerMomentInit = KVManagerMoment.init()
 internal object KVManagerMoment {
 
     init {
-        require("moment/min/moment-with-locales.js")
+        require("moment")
     }
 
     internal fun init() {}
