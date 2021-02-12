@@ -307,8 +307,8 @@ open class SpinnerInput(
                 this.buttondown_class = "btn btn-secondary"
             }
             if (verticalbuttons) {
-                this.verticalup = "<i class=\"fas fa-caret-up\"></i>"
-                this.verticaldown = "<i class=\"fas fa-caret-down\"></i>"
+                this.verticalup = "\u25b2"
+                this.verticaldown = "\u25bc"
             }
         }
     }
