@@ -138,7 +138,7 @@ open class ListTag(
             snOpt {}
         }
         return if (rich) {
-            h(name, opt, arrayOf(KVManager.virtualize("<span>$translatedValue</span>")))
+            h(name, opt, arrayOf(KVManager.virtualize("<span style=\"display: contents;\">$translatedValue</span>")))
         } else {
             h(name, opt, translatedValue)
         }

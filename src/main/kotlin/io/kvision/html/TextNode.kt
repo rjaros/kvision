@@ -60,7 +60,7 @@ open class TextNode(
     override fun render(): VNode {
         val translatedContent = translate(content)
         return if (rich) {
-            KVManager.virtualize("<span>$translatedContent</span>")
+            KVManager.virtualize("<span style=\"display: contents;\">$translatedContent</span>")
         } else {
             translatedContent.asDynamic()
         }

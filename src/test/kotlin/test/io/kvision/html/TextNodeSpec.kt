@@ -61,7 +61,7 @@ class TextNodeSpec : DomSpec {
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><b>Some bold text</b> and now normal text <span>and some text inside span</span><span>and <i>text</i> with formatting</span>.</div>",
+                "<div><b>Some bold text</b> and now normal text <span>and some text inside span</span><span style=\"display: contents;\">and <i>text</i> with formatting</span>.</div>",
                 element?.innerHTML,
                 "Should render complex markup"
             )

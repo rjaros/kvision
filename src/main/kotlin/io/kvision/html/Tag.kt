@@ -189,7 +189,7 @@ open class Tag(
             if (rich) {
                 render(
                     type.tagName,
-                    arrayOf(KVManager.virtualize("<span>$translatedContent</span>")) + childrenVNodes()
+                    arrayOf(KVManager.virtualize("<span style=\"display: contents;\">$translatedContent</span>")) + childrenVNodes()
                 )
             } else {
                 render(type.tagName, childrenVNodes() + arrayOf(translatedContent))
