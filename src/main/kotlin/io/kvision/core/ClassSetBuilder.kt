@@ -48,11 +48,13 @@ internal class ClassSetBuilderImpl : ClassSetBuilder {
     private val _classes = js("{}")
 
     override fun add(value: String) {
-        _classes[value] = true
+        if (value.isNotEmpty()) {
+            _classes[value] = true
+        }
     }
 
     override fun addAll(values: Collection<String>) {
-        values.forEach { _classes[it] = true }
+        values.forEach { add(it) }
     }
 }
 
