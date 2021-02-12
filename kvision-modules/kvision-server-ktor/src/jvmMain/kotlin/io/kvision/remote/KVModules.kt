@@ -44,7 +44,6 @@ fun Application.kvisionInit(vararg modules: Module) {
     install(ContentNegotiation) {
         json()
     }
-    install(WebSockets)
     routing {
         static("/") {
             resources("assets")
