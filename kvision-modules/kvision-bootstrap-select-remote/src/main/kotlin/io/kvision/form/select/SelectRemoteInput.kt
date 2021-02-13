@@ -21,6 +21,19 @@
  */
 package io.kvision.form.select
 
+import io.kvision.core.Container
+import io.kvision.jquery.JQueryAjaxSettings
+import io.kvision.jquery.JQueryXHR
+import io.kvision.remote.CallAgent
+import io.kvision.remote.HttpMethod
+import io.kvision.remote.JsonRpcRequest
+import io.kvision.remote.KVServiceMgr
+import io.kvision.remote.RemoteOption
+import io.kvision.state.MutableState
+import io.kvision.state.bind
+import io.kvision.utils.JSON
+import io.kvision.utils.obj
+import io.kvision.utils.set
 import kotlinx.browser.window
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.await
@@ -28,17 +41,6 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
-import io.kvision.core.Container
-import io.kvision.remote.CallAgent
-import io.kvision.remote.HttpMethod
-import io.kvision.remote.JsonRpcRequest
-import io.kvision.remote.KVServiceMgr
-import io.kvision.remote.RemoteOption
-import io.kvision.utils.JSON
-import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.reflect.KFunction
 
 external fun decodeURIComponent(encodedURI: String): String
@@ -55,6 +57,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param ajaxOptions additional options for remote data source
  * @param preload preload all options from remote data source
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class SelectRemoteInput<T : Any>(
     serviceManager: KVServiceMgr<T>,
@@ -64,7 +67,8 @@ open class SelectRemoteInput<T : Any>(
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     private val preload: Boolean = false,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(),
+    init: (SelectRemoteInput<T>.() -> Unit)? = null
 ) : SelectInput(null, value, multiple, null, classes) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
@@ -155,6 +159,8 @@ open class SelectRemoteInput<T : Any>(
                     }
             }
         }
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     @Suppress("UnsafeCastFromDynamic")
@@ -224,10 +230,38 @@ fun <T : Any> Container.selectRemoteInput(
             multiple,
             ajaxOptions,
             preload,
-            classes ?: className.set
-        ).apply {
-            init?.invoke(this)
-        }
+            classes ?: className.set, init
+        )
     this.add(selectRemoteInput)
     return selectRemoteInput
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : Any> SelectRemoteInput<T>.bindTo(state: MutableState<String?>): SelectRemoteInput<T> {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : Any> SelectRemoteInput<T>.bindTo(state: MutableState<String>): SelectRemoteInput<T> {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
 }

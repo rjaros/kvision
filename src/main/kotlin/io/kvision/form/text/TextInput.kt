@@ -48,8 +48,14 @@ enum class TextInputType(internal val type: String) {
  * @param type text input type (default "text")
  * @param value text input value
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
-open class TextInput(type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf()) :
+open class TextInput(
+    type: TextInputType = TextInputType.TEXT,
+    value: String? = null,
+    classes: Set<String> = setOf(),
+    init: (TextInput.() -> Unit)? = null
+) :
     AbstractTextInput(value, classes + "form-control") {
 
     /**
@@ -61,6 +67,11 @@ open class TextInput(type: TextInputType = TextInputType.TEXT, value: String? = 
      * Determines if autocomplete is enabled for the input element.
      */
     var autocomplete: Boolean? by refreshOnUpdate()
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return render("input")
@@ -89,7 +100,7 @@ fun Container.textInput(
     className: String? = null,
     init: (TextInput.() -> Unit)? = null
 ): TextInput {
-    val textInput = TextInput(type, value, classes ?: className.set).apply { init?.invoke(this) }
+    val textInput = TextInput(type, value, classes ?: className.set, init)
     this.add(textInput)
     return textInput
 }

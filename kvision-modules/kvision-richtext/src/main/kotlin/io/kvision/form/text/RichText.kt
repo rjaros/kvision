@@ -36,10 +36,12 @@ import io.kvision.utils.px
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 open class RichText(
     value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false
+    label: String? = null, rich: Boolean = false,
+    init: (RichText.() -> Unit)? = null
 ) : AbstractText(label, rich) {
 
     /**
@@ -64,6 +66,8 @@ open class RichText(
         wrapper.add(input)
         this.addPrivate(wrapper)
         this.addPrivate(invalidFeedback)
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
@@ -90,7 +94,7 @@ fun Container.richText(
     rich: Boolean = false,
     init: (RichText.() -> Unit)? = null
 ): RichText {
-    val richText = RichText(value, name, label, rich).apply { init?.invoke(this) }
+    val richText = RichText(value, name, label, rich, init)
     this.add(richText)
     return richText
 }

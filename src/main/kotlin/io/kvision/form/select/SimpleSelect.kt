@@ -30,6 +30,7 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.SnOn
@@ -46,14 +47,15 @@ import io.kvision.utils.SnOn
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class SimpleSelect(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    name: String? = null, label: String? = null, rich: Boolean = false
-) : SimplePanel(setOf("form-group")), StringFormControl, ObservableState<String?> {
+    name: String? = null, label: String? = null, rich: Boolean = false, init: (SimpleSelect.() -> Unit)? = null
+) : SimplePanel(setOf("form-group")), StringFormControl, MutableState<String?> {
 
     /**
      * A list of options (value to label pairs) for the select control.
@@ -165,6 +167,8 @@ open class SimpleSelect(
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -232,6 +236,10 @@ open class SimpleSelect(
         return input.subscribe(observer)
     }
 
+    override fun setState(state: String?) {
+        input.setState(state)
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -254,7 +262,7 @@ fun Container.simpleSelect(
     init: (SimpleSelect.() -> Unit)? = null
 ): SimpleSelect {
     val simpleSelect =
-        SimpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich).apply { init?.invoke(this) }
+        SimpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich, init)
     this.add(simpleSelect)
     return simpleSelect
 }
@@ -276,3 +284,33 @@ fun <S> Container.simpleSelect(
     rich: Boolean = false,
     init: (SimpleSelect.(S) -> Unit)
 ) = simpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun SimpleSelect.bindTo(state: MutableState<String?>): SimpleSelect {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun SimpleSelect.bindTo(state: MutableState<String>): SimpleSelect {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
+}

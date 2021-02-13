@@ -22,8 +22,6 @@
 package io.kvision.form.time
 
 import com.github.snabbdom.VNode
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.form.FormInput
@@ -33,7 +31,10 @@ import io.kvision.html.Icon
 import io.kvision.html.icon
 import io.kvision.html.span
 import io.kvision.i18n.I18n
+import io.kvision.jquery.invoke
+import io.kvision.jquery.jQuery
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.types.toDateF
@@ -51,12 +52,16 @@ internal const val DEFAULT_STEPPING = 5
  * @param value date/time input value
  * @param format date/time format (default YYYY-MM-DD HH:mm)
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class DateTimeInput(
     value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
-    classes: Set<String> = setOf()
-) : SimplePanel(classes + "input-group" + "date"), FormInput, ObservableState<Date?> {
+    classes: Set<String> = setOf(),
+    init: (DateTimeInput.() -> Unit)? = null
+) : SimplePanel(classes + "input-group" + "date"), FormInput, MutableState<Date?> {
+
+    protected val observers = mutableListOf<(Date?) -> Unit>()
 
     private var initialized = false
 
@@ -71,6 +76,8 @@ open class DateTimeInput(
     init {
         addPrivate(input)
         addPrivate(addon)
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     /**
@@ -426,12 +433,19 @@ open class DateTimeInput(
         input.blur()
     }
 
-    override fun getState(): Date? = input.getState()?.toDateF(format)
+
+    override fun getState(): Date? = value
 
     override fun subscribe(observer: (Date?) -> Unit): () -> Unit {
-        return input.subscribe { str ->
-            observer(str?.toDateF(format))
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
         }
+    }
+
+    override fun setState(state: Date?) {
+        value = state
     }
 }
 
@@ -446,7 +460,7 @@ fun Container.dateTimeInput(
     className: String? = null,
     init: (DateTimeInput.() -> Unit)? = null
 ): DateTimeInput {
-    val dateTimeInput = DateTimeInput(value, format, classes ?: className.set).apply { init?.invoke(this) }
+    val dateTimeInput = DateTimeInput(value, format, classes ?: className.set, init)
     this.add(dateTimeInput)
     return dateTimeInput
 }
@@ -463,3 +477,33 @@ fun <S> Container.dateTimeInput(
     className: String? = null,
     init: (DateTimeInput.(S) -> Unit)
 ) = dateTimeInput(value, format, classes, className).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun DateTimeInput.bindTo(state: MutableState<Date?>): DateTimeInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun DateTimeInput.bindTo(state: MutableState<Date>): DateTimeInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: Date())
+    })
+    return this
+}

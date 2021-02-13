@@ -21,7 +21,6 @@
  */
 package io.kvision.form.check
 
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.CssClass
@@ -31,9 +30,11 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.SnOn
+import org.w3c.dom.events.MouseEvent
 
 /**
  * Radio style options.
@@ -55,11 +56,12 @@ enum class RadioStyle(override val className: String) : CssClass {
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 open class Radio(
     value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
-    rich: Boolean = false
-) : SimplePanel(classes = setOf("form-check")), BoolFormControl, ObservableState<Boolean> {
+    rich: Boolean = false, init: (Radio.() -> Unit)? = null
+) : SimplePanel(classes = setOf("form-check")), BoolFormControl, MutableState<Boolean> {
 
     /**
      * The selection state of the radio button.
@@ -140,6 +142,8 @@ open class Radio(
         this.addPrivate(flabel)
         this.addPrivate(invalidFeedback)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -217,6 +221,10 @@ open class Radio(
         return input.subscribe(observer)
     }
 
+    override fun setState(state: Boolean) {
+        input.setState(state)
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -231,7 +239,7 @@ fun Container.radio(
     value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
     rich: Boolean = false, init: (Radio.() -> Unit)? = null
 ): Radio {
-    val radio = Radio(value, extraValue, name, label, rich).apply { init?.invoke(this) }
+    val radio = Radio(value, extraValue, name, label, rich, init)
     this.add(radio)
     return radio
 }
@@ -246,3 +254,18 @@ fun <S> Container.radio(
     value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
     rich: Boolean = false, init: (Radio.(S) -> Unit)
 ) = radio(value, extraValue, name, label, rich).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun Radio.bindTo(state: MutableState<Boolean>): Radio {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}

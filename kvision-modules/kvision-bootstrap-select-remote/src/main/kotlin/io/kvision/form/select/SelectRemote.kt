@@ -31,7 +31,8 @@ import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteOption
-import io.kvision.state.ObservableState
+import io.kvision.state.MutableState
+import io.kvision.state.bind
 import io.kvision.utils.SnOn
 
 /**
@@ -48,6 +49,7 @@ import io.kvision.utils.SnOn
  * @param preload preload all options from remote data source
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class SelectRemote<T : Any>(
@@ -60,8 +62,9 @@ open class SelectRemote<T : Any>(
     ajaxOptions: AjaxOptions? = null,
     preload: Boolean = false,
     label: String? = null,
-    rich: Boolean = false
-) : SimplePanel(setOf("form-group")), StringFormControl, ObservableState<String?> {
+    rich: Boolean = false,
+    init: (SelectRemote<T>.() -> Unit)? = null
+) : SimplePanel(setOf("form-group")), StringFormControl, MutableState<String?> {
     /**
      * A value of the selected option.
      */
@@ -188,6 +191,8 @@ open class SelectRemote<T : Any>(
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -276,6 +281,10 @@ open class SelectRemote<T : Any>(
         return input.subscribe(observer)
     }
 
+    override fun setState(state: String?) {
+        input.setState(state)
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -304,8 +313,39 @@ fun <T : Any> Container.selectRemote(
             ajaxOptions,
             preload,
             label,
-            rich
-        ).apply { init?.invoke(this) }
+            rich,
+            init
+        )
     this.add(selectRemote)
     return selectRemote
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : Any> SelectRemote<T>.bindTo(state: MutableState<String?>): SelectRemote<T> {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : Any> SelectRemote<T>.bindTo(state: MutableState<String>): SelectRemote<T> {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
 }

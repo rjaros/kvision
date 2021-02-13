@@ -29,6 +29,7 @@ import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.obj
@@ -44,11 +45,16 @@ import io.kvision.utils.obj
  * @param value selected option
  * @param name the name attribute of the generated HTML input element
  * @param inline determines if the options are rendered inline
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class RadioGroupInput(
-    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false
-) : SimplePanel(setOf("form-group")), FormInput, ObservableState<String?> {
+    options: List<StringPair>? = null,
+    value: String? = null,
+    name: String? = null,
+    inline: Boolean = false,
+    init: (RadioGroupInput.() -> Unit)? = null
+) : SimplePanel(setOf("form-group")), FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -100,6 +106,8 @@ open class RadioGroupInput(
         setValueToChildren(value)
         setNameToChildren(name)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -213,6 +221,10 @@ open class RadioGroupInput(
         }
     }
 
+    override fun setState(state: String?) {
+        value = state
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -227,7 +239,7 @@ fun Container.radioGroupInput(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     init: (RadioGroupInput.() -> Unit)? = null
 ): RadioGroupInput {
-    val radioGroupInput = RadioGroupInput(options, value, name, inline).apply { init?.invoke(this) }
+    val radioGroupInput = RadioGroupInput(options, value, name, inline, init)
     this.add(radioGroupInput)
     return radioGroupInput
 }
@@ -242,3 +254,33 @@ fun <S> Container.radioGroupInput(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     init: (RadioGroupInput.(S) -> Unit)
 ) = radioGroupInput(options, value, name, inline).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun RadioGroupInput.bindTo(state: MutableState<String?>): RadioGroupInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun RadioGroupInput.bindTo(state: MutableState<String>): RadioGroupInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
+}

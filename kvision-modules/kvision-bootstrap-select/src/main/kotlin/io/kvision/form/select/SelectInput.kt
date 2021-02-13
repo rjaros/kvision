@@ -34,6 +34,7 @@ import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.html.ButtonStyle
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.asString
@@ -69,13 +70,14 @@ enum class SelectDropdownAlign {
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote (AJAX) data source
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-    classes: Set<String> = setOf()
-) : SimplePanel(classes), FormInput, ObservableState<String?> {
+    classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
+) : SimplePanel(classes), FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -197,6 +199,8 @@ open class SelectInput(
                 }
             }
         }
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     private fun calculateValue(v: Any): String? {
@@ -405,6 +409,10 @@ open class SelectInput(
             observers -= observer
         }
     }
+
+    override fun setState(state: String?) {
+        value = state
+    }
 }
 
 /**
@@ -420,7 +428,7 @@ fun Container.selectInput(
     init: (SelectInput.() -> Unit)? = null
 ): SelectInput {
     val selectInput =
-        SelectInput(options, value, multiple, ajaxOptions, classes ?: className.set).apply { init?.invoke(this) }
+        SelectInput(options, value, multiple, ajaxOptions, classes ?: className.set, init)
     this.add(selectInput)
     return selectInput
 }
@@ -438,3 +446,33 @@ fun <S> Container.selectInput(
     className: String? = null,
     init: (SelectInput.(S) -> Unit)
 ) = selectInput(options, value, multiple, ajaxOptions, classes, className).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun SelectInput.bindTo(state: MutableState<String?>): SelectInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun SelectInput.bindTo(state: MutableState<String>): SelectInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
+}

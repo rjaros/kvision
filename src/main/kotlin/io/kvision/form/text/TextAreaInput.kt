@@ -36,8 +36,15 @@ import io.kvision.utils.set
  * @param rows number of rows
  * @param value text input value
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
-open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = null, classes: Set<String> = setOf()) :
+open class TextAreaInput(
+    cols: Int? = null,
+    rows: Int? = null,
+    value: String? = null,
+    classes: Set<String> = setOf(),
+    init: (TextAreaInput.() -> Unit)? = null
+) :
     AbstractTextInput(value, classes + "form-control") {
 
     /**
@@ -54,6 +61,11 @@ open class TextAreaInput(cols: Int? = null, rows: Int? = null, value: String? = 
      * Determines if hard wrapping is enabled for the textarea element.
      */
     var wrapHard by refreshOnUpdate(false)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return startValue?.let {
@@ -86,7 +98,7 @@ fun Container.textAreaInput(
     className: String? = null,
     init: (TextAreaInput.() -> Unit)? = null
 ): TextAreaInput {
-    val textAreaInput = TextAreaInput(cols, rows, value, classes ?: className.set).apply { init?.invoke(this) }
+    val textAreaInput = TextAreaInput(cols, rows, value, classes ?: className.set, init)
     this.add(textAreaInput)
     return textAreaInput
 }

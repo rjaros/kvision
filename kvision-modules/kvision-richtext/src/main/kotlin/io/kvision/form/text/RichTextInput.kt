@@ -22,14 +22,14 @@
 package io.kvision.form.text
 
 import com.github.snabbdom.VNode
-import kotlinx.browser.document
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
+import io.kvision.jquery.invoke
+import io.kvision.jquery.jQuery
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
+import kotlinx.browser.document
 
 /**
  * Basic rich text component.
@@ -37,10 +37,20 @@ import io.kvision.utils.set
  * @constructor
  * @param value text input value
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
-open class RichTextInput(value: String? = null, classes: Set<String> = setOf()) :
-    AbstractTextInput(value, classes + "form-control" + "trix-control") {
+open class RichTextInput(
+    value: String? = null,
+    classes: Set<String> = setOf(),
+    init: (RichTextInput.() -> Unit)? = null
+) : AbstractTextInput(value, classes + "form-control" + "trix-control") {
+
     private var trixId: String? = null
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return render("trix-editor")
@@ -133,7 +143,7 @@ fun Container.richTextInput(
     className: String? = null,
     init: (RichTextInput.() -> Unit)? = null
 ): RichTextInput {
-    val richTextInput = RichTextInput(value, classes ?: className.set).apply { init?.invoke(this) }
+    val richTextInput = RichTextInput(value, classes ?: className.set, init)
     this.add(richTextInput)
     return richTextInput
 }

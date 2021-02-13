@@ -30,6 +30,7 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.SnOn
@@ -48,13 +49,14 @@ import io.kvision.utils.SnOn
  * @param ajaxOptions additional options for remote (AJAX) data source
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class Select(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
-    rich: Boolean = false
-) : SimplePanel(setOf("form-group")), StringFormControl, ObservableState<String?> {
+    rich: Boolean = false, init: (Select.() -> Unit)? = null
+) : SimplePanel(setOf("form-group")), StringFormControl, MutableState<String?> {
 
     /**
      * A list of options (value to label pairs) for the select control.
@@ -218,6 +220,8 @@ open class Select(
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -307,6 +311,10 @@ open class Select(
         return input.subscribe(observer)
     }
 
+    override fun setState(state: String?) {
+        input.setState(state)
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -322,7 +330,7 @@ fun Container.select(
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
     rich: Boolean = false, init: (Select.() -> Unit)? = null
 ): Select {
-    val select = Select(options, value, name, multiple, ajaxOptions, label, rich).apply { init?.invoke(this) }
+    val select = Select(options, value, name, multiple, ajaxOptions, label, rich, init)
     this.add(select)
     return select
 }
@@ -338,3 +346,33 @@ fun <S> Container.select(
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
     rich: Boolean = false, init: (Select.(S) -> Unit)
 ) = select(options, value, name, multiple, ajaxOptions, label, rich).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun Select.bindTo(state: MutableState<String?>): Select {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun Select.bindTo(state: MutableState<String>): Select {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
+}

@@ -32,6 +32,7 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.form.ValidationStatus
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.obj
@@ -49,13 +50,15 @@ import io.kvision.utils.obj
  * @param inline determines if the options are rendered inline
  * @param label label text of the options group
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class RadioGroup(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     label: String? = null,
-    rich: Boolean = false
-) : SimplePanel(setOf("form-group")), StringFormControl, ObservableState<String?> {
+    rich: Boolean = false,
+    init: (RadioGroup.() -> Unit)? = null
+) : SimplePanel(setOf("form-group")), StringFormControl, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -145,6 +148,8 @@ open class RadioGroup(
         setValueToChildren(value)
         setNameToChildren(name)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -290,6 +295,10 @@ open class RadioGroup(
         }
     }
 
+    override fun setState(state: String?) {
+        value = state
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -304,7 +313,7 @@ fun Container.radioGroup(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     label: String? = null, rich: Boolean = false, init: (RadioGroup.() -> Unit)? = null
 ): RadioGroup {
-    val radioGroup = RadioGroup(options, value, name, inline, label, rich).apply { init?.invoke(this) }
+    val radioGroup = RadioGroup(options, value, name, inline, label, rich, init)
     this.add(radioGroup)
     return radioGroup
 }
@@ -319,3 +328,33 @@ fun <S> Container.radioGroup(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     label: String? = null, rich: Boolean = false, init: (RadioGroup.(S) -> Unit)
 ) = radioGroup(options, value, name, inline, label, rich).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun RadioGroup.bindTo(state: MutableState<String?>): RadioGroup {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun RadioGroup.bindTo(state: MutableState<String>): RadioGroup {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
+}

@@ -21,16 +21,16 @@
  */
 package io.kvision.form.text
 
-import kotlinx.browser.window
-import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.encodeToString
-import org.w3c.dom.get
 import io.kvision.core.Container
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.utils.JSON
 import io.kvision.utils.set
+import kotlinx.browser.window
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encodeToString
+import org.w3c.dom.get
 import kotlin.reflect.KFunction
 
 /**
@@ -47,6 +47,7 @@ import kotlin.reflect.KFunction
  * @param value text input value
  * @param taAjaxOptions AJAX options for remote data source
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class TypeaheadRemoteInput<T : Any>(
     serviceManager: KVServiceMgr<T>,
@@ -55,7 +56,8 @@ open class TypeaheadRemoteInput<T : Any>(
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null,
     taAjaxOptions: TaAjaxOptions? = null,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(),
+    init: (TypeaheadRemoteInput<T>.() -> Unit)? = null
 ) : TypeaheadInput(null, null, null, items, minLength, delay, type, value, classes) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
@@ -80,6 +82,8 @@ open class TypeaheadRemoteInput<T : Any>(
             },
             httpType = HttpType.valueOf(method.name)
         )
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 }
 
@@ -110,10 +114,9 @@ fun <T : Any> Container.typeaheadRemoteInput(
             type,
             value,
             taAjaxOptions,
-            classes ?: className.set
-        ).apply {
-            init?.invoke(this)
-        }
+            classes ?: className.set,
+            init
+        )
     this.add(typeaheadRemoteInput)
     return typeaheadRemoteInput
 }

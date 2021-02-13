@@ -22,9 +22,9 @@
 package io.kvision.form.text
 
 import com.github.snabbdom.VNode
+import io.kvision.core.Container
 import io.kvision.jquery.JQueryXHR
 import io.kvision.jquery.jQuery
-import io.kvision.core.Container
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.obj
@@ -49,13 +49,15 @@ enum class ShowHintOnFocus {
  * @param type text input type (default "text")
  * @param value text input value
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class TypeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf()
+    type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf(),
+    init: (TypeaheadInput.() -> Unit)? = null
 ) : TextInput(type, value, classes) {
 
     /**
@@ -105,6 +107,8 @@ open class TypeaheadInput(
 
     init {
         autocomplete = false
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     @Suppress("UnsafeCastFromDynamic")
@@ -209,12 +213,9 @@ fun Container.typeaheadInput(
         delay,
         type,
         value,
-        classes ?: className.set
-    ).apply {
-        init?.invoke(
-            this
-        )
-    }
+        classes ?: className.set,
+        init
+    )
     this.add(typeaheadInput)
     return typeaheadInput
 }

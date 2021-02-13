@@ -32,6 +32,7 @@ import io.kvision.form.ValidationStatus
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
@@ -48,13 +49,14 @@ internal const val KVNULL = "#kvnull"
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param selectSize the number of visible options
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class SimpleSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    classes: Set<String> = setOf()
-) : SimplePanel(classes + "form-control"), FormInput, ObservableState<String?> {
+    classes: Set<String> = setOf(), init: (SimpleSelectInput.() -> Unit)? = null
+) : SimplePanel(classes + "form-control"), FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -144,6 +146,8 @@ open class SimpleSelectInput(
                 }
             }
         }
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     protected open fun calculateValue(v: Any): String? {
@@ -265,6 +269,10 @@ open class SimpleSelectInput(
             observers -= observer
         }
     }
+
+    override fun setState(state: String?) {
+        value = state
+    }
 }
 
 /**
@@ -287,8 +295,8 @@ fun Container.simpleSelectInput(
             emptyOption,
             multiple,
             selectSize,
-            classes ?: className.set
-        ).apply { init?.invoke(this) }
+            classes ?: className.set, init
+        )
     this.add(simpleSelectInput)
     return simpleSelectInput
 }
@@ -314,3 +322,33 @@ fun <S> Container.simpleSelectInput(
     selectSize,
     classes, className
 ).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : SimpleSelectInput> T.bindTo(state: MutableState<String?>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : SimpleSelectInput> T.bindTo(state: MutableState<String>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
+}

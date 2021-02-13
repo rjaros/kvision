@@ -29,6 +29,7 @@ import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.NumberFormControl
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.SnOn
@@ -44,11 +45,12 @@ import io.kvision.utils.SnOn
  * @param step step value (default 1)
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 open class Range(
     value: Number? = null, name: String? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
-    label: String? = null, rich: Boolean = false
-) : SimplePanel(setOf("form-group")), NumberFormControl, ObservableState<Number?> {
+    label: String? = null, rich: Boolean = false, init: (Range.() -> Unit)? = null
+) : SimplePanel(setOf("form-group")), NumberFormControl, MutableState<Number?> {
 
     /**
      * Range input value.
@@ -160,6 +162,8 @@ open class Range(
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -227,6 +231,10 @@ open class Range(
         return input.subscribe(observer)
     }
 
+    override fun setState(state: Number?) {
+        input.setState(state)
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -247,12 +255,7 @@ fun Container.range(
     rich: Boolean = false,
     init: (Range.() -> Unit)? = null
 ): Range {
-    val range =
-        Range(value, name, min, max, step, label, rich).apply {
-            init?.invoke(
-                this
-            )
-        }
+    val range = Range(value, name, min, max, step, label, rich, init)
     this.add(range)
     return range
 }
@@ -273,3 +276,63 @@ fun <S> Container.range(
     rich: Boolean = false,
     init: (Range.(S) -> Unit)
 ) = range(value, name, min, max, step, label, rich).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun Range.bindTo(state: MutableState<Int?>): Range {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toInt())
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun Range.bindTo(state: MutableState<Int>): Range {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toInt() ?: 0)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun Range.bindTo(state: MutableState<Double?>): Range {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toDouble())
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun Range.bindTo(state: MutableState<Double>): Range {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toDouble() ?: 0.0)
+    })
+    return this
+}

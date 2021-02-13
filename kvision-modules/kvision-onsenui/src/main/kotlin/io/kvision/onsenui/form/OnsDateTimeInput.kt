@@ -30,7 +30,8 @@ import io.kvision.core.Widget
 import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
-import io.kvision.state.ObservableState
+import io.kvision.state.MutableState
+import io.kvision.state.bind
 import io.kvision.types.toDateF
 import io.kvision.types.toStringF
 import io.kvision.utils.set
@@ -67,7 +68,7 @@ open class OnsDateTimeInput(
     inputId: String? = null,
     classes: Set<String> = setOf(),
     init: (OnsDateTimeInput.() -> Unit)? = null
-) : Widget(classes + "kv-ons-form-control"), FormInput, ObservableState<Date?> {
+) : Widget(classes + "kv-ons-form-control"), FormInput, MutableState<Date?> {
 
     protected val observers = mutableListOf<(Date?) -> Unit>()
 
@@ -262,6 +263,10 @@ open class OnsDateTimeInput(
             observers -= observer
         }
     }
+
+    override fun setState(state: Date?) {
+        value = state
+    }
 }
 
 /**
@@ -284,4 +289,34 @@ fun Container.onsDateTimeInput(
         OnsDateTimeInput(value, mode, min, max, step, inputId, classes ?: className.set, init)
     this.add(onsDateTimeInput)
     return onsDateTimeInput
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsDateTimeInput.bindTo(state: MutableState<Date?>): OnsDateTimeInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsDateTimeInput.bindTo(state: MutableState<Date>): OnsDateTimeInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: Date())
+    })
+    return this
 }

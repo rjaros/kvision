@@ -23,12 +23,12 @@
 package io.kvision.onsenui.form
 
 import com.github.snabbdom.VNode
-import kotlinx.browser.window
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.form.check.CheckInput
 import io.kvision.form.check.CheckInputType
 import io.kvision.utils.set
+import kotlinx.browser.window
 
 /**
  * OnsenUI checkbox input component.

@@ -33,11 +33,25 @@ import io.kvision.state.bind
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
-open class Password(value: String? = null, name: String? = null, label: String? = null, rich: Boolean = false) : Text(
+open class Password(
+    value: String? = null,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Password.() -> Unit)? = null
+) : Text(
     TextInputType.PASSWORD,
     value, name, label, rich
-)
+) {
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
+}
 
 /**
  * DSL builder extension function.
@@ -51,7 +65,7 @@ fun Container.password(
     rich: Boolean = false,
     init: (Password.() -> Unit)? = null
 ): Password {
-    val password = Password(value, name, label, rich).apply { init?.invoke(this) }
+    val password = Password(value, name, label, rich, init)
     this.add(password)
     return password
 }

@@ -35,10 +35,11 @@ import io.kvision.state.bind
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 open class TextArea(
     cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false
+    label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
 ) : AbstractText(label, rich) {
 
     /**
@@ -78,6 +79,8 @@ open class TextArea(
         input.eventTarget = this
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 }
 
@@ -90,7 +93,7 @@ fun Container.textArea(
     cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
 ): TextArea {
-    val textArea = TextArea(cols, rows, value, name, label, rich).apply { init?.invoke(this) }
+    val textArea = TextArea(cols, rows, value, name, label, rich, init)
     this.add(textArea)
     return textArea
 }

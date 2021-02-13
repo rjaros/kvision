@@ -32,11 +32,20 @@ import io.kvision.utils.set
  * @constructor
  * @param value selection state
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class CheckBoxInput(
     value: Boolean = false,
-    classes: Set<String> = setOf()
-) : CheckInput(CheckInputType.CHECKBOX, value, classes)
+    classes: Set<String> = setOf(),
+    init: (CheckBoxInput.() -> Unit)? = null
+) : CheckInput(CheckInputType.CHECKBOX, value, classes) {
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
+}
 
 /**
  * DSL builder extension function.
@@ -47,9 +56,9 @@ fun Container.checkBoxInput(
     value: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (CheckInput.() -> Unit)? = null
+    init: (CheckBoxInput.() -> Unit)? = null
 ): CheckBoxInput {
-    val checkBoxInput = CheckBoxInput(value, classes ?: className.set).apply { init?.invoke(this) }
+    val checkBoxInput = CheckBoxInput(value, classes ?: className.set, init)
     this.add(checkBoxInput)
     return checkBoxInput
 }
@@ -64,5 +73,5 @@ fun <S> Container.checkBoxInput(
     value: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (CheckInput.(S) -> Unit)
+    init: (CheckBoxInput.(S) -> Unit)
 ) = checkBoxInput(value, classes, className).bind(state, true, init)

@@ -27,7 +27,8 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
+import io.kvision.state.MutableState
+import io.kvision.state.bind
 import io.kvision.utils.SnOn
 
 /**
@@ -39,7 +40,7 @@ import io.kvision.utils.SnOn
  * @param classes a set of CSS class names
  */
 abstract class AbstractText(label: String? = null, rich: Boolean = false, classes: Set<String> = setOf()) :
-    SimplePanel(classes + "form-group"), StringFormControl, ObservableState<String?> {
+    SimplePanel(classes + "form-group"), StringFormControl, MutableState<String?> {
 
     /**
      * Text input value.
@@ -172,4 +173,38 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false, classe
         return input.subscribe(observer)
     }
 
+    override fun setState(state: String?) {
+        input.setState(state)
+    }
+
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : AbstractText> T.bindTo(state: MutableState<String?>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : AbstractText> T.bindTo(state: MutableState<String>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
 }

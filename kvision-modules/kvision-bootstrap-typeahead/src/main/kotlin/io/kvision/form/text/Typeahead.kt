@@ -40,13 +40,14 @@ import io.kvision.state.bind
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 open class Typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false
+    label: String? = null, rich: Boolean = false, init: (Typeahead.() -> Unit)? = null
 ) : AbstractText(label, rich) {
 
     /**
@@ -159,6 +160,8 @@ open class Typeahead(
         input.eventTarget = this
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 }
 
@@ -175,9 +178,7 @@ fun Container.typeahead(
     label: String? = null, rich: Boolean = false, init: (Typeahead.() -> Unit)? = null
 ): Typeahead {
     val typeahead =
-        Typeahead(options, taAjaxOptions, source, items, minLength, delay, type, value, name, label, rich).apply {
-            init?.invoke(this)
-        }
+        Typeahead(options, taAjaxOptions, source, items, minLength, delay, type, value, name, label, rich, init)
     this.add(typeahead)
     return typeahead
 }

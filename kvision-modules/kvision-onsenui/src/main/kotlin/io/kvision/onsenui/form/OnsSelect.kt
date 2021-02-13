@@ -30,7 +30,8 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
+import io.kvision.state.MutableState
+import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import io.kvision.utils.set
 
@@ -60,7 +61,7 @@ open class OnsSelect(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsSelect.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), StringFormControl, ObservableState<String?> {
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), StringFormControl, MutableState<String?> {
     /**
      * A list of options (value to label pairs) for the select control.
      */
@@ -238,6 +239,10 @@ open class OnsSelect(
         return input.subscribe(observer)
     }
 
+    override fun setState(state: String?) {
+        input.setState(state)
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -265,4 +270,34 @@ fun Container.onsSelect(
         OnsSelect(options, value, emptyOption, multiple, selectSize, name, label, rich, classes ?: className.set, init)
     this.add(onsSelect)
     return onsSelect
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsSelect.bindTo(state: MutableState<String?>): OnsSelect {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsSelect.bindTo(state: MutableState<String>): OnsSelect {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
 }

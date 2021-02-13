@@ -22,7 +22,6 @@
 package io.kvision.form.range
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.HTMLInputElement
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -30,9 +29,11 @@ import io.kvision.core.Widget
 import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
+import org.w3c.dom.HTMLInputElement
 
 internal const val DEFAULT_STEP = 1
 
@@ -45,11 +46,12 @@ internal const val DEFAULT_STEP = 1
  * @param max maximal value (default 100)
  * @param step step value (default 1)
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class RangeInput(
     value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
-    classes: Set<String> = setOf()
-) : Widget(classes + "form-control-range"), FormInput, ObservableState<Number?> {
+    classes: Set<String> = setOf(), init: (RangeInput.() -> Unit)? = null
+) : Widget(classes + "form-control-range"), FormInput, MutableState<Number?> {
 
     protected val observers = mutableListOf<(Number?) -> Unit>()
 
@@ -117,6 +119,8 @@ open class RangeInput(
                 self.changeValue()
             }
         }
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun render(): VNode {
@@ -231,6 +235,10 @@ open class RangeInput(
             observers -= observer
         }
     }
+
+    override fun setState(state: Number?) {
+        value = state
+    }
 }
 
 /**
@@ -244,7 +252,7 @@ fun Container.rangeInput(
     className: String? = null,
     init: (RangeInput.() -> Unit)? = null
 ): RangeInput {
-    val rangeInput = RangeInput(value, min, max, step, classes ?: className.set).apply { init?.invoke(this) }
+    val rangeInput = RangeInput(value, min, max, step, classes ?: className.set, init)
     this.add(rangeInput)
     return rangeInput
 }
@@ -261,3 +269,63 @@ fun <S> Container.rangeInput(
     className: String? = null,
     init: (RangeInput.(S) -> Unit)
 ) = rangeInput(value, min, max, step, classes, className).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : RangeInput> T.bindTo(state: MutableState<Int?>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toInt())
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : RangeInput> T.bindTo(state: MutableState<Int>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toInt() ?: 0)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : RangeInput> T.bindTo(state: MutableState<Double?>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toDouble())
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : RangeInput> T.bindTo(state: MutableState<Double>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toDouble() ?: 0.0)
+    })
+    return this
+}

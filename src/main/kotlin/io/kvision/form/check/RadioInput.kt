@@ -32,11 +32,20 @@ import io.kvision.utils.set
  * @constructor
  * @param value selection state
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class RadioInput(
     value: Boolean = false,
-    classes: Set<String> = setOf()
-) : CheckInput(CheckInputType.RADIO, value, classes)
+    classes: Set<String> = setOf(),
+    init: (RadioInput.() -> Unit)? = null
+) : CheckInput(CheckInputType.RADIO, value, classes) {
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
+
+}
 
 /**
  * DSL builder extension function.
@@ -47,9 +56,9 @@ fun Container.radioInput(
     value: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (CheckInput.() -> Unit)? = null
+    init: (RadioInput.() -> Unit)? = null
 ): RadioInput {
-    val checkBoxInput = RadioInput(value, classes ?: className.set).apply { init?.invoke(this) }
+    val checkBoxInput = RadioInput(value, classes ?: className.set, init)
     this.add(checkBoxInput)
     return checkBoxInput
 }
@@ -64,5 +73,5 @@ fun <S> Container.radioInput(
     value: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (CheckInput.(S) -> Unit)
+    init: (RadioInput.(S) -> Unit)
 ) = radioInput(value, classes, className).bind(state, true, init)

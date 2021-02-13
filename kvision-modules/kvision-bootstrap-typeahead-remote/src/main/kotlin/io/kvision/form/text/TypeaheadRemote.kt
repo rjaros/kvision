@@ -39,6 +39,7 @@ import io.kvision.remote.KVServiceMgr
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 open class TypeaheadRemote<T : Any>(
     serviceManager: KVServiceMgr<T>,
@@ -46,7 +47,7 @@ open class TypeaheadRemote<T : Any>(
     private val stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false
+    label: String? = null, rich: Boolean = false, init: (TypeaheadRemote<T>.() -> Unit)? = null
 ) : AbstractText(label, rich) {
 
     /**
@@ -111,6 +112,7 @@ open class TypeaheadRemote<T : Any>(
         set(value) {
             input.type = value
         }
+
     /**
      * Determines if autocomplete is enabled for the input element.
      */
@@ -131,6 +133,8 @@ open class TypeaheadRemote<T : Any>(
         input.eventTarget = this
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 }
 
@@ -158,10 +162,9 @@ fun <T : Any> Container.typeaheadRemote(
         value,
         name,
         label,
-        rich
-    ).apply {
-        init?.invoke(this)
-    }
+        rich,
+        init
+    )
     this.add(typeaheadRemote)
     return typeaheadRemote
 }

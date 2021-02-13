@@ -31,7 +31,8 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.form.ValidationStatus
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
+import io.kvision.state.MutableState
+import io.kvision.state.bind
 import io.kvision.utils.obj
 import io.kvision.utils.set
 
@@ -56,7 +57,7 @@ open class OnsRadioGroup(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsRadioGroup.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), StringFormControl, ObservableState<String?> {
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), StringFormControl, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -280,6 +281,10 @@ open class OnsRadioGroup(
         }
     }
 
+    override fun setState(state: String?) {
+        value = state
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -301,4 +306,34 @@ fun Container.onsRadioGroup(
     val onsRadioGroup = OnsRadioGroup(options, value, name, label, rich, classes ?: className.set, init)
     this.add(onsRadioGroup)
     return onsRadioGroup
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsRadioGroup.bindTo(state: MutableState<String?>): OnsRadioGroup {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsRadioGroup.bindTo(state: MutableState<String>): OnsRadioGroup {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: "")
+    })
+    return this
 }

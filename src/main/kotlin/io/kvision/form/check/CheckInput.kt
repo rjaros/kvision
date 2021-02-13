@@ -22,14 +22,15 @@
 package io.kvision.form.check
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Widget
 import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
-import io.kvision.state.ObservableState
+import io.kvision.state.MutableState
+import io.kvision.state.bind
+import org.w3c.dom.events.MouseEvent
 
 /**
  * Type of the check input control (checkbox or radio).
@@ -50,7 +51,7 @@ enum class CheckInputType(internal val type: String) {
 abstract class CheckInput(
     type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
     classes: Set<String> = setOf()
-) : Widget(classes), FormInput, ObservableState<Boolean> {
+) : Widget(classes), FormInput, MutableState<Boolean> {
 
     protected val observers = mutableListOf<(Boolean) -> Unit>()
 
@@ -183,4 +184,23 @@ abstract class CheckInput(
             observers -= observer
         }
     }
+
+    override fun setState(state: Boolean) {
+        value = state
+    }
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun <T : CheckInput> T.bindTo(state: MutableState<Boolean>): T {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
 }

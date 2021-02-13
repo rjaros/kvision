@@ -30,7 +30,9 @@ import io.kvision.core.Widget
 import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
-import io.kvision.state.ObservableState
+import io.kvision.form.range.RangeInput
+import io.kvision.state.MutableState
+import io.kvision.state.bind
 import io.kvision.utils.set
 
 internal const val DEFAULT_STEP = 1
@@ -59,7 +61,7 @@ open class OnsNumberInput(
     inputId: String? = null,
     classes: Set<String> = setOf(),
     init: (OnsNumberInput.() -> Unit)? = null
-) : Widget(classes + "kv-ons-form-control"), FormInput, ObservableState<Number?> {
+) : Widget(classes + "kv-ons-form-control"), FormInput, MutableState<Number?> {
 
     protected val observers = mutableListOf<(Number?) -> Unit>()
 
@@ -256,6 +258,10 @@ open class OnsNumberInput(
             observers -= observer
         }
     }
+
+    override fun setState(state: Number?) {
+        value = state
+    }
 }
 
 /**
@@ -279,4 +285,64 @@ fun Container.onsNumberInput(
         OnsNumberInput(value, min, max, step, placeholder, floatLabel, inputId, classes ?: className.set, init)
     this.add(onsNumberInput)
     return onsNumberInput
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsNumberInput.bindTo(state: MutableState<Int?>): OnsNumberInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toInt())
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsNumberInput.bindTo(state: MutableState<Int>): OnsNumberInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toInt() ?: 0)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsNumberInput.bindTo(state: MutableState<Double?>): OnsNumberInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toDouble())
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun OnsNumberInput.bindTo(state: MutableState<Double>): OnsNumberInput {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it?.toDouble() ?: 0.0)
+    })
+    return this
 }

@@ -28,6 +28,7 @@ import io.kvision.form.DateFormControl
 import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.SnOn
@@ -42,11 +43,12 @@ import kotlin.js.Date
  * @param format date/time format (default YYYY-MM-DD HH:mm)
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 open class DateTime(
     value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
-    rich: Boolean = false
-) : SimplePanel(setOf("form-group")), DateFormControl, ObservableState<Date?> {
+    rich: Boolean = false, init: (DateTime.() -> Unit)? = null
+) : SimplePanel(setOf("form-group")), DateFormControl, MutableState<Date?> {
 
     /**
      * Date/time input value.
@@ -252,6 +254,8 @@ open class DateTime(
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -315,6 +319,10 @@ open class DateTime(
         return input.subscribe(observer)
     }
 
+    override fun setState(state: Date?) {
+        input.setState(state)
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -329,7 +337,7 @@ fun Container.dateTime(
     value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false, init: (DateTime.() -> Unit)? = null
 ): DateTime {
-    val dateTime = DateTime(value, name, format, label, rich).apply { init?.invoke(this) }
+    val dateTime = DateTime(value, name, format, label, rich, init)
     this.add(dateTime)
     return dateTime
 }
@@ -344,3 +352,33 @@ fun <S> Container.dateTime(
     value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false, init: (DateTime.(S) -> Unit)
 ) = dateTime(value, name, format, label, rich).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun DateTime.bindTo(state: MutableState<Date?>): DateTime {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun DateTime.bindTo(state: MutableState<Date>): DateTime {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it ?: Date())
+    })
+    return this
+}

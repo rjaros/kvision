@@ -21,7 +21,6 @@
  */
 package io.kvision.form.check
 
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.CssClass
@@ -31,9 +30,11 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.SnOn
+import org.w3c.dom.events.MouseEvent
 
 /**
  * Checkbox style options.
@@ -54,11 +55,13 @@ enum class CheckBoxStyle(override val className: String) : CssClass {
  * @param name the name of the input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 open class CheckBox(
     value: Boolean = false, name: String? = null, label: String? = null,
-    rich: Boolean = false
-) : SimplePanel(setOf("form-check", "abc-checkbox")), BoolFormControl, ObservableState<Boolean> {
+    rich: Boolean = false,
+    init: (CheckBox.() -> Unit)? = null
+) : SimplePanel(setOf("form-check", "abc-checkbox")), BoolFormControl, MutableState<Boolean> {
 
     /**
      * The selection state of the checkbox.
@@ -129,6 +132,8 @@ open class CheckBox(
         this.addPrivate(flabel)
         this.addPrivate(invalidFeedback)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -201,6 +206,10 @@ open class CheckBox(
         return input.subscribe(observer)
     }
 
+    override fun setState(state: Boolean) {
+        input.setState(state)
+    }
+
     companion object {
         internal var counter = 0
     }
@@ -215,7 +224,7 @@ fun Container.checkBox(
     value: Boolean = false, name: String? = null, label: String? = null,
     rich: Boolean = false, init: (CheckBox.() -> Unit)? = null
 ): CheckBox {
-    val checkBox = CheckBox(value, name, label, rich).apply { init?.invoke(this) }
+    val checkBox = CheckBox(value, name, label, rich, init)
     this.add(checkBox)
     return checkBox
 }
@@ -230,3 +239,18 @@ fun <S> Container.checkBox(
     value: Boolean = false, name: String? = null, label: String? = null,
     rich: Boolean = false, init: (CheckBox.(S) -> Unit)
 ) = checkBox(value, name, label, rich).bind(state, true, init)
+
+/**
+ * Bidirectional data binding to the MutableState instance.
+ * @param state the MutableState instance
+ * @return current component
+ */
+fun CheckBox.bindTo(state: MutableState<Boolean>): CheckBox {
+    bind(state, false) {
+        if (value != it) value = it
+    }
+    addBeforeDisposeHook(subscribe {
+        state.setState(it)
+    })
+    return this
+}
