@@ -22,7 +22,7 @@
 package io.kvision.state
 
 /**
- * An interface of observable state.
+ * An interface for observable state.
  */
 interface ObservableState<S> {
     /**
@@ -37,6 +37,16 @@ interface ObservableState<S> {
 }
 
 /**
+ * An interface for mutable observable state.
+ */
+interface MutableState<S> : ObservableState<S> {
+    /**
+     * Set current state.
+     */
+    fun setState(state: S)
+}
+
+/**
  *  Returns a sub-store of the original ObservableState
  *  @param extractor an extractor function
  */
@@ -45,7 +55,7 @@ fun <S, T> ObservableState<S>.sub(extractor: (S) -> T): ObservableState<T> {
     this.subscribe { s ->
         val newValue = extractor(s)
         if (observableValue.value != newValue) {
-            observableValue.value = extractor(s)
+            observableValue.value = newValue
         }
     }
     return observableValue

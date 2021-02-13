@@ -28,7 +28,7 @@ import kotlin.properties.Delegates
  * The observable value class.
  * @param value the initial value
  */
-open class ObservableValue<T>(value: T) : ObservableState<T> {
+open class ObservableValue<T>(value: T) : MutableState<T> {
     protected val observers = mutableListOf<(T) -> Unit>()
 
     /**
@@ -40,6 +40,10 @@ open class ObservableValue<T>(value: T) : ObservableState<T> {
 
     override fun getState(): T {
         return value
+    }
+
+    override fun setState(state: T) {
+        value = state
     }
 
     override fun subscribe(observer: (T) -> Unit): () -> Unit {
