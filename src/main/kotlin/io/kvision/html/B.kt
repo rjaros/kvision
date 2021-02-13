@@ -36,14 +36,12 @@ import io.kvision.utils.set
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-@Suppress("DEPRECATION")
-@Deprecated("Use B instead", ReplaceWith("B"))
-open class Bold(
+open class B(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
     classes: Set<String> = setOf(),
-    init: (Bold.() -> Unit)? = null
+    init: (B.() -> Unit)? = null
 ) :
     Tag(TAG.B, content, rich, align, classes) {
 
@@ -58,17 +56,15 @@ open class Bold(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Suppress("DEPRECATION")
-@Deprecated("Use b instead", ReplaceWith("b"))
-fun Container.bold(
+fun Container.b(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (Bold.() -> Unit)? = null
-): Bold {
-    val bold = Bold(content, rich, align, classes ?: className.set, init)
+    init: (B.() -> Unit)? = null
+): B {
+    val bold = B(content, rich, align, classes ?: className.set, init)
     this.add(bold)
     return bold
 }
@@ -78,14 +74,12 @@ fun Container.bold(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Suppress("DEPRECATION")
-@Deprecated("Use b instead", ReplaceWith("b"))
-fun <S> Container.bold(
+fun <S> Container.b(
     state: ObservableState<S>,
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
-    init: (Bold.(S) -> Unit)
-) = bold(content, rich, align, classes, className).bind(state, true, init)
+    init: (B.(S) -> Unit)
+) = b(content, rich, align, classes, className).bind(state, true, init)

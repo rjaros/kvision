@@ -22,7 +22,7 @@
 package test.io.kvision.html
 
 import io.kvision.html.TextNode
-import io.kvision.html.bold
+import io.kvision.html.b
 import io.kvision.html.div
 import io.kvision.html.span
 import io.kvision.html.textNode
@@ -50,7 +50,7 @@ class TextNodeSpec : DomSpec {
         run {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 div {
-                    bold("Some bold text")
+                    b("Some bold text")
                     textNode(" and now normal text ") {
                         margin = 20.px
                     }

@@ -19,23 +19,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-@file:Suppress("DEPRECATION")
-
 package test.io.kvision.html
 
-import io.kvision.html.Bold
+import io.kvision.html.B
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 
-class BoldSpec : DomSpec {
+class BSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val bold = Bold("Bold text")
+            val bold = B("Bold text")
             root.add(bold)
             val element = document.getElementById("test")
             assertEqualsHtml("<b>Bold text</b>", element?.innerHTML, "Should render correct b")
