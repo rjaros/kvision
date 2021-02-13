@@ -29,20 +29,14 @@ import io.kvision.utils.set
  * Simple component rendered as *tbody*.
  *
  * @constructor
- * @param content element text
- * @param rich determines if [content] can contain HTML code
- * @param align content align
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class Tbody(
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String> = setOf(),
     init: (Tbody.() -> Unit)? = null
 ) :
-    Tag(TAG.TBODY, content, rich, align, classes) {
+    Tag(TAG.TBODY, null, false, null, classes) {
 
     init {
         @Suppress("LeakingThis")
@@ -56,14 +50,11 @@ open class Tbody(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Table.tbody(
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Tbody.() -> Unit)? = null
 ): Tbody {
-    val tbody = Tbody(content, rich, align, classes ?: className.set, init)
+    val tbody = Tbody(classes ?: className.set, init)
     this.add(tbody)
     return tbody
 }
@@ -75,10 +66,7 @@ fun Table.tbody(
  */
 fun <S> Table.tbody(
     state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Tbody.(S) -> Unit)
-) = tbody(content, rich, align, classes, className).bind(state, true, init)
+) = tbody(classes, className).bind(state, true, init)

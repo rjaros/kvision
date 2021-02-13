@@ -30,20 +30,14 @@ import io.kvision.utils.set
  * Simple component rendered as *table*.
  *
  * @constructor
- * @param content element text
- * @param rich determines if [content] can contain HTML code
- * @param align content align
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class Table(
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String> = setOf(),
     init: (Table.() -> Unit)? = null
 ) :
-    Tag(TAG.TABLE, content, rich, align, classes) {
+    Tag(TAG.TABLE, null, false, null, classes) {
 
     init {
         @Suppress("LeakingThis")
@@ -57,14 +51,11 @@ open class Table(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.table(
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Table.() -> Unit)? = null
 ): Table {
-    val table = Table(content, rich, align, classes ?: className.set, init)
+    val table = Table(classes ?: className.set, init)
     this.add(table)
     return table
 }
@@ -76,10 +67,7 @@ fun Container.table(
  */
 fun <S> Container.table(
     state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Table.(S) -> Unit)
-) = table(content, rich, align, classes, className).bind(state, true, init)
+) = table(classes, className).bind(state, true, init)

@@ -30,20 +30,14 @@ import io.kvision.utils.set
  * Simple component rendered as *tr*.
  *
  * @constructor
- * @param content element text
- * @param rich determines if [content] can contain HTML code
- * @param align content align
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class Tr(
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String> = setOf(),
     init: (Tr.() -> Unit)? = null
 ) :
-    Tag(TAG.TR, content, rich, align, classes) {
+    Tag(TAG.TR, null, false, null, classes) {
 
     init {
         @Suppress("LeakingThis")
@@ -57,14 +51,11 @@ open class Tr(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.tr(
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Tr.() -> Unit)? = null
 ): Tr {
-    val tr = Tr(content, rich, align, classes ?: className.set, init)
+    val tr = Tr(classes ?: className.set, init)
     this.add(tr)
     return tr
 }
@@ -76,10 +67,7 @@ fun Container.tr(
  */
 fun <S> Container.tr(
     state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Tr.(S) -> Unit)
-) = tr(content, rich, align, classes, className).bind(state, true, init)
+) = tr(classes, className).bind(state, true, init)

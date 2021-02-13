@@ -29,20 +29,14 @@ import io.kvision.utils.set
  * Simple component rendered as *thead*.
  *
  * @constructor
- * @param content element text
- * @param rich determines if [content] can contain HTML code
- * @param align content align
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
 open class Thead(
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String> = setOf(),
     init: (Thead.() -> Unit)? = null
 ) :
-    Tag(TAG.THEAD, content, rich, align, classes) {
+    Tag(TAG.THEAD, null, false, null, classes) {
 
     init {
         @Suppress("LeakingThis")
@@ -56,14 +50,11 @@ open class Thead(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Table.thead(
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Thead.() -> Unit)? = null
 ): Thead {
-    val thead = Thead(content, rich, align, classes ?: className.set, init)
+    val thead = Thead(classes ?: className.set, init)
     this.add(thead)
     return thead
 }
@@ -75,10 +66,7 @@ fun Table.thead(
  */
 fun <S> Table.thead(
     state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
     classes: Set<String>? = null,
     className: String? = null,
     init: (Thead.(S) -> Unit)
-) = thead(content, rich, align, classes, className).bind(state, true, init)
+) = thead(classes, className).bind(state, true, init)
