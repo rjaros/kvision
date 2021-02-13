@@ -3,6 +3,7 @@ plugins {
     id("maven-publish")
     id("signing")
     id("de.marcphilipp.nexus-publish")
+    id("org.jetbrains.dokka")
 }
 
 // Versions
@@ -28,9 +29,16 @@ kotlin {
     }
 }
 
+val javadocJar by tasks.registering(Jar::class) {
+    dependsOn("dokkaHtml")
+    archiveClassifier.set("javadoc")
+    from("$buildDir/dokka/html")
+}
+
 publishing {
     publications.withType<MavenPublication> {
         if (name == "kotlinMultiplatform") artifactId = "kvision-common-annotations"
+        if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
         pom {
             defaultPom()
         }

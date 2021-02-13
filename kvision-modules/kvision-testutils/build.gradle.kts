@@ -3,6 +3,7 @@ plugins {
     id("maven-publish")
     id("signing")
     id("de.marcphilipp.nexus-publish")
+    id("org.jetbrains.dokka")
 }
 
 kotlin {
