@@ -21,21 +21,12 @@
  */
 package io.kvision.form.check
 
-import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.StringPair
-import io.kvision.form.FieldLabel
-import io.kvision.form.FormHorizontalRatio
-import io.kvision.form.InputSize
-import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
-import io.kvision.form.ValidationStatus
-import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
-import io.kvision.utils.obj
 
 /**
  * The form field component rendered as a group of HTML *input type="radio"* elements with the same name attribute.
@@ -52,256 +43,24 @@ import io.kvision.utils.obj
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
-@Suppress("TooManyFunctions")
 open class RadioGroup(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     label: String? = null,
     rich: Boolean = false,
     init: (RadioGroup.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), StringFormControl, MutableState<String?> {
-
-    protected val observers = mutableListOf<(String?) -> Unit>()
-
-    /**
-     * A list of options (label to value pairs) for the group.
-     */
-    var options by refreshOnUpdate(options) { setChildrenFromOptions() }
-
-    /**
-     * A value of the selected option.
-     */
-    override var value by refreshOnUpdate(value) {
-        setValueToChildren(it)
-        observers.forEach { ob -> ob(it) }
-        @Suppress("UnsafeCastFromDynamic")
-        dispatchEvent("change", obj { detail = obj { data = it } })
-    }
-
-    /**
-     * Determines if the options are rendered inline.
-     */
-    var inline by refreshOnUpdate(inline)
-
-    override var disabled
-        get() = getDisabledFromChildren()
-        set(value) {
-            setDisabledToChildren(value)
-        }
-
-    /**
-     * The label text of the options group.
-     */
-    var label
-        get() = flabel.content
-        set(value) {
-            flabel.content = value
-        }
-
-    /**
-     * Determines if [label] can contain HTML code.
-     */
-    var rich
-        get() = flabel.rich
-        set(value) {
-            flabel.rich = value
-        }
-    override var name: String?
-        get() = getNameFromChildren()
-        set(value) {
-            setNameToChildren(value)
-        }
-    override var size
-        get() = getSizeFromChildren()
-        set(value) {
-            setSizeToChildren(value)
-        }
-    override var validationStatus
-        get() = getValidationStatusFromChildren()
-        set(value) {
-            setValidationStatusToChildren(value)
-        }
-    override var validatorError: String?
-        get() = super.validatorError
-        set(value) {
-            super.validatorError = value
-            if (value != null) {
-                container.addCssClass("is-invalid")
-            } else {
-                container.removeCssClass("is-invalid")
-            }
-        }
-
-    private val idc = "kv_form_radiogroup_$counter"
-    final override val input = RadioInput()
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
-    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
-
-    internal val container = SimplePanel(setOf("kv-radiogroup-container")) {
-        id = idc
-    }
+) : GenericRadioGroup<String>(options, value, name, inline, label, rich), StringFormControl {
 
     init {
-        this.addPrivate(flabel)
-        this.addPrivate(container)
-        this.addPrivate(invalidFeedback)
-        setChildrenFromOptions()
-        setValueToChildren(value)
-        setNameToChildren(name)
-        counter++
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        super.buildClassSet(classSetBuilder)
-        if (validatorError != null) {
-            classSetBuilder.add("text-danger")
-        }
-        if (inline) {
-            classSetBuilder.add("kv-radiogroup-inline")
-        } else {
-            classSetBuilder.add("kv-radiogroup")
-        }
+    override fun getValue(): String? = value
+    override fun setValue(v: Any?) {
+        value = v as? String ?: v?.toString()
     }
 
-    private fun setValueToChildren(value: String?) {
-        val radios = container.getChildren().filterIsInstance<Radio>()
-        radios.forEach { it.value = false }
-        radios.find {
-            it.extraValue == value
-        }?.value = true
-    }
-
-    private fun getDisabledFromChildren(): Boolean {
-        return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.disabled ?: false
-    }
-
-    private fun setDisabledToChildren(disabled: Boolean) {
-        container.getChildren().filterIsInstance<Radio>().forEach { it.disabled = disabled }
-    }
-
-    private fun getNameFromChildren(): String {
-        return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.name ?: this.idc
-    }
-
-    private fun setNameToChildren(name: String?) {
-        val tname = name ?: this.idc
-        container.getChildren().filterIsInstance<Radio>().forEach { it.name = tname }
-    }
-
-    private fun getSizeFromChildren(): InputSize? {
-        return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.size
-    }
-
-    private fun setSizeToChildren(size: InputSize?) {
-        container.getChildren().filterIsInstance<Radio>().forEach { it.size = size }
-        super.size = size
-    }
-
-    private fun getValidationStatusFromChildren(): ValidationStatus? {
-        return container.getChildren().filterIsInstance<Radio>().firstOrNull()?.validationStatus
-    }
-
-    private fun setValidationStatusToChildren(validationStatus: ValidationStatus?) {
-        container.getChildren().filterIsInstance<Radio>().forEach { it.validationStatus = validationStatus }
-    }
-
-    private fun setChildrenFromOptions() {
-        val currentName = this.name
-        container.removeAll()
-        options?.let {
-            val tname = currentName ?: this.idc
-            val tinline = this.inline
-            val c = it.map {
-                Radio(false, extraValue = it.first, label = it.second).apply {
-                    inline = tinline
-                    name = tname
-                    eventTarget = this@RadioGroup
-                    setEventListener<Radio> {
-                        change = { ev ->
-                            this@RadioGroup.value = self.extraValue
-                            ev.stopPropagation()
-                        }
-                    }
-                }
-            }
-            container.addAll(c)
-        }
-    }
-
-    override fun add(child: Component): SimplePanel {
-        if (child is Radio) {
-            child.eventTarget = this
-            child.name = name
-            child.setEventListener<Radio> {
-                change = { ev ->
-                    this@RadioGroup.value = self.extraValue
-                    ev.stopPropagation()
-                }
-            }
-        }
-        container.add(child)
-        return this
-    }
-
-    override fun addAll(children: List<Component>): SimplePanel {
-        children.forEach { add(it) }
-        return this
-    }
-
-    override fun remove(child: Component): SimplePanel {
-        container.remove(child)
-        return this
-    }
-
-    override fun removeAll(): SimplePanel {
-        container.removeAll()
-        return this
-    }
-
-    override fun disposeAll(): SimplePanel {
-        container.disposeAll()
-        return this
-    }
-
-    override fun getChildren(): List<Component> {
-        return container.getChildren()
-    }
-
-    override fun focus() {
-        container.getChildren().filterIsInstance<Radio>().firstOrNull()?.focus()
-    }
-
-    override fun blur() {
-        container.getChildren().filterIsInstance<Radio>().firstOrNull()?.blur()
-    }
-
-    override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
-        addCssClass("row")
-        flabel.addCssClass("col-sm-${horizontalRatio.labels}")
-        flabel.addCssClass("col-form-label")
-        container.addCssClass("col-sm-${horizontalRatio.fields}")
-        invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
-        invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
-    }
-
-    override fun getState(): String? = value
-
-    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
-        observers += observer
-        observer(value)
-        return {
-            observers -= observer
-        }
-    }
-
-    override fun setState(state: String?) {
-        value = state
-    }
-
-    companion object {
-        internal var counter = 0
-    }
+    override fun getValueAsString(): String? = value
 }
 
 /**

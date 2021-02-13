@@ -48,14 +48,17 @@ interface FormInput : Component {
      * Determines if the field is disabled.
      */
     var disabled: Boolean
+
     /**
      * Input control field size.
      */
     var size: InputSize?
+
     /**
      * The name attribute of the generated HTML input element.
      */
     var name: String?
+
     /**
      * Input control validation status.
      */
@@ -74,6 +77,7 @@ interface FormControl : Component {
         set(value) {
             input.disabled = value
         }
+
     /**
      * Input control field size.
      */
@@ -92,6 +96,7 @@ interface FormControl : Component {
                 flabel.removeCssClass("col-form-label-lg")
             }
         }
+
     /**
      * The name attribute of the generated HTML input element.
      */
@@ -100,6 +105,7 @@ interface FormControl : Component {
         set(value) {
             input.name = value
         }
+
     /**
      * Input control validation status.
      */
@@ -108,14 +114,17 @@ interface FormControl : Component {
         set(value) {
             input.validationStatus = value
         }
+
     /**
      * The actual input component.
      */
     val input: FormInput
+
     /**
      * Form field label.
      */
     val flabel: FieldLabel
+
     /**
      * Invalid feedback component.
      */
@@ -273,4 +282,22 @@ interface KFilesFormControl : FormControl {
      * @return File object
      */
     fun getNativeFile(kFile: KFile): File?
+}
+
+/**
+ * Base interface of a form control with a generic value.
+ */
+interface GenericFormControl<T> : FormControl {
+    /**
+     * Generic value.
+     */
+    var value: T?
+
+    override fun getValue(): T? = value
+    override fun setValue(v: Any?) {
+        @Suppress("UNCHECKED_CAST")
+        value = v as? T
+    }
+
+    override fun getValueAsString(): String? = value.toString()
 }
