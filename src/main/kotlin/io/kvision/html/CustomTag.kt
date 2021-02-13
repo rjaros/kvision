@@ -80,7 +80,7 @@ fun Container.customTag(
     init: (CustomTag.() -> Unit)? = null
 ): CustomTag {
     val customTag =
-        CustomTag(elementName, content, rich, align, classes ?: className.set, attributes).apply { init?.invoke(this) }
+        CustomTag(elementName, content, rich, align, classes ?: className.set, attributes, init)
     this.add(customTag)
     return customTag
 }

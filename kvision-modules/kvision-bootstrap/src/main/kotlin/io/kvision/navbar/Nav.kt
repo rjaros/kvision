@@ -70,7 +70,7 @@ fun Navbar.nav(
     className: String? = null,
     init: (Nav.() -> Unit)? = null
 ): Nav {
-    val nav = Nav(rightAlign, classes ?: className.set).apply { init?.invoke(this) }
+    val nav = Nav(rightAlign, classes ?: className.set, init)
     this.add(nav)
     return nav
 }
@@ -100,9 +100,7 @@ fun Nav.navLink(
     init: (Link.() -> Unit)? = null
 ): Link {
     val link =
-        Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "nav-item" + "nav-link").apply {
-            init?.invoke(this)
-        }
+        Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "nav-item" + "nav-link", init)
     this.add(link)
     return link
 }
@@ -124,11 +122,11 @@ fun Nav.navLinkDisabled(
             "javascript:void(0)",
             icon,
             image, null, true, null,
-            (classes ?: className.set) + "nav-item" + "nav-link" + "disabled"
+            (classes ?: className.set) + "nav-item" + "nav-link" + "disabled",
+            init
         ).apply {
             tabindex = -1
             setAttribute("aria-disabled", "true")
-            init?.invoke(this)
         }
     this.add(link)
     return link

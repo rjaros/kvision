@@ -37,11 +37,12 @@ import io.kvision.utils.set
  * @param divider renders this option as a divider
  * @param disabled renders a disabled option
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class SelectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
 ) : Widget(classes) {
 
     /**
@@ -78,6 +79,11 @@ open class SelectOption(
      * Determines if the option is selected.
      */
     var selected by refreshOnUpdate(selected)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return if (!divider) {
@@ -125,11 +131,7 @@ fun Select.selectOption(
     init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set).apply {
-            init?.invoke(
-                this
-            )
-        }
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set, init)
     this.add(selectOption)
     return selectOption
 }
@@ -147,11 +149,7 @@ fun SelectInput.selectOption(
     init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set).apply {
-            init?.invoke(
-                this
-            )
-        }
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set, init)
     this.add(selectOption)
     return selectOption
 }
@@ -169,11 +167,7 @@ fun SelectOptGroup.selectOption(
     init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set).apply {
-            init?.invoke(
-                this
-            )
-        }
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set, init)
     this.add(selectOption)
     return selectOption
 }

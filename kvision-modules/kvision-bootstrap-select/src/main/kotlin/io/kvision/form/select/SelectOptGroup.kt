@@ -39,10 +39,11 @@ import io.kvision.utils.set
  * @param maxOptions maximal number of selected options in the group
  * @param disabled renders a disabled group
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class SelectOptGroup(
     label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
-    disabled: Boolean = false, classes: Set<String> = setOf()
+    disabled: Boolean = false, classes: Set<String> = setOf(), init: (SelectOptGroup.() -> Unit)? = null
 ) : SimplePanel(classes) {
     /**
      * A label for the group.
@@ -66,6 +67,8 @@ open class SelectOptGroup(
 
     init {
         setChildrenFromOptions()
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun render(): VNode {
@@ -107,7 +110,7 @@ fun Select.selectOptGroup(
     init: (SelectOptGroup.() -> Unit)? = null
 ): SelectOptGroup {
     val selectOptGroup =
-        SelectOptGroup(label, options, maxOptions, disabled, classes ?: className.set).apply { init?.invoke(this) }
+        SelectOptGroup(label, options, maxOptions, disabled, classes ?: className.set, init)
     this.add(selectOptGroup)
     return selectOptGroup
 }
@@ -125,7 +128,7 @@ fun SelectInput.selectOptGroup(
     init: (SelectOptGroup.() -> Unit)? = null
 ): SelectOptGroup {
     val selectOptGroup =
-        SelectOptGroup(label, options, maxOptions, disabled, classes ?: className.set).apply { init?.invoke(this) }
+        SelectOptGroup(label, options, maxOptions, disabled, classes ?: className.set, init)
     this.add(selectOptGroup)
     return selectOptGroup
 }

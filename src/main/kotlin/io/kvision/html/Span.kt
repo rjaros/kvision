@@ -64,7 +64,7 @@ fun Container.span(
     className: String? = null,
     init: (Span.() -> Unit)? = null
 ): Span {
-    val span = Span(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val span = Span(content, rich, align, classes ?: className.set, init)
     this.add(span)
     return span
 }

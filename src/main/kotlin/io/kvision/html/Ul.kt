@@ -58,7 +58,7 @@ fun Container.ul(
     className: String? = null,
     init: (Ul.() -> Unit)? = null
 ): Ul {
-    val ul = Ul(elements, rich, classes ?: className.set).apply { init?.invoke(this) }
+    val ul = Ul(elements, rich, classes ?: className.set, init)
     this.add(ul)
     return ul
 }

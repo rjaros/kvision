@@ -64,7 +64,7 @@ fun Container.h2(
     className: String? = null,
     init: (H2.() -> Unit)? = null
 ): H2 {
-    val h2 = H2(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val h2 = H2(content, rich, align, classes ?: className.set, init)
     this.add(h2)
     return h2
 }

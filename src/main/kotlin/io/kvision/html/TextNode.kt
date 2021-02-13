@@ -76,7 +76,7 @@ fun Container.textNode(
     content: String, rich: Boolean = false,
     init: (TextNode.() -> Unit)? = null
 ): TextNode {
-    val textNode = TextNode(content, rich).apply { init?.invoke(this) }
+    val textNode = TextNode(content, rich, init)
     this.add(textNode)
     return textNode
 }

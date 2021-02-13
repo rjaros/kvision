@@ -64,7 +64,7 @@ fun Container.main(
     className: String? = null,
     init: (Main.() -> Unit)? = null
 ): Main {
-    val main = Main(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val main = Main(content, rich, align, classes ?: className.set, init)
     this.add(main)
     return main
 }

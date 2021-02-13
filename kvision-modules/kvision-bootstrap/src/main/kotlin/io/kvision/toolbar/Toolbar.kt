@@ -60,7 +60,7 @@ fun Container.toolbar(
     className: String? = null,
     init: (Toolbar.() -> Unit)? = null
 ): Toolbar {
-    val toolbar = Toolbar(size, spacing, vertical, classes ?: className.set).apply { init?.invoke(this) }
+    val toolbar = Toolbar(size, spacing, vertical, classes ?: className.set, init)
     this.add(toolbar)
     return toolbar
 }

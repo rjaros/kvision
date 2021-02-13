@@ -69,7 +69,7 @@ fun Navbar.navForm(
     className: String? = null,
     init: (NavForm.() -> Unit)? = null
 ): NavForm {
-    val navForm = NavForm(rightAlign, classes ?: className.set).apply { init?.invoke(this) }
+    val navForm = NavForm(rightAlign, classes ?: className.set, init)
     this.add(navForm)
     return navForm
 }

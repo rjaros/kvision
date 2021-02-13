@@ -64,7 +64,7 @@ fun Container.footer(
     className: String? = null,
     init: (Footer.() -> Unit)? = null
 ): Footer {
-    val footer = Footer(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val footer = Footer(content, rich, align, classes ?: className.set, init)
     this.add(footer)
     return footer
 }

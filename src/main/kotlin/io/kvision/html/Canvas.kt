@@ -22,14 +22,14 @@
 package io.kvision.html
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.CanvasRenderingContext2D
-import org.w3c.dom.HTMLCanvasElement
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
+import org.w3c.dom.CanvasRenderingContext2D
+import org.w3c.dom.HTMLCanvasElement
 
 /**
  * Canvas component.
@@ -38,10 +38,13 @@ import io.kvision.utils.set
  * @param canvasWidth the width of the canvas
  * @param canvasHeight the height of the canvas
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class Canvas(
-    canvasWidth: Int? = null, canvasHeight: Int? = null, classes: Set<String> = setOf()
+    canvasWidth: Int? = null, canvasHeight: Int? = null, classes: Set<String> = setOf(),
+    init: (Canvas.() -> Unit)? = null
 ) : Widget(classes) {
+
     /**
      * The width of the canvas.
      */
@@ -56,6 +59,11 @@ open class Canvas(
      * The canvas rendering context.
      */
     lateinit var context2D: CanvasRenderingContext2D
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return render("canvas")
@@ -93,7 +101,7 @@ fun Container.canvas(
     init: (Canvas.() -> Unit)? = null
 ): Canvas {
     val canvas =
-        Canvas(canvasWidth, canvasHeight, classes ?: className.set).apply { init?.invoke(this) }
+        Canvas(canvasWidth, canvasHeight, classes ?: className.set, init)
     this.add(canvas)
     return canvas
 }

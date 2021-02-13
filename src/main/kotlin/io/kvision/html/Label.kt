@@ -72,7 +72,7 @@ fun Container.label(
     className: String? = null,
     init: (Label.() -> Unit)? = null
 ): Label {
-    val label = Label(content, rich, forId, classes ?: className.set).apply { init?.invoke(this) }
+    val label = Label(content, rich, forId, classes ?: className.set, init)
     this.add(label)
     return label
 }

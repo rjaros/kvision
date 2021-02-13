@@ -21,7 +21,6 @@
  */
 package io.kvision.dropdown
 
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.Display
 import io.kvision.core.Widget
 import io.kvision.html.Div
@@ -30,6 +29,7 @@ import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.px
 import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * Context menu component.
@@ -38,6 +38,7 @@ import io.kvision.utils.set
  * @param element an element to bind
  * @param fixedPosition use fixed positioning
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class ContextMenu(
     element: Widget? = null,
@@ -110,7 +111,7 @@ fun Widget.contextMenu(
     className: String? = null,
     init: (ContextMenu.() -> Unit)? = null
 ): ContextMenu {
-    val contextMenu = ContextMenu(this, fixedPosition, classes ?: className.set).apply { init?.invoke(this) }
+    val contextMenu = ContextMenu(this, fixedPosition, classes ?: className.set, init)
     this.setContextMenu(contextMenu)
     return contextMenu
 }

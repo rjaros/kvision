@@ -64,7 +64,7 @@ fun Container.fieldset(
     className: String? = null,
     init: (Fieldset.() -> Unit)? = null
 ): Fieldset {
-    val fieldset = Fieldset(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val fieldset = Fieldset(content, rich, align, classes ?: className.set, init)
     this.add(fieldset)
     return fieldset
 }

@@ -37,14 +37,18 @@ import io.kvision.utils.set
  * @param content the text of the label
  * @param rich determines if [content] can contain HTML code
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class FieldLabel(
     internal val forId: String, content: String? = null, rich: Boolean = false,
-    classes: Set<String> = setOf()
-) : Tag(
-    TAG.LABEL,
-    content, rich, classes = classes
-) {
+    classes: Set<String> = setOf(),
+    init: (FieldLabel.() -> Unit)? = null
+) : Tag(TAG.LABEL, content, rich, classes = classes) {
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
@@ -63,7 +67,7 @@ fun Container.fieldLabel(
     className: String? = null,
     init: (FieldLabel.() -> Unit)? = null
 ): FieldLabel {
-    val fieldLabel = FieldLabel(forId, content, rich, classes ?: className.set).apply { init?.invoke(this) }
+    val fieldLabel = FieldLabel(forId, content, rich, classes ?: className.set, init)
     this.add(fieldLabel)
     return fieldLabel
 }

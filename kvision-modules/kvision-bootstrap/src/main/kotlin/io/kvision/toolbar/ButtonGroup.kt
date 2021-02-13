@@ -86,7 +86,7 @@ fun Container.buttonGroup(
     className: String? = null,
     init: (ButtonGroup.() -> Unit)? = null
 ): ButtonGroup {
-    val group = ButtonGroup(size, vertical, classes ?: className.set).apply { init?.invoke(this) }
+    val group = ButtonGroup(size, vertical, classes ?: className.set, init)
     this.add(group)
     return group
 }
@@ -114,9 +114,8 @@ fun Toolbar.buttonGroup(
     className: String? = null,
     init: (ButtonGroup.() -> Unit)? = null
 ): ButtonGroup {
-    val group = ButtonGroup(this.size, this.vertical, classes ?: className.set).apply {
+    val group = ButtonGroup(this.size, this.vertical, classes ?: className.set, init).apply {
         marginRight = this@buttonGroup.spacing.px
-        init?.invoke(this)
     }
     this.add(group)
     return group

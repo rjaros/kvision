@@ -64,7 +64,7 @@ fun Container.header(
     className: String? = null,
     init: (Header.() -> Unit)? = null
 ): Header {
-    val header = Header(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val header = Header(content, rich, align, classes ?: className.set, init)
     this.add(header)
     return header
 }

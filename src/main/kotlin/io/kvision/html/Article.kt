@@ -64,7 +64,7 @@ fun Container.article(
     className: String? = null,
     init: (Article.() -> Unit)? = null
 ): Article {
-    val article = Article(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val article = Article(content, rich, align, classes ?: className.set, init)
     this.add(article)
     return article
 }

@@ -64,7 +64,7 @@ fun Container.code(
     className: String? = null,
     init: (Code.() -> Unit)? = null
 ): Code {
-    val code = Code(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val code = Code(content, rich, align, classes ?: className.set, init)
     this.add(code)
     return code
 }

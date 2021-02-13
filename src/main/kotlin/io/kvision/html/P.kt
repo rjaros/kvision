@@ -64,7 +64,7 @@ fun Container.p(
     className: String? = null,
     init: (P.() -> Unit)? = null
 ): P {
-    val p = P(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val p = P(content, rich, align, classes ?: className.set, init)
     this.add(p)
     return p
 }

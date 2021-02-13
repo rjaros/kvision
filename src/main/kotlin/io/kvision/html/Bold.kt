@@ -64,7 +64,7 @@ fun Container.bold(
     className: String? = null,
     init: (Bold.() -> Unit)? = null
 ): Bold {
-    val bold = Bold(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val bold = Bold(content, rich, align, classes ?: className.set, init)
     this.add(bold)
     return bold
 }

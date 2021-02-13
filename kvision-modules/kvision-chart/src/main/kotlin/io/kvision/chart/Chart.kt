@@ -39,12 +39,14 @@ import io.kvision.chart.js.Chart as JsChart
  * @param chartWidth chart width in pixels
  * @param chartHeight chart height in pixels
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class Chart(
     configuration: Configuration,
     chartWidth: Int? = null,
     chartHeight: Int? = null,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(),
+    init: (Chart.() -> Unit)? = null
 ) : Widget(classes) {
 
     /**
@@ -57,6 +59,11 @@ open class Chart(
         }
 
     internal val chartCanvas: ChartCanvas = ChartCanvas(chartWidth, chartHeight, configuration)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return render("div", arrayOf(chartCanvas.renderVNode()))
@@ -138,7 +145,7 @@ fun Container.chart(
     className: String? = null,
     init: (Chart.() -> Unit)? = null
 ): Chart {
-    val chart = Chart(configuration, chartWidth, chartHeight, classes ?: className.set).apply { init?.invoke(this) }
+    val chart = Chart(configuration, chartWidth, chartHeight, classes ?: className.set, init)
     this.add(chart)
     return chart
 }

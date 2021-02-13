@@ -31,13 +31,19 @@ import io.kvision.state.bind
  *
  * @constructor
  * @param icon icon name
+ * @param init an initializer extension function
  */
-open class Icon(icon: String) : Tag(TAG.SPAN) {
+open class Icon(icon: String, init: (Icon.() -> Unit)? = null) : Tag(TAG.SPAN) {
 
     /**
      * Icon type.
      */
     var icon by refreshOnUpdate(icon)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
@@ -53,7 +59,7 @@ open class Icon(icon: String) : Tag(TAG.SPAN) {
 fun Container.icon(
     icon: String, init: (Icon.() -> Unit)? = null
 ): Icon {
-    val i = Icon(icon).apply { init?.invoke(this) }
+    val i = Icon(icon, init)
     this.add(i)
     return i
 }

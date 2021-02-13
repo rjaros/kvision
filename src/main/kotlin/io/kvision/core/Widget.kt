@@ -26,20 +26,20 @@ import com.github.snabbdom.Classes
 import com.github.snabbdom.VNode
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.h
-import org.w3c.dom.CustomEventInit
-import org.w3c.dom.DragEvent
-import org.w3c.dom.Node
-import org.w3c.dom.events.MouseEvent
-import io.kvision.jquery.JQuery
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.KVManager
 import io.kvision.i18n.I18n
 import io.kvision.i18n.I18n.trans
+import io.kvision.jquery.JQuery
+import io.kvision.jquery.invoke
+import io.kvision.jquery.jQuery
 import io.kvision.panel.Root
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.*
+import org.w3c.dom.CustomEventInit
+import org.w3c.dom.DragEvent
+import org.w3c.dom.Node
+import org.w3c.dom.events.MouseEvent
 import kotlin.reflect.KProperty
 
 enum class Easing(internal val easing: String) {
@@ -54,16 +54,18 @@ enum class Easing(internal val easing: String) {
  *
  * @constructor Creates basic Widget with given CSS class names.
  * @param classes Set of CSS class names
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions", "LargeClass")
-open class Widget(internal val intClasses: Set<String>? = null) : StyledComponent(), Component {
+open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.() -> Unit)? = null) : StyledComponent(),
+    Component {
     private val propertyValues = js("{}")
 
     internal var classes: MutableSet<String>? = null
     internal var surroundingClasses: MutableSet<String>? = null
     internal var attributes: MutableMap<String, String>? = null
-    internal var internalListenersMap : MutableMap<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>? = null
-    internal var listenersMap : MutableMap<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>? = null
+    internal var internalListenersMap: MutableMap<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>? = null
+    internal var listenersMap: MutableMap<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>? = null
     internal var listenerCounter: Int = 0
 
     override var parent: Container? = null
@@ -126,6 +128,11 @@ open class Widget(internal val intClasses: Set<String>? = null) : StyledComponen
     private var afterInsertHooks: MutableList<(VNode) -> Unit>? = null
     private var afterDestroyHooks: MutableList<() -> Unit>? = null
     private var beforeDisposeHooks: MutableList<() -> Unit>? = null
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     /**
      * The supplied function is called before the widget is disposed.
@@ -1067,7 +1074,7 @@ fun Container.widget(
     className: String? = null,
     init: (Widget.() -> Unit)? = null
 ): Widget {
-    val widget = Widget(classes ?: className.set).apply { init?.invoke(this) }
+    val widget = Widget(classes ?: className.set, init)
     this.add(widget)
     return widget
 }

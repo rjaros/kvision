@@ -288,8 +288,9 @@ fun Container.dropDown(
             disabled,
             forNavbar,
             forDropDown,
-            classes ?: className.set
-        ).apply { init?.invoke(this) }
+            classes ?: className.set,
+            init
+        )
     this.add(dropDown)
     return dropDown
 }
@@ -331,9 +332,7 @@ fun DropDown.ddLink(
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item").apply {
-        init?.invoke(this)
-    }
+    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item", init)
     this.add(link)
     return link
 }
@@ -349,9 +348,7 @@ fun ContextMenu.cmLink(
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item").apply {
-        init?.invoke(this)
-    }
+    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item", init)
     this.add(link)
     return link
 }
@@ -372,11 +369,10 @@ fun DropDown.ddLinkDisabled(
         "javascript:void(0)",
         icon,
         image, null, true, null,
-        (classes ?: className.set) + "dropdown-item" + "disabled"
+        (classes ?: className.set) + "dropdown-item" + "disabled", init
     ).apply {
         tabindex = -1
         setAttribute("aria-disabled", "true")
-        init?.invoke(this)
     }
     this.add(link)
     return link
@@ -398,11 +394,10 @@ fun ContextMenu.cmLinkDisabled(
         "javascript:void(0)",
         icon,
         image, null, true, null,
-        (classes ?: className.set) + "dropdown-item" + "disabled"
+        (classes ?: className.set) + "dropdown-item" + "disabled", init
     ).apply {
         tabindex = -1
         setAttribute("aria-disabled", "true")
-        init?.invoke(this)
     }
     this.add(link)
     return link

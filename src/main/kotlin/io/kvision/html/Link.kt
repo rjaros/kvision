@@ -43,12 +43,14 @@ import io.kvision.utils.set
  * @param labelFirst determines if the label is put before children elements (defaults to true)
  * @param target link target
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class Link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
     separator: String? = null, labelFirst: Boolean = true, target: String? = null,
-    classes: Set<String> = setOf()
+    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
 ) : SimplePanel(classes) {
+
     /**
      * Link label.
      */
@@ -83,6 +85,11 @@ open class Link(
      * Link target
      */
     var target by refreshOnUpdate(target)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         val t = createLabelWithIcon(label, icon, image, separator)
@@ -137,8 +144,9 @@ fun Container.link(
             separator,
             labelFirst,
             target,
-            classes ?: className.set
-        ).apply { init?.invoke(this) }
+            classes ?: className.set,
+            init
+        )
     this.add(link)
     return link
 }

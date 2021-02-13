@@ -64,7 +64,7 @@ fun Container.figcaption(
     className: String? = null,
     init: (Figcaption.() -> Unit)? = null
 ): Figcaption {
-    val figcaption = Figcaption(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val figcaption = Figcaption(content, rich, align, classes ?: className.set, init)
     this.add(figcaption)
     return figcaption
 }

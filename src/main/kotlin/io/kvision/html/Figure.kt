@@ -64,7 +64,7 @@ fun Container.figure(
     className: String? = null,
     init: (Figure.() -> Unit)? = null
 ): Figure {
-    val figure = Figure(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val figure = Figure(content, rich, align, classes ?: className.set, init)
     this.add(figure)
     return figure
 }

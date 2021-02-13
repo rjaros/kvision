@@ -64,7 +64,7 @@ fun Container.div(
     className: String? = null,
     init: (Div.() -> Unit)? = null
 ): Div {
-    val div = Div(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val div = Div(content, rich, align, classes ?: className.set, init)
     this.add(div)
     return div
 }

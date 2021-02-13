@@ -51,10 +51,11 @@ enum class ImageShape(override val className: String) : CssClass {
  * @param shape image shape
  * @param centered determines if the image is rendered centered
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 open class Image(
     src: ResString?, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
-    centered: Boolean = false, classes: Set<String> = setOf()
+    centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null
 ) : Widget(classes) {
     /**
      * URL of the image.
@@ -80,6 +81,11 @@ open class Image(
      * Determines if the image is rendered as centered.
      */
     var centered by refreshOnUpdate(centered)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return render("img")
@@ -119,7 +125,7 @@ fun Container.image(
     className: String? = null,
     init: (Image.() -> Unit)? = null
 ): Image {
-    val image = Image(src, alt, responsive, shape, centered, classes ?: className.set).apply { init?.invoke(this) }
+    val image = Image(src, alt, responsive, shape, centered, classes ?: className.set, init)
     this.add(image)
     return image
 }

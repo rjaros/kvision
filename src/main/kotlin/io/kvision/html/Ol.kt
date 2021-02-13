@@ -58,7 +58,7 @@ fun Container.ol(
     className: String? = null,
     init: (Ol.() -> Unit)? = null
 ): Ol {
-    val ol = Ol(elements, rich, classes ?: className.set).apply { init?.invoke(this) }
+    val ol = Ol(elements, rich, classes ?: className.set, init)
     this.add(ol)
     return ol
 }

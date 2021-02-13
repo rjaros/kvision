@@ -64,7 +64,7 @@ fun Container.nav(
     className: String? = null,
     init: (Nav.() -> Unit)? = null
 ): Nav {
-    val nav = Nav(content, rich, align, classes ?: className.set).apply { init?.invoke(this) }
+    val nav = Nav(content, rich, align, classes ?: className.set, init)
     this.add(nav)
     return nav
 }
