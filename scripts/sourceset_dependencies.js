@@ -1,1 +1,1 @@
-sourceset_dependencies = '{":/kvision": [], ":/kvision-common": [], ":/kvision-jvm": []}'
+sourceset_dependencies = '{":dokkaHtml/kvision": [], ":dokkaHtml/kvision-common": [], ":dokkaHtml/kvision-jvm": [], ":dokkaHtml/main": []}'
