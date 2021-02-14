@@ -1,24 +1,7 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
-$dokka.location:io.kvision.annotations/KVService///PointingToDeclaration/io.kvision.annotations/[jvm]-k-v-service/index.html
-$dokka.location:io.kvision.annotations/KVService/KVService/#/PointingToDeclaration/io.kvision.annotations/[jvm]-k-v-service/-k-v-service.html
-$dokka.location:io.kvision.redux/ReduxStore///PointingToDeclaration/io.kvision.redux/[js]-redux-store/index.html
-$dokka.location:io.kvision.redux/ReduxStore/ReduxStore/#kotlin.Function2[TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[redux.RAction]),TypeParam(bounds=[kotlin.Any])]#TypeParam(bounds=[kotlin.Any])#kotlin.Array[kotlin.Any]/PointingToDeclaration/io.kvision.redux/[js]-redux-store/-redux-store.html
-$dokka.location:io.kvision.redux/ReduxStore/dispatch/#TypeParam(bounds=[redux.RAction])/PointingToDeclaration/io.kvision.redux/[js]-redux-store/dispatch.html
-$dokka.location:io.kvision.redux/ReduxStore/dispatch/#kotlin.Function2[kotlin.Function1[kotlin.Any,redux.WrapperAction],kotlin.Function0[TypeParam(bounds=[kotlin.Any])],kotlin.Unit]/PointingToDeclaration/io.kvision.redux/[js]-redux-store/dispatch.html
-$dokka.location:io.kvision.redux/ReduxStore/getState/#/PointingToDeclaration/io.kvision.redux/[js]-redux-store/get-state.html
-$dokka.location:io.kvision.redux/ReduxStore/subscribe/#kotlin.Function1[TypeParam(bounds=[kotlin.Any]),kotlin.Unit]/PointingToDeclaration/io.kvision.redux/[js]-redux-store/subscribe.html
-$dokka.location:io.kvision.remote/KVServiceManager.Companion///PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/-companion/index.html
-$dokka.location:io.kvision.remote/KVServiceManager.Companion/KV_WS_INCOMING_KEY/#/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/-companion/-k-v_-w-s_-i-n-c-o-m-i-n-g_-k-e-y.html
-$dokka.location:io.kvision.remote/KVServiceManager.Companion/KV_WS_OUTGOING_KEY/#/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/-companion/-k-v_-w-s_-o-u-t-g-o-i-n-g_-k-e-y.html
-$dokka.location:io.kvision.remote/KVServiceManager.Companion/LOG/#/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/-companion/-l-o-g.html
-$dokka.location:io.kvision.remote/KVServiceManager///PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/index.html
-$dokka.location:io.kvision.remote/KVServiceManager/KVServiceManager/#kotlin.reflect.KClass[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/-k-v-service-manager.html
-$dokka.location:io.kvision.remote/KVServiceManager/counter/#/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/counter.html
-$dokka.location:io.kvision.remote/KVServiceManager/createRequestHandler/#io.kvision.remote.HttpMethod#kotlin.coroutines.SuspendFunction2[TypeParam(bounds=[kotlin.Any]),kotlin.collections.List[kotlin.String?],TypeParam(bounds=[kotlin.Any?])]#kotlinx.serialization.KSerializer[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/create-request-handler.html
-$dokka.location:io.kvision.remote/KVServiceManager/createWebsocketHandler/#kotlin.coroutines.SuspendFunction3[TypeParam(bounds=[kotlin.Any]),kotlinx.coroutines.channels.ReceiveChannel[TypeParam(bounds=[kotlin.Any?])],kotlinx.coroutines.channels.SendChannel[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]#kotlinx.serialization.KSerializer[TypeParam(bounds=[kotlin.Any?])]#kotlinx.serialization.KSerializer[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/create-websocket-handler.html
-$dokka.location:io.kvision.remote/KVServiceManager/getCalls/#/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/get-calls.html
-$dokka.location:io.kvision.remote/KVServiceManager/serviceClass/#/PointingToDeclaration/io.kvision.remote/[jvm, js]-k-v-service-manager/service-class.html
+
+io.kvision
 io.kvision.annotations
 io.kvision.chart
 io.kvision.chart.js
@@ -30,12 +13,15 @@ io.kvision.electron
 io.kvision.electron.electron
 io.kvision.electron.nodejs
 io.kvision.event
+io.kvision.form
+io.kvision.form.check
+io.kvision.form.range
 io.kvision.form.select
 io.kvision.form.spinner
 io.kvision.form.text
 io.kvision.form.time
 io.kvision.form.upload
-io.kvision.gradle
+io.kvision.html
 io.kvision.i18n
 io.kvision.maps
 io.kvision.modal
@@ -55,12 +41,14 @@ io.kvision.onsenui.toolbar
 io.kvision.onsenui.visual
 io.kvision.pace
 io.kvision.panel
-io.kvision.plugin
-io.kvision.print
 io.kvision.progress
 io.kvision.react
 io.kvision.redux
 io.kvision.remote
+io.kvision.rest
+io.kvision.routing
+io.kvision.state
+io.kvision.table
 io.kvision.tabulator
 io.kvision.tabulator.js
 io.kvision.test
