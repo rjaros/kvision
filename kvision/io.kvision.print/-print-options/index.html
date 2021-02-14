@@ -1,0 +1,981 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PrintOptions</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+    <link href="../../../styles/style.css" rel="Stylesheet">
+    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+    <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+    <link href="../../../styles/main.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/main.js" async="async"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="logo"></div>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+        <script type="text/javascript" src="../../../scripts/pages.js"></script>
+        <script type="text/javascript" src="../../../scripts/main.js"></script>
+        <div class="main-content" id="content" pageIds="io.kvision.print/PrintOptions///PointingToDeclaration//-280852671">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../index.html">kvision</a>/<a href="../index.html">io.kvision.print</a>/<a href="index.html">PrintOptions</a></div>
+            <div class="pull-right d-flex">
+              <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-toast:dokkaHtml/main">js</button></div>
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Print</span><wbr></wbr><span>Options</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">data class <a href="index.html">PrintOptions</a>(header: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, headerStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, maxWidth: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, css: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, style: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, scanStyles: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?, targetStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;?, targetStyles: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;?, ignoreElements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;?, properties: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;dynamic&gt;?, gridHeaderStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, gridStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, repeatTableHeader: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?, showModal: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?, modalMessage: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, onLoadingStart: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?, onLoadingEnd: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?, documentTitle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, fallbackPrintable: dynamic, onPdfOpen: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?, onPrintDialogClose: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?, onError: (e: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-error/index.html">Error</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?, base64: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Print options.</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+            <div class="tabs-section-body">
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FPrintOptions%2F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Int%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.Any%5D%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.Boolean%3F%23kotlin.String%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.String%3F%23kotlin.Any%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function1%5Bkotlin.Error%2Ckotlin.Unit%5D%3F%23kotlin.Boolean%3F%2FPointingToDeclaration%2F%5D%2FConstructors%2F-280852671" anchor-label="PrintOptions" id="%5Bio.kvision.print%2FPrintOptions%2FPrintOptions%2F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Int%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.Any%5D%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.Boolean%3F%23kotlin.String%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.String%3F%23kotlin.Any%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function1%5Bkotlin.Error%2Ckotlin.Unit%5D%3F%23kotlin.Boolean%3F%2FPointingToDeclaration%2F%5D%2FConstructors%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-print-options.html">PrintOptions</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FPrintOptions%2F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Int%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.Any%5D%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.Boolean%3F%23kotlin.String%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.String%3F%23kotlin.Any%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function1%5Bkotlin.Error%2Ckotlin.Unit%5D%3F%23kotlin.Boolean%3F%2FPointingToDeclaration%2F%5D%2FConstructors%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">fun <a href="-print-options.html">PrintOptions</a>(header: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, headerStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, maxWidth: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>? = null, css: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, style: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, scanStyles: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null, targetStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null, targetStyles: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null, ignoreElements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null, properties: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;dynamic&gt;? = null, gridHeaderStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, gridStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, repeatTableHeader: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null, showModal: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null, modalMessage: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, onLoadingStart: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, onLoadingEnd: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, documentTitle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, fallbackPrintable: dynamic = null, onPdfOpen: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, onPrintDialogClose: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, onError: (e: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-error/index.html">Error</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, base64: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent1%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component1" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent1%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component1.html">component1</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent1%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component1.html">component1</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent10%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component10" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent10%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component10.html">component10</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent10%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component10.html">component10</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;dynamic&gt;?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent11%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component11" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent11%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component11.html">component11</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent11%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component11.html">component11</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent12%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component12" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent12%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component12.html">component12</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent12%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component12.html">component12</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent13%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component13" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent13%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component13.html">component13</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent13%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component13.html">component13</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent14%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component14" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent14%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component14.html">component14</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent14%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component14.html">component14</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent15%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component15" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent15%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component15.html">component15</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent15%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component15.html">component15</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent16%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component16" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent16%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component16.html">component16</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent16%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component16.html">component16</a>(): () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent17%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component17" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent17%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component17.html">component17</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent17%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component17.html">component17</a>(): () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent18%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component18" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent18%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component18.html">component18</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent18%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component18.html">component18</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent19%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component19" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent19%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component19.html">component19</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent19%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component19.html">component19</a>(): dynamic<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent2%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component2" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent2%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component2.html">component2</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent2%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component2.html">component2</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent20%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component20" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent20%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component20.html">component20</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent20%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component20.html">component20</a>(): () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent21%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component21" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent21%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component21.html">component21</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent21%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component21.html">component21</a>(): () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent22%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component22" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent22%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component22.html">component22</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent22%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component22.html">component22</a>(): (e: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-error/index.html">Error</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent23%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component23" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent23%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component23.html">component23</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent23%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component23.html">component23</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent3%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component3" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent3%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component3.html">component3</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent3%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component3.html">component3</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent4%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component4" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent4%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component4.html">component4</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent4%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component4.html">component4</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent5%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component5" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent5%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component5.html">component5</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent5%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component5.html">component5</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent6%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component6" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent6%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component6.html">component6</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent6%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component6.html">component6</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent7%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component7" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent7%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component7.html">component7</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent7%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component7.html">component7</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent8%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component8" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent8%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component8.html">component8</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent8%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component8.html">component8</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcomponent9%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="component9" id="%5Bio.kvision.print%2FPrintOptions%2Fcomponent9%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="component9.html">component9</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcomponent9%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="component9.html">component9</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcopy%2F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Int%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.Any%5D%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.Boolean%3F%23kotlin.String%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.String%3F%23kotlin.Any%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function1%5Bkotlin.Error%2Ckotlin.Unit%5D%3F%23kotlin.Boolean%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="copy" id="%5Bio.kvision.print%2FPrintOptions%2Fcopy%2F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Int%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.Any%5D%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.Boolean%3F%23kotlin.String%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.String%3F%23kotlin.Any%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function1%5Bkotlin.Error%2Ckotlin.Unit%5D%3F%23kotlin.Boolean%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="copy.html">copy</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcopy%2F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Int%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.String%5D%3F%23kotlin.collections.List%5Bkotlin.Any%5D%3F%23kotlin.String%3F%23kotlin.String%3F%23kotlin.Boolean%3F%23kotlin.Boolean%3F%23kotlin.String%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.String%3F%23kotlin.Any%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function0%5Bkotlin.Unit%5D%3F%23kotlin.Function1%5Bkotlin.Error%2Ckotlin.Unit%5D%3F%23kotlin.Boolean%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">fun <a href="copy.html">copy</a>(header: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, headerStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, maxWidth: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>? = null, css: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, style: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, scanStyles: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null, targetStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null, targetStyles: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null, ignoreElements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null, properties: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;dynamic&gt;? = null, gridHeaderStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, gridStyle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, repeatTableHeader: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null, showModal: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null, modalMessage: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, onLoadingStart: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, onLoadingEnd: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, documentTitle: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, fallbackPrintable: dynamic = null, onPdfOpen: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, onPrintDialogClose: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, onError: (e: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-error/index.html">Error</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, base64: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null): <a href="index.html">PrintOptions</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="equals" id="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../io.kvision.toast/-toast/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671">equals</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">open operator override fun <a href="../../io.kvision.toast/-toast/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671">equals</a>(other: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>?): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="hashCode" id="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../io.kvision.toast/-toast/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671">hashCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../../io.kvision.toast/-toast/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671">hashCode</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" anchor-label="toString" id="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../io.kvision.toast/-toast/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../../io.kvision.toast/-toast/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-280852671">toString</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="%5Bio.kvision.print%2FPrintOptions%2Fbase64%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="base64" id="%5Bio.kvision.print%2FPrintOptions%2Fbase64%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="base64.html">base64</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fbase64%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2Fbase64%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="base64" id="%5Bio.kvision.print%2FPrintOptions%2Fbase64%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="base64.html">base64</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcss%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="css" id="%5Bio.kvision.print%2FPrintOptions%2Fcss%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="css.html">css</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fcss%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2Fcss%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="css" id="%5Bio.kvision.print%2FPrintOptions%2Fcss%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="css.html">css</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FdocumentTitle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="documentTitle" id="%5Bio.kvision.print%2FPrintOptions%2FdocumentTitle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="document-title.html">documentTitle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FdocumentTitle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FdocumentTitle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="documentTitle" id="%5Bio.kvision.print%2FPrintOptions%2FdocumentTitle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="document-title.html">documentTitle</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FfallbackPrintable%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="fallbackPrintable" id="%5Bio.kvision.print%2FPrintOptions%2FfallbackPrintable%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="fallback-printable.html">fallbackPrintable</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FfallbackPrintable%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FfallbackPrintable%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="fallbackPrintable" id="%5Bio.kvision.print%2FPrintOptions%2FfallbackPrintable%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="fallback-printable.html">fallbackPrintable</a>: dynamic = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FgridHeaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="gridHeaderStyle" id="%5Bio.kvision.print%2FPrintOptions%2FgridHeaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="grid-header-style.html">gridHeaderStyle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FgridHeaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FgridHeaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="gridHeaderStyle" id="%5Bio.kvision.print%2FPrintOptions%2FgridHeaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="grid-header-style.html">gridHeaderStyle</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FgridStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="gridStyle" id="%5Bio.kvision.print%2FPrintOptions%2FgridStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="grid-style.html">gridStyle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FgridStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FgridStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="gridStyle" id="%5Bio.kvision.print%2FPrintOptions%2FgridStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="grid-style.html">gridStyle</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fheader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="header" id="%5Bio.kvision.print%2FPrintOptions%2Fheader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="header.html">header</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fheader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2Fheader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="header" id="%5Bio.kvision.print%2FPrintOptions%2Fheader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="header.html">header</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FheaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="headerStyle" id="%5Bio.kvision.print%2FPrintOptions%2FheaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="header-style.html">headerStyle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FheaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FheaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="headerStyle" id="%5Bio.kvision.print%2FPrintOptions%2FheaderStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="header-style.html">headerStyle</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FignoreElements%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="ignoreElements" id="%5Bio.kvision.print%2FPrintOptions%2FignoreElements%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="ignore-elements.html">ignoreElements</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FignoreElements%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FignoreElements%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="ignoreElements" id="%5Bio.kvision.print%2FPrintOptions%2FignoreElements%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="ignore-elements.html">ignoreElements</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FmaxWidth%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="maxWidth" id="%5Bio.kvision.print%2FPrintOptions%2FmaxWidth%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="max-width.html">maxWidth</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FmaxWidth%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FmaxWidth%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="maxWidth" id="%5Bio.kvision.print%2FPrintOptions%2FmaxWidth%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="max-width.html">maxWidth</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FmodalMessage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="modalMessage" id="%5Bio.kvision.print%2FPrintOptions%2FmodalMessage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="modal-message.html">modalMessage</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FmodalMessage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FmodalMessage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="modalMessage" id="%5Bio.kvision.print%2FPrintOptions%2FmodalMessage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="modal-message.html">modalMessage</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FonError%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onError" id="%5Bio.kvision.print%2FPrintOptions%2FonError%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="on-error.html">onError</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FonError%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FonError%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onError" id="%5Bio.kvision.print%2FPrintOptions%2FonError%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="on-error.html">onError</a>: (e: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-error/index.html">Error</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FonLoadingEnd%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onLoadingEnd" id="%5Bio.kvision.print%2FPrintOptions%2FonLoadingEnd%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="on-loading-end.html">onLoadingEnd</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FonLoadingEnd%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FonLoadingEnd%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onLoadingEnd" id="%5Bio.kvision.print%2FPrintOptions%2FonLoadingEnd%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="on-loading-end.html">onLoadingEnd</a>: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FonLoadingStart%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onLoadingStart" id="%5Bio.kvision.print%2FPrintOptions%2FonLoadingStart%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="on-loading-start.html">onLoadingStart</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FonLoadingStart%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FonLoadingStart%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onLoadingStart" id="%5Bio.kvision.print%2FPrintOptions%2FonLoadingStart%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="on-loading-start.html">onLoadingStart</a>: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FonPdfOpen%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onPdfOpen" id="%5Bio.kvision.print%2FPrintOptions%2FonPdfOpen%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="on-pdf-open.html">onPdfOpen</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FonPdfOpen%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FonPdfOpen%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onPdfOpen" id="%5Bio.kvision.print%2FPrintOptions%2FonPdfOpen%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="on-pdf-open.html">onPdfOpen</a>: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FonPrintDialogClose%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onPrintDialogClose" id="%5Bio.kvision.print%2FPrintOptions%2FonPrintDialogClose%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="on-print-dialog-close.html">onPrintDialogClose</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FonPrintDialogClose%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FonPrintDialogClose%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="onPrintDialogClose" id="%5Bio.kvision.print%2FPrintOptions%2FonPrintDialogClose%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="on-print-dialog-close.html">onPrintDialogClose</a>: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="properties" id="%5Bio.kvision.print%2FPrintOptions%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="properties.html">properties</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="properties" id="%5Bio.kvision.print%2FPrintOptions%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="properties.html">properties</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;dynamic&gt;? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FrepeatTableHeader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="repeatTableHeader" id="%5Bio.kvision.print%2FPrintOptions%2FrepeatTableHeader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="repeat-table-header.html">repeatTableHeader</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FrepeatTableHeader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FrepeatTableHeader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="repeatTableHeader" id="%5Bio.kvision.print%2FPrintOptions%2FrepeatTableHeader%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="repeat-table-header.html">repeatTableHeader</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FscanStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="scanStyles" id="%5Bio.kvision.print%2FPrintOptions%2FscanStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="scan-styles.html">scanStyles</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FscanStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FscanStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="scanStyles" id="%5Bio.kvision.print%2FPrintOptions%2FscanStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="scan-styles.html">scanStyles</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FshowModal%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="showModal" id="%5Bio.kvision.print%2FPrintOptions%2FshowModal%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="show-modal.html">showModal</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FshowModal%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FshowModal%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="showModal" id="%5Bio.kvision.print%2FPrintOptions%2FshowModal%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="show-modal.html">showModal</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2Fstyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="style" id="%5Bio.kvision.print%2FPrintOptions%2Fstyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="style.html">style</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2Fstyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2Fstyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="style" id="%5Bio.kvision.print%2FPrintOptions%2Fstyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="style.html">style</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FtargetStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="targetStyle" id="%5Bio.kvision.print%2FPrintOptions%2FtargetStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="target-style.html">targetStyle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FtargetStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FtargetStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="targetStyle" id="%5Bio.kvision.print%2FPrintOptions%2FtargetStyle%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="target-style.html">targetStyle</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bio.kvision.print%2FPrintOptions%2FtargetStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="targetStyles" id="%5Bio.kvision.print%2FPrintOptions%2FtargetStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kvision-modules:kvision-toast:dokkaHtml/main" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="target-styles.html">targetStyles</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bio.kvision.print%2FPrintOptions%2FtargetStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kvision-modules:kvision-toast:dokkaHtml/main"><a data-name="%5Bio.kvision.print%2FPrintOptions%2FtargetStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" anchor-label="targetStyles" id="%5Bio.kvision.print%2FPrintOptions%2FtargetStyles%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-280852671" data-filterable-set=":kvision-modules:kvision-toast:dokkaHtml/main"></a><div class="symbol monospace">val <a href="target-styles.html">targetStyles</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
