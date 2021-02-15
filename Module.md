@@ -198,6 +198,10 @@ Full-featured grid/table component based on the Tabulator library.
 
 Kotlin bindings for Tabulator API.
 
+# Package io.kvision.test
+
+Helper functions for running unit tests.
+
 # Package io.kvision.rest
 
 RESTful API client with support for type-safe connectivity.

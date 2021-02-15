@@ -42,3 +42,12 @@ publishing {
 
 setupSigning()
 setupPublication()
+
+tasks.dokkaHtml.configure {
+    dokkaSourceSets {
+        configureEach {
+            includes.from("../../Module.md")
+            includeNonPublic.set(false)
+        }
+    }
+}

@@ -93,12 +93,14 @@ publishing {
 setupSigning()
 setupPublication()
 
-/*tasks.dokkaHtml.configure {
-    outputDirectory.set(buildDir.resolve("kdoc"))
+tasks.dokkaHtml.configure {
     dokkaSourceSets {
+        named("main") {
+            suppress.set(true)
+        }
         register("kvision") {
             includes.from("Module.md")
-            displayName.set("JS")
+            displayName.set("js")
             platform.set(org.jetbrains.dokka.Platform.js)
             includeNonPublic.set(false)
             skipDeprecated.set(false)
@@ -141,7 +143,7 @@ setupPublication()
         }
         register("kvision-common") {
             includes.from("Module.md")
-            displayName.set("Common")
+            displayName.set("common")
             platform.set(org.jetbrains.dokka.Platform.common)
             includeNonPublic.set(false)
             skipDeprecated.set(false)
@@ -153,7 +155,7 @@ setupPublication()
         }
         register("kvision-jvm") {
             includes.from("Module.md")
-            displayName.set("JVM")
+            displayName.set("jvm")
             platform.set(org.jetbrains.dokka.Platform.jvm)
             includeNonPublic.set(false)
             skipDeprecated.set(false)
@@ -163,4 +165,4 @@ setupPublication()
             sourceRoots.from(file("kvision-modules/kvision-server-ktor/src/jvmMain/kotlin"))
         }
     }
-}*/
+}

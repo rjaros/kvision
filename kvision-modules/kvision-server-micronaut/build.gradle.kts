@@ -76,6 +76,15 @@ publishing {
 setupSigning()
 setupPublication()
 
+tasks.dokkaHtml.configure {
+    dokkaSourceSets {
+        configureEach {
+            includes.from("../../Module.md")
+            includeNonPublic.set(false)
+        }
+    }
+}
+
 kapt {
     arguments {
         arg("micronaut.processing.annotations", "io.kvision.remote")
