@@ -28,18 +28,20 @@ interface I18nManager {
     /**
      * A static translation function for a singular form.
      * @param key a translation key.
+     * @param args additional parameters for substitution.
      * @return translated text.
      */
-    fun gettext(key: String): String
+    fun gettext(key: String, vararg args: Any?): String
 
     /**
      * A static translation function for a plural form.
      * @param singularKey a translation key for a singular form.
      * @param pluralKey a translation key for a plural form.
      * @param value a count value.
+     * @param args additional parameters for substitution.
      * @return translated text.
      */
-    fun ngettext(singularKey: String, pluralKey: String, value: Int): String
+    fun ngettext(singularKey: String, pluralKey: String, value: Int, vararg args: Any?): String
 
     /**
      * A dynamic translation function for a singular form.

@@ -23,30 +23,35 @@ package io.kvision.i18n
 
 import io.kvision.require
 
+external interface Gettext {
+    fun loadJSON(json: dynamic, key: String)
+    fun setLocale(locale: String)
+    fun gettext(key: String, vararg args: Any?): String?
+    fun ngettext(singularKey: String, pluralKey: String, value: Int, vararg args: Any?): String?
+}
+
 class DefaultI18nManager(translations: Map<String, dynamic>) : I18nManager {
 
-    private val i18n = require("gettext.js").default()
+    @Suppress("UnsafeCastFromDynamic")
+    private val i18n: Gettext = require("gettext.js").default()
 
     init {
         translations.forEach {
             @Suppress("UnsafeCastFromDynamic")
             val json = JSON.parse<dynamic>(JSON.stringify(it.value))
             json[""].language = it.key
-            @Suppress("UnsafeCastFromDynamic")
             i18n.loadJSON(json, "messages")
         }
     }
 
-    override fun gettext(key: String): String {
+    override fun gettext(key: String, vararg args: Any?): String {
         i18n.setLocale(I18n.language)
-        @Suppress("UnsafeCastFromDynamic")
-        return i18n.gettext(key) ?: key
+        return i18n.gettext(key, *args) ?: key
     }
 
-    override fun ngettext(singularKey: String, pluralKey: String, value: Int): String {
+    override fun ngettext(singularKey: String, pluralKey: String, value: Int, vararg args: Any?): String {
         i18n.setLocale(I18n.language)
-        @Suppress("UnsafeCastFromDynamic")
-        return i18n.ngettext(singularKey, pluralKey, value) ?: if (value == 1) singularKey else pluralKey
+        return i18n.ngettext(singularKey, pluralKey, value, *args) ?: if (value == 1) singularKey else pluralKey
     }
 
 }

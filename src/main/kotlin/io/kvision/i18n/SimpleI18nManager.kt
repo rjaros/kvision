@@ -23,11 +23,11 @@ package io.kvision.i18n
 
 class SimpleI18nManager : I18nManager {
 
-    override fun gettext(key: String): String {
+    override fun gettext(key: String, vararg args: Any?): String {
         return key
     }
 
-    override fun ngettext(singularKey: String, pluralKey: String, value: Int): String {
+    override fun ngettext(singularKey: String, pluralKey: String, value: Int, vararg args: Any?): String {
         return singularKey
     }
 

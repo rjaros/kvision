@@ -42,12 +42,12 @@ object I18n : I18nManager {
             Root.roots.forEach { it.restart() }
         }
 
-    override fun gettext(key: String): String {
-        return manager.gettext(key)
+    override fun gettext(key: String, vararg args: Any?): String {
+        return manager.gettext(key, *args)
     }
 
-    override fun ngettext(singularKey: String, pluralKey: String, value: Int): String {
-        return manager.ngettext(singularKey, pluralKey, value)
+    override fun ngettext(singularKey: String, pluralKey: String, value: Int, vararg args: Any?): String {
+        return manager.ngettext(singularKey, pluralKey, value, *args)
     }
 
 }
@@ -60,4 +60,4 @@ fun tr(key: String): String = I18n.tr(key)
 /**
  * A top level helper function for translations.
  */
-fun gettext(key: String): String = I18n.gettext(key)
+fun gettext(key: String, vararg args: Any?): String = I18n.gettext(key, *args)
