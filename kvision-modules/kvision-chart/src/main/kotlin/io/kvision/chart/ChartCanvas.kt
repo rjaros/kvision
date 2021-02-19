@@ -44,7 +44,7 @@ internal class ChartCanvas(
             jsChart?.update()
         }
 
-    private var jsChart: JsChart? = null
+    var jsChart: JsChart? = null
 
     override fun render(): VNode {
         if (lastLanguage != null && lastLanguage != I18n.language) {
@@ -88,6 +88,10 @@ internal class ChartCanvas(
 
     fun clearChart() {
         jsChart?.clear()
+    }
+
+    fun update() {
+        jsChart?.update()
     }
 
     fun toBase64Image(): String? {

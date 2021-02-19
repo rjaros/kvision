@@ -58,6 +58,12 @@ open class Chart(
             chartCanvas.configuration = value
         }
 
+    /**
+     * Native JS chart object.
+     */
+    val jsChart
+        get() = chartCanvas.jsChart
+
     internal val chartCanvas: ChartCanvas = ChartCanvas(chartWidth, chartHeight, configuration)
 
     init {
@@ -111,6 +117,13 @@ open class Chart(
      */
     open fun clearChart() {
         chartCanvas.clearChart()
+    }
+
+    /**
+     * Updates the chart.
+     */
+    open fun update() {
+        chartCanvas.update()
     }
 
     /**
