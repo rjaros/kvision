@@ -140,7 +140,7 @@ open class OnsRadioGroup(
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     internal val container = SimplePanel(setOf("kv-radiogroup-container")) {
-        id = idc
+        id = this@OnsRadioGroup.idc
     }
 
     init {

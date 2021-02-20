@@ -125,7 +125,7 @@ open class Tab(
      * A link component within the tab.
      */
     val link = Link(label ?: "", "#", icon, image, classes = setOf("nav-link")).apply {
-        add(closeIcon)
+        add(this@Tab.closeIcon)
     }
 
     internal val tabId = counter++

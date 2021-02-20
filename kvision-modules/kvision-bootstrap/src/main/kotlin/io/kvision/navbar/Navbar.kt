@@ -138,7 +138,7 @@ open class Navbar(
 
     private val brandLink = Link(label ?: "", link, classes = setOf("navbar-brand"))
     internal val container = SimplePanel(setOf("collapse", "navbar-collapse")) {
-        id = idc
+        id = this@Navbar.idc
     }
 
     init {

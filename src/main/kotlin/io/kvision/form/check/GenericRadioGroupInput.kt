@@ -181,7 +181,8 @@ open class GenericRadioGroupInput<T>(
                     eventTarget = this@GenericRadioGroupInput
                     setEventListener<Radio> {
                         change = { ev ->
-                            this@GenericRadioGroupInput.value = self.extraValue?.let { fromStr(it) }
+                            this@GenericRadioGroupInput.value =
+                                self.extraValue?.let { this@GenericRadioGroupInput.fromStr(it) }
                             ev.stopPropagation()
                         }
                     }

@@ -145,7 +145,7 @@ open class GenericRadioGroup<T>(
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     internal val container = SimplePanel(setOf("kv-radiogroup-container")) {
-        id = idc
+        id = this@GenericRadioGroup.idc
     }
 
     init {
@@ -227,7 +227,7 @@ open class GenericRadioGroup<T>(
                     eventTarget = this@GenericRadioGroup
                     setEventListener<Radio> {
                         change = { ev ->
-                            this@GenericRadioGroup.value = self.extraValue?.let { fromStr(it) }
+                            this@GenericRadioGroup.value = self.extraValue?.let { this@GenericRadioGroup.fromStr(it) }
                             ev.stopPropagation()
                         }
                     }

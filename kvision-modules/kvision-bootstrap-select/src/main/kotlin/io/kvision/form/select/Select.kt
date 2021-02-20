@@ -207,7 +207,7 @@ open class Select(
         options, value, multiple, ajaxOptions,
         setOf("form-control")
     ).apply {
-        this.id = idc
+        this.id = this@Select.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))

@@ -241,7 +241,7 @@ open class DateTime(
 
     private val idc = "kv_form_time_$counter"
     final override val input: DateTimeInput = DateTimeInput(value, format).apply {
-        this.input.id = idc
+        this.input.id = this@DateTime.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))

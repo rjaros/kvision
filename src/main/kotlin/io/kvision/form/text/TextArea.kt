@@ -70,7 +70,7 @@ open class TextArea(
         }
 
     final override val input: TextAreaInput = TextAreaInput(cols, rows, value).apply {
-        this.id = idc
+        this.id = this@TextArea.idc
         this.name = name
     }
 

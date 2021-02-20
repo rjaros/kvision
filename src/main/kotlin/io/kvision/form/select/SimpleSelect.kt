@@ -154,7 +154,7 @@ open class SimpleSelect(
     final override val input: SimpleSelectInput = SimpleSelectInput(
         options, value, emptyOption, multiple, selectSize
     ).apply {
-        this.id = idc
+        this.id = this@SimpleSelect.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))

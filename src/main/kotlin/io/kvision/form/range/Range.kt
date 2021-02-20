@@ -149,7 +149,7 @@ open class Range(
 
     protected val idc = "kv_form_range_$counter"
     final override val input: RangeInput = RangeInput(value, min, max, step).apply {
-        this.id = idc
+        this.id = this@Range.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))

@@ -119,7 +119,7 @@ open class CheckBox(
 
     private val idc = "kv_form_checkbox_$counter"
     final override val input: CheckBoxInput = CheckBoxInput(value, classes = setOf("form-check-input")).apply {
-        this.id = idc
+        this.id = this@CheckBox.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf("form-check-label"))

@@ -57,6 +57,7 @@ enum class Easing(internal val easing: String) {
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions", "LargeClass")
+@WidgetMarker
 open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.() -> Unit)? = null) : StyledComponent(),
     Component {
     private val propertyValues = js("{}")

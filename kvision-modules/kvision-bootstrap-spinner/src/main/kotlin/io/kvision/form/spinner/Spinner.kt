@@ -193,7 +193,7 @@ open class Spinner(
     final override val input: SpinnerInput =
         SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, buttonStyle)
             .apply {
-                this.id = idc
+                this.id = this@Spinner.idc
                 this.name = name
             }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))

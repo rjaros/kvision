@@ -178,7 +178,7 @@ open class SelectRemote<T : Any>(
         serviceManager, function, stateFunction, value, multiple, ajaxOptions, preload,
         setOf("form-control")
     ).apply {
-        this.id = idc
+        this.id = this@SelectRemote.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))

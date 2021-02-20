@@ -69,7 +69,7 @@ open class DateTimeInput(
     private lateinit var icon: Icon
     private val addon = Div(classes = setOf("input-group-append")) {
         span(classes = setOf("input-group-text", "datepickerbutton")) {
-            icon = icon(getIconClass(format))
+            this@DateTimeInput.icon = icon(this@DateTimeInput.getIconClass(format))
         }
     }
 

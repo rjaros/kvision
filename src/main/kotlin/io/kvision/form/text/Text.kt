@@ -60,7 +60,7 @@ open class Text(
         }
 
     final override val input: TextInput = TextInput(type, value).apply {
-        this.id = idc
+        this.id = this@Text.idc
         this.name = name
     }
 

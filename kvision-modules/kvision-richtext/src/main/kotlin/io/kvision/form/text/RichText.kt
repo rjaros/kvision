@@ -54,7 +54,7 @@ open class RichText(
         }
 
     final override val input: RichTextInput = RichTextInput(value).apply {
-        this.id = idc
+        this.id = this@RichText.idc
         this.name = name
     }
 

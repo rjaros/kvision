@@ -151,7 +151,7 @@ open class Typeahead(
 
     final override val input: TypeaheadInput =
         TypeaheadInput(options, taAjaxOptions, source, items, minLength, delay, type, value).apply {
-            this.id = idc
+            this.id = this@Typeahead.idc
             this.name = name
         }
 

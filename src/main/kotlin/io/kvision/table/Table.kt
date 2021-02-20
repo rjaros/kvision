@@ -107,7 +107,7 @@ open class Table(
     internal val theadRow = Tag(TAG.TR)
     private val thead = Tag(TAG.THEAD).apply {
         if (theadType != null) addCssClass(theadType.type)
-        add(theadRow)
+        add(this@Table.theadRow)
     }
     private val tbody = Tag(TAG.TBODY)
 

@@ -233,7 +233,7 @@ open class Upload(
     protected val idc = "kv_form_upload_$counter"
     final override val input: UploadInput = UploadInput(uploadUrl, multiple)
         .apply {
-            this.id = idc
+            this.id = this@Upload.idc
             this.name = name
         }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))

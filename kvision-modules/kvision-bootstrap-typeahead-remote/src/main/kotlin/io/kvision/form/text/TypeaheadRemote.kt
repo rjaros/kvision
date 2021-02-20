@@ -124,7 +124,7 @@ open class TypeaheadRemote<T : Any>(
 
     final override val input: TypeaheadRemoteInput<T> =
         TypeaheadRemoteInput(serviceManager, function, stateFunction, items, minLength, delay, type, value).apply {
-            this.id = idc
+            this.id = this@TypeaheadRemote.idc
             this.name = name
         }
 

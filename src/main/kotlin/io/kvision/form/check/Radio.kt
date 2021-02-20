@@ -128,7 +128,7 @@ open class Radio(
 
     private val idc = "kv_form_radio_$counter"
     final override val input: RadioInput = RadioInput(value, classes = setOf("form-check-input")).apply {
-        this.id = idc
+        this.id = this@Radio.idc
         this.extraValue = extraValue
         this.name = name
     }
