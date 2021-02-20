@@ -22,10 +22,9 @@
 package io.kvision.form
 
 import com.github.snabbdom.VNode
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.serializer
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
+import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.DomAttribute
 import io.kvision.form.FormPanel.Companion.create
@@ -36,6 +35,8 @@ import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.types.KFile
 import io.kvision.utils.set
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.serializer
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KClass
@@ -113,13 +114,17 @@ enum class FormTarget(override val attributeValue: String) : DomAttribute {
  * @param classes set of CSS class names
  * @param serializer a serializer for model type
  * @param customSerializers a map of custom serializers for model type
+ * @param customContainer a custom container for layout definition
+ * @param customAdd a custom function to add components to the container
  */
 @Suppress("TooManyFunctions")
 open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
-    serializer: KSerializer<K>? = null, customSerializers: Map<KClass<*>, KSerializer<*>>? = null
+    serializer: KSerializer<K>? = null, customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
+    protected var customContainer: Container? = null,
+    protected var customAdd: (Container.(Component) -> Unit)? = null,
 ) : SimplePanel(classes) {
 
     /**
@@ -213,6 +218,9 @@ open class FormPanel<K : Any>(
 
     init {
         this.addPrivate(validationAlert)
+        if (customContainer != null) {
+            this.addPrivate(customContainer!!)
+        }
     }
 
     override fun render(): VNode {
@@ -249,7 +257,23 @@ open class FormPanel<K : Any>(
         }
     }
 
-    protected fun <C : FormControl> addInternal(
+    protected open fun addToContainer(component: Component) {
+        if (customContainer == null) {
+            if (customAdd == null) {
+                super.add(component)
+            } else {
+                customAdd!!.invoke(this, component)
+            }
+        } else {
+            if (customAdd == null) {
+                customContainer!!.add(component)
+            } else {
+                customAdd!!.invoke(customContainer!!, component)
+            }
+        }
+    }
+
+    protected open fun <C : FormControl> addInternal(
         key: KProperty1<K, *>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
@@ -262,12 +286,12 @@ open class FormPanel<K : Any>(
         }
         if (required) control.flabel.addCssClass("required-label")
         if (legend == null) {
-            super.add(control)
+            addToContainer(control)
         } else if (currentFieldset == null || currentFieldset?.legend != legend) {
             currentFieldset = FieldsetPanel(legend) {
                 add(control)
             }
-            super.add(currentFieldset!!)
+            addToContainer(currentFieldset!!)
         } else {
             currentFieldset?.add(control)
         }
@@ -414,7 +438,11 @@ open class FormPanel<K : Any>(
     }
 
     override fun removeAll(): FormPanel<K> {
-        super.removeAll()
+        if (customContainer == null) {
+            super.removeAll()
+        } else {
+            customContainer!!.removeAll()
+        }
         form.removeAll()
         return this
     }
@@ -491,6 +519,8 @@ open class FormPanel<K : Any>(
             type: FormType? = null, condensed: Boolean = false,
             horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
             customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
+            customContainer: Container? = null,
+            noinline customAdd: (Container.(Component) -> Unit)? = null,
             noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
             val formPanel =
@@ -503,7 +533,9 @@ open class FormPanel<K : Any>(
                     horizRatio,
                     classes,
                     serializer<K>(),
-                    customSerializers
+                    customSerializers,
+                    customContainer,
+                    customAdd
                 )
             init?.invoke(formPanel)
             return formPanel
@@ -523,10 +555,23 @@ inline fun <reified K : Any> Container.formPanel(
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     classes: Set<String>? = null, className: String? = null,
     customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
+    customContainer: Container? = null,
+    noinline customAdd: (Container.(Component) -> Unit)? = null,
     noinline init: (FormPanel<K>.() -> Unit)? = null
 ): FormPanel<K> {
     val formPanel =
-        create<K>(method, action, enctype, type, condensed, horizRatio, classes ?: className.set, customSerializers)
+        create<K>(
+            method,
+            action,
+            enctype,
+            type,
+            condensed,
+            horizRatio,
+            classes ?: className.set,
+            customSerializers,
+            customContainer,
+            customAdd
+        )
     init?.invoke(formPanel)
     this.add(formPanel)
     return formPanel
@@ -544,6 +589,8 @@ inline fun <reified K : Any, S> Container.formPanel(
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     classes: Set<String>? = null, className: String? = null,
     customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
+    customContainer: Container? = null,
+    noinline customAdd: (Container.(Component) -> Unit)? = null,
     noinline init: (FormPanel<K>.(S) -> Unit)
 ) = formPanel<K>(
     method,
@@ -554,7 +601,9 @@ inline fun <reified K : Any, S> Container.formPanel(
     horizRatio,
     classes,
     className,
-    customSerializers
+    customSerializers,
+    customContainer,
+    customAdd
 ).bind(state, true, init)
 
 /**
@@ -567,6 +616,8 @@ fun Container.form(
     type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     classes: Set<String>? = null, className: String? = null,
+    customContainer: Container? = null,
+    customAdd: (Container.(Component) -> Unit)? = null,
     init: (FormPanel<Any>.() -> Unit)? = null
 ): FormPanel<Any> {
     val formPanel =
@@ -577,7 +628,9 @@ fun Container.form(
             type,
             condensed,
             horizRatio,
-            classes ?: className.set
+            classes ?: className.set,
+            customContainer = customContainer,
+            customAdd = customAdd
         )
     init?.invoke(formPanel)
     this.add(formPanel)
@@ -595,6 +648,8 @@ fun <S> Container.form(
     type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     classes: Set<String>? = null, className: String? = null,
+    customContainer: Container? = null,
+    customAdd: (Container.(Component) -> Unit)? = null,
     init: (FormPanel<Any>.(S) -> Unit)
 ) = form(
     method,
@@ -603,5 +658,8 @@ fun <S> Container.form(
     type,
     condensed,
     horizRatio,
-    classes, className
+    classes,
+    className,
+    customContainer,
+    customAdd
 ).bind(state, true, init)
