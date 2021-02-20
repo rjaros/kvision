@@ -75,11 +75,11 @@ abstract class ProgressBarTag<T>(classes: Set<String> = setOf(), bgColor: BsBgCo
         }
     }
 
-    protected fun setFraction(fraction: Double) {
+    protected open fun setFraction(fraction: Double) {
         setPercentage(fraction * 100)
     }
 
-    protected fun setPercentage(percentage: Double) {
+    protected open fun setPercentage(percentage: Double) {
         width = percentage.perc
     }
 }

@@ -191,12 +191,12 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
      * @param text a text marked for a dynamic translation
      * @return translated text
      */
-    protected fun translate(text: String): String {
+    protected open fun translate(text: String): String {
         lastLanguage = I18n.language
         return trans(text)
     }
 
-    protected fun translate(text: String?): String? {
+    protected open fun translate(text: String?): String? {
         return text?.let {
             translate(it)
         }

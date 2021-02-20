@@ -63,7 +63,7 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
      * @param child child component
      * @return current container
      */
-    protected fun addPrivate(child: Component): SimplePanel {
+    protected open fun addPrivate(child: Component): SimplePanel {
         privateChildren.add(child)
         child.parent?.remove(child)
         child.parent = this
@@ -76,7 +76,7 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
      * @param child child component
      * @return current container
      */
-    protected fun addInternal(child: Component): SimplePanel {
+    protected open fun addInternal(child: Component): SimplePanel {
         children.add(child)
         child.parent?.remove(child)
         child.parent = this

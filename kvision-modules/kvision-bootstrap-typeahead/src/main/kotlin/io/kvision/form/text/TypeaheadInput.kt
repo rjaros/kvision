@@ -122,7 +122,7 @@ open class TypeaheadInput(
     }
 
     @Suppress("UnsafeCastFromDynamic")
-    protected fun getSettingsObj(): dynamic {
+    protected open fun getSettingsObj(): dynamic {
         val sourceOpt = when {
             options != null -> {
                 options?.toTypedArray()?.asDynamic()
@@ -183,7 +183,7 @@ open class TypeaheadInput(
         }
     }
 
-    protected fun refreshTypeahead() {
+    protected open fun refreshTypeahead() {
         getElementJQueryD()?.typeahead("destroy")
         getElementJQueryD()?.typeahead(getSettingsObj())
     }

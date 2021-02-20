@@ -294,7 +294,7 @@ open class SelectInput(
         classSetBuilder.add(size)
     }
 
-    protected fun refreshSelectInput() {
+    protected open fun refreshSelectInput() {
         getElementJQueryD()?.selectpicker("refresh")
         refreshState()
         getElementJQueryD()?.trigger("change")?.data("AjaxBootstrapSelect")?.list?.cache = {}

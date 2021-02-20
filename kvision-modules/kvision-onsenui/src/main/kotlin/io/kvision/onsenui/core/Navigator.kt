@@ -336,7 +336,7 @@ open class Navigator(
         }
     }
 
-    protected fun refreshPageStack() {
+    protected open fun refreshPageStack() {
         if (children.isNotEmpty()) {
             children.take(children.size - 1).forEach { (it as? Page)?.display = Display.NONE }
             (children.lastOrNull() as? Page)?.display = null

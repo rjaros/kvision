@@ -220,7 +220,7 @@ open class Tabulator<T : Any>(
     /**
      * Creates internal JS Tabulator object
      */
-    protected fun createJsTabulator() {
+    protected open fun createJsTabulator() {
         (this.getElement() as? HTMLElement)?.let {
             jsTabulator =
                 KVManagerTabulator.getConstructor()
@@ -700,7 +700,7 @@ open class Tabulator<T : Any>(
         EditorRoot.root = null
     }
 
-    protected fun fixData(data: List<T>?): List<T>? {
+    protected open fun fixData(data: List<T>?): List<T>? {
         return if (kClass != null) {
             data?.map {
                 toKotlinObjTabulator(it, kClass)
@@ -710,7 +710,7 @@ open class Tabulator<T : Any>(
         }
     }
 
-    protected fun fixData(data: T): T {
+    protected open fun fixData(data: T): T {
         return if (kClass != null) {
             toKotlinObjTabulator(data, kClass)
         } else {
@@ -718,7 +718,7 @@ open class Tabulator<T : Any>(
         }
     }
 
-    protected fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
+    protected open fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
         if (data._children != null) {
             data._children =
                 data._children.unsafeCast<Array<dynamic>>().map { toKotlinObjTabulator(it, kClass) }.toTypedArray()
@@ -726,7 +726,7 @@ open class Tabulator<T : Any>(
         return toKotlinObj(data, kClass)
     }
 
-    protected fun toPlainObjTabulator(data: T): T {
+    protected open fun toPlainObjTabulator(data: T): T {
         val obj = toPlainObj(data)
         if (obj._children != null) {
             obj._children = obj._children.unsafeCast<Array<T>>().map { toPlainObjTabulator(it) }.toTypedArray()
