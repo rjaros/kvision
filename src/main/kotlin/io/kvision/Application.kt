@@ -21,10 +21,10 @@
  */
 package io.kvision
 
+import io.kvision.panel.Root
+import io.kvision.routing.RoutingManager
 import kotlinx.browser.document
 import kotlinx.browser.window
-import io.kvision.panel.Root
-import io.kvision.routing.Routing
 
 /**
  * Base class for KVision applications.
@@ -62,7 +62,7 @@ fun startApplication(builder: () -> Application, hot: Hot? = null) {
 
     fun start(state: dynamic): Application {
         if (state?.appState != undefined) {
-            Routing.start()
+            RoutingManager.initRouter()
         }
         val application = builder()
         @Suppress("UnsafeCastFromDynamic")
@@ -77,7 +77,7 @@ fun startApplication(builder: () -> Application, hot: Hot? = null) {
 
         it.dispose { data ->
             Root.disposeAllRoots()
-            Routing.shutdown()
+            RoutingManager.shutdownRouter()
             data.appState = application?.dispose()
             application = null
         }

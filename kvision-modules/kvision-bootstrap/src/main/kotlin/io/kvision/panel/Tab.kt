@@ -29,7 +29,7 @@ import io.kvision.html.Icon
 import io.kvision.html.Link
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.routing.routing
+import io.kvision.routing.RoutingManager
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.obj
@@ -140,10 +140,10 @@ open class Tab(
             (this@Tab.parent as? TabPanelNav)?.tabPanel?.activeTab = this
             e.preventDefault()
             if (route != null) {
-                routing.navigate(route)
+                RoutingManager.getRouter().kvNavigate(route)
             }
         }
-        if (route != null) routing.on(route, routingHandler)
+        if (route != null) RoutingManager.getRouter().kvOn(route, routingHandler)
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -158,7 +158,7 @@ open class Tab(
 
     override fun dispose() {
         super.dispose()
-        if (route != null) routing.off(routingHandler)
+        if (route != null) RoutingManager.getRouter().kvOff(routingHandler)
     }
 
     companion object {

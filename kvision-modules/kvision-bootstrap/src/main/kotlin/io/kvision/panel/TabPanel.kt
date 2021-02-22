@@ -27,7 +27,7 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.ResString
 import io.kvision.core.WidgetWrapper
-import io.kvision.routing.routing
+import io.kvision.routing.RoutingManager
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.obj
@@ -242,7 +242,7 @@ open class TabPanel(
             }
         }
         if (tab.route != null) {
-            routing.resolve()
+            RoutingManager.getRouter().kvResolve()
         }
     }
 

@@ -22,13 +22,13 @@
 package io.kvision.panel
 
 import com.github.snabbdom.VNode
-import kotlinx.browser.window
 import io.kvision.core.Component
 import io.kvision.core.Container
-import io.kvision.routing.routing
+import io.kvision.routing.RoutingManager
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
+import kotlinx.browser.window
 
 /**
  * The container with only one active (visible) child at any moment.
@@ -85,9 +85,9 @@ open class StackPanel(
         val currentIndex = counter++
         childrenMap[currentIndex] = panel
         window.setTimeout({
-            routing.on(route, { _ ->
+            RoutingManager.getRouter().kvOn(route) { _ ->
                 activeChild = childrenMap[currentIndex]!!
-            }).resolve()
+            }.kvResolve()
         }, 0)
         return this
     }

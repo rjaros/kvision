@@ -22,7 +22,6 @@ val kotlinVersion: String by System.getProperties()
 val serializationVersion: String by project
 val coroutinesVersion: String by project
 val snabbdomKotlinVersion: String by project
-val navigoKotlinVersion: String by project
 val jqueryKotlinVersion: String by project
 
 // Custom Properties
@@ -36,7 +35,6 @@ dependencies {
     api(project(":kvision-modules:kvision-common-types"))
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
     api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
-    api("io.kvision:navigo-kotlin:$navigoKotlinVersion")
     api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.1.tgz"))
@@ -135,6 +133,8 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-react/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-redux/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-richtext/src/main/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-routing-navigo/src/main/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-routing-navigo-ng/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-server-ktor/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tabulator/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tabulator-remote/src/main/kotlin"))

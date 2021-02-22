@@ -46,6 +46,8 @@ include(
     "kvision-modules:kvision-redux",
     "kvision-modules:kvision-redux-kotlin",
     "kvision-modules:kvision-richtext",
+    "kvision-modules:kvision-routing-navigo",
+    "kvision-modules:kvision-routing-navigo-ng",
     "kvision-modules:kvision-tabulator",
     "kvision-modules:kvision-tabulator-remote",
     "kvision-modules:kvision-toast",
