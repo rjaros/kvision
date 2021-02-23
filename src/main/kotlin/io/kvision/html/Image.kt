@@ -28,6 +28,7 @@ import io.kvision.core.Container
 import io.kvision.core.CssClass
 import io.kvision.core.ResString
 import io.kvision.core.Widget
+import io.kvision.core.WidgetMarker
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
@@ -53,6 +54,7 @@ enum class ImageShape(override val className: String) : CssClass {
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@WidgetMarker
 open class Image(
     src: ResString?, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
     centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null

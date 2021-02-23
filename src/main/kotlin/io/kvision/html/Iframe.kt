@@ -26,6 +26,7 @@ import org.w3c.dom.Window
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.core.WidgetMarker
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
@@ -54,6 +55,7 @@ enum class Sandbox(internal val option: String) {
  * @param sandbox a set of Sandbox options
  * @param classes a set of CSS class names
  */
+@WidgetMarker
 open class Iframe(
     src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
     iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null, classes: Set<String> = setOf()

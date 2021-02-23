@@ -29,6 +29,7 @@ import io.kvision.core.Component
 import io.kvision.core.Widget
 import io.kvision.onsenui.core.Navigator
 import io.kvision.onsenui.core.Page
+import io.kvision.panel.BasicPanel
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.createInstance
 import io.kvision.utils.set
@@ -128,7 +129,7 @@ open class Tab(
         }, { })
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): BasicPanel {
         return if (child is Page || child is Navigator) {
             content = child.unsafeCast<Widget>()
             this
