@@ -24,13 +24,12 @@ package io.kvision.form
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.DomAttribute
 import io.kvision.form.FormPanel.Companion.create
 import io.kvision.html.Div
+import io.kvision.panel.BasicPanel
 import io.kvision.panel.FieldsetPanel
-import io.kvision.panel.SimplePanel
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.types.KFile
@@ -114,18 +113,14 @@ enum class FormTarget(override val attributeValue: String) : DomAttribute {
  * @param classes set of CSS class names
  * @param serializer a serializer for model type
  * @param customSerializers a map of custom serializers for model type
- * @param customContainer a custom container for layout definition
- * @param customAdd a custom function to add components to the container
  */
 @Suppress("TooManyFunctions")
 open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
-    serializer: KSerializer<K>? = null, customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
-    protected var customContainer: Container? = null,
-    protected var customAdd: (Container.(Component) -> Unit)? = null,
-) : SimplePanel(classes) {
+    serializer: KSerializer<K>? = null, customSerializers: Map<KClass<*>, KSerializer<*>>? = null
+) : BasicPanel(classes) {
 
     /**
      * HTTP method.
@@ -218,9 +213,6 @@ open class FormPanel<K : Any>(
 
     init {
         this.addPrivate(validationAlert)
-        if (customContainer != null) {
-            this.addPrivate(customContainer!!)
-        }
     }
 
     override fun render(): VNode {
@@ -257,22 +249,6 @@ open class FormPanel<K : Any>(
         }
     }
 
-    protected open fun addToContainer(component: Component) {
-        if (customContainer == null) {
-            if (customAdd == null) {
-                super.add(component)
-            } else {
-                customAdd!!.invoke(this, component)
-            }
-        } else {
-            if (customAdd == null) {
-                customContainer!!.add(component)
-            } else {
-                customAdd!!.invoke(customContainer!!, component)
-            }
-        }
-    }
-
     protected open fun <C : FormControl> addInternal(
         key: KProperty1<K, *>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
@@ -286,12 +262,12 @@ open class FormPanel<K : Any>(
         }
         if (required) control.flabel.addCssClass("required-label")
         if (legend == null) {
-            addToContainer(control)
+            super.add(control)
         } else if (currentFieldset == null || currentFieldset?.legend != legend) {
             currentFieldset = FieldsetPanel(legend) {
                 add(control)
             }
-            addToContainer(currentFieldset!!)
+            super.add(currentFieldset!!)
         } else {
             currentFieldset?.add(control)
         }
@@ -419,6 +395,119 @@ open class FormPanel<K : Any>(
         return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
+    protected open fun <C : FormControl> C.bindInternal(
+        key: KProperty1<K, *>, required: Boolean = false, requiredMessage: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): C {
+        if (required) this.flabel.addCssClass("required-label")
+        form.addInternal(key, this, required, requiredMessage, validatorMessage, validator)
+        return this
+    }
+
+    /**
+     * Bind a string control to the form panel.
+     * @param key key identifier of the control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return the control itself
+     */
+    open fun <C : StringFormControl> C.bind(
+        key: KProperty1<K, String?>, required: Boolean = false, requiredMessage: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): C {
+        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+    }
+
+    /**
+     * Bind a string control to the form panel bound to custom field type.
+     * @param key key identifier of the control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return the control itself
+     */
+    open fun <C : StringFormControl> C.bindCustom(
+        key: KProperty1<K, Any?>, required: Boolean = false, requiredMessage: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): C {
+        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+    }
+
+
+    /**
+     * Bind a boolean control to the form panel.
+     * @param key key identifier of the control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return the control itself
+     */
+    open fun <C : BoolFormControl> C.bind(
+        key: KProperty1<K, Boolean?>, required: Boolean = false, requiredMessage: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): C {
+        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+    }
+
+    /**
+     * Bind a number control to the form panel.
+     * @param key key identifier of the control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return the control itself
+     */
+    open fun <C : NumberFormControl> C.bind(
+        key: KProperty1<K, Number?>, required: Boolean = false, requiredMessage: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): C {
+        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+    }
+
+    /**
+     * Bind a date control to the form panel.
+     * @param key key identifier of the control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return the control itself
+     */
+    open fun <C : DateFormControl> C.bind(
+        key: KProperty1<K, Date?>, required: Boolean = false, requiredMessage: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): C {
+        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+    }
+
+    /**
+     * Bind a files control to the form panel.
+     * @param key key identifier of the control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return the control itself
+     */
+    open fun <C : KFilesFormControl> C.bind(
+        key: KProperty1<K, List<KFile>?>, required: Boolean = false, requiredMessage: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): C {
+        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+    }
+
     /**
      * Removes a control from the form panel.
      * @param key key identifier of the control
@@ -438,12 +527,18 @@ open class FormPanel<K : Any>(
     }
 
     override fun removeAll(): FormPanel<K> {
-        if (customContainer == null) {
-            super.removeAll()
-        } else {
-            customContainer!!.removeAll()
-        }
+        super.removeAll()
         form.removeAll()
+        return this
+    }
+
+    /**
+     * Unbind a control from the form panel.
+     * @param key key identifier of the control
+     * @return current form panel
+     */
+    open fun unbind(key: KProperty1<K, *>): FormPanel<K> {
+        form.remove(key)
         return this
     }
 
@@ -519,8 +614,6 @@ open class FormPanel<K : Any>(
             type: FormType? = null, condensed: Boolean = false,
             horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
             customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
-            customContainer: Container? = null,
-            noinline customAdd: (Container.(Component) -> Unit)? = null,
             noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
             val formPanel =
@@ -533,9 +626,7 @@ open class FormPanel<K : Any>(
                     horizRatio,
                     classes,
                     serializer<K>(),
-                    customSerializers,
-                    customContainer,
-                    customAdd
+                    customSerializers
                 )
             init?.invoke(formPanel)
             return formPanel
@@ -555,8 +646,6 @@ inline fun <reified K : Any> Container.formPanel(
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     classes: Set<String>? = null, className: String? = null,
     customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
-    customContainer: Container? = null,
-    noinline customAdd: (Container.(Component) -> Unit)? = null,
     noinline init: (FormPanel<K>.() -> Unit)? = null
 ): FormPanel<K> {
     val formPanel =
@@ -568,9 +657,7 @@ inline fun <reified K : Any> Container.formPanel(
             condensed,
             horizRatio,
             classes ?: className.set,
-            customSerializers,
-            customContainer,
-            customAdd
+            customSerializers
         )
     init?.invoke(formPanel)
     this.add(formPanel)
@@ -589,8 +676,6 @@ inline fun <reified K : Any, S> Container.formPanel(
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     classes: Set<String>? = null, className: String? = null,
     customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
-    customContainer: Container? = null,
-    noinline customAdd: (Container.(Component) -> Unit)? = null,
     noinline init: (FormPanel<K>.(S) -> Unit)
 ) = formPanel<K>(
     method,
@@ -601,9 +686,7 @@ inline fun <reified K : Any, S> Container.formPanel(
     horizRatio,
     classes,
     className,
-    customSerializers,
-    customContainer,
-    customAdd
+    customSerializers
 ).bind(state, true, init)
 
 /**
@@ -616,8 +699,6 @@ fun Container.form(
     type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     classes: Set<String>? = null, className: String? = null,
-    customContainer: Container? = null,
-    customAdd: (Container.(Component) -> Unit)? = null,
     init: (FormPanel<Any>.() -> Unit)? = null
 ): FormPanel<Any> {
     val formPanel =
@@ -628,9 +709,7 @@ fun Container.form(
             type,
             condensed,
             horizRatio,
-            classes ?: className.set,
-            customContainer = customContainer,
-            customAdd = customAdd
+            classes ?: className.set
         )
     init?.invoke(formPanel)
     this.add(formPanel)
@@ -648,8 +727,6 @@ fun <S> Container.form(
     type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     classes: Set<String>? = null, className: String? = null,
-    customContainer: Container? = null,
-    customAdd: (Container.(Component) -> Unit)? = null,
     init: (FormPanel<Any>.(S) -> Unit)
 ) = form(
     method,
@@ -659,7 +736,5 @@ fun <S> Container.form(
     condensed,
     horizRatio,
     classes,
-    className,
-    customContainer,
-    customAdd
+    className
 ).bind(state, true, init)
