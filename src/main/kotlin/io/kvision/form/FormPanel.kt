@@ -395,11 +395,27 @@ open class FormPanel<K : Any>(
         return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
+    /**
+     * Bind a control to the form panel.
+     * @param key key identifier of the control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param layoutType style control for given form layout
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return the control itself
+     */
     protected open fun <C : FormControl> C.bindInternal(
         key: KProperty1<K, *>, required: Boolean = false, requiredMessage: String? = null,
+        layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
+        when (layoutType ?: type) {
+            FormType.INLINE -> this.styleForInlineFormPanel()
+            FormType.HORIZONTAL -> this.styleForHorizontalFormPanel(horizRatio)
+            else -> this.styleForVerticalFormPanel()
+        }
         if (required) this.flabel.addCssClass("required-label")
         form.addInternal(key, this, required, requiredMessage, validatorMessage, validator)
         return this
@@ -410,16 +426,18 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param layoutType style control for given form layout
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
      */
     open fun <C : StringFormControl> C.bind(
         key: KProperty1<K, String?>, required: Boolean = false, requiredMessage: String? = null,
+        layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -427,16 +445,18 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param layoutType style control for given form layout
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
      */
     open fun <C : StringFormControl> C.bindCustom(
         key: KProperty1<K, Any?>, required: Boolean = false, requiredMessage: String? = null,
+        layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
 
@@ -445,16 +465,18 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param layoutType style control for given form layout
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
      */
     open fun <C : BoolFormControl> C.bind(
         key: KProperty1<K, Boolean?>, required: Boolean = false, requiredMessage: String? = null,
+        layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -462,16 +484,18 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param layoutType style control for given form layout
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
      */
     open fun <C : NumberFormControl> C.bind(
         key: KProperty1<K, Number?>, required: Boolean = false, requiredMessage: String? = null,
+        layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -479,16 +503,18 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param layoutType style control for given form layout
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
      */
     open fun <C : DateFormControl> C.bind(
         key: KProperty1<K, Date?>, required: Boolean = false, requiredMessage: String? = null,
+        layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -496,16 +522,18 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param layoutType style control for given form layout
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
      */
     open fun <C : KFilesFormControl> C.bind(
         key: KProperty1<K, List<KFile>?>, required: Boolean = false, requiredMessage: String? = null,
+        layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, validatorMessage, validator)
+        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
