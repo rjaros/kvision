@@ -7,7 +7,7 @@ Object oriented web framework for Kotlin/JS.
 
 ![CI](https://github.com/rjaros/kvision/workflows/CI/badge.svg)
 [![API](https://img.shields.io/badge/API-dokka-green)](https://rjaros.github.io/kvision/kvision/index.html)
-![https://kotl.in/jsirsupported](https://img.shields.io/badge/Kotlin%2FJS-IR%20supported-yellow)
+[![IR](https://img.shields.io/badge/Kotlin%2FJS-IR%20supported-yellow)](https://kotl.in/jsirsupported)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Slack](https://img.shields.io/badge/slack-channel-green?logo=slack)](https://kotlinlang.slack.com/?redir=%2Fmessages%2FCL4C1SLKC)
 
