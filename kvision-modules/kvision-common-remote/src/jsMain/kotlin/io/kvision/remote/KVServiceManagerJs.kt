@@ -6,7 +6,8 @@ import kotlin.reflect.KFunction
 
 @PublishedApi
 internal fun getCallName(function: Function<*>) =
-    (function as? KFunction<*>)?.name ?: function.toString().replace("\\s".toRegex(), "")
+    if (function is KFunction<*>) function.name
+    else function.toString().replace("\\s".toRegex(), "")
 
 open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
     val calls: MutableMap<String, Pair<String, HttpMethod>> = mutableMapOf()
@@ -22,8 +23,7 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.() -> RET,
         method: HttpMethod, route: String?
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kv/$routeDef", method)
+        bindFunctionInternal(route, function, method)
     }
 
     /**
@@ -36,10 +36,7 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR) -> RET,
         method: HttpMethod, route: String?
     ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kv/$routeDef", method)
+        bindFunctionWithParamsInternal(method, route, function)
     }
 
     /**
@@ -52,10 +49,7 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2) -> RET,
         method: HttpMethod, route: String?
     ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kv/$routeDef", method)
+        bindFunctionWithParamsInternal(method, route, function)
     }
 
     /**
@@ -68,10 +62,7 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
         method: HttpMethod, route: String?
     ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kv/$routeDef", method)
+        bindFunctionWithParamsInternal(method, route, function)
     }
 
     /**
@@ -84,10 +75,7 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
         method: HttpMethod, route: String?
     ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kv/$routeDef", method)
+        bindFunctionWithParamsInternal(method, route, function)
     }
 
     /**
@@ -101,10 +89,7 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
         method: HttpMethod, route: String?
     ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kv/$routeDef", method)
+        bindFunctionWithParamsInternal(method, route, function)
     }
 
     /**
@@ -118,10 +103,7 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
         method: HttpMethod, route: String?
     ) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kv/$routeDef", method)
+        bindFunctionWithParamsInternal(method, route, function)
     }
 
     /**
@@ -132,8 +114,7 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
         route: String?
     ) {
-        val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kv/$routeDef", HttpMethod.POST)
+        bindFunctionInternal(route, function, HttpMethod.POST)
     }
 
     /**
@@ -145,8 +126,25 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String?
     ) {
+        bindFunctionInternal(route, function, HttpMethod.POST, "/kvws/")
+    }
+
+    @PublishedApi
+    internal fun bindFunctionWithParamsInternal(method: HttpMethod, route: String?, function: Function<*>) {
+        if (method == HttpMethod.GET)
+            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
+        bindFunctionInternal(route, function, method)
+    }
+
+    @PublishedApi
+    internal fun bindFunctionInternal(
+        route: String?,
+        function: Function<*>,
+        method: HttpMethod,
+        routePrefix: String = "/kv/"
+    ) {
         val routeDef = route ?: "route${this::class.simpleName}${counter++}"
-        calls[getCallName(function)] = Pair("/kvws/$routeDef", HttpMethod.POST)
+        calls[getCallName(function)] = Pair("$routePrefix$routeDef", method)
     }
 
     /**
