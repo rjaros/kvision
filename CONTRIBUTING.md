@@ -13,12 +13,11 @@
 
 1. You need JDK 8 or later installed on your system. 
 2. Clone the code repository (create a fork if you want to make pull requests with your changes).
-3. Change the `version` property in `gradle.properties` file to a number ending with the `-SNAPSHOT` suffix (e.g. `3.10.0-SNAPSHOT`).
-4. Change the version number at the bottom of `kvision-tools/kvision-gradle-plugin/src/main/kotlin/pl/treksoft/kvision/gradle/KVisionGradleSubplugin.kt` file to the same number and suffix (keep those version numbers always in sync). 
-5. Make your changes to KVision code.
-6. Run tests with `./gradlew test` command to check if everything is OK.
-7. Compile and publish artifacts to your local Maven repository with `./gradlew publishToMavenLocal` command.
-8. Use your version of KVision by specifying the correct version number in your application (in `gradle.properties` file). Remember to clean your project every time you publish new version of the framework.
+3. Change the version number at the bottom of `kvision-tools/kvision-gradle-plugin/src/main/kotlin/pl/treksoft/kvision/gradle/KVisionGradleSubplugin.kt` file to the current version number with a `-SNAPSHOT` suffix. 
+4. Make your changes to KVision code.
+5. Run tests with `./gradlew check` command to check if everything is OK.
+6. Compile and publish artifacts to your local Maven repository with `./gradlew publishToMavenLocal -PSNAPSHOT=true` command. It will automatically publish a `*-SNAPSHOT` version.
+7. Use your snapshot of KVision by specifying the correct version number in your application (in `gradle.properties` file). Remember to clean your project every time you publish new version of the framework.
 
 ## How to create new module
 
