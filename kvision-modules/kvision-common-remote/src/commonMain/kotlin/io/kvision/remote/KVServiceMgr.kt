@@ -26,5 +26,7 @@ package io.kvision.remote
  * Base interface for multiplatform service manager.
  */
 interface KVServiceMgr<T : Any> {
-    fun getCalls(): Map<String, Pair<String, HttpMethod>> = emptyMap()
+    fun getCall(function: Function<*>): Pair<String, HttpMethod>? = null
+    fun requireCall(function: Function<*>): Pair<String, HttpMethod> =
+        getCall(function) ?: throw IllegalStateException("Function not specified!")
 }

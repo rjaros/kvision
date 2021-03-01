@@ -58,7 +58,7 @@ class KVServiceManagerJsSpec {
         ALL_NON_WS_BIND_CALLS.forEach { it(serviceManager, HttpMethod.POST, null) }
 
         // evaluation
-        val registry = serviceManager.getCalls().entries.sortedBy { it.value.first }
+        val registry = serviceManager.calls.entries.sortedBy { it.value.first }
 
         assertEquals(ALL_NON_WS_BIND_CALLS.size, registry.size, "number of registered endpoints")
         for (i in ALL_NON_WS_BIND_CALLS.indices) {
@@ -79,7 +79,7 @@ class KVServiceManagerJsSpec {
         }
 
         // evaluation
-        val registry = serviceManager.getCalls().entries.sortedBy { it.value.first }
+        val registry = serviceManager.calls.entries.sortedBy { it.value.first }
         assertEquals(ALL_NON_WS_BIND_CALLS.size, registry.size, "number of registered endpoints")
         for (i in ALL_NON_WS_BIND_CALLS.indices) {
             assertEndpointMatches(
@@ -108,7 +108,7 @@ class KVServiceManagerJsSpec {
 
         // evaluation
         assertEndpointMatches(
-            endpoint = serviceManager.getCalls().entries.single(),
+            endpoint = serviceManager.calls.entries.single(),
             functionName = getCallName(Dummy::websocketFun),
             httpMethod = HttpMethod.POST,
             expectedRoute = "/kvws/routeKVServiceManager0"
@@ -122,7 +122,7 @@ class KVServiceManagerJsSpec {
 
         // evaluation
         assertEndpointMatches(
-            endpoint = serviceManager.getCalls().entries.single(),
+            endpoint = serviceManager.calls.entries.single(),
             functionName = getCallName(Dummy::websocketFun),
             httpMethod = HttpMethod.POST,
             expectedRoute = "/kvws/customWsRoute"
@@ -136,7 +136,7 @@ class KVServiceManagerJsSpec {
 
         // evaluation
         assertEndpointMatches(
-            endpoint = serviceManager.getCalls().entries.single(),
+            endpoint = serviceManager.calls.entries.single(),
             functionName = getCallName(Dummy::param0fun),
             httpMethod = HttpMethod.GET,
             expectedRoute = "/kv/routeKVServiceManager0"

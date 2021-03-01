@@ -147,8 +147,6 @@ open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
         calls[getCallName(function)] = Pair("$routePrefix$routeDef", method)
     }
 
-    /**
-     * Returns the map of defined paths.
-     */
-    override fun getCalls(): Map<String, Pair<String, HttpMethod>> = calls
+    override fun getCall(function: Function<*>): Pair<String, HttpMethod>? =
+        calls[getCallName(function)]
 }
