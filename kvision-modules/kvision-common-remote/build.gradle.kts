@@ -29,6 +29,12 @@ kotlin {
                 implementation("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
             }
         }
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test-js"))
+                implementation(project(":kvision-modules:kvision-testutils"))
+            }
+        }
         val jvmMain by getting {
             dependencies {
                 api(project(":kvision-modules:kvision-common-types"))
