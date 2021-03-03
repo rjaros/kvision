@@ -21,10 +21,7 @@
  */
 package io.kvision.remote
 
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.SendChannel
 import kotlin.reflect.KClass
-import kotlin.reflect.KFunction
 
 /**
  * Multiplatform service manager.
