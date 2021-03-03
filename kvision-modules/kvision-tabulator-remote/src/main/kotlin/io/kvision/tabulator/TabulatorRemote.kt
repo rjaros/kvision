@@ -67,10 +67,7 @@ open class TabulatorRemote<T : Any, E : Any>(
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
 
     init {
-        val (url, method) =
-            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
-                .replace("\\s".toRegex(), "")]
-                ?: throw IllegalStateException("Function not specified!")
+        val (url, method) = serviceManager.requireCall(function)
 
         val callAgent = CallAgent()
 

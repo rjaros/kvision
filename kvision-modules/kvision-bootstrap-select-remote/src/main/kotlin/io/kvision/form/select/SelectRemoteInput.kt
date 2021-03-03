@@ -80,10 +80,7 @@ open class SelectRemoteInput<T : Any>(
     private var beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> dynamic)?
 
     init {
-        val (_url, method) =
-            serviceManager.getCalls()[(function as? KFunction<*>)?.name ?: function.toString()
-                .replace("\\s".toRegex(), "")]
-                ?: throw IllegalStateException("Function not specified!")
+        val (_url, method) = serviceManager.requireCall(function)
         this.url = _url
         this.beforeSend = ajaxOptions?.beforeSend
         if (!preload) {
