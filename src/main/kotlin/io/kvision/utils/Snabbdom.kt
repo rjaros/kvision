@@ -28,12 +28,12 @@ import com.github.snabbdom.On
 import com.github.snabbdom.Props
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.VNodeStyle
-import org.w3c.dom.CustomEvent
-import org.w3c.dom.CustomEventInit
-import io.kvision.jquery.JQueryEventObject
 import io.kvision.core.StringBoolPair
 import io.kvision.core.StringPair
 import io.kvision.core.Widget
+import io.kvision.jquery.JQueryEventObject
+import org.w3c.dom.CustomEvent
+import org.w3c.dom.CustomEventInit
 import kotlin.reflect.KClass
 
 /**
@@ -46,11 +46,20 @@ external class Object
  */
 external fun delete(p: dynamic): Boolean
 
+internal data class LegacyTest(val test: Boolean = true)
+
+/**
+ * A helper property to test whether current compiler is running in legacy mode.
+ */
+val isLegacyBackend by lazy {
+    LegacyTest().asDynamic()["test"] == true
+}
+
 /**
  * A helper function for JavaScript delete operator
  */
 fun delete(thing: dynamic, key: String) {
-  delete(thing[key])
+    delete(thing[key])
 }
 
 /**
@@ -84,12 +93,12 @@ fun <T> Any?.createInstance(vararg args: dynamic): T {
 fun getAllPropertyNames(obj: Any): List<String> {
     val prototype = js("Object").getPrototypeOf(obj)
     val prototypeProps: Array<String> = js("Object").getOwnPropertyNames(prototype)
-    val isLegacy = prototypeProps.filterNot { prototype.propertyIsEnumerable(it) }.toSet() == setOf("constructor")
-    return if (isLegacy) {
+    val pList = prototypeProps.filter { it != "constructor" }.filterNot { prototype.propertyIsEnumerable(it) }.toList()
+    return if (isLegacyBackend) {
         val ownProps: Array<String> = js("Object").getOwnPropertyNames(obj)
-        ownProps.toList()
+        ownProps.toList() + pList
     } else {
-        prototypeProps.filter { it != "constructor" }.filterNot { prototype.propertyIsEnumerable(it) }.toList()
+        pList
     }
 }
 
