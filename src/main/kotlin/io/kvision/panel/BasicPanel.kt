@@ -24,7 +24,9 @@ package io.kvision.panel
 import com.github.snabbdom.VNode
 import io.kvision.core.Component
 import io.kvision.core.Container
+import io.kvision.core.ExperimentalNonDslContainer
 import io.kvision.core.Widget
+
 
 /**
  * Basic container class, rendered as a DIV element with all children directly within.
@@ -36,6 +38,7 @@ import io.kvision.core.Widget
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@ExperimentalNonDslContainer
 open class BasicPanel(classes: Set<String> = setOf(), init: (BasicPanel.() -> Unit)? = null) : Widget(classes),
     Container {
     protected val privateChildren: MutableList<Component> = mutableListOf()

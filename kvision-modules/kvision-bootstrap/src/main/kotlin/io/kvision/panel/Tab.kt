@@ -23,6 +23,7 @@ package io.kvision.panel
 
 import com.github.snabbdom.VNode
 import io.kvision.core.Component
+import io.kvision.core.ExperimentalNonDslContainer
 import io.kvision.core.ResString
 import io.kvision.core.onClick
 import io.kvision.html.Icon
@@ -187,6 +188,35 @@ fun TabPanel.tab(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <S> TabPanel.tab(
+    state: ObservableState<S>,
+    label: String? = null, icon: String? = null,
+    image: ResString? = null, closable: Boolean = false, route: String? = null,
+    init: (Tab.(S) -> Unit)
+) = tab(label, icon, image, closable, route).bind(state, true, init)
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+@ExperimentalNonDslContainer
+fun BasicTabPanel.tab(
+    label: String? = null, icon: String? = null,
+    image: ResString? = null, closable: Boolean = false, route: String? = null,
+    init: (Tab.() -> Unit)? = null
+): Tab {
+    val tab = Tab(label, icon, image, closable, route, init)
+    this.add(tab)
+    return tab
+}
+
+/**
+ * DSL builder extension function for observable state.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
+@ExperimentalNonDslContainer
+fun <S> BasicTabPanel.tab(
     state: ObservableState<S>,
     label: String? = null, icon: String? = null,
     image: ResString? = null, closable: Boolean = false, route: String? = null,

@@ -21,52 +21,52 @@
  */
 package io.kvision.panel
 
-import io.kvision.core.Container
+import com.github.snabbdom.VNode
 import io.kvision.core.ExperimentalNonDslContainer
-import io.kvision.core.WidgetMarker
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
+import io.kvision.html.TAG
+import io.kvision.html.Tag
 
 /**
- * Base container class, rendered as a DIV element with all children directly within.
+ * The HTML fieldset container.
+ *
+ * This container is not annotated with a @WidgetMarker.
+ * It should be used only as a base class for other components.
  *
  * @constructor
+ * @param legend the legend of the fieldset
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-@OptIn(ExperimentalNonDslContainer::class)
-@WidgetMarker
-open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> Unit)? = null) : BasicPanel(classes) {
+@ExperimentalNonDslContainer
+open class BasicFieldsetPanel(
+    legend: String? = null,
+    classes: Set<String> = setOf(),
+    init: (BasicFieldsetPanel.() -> Unit)? = null
+) :
+    BasicPanel(classes = classes + "kv_fieldset") {
+
+    /**
+     * The legend of the fieldset.
+     */
+    var legend
+        get() = legendComponent.content
+        set(value) {
+            legendComponent.content = value
+        }
+
+    /**
+     * The legend component.
+     */
+    protected val legendComponent = Tag(TAG.LEGEND, legend)
+
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
-}
 
-/**
- * DSL builder extension function.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun Container.simplePanel(
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SimplePanel.() -> Unit)? = null
-): SimplePanel {
-    val simplePanel = SimplePanel(classes ?: className.set, init)
-    this.add(simplePanel)
-    return simplePanel
+    override fun render(): VNode {
+        val childrenVNodes = childrenVNodes()
+        childrenVNodes.asDynamic().unshift(legendComponent.renderVNode())
+        return render("fieldset", childrenVNodes)
+    }
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.simplePanel(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SimplePanel.(S) -> Unit)
-) = simplePanel(classes, className).bind(state, true, init)

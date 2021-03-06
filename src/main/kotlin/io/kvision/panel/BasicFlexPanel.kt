@@ -22,13 +22,13 @@
 package io.kvision.panel
 
 import io.kvision.core.*
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.px
-import io.kvision.utils.set
 
 /**
  * The container with CSS flexbox layout support.
+ *
+ * This container is not annotated with a @WidgetMarker.
+ * It should be used only as a base class for other components.
  *
  * @constructor
  * @param direction flexbox direction
@@ -42,7 +42,8 @@ import io.kvision.utils.set
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
-open class FlexPanel(
+@ExperimentalNonDslContainer
+open class BasicFlexPanel(
     direction: FlexDirection? = null,
     wrap: FlexWrap? = null,
     justify: JustifyContent? = null,
@@ -51,8 +52,8 @@ open class FlexPanel(
     spacing: Int? = null,
     private val noWrappers: Boolean = false,
     classes: Set<String> = setOf(),
-    init: (FlexPanel.() -> Unit)? = null
-) : SimplePanel(classes) {
+    init: (BasicFlexPanel.() -> Unit)? = null
+) : BasicPanel(classes) {
 
     /**
      * The spacing between columns/rows.
@@ -83,7 +84,7 @@ open class FlexPanel(
     fun add(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
         basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
-    ): FlexPanel {
+    ): BasicFlexPanel {
         val wrapper = if (noWrappers) {
             child
         } else {
@@ -110,7 +111,7 @@ open class FlexPanel(
         basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf(),
         builder: Container.() -> Unit
     ) {
-        object : Container by this@FlexPanel {
+        object : Container by this@BasicFlexPanel {
             override fun add(child: Component): Container {
                 return add(child, order, grow, shrink, basis, alignSelf, classes)
             }
@@ -145,16 +146,16 @@ open class FlexPanel(
         return wrapper
     }
 
-    override fun add(child: Component): FlexPanel {
+    override fun add(child: Component): BasicFlexPanel {
         return add(child, null)
     }
 
-    override fun addAll(children: List<Component>): FlexPanel {
+    override fun addAll(children: List<Component>): BasicFlexPanel {
         children.forEach { add(it, null) }
         return this
     }
 
-    override fun remove(child: Component): FlexPanel {
+    override fun remove(child: Component): BasicFlexPanel {
         if (children.contains(child)) {
             super.remove(child)
         } else {
@@ -166,7 +167,7 @@ open class FlexPanel(
         return this
     }
 
-    override fun removeAll(): FlexPanel {
+    override fun removeAll(): BasicFlexPanel {
         children.map {
             it.clearParent()
             (it as? WidgetWrapper)?.dispose()
@@ -176,7 +177,7 @@ open class FlexPanel(
         return this
     }
 
-    override fun disposeAll(): FlexPanel {
+    override fun disposeAll(): BasicFlexPanel {
         children.map {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
@@ -194,59 +195,3 @@ open class FlexPanel(
         super.dispose()
     }
 }
-
-/**
- * DSL builder extension function.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun Container.flexPanel(
-    direction: FlexDirection? = null, wrap: io.kvision.core.FlexWrap? = null, justify: JustifyContent? = null,
-    alignItems: AlignItems? = null, alignContent: AlignContent? = null,
-    spacing: Int? = null,
-    noWrappers: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (FlexPanel.() -> Unit)? = null
-): FlexPanel {
-    val flexPanel =
-        FlexPanel(
-            direction,
-            wrap,
-            justify,
-            alignItems,
-            alignContent,
-            spacing,
-            noWrappers,
-            classes ?: className.set,
-            init
-        )
-    this.add(flexPanel)
-    return flexPanel
-}
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.flexPanel(
-    state: ObservableState<S>,
-    direction: FlexDirection? = null, wrap: io.kvision.core.FlexWrap? = null, justify: JustifyContent? = null,
-    alignItems: AlignItems? = null, alignContent: AlignContent? = null,
-    spacing: Int? = null,
-    noWrappers: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (FlexPanel.(S) -> Unit)
-) = flexPanel(
-    direction,
-    wrap,
-    justify,
-    alignItems,
-    alignContent,
-    spacing,
-    noWrappers,
-    classes,
-    className
-).bind(state, true, init)
