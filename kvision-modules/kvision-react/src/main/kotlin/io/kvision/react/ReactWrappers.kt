@@ -22,13 +22,13 @@
 
 package io.kvision.react
 
-import kotlinx.browser.document
-import org.w3c.dom.HTMLElement
+import io.kvision.core.Container
 import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
-import io.kvision.core.Container
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
+import kotlinx.browser.document
+import org.w3c.dom.HTMLElement
 import react.RBuilder
 import react.RProps
 import react.child
@@ -55,6 +55,7 @@ fun kvisionWrapper(builder: Container.() -> Unit) = functionalComponent<RProps> 
     useEffectWithCleanup {
         var root: Root? = null
         var el: HTMLElement? = null
+        @Suppress("UNNECESSARY_SAFE_CALL")
         elRef.current?.let {
             el = document.createElement("div") as HTMLElement
             it.appendChild(el!!)
