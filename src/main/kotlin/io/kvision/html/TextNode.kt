@@ -25,7 +25,6 @@ import com.github.snabbdom.VNode
 import io.kvision.KVManager
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.core.WidgetMarker
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 
@@ -37,7 +36,7 @@ import io.kvision.state.bind
  * @param rich determines if [content] can contain HTML code
  * @param init an initializer extension function
  */
-@WidgetMarker
+@TagMarker
 open class TextNode(
     content: String, rich: Boolean = false,
     init: (TextNode.() -> Unit)? = null

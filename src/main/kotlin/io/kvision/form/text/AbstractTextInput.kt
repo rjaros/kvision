@@ -25,7 +25,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Widget
-import io.kvision.core.WidgetMarker
 import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
@@ -39,7 +38,6 @@ import io.kvision.state.bind
  * @param value text input value
  * @param classes a set of CSS class names
  */
-@WidgetMarker
 abstract class AbstractTextInput(
     value: String? = null,
     classes: Set<String> = setOf()

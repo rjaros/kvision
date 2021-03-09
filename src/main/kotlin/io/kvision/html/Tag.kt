@@ -127,6 +127,7 @@ enum class Align(override val className: String) : CssClass {
  * @param attributes a map of additional attributes
  * @param init an initializer extension function
  */
+@TagMarker
 open class Tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
     classes: Set<String> = setOf(), attributes: Map<String, String>? = null,

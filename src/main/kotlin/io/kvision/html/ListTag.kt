@@ -59,6 +59,7 @@ enum class ListType(internal val tagName: String) {
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@TagMarker
 open class ListTag(
     type: ListType, elements: List<String>? = null, rich: Boolean = false,
     classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null

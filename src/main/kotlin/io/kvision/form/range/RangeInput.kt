@@ -26,7 +26,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.core.WidgetMarker
 import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
@@ -49,7 +48,6 @@ internal const val DEFAULT_STEP = 1
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-@WidgetMarker
 open class RangeInput(
     value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
     classes: Set<String> = setOf(), init: (RangeInput.() -> Unit)? = null

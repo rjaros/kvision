@@ -45,6 +45,7 @@ import io.kvision.utils.set
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
+@TagMarker
 open class Link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
     separator: String? = null, labelFirst: Boolean = true, target: String? = null,

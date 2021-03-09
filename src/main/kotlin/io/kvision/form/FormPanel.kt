@@ -28,9 +28,8 @@ import io.kvision.core.Container
 import io.kvision.core.DomAttribute
 import io.kvision.form.FormPanel.Companion.create
 import io.kvision.html.Div
-import io.kvision.panel.BasicPanel
-import io.kvision.core.ExperimentalNonDslContainer
 import io.kvision.panel.FieldsetPanel
+import io.kvision.panel.SimplePanel
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.types.KFile
@@ -115,14 +114,13 @@ enum class FormTarget(override val attributeValue: String) : DomAttribute {
  * @param serializer a serializer for model type
  * @param customSerializers a map of custom serializers for model type
  */
-@OptIn(ExperimentalNonDslContainer::class)
 @Suppress("TooManyFunctions")
 open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
     serializer: KSerializer<K>? = null, customSerializers: Map<KClass<*>, KSerializer<*>>? = null
-) : BasicPanel(classes) {
+) : SimplePanel(classes) {
 
     /**
      * HTTP method.

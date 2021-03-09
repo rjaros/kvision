@@ -20,9 +20,7 @@
  * SOFTWARE.
  */
 
-package io.kvision.core
+package io.kvision.html
 
-@RequiresOptIn(
-    message = "This class is experimental. Use it with caution. Consider using corresponding container with DSL receiver constraints enabled or use @ExperimentalNonDslContainer annotation."
-)
-annotation class ExperimentalNonDslContainer
+@DslMarker
+annotation class TagMarker

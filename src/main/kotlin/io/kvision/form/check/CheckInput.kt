@@ -25,7 +25,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Widget
-import io.kvision.core.WidgetMarker
 import io.kvision.form.FormInput
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
@@ -49,7 +48,6 @@ enum class CheckInputType(internal val type: String) {
  * @param value selection state
  * @param classes a set of CSS class names
  */
-@WidgetMarker
 abstract class CheckInput(
     type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
     classes: Set<String> = setOf()

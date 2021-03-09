@@ -25,7 +25,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.core.WidgetMarker
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
@@ -41,7 +40,7 @@ import org.w3c.dom.HTMLCanvasElement
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-@WidgetMarker
+@TagMarker
 open class Canvas(
     canvasWidth: Int? = null, canvasHeight: Int? = null, classes: Set<String> = setOf(),
     init: (Canvas.() -> Unit)? = null
