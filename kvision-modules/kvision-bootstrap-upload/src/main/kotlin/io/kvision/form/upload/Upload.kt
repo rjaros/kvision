@@ -21,7 +21,6 @@
  */
 package io.kvision.form.upload
 
-import org.w3c.files.File
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
@@ -29,10 +28,12 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.KFilesFormControl
 import io.kvision.panel.SimplePanel
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.types.KFile
 import io.kvision.utils.SnOn
+import org.w3c.files.File
 
 /**
  * The form field file upload component.
@@ -47,7 +48,9 @@ import io.kvision.utils.SnOn
 open class Upload(
     uploadUrl: String? = null, multiple: Boolean = false, label: String? = null,
     rich: Boolean = false
-) : SimplePanel(setOf("form-group")), KFilesFormControl {
+) : SimplePanel(setOf("form-group")), KFilesFormControl, MutableState<List<KFile>?> {
+
+    protected val observers = mutableListOf<(String?) -> Unit>()
 
     /**
      * File input value.
@@ -331,6 +334,16 @@ open class Upload(
 
     override fun blur() {
         input.blur()
+    }
+
+    override fun getState(): List<KFile>? = input.getState()
+
+    override fun subscribe(observer: (List<KFile>?) -> Unit): () -> Unit {
+        return input.subscribe(observer)
+    }
+
+    override fun setState(state: List<KFile>?) {
+        input.setState(state)
     }
 
     companion object {

@@ -346,33 +346,3 @@ fun <S> Container.select(
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
     rich: Boolean = false, init: (Select.(S) -> Unit)
 ) = select(options, value, name, multiple, ajaxOptions, label, rich).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun Select.bindTo(state: MutableState<String?>): Select {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun Select.bindTo(state: MutableState<String>): Select {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
-}

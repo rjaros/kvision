@@ -352,33 +352,3 @@ fun <S> Container.dateTime(
     value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false, init: (DateTime.(S) -> Unit)
 ) = dateTime(value, name, format, label, rich).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun DateTime.bindTo(state: MutableState<Date?>): DateTime {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun DateTime.bindTo(state: MutableState<Date>): DateTime {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: Date())
-    })
-    return this
-}

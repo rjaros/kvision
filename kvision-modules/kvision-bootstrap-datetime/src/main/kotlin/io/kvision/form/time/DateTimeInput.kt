@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.text.TextInput
 import io.kvision.html.Div
 import io.kvision.html.Icon
@@ -59,7 +60,7 @@ open class DateTimeInput(
     value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
     classes: Set<String> = setOf(),
     init: (DateTimeInput.() -> Unit)? = null
-) : SimplePanel(classes + "input-group" + "date"), FormInput, MutableState<Date?> {
+) : SimplePanel(classes + "input-group" + "date"), GenericFormComponent<Date?>, FormInput, MutableState<Date?> {
 
     protected val observers = mutableListOf<(Date?) -> Unit>()
 
@@ -83,7 +84,7 @@ open class DateTimeInput(
     /**
      * Date/time input value.
      */
-    var value
+    override var value
         get() = input.value?.toDateF(format)
         set(value) {
             input.value = value?.toStringF(format)
@@ -477,33 +478,3 @@ fun <S> Container.dateTimeInput(
     className: String? = null,
     init: (DateTimeInput.(S) -> Unit)
 ) = dateTimeInput(value, format, classes, className).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun DateTimeInput.bindTo(state: MutableState<Date?>): DateTimeInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun DateTimeInput.bindTo(state: MutableState<Date>): DateTimeInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: Date())
-    })
-    return this
-}

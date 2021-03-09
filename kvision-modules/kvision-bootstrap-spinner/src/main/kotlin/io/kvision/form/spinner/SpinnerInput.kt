@@ -27,9 +27,9 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
-import io.kvision.form.range.RangeInput
 import io.kvision.html.ButtonStyle
 import io.kvision.jquery.JQuery
 import io.kvision.state.MutableState
@@ -80,14 +80,14 @@ open class SpinnerInput(
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
     classes: Set<String> = setOf(), init: (SpinnerInput.() -> Unit)? = null
-) : Widget(classes + "form-control"), FormInput, MutableState<Number?> {
+) : Widget(classes + "form-control"), GenericFormComponent<Number?>, FormInput, MutableState<Number?> {
 
     protected val observers = mutableListOf<(Number?) -> Unit>()
 
     /**
      * Spinner value.
      */
-    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value attribute of the generated HTML input element.
@@ -388,63 +388,3 @@ fun <S> Container.spinnerInput(
     classes,
     className
 ).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun SpinnerInput.bindTo(state: MutableState<Int?>): SpinnerInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toInt())
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun SpinnerInput.bindTo(state: MutableState<Int>): SpinnerInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toInt() ?: 0)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun SpinnerInput.bindTo(state: MutableState<Double?>): SpinnerInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toDouble())
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun SpinnerInput.bindTo(state: MutableState<Double>): SpinnerInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toDouble() ?: 0.0)
-    })
-    return this
-}

@@ -28,7 +28,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 
 /**
@@ -176,35 +175,4 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false, classe
     override fun setState(state: String?) {
         input.setState(state)
     }
-
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : AbstractText> T.bindTo(state: MutableState<String?>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : AbstractText> T.bindTo(state: MutableState<String>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
 }

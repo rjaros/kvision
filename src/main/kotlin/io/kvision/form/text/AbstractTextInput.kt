@@ -26,10 +26,10 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Widget
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 
 /**
  * Base class for basic text components.
@@ -41,7 +41,7 @@ import io.kvision.state.bind
 abstract class AbstractTextInput(
     value: String? = null,
     classes: Set<String> = setOf()
-) : Widget(classes), FormInput, MutableState<String?> {
+) : Widget(classes), GenericFormComponent<String?>, FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -56,7 +56,7 @@ abstract class AbstractTextInput(
     /**
      * Text input value.
      */
-    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value attribute of the generated HTML input element.
@@ -195,34 +195,4 @@ abstract class AbstractTextInput(
     override fun setState(state: String?) {
         value = state
     }
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : AbstractTextInput> T.bindTo(state: MutableState<String?>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : AbstractTextInput> T.bindTo(state: MutableState<String>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
 }

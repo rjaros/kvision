@@ -254,18 +254,3 @@ fun <S> Container.radio(
     value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
     rich: Boolean = false, init: (Radio.(S) -> Unit)
 ) = radio(value, extraValue, name, label, rich).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun Radio.bindTo(state: MutableState<Boolean>): Radio {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}

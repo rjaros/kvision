@@ -137,7 +137,7 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     /**
      * The supplied function is called before the widget is disposed.
      */
-    fun addBeforeDisposeHook(hook: () -> Unit) = (beforeDisposeHooks ?: run {
+    override fun addBeforeDisposeHook(hook: () -> Unit) = (beforeDisposeHooks ?: run {
         beforeDisposeHooks = mutableListOf()
         beforeDisposeHooks!!
     }).add(hook)
@@ -145,7 +145,7 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     /**
      * The supplied function is called after the widget is removed from the DOM.
      */
-    fun addAfterDestroyHook(hook: () -> Unit) = (afterDestroyHooks ?: run {
+    override fun addAfterDestroyHook(hook: () -> Unit) = (afterDestroyHooks ?: run {
         afterDestroyHooks = mutableListOf()
         afterDestroyHooks!!
     }).add(hook)
@@ -153,12 +153,12 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     /**
      * The supplied function is called after the widget is inserted into the DOM.
      */
-    fun addAfterInsertHook(hook: (VNode) -> Unit) = (afterInsertHooks ?: run {
+    override fun addAfterInsertHook(hook: (VNode) -> Unit) = (afterInsertHooks ?: run {
         afterInsertHooks = mutableListOf()
         afterInsertHooks!!
     }).add(hook)
 
-    protected fun <T> singleRender(block: () -> T): T {
+    override fun <T> singleRender(block: () -> T): T {
         getRoot()?.renderDisabled = true
         val t = block()
         getRoot()?.renderDisabled = false
@@ -1043,24 +1043,6 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
 
     companion object {
         private var counter: Int = 0
-
-        /**
-         * An extension function which binds the widget to the observable state.
-         * Used by [io.kvision.state.bind]
-         */
-        internal fun <S, W : Widget> W.bindState(
-            observableState: ObservableState<S>,
-            removeChildren: Boolean = true,
-            factory: (W.(S) -> Unit)
-        ): W {
-            this.addBeforeDisposeHook(observableState.subscribe {
-                singleRender {
-                    if (removeChildren) (this as? Container)?.disposeAll()
-                    factory(it)
-                }
-            })
-            return this
-        }
     }
 }
 

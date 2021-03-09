@@ -24,7 +24,6 @@ package io.kvision.form.check
 import io.kvision.core.Container
 import io.kvision.core.StringPair
 import io.kvision.form.StringFormControl
-import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 
@@ -87,33 +86,3 @@ fun <S> Container.radioGroup(
     options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
     label: String? = null, rich: Boolean = false, init: (RadioGroup.(S) -> Unit)
 ) = radioGroup(options, value, name, inline, label, rich).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun RadioGroup.bindTo(state: MutableState<String?>): RadioGroup {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun RadioGroup.bindTo(state: MutableState<String>): RadioGroup {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
-}

@@ -29,7 +29,6 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import io.kvision.utils.set
 
@@ -53,7 +52,8 @@ open class OnsRadio(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsRadio.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")), BoolFormControl,
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")),
+    BoolFormControl,
     MutableState<Boolean> {
 
     /**
@@ -194,19 +194,4 @@ fun Container.onsRadio(
     val onsRadio = OnsRadio(value, extraValue, name, label, rich, classes ?: className.set, init)
     this.add(onsRadio)
     return onsRadio
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsRadio.bindTo(state: MutableState<Boolean>): OnsRadio {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
 }

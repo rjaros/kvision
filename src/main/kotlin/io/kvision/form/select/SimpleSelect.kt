@@ -284,33 +284,3 @@ fun <S> Container.simpleSelect(
     rich: Boolean = false,
     init: (SimpleSelect.(S) -> Unit)
 ) = simpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun SimpleSelect.bindTo(state: MutableState<String?>): SimpleSelect {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun SimpleSelect.bindTo(state: MutableState<String>): SimpleSelect {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
-}

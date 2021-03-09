@@ -352,33 +352,3 @@ fun <S, T> Container.genericRadioGroup(
     },
     init: (GenericRadioGroup<T>.(S) -> Unit)
 ) = genericRadioGroup(options, value, name, inline, label, rich, toStr, fromStr).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T> GenericRadioGroup<T>.bindTo(state: MutableState<T?>): GenericRadioGroup<T> {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : Any> GenericRadioGroup<T>.bindTo(state: MutableState<T>): GenericRadioGroup<T> {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: fromStr("")!!)
-    })
-    return this
-}

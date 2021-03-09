@@ -25,11 +25,11 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.StringPair
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
 import io.kvision.utils.set
 
@@ -48,7 +48,8 @@ open class OnsRadioGroupInput(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     classes: Set<String> = setOf(),
     init: (OnsRadioGroupInput.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), FormInput, MutableState<String?> {
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), GenericFormComponent<String?>, FormInput,
+    MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -60,7 +61,7 @@ open class OnsRadioGroupInput(
     /**
      * A value of the selected option.
      */
-    var value by refreshOnUpdate(value) {
+    override var value by refreshOnUpdate(value) {
         setValueToChildren(it)
         observers.forEach { ob -> ob(it) }
         @Suppress("UnsafeCastFromDynamic")
@@ -230,34 +231,4 @@ fun Container.onsRadioGroupInput(
     val onsRadioGroupInput = OnsRadioGroupInput(options, value, name, classes ?: className.set, init)
     this.add(onsRadioGroupInput)
     return onsRadioGroupInput
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsRadioGroupInput.bindTo(state: MutableState<String?>): OnsRadioGroupInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsRadioGroupInput.bindTo(state: MutableState<String>): OnsRadioGroupInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
 }

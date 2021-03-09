@@ -29,8 +29,6 @@ import io.kvision.remote.HttpMethod
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteOption
-import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.JSON
 import io.kvision.utils.obj
 import io.kvision.utils.set
@@ -41,7 +39,6 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
-import kotlin.reflect.KFunction
 
 external fun decodeURIComponent(encodedURI: String): String
 
@@ -231,34 +228,4 @@ fun <T : Any> Container.selectRemoteInput(
         )
     this.add(selectRemoteInput)
     return selectRemoteInput
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : Any> SelectRemoteInput<T>.bindTo(state: MutableState<String?>): SelectRemoteInput<T> {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : Any> SelectRemoteInput<T>.bindTo(state: MutableState<String>): SelectRemoteInput<T> {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
 }

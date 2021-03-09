@@ -30,6 +30,7 @@ import io.kvision.core.Container
 import io.kvision.core.CssSize
 import io.kvision.core.StringPair
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.html.ButtonStyle
@@ -77,7 +78,7 @@ open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
     classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
-) : SimplePanel(classes), FormInput, MutableState<String?> {
+) : SimplePanel(classes), GenericFormComponent<String?>, FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -89,7 +90,7 @@ open class SelectInput(
     /**
      * A value of the selected option.
      */
-    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The name attribute of the generated HTML select element.
@@ -446,33 +447,3 @@ fun <S> Container.selectInput(
     className: String? = null,
     init: (SelectInput.(S) -> Unit)
 ) = selectInput(options, value, multiple, ajaxOptions, classes, className).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun SelectInput.bindTo(state: MutableState<String?>): SelectInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun SelectInput.bindTo(state: MutableState<String>): SelectInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
-}

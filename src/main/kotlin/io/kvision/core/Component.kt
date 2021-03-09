@@ -186,4 +186,24 @@ interface Component {
     fun blur() {
         getElementJQuery()?.blur()
     }
+
+    /**
+     * The supplied function is called before the component is disposed.
+     */
+    fun addBeforeDisposeHook(hook: () -> Unit): Boolean
+
+    /**
+     * The supplied function is called after the component is removed from the DOM.
+     */
+    fun addAfterDestroyHook(hook: () -> Unit): Boolean
+
+    /**
+     * The supplied function is called after the component is inserted into the DOM.
+     */
+    fun addAfterInsertHook(hook: (VNode) -> Unit): Boolean
+
+    /**
+     * Executes given function within a single rendering process.
+     */
+    fun <T> singleRender(block: () -> T): T
 }

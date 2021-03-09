@@ -27,6 +27,7 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.StringPair
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.html.TAG
@@ -56,7 +57,7 @@ open class SimpleSelectInput(
     multiple: Boolean = false,
     selectSize: Int? = null,
     classes: Set<String> = setOf(), init: (SimpleSelectInput.() -> Unit)? = null
-) : SimplePanel(classes + "form-control"), FormInput, MutableState<String?> {
+) : SimplePanel(classes + "form-control"), GenericFormComponent<String?>, FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -68,7 +69,7 @@ open class SimpleSelectInput(
     /**
      * Text input value.
      */
-    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value of the selected child option.
@@ -322,33 +323,3 @@ fun <S> Container.simpleSelectInput(
     selectSize,
     classes, className
 ).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : SimpleSelectInput> T.bindTo(state: MutableState<String?>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : SimpleSelectInput> T.bindTo(state: MutableState<String>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
-}

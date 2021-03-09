@@ -29,7 +29,6 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import io.kvision.utils.set
 
@@ -51,7 +50,8 @@ open class OnsSwitch(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsSwitch.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")), BoolFormControl,
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")),
+    BoolFormControl,
     MutableState<Boolean> {
 
     /**
@@ -182,19 +182,4 @@ fun Container.onsSwitch(
         OnsSwitch(value, name, label, rich, classes ?: className.set, init)
     this.add(onsSwitch)
     return onsSwitch
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsSwitch.bindTo(state: MutableState<Boolean>): OnsSwitch {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
 }

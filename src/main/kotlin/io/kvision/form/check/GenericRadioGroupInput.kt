@@ -25,6 +25,7 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.panel.SimplePanel
@@ -62,7 +63,7 @@ open class GenericRadioGroupInput<T>(
         it as? T
     },
     init: (GenericRadioGroupInput<T>.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), FormInput, MutableState<T?> {
+) : SimplePanel(setOf("form-group")), GenericFormComponent<T?>, FormInput, MutableState<T?> {
 
     protected val observers = mutableListOf<(T?) -> Unit>()
 
@@ -74,7 +75,7 @@ open class GenericRadioGroupInput<T>(
     /**
      * A value of the selected option.
      */
-    var value by refreshOnUpdate(value) {
+    override var value by refreshOnUpdate(value) {
         setValueToChildren(it)
         observers.forEach { ob -> ob(it) }
         @Suppress("UnsafeCastFromDynamic")
@@ -277,33 +278,3 @@ fun <S, T> Container.genericRadioGroupInput(
     },
     init: (GenericRadioGroupInput<T>.(S) -> Unit)
 ) = genericRadioGroupInput(options, value, name, inline, toStr, fromStr).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T> GenericRadioGroupInput<T>.bindTo(state: MutableState<T?>): GenericRadioGroupInput<T> {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : Any> GenericRadioGroupInput<T>.bindTo(state: MutableState<T>): GenericRadioGroupInput<T> {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: fromStr("")!!)
-    })
-    return this
-}

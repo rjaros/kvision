@@ -28,10 +28,10 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.types.toDateF
 import io.kvision.types.toStringF
 import io.kvision.utils.set
@@ -68,14 +68,14 @@ open class OnsDateTimeInput(
     inputId: String? = null,
     classes: Set<String> = setOf(),
     init: (OnsDateTimeInput.() -> Unit)? = null
-) : Widget(classes + "kv-ons-form-control"), FormInput, MutableState<Date?> {
+) : Widget(classes + "kv-ons-form-control"), GenericFormComponent<Date?>, FormInput, MutableState<Date?> {
 
     protected val observers = mutableListOf<(Date?) -> Unit>()
 
     /**
      * Date/time input value.
      */
-    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * Date/time mode.
@@ -289,34 +289,4 @@ fun Container.onsDateTimeInput(
         OnsDateTimeInput(value, mode, min, max, step, inputId, classes ?: className.set, init)
     this.add(onsDateTimeInput)
     return onsDateTimeInput
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsDateTimeInput.bindTo(state: MutableState<Date?>): OnsDateTimeInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsDateTimeInput.bindTo(state: MutableState<Date>): OnsDateTimeInput {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: Date())
-    })
-    return this
 }

@@ -239,18 +239,3 @@ fun <S> Container.checkBox(
     value: Boolean = false, name: String? = null, label: String? = null,
     rich: Boolean = false, init: (CheckBox.(S) -> Unit)
 ) = checkBox(value, name, label, rich).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun CheckBox.bindTo(state: MutableState<Boolean>): CheckBox {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}

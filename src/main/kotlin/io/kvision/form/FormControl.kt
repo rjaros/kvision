@@ -66,6 +66,18 @@ interface FormInput : Component {
 }
 
 /**
+ * Base interface of a form component with a generic value.
+ */
+interface GenericFormComponent<T> : Component {
+    /**
+     * Generic value.
+     */
+    var value: T
+
+    fun subscribe(observer: (T) -> Unit): () -> Unit
+}
+
+/**
  * Base interface of a form control.
  */
 interface FormControl : Component {
@@ -193,15 +205,37 @@ interface FormControl : Component {
 }
 
 /**
+ * Base interface of a form control with a generic value.
+ */
+interface GenericFormControl<T> : FormControl, GenericFormComponent<T?> {
+
+    override fun getValue(): T? = value
+    override fun setValue(v: Any?) {
+        @Suppress("UNCHECKED_CAST")
+        value = v as? T
+    }
+
+    override fun getValueAsString(): String? = value?.toString()
+}
+
+/**
+ * Base interface of a form control with a generic, non-nullable value.
+ */
+interface GenericNonNullableFormControl<T> : FormControl, GenericFormComponent<T> {
+
+    override fun getValue(): T = value
+    override fun setValue(v: Any?) {
+        @Suppress("UNCHECKED_CAST")
+        value = v as? T ?: throw IllegalStateException()
+    }
+
+    override fun getValueAsString(): String? = value?.toString()
+}
+
+/**
  * Base interface of a form control with a text value.
  */
-interface StringFormControl : FormControl {
-    /**
-     * Text value.
-     */
-    var value: String?
-
-    override fun getValue(): String? = value
+interface StringFormControl : GenericFormControl<String> {
     override fun setValue(v: Any?) {
         value = v as? String ?: v?.toString()
     }
@@ -212,64 +246,34 @@ interface StringFormControl : FormControl {
 /**
  * Base interface of a form control with a numeric value.
  */
-interface NumberFormControl : FormControl {
-    /**
-     * Numeric value.
-     */
-    var value: Number?
-
-    override fun getValue(): Number? = value
+interface NumberFormControl : GenericFormControl<Number> {
     override fun setValue(v: Any?) {
         value = v as? Number
     }
-
-    override fun getValueAsString(): String? = value?.toString()
 }
 
 /**
  * Base interface of a form control with a boolean value.
  */
-interface BoolFormControl : FormControl {
-    /**
-     * Boolean value.
-     */
-    var value: Boolean
-
-    override fun getValue(): Boolean = value
+interface BoolFormControl : GenericNonNullableFormControl<Boolean> {
     override fun setValue(v: Any?) {
         value = v as? Boolean ?: false
     }
-
-    override fun getValueAsString(): String? = value.toString()
 }
 
 /**
  * Base interface of a form control with a date value.
  */
-interface DateFormControl : FormControl {
-    /**
-     * Date value.
-     */
-    var value: Date?
-
-    override fun getValue(): Date? = value
+interface DateFormControl : GenericFormControl<Date> {
     override fun setValue(v: Any?) {
         value = v as? Date
     }
-
-    override fun getValueAsString(): String? = value?.toString()
 }
 
 /**
  * Base interface of a form control with a list of files value.
  */
-interface KFilesFormControl : FormControl {
-    /**
-     * List of files value.
-     */
-    var value: List<KFile>?
-
-    override fun getValue(): List<KFile>? = value
+interface KFilesFormControl : GenericFormControl<List<KFile>> {
     override fun setValue(v: Any?) {
         if (v == null) value = null
     }
@@ -282,22 +286,4 @@ interface KFilesFormControl : FormControl {
      * @return File object
      */
     fun getNativeFile(kFile: KFile): File?
-}
-
-/**
- * Base interface of a form control with a generic value.
- */
-interface GenericFormControl<T> : FormControl {
-    /**
-     * Generic value.
-     */
-    var value: T?
-
-    override fun getValue(): T? = value
-    override fun setValue(v: Any?) {
-        @Suppress("UNCHECKED_CAST")
-        value = v as? T
-    }
-
-    override fun getValueAsString(): String? = value.toString()
 }

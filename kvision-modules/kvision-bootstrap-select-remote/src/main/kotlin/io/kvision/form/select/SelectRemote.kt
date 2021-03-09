@@ -32,7 +32,6 @@ import io.kvision.panel.SimplePanel
 import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteOption
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 
 /**
@@ -318,34 +317,4 @@ fun <T : Any> Container.selectRemote(
         )
     this.add(selectRemote)
     return selectRemote
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : Any> SelectRemote<T>.bindTo(state: MutableState<String?>): SelectRemote<T> {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : Any> SelectRemote<T>.bindTo(state: MutableState<String>): SelectRemote<T> {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: "")
-    })
-    return this
 }

@@ -27,6 +27,7 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
@@ -51,14 +52,16 @@ internal const val DEFAULT_STEP = 1
 open class RangeInput(
     value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
     classes: Set<String> = setOf(), init: (RangeInput.() -> Unit)? = null
-) : Widget(classes + "form-control-range"), FormInput, MutableState<Number?> {
+) : Widget(classes + "form-control-range"), GenericFormComponent<Number?>, FormInput, MutableState<Number?> {
 
     protected val observers = mutableListOf<(Number?) -> Unit>()
 
     /**
      * Range input value.
      */
-    var value by refreshOnUpdate(value ?: (min as Number?)) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(
+        value ?: (min as Number?)
+    ) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value attribute of the generated HTML input element.
@@ -269,63 +272,3 @@ fun <S> Container.rangeInput(
     className: String? = null,
     init: (RangeInput.(S) -> Unit)
 ) = rangeInput(value, min, max, step, classes, className).bind(state, true, init)
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : RangeInput> T.bindTo(state: MutableState<Int?>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toInt())
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : RangeInput> T.bindTo(state: MutableState<Int>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toInt() ?: 0)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : RangeInput> T.bindTo(state: MutableState<Double?>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toDouble())
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : RangeInput> T.bindTo(state: MutableState<Double>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toDouble() ?: 0.0)
-    })
-    return this
-}

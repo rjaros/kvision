@@ -29,7 +29,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.NumberFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import io.kvision.utils.set
 
@@ -57,7 +56,8 @@ open class OnsRange(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsRange.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), NumberFormControl, MutableState<Number?> {
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), NumberFormControl,
+    MutableState<Number?> {
 
     /**
      * Range input value.
@@ -239,64 +239,4 @@ fun Container.onsRange(
         OnsRange(value, min, max, step, name, label, rich, classes ?: className.set, init)
     this.add(onsRange)
     return onsRange
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsRange.bindTo(state: MutableState<Int?>): OnsRange {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toInt())
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsRange.bindTo(state: MutableState<Int>): OnsRange {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toInt() ?: 0)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsRange.bindTo(state: MutableState<Double?>): OnsRange {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toDouble())
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsRange.bindTo(state: MutableState<Double>): OnsRange {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toDouble() ?: 0.0)
-    })
-    return this
 }

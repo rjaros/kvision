@@ -29,7 +29,6 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import io.kvision.utils.set
 import kotlin.js.Date
@@ -60,7 +59,8 @@ open class OnsDateTime(
     rich: Boolean = false,
     classes: Set<String> = setOf(),
     init: (OnsDateTime.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), DateFormControl, MutableState<Date?> {
+) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), DateFormControl,
+    MutableState<Date?> {
 
     /**
      * Date/time input value.
@@ -253,34 +253,4 @@ fun Container.onsDateTime(
         OnsDateTime(value, mode, min, max, step, name, label, rich, classes ?: className.set, init)
     this.add(onsDateTime)
     return onsDateTime
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsDateTime.bindTo(state: MutableState<Date?>): OnsDateTime {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsDateTime.bindTo(state: MutableState<Date>): OnsDateTime {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it ?: Date())
-    })
-    return this
 }

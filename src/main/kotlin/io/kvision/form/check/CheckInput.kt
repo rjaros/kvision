@@ -26,10 +26,10 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Widget
 import io.kvision.form.FormInput
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import org.w3c.dom.events.MouseEvent
 
 /**
@@ -51,7 +51,7 @@ enum class CheckInputType(internal val type: String) {
 abstract class CheckInput(
     type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
     classes: Set<String> = setOf()
-) : Widget(classes), FormInput, MutableState<Boolean> {
+) : Widget(classes), GenericFormComponent<Boolean>, FormInput, MutableState<Boolean> {
 
     protected val observers = mutableListOf<(Boolean) -> Unit>()
 
@@ -71,7 +71,7 @@ abstract class CheckInput(
     /**
      * The selection state of the input.
      */
-    var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value attribute of the generated HTML input element.
@@ -188,19 +188,4 @@ abstract class CheckInput(
     override fun setState(state: Boolean) {
         value = state
     }
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun <T : CheckInput> T.bindTo(state: MutableState<Boolean>): T {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it)
-    })
-    return this
 }

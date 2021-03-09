@@ -29,9 +29,11 @@ import io.kvision.core.Widget
 import io.kvision.form.Form
 import io.kvision.form.FormInput
 import io.kvision.form.FormPanel
+import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.i18n.I18n
+import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.types.KFile
@@ -51,7 +53,9 @@ import kotlin.reflect.KProperty1
  */
 @Suppress("TooManyFunctions")
 open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, classes: Set<String> = setOf()) :
-    Widget(classes + "form-control"), FormInput {
+    Widget(classes + "form-control"), GenericFormComponent<List<KFile>?>, FormInput, MutableState<List<KFile>?> {
+
+    protected val observers = mutableListOf<(List<KFile>?) -> Unit>()
 
     /**
      * Temporary external value (used in tests)
@@ -61,11 +65,12 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     /**
      * File input value.
      */
-    var value: List<KFile>?
+    override var value: List<KFile>?
         get() = getValue()
         set(value) {
             if (value == null) resetInput()
             tmpValue = value
+            observers.forEach { ob -> ob(value) }
         }
 
     /**
@@ -351,6 +356,20 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
             if (placeholder != null) this.msgPlaceholder = placeholder
             this.language = language
         }
+    }
+
+    override fun getState(): List<KFile>? = value
+
+    override fun subscribe(observer: (List<KFile>?) -> Unit): () -> Unit {
+        observers += observer
+        observer(value)
+        return {
+            observers -= observer
+        }
+    }
+
+    override fun setState(state: List<KFile>?) {
+        value = state
     }
 }
 

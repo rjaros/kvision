@@ -31,7 +31,6 @@ import io.kvision.form.NumberFormControl
 import io.kvision.onsenui.OnsenUi
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import io.kvision.utils.set
 
@@ -282,64 +281,4 @@ fun Container.onsNumber(
         OnsNumber(value, min, max, step, placeholder, floatLabel, name, label, rich, classes ?: className.set, init)
     this.add(onsNumber)
     return onsNumber
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsNumber.bindTo(state: MutableState<Int?>): OnsNumber {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toInt())
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsNumber.bindTo(state: MutableState<Int>): OnsNumber {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toInt() ?: 0)
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsNumber.bindTo(state: MutableState<Double?>): OnsNumber {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toDouble())
-    })
-    return this
-}
-
-/**
- * Bidirectional data binding to the MutableState instance.
- * @param state the MutableState instance
- * @return current component
- */
-fun OnsNumber.bindTo(state: MutableState<Double>): OnsNumber {
-    bind(state, false) {
-        if (value != it) value = it
-    }
-    addBeforeDisposeHook(subscribe {
-        state.setState(it?.toDouble() ?: 0.0)
-    })
-    return this
 }
