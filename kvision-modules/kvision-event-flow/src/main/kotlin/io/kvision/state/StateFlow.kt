@@ -21,7 +21,6 @@
  */
 package io.kvision.state
 
-import io.kvision.core.Widget
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -154,20 +153,3 @@ inline val <S>Flow<S>.observableState: ObservableState<S?>
             }
         }
     }
-
-/**
- * An extension function which binds the widget to the given state flow.
- *
- * @param S the state type
- * @param W the widget type
- * @param stateFlow the state flow
- * @param removeChildren remove all children of the component
- * @param factory a function which re-creates the view based on the given state
- */
-fun <S, W : Widget> W.bind(
-    stateFlow: StateFlow<S>,
-    removeChildren: Boolean = true,
-    factory: (W.(S) -> Unit)
-): W {
-    return this.bind(stateFlow.observableState, removeChildren, factory)
-}
