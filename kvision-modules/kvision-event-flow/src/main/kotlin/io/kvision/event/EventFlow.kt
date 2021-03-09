@@ -23,19 +23,10 @@ package io.kvision.event
 
 import io.kvision.core.Widget
 import io.kvision.core.onEvent
-import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.ObservableValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import org.w3c.dom.events.Event
 
 /**
@@ -98,112 +89,5 @@ inline val <reified T : Widget> T.changeFlow: Flow<T>
         }
         awaitClose {
             removeEventListener(id)
-        }
-    }
-
-/**
- * Extension property returning a StateFlow<S> for an ObservableState<S>.
- */
-@OptIn(ExperimentalCoroutinesApi::class)
-inline val <S> ObservableState<S>.stateFlow: StateFlow<S>
-    get() = MutableStateFlow(getState()).apply {
-        this@stateFlow.subscribe { this.value = it }
-    }
-
-/**
- * Extension property returning a MutableStateFlow<S> for a MutableState<S>.
- */
-@OptIn(ExperimentalCoroutinesApi::class)
-inline val <S> MutableState<S>.mutableStateFlow: MutableStateFlow<S>
-    get() = MutableStateFlow(getState()).apply {
-        this@mutableStateFlow.subscribe { this.value = it }
-        this.onEach {
-            this@mutableStateFlow.setState(it)
-        }.launchIn(GlobalScope)
-    }
-
-/**
- * Extension property returning an ObservableState<S> for a StateFlow<S>.
- */
-@OptIn(ExperimentalCoroutinesApi::class)
-inline val <S>StateFlow<S>.observableState: ObservableState<S>
-    get() = object : ObservableValue<S>(this.value) {
-
-        var job: Job? = null
-
-        override fun subscribe(observer: (S) -> Unit): () -> Unit {
-            observers += observer
-            observer(value)
-            if (job == null) {
-                job = this@observableState.onEach {
-                    this.value = it
-                }.launchIn(GlobalScope)
-            }
-            return {
-                observers -= observer
-                if (observers.isEmpty()) {
-                    job?.cancel()
-                    job = null
-                }
-            }
-        }
-    }
-
-/**
- * Extension property returning a MutableState<S> for a MutableStateFlow<S>.
- */
-@OptIn(ExperimentalCoroutinesApi::class)
-inline val <S>MutableStateFlow<S>.mutableState: MutableState<S>
-    get() = object : ObservableValue<S>(this.value) {
-
-        var job: Job? = null
-
-        override fun subscribe(observer: (S) -> Unit): () -> Unit {
-            observers += observer
-            observer(value)
-            if (job == null) {
-                job = this@mutableState.onEach {
-                    this.value = it
-                }.launchIn(GlobalScope)
-            }
-            return {
-                observers -= observer
-                if (observers.isEmpty()) {
-                    job?.cancel()
-                    job = null
-                }
-            }
-        }
-
-        override fun setState(state: S) {
-            super.setState(state)
-            this@mutableState.value = state
-        }
-    }
-
-/**
- * Extension property returning an ObservableState<S?> for a Flow<S>.
- */
-@OptIn(ExperimentalCoroutinesApi::class)
-inline val <S>Flow<S>.observableState: ObservableState<S?>
-    get() = object : ObservableValue<S?>(null) {
-
-        var job: Job? = null
-
-        override fun subscribe(observer: (S?) -> Unit): () -> Unit {
-            observers += observer
-            observer(value)
-            if (job == null) {
-                job = this@observableState.onEach {
-                    this.value = it
-                }.launchIn(GlobalScope)
-            }
-            return {
-                observers -= observer
-                if (observers.isEmpty()) {
-                    job?.cancel()
-                    job = null
-                }
-            }
         }
     }
