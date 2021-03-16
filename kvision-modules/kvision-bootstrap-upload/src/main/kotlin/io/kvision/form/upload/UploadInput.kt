@@ -50,9 +50,15 @@ import kotlin.reflect.KProperty1
  * @param uploadUrl the optional URL for the upload processing action
  * @param multiple determines if multiple file upload is supported
  * @param classes a set of CSS class names
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, classes: Set<String> = setOf()) :
+open class UploadInput(
+    uploadUrl: String? = null,
+    multiple: Boolean = false,
+    classes: Set<String> = setOf(),
+    init: (UploadInput.() -> Unit)? = null
+) :
     Widget(classes + "form-control"), GenericFormComponent<List<KFile>?>, FormInput, MutableState<List<KFile>?> {
 
     protected val observers = mutableListOf<(List<KFile>?) -> Unit>()
@@ -180,6 +186,11 @@ open class UploadInput(uploadUrl: String? = null, multiple: Boolean = false, cla
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
     private val nativeFiles: MutableMap<KFile, File> = mutableMapOf()
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         return render("input")
@@ -385,11 +396,7 @@ fun Container.uploadInput(
     className: String? = null,
     init: (UploadInput.() -> Unit)? = null
 ): UploadInput {
-    val uploadInput = UploadInput(uploadUrl, multiple, classes ?: className.set).apply {
-        init?.invoke(
-            this
-        )
-    }
+    val uploadInput = UploadInput(uploadUrl, multiple, classes ?: className.set, init)
     this.add(uploadInput)
     return uploadInput
 }

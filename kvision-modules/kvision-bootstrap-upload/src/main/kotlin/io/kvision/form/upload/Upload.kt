@@ -43,11 +43,12 @@ import org.w3c.files.File
  * @param multiple determines if multiple file upload is supported
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class Upload(
     uploadUrl: String? = null, multiple: Boolean = false, label: String? = null,
-    rich: Boolean = false
+    rich: Boolean = false, init: (Upload.() -> Unit)? = null
 ) : SimplePanel(setOf("form-group")), KFilesFormControl, MutableState<List<KFile>?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
@@ -249,6 +250,8 @@ open class Upload(
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         counter++
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -363,11 +366,7 @@ fun Container.upload(
     rich: Boolean = false,
     init: (Upload.() -> Unit)? = null
 ): Upload {
-    val upload = Upload(uploadUrl, multiple, label, rich).apply {
-        init?.invoke(
-            this
-        )
-    }
+    val upload = Upload(uploadUrl, multiple, label, rich, init)
     this.add(upload)
     return upload
 }
