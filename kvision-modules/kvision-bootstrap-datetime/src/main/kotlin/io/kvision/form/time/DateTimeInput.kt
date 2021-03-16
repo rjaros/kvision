@@ -55,7 +55,7 @@ internal const val DEFAULT_STEPPING = 5
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
-@Suppress("TooManyFunctions")
+@Suppress("TooManyFunctions", "LeakingThis")
 open class DateTimeInput(
     value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
     classes: Set<String> = setOf(),
@@ -72,13 +72,6 @@ open class DateTimeInput(
         span(classes = setOf("input-group-text", "datepickerbutton")) {
             this@DateTimeInput.icon = icon(this@DateTimeInput.getIconClass(format))
         }
-    }
-
-    init {
-        addPrivate(input)
-        addPrivate(addon)
-        @Suppress("LeakingThis")
-        init?.invoke(this)
     }
 
     /**
@@ -229,6 +222,12 @@ open class DateTimeInput(
      * Focus text input when the popup is opened.
      */
     var focusOnShow by refreshOnUpdate(true) { refreshDatePicker() }
+
+    init {
+        addPrivate(input)
+        addPrivate(addon)
+        init?.invoke(this)
+    }
 
     private fun refreshState() {
         if (initialized) getElementJQueryD().data("DateTimePicker").date(value)
