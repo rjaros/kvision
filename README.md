@@ -100,7 +100,7 @@ See also the complete frontend implementation of [RealWorld example application]
 
 The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook. 
 
-The API documentation, generated with new Dokka 1.4, is available at [https://rjaros.github.io/kvision/kvision/index.html](https://rjaros.github.io/kvision/kvision/index.html).
+The API documentation, generated with new Dokka 1.4, is available at [https://rjaros.github.io/kvision/index.html](https://rjaros.github.io/kvision/index.html).
 
 You can also look at [KVision blog posts at dev.to](https://dev.to/t/kvision/latest) and you can talk with KVision 
 developers on Kotlin Slack [#kvision](https://kotlinlang.slack.com/messages/kvision/) channel.
