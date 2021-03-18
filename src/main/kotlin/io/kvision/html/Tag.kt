@@ -200,6 +200,11 @@ open class Tag(
         }
     }
 
+    override fun focus() {
+        if (getElementJQuery()?.attr("tabindex") == undefined) getElementJQuery()?.attr("tabindex", "-1")
+        super.focus()
+    }
+
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
         classSetBuilder.add(align)
