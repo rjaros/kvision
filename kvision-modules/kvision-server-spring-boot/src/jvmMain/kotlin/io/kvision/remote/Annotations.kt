@@ -21,9 +21,11 @@
  */
 package io.kvision.remote
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.PersistenceConstructor
 import org.springframework.data.annotation.Transient
+import org.springframework.data.annotation.Version
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 
@@ -36,3 +38,7 @@ actual typealias Table = Table
 actual typealias Column = Column
 
 actual typealias PersistenceConstructor = PersistenceConstructor
+
+actual typealias Value = Value
+
+actual typealias Version = Version

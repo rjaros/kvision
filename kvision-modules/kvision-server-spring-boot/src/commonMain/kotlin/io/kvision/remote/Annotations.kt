@@ -40,3 +40,11 @@ expect annotation class Column(val value: String)
 @OptIn(ExperimentalMultiplatform::class)
 @OptionalExpectation
 expect annotation class PersistenceConstructor()
+
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+expect annotation class Value(val value: String)
+
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+expect annotation class Version()
