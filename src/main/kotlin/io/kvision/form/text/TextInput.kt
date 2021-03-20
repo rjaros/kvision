@@ -38,7 +38,8 @@ enum class TextInputType(internal val type: String) {
     TEL("tel"),
     COLOR("color"),
     SEARCH("search"),
-    URL("url")
+    URL("url"),
+    HIDDEN("hidden")
 }
 
 /**

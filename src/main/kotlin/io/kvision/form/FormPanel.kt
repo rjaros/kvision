@@ -36,6 +36,7 @@ import io.kvision.types.KFile
 import io.kvision.utils.set
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
+import org.w3c.dom.HTMLFormElement
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KClass
@@ -633,6 +634,34 @@ open class FormPanel<K : Any>(
      */
     open fun clearValidation() {
         form.clearValidation()
+    }
+
+    /**
+     * Submit the html form.
+     */
+    open fun submit() {
+        (getElement() as? HTMLFormElement)?.submit()
+    }
+
+    /**
+     * Reset the html form.
+     */
+    open fun reset() {
+        (getElement() as? HTMLFormElement)?.reset()
+    }
+
+    /**
+     * Check validity of the html form.
+     */
+    open fun checkValidity(): Boolean {
+        return (getElement() as? HTMLFormElement)?.checkValidity() ?: false
+    }
+
+    /**
+     * Report validity of the html form.
+     */
+    open fun reportValidity(): Boolean {
+        return (getElement() as? HTMLFormElement)?.checkValidity() ?: false
     }
 
     companion object {
