@@ -22,13 +22,12 @@
 package io.kvision.tabulator
 
 import com.github.snabbdom.VNode
-import kotlinx.browser.window
-import org.w3c.dom.HTMLElement
 import io.kvision.KVManagerTabulator
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.i18n.I18n
+import io.kvision.panel.Root
 import io.kvision.state.ObservableList
 import io.kvision.state.ObservableState
 import io.kvision.table.TableType
@@ -38,6 +37,8 @@ import io.kvision.utils.set
 import io.kvision.utils.syncWithList
 import io.kvision.utils.toKotlinObj
 import io.kvision.utils.toPlainObj
+import kotlinx.browser.window
+import org.w3c.dom.HTMLElement
 import kotlin.reflect.KClass
 import io.kvision.tabulator.js.Tabulator as JsTabulator
 
@@ -85,6 +86,7 @@ open class Tabulator<T : Any>(
 
     private var pageSize: Number? = null
     private var currentPage: Number? = null
+    private var customRoots = mutableListOf<Root>()
 
     protected var filter: ((T) -> Boolean)? = null
 
@@ -224,7 +226,7 @@ open class Tabulator<T : Any>(
         (this.getElement() as? HTMLElement)?.let {
             jsTabulator =
                 KVManagerTabulator.getConstructor()
-                    .createInstance(it, options.toJs(this::translate, kClass))
+                    .createInstance(it, options.toJs(this, this::translate, kClass))
             if (currentPage != null) {
                 jsTabulator?.setPageSize(pageSize ?: 0)
                 jsTabulator?.setPage(currentPage)
@@ -235,6 +237,8 @@ open class Tabulator<T : Any>(
     override fun render(): VNode {
         if (lastLanguage != null && lastLanguage != I18n.language) {
             jsTabulator?.destroy()
+            customRoots.forEach { it.dispose() }
+            customRoots.clear()
             createJsTabulator()
         }
         return render("div")
@@ -251,6 +255,8 @@ open class Tabulator<T : Any>(
             currentPage = page as Number
         }
         jsTabulator?.destroy()
+        customRoots.forEach { it.dispose() }
+        customRoots.clear()
         jsTabulator = null
     }
 
@@ -676,7 +682,7 @@ open class Tabulator<T : Any>(
         insertRightOfTarget: Boolean? = null,
         positionTarget: String? = null
     ) {
-        jsTabulator?.addColumn(columnDefinition.toJs(this::translate, kClass), insertRightOfTarget, positionTarget)
+        jsTabulator?.addColumn(columnDefinition.toJs(this, this::translate, kClass), insertRightOfTarget, positionTarget)
     }
 
     /**
@@ -733,6 +739,18 @@ open class Tabulator<T : Any>(
         }
         @Suppress("UnsafeCastFromDynamic")
         return obj
+    }
+
+    internal fun addCustomRoot(root: Root) {
+        customRoots.add(root)
+    }
+
+    override fun dispose() {
+        jsTabulator?.destroy()
+        customRoots.forEach { it.dispose() }
+        customRoots.clear()
+        jsTabulator = null
+        super.dispose()
     }
 
     companion object {

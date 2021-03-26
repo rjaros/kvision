@@ -22,9 +22,6 @@
 
 package io.kvision.tabulator
 
-import kotlinx.browser.document
-import kotlinx.browser.window
-import org.w3c.dom.HTMLElement
 import io.kvision.core.Component
 import io.kvision.form.FormControl
 import io.kvision.form.FormInput
@@ -34,6 +31,9 @@ import io.kvision.tabulator.EditorRoot.root
 import io.kvision.tabulator.js.Tabulator
 import io.kvision.utils.obj
 import io.kvision.utils.toKotlinObj
+import kotlinx.browser.document
+import kotlinx.browser.window
+import org.w3c.dom.HTMLElement
 import kotlin.js.Promise
 import kotlin.reflect.KClass
 
@@ -400,6 +400,7 @@ internal object EditorRoot {
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod", "MagicNumber")
 fun <T : Any> ColumnDefinition<T>.toJs(
+    tabulator: io.kvision.tabulator.Tabulator<T>,
     i18nTranslator: (String) -> (String),
     kClass: KClass<T>?
 ): Tabulator.ColumnDefinition {
@@ -454,6 +455,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
             val rootElement = document.createElement("div") as HTMLElement
             onRendered {
                 val root = Root(element = rootElement)
+                tabulator.addCustomRoot(root)
                 @Suppress("UnsafeCastFromDynamic")
                 root.add(component)
                 cell.checkHeight()
@@ -466,7 +468,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
     return obj {
         this.title = i18nTranslator(title)
         if (field != null) this.field = field
-        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator, kClass) }.toTypedArray()
+        if (columns != null) this.columns = columns.map { it.toJs(tabulator, i18nTranslator, kClass) }.toTypedArray()
         if (visible != null) this.visible = visible
         if (align != null) this.align = align.align
         if (width != null) this.width = width
@@ -780,6 +782,7 @@ data class TabulatorOptions<T : Any>(
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "ComplexMethod")
 fun <T : Any> TabulatorOptions<T>.toJs(
+    tabulator: io.kvision.tabulator.Tabulator<T>,
     i18nTranslator: (String) -> (String),
     kClass: KClass<T>?
 ): Tabulator.Options {
@@ -809,7 +812,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (downloadConfig != null) this.downloadConfig = downloadConfig.toJs()
         if (reactiveData != null) this.reactiveData = reactiveData
         if (autoResize != null) this.autoResize = autoResize
-        if (columns != null) this.columns = columns.map { it.toJs(i18nTranslator, kClass) }.toTypedArray()
+        if (columns != null) this.columns = columns.map { it.toJs(tabulator, i18nTranslator, kClass) }.toTypedArray()
         if (autoColumns != null) {
             this.autoColumns = autoColumns
         } else if (columns == null) {
