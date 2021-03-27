@@ -198,19 +198,23 @@ open class Table(
     }
 
     override fun removeAll(): SimplePanel {
-        theadRow.removeAll()
         tbody.removeAll()
         return this
     }
 
     override fun disposeAll(): Container {
-        theadRow.disposeAll()
         tbody.disposeAll()
         return this
     }
 
     override fun getChildren(): List<Component> {
         return tbody.getChildren()
+    }
+
+    override fun dispose() {
+        super.dispose()
+        thead.dispose()
+        tbody.dispose()
     }
 }
 
