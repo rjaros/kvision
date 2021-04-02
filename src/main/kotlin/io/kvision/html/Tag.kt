@@ -181,9 +181,9 @@ open class Tag(
 
     override fun render(): VNode {
         if (templateDataObj != null && lastLanguage != null && lastLanguage != I18n.language) {
-            getRoot()?.renderDisabled = true
+            getRoot()?.let { it.singleRenderers++ }
             templateData = templateDataObj
-            getRoot()?.renderDisabled = false
+            getRoot()?.let { it.singleRenderers-- }
         }
         return if (content != null) {
             val translatedContent = content?.let { translate(it) }

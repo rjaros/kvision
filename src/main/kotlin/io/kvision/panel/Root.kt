@@ -31,6 +31,7 @@ import io.kvision.core.Widget
 import io.kvision.utils.snClasses
 import io.kvision.utils.snOpt
 import kotlinx.browser.document
+import kotlinx.browser.window
 import org.w3c.dom.HTMLElement
 
 /**
@@ -61,7 +62,15 @@ class Root : SimplePanel {
     private val contextMenus: MutableList<Widget> = mutableListOf()
     private var rootVnode: VNode? = null
 
-    internal var renderDisabled = false
+    internal var singleRenderers = 0
+
+    private var asyncBuffer: MutableList<() -> Unit> = mutableListOf()
+    private var asyncTimer: Int? = null
+
+    /**
+     * Sets the root container to the synchronous mode. Should be used for tests only.
+     */
+    var synchronousMode = false
 
     val isFirstRoot = roots.isEmpty()
 
@@ -173,10 +182,27 @@ class Root : SimplePanel {
     }
 
     internal fun reRender(): Root {
-        if (!renderDisabled && rootVnode != null) {
+        if (singleRenderers == 0 && rootVnode != null) {
             rootVnode = KVManager.patch(rootVnode!!, renderVNode())
         }
         return this
+    }
+
+    override fun singleRenderAsync(block: () -> Unit) {
+        if (synchronousMode) {
+            block()
+        } else {
+            asyncBuffer.add(block)
+            if (asyncTimer != null) {
+                window.clearTimeout(asyncTimer!!)
+            }
+            asyncTimer = window.setTimeout({
+                asyncBuffer.forEach { it() }
+                asyncBuffer.clear()
+                reRender()
+                asyncTimer = null
+            }, 0)
+        }
     }
 
     internal fun restart() {

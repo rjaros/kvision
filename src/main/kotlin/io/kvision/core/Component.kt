@@ -206,4 +206,9 @@ interface Component {
      * Executes given function within a single rendering process.
      */
     fun <T> singleRender(block: () -> T): T
+
+    /**
+     * Executes given function within a single rendering process asynchronously.
+     */
+    fun singleRenderAsync(block: () -> Unit)
 }

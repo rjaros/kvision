@@ -159,11 +159,21 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     }).add(hook)
 
     override fun <T> singleRender(block: () -> T): T {
-        getRoot()?.renderDisabled = true
+        getRoot()?.let { it.singleRenderers++ }
         val t = block()
-        getRoot()?.renderDisabled = false
+        getRoot()?.let { it.singleRenderers-- }
         getRoot()?.reRender()
         return t
+    }
+
+    override fun singleRenderAsync(block: () -> Unit) {
+        val root = getRoot()
+        if (root != null) {
+            root.singleRenderAsync(block)
+        } else {
+            // fallback
+            block()
+        }
     }
 
     override fun renderVNode(): VNode {
