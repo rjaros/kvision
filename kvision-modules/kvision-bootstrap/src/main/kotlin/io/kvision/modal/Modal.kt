@@ -172,27 +172,37 @@ open class Modal(
         }
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): Modal {
         body.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): Modal {
+        body.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): Modal {
         body.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): Modal {
         body.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): Modal {
+        body.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): Modal {
         body.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): Modal {
         body.disposeAll()
         return this
     }

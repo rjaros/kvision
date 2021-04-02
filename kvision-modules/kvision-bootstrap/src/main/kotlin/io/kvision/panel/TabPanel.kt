@@ -221,10 +221,15 @@ open class TabPanel(
     /**
      * Add new Tab component.
      * @param tab a Tab component
+     * @param position tab position
      */
-    protected open fun addTab(tab: Tab) {
+    protected open fun addTab(tab: Tab, position: Int? = null) {
         tab.parent = nav
-        tabs.add(tab)
+        if (position == null) {
+            tabs.add(tab)
+        } else {
+            tabs.add(position, tab)
+        }
         if (tabs.size == 1) {
             tab.link.addCssClass("active")
             activeIndex = 0
@@ -249,12 +254,13 @@ open class TabPanel(
     /**
      * Add new child component.
      * @param child a child component
+     * @param position tab position
      */
-    protected open fun addChild(child: Component) {
+    protected open fun addChild(child: Component, position: Int? = null) {
         if (child is Tab) {
-            addTab(child)
+            addTab(child, position)
         } else {
-            addTab(Tab("", child))
+            addTab(Tab("", child), position)
         }
     }
 
@@ -279,6 +285,12 @@ open class TabPanel(
 
     override fun add(child: Component): TabPanel {
         addChild(child)
+        refresh()
+        return this
+    }
+
+    override fun add(position: Int, child: Component): TabPanel {
+        addChild(child, position)
         refresh()
         return this
     }
@@ -316,6 +328,21 @@ open class TabPanel(
             findTabWithComponent(child)?.let {
                 removeTab(it)
                 refresh()
+            }
+        }
+        return this
+    }
+
+    override fun removeAt(position: Int): TabPanel {
+        if (position >= 0 && position < tabs.size) {
+            val tab = tabs.removeAt(position)
+            tab.parent = null
+            if (activeIndex >= tabs.size) {
+                activeIndex = tabs.size - 1
+            } else if (activeIndex > position) {
+                activeIndex--
+            } else if (activeIndex == position) {
+                activeIndex = activeIndex
             }
         }
         return this

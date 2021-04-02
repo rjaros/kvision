@@ -23,6 +23,7 @@ val serializationVersion: String by project
 val coroutinesVersion: String by project
 val snabbdomKotlinVersion: String by project
 val jqueryKotlinVersion: String by project
+val diffVersion: String by project
 
 // Custom Properties
 val webDir = file("src/main/web")
@@ -36,6 +37,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
     api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
     api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
+    implementation("io.github.petertrr:kotlin-multiplatform-diff-js:$diffVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.1.tgz"))
 //  Empty NPM placeholders

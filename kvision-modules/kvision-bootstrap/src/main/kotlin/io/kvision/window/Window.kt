@@ -349,27 +349,37 @@ open class Window(
         }
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): Window {
         content.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): Window {
+        content.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): Window {
         content.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): Window {
         content.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): Window {
+        content.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): Window {
         content.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): Window {
         content.disposeAll()
         return this
     }

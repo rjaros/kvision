@@ -182,22 +182,32 @@ open class Table(
         }
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): Table {
         tbody.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): Table {
+        tbody.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): Table {
         tbody.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): Table {
         tbody.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): Table {
+        tbody.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): Table {
         tbody.removeAll()
         return this
     }

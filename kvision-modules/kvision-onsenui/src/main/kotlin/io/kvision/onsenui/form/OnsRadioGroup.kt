@@ -30,6 +30,7 @@ import io.kvision.form.InputSize
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.form.ValidationStatus
+import io.kvision.form.check.Radio
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.obj
@@ -224,7 +225,7 @@ open class OnsRadioGroup(
         }
     }
 
-    override fun add(child: Component): SimplePanel {
+    protected fun configureChild(child: Component) {
         if (child is OnsRadio) {
             child.eventTarget = this
             child.name = name
@@ -235,26 +236,41 @@ open class OnsRadioGroup(
                 }
             }
         }
+    }
+
+    override fun add(child: Component): OnsRadioGroup {
+        configureChild(child)
         container.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): OnsRadioGroup {
+        configureChild(child)
+        container.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): OnsRadioGroup {
         children.forEach { add(it) }
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): OnsRadioGroup {
         container.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): OnsRadioGroup {
+        container.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): OnsRadioGroup {
         container.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): OnsRadioGroup {
         container.disposeAll()
         return this
     }

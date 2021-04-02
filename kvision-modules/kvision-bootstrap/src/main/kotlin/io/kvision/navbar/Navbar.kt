@@ -22,8 +22,6 @@
 package io.kvision.navbar
 
 import com.github.snabbdom.VNode
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.BsBgColor
 import io.kvision.core.ClassSetBuilder
@@ -33,6 +31,8 @@ import io.kvision.core.CssClass
 import io.kvision.html.Link
 import io.kvision.html.Span
 import io.kvision.html.span
+import io.kvision.jquery.invoke
+import io.kvision.jquery.jQuery
 import io.kvision.panel.SimplePanel
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
@@ -173,6 +173,11 @@ open class Navbar(
         return this
     }
 
+    override fun add(position: Int, child: Component): Navbar {
+        container.add(position, child)
+        return this
+    }
+
     override fun addAll(children: List<Component>): Navbar {
         container.addAll(children)
         return this
@@ -180,6 +185,11 @@ open class Navbar(
 
     override fun remove(child: Component): Navbar {
         container.remove(child)
+        return this
+    }
+
+    override fun removeAt(position: Int): Navbar {
+        container.removeAt(position)
         return this
     }
 

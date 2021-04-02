@@ -237,7 +237,7 @@ open class GenericRadioGroup<T>(
         }
     }
 
-    override fun add(child: Component): SimplePanel {
+    protected fun configureChild(child: Component) {
         if (child is Radio) {
             child.eventTarget = this
             child.name = name
@@ -248,26 +248,41 @@ open class GenericRadioGroup<T>(
                 }
             }
         }
+    }
+
+    override fun add(child: Component): GenericRadioGroup<T> {
+        configureChild(child)
         container.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): GenericRadioGroup<T> {
+        configureChild(child)
+        container.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): GenericRadioGroup<T> {
         children.forEach { add(it) }
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): GenericRadioGroup<T> {
         container.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): GenericRadioGroup<T> {
+        container.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): GenericRadioGroup<T> {
         container.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): GenericRadioGroup<T> {
         container.disposeAll()
         return this
     }

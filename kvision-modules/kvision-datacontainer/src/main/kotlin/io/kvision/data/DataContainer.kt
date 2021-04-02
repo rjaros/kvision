@@ -84,27 +84,37 @@ class DataContainer<M, C : Component, CONT : Container>(
         init?.invoke(this)
     }
 
-    override fun add(child: Component): Container {
+    override fun add(child: Component): DataContainer<M, C, CONT> {
         this.container.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): Container {
+    override fun add(position: Int, child: Component): DataContainer<M, C, CONT> {
+        this.container.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): DataContainer<M, C, CONT> {
         this.container.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): Container {
+    override fun remove(child: Component): DataContainer<M, C, CONT> {
         this.container.remove(child)
         return this
     }
 
-    override fun removeAll(): Container {
+    override fun removeAt(position: Int): DataContainer<M, C, CONT> {
+        this.container.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): DataContainer<M, C, CONT> {
         this.container.removeAll()
         return this
     }
 
-    override fun disposeAll(): Container {
+    override fun disposeAll(): DataContainer<M, C, CONT> {
         this.container.disposeAll()
         return this
     }

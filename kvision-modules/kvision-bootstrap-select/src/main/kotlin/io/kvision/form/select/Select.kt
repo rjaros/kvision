@@ -247,27 +247,37 @@ open class Select(
         return this
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): Select {
         input.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): Select {
+        input.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): Select {
         input.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): Select {
         input.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): Select {
+        input.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): Select {
         input.removeAll()
         return this
     }
 
-    override fun disposeAll(): Container {
+    override fun disposeAll(): Select {
         input.disposeAll()
         return this
     }

@@ -114,6 +114,13 @@ open class StackPanel(
         return this
     }
 
+    override fun add(position: Int, child: Component): SimplePanel {
+        super.add(position, child)
+        if (activateLast) activeIndex = children.size - 1
+        else if (activeIndex == -1) activeIndex = 0
+        return this
+    }
+
     override fun addAll(children: List<Component>): StackPanel {
         super.addAll(children)
         if (activateLast) activeIndex = this.children.size - 1
@@ -127,6 +134,12 @@ open class StackPanel(
             childrenMap.remove(it)
         }
         if (activeIndex > children.size - 1) activeIndex = children.size - 1
+        return this
+    }
+
+    override fun removeAt(position: Int): StackPanel {
+        val child = children.getOrNull(position)
+        if (child != null) remove(child)
         return this
     }
 

@@ -35,6 +35,14 @@ interface Container : Component {
     fun add(child: Component): Container
 
     /**
+     * Adds given component to the current container at the given position.
+     * @param position the position to insert child component
+     * @param child the child component
+     * @return current container
+     */
+    fun add(position: Int, child: Component): Container
+
+    /**
      * Adds a list of components to the current container.
      * @param children list of child components
      * @return current container
@@ -56,6 +64,13 @@ interface Container : Component {
      * @return current container
      */
     fun remove(child: Component): Container
+
+    /**
+     * Removes child component from the current container at the given position.
+     * @param position the position to be removed
+     * @return current container
+     */
+    fun removeAt(position: Int): Container
 
     /**
      * Removes all children from the current container.

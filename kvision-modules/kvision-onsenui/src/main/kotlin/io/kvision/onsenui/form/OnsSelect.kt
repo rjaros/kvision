@@ -195,27 +195,37 @@ open class OnsSelect(
         return this
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): OnsSelect {
         input.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): OnsSelect {
+        input.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): OnsSelect {
         input.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): OnsSelect {
         input.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): OnsSelect {
+        input.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): OnsSelect {
         input.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): OnsSelect {
         input.disposeAll()
         return this
     }

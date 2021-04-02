@@ -215,6 +215,10 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
         return this.add(child, Side.CENTER)
     }
 
+    override fun add(position: Int, child: Component): DockPanel {
+        return this.add(child, Side.CENTER)
+    }
+
     override fun addAll(children: List<Component>): DockPanel {
         children.forEach { this.add(it) }
         return this
@@ -259,6 +263,10 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
             }
         }
         return this
+    }
+
+    override fun removeAt(position: Int): DockPanel {
+        return removeAt(Side.CENTER)
     }
 
     override fun removeAll(): DockPanel {

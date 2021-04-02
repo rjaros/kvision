@@ -182,27 +182,37 @@ open class DropDown(
         init?.invoke(this)
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): DropDown {
         list.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): DropDown {
+        list.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): DropDown {
         list.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): DropDown {
         list.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): DropDown {
+        list.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): DropDown {
         list.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): DropDown {
         list.disposeAll()
         return this
     }

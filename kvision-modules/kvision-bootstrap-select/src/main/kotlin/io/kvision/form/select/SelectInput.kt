@@ -227,25 +227,37 @@ open class SelectInput(
         return render("select", childrenVNodes())
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): SelectInput {
         super.add(child)
         refreshSelectInput()
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): SelectInput {
+        super.add(position, child)
+        refreshSelectInput()
+        return this
+    }
+
+    override fun addAll(children: List<Component>): SelectInput {
         super.addAll(children)
         refreshSelectInput()
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): SelectInput {
         super.remove(child)
         refreshSelectInput()
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): SelectInput {
+        super.removeAt(position)
+        refreshSelectInput()
+        return this
+    }
+
+    override fun removeAll(): SelectInput {
         super.removeAll()
         refreshSelectInput()
         return this

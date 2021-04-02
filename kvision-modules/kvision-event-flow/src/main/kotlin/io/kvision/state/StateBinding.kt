@@ -23,6 +23,7 @@ package io.kvision.state
 
 import io.kvision.core.Widget
 import io.kvision.form.GenericFormComponent
+import io.kvision.panel.SimplePanel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.js.Date
@@ -42,6 +43,23 @@ fun <S, W : Widget> W.bind(
     factory: (W.(S) -> Unit)
 ): W {
     return this.bind(stateFlow.observableState, removeChildren, factory)
+}
+
+/**
+ * An extension function which binds the container to the given state flow of a list of items.
+ *
+ * @param S the state type
+ * @param W the container type
+ * @param stateFlow the StateFlow instance
+ * @param equalizer optional custom equalizer function
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : SimplePanel> W.bindEach(
+    stateFlow: StateFlow<List<S>>,
+    equalizer: ((S, S) -> Boolean)? = null,
+    factory: (SimplePanel.(S) -> Unit)
+): W {
+    return this.bindEach(stateFlow.observableState, equalizer, factory)
 }
 
 /**

@@ -52,7 +52,9 @@ class StateBindingSpec : DomSpec {
     @Test
     fun stateBinding() {
         run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                synchronousMode = true
+            }
             val store = createReduxStore(::stateReducer, State(10))
 
             val container = SimplePanel()

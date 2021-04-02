@@ -27,6 +27,7 @@ import io.kvision.panel.SimplePanel
 import io.kvision.panel.simplePanel
 import io.kvision.state.ObservableValue
 import io.kvision.state.bind
+import io.kvision.state.bindEach
 import io.kvision.state.observableListOf
 import io.kvision.state.observableSetOf
 import io.kvision.state.sub
@@ -42,7 +43,9 @@ class StateBindingSpec : DomSpec {
     @Test
     fun observableValue() {
         run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                synchronousMode = true
+            }
             val observableValue = ObservableValue(1)
             root.simplePanel(observableValue) { state ->
                 div("$state")
@@ -65,7 +68,9 @@ class StateBindingSpec : DomSpec {
     @Test
     fun sub() {
         run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                synchronousMode = true
+            }
             val observableValue = ObservableValue(ComplexStore(1, "2", true))
             var counter = 0
             root.simplePanel(observableValue.sub { it.a }) { state ->
@@ -91,7 +96,9 @@ class StateBindingSpec : DomSpec {
     @Test
     fun subSet() {
         run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                synchronousMode = true
+            }
             val observableSet = observableSetOf(1, 2, 3)
             var counter = 0
             root.simplePanel(observableSet.sub { it.minus(1) }) { state ->
@@ -124,7 +131,9 @@ class StateBindingSpec : DomSpec {
     @Test
     fun bind() {
         run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                synchronousMode = true
+            }
             val container = SimplePanel()
             val observableList = observableListOf(1, 2, 3)
             container.bind(observableList) { state ->
@@ -145,6 +154,33 @@ class StateBindingSpec : DomSpec {
                 "<div data-count=\"4\"><div>1</div><div>2</div><div>3</div><div>4</div></div>",
                 element?.innerHTML,
                 "Should render changed state of the widget"
+            )
+        }
+    }
+
+    @Test
+    fun bindEach() {
+        run {
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                synchronousMode = true
+            }
+            val container = SimplePanel()
+            val observableList = observableListOf(1, 2, 3)
+            container.bindEach(observableList) { state ->
+                div("$state")
+            }
+            root.add(container)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><div>1</div><div>2</div><div>3</div></div>",
+                element?.innerHTML,
+                "Should render initial state of the list of items"
+            )
+            observableList.add(1, 4)
+            assertEqualsHtml(
+                "<div><div>1</div><div>4</div><div>2</div><div>3</div></div>",
+                element?.innerHTML,
+                "Should render changed state of the list of items"
             )
         }
     }

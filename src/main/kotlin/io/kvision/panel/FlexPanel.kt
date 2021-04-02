@@ -102,6 +102,39 @@ open class FlexPanel(
     }
 
     /**
+     * Adds a component to the flexbox container at the given position.
+     * @param position the position of the child component
+     * @param child child component
+     * @param order child flexbox ordering
+     * @param grow child flexbox grow
+     * @param shrink child flexbox shrink
+     * @param basis child flexbox basis
+     * @param alignSelf child self alignment
+     * @param classes a set of CSS class names
+     */
+    @Suppress("LongParameterList")
+    fun add(
+        position: Int, child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
+        basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
+    ): FlexPanel {
+        val wrapper = if (noWrappers) {
+            child
+        } else {
+            WidgetWrapper(child, classes)
+        }
+        (wrapper as? Widget)?.let {
+            applySpacing(it)
+            it.order = order
+            it.flexGrow = grow
+            it.flexShrink = shrink
+            it.flexBasis = basis
+            it.alignSelf = alignSelf
+        }
+        addInternal(position, wrapper)
+        return this
+    }
+
+    /**
      * DSL function to add components with additional options.
      * @param builder DSL builder function
      */
@@ -147,6 +180,10 @@ open class FlexPanel(
 
     override fun add(child: Component): FlexPanel {
         return add(child, null)
+    }
+
+    override fun add(position: Int, child: Component): FlexPanel {
+        return add(position, child, null)
     }
 
     override fun addAll(children: List<Component>): FlexPanel {

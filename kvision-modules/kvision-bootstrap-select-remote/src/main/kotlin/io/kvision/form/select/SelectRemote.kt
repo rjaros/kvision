@@ -216,27 +216,37 @@ open class SelectRemote<T : Any>(
         return this
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): SelectRemote<T> {
         input.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): SelectRemote<T> {
+        input.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): SelectRemote<T> {
         input.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): SelectRemote<T> {
         input.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): SelectRemote<T> {
+        input.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): SelectRemote<T> {
         input.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): SelectRemote<T> {
         input.disposeAll()
         return this
     }

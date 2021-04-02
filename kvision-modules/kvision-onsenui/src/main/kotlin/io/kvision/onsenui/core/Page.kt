@@ -141,27 +141,37 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
         }
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): Page {
         contentPanel.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): Page {
+        contentPanel.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): Page {
         contentPanel.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): Page {
         contentPanel.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): Page {
+        contentPanel.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): Page {
         contentPanel.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): Page {
         contentPanel.disposeAll()
         return this
     }

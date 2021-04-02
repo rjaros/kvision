@@ -193,27 +193,37 @@ open class SimpleSelect(
         return this
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component): SimpleSelect {
         input.add(child)
         return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun add(position: Int, child: Component): SimpleSelect {
+        input.add(position, child)
+        return this
+    }
+
+    override fun addAll(children: List<Component>): SimpleSelect {
         input.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component): SimpleSelect {
         input.remove(child)
         return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAt(position: Int): SimpleSelect {
+        input.removeAt(position)
+        return this
+    }
+
+    override fun removeAll(): SimpleSelect {
         input.removeAll()
         return this
     }
 
-    override fun disposeAll(): SimplePanel {
+    override fun disposeAll(): SimpleSelect {
         input.disposeAll()
         return this
     }

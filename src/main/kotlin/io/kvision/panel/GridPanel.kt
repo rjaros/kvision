@@ -111,6 +111,44 @@ open class GridPanel(
     }
 
     /**
+     * Adds a component to the grid container at the given position.
+     * @param postition the position of the child component
+     * @param child child component
+     * @param columnStart number of starting column
+     * @param rowStart number of starting row
+     * @param columnEnd number of ending column
+     * @param rowEnd number of ending row
+     * @param area grid area
+     * @param justifySelf child self justification
+     * @param alignSelf child self alignment
+     * @param classes a set of CSS class names
+     * @return current container
+     */
+    @Suppress("LongParameterList")
+    fun add(
+        position: Int, child: Component, columnStart: Int? = null, rowStart: Int? = null,
+        columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
+        alignSelf: AlignItems? = null, classes: Set<String> = setOf()
+    ): GridPanel {
+        val wrapper = if (noWrappers) {
+            child
+        } else {
+            WidgetWrapper(child, classes)
+        }
+        (wrapper as? Widget)?.let {
+            it.gridColumnStart = columnStart
+            it.gridRowStart = rowStart
+            it.gridColumnEnd = columnEnd
+            it.gridRowEnd = rowEnd
+            it.gridArea = area
+            it.justifySelf = justifySelf
+            it.alignSelf = alignSelf
+        }
+        addInternal(position, wrapper)
+        return this
+    }
+
+    /**
      * DSL function to add components with additional options.
      * @param builder DSL builder function
      */
@@ -129,6 +167,10 @@ open class GridPanel(
 
     override fun add(child: Component): GridPanel {
         return add(child, null, null)
+    }
+
+    override fun add(position: Int, child: Component): GridPanel {
+        return add(position, child, null, null)
     }
 
     override fun addAll(children: List<Component>): GridPanel {

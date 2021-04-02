@@ -41,6 +41,8 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
     protected val privateChildren: MutableList<Component> = mutableListOf()
     protected val children: MutableList<Component> = mutableListOf()
 
+    internal var archivedState: dynamic = null
+
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -72,7 +74,7 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
     }
 
     /**
-     * Protected and final method to add given component to the current container.
+     * Protected method to add given component to the current container.
      * @param child child component
      * @return current container
      */
@@ -84,19 +86,50 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
         return this
     }
 
+    /**
+     * Protected method to add given component to the current container at the given position.
+     * @param position the position to insert child component
+     * @param child child component
+     * @return current container
+     */
+    protected open fun addInternal(position: Int, child: Component): SimplePanel {
+        children.add(position, child)
+        child.parent?.remove(child)
+        child.parent = this
+        refresh()
+        return this
+    }
+
     override fun add(child: Component): SimplePanel {
         return addInternal(child)
     }
 
+    override fun add(position: Int, child: Component): SimplePanel {
+        return addInternal(position, child)
+    }
+
     override fun addAll(children: List<Component>): SimplePanel {
         this.children.addAll(children)
-        children.map { it.parent = this }
+        children.map {
+            it.parent?.remove(it)
+            it.parent = this
+        }
         refresh()
         return this
     }
 
     override fun remove(child: Component): SimplePanel {
         if (children.remove(child)) {
+            child.clearParent()
+            refresh()
+        }
+        return this
+    }
+
+    override fun removeAt(position: Int): SimplePanel {
+        val child = children.getOrNull(position)
+        if (child != null) {
+            children.removeAt(position)
             child.clearParent()
             refresh()
         }
