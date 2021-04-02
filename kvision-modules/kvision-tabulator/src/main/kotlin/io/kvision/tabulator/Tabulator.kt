@@ -250,7 +250,7 @@ open class Tabulator<T : Any>(
 
     override fun afterDestroy() {
         val page = jsTabulator?.getPage()
-        if (page != false) {
+        if (page != null && page != false) {
             pageSize = jsTabulator?.getPageSize()
             currentPage = page as Number
         }
