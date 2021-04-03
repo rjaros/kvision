@@ -295,7 +295,7 @@ internal inline fun hooks(): Hooks {
  */
 @Suppress("UnsafeCastFromDynamic", "NOTHING_TO_INLINE")
 inline fun snStyle(pairs: List<StringPair>): VNodeStyle {
-    return obj {
+    return if (pairs.isEmpty()) js("{}") else obj {
         pairs.forEach { (key, value) -> this[key] = value }
     }
 }

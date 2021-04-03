@@ -1046,7 +1046,11 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
         }
 
         operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
-            propertyValues[property.name] = value
+            if (value == null) {
+                delete(propertyValues, property.name)
+            } else {
+                propertyValues[property.name] = value
+            }
             refreshFunction(value)
         }
     }

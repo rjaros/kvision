@@ -823,7 +823,11 @@ abstract class StyledComponent {
         }
 
         operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
-            propertyValues[property.name] = value
+            if (value == null) {
+                delete(propertyValues, property.name)
+            } else {
+                propertyValues[property.name] = value
+            }
             refreshFunction(value)
         }
     }
