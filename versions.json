@@ -23,7 +23,7 @@
   "modules": [
     {
       "name": "kvision-bootstrap",
-      "description": "Bootstrap based components.",
+      "description": "Bootstrap based components",
       "excludes": [
         "kvision-onsenui",
         "kvision-onsenui-css"
@@ -31,7 +31,7 @@
     },
     {
       "name": "kvision-bootstrap-css",
-      "description": "Standard Bootstrap CSS styling.",
+      "description": "Standard Bootstrap CSS styling",
       "excludes": [
         "kvision-onsenui",
         "kvision-onsenui-css"
@@ -39,7 +39,7 @@
     },
     {
       "name": "kvision-bootstrap-select",
-      "description": "Bootstrap based advanced select form component.",
+      "description": "Bootstrap based advanced select form component",
       "excludes": [
         "kvision-onsenui",
         "kvision-onsenui-css"
@@ -47,7 +47,7 @@
     },
     {
       "name": "kvision-bootstrap-datetime",
-      "description": "Bootstrap based date and time picker form components.",
+      "description": "Bootstrap based date and time picker form components",
       "excludes": [
         "kvision-onsenui",
         "kvision-onsenui-css"
@@ -55,7 +55,7 @@
     },
     {
       "name": "kvision-bootstrap-spinner",
-      "description": "Bootstrap based spinner form component.",
+      "description": "Bootstrap based spinner form component",
       "excludes": [
         "kvision-onsenui",
         "kvision-onsenui-css"
@@ -63,7 +63,7 @@
     },
     {
       "name": "kvision-bootstrap-upload",
-      "description": "Bootstrap based upload form component.",
+      "description": "Bootstrap based upload form component",
       "excludes": [
         "kvision-onsenui",
         "kvision-onsenui-css"
@@ -71,7 +71,7 @@
     },
     {
       "name": "kvision-bootstrap-typeahead",
-      "description": "Bootstrap based typeahead (autocomplete) form component.",
+      "description": "Bootstrap based typeahead (autocomplete) form component",
       "excludes": [
         "kvision-onsenui",
         "kvision-onsenui-css"
@@ -79,7 +79,7 @@
     },
     {
       "name": "kvision-bootstrap-dialog",
-      "description": "Bootstrap based Dialog form component.",
+      "description": "Bootstrap based Dialog form component",
       "excludes": [
         "kvision-onsenui",
         "kvision-onsenui-css"
@@ -87,11 +87,11 @@
     },
     {
       "name": "kvision-fontawesome",
-      "description": "Font Awesome support."
+      "description": "Font Awesome support"
     },
     {
       "name": "kvision-handlebars",
-      "description": "Handlebars.js templates support for text components."
+      "description": "Handlebars.js templates support"
     },
     {
       "name": "kvision-i18n",
@@ -99,75 +99,75 @@
     },
     {
       "name": "kvision-richtext",
-      "description": "Rich text form component."
+      "description": "Rich text form component"
     },
     {
       "name": "kvision-chart",
-      "description": "Chart component."
+      "description": "Chart component"
     },
     {
       "name": "kvision-datacontainer",
-      "description": "DataContainer component."
+      "description": "DataContainer component"
     },
     {
       "name": "kvision-tabulator",
-      "description": "Tabulator component."
+      "description": "Tabulator component"
     },
     {
       "name": "kvision-moment",
-      "description": "Kotlin language bindings for Moment.js library."
+      "description": "Kotlin language bindings for Moment.js library"
     },
     {
       "name": "kvision-pace",
-      "description": "Pace automatic page loader."
+      "description": "Pace automatic page loader"
     },
     {
       "name": "kvision-redux",
-      "description": "Redux state container.",
+      "description": "Redux state container",
       "excludes": [
         "kvision-redux-kotlin"
       ]
     },
     {
       "name": "kvision-redux-kotlin",
-      "description": "Redux Kotlin state container.",
+      "description": "Redux Kotlin state container",
       "excludes": [
         "kvision-redux"
       ]
     },
     {
       "name": "kvision-event-flow",
-      "description": "Extension functions for coroutines Flow, StateFlow and SharedFlow."
+      "description": "Extension functions for coroutines Flow, StateFlow and SharedFlow"
     },
     {
       "name": "kvision-maps",
-      "description": "A basic module with the Maps component, based on Leaflet library."
+      "description": "Maps component, based on Leaflet library"
     },
     {
       "name": "kvision-toast",
-      "description": "Toast messages."
+      "description": "Toast messages"
     },
     {
       "name": "kvision-print",
-      "description": "Printing support with Print.js library."
+      "description": "Printing support with Print.js library"
     },
     {
       "name": "kvision-routing-navigo",
-      "description": "Routing module based on Navigo 7 library.",
+      "description": "Routing module based on Navigo 7 library",
       "excludes": [
         "kvision-routing-navigo-ng"
       ]
     },
     {
       "name": "kvision-routing-navigo-ng",
-      "description": "Routing module based on Navigo 8+ library.",
+      "description": "Routing module based on Navigo 8+ library",
       "excludes": [
         "kvision-routing-navigo"
       ]
     },
     {
       "name": "kvision-onsenui",
-      "description": "Onsen UI mobile web components.",
+      "description": "Onsen UI mobile web components",
       "excludes": [
         "kvision-bootstrap",
         "kvision-bootstrap-css",
@@ -181,7 +181,7 @@
     },
     {
       "name": "kvision-onsenui-css",
-      "description": "Standard Onsen UI CSS styling.",
+      "description": "Standard Onsen UI CSS styling",
       "excludes": [
         "kvision-bootstrap",
         "kvision-bootstrap-css",
