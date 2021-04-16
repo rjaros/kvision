@@ -40,6 +40,8 @@ import kotlin.coroutines.CoroutineContext
 /**
  * Initialization function for Ktor server.
  */
+fun Application.kvisionInit(vararg modules: Module) = kvisionInit(true, *modules)
+
 fun Application.kvisionInit(initRoutes: Boolean = true, vararg modules: Module) {
     install(ContentNegotiation) {
         json()
