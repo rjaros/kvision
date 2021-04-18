@@ -24,11 +24,13 @@ package test.io.kvision.core
 import io.kvision.core.Col
 import io.kvision.core.Color
 import io.kvision.core.Overflow
+import io.kvision.core.PClass
+import io.kvision.core.PElement
 import io.kvision.core.style
 import io.kvision.core.widget
 import io.kvision.panel.Root
-import io.kvision.utils.px
 import io.kvision.test.DomSpec
+import io.kvision.utils.px
 import kotlinx.browser.document
 import kotlin.test.Test
 
@@ -101,6 +103,48 @@ class StyleSpec : DomSpec {
                         "<div class=\"customclass\"></div>",
                 element?.innerHTML,
                 "Should render correct child style class name"
+            )
+        }
+    }
+
+    @Test
+    fun renderPseudoClass() {
+        run {
+            Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                widget {
+                    style("customclass", PClass.HOVER) {
+                        margin = 2.px
+                        color = Color.name(Col.SILVER)
+                        overflow = Overflow.SCROLL
+                    }
+                }
+            }
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<style>.customclass:hover {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}</style><div class=\"customclass\"></div>",
+                element?.innerHTML,
+                "Should render correct style element with a pseudo class name"
+            )
+        }
+    }
+
+    @Test
+    fun renderPseudoElement() {
+        run {
+            Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                widget {
+                    style("customclass", pElement = PElement.FIRSTLETTER) {
+                        margin = 2.px
+                        color = Color.name(Col.SILVER)
+                        overflow = Overflow.SCROLL
+                    }
+                }
+            }
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<style>.customclass::first-letter {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}</style><div class=\"customclass\"></div>",
+                element?.innerHTML,
+                "Should render correct style element with a pseudo element name"
             )
         }
     }

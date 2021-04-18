@@ -24,15 +24,66 @@ package io.kvision.core
 import kotlin.reflect.KProperty
 
 /**
+ * CSS pseudo classes.
+ */
+enum class PClass(internal val pname: String) {
+    ACTIVE("active"),
+    CHECKED("checked"),
+    DISABLED("disabled"),
+    EMPTY("empty"),
+    ENABLED("enabled"),
+    FIRSTCHILD("first-child"),
+    FIRSTOFTYPE("first-of-type"),
+    FOCUS("focus"),
+    HOVER("hover"),
+    INRANGE("in-range"),
+    INVALID("invalid"),
+    LASTCHILD("last-child"),
+    LASTOFTYPE("last-of-type"),
+    LINK("link"),
+    ONLYOFTYPE("only-of-type"),
+    ONLYCHILD("only-child"),
+    OPTIONAL("optional"),
+    OUTOFRANGE("out-of-range"),
+    READONLY("read-only"),
+    READWRITE("read-write"),
+    REQUIRED("required"),
+    ROOT("root"),
+    TARGET("target"),
+    VALID("valid"),
+    VISITED("visited")
+}
+
+/**
+ * CSS pseudo elements.
+ */
+enum class PElement(internal val pname: String) {
+    AFTER("after"),
+    BEFORE("before"),
+    FIRSTLETTER("first-letter"),
+    FIRSTLINE("first-line"),
+    MARKER("marker"),
+    SELECTION("selection")
+}
+
+/**
  * CSS style object.
  *
  * @constructor
  * @param className optional name of the CSS class, it will be generated if not specified
+ * @param pClass CSS pseudo class
+ * @param pElement CSS pseudo element
  * @param parentStyle parent CSS style object
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-open class Style(className: String? = null, parentStyle: Style? = null, init: (Style.() -> Unit)? = null) :
+open class Style(
+    className: String? = null,
+    pClass: PClass? = null,
+    pElement: PElement? = null,
+    parentStyle: Style? = null,
+    init: (Style.() -> Unit)? = null
+) :
     StyledComponent() {
     private val propertyValues = js("{}")
 
@@ -47,6 +98,21 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
      */
     var className: String by refreshOnUpdate(newClassName)
 
+    /**
+     * The CSS pseudo class.
+     */
+    var pClass by refreshOnUpdate(pClass)
+
+    /**
+     * The name of the custom CSS pseudo class.
+     */
+    var customPClass: String? by refreshOnUpdate()
+
+    /**
+     * The CSS pseudo element.
+     */
+    var pElement by refreshOnUpdate(pElement)
+
     init {
         @Suppress("LeakingThis")
         styles.add(this)
@@ -56,7 +122,9 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
 
     internal fun generateStyle(): String {
         val styles = getSnStyleInternal()
-        return ".$className {\n" + styles.joinToString("\n") {
+        val pseudoElementName = pElement?.let { "::${it.pname}" } ?: ""
+        val pseudoClassName = customPClass?.let { ":$it" } ?: pClass?.let { ":${it.pname}" } ?: ""
+        return ".$className$pseudoElementName$pseudoClassName {\n" + styles.joinToString("\n") {
             "${it.first}: ${it.second};"
         } + "\n}"
     }
@@ -66,7 +134,10 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
         RefreshDelegateProvider<T>(null, refreshFunction)
 
     @Suppress("NOTHING_TO_INLINE")
-    protected inline fun <T> refreshOnUpdate(initialValue: T, noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    protected inline fun <T> refreshOnUpdate(
+        initialValue: T,
+        noinline refreshFunction: ((T) -> Unit) = { this.refresh() }
+    ) =
         RefreshDelegateProvider(initialValue, refreshFunction)
 
     protected inner class RefreshDelegateProvider<T>(
@@ -106,8 +177,13 @@ open class Style(className: String? = null, parentStyle: Style? = null, init: (S
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Widget.style(className: String? = null, init: (Style.() -> Unit)? = null): Style {
-    val style = Style(className, null, init)
+fun Widget.style(
+    className: String? = null,
+    pClass: PClass? = null,
+    pElement: PElement? = null,
+    init: (Style.() -> Unit)? = null
+): Style {
+    val style = Style(className, pClass, pElement, null, init)
     this.addCssStyle(style)
     return style
 }
@@ -117,6 +193,11 @@ fun Widget.style(className: String? = null, init: (Style.() -> Unit)? = null): S
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Style.style(className: String? = null, init: (Style.() -> Unit)? = null): Style {
-    return Style(className, this, init)
+fun Style.style(
+    className: String? = null,
+    pClass: PClass? = null,
+    pElement: PElement? = null,
+    init: (Style.() -> Unit)? = null
+): Style {
+    return Style(className, pClass, pElement, this, init)
 }
