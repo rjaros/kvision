@@ -40,15 +40,15 @@ import kotlin.coroutines.CoroutineContext
 /**
  * Initialization function for Ktor server.
  */
-fun Application.kvisionInit(vararg modules: Module) {
+fun Application.kvisionInit(vararg modules: Module) = kvisionInit(true, *modules)
+
+fun Application.kvisionInit(initRoutes: Boolean = true, vararg modules: Module) {
     install(ContentNegotiation) {
         json()
     }
-    routing {
-        static("/") {
-            resources("assets")
-            defaultResource("assets/index.html")
-        }
+
+    if (initRoutes) {
+        setupStaticRoutes()
     }
 
     @Suppress("SpreadOperator")
@@ -56,6 +56,15 @@ fun Application.kvisionInit(vararg modules: Module) {
 
     intercept(ApplicationCallPipeline.Features) {
         call.attributes.put(injectorKey, injector.createChildInjector(CallModule(call)))
+    }
+}
+
+fun Application.setupStaticRoutes() {
+    routing {
+        static("/") {
+            resources("assets")
+            defaultResource("assets/index.html")
+        }
     }
 }
 
