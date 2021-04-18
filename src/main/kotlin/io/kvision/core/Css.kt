@@ -62,7 +62,28 @@ enum class BorderStyle(internal val borderStyle: String) {
     INSET("inset"),
     OUTSET("outset"),
     INITIAL("initial"),
-    INHERIT("inherit")
+    INHERIT("inherit"),
+    UNSET("unset")
+}
+
+/**
+ * Definitions of CSS outline styles.
+ */
+enum class OutlineStyle(internal val outlineStyle: String) {
+    AUTO("auto"),
+    NONE("none"),
+    HIDDEN("hidden"),
+    DOTTED("dotted"),
+    DASHED("dashed"),
+    SOLID("solid"),
+    DOUBLE("double"),
+    GROOVE("groove"),
+    RIDGE("ridge"),
+    INSET("inset"),
+    OUTSET("outset"),
+    INITIAL("initial"),
+    INHERIT("inherit"),
+    UNSET("unset")
 }
 
 /**
@@ -652,6 +673,25 @@ class Border(
     internal fun asString(): String {
         val w = width?.asString()
         return w.orEmpty() + " " + (style?.borderStyle).orEmpty() + " " + color?.asString().orEmpty()
+    }
+
+    override fun toString() = asString()
+}
+
+/**
+ * Type-safe definition of CSS outline.
+ * @param width width of the outline
+ * @param style style of the outline
+ * @param color color of the outline
+ */
+class Outline(
+    private val width: CssSize? = null, private val style: OutlineStyle? = null,
+    private val color: Color? = null
+) {
+
+    internal fun asString(): String {
+        val w = width?.asString()
+        return w.orEmpty() + " " + (style?.outlineStyle).orEmpty() + " " + color?.asString().orEmpty()
     }
 
     override fun toString() = asString()

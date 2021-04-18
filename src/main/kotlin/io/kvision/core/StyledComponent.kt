@@ -474,6 +474,11 @@ abstract class StyledComponent {
      */
     open var gridArea: String? by refreshOnUpdate()
 
+    /**
+     * Outline of the current component.
+     */
+    open var outline: Outline? by refreshOnUpdate()
+
     private var snStyleCache: List<StringPair>? = null
 
     /**
@@ -749,6 +754,9 @@ abstract class StyledComponent {
             }
             gridArea?.let {
                 snstyle.add("grid-area" to it)
+            }
+            outline?.let {
+                snstyle.add("outline" to it.asString())
             }
             for (key in js("Object").keys(customStyles).unsafeCast<Array<String>>()) {
                 snstyle.add(Pair(key, customStyles[key]))
