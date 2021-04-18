@@ -36,11 +36,19 @@ const val KV_INJECTOR_KEY = "io.kvision.injector.key"
 /**
  * Initialization function for Vert.x server.
  */
+fun Vertx.kvisionInit(router: Router, vararg modules: Module) = kvisionInit(true, router, *modules)
+
+/**
+ * Initialization function for Vert.x server.
+ * @param initStaticResources initialize default static resources
+ */
 fun Vertx.kvisionInit(
+    initStaticResources: Boolean = true,
     router: Router,
     vararg modules: Module
 ) {
-    router.route("/*").last().handler(StaticHandler.create())
+    if (initStaticResources) router.initStaticResources()
+
     router.route("/kv/*").handler(BodyHandler.create(false))
     @Suppress("SpreadOperator")
     val injector = Guice.createInjector(MainModule(this), *modules)
@@ -59,8 +67,21 @@ fun Vertx.kvisionInit(
     server: HttpServer,
     wsServiceManagers: List<KVServiceManager<*>> = emptyList(),
     vararg modules: Module
+) = kvisionInit(true, router, server, wsServiceManagers, *modules)
+
+/**
+ * Initialization function for Vert.x server with support for WebSockets.
+ * @param initStaticResources initialize default static resources
+ */
+fun Vertx.kvisionInit(
+    initStaticResources: Boolean = true,
+    router: Router,
+    server: HttpServer,
+    wsServiceManagers: List<KVServiceManager<*>> = emptyList(),
+    vararg modules: Module
 ) {
-    router.route("/*").last().handler(StaticHandler.create())
+    if (initStaticResources) router.initStaticResources()
+
     router.route("/kv/*").handler(BodyHandler.create(false))
 
     @Suppress("SpreadOperator")
@@ -79,6 +100,13 @@ fun Vertx.kvisionInit(
             }
         }
     }
+}
+
+/**
+ * Initialize default static resources for Vert.x server.
+ */
+fun Router.initStaticResources() {
+    route("/*").last().handler(StaticHandler.create())
 }
 
 internal class MainModule(private val vertx: Vertx) : AbstractModule() {

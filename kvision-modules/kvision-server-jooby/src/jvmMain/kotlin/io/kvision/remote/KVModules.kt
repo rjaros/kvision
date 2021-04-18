@@ -35,15 +35,29 @@ const val KV_INJECTOR_KEY = "io.kvision.injector.key"
 /**
  * Initialization function for Jooby server.
  */
-fun Kooby.kvisionInit(vararg modules: Module) {
-    assets("/", "/assets/index.html")
-    assets("/*", AssetSource.create(javaClass.classLoader, "assets"))
+fun Kooby.kvisionInit(vararg modules: Module) = kvisionInit(true, *modules)
+
+/**
+ * Initialization function for Jooby server.
+ * @param initStaticResources initialize default static resources
+ */
+fun Kooby.kvisionInit(initStaticResources: Boolean = true, vararg modules: Module) {
+    if (initStaticResources) initStaticResources()
+
     install(GuiceModule(MainModule(this), *modules))
     install(JacksonModule())
     before { ctx ->
         val injector = ctx.require(Injector::class.java).createChildInjector(ContextModule(ctx))
         ctx.attribute(KV_INJECTOR_KEY, injector)
     }
+}
+
+/**
+ * Initialize default static resources for Jooby server.
+ */
+fun Kooby.initStaticResources() {
+    assets("/", "/assets/index.html")
+    assets("/*", AssetSource.create(javaClass.classLoader, "assets"))
 }
 
 internal class MainModule(private val kooby: Kooby) : AbstractModule() {

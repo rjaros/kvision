@@ -42,14 +42,16 @@ import kotlin.coroutines.CoroutineContext
  */
 fun Application.kvisionInit(vararg modules: Module) = kvisionInit(true, *modules)
 
-fun Application.kvisionInit(initRoutes: Boolean = true, vararg modules: Module) {
+/**
+ * Initialization function for Ktor server.
+ * @param initStaticResources initialize default static resources
+ */
+fun Application.kvisionInit(initStaticResources: Boolean = true, vararg modules: Module) {
     install(ContentNegotiation) {
         json()
     }
 
-    if (initRoutes) {
-        setupStaticRoutes()
-    }
+    if (initStaticResources) initStaticResources()
 
     @Suppress("SpreadOperator")
     val injector = Guice.createInjector(MainModule(this), *modules)
@@ -59,7 +61,10 @@ fun Application.kvisionInit(initRoutes: Boolean = true, vararg modules: Module) 
     }
 }
 
-fun Application.setupStaticRoutes() {
+/**
+ * Initialize default static resources for Ktor server.
+ */
+fun Application.initStaticResources() {
     routing {
         static("/") {
             resources("assets")

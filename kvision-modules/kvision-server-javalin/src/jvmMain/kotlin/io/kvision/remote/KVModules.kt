@@ -33,8 +33,14 @@ const val KV_INJECTOR_KEY = "io.kvision.injector.key"
 /**
  * Initialization function for Javalin server.
  */
-fun Javalin.kvisionInit(vararg modules: Module) {
-    config.addStaticFiles("/assets")
+fun Javalin.kvisionInit(vararg modules: Module) = kvisionInit(true, *modules)
+
+/**
+ * Initialization function for Javalin server.
+ * @param initStaticResources initialize default static resources
+ */
+fun Javalin.kvisionInit(initStaticResources: Boolean = true, vararg modules: Module) {
+    if (initStaticResources) initStaticResources()
 
     @Suppress("SpreadOperator")
     val injector = Guice.createInjector(MainModule(this), *modules)
@@ -50,6 +56,13 @@ fun Javalin.kvisionInit(vararg modules: Module) {
             )
         }
     }
+}
+
+/**
+ * Initialize default static resources for Javalin server.
+ */
+fun Javalin.initStaticResources() {
+    config.addStaticFiles("/assets")
 }
 
 internal class MainModule(private val javalin: Javalin) : AbstractModule() {
