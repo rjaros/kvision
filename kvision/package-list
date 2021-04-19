@@ -1987,8 +1987,8 @@ $dokka.location:io.kvision.core//removeBsBorder/io.kvision.core.Component#kotlin
 $dokka.location:io.kvision.core//removeBsClearfix/io.kvision.core.Component#/PointingToDeclaration/kvision/io.kvision.core/remove-bs-clearfix.html
 $dokka.location:io.kvision.core//removeBsColor/io.kvision.core.Component#io.kvision.core.BsColor/PointingToDeclaration/kvision/io.kvision.core/remove-bs-color.html
 $dokka.location:io.kvision.core//removeBsRounded/io.kvision.core.Component#kotlin.Array[io.kvision.core.BsRounded]/PointingToDeclaration/kvision/io.kvision.core/remove-bs-rounded.html
-$dokka.location:io.kvision.core//style/io.kvision.core.Style#kotlin.String?#kotlin.Function1[io.kvision.core.Style,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/style.html
-$dokka.location:io.kvision.core//style/io.kvision.core.Widget#kotlin.String?#kotlin.Function1[io.kvision.core.Style,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/style.html
+$dokka.location:io.kvision.core//style/io.kvision.core.Style#kotlin.String?#io.kvision.core.PClass?#io.kvision.core.PElement?#kotlin.String?#kotlin.Function1[io.kvision.core.Style,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/style.html
+$dokka.location:io.kvision.core//style/io.kvision.core.Widget#kotlin.String?#io.kvision.core.PClass?#io.kvision.core.PElement?#kotlin.String?#kotlin.Function1[io.kvision.core.Style,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/style.html
 $dokka.location:io.kvision.core//toJs/io.kvision.core.PopoverOptions#/PointingToDeclaration/kvision/io.kvision.core/to-js.html
 $dokka.location:io.kvision.core//toJs/io.kvision.core.TooltipOptions#/PointingToDeclaration/kvision/io.kvision.core/to-js.html
 $dokka.location:io.kvision.core//widget/io.kvision.core.Container#io.kvision.state.ObservableState[TypeParam(bounds=[kotlin.Any?])]#kotlin.collections.Set[kotlin.String]?#kotlin.String?#kotlin.Function2[io.kvision.core.Widget,TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/widget.html
@@ -2186,6 +2186,10 @@ $dokka.location:io.kvision.core/BorderStyle.SOLID///PointingToDeclaration/kvisi
 $dokka.location:io.kvision.core/BorderStyle.SOLID/borderStyle/#/PointingToDeclaration/kvision/io.kvision.core/-border-style/-s-o-l-i-d/border-style.html
 $dokka.location:io.kvision.core/BorderStyle.SOLID/name/#/PointingToDeclaration/kvision/io.kvision.core/-border-style/-s-o-l-i-d/name.html
 $dokka.location:io.kvision.core/BorderStyle.SOLID/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-border-style/-s-o-l-i-d/ordinal.html
+$dokka.location:io.kvision.core/BorderStyle.UNSET///PointingToDeclaration/kvision/io.kvision.core/-border-style/-u-n-s-e-t/index.html
+$dokka.location:io.kvision.core/BorderStyle.UNSET/borderStyle/#/PointingToDeclaration/kvision/io.kvision.core/-border-style/-u-n-s-e-t/border-style.html
+$dokka.location:io.kvision.core/BorderStyle.UNSET/name/#/PointingToDeclaration/kvision/io.kvision.core/-border-style/-u-n-s-e-t/name.html
+$dokka.location:io.kvision.core/BorderStyle.UNSET/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-border-style/-u-n-s-e-t/ordinal.html
 $dokka.location:io.kvision.core/BorderStyle///PointingToDeclaration/kvision/io.kvision.core/-border-style/index.html
 $dokka.location:io.kvision.core/BsBgColor.DANGER///PointingToDeclaration/kvision/io.kvision.core/-bs-bg-color/-d-a-n-g-e-r/index.html
 $dokka.location:io.kvision.core/BsBgColor.DANGER/className/#/PointingToDeclaration/kvision/io.kvision.core/-bs-bg-color/-d-a-n-g-e-r/class-name.html
@@ -3021,15 +3025,18 @@ $dokka.location:io.kvision.core/Component/removeSurroundingCssClass/#kotlin.Stri
 $dokka.location:io.kvision.core/Component/removeSurroundingCssStyle/#io.kvision.core.Style/PointingToDeclaration/kvision/io.kvision.core/-component/remove-surrounding-css-style.html
 $dokka.location:io.kvision.core/Component/setAttribute/#kotlin.String#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-component/set-attribute.html
 $dokka.location:io.kvision.core/Component/singleRender/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/kvision/io.kvision.core/-component/single-render.html
+$dokka.location:io.kvision.core/Component/singleRenderAsync/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/single-render-async.html
 $dokka.location:io.kvision.core/Component/visible/#/PointingToDeclaration/kvision/io.kvision.core/-component/visible.html
 $dokka.location:io.kvision.core/Container///PointingToDeclaration/kvision/io.kvision.core/-container/index.html
 $dokka.location:io.kvision.core/Container/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.core/-container/add.html
+$dokka.location:io.kvision.core/Container/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.core/-container/add.html
 $dokka.location:io.kvision.core/Container/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.core/-container/add-all.html
 $dokka.location:io.kvision.core/Container/disposeAll/#/PointingToDeclaration/kvision/io.kvision.core/-container/dispose-all.html
 $dokka.location:io.kvision.core/Container/getChildren/#/PointingToDeclaration/kvision/io.kvision.core/-container/get-children.html
 $dokka.location:io.kvision.core/Container/invoke/#kotlin.Array[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.core/-container/invoke.html
 $dokka.location:io.kvision.core/Container/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.core/-container/remove.html
 $dokka.location:io.kvision.core/Container/removeAll/#/PointingToDeclaration/kvision/io.kvision.core/-container/remove-all.html
+$dokka.location:io.kvision.core/Container/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.core/-container/remove-at.html
 $dokka.location:io.kvision.core/Container/unaryPlus/kotlin.String#/PointingToDeclaration/kvision/io.kvision.core/-container/unary-plus.html
 $dokka.location:io.kvision.core/CssClass///PointingToDeclaration/kvision/io.kvision.core/-css-class/index.html
 $dokka.location:io.kvision.core/CssClass/className/#/PointingToDeclaration/kvision/io.kvision.core/-css-class/class-name.html
@@ -3498,6 +3505,66 @@ $dokka.location:io.kvision.core/LineBreak.STRICT/lineBreak/#/PointingToDeclarati
 $dokka.location:io.kvision.core/LineBreak.STRICT/name/#/PointingToDeclaration/kvision/io.kvision.core/-line-break/-s-t-r-i-c-t/name.html
 $dokka.location:io.kvision.core/LineBreak.STRICT/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-line-break/-s-t-r-i-c-t/ordinal.html
 $dokka.location:io.kvision.core/LineBreak///PointingToDeclaration/kvision/io.kvision.core/-line-break/index.html
+$dokka.location:io.kvision.core/Outline///PointingToDeclaration/kvision/io.kvision.core/-outline/index.html
+$dokka.location:io.kvision.core/Outline/Outline/#Pair<Number, UNIT>[kotlin.Number,io.kvision.core.UNIT]?#io.kvision.core.OutlineStyle?#io.kvision.core.Color?/PointingToDeclaration/kvision/io.kvision.core/-outline/-outline.html
+$dokka.location:io.kvision.core/Outline/toString/#/PointingToDeclaration/kvision/io.kvision.core/-outline/to-string.html
+$dokka.location:io.kvision.core/OutlineStyle.AUTO///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-a-u-t-o/index.html
+$dokka.location:io.kvision.core/OutlineStyle.AUTO/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-a-u-t-o/name.html
+$dokka.location:io.kvision.core/OutlineStyle.AUTO/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-a-u-t-o/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.AUTO/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-a-u-t-o/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.DASHED///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-a-s-h-e-d/index.html
+$dokka.location:io.kvision.core/OutlineStyle.DASHED/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-a-s-h-e-d/name.html
+$dokka.location:io.kvision.core/OutlineStyle.DASHED/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-a-s-h-e-d/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.DASHED/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-a-s-h-e-d/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.DOTTED///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-o-t-t-e-d/index.html
+$dokka.location:io.kvision.core/OutlineStyle.DOTTED/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-o-t-t-e-d/name.html
+$dokka.location:io.kvision.core/OutlineStyle.DOTTED/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-o-t-t-e-d/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.DOTTED/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-o-t-t-e-d/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.DOUBLE///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-o-u-b-l-e/index.html
+$dokka.location:io.kvision.core/OutlineStyle.DOUBLE/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-o-u-b-l-e/name.html
+$dokka.location:io.kvision.core/OutlineStyle.DOUBLE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-o-u-b-l-e/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.DOUBLE/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-d-o-u-b-l-e/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.GROOVE///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-g-r-o-o-v-e/index.html
+$dokka.location:io.kvision.core/OutlineStyle.GROOVE/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-g-r-o-o-v-e/name.html
+$dokka.location:io.kvision.core/OutlineStyle.GROOVE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-g-r-o-o-v-e/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.GROOVE/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-g-r-o-o-v-e/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.HIDDEN///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-h-i-d-d-e-n/index.html
+$dokka.location:io.kvision.core/OutlineStyle.HIDDEN/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-h-i-d-d-e-n/name.html
+$dokka.location:io.kvision.core/OutlineStyle.HIDDEN/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-h-i-d-d-e-n/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.HIDDEN/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-h-i-d-d-e-n/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.INHERIT///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-h-e-r-i-t/index.html
+$dokka.location:io.kvision.core/OutlineStyle.INHERIT/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-h-e-r-i-t/name.html
+$dokka.location:io.kvision.core/OutlineStyle.INHERIT/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-h-e-r-i-t/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.INHERIT/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-h-e-r-i-t/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.INITIAL///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-i-t-i-a-l/index.html
+$dokka.location:io.kvision.core/OutlineStyle.INITIAL/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-i-t-i-a-l/name.html
+$dokka.location:io.kvision.core/OutlineStyle.INITIAL/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-i-t-i-a-l/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.INITIAL/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-i-t-i-a-l/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.INSET///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-s-e-t/index.html
+$dokka.location:io.kvision.core/OutlineStyle.INSET/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-s-e-t/name.html
+$dokka.location:io.kvision.core/OutlineStyle.INSET/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-s-e-t/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.INSET/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-i-n-s-e-t/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.NONE///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-n-o-n-e/index.html
+$dokka.location:io.kvision.core/OutlineStyle.NONE/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-n-o-n-e/name.html
+$dokka.location:io.kvision.core/OutlineStyle.NONE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-n-o-n-e/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.NONE/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-n-o-n-e/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.OUTSET///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-o-u-t-s-e-t/index.html
+$dokka.location:io.kvision.core/OutlineStyle.OUTSET/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-o-u-t-s-e-t/name.html
+$dokka.location:io.kvision.core/OutlineStyle.OUTSET/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-o-u-t-s-e-t/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.OUTSET/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-o-u-t-s-e-t/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.RIDGE///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-r-i-d-g-e/index.html
+$dokka.location:io.kvision.core/OutlineStyle.RIDGE/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-r-i-d-g-e/name.html
+$dokka.location:io.kvision.core/OutlineStyle.RIDGE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-r-i-d-g-e/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.RIDGE/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-r-i-d-g-e/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.SOLID///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-s-o-l-i-d/index.html
+$dokka.location:io.kvision.core/OutlineStyle.SOLID/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-s-o-l-i-d/name.html
+$dokka.location:io.kvision.core/OutlineStyle.SOLID/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-s-o-l-i-d/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.SOLID/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-s-o-l-i-d/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle.UNSET///PointingToDeclaration/kvision/io.kvision.core/-outline-style/-u-n-s-e-t/index.html
+$dokka.location:io.kvision.core/OutlineStyle.UNSET/name/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-u-n-s-e-t/name.html
+$dokka.location:io.kvision.core/OutlineStyle.UNSET/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-u-n-s-e-t/ordinal.html
+$dokka.location:io.kvision.core/OutlineStyle.UNSET/outlineStyle/#/PointingToDeclaration/kvision/io.kvision.core/-outline-style/-u-n-s-e-t/outline-style.html
+$dokka.location:io.kvision.core/OutlineStyle///PointingToDeclaration/kvision/io.kvision.core/-outline-style/index.html
 $dokka.location:io.kvision.core/Overflow.AUTO///PointingToDeclaration/kvision/io.kvision.core/-overflow/-a-u-t-o/index.html
 $dokka.location:io.kvision.core/Overflow.AUTO/name/#/PointingToDeclaration/kvision/io.kvision.core/-overflow/-a-u-t-o/name.html
 $dokka.location:io.kvision.core/Overflow.AUTO/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-overflow/-a-u-t-o/ordinal.html
@@ -3536,6 +3603,132 @@ $dokka.location:io.kvision.core/OverflowWrap.NORMAL/name/#/PointingToDeclaration
 $dokka.location:io.kvision.core/OverflowWrap.NORMAL/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-overflow-wrap/-n-o-r-m-a-l/ordinal.html
 $dokka.location:io.kvision.core/OverflowWrap.NORMAL/overflowWrap/#/PointingToDeclaration/kvision/io.kvision.core/-overflow-wrap/-n-o-r-m-a-l/overflow-wrap.html
 $dokka.location:io.kvision.core/OverflowWrap///PointingToDeclaration/kvision/io.kvision.core/-overflow-wrap/index.html
+$dokka.location:io.kvision.core/PClass.ACTIVE///PointingToDeclaration/kvision/io.kvision.core/-p-class/-a-c-t-i-v-e/index.html
+$dokka.location:io.kvision.core/PClass.ACTIVE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-a-c-t-i-v-e/name.html
+$dokka.location:io.kvision.core/PClass.ACTIVE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-a-c-t-i-v-e/ordinal.html
+$dokka.location:io.kvision.core/PClass.ACTIVE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-a-c-t-i-v-e/pname.html
+$dokka.location:io.kvision.core/PClass.CHECKED///PointingToDeclaration/kvision/io.kvision.core/-p-class/-c-h-e-c-k-e-d/index.html
+$dokka.location:io.kvision.core/PClass.CHECKED/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-c-h-e-c-k-e-d/name.html
+$dokka.location:io.kvision.core/PClass.CHECKED/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-c-h-e-c-k-e-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.CHECKED/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-c-h-e-c-k-e-d/pname.html
+$dokka.location:io.kvision.core/PClass.DISABLED///PointingToDeclaration/kvision/io.kvision.core/-p-class/-d-i-s-a-b-l-e-d/index.html
+$dokka.location:io.kvision.core/PClass.DISABLED/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-d-i-s-a-b-l-e-d/name.html
+$dokka.location:io.kvision.core/PClass.DISABLED/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-d-i-s-a-b-l-e-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.DISABLED/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-d-i-s-a-b-l-e-d/pname.html
+$dokka.location:io.kvision.core/PClass.EMPTY///PointingToDeclaration/kvision/io.kvision.core/-p-class/-e-m-p-t-y/index.html
+$dokka.location:io.kvision.core/PClass.EMPTY/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-e-m-p-t-y/name.html
+$dokka.location:io.kvision.core/PClass.EMPTY/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-e-m-p-t-y/ordinal.html
+$dokka.location:io.kvision.core/PClass.EMPTY/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-e-m-p-t-y/pname.html
+$dokka.location:io.kvision.core/PClass.ENABLED///PointingToDeclaration/kvision/io.kvision.core/-p-class/-e-n-a-b-l-e-d/index.html
+$dokka.location:io.kvision.core/PClass.ENABLED/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-e-n-a-b-l-e-d/name.html
+$dokka.location:io.kvision.core/PClass.ENABLED/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-e-n-a-b-l-e-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.ENABLED/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-e-n-a-b-l-e-d/pname.html
+$dokka.location:io.kvision.core/PClass.FIRSTCHILD///PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-i-r-s-t-c-h-i-l-d/index.html
+$dokka.location:io.kvision.core/PClass.FIRSTCHILD/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-i-r-s-t-c-h-i-l-d/name.html
+$dokka.location:io.kvision.core/PClass.FIRSTCHILD/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-i-r-s-t-c-h-i-l-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.FIRSTCHILD/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-i-r-s-t-c-h-i-l-d/pname.html
+$dokka.location:io.kvision.core/PClass.FIRSTOFTYPE///PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-i-r-s-t-o-f-t-y-p-e/index.html
+$dokka.location:io.kvision.core/PClass.FIRSTOFTYPE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-i-r-s-t-o-f-t-y-p-e/name.html
+$dokka.location:io.kvision.core/PClass.FIRSTOFTYPE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-i-r-s-t-o-f-t-y-p-e/ordinal.html
+$dokka.location:io.kvision.core/PClass.FIRSTOFTYPE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-i-r-s-t-o-f-t-y-p-e/pname.html
+$dokka.location:io.kvision.core/PClass.FOCUS///PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-o-c-u-s/index.html
+$dokka.location:io.kvision.core/PClass.FOCUS/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-o-c-u-s/name.html
+$dokka.location:io.kvision.core/PClass.FOCUS/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-o-c-u-s/ordinal.html
+$dokka.location:io.kvision.core/PClass.FOCUS/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-f-o-c-u-s/pname.html
+$dokka.location:io.kvision.core/PClass.HOVER///PointingToDeclaration/kvision/io.kvision.core/-p-class/-h-o-v-e-r/index.html
+$dokka.location:io.kvision.core/PClass.HOVER/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-h-o-v-e-r/name.html
+$dokka.location:io.kvision.core/PClass.HOVER/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-h-o-v-e-r/ordinal.html
+$dokka.location:io.kvision.core/PClass.HOVER/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-h-o-v-e-r/pname.html
+$dokka.location:io.kvision.core/PClass.INRANGE///PointingToDeclaration/kvision/io.kvision.core/-p-class/-i-n-r-a-n-g-e/index.html
+$dokka.location:io.kvision.core/PClass.INRANGE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-i-n-r-a-n-g-e/name.html
+$dokka.location:io.kvision.core/PClass.INRANGE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-i-n-r-a-n-g-e/ordinal.html
+$dokka.location:io.kvision.core/PClass.INRANGE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-i-n-r-a-n-g-e/pname.html
+$dokka.location:io.kvision.core/PClass.INVALID///PointingToDeclaration/kvision/io.kvision.core/-p-class/-i-n-v-a-l-i-d/index.html
+$dokka.location:io.kvision.core/PClass.INVALID/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-i-n-v-a-l-i-d/name.html
+$dokka.location:io.kvision.core/PClass.INVALID/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-i-n-v-a-l-i-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.INVALID/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-i-n-v-a-l-i-d/pname.html
+$dokka.location:io.kvision.core/PClass.LASTCHILD///PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-a-s-t-c-h-i-l-d/index.html
+$dokka.location:io.kvision.core/PClass.LASTCHILD/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-a-s-t-c-h-i-l-d/name.html
+$dokka.location:io.kvision.core/PClass.LASTCHILD/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-a-s-t-c-h-i-l-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.LASTCHILD/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-a-s-t-c-h-i-l-d/pname.html
+$dokka.location:io.kvision.core/PClass.LASTOFTYPE///PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-a-s-t-o-f-t-y-p-e/index.html
+$dokka.location:io.kvision.core/PClass.LASTOFTYPE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-a-s-t-o-f-t-y-p-e/name.html
+$dokka.location:io.kvision.core/PClass.LASTOFTYPE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-a-s-t-o-f-t-y-p-e/ordinal.html
+$dokka.location:io.kvision.core/PClass.LASTOFTYPE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-a-s-t-o-f-t-y-p-e/pname.html
+$dokka.location:io.kvision.core/PClass.LINK///PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-i-n-k/index.html
+$dokka.location:io.kvision.core/PClass.LINK/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-i-n-k/name.html
+$dokka.location:io.kvision.core/PClass.LINK/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-i-n-k/ordinal.html
+$dokka.location:io.kvision.core/PClass.LINK/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-l-i-n-k/pname.html
+$dokka.location:io.kvision.core/PClass.ONLYCHILD///PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-n-l-y-c-h-i-l-d/index.html
+$dokka.location:io.kvision.core/PClass.ONLYCHILD/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-n-l-y-c-h-i-l-d/name.html
+$dokka.location:io.kvision.core/PClass.ONLYCHILD/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-n-l-y-c-h-i-l-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.ONLYCHILD/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-n-l-y-c-h-i-l-d/pname.html
+$dokka.location:io.kvision.core/PClass.ONLYOFTYPE///PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-n-l-y-o-f-t-y-p-e/index.html
+$dokka.location:io.kvision.core/PClass.ONLYOFTYPE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-n-l-y-o-f-t-y-p-e/name.html
+$dokka.location:io.kvision.core/PClass.ONLYOFTYPE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-n-l-y-o-f-t-y-p-e/ordinal.html
+$dokka.location:io.kvision.core/PClass.ONLYOFTYPE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-n-l-y-o-f-t-y-p-e/pname.html
+$dokka.location:io.kvision.core/PClass.OPTIONAL///PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-p-t-i-o-n-a-l/index.html
+$dokka.location:io.kvision.core/PClass.OPTIONAL/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-p-t-i-o-n-a-l/name.html
+$dokka.location:io.kvision.core/PClass.OPTIONAL/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-p-t-i-o-n-a-l/ordinal.html
+$dokka.location:io.kvision.core/PClass.OPTIONAL/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-p-t-i-o-n-a-l/pname.html
+$dokka.location:io.kvision.core/PClass.OUTOFRANGE///PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-u-t-o-f-r-a-n-g-e/index.html
+$dokka.location:io.kvision.core/PClass.OUTOFRANGE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-u-t-o-f-r-a-n-g-e/name.html
+$dokka.location:io.kvision.core/PClass.OUTOFRANGE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-u-t-o-f-r-a-n-g-e/ordinal.html
+$dokka.location:io.kvision.core/PClass.OUTOFRANGE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-o-u-t-o-f-r-a-n-g-e/pname.html
+$dokka.location:io.kvision.core/PClass.READONLY///PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-a-d-o-n-l-y/index.html
+$dokka.location:io.kvision.core/PClass.READONLY/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-a-d-o-n-l-y/name.html
+$dokka.location:io.kvision.core/PClass.READONLY/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-a-d-o-n-l-y/ordinal.html
+$dokka.location:io.kvision.core/PClass.READONLY/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-a-d-o-n-l-y/pname.html
+$dokka.location:io.kvision.core/PClass.READWRITE///PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-a-d-w-r-i-t-e/index.html
+$dokka.location:io.kvision.core/PClass.READWRITE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-a-d-w-r-i-t-e/name.html
+$dokka.location:io.kvision.core/PClass.READWRITE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-a-d-w-r-i-t-e/ordinal.html
+$dokka.location:io.kvision.core/PClass.READWRITE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-a-d-w-r-i-t-e/pname.html
+$dokka.location:io.kvision.core/PClass.REQUIRED///PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-q-u-i-r-e-d/index.html
+$dokka.location:io.kvision.core/PClass.REQUIRED/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-q-u-i-r-e-d/name.html
+$dokka.location:io.kvision.core/PClass.REQUIRED/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-q-u-i-r-e-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.REQUIRED/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-e-q-u-i-r-e-d/pname.html
+$dokka.location:io.kvision.core/PClass.ROOT///PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-o-o-t/index.html
+$dokka.location:io.kvision.core/PClass.ROOT/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-o-o-t/name.html
+$dokka.location:io.kvision.core/PClass.ROOT/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-o-o-t/ordinal.html
+$dokka.location:io.kvision.core/PClass.ROOT/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-r-o-o-t/pname.html
+$dokka.location:io.kvision.core/PClass.TARGET///PointingToDeclaration/kvision/io.kvision.core/-p-class/-t-a-r-g-e-t/index.html
+$dokka.location:io.kvision.core/PClass.TARGET/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-t-a-r-g-e-t/name.html
+$dokka.location:io.kvision.core/PClass.TARGET/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-t-a-r-g-e-t/ordinal.html
+$dokka.location:io.kvision.core/PClass.TARGET/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-t-a-r-g-e-t/pname.html
+$dokka.location:io.kvision.core/PClass.VALID///PointingToDeclaration/kvision/io.kvision.core/-p-class/-v-a-l-i-d/index.html
+$dokka.location:io.kvision.core/PClass.VALID/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-v-a-l-i-d/name.html
+$dokka.location:io.kvision.core/PClass.VALID/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-v-a-l-i-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.VALID/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-v-a-l-i-d/pname.html
+$dokka.location:io.kvision.core/PClass.VISITED///PointingToDeclaration/kvision/io.kvision.core/-p-class/-v-i-s-i-t-e-d/index.html
+$dokka.location:io.kvision.core/PClass.VISITED/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-v-i-s-i-t-e-d/name.html
+$dokka.location:io.kvision.core/PClass.VISITED/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-v-i-s-i-t-e-d/ordinal.html
+$dokka.location:io.kvision.core/PClass.VISITED/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-class/-v-i-s-i-t-e-d/pname.html
+$dokka.location:io.kvision.core/PClass///PointingToDeclaration/kvision/io.kvision.core/-p-class/index.html
+$dokka.location:io.kvision.core/PElement.AFTER///PointingToDeclaration/kvision/io.kvision.core/-p-element/-a-f-t-e-r/index.html
+$dokka.location:io.kvision.core/PElement.AFTER/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-a-f-t-e-r/name.html
+$dokka.location:io.kvision.core/PElement.AFTER/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-a-f-t-e-r/ordinal.html
+$dokka.location:io.kvision.core/PElement.AFTER/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-a-f-t-e-r/pname.html
+$dokka.location:io.kvision.core/PElement.BEFORE///PointingToDeclaration/kvision/io.kvision.core/-p-element/-b-e-f-o-r-e/index.html
+$dokka.location:io.kvision.core/PElement.BEFORE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-b-e-f-o-r-e/name.html
+$dokka.location:io.kvision.core/PElement.BEFORE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-b-e-f-o-r-e/ordinal.html
+$dokka.location:io.kvision.core/PElement.BEFORE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-b-e-f-o-r-e/pname.html
+$dokka.location:io.kvision.core/PElement.FIRSTLETTER///PointingToDeclaration/kvision/io.kvision.core/-p-element/-f-i-r-s-t-l-e-t-t-e-r/index.html
+$dokka.location:io.kvision.core/PElement.FIRSTLETTER/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-f-i-r-s-t-l-e-t-t-e-r/name.html
+$dokka.location:io.kvision.core/PElement.FIRSTLETTER/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-f-i-r-s-t-l-e-t-t-e-r/ordinal.html
+$dokka.location:io.kvision.core/PElement.FIRSTLETTER/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-f-i-r-s-t-l-e-t-t-e-r/pname.html
+$dokka.location:io.kvision.core/PElement.FIRSTLINE///PointingToDeclaration/kvision/io.kvision.core/-p-element/-f-i-r-s-t-l-i-n-e/index.html
+$dokka.location:io.kvision.core/PElement.FIRSTLINE/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-f-i-r-s-t-l-i-n-e/name.html
+$dokka.location:io.kvision.core/PElement.FIRSTLINE/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-f-i-r-s-t-l-i-n-e/ordinal.html
+$dokka.location:io.kvision.core/PElement.FIRSTLINE/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-f-i-r-s-t-l-i-n-e/pname.html
+$dokka.location:io.kvision.core/PElement.MARKER///PointingToDeclaration/kvision/io.kvision.core/-p-element/-m-a-r-k-e-r/index.html
+$dokka.location:io.kvision.core/PElement.MARKER/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-m-a-r-k-e-r/name.html
+$dokka.location:io.kvision.core/PElement.MARKER/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-m-a-r-k-e-r/ordinal.html
+$dokka.location:io.kvision.core/PElement.MARKER/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-m-a-r-k-e-r/pname.html
+$dokka.location:io.kvision.core/PElement.SELECTION///PointingToDeclaration/kvision/io.kvision.core/-p-element/-s-e-l-e-c-t-i-o-n/index.html
+$dokka.location:io.kvision.core/PElement.SELECTION/name/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-s-e-l-e-c-t-i-o-n/name.html
+$dokka.location:io.kvision.core/PElement.SELECTION/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-s-e-l-e-c-t-i-o-n/ordinal.html
+$dokka.location:io.kvision.core/PElement.SELECTION/pname/#/PointingToDeclaration/kvision/io.kvision.core/-p-element/-s-e-l-e-c-t-i-o-n/pname.html
+$dokka.location:io.kvision.core/PElement///PointingToDeclaration/kvision/io.kvision.core/-p-element/index.html
 $dokka.location:io.kvision.core/Placement.AUTO///PointingToDeclaration/kvision/io.kvision.core/-placement/-a-u-t-o/index.html
 $dokka.location:io.kvision.core/Placement.AUTO/name/#/PointingToDeclaration/kvision/io.kvision.core/-placement/-a-u-t-o/name.html
 $dokka.location:io.kvision.core/Placement.AUTO/ordinal/#/PointingToDeclaration/kvision/io.kvision.core/-placement/-a-u-t-o/ordinal.html
@@ -3641,8 +3834,12 @@ $dokka.location:io.kvision.core/SingleObjectCache/clearOn/#kotlin.Function0[kotl
 $dokka.location:io.kvision.core/SingleObjectCache/value/#/PointingToDeclaration/kvision/io.kvision.core/-single-object-cache/value.html
 $dokka.location:io.kvision.core/Style.Companion///PointingToDeclaration/kvision/io.kvision.core/-style/-companion/index.html
 $dokka.location:io.kvision.core/Style///PointingToDeclaration/kvision/io.kvision.core/-style/index.html
-$dokka.location:io.kvision.core/Style/Style/#kotlin.String?#io.kvision.core.Style?#kotlin.Function1[io.kvision.core.Style,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/-style/-style.html
+$dokka.location:io.kvision.core/Style/Style/#kotlin.String?#io.kvision.core.PClass?#io.kvision.core.PElement?#io.kvision.core.Style?#kotlin.String?#kotlin.Function1[io.kvision.core.Style,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/-style/-style.html
 $dokka.location:io.kvision.core/Style/className/#/PointingToDeclaration/kvision/io.kvision.core/-style/class-name.html
+$dokka.location:io.kvision.core/Style/customPClass/#/PointingToDeclaration/kvision/io.kvision.core/-style/custom-p-class.html
+$dokka.location:io.kvision.core/Style/mediaQuery/#/PointingToDeclaration/kvision/io.kvision.core/-style/media-query.html
+$dokka.location:io.kvision.core/Style/pClass/#/PointingToDeclaration/kvision/io.kvision.core/-style/p-class.html
+$dokka.location:io.kvision.core/Style/pElement/#/PointingToDeclaration/kvision/io.kvision.core/-style/p-element.html
 $dokka.location:io.kvision.core/StyledComponent.Companion///PointingToDeclaration/kvision/io.kvision.core/-styled-component/-companion/index.html
 $dokka.location:io.kvision.core/StyledComponent///PointingToDeclaration/kvision/io.kvision.core/-styled-component/index.html
 $dokka.location:io.kvision.core/StyledComponent/StyledComponent/#/PointingToDeclaration/kvision/io.kvision.core/-styled-component/-styled-component.html
@@ -3707,6 +3904,7 @@ $dokka.location:io.kvision.core/StyledComponent/minHeight/#/PointingToDeclaratio
 $dokka.location:io.kvision.core/StyledComponent/minWidth/#/PointingToDeclaration/kvision/io.kvision.core/-styled-component/min-width.html
 $dokka.location:io.kvision.core/StyledComponent/opacity/#/PointingToDeclaration/kvision/io.kvision.core/-styled-component/opacity.html
 $dokka.location:io.kvision.core/StyledComponent/order/#/PointingToDeclaration/kvision/io.kvision.core/-styled-component/order.html
+$dokka.location:io.kvision.core/StyledComponent/outline/#/PointingToDeclaration/kvision/io.kvision.core/-styled-component/outline.html
 $dokka.location:io.kvision.core/StyledComponent/overflow/#/PointingToDeclaration/kvision/io.kvision.core/-styled-component/overflow.html
 $dokka.location:io.kvision.core/StyledComponent/overflowWrap/#/PointingToDeclaration/kvision/io.kvision.core/-styled-component/overflow-wrap.html
 $dokka.location:io.kvision.core/StyledComponent/padding/#/PointingToDeclaration/kvision/io.kvision.core/-styled-component/padding.html
@@ -4098,6 +4296,7 @@ $dokka.location:io.kvision.core/Widget/showAnim/#kotlin.Int#io.kvision.core.Easi
 $dokka.location:io.kvision.core/Widget/showPopover/#/PointingToDeclaration/kvision/io.kvision.core/-widget/show-popover.html
 $dokka.location:io.kvision.core/Widget/showTooltip/#/PointingToDeclaration/kvision/io.kvision.core/-widget/show-tooltip.html
 $dokka.location:io.kvision.core/Widget/singleRender/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/kvision/io.kvision.core/-widget/single-render.html
+$dokka.location:io.kvision.core/Widget/singleRenderAsync/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/single-render-async.html
 $dokka.location:io.kvision.core/Widget/slideDown/#kotlin.Int#io.kvision.core.Easing#kotlin.Function0[kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/-widget/slide-down.html
 $dokka.location:io.kvision.core/Widget/slideUp/#kotlin.Int#io.kvision.core.Easing#kotlin.Function0[kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/-widget/slide-up.html
 $dokka.location:io.kvision.core/Widget/tabindex/#/PointingToDeclaration/kvision/io.kvision.core/-widget/tabindex.html
@@ -4129,6 +4328,7 @@ $dokka.location:io.kvision.data/DataComponent///PointingToDeclaration/kvision/i
 $dokka.location:io.kvision.data/DataContainer///PointingToDeclaration/kvision/io.kvision.data/-data-container/index.html
 $dokka.location:io.kvision.data/DataContainer/DataContainer/#kotlin.collections.MutableList[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function4[io.kvision.core.Container,TypeParam(bounds=[kotlin.Any?]),kotlin.Int,kotlin.collections.MutableList[TypeParam(bounds=[kotlin.Any?])],TypeParam(bounds=[io.kvision.core.Component])]#TypeParam(bounds=[io.kvision.core.Container])#kotlin.Function3[TypeParam(bounds=[io.kvision.core.Container]),TypeParam(bounds=[io.kvision.core.Component]),TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]?#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Boolean]?#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Comparable[*]?]?#kotlin.Function0[io.kvision.data.SorterType]#kotlin.Function1[io.kvision.data.DataContainer[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[io.kvision.core.Component]),TypeParam(bounds=[io.kvision.core.Container])],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.data/-data-container/-data-container.html
 $dokka.location:io.kvision.data/DataContainer/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.data/-data-container/add.html
+$dokka.location:io.kvision.data/DataContainer/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.data/-data-container/add.html
 $dokka.location:io.kvision.data/DataContainer/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.data/-data-container/add-all.html
 $dokka.location:io.kvision.data/DataContainer/clearOnUpdate/#/PointingToDeclaration/kvision/io.kvision.data/-data-container/clear-on-update.html
 $dokka.location:io.kvision.data/DataContainer/disposeAll/#/PointingToDeclaration/kvision/io.kvision.data/-data-container/dispose-all.html
@@ -4136,6 +4336,7 @@ $dokka.location:io.kvision.data/DataContainer/getChildren/#/PointingToDeclaratio
 $dokka.location:io.kvision.data/DataContainer/onUpdate/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.data/-data-container/on-update.html
 $dokka.location:io.kvision.data/DataContainer/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.data/-data-container/remove.html
 $dokka.location:io.kvision.data/DataContainer/removeAll/#/PointingToDeclaration/kvision/io.kvision.data/-data-container/remove-all.html
+$dokka.location:io.kvision.data/DataContainer/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.data/-data-container/remove-at.html
 $dokka.location:io.kvision.data/DataContainer/update/#/PointingToDeclaration/kvision/io.kvision.data/-data-container/update.html
 $dokka.location:io.kvision.data/DataContainer/visible/#/PointingToDeclaration/kvision/io.kvision.data/-data-container/visible.html
 $dokka.location:io.kvision.data/DataUpdatable///PointingToDeclaration/kvision/io.kvision.data/-data-updatable/index.html
@@ -4202,6 +4403,7 @@ $dokka.location:io.kvision.dropdown/DropDown.Companion///PointingToDeclaration/
 $dokka.location:io.kvision.dropdown/DropDown///PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/index.html
 $dokka.location:io.kvision.dropdown/DropDown/DropDown/#kotlin.String#kotlin.collections.List[Pair<String, String>[kotlin.String,kotlin.String]]?#kotlin.String?#io.kvision.html.ButtonStyle#io.kvision.dropdown.Direction#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.dropdown.DropDown,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/-drop-down.html
 $dokka.location:io.kvision.dropdown/DropDown/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/add.html
+$dokka.location:io.kvision.dropdown/DropDown/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/add.html
 $dokka.location:io.kvision.dropdown/DropDown/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/add-all.html
 $dokka.location:io.kvision.dropdown/DropDown/block/#/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/block.html
 $dokka.location:io.kvision.dropdown/DropDown/button/#/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/button.html
@@ -4216,6 +4418,7 @@ $dokka.location:io.kvision.dropdown/DropDown/icon/#/PointingToDeclaration/kvisi
 $dokka.location:io.kvision.dropdown/DropDown/image/#/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/image.html
 $dokka.location:io.kvision.dropdown/DropDown/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/remove.html
 $dokka.location:io.kvision.dropdown/DropDown/removeAll/#/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/remove-all.html
+$dokka.location:io.kvision.dropdown/DropDown/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/remove-at.html
 $dokka.location:io.kvision.dropdown/DropDown/size/#/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/size.html
 $dokka.location:io.kvision.dropdown/DropDown/style/#/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/style.html
 $dokka.location:io.kvision.dropdown/DropDown/text/#/PointingToDeclaration/kvision/io.kvision.dropdown/-drop-down/text.html
@@ -7323,6 +7526,7 @@ $dokka.location:io.kvision.form.check/GenericRadioGroup.Companion///PointingToDe
 $dokka.location:io.kvision.form.check/GenericRadioGroup///PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/index.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/GenericRadioGroup/#kotlin.collections.List[Pair<T, String>[TypeParam(bounds=[kotlin.Any?]),kotlin.String]]?#TypeParam(bounds=[kotlin.Any?])?#kotlin.String?#kotlin.Boolean#kotlin.String?#kotlin.Boolean#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.String]#kotlin.Function1[kotlin.String,TypeParam(bounds=[kotlin.Any?])?]#kotlin.Function1[io.kvision.form.check.GenericRadioGroup[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/-generic-radio-group.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/add.html
+$dokka.location:io.kvision.form.check/GenericRadioGroup/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/add.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/add-all.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/blur/#/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/blur.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/disabled/#/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/disabled.html
@@ -7340,6 +7544,7 @@ $dokka.location:io.kvision.form.check/GenericRadioGroup/name/#/PointingToDeclara
 $dokka.location:io.kvision.form.check/GenericRadioGroup/options/#/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/options.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/remove.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/removeAll/#/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/remove-all.html
+$dokka.location:io.kvision.form.check/GenericRadioGroup/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/remove-at.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/rich/#/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/rich.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/setState/#TypeParam(bounds=[kotlin.Any?])?/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/set-state.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/size/#/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/size.html
@@ -7546,6 +7751,7 @@ $dokka.location:io.kvision.form.select/Select.Companion///PointingToDeclaration/
 $dokka.location:io.kvision.form.select/Select///PointingToDeclaration/kvision/io.kvision.form.select/-select/index.html
 $dokka.location:io.kvision.form.select/Select/Select/#kotlin.collections.List[Pair<String, String>[kotlin.String,kotlin.String]]?#kotlin.String?#kotlin.String?#kotlin.Boolean#io.kvision.form.select.AjaxOptions?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.select.Select,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.select/-select/-select.html
 $dokka.location:io.kvision.form.select/Select/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select/add.html
+$dokka.location:io.kvision.form.select/Select/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select/add.html
 $dokka.location:io.kvision.form.select/Select/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.form.select/-select/add-all.html
 $dokka.location:io.kvision.form.select/Select/ajaxOptions/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/ajax-options.html
 $dokka.location:io.kvision.form.select/Select/autofocus/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/autofocus.html
@@ -7568,6 +7774,7 @@ $dokka.location:io.kvision.form.select/Select/options/#/PointingToDeclaration/k
 $dokka.location:io.kvision.form.select/Select/placeholder/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/placeholder.html
 $dokka.location:io.kvision.form.select/Select/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select/remove.html
 $dokka.location:io.kvision.form.select/Select/removeAll/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/remove-all.html
+$dokka.location:io.kvision.form.select/Select/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.select/-select/remove-at.html
 $dokka.location:io.kvision.form.select/Select/removeEventListener/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.select/-select/remove-event-listener.html
 $dokka.location:io.kvision.form.select/Select/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/remove-event-listeners.html
 $dokka.location:io.kvision.form.select/Select/rich/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/rich.html
@@ -7594,6 +7801,7 @@ $dokka.location:io.kvision.form.select/SelectDropdownAlign///PointingToDeclarati
 $dokka.location:io.kvision.form.select/SelectInput///PointingToDeclaration/kvision/io.kvision.form.select/-select-input/index.html
 $dokka.location:io.kvision.form.select/SelectInput/SelectInput/#kotlin.collections.List[Pair<String, String>[kotlin.String,kotlin.String]]?#kotlin.String?#kotlin.Boolean#io.kvision.form.select.AjaxOptions?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.form.select.SelectInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/-select-input.html
 $dokka.location:io.kvision.form.select/SelectInput/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/add.html
+$dokka.location:io.kvision.form.select/SelectInput/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/add.html
 $dokka.location:io.kvision.form.select/SelectInput/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/add-all.html
 $dokka.location:io.kvision.form.select/SelectInput/ajaxOptions/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/ajax-options.html
 $dokka.location:io.kvision.form.select/SelectInput/autofocus/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/autofocus.html
@@ -7610,6 +7818,7 @@ $dokka.location:io.kvision.form.select/SelectInput/options/#/PointingToDeclarati
 $dokka.location:io.kvision.form.select/SelectInput/placeholder/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/placeholder.html
 $dokka.location:io.kvision.form.select/SelectInput/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/remove.html
 $dokka.location:io.kvision.form.select/SelectInput/removeAll/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/remove-all.html
+$dokka.location:io.kvision.form.select/SelectInput/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/remove-at.html
 $dokka.location:io.kvision.form.select/SelectInput/selectWidth/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/select-width.html
 $dokka.location:io.kvision.form.select/SelectInput/selectWidthType/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/select-width-type.html
 $dokka.location:io.kvision.form.select/SelectInput/selectedIndex/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/selected-index.html
@@ -7640,6 +7849,7 @@ $dokka.location:io.kvision.form.select/SelectRemote.Companion///PointingToDeclar
 $dokka.location:io.kvision.form.select/SelectRemote///PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/index.html
 $dokka.location:io.kvision.form.select/SelectRemote/SelectRemote/#KVServiceMgr<T>[TypeParam(bounds=[kotlin.Any])]#kotlin.coroutines.SuspendFunction4[TypeParam(bounds=[kotlin.Any]),kotlin.String?,kotlin.String?,kotlin.String?,kotlin.collections.List[RemoteOption]]#kotlin.Function0[kotlin.String]?#kotlin.String?#kotlin.String?#kotlin.Boolean#io.kvision.form.select.AjaxOptions?#kotlin.Boolean#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.select.SelectRemote[TypeParam(bounds=[kotlin.Any])],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/-select-remote.html
 $dokka.location:io.kvision.form.select/SelectRemote/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/add.html
+$dokka.location:io.kvision.form.select/SelectRemote/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/add.html
 $dokka.location:io.kvision.form.select/SelectRemote/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/add-all.html
 $dokka.location:io.kvision.form.select/SelectRemote/autofocus/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/autofocus.html
 $dokka.location:io.kvision.form.select/SelectRemote/blur/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/blur.html
@@ -7659,6 +7869,7 @@ $dokka.location:io.kvision.form.select/SelectRemote/multiple/#/PointingToDeclara
 $dokka.location:io.kvision.form.select/SelectRemote/placeholder/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/placeholder.html
 $dokka.location:io.kvision.form.select/SelectRemote/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/remove.html
 $dokka.location:io.kvision.form.select/SelectRemote/removeAll/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/remove-all.html
+$dokka.location:io.kvision.form.select/SelectRemote/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/remove-at.html
 $dokka.location:io.kvision.form.select/SelectRemote/removeEventListener/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/remove-event-listener.html
 $dokka.location:io.kvision.form.select/SelectRemote/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/remove-event-listeners.html
 $dokka.location:io.kvision.form.select/SelectRemote/rich/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-remote/rich.html
@@ -7686,6 +7897,7 @@ $dokka.location:io.kvision.form.select/SimpleSelect.Companion///PointingToDeclar
 $dokka.location:io.kvision.form.select/SimpleSelect///PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/index.html
 $dokka.location:io.kvision.form.select/SimpleSelect/SimpleSelect/#kotlin.collections.List[Pair<String, String>[kotlin.String,kotlin.String]]?#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.select.SimpleSelect,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/-simple-select.html
 $dokka.location:io.kvision.form.select/SimpleSelect/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/add.html
+$dokka.location:io.kvision.form.select/SimpleSelect/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/add.html
 $dokka.location:io.kvision.form.select/SimpleSelect/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/add-all.html
 $dokka.location:io.kvision.form.select/SimpleSelect/autofocus/#/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/autofocus.html
 $dokka.location:io.kvision.form.select/SimpleSelect/blur/#/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/blur.html
@@ -7702,6 +7914,7 @@ $dokka.location:io.kvision.form.select/SimpleSelect/multiple/#/PointingToDeclara
 $dokka.location:io.kvision.form.select/SimpleSelect/options/#/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/options.html
 $dokka.location:io.kvision.form.select/SimpleSelect/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/remove.html
 $dokka.location:io.kvision.form.select/SimpleSelect/removeAll/#/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/remove-all.html
+$dokka.location:io.kvision.form.select/SimpleSelect/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/remove-at.html
 $dokka.location:io.kvision.form.select/SimpleSelect/removeEventListener/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/remove-event-listener.html
 $dokka.location:io.kvision.form.select/SimpleSelect/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/remove-event-listeners.html
 $dokka.location:io.kvision.form.select/SimpleSelect/rich/#/PointingToDeclaration/kvision/io.kvision.form.select/-simple-select/rich.html
@@ -7967,6 +8180,10 @@ $dokka.location:io.kvision.form.text/TextInputType.EMAIL///PointingToDeclaration
 $dokka.location:io.kvision.form.text/TextInputType.EMAIL/name/#/PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-e-m-a-i-l/name.html
 $dokka.location:io.kvision.form.text/TextInputType.EMAIL/ordinal/#/PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-e-m-a-i-l/ordinal.html
 $dokka.location:io.kvision.form.text/TextInputType.EMAIL/type/#/PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-e-m-a-i-l/type.html
+$dokka.location:io.kvision.form.text/TextInputType.HIDDEN///PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-h-i-d-d-e-n/index.html
+$dokka.location:io.kvision.form.text/TextInputType.HIDDEN/name/#/PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-h-i-d-d-e-n/name.html
+$dokka.location:io.kvision.form.text/TextInputType.HIDDEN/ordinal/#/PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-h-i-d-d-e-n/ordinal.html
+$dokka.location:io.kvision.form.text/TextInputType.HIDDEN/type/#/PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-h-i-d-d-e-n/type.html
 $dokka.location:io.kvision.form.text/TextInputType.PASSWORD///PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-p-a-s-s-w-o-r-d/index.html
 $dokka.location:io.kvision.form.text/TextInputType.PASSWORD/name/#/PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-p-a-s-s-w-o-r-d/name.html
 $dokka.location:io.kvision.form.text/TextInputType.PASSWORD/ordinal/#/PointingToDeclaration/kvision/io.kvision.form.text/-text-input-type/-p-a-s-s-w-o-r-d/ordinal.html
@@ -8339,6 +8556,7 @@ $dokka.location:io.kvision.form/FormPanel/bind/TypeParam(bounds=[io.kvision.form
 $dokka.location:io.kvision.form/FormPanel/bind/TypeParam(bounds=[io.kvision.form.NumberFormControl])#kotlin.reflect.KProperty1[TypeParam(bounds=[kotlin.Any]),kotlin.Number?]#kotlin.Boolean#kotlin.String?#io.kvision.form.FormType?#kotlin.Function1[TypeParam(bounds=[io.kvision.form.NumberFormControl]),kotlin.String?]?#kotlin.Function1[TypeParam(bounds=[io.kvision.form.NumberFormControl]),kotlin.Boolean?]?/PointingToDeclaration/kvision/io.kvision.form/-form-panel/bind.html
 $dokka.location:io.kvision.form/FormPanel/bind/TypeParam(bounds=[io.kvision.form.StringFormControl])#kotlin.reflect.KProperty1[TypeParam(bounds=[kotlin.Any]),kotlin.String?]#kotlin.Boolean#kotlin.String?#io.kvision.form.FormType?#kotlin.Function1[TypeParam(bounds=[io.kvision.form.StringFormControl]),kotlin.String?]?#kotlin.Function1[TypeParam(bounds=[io.kvision.form.StringFormControl]),kotlin.Boolean?]?/PointingToDeclaration/kvision/io.kvision.form/-form-panel/bind.html
 $dokka.location:io.kvision.form/FormPanel/bindCustom/TypeParam(bounds=[io.kvision.form.StringFormControl])#kotlin.reflect.KProperty1[TypeParam(bounds=[kotlin.Any]),kotlin.Any?]#kotlin.Boolean#kotlin.String?#io.kvision.form.FormType?#kotlin.Function1[TypeParam(bounds=[io.kvision.form.StringFormControl]),kotlin.String?]?#kotlin.Function1[TypeParam(bounds=[io.kvision.form.StringFormControl]),kotlin.Boolean?]?/PointingToDeclaration/kvision/io.kvision.form/-form-panel/bind-custom.html
+$dokka.location:io.kvision.form/FormPanel/checkValidity/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/check-validity.html
 $dokka.location:io.kvision.form/FormPanel/clearData/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/clear-data.html
 $dokka.location:io.kvision.form/FormPanel/clearValidation/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/clear-validation.html
 $dokka.location:io.kvision.form/FormPanel/condensed/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/condensed.html
@@ -8353,7 +8571,10 @@ $dokka.location:io.kvision.form/FormPanel/name/#/PointingToDeclaration/kvision/
 $dokka.location:io.kvision.form/FormPanel/novalidate/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/novalidate.html
 $dokka.location:io.kvision.form/FormPanel/remove/#kotlin.reflect.KProperty1[TypeParam(bounds=[kotlin.Any]),*]/PointingToDeclaration/kvision/io.kvision.form/-form-panel/remove.html
 $dokka.location:io.kvision.form/FormPanel/removeAll/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/remove-all.html
+$dokka.location:io.kvision.form/FormPanel/reportValidity/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/report-validity.html
+$dokka.location:io.kvision.form/FormPanel/reset/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/reset.html
 $dokka.location:io.kvision.form/FormPanel/setData/#TypeParam(bounds=[kotlin.Any])/PointingToDeclaration/kvision/io.kvision.form/-form-panel/set-data.html
+$dokka.location:io.kvision.form/FormPanel/submit/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/submit.html
 $dokka.location:io.kvision.form/FormPanel/target/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/target.html
 $dokka.location:io.kvision.form/FormPanel/unbind/#kotlin.reflect.KProperty1[TypeParam(bounds=[kotlin.Any]),*]/PointingToDeclaration/kvision/io.kvision.form/-form-panel/unbind.html
 $dokka.location:io.kvision.form/FormPanel/validate/#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form/-form-panel/validate.html
@@ -9076,6 +9297,7 @@ $dokka.location:io.kvision.html/Tag///PointingToDeclaration/kvision/io.kvision.
 $dokka.location:io.kvision.html/Tag/Tag/#io.kvision.html.TAG#kotlin.String?#kotlin.Boolean#io.kvision.html.Align?#kotlin.collections.Set[kotlin.String]#kotlin.collections.Map[kotlin.String,kotlin.String]?#kotlin.Function1[io.kvision.html.Tag,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.html/-tag/-tag.html
 $dokka.location:io.kvision.html/Tag/align/#/PointingToDeclaration/kvision/io.kvision.html/-tag/align.html
 $dokka.location:io.kvision.html/Tag/content/#/PointingToDeclaration/kvision/io.kvision.html/-tag/content.html
+$dokka.location:io.kvision.html/Tag/focus/#/PointingToDeclaration/kvision/io.kvision.html/-tag/focus.html
 $dokka.location:io.kvision.html/Tag/rich/#/PointingToDeclaration/kvision/io.kvision.html/-tag/rich.html
 $dokka.location:io.kvision.html/Tag/template/#/PointingToDeclaration/kvision/io.kvision.html/-tag/template.html
 $dokka.location:io.kvision.html/Tag/templates/#/PointingToDeclaration/kvision/io.kvision.html/-tag/templates.html
@@ -9474,6 +9696,7 @@ $dokka.location:io.kvision.modal/Dialog/setResult/#TypeParam(bounds=[kotlin.Any?
 $dokka.location:io.kvision.modal/Modal///PointingToDeclaration/kvision/io.kvision.modal/-modal/index.html
 $dokka.location:io.kvision.modal/Modal/Modal/#kotlin.String?#kotlin.Boolean#io.kvision.modal.ModalSize?#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.modal.Modal,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.modal/-modal/-modal.html
 $dokka.location:io.kvision.modal/Modal/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.modal/-modal/add.html
+$dokka.location:io.kvision.modal/Modal/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.modal/-modal/add.html
 $dokka.location:io.kvision.modal/Modal/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.modal/-modal/add-all.html
 $dokka.location:io.kvision.modal/Modal/addButton/#io.kvision.html.Button/PointingToDeclaration/kvision/io.kvision.modal/-modal/add-button.html
 $dokka.location:io.kvision.modal/Modal/animation/#/PointingToDeclaration/kvision/io.kvision.modal/-modal/animation.html
@@ -9489,6 +9712,7 @@ $dokka.location:io.kvision.modal/Modal/parent/#/PointingToDeclaration/kvision/i
 $dokka.location:io.kvision.modal/Modal/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.modal/-modal/remove.html
 $dokka.location:io.kvision.modal/Modal/removeAll/#/PointingToDeclaration/kvision/io.kvision.modal/-modal/remove-all.html
 $dokka.location:io.kvision.modal/Modal/removeAllButtons/#/PointingToDeclaration/kvision/io.kvision.modal/-modal/remove-all-buttons.html
+$dokka.location:io.kvision.modal/Modal/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.modal/-modal/remove-at.html
 $dokka.location:io.kvision.modal/Modal/removeButton/#io.kvision.html.Button/PointingToDeclaration/kvision/io.kvision.modal/-modal/remove-button.html
 $dokka.location:io.kvision.modal/Modal/scrollable/#/PointingToDeclaration/kvision/io.kvision.modal/-modal/scrollable.html
 $dokka.location:io.kvision.modal/Modal/size/#/PointingToDeclaration/kvision/io.kvision.modal/-modal/size.html
@@ -9589,6 +9813,7 @@ $dokka.location:io.kvision.navbar/Navbar.Companion///PointingToDeclaration/kvis
 $dokka.location:io.kvision.navbar/Navbar///PointingToDeclaration/kvision/io.kvision.navbar/-navbar/index.html
 $dokka.location:io.kvision.navbar/Navbar/Navbar/#kotlin.String?#kotlin.String?#io.kvision.navbar.NavbarType?#io.kvision.navbar.NavbarExpand?#io.kvision.navbar.NavbarColor#io.kvision.core.BsBgColor#kotlin.Boolean#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.navbar.Navbar,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/-navbar.html
 $dokka.location:io.kvision.navbar/Navbar/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/add.html
+$dokka.location:io.kvision.navbar/Navbar/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/add.html
 $dokka.location:io.kvision.navbar/Navbar/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/add-all.html
 $dokka.location:io.kvision.navbar/Navbar/bgColor/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/bg-color.html
 $dokka.location:io.kvision.navbar/Navbar/disposeAll/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/dispose-all.html
@@ -9599,6 +9824,7 @@ $dokka.location:io.kvision.navbar/Navbar/link/#/PointingToDeclaration/kvision/i
 $dokka.location:io.kvision.navbar/Navbar/nColor/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/n-color.html
 $dokka.location:io.kvision.navbar/Navbar/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/remove.html
 $dokka.location:io.kvision.navbar/Navbar/removeAll/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/remove-all.html
+$dokka.location:io.kvision.navbar/Navbar/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/remove-at.html
 $dokka.location:io.kvision.navbar/Navbar/type/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/type.html
 $dokka.location:io.kvision.navbar/NavbarColor.DARK///PointingToDeclaration/kvision/io.kvision.navbar/-navbar-color/-d-a-r-k/index.html
 $dokka.location:io.kvision.navbar/NavbarColor.DARK/name/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar-color/-d-a-r-k/name.html
@@ -9652,6 +9878,7 @@ $dokka.location:io.kvision.onsenui.carousel//carouselItem/io.kvision.onsenui.car
 $dokka.location:io.kvision.onsenui.carousel/Carousel///PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/index.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/Carousel/#io.kvision.onsenui.carousel.CarouselDirection?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.onsenui.carousel.Carousel,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/-carousel.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/add.html
+$dokka.location:io.kvision.onsenui.carousel/Carousel/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/add.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/add-all.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/animation/#/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/animation.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/autoRefresh/#/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/auto-refresh.html
@@ -9678,6 +9905,7 @@ $dokka.location:io.kvision.onsenui.carousel/Carousel/prev/#kotlin.Any/PointingTo
 $dokka.location:io.kvision.onsenui.carousel/Carousel/refreshCarousel/#/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/refresh-carousel.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/remove.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/removeAll/#/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/remove-all.html
+$dokka.location:io.kvision.onsenui.carousel/Carousel/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/remove-at.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/setActiveIndex/#kotlin.Int#kotlin.Any/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/set-active-index.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/swipeable/#/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/swipeable.html
 $dokka.location:io.kvision.onsenui.carousel/Carousel/swiperPanel/#/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/-carousel/swiper-panel.html
@@ -9839,6 +10067,7 @@ $dokka.location:io.kvision.onsenui.core/Navigator/topPage/#/PointingToDeclaratio
 $dokka.location:io.kvision.onsenui.core/Page///PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/index.html
 $dokka.location:io.kvision.onsenui.core/Page/Page/#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.onsenui.core.Page,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/-page.html
 $dokka.location:io.kvision.onsenui.core/Page/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/add.html
+$dokka.location:io.kvision.onsenui.core/Page/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/add.html
 $dokka.location:io.kvision.onsenui.core/Page/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/add-all.html
 $dokka.location:io.kvision.onsenui.core/Page/backgroundPanel/#/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/background-panel.html
 $dokka.location:io.kvision.onsenui.core/Page/contentPanel/#/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/content-panel.html
@@ -9854,6 +10083,7 @@ $dokka.location:io.kvision.onsenui.core/Page/onInfiniteScroll/#kotlin.Function1[
 $dokka.location:io.kvision.onsenui.core/Page/onInfiniteScrollClear/#/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/on-infinite-scroll-clear.html
 $dokka.location:io.kvision.onsenui.core/Page/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/remove.html
 $dokka.location:io.kvision.onsenui.core/Page/removeAll/#/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/remove-all.html
+$dokka.location:io.kvision.onsenui.core/Page/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/remove-at.html
 $dokka.location:io.kvision.onsenui.core/Page/toolbarPanel/#/PointingToDeclaration/kvision/io.kvision.onsenui.core/-page/toolbar-panel.html
 $dokka.location:io.kvision.onsenui.core/PullHook///PointingToDeclaration/kvision/io.kvision.onsenui.core/-pull-hook/index.html
 $dokka.location:io.kvision.onsenui.core/PullHook/PullHook/#kotlin.String?#kotlin.Boolean#io.kvision.html.Align?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.onsenui.core.PullHook,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.core/-pull-hook/-pull-hook.html
@@ -9905,6 +10135,7 @@ $dokka.location:io.kvision.onsenui.dialog/ActionSheetButton/onClick/#kotlin.Func
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog///PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/index.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/AlertDialog/#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.onsenui.dialog.AlertDialog,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/-alert-dialog.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/add.html
+$dokka.location:io.kvision.onsenui.dialog/AlertDialog/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/add.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/add-all.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/contentPanel/#/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/content-panel.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/dialogTitle/#/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/dialog-title.html
@@ -9913,6 +10144,7 @@ $dokka.location:io.kvision.onsenui.dialog/AlertDialog/footerPanel/#/PointingToDe
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/getChildren/#/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/get-children.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/remove.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/removeAll/#/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/remove-all.html
+$dokka.location:io.kvision.onsenui.dialog/AlertDialog/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/remove-at.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/rowfooter/#/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/rowfooter.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialog/titlePanel/#/PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog/title-panel.html
 $dokka.location:io.kvision.onsenui.dialog/AlertDialogButton///PointingToDeclaration/kvision/io.kvision.onsenui.dialog/-alert-dialog-button/index.html
@@ -10228,6 +10460,7 @@ $dokka.location:io.kvision.onsenui.form/OnsRadioGroup.Companion///PointingToDecl
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup///PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/index.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/OnsRadioGroup/#kotlin.collections.List[Pair<String, String>[kotlin.String,kotlin.String]]?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.onsenui.form.OnsRadioGroup,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/-ons-radio-group.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/add.html
+$dokka.location:io.kvision.onsenui.form/OnsRadioGroup/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/add.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/add-all.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/blur/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/blur.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/disabled/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/disabled.html
@@ -10244,6 +10477,7 @@ $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/name/#/PointingToDeclarati
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/options/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/options.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/remove.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/removeAll/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/remove-all.html
+$dokka.location:io.kvision.onsenui.form/OnsRadioGroup/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/remove-at.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/rich/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/rich.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/setState/#kotlin.String?/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/set-state.html
 $dokka.location:io.kvision.onsenui.form/OnsRadioGroup/size/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-radio-group/size.html
@@ -10305,6 +10539,7 @@ $dokka.location:io.kvision.onsenui.form/OnsSelect.Companion///PointingToDeclarat
 $dokka.location:io.kvision.onsenui.form/OnsSelect///PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/index.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/OnsSelect/#kotlin.collections.List[Pair<String, String>[kotlin.String,kotlin.String]]?#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.onsenui.form.OnsSelect,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/-ons-select.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/add.html
+$dokka.location:io.kvision.onsenui.form/OnsSelect/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/add.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/add-all.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/autofocus/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/autofocus.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/blur/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/blur.html
@@ -10322,6 +10557,7 @@ $dokka.location:io.kvision.onsenui.form/OnsSelect/multiple/#/PointingToDeclarati
 $dokka.location:io.kvision.onsenui.form/OnsSelect/options/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/options.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/remove.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/removeAll/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/remove-all.html
+$dokka.location:io.kvision.onsenui.form/OnsSelect/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/remove-at.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/removeEventListener/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/remove-event-listener.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/remove-event-listeners.html
 $dokka.location:io.kvision.onsenui.form/OnsSelect/rich/#/PointingToDeclaration/kvision/io.kvision.onsenui.form/-ons-select/rich.html
@@ -10413,6 +10649,7 @@ $dokka.location:io.kvision.onsenui.list/OnsListHeader/modifier/#/PointingToDecla
 $dokka.location:io.kvision.onsenui.list/OnsListItem///PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/index.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/OnsListItem/#kotlin.String?#kotlin.Boolean#kotlin.Boolean?#io.kvision.onsenui.list.DividerType?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.onsenui.list.OnsListItem,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/-ons-list-item.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/add.html
+$dokka.location:io.kvision.onsenui.list/OnsListItem/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/add.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/add-all.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/animation/#/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/animation.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/center/#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.html.Div,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/center.html
@@ -10430,6 +10667,7 @@ $dokka.location:io.kvision.onsenui.list/OnsListItem/lockOnDrag/#/PointingToDecla
 $dokka.location:io.kvision.onsenui.list/OnsListItem/modifier/#/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/modifier.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/remove.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/removeAll/#/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/remove-all.html
+$dokka.location:io.kvision.onsenui.list/OnsListItem/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/remove-at.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/rich/#/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/rich.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/right/#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.html.Div,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/right.html
 $dokka.location:io.kvision.onsenui.list/OnsListItem/rightPanel/#/PointingToDeclaration/kvision/io.kvision.onsenui.list/-ons-list-item/right-panel.html
@@ -10897,6 +11135,7 @@ $dokka.location:io.kvision.panel/DockPanel///PointingToDeclaration/kvision/io.k
 $dokka.location:io.kvision.panel/DockPanel/DockPanel/#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.panel.DockPanel,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/-dock-panel.html
 $dokka.location:io.kvision.panel/DockPanel/add/#io.kvision.core.Component#io.kvision.panel.Side/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/add.html
 $dokka.location:io.kvision.panel/DockPanel/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/add.html
+$dokka.location:io.kvision.panel/DockPanel/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/add.html
 $dokka.location:io.kvision.panel/DockPanel/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/add-all.html
 $dokka.location:io.kvision.panel/DockPanel/center/#kotlin.Function1[io.kvision.core.Container,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/center.html
 $dokka.location:io.kvision.panel/DockPanel/disposeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/dispose-all.html
@@ -10905,6 +11144,7 @@ $dokka.location:io.kvision.panel/DockPanel/left/#kotlin.Function1[io.kvision.cor
 $dokka.location:io.kvision.panel/DockPanel/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/remove.html
 $dokka.location:io.kvision.panel/DockPanel/removeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/remove-all.html
 $dokka.location:io.kvision.panel/DockPanel/removeAt/#io.kvision.panel.Side/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/remove-at.html
+$dokka.location:io.kvision.panel/DockPanel/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/remove-at.html
 $dokka.location:io.kvision.panel/DockPanel/right/#kotlin.Function1[io.kvision.core.Container,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/right.html
 $dokka.location:io.kvision.panel/DockPanel/up/#kotlin.Function1[io.kvision.core.Container,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.panel/-dock-panel/up.html
 $dokka.location:io.kvision.panel/FieldsetPanel///PointingToDeclaration/kvision/io.kvision.panel/-fieldset-panel/index.html
@@ -10914,6 +11154,8 @@ $dokka.location:io.kvision.panel/FlexPanel///PointingToDeclaration/kvision/io.k
 $dokka.location:io.kvision.panel/FlexPanel/FlexPanel/#io.kvision.core.FlexDirection?#io.kvision.core.FlexWrap?#io.kvision.core.JustifyContent?#io.kvision.core.AlignItems?#io.kvision.core.AlignContent?#kotlin.Int?#kotlin.Boolean#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.panel.FlexPanel,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.panel/-flex-panel/-flex-panel.html
 $dokka.location:io.kvision.panel/FlexPanel/add/#io.kvision.core.Component#kotlin.Int?#kotlin.Int?#kotlin.Int?#Pair<Number, UNIT>[kotlin.Number,io.kvision.core.UNIT]?#io.kvision.core.AlignItems?#kotlin.collections.Set[kotlin.String]/PointingToDeclaration/kvision/io.kvision.panel/-flex-panel/add.html
 $dokka.location:io.kvision.panel/FlexPanel/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-flex-panel/add.html
+$dokka.location:io.kvision.panel/FlexPanel/add/#kotlin.Int#io.kvision.core.Component#kotlin.Int?#kotlin.Int?#kotlin.Int?#Pair<Number, UNIT>[kotlin.Number,io.kvision.core.UNIT]?#io.kvision.core.AlignItems?#kotlin.collections.Set[kotlin.String]/PointingToDeclaration/kvision/io.kvision.panel/-flex-panel/add.html
+$dokka.location:io.kvision.panel/FlexPanel/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-flex-panel/add.html
 $dokka.location:io.kvision.panel/FlexPanel/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.panel/-flex-panel/add-all.html
 $dokka.location:io.kvision.panel/FlexPanel/disposeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-flex-panel/dispose-all.html
 $dokka.location:io.kvision.panel/FlexPanel/options/#kotlin.Int?#kotlin.Int?#kotlin.Int?#Pair<Number, UNIT>[kotlin.Number,io.kvision.core.UNIT]?#io.kvision.core.AlignItems?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.core.Container,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.panel/-flex-panel/options.html
@@ -10924,6 +11166,8 @@ $dokka.location:io.kvision.panel/GridPanel///PointingToDeclaration/kvision/io.k
 $dokka.location:io.kvision.panel/GridPanel/GridPanel/#kotlin.String?#kotlin.String?#io.kvision.core.GridAutoFlow?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.Int?#kotlin.Int?#io.kvision.core.JustifyItems?#io.kvision.core.AlignItems?#io.kvision.core.JustifyContent?#io.kvision.core.AlignContent?#kotlin.Boolean#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.panel.GridPanel,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.panel/-grid-panel/-grid-panel.html
 $dokka.location:io.kvision.panel/GridPanel/add/#io.kvision.core.Component#kotlin.Int?#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.String?#io.kvision.core.JustifyItems?#io.kvision.core.AlignItems?#kotlin.collections.Set[kotlin.String]/PointingToDeclaration/kvision/io.kvision.panel/-grid-panel/add.html
 $dokka.location:io.kvision.panel/GridPanel/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-grid-panel/add.html
+$dokka.location:io.kvision.panel/GridPanel/add/#kotlin.Int#io.kvision.core.Component#kotlin.Int?#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.String?#io.kvision.core.JustifyItems?#io.kvision.core.AlignItems?#kotlin.collections.Set[kotlin.String]/PointingToDeclaration/kvision/io.kvision.panel/-grid-panel/add.html
+$dokka.location:io.kvision.panel/GridPanel/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-grid-panel/add.html
 $dokka.location:io.kvision.panel/GridPanel/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.panel/-grid-panel/add-all.html
 $dokka.location:io.kvision.panel/GridPanel/disposeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-grid-panel/dispose-all.html
 $dokka.location:io.kvision.panel/GridPanel/options/#kotlin.Int?#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.String?#io.kvision.core.JustifyItems?#io.kvision.core.AlignItems?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.core.Container,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.panel/-grid-panel/options.html
@@ -10964,6 +11208,8 @@ $dokka.location:io.kvision.panel/Root/Root/#kotlin.String#io.kvision.panel.Conta
 $dokka.location:io.kvision.panel/Root/addContextMenu/#io.kvision.core.Widget/PointingToDeclaration/kvision/io.kvision.panel/-root/add-context-menu.html
 $dokka.location:io.kvision.panel/Root/getRoot/#/PointingToDeclaration/kvision/io.kvision.panel/-root/get-root.html
 $dokka.location:io.kvision.panel/Root/isFirstRoot/#/PointingToDeclaration/kvision/io.kvision.panel/-root/is-first-root.html
+$dokka.location:io.kvision.panel/Root/singleRenderAsync/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.panel/-root/single-render-async.html
+$dokka.location:io.kvision.panel/Root/synchronousMode/#/PointingToDeclaration/kvision/io.kvision.panel/-root/synchronous-mode.html
 $dokka.location:io.kvision.panel/Side.CENTER///PointingToDeclaration/kvision/io.kvision.panel/-side/-c-e-n-t-e-r/index.html
 $dokka.location:io.kvision.panel/Side.CENTER/name/#/PointingToDeclaration/kvision/io.kvision.panel/-side/-c-e-n-t-e-r/name.html
 $dokka.location:io.kvision.panel/Side.CENTER/ordinal/#/PointingToDeclaration/kvision/io.kvision.panel/-side/-c-e-n-t-e-r/ordinal.html
@@ -11002,11 +11248,13 @@ $dokka.location:io.kvision.panel/SideTabSize///PointingToDeclaration/kvision/io
 $dokka.location:io.kvision.panel/SimplePanel///PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/index.html
 $dokka.location:io.kvision.panel/SimplePanel/SimplePanel/#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.panel.SimplePanel,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/-simple-panel.html
 $dokka.location:io.kvision.panel/SimplePanel/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/add.html
+$dokka.location:io.kvision.panel/SimplePanel/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/add.html
 $dokka.location:io.kvision.panel/SimplePanel/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/add-all.html
 $dokka.location:io.kvision.panel/SimplePanel/disposeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/dispose-all.html
 $dokka.location:io.kvision.panel/SimplePanel/getChildren/#/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/get-children.html
 $dokka.location:io.kvision.panel/SimplePanel/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/remove.html
 $dokka.location:io.kvision.panel/SimplePanel/removeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/remove-all.html
+$dokka.location:io.kvision.panel/SimplePanel/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/remove-at.html
 $dokka.location:io.kvision.panel/SplitPanel///PointingToDeclaration/kvision/io.kvision.panel/-split-panel/index.html
 $dokka.location:io.kvision.panel/SplitPanel/SplitPanel/#io.kvision.panel.Direction#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.panel.SplitPanel,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.panel/-split-panel/-split-panel.html
 $dokka.location:io.kvision.panel/StackPanel.Companion///PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/-companion/index.html
@@ -11016,9 +11264,11 @@ $dokka.location:io.kvision.panel/StackPanel/activeChild/#/PointingToDeclaration/
 $dokka.location:io.kvision.panel/StackPanel/activeIndex/#/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/active-index.html
 $dokka.location:io.kvision.panel/StackPanel/add/#io.kvision.core.Component#kotlin.String/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/add.html
 $dokka.location:io.kvision.panel/StackPanel/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/add.html
+$dokka.location:io.kvision.panel/StackPanel/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/add.html
 $dokka.location:io.kvision.panel/StackPanel/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/add-all.html
 $dokka.location:io.kvision.panel/StackPanel/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/remove.html
 $dokka.location:io.kvision.panel/StackPanel/removeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/remove-all.html
+$dokka.location:io.kvision.panel/StackPanel/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/remove-at.html
 $dokka.location:io.kvision.panel/StackPanel/route/#kotlin.String#kotlin.Function1[io.kvision.core.Container,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.panel/-stack-panel/route.html
 $dokka.location:io.kvision.panel/Tab.Companion///PointingToDeclaration/kvision/io.kvision.panel/-tab/-companion/index.html
 $dokka.location:io.kvision.panel/Tab///PointingToDeclaration/kvision/io.kvision.panel/-tab/index.html
@@ -11036,6 +11286,7 @@ $dokka.location:io.kvision.panel/TabPanel/TabPanel/#io.kvision.panel.TabPosition
 $dokka.location:io.kvision.panel/TabPanel/activeIndex/#/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/active-index.html
 $dokka.location:io.kvision.panel/TabPanel/activeTab/#/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/active-tab.html
 $dokka.location:io.kvision.panel/TabPanel/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/add.html
+$dokka.location:io.kvision.panel/TabPanel/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/add.html
 $dokka.location:io.kvision.panel/TabPanel/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/add-all.html
 $dokka.location:io.kvision.panel/TabPanel/addTab/#kotlin.String#io.kvision.core.Component#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.String?/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/add-tab.html
 $dokka.location:io.kvision.panel/TabPanel/disposeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/dispose-all.html
@@ -11048,6 +11299,7 @@ $dokka.location:io.kvision.panel/TabPanel/getTabs/#/PointingToDeclaration/kvisi
 $dokka.location:io.kvision.panel/TabPanel/moveTab/#kotlin.Int#kotlin.Int/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/move-tab.html
 $dokka.location:io.kvision.panel/TabPanel/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/remove.html
 $dokka.location:io.kvision.panel/TabPanel/removeAll/#/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/remove-all.html
+$dokka.location:io.kvision.panel/TabPanel/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/remove-at.html
 $dokka.location:io.kvision.panel/TabPanel/removeTab/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/remove-tab.html
 $dokka.location:io.kvision.panel/TabPanel/scrollableTabs/#/PointingToDeclaration/kvision/io.kvision.panel/-tab-panel/scrollable-tabs.html
 $dokka.location:io.kvision.panel/TabPosition.LEFT///PointingToDeclaration/kvision/io.kvision.panel/-tab-position/-l-e-f-t/index.html
@@ -11126,11 +11378,13 @@ $dokka.location:io.kvision.remote//deserialize/io.kvision.remote.ObjectDeSeriali
 $dokka.location:io.kvision.remote//getWebSocketUrl/#kotlin.String/PointingToDeclaration/kvision/io.kvision.remote/get-web-socket-url.html
 $dokka.location:io.kvision.remote//handleWebsocketConnection/#io.kvision.remote.ObjectDeSerializer#ReceiveChannel<RAW_IN>[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.String?]#SendChannel<RAW_OUT>[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[kotlin.String,TypeParam(bounds=[kotlin.Any?])]#KSerializer<OBJECTS_IN>[TypeParam(bounds=[kotlin.Any?])]#KSerializer<OBJECTS_OUT>[TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any?])#kotlin.coroutines.SuspendFunction3[TypeParam(bounds=[kotlin.Any?]),ReceiveChannel<OBJECTS_IN>[TypeParam(bounds=[kotlin.Any?])],SendChannel<OBJECTS_OUT>[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.remote/handle-websocket-connection.html
 $dokka.location:io.kvision.remote//handleWebsocketConnection/#io.kvision.remote.ObjectDeSerializer#ReceiveChannel<String>[kotlin.String]#SendChannel<String>[kotlin.String]#KSerializer<OBJECTS_IN>[TypeParam(bounds=[kotlin.Any?])]#KSerializer<OBJECTS_OUT>[TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any?])#kotlin.coroutines.SuspendFunction3[TypeParam(bounds=[kotlin.Any?]),ReceiveChannel<OBJECTS_IN>[TypeParam(bounds=[kotlin.Any?])],SendChannel<OBJECTS_OUT>[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.remote/handle-websocket-connection.html
+$dokka.location:io.kvision.remote//initStaticResources/Application#/PointingToDeclaration/kvision/io.kvision.remote/init-static-resources.html
 $dokka.location:io.kvision.remote//injector/ApplicationCall#/PointingToDeclaration/kvision/io.kvision.remote/injector.html
 $dokka.location:io.kvision.remote//injectorKey/#/PointingToDeclaration/kvision/io.kvision.remote/injector-key.html
 $dokka.location:io.kvision.remote//kotlinxObjectDeSerializer/#/PointingToDeclaration/kvision/io.kvision.remote/kotlinx-object-de-serializer.html
 $dokka.location:io.kvision.remote//kvSerializersModule/#/PointingToDeclaration/kvision/io.kvision.remote/kv-serializers-module.html
 $dokka.location:io.kvision.remote//kvisionInit/Application#kotlin.Array[java.lang.Module]/PointingToDeclaration/kvision/io.kvision.remote/kvision-init.html
+$dokka.location:io.kvision.remote//kvisionInit/Application#kotlin.Boolean#kotlin.Array[java.lang.Module]/PointingToDeclaration/kvision/io.kvision.remote/kvision-init.html
 $dokka.location:io.kvision.remote//obj/#kotlin.Function1[kotlin.Any,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.remote/obj.html
 $dokka.location:io.kvision.remote//requireParameterCountEqualTo/#kotlin.Int#kotlin.Int/PointingToDeclaration/kvision/io.kvision.remote/require-parameter-count-equal-to.html
 $dokka.location:io.kvision.remote//requireParameterCountEqualTo/#kotlin.collections.Collection[*]#kotlin.Int/PointingToDeclaration/kvision/io.kvision.remote/require-parameter-count-equal-to.html
@@ -11417,6 +11671,8 @@ $dokka.location:io.kvision.routing/Strategy///PointingToDeclaration/kvision/io.
 $dokka.location:io.kvision.state////PointingToDeclaration/kvision/io.kvision.state/index.html
 $dokka.location:io.kvision.state//bind/TypeParam(bounds=[io.kvision.core.Component])#io.kvision.state.ObservableState[TypeParam(bounds=[kotlin.Any?])]#kotlin.Boolean#kotlin.Function2[TypeParam(bounds=[io.kvision.core.Component]),TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.state/bind.html
 $dokka.location:io.kvision.state//bind/TypeParam(bounds=[io.kvision.core.Widget])#StateFlow<S>[TypeParam(bounds=[kotlin.Any?])]#kotlin.Boolean#kotlin.Function2[TypeParam(bounds=[io.kvision.core.Widget]),TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.state/bind.html
+$dokka.location:io.kvision.state//bindEach/TypeParam(bounds=[io.kvision.panel.SimplePanel])#StateFlow<List<S>>[kotlin.collections.List[TypeParam(bounds=[kotlin.Any?])]]#kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),kotlin.Boolean]?#kotlin.Function2[io.kvision.panel.SimplePanel,TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.state/bind-each.html
+$dokka.location:io.kvision.state//bindEach/TypeParam(bounds=[io.kvision.panel.SimplePanel])#io.kvision.state.ObservableState[kotlin.collections.List[TypeParam(bounds=[kotlin.Any?])]]#kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),kotlin.Boolean]?#kotlin.Function2[io.kvision.panel.SimplePanel,TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.state/bind-each.html
 $dokka.location:io.kvision.state//bindTo/TypeParam(bounds=[io.kvision.form.GenericFormComponent[Date?]])#MutableStateFlow<Date>[Date]/PointingToDeclaration/kvision/io.kvision.state/bind-to.html
 $dokka.location:io.kvision.state//bindTo/TypeParam(bounds=[io.kvision.form.GenericFormComponent[Date?]])#io.kvision.state.MutableState[Date]/PointingToDeclaration/kvision/io.kvision.state/bind-to.html
 $dokka.location:io.kvision.state//bindTo/TypeParam(bounds=[io.kvision.form.GenericFormComponent[TypeParam(bounds=[kotlin.Any?])]])#MutableStateFlow<S>[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/kvision/io.kvision.state/bind-to.html
@@ -11553,6 +11809,7 @@ $dokka.location:io.kvision.table/Scope///PointingToDeclaration/kvision/io.kvisi
 $dokka.location:io.kvision.table/Table///PointingToDeclaration/kvision/io.kvision.table/-table/index.html
 $dokka.location:io.kvision.table/Table/Table/#kotlin.collections.List[kotlin.String]?#kotlin.collections.Set[io.kvision.table.TableType]#kotlin.String?#io.kvision.table.ResponsiveType?#io.kvision.table.TheadType?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.table.Table,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/-table/-table.html
 $dokka.location:io.kvision.table/Table/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.table/-table/add.html
+$dokka.location:io.kvision.table/Table/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.table/-table/add.html
 $dokka.location:io.kvision.table/Table/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.table/-table/add-all.html
 $dokka.location:io.kvision.table/Table/addHeaderCell/#io.kvision.table.HeaderCell/PointingToDeclaration/kvision/io.kvision.table/-table/add-header-cell.html
 $dokka.location:io.kvision.table/Table/caption/#/PointingToDeclaration/kvision/io.kvision.table/-table/caption.html
@@ -11561,6 +11818,7 @@ $dokka.location:io.kvision.table/Table/getChildren/#/PointingToDeclaration/kvis
 $dokka.location:io.kvision.table/Table/headerNames/#/PointingToDeclaration/kvision/io.kvision.table/-table/header-names.html
 $dokka.location:io.kvision.table/Table/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.table/-table/remove.html
 $dokka.location:io.kvision.table/Table/removeAll/#/PointingToDeclaration/kvision/io.kvision.table/-table/remove-all.html
+$dokka.location:io.kvision.table/Table/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.table/-table/remove-at.html
 $dokka.location:io.kvision.table/Table/removeHeaderCell/#io.kvision.table.HeaderCell/PointingToDeclaration/kvision/io.kvision.table/-table/remove-header-cell.html
 $dokka.location:io.kvision.table/Table/removeHeaderCells/#/PointingToDeclaration/kvision/io.kvision.table/-table/remove-header-cells.html
 $dokka.location:io.kvision.table/Table/responsiveType/#/PointingToDeclaration/kvision/io.kvision.table/-table/responsive-type.html
@@ -12336,9 +12594,9 @@ $dokka.location:io.kvision.tabulator//tabulator/io.kvision.core.Container#io.kvi
 $dokka.location:io.kvision.tabulator//tabulator/io.kvision.core.Container#io.kvision.tabulator.TabulatorOptions[TypeParam(bounds=[kotlin.Any])]#kotlin.collections.Set[io.kvision.table.TableType]#kotlin.collections.Set[kotlin.String]?#kotlin.String?#kotlin.Function1[io.kvision.tabulator.Tabulator[TypeParam(bounds=[kotlin.Any])],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.tabulator/tabulator.html
 $dokka.location:io.kvision.tabulator//tabulator/io.kvision.core.Container#kotlin.collections.List[TypeParam(bounds=[kotlin.Any])]?#kotlin.Boolean#io.kvision.tabulator.TabulatorOptions[TypeParam(bounds=[kotlin.Any])]#kotlin.collections.Set[io.kvision.table.TableType]#kotlin.collections.Set[kotlin.String]?#kotlin.String?#kotlin.Function1[io.kvision.tabulator.Tabulator[TypeParam(bounds=[kotlin.Any])],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.tabulator/tabulator.html
 $dokka.location:io.kvision.tabulator//tabulatorRemote/io.kvision.core.Container#KVServiceMgr<E>[TypeParam(bounds=[kotlin.Any])]#kotlin.coroutines.SuspendFunction6[TypeParam(bounds=[kotlin.Any]),kotlin.Int?,kotlin.Int?,kotlin.collections.List[RemoteFilter]?,kotlin.collections.List[RemoteSorter]?,kotlin.String?,RemoteData<T>[TypeParam(bounds=[kotlin.Any])]]#kotlin.Function0[kotlin.String]?#io.kvision.tabulator.TabulatorOptions[TypeParam(bounds=[kotlin.Any])]#kotlin.collections.Set[io.kvision.table.TableType]#kotlin.collections.Set[kotlin.String]?#kotlin.String?#kotlin.Function1[io.kvision.tabulator.TabulatorRemote[TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[kotlin.Any])],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.tabulator/tabulator-remote.html
-$dokka.location:io.kvision.tabulator//toJs/io.kvision.tabulator.ColumnDefinition[TypeParam(bounds=[kotlin.Any])]#kotlin.Function1[kotlin.String,kotlin.String]#kotlin.reflect.KClass[TypeParam(bounds=[kotlin.Any])]?/PointingToDeclaration/kvision/io.kvision.tabulator/to-js.html
+$dokka.location:io.kvision.tabulator//toJs/io.kvision.tabulator.ColumnDefinition[TypeParam(bounds=[kotlin.Any])]#io.kvision.tabulator.Tabulator[TypeParam(bounds=[kotlin.Any])]#kotlin.Function1[kotlin.String,kotlin.String]#kotlin.reflect.KClass[TypeParam(bounds=[kotlin.Any])]?/PointingToDeclaration/kvision/io.kvision.tabulator/to-js.html
 $dokka.location:io.kvision.tabulator//toJs/io.kvision.tabulator.DownloadConfig#/PointingToDeclaration/kvision/io.kvision.tabulator/to-js.html
-$dokka.location:io.kvision.tabulator//toJs/io.kvision.tabulator.TabulatorOptions[TypeParam(bounds=[kotlin.Any])]#kotlin.Function1[kotlin.String,kotlin.String]#kotlin.reflect.KClass[TypeParam(bounds=[kotlin.Any])]?/PointingToDeclaration/kvision/io.kvision.tabulator/to-js.html
+$dokka.location:io.kvision.tabulator//toJs/io.kvision.tabulator.TabulatorOptions[TypeParam(bounds=[kotlin.Any])]#io.kvision.tabulator.Tabulator[TypeParam(bounds=[kotlin.Any])]#kotlin.Function1[kotlin.String,kotlin.String]#kotlin.reflect.KClass[TypeParam(bounds=[kotlin.Any])]?/PointingToDeclaration/kvision/io.kvision.tabulator/to-js.html
 $dokka.location:io.kvision.tabulator/AddRowMode.PAGE///PointingToDeclaration/kvision/io.kvision.tabulator/-add-row-mode/-p-a-g-e/index.html
 $dokka.location:io.kvision.tabulator/AddRowMode.PAGE/mode/#/PointingToDeclaration/kvision/io.kvision.tabulator/-add-row-mode/-p-a-g-e/mode.html
 $dokka.location:io.kvision.tabulator/AddRowMode.PAGE/name/#/PointingToDeclaration/kvision/io.kvision.tabulator/-add-row-mode/-p-a-g-e/name.html
@@ -13396,6 +13654,7 @@ $dokka.location:io.kvision.window/Window.Companion///PointingToDeclaration/kvis
 $dokka.location:io.kvision.window/Window///PointingToDeclaration/kvision/io.kvision.window/-window/index.html
 $dokka.location:io.kvision.window/Window/Window/#kotlin.String?#Pair<Number, UNIT>[kotlin.Number,io.kvision.core.UNIT]?#Pair<Number, UNIT>[kotlin.Number,io.kvision.core.UNIT]?#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.String?#kotlin.collections.Set[kotlin.String]#kotlin.Function1[io.kvision.window.Window,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.window/-window/-window.html
 $dokka.location:io.kvision.window/Window/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.window/-window/add.html
+$dokka.location:io.kvision.window/Window/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.window/-window/add.html
 $dokka.location:io.kvision.window/Window/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.window/-window/add-all.html
 $dokka.location:io.kvision.window/Window/caption/#/PointingToDeclaration/kvision/io.kvision.window/-window/caption.html
 $dokka.location:io.kvision.window/Window/close/#/PointingToDeclaration/kvision/io.kvision.window/-window/close.html
@@ -13412,6 +13671,7 @@ $dokka.location:io.kvision.window/Window/maximizeButton/#/PointingToDeclaration/
 $dokka.location:io.kvision.window/Window/minimizeButton/#/PointingToDeclaration/kvision/io.kvision.window/-window/minimize-button.html
 $dokka.location:io.kvision.window/Window/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.window/-window/remove.html
 $dokka.location:io.kvision.window/Window/removeAll/#/PointingToDeclaration/kvision/io.kvision.window/-window/remove-all.html
+$dokka.location:io.kvision.window/Window/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.window/-window/remove-at.html
 $dokka.location:io.kvision.window/Window/toFront/#/PointingToDeclaration/kvision/io.kvision.window/-window/to-front.html
 $dokka.location:io.kvision.window/Window/toggleMaximize/#/PointingToDeclaration/kvision/io.kvision.window/-window/toggle-maximize.html
 $dokka.location:io.kvision.window/Window/toggleMinimize/#/PointingToDeclaration/kvision/io.kvision.window/-window/toggle-minimize.html
