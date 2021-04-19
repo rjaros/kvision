@@ -148,4 +148,27 @@ class StyleSpec : DomSpec {
             )
         }
     }
+
+    @Test
+    fun renderMediaQuery() {
+        run {
+            Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                widget {
+                    style {
+                        mediaQuery = "min-width: 700px"
+                        margin = 2.px
+                        color = Color.name(Col.SILVER)
+                        overflow = Overflow.SCROLL
+                        setStyle("box-shadow", "10px 10px")
+                    }
+                }
+            }
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<style>@media (min-width: 700px) {\n.kv_styleclass_1 {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\nbox-shadow: 10px 10px;\n}\n}</style><div class=\"kv_styleclass_0\"></div>",
+                element?.innerHTML,
+                "Should render correct style element within a media query"
+            )
+        }
+    }
 }

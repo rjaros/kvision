@@ -74,6 +74,7 @@ enum class PElement(internal val pname: String) {
  * @param pClass CSS pseudo class
  * @param pElement CSS pseudo element
  * @param parentStyle parent CSS style object
+ * @param mediaQuery CSS media query
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
@@ -82,6 +83,7 @@ open class Style(
     pClass: PClass? = null,
     pElement: PElement? = null,
     parentStyle: Style? = null,
+    mediaQuery: String? = null,
     init: (Style.() -> Unit)? = null
 ) :
     StyledComponent() {
@@ -112,6 +114,11 @@ open class Style(
      * The CSS pseudo element.
      */
     var pElement by refreshOnUpdate(pElement)
+
+    /**
+     * The CSS media query.
+     */
+    var mediaQuery by refreshOnUpdate(mediaQuery)
 
     init {
         @Suppress("LeakingThis")
@@ -181,9 +188,10 @@ fun Widget.style(
     className: String? = null,
     pClass: PClass? = null,
     pElement: PElement? = null,
+    mediaQuery: String? = null,
     init: (Style.() -> Unit)? = null
 ): Style {
-    val style = Style(className, pClass, pElement, null, init)
+    val style = Style(className, pClass, pElement, null, mediaQuery, init)
     this.addCssStyle(style)
     return style
 }
@@ -197,7 +205,8 @@ fun Style.style(
     className: String? = null,
     pClass: PClass? = null,
     pElement: PElement? = null,
+    mediaQuery: String? = null,
     init: (Style.() -> Unit)? = null
 ): Style {
-    return Style(className, pClass, pElement, this, init)
+    return Style(className, pClass, pElement, this, mediaQuery, init)
 }

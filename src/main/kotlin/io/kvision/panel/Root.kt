@@ -152,7 +152,14 @@ class Root : SimplePanel {
     private fun stylesVNodes(): Array<VNode> {
         return if (isFirstRoot) {
             if (Style.styles.isNotEmpty()) {
-                val stylesDesc = Style.styles.joinToString("\n") { it.generateStyle() }
+                val groupByMediaQuery = Style.styles.groupBy { it.mediaQuery }
+                val stylesDesc = groupByMediaQuery.map { (media, styles) ->
+                    if (media == null) {
+                        styles.joinToString("\n") { it.generateStyle() }
+                    } else {
+                        "@media ($media) {\n" + styles.joinToString("\n") { it.generateStyle() } + "\n}"
+                    }
+                }.joinToString("\n\n")
                 arrayOf(h("style", arrayOf(stylesDesc)))
             } else {
                 arrayOf()
