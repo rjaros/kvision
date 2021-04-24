@@ -24,6 +24,7 @@ package io.kvision.panel
 import com.github.snabbdom.VNode
 import io.kvision.core.Component
 import io.kvision.core.Container
+import io.kvision.core.Style
 import io.kvision.core.Widget
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
@@ -189,3 +190,17 @@ fun <S> Container.simplePanel(
     className: String? = null,
     init: (SimplePanel.(S) -> Unit)
 ) = simplePanel(classes, className).bind(state, true, init)
+
+/**
+ * DSL builder extension function with Style support
+ */
+fun Container.simplePanel(
+    vararg styles: Style,
+    init: (SimplePanel.() -> Unit)? = null
+): SimplePanel {
+    val simplePanel = SimplePanel(init = init).apply {
+        styles.forEach { this.addCssStyle(it) }
+    }
+    this.add(simplePanel)
+    return simplePanel
+}

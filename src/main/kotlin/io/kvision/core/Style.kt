@@ -184,6 +184,21 @@ open class Style(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+fun style(
+    className: String? = null,
+    pClass: PClass? = null,
+    pElement: PElement? = null,
+    mediaQuery: String? = null,
+    init: (Style.() -> Unit)? = null
+): Style {
+    return Style(className, pClass, pElement, null, mediaQuery, init)
+}
+
+/**
+ * DSL builder extension function.
+ *
+ * It takes the same parameters as the constructor of the built component.
+ */
 fun Widget.style(
     className: String? = null,
     pClass: PClass? = null,
