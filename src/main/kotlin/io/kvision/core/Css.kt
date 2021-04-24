@@ -596,6 +596,7 @@ enum class FlexWrap(internal val wrap: String) {
     WRAP("wrap"),
     WRAPREV("wrap-reverse")
 }
+
 /**
  * CSS grid items justification options.
  */
@@ -724,6 +725,20 @@ class Color(val color: String? = null) {
          */
         fun name(color: Col): Color {
             return Color(color.color)
+        }
+
+        /**
+         * Creates CSS Color with red, green and blue components
+         */
+        fun rgb(red: Int, green: Int, blue: Int): Color {
+            return Color("#" + listOf(red, green, blue).joinToString("") { it.toString(16).padStart(2, '0') })
+        }
+
+        /**
+         * Creates CSS Color with red, green, blue and alpha channel components
+         */
+        fun rgba(red: Int, green: Int, blue: Int, alpha: Int): Color {
+            return Color("#" + listOf(red, green, blue, alpha).joinToString("") { it.toString(16).padStart(2, '0') })
         }
     }
 }
