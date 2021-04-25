@@ -479,6 +479,16 @@ abstract class StyledComponent {
      */
     open var outline: Outline? by refreshOnUpdate()
 
+    /**
+     * Box shadow of the current component.
+     */
+    open var boxShadow: BoxShadow? by refreshOnUpdate()
+
+    /**
+     * List of box shadows of the current component.
+     */
+    open var boxShadowList: List<BoxShadow>? by refreshOnUpdate()
+
     private var snStyleCache: List<StringPair>? = null
 
     /**
@@ -758,6 +768,15 @@ abstract class StyledComponent {
             outline?.let {
                 snstyle.add("outline" to it.asString())
             }
+            boxShadowList?.let { list ->
+                val value = list.joinToString { it.asString() }
+                snstyle.add("box-shadow" to value)
+                snstyle.add("-webkit-box-shadow" to value)
+            } ?: boxShadow?.let {
+                val value = it.asString()
+                snstyle.add("box-shadow" to value)
+                snstyle.add("-webkit-box-shadow" to value)
+            }
             for (key in js("Object").keys(customStyles).unsafeCast<Array<String>>()) {
                 snstyle.add(Pair(key, customStyles[key]))
             }
@@ -807,7 +826,10 @@ abstract class StyledComponent {
         RefreshDelegateProvider<T>(null, refreshFunction)
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun <T> refreshOnUpdate(initialValue: T, noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
+    private inline fun <T> refreshOnUpdate(
+        initialValue: T,
+        noinline refreshFunction: ((T) -> Unit) = { this.refresh() }
+    ) =
         RefreshDelegateProvider(initialValue, refreshFunction)
 
     private inner class RefreshDelegateProvider<T>(

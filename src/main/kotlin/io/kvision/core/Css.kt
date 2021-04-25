@@ -828,3 +828,29 @@ class TextShadow(
 
     override fun toString() = asString()
 }
+
+/**
+ * Type-safe definition of CSS box shadow.
+ * @param hOffset the position of the horizontal shadow
+ * @param vOffset the position of the vertical shadow
+ * @param blurRadius the blur radius
+ * @param spreadRadius the spread radius
+ * @param color color of the shadow
+ * @param inset changes the shadow from an outer shadow (outset) to an inner shadow
+ */
+class BoxShadow(
+    private val hOffset: CssSize? = null, private val vOffset: CssSize? = null,
+    private val blurRadius: CssSize? = null, private val spreadRadius: CssSize? = null,
+    private val color: Color? = null, private val inset: Boolean = false
+) {
+
+    internal fun asString(): String {
+        return if (inset) "inset " else "" + (hOffset?.asString()).orEmpty() + " " +
+                (vOffset?.asString()).orEmpty() + " " +
+                (blurRadius?.asString()).orEmpty() + " " +
+                (spreadRadius?.asString()).orEmpty() + " " +
+                color?.asString().orEmpty()
+    }
+
+    override fun toString() = asString()
+}
