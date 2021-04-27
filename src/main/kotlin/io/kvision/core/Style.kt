@@ -21,6 +21,7 @@
  */
 package io.kvision.core
 
+import io.kvision.panel.Root
 import kotlin.reflect.KProperty
 
 /**
@@ -77,28 +78,24 @@ enum class PElement(internal val pname: String) {
  * @param mediaQuery CSS media query
  * @param init an initializer extension function
  */
-@Suppress("TooManyFunctions")
 open class Style(
     className: String? = null,
     pClass: PClass? = null,
     pElement: PElement? = null,
-    parentStyle: Style? = null,
+    val parentStyle: Style? = null,
     mediaQuery: String? = null,
     init: (Style.() -> Unit)? = null
 ) :
     StyledComponent() {
     private val propertyValues = js("{}")
-
-    private val newClassName: String = if (parentStyle == null) {
-        className ?: "kv_styleclass_${counter++}"
-    } else {
-        "${parentStyle.className} " + (className ?: ".kv_styleclass_${counter++}")
-    }
+    private val isGenerated: Boolean = className == null
 
     /**
      * The name of the CSS class.
      */
-    var className: String by refreshOnUpdate(newClassName)
+    val className = className ?: "kv_styleclass_${counter++}"
+
+    internal val cssClassName = this.className.split(' ').last().split('.').last()
 
     /**
      * The CSS pseudo class.
@@ -127,13 +124,24 @@ open class Style(
         init?.invoke(this)
     }
 
-    internal fun generateStyle(): String {
-        val styles = getSnStyleInternal()
+    private fun getStyleDeclaration(): String {
         val pseudoElementName = pElement?.let { "::${it.pname}" } ?: ""
         val pseudoClassName = customPClass?.let { ":$it" } ?: pClass?.let { ":${it.pname}" } ?: ""
-        return ".$className$pseudoElementName$pseudoClassName {\n" + styles.joinToString("\n") {
+        val fullClassName = "${if (isGenerated) "." else ""}$className$pseudoElementName$pseudoClassName"
+        return (parentStyle?.let { it.getStyleDeclaration() + " " } ?: "") + fullClassName
+    }
+
+    internal fun generateStyle(): String {
+        val styles = getSnStyleInternal()
+        return "${getStyleDeclaration()} {\n" + styles.joinToString("\n") {
             "${it.first}: ${it.second};"
         } + "\n}"
+    }
+
+    override fun refresh(): Style {
+        super.refresh()
+        Root.getFirstRoot()?.reRender()
+        return this
     }
 
     @Suppress("NOTHING_TO_INLINE")

@@ -160,7 +160,7 @@ class Root : SimplePanel {
                         "@media ($media) {\n" + styles.joinToString("\n") { it.generateStyle() } + "\n}"
                     }
                 }.joinToString("\n\n")
-                arrayOf(h("style", arrayOf(stylesDesc)))
+                arrayOf(h("style", arrayOf("\n$stylesDesc\n")))
             } else {
                 arrayOf()
             }

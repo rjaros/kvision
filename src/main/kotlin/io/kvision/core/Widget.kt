@@ -755,19 +755,19 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     }
 
     override fun addCssStyle(css: Style): Widget {
-        return addCssClass(css.className)
+        return addCssClass(css.cssClassName)
     }
 
     override fun removeCssStyle(css: Style): Widget {
-        return removeCssClass(css.className)
+        return removeCssClass(css.cssClassName)
     }
 
     override fun addSurroundingCssStyle(css: Style): Widget {
-        return addSurroundingCssClass(css.className)
+        return addSurroundingCssClass(css.cssClassName)
     }
 
     override fun removeSurroundingCssStyle(css: Style): Widget {
-        return removeSurroundingCssClass(css.className)
+        return removeSurroundingCssClass(css.cssClassName)
     }
 
     override fun getAttribute(name: String): String? {

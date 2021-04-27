@@ -26,6 +26,7 @@ import io.kvision.core.Color
 import io.kvision.core.Overflow
 import io.kvision.core.PClass
 import io.kvision.core.PElement
+import io.kvision.core.Style
 import io.kvision.core.style
 import io.kvision.core.widget
 import io.kvision.panel.Root
@@ -51,7 +52,7 @@ class StyleSpec : DomSpec {
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<style>.kv_styleclass_0 {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\nbox-shadow: 10px 10px;\n}</style><div class=\"kv_styleclass_0\"></div>",
+                "<style>\n.kv_styleclass_0 {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\nbox-shadow: 10px 10px;\n}\n</style><div class=\"kv_styleclass_0\"></div>",
                 element?.innerHTML,
                 "Should render correct style element"
             )
@@ -63,7 +64,7 @@ class StyleSpec : DomSpec {
         run {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
-                    style("customclass") {
+                    style(".customclass") {
                         margin = 2.px
                         color = Color.name(Col.SILVER)
                         overflow = Overflow.SCROLL
@@ -72,7 +73,7 @@ class StyleSpec : DomSpec {
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<style>.customclass {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}</style><div class=\"customclass\"></div>",
+                "<style>\n.customclass {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}\n</style><div class=\"customclass\"></div>",
                 element?.innerHTML,
                 "Should render correct style element with custom class name"
             )
@@ -84,7 +85,7 @@ class StyleSpec : DomSpec {
         run {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
-                    style("customclass") {
+                    style(".customclass") {
                         margin = 2.px
                         color = Color.name(Col.SILVER)
                         overflow = Overflow.SCROLL
@@ -96,11 +97,39 @@ class StyleSpec : DomSpec {
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<style>.customclass {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}\n" +
+                "<style>\n.customclass {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}\n" +
                         ".customclass image {\n" +
                         "margin-top: 10px;\n" +
-                        "}</style>" +
+                        "}\n</style>" +
                         "<div class=\"customclass\"></div>",
+                element?.innerHTML,
+                "Should render correct child style class name"
+            )
+        }
+    }
+
+    @Test
+    fun renderSubstyle() {
+        run {
+            lateinit var substyle: Style
+            style(".a") {
+                padding = 2.px
+                substyle = style(".b") {
+                    padding = 3.px
+                }
+            }
+            Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                widget {
+                    addCssStyle(substyle)
+                }
+            }
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<style>\n.a {\npadding: 2px;\n}\n" +
+                        ".a .b {\n" +
+                        "padding: 3px;\n" +
+                        "}\n</style>" +
+                        "<div class=\"b\"></div>",
                 element?.innerHTML,
                 "Should render correct child style class name"
             )
@@ -112,7 +141,7 @@ class StyleSpec : DomSpec {
         run {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
-                    style("customclass", PClass.HOVER) {
+                    style(".customclass", PClass.HOVER) {
                         margin = 2.px
                         color = Color.name(Col.SILVER)
                         overflow = Overflow.SCROLL
@@ -121,7 +150,7 @@ class StyleSpec : DomSpec {
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<style>.customclass:hover {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}</style><div class=\"customclass\"></div>",
+                "<style>\n.customclass:hover {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}\n</style><div class=\"customclass\"></div>",
                 element?.innerHTML,
                 "Should render correct style element with a pseudo class name"
             )
@@ -133,7 +162,7 @@ class StyleSpec : DomSpec {
         run {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
-                    style("customclass", pElement = PElement.FIRSTLETTER) {
+                    style(".customclass", pElement = PElement.FIRSTLETTER) {
                         margin = 2.px
                         color = Color.name(Col.SILVER)
                         overflow = Overflow.SCROLL
@@ -142,7 +171,7 @@ class StyleSpec : DomSpec {
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<style>.customclass::first-letter {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}</style><div class=\"customclass\"></div>",
+                "<style>\n.customclass::first-letter {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\n}\n</style><div class=\"customclass\"></div>",
                 element?.innerHTML,
                 "Should render correct style element with a pseudo element name"
             )
@@ -165,7 +194,7 @@ class StyleSpec : DomSpec {
             }
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<style>@media (min-width: 700px) {\n.kv_styleclass_1 {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\nbox-shadow: 10px 10px;\n}\n}</style><div class=\"kv_styleclass_0\"></div>",
+                "<style>\n@media (min-width: 700px) {\n.kv_styleclass_1 {\noverflow: scroll;\nmargin: 2px;\ncolor: silver;\nbox-shadow: 10px 10px;\n}\n}\n</style><div class=\"kv_styleclass_1\"></div>",
                 element?.innerHTML,
                 "Should render correct style element within a media query"
             )
