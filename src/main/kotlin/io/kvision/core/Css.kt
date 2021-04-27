@@ -854,3 +854,23 @@ class BoxShadow(
 
     override fun toString() = asString()
 }
+
+/**
+ * Type-safe definition of CSS transition.
+ * @param property the name of the property
+ * @param duration the duration of the transition effect (in seconds)
+ * @param timingFunction the timing function of the transition effect
+ * @param delay the delay of the transition effect (in seconds)
+ */
+class Transition(
+    private val property: String,
+    private val duration: Double,
+    private val timingFunction: String? = null,
+    private val delay: Double? = null
+) {
+    internal fun asString(): String {
+        return "$property ${duration}s ${timingFunction ?: ""} ${delay?.let { it.toString() + "s" } ?: ""}"
+    }
+
+    override fun toString() = asString()
+}

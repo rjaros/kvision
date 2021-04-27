@@ -489,6 +489,16 @@ abstract class StyledComponent {
      */
     open var boxShadowList: List<BoxShadow>? by refreshOnUpdate()
 
+    /**
+     * CSS transition effect for the current component.
+     */
+    open var transition: Transition? by refreshOnUpdate()
+
+    /**
+     * List of CSS transition effects for the current component.
+     */
+    open var transitionList: List<Transition>? by refreshOnUpdate()
+
     private var snStyleCache: List<StringPair>? = null
 
     /**
@@ -776,6 +786,11 @@ abstract class StyledComponent {
                 val value = it.asString()
                 snstyle.add("box-shadow" to value)
                 snstyle.add("-webkit-box-shadow" to value)
+            }
+            transitionList?.let { list ->
+                snstyle.add("transition" to list.joinToString { it.asString() })
+            } ?: transition?.let {
+                snstyle.add("transition" to it.asString())
             }
             for (key in js("Object").keys(customStyles).unsafeCast<Array<String>>()) {
                 snstyle.add(Pair(key, customStyles[key]))
