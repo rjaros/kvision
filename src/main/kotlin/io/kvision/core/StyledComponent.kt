@@ -482,22 +482,50 @@ abstract class StyledComponent {
     /**
      * Box shadow of the current component.
      */
-    open var boxShadow: BoxShadow? by refreshOnUpdate()
+    open var boxShadow: BoxShadow? by refreshOnUpdate {
+        if (boxShadow != null && boxShadowList != null) boxShadowList = null
+        refresh()
+    }
 
     /**
      * List of box shadows of the current component.
      */
-    open var boxShadowList: List<BoxShadow>? by refreshOnUpdate()
+    open var boxShadowList: List<BoxShadow>? by refreshOnUpdate {
+        if (boxShadowList != null && boxShadow != null) boxShadow = null
+        refresh()
+    }
 
     /**
      * CSS transition effect for the current component.
      */
-    open var transition: Transition? by refreshOnUpdate()
+    open var transition: Transition? by refreshOnUpdate {
+        if (transition != null && transitionList != null) transitionList = null
+        refresh()
+    }
 
     /**
      * List of CSS transition effects for the current component.
      */
-    open var transitionList: List<Transition>? by refreshOnUpdate()
+    open var transitionList: List<Transition>? by refreshOnUpdate {
+        if (transitionList != null && transition != null) transition = null
+        refresh()
+    }
+
+    /**
+     * CSS border radius.
+     */
+    open var borderRadius: CssSize? by refreshOnUpdate {
+        if (borderRadius != null && borderRadiusList != null) borderRadiusList = null
+        refresh()
+    }
+
+    /**
+     * List of CSS border radius values.
+     */
+    open var borderRadiusList: List<CssSize>? by refreshOnUpdate {
+        if (borderRadiusList != null && borderRadius != null) borderRadius = null
+        refresh()
+    }
 
     private var snStyleCache: List<StringPair>? = null
 
@@ -791,6 +819,15 @@ abstract class StyledComponent {
                 snstyle.add("transition" to list.joinToString { it.asString() })
             } ?: transition?.let {
                 snstyle.add("transition" to it.asString())
+            }
+            borderRadiusList?.let { list ->
+                val value = list.joinToString(" ") { it.asString() }
+                snstyle.add("border-radius" to value)
+                snstyle.add("-webkit-border-radius" to value)
+            } ?: borderRadius?.let {
+                val value = it.asString()
+                snstyle.add("border-radius" to value)
+                snstyle.add("-webkit-border-radius" to value)
             }
             for (key in js("Object").keys(customStyles).unsafeCast<Array<String>>()) {
                 snstyle.add(Pair(key, customStyles[key]))
