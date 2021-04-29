@@ -38,6 +38,20 @@ fun <S, W : Component> W.bind(
     return this
 }
 
+internal fun <S, W : Component> W.bindSync(
+    observableState: ObservableState<S>,
+    removeChildren: Boolean = true,
+    factory: (W.(S) -> Unit)
+): W {
+    this.addBeforeDisposeHook(observableState.subscribe {
+        this.singleRender {
+            if (removeChildren) (this as? Container)?.disposeAll()
+            factory(it)
+        }
+    })
+    return this
+}
+
 /**
  * An extension function which binds the container to the observable state with a list of items.
  *
@@ -122,7 +136,7 @@ fun <S, W : SimplePanel> W.bindEach(
  * @return current component
  */
 fun <S, T : GenericFormComponent<S>> T.bindTo(state: MutableState<S>): T {
-    bind(state, false) {
+    bindSync(state, false) {
         if (value != it) value = it
     }
     addBeforeDisposeHook(subscribe {
@@ -137,7 +151,7 @@ fun <S, T : GenericFormComponent<S>> T.bindTo(state: MutableState<S>): T {
  * @return current component
  */
 fun <T : GenericFormComponent<String?>> T.bindTo(state: MutableState<String>): T {
-    bind(state, false) {
+    bindSync(state, false) {
         if (value != it) value = it
     }
     addBeforeDisposeHook(subscribe {
@@ -152,7 +166,7 @@ fun <T : GenericFormComponent<String?>> T.bindTo(state: MutableState<String>): T
  * @return current component
  */
 fun <T : GenericFormComponent<Number?>> T.bindTo(state: MutableState<Int?>): T {
-    bind(state, false) {
+    bindSync(state, false) {
         if (value != it) value = it
     }
     addBeforeDisposeHook(subscribe {
@@ -167,7 +181,7 @@ fun <T : GenericFormComponent<Number?>> T.bindTo(state: MutableState<Int?>): T {
  * @return current component
  */
 fun <T : GenericFormComponent<Number?>> T.bindTo(state: MutableState<Int>): T {
-    bind(state, false) {
+    bindSync(state, false) {
         if (value != it) value = it
     }
     addBeforeDisposeHook(subscribe {
@@ -182,7 +196,7 @@ fun <T : GenericFormComponent<Number?>> T.bindTo(state: MutableState<Int>): T {
  * @return current component
  */
 fun <T : GenericFormComponent<Number?>> T.bindTo(state: MutableState<Double?>): T {
-    bind(state, false) {
+    bindSync(state, false) {
         if (value != it) value = it
     }
     addBeforeDisposeHook(subscribe {
@@ -197,7 +211,7 @@ fun <T : GenericFormComponent<Number?>> T.bindTo(state: MutableState<Double?>): 
  * @return current component
  */
 fun <T : GenericFormComponent<Number?>> T.bindTo(state: MutableState<Double>): T {
-    bind(state, false) {
+    bindSync(state, false) {
         if (value != it) value = it
     }
     addBeforeDisposeHook(subscribe {
@@ -212,7 +226,7 @@ fun <T : GenericFormComponent<Number?>> T.bindTo(state: MutableState<Double>): T
  * @return current component
  */
 fun <T : GenericFormComponent<Date?>> T.bindTo(state: MutableState<Date>): T {
-    bind(state, false) {
+    bindSync(state, false) {
         if (value != it) value = it
     }
     addBeforeDisposeHook(subscribe {

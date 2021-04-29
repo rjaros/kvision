@@ -226,10 +226,15 @@ open class SpinnerInput(
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
         if (v != null && v != "") {
-            this.value = v.toDoubleOrNull()
-            this.value?.let {
-                if (min != null && it.toDouble() < (min?.toDouble() ?: 0.0)) this.value = min
-                if (max != null && it.toDouble() > (max?.toDouble() ?: 0.0)) this.value = max
+            val newValue = v.toDoubleOrNull()?.let {
+                if (min != null && it < (min?.toDouble() ?: 0.0))
+                    min
+                else if (max != null && it > (max?.toDouble() ?: 0.0))
+                    max
+                else it
+            }
+            if (this.value != newValue) {
+                this.value = newValue
             }
         } else {
             this.value = null

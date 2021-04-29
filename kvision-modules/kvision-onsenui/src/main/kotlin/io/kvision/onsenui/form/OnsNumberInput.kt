@@ -234,7 +234,8 @@ open class OnsNumberInput(
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
         if (v != null && v != "") {
-            this.value = v.toDoubleOrNull()
+            val newValue = v.toDoubleOrNull()
+            if (this.value != newValue) this.value = newValue
         } else {
             this.value = null
         }
