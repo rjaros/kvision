@@ -29,6 +29,7 @@ import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.NumberFormControl
 import io.kvision.html.ButtonStyle
+import io.kvision.i18n.I18n
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
@@ -47,6 +48,7 @@ import io.kvision.utils.SnOn
  * @param decimals number of decimal digits (default 0)
  * @param buttonsType spinner buttons type
  * @param forceType spinner force rounding type
+ * @param decimalSeparator the decimal separator (default: auto detect)
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
@@ -54,7 +56,8 @@ import io.kvision.utils.SnOn
 open class Spinner(
     value: Number? = null, name: String? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
-    forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null, label: String? = null,
+    forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
+    decimalSeparator: String? = I18n.detectDecimalSeparator(), label: String? = null,
     rich: Boolean = false, init: (Spinner.() -> Unit)? = null
 ) : SimplePanel(setOf("form-group")), NumberFormControl, MutableState<Number?> {
 
@@ -134,6 +137,15 @@ open class Spinner(
         }
 
     /**
+     * The decimal separator.
+     */
+    var decimalSeparator
+        get() = input.decimalSeparator
+        set(value) {
+            input.decimalSeparator = value
+        }
+
+    /**
      * The placeholder for the spinner input.
      */
     var placeholder
@@ -191,7 +203,7 @@ open class Spinner(
 
     protected val idc = "kv_form_spinner_$counter"
     final override val input: SpinnerInput =
-        SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, buttonStyle)
+        SpinnerInput(value, min, max, step, decimals, buttonsType, forceType, buttonStyle, decimalSeparator)
             .apply {
                 this.id = this@Spinner.idc
                 this.name = name
@@ -299,12 +311,27 @@ fun Container.spinner(
     buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE,
     buttonStyle: ButtonStyle? = null,
+    decimalSeparator: String? = I18n.detectDecimalSeparator(),
     label: String? = null,
     rich: Boolean = false,
     init: (Spinner.() -> Unit)? = null
 ): Spinner {
     val spinner =
-        Spinner(value, name, min, max, step, decimals, buttonsType, forceType, buttonStyle, label, rich, init)
+        Spinner(
+            value,
+            name,
+            min,
+            max,
+            step,
+            decimals,
+            buttonsType,
+            forceType,
+            buttonStyle,
+            decimalSeparator,
+            label,
+            rich,
+            init
+        )
     this.add(spinner)
     return spinner
 }
@@ -325,8 +352,9 @@ fun <S> Container.spinner(
     buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE,
     buttonStyle: ButtonStyle? = null,
+    decimalSeparator: String? = I18n.detectDecimalSeparator(),
     label: String? = null,
     rich: Boolean = false,
     init: (Spinner.(S) -> Unit)
-) = spinner(value, name, min, max, step, decimals, buttonsType, forceType, buttonStyle, label, rich)
+) = spinner(value, name, min, max, step, decimals, buttonsType, forceType, buttonStyle, decimalSeparator, label, rich)
     .bind(state, true, init)

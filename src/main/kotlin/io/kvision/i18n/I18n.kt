@@ -50,6 +50,13 @@ object I18n : I18nManager {
         return manager.ngettext(singularKey, pluralKey, value, *args)
     }
 
+    fun detectDecimalSeparator(): String {
+        return try {
+            (1.1).asDynamic().toLocaleString(language).unsafeCast<String>().dropLast(1).last().toString()
+        } catch (e: Exception) {
+            "."
+        }
+    }
 }
 
 /**

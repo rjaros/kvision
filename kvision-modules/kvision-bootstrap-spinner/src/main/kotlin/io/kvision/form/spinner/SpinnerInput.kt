@@ -31,6 +31,7 @@ import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.html.ButtonStyle
+import io.kvision.i18n.I18n
 import io.kvision.jquery.JQuery
 import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
@@ -71,6 +72,7 @@ internal const val DEFAULT_STEP = 1
  * @param buttonsType spinner buttons type
  * @param forceType spinner force rounding type
  * @param buttonStyle the style of the up/down buttons
+ * @param decimalSeparator the decimal separator (default: auto detect)
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
@@ -79,6 +81,7 @@ open class SpinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
+    decimalSeparator: String? = I18n.detectDecimalSeparator(),
     classes: Set<String> = setOf(), init: (SpinnerInput.() -> Unit)? = null
 ) : Widget(classes + "form-control"), GenericFormComponent<Number?>, FormInput, MutableState<Number?> {
 
@@ -126,6 +129,11 @@ open class SpinnerInput(
      * The style of the up/down buttons.
      */
     var buttonStyle by refreshOnUpdate(buttonStyle) { refreshSpinner() }
+
+    /**
+     * The decimal separator.
+     */
+    var decimalSeparator by refreshOnUpdate(decimalSeparator) { refreshSpinner() }
 
     /**
      * The placeholder for the spinner input.
@@ -197,7 +205,7 @@ open class SpinnerInput(
         super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "text")
         startValue?.let {
-            attributeSetBuilder.add("value", "$it")
+            attributeSetBuilder.add("value", convertToString(it.toDouble())!!)
         }
         placeholder?.let {
             attributeSetBuilder.add("placeholder", translate(it))
@@ -218,7 +226,7 @@ open class SpinnerInput(
         if (disabled) {
             attributeSetBuilder.add("disabled")
             value?.let {
-                attributeSetBuilder.add("value", "$it")
+                attributeSetBuilder.add("value", convertToString(it.toDouble())!!)
             }
         }
     }
@@ -226,7 +234,7 @@ open class SpinnerInput(
     protected open fun changeValue() {
         val v = getElementJQuery()?.`val`() as String?
         if (v != null && v != "") {
-            val newValue = v.toDoubleOrNull()?.let {
+            val newValue = convertToNumber(v)?.let {
                 if (min != null && it < (min?.toDouble() ?: 0.0))
                     min
                 else if (max != null && it > (max?.toDouble() ?: 0.0))
@@ -289,9 +297,17 @@ open class SpinnerInput(
         return this
     }
 
+    private fun convertToString(v: Double?): String? {
+        return v?.let { if (decimalSeparator != null) "$it".replace(".", decimalSeparator!!) else "$it" }
+    }
+
+    private fun convertToNumber(v: String?): Double? {
+        return v?.let { if (decimalSeparator != null) it.replace(decimalSeparator!!, ".") else it }?.toDoubleOrNull()
+    }
+
     private fun refreshState() {
         value?.let {
-            getElementJQuery()?.`val`("$it")
+            getElementJQuery()?.`val`(convertToString(it.toDouble())!!)
         } ?: getElementJQueryD()?.`val`(null)
     }
 
@@ -302,6 +318,16 @@ open class SpinnerInput(
     private fun getSettingsObj(): dynamic {
         val verticalbuttons = buttonsType == ButtonsType.VERTICAL || buttonsType == ButtonsType.NONE
         val style = buttonStyle
+        val callbackBefore = if (decimalSeparator != null) {
+            { a: String ->
+                a.replace(decimalSeparator!!, ".")
+            }
+        } else undefined
+        val callbackAfter = if (decimalSeparator != null) {
+            { b: String ->
+                b.replace(".", decimalSeparator!!)
+            }
+        } else undefined
         return obj {
             this.min = min
             this.max = max
@@ -319,6 +345,10 @@ open class SpinnerInput(
             if (verticalbuttons) {
                 this.verticalup = "\u25b2"
                 this.verticaldown = "\u25bc"
+            }
+            if (decimalSeparator != null) {
+                this.callback_before_calculation = callbackBefore
+                this.callback_after_calculation = callbackAfter
             }
         }
     }
@@ -347,7 +377,7 @@ fun Container.spinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
-    classes: Set<String>? = null,
+    decimalSeparator: String? = I18n.detectDecimalSeparator(), classes: Set<String>? = null,
     className: String? = null,
     init: (SpinnerInput.() -> Unit)? = null
 ): SpinnerInput {
@@ -361,6 +391,7 @@ fun Container.spinnerInput(
             buttonsType,
             forceType,
             buttonStyle,
+            decimalSeparator,
             classes ?: className.set,
             init
         )
@@ -378,7 +409,7 @@ fun <S> Container.spinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
-    classes: Set<String>? = null,
+    decimalSeparator: String? = I18n.detectDecimalSeparator(), classes: Set<String>? = null,
     className: String? = null,
     init: (SpinnerInput.(S) -> Unit)
 ) = spinnerInput(
@@ -390,6 +421,7 @@ fun <S> Container.spinnerInput(
     buttonsType,
     forceType,
     buttonStyle,
+    decimalSeparator,
     classes,
     className
 ).bind(state, true, init)
