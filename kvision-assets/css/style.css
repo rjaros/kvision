@@ -110,7 +110,7 @@ trix-toolbar .trix-button-group {
     border-color: #dc3545;
 }
 
-.form-inline .bootstrap-select .form-control {
+.form-inline .bootstrap-select button.form-control {
     min-width: 200px;
 }
 
