@@ -23,7 +23,6 @@ package io.kvision.remote
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -68,7 +67,6 @@ class KVWebSocketHandler(
         }.first()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     override fun handle(session: WebSocketSession): Mono<Void> {
         val handler = getHandler(session)
         val responseChannel = Channel<String>()

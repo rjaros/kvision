@@ -36,7 +36,7 @@ import org.w3c.dom.events.Event
 inline fun <reified T : Widget> T.eventFlow(event: String): Flow<Pair<T, Event>> = callbackFlow {
     val id = onEvent {
         this.asDynamic()[event] = { e: Event ->
-            offer(self to e)
+            trySend(self to e)
         }
     }
     awaitClose {
@@ -52,7 +52,7 @@ inline val <reified T : Widget> T.clickFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {
             click = {
-                offer(self)
+                trySend(self)
             }
         }
         awaitClose {
@@ -68,7 +68,7 @@ inline val <reified T : Widget> T.inputFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {
             input = {
-                offer(self)
+                trySend(self)
             }
         }
         awaitClose {
@@ -84,7 +84,7 @@ inline val <reified T : Widget> T.changeFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {
             change = {
-                offer(self)
+                trySend(self)
             }
         }
         awaitClose {

@@ -27,7 +27,6 @@ import io.kvision.jquery.jQuery
 import io.kvision.types.DateSerializer
 import io.kvision.utils.obj
 import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
@@ -99,7 +98,6 @@ open class RestClient(protected val module: SerializersModule? = null) {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @OptIn(ExperimentalSerializationApi::class)
     fun <T : Any> remoteCall(
         url: String,
         data: dynamic = null,
@@ -156,7 +154,6 @@ open class RestClient(protected val module: SerializersModule? = null) {
      * @param transform a function to transform the result of the call
      * @return a promise of the result
      */
-    @OptIn(ExperimentalSerializationApi::class)
     fun <T : Any, V : Any> remoteCall(
         url: String,
         serializer: SerializationStrategy<V>,
@@ -382,7 +379,6 @@ open class RestClient(protected val module: SerializersModule? = null) {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @OptIn(ExperimentalSerializationApi::class)
     fun <T : Any> remoteRequest(
         url: String,
         data: dynamic = null,
@@ -442,7 +438,6 @@ open class RestClient(protected val module: SerializersModule? = null) {
      * @param transform a function to transform the result of the call
      * @return a promise of the response
      */
-    @OptIn(ExperimentalSerializationApi::class)
     fun <T : Any, V : Any> remoteRequest(
         url: String,
         serializer: SerializationStrategy<V>,

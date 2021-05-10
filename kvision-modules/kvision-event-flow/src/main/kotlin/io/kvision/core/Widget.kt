@@ -21,10 +21,14 @@
  */
 package io.kvision.core
 
-import kotlinx.coroutines.GlobalScope
+import kotlinx.browser.window
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
+
+val KVScope = CoroutineScope(window.asCoroutineDispatcher())
 
 /**
  * An extension function for defining on click suspending event handlers.
@@ -32,7 +36,7 @@ import org.w3c.dom.events.MouseEvent
 inline fun <reified T : Widget> T.onClickLaunch(noinline handler: suspend T.(MouseEvent) -> Unit): Int {
     return this.setEventListener<T> {
         click = { e ->
-            GlobalScope.launch {
+            KVScope.launch {
                 self.handler(e)
             }
         }
@@ -45,7 +49,7 @@ inline fun <reified T : Widget> T.onClickLaunch(noinline handler: suspend T.(Mou
 inline fun <reified T : Widget> T.onInputLaunch(noinline handler: suspend T.(Event) -> Unit): Int {
     return this.setEventListener<T> {
         input = { e ->
-            GlobalScope.launch {
+            KVScope.launch {
                 self.handler(e)
             }
         }
@@ -58,7 +62,7 @@ inline fun <reified T : Widget> T.onInputLaunch(noinline handler: suspend T.(Eve
 inline fun <reified T : Widget> T.onChangeLaunch(noinline handler: suspend T.(Event) -> Unit): Int {
     return this.setEventListener<T> {
         change = { e ->
-            GlobalScope.launch {
+            KVScope.launch {
                 self.handler(e)
             }
         }
@@ -71,7 +75,7 @@ inline fun <reified T : Widget> T.onChangeLaunch(noinline handler: suspend T.(Ev
 inline fun <reified T : Widget> T.onEventLaunch(event: String, noinline handler: suspend T.(Event) -> Unit): Int {
     return this.setEventListener<T> {
         this.asDynamic()[event] = { e ->
-            GlobalScope.launch {
+            KVScope.launch {
                 self.handler(e)
             }
         }

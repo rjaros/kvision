@@ -22,6 +22,7 @@
  */
 package io.kvision.remote
 
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -166,6 +167,7 @@ class KVServiceBinderTest {
         assertThat(serviceBinder.routeMapRegistry.asSequence().single().path, equalTo("/kv/routeKVServiceBinderImpl0"))
     }
 
+    @DelicateCoroutinesApi
     @Test
     fun bind_delegatesToHandlingFunction_forWebsockets() {
         // setup
@@ -217,7 +219,7 @@ private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, Websocket
         { runBlocking { function.invoke(HANDLER_THIS, it) } }
 
     @Suppress("UNCHECKED_CAST")
-    @InternalCoroutinesApi
+    @DelicateCoroutinesApi
     @FlowPreview
     override fun <REQ, RES> createWebsocketHandler(
         function: suspend Any.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,

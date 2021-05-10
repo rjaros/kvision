@@ -46,19 +46,15 @@ external fun require(name: String): dynamic
 object KVManager {
     init {
         try {
-            require("kvision-kvision-bootstrap-css-jsLegacy").io.kvision.KVManagerBootstrapCss
+            require("kvision-kvision-bootstrap-css-js-legacy").io.kvision.KVManagerBootstrapCss
         } catch (e: Throwable) {
         }
         try {
-            require("kvision-kvision-bootstrap-jsLegacy").io.kvision.KVManagerBootstrap
+            require("kvision-kvision-bootstrap-js-legacy").io.kvision.KVManagerBootstrap
         } catch (e: Throwable) {
         }
         try {
-            require("kvision-kvision-fontawesome-jsLegacy").io.kvision.KVManagerFontAwesome
-        } catch (e: Throwable) {
-        }
-        try {
-            require("kvision-kvision-onsenui-css-jsLegacy").io.kvision.KVManagerOnsenuiCss
+            require("kvision-kvision-fontawesome-js-legacy").io.kvision.KVManagerFontAwesome
         } catch (e: Throwable) {
         }
         require("kvision-assets/css/style.css")

@@ -26,7 +26,9 @@ import io.javalin.Javalin
 import io.javalin.core.security.Role
 import io.javalin.http.Context
 import io.javalin.websocket.WsHandler
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
@@ -54,6 +56,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         const val KV_WS_OUTGOING_KEY = "io.kvision.ws.outgoing.key"
     }
 
+    private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
@@ -67,7 +71,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
             val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)
-            val future = GlobalScope.future {
+            val future = applicationScope.future {
                 try {
                     val result = function.invoke(service, jsonRpcRequest.params)
                     JsonRpcResponse(
@@ -100,7 +104,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 ctx.attribute(KV_WS_OUTGOING_KEY, outgoing)
                 val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
                 val service = injector.getInstance(serviceClass.java)
-                GlobalScope.launch {
+                applicationScope.launch {
                     coroutineScope {
                         launch {
                             outgoing.consumeEach { ctx.send(it) }
@@ -121,7 +125,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
             ws.onClose { ctx ->
-                GlobalScope.launch {
+                applicationScope.launch {
                     val outgoing = ctx.attribute<Channel<String>>(KV_WS_OUTGOING_KEY)!!
                     val incoming = ctx.attribute<Channel<String>>(KV_WS_INCOMING_KEY)!!
                     outgoing.close()
@@ -129,7 +133,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
             ws.onMessage { ctx ->
-                GlobalScope.launch {
+                applicationScope.launch {
                     val incoming = ctx.attribute<Channel<String>>(KV_WS_INCOMING_KEY)!!
                     incoming.send(ctx.message())
                 }

@@ -33,7 +33,8 @@ import io.kvision.utils.JSON
 import io.kvision.utils.obj
 import io.kvision.utils.set
 import kotlinx.browser.window
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
@@ -67,6 +68,7 @@ open class SelectRemoteInput<T : Any>(
     classes: Set<String> = setOf(),
     init: (SelectRemoteInput<T>.() -> Unit)? = null
 ) : SelectInput(null, value, multiple, null, classes) {
+    private val scope = CoroutineScope(window.asCoroutineDispatcher())
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
@@ -129,7 +131,7 @@ open class SelectRemoteInput<T : Any>(
 
             }
         } else {
-            GlobalScope.launch {
+            scope.launch {
                 val callAgent = CallAgent()
                 val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
                 val values = callAgent.remoteCall(
@@ -169,7 +171,7 @@ open class SelectRemoteInput<T : Any>(
             @Suppress("SimplifyBooleanWithConstants")
             if (!preload && elementValue == null && initRun == false) {
                 initRun = true
-                GlobalScope.launch {
+                scope.launch {
                     val labels = labelsCache.getOrPut(it) {
                         val callAgent = CallAgent()
                         val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }

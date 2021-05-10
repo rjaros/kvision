@@ -21,11 +21,6 @@
  */
 package io.kvision.form
 
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.serializer
 import io.kvision.i18n.I18n.trans
 import io.kvision.types.DateSerializer
 import io.kvision.types.KFile
@@ -33,6 +28,10 @@ import io.kvision.types.toDateF
 import io.kvision.types.toStringF
 import io.kvision.utils.JSON
 import io.kvision.utils.JSON.toObj
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.serializer
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KClass
@@ -58,7 +57,6 @@ internal data class FieldParams<in F : FormControl>(
  * @param serializer a serializer for model type
  * @param customSerializers a map of custom serializers for model type
  */
-@OptIn(ExperimentalSerializationApi::class)
 @Suppress("TooManyFunctions", "UnsafeCastFromDynamic")
 class Form<K : Any>(
     private val panel: FormPanel<K>? = null,

@@ -28,6 +28,13 @@ internal val kVManagerOnsenuiInit = KVManagerOnsenui.init()
  */
 internal object KVManagerOnsenui {
 
+    init {
+        require("onsenui/css/ionicons/css/ionicons.min.css")
+        require("onsenui/css/material-design-iconic-font/css/material-design-iconic-font.min.css")
+        require("onsenui/css/onsenui-core.min.css")
+        require("onsenui/css/onsen-css-components.min.css")
+    }
+
     internal val ons = require("onsenui/js/onsenui.min.js")
 
     internal fun init() {}

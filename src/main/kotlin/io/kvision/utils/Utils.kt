@@ -228,6 +228,6 @@ val String?.set: Set<String>
  */
 fun String.toCamelCase(): String {
     return this.replace(Regex("(-\\w)")) {
-        it.value.drop(1).toUpperCase()
+        it.value.drop(1).uppercase()
     }
 }

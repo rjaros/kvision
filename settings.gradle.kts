@@ -4,13 +4,6 @@ pluginManagement {
         mavenCentral()
         mavenLocal()
     }
-    resolutionStrategy {
-        eachPlugin {
-            when {
-                requested.id.id == "kotlinx-serialization" -> useModule("org.jetbrains.kotlin:kotlin-serialization:${requested.version}")
-            }
-        }
-    }
 }
 rootProject.name = "kvision"
 
@@ -29,7 +22,6 @@ include(
     "kvision-modules:kvision-bootstrap-typeahead-remote",
     "kvision-modules:kvision-bootstrap-upload",
     "kvision-modules:kvision-onsenui",
-    "kvision-modules:kvision-onsenui-css",
     "kvision-modules:kvision-chart",
     "kvision-modules:kvision-cordova",
     "kvision-modules:kvision-datacontainer",
@@ -63,6 +55,5 @@ include(
     "kvision-assets",
     "kvision-npm-placeholders:kvision-bootstrap",
     "kvision-npm-placeholders:kvision-bootstrap-css",
-    "kvision-npm-placeholders:kvision-fontawesome",
-    "kvision-npm-placeholders:kvision-onsenui-css"
+    "kvision-npm-placeholders:kvision-fontawesome"
 )

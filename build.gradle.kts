@@ -1,6 +1,6 @@
 plugins {
     val kotlinVersion: String by System.getProperties()
-    id("kotlinx-serialization") version kotlinVersion
+    kotlin("plugin.serialization") version kotlinVersion
     kotlin("js")
     id("maven-publish")
     id("signing")
@@ -39,24 +39,20 @@ dependencies {
     api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
     implementation("io.github.petertrr:kotlin-multiplatform-diff-js:$diffVersion")
 //  Empty NPM placeholders
-    implementation(npm("kvision-kvision-bootstrap-jsLegacy", "npm:kvision-bootstrap@^0.0.1"))
-    implementation(npm("kvision-kvision-bootstrap-css-jsLegacy", "npm:kvision-bootstrap-css@^0.0.1"))
-    implementation(npm("kvision-kvision-fontawesome-jsLegacy", "npm:kvision-fontawesome@^0.0.1"))
-    implementation(npm("kvision-kvision-onsenui-css-jsLegacy", "npm:kvision-onsenui-css@^0.0.1"))
+    implementation(npm("kvision-kvision-bootstrap-js-legacy", "npm:kvision-bootstrap@^0.0.1"))
+    implementation(npm("kvision-kvision-bootstrap-css-js-legacy", "npm:kvision-bootstrap-css@^0.0.1"))
+    implementation(npm("kvision-kvision-fontawesome-js-legacy", "npm:kvision-fontawesome@^0.0.1"))
 //
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.5.tgz"))
     implementation(npm("kvision-assets", "^1.0.5"))
     implementation(npm("css-loader", "^5.2.4"))
     implementation(npm("style-loader", "^2.0.0"))
-    implementation(npm("less", "^3.12.2"))
-    implementation(npm("less-loader", "^7.1.0"))
-    implementation(npm("imports-loader", "^1.2.0"))
-    implementation(npm("file-loader", "^6.2.0"))
-    implementation(npm("url-loader", "^4.1.1"))
-    implementation(npm("uglifyjs-webpack-plugin", "^2.2.0"))
-    implementation(npm("jquery", "^3.5.1"))
-    implementation(npm("fecha", "^4.2.0"))
+    implementation(npm("less", "^4.1.1"))
+    implementation(npm("less-loader", "^8.1.1"))
+    implementation(npm("imports-loader", "^2.0.0"))
+    implementation(npm("jquery", "^3.6.0"))
+    implementation(npm("fecha", "^4.2.1"))
     implementation(npm("snabbdom", "^0.7.4"))
     implementation(npm("snabbdom-virtualize", "^0.7.0"))
     implementation(npm("jquery-resizable-dom", "^0.35.0"))
@@ -130,7 +126,6 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-maps/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-moment/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-onsenui/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-onsenui-css/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-pace/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-react/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-redux/src/main/kotlin"))

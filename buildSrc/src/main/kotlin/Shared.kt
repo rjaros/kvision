@@ -53,7 +53,6 @@ fun KotlinMultiplatformExtension.kotlinJvmTargets() {
             kotlinOptions {
                 jvmTarget = "1.8"
                 freeCompilerArgs = listOf("-Xjsr305=strict")
-                useIR = true
             }
         }
     }

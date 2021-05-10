@@ -28,7 +28,9 @@ import io.vertx.core.json.Json
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 import io.vertx.kotlin.coroutines.dispatcher
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
@@ -52,6 +54,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
+    private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
@@ -66,7 +70,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 
             val injector = ctx.get<Injector>(KV_INJECTOR_KEY)
             val service = injector.getInstance(serviceClass.java)
-            GlobalScope.launch(ctx.vertx().dispatcher()) {
+            applicationScope.launch(ctx.vertx().dispatcher()) {
                 val response = try {
                     val result = function.invoke(service, jsonRpcRequest.params)
                     JsonRpcResponse(
@@ -97,23 +101,23 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             val service = injector.getInstance(serviceClass.java)
             val vertx = injector.getInstance(Vertx::class.java)
             ws.textMessageHandler { message ->
-                GlobalScope.launch(vertx.dispatcher()) {
+                applicationScope.launch(vertx.dispatcher()) {
                     incoming.send(message)
                 }
             }
             ws.closeHandler {
-                GlobalScope.launch(vertx.dispatcher()) {
+                applicationScope.launch(vertx.dispatcher()) {
                     outgoing.close()
                     incoming.close()
                 }
             }
             ws.exceptionHandler {
-                GlobalScope.launch(vertx.dispatcher()) {
+                applicationScope.launch(vertx.dispatcher()) {
                     outgoing.close()
                     incoming.close()
                 }
             }
-            GlobalScope.launch(vertx.dispatcher()) {
+            applicationScope.launch(vertx.dispatcher()) {
                 coroutineScope {
                     launch {
                         for (text in outgoing) {

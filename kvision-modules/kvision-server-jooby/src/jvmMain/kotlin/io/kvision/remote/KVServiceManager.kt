@@ -28,8 +28,9 @@ import io.jooby.HandlerContext
 import io.jooby.Kooby
 import io.jooby.WebSocketConfigurer
 import io.jooby.body
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
@@ -54,6 +55,8 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
 
+    private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
@@ -65,7 +68,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             } else {
                 ctx.body<JsonRpcRequest>()
             }
-            val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)
+            val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)
             try {
                 val result = function.invoke(service, jsonRpcRequest.params)
@@ -95,7 +98,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             val incoming = Channel<String>()
             val outgoing = Channel<String>()
             configurer.onConnect { ws ->
-                GlobalScope.launch {
+                applicationScope.launch {
                     coroutineScope {
                         launch(Dispatchers.IO) {
                             outgoing.consumeEach { ws.send(it) }
@@ -116,13 +119,13 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
             configurer.onClose { _, _ ->
-                GlobalScope.launch {
+                applicationScope.launch {
                     outgoing.close()
                     incoming.close()
                 }
             }
             configurer.onMessage { _, msg ->
-                GlobalScope.launch {
+                applicationScope.launch {
                     incoming.send(msg.value())
                 }
             }

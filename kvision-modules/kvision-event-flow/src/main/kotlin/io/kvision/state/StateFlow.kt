@@ -21,8 +21,7 @@
  */
 package io.kvision.state
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import io.kvision.core.KVScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,13 +36,12 @@ import kotlinx.coroutines.flow.stateIn
  * Extension function returning a sub state flow.
  */
 fun <T, S> StateFlow<S>.subFlow(sub: (S) -> T): StateFlow<T> {
-    return this.map { sub(it) }.stateIn(GlobalScope, SharingStarted.Eagerly, sub(this.value))
+    return this.map { sub(it) }.stateIn(KVScope, SharingStarted.Eagerly, sub(this.value))
 }
 
 /**
  * Extension property returning a StateFlow<S> for an ObservableState<S>.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline val <S> ObservableState<S>.stateFlow: StateFlow<S>
     get() = MutableStateFlow(getState()).apply {
         this@stateFlow.subscribe { this.value = it }
@@ -59,19 +57,17 @@ fun <T, S> ObservableState<S>.stateFlow(sub: (S) -> T): StateFlow<T> {
 /**
  * Extension property returning a MutableStateFlow<S> for a MutableState<S>.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline val <S> MutableState<S>.mutableStateFlow: MutableStateFlow<S>
     get() = MutableStateFlow(getState()).apply {
         this@mutableStateFlow.subscribe { this.value = it }
         this.onEach {
             this@mutableStateFlow.setState(it)
-        }.launchIn(GlobalScope)
+        }.launchIn(KVScope)
     }
 
 /**
  * Extension property returning an ObservableState<S> for a StateFlow<S>.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline val <S>StateFlow<S>.observableState: ObservableState<S>
     get() = object : ObservableValue<S>(this.value) {
 
@@ -83,7 +79,7 @@ inline val <S>StateFlow<S>.observableState: ObservableState<S>
             if (job == null) {
                 job = this@observableState.onEach {
                     this.value = it
-                }.launchIn(GlobalScope)
+                }.launchIn(KVScope)
             }
             return {
                 observers -= observer
@@ -98,7 +94,6 @@ inline val <S>StateFlow<S>.observableState: ObservableState<S>
 /**
  * Extension property returning a MutableState<S> for a MutableStateFlow<S>.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline val <S>MutableStateFlow<S>.mutableState: MutableState<S>
     get() = object : ObservableValue<S>(this.value) {
 
@@ -110,7 +105,7 @@ inline val <S>MutableStateFlow<S>.mutableState: MutableState<S>
             if (job == null) {
                 job = this@mutableState.onEach {
                     this.value = it
-                }.launchIn(GlobalScope)
+                }.launchIn(KVScope)
             }
             return {
                 observers -= observer
@@ -130,7 +125,6 @@ inline val <S>MutableStateFlow<S>.mutableState: MutableState<S>
 /**
  * Extension property returning an ObservableState<S?> for a Flow<S>.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline val <S>Flow<S>.observableState: ObservableState<S?>
     get() = object : ObservableValue<S?>(null) {
 
@@ -142,7 +136,7 @@ inline val <S>Flow<S>.observableState: ObservableState<S?>
             if (job == null) {
                 job = this@observableState.onEach {
                     this.value = it
-                }.launchIn(GlobalScope)
+                }.launchIn(KVScope)
             }
             return {
                 observers -= observer

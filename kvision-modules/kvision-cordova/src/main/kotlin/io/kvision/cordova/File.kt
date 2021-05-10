@@ -188,7 +188,7 @@ object File {
         val ab = ArrayBuffer(byteString.length)
         val ia = Uint8Array(ab)
         for (i in byteString.indices) {
-            ia[i] = byteString[i].toByte()
+            ia[i] = byteString[i].code.toByte()
         }
         return Blob(arrayOf(ab), BlobPropertyBag(type = mimeString))
     }
