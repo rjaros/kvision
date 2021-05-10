@@ -114,7 +114,11 @@ trix-toolbar .trix-button-group {
     min-width: 200px;
 }
 
-label.required-label::after {
+label:not(.form-check-label).required-label::after {
+    content: " *";
+    color: #dc3545;
+}
+label.form-check-label.required-label>span::after {
     content: " *";
     color: #dc3545;
 }

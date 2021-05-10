@@ -27,8 +27,10 @@ import io.kvision.core.CssClass
 import io.kvision.core.Widget
 import io.kvision.form.BoolFormControl
 import io.kvision.form.FieldLabel
+import io.kvision.form.FieldLabelCheck
 import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
+import io.kvision.html.span
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
@@ -132,7 +134,9 @@ open class Radio(
         this.extraValue = extraValue
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, classes = setOf("form-check-label"))
+    final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, classes = setOf("form-check-label")) {
+        span()
+    }
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
