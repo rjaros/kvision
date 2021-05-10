@@ -286,9 +286,11 @@ select.form-control, .tabulator-row .tabulator-cell.tabulator-editing select {
 
 .abc-checkbox input[type="checkbox"]:checked+label::after,
 .abc-checkbox input[type="radio"]:checked+label::after {
-    font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free";
-    content: "\f00c";
-    font-weight: 900;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+    content: "\2714";
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: -3px;
 }
 
 .abc-checkbox label::before {

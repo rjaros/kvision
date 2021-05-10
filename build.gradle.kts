@@ -38,16 +38,16 @@ dependencies {
     api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
     api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
     implementation("io.github.petertrr:kotlin-multiplatform-diff-js:$diffVersion")
-//    for local development
-//    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.1.tgz"))
 //  Empty NPM placeholders
     implementation(npm("kvision-kvision-bootstrap-jsLegacy", "npm:kvision-bootstrap@^0.0.1"))
     implementation(npm("kvision-kvision-bootstrap-css-jsLegacy", "npm:kvision-bootstrap-css@^0.0.1"))
     implementation(npm("kvision-kvision-fontawesome-jsLegacy", "npm:kvision-fontawesome@^0.0.1"))
     implementation(npm("kvision-kvision-onsenui-css-jsLegacy", "npm:kvision-onsenui-css@^0.0.1"))
 //
-    implementation(npm("kvision-assets", "^1.0.2"))
-    implementation(npm("css-loader", "^3.6.0"))
+//    for local development
+//    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.5.tgz"))
+    implementation(npm("kvision-assets", "^1.0.5"))
+    implementation(npm("css-loader", "^5.2.4"))
     implementation(npm("style-loader", "^2.0.0"))
     implementation(npm("less", "^3.12.2"))
     implementation(npm("less-loader", "^7.1.0"))
