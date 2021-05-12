@@ -48,10 +48,42 @@ enum class HttpMethod {
  */
 data class Response<T>(val data: T, val textStatus: String, val jqXHR: JQueryXHR)
 
-/**
- * HTTP status unauthorized (401).
- */
-const val HTTP_UNAUTHORIZED = 401
+const val HTTP_BAD_REQUEST: Short = 400
+const val HTTP_UNAUTHORIZED: Short = 401
+const val HTTP_FORBIDEN: Short = 403
+const val HTTP_NOT_FOUND: Short = 404
+const val HTTP_NOT_ALLOWED: Short = 405
+const val HTTP_SERVER_ERROR: Short = 500
+const val HTTP_NOT_IMPLEMENTED: Short = 501
+const val HTTP_BAD_GATEWAY: Short = 502
+const val HTTP_SERVICE_UNAVIABLE: Short = 503
+
+open class RemoteRequestException(code: Short, message: String) : Throwable(message) {
+    companion object {
+        fun create(code: Short, message: String): RemoteRequestException = when (code) {
+            HTTP_BAD_REQUEST -> BadRequest(message)
+            HTTP_UNAUTHORIZED -> Unauthorized(message)
+            HTTP_FORBIDEN -> Forbiden(message)
+            HTTP_NOT_FOUND -> NotFound(message)
+            HTTP_NOT_ALLOWED -> NotAllowed(message)
+            HTTP_SERVER_ERROR -> ServerError(message)
+            HTTP_NOT_IMPLEMENTED -> NotImplemented(message)
+            HTTP_BAD_GATEWAY -> BadGateway(message)
+            HTTP_SERVICE_UNAVIABLE -> ServiceUnaviable(message)
+            else -> RemoteRequestException(code, message)
+        }
+    }
+}
+
+class BadRequest(message: String) : RemoteRequestException(HTTP_BAD_REQUEST, message)
+class Unauthorized(message: String) : RemoteRequestException(HTTP_UNAUTHORIZED, message)
+class Forbiden(message: String) : RemoteRequestException(HTTP_FORBIDEN, message)
+class NotFound(message: String) : RemoteRequestException(HTTP_NOT_FOUND, message)
+class NotAllowed(message: String) : RemoteRequestException(HTTP_NOT_ALLOWED, message)
+class ServerError(message: String) : RemoteRequestException(HTTP_SERVER_ERROR, message)
+class NotImplemented(message: String) : RemoteRequestException(HTTP_NOT_IMPLEMENTED, message)
+class BadGateway(message: String) : RemoteRequestException(HTTP_BAD_GATEWAY, message)
+class ServiceUnaviable(message: String) : RemoteRequestException(HTTP_SERVICE_UNAVIABLE, message)
 
 /**
  * An agent responsible for remote calls.
@@ -360,7 +392,7 @@ open class RestClient(protected val module: SerializersModule? = null) {
                         } else {
                             errorText
                         }
-                        reject(Exception(message))
+                        reject(RemoteRequestException.create(xhr.status, message))
                     }
                 this.beforeSend = beforeSend
             })
