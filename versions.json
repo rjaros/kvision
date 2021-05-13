@@ -1,18 +1,18 @@
 {
-  "kvision": "4.4.0",
-  "kotlin": "1.4.32",
-  "serialization": "1.1.0",
-  "coroutines": "1.4.3",
+  "kvision": "4.5.1",
+  "kotlin": "1.5.0",
+  "serialization": "1.2.1",
+  "coroutines": "1.5.0-RC",
   "template-javalin": {
   },
   "template-jooby": {
-    "jooby": "2.9.5"
+    "jooby": "2.9.6"
   },
   "template-ktor": {
-    "ktor": "1.5.3"
+    "ktor": "1.5.4"
   },
   "template-micronaut": {
-    "micronaut": "2.4.2"
+    "micronaut": "2.5.3"
   },
   "template-spring-boot": {
     "spring-boot": "2.4.5"
@@ -25,64 +25,56 @@
       "name": "kvision-bootstrap",
       "description": "Bootstrap based components",
       "excludes": [
-        "kvision-onsenui",
-        "kvision-onsenui-css"
+        "kvision-onsenui"
       ]
     },
     {
       "name": "kvision-bootstrap-css",
       "description": "Standard Bootstrap CSS styling",
       "excludes": [
-        "kvision-onsenui",
-        "kvision-onsenui-css"
+        "kvision-onsenui"
       ]
     },
     {
       "name": "kvision-bootstrap-select",
       "description": "Bootstrap based advanced select form component",
       "excludes": [
-        "kvision-onsenui",
-        "kvision-onsenui-css"
+        "kvision-onsenui"
       ]
     },
     {
       "name": "kvision-bootstrap-datetime",
       "description": "Bootstrap based date and time picker form components",
       "excludes": [
-        "kvision-onsenui",
-        "kvision-onsenui-css"
+        "kvision-onsenui"
       ]
     },
     {
       "name": "kvision-bootstrap-spinner",
       "description": "Bootstrap based spinner form component",
       "excludes": [
-        "kvision-onsenui",
-        "kvision-onsenui-css"
+        "kvision-onsenui"
       ]
     },
     {
       "name": "kvision-bootstrap-upload",
       "description": "Bootstrap based upload form component",
       "excludes": [
-        "kvision-onsenui",
-        "kvision-onsenui-css"
+        "kvision-onsenui"
       ]
     },
     {
       "name": "kvision-bootstrap-typeahead",
       "description": "Bootstrap based typeahead (autocomplete) form component",
       "excludes": [
-        "kvision-onsenui",
-        "kvision-onsenui-css"
+        "kvision-onsenui"
       ]
     },
     {
       "name": "kvision-bootstrap-dialog",
       "description": "Bootstrap based Dialog form component",
       "excludes": [
-        "kvision-onsenui",
-        "kvision-onsenui-css"
+        "kvision-onsenui"
       ]
     },
     {
@@ -168,20 +160,6 @@
     {
       "name": "kvision-onsenui",
       "description": "Onsen UI mobile web components",
-      "excludes": [
-        "kvision-bootstrap",
-        "kvision-bootstrap-css",
-        "kvision-bootstrap-select",
-        "kvision-bootstrap-datetime",
-        "kvision-bootstrap-spinner",
-        "kvision-bootstrap-upload",
-        "kvision-bootstrap-typeahead",
-        "kvision-bootstrap-dialog"
-      ]
-    },
-    {
-      "name": "kvision-onsenui-css",
-      "description": "Standard Onsen UI CSS styling",
       "excludes": [
         "kvision-bootstrap",
         "kvision-bootstrap-css",
