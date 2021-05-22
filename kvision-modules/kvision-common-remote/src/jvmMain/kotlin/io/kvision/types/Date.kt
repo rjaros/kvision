@@ -43,7 +43,7 @@ internal object JsonLocalDateTimeSerializer : KSerializer<LocalDateTime> {
     override fun deserialize(decoder: Decoder): LocalDateTime {
         @Suppress("MagicNumber")
         return LocalDateTime.parse(
-            decoder.decodeString().dropLast(6),
+            decoder.decodeString().split("[").first().dropLast(6),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")
         )
     }
@@ -63,7 +63,7 @@ internal object JsonLocalDateSerializer : KSerializer<LocalDate> {
     override fun deserialize(decoder: Decoder): LocalDate {
         @Suppress("MagicNumber")
         return LocalDate.parse(
-            decoder.decodeString().dropLast(6),
+            decoder.decodeString().split("[").first().dropLast(6),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")
         )
     }
@@ -83,7 +83,7 @@ internal object JsonLocalTimeSerializer : KSerializer<LocalTime> {
     override fun deserialize(decoder: Decoder): LocalTime {
         @Suppress("MagicNumber")
         return LocalTime.parse(
-            decoder.decodeString().dropLast(6),
+            decoder.decodeString().split("[").first().dropLast(6),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")
         )
     }
@@ -104,7 +104,7 @@ internal object JsonOffsetDateTimeSerializer : KSerializer<OffsetDateTime> {
 
     override fun deserialize(decoder: Decoder): OffsetDateTime {
         return OffsetDateTime.parse(
-            decoder.decodeString(),
+            decoder.decodeString().split("[").first(),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ")
         )
     }
@@ -124,12 +124,36 @@ internal object JsonOffsetTimeSerializer : KSerializer<OffsetTime> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("java.time.OffsetTime")
 
     override fun deserialize(decoder: Decoder): OffsetTime {
-        return OffsetTime.parse(decoder.decodeString(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"))
+        return OffsetTime.parse(
+            decoder.decodeString().split("[").first(),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ")
+        )
     }
 
     override fun serialize(encoder: Encoder, value: OffsetTime) {
         encoder.encodeString(
             value.atDate(LocalDate.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"))
+        )
+    }
+}
+
+/**
+ * @suppress internal object
+ * JSON ZonedDateTime serializer.
+ */
+internal object JsonZonedDateTimeSerializer : KSerializer<ZonedDateTime> {
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("java.time.ZonedDateTime")
+
+    override fun deserialize(decoder: Decoder): ZonedDateTime {
+        return ZonedDateTime.parse(
+            decoder.decodeString(),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ'['VV']'")
+        )
+    }
+
+    override fun serialize(encoder: Encoder, value: ZonedDateTime) {
+        encoder.encodeString(
+            value.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ'['VV']'"))
         )
     }
 }

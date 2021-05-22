@@ -30,3 +30,5 @@ expect class LocalTime
 expect class OffsetDateTime
 
 expect class OffsetTime
+
+expect class ZonedDateTime

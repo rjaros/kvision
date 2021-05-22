@@ -22,22 +22,24 @@
  */
 package io.kvision.remote
 
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.serializer
 import io.kvision.types.JsonBigDecimalSerializer
 import io.kvision.types.JsonLocalDateSerializer
 import io.kvision.types.JsonLocalDateTimeSerializer
 import io.kvision.types.JsonLocalTimeSerializer
 import io.kvision.types.JsonOffsetDateTimeSerializer
 import io.kvision.types.JsonOffsetTimeSerializer
+import io.kvision.types.JsonZonedDateTimeSerializer
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.serializer
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.OffsetDateTime
 import java.time.OffsetTime
+import java.time.ZonedDateTime
 
 fun kotlinxObjectDeSerializer(): ObjectDeSerializer = KotlinxObjectDeSerializer
 
@@ -47,6 +49,7 @@ val kvSerializersModule = SerializersModule {
     contextual(LocalTime::class, JsonLocalTimeSerializer)
     contextual(OffsetDateTime::class, JsonOffsetDateTimeSerializer)
     contextual(OffsetTime::class, JsonOffsetTimeSerializer)
+    contextual(ZonedDateTime::class, JsonZonedDateTimeSerializer)
     contextual(BigDecimal::class, JsonBigDecimalSerializer)
 }
 

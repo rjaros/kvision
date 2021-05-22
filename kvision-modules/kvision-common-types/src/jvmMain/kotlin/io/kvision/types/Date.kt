@@ -26,6 +26,7 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.OffsetDateTime
 import java.time.OffsetTime
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 actual typealias LocalDateTime = LocalDateTime
@@ -38,6 +39,8 @@ actual typealias OffsetDateTime = OffsetDateTime
 
 actual typealias OffsetTime = OffsetTime
 
+actual typealias ZonedDateTime = ZonedDateTime
+
 fun String.toDateTimeF(): LocalDateTime = LocalDateTime.parse(this)
 
 fun String.toDateF(): LocalDate = LocalDate.parse(this)
@@ -48,6 +51,8 @@ fun String.toOffsetDateTimeF(): OffsetDateTime = OffsetDateTime.parse(this)
 
 fun String.toOffsetTimeF(): OffsetTime = OffsetTime.parse(this)
 
+fun String.toZonedDateTimeF(): ZonedDateTime = ZonedDateTime.parse(this)
+
 fun LocalDateTime.toStringF(): String = this.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
 
 fun LocalDate.toStringF(): String = this.format(DateTimeFormatter.ISO_LOCAL_DATE)
@@ -57,3 +62,5 @@ fun LocalTime.toStringF(): String = this.format(DateTimeFormatter.ISO_LOCAL_TIME
 fun OffsetDateTime.toStringF(): String = this.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
 fun OffsetTime.toStringF(): String = this.format(DateTimeFormatter.ISO_OFFSET_TIME)
+
+fun ZonedDateTime.toStringF(): String = this.format(DateTimeFormatter.ISO_ZONED_DATE_TIME)

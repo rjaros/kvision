@@ -47,13 +47,17 @@ internal object JsonDateSerializer : KSerializer<Date> {
 
 /**
  * @suppress internal function
+ * Note:
+ * In the current implementation the time zone of ZonedDateTime is ignored.
  */
 @Suppress("ComplexMethod", "MagicNumber")
 internal fun String.toDateInternal(): Date {
-    val dt = this.split(':', 'T', '-', '+')
-    val utcCheck = this[length - 1] == 'Z'
+    val zoneTab = this.split('[', ']')
+    val dateStr = zoneTab[0]
+    val dt = dateStr.split(':', 'T', '-', '+')
+    val utcCheck = dateStr[dateStr.length - 1] == 'Z'
     val ds = if (utcCheck) dt[5].dropLast(1).split(".") else dt[5].split(".")
-    val tzCheck = this[length - 6]
+    val tzCheck = dateStr[dateStr.length - 6]
     return if (!utcCheck && tzCheck != '-' && tzCheck != '+') {
         Date(
             dt[0].toInt(),
@@ -84,15 +88,23 @@ internal fun String.toDateInternal(): Date {
     }
 }
 
+external object Intl {
+    class DateTimeFormat {
+        fun resolvedOptions(): dynamic
+    }
+}
+
 /**
  * @suppress internal function
  */
 fun Date.toStringInternal(): String {
     @Suppress("MagicNumber")
-    val tz = this.getTimezoneOffset() / 60
-    val sign = if (tz > 0) "-" else "+"
+    val tzOffset = this.getTimezoneOffset() / 60
+    val sign = if (tzOffset > 0) "-" else "+"
+    val tz = Intl.DateTimeFormat().resolvedOptions().timeZone
     return "" + this.getFullYear() + "-" + ("0" + (this.getMonth() + 1)).takeLast(2) + "-" +
             ("0" + this.getDate()).takeLast(2) + "T" + ("0" + this.getHours()).takeLast(2) + ":" +
             ("0" + this.getMinutes()).takeLast(2) + ":" + ("0" + this.getSeconds()).takeLast(2) + "." +
-            ("00" + this.getMilliseconds()).takeLast(3) + sign + ("0${tz.absoluteValue}").takeLast(2) + ":00"
+            ("00" + this.getMilliseconds()).takeLast(3) + sign + ("0${tzOffset.absoluteValue}").takeLast(2) + ":00" +
+            if (tz != undefined) "[$tz]" else ""
 }

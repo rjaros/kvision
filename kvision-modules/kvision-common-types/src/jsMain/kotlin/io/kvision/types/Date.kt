@@ -34,3 +34,5 @@ actual typealias LocalTime = Date
 actual typealias OffsetDateTime = Date
 
 actual typealias OffsetTime = Date
+
+actual typealias ZonedDateTime = Date
