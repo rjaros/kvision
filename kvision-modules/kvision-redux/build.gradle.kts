@@ -14,7 +14,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    api("org.jetbrains:kotlin-redux:$kotlinReduxVersion") {
+    api("org.jetbrains.kotlin-wrappers:kotlin-redux:$kotlinReduxVersion") {
         exclude("org.jetbrains.kotlinx", "kotlinx-html-js")
     }
     implementation(npm("redux", "^4.0.5"))
