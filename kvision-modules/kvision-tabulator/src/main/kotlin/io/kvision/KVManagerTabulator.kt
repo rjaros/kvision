@@ -32,7 +32,7 @@ internal object KVManagerTabulator {
         require("tabulator-tables/dist/css/bootstrap/tabulator_bootstrap4.min.css")
     }
 
-    private val tabulator = require("tabulator-tables/dist/js/tabulator.min.js")
+    private val tabulator = require("tabulator-tables/dist/js/tabulator.js")
 
     @Suppress("UnsafeCastFromDynamic")
     fun getConstructor(): Any {

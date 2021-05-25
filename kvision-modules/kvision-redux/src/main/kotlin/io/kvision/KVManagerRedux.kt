@@ -42,8 +42,8 @@ internal val kVManagerReduxInit = KVManagerRedux.init()
  */
 internal object KVManagerRedux {
 
-    private val redux = require("redux/dist/redux.min.js")
-    internal val reduxThunk = require("redux-thunk/dist/redux-thunk.min.js").default
+    private val redux = require("redux/dist/redux.js")
+    internal val reduxThunk = require("redux-thunk/dist/redux-thunk.js").default
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun <S, A, R> createStore(

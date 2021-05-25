@@ -68,8 +68,8 @@ internal object KVManagerUpload {
         require("kvision-assets/js/locales/bootstrap-fileinput/uk.js")
         require("kvision-assets/js/locales/bootstrap-fileinput/vi.js")
         require("kvision-assets/js/locales/bootstrap-fileinput/zh.js")
-        require("bootstrap-fileinput/themes/explorer-fas/theme.min.js")
-        require("bootstrap-fileinput/themes/fas/theme.min.js")
+        require("bootstrap-fileinput/themes/explorer-fas/theme.js")
+        require("bootstrap-fileinput/themes/fas/theme.js")
     }
 
     internal fun init() {}

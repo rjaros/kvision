@@ -35,7 +35,7 @@ internal object KVManagerOnsenui {
         require("onsenui/css/onsen-css-components.min.css")
     }
 
-    internal val ons = require("onsenui/js/onsenui.min.js")
+    internal val ons = require("onsenui")
 
     internal fun init() {}
 }

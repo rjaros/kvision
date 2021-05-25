@@ -29,7 +29,7 @@ internal val kVManagerChartInit = KVManagerChart.init()
 internal object KVManagerChart {
 
     init {
-        require("chart.js/dist/Chart.bundle.min.js")
+        require("chart.js/dist/Chart.bundle.js")
     }
 
     internal fun init() {}

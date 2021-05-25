@@ -29,7 +29,7 @@ internal val kVManagerHandlebarsInit = KVManagerHandlebars.init()
 internal object KVManagerHandlebars {
 
     init {
-        require("handlebars/dist/handlebars.runtime.min.js")
+        require("handlebars/dist/handlebars.runtime.js")
     }
 
     internal fun init() {}

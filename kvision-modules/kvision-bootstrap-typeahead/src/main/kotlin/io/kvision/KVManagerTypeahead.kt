@@ -28,7 +28,7 @@ internal val kVManagerTypeaheadInit = KVManagerTypeahead.init()
  */
 internal object KVManagerTypeahead {
     init {
-        require("eam_bootstrap-3-typeahead/bootstrap3-typeahead.min.js")
+        require("eam_bootstrap-3-typeahead")
     }
 
     internal fun init() {}

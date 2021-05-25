@@ -33,10 +33,10 @@ internal object KVManagerSelect {
     init {
         js("if ($.fn.dropdown === undefined) { $.fn.dropdown={'Constructor' : {'VERSION' : '4.0.0'}}; };")
         require("bootstrap-select/dist/css/bootstrap-select.min.css")
-        require("bootstrap-select/dist/js/bootstrap-select.min.js")
+        require("bootstrap-select")
         require("kvision-assets/js/locales/bootstrap-select/bootstrap-select-i18n.min.js")
         require("ajax-bootstrap-select/dist/css/ajax-bootstrap-select.min.css")
-        require("ajax-bootstrap-select/dist/js/ajax-bootstrap-select.min.js")
+        require("ajax-bootstrap-select")
         require("kvision-assets/js/locales/ajax-bootstrap-select/ajax-bootstrap-select.cs-CZ.min.js")
         require("kvision-assets/js/locales/ajax-bootstrap-select/ajax-bootstrap-select.de-DE.min.js")
         require("kvision-assets/js/locales/ajax-bootstrap-select/ajax-bootstrap-select.es-ES.min.js")

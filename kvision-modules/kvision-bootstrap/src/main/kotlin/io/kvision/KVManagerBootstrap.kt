@@ -31,7 +31,7 @@ internal val kVManagerBootstrapInit = KVManagerBootstrap.init()
  */
 internal object KVManagerBootstrap {
     init {
-        require("bootstrap/dist/js/bootstrap.bundle.min.js")
+        require("bootstrap")
         require("awesome-bootstrap-checkbox")
     }
 

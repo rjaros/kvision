@@ -29,7 +29,7 @@ internal val kVManagerSpinnerInit = KVManagerSpinner.init()
 internal object KVManagerSpinner {
     init {
         require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")
-        require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js")
+        require("bootstrap-touchspin")
     }
 
     internal fun init() {}

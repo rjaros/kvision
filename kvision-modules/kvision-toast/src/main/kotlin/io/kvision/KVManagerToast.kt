@@ -32,7 +32,7 @@ internal object KVManagerToast {
         require("toastr/build/toastr.min.css")
     }
 
-    internal val toastr = require("toastr/build/toastr.min.js")
+    internal val toastr = require("toastr")
 
     internal fun init() {}
 }

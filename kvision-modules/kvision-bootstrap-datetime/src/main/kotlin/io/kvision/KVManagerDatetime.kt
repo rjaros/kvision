@@ -29,7 +29,7 @@ internal val kVManagerDatetimeInit = KVManagerDatetime.init()
 internal object KVManagerDatetime {
     init {
         require("pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.min.css")
-        require("pc-bootstrap4-datetimepicker/build/js/bootstrap-datetimepicker.min.js")
+        require("pc-bootstrap4-datetimepicker")
     }
 
     internal fun init() {}

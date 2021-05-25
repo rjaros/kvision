@@ -34,7 +34,7 @@ internal object KVManagerMaps {
         require("leaflet/dist/leaflet.css")
     }
 
-    internal val leaflet = require("leaflet/dist/leaflet.js")
+    internal val leaflet = require("leaflet")
 
     init {
         leaflet.Icon.Default.imagePath = "./"
