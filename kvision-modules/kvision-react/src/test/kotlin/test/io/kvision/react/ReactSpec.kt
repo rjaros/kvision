@@ -21,14 +21,15 @@
  */
 package test.io.kvision.react
 
-import kotlinx.html.js.onChangeFunction
-import org.w3c.dom.HTMLInputElement
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.react.react
-import react.dom.input
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
+import kotlinx.html.js.onChangeFunction
+import org.w3c.dom.HTMLInputElement
+import react.dom.attrs
+import react.dom.input
 import kotlin.test.Test
 
 class ReactSpec : DomSpec {

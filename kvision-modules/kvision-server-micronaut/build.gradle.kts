@@ -40,7 +40,7 @@ kotlin {
                 implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
-                api(project.dependencies.enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+                api(project.dependencies.platform("io.micronaut:micronaut-bom:$micronautVersion"))
                 api("io.micronaut:micronaut-inject")
                 api("io.micronaut:micronaut-http")
                 api("io.micronaut:micronaut-router")
@@ -61,6 +61,14 @@ val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
     from("$buildDir/dokka/html")
+}
+
+val sourcesJar by tasks.named("sourcesJar") {
+    dependsOn("jsIrGenerateExternalsIntegrated")
+}
+
+val jsSourcesJar by tasks.named("jsSourcesJar") {
+    dependsOn("jsIrGenerateExternalsIntegrated")
 }
 
 publishing {
