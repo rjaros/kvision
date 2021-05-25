@@ -206,7 +206,9 @@ open class Tabulator<T : Any>(
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("tabulatorDataEdited", obj { detail = fixedData })
                 if (dataUpdateOnEdit && this.data is MutableList<T>) {
-                    this.data.syncWithList(fixedData)
+                    window.setTimeout({
+                        this.data.syncWithList(fixedData)
+                    }, 0)
                 }
             }
         }

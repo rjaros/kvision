@@ -408,7 +408,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         { cell: Tabulator.CellComponent,
           onRendered: (callback: () -> Unit) -> Unit,
           success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, _: dynamic ->
-            cell.getElement().style.asDynamic().overflow = "visible"
+            if (cell.getElement().asDynamic() != false) cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
             if (kClass == null) throw IllegalStateException("The data class type is unknown")
             val data = toKotlinObj(cell.getData(), kClass)
@@ -445,7 +445,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
     val tmpFormatterFunction = formatterComponentFunction?.let {
         { cell: Tabulator.CellComponent, _: dynamic,
           onRendered: (callback: () -> Unit) -> Unit ->
-            cell.getElement().style.asDynamic().overflow = "visible"
+            if (cell.getElement().asDynamic() != false) cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
             if (kClass == null) throw IllegalStateException("The data class type is unknown")
             val data = toKotlinObj(cell.getData(), kClass)
@@ -790,11 +790,13 @@ fun <T : Any> TabulatorOptions<T>.toJs(
     val tmpCellEditCancelled = allColumns?.find { it.editorComponentFunction != null }?.let {
         { cell: Tabulator.CellComponent ->
             cellEditCancelled?.invoke(cell)
-            try {
-                cell.getTable().redraw(true)
-            } catch (e: Throwable) {
-                console.log("Table redraw failed. Probably it's not visible anymore.")
-            }
+            window.setTimeout({
+                try {
+                    cell.getTable().redraw(true)
+                } catch (e: Throwable) {
+                    console.log("Table redraw failed. Probably it's not visible anymore.")
+                }
+            }, 0)
         }
     } ?: cellEditCancelled
 
