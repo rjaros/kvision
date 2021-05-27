@@ -60,7 +60,7 @@ const val HTTP_BAD_GATEWAY: Short = 502
 const val HTTP_SERVICE_UNAVAILABLE: Short = 503
 
 open class RemoteRequestException(val code: Short, val url: String, val method: HttpMethod, message: String) :
-    Throwable(message) {
+    Exception(message) {
 
     override fun toString(): String = "${this::class.simpleName}($code) [${method.name} $url] $message"
 
