@@ -296,7 +296,7 @@ fun Application.root(
     id: String,
     containerType: ContainerType = ContainerType.FLUID,
     addRow: Boolean = containerType != ContainerType.FIXED,
-    init: Root.() -> Unit
+    init: (Root.() -> Unit)? = null
 ): Root {
     return Root(id, containerType, addRow, init)
 }
@@ -315,7 +315,7 @@ fun Application.root(
     element: HTMLElement,
     containerType: ContainerType = ContainerType.FLUID,
     addRow: Boolean = containerType != ContainerType.FIXED,
-    init: Root.() -> Unit
+    init: (Root.() -> Unit)? = null
 ): Root {
     return Root(element, containerType, addRow, init)
 }
