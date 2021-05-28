@@ -43,6 +43,13 @@
       ]
     },
     {
+      "name": "kvision-bootstrap-select-remote",
+      "description": "Fullstack version of the select form component",
+      "excludes": [
+        "kvision-onsenui"
+      ]
+    },
+    {
       "name": "kvision-bootstrap-datetime",
       "description": "Bootstrap based date and time picker form components",
       "excludes": [
@@ -66,6 +73,13 @@
     {
       "name": "kvision-bootstrap-typeahead",
       "description": "Bootstrap based typeahead (autocomplete) form component",
+      "excludes": [
+        "kvision-onsenui"
+      ]
+    },
+    {
+      "name": "kvision-bootstrap-typeahead-remote",
+      "description": "Fullstack version of the typeahead (autocomplete) form component",
       "excludes": [
         "kvision-onsenui"
       ]
@@ -104,6 +118,10 @@
     {
       "name": "kvision-tabulator",
       "description": "Tabulator component"
+    },
+    {
+      "name": "kvision-tabulator-remote",
+      "description": "Fullstack version of the tabulator component"
     },
     {
       "name": "kvision-moment",
@@ -164,10 +182,12 @@
         "kvision-bootstrap",
         "kvision-bootstrap-css",
         "kvision-bootstrap-select",
+        "kvision-bootstrap-select-remote",
         "kvision-bootstrap-datetime",
         "kvision-bootstrap-spinner",
         "kvision-bootstrap-upload",
         "kvision-bootstrap-typeahead",
+        "kvision-bootstrap-typeahead-remote",
         "kvision-bootstrap-dialog"
       ]
     }
