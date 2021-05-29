@@ -424,19 +424,21 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                 }, 500)
             }, cancel, data)
             val rootElement = document.createElement("div") as HTMLElement
-            onRendered {
-                if (root != null) {
-                    disposeTimer?.let { window.clearTimeout(it) }
-                    root?.dispose()
+            if (onRendered != undefined) {
+                onRendered {
+                    if (root != null) {
+                        disposeTimer?.let { window.clearTimeout(it) }
+                        root?.dispose()
+                    }
+                    root = Root(element = rootElement)
+                    EditorRoot.cancel = cancel
+                    @Suppress("UnsafeCastFromDynamic")
+                    root?.add(component)
+                    (component as? FormControl)?.focus()
+                    (component as? FormInput)?.focus()
+                    cell.checkHeight()
+                    onRenderedCallback?.invoke()
                 }
-                root = Root(element = rootElement)
-                EditorRoot.cancel = cancel
-                @Suppress("UnsafeCastFromDynamic")
-                root?.add(component)
-                (component as? FormControl)?.focus()
-                (component as? FormInput)?.focus()
-                cell.checkHeight()
-                onRenderedCallback?.invoke()
             }
             rootElement
         }
@@ -453,13 +455,15 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                 onRenderedCallback = callback
             }, data)
             val rootElement = document.createElement("div") as HTMLElement
-            onRendered {
-                val root = Root(element = rootElement)
-                tabulator.addCustomRoot(root)
-                @Suppress("UnsafeCastFromDynamic")
-                root.add(component)
-                cell.checkHeight()
-                onRenderedCallback?.invoke()
+            if (onRendered != undefined) {
+                onRendered {
+                    val root = Root(element = rootElement)
+                    tabulator.addCustomRoot(root)
+                    @Suppress("UnsafeCastFromDynamic")
+                    root.add(component)
+                    cell.checkHeight()
+                    onRenderedCallback?.invoke()
+                }
             }
             rootElement
         }
