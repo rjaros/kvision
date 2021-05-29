@@ -24,6 +24,7 @@
 package io.kvision.utils
 
 import io.kvision.core.CssSize
+import io.kvision.core.StringPair
 import io.kvision.core.UNIT
 import kotlinx.browser.window
 
@@ -231,3 +232,13 @@ fun String.toCamelCase(): String {
         it.value.drop(1).uppercase()
     }
 }
+
+/**
+ * Utility extension function to convert List<String> into List<StringPair>.
+ */
+fun List<String>.pairs(): List<StringPair> = this.map { it to it }
+
+/**
+ * Builds List<StringPair> out of given Strings.
+ */
+fun listOfPairs(vararg params: String): List<StringPair> = params.asList().pairs()
