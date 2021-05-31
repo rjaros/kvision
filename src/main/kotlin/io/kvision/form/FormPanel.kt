@@ -664,6 +664,10 @@ open class FormPanel<K : Any>(
         return (getElement() as? HTMLFormElement)?.checkValidity() ?: false
     }
 
+    override fun focus() {
+        getChildren().firstOrNull()?.focus()
+    }
+
     companion object {
 
         inline fun <reified K : Any> create(
