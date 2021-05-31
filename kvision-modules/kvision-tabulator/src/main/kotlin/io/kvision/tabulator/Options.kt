@@ -25,6 +25,7 @@ package io.kvision.tabulator
 import io.kvision.core.Component
 import io.kvision.form.FormControl
 import io.kvision.form.FormInput
+import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.tabulator.EditorRoot.disposeTimer
 import io.kvision.tabulator.EditorRoot.root
@@ -430,7 +431,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                         disposeTimer?.let { window.clearTimeout(it) }
                         root?.dispose()
                     }
-                    root = Root(element = rootElement)
+                    root = Root(rootElement, ContainerType.NONE, false)
                     EditorRoot.cancel = cancel
                     @Suppress("UnsafeCastFromDynamic")
                     root?.add(component)
@@ -447,7 +448,6 @@ fun <T : Any> ColumnDefinition<T>.toJs(
     val tmpFormatterFunction = formatterComponentFunction?.let {
         { cell: Tabulator.CellComponent, _: dynamic,
           onRendered: (callback: () -> Unit) -> Unit ->
-            if (cell.getElement().asDynamic() != false) cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
             if (kClass == null) throw IllegalStateException("The data class type is unknown")
             val data = toKotlinObj(cell.getData(), kClass)
@@ -457,7 +457,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
             val rootElement = document.createElement("div") as HTMLElement
             if (onRendered != undefined) {
                 onRendered {
-                    val root = Root(element = rootElement)
+                    val root = Root(rootElement, ContainerType.NONE, false)
                     tabulator.addCustomRoot(root)
                     @Suppress("UnsafeCastFromDynamic")
                     root.add(component)
