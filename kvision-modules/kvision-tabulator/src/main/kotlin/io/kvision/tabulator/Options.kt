@@ -388,6 +388,14 @@ data class ColumnDefinition<T : Any>(
     val accessor: dynamic = null,
     val accessorParams: dynamic = null,
     val maxWidth: Int? = null,
+    val mutatorData: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorDataParams: dynamic = null,
+    val mutatorEdit: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorEditParams: dynamic = null,
+    val mutatorClipboard: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorClipboardParams: dynamic = null,
+    val mutator: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorParams: dynamic = null,
 )
 
 internal object EditorRoot {
@@ -575,6 +583,14 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (accessor != null) this.accessor = accessor
         if (accessorParams != null) this.accessorParams = accessorParams
         if (maxWidth != null) this.maxWidth = maxWidth
+        if (mutatorData != null) this.mutatorData = mutatorData
+        if (mutatorDataParams != null) this.mutatorDataParams = mutatorDataParams
+        if (mutatorEdit != null) this.mutatorEdit = mutatorEdit
+        if (mutatorEditParams != null) this.mutatorEditParams = mutatorEditParams
+        if (mutatorClipboard != null) this.mutatorClipboard = mutatorClipboard
+        if (mutatorClipboardParams != null) this.mutatorClipboardParams = mutatorClipboardParams
+        if (mutator != null) this.mutator = mutator
+        if (mutatorParams != null) this.mutatorParams = mutatorParams
     } as Tabulator.ColumnDefinition
 }
 
