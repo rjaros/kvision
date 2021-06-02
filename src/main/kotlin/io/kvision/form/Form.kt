@@ -66,7 +66,7 @@ class Form<K : Any>(
 
     val modelFactory: ((Map<String, Any?>) -> K)?
     val jsonFactory: ((K) -> dynamic)?
-    val fields: MutableMap<String, FormControl> = mutableMapOf()
+    val fields: LinkedHashMap<String, FormControl> = linkedMapOf()
     internal val fieldsParams: MutableMap<String, Any> = mutableMapOf()
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
@@ -258,6 +258,14 @@ class Form<K : Any>(
      */
     fun getControl(key: KProperty1<K, *>): FormControl? {
         return this.fields[key.name]
+    }
+
+    /**
+     * Returns the first control added to the form.
+     * @return the first control
+     */
+    fun getFirstControl(): FormControl? {
+        return this.fields.firstNotNullOfOrNull { it.value }
     }
 
     /**

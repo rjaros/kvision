@@ -665,7 +665,7 @@ open class FormPanel<K : Any>(
     }
 
     override fun focus() {
-        getChildren().firstOrNull()?.focus()
+        form.getFirstControl()?.focus()
     }
 
     companion object {
