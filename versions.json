@@ -1,5 +1,5 @@
 {
-  "kvision": "4.8.0",
+  "kvision": "4.8.1",
   "kotlin": "1.5.10",
   "serialization": "1.2.1",
   "coroutines": "1.5.0",
@@ -12,7 +12,7 @@
     "ktor": "1.6.0"
   },
   "template-micronaut": {
-    "micronaut": "2.5.4"
+    "micronaut": "2.5.5"
   },
   "template-spring-boot": {
     "spring-boot": "2.5.0"
