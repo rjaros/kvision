@@ -23,13 +23,14 @@
 package io.kvision.react
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.HTMLElement
 import io.kvision.KVManagerReact
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.state.ObservableState
 import io.kvision.utils.set
+import org.w3c.dom.HTMLElement
 import react.RBuilder
+import react.StateSetter
 import react.child
 import react.dom.render as ReactRender
 
@@ -54,7 +55,7 @@ class React<S>(
             observers.forEach { it(state) }
         }
 
-    private var refreshFunction: ((S) -> Unit)? = null
+    private var refreshFunction: (StateSetter<S>)? = null
 
     @Suppress("UnsafeCastFromDynamic")
     internal constructor(
@@ -63,7 +64,7 @@ class React<S>(
     ) : this(js("{}"), classes, builder)
 
     override fun afterInsert(node: VNode) {
-        ReactRender(node.elm as HTMLElement) {
+        ReactRender(node.elm as HTMLElement, {}) {
             child(reactWrapper<S> { refresh ->
                 refreshFunction = refresh
                 builder({ state }) { changeState: (S) -> S ->

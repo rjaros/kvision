@@ -31,17 +31,18 @@ import kotlinx.browser.document
 import org.w3c.dom.HTMLElement
 import react.RBuilder
 import react.RProps
+import react.StateSetter
 import react.child
 import react.createRef
 import react.dom.div
 import react.functionalComponent
-import react.useEffectWithCleanup
+import react.useEffect
 import react.useState
 
 /**
  * A helper functional component used by KVision React.
  */
-fun <S> reactWrapper(builder: RBuilder.(refresh: (S) -> Unit) -> Unit) = functionalComponent<RProps> {
+fun <S> reactWrapper(builder: RBuilder.(refresh: StateSetter<S>) -> Unit) = functionalComponent<RProps> {
     @Suppress("UnsafeCastFromDynamic")
     val state = useState<S> { js("{}") }
     builder(state.component2())
@@ -52,7 +53,7 @@ fun <S> reactWrapper(builder: RBuilder.(refresh: (S) -> Unit) -> Unit) = functio
  */
 fun kvisionWrapper(builder: Container.() -> Unit) = functionalComponent<RProps> {
     val elRef = createRef<HTMLElement>()
-    useEffectWithCleanup {
+    useEffect {
         var root: Root? = null
         var el: HTMLElement? = null
         @Suppress("UNNECESSARY_SAFE_CALL")
@@ -60,8 +61,8 @@ fun kvisionWrapper(builder: Container.() -> Unit) = functionalComponent<RProps> 
             el = document.createElement("div") as HTMLElement
             it.appendChild(el!!)
             root = Root(el!!, ContainerType.NONE, false, init = builder)
-        };
-        {
+        }
+        cleanup {
             root?.dispose()
             el?.let { jQuery(it).remove() }
         }

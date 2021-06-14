@@ -34,7 +34,7 @@ fun KotlinMultiplatformExtension.kotlinJsTargets() {
 private fun KotlinJsTargetDsl.kotlinJsTargets() {
     compilations.all {
         kotlinOptions {
-            moduleKind = "umd"
+            moduleKind = "commonjs"
             sourceMap = project.hasProperty("SNAPSHOT")
         }
     }
