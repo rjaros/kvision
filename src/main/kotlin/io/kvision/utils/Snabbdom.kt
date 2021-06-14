@@ -31,9 +31,9 @@ import com.github.snabbdom.VNodeStyle
 import io.kvision.core.StringBoolPair
 import io.kvision.core.StringPair
 import io.kvision.core.Widget
-import io.kvision.jquery.JQueryEventObject
 import org.w3c.dom.CustomEvent
 import org.w3c.dom.CustomEventInit
+import org.w3c.dom.events.Event
 import kotlin.reflect.KClass
 
 /**
@@ -133,20 +133,10 @@ fun <T : Any> toKotlinObj(data: dynamic, kClass: KClass<T>): T {
 inline fun vNodeData(): VNodeData = js("{}")
 
 /**
- * @suppress
- * Internal interface.
- */
-external interface KvJQueryEventObject : JQueryEventObject {
-    val clickedIndex: Int
-    val width: Int
-    val height: Int
-}
-
-/**
  * Helper class for defining custom events.
  */
 external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExternally) : CustomEvent {
-    override val detail: KvJQueryEventObject
+    override val detail: Event
 }
 
 /**

@@ -25,6 +25,7 @@ package io.kvision.onsenui.tabbar
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.DomAttribute
+import io.kvision.core.StringPair
 import io.kvision.core.Widget
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
@@ -157,7 +158,13 @@ open class Tabbar(
             if (tabbarStyleCallback != null) {
                 val widget = Widget()
                 tabbarStyleCallback?.let { widget.it(e.asDynamic().detail.index) }
-                val style = widget.getSnStyle().joinToString(";") { (key, value) -> "$key: $value" }
+                val styles = widget.getSnStyle()
+                val stylesList = mutableListOf<StringPair>()
+                for (key in js("Object").keys(styles)) {
+                    @Suppress("UnsafeCastFromDynamic")
+                    stylesList.add(key.unsafeCast<String>() to styles[key])
+                }
+                val style = stylesList.joinToString(";") { (key, value) -> "$key: $value" }
                 getElementJQuery()?.find(".tabbar")?.attr("style", style)
             }
             e.stopPropagation()
@@ -182,7 +189,13 @@ open class Tabbar(
             }
             val widget = Widget()
             tabbarStyleCallback?.let { widget.it(activeIndex) }
-            val style = widget.getSnStyle().joinToString(";") { (key, value) -> "$key: $value" }
+            val styles = widget.getSnStyle()
+            val stylesList = mutableListOf<StringPair>()
+            for (key in js("Object").keys(styles)) {
+                @Suppress("UnsafeCastFromDynamic")
+                stylesList.add(key.unsafeCast<String>() to styles[key])
+            }
+            val style = stylesList.joinToString(";") { (key, value) -> "$key: $value" }
             getElementJQuery()?.find(".tabbar")?.attr("style", style)
         }
     }

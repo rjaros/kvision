@@ -25,6 +25,7 @@ import com.github.snabbdom.Attrs
 import com.github.snabbdom.Classes
 import com.github.snabbdom.VNode
 import com.github.snabbdom.VNodeData
+import com.github.snabbdom.VNodeStyle
 import com.github.snabbdom.h
 import io.kvision.KVManager
 import io.kvision.i18n.I18n
@@ -247,7 +248,7 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
         return snOpt {
             key = vnkey
             attrs = snAttrsCache.value
-            style = snStyle(getSnStyleInternal())
+            style = getSnStyle().unsafeCast<VNodeStyle>()
             `class` = snClassCache.value
             on = getSnOn()
             hook = getSnHooksInternal()
@@ -954,10 +955,11 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     ) {
         val widget = Widget()
         widget.styles()
-        val stylesList = widget.getSnStyle()
+        val stylesObj = widget.getSnStyle()
         val obj = js("{}")
-        stylesList.forEach { (key, value) ->
-            obj[key.toCamelCase()] = value
+        for (key in js("Object").keys(stylesObj)) {
+            @Suppress("UnsafeCastFromDynamic")
+            obj[key.unsafeCast<String>().toCamelCase()] = stylesObj[key]
         }
         @Suppress("UnsafeCastFromDynamic")
         getElementJQuery()?.animate(obj, duration, easing.easing) {

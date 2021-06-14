@@ -132,8 +132,13 @@ open class Style(
     }
 
     internal fun generateStyle(): String {
-        val styles = getSnStyleInternal()
-        return "${getStyleDeclaration()} {\n" + styles.joinToString("\n") {
+        val styles = getSnStyle()
+        val stylesList = mutableListOf<StringPair>()
+        for (key in js("Object").keys(styles)) {
+            @Suppress("UnsafeCastFromDynamic")
+            stylesList.add(key.unsafeCast<String>() to styles[key])
+        }
+        return "${getStyleDeclaration()} {\n" + stylesList.joinToString("\n") {
             "${it.first}: ${it.second};"
         } + "\n}"
     }

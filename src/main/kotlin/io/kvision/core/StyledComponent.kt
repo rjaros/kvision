@@ -21,7 +21,6 @@
  */
 package io.kvision.core
 
-import io.kvision.utils.Cache
 import io.kvision.utils.asString
 import io.kvision.utils.delete
 import kotlin.reflect.KProperty
@@ -32,167 +31,239 @@ import kotlin.reflect.KProperty
 @Suppress("LargeClass")
 abstract class StyledComponent {
     private val propertyValues = js("{}")
-    private val customStyles = js("{}")
+    private val propertyStyles = js("{}")
+
+    private fun setStyleProperty(key: String, value: String?) {
+        if (value != null) {
+            propertyStyles[key] = value
+        } else {
+            delete(propertyStyles, key)
+        }
+    }
 
     /**
      * Width of the current component.
      */
-    open var width: CssSize? by refreshOnUpdate()
+    open var width: CssSize? by refreshOnUpdate {
+        setStyleProperty("width", it?.asString())
+    }
 
     /**
      * Minimal width of the current component.
      */
-    open var minWidth: CssSize? by refreshOnUpdate()
+    open var minWidth: CssSize? by refreshOnUpdate {
+        setStyleProperty("min-width", it?.asString())
+    }
 
     /**
      * Maximal width of the current component.
      */
-    open var maxWidth: CssSize? by refreshOnUpdate()
+    open var maxWidth: CssSize? by refreshOnUpdate {
+        setStyleProperty("max-width", it?.asString())
+    }
 
     /**
      * Height of the current component.
      */
-    open var height: CssSize? by refreshOnUpdate()
+    open var height: CssSize? by refreshOnUpdate {
+        setStyleProperty("height", it?.asString())
+    }
 
     /**
      * Minimal height of the current component.
      */
-    open var minHeight: CssSize? by refreshOnUpdate()
+    open var minHeight: CssSize? by refreshOnUpdate {
+        setStyleProperty("min-height", it?.asString())
+    }
 
     /**
      * Maximal height of the current component.
      */
-    open var maxHeight: CssSize? by refreshOnUpdate()
+    open var maxHeight: CssSize? by refreshOnUpdate {
+        setStyleProperty("max-height", it?.asString())
+    }
 
     /**
      * CSS display of the current component.
      */
-    open var display: Display? by refreshOnUpdate()
+    open var display: Display? by refreshOnUpdate {
+        setStyleProperty("display", it?.display)
+    }
 
     /**
      * CSS position of the current component.
      */
-    open var position: Position? by refreshOnUpdate()
+    open var position: Position? by refreshOnUpdate {
+        setStyleProperty("position", it?.position)
+    }
 
     /**
      * Top edge of the current component.
      */
-    open var top: CssSize? by refreshOnUpdate()
+    open var top: CssSize? by refreshOnUpdate {
+        setStyleProperty("top", it?.asString())
+    }
 
     /**
      * Left edge of the current component.
      */
-    open var left: CssSize? by refreshOnUpdate()
+    open var left: CssSize? by refreshOnUpdate {
+        setStyleProperty("left", it?.asString())
+    }
 
     /**
      * Right edge of the current component.
      */
-    open var right: CssSize? by refreshOnUpdate()
+    open var right: CssSize? by refreshOnUpdate {
+        setStyleProperty("right", it?.asString())
+    }
 
     /**
      * Bottom edge of the current component.
      */
-    open var bottom: CssSize? by refreshOnUpdate()
+    open var bottom: CssSize? by refreshOnUpdate {
+        setStyleProperty("bottom", it?.asString())
+    }
 
     /**
      * Z-index of the current component.
      */
-    open var zIndex: Int? by refreshOnUpdate()
+    open var zIndex: Int? by refreshOnUpdate {
+        setStyleProperty("z-index", it?.let { "$it" })
+    }
 
     /**
      * CSS overflow of the current component.
      */
-    open var overflow: Overflow? by refreshOnUpdate()
+    open var overflow: Overflow? by refreshOnUpdate {
+        setStyleProperty("overflow", it?.overflow)
+    }
 
     /**
      * CSS overflow-wrap of the current component.
      */
-    open var overflowWrap: OverflowWrap? by refreshOnUpdate()
+    open var overflowWrap: OverflowWrap? by refreshOnUpdate {
+        setStyleProperty("overflow-wrap", it?.overflowWrap)
+    }
 
     /**
      * CSS resize of the current component.
      */
-    open var resize: Resize? by refreshOnUpdate()
+    open var resize: Resize? by refreshOnUpdate {
+        setStyleProperty("resize", it?.resize)
+    }
 
     /**
      * Border of the current component.
      */
-    open var border: Border? by refreshOnUpdate()
+    open var border: Border? by refreshOnUpdate {
+        setStyleProperty("border", it?.asString())
+    }
 
     /**
      * Top border of the current component.
      */
-    open var borderTop: Border? by refreshOnUpdate()
+    open var borderTop: Border? by refreshOnUpdate {
+        setStyleProperty("border-top", it?.asString())
+    }
 
     /**
      * Right border of the current component.
      */
-    open var borderRight: Border? by refreshOnUpdate()
+    open var borderRight: Border? by refreshOnUpdate {
+        setStyleProperty("border-right", it?.asString())
+    }
 
     /**
      * Bottom border of the current component.
      */
-    open var borderBottom: Border? by refreshOnUpdate()
+    open var borderBottom: Border? by refreshOnUpdate {
+        setStyleProperty("border-bottom", it?.asString())
+    }
 
     /**
      * Left border of the current component.
      */
-    open var borderLeft: Border? by refreshOnUpdate()
+    open var borderLeft: Border? by refreshOnUpdate {
+        setStyleProperty("border-left", it?.asString())
+    }
 
     /**
      * Margin of the current component.
      */
-    open var margin: CssSize? by refreshOnUpdate()
+    open var margin: CssSize? by refreshOnUpdate {
+        setStyleProperty("margin", it?.asString())
+    }
 
     /**
      * Top margin of the current component.
      */
-    open var marginTop: CssSize? by refreshOnUpdate()
+    open var marginTop: CssSize? by refreshOnUpdate {
+        setStyleProperty("margin-top", it?.asString())
+    }
 
     /**
      * Right margin of the current component.
      */
-    open var marginRight: CssSize? by refreshOnUpdate()
+    open var marginRight: CssSize? by refreshOnUpdate {
+        setStyleProperty("margin-right", it?.asString())
+    }
 
     /**
      * Bottom margin of the current component.
      */
-    open var marginBottom: CssSize? by refreshOnUpdate()
+    open var marginBottom: CssSize? by refreshOnUpdate {
+        setStyleProperty("margin-bottom", it?.asString())
+    }
 
     /**
      * Left margin of the current component.
      */
-    open var marginLeft: CssSize? by refreshOnUpdate()
+    open var marginLeft: CssSize? by refreshOnUpdate {
+        setStyleProperty("margin-left", it?.asString())
+    }
 
     /**
      * Padding of the current component.
      */
-    open var padding: CssSize? by refreshOnUpdate()
+    open var padding: CssSize? by refreshOnUpdate {
+        setStyleProperty("padding", it?.asString())
+    }
 
     /**
      * Top padding of the current component.
      */
-    open var paddingTop: CssSize? by refreshOnUpdate()
+    open var paddingTop: CssSize? by refreshOnUpdate {
+        setStyleProperty("padding-top", it?.asString())
+    }
 
     /**
      * Right padding of the current component.
      */
-    open var paddingRight: CssSize? by refreshOnUpdate()
+    open var paddingRight: CssSize? by refreshOnUpdate {
+        setStyleProperty("padding-right", it?.asString())
+    }
 
     /**
      * Bottom padding of the current component.
      */
-    open var paddingBottom: CssSize? by refreshOnUpdate()
+    open var paddingBottom: CssSize? by refreshOnUpdate {
+        setStyleProperty("padding-bottom", it?.asString())
+    }
 
     /**
      * Left padding of the current component.
      */
-    open var paddingLeft: CssSize? by refreshOnUpdate()
+    open var paddingLeft: CssSize? by refreshOnUpdate {
+        setStyleProperty("padding-left", it?.asString())
+    }
 
     /**
      * Text color for the current component.
      */
-    open var color: Color? by refreshOnUpdate()
+    open var color: Color? by refreshOnUpdate {
+        setStyleProperty("color", it?.asString())
+    }
 
     /**
      * Text color for the current component given in hex format (write only).
@@ -227,614 +298,419 @@ abstract class StyledComponent {
     /**
      * Opacity of the current component.
      */
-    open var opacity: Double? by refreshOnUpdate()
+    open var opacity: Double? by refreshOnUpdate {
+        setStyleProperty("opacity", it?.let { "$it" })
+    }
 
     /**
      * Background of the current component.
      */
-    open var background: Background? by refreshOnUpdate()
+    open var background: Background? by refreshOnUpdate {
+        setStyleProperty("background", it?.asString())
+    }
 
     /**
      * CSS Text direction of the current component.
      */
-    open var textDirection: Direction? by refreshOnUpdate()
+    open var textDirection: Direction? by refreshOnUpdate {
+        setStyleProperty("text-direction", it?.direction)
+    }
 
     /**
      * CSS Text letter spacing of the current component.
      */
-    open var letterSpacing: CssSize? by refreshOnUpdate()
+    open var letterSpacing: CssSize? by refreshOnUpdate {
+        setStyleProperty("letter-spacing", it?.asString())
+    }
 
     /**
      * CSS Text line height of the current component.
      */
-    open var lineHeight: CssSize? by refreshOnUpdate()
+    open var lineHeight: CssSize? by refreshOnUpdate {
+        setStyleProperty("line-height", it?.asString())
+    }
 
     /**
      * CSS Text align of the current component.
      */
-    open var textAlign: TextAlign? by refreshOnUpdate()
+    open var textAlign: TextAlign? by refreshOnUpdate {
+        setStyleProperty("text-align", it?.textAlign)
+    }
 
     /**
      * CSS Text decoration of the current component.
      */
-    open var textDecoration: TextDecoration? by refreshOnUpdate()
+    open var textDecoration: TextDecoration? by refreshOnUpdate {
+        setStyleProperty("text-decoration", it?.asString())
+    }
 
     /**
      * CSS Text indent of the current component.
      */
-    open var textIndent: CssSize? by refreshOnUpdate()
+    open var textIndent: CssSize? by refreshOnUpdate {
+        setStyleProperty("text-indent", it?.asString())
+    }
 
     /**
      * CSS Text shadow of the current component.
      */
-    open var textShadow: TextShadow? by refreshOnUpdate()
+    open var textShadow: TextShadow? by refreshOnUpdate {
+        setStyleProperty("text-shadow", it?.asString())
+    }
 
     /**
      * CSS Text transform of the current component.
      */
-    open var textTransform: TextTransform? by refreshOnUpdate()
+    open var textTransform: TextTransform? by refreshOnUpdate {
+        setStyleProperty("text-transform", it?.textTransform)
+    }
 
     /**
      * CSS Text overflow of the current component.
      */
-    open var textOverflow: TextOverflow? by refreshOnUpdate()
+    open var textOverflow: TextOverflow? by refreshOnUpdate {
+        setStyleProperty("text-overflow", it?.textOverflow)
+    }
 
     /**
      * CSS Text unicode-bidi of the current component.
      */
-    open var unicodeBidi: UnicodeBidi? by refreshOnUpdate()
+    open var unicodeBidi: UnicodeBidi? by refreshOnUpdate {
+        setStyleProperty("unicode-bidi", it?.unicodeBidi)
+    }
 
     /**
      * CSS Text vertical align of the current component.
      */
-    open var verticalAlign: VerticalAlign? by refreshOnUpdate()
+    open var verticalAlign: VerticalAlign? by refreshOnUpdate {
+        setStyleProperty("vertical-align", it?.verticalAlign)
+    }
 
     /**
      * CSS Text white space of the current component.
      */
-    open var whiteSpace: WhiteSpace? by refreshOnUpdate()
+    open var whiteSpace: WhiteSpace? by refreshOnUpdate {
+        setStyleProperty("white-space", it?.whiteSpace)
+    }
 
     /**
      * CSS Text word spacing of the current component.
      */
-    open var wordSpacing: CssSize? by refreshOnUpdate()
+    open var wordSpacing: CssSize? by refreshOnUpdate {
+        setStyleProperty("word-spacing", it?.asString())
+    }
 
     /**
      * CSS font family of the current component.
      */
-    open var fontFamily: String? by refreshOnUpdate()
+    open var fontFamily: String? by refreshOnUpdate {
+        setStyleProperty("font-family", it)
+    }
 
     /**
      * CSS font size of the current component.
      */
-    open var fontSize: CssSize? by refreshOnUpdate()
+    open var fontSize: CssSize? by refreshOnUpdate {
+        setStyleProperty("font-size", it?.asString())
+    }
 
     /**
      * CSS font style of the current component.
      */
-    open var fontStyle: FontStyle? by refreshOnUpdate()
+    open var fontStyle: FontStyle? by refreshOnUpdate {
+        setStyleProperty("font-style", it?.fontStyle)
+    }
 
     /**
      * CSS font weight of the current component.
      */
-    open var fontWeight: FontWeight? by refreshOnUpdate()
+    open var fontWeight: FontWeight? by refreshOnUpdate {
+        setStyleProperty("font-weight", it?.fontWeight)
+    }
 
     /**
      * CSS font variant of the current component.
      */
-    open var fontVariant: FontVariant? by refreshOnUpdate()
+    open var fontVariant: FontVariant? by refreshOnUpdate {
+        setStyleProperty("font-variant", it?.fontVariant)
+    }
 
     /**
      * CSS position float of the current component.
      */
-    open var float: PosFloat? by refreshOnUpdate()
+    open var float: PosFloat? by refreshOnUpdate {
+        setStyleProperty("float", it?.posFloat)
+    }
 
     /**
      * CSS clear float of the current component.
      */
-    open var clear: Clear? by refreshOnUpdate()
+    open var clear: Clear? by refreshOnUpdate {
+        setStyleProperty("clear", it?.clear)
+    }
 
     /**
      * CSS word break of the current component.
      */
-    open var wordBreak: WordBreak? by refreshOnUpdate()
+    open var wordBreak: WordBreak? by refreshOnUpdate {
+        setStyleProperty("word-break", it?.wordBreak)
+    }
 
     /**
      * CSS line break of the current component.
      */
-    open var lineBreak: LineBreak? by refreshOnUpdate()
+    open var lineBreak: LineBreak? by refreshOnUpdate {
+        setStyleProperty("line-break", it?.lineBreak)
+    }
 
     /**
      * CSS cursor shape over the current component.
      */
-    open var cursor: Cursor? by refreshOnUpdate()
+    open var cursor: Cursor? by refreshOnUpdate {
+        setStyleProperty("cursor", it?.cursor)
+    }
 
     /**
      * CSS flexbox direction.
      */
-    open var flexDirection: FlexDirection? by refreshOnUpdate()
+    open var flexDirection: FlexDirection? by refreshOnUpdate {
+        setStyleProperty("flex-direction", it?.dir)
+    }
 
     /**
      * CSS flexbox wrap mode.
      */
-    open var flexWrap: FlexWrap? by refreshOnUpdate()
+    open var flexWrap: FlexWrap? by refreshOnUpdate {
+        setStyleProperty("flex-wrap", it?.wrap)
+    }
 
     /**
      * CSS grid items justification.
      */
-    open var justifyItems: JustifyItems? by refreshOnUpdate()
+    open var justifyItems: JustifyItems? by refreshOnUpdate {
+        setStyleProperty("justify-items", it?.justify)
+    }
 
     /**
      * CSS flexbox/grid content justification.
      */
-    open var justifyContent: JustifyContent? by refreshOnUpdate()
+    open var justifyContent: JustifyContent? by refreshOnUpdate {
+        setStyleProperty("justify-content", it?.justifyContent)
+    }
 
     /**
      * CSS flexbox/grid items alignment.
      */
-    open var alignItems: AlignItems? by refreshOnUpdate()
+    open var alignItems: AlignItems? by refreshOnUpdate {
+        setStyleProperty("align-items", it?.alignItems)
+    }
 
     /**
      * CSS flexbox/grid content alignment.
      */
-    open var alignContent: AlignContent? by refreshOnUpdate()
+    open var alignContent: AlignContent? by refreshOnUpdate {
+        setStyleProperty("align-content", it?.alignContent)
+    }
 
     /**
      * CSS flexbox item order.
      */
-    open var order: Int? by refreshOnUpdate()
+    open var order: Int? by refreshOnUpdate {
+        setStyleProperty("order", it?.let { "$it" })
+    }
 
     /**
      * CSS flexbox item grow.
      */
-    open var flexGrow: Int? by refreshOnUpdate()
+    open var flexGrow: Int? by refreshOnUpdate {
+        setStyleProperty("flex-grow", it?.let { "$it" })
+    }
 
     /**
      * CSS flexbox item shrink.
      */
-    open var flexShrink: Int? by refreshOnUpdate()
+    open var flexShrink: Int? by refreshOnUpdate {
+        setStyleProperty("flex-shrink", it?.let { "$it" })
+    }
 
     /**
      * CSS flexbox item basis.
      */
-    open var flexBasis: CssSize? by refreshOnUpdate()
+    open var flexBasis: CssSize? by refreshOnUpdate {
+        setStyleProperty("flex-basis", it?.asString())
+    }
 
     /**
      * CSS flexbox items self-alignment.
      */
-    open var alignSelf: AlignItems? by refreshOnUpdate()
+    open var alignSelf: AlignItems? by refreshOnUpdate {
+        setStyleProperty("align-self", it?.alignItems)
+    }
 
     /**
      * CSS grid items self-justification.
      */
-    open var justifySelf: JustifyItems? by refreshOnUpdate()
+    open var justifySelf: JustifyItems? by refreshOnUpdate {
+        setStyleProperty("justify-self", it?.justify)
+    }
 
     /**
      * CSS grid auto columns.
      */
-    open var gridAutoColumns: String? by refreshOnUpdate()
+    open var gridAutoColumns: String? by refreshOnUpdate {
+        setStyleProperty("grid-auto-columns", it)
+    }
 
     /**
      * CSS grid auto rows.
      */
-    open var gridAutoRows: String? by refreshOnUpdate()
+    open var gridAutoRows: String? by refreshOnUpdate {
+        setStyleProperty("grid-auto-rows", it)
+    }
 
     /**
      * CSS grid auto flow.
      */
-    open var gridAutoFlow: GridAutoFlow? by refreshOnUpdate()
+    open var gridAutoFlow: GridAutoFlow? by refreshOnUpdate {
+        setStyleProperty("grid-auto-flow", it?.flow)
+    }
 
     /**
      * CSS grid columns template.
      */
-    open var gridTemplateColumns: String? by refreshOnUpdate()
+    open var gridTemplateColumns: String? by refreshOnUpdate {
+        setStyleProperty("grid-template-columns", it)
+    }
 
     /**
      * CSS grid rows template.
      */
-    open var gridTemplateRows: String? by refreshOnUpdate()
+    open var gridTemplateRows: String? by refreshOnUpdate {
+        setStyleProperty("grid-template-rows", it)
+    }
 
     /**
      * CSS grid areas template.
      */
-    open var gridTemplateAreas: List<String>? by refreshOnUpdate()
+    open var gridTemplateAreas: List<String>? by refreshOnUpdate {
+        setStyleProperty("grid-template-areas", it?.joinToString("\n"))
+    }
 
     /**
      * CSS grid column gap.
      */
-    open var gridColumnGap: Int? by refreshOnUpdate()
+    open var gridColumnGap: Int? by refreshOnUpdate {
+        setStyleProperty("grid-column-gap", it?.let { "${it}px" })
+    }
 
     /**
      * CSS grid row gap.
      */
-    open var gridRowGap: Int? by refreshOnUpdate()
+    open var gridRowGap: Int? by refreshOnUpdate {
+        setStyleProperty("grid-row-gap", it?.let { "${it}px" })
+    }
 
     /**
      * CSS grid column start.
      */
-    open var gridColumnStart: Int? by refreshOnUpdate()
+    open var gridColumnStart: Int? by refreshOnUpdate {
+        setStyleProperty("grid-column-start", it?.let { "$it" })
+    }
 
     /**
      * CSS grid row start.
      */
-    open var gridRowStart: Int? by refreshOnUpdate()
+    open var gridRowStart: Int? by refreshOnUpdate {
+        setStyleProperty("grid-row-start", it?.let { "$it" })
+    }
 
     /**
      * CSS grid column end.
      */
-    open var gridColumnEnd: String? by refreshOnUpdate()
+    open var gridColumnEnd: String? by refreshOnUpdate {
+        setStyleProperty("grid-column-end", it)
+    }
 
     /**
      * CSS grid row end.
      */
-    open var gridRowEnd: String? by refreshOnUpdate()
+    open var gridRowEnd: String? by refreshOnUpdate {
+        setStyleProperty("grid-row-end", it)
+    }
 
     /**
      * CSS grid area.
      */
-    open var gridArea: String? by refreshOnUpdate()
+    open var gridArea: String? by refreshOnUpdate {
+        setStyleProperty("grid-area", it)
+    }
 
     /**
      * Outline of the current component.
      */
-    open var outline: Outline? by refreshOnUpdate()
+    open var outline: Outline? by refreshOnUpdate {
+        setStyleProperty("outline", it?.asString())
+    }
 
     /**
      * Box shadow of the current component.
      */
     open var boxShadow: BoxShadow? by refreshOnUpdate {
-        if (boxShadow != null && boxShadowList != null) boxShadowList = null
-        refresh()
+        if (it != null && boxShadowList != null) boxShadowList = null
+        setStyleProperty("box-shadow", it?.asString())
+        setStyleProperty("-webkit-box-shadow", it?.asString())
     }
 
     /**
      * List of box shadows of the current component.
      */
     open var boxShadowList: List<BoxShadow>? by refreshOnUpdate {
-        if (boxShadowList != null && boxShadow != null) boxShadow = null
-        refresh()
+        if (it != null && boxShadow != null) boxShadow = null
+        val value = it?.joinToString { s -> s.asString() }
+        setStyleProperty("box-shadow", value)
+        setStyleProperty("-webkit-box-shadow", value)
     }
 
     /**
      * CSS transition effect for the current component.
      */
     open var transition: Transition? by refreshOnUpdate {
-        if (transition != null && transitionList != null) transitionList = null
-        refresh()
+        if (it != null && transitionList != null) transitionList = null
+        setStyleProperty("transition", it?.asString())
     }
 
     /**
      * List of CSS transition effects for the current component.
      */
     open var transitionList: List<Transition>? by refreshOnUpdate {
-        if (transitionList != null && transition != null) transition = null
-        refresh()
+        if (it != null && transition != null) transition = null
+        setStyleProperty("transition", it?.joinToString { t -> t.asString() })
     }
 
     /**
      * CSS border radius.
      */
     open var borderRadius: CssSize? by refreshOnUpdate {
-        if (borderRadius != null && borderRadiusList != null) borderRadiusList = null
-        refresh()
+        if (it != null && borderRadiusList != null) borderRadiusList = null
+        setStyleProperty("border-radius", it?.asString())
+        setStyleProperty("-webkit-border-radius", it?.asString())
     }
 
     /**
      * List of CSS border radius values.
      */
     open var borderRadiusList: List<CssSize>? by refreshOnUpdate {
-        if (borderRadiusList != null && borderRadius != null) borderRadius = null
-        refresh()
-    }
-
-    private var snStyleCache: List<StringPair>? = null
-
-    /**
-     * @suppress
-     * Internal function
-     * Re-renders the current component.
-     * @return current component
-     */
-    open fun refresh(): StyledComponent {
-        snStyleCache = null
-        return this
-    }
-
-    internal fun getSnStyleInternal(): List<StringPair> {
-        return snStyleCache ?: run {
-            val s = getSnStyle()
-            snStyleCache = s
-            s
-        }
+        if (it != null && borderRadius != null) borderRadius = null
+        val value = it?.joinToString(" ") { s -> s.asString() }
+        setStyleProperty("border-radius", value)
+        setStyleProperty("-webkit-border-radius", value)
     }
 
     /**
-     * Returns the list of String pairs defining CSS style attributes and their values.
-     * @return the list of attributes and their values
+     * Returns CSS style attributes.
      */
-    @Suppress("ComplexMethod", "LongMethod")
-    open fun getSnStyle(): List<StringPair> {
-        val cacheKey = getCacheKey()
-        return globalStyleCache[cacheKey] ?: run {
-            val snstyle = mutableListOf<StringPair>()
-            width?.let {
-                snstyle.add("width" to it.asString())
-            }
-            minWidth?.let {
-                snstyle.add("min-width" to it.asString())
-            }
-            maxWidth?.let {
-                snstyle.add("max-width" to it.asString())
-            }
-            height?.let {
-                snstyle.add("height" to it.asString())
-            }
-            minHeight?.let {
-                snstyle.add("min-height" to it.asString())
-            }
-            maxHeight?.let {
-                snstyle.add("max-height" to it.asString())
-            }
-            display?.let {
-                snstyle.add("display" to it.display)
-            }
-            position?.let {
-                snstyle.add("position" to it.position)
-            }
-            top?.let {
-                snstyle.add("top" to it.asString())
-            }
-            left?.let {
-                snstyle.add("left" to it.asString())
-            }
-            right?.let {
-                snstyle.add("right" to it.asString())
-            }
-            bottom?.let {
-                snstyle.add("bottom" to it.asString())
-            }
-            zIndex?.let {
-                snstyle.add("z-index" to "$it")
-            }
-            overflow?.let {
-                snstyle.add("overflow" to it.overflow)
-            }
-            overflowWrap?.let {
-                snstyle.add("overflow-wrap" to it.overflowWrap)
-            }
-            resize?.let {
-                snstyle.add("resize" to it.resize)
-            }
-            border?.let {
-                snstyle.add("border" to it.asString())
-            }
-            borderTop?.let {
-                snstyle.add("border-top" to it.asString())
-            }
-            borderRight?.let {
-                snstyle.add("border-right" to it.asString())
-            }
-            borderBottom?.let {
-                snstyle.add("border-bottom" to it.asString())
-            }
-            borderLeft?.let {
-                snstyle.add("border-left" to it.asString())
-            }
-            margin?.let {
-                snstyle.add("margin" to it.asString())
-            }
-            marginTop?.let {
-                snstyle.add("margin-top" to it.asString())
-            }
-            marginRight?.let {
-                snstyle.add("margin-right" to it.asString())
-            }
-            marginBottom?.let {
-                snstyle.add("margin-bottom" to it.asString())
-            }
-            marginLeft?.let {
-                snstyle.add("margin-left" to it.asString())
-            }
-            padding?.let {
-                snstyle.add("padding" to it.asString())
-            }
-            paddingTop?.let {
-                snstyle.add("padding-top" to it.asString())
-            }
-            paddingRight?.let {
-                snstyle.add("padding-right" to it.asString())
-            }
-            paddingBottom?.let {
-                snstyle.add("padding-bottom" to it.asString())
-            }
-            paddingLeft?.let {
-                snstyle.add("padding-left" to it.asString())
-            }
-            color?.let {
-                snstyle.add("color" to it.asString())
-            }
-            opacity?.let {
-                snstyle.add("opacity" to "$it")
-            }
-            background?.let {
-                snstyle.add("background" to it.asString())
-            }
-            textDirection?.let {
-                snstyle.add("direction" to it.direction)
-            }
-            letterSpacing?.let {
-                snstyle.add("letter-spacing" to it.asString())
-            }
-            lineHeight?.let {
-                snstyle.add("line-height" to it.asString())
-            }
-            textAlign?.let {
-                snstyle.add("text-align" to it.textAlign)
-            }
-            textDecoration?.let {
-                snstyle.add("text-decoration" to it.asString())
-            }
-            textIndent?.let {
-                snstyle.add("text-indent" to it.asString())
-            }
-            textShadow?.let {
-                snstyle.add("text-shadow" to it.asString())
-            }
-            textTransform?.let {
-                snstyle.add("text-transform" to it.textTransform)
-            }
-            textOverflow?.let {
-                snstyle.add("text-overflow" to it.textOverflow)
-            }
-            unicodeBidi?.let {
-                snstyle.add("unicode-bidi" to it.unicodeBidi)
-            }
-            verticalAlign?.let {
-                snstyle.add("vertical-align" to it.verticalAlign)
-            }
-            whiteSpace?.let {
-                snstyle.add("white-space" to it.whiteSpace)
-            }
-            wordSpacing?.let {
-                snstyle.add("word-spacing" to it.asString())
-            }
-            fontFamily?.let {
-                snstyle.add("font-family" to it)
-            }
-            fontSize?.let {
-                snstyle.add("font-size" to it.asString())
-            }
-            fontStyle?.let {
-                snstyle.add("font-style" to it.fontStyle)
-            }
-            fontWeight?.let {
-                snstyle.add("font-weight" to it.fontWeight)
-            }
-            fontVariant?.let {
-                snstyle.add("font-variant" to it.fontVariant)
-            }
-            float?.let {
-                snstyle.add("float" to it.posFloat)
-            }
-            clear?.let {
-                snstyle.add("clear" to it.clear)
-            }
-            wordBreak?.let {
-                snstyle.add("word-break" to it.wordBreak)
-            }
-            lineBreak?.let {
-                snstyle.add("line-break" to it.lineBreak)
-            }
-            cursor?.let {
-                snstyle.add("cursor" to it.cursor)
-            }
-            flexDirection?.let {
-                snstyle.add("flex-direction" to it.dir)
-            }
-            flexWrap?.let {
-                snstyle.add("flex-wrap" to it.wrap)
-            }
-            justifyItems?.let {
-                snstyle.add("justify-items" to it.justify)
-            }
-            justifyContent?.let {
-                snstyle.add("justify-content" to it.justifyContent)
-            }
-            alignItems?.let {
-                snstyle.add("align-items" to it.alignItems)
-            }
-            alignContent?.let {
-                snstyle.add("align-content" to it.alignContent)
-            }
-            order?.let {
-                snstyle.add("order" to "$it")
-            }
-            flexGrow?.let {
-                snstyle.add("flex-grow" to "$it")
-            }
-            flexShrink?.let {
-                snstyle.add("flex-shrink" to "$it")
-            }
-            flexBasis?.let {
-                snstyle.add("flex-basis" to it.asString())
-            }
-            alignSelf?.let {
-                snstyle.add("align-self" to it.alignItems)
-            }
-            justifySelf?.let {
-                snstyle.add("justify-self" to it.justify)
-            }
-            gridAutoColumns?.let {
-                snstyle.add("grid-auto-columns" to it)
-            }
-            gridAutoRows?.let {
-                snstyle.add("grid-auto-rows" to it)
-            }
-            gridAutoFlow?.let {
-                snstyle.add("grid-auto-flow" to it.flow)
-            }
-            gridTemplateColumns?.let {
-                snstyle.add("grid-template-columns" to it)
-            }
-            gridTemplateRows?.let {
-                snstyle.add("grid-template-rows" to it)
-            }
-            gridTemplateAreas?.let {
-                snstyle.add("grid-template-areas" to it.joinToString("\n"))
-            }
-            gridColumnGap?.let {
-                snstyle.add("grid-column-gap" to "${it}px")
-            }
-            gridRowGap?.let {
-                snstyle.add("grid-row-gap" to "${it}px")
-            }
-            gridColumnStart?.let {
-                snstyle.add("grid-column-start" to "$it")
-            }
-            gridRowStart?.let {
-                snstyle.add("grid-row-start" to "$it")
-            }
-            gridColumnEnd?.let {
-                snstyle.add("grid-column-end" to it)
-            }
-            gridRowEnd?.let {
-                snstyle.add("grid-row-end" to it)
-            }
-            gridArea?.let {
-                snstyle.add("grid-area" to it)
-            }
-            outline?.let {
-                snstyle.add("outline" to it.asString())
-            }
-            boxShadowList?.let { list ->
-                val value = list.joinToString { it.asString() }
-                snstyle.add("box-shadow" to value)
-                snstyle.add("-webkit-box-shadow" to value)
-            } ?: boxShadow?.let {
-                val value = it.asString()
-                snstyle.add("box-shadow" to value)
-                snstyle.add("-webkit-box-shadow" to value)
-            }
-            transitionList?.let { list ->
-                snstyle.add("transition" to list.joinToString { it.asString() })
-            } ?: transition?.let {
-                snstyle.add("transition" to it.asString())
-            }
-            borderRadiusList?.let { list ->
-                val value = list.joinToString(" ") { it.asString() }
-                snstyle.add("border-radius" to value)
-                snstyle.add("-webkit-border-radius" to value)
-            } ?: borderRadius?.let {
-                val value = it.asString()
-                snstyle.add("border-radius" to value)
-                snstyle.add("-webkit-border-radius" to value)
-            }
-            for (key in js("Object").keys(customStyles).unsafeCast<Array<String>>()) {
-                snstyle.add(Pair(key, customStyles[key]))
-            }
-            globalStyleCache[cacheKey] = snstyle
-            return snstyle
-        }
+    open fun getSnStyle(): dynamic {
+        return js("Object").assign(js("{}"), propertyStyles)
     }
 
     /**
@@ -844,7 +720,7 @@ abstract class StyledComponent {
      */
     fun getStyle(name: String): String? {
         @Suppress("UnsafeCastFromDynamic")
-        return this.customStyles[name]
+        return this.propertyStyles[name]
     }
 
     /**
@@ -853,7 +729,7 @@ abstract class StyledComponent {
      * @param value the value of the style
      */
     fun setStyle(name: String, value: String): StyledComponent {
-        this.customStyles[name] = value
+        this.propertyStyles[name] = value
         refresh()
         return this
     }
@@ -863,37 +739,34 @@ abstract class StyledComponent {
      * @param name the name of the style
      */
     fun removeStyle(name: String): StyledComponent {
-        delete(this.customStyles, name)
+        delete(this.propertyStyles, name)
         refresh()
         return this
     }
 
-    protected open fun getCacheKey(): String {
-        @Suppress("UnsafeCastFromDynamic")
-        return JSON.stringify(propertyValues) + JSON.stringify(customStyles)
+    /**
+     * @suppress
+     * Internal function
+     * Re-renders the current component.
+     * @return current component
+     */
+    open fun refresh(): StyledComponent {
+        return this
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
-        RefreshDelegateProvider<T>(null, refreshFunction)
-
-    @Suppress("NOTHING_TO_INLINE")
-    private inline fun <T> refreshOnUpdate(
-        initialValue: T,
-        noinline refreshFunction: ((T) -> Unit) = { this.refresh() }
-    ) =
-        RefreshDelegateProvider(initialValue, refreshFunction)
+    private inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit)? = null) =
+        RefreshDelegateProvider(refreshFunction)
 
     private inner class RefreshDelegateProvider<T>(
-        private val initialValue: T?, private val refreshFunction: (T) -> Unit
+        private val refreshFunction: ((T) -> Unit)?
     ) {
         operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
-            if (initialValue != null) propertyValues[prop.name] = initialValue
             return RefreshDelegate(refreshFunction)
         }
     }
 
-    private inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+    private inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)?) {
         @Suppress("UNCHECKED_CAST")
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]
@@ -910,11 +783,8 @@ abstract class StyledComponent {
             } else {
                 propertyValues[property.name] = value
             }
-            refreshFunction(value)
+            refreshFunction?.invoke(value)
+            refresh()
         }
-    }
-
-    companion object {
-        internal val globalStyleCache = Cache<String, List<StringPair>>()
     }
 }
