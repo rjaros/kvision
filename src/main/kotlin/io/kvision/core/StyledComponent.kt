@@ -33,6 +33,8 @@ abstract class StyledComponent {
     private val propertyValues = js("{}")
     private val propertyStyles = js("{}")
 
+    private var snStyleCache: List<StringPair>? = null
+
     private fun setStyleProperty(key: String, value: String?) {
         if (value != null) {
             propertyStyles[key] = value
@@ -710,7 +712,11 @@ abstract class StyledComponent {
      * Returns CSS style attributes.
      */
     open fun getSnStyle(): dynamic {
-        return js("Object").assign(js("{}"), propertyStyles)
+        return snStyleCache ?: run {
+            val s = js("Object").assign(js("{}"), propertyStyles)
+            snStyleCache = s
+            s
+        }
     }
 
     /**
@@ -751,6 +757,7 @@ abstract class StyledComponent {
      * @return current component
      */
     open fun refresh(): StyledComponent {
+        snStyleCache = null
         return this
     }
 
@@ -778,13 +785,16 @@ abstract class StyledComponent {
         }
 
         operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
+            val oldValue = propertyValues[property.name]
             if (value == null) {
                 delete(propertyValues, property.name)
             } else {
                 propertyValues[property.name] = value
             }
-            refreshFunction?.invoke(value)
-            refresh()
+            if (oldValue != value) {
+                refreshFunction?.invoke(value)
+                refresh()
+            }
         }
     }
 }

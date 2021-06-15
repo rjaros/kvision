@@ -103,8 +103,6 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
      */
     var draggable: Boolean? by refreshOnUpdate()
 
-    protected var surroundingSpan by refreshOnUpdate(false)
-
     private var tooltipSiblings: JQuery? = null
     private var popoverSiblings: JQuery? = null
 
@@ -179,20 +177,12 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
 
     override fun renderVNode(): VNode {
         return if (surroundingClasses == null) {
-            if (surroundingSpan) {
-                h("span", arrayOf(render()))
-            } else {
-                render()
-            }
+            render()
         } else {
             val opt = snOpt {
                 `class` = snClasses(surroundingClasses!!.map { c -> c to true })
             }
-            if (surroundingSpan) {
-                h("div", opt, arrayOf(h("span", arrayOf(render()))))
-            } else {
-                h("div", opt, arrayOf(render()))
-            }
+            h("div", opt, arrayOf(render()))
         }
     }
 
@@ -1048,12 +1038,15 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
         }
 
         operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
+            val oldValue = propertyValues[property.name]
             if (value == null) {
                 delete(propertyValues, property.name)
             } else {
                 propertyValues[property.name] = value
             }
-            refreshFunction(value)
+            if (oldValue != value) {
+                refreshFunction(value)
+            }
         }
     }
 

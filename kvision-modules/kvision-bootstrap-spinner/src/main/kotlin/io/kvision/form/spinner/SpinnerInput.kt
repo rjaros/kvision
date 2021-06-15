@@ -22,6 +22,7 @@
 package io.kvision.form.spinner
 
 import com.github.snabbdom.VNode
+import com.github.snabbdom.h
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -180,7 +181,6 @@ open class SpinnerInput(
             ButtonsType.VERTICAL -> this.addSurroundingCssClass("kv-spinner-btn-vertical")
             ButtonsType.HORIZONTAL -> this.addSurroundingCssClass("kv-spinner-btn-horizontal")
         }
-        this.surroundingSpan = true
         this.setInternalEventListener<SpinnerInput> {
             change = {
                 self.changeValue()
@@ -191,7 +191,7 @@ open class SpinnerInput(
     }
 
     override fun render(): VNode {
-        return render("input")
+        return h("span", arrayOf(render("input")))
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
