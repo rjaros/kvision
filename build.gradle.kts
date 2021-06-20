@@ -55,7 +55,7 @@ dependencies {
     implementation(npm("fecha", "^4.2.1"))
     implementation(npm("snabbdom", "^0.7.4"))
     implementation(npm("snabbdom-virtualize", "^0.7.0"))
-    implementation(npm("jquery-resizable-dom", "^0.35.0"))
+    implementation(npm("split.js", "^1.6.4"))
     implementation(npm("gettext.js", "^1.0.0"))
     implementation(npm("gettext-extract", "^2.0.1"))
     testImplementation(kotlin("test-js"))

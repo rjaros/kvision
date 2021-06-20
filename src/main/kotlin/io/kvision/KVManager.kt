@@ -58,9 +58,8 @@ object KVManager {
         } catch (e: Throwable) {
         }
         require("kvision-assets/css/style.css")
-        require("jquery-resizable-dom")
     }
-
+    internal val splitjs = require("split.js").default
     internal val fecha = require("fecha").default
     private val sdPatch = Snabbdom.init(
         arrayOf(
