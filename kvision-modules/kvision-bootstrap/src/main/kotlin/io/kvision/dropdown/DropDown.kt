@@ -29,6 +29,7 @@ import io.kvision.core.Container
 import io.kvision.core.CssSize
 import io.kvision.core.ResString
 import io.kvision.core.StringPair
+import io.kvision.core.getElementJQuery
 import io.kvision.html.Button
 import io.kvision.html.ButtonStyle
 import io.kvision.html.ButtonType

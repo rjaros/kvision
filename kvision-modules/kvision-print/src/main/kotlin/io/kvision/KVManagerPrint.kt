@@ -24,7 +24,7 @@ package io.kvision
 internal val kVManagerPrintInit = KVManagerPrint.init()
 
 /**
- * Internal singleton object which initializes and configures KVision Toast module.
+ * Internal singleton object which initializes and configures KVision Print module.
  */
 internal object KVManagerPrint {
 

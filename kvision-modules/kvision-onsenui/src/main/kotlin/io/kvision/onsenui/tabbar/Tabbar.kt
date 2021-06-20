@@ -27,6 +27,7 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.DomAttribute
 import io.kvision.core.StringPair
 import io.kvision.core.Widget
+import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj

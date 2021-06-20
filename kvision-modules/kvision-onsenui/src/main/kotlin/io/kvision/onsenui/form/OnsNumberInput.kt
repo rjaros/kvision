@@ -27,6 +27,8 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize

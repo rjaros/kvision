@@ -22,6 +22,8 @@
 package io.kvision.form.select
 
 import io.kvision.core.Container
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
 import io.kvision.jquery.JQueryAjaxSettings
 import io.kvision.jquery.JQueryXHR
 import io.kvision.remote.CallAgent

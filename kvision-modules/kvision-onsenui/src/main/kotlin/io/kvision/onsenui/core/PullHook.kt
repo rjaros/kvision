@@ -25,6 +25,7 @@ package io.kvision.onsenui.core
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.CssSize
+import io.kvision.core.getElementJQuery
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
 import io.kvision.utils.asString

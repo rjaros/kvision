@@ -30,9 +30,6 @@ import com.github.snabbdom.h
 import io.kvision.KVManager
 import io.kvision.i18n.I18n
 import io.kvision.i18n.I18n.trans
-import io.kvision.jquery.JQuery
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.panel.Root
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
@@ -42,11 +39,6 @@ import org.w3c.dom.DragEvent
 import org.w3c.dom.Node
 import org.w3c.dom.events.MouseEvent
 import kotlin.reflect.KProperty
-
-enum class Easing(internal val easing: String) {
-    SWING("swing"),
-    LINEAR("linear")
-}
 
 /**
  * Base widget class. The parent of all component classes.
@@ -103,8 +95,10 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
      */
     var draggable: Boolean? by refreshOnUpdate()
 
-    protected var tooltipOptions: TooltipOptions? = null
-    protected var popoverOptions: PopoverOptions? = null
+    var tooltipOptions: dynamic = null
+    var tooltipHooksActive = false
+    var popoverOptions: dynamic = null
+    var popoverHooksActive = false
 
     var eventTarget: Widget? = null
 
@@ -188,12 +182,17 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
      * @param text a text marked for a dynamic translation
      * @return translated text
      */
-    protected open fun translate(text: String): String {
+    open fun translate(text: String): String {
         lastLanguage = I18n.language
         return trans(text)
     }
 
-    protected open fun translate(text: String?): String? {
+    /**
+     * Translates given text with I18n trans function and sets lastLanguage marker.
+     * @param text a text marked for a dynamic translation
+     * @return translated text
+     */
+    open fun translate(text: String?): String? {
         return text?.let {
             translate(it)
         }
@@ -450,261 +449,6 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     }
 
     /**
-     * Shows current widget with animation effect.
-     * @param duration a duration of the animation
-     * @param easing an easing function to use
-     * @param complete a callback function called after the animation completes
-     * @return current widget
-     */
-    open fun showAnim(
-        duration: Int = 400,
-        easing: Easing = Easing.SWING,
-        complete: (() -> Unit)? = null
-    ): Widget {
-        this.display = Display.NONE
-        this.visible = true
-        val jq = getElementJQuery()
-        if (jq != null) {
-            jq.show(duration, easing.easing) {
-                this.display = null
-                complete?.invoke()
-            }
-        } else {
-            this.display = null
-            complete?.invoke()
-        }
-        return this
-    }
-
-    /**
-     * Hides current widget with animation effect.
-     * @param duration a duration of the animation
-     * @param easing an easing function to use
-     * @param complete a callback function called after the animation completes
-     * @return current widget
-     */
-    open fun hideAnim(
-        duration: Int = 400,
-        easing: Easing = Easing.SWING,
-        complete: (() -> Unit)? = null
-    ): Widget {
-        val jq = getElementJQuery()
-        if (jq != null) {
-            jq.hide(duration, easing.easing) {
-                this.visible = false
-                complete?.invoke()
-            }
-        } else {
-            this.visible = false
-            complete?.invoke()
-        }
-        return this
-    }
-
-    /**
-     * Shows current widget with slide down effect.
-     * @param duration a duration of the animation
-     * @param easing an easing function to use
-     * @param complete a callback function called after the animation completes
-     * @return current widget
-     */
-    open fun slideDown(
-        duration: Int = 400,
-        easing: Easing = Easing.SWING,
-        complete: (() -> Unit)? = null
-    ): Widget {
-        this.display = Display.NONE
-        this.visible = true
-        val jq = getElementJQuery()
-        if (jq != null) {
-            jq.slideDown(duration, easing.easing) {
-                this.display = null
-                complete?.invoke()
-            }
-        } else {
-            this.display = null
-            complete?.invoke()
-        }
-        return this
-    }
-
-    /**
-     * Hides current widget with slide up effect.
-     * @param duration a duration of the animation
-     * @param easing an easing function to use
-     * @param complete a callback function called after the animation completes
-     * @return current widget
-     */
-    open fun slideUp(
-        duration: Int = 400,
-        easing: Easing = Easing.SWING,
-        complete: (() -> Unit)? = null
-    ): Widget {
-        val jq = getElementJQuery()
-        if (jq != null) {
-            jq.slideUp(duration, easing.easing) {
-                this.visible = false
-                complete?.invoke()
-            }
-        } else {
-            this.visible = false
-            complete?.invoke()
-        }
-        return this
-    }
-
-    /**
-     * Shows current widget with fade in effect.
-     * @param duration a duration of the animation
-     * @param easing an easing function to use
-     * @param complete a callback function called after the animation completes
-     * @return current widget
-     */
-    open fun fadeIn(
-        duration: Int = 400,
-        easing: Easing = Easing.SWING,
-        complete: (() -> Unit)? = null
-    ): Widget {
-        this.display = Display.NONE
-        this.visible = true
-        val jq = getElementJQuery()
-        if (jq != null) {
-            jq.fadeIn(duration, easing.easing) {
-                this.display = null
-                complete?.invoke()
-            }
-        } else {
-            this.display = null
-            complete?.invoke()
-        }
-        return this
-    }
-
-    /**
-     * Hides current widget with fade out effect.
-     * @param duration a duration of the animation
-     * @param easing an easing function to use
-     * @param complete a callback function called after the animation completes
-     * @return current widget
-     */
-    open fun fadeOut(
-        duration: Int = 400,
-        easing: Easing = Easing.SWING,
-        complete: (() -> Unit)? = null
-    ): Widget {
-        val jq = getElementJQuery()
-        if (jq != null) {
-            jq.fadeOut(duration, easing.easing) {
-                this.visible = false
-                complete?.invoke()
-            }
-        } else {
-            this.visible = false
-            complete?.invoke()
-        }
-        return this
-    }
-
-    /**
-     * Enables tooltip for the current widget.
-     * @param options tooltip options
-     * @return current widget
-     */
-    open fun enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
-        this.tooltipOptions = options
-        val tooltipFun = getElementJQueryD()?.tooltip
-        if (tooltipFun != undefined) getElementJQueryD()?.tooltip(
-            options.copy(title = options.title?.let { translate(it) }).toJs()
-        )
-        return this
-    }
-
-    /**
-     * Shows tooltip for the current widget.
-     * @return current widget
-     */
-    open fun showTooltip(): Widget {
-        if (this.tooltipOptions != null) {
-            val tooltipFun = getElementJQueryD()?.tooltip
-            if (tooltipFun != undefined) getElementJQueryD()?.tooltip("show")
-        }
-        return this
-    }
-
-    /**
-     * Hides tooltip for the current widget.
-     * @return current widget
-     */
-    open fun hideTooltip(): Widget {
-        if (this.tooltipOptions != null) {
-            val tooltipFun = getElementJQueryD()?.tooltip
-            if (tooltipFun != undefined) getElementJQueryD()?.tooltip("hide")
-        }
-        return this
-    }
-
-    /**
-     * Disables tooltip for the current widget.
-     * @return current widget
-     */
-    open fun disableTooltip(): Widget {
-        this.tooltipOptions = null
-        val tooltipFun = getElementJQueryD()?.tooltip
-        if (tooltipFun != undefined) getElementJQueryD()?.tooltip("dispose")
-        return this
-    }
-
-    /**
-     * Enables popover for the current widget.
-     * @param options popover options
-     * @return current widget
-     */
-    open fun enablePopover(options: PopoverOptions = PopoverOptions()): Widget {
-        this.popoverOptions = options
-        val popoverFun = getElementJQueryD()?.popover
-        if (popoverFun != undefined) getElementJQueryD()?.popover(
-            options.copy(title = options.title?.let { translate(it) },
-                content = options.content?.let { translate(it) }).toJs()
-        )
-        return this
-    }
-
-    /**
-     * Shows popover for the current widget.
-     * @return current widget
-     */
-    open fun showPopover(): Widget {
-        if (this.popoverOptions != null) {
-            val popoverFun = getElementJQueryD()?.popover
-            if (popoverFun != undefined) getElementJQueryD()?.popover("show")
-        }
-        return this
-    }
-
-    /**
-     * Hides popover for the current widget.
-     * @return current widget
-     */
-    open fun hidePopover(): Widget {
-        if (this.popoverOptions != null) {
-            val popoverFun = getElementJQueryD()?.popover
-            if (popoverFun != undefined) getElementJQueryD()?.popover("hide")
-        }
-        return this
-    }
-
-    /**
-     * Disables popover for the current widget.
-     * @return current widget
-     */
-    open fun disablePopover(): Widget {
-        this.popoverOptions = null
-        val popoverFun = getElementJQueryD()?.popover
-        if (popoverFun != undefined) getElementJQueryD()?.popover("dispose")
-        return this
-    }
-
-    /**
      * Toggles visibility of current widget.
      * @return current widget
      */
@@ -784,14 +528,6 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
         return getElement()?.asDynamic()
     }
 
-    override fun getElementJQuery(): JQuery? {
-        return getElement()?.let { jQuery(it) }
-    }
-
-    override fun getElementJQueryD(): dynamic {
-        return getElement()?.let { jQuery(it).asDynamic() }
-    }
-
     override fun clearParent(): Widget {
         this.parent = null
         return this
@@ -817,21 +553,6 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
      * Internal method called after inserting Snabbdom vnode into the DOM.
      */
     internal open fun afterInsertInternal(node: VNode) {
-        this.tooltipOptions?.let {
-            @Suppress("UnsafeCastFromDynamic")
-            val tooltipFun = getElementJQueryD()?.tooltip
-            if (tooltipFun != undefined) getElementJQueryD()?.tooltip(
-                it.copy(title = it.title?.let { translate(it) }).toJs()
-            )
-        }
-        this.popoverOptions?.let {
-            @Suppress("UnsafeCastFromDynamic")
-            val popoverFun = getElementJQueryD()?.popover
-            if (popoverFun != undefined) getElementJQueryD()?.popover(
-                it.copy(title = it.title?.let { translate(it) },
-                    content = it.content?.let { translate(it) }).toJs()
-            )
-        }
     }
 
     /**
@@ -843,16 +564,7 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     /**
      * Internal method called after destroying Snabbdom vnode.
      */
-    @Suppress("UnsafeCastFromDynamic")
     internal open fun afterDestroyInternal() {
-        this.tooltipOptions?.let {
-            val tooltipFun = getElementJQueryD()?.tooltip
-            if (tooltipFun != undefined) getElementJQueryD()?.tooltip("dispose")
-        }
-        this.popoverOptions?.let {
-            val popoverFun = getElementJQueryD()?.popover
-            if (popoverFun != undefined) getElementJQueryD()?.popover("dispose")
-        }
     }
 
     /**
@@ -928,35 +640,6 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
                 e.stopPropagation()
                 callback(e)
             }
-        }
-    }
-
-    /**
-     * Animate the widget changing CSS properties.
-     * @param duration a duration of the animation
-     * @param easing an easing function to use
-     * @param complete a callback function called after the animation completes
-     * @param styles changing properties values
-     */
-    open fun animate(
-        duration: Int = 400,
-        easing: Easing = Easing.SWING,
-        complete: (() -> Unit)? = null,
-        styles: StyledComponent.() -> Unit
-    ) {
-        val widget = Widget()
-        widget.styles()
-        val stylesObj = widget.getSnStyle()
-        val obj = js("{}")
-        for (key in js("Object").keys(stylesObj)) {
-            @Suppress("UnsafeCastFromDynamic")
-            obj[key.unsafeCast<String>().toCamelCase()] = stylesObj[key]
-        }
-        @Suppress("UnsafeCastFromDynamic")
-        getElementJQuery()?.animate(obj, duration, easing.easing) {
-            widget.dispose()
-            this.styles()
-            complete?.invoke()
         }
     }
 

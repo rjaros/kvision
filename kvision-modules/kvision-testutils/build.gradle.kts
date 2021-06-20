@@ -6,11 +6,14 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val jqueryKotlinVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
+    api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
     api(rootProject)
     implementation(kotlin("test-js"))
 }

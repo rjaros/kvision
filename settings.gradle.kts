@@ -30,6 +30,7 @@ include(
     "kvision-modules:kvision-fontawesome",
     "kvision-modules:kvision-handlebars",
     "kvision-modules:kvision-i18n",
+    "kvision-modules:kvision-jquery",
     "kvision-modules:kvision-maps",
     "kvision-modules:kvision-moment",
     "kvision-modules:kvision-pace",

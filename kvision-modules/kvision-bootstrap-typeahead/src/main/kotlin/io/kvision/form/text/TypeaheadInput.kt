@@ -23,6 +23,7 @@ package io.kvision.form.text
 
 import com.github.snabbdom.VNode
 import io.kvision.core.Container
+import io.kvision.core.getElementJQueryD
 import io.kvision.jquery.JQueryXHR
 import io.kvision.jquery.jQuery
 import io.kvision.state.ObservableState

@@ -13,6 +13,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
+    api(project(":kvision-modules:kvision-jquery"))
     implementation(npm("pc-bootstrap4-datetimepicker", "^4.17.51"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))

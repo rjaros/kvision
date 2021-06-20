@@ -1,26 +1,22 @@
 plugins {
     kotlin("js")
-    id("kotlinx-serialization")
     id("maven-publish")
     id("signing")
     id("de.marcphilipp.nexus-publish")
     id("org.jetbrains.dokka")
 }
 
-val coroutinesVersion: String by project
+val jqueryKotlinVersion: String by project
 
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
-    api(project(":kvision-modules:kvision-common-types"))
-    api(project(":kvision-modules:kvision-jquery"))
+    api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
     api(rootProject)
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
-    implementation(npm("bootstrap-fileinput", "^5.1.5"))
+    implementation(npm("jquery", "^3.6.0"))
     testImplementation(kotlin("test-js"))
-    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

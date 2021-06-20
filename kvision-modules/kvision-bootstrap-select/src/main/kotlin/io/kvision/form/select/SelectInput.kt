@@ -29,6 +29,8 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssSize
 import io.kvision.core.StringPair
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize

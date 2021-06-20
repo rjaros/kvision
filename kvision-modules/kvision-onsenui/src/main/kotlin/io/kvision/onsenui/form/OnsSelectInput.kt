@@ -27,6 +27,8 @@ import kotlinx.browser.window
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.StringPair
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
 import io.kvision.form.select.SimpleSelectInput
 import io.kvision.utils.set
 

@@ -27,6 +27,8 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssClass
 import io.kvision.core.Widget
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
 import io.kvision.html.Button
 import io.kvision.html.TAG
 import io.kvision.html.Tag

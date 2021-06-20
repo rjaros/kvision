@@ -27,6 +27,7 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Display
 import io.kvision.core.Widget
+import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.BackButtonEvent
 import io.kvision.panel.Root
 import io.kvision.panel.Root.Companion.addModal

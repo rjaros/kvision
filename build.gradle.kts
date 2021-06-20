@@ -22,7 +22,6 @@ val kotlinVersion: String by System.getProperties()
 val serializationVersion: String by project
 val coroutinesVersion: String by project
 val snabbdomKotlinVersion: String by project
-val jqueryKotlinVersion: String by project
 val diffVersion: String by project
 
 // Custom Properties
@@ -36,7 +35,6 @@ dependencies {
     api(project(":kvision-modules:kvision-common-types"))
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
     api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
-    api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
     implementation("io.github.petertrr:kotlin-multiplatform-diff-js:$diffVersion")
 //  Empty NPM placeholders
     implementation(npm("kvision-kvision-bootstrap-js-legacy", "npm:kvision-bootstrap@^0.0.1"))
@@ -51,7 +49,6 @@ dependencies {
     implementation(npm("less", "^4.1.1"))
     implementation(npm("less-loader", "^8.1.1"))
     implementation(npm("imports-loader", "^2.0.0"))
-    implementation(npm("jquery", "^3.6.0"))
     implementation(npm("fecha", "^4.2.1"))
     implementation(npm("snabbdom", "^0.7.4"))
     implementation(npm("snabbdom-virtualize", "^0.7.0"))
@@ -124,6 +121,7 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-fontawesome/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-handlebars/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-i18n/src/main/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-jquery/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-maps/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-moment/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-onsenui/src/main/kotlin"))

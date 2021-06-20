@@ -26,6 +26,7 @@ import com.github.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
+import io.kvision.core.getElementJQuery
 import io.kvision.html.CustomTag
 import io.kvision.onsenui.FloatDirection
 import io.kvision.onsenui.FloatPosition

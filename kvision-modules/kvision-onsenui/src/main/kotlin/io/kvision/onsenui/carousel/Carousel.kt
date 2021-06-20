@@ -27,6 +27,7 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssSize
+import io.kvision.core.getElementJQuery
 import io.kvision.panel.SimplePanel
 import io.kvision.state.ObservableState
 import io.kvision.state.bind

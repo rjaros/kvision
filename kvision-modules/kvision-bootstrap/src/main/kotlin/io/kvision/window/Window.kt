@@ -30,6 +30,7 @@ import io.kvision.core.Overflow
 import io.kvision.core.Position
 import io.kvision.core.Resize
 import io.kvision.core.UNIT
+import io.kvision.core.getElementJQuery
 import io.kvision.html.Icon
 import io.kvision.html.TAG
 import io.kvision.html.Tag

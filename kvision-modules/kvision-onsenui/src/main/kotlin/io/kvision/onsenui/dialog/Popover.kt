@@ -26,6 +26,7 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.BackButtonEvent
 import io.kvision.onsenui.FloatDirection
 import io.kvision.panel.Root

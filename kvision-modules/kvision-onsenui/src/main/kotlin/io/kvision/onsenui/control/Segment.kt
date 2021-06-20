@@ -25,6 +25,7 @@ package io.kvision.onsenui.control
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
+import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.tabbar.Tabbar
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj

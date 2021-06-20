@@ -27,6 +27,7 @@ import io.kvision.KVManagerOnsenui.ons
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Display
 import io.kvision.core.DomAttribute
+import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.BackButtonEvent
 import io.kvision.onsenui.splitter.SplitterContent
 import io.kvision.onsenui.tabbar.Tab

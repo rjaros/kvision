@@ -21,6 +21,7 @@
  */
 package test.io.kvision.form.spinner
 
+import io.kvision.core.getElementJQuery
 import io.kvision.panel.Root
 import io.kvision.form.spinner.SpinnerInput
 import io.kvision.test.DomSpec

@@ -26,6 +26,7 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
+import io.kvision.core.getElementJQuery
 import io.kvision.html.Span
 import io.kvision.onsenui.BackButtonEvent
 import io.kvision.onsenui.dialog.Dialog

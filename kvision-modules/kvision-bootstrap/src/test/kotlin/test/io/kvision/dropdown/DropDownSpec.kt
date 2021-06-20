@@ -21,6 +21,8 @@
  */
 package test.io.kvision.dropdown
 
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
 import kotlinx.browser.document
 import io.kvision.dropdown.DD
 import io.kvision.dropdown.Direction

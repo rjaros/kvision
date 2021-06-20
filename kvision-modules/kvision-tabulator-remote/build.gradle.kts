@@ -14,6 +14,7 @@ dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-tabulator"))
     api(project(":kvision-modules:kvision-common-remote"))
+    api(project(":kvision-modules:kvision-jquery"))
     testImplementation(kotlin("test-js"))
 }
 

@@ -17,6 +17,7 @@ dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-bootstrap-select"))
     api(project(":kvision-modules:kvision-common-remote"))
+    api(project(":kvision-modules:kvision-jquery"))
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     testImplementation(kotlin("test-js"))
 }

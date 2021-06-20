@@ -28,6 +28,7 @@ import io.kvision.KVManagerOnsenui.ons
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.CssSize
 import io.kvision.core.DomAttribute
+import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.asString

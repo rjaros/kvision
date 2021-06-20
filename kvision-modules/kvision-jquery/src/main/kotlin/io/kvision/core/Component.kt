@@ -19,34 +19,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.io.kvision.panel
 
-import io.kvision.html.Span
-import io.kvision.panel.Direction
-import io.kvision.panel.Root
-import io.kvision.panel.SplitPanel
-import io.kvision.test.DomSpec
-import kotlinx.browser.document
-import kotlin.test.Test
+package io.kvision.core
 
-class SplitPanelSpec : DomSpec {
+import io.kvision.jquery.JQuery
+import io.kvision.jquery.invoke
+import io.kvision.jquery.jQuery
 
-    @Test
-    fun render() {
-        run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val splitPanel = SplitPanel(Direction.VERTICAL)
-            root.add(splitPanel)
-            val label1 = Span("abc")
-            val label2 = Span("def")
-            splitPanel.add(label1)
-            splitPanel.add(label2)
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                "<div class=\"splitpanel-vertical\"><span style=\"width: calc(0% - 4.5px);\">abc</span><div class=\"splitter-vertical\" style=\"width: 9px;\"></div><span style=\"width: calc(100% - 4.5px);\">def</span></div>",
-                element?.innerHTML,
-                "Should render correct split panel"
-            )
-        }
-    }
+/**
+ * Returns JQuery element bound to the current component.
+ * @return JQuery element
+ */
+fun Component.getElementJQuery(): JQuery? {
+    return getElement()?.let { jQuery(it) }
+}
+
+/**
+ * Returns JQuery element bound to the current component as a *dynamic* type.
+ * @return JQuery element as a *dynamic* type
+ */
+fun Component.getElementJQueryD(): dynamic {
+    return getElement()?.let { jQuery(it).asDynamic() }
 }

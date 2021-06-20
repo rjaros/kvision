@@ -131,16 +131,6 @@ class WidgetSpec : WSpec {
     }
 
     @Test
-    fun getElementJQuery() {
-        runW { widget, element ->
-            val j = widget.getElementJQuery()
-            assertTrue("Should return correct jQuery object") { j != null }
-            val e = j?.get()?.get(0)
-            assertTrue("Should return correct dom element from jQuery object") { e == element }
-        }
-    }
-
-    @Test
     fun getRoot() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)

@@ -12,6 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
+    api(project(":kvision-modules:kvision-jquery"))
     implementation(npm("popper.js", "^1.16.1"))
     implementation(npm("bootstrap", "^4.6.0"))
     implementation(npm("awesome-bootstrap-checkbox", "^1.0.1"))
