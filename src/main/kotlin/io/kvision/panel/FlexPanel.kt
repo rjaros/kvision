@@ -37,7 +37,7 @@ import io.kvision.utils.set
  * @param alignItems flexbox items alignment
  * @param alignContent flexbox content alignment
  * @param spacing spacing between columns/rows
- * @param noWrappers do not use additional div wrappers for child items
+ * @param useWrappers use additional div wrappers for child items
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
@@ -49,7 +49,7 @@ open class FlexPanel(
     alignItems: AlignItems? = null,
     alignContent: AlignContent? = null,
     spacing: Int? = null,
-    private val noWrappers: Boolean = false,
+    private val useWrappers: Boolean = false,
     classes: Set<String> = setOf(),
     init: (FlexPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
@@ -84,7 +84,7 @@ open class FlexPanel(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
         basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
     ): FlexPanel {
-        val wrapper = if (noWrappers) {
+        val wrapper = if (!useWrappers) {
             child
         } else {
             WidgetWrapper(child, classes)
@@ -117,7 +117,7 @@ open class FlexPanel(
         position: Int, child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
         basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
     ): FlexPanel {
-        val wrapper = if (noWrappers) {
+        val wrapper = if (!useWrappers) {
             child
         } else {
             WidgetWrapper(child, classes)
@@ -155,7 +155,7 @@ open class FlexPanel(
     }
 
     private fun applySpacing(wrapper: Widget): Widget {
-        if (!noWrappers) {
+        if (useWrappers) {
             wrapper.marginTop = null
             wrapper.marginRight = null
             wrapper.marginBottom = null
@@ -238,10 +238,10 @@ open class FlexPanel(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.flexPanel(
-    direction: FlexDirection? = null, wrap: io.kvision.core.FlexWrap? = null, justify: JustifyContent? = null,
+    direction: FlexDirection? = null, wrap: FlexWrap? = null, justify: JustifyContent? = null,
     alignItems: AlignItems? = null, alignContent: AlignContent? = null,
     spacing: Int? = null,
-    noWrappers: Boolean = false,
+    useWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (FlexPanel.() -> Unit)? = null
@@ -254,7 +254,7 @@ fun Container.flexPanel(
             alignItems,
             alignContent,
             spacing,
-            noWrappers,
+            useWrappers,
             classes ?: className.set,
             init
         )
@@ -269,10 +269,10 @@ fun Container.flexPanel(
  */
 fun <S> Container.flexPanel(
     state: ObservableState<S>,
-    direction: FlexDirection? = null, wrap: io.kvision.core.FlexWrap? = null, justify: JustifyContent? = null,
+    direction: FlexDirection? = null, wrap: FlexWrap? = null, justify: JustifyContent? = null,
     alignItems: AlignItems? = null, alignContent: AlignContent? = null,
     spacing: Int? = null,
-    noWrappers: Boolean = false,
+    useWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (FlexPanel.(S) -> Unit)
@@ -283,7 +283,7 @@ fun <S> Container.flexPanel(
     alignItems,
     alignContent,
     spacing,
-    noWrappers,
+    useWrappers,
     classes,
     className
 ).bind(state, true, init)

@@ -42,7 +42,7 @@ class GridPanelSpec : DomSpec {
             gridPanel.add(Span("ghi"), 3, 3)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div style=\"display: grid;\"><div style=\"grid-column-start: 1; grid-row-start: 1;\"><span>abc</span></div><div style=\"grid-column-start: 2; grid-row-start: 2;\"><span>def</span></div><div style=\"grid-column-start: 3; grid-row-start: 3;\"><span>ghi</span></div></div>",
+                "<div style=\"display: grid;\"><span style=\"grid-column-start: 1; grid-row-start: 1;\">abc</span><span style=\"grid-column-start: 2; grid-row-start: 2;\">def</span><span style=\"grid-column-start: 3; grid-row-start: 3;\">ghi</span></div>",
                 element?.innerHTML?.replace("  ", " "),
                 "Should render correct grid panel"
             )
@@ -67,7 +67,7 @@ class GridPanelSpec : DomSpec {
             root.add(gridPanel)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div style=\"display: grid;\"><div style=\"grid-column-start: 1; grid-row-start: 1;\"><span>abc</span></div><div style=\"grid-column-start: 2; grid-row-start: 2;\"><span>def</span></div><div style=\"grid-column-start: 3; grid-row-start: 3;\"><span>ghi</span></div></div>",
+                "<div style=\"display: grid;\"><span style=\"grid-column-start: 1; grid-row-start: 1;\">abc</span><span style=\"grid-column-start: 2; grid-row-start: 2;\">def</span><span style=\"grid-column-start: 3; grid-row-start: 3;\">ghi</span></div>",
                 element?.innerHTML?.replace("  ", " "),
                 "Should render correct grid panel with DSL"
             )

@@ -42,7 +42,7 @@ import io.kvision.utils.set
  * @param alignItems grid items alignment
  * @param justifyContent flexbox content justification
  * @param alignContent flexbox content alignment
- * @param noWrappers do not use additional div wrappers for child items
+ * @param useWrappers use additional div wrappers for child items
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
@@ -52,7 +52,7 @@ open class GridPanel(
     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
-    alignContent: AlignContent? = null, private val noWrappers: Boolean = false,
+    alignContent: AlignContent? = null, private val useWrappers: Boolean = false,
     classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
 ) : SimplePanel(classes) {
 
@@ -92,7 +92,7 @@ open class GridPanel(
         columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
         alignSelf: AlignItems? = null, classes: Set<String> = setOf()
     ): GridPanel {
-        val wrapper = if (noWrappers) {
+        val wrapper = if (!useWrappers) {
             child
         } else {
             WidgetWrapper(child, classes)
@@ -130,7 +130,7 @@ open class GridPanel(
         columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
         alignSelf: AlignItems? = null, classes: Set<String> = setOf()
     ): GridPanel {
-        val wrapper = if (noWrappers) {
+        val wrapper = if (!useWrappers) {
             child
         } else {
             WidgetWrapper(child, classes)
@@ -230,7 +230,7 @@ fun Container.gridPanel(
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
     alignContent: AlignContent? = null,
-    noWrappers: Boolean = false,
+    useWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (GridPanel.() -> Unit)? = null
@@ -248,7 +248,7 @@ fun Container.gridPanel(
         alignItems,
         justifyContent,
         alignContent,
-        noWrappers,
+        useWrappers,
         classes ?: className.set,
         init
     )
@@ -268,7 +268,7 @@ fun <S> Container.gridPanel(
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
     alignContent: AlignContent? = null,
-    noWrappers: Boolean = false,
+    useWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (GridPanel.(S) -> Unit)
@@ -285,7 +285,7 @@ fun <S> Container.gridPanel(
     alignItems,
     justifyContent,
     alignContent,
-    noWrappers,
+    useWrappers,
     classes,
     className,
 ).bind(state, true, init)

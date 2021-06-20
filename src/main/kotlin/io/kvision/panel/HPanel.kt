@@ -38,7 +38,7 @@ import io.kvision.utils.set
  * @param justify flexbox content justification
  * @param alignItems flexbox items alignment
  * @param spacing spacing between columns/rows
- * @param noWrappers do not use additional div wrappers for child items
+ * @param useWrappers use additional div wrappers for child items
  * @param classes a set of CSS class names
  * @param init an initializer extension function
  */
@@ -47,12 +47,12 @@ open class HPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    noWrappers: Boolean = false,
+    useWrappers: Boolean = false,
     classes: Set<String> = setOf(),
     init: (HPanel.() -> Unit)? = null
 ) : FlexPanel(
     null,
-    wrap, justify, alignItems, null, spacing, noWrappers, classes
+    wrap, justify, alignItems, null, spacing, useWrappers, classes
 ) {
     init {
         @Suppress("LeakingThis")
@@ -70,12 +70,12 @@ fun Container.hPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    noWrappers: Boolean = false,
+    useWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (HPanel.() -> Unit)? = null
 ): HPanel {
-    val hpanel = HPanel(wrap, justify, alignItems, spacing, noWrappers, classes ?: className.set, init)
+    val hpanel = HPanel(wrap, justify, alignItems, spacing, useWrappers, classes ?: className.set, init)
     this.add(hpanel)
     return hpanel
 }
@@ -91,8 +91,8 @@ fun <S> Container.hPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    noWrappers: Boolean = false,
+    useWrappers: Boolean = false,
     classes: Set<String>? = null,
     className: String? = null,
     init: (HPanel.(S) -> Unit)
-) = hPanel(wrap, justify, alignItems, spacing, noWrappers, classes, className).bind(state, true, init)
+) = hPanel(wrap, justify, alignItems, spacing, useWrappers, classes, className).bind(state, true, init)
