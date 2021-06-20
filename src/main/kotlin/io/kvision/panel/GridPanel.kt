@@ -112,7 +112,7 @@ open class GridPanel(
 
     /**
      * Adds a component to the grid container at the given position.
-     * @param postition the position of the child component
+     * @param position the position of the child component
      * @param child child component
      * @param columnStart number of starting column
      * @param rowStart number of starting row
