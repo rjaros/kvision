@@ -23,8 +23,6 @@
 package io.kvision.react
 
 import io.kvision.core.Container
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import kotlinx.browser.document
@@ -64,7 +62,7 @@ fun kvisionWrapper(builder: Container.() -> Unit) = functionalComponent<RProps> 
         }
         cleanup {
             root?.dispose()
-            el?.let { jQuery(it).remove() }
+            el?.let { it.parentNode?.removeChild(it) }
         }
     }
     div {

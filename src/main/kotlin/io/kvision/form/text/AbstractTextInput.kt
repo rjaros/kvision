@@ -147,11 +147,9 @@ abstract class AbstractTextInput(
      * Internal function
      */
     protected open fun refreshState() {
-        val v = (getElementJQuery()?.`val`() as? String)
+        val v = getElementD()?.value?.unsafeCast<String>()
         if (v != value && !(v.isNullOrEmpty() && value == null)) {
-            value?.let {
-                getElementJQuery()?.`val`(it)
-            } ?: getElementJQueryD()?.`val`(null)
+            getElementD()?.value = value
         }
     }
 
@@ -160,26 +158,12 @@ abstract class AbstractTextInput(
      * Internal function
      */
     protected open fun changeValue() {
-        val v = getElementJQuery()?.`val`() as String?
+        val v = getElementD()?.value?.unsafeCast<String>()
         if (v != null && v != "") {
             this.value = v
         } else {
             this.value = null
         }
-    }
-
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
     }
 
     override fun getState(): String? = value

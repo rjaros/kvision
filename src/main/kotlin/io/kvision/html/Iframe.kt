@@ -22,13 +22,14 @@
 package io.kvision.html
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.Window
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
+import org.w3c.dom.HTMLIFrameElement
+import org.w3c.dom.Window
 
 /**
  * Iframe sandbox options.
@@ -124,22 +125,20 @@ open class Iframe(
         }
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     private fun getLocationHref(): String? {
-        return getElementJQueryD()[0].contentWindow.location.href
+        return getElement()?.unsafeCast<HTMLIFrameElement>()?.contentWindow?.location?.href
     }
 
     private fun setLocationHref(location: String?) {
-        getElementJQueryD()[0].contentWindow.location.href = location ?: "about:blank"
+        getElement()?.unsafeCast<HTMLIFrameElement>()?.contentWindow?.location?.href = location ?: "about:blank"
     }
 
     /**
      * Returns content window object of the iframe.
      * @return content window object
      */
-    @Suppress("UnsafeCastFromDynamic")
-    open fun getIframeWindow(): Window {
-        return getElementJQueryD()[0].contentWindow
+    open fun getIframeWindow(): Window? {
+        return getElement()?.unsafeCast<HTMLIFrameElement>()?.contentWindow
     }
 }
 

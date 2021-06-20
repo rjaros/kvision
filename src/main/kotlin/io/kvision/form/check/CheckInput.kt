@@ -58,11 +58,11 @@ abstract class CheckInput(
     init {
         this.setInternalEventListener<CheckInput> {
             click = {
-                val v = getElementJQuery()?.prop("checked") as Boolean?
+                val v = getElementD()?.checked?.unsafeCast<Boolean>()
                 self.value = (v == true)
             }
             change = {
-                val v = getElementJQuery()?.prop("checked") as Boolean?
+                val v = getElementD()?.checked?.unsafeCast<Boolean>()
                 self.value = (v == true)
             }
         }
@@ -143,9 +143,9 @@ abstract class CheckInput(
     }
 
     protected open fun refreshState() {
-        val v = getElementJQuery()?.prop("checked") as Boolean?
+        val v = getElementD()?.checked?.unsafeCast<Boolean>()
         if (this.value != v) {
-            getElementJQuery()?.prop("checked", this.value)
+            getElementD()?.checked = this.value
         }
     }
 
@@ -159,20 +159,6 @@ abstract class CheckInput(
             }
         }
         return this
-    }
-
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
     }
 
     override fun getState(): Boolean = value

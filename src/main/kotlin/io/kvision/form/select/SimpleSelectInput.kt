@@ -37,6 +37,8 @@ import io.kvision.state.MutableState
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
+import org.w3c.dom.HTMLCollection
+import org.w3c.dom.asList
 
 internal const val KVNULL = "#kvnull"
 
@@ -124,13 +126,13 @@ open class SimpleSelectInput(
      */
     @Suppress("UnsafeCastFromDynamic")
     var selectedIndex: Int
-        get() = getElement()?.asDynamic()?.selectedIndex
+        get() = getElementD()?.selectedIndex
             ?: value?.let { v ->
                 val emptyIndex = if (emptyOption) 1 else 0
                 options?.map(StringPair::first)?.indexOf(v)?.let { it + emptyIndex }
             } ?: -1
         set(value) {
-            getElement()?.asDynamic()?.selectedIndex = value
+            getElementD()?.selectedIndex = value
             if (value == -1) this.value = null
             options?.getOrNull(value)?.let {
                 this.value = it.first
@@ -141,7 +143,13 @@ open class SimpleSelectInput(
         setChildrenFromOptions()
         this.setInternalEventListener<SimpleSelectInput> {
             change = {
-                val v = getElementJQuery()?.`val`()
+                val v: Any? = if (multiple) {
+                    getElementD()?.selectedOptions?.unsafeCast<HTMLCollection>()?.asList()?.map { it.asDynamic().value }
+                        ?.toTypedArray()
+                } else {
+                    getElementD().value
+                }
+                @Suppress("UnsafeCastFromDynamic")
                 self.value = v?.let {
                     calculateValue(it)
                 }
@@ -153,16 +161,15 @@ open class SimpleSelectInput(
 
     protected open fun calculateValue(v: Any): String? {
         return if (this.multiple) {
-            @Suppress("UNCHECKED_CAST")
-            val arr = v as? Array<String>
-            if (arr != null && arr.isNotEmpty()) {
-                arr.filter { it != "" }.joinToString(",")
+            val arr = v.unsafeCast<Array<String>>()
+            if (arr.isNotEmpty()) {
+                arr.filter { it != "" && it != KVNULL }.joinToString(",")
             } else {
                 null
             }
         } else {
-            val vs = v as String?
-            if (vs != null && vs != "" && vs != KVNULL) {
+            val vs = v.unsafeCast<String>()
+            if (vs != "" && vs != KVNULL) {
                 vs
             } else {
                 null
@@ -240,25 +247,15 @@ open class SimpleSelectInput(
     protected open fun refreshState() {
         value?.let {
             if (this.multiple) {
-                getElementJQuery()?.`val`(it.split(",").toTypedArray())
+                val values = it.split(",")
+                for (i in 0 until (getElementD()?.options?.length?.unsafeCast<Int>() ?: 0)) {
+                    getElementD().options[i].selected =
+                        values.contains(getElementD().options[i].value?.unsafeCast<String>())
+                }
             } else {
-                getElementJQuery()?.`val`(it)
+                getElementD()?.value = it
             }
-        } ?: getElementJQueryD()?.`val`(null)
-    }
-
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
+        } ?: run { getElementD()?.value = null }
     }
 
     override fun getState(): String? = value

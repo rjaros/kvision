@@ -103,9 +103,6 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
      */
     var draggable: Boolean? by refreshOnUpdate()
 
-    private var tooltipSiblings: JQuery? = null
-    private var popoverSiblings: JQuery? = null
-
     protected var tooltipOptions: TooltipOptions? = null
     protected var popoverOptions: PopoverOptions? = null
 
@@ -781,6 +778,10 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
 
     override fun getElement(): Node? {
         return this.vnode?.elm
+    }
+
+    override fun getElementD(): dynamic {
+        return getElement()?.asDynamic()
     }
 
     override fun getElementJQuery(): JQuery? {

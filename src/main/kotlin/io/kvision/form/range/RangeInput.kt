@@ -197,7 +197,7 @@ open class RangeInput(
      */
     protected open fun refreshState() {
         value?.let {
-            getElementJQuery()?.`val`(it)
+            getElementD()?.value = it
         }
         if (value == null) value = min
     }
@@ -207,27 +207,13 @@ open class RangeInput(
      * Internal function
      */
     protected open fun changeValue() {
-        val v = getElementJQuery()?.`val`() as String?
+        val v = getElementD()?.value?.unsafeCast<String>()
         if (v != null && v != "") {
             val newValue = v.toDoubleOrNull()
             if (this.value != newValue) this.value = newValue
         } else {
             this.value = null
         }
-    }
-
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
     }
 
     override fun getState(): Number? = value

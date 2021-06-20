@@ -38,6 +38,7 @@ import io.kvision.utils.syncWithList
 import io.kvision.utils.toKotlinObj
 import io.kvision.utils.toPlainObj
 import kotlinx.browser.window
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import kotlin.reflect.KClass
 import io.kvision.tabulator.js.Tabulator as JsTabulator
@@ -269,7 +270,7 @@ open class Tabulator<T : Any>(
     open fun replaceData(data: Array<T>) {
         val jsData = data.map { toPlainObjTabulator(it) }.toTypedArray()
         options.data = jsData
-        if ((getElementJQuery()?.find(".tabulator-editing")?.length?.toInt() ?: 0) > 0) {
+        if ((getElement()?.unsafeCast<Element>()?.querySelectorAll(".tabulator-editing")?.length ?: 0) > 0) {
             this.removeCustomEditors()
         }
         jsTabulator?.replaceData(jsData, null, null)

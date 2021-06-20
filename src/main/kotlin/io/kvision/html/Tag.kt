@@ -31,6 +31,7 @@ import io.kvision.panel.SimplePanel
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
+import org.w3c.dom.Element
 
 /**
  * HTML tags.
@@ -253,7 +254,9 @@ open class Tag(
     }
 
     override fun focus() {
-        if (getElementJQuery()?.attr("tabindex") == undefined) getElementJQuery()?.attr("tabindex", "-1")
+        if (getElement()?.unsafeCast<Element>()
+                ?.getAttribute("tabindex") == undefined
+        ) getElement()?.unsafeCast<Element>()?.setAttribute("tabindex", "-1")
         super.focus()
     }
 

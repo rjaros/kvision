@@ -24,12 +24,11 @@ package io.kvision.form.text
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.state.ObservableState
 import io.kvision.state.bind
 import io.kvision.utils.set
 import kotlinx.browser.document
+import org.w3c.dom.Element
 
 /**
  * Basic rich text component.
@@ -77,11 +76,11 @@ open class RichTextInput(
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
     override fun afterInsert(node: VNode) {
         if (this.disabled || this.readonly == true) {
-            this.getElementJQuery()?.removeAttr("contenteditable")
+            this.getElement()?.unsafeCast<Element>()?.removeAttribute("contenteditable")
         } else {
-            this.getElementJQuery()?.on("trix-change") { _, _ ->
+            this.getElement()?.addEventListener("trix-change", { _ ->
                 if (trixId != null) {
-                    val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
+                    val v = document.getElementById("trix-input-$trixId")?.let { it.asDynamic().value }
                     value = if (v != null && v != "") {
                         v
                     } else {
@@ -90,30 +89,30 @@ open class RichTextInput(
                     val event = org.w3c.dom.events.Event("change")
                     this.getElement()?.dispatchEvent(event)
                 }
-            }
+            })
         }
-        this.getElementJQuery()?.on("trix-initialize") { _, _ ->
-            trixId = this.getElementJQuery()?.attr("trix-id")
+        this.getElement()?.addEventListener("trix-initialize", { _ ->
+            trixId = this.getElement()?.unsafeCast<Element>()?.getAttribute("trix-id")
             if (trixId != null) {
                 value?.let {
-                    if (this.getElement().asDynamic().editor != undefined) {
-                        this.getElement().asDynamic().editor.loadHTML(it)
+                    if (this.getElementD().editor != undefined) {
+                        this.getElementD().editor.loadHTML(it)
                     }
                 }
             }
-        }
-        this.getElementJQuery()?.on("trix-file-accept") { e, _ -> e.preventDefault() }
+        })
+        this.getElement()?.addEventListener("trix-file-accept", { e -> e.preventDefault() })
     }
 
     override fun afterDestroy() {
-        document.getElementById("trix-input-$trixId")?.let { jQuery(it).remove() }
-        document.getElementById("trix-toolbar-$trixId")?.let { jQuery(it).remove() }
+        document.getElementById("trix-input-$trixId")?.let { it.parentNode?.removeChild(it) }
+        document.getElementById("trix-toolbar-$trixId")?.let { it.parentNode?.removeChild(it) }
         trixId = null
     }
 
     @Suppress("UnsafeCastFromDynamic")
     override fun refreshState() {
-        val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
+        val v = document.getElementById("trix-input-$trixId")?.let { it.asDynamic().value }
         if (value != v) {
             val element = this.getElement()
             if (element != null) {
