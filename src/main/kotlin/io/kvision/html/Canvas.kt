@@ -25,9 +25,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.HTMLCanvasElement
 
@@ -37,14 +34,14 @@ import org.w3c.dom.HTMLCanvasElement
  * @constructor
  * @param canvasWidth the width of the canvas
  * @param canvasHeight the height of the canvas
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @TagMarker
 open class Canvas(
-    canvasWidth: Int? = null, canvasHeight: Int? = null, classes: Set<String> = setOf(),
+    canvasWidth: Int? = null, canvasHeight: Int? = null, className: String? = null,
     init: (Canvas.() -> Unit)? = null
-) : Widget(classes) {
+) : Widget(className) {
 
     /**
      * The width of the canvas.
@@ -97,25 +94,11 @@ open class Canvas(
  */
 fun Container.canvas(
     canvasWidth: Int? = null, canvasHeight: Int? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Canvas.() -> Unit)? = null
 ): Canvas {
     val canvas =
-        Canvas(canvasWidth, canvasHeight, classes ?: className.set, init)
+        Canvas(canvasWidth, canvasHeight, className, init)
     this.add(canvas)
     return canvas
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.canvas(
-    state: ObservableState<S>,
-    canvasWidth: Int? = null, canvasHeight: Int? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Canvas.(S) -> Unit)
-) = canvas(canvasWidth, canvasHeight, classes, className).bind(state, true, init)

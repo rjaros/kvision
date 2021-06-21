@@ -29,11 +29,8 @@ import io.kvision.core.Container
 import io.kvision.core.CssSize
 import io.kvision.core.getElementJQuery
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.asString
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.js.Promise
 
 /**
@@ -54,7 +51,7 @@ enum class CarouselDirection(internal val type: String) {
  * @param autoScroll whether the carousel will be automatically scrolled to the closest item border
  * @param animation determines if the transitions are animated
  * @param swipeable determines if the carousel can be scrolled by drag or swipe
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -66,9 +63,9 @@ open class Carousel(
     animation: Boolean? = null,
     swipeable: Boolean? = null,
     initialIndex: Int? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Carousel.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * A carousel direction.
@@ -138,7 +135,7 @@ open class Carousel(
     /**
      * The swiper inner container.
      */
-    val swiperPanel = SimplePanel(setOf("ons-swiper-target"))
+    val swiperPanel = SimplePanel("ons-swiper-target")
 
     /**
      * A dynamic property returning the number of carousel items.
@@ -362,7 +359,6 @@ fun Container.carousel(
     animation: Boolean? = null,
     swipeable: Boolean? = null,
     initialIndex: Int? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Carousel.() -> Unit)? = null
 ): Carousel {
@@ -374,38 +370,9 @@ fun Container.carousel(
         animation,
         swipeable,
         initialIndex,
-        classes ?: className.set,
+        className,
         init
     )
     this.add(carousel)
     return carousel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.carousel(
-    state: ObservableState<S>,
-    direction: CarouselDirection? = null,
-    fullscreen: Boolean? = null,
-    overscrollable: Boolean? = null,
-    autoScroll: Boolean? = null,
-    animation: Boolean? = null,
-    swipeable: Boolean? = null,
-    initialIndex: Int? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Carousel.(S) -> Unit)
-) = carousel(
-    direction,
-    fullscreen,
-    overscrollable,
-    autoScroll,
-    animation,
-    swipeable,
-    initialIndex,
-    classes,
-    className
-).bind(state, true, init)

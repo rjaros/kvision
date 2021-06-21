@@ -30,7 +30,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import io.kvision.utils.set
 
 /**
  * Onsen UI form field radio button component.
@@ -41,7 +40,7 @@ import io.kvision.utils.set
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsRadio(
@@ -50,9 +49,9 @@ open class OnsRadio(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsRadio.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")),
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group kv-ons-checkbox"),
     BoolFormControl,
     MutableState<Boolean> {
 
@@ -187,11 +186,10 @@ fun Container.onsRadio(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsRadio.() -> Unit)? = null
 ): OnsRadio {
-    val onsRadio = OnsRadio(value, extraValue, name, label, rich, classes ?: className.set, init)
+    val onsRadio = OnsRadio(value, extraValue, name, label, rich, className, init)
     this.add(onsRadio)
     return onsRadio
 }

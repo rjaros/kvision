@@ -28,9 +28,6 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import io.kvision.utils.snClasses
 import io.kvision.utils.snOpt
 
@@ -56,14 +53,14 @@ enum class ListType(internal val tagName: String) {
  * @param type list type
  * @param elements optional list of elements
  * @param rich determines if [elements] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @TagMarker
 open class ListTag(
     type: ListType, elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String> = setOf(), init: (ListTag.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (ListTag.() -> Unit)? = null
+) : SimplePanel(className) {
     /**
      * List type.
      */
@@ -102,7 +99,7 @@ open class ListTag(
 
     @Suppress("ComplexCondition", "ComplexMethod")
     override fun childrenVNodes(): Array<VNode> {
-        val childrenElements = children.filter { it.visible }
+        val childrenElements = getChildren().filter { it.visible }
         val res = when (type) {
             ListType.UL, ListType.OL, ListType.UNSTYLED, ListType.INLINE -> childrenElements.map { v ->
                 if (v is Tag && v.type == TAG.LI /*|| v is DropDown && v.forNavbar*/) {
@@ -163,24 +160,10 @@ open class ListTag(
  */
 fun Container.listTag(
     type: ListType, elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ListTag.() -> Unit)? = null
 ): ListTag {
-    val listTag = ListTag(type, elements, rich, classes ?: className.set, init)
+    val listTag = ListTag(type, elements, rich, className, init)
     this.add(listTag)
     return listTag
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.listTag(
-    state: ObservableState<S>,
-    type: ListType, elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (ListTag.(S) -> Unit)
-) = listTag(type, elements, rich, classes, className).bind(state, true, init)

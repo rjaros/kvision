@@ -36,11 +36,8 @@ import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.modal.CloseIcon
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
 import io.kvision.utils.px
-import io.kvision.utils.set
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
 
@@ -60,7 +57,7 @@ internal const val WINDOW_CONTENT_MARGIN_BOTTOM = 11
  * @param closeButton determines if Close button is visible
  * @param maximizeButton determines if Maximize button is visible
  * @param minimizeButton determines if Minimize button is visible
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
@@ -74,10 +71,10 @@ open class Window(
     maximizeButton: Boolean = false,
     minimizeButton: Boolean = false,
     icon: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Window.() -> Unit)? = null
 ) :
-    SimplePanel(classes + setOf("modal-content", "kv-window")) {
+    SimplePanel((className?.let { "$it " } ?: "") + "modal-content kv-window") {
 
     /**
      * Window caption text.
@@ -166,7 +163,7 @@ open class Window(
             windowIcon.visible = (value != null && value != "")
         }
 
-    private val header = SimplePanel(setOf("modal-header"))
+    private val header = SimplePanel("modal-header")
 
     /**
      * @suppress
@@ -179,8 +176,8 @@ open class Window(
     private val closeIcon = CloseIcon()
     private val maximizeIcon = MaximizeIcon()
     private val minimizeIcon = MinimizeIcon()
-    private val captionTag = Tag(TAG.H5, caption, classes = setOf("modal-title"))
-    private val iconsContainer = SimplePanel(setOf("kv-window-icons-container"))
+    private val captionTag = Tag(TAG.H5, caption, className = "modal-title")
+    private val iconsContainer = SimplePanel("kv-window-icons-container")
     private val windowIcon = Icon(icon ?: "").apply {
         addCssClass("window-icon")
         visible = (icon != null && icon != "")
@@ -447,7 +444,6 @@ fun Container.window(
     maximizeButton: Boolean = false,
     minimizeButton: Boolean = false,
     icon: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Window.() -> Unit)? = null
 ): Window {
@@ -462,42 +458,9 @@ fun Container.window(
             maximizeButton,
             minimizeButton,
             icon,
-            classes ?: className.set,
+            className,
             init
         )
     this.add(window)
     return window
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.window(
-    state: ObservableState<S>,
-    caption: String? = null,
-    contentWidth: CssSize? = CssSize(0, UNIT.auto),
-    contentHeight: CssSize? = CssSize(0, UNIT.auto),
-    isResizable: Boolean = true,
-    isDraggable: Boolean = true,
-    closeButton: Boolean = false,
-    maximizeButton: Boolean = false,
-    minimizeButton: Boolean = false,
-    icon: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Window.(S) -> Unit)
-) = window(
-    caption,
-    contentWidth,
-    contentHeight,
-    isResizable,
-    isDraggable,
-    closeButton,
-    maximizeButton,
-    minimizeButton,
-    icon,
-    classes,
-    className
-).bind(state, true, init)

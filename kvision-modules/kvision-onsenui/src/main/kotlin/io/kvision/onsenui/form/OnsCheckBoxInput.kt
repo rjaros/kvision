@@ -28,7 +28,6 @@ import io.kvision.core.Container
 import io.kvision.core.getElementJQuery
 import io.kvision.form.check.CheckInput
 import io.kvision.form.check.CheckInputType
-import io.kvision.utils.set
 import kotlinx.browser.window
 
 /**
@@ -37,15 +36,15 @@ import kotlinx.browser.window
  * @constructor Creates a checkbox input component.
  * @param value checkbox input value
  * @param inputId the ID of the input element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsCheckBoxInput(
     value: Boolean = false,
     inputId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsCheckBoxInput.() -> Unit)? = null
-) : CheckInput(CheckInputType.CHECKBOX, value, classes) {
+) : CheckInput(CheckInputType.CHECKBOX, value, className) {
 
     /**
      * The ID of the input element.
@@ -104,11 +103,10 @@ open class OnsCheckBoxInput(
 fun Container.onsCheckBoxInput(
     value: Boolean = false,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsCheckBoxInput.() -> Unit)? = null
 ): OnsCheckBoxInput {
-    val onsCheckBoxInput = OnsCheckBoxInput(value, inputId, classes ?: className.set, init)
+    val onsCheckBoxInput = OnsCheckBoxInput(value, inputId, className, init)
     this.add(onsCheckBoxInput)
     return onsCheckBoxInput
 }

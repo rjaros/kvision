@@ -24,9 +24,6 @@ package io.kvision.form.text
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Basic textarea component.
@@ -35,17 +32,17 @@ import io.kvision.utils.set
  * @param cols number of columns
  * @param rows number of rows
  * @param value text input value
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class TextAreaInput(
     cols: Int? = null,
     rows: Int? = null,
     value: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (TextAreaInput.() -> Unit)? = null
 ) :
-    AbstractTextInput(value, classes + "form-control") {
+    AbstractTextInput(value, (className?.let { "$it " } ?: "") + "form-control") {
 
     /**
      * Number of columns.
@@ -94,24 +91,10 @@ open class TextAreaInput(
  */
 fun Container.textAreaInput(
     cols: Int? = null, rows: Int? = null, value: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (TextAreaInput.() -> Unit)? = null
 ): TextAreaInput {
-    val textAreaInput = TextAreaInput(cols, rows, value, classes ?: className.set, init)
+    val textAreaInput = TextAreaInput(cols, rows, value, className, init)
     this.add(textAreaInput)
     return textAreaInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.textAreaInput(
-    state: ObservableState<S>,
-    cols: Int? = null, rows: Int? = null, value: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (TextAreaInput.(S) -> Unit)
-) = textAreaInput(cols, rows, value, classes, className).bind(state, true, init)

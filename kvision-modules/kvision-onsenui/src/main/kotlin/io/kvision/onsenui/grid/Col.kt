@@ -39,7 +39,7 @@ import io.kvision.utils.set
  * @param align text align
  * @param colWidth a column width
  * @param colVerticalAlign vertical align of the column content
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Col(
@@ -48,9 +48,9 @@ open class Col(
     align: Align? = null,
     colWidth: CssSize? = null,
     colVerticalAlign: GridVerticalAlign? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Col.() -> Unit)? = null
-) : CustomTag("ons-col", content, rich, align, classes) {
+) : CustomTag("ons-col", content, rich, align, className) {
 
     /**
      *  The column width.
@@ -89,11 +89,10 @@ fun Row.col(
     align: Align? = null,
     colWidth: CssSize? = null,
     colVerticalAlign: GridVerticalAlign? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Col.() -> Unit)? = null
 ): Col {
-    val col = Col(content, rich, align, colWidth, colVerticalAlign, classes ?: className.set, init)
+    val col = Col(content, rich, align, colWidth, colVerticalAlign, className, init)
     this.add(col)
     return col
 }

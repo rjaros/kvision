@@ -31,9 +31,9 @@ internal class ChartCanvas(
     canvasWidth: Int? = null,
     canvasHeight: Int? = null,
     configuration: Configuration,
-    classes: Set<String> = setOf()
+    className: String? = null
 ) :
-    Canvas(canvasWidth, canvasHeight, classes) {
+    Canvas(canvasWidth, canvasHeight, className) {
 
     var configuration: Configuration = configuration
         set(value) {

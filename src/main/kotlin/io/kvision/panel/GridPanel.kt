@@ -22,9 +22,6 @@
 package io.kvision.panel
 
 import io.kvision.core.*
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * The container with CSS grid layout support.
@@ -43,7 +40,7 @@ import io.kvision.utils.set
  * @param justifyContent flexbox content justification
  * @param alignContent flexbox content alignment
  * @param useWrappers use additional div wrappers for child items
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -53,8 +50,8 @@ open class GridPanel(
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
     alignContent: AlignContent? = null, private val useWrappers: Boolean = false,
-    classes: Set<String> = setOf(), init: (GridPanel.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (GridPanel.() -> Unit)? = null
+) : SimplePanel(className) {
 
     init {
         this.display = Display.GRID
@@ -83,19 +80,19 @@ open class GridPanel(
      * @param area grid area
      * @param justifySelf child self justification
      * @param alignSelf child self alignment
-     * @param classes a set of CSS class names
+     * @param className CSS class names
      * @return current container
      */
     @Suppress("LongParameterList")
     fun add(
         child: Component, columnStart: Int? = null, rowStart: Int? = null,
         columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
-        alignSelf: AlignItems? = null, classes: Set<String> = setOf()
+        alignSelf: AlignItems? = null, className: String? = null
     ): GridPanel {
         val wrapper = if (!useWrappers) {
             child
         } else {
-            WidgetWrapper(child, classes)
+            WidgetWrapper(child, className)
         }
         (wrapper as? Widget)?.let {
             it.gridColumnStart = columnStart
@@ -121,19 +118,19 @@ open class GridPanel(
      * @param area grid area
      * @param justifySelf child self justification
      * @param alignSelf child self alignment
-     * @param classes a set of CSS class names
+     * @param className CSS class names
      * @return current container
      */
     @Suppress("LongParameterList")
     fun add(
         position: Int, child: Component, columnStart: Int? = null, rowStart: Int? = null,
         columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
-        alignSelf: AlignItems? = null, classes: Set<String> = setOf()
+        alignSelf: AlignItems? = null, className: String? = null
     ): GridPanel {
         val wrapper = if (!useWrappers) {
             child
         } else {
-            WidgetWrapper(child, classes)
+            WidgetWrapper(child, className)
         }
         (wrapper as? Widget)?.let {
             it.gridColumnStart = columnStart
@@ -155,12 +152,12 @@ open class GridPanel(
     open fun options(
         columnStart: Int? = null, rowStart: Int? = null,
         columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
-        alignSelf: AlignItems? = null, classes: Set<String> = setOf(),
+        alignSelf: AlignItems? = null, className: String? = null,
         builder: Container.() -> Unit
     ) {
         object : Container by this@GridPanel {
             override fun add(child: Component): Container {
-                return add(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, classes)
+                return add(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, className)
             }
         }.builder()
     }
@@ -179,29 +176,32 @@ open class GridPanel(
     }
 
     override fun remove(child: Component): GridPanel {
-        if (children.contains(child)) {
-            super.remove(child)
-        } else {
-            children.find { (it as? WidgetWrapper)?.wrapped == child }?.let {
-                super.remove(it)
-                it.dispose()
+        if (children != null) {
+            if (children!!.contains(child)) {
+                super.remove(child)
+            } else {
+                children!!.find { (it as? WidgetWrapper)?.wrapped == child }?.let {
+                    super.remove(it)
+                    it.dispose()
+                }
             }
         }
         return this
     }
 
     override fun removeAll(): GridPanel {
-        children.map {
+        children?.map {
             it.clearParent()
             (it as? WidgetWrapper)?.dispose()
         }
-        children.clear()
+        children?.clear()
+        children = null
         refresh()
         return this
     }
 
     override fun disposeAll(): GridPanel {
-        children.map {
+        children?.map {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
@@ -210,7 +210,7 @@ open class GridPanel(
     }
 
     override fun dispose() {
-        children.map {
+        children?.map {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
@@ -231,7 +231,6 @@ fun Container.gridPanel(
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
     alignContent: AlignContent? = null,
     useWrappers: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (GridPanel.() -> Unit)? = null
 ): GridPanel {
@@ -249,43 +248,9 @@ fun Container.gridPanel(
         justifyContent,
         alignContent,
         useWrappers,
-        classes ?: className.set,
+        className,
         init
     )
     this.add(gridPanel)
     return gridPanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.gridPanel(
-    state: ObservableState<S>,
-    autoColumns: String? = null, autoRows: String? = null, autoFlow: GridAutoFlow? = null,
-    templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
-    columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
-    alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
-    alignContent: AlignContent? = null,
-    useWrappers: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (GridPanel.(S) -> Unit)
-) = gridPanel(
-    autoColumns,
-    autoRows,
-    autoFlow,
-    templateColumns,
-    templateRows,
-    templateAreas,
-    columnGap,
-    rowGap,
-    justifyItems,
-    alignItems,
-    justifyContent,
-    alignContent,
-    useWrappers,
-    classes,
-    className,
-).bind(state, true, init)

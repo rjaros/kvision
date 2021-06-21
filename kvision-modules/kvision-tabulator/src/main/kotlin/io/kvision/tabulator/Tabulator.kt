@@ -33,7 +33,6 @@ import io.kvision.state.ObservableState
 import io.kvision.table.TableType
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import io.kvision.utils.syncWithList
 import io.kvision.utils.toKotlinObj
 import io.kvision.utils.toPlainObj
@@ -62,7 +61,7 @@ enum class RowRangeLookup(internal val set: String) {
  * @param dataUpdateOnEdit determines if the data model is automatically updated after tabulator edit action
  * @param options tabulator options
  * @param types a set of table types
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 @Suppress("LargeClass", "TooManyFunctions")
 open class Tabulator<T : Any>(
@@ -70,10 +69,10 @@ open class Tabulator<T : Any>(
     protected val dataUpdateOnEdit: Boolean = true,
     val options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
+    className: String? = null,
     protected val kClass: KClass<T>? = null,
 ) :
-    Widget(classes) {
+    Widget(className) {
 
     /**
      * Table types.
@@ -685,7 +684,11 @@ open class Tabulator<T : Any>(
         insertRightOfTarget: Boolean? = null,
         positionTarget: String? = null
     ) {
-        jsTabulator?.addColumn(columnDefinition.toJs(this, this::translate, kClass), insertRightOfTarget, positionTarget)
+        jsTabulator?.addColumn(
+            columnDefinition.toJs(this, this::translate, kClass),
+            insertRightOfTarget,
+            positionTarget
+        )
     }
 
     /**
@@ -765,10 +768,10 @@ open class Tabulator<T : Any>(
             dataUpdateOnEdit: Boolean = true,
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
+            className: String? = null,
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
-            val tabulator = Tabulator(data, dataUpdateOnEdit, options, types, classes, T::class)
+            val tabulator = Tabulator(data, dataUpdateOnEdit, options, types, className, T::class)
             init?.invoke(tabulator)
             return tabulator
         }
@@ -781,11 +784,11 @@ open class Tabulator<T : Any>(
             noinline dataFactory: (S) -> List<T>,
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
+            className: String? = null,
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val data = dataFactory(store.getState())
-            val tabulator = Tabulator(data, false, options, types, classes, T::class)
+            val tabulator = Tabulator(data, false, options, types, className, T::class)
             init?.invoke(tabulator)
             tabulator.addBeforeDisposeHook(store.subscribe { s ->
                 tabulator.replaceData(dataFactory(s).toTypedArray())
@@ -805,11 +808,10 @@ inline fun <reified T : Any> Container.tabulator(
     dataUpdateOnEdit: Boolean = true,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String>? = null,
     className: String? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, classes ?: className.set)
+    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, className)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
@@ -823,11 +825,10 @@ inline fun <reified T : Any, S : Any> Container.tabulator(
     noinline dataFactory: (S) -> List<T>,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String>? = null,
     className: String? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator.create(store, dataFactory, options, types, classes ?: className.set)
+    val tabulator = Tabulator.create(store, dataFactory, options, types, className)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
@@ -839,7 +840,6 @@ inline fun <reified T : Any, S : Any> Container.tabulator(
 inline fun <reified T : Any> Container.tabulator(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String>? = null,
     className: String? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
@@ -848,7 +848,7 @@ inline fun <reified T : Any> Container.tabulator(
             dataUpdateOnEdit = false,
             options = options,
             types = types,
-            classes = classes ?: className.set,
+            className = className,
             kClass = T::class
         )
     init?.invoke(tabulator)

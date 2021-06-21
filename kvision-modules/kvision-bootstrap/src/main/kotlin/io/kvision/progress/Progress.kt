@@ -25,9 +25,7 @@ package io.kvision.progress
 
 import io.kvision.core.Container
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
 import io.kvision.state.ObservableValue
-import io.kvision.state.bind
 
 /**
  * The Bootstrap progress
@@ -35,27 +33,27 @@ import io.kvision.state.bind
  * @constructor
  * @param T the type that describes the progress, typically @see Number
  * @param bounds bounds of the progress
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 class Progress<T>(
     bounds: Bounds<T>,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Progress<T>.() -> Unit)? = null
-) : SimplePanel(classes + "progress") {
+) : SimplePanel((className?.let { "$it " } ?: "") + "progress") {
 
     /**
      * @constructor
      * @param min the minimal value
      * @param max the maximal value
-     * @param classes a set of CSS class names
+     * @param className CSS class names
      * @param init an initializer extension function
      */
-    constructor(min: T, max: T, classes: Set<String> = setOf(), init: (Progress<T>.() -> Unit)? = null) : this(
+    constructor(min: T, max: T, className: String? = null, init: (Progress<T>.() -> Unit)? = null) : this(
         Bounds(
             min,
             max
-        ), classes, init
+        ), className, init
     )
 
     val bounds = ObservableValue(bounds)
@@ -93,9 +91,9 @@ class Progress<T>(
  */
 fun <T> Container.progress(
     bounds: Bounds<T>,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Progress<T>.() -> Unit)? = null
-): Progress<T> = Progress(bounds, classes, init).also { this.add(it) }
+): Progress<T> = Progress(bounds, className, init).also { this.add(it) }
 
 /**
  * DSL builder extension function.
@@ -105,31 +103,6 @@ fun <T> Container.progress(
 fun Container.progress(
     min: Number = 0,
     max: Number = 100,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Progress<Number>.() -> Unit)? = null
-): Progress<Number> = Progress(Bounds(min, max), classes, init).also { this.add(it) }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <T, S> Container.progress(
-    state: ObservableState<S>,
-    bounds: Bounds<T>,
-    classes: Set<String> = setOf(),
-    init: Progress<T>.(S) -> Unit
-) = progress(bounds, classes).bind(state, true, init)
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.progress(
-    state: ObservableState<S>,
-    min: Number = 0,
-    max: Number = 100,
-    classes: Set<String> = setOf(),
-    init: Progress<Number>.(S) -> Unit
-) = progress(min, max, classes).bind(state, true, init)
+): Progress<Number> = Progress(Bounds(min, max), className, init).also { this.add(it) }

@@ -31,8 +31,6 @@ import io.kvision.KVManager
 import io.kvision.i18n.I18n
 import io.kvision.i18n.I18n.trans
 import io.kvision.panel.Root
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.*
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.DragEvent
@@ -46,11 +44,11 @@ import kotlin.reflect.KProperty
  * A simple widget is rendered as HTML DIV element.
  *
  * @constructor Creates basic Widget with given CSS class names.
- * @param classes Set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions", "LargeClass")
-open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.() -> Unit)? = null) : StyledComponent(),
+open class Widget(internal val className: String? = null, init: (Widget.() -> Unit)? = null) : StyledComponent(),
     Component {
     private val propertyValues = js("{}")
 
@@ -249,8 +247,8 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
      * @param classSetBuilder a delegated builder
      */
     protected open fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        if (classes == null && intClasses != null) {
-            classSetBuilder.addAll(intClasses)
+        if (classes == null && className != null) {
+            classSetBuilder.addAll(className.set)
         } else if (classes != null) {
             classSetBuilder.addAll(classes!!)
         }
@@ -457,14 +455,14 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
     }
 
     override fun addCssClass(css: String): Widget {
-        if (classes == null) classes = intClasses?.toMutableSet() ?: mutableSetOf()
+        if (classes == null) classes = className.mutableSet
         classes!!.add(css)
         refresh()
         return this
     }
 
     override fun removeCssClass(css: String): Widget {
-        if (classes == null) classes = intClasses?.toMutableSet() ?: mutableSetOf()
+        if (classes == null) classes = className.mutableSet
         classes!!.remove(css)
         refresh()
         return this
@@ -745,26 +743,13 @@ open class Widget(internal val intClasses: Set<String>? = null, init: (Widget.()
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.widget(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Widget.() -> Unit)? = null
 ): Widget {
-    val widget = Widget(classes ?: className.set, init)
+    val widget = Widget(className, init)
     this.add(widget)
     return widget
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.widget(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Widget.(S) -> Unit)
-) = widget(classes, className).bind(state, true, init)
 
 /**
  * An extension function for defining event handlers.

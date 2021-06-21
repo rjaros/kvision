@@ -22,13 +22,12 @@
 
 package io.kvision.onsenui.toolbar
 
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
 import io.kvision.html.Div
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * A button component designed to be placed inside the toolbar.
@@ -39,7 +38,7 @@ import io.kvision.utils.set
  * @param align text align
  * @param icon an icon placed on the toolbar button
  * @param disabled specify if the button should be disabled
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -49,9 +48,9 @@ open class ToolbarButton(
     align: Align? = null,
     icon: String? = null,
     disabled: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (ToolbarButton.() -> Unit)? = null
-) : CustomTag("ons-toolbar-button", content, rich, align, classes) {
+) : CustomTag("ons-toolbar-button", content, rich, align, className) {
 
     /**
      *  The icon placed on the toolbar button.
@@ -123,11 +122,10 @@ fun Div.toolbarButton(
     align: Align? = null,
     icon: String? = null,
     disabled: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ToolbarButton.() -> Unit)? = null
 ): ToolbarButton {
-    val toolbarButton = ToolbarButton(content, rich, align, icon, disabled, classes ?: className.set, init)
+    val toolbarButton = ToolbarButton(content, rich, align, icon, disabled, className, init)
     this.add(toolbarButton)
     return toolbarButton
 }

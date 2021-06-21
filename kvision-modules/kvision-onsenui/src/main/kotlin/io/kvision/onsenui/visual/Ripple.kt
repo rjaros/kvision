@@ -28,7 +28,6 @@ import io.kvision.core.Color
 import io.kvision.core.Container
 import io.kvision.core.DomAttribute
 import io.kvision.core.Widget
-import io.kvision.utils.set
 
 enum class RippleSize(override val attributeValue: String) : DomAttribute {
     COVER("cover"),
@@ -47,7 +46,7 @@ enum class RippleSize(override val attributeValue: String) : DomAttribute {
  * @param rippleBackground the color of the background
  * @param size sizing of the wave on ripple effect
  * @param center whether the wave effect position is moved to the center of the target element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Ripple(
@@ -55,9 +54,9 @@ open class Ripple(
     rippleBackground: Color? = null,
     size: RippleSize? = null,
     center: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Ripple.() -> Unit)? = null
-) : Widget(classes) {
+) : Widget(className) {
 
     /**
      * The color of the ripple effect.
@@ -129,11 +128,10 @@ fun Container.ripple(
     rippleBackground: Color? = null,
     size: RippleSize? = null,
     center: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Ripple.() -> Unit)? = null
 ): Ripple {
-    val ripple = Ripple(rippleColor, rippleBackground, size, center, classes ?: className.set, init)
+    val ripple = Ripple(rippleColor, rippleBackground, size, center, className, init)
     this.add(ripple)
     return ripple
 }

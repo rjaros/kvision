@@ -23,12 +23,9 @@ package io.kvision.dropdown
 
 import io.kvision.core.Display
 import io.kvision.core.Widget
-import io.kvision.html.Div
 import io.kvision.panel.Root
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
+import io.kvision.panel.SimplePanel
 import io.kvision.utils.px
-import io.kvision.utils.set
 import org.w3c.dom.events.MouseEvent
 
 /**
@@ -37,14 +34,14 @@ import org.w3c.dom.events.MouseEvent
  * @constructor
  * @param element an element to bind
  * @param fixedPosition use fixed positioning
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class ContextMenu(
     element: Widget? = null,
     protected val fixedPosition: Boolean = false,
-    classes: Set<String> = setOf(), init: (ContextMenu.() -> Unit)? = null
-) : Div(classes = classes + "dropdown-menu") {
+    className: String? = null, init: (ContextMenu.() -> Unit)? = null
+) : SimplePanel((className?.let { "$it " } ?: "") + "dropdown-menu") {
 
     init {
         @Suppress("LeakingThis")
@@ -107,24 +104,10 @@ fun Widget.setContextMenu(contextMenu: ContextMenu): Widget {
  */
 fun Widget.contextMenu(
     fixedPosition: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ContextMenu.() -> Unit)? = null
 ): ContextMenu {
-    val contextMenu = ContextMenu(this, fixedPosition, classes ?: className.set, init)
+    val contextMenu = ContextMenu(this, fixedPosition, className, init)
     this.setContextMenu(contextMenu)
     return contextMenu
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Widget.contextMenu(
-    state: ObservableState<S>,
-    fixedPosition: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (ContextMenu.(S) -> Unit)
-) = contextMenu(fixedPosition, classes, className).bind(state, true, init)

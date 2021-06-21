@@ -34,14 +34,14 @@ import io.kvision.utils.set
  *
  * @constructor Creates a row component.
  * @param rowVerticalAlign vertical align of the elements in the row
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Row(
     rowVerticalAlign: GridVerticalAlign? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Row.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      *  The vertical align of the elements in the row.
@@ -70,11 +70,10 @@ open class Row(
  */
 fun Container.row(
     rowVerticalAlign: GridVerticalAlign? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Row.() -> Unit)? = null
 ): Row {
-    val row = Row(rowVerticalAlign, classes ?: className.set, init)
+    val row = Row(rowVerticalAlign, className, init)
     this.add(row)
     return row
 }

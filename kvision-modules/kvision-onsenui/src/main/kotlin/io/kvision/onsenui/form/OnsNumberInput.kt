@@ -34,7 +34,6 @@ import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
-import io.kvision.utils.set
 
 internal const val DEFAULT_STEP = 1
 
@@ -49,7 +48,7 @@ internal const val DEFAULT_STEP = 1
  * @param placeholder the placeholder for the number input
  * @param floatLabel whether the placeholder will be animated in Material Design
  * @param inputId the ID of the input element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsNumberInput(
@@ -60,9 +59,10 @@ open class OnsNumberInput(
     placeholder: String? = null,
     floatLabel: Boolean? = null,
     inputId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsNumberInput.() -> Unit)? = null
-) : Widget(classes + "kv-ons-form-control"), GenericFormComponent<Number?>, FormInput, MutableState<Number?> {
+) : Widget((className?.let { "$it " } ?: "") + "kv-ons-form-control"), GenericFormComponent<Number?>, FormInput,
+    MutableState<Number?> {
 
     protected val observers = mutableListOf<(Number?) -> Unit>()
 
@@ -279,12 +279,11 @@ fun Container.onsNumberInput(
     placeholder: String? = null,
     floatLabel: Boolean? = null,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsNumberInput.() -> Unit)? = null
 ): OnsNumberInput {
     val onsNumberInput =
-        OnsNumberInput(value, min, max, step, placeholder, floatLabel, inputId, classes ?: className.set, init)
+        OnsNumberInput(value, min, max, step, placeholder, floatLabel, inputId, className, init)
     this.add(onsNumberInput)
     return onsNumberInput
 }

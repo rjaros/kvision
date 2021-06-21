@@ -26,10 +26,7 @@ import io.kvision.core.Container
 import io.kvision.core.getElementJQueryD
 import io.kvision.jquery.JQueryXHR
 import io.kvision.jquery.jQuery
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 enum class ShowHintOnFocus {
     NO,
@@ -49,7 +46,7 @@ enum class ShowHintOnFocus {
  * @param delay a delay between lookups
  * @param type text input type (default "text")
  * @param value text input value
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
@@ -57,9 +54,9 @@ open class TypeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, classes: Set<String> = setOf(),
+    type: TextInputType = TextInputType.TEXT, value: String? = null, className: String? = null,
     init: (TypeaheadInput.() -> Unit)? = null
-) : TextInput(type, value, classes) {
+) : TextInput(type, value, className) {
 
     /**
      * A static list of options for a typeahead control
@@ -201,7 +198,6 @@ fun Container.typeaheadInput(
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (TypeaheadInput.() -> Unit)? = null
 ): TypeaheadInput {
@@ -214,36 +210,9 @@ fun Container.typeaheadInput(
         delay,
         type,
         value,
-        classes ?: className.set,
+        className,
         init
     )
     this.add(typeaheadInput)
     return typeaheadInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.typeaheadInput(
-    state: ObservableState<S>,
-    options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
-    source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
-    items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (TypeaheadInput.(S) -> Unit)
-) = typeaheadInput(
-    options,
-    taAjaxOptions,
-    source,
-    items,
-    minLength,
-    delay,
-    type,
-    value,
-    classes,
-    className
-).bind(state, true, init)

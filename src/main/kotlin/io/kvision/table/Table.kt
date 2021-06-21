@@ -29,9 +29,6 @@ import io.kvision.core.Container
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import io.kvision.utils.snClasses
 import io.kvision.utils.snOpt
 
@@ -74,15 +71,15 @@ enum class TheadType(internal val type: String) {
  * @param types a set of table types
  * @param caption table caption
  * @param responsiveType determines if the table is responsive
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class Table(
     headerNames: List<String>? = null,
     types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
-    theadType: TheadType? = null, classes: Set<String> = setOf(), init: (Table.() -> Unit)? = null
-) : SimplePanel(classes + "table") {
+    theadType: TheadType? = null, className: String? = null, init: (Table.() -> Unit)? = null
+) : SimplePanel((className?.let { "$it " } ?: "") + "table") {
 
     /**
      * Table headers names.
@@ -237,27 +234,11 @@ fun Container.table(
     headerNames: List<String>? = null,
     types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
     theadType: TheadType? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Table.() -> Unit)? = null
 ): Table {
     val table =
-        Table(headerNames, types, caption, responsiveType, theadType, classes ?: className.set, init)
+        Table(headerNames, types, caption, responsiveType, theadType, className, init)
     this.add(table)
     return table
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.table(
-    state: ObservableState<S>,
-    headerNames: List<String>? = null,
-    types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
-    theadType: TheadType? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Table.(S) -> Unit)
-) = table(headerNames, types, caption, responsiveType, theadType, classes, className).bind(state, true, init)

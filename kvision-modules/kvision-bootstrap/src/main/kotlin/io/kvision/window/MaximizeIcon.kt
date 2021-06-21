@@ -30,7 +30,7 @@ import io.kvision.core.Widget
 /**
  * Helper class for maximize icon component.
  */
-open class MaximizeIcon : Widget(setOf()) {
+open class MaximizeIcon : Widget() {
 
     override fun render(): VNode {
         return render("button", arrayOf(KVManager.virtualize("<span aria-hidden='true'>&#x1f5d6;</span>")))

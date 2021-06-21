@@ -30,8 +30,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.NumberFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 
 /**
@@ -50,7 +48,7 @@ import io.kvision.utils.SnOn
 open class Range(
     value: Number? = null, name: String? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
     label: String? = null, rich: Boolean = false, init: (Range.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Range input value.
@@ -152,7 +150,7 @@ open class Range(
         this.id = this@Range.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -259,20 +257,3 @@ fun Container.range(
     this.add(range)
     return range
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.range(
-    state: ObservableState<S>,
-    value: Number? = null,
-    name: String? = null,
-    min: Number = 0,
-    max: Number = 100,
-    step: Number = DEFAULT_STEP,
-    label: String? = null,
-    rich: Boolean = false,
-    init: (Range.(S) -> Unit)
-) = range(value, name, min, max, step, label, rich).bind(state, true, init)

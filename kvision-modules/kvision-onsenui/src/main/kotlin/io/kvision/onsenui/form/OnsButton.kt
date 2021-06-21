@@ -22,13 +22,12 @@
 
 package io.kvision.onsenui.form
 
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * Onsen UI button types.
@@ -53,7 +52,7 @@ enum class OnsButtonType(internal val type: String) {
  * @param large whether the button is large
  * @param ripple specify if the button will have a ripple effect
  * @param disabled specify if the button should be disabled
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsButton(
@@ -65,9 +64,9 @@ open class OnsButton(
     large: Boolean? = null,
     ripple: Boolean? = null,
     disabled: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsButton.() -> Unit)? = null
-) : CustomTag("ons-button", content, rich, align, classes) {
+) : CustomTag("ons-button", content, rich, align, className) {
 
     /**
      *  The icon placed on the toolbar button.
@@ -171,12 +170,11 @@ fun Container.onsButton(
     large: Boolean? = null,
     ripple: Boolean? = null,
     disabled: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsButton.() -> Unit)? = null
 ): OnsButton {
     val onsButton =
-        OnsButton(content, rich, align, icon, buttonType, large, ripple, disabled, classes ?: className.set, init)
+        OnsButton(content, rich, align, icon, buttonType, large, ripple, disabled, className, init)
     this.add(onsButton)
     return onsButton
 }

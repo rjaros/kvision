@@ -47,7 +47,7 @@ class StateBindingSpec : DomSpec {
                 synchronousMode = true
             }
             val observableValue = ObservableValue(1)
-            root.simplePanel(observableValue) { state ->
+            root.simplePanel().bind(observableValue) { state ->
                 div("$state")
             }
             val element = document.getElementById("test")
@@ -73,7 +73,7 @@ class StateBindingSpec : DomSpec {
             }
             val observableValue = ObservableValue(ComplexStore(1, "2", true))
             var counter = 0
-            root.simplePanel(observableValue.sub { it.a }) { state ->
+            root.simplePanel().bind(observableValue.sub { it.a }) { state ->
                 counter++
                 div("$state")
             }
@@ -101,7 +101,7 @@ class StateBindingSpec : DomSpec {
             }
             val observableSet = observableSetOf(1, 2, 3)
             var counter = 0
-            root.simplePanel(observableSet.sub { it.minus(1) }) { state ->
+            root.simplePanel().bind(observableSet.sub { it.minus(1) }) { state ->
                 counter++
                 div("$state")
             }

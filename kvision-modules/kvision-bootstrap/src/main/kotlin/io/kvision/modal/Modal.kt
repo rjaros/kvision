@@ -58,7 +58,7 @@ enum class ModalSize(override val className: String) : CssClass {
  * @param centered determines if modal dialog is vertically centered
  * @param scrollable determines if modal dialog content is scrollable
  * @param escape determines if dialog can be closed with Esc key
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
@@ -66,8 +66,8 @@ open class Modal(
     caption: String? = null, closeButton: Boolean = true,
     size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
     scrollable: Boolean = false, private val escape: Boolean = true,
-    classes: Set<String> = setOf(), init: (Modal.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (Modal.() -> Unit)? = null
+) : SimplePanel(className) {
 
     override var parent: Container? = Root.getFirstRoot()
 
@@ -124,28 +124,28 @@ open class Modal(
         }
 
     private val dialog = ModalDialog(size, centered, scrollable)
-    private val header = SimplePanel(setOf("modal-header"))
+    private val header = SimplePanel("modal-header")
 
     /**
      * @suppress
      * Internal property.
      */
     protected val closeIcon = CloseIcon()
-    private val captionTag = Tag(TAG.H5, caption, classes = setOf("modal-title"))
+    private val captionTag = Tag(TAG.H5, caption, className = "modal-title")
 
     /**
      * @suppress
      * Internal property.
      */
-    protected val body = SimplePanel(setOf("modal-body"))
-    private val footer = SimplePanel(setOf("modal-footer"))
+    protected val body = SimplePanel("modal-body")
+    private val footer = SimplePanel("modal-footer")
 
     init {
         this.hide()
         this.role = "dialog"
         this.tabindex = -1
         this.addPrivate(dialog)
-        val content = SimplePanel(setOf("modal-content"))
+        val content = SimplePanel("modal-content")
         dialog.role = "document"
         dialog.add(content)
         closeIcon.visible = closeButton
@@ -321,7 +321,7 @@ open class Modal(
  * @param scrollable determines if modal dialog content is scrollable
  */
 internal class ModalDialog(size: ModalSize?, centered: Boolean = false, scrollable: Boolean = false) :
-    SimplePanel(setOf("modal-dialog")) {
+    SimplePanel("modal-dialog") {
 
     /**
      * Modal window size.

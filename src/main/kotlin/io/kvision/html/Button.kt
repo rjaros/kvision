@@ -22,16 +22,13 @@
 package io.kvision.html
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.CssClass
 import io.kvision.core.ResString
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * Button styles.
@@ -83,13 +80,13 @@ enum class ButtonType(internal val buttonType: String) {
  * @param disabled button state
  * @param separator a separator between label and icon/image (defaults to space)
  * @param labelFirst determines if the label is put before children elements (defaults to true)
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 open class Button(
     text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.PRIMARY, type: ButtonType = ButtonType.BUTTON,
     disabled: Boolean = false, separator: String? = null, labelFirst: Boolean = true,
-    classes: Set<String> = setOf()
-) : SimplePanel(classes) {
+    className: String? = null
+) : SimplePanel(className) {
 
     /**
      * Button label.
@@ -194,32 +191,12 @@ fun Container.button(
     disabled: Boolean = false,
     separator: String? = null,
     labelFirst: Boolean = true,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Button.() -> Unit)? = null
 ): Button {
-    val button = Button(text, icon, style, type, disabled, separator, labelFirst, classes ?: className.set).apply {
+    val button = Button(text, icon, style, type, disabled, separator, labelFirst, className).apply {
         init?.invoke(this)
     }
     this.add(button)
     return button
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.button(
-    state: ObservableState<S>,
-    text: String,
-    icon: String? = null,
-    style: ButtonStyle = ButtonStyle.PRIMARY,
-    type: ButtonType = ButtonType.BUTTON,
-    disabled: Boolean = false,
-    separator: String? = null,
-    labelFirst: Boolean = true,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Button.(S) -> Unit)
-) = button(text, icon, style, type, disabled, separator, labelFirst, classes, className).bind(state, true, init)

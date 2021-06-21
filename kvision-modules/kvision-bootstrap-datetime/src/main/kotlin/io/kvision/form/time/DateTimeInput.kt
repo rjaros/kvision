@@ -38,12 +38,9 @@ import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.types.toDateF
 import io.kvision.types.toStringF
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.js.Date
 
 internal const val DEFAULT_STEPPING = 5
@@ -54,15 +51,16 @@ internal const val DEFAULT_STEPPING = 5
  * @constructor
  * @param value date/time input value
  * @param format date/time format (default YYYY-MM-DD HH:mm)
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions", "LeakingThis")
 open class DateTimeInput(
     value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (DateTimeInput.() -> Unit)? = null
-) : SimplePanel(classes + "input-group" + "date"), GenericFormComponent<Date?>, FormInput, MutableState<Date?> {
+) : SimplePanel((className?.let { "$it " } ?: "") + "input-group date"), GenericFormComponent<Date?>, FormInput,
+    MutableState<Date?> {
 
     protected val observers = mutableListOf<(Date?) -> Unit>()
 
@@ -70,8 +68,8 @@ open class DateTimeInput(
 
     val input = TextInput(value = value?.toStringF(format))
     private lateinit var icon: Icon
-    private val addon = Div(classes = setOf("input-group-append")) {
-        span(classes = setOf("input-group-text", "datepickerbutton")) {
+    private val addon = Div(className = "input-group-append") {
+        span(className = "input-group-text datepickerbutton") {
             this@DateTimeInput.icon = icon(this@DateTimeInput.getIconClass(format))
         }
     }
@@ -458,24 +456,10 @@ open class DateTimeInput(
  */
 fun Container.dateTimeInput(
     value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
-    classes: Set<String>? = null,
     className: String? = null,
     init: (DateTimeInput.() -> Unit)? = null
 ): DateTimeInput {
-    val dateTimeInput = DateTimeInput(value, format, classes ?: className.set, init)
+    val dateTimeInput = DateTimeInput(value, format, className, init)
     this.add(dateTimeInput)
     return dateTimeInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.dateTimeInput(
-    state: ObservableState<S>,
-    value: Date? = null, format: String = "YYYY-MM-DD HH:mm",
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (DateTimeInput.(S) -> Unit)
-) = dateTimeInput(value, format, classes, className).bind(state, true, init)

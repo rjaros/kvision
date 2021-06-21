@@ -36,10 +36,7 @@ import io.kvision.html.ButtonType
 import io.kvision.html.Div
 import io.kvision.html.Link
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * Useful options for use in DropDown's *elements* parameter.
@@ -72,7 +69,7 @@ enum class Direction(internal val direction: String) {
  * @param disabled determines if the component is disabled on start
  * @param forNavbar determines if the component will be used in a navbar
  * @param forDropDown determines if the component will be used in a dropdown
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
@@ -80,8 +77,8 @@ open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN, disabled: Boolean = false,
     val forNavbar: Boolean = false, val forDropDown: Boolean = false,
-    classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (DropDown.() -> Unit)? = null
+) : SimplePanel(className) {
     /**
      * Label of the dropdown button.
      */
@@ -230,12 +227,12 @@ open class DropDown(
                     DD.HEADER.option -> Header(it.first)
                     DD.SEPARATOR.option -> Separator()
                     DD.DISABLED.option -> {
-                        Link(it.first, "javascript:void(0)", classes = setOf("dropdown-item", "disabled")).apply {
+                        Link(it.first, "javascript:void(0)", className = "dropdown-item disabled").apply {
                             tabindex = -1
                             setAttribute("aria-disabled", "true")
                         }
                     }
-                    else -> Link(it.first, it.second, classes = setOf("dropdown-item"))
+                    else -> Link(it.first, it.second, className = "dropdown-item")
                 }
             }
             list.addAll(c)
@@ -285,7 +282,6 @@ fun Container.dropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
     disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (DropDown.() -> Unit)? = null
 ): DropDown {
@@ -299,38 +295,12 @@ fun Container.dropDown(
             disabled,
             forNavbar,
             forDropDown,
-            classes ?: className.set,
+            className,
             init
         )
     this.add(dropDown)
     return dropDown
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.dropDown(
-    state: ObservableState<S>,
-    text: String, elements: List<StringPair>? = null, icon: String? = null,
-    style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
-    disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (DropDown.(S) -> Unit)
-) = dropDown(
-    text,
-    elements,
-    icon,
-    style,
-    direction,
-    disabled,
-    forNavbar,
-    forDropDown,
-    classes,
-    className
-).bind(state, true, init)
 
 /**
  * DSL builder extension function for a link in a dropdown list.
@@ -339,11 +309,11 @@ fun <S> Container.dropDown(
  */
 fun DropDown.ddLink(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item", init)
+    val link =
+        Link(label, url, icon, image, null, true, null, (className?.let { "$it " } ?: "") + "dropdown-item", init)
     this.add(link)
     return link
 }
@@ -355,11 +325,11 @@ fun DropDown.ddLink(
  */
 fun ContextMenu.cmLink(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item", init)
+    val link =
+        Link(label, url, icon, image, null, true, null, (className?.let { "$it " } ?: "") + "dropdown-item", init)
     this.add(link)
     return link
 }
@@ -371,7 +341,6 @@ fun ContextMenu.cmLink(
  */
 fun DropDown.ddLinkDisabled(
     label: String, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
@@ -380,7 +349,7 @@ fun DropDown.ddLinkDisabled(
         "javascript:void(0)",
         icon,
         image, null, true, null,
-        (classes ?: className.set) + "dropdown-item" + "disabled", init
+        (className?.let { "$it " } ?: "") + "dropdown-item disabled", init
     ).apply {
         tabindex = -1
         setAttribute("aria-disabled", "true")
@@ -396,7 +365,6 @@ fun DropDown.ddLinkDisabled(
  */
 fun ContextMenu.cmLinkDisabled(
     label: String, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
@@ -405,7 +373,7 @@ fun ContextMenu.cmLinkDisabled(
         "javascript:void(0)",
         icon,
         image, null, true, null,
-        (classes ?: className.set) + "dropdown-item" + "disabled", init
+        (className?.let { "$it " } ?: "") + "dropdown-item disabled", init
     ).apply {
         tabindex = -1
         setAttribute("aria-disabled", "true")
@@ -425,7 +393,7 @@ fun ContextMenu.cmLinkDisabled(
  * @param disabled determines if the component is disabled on start
  * @param forNavbar determines if the component will be used in a navbar
  * @param forDropDown determines if the component will be used in a dropdown
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 class DropDownButton(
     id: String,
@@ -435,9 +403,9 @@ class DropDownButton(
     disabled: Boolean = false,
     val forNavbar: Boolean = false,
     val forDropDown: Boolean = false,
-    classes: Set<String> = setOf()
+    className: String? = null
 ) :
-    Button(text, icon, style, ButtonType.BUTTON, disabled, null, true, classes) {
+    Button(text, icon, style, ButtonType.BUTTON, disabled, null, true, className) {
 
     init {
         this.id = id
@@ -492,7 +460,7 @@ class DropDownButton(
 }
 
 internal class DropDownDiv(private val ariaId: String) : Div(
-    null, false, null, setOf("dropdown-menu")
+    null, false, null, "dropdown-menu"
 ) {
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

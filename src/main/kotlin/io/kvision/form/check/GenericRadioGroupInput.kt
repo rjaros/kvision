@@ -30,8 +30,6 @@ import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
 
 /**
@@ -63,7 +61,7 @@ open class GenericRadioGroupInput<T>(
         it as? T
     },
     init: (GenericRadioGroupInput<T>.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), GenericFormComponent<T?>, FormInput, MutableState<T?> {
+) : SimplePanel("form-group"), GenericFormComponent<T?>, FormInput, MutableState<T?> {
 
     protected val observers = mutableListOf<(T?) -> Unit>()
 
@@ -260,21 +258,3 @@ fun <T> Container.genericRadioGroupInput(
     this.add(radioGroupInput)
     return radioGroupInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S, T> Container.genericRadioGroupInput(
-    state: ObservableState<S>,
-    options: List<Pair<T, String>>? = null, value: T? = null, name: String? = null, inline: Boolean = false,
-    toStr: (T) -> String = {
-        it.toString()
-    },
-    fromStr: (String) -> T? = {
-        @Suppress("UNCHECKED_CAST")
-        it as? T
-    },
-    init: (GenericRadioGroupInput<T>.(S) -> Unit)
-) = genericRadioGroupInput(options, value, name, inline, toStr, fromStr).bind(state, true, init)

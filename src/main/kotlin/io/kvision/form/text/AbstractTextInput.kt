@@ -36,12 +36,12 @@ import io.kvision.state.MutableState
  *
  * @constructor
  * @param value text input value
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 abstract class AbstractTextInput(
     value: String? = null,
-    classes: Set<String> = setOf()
-) : Widget(classes), GenericFormComponent<String?>, FormInput, MutableState<String?> {
+    className: String? = null
+) : Widget(className), GenericFormComponent<String?>, FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 

@@ -31,7 +31,6 @@ import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.js.Promise
 
 /**
@@ -54,16 +53,16 @@ enum class TabsPosition(override val attributeValue: String) : DomAttribute {
  * @param tabPosition the tab bar position
  * @param animation determines if the transitions are animated
  * @param swipeable determines if the tab bar can be scrolled by drag or swipe
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Tabbar(
     tabPosition: TabsPosition? = null,
     animation: Boolean? = null,
     swipeable: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Tabbar.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * The tab bar position.
@@ -202,7 +201,7 @@ open class Tabbar(
     }
 
     override fun afterDestroy() {
-        children.forEach {
+        children?.forEach {
             if (it is Page) remove(it)
         }
     }
@@ -281,11 +280,10 @@ fun Page.tabbar(
     tabPosition: TabsPosition? = null,
     animation: Boolean = true,
     swipeable: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Tabbar.() -> Unit)? = null
 ): Tabbar {
-    val tabbar = Tabbar(tabPosition, animation, swipeable, classes ?: className.set, init)
+    val tabbar = Tabbar(tabPosition, animation, swipeable, className, init)
     this.add(tabbar)
     return tabbar
 }

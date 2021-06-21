@@ -30,8 +30,6 @@ import io.kvision.html.Link
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.routing.RoutingManager
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
 
 /**
@@ -49,7 +47,7 @@ open class Tab(
     label: String? = null, icon: String? = null,
     image: ResString? = null, closable: Boolean = false, val route: String? = null,
     init: (Tab.() -> Unit)? = null
-) : Tag(TAG.LI, classes = setOf("nav-item")) {
+) : Tag(TAG.LI, className = "nav-item") {
 
     constructor(
         label: String? = null,
@@ -124,7 +122,7 @@ open class Tab(
     /**
      * A link component within the tab.
      */
-    val link = Link(label ?: "", "#", icon, image, classes = setOf("nav-link")).apply {
+    val link = Link(label ?: "", "#", icon, image, className = "nav-link").apply {
         add(this@Tab.closeIcon)
     }
 
@@ -153,7 +151,7 @@ open class Tab(
     }
 
     override fun childrenVNodes(): Array<VNode> {
-        return (privateChildren).filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+        return (privateChildren!!).filter { it.visible }.map { it.renderVNode() }.toTypedArray()
     }
 
     override fun dispose() {
@@ -180,15 +178,3 @@ fun TabPanel.tab(
     this.add(tab)
     return tab
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> TabPanel.tab(
-    state: ObservableState<S>,
-    label: String? = null, icon: String? = null,
-    image: ResString? = null, closable: Boolean = false, route: String? = null,
-    init: (Tab.(S) -> Unit)
-) = tab(label, icon, image, closable, route).bind(state, true, init)

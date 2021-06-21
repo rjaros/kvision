@@ -63,7 +63,7 @@ open class SelectRemote<T : Any>(
     label: String? = null,
     rich: Boolean = false,
     init: (SelectRemote<T>.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), StringFormControl, MutableState<String?> {
+) : SimplePanel("form-group"), StringFormControl, MutableState<String?> {
     /**
      * A value of the selected option.
      */
@@ -175,12 +175,12 @@ open class SelectRemote<T : Any>(
     private val idc = "kv_form_SelectRemote_$counter"
     final override val input: SelectRemoteInput<T> = SelectRemoteInput(
         serviceManager, function, stateFunction, value, multiple, ajaxOptions, preload,
-        setOf("form-control")
+        "form-control"
     ).apply {
         this.id = this@SelectRemote.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

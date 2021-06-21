@@ -23,7 +23,6 @@
 package io.kvision.onsenui.splitter
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.HTMLElement
 import io.kvision.KVManagerOnsenui.ons
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.CssSize
@@ -34,7 +33,7 @@ import io.kvision.panel.SimplePanel
 import io.kvision.utils.asString
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
-import io.kvision.utils.set
+import org.w3c.dom.HTMLElement
 import kotlin.js.Promise
 
 /**
@@ -83,7 +82,7 @@ enum class Side(override val attributeValue: String) : DomAttribute {
  * @param swipeable whether to enable swipe interaction on collapse mode
  * @param collapse specify the collapse behavior
  * @param side specify which side of the screen the side menu is located
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SplitterSide(
@@ -91,9 +90,9 @@ open class SplitterSide(
     swipeable: Boolean? = null,
     collapse: Collapse? = null,
     side: Side? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (SplitterSide.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * An animation type.
@@ -229,7 +228,7 @@ open class SplitterSide(
      */
     @Suppress("UnsafeCastFromDynamic")
     open fun load(page: Page, options: dynamic = undefined): Promise<Unit>? {
-        (children.first() as? Page)?.let {
+        (children?.first() as? Page)?.let {
             it.dispatchHideEvent()
             it.dispatchDestroyEvent()
             remove(it)
@@ -294,12 +293,11 @@ fun Splitter.splitterSide(
     swipeable: Boolean? = null,
     collapse: Collapse? = null,
     side: Side? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SplitterSide.() -> Unit)? = null
 ): SplitterSide {
     val splitterSide =
-        SplitterSide(animation, swipeable, collapse, side, classes ?: className.set, init)
+        SplitterSide(animation, swipeable, collapse, side, className, init)
     this.add(splitterSide)
     return splitterSide
 }

@@ -35,13 +35,13 @@ import kotlin.js.Promise
  * A splitter content component.
  *
  * @constructor Creates a splitter content component.
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SplitterContent(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (SplitterContent.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * A dynamic property returning current page.
@@ -86,7 +86,7 @@ open class SplitterContent(
      */
     @Suppress("UnsafeCastFromDynamic")
     open fun load(page: Page, options: dynamic = undefined): Promise<Unit>? {
-        (children.first() as? Page)?.let {
+        (children?.first() as? Page)?.let {
             it.dispatchHideEvent()
             it.dispatchDestroyEvent()
             remove(it)
@@ -103,11 +103,10 @@ open class SplitterContent(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Splitter.splitterContent(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SplitterContent.() -> Unit)? = null
 ): SplitterContent {
-    val splitterContent = SplitterContent(classes ?: className.set, init)
+    val splitterContent = SplitterContent(className, init)
     this.add(splitterContent)
     return splitterContent
 }

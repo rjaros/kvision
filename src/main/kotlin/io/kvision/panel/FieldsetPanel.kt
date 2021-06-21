@@ -25,24 +25,21 @@ import com.github.snabbdom.VNode
 import io.kvision.core.Container
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * The HTML fieldset container.
  *
  * @constructor
  * @param legend the legend of the fieldset
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class FieldsetPanel(
     legend: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (FieldsetPanel.() -> Unit)? = null
 ) :
-    SimplePanel(classes = classes + "kv_fieldset") {
+    SimplePanel((className?.let { "$it " } ?: "") + "kv_fieldset") {
 
     /**
      * The legend of the fieldset.
@@ -77,24 +74,10 @@ open class FieldsetPanel(
  */
 fun Container.fieldsetPanel(
     legend: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (FieldsetPanel.() -> Unit)? = null
 ): FieldsetPanel {
-    val fieldsetPanel = FieldsetPanel(legend, classes ?: className.set, init)
+    val fieldsetPanel = FieldsetPanel(legend, className, init)
     this.add(fieldsetPanel)
     return fieldsetPanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.fieldsetPanel(
-    state: ObservableState<S>,
-    legend: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (FieldsetPanel.(S) -> Unit)
-) = fieldsetPanel(legend, classes, className).bind(state, true, init)

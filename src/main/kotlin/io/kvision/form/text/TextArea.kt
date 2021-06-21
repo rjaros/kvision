@@ -22,8 +22,6 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * Form field textarea component.
@@ -97,14 +95,3 @@ fun Container.textArea(
     this.add(textArea)
     return textArea
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.textArea(
-    state: ObservableState<S>,
-    cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TextArea.(S) -> Unit)
-) = textArea(cols, rows, value, name, label, rich).bind(state, true, init)

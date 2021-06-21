@@ -23,19 +23,16 @@ package io.kvision.table
 
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * HTML table row component.
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
-open class Row(classes: Set<String> = setOf(), init: (Row.() -> Unit)? = null) : Tag(
-    TAG.TR, classes = classes
+open class Row(className: String? = null, init: (Row.() -> Unit)? = null) : Tag(
+    TAG.TR, className = className
 ) {
     init {
         @Suppress("LeakingThis")
@@ -49,23 +46,10 @@ open class Row(classes: Set<String> = setOf(), init: (Row.() -> Unit)? = null) :
  * It takes the same parameters as the constructor of the built component.
  */
 fun Table.row(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Row.() -> Unit)? = null
 ): Row {
-    val row = Row(classes ?: className.set, init)
+    val row = Row(className, init)
     this.add(row)
     return row
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Table.row(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Row.(S) -> Unit)
-) = row(classes, className).bind(state, true, init)

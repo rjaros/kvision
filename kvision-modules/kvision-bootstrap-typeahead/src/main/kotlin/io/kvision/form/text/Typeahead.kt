@@ -22,8 +22,6 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * Form field typeahead component.
@@ -182,18 +180,3 @@ fun Container.typeahead(
     this.add(typeahead)
     return typeahead
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.typeahead(
-    state: ObservableState<S>,
-    options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
-    source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
-    items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (Typeahead.(S) -> Unit)
-) = typeahead(options, taAjaxOptions, source, items, minLength, delay, type, value, name, label, rich)
-    .bind(state, true, init)

@@ -22,22 +22,19 @@
 package io.kvision.html
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Simple component rendered as *tr*.
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Tr(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Tr.() -> Unit)? = null
 ) :
-    Tag(TAG.TR, null, false, null, classes) {
+    Tag(TAG.TR, null, false, null, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -51,23 +48,10 @@ open class Tr(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.tr(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Tr.() -> Unit)? = null
 ): Tr {
-    val tr = Tr(classes ?: className.set, init)
+    val tr = Tr(className, init)
     this.add(tr)
     return tr
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.tr(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Tr.(S) -> Unit)
-) = tr(classes, className).bind(state, true, init)

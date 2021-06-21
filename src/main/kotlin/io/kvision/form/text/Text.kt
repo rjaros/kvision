@@ -22,8 +22,6 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * Form field text component.
@@ -87,14 +85,3 @@ fun Container.text(
     this.add(text)
     return text
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.text(
-    state: ObservableState<S>,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (Text.(S) -> Unit)
-) = text(type, value, name, label, rich).bind(state, true, init)

@@ -31,8 +31,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 
 /**
@@ -55,7 +53,7 @@ open class SimpleSelect(
     multiple: Boolean = false,
     selectSize: Int? = null,
     name: String? = null, label: String? = null, rich: Boolean = false, init: (SimpleSelect.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), StringFormControl, MutableState<String?> {
+) : SimplePanel("form-group"), StringFormControl, MutableState<String?> {
 
     /**
      * A list of options (value to label pairs) for the select control.
@@ -157,7 +155,7 @@ open class SimpleSelect(
         this.id = this@SimpleSelect.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -276,21 +274,3 @@ fun Container.simpleSelect(
     this.add(simpleSelect)
     return simpleSelect
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.simpleSelect(
-    state: ObservableState<S>,
-    options: List<StringPair>? = null,
-    value: String? = null,
-    emptyOption: Boolean = false,
-    multiple: Boolean = false,
-    selectSize: Int? = null,
-    name: String? = null,
-    label: String? = null,
-    rich: Boolean = false,
-    init: (SimpleSelect.(S) -> Unit)
-) = simpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich).bind(state, true, init)

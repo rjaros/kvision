@@ -21,16 +21,15 @@
  */
 package io.kvision.dropdown
 
-import io.kvision.html.Div
-import io.kvision.utils.set
+import io.kvision.panel.SimplePanel
 
 /**
  * Menu separator component.
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
-open class Separator(classes: Set<String> = setOf()) : Div(classes = classes + "dropdown-divider")
+open class Separator(className: String? = null) : SimplePanel((className?.let { "$it " } ?: "") + "dropdown-divider")
 
 /**
  * DSL builder extension function.
@@ -38,10 +37,9 @@ open class Separator(classes: Set<String> = setOf()) : Div(classes = classes + "
  * It takes the same parameters as the constructor of the built component.
  */
 fun ContextMenu.separator(
-    classes: Set<String>? = null,
     className: String? = null
 ): Separator {
-    val separator = Separator(classes ?: className.set)
+    val separator = Separator(className)
     this.add(separator)
     return separator
 }
@@ -52,10 +50,9 @@ fun ContextMenu.separator(
  * It takes the same parameters as the constructor of the built component.
  */
 fun DropDown.separator(
-    classes: Set<String>? = null,
     className: String? = null
 ): Separator {
-    val separator = Separator(classes ?: className.set)
+    val separator = Separator(className)
     this.add(separator)
     return separator
 }

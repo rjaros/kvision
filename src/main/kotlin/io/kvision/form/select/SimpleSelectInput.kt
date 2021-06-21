@@ -34,9 +34,6 @@ import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import org.w3c.dom.HTMLCollection
 import org.w3c.dom.asList
 
@@ -51,15 +48,16 @@ internal const val KVNULL = "#kvnull"
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param selectSize the number of visible options
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SimpleSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    classes: Set<String> = setOf(), init: (SimpleSelectInput.() -> Unit)? = null
-) : SimplePanel(classes + "form-control"), GenericFormComponent<String?>, FormInput, MutableState<String?> {
+    className: String? = null, init: (SimpleSelectInput.() -> Unit)? = null
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<String?>, FormInput,
+    MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -202,7 +200,7 @@ open class SimpleSelectInput(
 
     private fun selectOption() {
         val valueSet = if (this.multiple) value?.split(",") ?: emptySet() else setOf(value)
-        children.forEach { child ->
+        children?.forEach { child ->
             if (child is Tag && child.type == TAG.OPTION) {
                 if (valueSet.contains(child.getAttribute("value"))) {
                     child.setAttribute("selected", "selected")
@@ -282,7 +280,6 @@ fun Container.simpleSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SimpleSelectInput.() -> Unit)? = null
 ): SimpleSelectInput {
@@ -293,30 +290,8 @@ fun Container.simpleSelectInput(
             emptyOption,
             multiple,
             selectSize,
-            classes ?: className.set, init
+            className, init
         )
     this.add(simpleSelectInput)
     return simpleSelectInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.simpleSelectInput(
-    state: ObservableState<S>,
-    options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-    multiple: Boolean = false,
-    selectSize: Int? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SimpleSelectInput.(S) -> Unit)
-) = simpleSelectInput(
-    options,
-    value,
-    emptyOption,
-    multiple,
-    selectSize,
-    classes, className
-).bind(state, true, init)

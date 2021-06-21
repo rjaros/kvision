@@ -26,21 +26,18 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.Style
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Basic container class, rendered as a DIV element with all children directly within.
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
-open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> Unit)? = null) : Widget(classes),
+open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)? = null) : Widget(className),
     Container {
-    protected val privateChildren: MutableList<Component> = mutableListOf()
-    protected val children: MutableList<Component> = mutableListOf()
+    protected var privateChildren: MutableList<Component>? = null
+    protected var children: MutableList<Component>? = null
 
     internal var archivedState: dynamic = null
 
@@ -57,8 +54,20 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
      * Returns the array of the children Snabbdom vnodes.
      * @return array of children vnodes
      */
+    @Suppress("UnsafeCastFromDynamic")
     protected open fun childrenVNodes(): Array<VNode> {
-        return (privateChildren + children).filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+        return if (privateChildren == null && children == null) {
+            emptyArray()
+        } else if (privateChildren == null && children != null) {
+            children!!.toTypedArray().asDynamic().filter { c: Component -> c.visible }
+                .map { c: Component -> c.renderVNode() }
+        } else if (privateChildren != null && children == null) {
+            privateChildren!!.toTypedArray().asDynamic().filter { c: Component -> c.visible }
+                .map { c: Component -> c.renderVNode() }
+        } else {
+            (privateChildren!! + children!!).toTypedArray().asDynamic().filter { c: Component -> c.visible }
+                .map { c: Component -> c.renderVNode() }
+        }
     }
 
     /**
@@ -67,7 +76,8 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
      * @return current container
      */
     protected open fun addPrivate(child: Component): SimplePanel {
-        privateChildren.add(child)
+        if (privateChildren == null) privateChildren = mutableListOf()
+        privateChildren!!.add(child)
         child.parent?.remove(child)
         child.parent = this
         refresh()
@@ -80,7 +90,8 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
      * @return current container
      */
     protected open fun addInternal(child: Component): SimplePanel {
-        children.add(child)
+        if (children == null) children = mutableListOf()
+        children!!.add(child)
         child.parent?.remove(child)
         child.parent = this
         refresh()
@@ -94,7 +105,8 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
      * @return current container
      */
     protected open fun addInternal(position: Int, child: Component): SimplePanel {
-        children.add(position, child)
+        if (children == null) children = mutableListOf()
+        children!!.add(position, child)
         child.parent?.remove(child)
         child.parent = this
         refresh()
@@ -110,7 +122,8 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
     }
 
     override fun addAll(children: List<Component>): SimplePanel {
-        this.children.addAll(children)
+        if (this.children == null) this.children = mutableListOf()
+        this.children!!.addAll(children)
         children.map {
             it.parent?.remove(it)
             it.parent = this
@@ -120,7 +133,7 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
     }
 
     override fun remove(child: Component): SimplePanel {
-        if (children.remove(child)) {
+        if (children != null && children!!.remove(child)) {
             child.clearParent()
             refresh()
         }
@@ -128,9 +141,9 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
     }
 
     override fun removeAt(position: Int): SimplePanel {
-        val child = children.getOrNull(position)
+        val child = children?.getOrNull(position)
         if (child != null) {
-            children.removeAt(position)
+            children?.removeAt(position)
             child.clearParent()
             refresh()
         }
@@ -138,29 +151,31 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
     }
 
     override fun removeAll(): SimplePanel {
-        children.map { it.clearParent() }
-        children.clear()
+        children?.map { it.clearParent() }
+        children = null
         refresh()
         return this
     }
 
     override fun disposeAll(): Container {
-        children.forEach { it.dispose() }
+        children?.forEach { it.dispose() }
         return removeAll()
     }
 
     override fun getChildren(): List<Component> {
-        return children
+        return children ?: emptyList()
     }
 
     override fun dispose() {
         super.dispose()
-        children.forEach { it.dispose() }
-        privateChildren.forEach { it.dispose() }
-        children.map { it.clearParent() }
-        children.clear()
-        privateChildren.map { it.clearParent() }
-        privateChildren.clear()
+        children?.forEach { it.dispose() }
+        privateChildren?.forEach { it.dispose() }
+        children?.map { it.clearParent() }
+        children?.clear()
+        children = null
+        privateChildren?.map { it.clearParent() }
+        privateChildren?.clear()
+        privateChildren = null
     }
 }
 
@@ -170,26 +185,13 @@ open class SimplePanel(classes: Set<String> = setOf(), init: (SimplePanel.() -> 
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.simplePanel(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SimplePanel.() -> Unit)? = null
 ): SimplePanel {
-    val simplePanel = SimplePanel(classes ?: className.set, init)
+    val simplePanel = SimplePanel(className, init)
     this.add(simplePanel)
     return simplePanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.simplePanel(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SimplePanel.(S) -> Unit)
-) = simplePanel(classes, className).bind(state, true, init)
 
 /**
  * DSL builder extension function with Style support

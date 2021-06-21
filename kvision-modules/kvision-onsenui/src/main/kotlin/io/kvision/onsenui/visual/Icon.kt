@@ -26,7 +26,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.utils.set
 
 /**
  * An icon component.
@@ -37,7 +36,7 @@ import io.kvision.utils.set
  * @param rotate a number of degrees to rotate the icon - valid values are 90, 180 and 270
  * @param fixedWidth whether the icons to have the same width
  * @param spin whether the icon should be spinning
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Icon(
@@ -46,9 +45,9 @@ open class Icon(
     rotate: Number? = null,
     fixedWidth: Boolean? = null,
     spin: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Icon.() -> Unit)? = null
-) : Widget(classes) {
+) : Widget(className) {
 
     /**
      * The name of the icon.
@@ -113,11 +112,10 @@ fun Container.icon(
     rotate: Number? = null,
     fixedWidth: Boolean? = null,
     spin: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Icon.() -> Unit)? = null
 ): Icon {
-    val iconComp = Icon(icon, size, rotate, fixedWidth, spin, classes ?: className.set, init)
+    val iconComp = Icon(icon, size, rotate, fixedWidth, spin, className, init)
     this.add(iconComp)
     return iconComp
 }

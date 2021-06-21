@@ -24,9 +24,6 @@ package io.kvision.form.text
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import kotlinx.browser.document
 import org.w3c.dom.Element
 
@@ -35,14 +32,14 @@ import org.w3c.dom.Element
  *
  * @constructor
  * @param value text input value
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class RichTextInput(
     value: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (RichTextInput.() -> Unit)? = null
-) : AbstractTextInput(value, classes + "form-control" + "trix-control") {
+) : AbstractTextInput(value, (className?.let { "$it " } ?: "") + "form-control trix-control") {
 
     private var trixId: String? = null
 
@@ -138,24 +135,10 @@ open class RichTextInput(
  */
 fun Container.richTextInput(
     value: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (RichTextInput.() -> Unit)? = null
 ): RichTextInput {
-    val richTextInput = RichTextInput(value, classes ?: className.set, init)
+    val richTextInput = RichTextInput(value, className, init)
     this.add(richTextInput)
     return richTextInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.richTextInput(
-    state: ObservableState<S>,
-    value: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (RichTextInput.(S) -> Unit)
-) = richTextInput(value, classes, className).bind(state, true, init)

@@ -30,7 +30,7 @@ import io.kvision.core.Widget
 /**
  * Helper class for minimize icon component.
  */
-open class MinimizeIcon : Widget(setOf()) {
+open class MinimizeIcon : Widget() {
 
     override fun render(): VNode {
         return render("button", arrayOf(KVManager.virtualize("<span aria-hidden='true'>&#x1f5d5;</span>")))

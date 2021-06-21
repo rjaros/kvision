@@ -34,13 +34,13 @@ import io.kvision.utils.set
  * A splitter component.
  *
  * @constructor Creates a splitter component.
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Splitter(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Splitter.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * A dynamic property returning current left side element.
@@ -116,11 +116,10 @@ open class Splitter(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Root.splitter(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Splitter.() -> Unit)? = null
 ): Splitter {
-    val splitter = Splitter(classes ?: className.set, init)
+    val splitter = Splitter(className, init)
     this.add(splitter)
     return splitter
 }
@@ -131,11 +130,10 @@ fun Root.splitter(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Page.splitter(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Splitter.() -> Unit)? = null
 ): Splitter {
-    val splitter = Splitter(classes ?: className.set, init)
+    val splitter = Splitter(className, init)
     this.add(splitter)
     return splitter
 }

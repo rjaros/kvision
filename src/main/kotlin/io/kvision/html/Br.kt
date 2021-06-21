@@ -22,22 +22,19 @@
 package io.kvision.html
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Simple component rendered as *br*.
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Br(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Br.() -> Unit)? = null
 ) :
-    Tag(TAG.BR, null, false, null, classes) {
+    Tag(TAG.BR, null, false, null, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -51,23 +48,10 @@ open class Br(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.br(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Br.() -> Unit)? = null
 ): Br {
-    val br = Br(classes ?: className.set, init)
+    val br = Br(className, init)
     this.add(br)
     return br
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.br(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Br.(S) -> Unit)
-) = br(classes, className).bind(state, true, init)

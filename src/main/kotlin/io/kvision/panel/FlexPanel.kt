@@ -22,10 +22,7 @@
 package io.kvision.panel
 
 import io.kvision.core.*
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.px
-import io.kvision.utils.set
 
 /**
  * The container with CSS flexbox layout support.
@@ -38,7 +35,7 @@ import io.kvision.utils.set
  * @param alignContent flexbox content alignment
  * @param spacing spacing between columns/rows
  * @param useWrappers use additional div wrappers for child items
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -50,9 +47,9 @@ open class FlexPanel(
     alignContent: AlignContent? = null,
     spacing: Int? = null,
     private val useWrappers: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (FlexPanel.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * The spacing between columns/rows.
@@ -77,17 +74,17 @@ open class FlexPanel(
      * @param shrink child flexbox shrink
      * @param basis child flexbox basis
      * @param alignSelf child self alignment
-     * @param classes a set of CSS class names
+     * @param className CSS class names
      */
     @Suppress("LongParameterList")
     fun add(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
-        basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
+        basis: CssSize? = null, alignSelf: AlignItems? = null, className: String? = null
     ): FlexPanel {
         val wrapper = if (!useWrappers) {
             child
         } else {
-            WidgetWrapper(child, classes)
+            WidgetWrapper(child, className)
         }
         (wrapper as? Widget)?.let {
             applySpacing(it)
@@ -110,17 +107,17 @@ open class FlexPanel(
      * @param shrink child flexbox shrink
      * @param basis child flexbox basis
      * @param alignSelf child self alignment
-     * @param classes a set of CSS class names
+     * @param className CSS class names
      */
     @Suppress("LongParameterList")
     fun add(
         position: Int, child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
-        basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf()
+        basis: CssSize? = null, alignSelf: AlignItems? = null, className: String? = null
     ): FlexPanel {
         val wrapper = if (!useWrappers) {
             child
         } else {
-            WidgetWrapper(child, classes)
+            WidgetWrapper(child, className)
         }
         (wrapper as? Widget)?.let {
             applySpacing(it)
@@ -140,12 +137,12 @@ open class FlexPanel(
      */
     open fun options(
         order: Int? = null, grow: Int? = null, shrink: Int? = null,
-        basis: CssSize? = null, alignSelf: AlignItems? = null, classes: Set<String> = setOf(),
+        basis: CssSize? = null, alignSelf: AlignItems? = null, className: String? = null,
         builder: Container.() -> Unit
     ) {
         object : Container by this@FlexPanel {
             override fun add(child: Component): Container {
-                return add(child, order, grow, shrink, basis, alignSelf, classes)
+                return add(child, order, grow, shrink, basis, alignSelf, className)
             }
         }.builder()
     }
@@ -192,29 +189,32 @@ open class FlexPanel(
     }
 
     override fun remove(child: Component): FlexPanel {
-        if (children.contains(child)) {
-            super.remove(child)
-        } else {
-            children.find { (it as? WidgetWrapper)?.wrapped == child }?.let {
-                super.remove(it)
-                it.dispose()
+        if (children != null) {
+            if (children!!.contains(child)) {
+                super.remove(child)
+            } else {
+                children!!.find { (it as? WidgetWrapper)?.wrapped == child }?.let {
+                    super.remove(it)
+                    it.dispose()
+                }
             }
         }
         return this
     }
 
     override fun removeAll(): FlexPanel {
-        children.map {
+        children?.map {
             it.clearParent()
             (it as? WidgetWrapper)?.dispose()
         }
-        children.clear()
+        children?.clear()
+        children = null
         refresh()
         return this
     }
 
     override fun disposeAll(): FlexPanel {
-        children.map {
+        children?.map {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
@@ -223,7 +223,7 @@ open class FlexPanel(
     }
 
     override fun dispose() {
-        children.map {
+        children?.map {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
@@ -242,7 +242,6 @@ fun Container.flexPanel(
     alignItems: AlignItems? = null, alignContent: AlignContent? = null,
     spacing: Int? = null,
     useWrappers: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (FlexPanel.() -> Unit)? = null
 ): FlexPanel {
@@ -255,35 +254,9 @@ fun Container.flexPanel(
             alignContent,
             spacing,
             useWrappers,
-            classes ?: className.set,
+            className,
             init
         )
     this.add(flexPanel)
     return flexPanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.flexPanel(
-    state: ObservableState<S>,
-    direction: FlexDirection? = null, wrap: FlexWrap? = null, justify: JustifyContent? = null,
-    alignItems: AlignItems? = null, alignContent: AlignContent? = null,
-    spacing: Int? = null,
-    useWrappers: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (FlexPanel.(S) -> Unit)
-) = flexPanel(
-    direction,
-    wrap,
-    justify,
-    alignItems,
-    alignContent,
-    spacing,
-    useWrappers,
-    classes,
-    className
-).bind(state, true, init)

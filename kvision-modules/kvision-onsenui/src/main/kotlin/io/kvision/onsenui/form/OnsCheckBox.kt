@@ -30,7 +30,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import io.kvision.utils.set
 
 /**
  * Onsen UI form field checkbox component.
@@ -40,7 +39,7 @@ import io.kvision.utils.set
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsCheckBox(
@@ -48,9 +47,9 @@ open class OnsCheckBox(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsCheckBox.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")), BoolFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group kv-ons-checkbox"), BoolFormControl,
     MutableState<Boolean> {
 
     /**
@@ -173,12 +172,11 @@ fun Container.onsCheckBox(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsCheckBox.() -> Unit)? = null
 ): OnsCheckBox {
     val onsCheckBox =
-        OnsCheckBox(value, name, label, rich, classes ?: className.set, init)
+        OnsCheckBox(value, name, label, rich, className, init)
     this.add(onsCheckBox)
     return onsCheckBox
 }

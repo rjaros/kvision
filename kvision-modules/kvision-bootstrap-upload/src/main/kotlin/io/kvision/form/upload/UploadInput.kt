@@ -36,13 +36,11 @@ import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.i18n.I18n
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.types.KFile
 import io.kvision.utils.getContent
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import org.w3c.files.File
+import kotlin.collections.set
 import kotlin.reflect.KProperty1
 
 /**
@@ -51,17 +49,18 @@ import kotlin.reflect.KProperty1
  * @constructor
  * @param uploadUrl the optional URL for the upload processing action
  * @param multiple determines if multiple file upload is supported
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class UploadInput(
     uploadUrl: String? = null,
     multiple: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (UploadInput.() -> Unit)? = null
 ) :
-    Widget(classes + "form-control"), GenericFormComponent<List<KFile>?>, FormInput, MutableState<List<KFile>?> {
+    Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<List<KFile>?>, FormInput,
+    MutableState<List<KFile>?> {
 
     protected val observers = mutableListOf<(List<KFile>?) -> Unit>()
 
@@ -394,28 +393,13 @@ open class UploadInput(
 fun Container.uploadInput(
     uploadUrl: String? = null,
     multiple: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (UploadInput.() -> Unit)? = null
 ): UploadInput {
-    val uploadInput = UploadInput(uploadUrl, multiple, classes ?: className.set, init)
+    val uploadInput = UploadInput(uploadUrl, multiple, className, init)
     this.add(uploadInput)
     return uploadInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.uploadInput(
-    state: ObservableState<S>,
-    uploadUrl: String? = null,
-    multiple: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (UploadInput.(S) -> Unit)
-) = uploadInput(uploadUrl, multiple, classes, className).bind(state, true, init)
 
 /**
  * Returns file with the content read.

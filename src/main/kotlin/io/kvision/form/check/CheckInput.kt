@@ -46,12 +46,12 @@ enum class CheckInputType(internal val type: String) {
  * @constructor
  * @param type type of the input control
  * @param value selection state
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 abstract class CheckInput(
     type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
-    classes: Set<String> = setOf()
-) : Widget(classes), GenericFormComponent<Boolean>, FormInput, MutableState<Boolean> {
+    className: String? = null
+) : Widget(className), GenericFormComponent<Boolean>, FormInput, MutableState<Boolean> {
 
     protected val observers = mutableListOf<(Boolean) -> Unit>()
 

@@ -33,5 +33,5 @@ import io.kvision.html.Tag
  */
 open class HelpText(content: String? = null, rich: Boolean = false) : Tag(
     TAG.SMALL, content, rich,
-    classes = setOf("form-text", "text-muted")
+    className = "form-text text-muted"
 )

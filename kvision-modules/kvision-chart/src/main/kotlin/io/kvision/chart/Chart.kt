@@ -26,9 +26,6 @@ import io.kvision.chart.js.Chart.ChartConfiguration
 import io.kvision.chart.js.Chart.PluginServiceGlobalRegistration
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import io.kvision.chart.js.Chart as JsChart
 
 /**
@@ -38,16 +35,16 @@ import io.kvision.chart.js.Chart as JsChart
  * @param configuration chart configuration
  * @param chartWidth chart width in pixels
  * @param chartHeight chart height in pixels
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Chart(
     configuration: Configuration,
     chartWidth: Int? = null,
     chartHeight: Int? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Chart.() -> Unit)? = null
-) : Widget(classes) {
+) : Widget(className) {
 
     /**
      * Chart configuration.
@@ -154,26 +151,10 @@ fun Container.chart(
     configuration: Configuration,
     chartWidth: Int? = null,
     chartHeight: Int? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Chart.() -> Unit)? = null
 ): Chart {
-    val chart = Chart(configuration, chartWidth, chartHeight, classes ?: className.set, init)
+    val chart = Chart(configuration, chartWidth, chartHeight, className, init)
     this.add(chart)
     return chart
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.chart(
-    state: ObservableState<S>,
-    configuration: Configuration,
-    chartWidth: Int? = null,
-    chartHeight: Int? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Chart.(S) -> Unit)
-) = chart(configuration, chartWidth, chartHeight, classes, className).bind(state, true, init)

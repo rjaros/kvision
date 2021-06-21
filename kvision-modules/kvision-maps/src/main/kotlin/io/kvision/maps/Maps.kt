@@ -23,13 +23,10 @@
 package io.kvision.maps
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.Element
-import org.w3c.dom.HTMLElement
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
 import io.kvision.KVManagerMaps.leaflet as L
 
 /**
@@ -43,7 +40,7 @@ import io.kvision.KVManagerMaps.leaflet as L
  * @param baseLayerProvider tile providing service
  * @param showLayersList show layers selection list
  * @param crs Coordinate Reference System
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Maps(
@@ -54,9 +51,9 @@ open class Maps(
     val baseLayerProvider: BaseLayerProvider,
     private val showLayersList: Boolean = true,
     val crs: CRS,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Maps.() -> Unit)? = null
-) : Widget(classes) {
+) : Widget(className) {
 
     private var map: dynamic = null
     private val mapObjects = mutableListOf<dynamic>()
@@ -180,30 +177,10 @@ fun Container.maps(
     baseLayerProvider: BaseLayerProvider = BaseLayerProvider.OSM,
     showLayersList: Boolean = true,
     crs: CRS = CRS.EPSG3857,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Maps.() -> Unit)? = null
 ): Maps {
-    val maps = Maps(lat, lng, zoom, showMarker, baseLayerProvider, showLayersList, crs, classes ?: className.set, init)
+    val maps = Maps(lat, lng, zoom, showMarker, baseLayerProvider, showLayersList, crs, className, init)
     this.add(maps)
     return maps
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.maps(
-    state: ObservableState<S>,
-    lat: Number,
-    lng: Number,
-    zoom: Number,
-    showMarker: Boolean = false,
-    baseLayerProvider: BaseLayerProvider = BaseLayerProvider.OSM,
-    showLayersList: Boolean = true,
-    crs: CRS = CRS.EPSG3857,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Maps.(S) -> Unit)
-) = maps(lat, lng, zoom, showMarker, baseLayerProvider, showLayersList, crs, classes, className).bind(state, true, init)

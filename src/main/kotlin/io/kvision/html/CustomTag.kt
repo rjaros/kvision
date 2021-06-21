@@ -23,9 +23,6 @@ package io.kvision.html
 
 import com.github.snabbdom.VNode
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * HTML custom tag component.
@@ -35,7 +32,7 @@ import io.kvision.utils.set
  * @param content element text
  * @param rich determines if [content] can contain HTML code
  * @param align content align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param attributes a map of additional attributes
  * @param init an initializer extension function
  */
@@ -44,10 +41,10 @@ open class CustomTag(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(), attributes: Map<String, String>? = null,
+    className: String? = null, attributes: Map<String, String>? = null,
     init: (CustomTag.() -> Unit)? = null
 ) :
-    Tag(TAG.DIV, content, rich, align, classes, attributes) {
+    Tag(TAG.DIV, content, rich, align, className, attributes) {
 
     /**
      * HTML element name.
@@ -74,30 +71,12 @@ fun Container.customTag(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     attributes: Map<String, String>? = null,
     init: (CustomTag.() -> Unit)? = null
 ): CustomTag {
     val customTag =
-        CustomTag(elementName, content, rich, align, classes ?: className.set, attributes, init)
+        CustomTag(elementName, content, rich, align, className, attributes, init)
     this.add(customTag)
     return customTag
 }
-
-/**
- * DSL builder extension function for observable state for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.customTag(
-    state: ObservableState<S>,
-    elementName: String,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    attributes: Map<String, String>? = null,
-    init: (CustomTag.(S) -> Unit)
-) = customTag(elementName, content, rich, align, classes, className, attributes).bind(state, true, init)

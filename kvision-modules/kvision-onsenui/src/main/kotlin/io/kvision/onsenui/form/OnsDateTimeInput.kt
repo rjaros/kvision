@@ -36,7 +36,6 @@ import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
 import io.kvision.types.toDateF
 import io.kvision.types.toStringF
-import io.kvision.utils.set
 import kotlin.js.Date
 
 /**
@@ -58,7 +57,7 @@ enum class DateTimeMode(internal val format: String) {
  * @param max maximal value
  * @param step step value
  * @param inputId the ID of the input element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsDateTimeInput(
@@ -68,9 +67,10 @@ open class OnsDateTimeInput(
     max: Date? = null,
     step: Number? = null,
     inputId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsDateTimeInput.() -> Unit)? = null
-) : Widget(classes + "kv-ons-form-control"), GenericFormComponent<Date?>, FormInput, MutableState<Date?> {
+) : Widget((className?.let { "$it " } ?: "") + "kv-ons-form-control"), GenericFormComponent<Date?>, FormInput,
+    MutableState<Date?> {
 
     protected val observers = mutableListOf<(Date?) -> Unit>()
 
@@ -283,12 +283,11 @@ fun Container.onsDateTimeInput(
     max: Date? = null,
     step: Number? = null,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsDateTimeInput.() -> Unit)? = null
 ): OnsDateTimeInput {
     val onsDateTimeInput =
-        OnsDateTimeInput(value, mode, min, max, step, inputId, classes ?: className.set, init)
+        OnsDateTimeInput(value, mode, min, max, step, inputId, className, init)
     this.add(onsDateTimeInput)
     return onsDateTimeInput
 }

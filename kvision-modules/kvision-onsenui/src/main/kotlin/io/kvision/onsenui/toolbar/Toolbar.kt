@@ -27,7 +27,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.html.Div
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.set
 
 /**
  * A toolbar component.
@@ -36,7 +35,7 @@ import io.kvision.utils.set
  * @param label a label placed automatically in the center section of the toolbar
  * @param inline display the toolbar as an inline element
  * @param static static toolbars are not animated by ons-navigator when pushing or popping pages
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -44,24 +43,24 @@ open class Toolbar(
     label: String? = null,
     inline: Boolean? = null,
     static: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Toolbar.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * The left section of the toolbar.
      */
-    val leftPanel = Div(classes = setOf("left", "toolbar__left"))
+    val leftPanel = Div(className = "left toolbar__left")
 
     /**
      * The center section of the toolbar.
      */
-    val centerPanel = Div(label, classes = setOf("center", "toolbar__center"))
+    val centerPanel = Div(label, className = "center toolbar__center")
 
     /**
      * The right section of the toolbar.
      */
-    val rightPanel = Div(classes = setOf("right", "toolbar__right"))
+    val rightPanel = Div(className = "right toolbar__right")
 
     /**
      *  Display the toolbar as an inline element.
@@ -168,11 +167,10 @@ fun Page.toolbar(
     label: String? = null,
     inline: Boolean? = null,
     static: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Toolbar.() -> Unit)? = null
 ): Toolbar {
-    val toolbar = Toolbar(label, inline, static, classes ?: className.set, init)
+    val toolbar = Toolbar(label, inline, static, className, init)
     this.toolbarPanel = toolbar
     return toolbar
 }

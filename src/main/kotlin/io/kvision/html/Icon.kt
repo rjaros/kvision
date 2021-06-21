@@ -23,8 +23,6 @@ package io.kvision.html
 
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * Icon component with support for FontAwesome and Bootstrap glyphicons.
@@ -63,14 +61,3 @@ fun Container.icon(
     this.add(i)
     return i
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.icon(
-    state: ObservableState<S>,
-    icon: String,
-    init: (Icon.(S) -> Unit)
-) = icon(icon).bind(state, true, init)

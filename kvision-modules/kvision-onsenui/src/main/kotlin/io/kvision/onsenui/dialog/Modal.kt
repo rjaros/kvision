@@ -34,7 +34,6 @@ import io.kvision.panel.Root
 import io.kvision.panel.Root.Companion.addModal
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.js.Promise
 
 enum class ModalAnimation(override val attributeValue: String) : DomAttribute {
@@ -52,14 +51,14 @@ enum class ModalAnimation(override val attributeValue: String) : DomAttribute {
  *
  * @constructor Creates a modal component.
  * @param animation the type of animation
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Modal(
     animation: ModalAnimation? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Modal.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     override var parent: Container? = Root.getFirstRoot()
 
@@ -177,9 +176,8 @@ open class Modal(
 @Suppress("unused")
 fun Container.modal(
     animation: ModalAnimation? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Modal.() -> Unit)? = null
 ): Modal {
-    return Modal(animation, classes ?: className.set, init)
+    return Modal(animation, className, init)
 }

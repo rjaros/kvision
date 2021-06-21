@@ -30,7 +30,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import io.kvision.utils.set
 
 /**
  * Onsen UI form field switch component.
@@ -40,7 +39,7 @@ import io.kvision.utils.set
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsSwitch(
@@ -48,9 +47,9 @@ open class OnsSwitch(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsSwitch.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group", "kv-ons-checkbox")),
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group kv-ons-checkbox"),
     BoolFormControl,
     MutableState<Boolean> {
 
@@ -174,12 +173,11 @@ fun Container.onsSwitch(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsSwitch.() -> Unit)? = null
 ): OnsSwitch {
     val onsSwitch =
-        OnsSwitch(value, name, label, rich, classes ?: className.set, init)
+        OnsSwitch(value, name, label, rich, className, init)
     this.add(onsSwitch)
     return onsSwitch
 }

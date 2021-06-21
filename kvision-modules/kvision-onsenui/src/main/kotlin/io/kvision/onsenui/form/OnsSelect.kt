@@ -32,7 +32,6 @@ import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import io.kvision.utils.set
 
 /**
  * Onsen UI form field select component.
@@ -46,7 +45,7 @@ import io.kvision.utils.set
  * @param name the name attribute of the generated HTML input element
  * @param label label text of the options group
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsSelect(
@@ -58,9 +57,10 @@ open class OnsSelect(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsSelect.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), StringFormControl, MutableState<String?> {
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group"), StringFormControl,
+    MutableState<String?> {
     /**
      * A list of options (value to label pairs) for the select control.
      */
@@ -161,7 +161,7 @@ open class OnsSelect(
             this.name = name
             this.eventTarget = this@OnsSelect
         }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -271,12 +271,11 @@ fun Container.onsSelect(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsSelect.() -> Unit)? = null
 ): OnsSelect {
     val onsSelect =
-        OnsSelect(options, value, emptyOption, multiple, selectSize, name, label, rich, classes ?: className.set, init)
+        OnsSelect(options, value, emptyOption, multiple, selectSize, name, label, rich, className, init)
     this.add(onsSelect)
     return onsSelect
 }

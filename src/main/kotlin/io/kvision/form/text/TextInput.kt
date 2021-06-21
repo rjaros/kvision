@@ -24,9 +24,6 @@ package io.kvision.form.text
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Text input types.
@@ -48,16 +45,16 @@ enum class TextInputType(internal val type: String) {
  * @constructor
  * @param type text input type (default "text")
  * @param value text input value
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class TextInput(
     type: TextInputType = TextInputType.TEXT,
     value: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (TextInput.() -> Unit)? = null
 ) :
-    AbstractTextInput(value, classes + "form-control") {
+    AbstractTextInput(value, (className?.let { "$it " } ?: "") + "form-control") {
 
     /**
      * Text input type.
@@ -97,24 +94,10 @@ open class TextInput(
  */
 fun Container.textInput(
     type: TextInputType = TextInputType.TEXT, value: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (TextInput.() -> Unit)? = null
 ): TextInput {
-    val textInput = TextInput(type, value, classes ?: className.set, init)
+    val textInput = TextInput(type, value, className, init)
     this.add(textInput)
     return textInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.textInput(
-    state: ObservableState<S>,
-    type: TextInputType = TextInputType.TEXT, value: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (TextInput.(S) -> Unit)
-) = textInput(type, value, classes, className).bind(state, true, init)

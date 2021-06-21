@@ -24,9 +24,6 @@ package io.kvision.table
 import io.kvision.html.Align
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * HTML table cell component.
@@ -35,16 +32,16 @@ import io.kvision.utils.set
  * @param content text content of the cell
  * @param rich determines if [content] can contain HTML code
  * @param align text align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Cell(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Cell.() -> Unit)? = null
-) : Tag(TAG.TD, content, rich, align, classes) {
+) : Tag(TAG.TD, content, rich, align, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -61,26 +58,10 @@ fun Row.cell(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Cell.() -> Unit)? = null
 ): Cell {
-    val cell = Cell(content, rich, align, classes ?: className.set, init)
+    val cell = Cell(content, rich, align, className, init)
     this.add(cell)
     return cell
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Row.cell(
-    state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Cell.(S) -> Unit)
-) = cell(content, rich, align, classes, className).bind(state, true, init)

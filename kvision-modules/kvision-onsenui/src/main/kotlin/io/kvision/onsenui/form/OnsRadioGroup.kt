@@ -30,11 +30,9 @@ import io.kvision.form.InputSize
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.form.ValidationStatus
-import io.kvision.form.check.Radio
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * The form field component rendered as a group of OnsenUI radio buttons with the same name attribute.
@@ -55,9 +53,9 @@ open class OnsRadioGroup(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsRadioGroup.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), StringFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group"), StringFormControl,
     MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
@@ -137,10 +135,10 @@ open class OnsRadioGroup(
 
     private val idc = "kv_ons_form_radiogroup_$counter"
     final override val input = OnsRadioInput()
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
-    internal val container = SimplePanel(setOf("kv-radiogroup-container")) {
+    internal val container = SimplePanel("kv-radiogroup-container") {
         id = this@OnsRadioGroup.idc
     }
 
@@ -315,11 +313,10 @@ fun Container.onsRadioGroup(
     options: List<StringPair>? = null,
     value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsRadioGroup.() -> Unit)? = null
 ): OnsRadioGroup {
-    val onsRadioGroup = OnsRadioGroup(options, value, name, label, rich, classes ?: className.set, init)
+    val onsRadioGroup = OnsRadioGroup(options, value, name, label, rich, className, init)
     this.add(onsRadioGroup)
     return onsRadioGroup
 }

@@ -33,7 +33,6 @@ import io.kvision.panel.Root
 import io.kvision.panel.Root.Companion.addModal
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.js.Promise
 
 /**
@@ -42,15 +41,15 @@ import kotlin.js.Promise
  * @constructor Creates a dialog component.
  * @param cancelable whether the dialog can be canceled
  * @param animation determines if the transitions are animated
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Dialog(
     cancelable: Boolean? = null,
     animation: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Dialog.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     override var parent: Container? = Root.getFirstRoot()
 
@@ -203,9 +202,8 @@ open class Dialog(
 fun Container.dialog(
     cancelable: Boolean? = null,
     animation: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Dialog.() -> Unit)? = null
 ): Dialog {
-    return Dialog(cancelable, animation, classes ?: className.set, init)
+    return Dialog(cancelable, animation, className, init)
 }

@@ -33,8 +33,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.html.span
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import org.w3c.dom.events.MouseEvent
 
@@ -63,7 +61,7 @@ enum class RadioStyle(override val className: String) : CssClass {
 open class Radio(
     value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
     rich: Boolean = false, init: (Radio.() -> Unit)? = null
-) : SimplePanel(classes = setOf("form-check")), BoolFormControl, MutableState<Boolean> {
+) : SimplePanel(className = "form-check"), BoolFormControl, MutableState<Boolean> {
 
     /**
      * The selection state of the radio button.
@@ -129,12 +127,12 @@ open class Radio(
     var inline by refreshOnUpdate(false)
 
     private val idc = "kv_form_radio_$counter"
-    final override val input: RadioInput = RadioInput(value, classes = setOf("form-check-input")).apply {
+    final override val input: RadioInput = RadioInput(value, className = "form-check-input").apply {
         this.id = this@Radio.idc
         this.extraValue = extraValue
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, classes = setOf("form-check-label")) {
+    final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, className = "form-check-label") {
         span()
     }
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
@@ -247,14 +245,3 @@ fun Container.radio(
     this.add(radio)
     return radio
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.radio(
-    state: ObservableState<S>,
-    value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
-    rich: Boolean = false, init: (Radio.(S) -> Unit)
-) = radio(value, extraValue, name, label, rich).bind(state, true, init)

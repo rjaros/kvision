@@ -26,10 +26,7 @@ import io.kvision.KVManager
 import io.kvision.core.Container
 import io.kvision.core.StyledComponent
 import io.kvision.core.UNIT
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * Split panel direction.
@@ -47,13 +44,13 @@ enum class Direction(internal val dir: String) {
  *
  * @constructor
  * @param direction direction of the splitter
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SplitPanel(
     private val direction: Direction = Direction.VERTICAL,
-    classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
-) : SimplePanel(classes + ("splitpanel-" + direction.dir)) {
+    className: String? = null, init: (SplitPanel.() -> Unit)? = null
+) : SimplePanel((className?.let { "$it " } ?: "") + ("splitpanel-" + direction.dir)) {
 
     @Suppress("LeakingThis")
     internal val splitter = Splitter(this, direction)
@@ -67,13 +64,13 @@ open class SplitPanel(
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun afterInsertSplitter() {
-        if (children.size == 2) {
+        if (children?.size == 2) {
             val horizontal = direction == Direction.HORIZONTAL
             val perc = UNIT.perc
             val self = this
             val splitJsDirection = if (direction == Direction.HORIZONTAL) "vertical" else "horizontal"
             val sizes = if (horizontal) {
-                val h1 = (children[0] as? StyledComponent)?.height
+                val h1 = (children!![0] as? StyledComponent)?.height
                 if (h1 != null && h1.second == UNIT.perc) {
                     arrayOf(h1.first, (100 - h1.first.toDouble()))
                 } else {
@@ -87,7 +84,7 @@ open class SplitPanel(
                     }
                 }
             } else {
-                val h1 = (children[0] as? StyledComponent)?.width
+                val h1 = (children!![0] as? StyledComponent)?.width
                 if (h1 != null && h1.second == UNIT.perc) {
                     arrayOf(h1.first, (100 - h1.first.toDouble()))
                 } else {
@@ -121,11 +118,11 @@ open class SplitPanel(
                         this.sizes = sizes
                     }
                     if (horizontal) {
-                        (children[0] as? StyledComponent)?.height = sizes[0] to perc
-                        (children[1] as? StyledComponent)?.height = sizes[1] to perc
+                        (children!![0] as? StyledComponent)?.height = sizes[0] to perc
+                        (children!![1] as? StyledComponent)?.height = sizes[1] to perc
                     } else {
-                        (children[0] as? StyledComponent)?.width = sizes[0] to perc
-                        (children[1] as? StyledComponent)?.width = sizes[1] to perc
+                        (children!![0] as? StyledComponent)?.width = sizes[0] to perc
+                        (children!![1] as? StyledComponent)?.width = sizes[1] to perc
                     }
                     self.dispatchEvent("dragEndSplitPanel", obj { detail = e })
                 }
@@ -141,8 +138,8 @@ open class SplitPanel(
     }
 
     override fun childrenVNodes(): Array<VNode> {
-        return if (children.size == 2) {
-            arrayOf(children[0].renderVNode(), splitter.renderVNode(), children[1].renderVNode())
+        return if (children?.size == 2) {
+            arrayOf(children!![0].renderVNode(), splitter.renderVNode(), children!![1].renderVNode())
         } else {
             arrayOf()
         }
@@ -156,30 +153,16 @@ open class SplitPanel(
  */
 fun Container.splitPanel(
     direction: Direction = Direction.VERTICAL,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SplitPanel.() -> Unit)? = null
 ): SplitPanel {
-    val splitPanel = SplitPanel(direction, classes ?: className.set, init)
+    val splitPanel = SplitPanel(direction, className, init)
     this.add(splitPanel)
     return splitPanel
 }
 
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.splitPanel(
-    state: ObservableState<S>,
-    direction: Direction = Direction.VERTICAL,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SplitPanel.(S) -> Unit)
-) = splitPanel(direction, classes, className).bind(state, true, init)
-
 internal class Splitter(private val splitPanel: SplitPanel, direction: Direction) : SimplePanel(
-    setOf("splitter-" + direction.dir)
+    "splitter-" + direction.dir
 ) {
     override fun afterInsert(node: VNode) {
         splitPanel.afterInsertSplitter()

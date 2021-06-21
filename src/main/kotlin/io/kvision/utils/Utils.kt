@@ -219,9 +219,33 @@ fun <T> MutableList<T>.syncWithList(list: List<T>) {
 /**
  * Utility extension property to generate a set of strings to simplify the notation when using classes parameter.
  */
-val String?.set: Set<String>
+inline val String.set: Set<String>
     get() {
-        return this?.split(" ")?.toSet() ?: setOf()
+        return this.split(" ").toSet()
+    }
+
+/**
+ * Utility extension property to generate a mutable set of strings to simplify the notation when using classes parameter.
+ */
+inline val String.mutableSet: MutableSet<String>
+    get() {
+        return this.split(" ").toMutableSet()
+    }
+
+/**
+ * Utility extension property to generate a set of strings to simplify the notation when using classes parameter.
+ */
+inline val String?.set: Set<String>
+    get() {
+        return this?.set ?: setOf()
+    }
+
+/**
+ * Utility extension property to generate a mutable set of strings to simplify the notation when using classes parameter.
+ */
+inline val String?.mutableSet: MutableSet<String>
+    get() {
+        return this?.mutableSet ?: mutableSetOf()
     }
 
 /**

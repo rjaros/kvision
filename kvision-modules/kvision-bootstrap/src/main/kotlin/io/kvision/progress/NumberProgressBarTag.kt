@@ -33,9 +33,9 @@ class NumberProgressBarTag(
     initialValue: Number = 0,
     private val contentGenerator: ContentGenerator<Number>,
     bgColor: BsBgColor? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (NumberProgressBarTag.() -> Unit)? = null
-) : ProgressBarTag<Number>(classes, bgColor) {
+) : ProgressBarTag<Number>(className, bgColor) {
 
     init {
         init?.invoke(this)
@@ -67,6 +67,6 @@ fun Progress<out Number>.progressNumeric(
     initialValue: Number = 0,
     contentGenerator: ContentGenerator<Number> = ContentGenerator { _, _, _ -> },
     bgColor: BsBgColor? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (NumberProgressBarTag.() -> Unit)? = null
-) = NumberProgressBarTag(this, initialValue, contentGenerator, bgColor, classes, init).also { add(it) }
+) = NumberProgressBarTag(this, initialValue, contentGenerator, bgColor, className, init).also { add(it) }

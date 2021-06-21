@@ -27,7 +27,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.form.text.TextInput
 import io.kvision.form.text.TextInputType
-import io.kvision.utils.set
 
 /**
  * OnsenUI text input component.
@@ -38,7 +37,7 @@ import io.kvision.utils.set
  * @param placeholder the placeholder for the text input
  * @param floatLabel whether the placeholder will be animated in Material Design
  * @param inputId the ID of the input element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsTextInput(
@@ -47,9 +46,9 @@ open class OnsTextInput(
     placeholder: String? = null,
     floatLabel: Boolean? = null,
     inputId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsTextInput.() -> Unit)? = null
-) : TextInput(type, value, classes + "kv-ons-form-control") {
+) : TextInput(type, value, (className?.let { "$it " } ?: "") + "kv-ons-form-control") {
 
     /**
      * Whether the placeholder will be animated in Material Design.
@@ -105,11 +104,10 @@ fun Container.onsTextInput(
     placeholder: String? = null,
     floatLabel: Boolean? = null,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsTextInput.() -> Unit)? = null
 ): OnsTextInput {
-    val onsTextInput = OnsTextInput(type, value, placeholder, floatLabel, inputId, classes ?: className.set, init)
+    val onsTextInput = OnsTextInput(type, value, placeholder, floatLabel, inputId, className, init)
     this.add(onsTextInput)
     return onsTextInput
 }

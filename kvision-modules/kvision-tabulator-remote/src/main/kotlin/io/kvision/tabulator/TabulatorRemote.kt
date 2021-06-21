@@ -51,7 +51,7 @@ import kotlin.reflect.KFunction
  * @param stateFunction a function to generate the state object passed with the remote request
  * @param options tabulator options
  * @param types a set of table types
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceMgr<E>,
@@ -59,9 +59,9 @@ open class TabulatorRemote<T : Any, E : Any>(
     stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
+    className: String? = null,
     kClass: KClass<T>? = null,
-) : Tabulator<T>(null, false, options, types, classes, kClass) {
+) : Tabulator<T>(null, false, options, types, className, kClass) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
@@ -127,12 +127,11 @@ inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
     noinline stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String>? = null,
     className: String? = null,
     noinline init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
     val tabulatorRemote =
-        TabulatorRemote(serviceManager, function, stateFunction, options, types, classes ?: className.set, T::class)
+        TabulatorRemote(serviceManager, function, stateFunction, options, types, className, T::class)
     init?.invoke(tabulatorRemote)
     this.add(tabulatorRemote)
     return tabulatorRemote

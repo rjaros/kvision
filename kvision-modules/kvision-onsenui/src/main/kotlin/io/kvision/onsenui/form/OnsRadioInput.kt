@@ -28,7 +28,6 @@ import io.kvision.core.Container
 import io.kvision.core.getElementJQuery
 import io.kvision.form.check.CheckInput
 import io.kvision.form.check.CheckInputType
-import io.kvision.utils.set
 import kotlinx.browser.window
 
 /**
@@ -37,15 +36,15 @@ import kotlinx.browser.window
  * @constructor Creates a radio button input component.
  * @param value radio button input value
  * @param inputId the ID of the input element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsRadioInput(
     value: Boolean = false,
     inputId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsRadioInput.() -> Unit)? = null
-) : CheckInput(CheckInputType.RADIO, value, classes) {
+) : CheckInput(CheckInputType.RADIO, value, className) {
 
     /**
      * The ID of the input element.
@@ -104,11 +103,10 @@ open class OnsRadioInput(
 fun Container.onsRadioInput(
     value: Boolean = false,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsRadioInput.() -> Unit)? = null
 ): OnsRadioInput {
-    val onsRadioInput = OnsRadioInput(value, inputId, classes ?: className.set, init)
+    val onsRadioInput = OnsRadioInput(value, inputId, className, init)
     this.add(onsRadioInput)
     return onsRadioInput
 }

@@ -21,22 +21,18 @@
  */
 package io.kvision.html
 
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
-
 /**
  * Simple component rendered as *tbody*.
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Tbody(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Tbody.() -> Unit)? = null
 ) :
-    Tag(TAG.TBODY, null, false, null, classes) {
+    Tag(TAG.TBODY, null, false, null, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -50,23 +46,10 @@ open class Tbody(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Table.tbody(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Tbody.() -> Unit)? = null
 ): Tbody {
-    val tbody = Tbody(classes ?: className.set, init)
+    val tbody = Tbody(className, init)
     this.add(tbody)
     return tbody
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Table.tbody(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Tbody.(S) -> Unit)
-) = tbody(classes, className).bind(state, true, init)

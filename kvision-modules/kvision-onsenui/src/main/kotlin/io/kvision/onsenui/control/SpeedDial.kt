@@ -23,17 +23,14 @@
 package io.kvision.onsenui.control
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.getElementJQuery
 import io.kvision.html.CustomTag
 import io.kvision.onsenui.FloatDirection
 import io.kvision.onsenui.FloatPosition
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * An Onsen UI speed dial component.
@@ -44,7 +41,7 @@ import io.kvision.utils.set
  * @param floatDirection a direction the items are displayed
  * @param content the content the component.
  * @param rich whether [content] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -54,9 +51,9 @@ open class SpeedDial(
     floatDirection: FloatDirection? = null,
     content: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (SpeedDial.() -> Unit)? = null
-) : CustomTag("ons-speed-dial", content, rich, null, classes) {
+) : CustomTag("ons-speed-dial", content, rich, null, className) {
 
     /**
      * An icon placed on the speed dial button.
@@ -233,28 +230,10 @@ fun Container.speedDial(
     floatDirection: FloatDirection? = null,
     content: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SpeedDial.() -> Unit)? = null
 ): SpeedDial {
-    val speedDial = SpeedDial(icon, floatPosition, floatDirection, content, rich, classes ?: className.set, init)
+    val speedDial = SpeedDial(icon, floatPosition, floatDirection, content, rich, className, init)
     this.add(speedDial)
     return speedDial
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.speedDial(
-    state: ObservableState<S>,
-    icon: String? = null,
-    floatPosition: FloatPosition? = null,
-    floatDirection: FloatDirection? = null,
-    content: String? = null,
-    rich: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SpeedDial.(S) -> Unit)
-) = speedDial(icon, floatPosition, floatDirection, content, rich, classes, className).bind(state, true, init)

@@ -30,7 +30,6 @@ import io.kvision.form.NumberFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import io.kvision.utils.set
 
 /**
  * Onsen UI form field range component.
@@ -43,7 +42,7 @@ import io.kvision.utils.set
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsRange(
@@ -54,9 +53,9 @@ open class OnsRange(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsRange.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), NumberFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group"), NumberFormControl,
     MutableState<Number?> {
 
     /**
@@ -157,7 +156,7 @@ open class OnsRange(
         this.name = name
         this.eventTarget = this@OnsRange
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -231,12 +230,11 @@ fun Container.onsRange(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsRange.() -> Unit)? = null
 ): OnsRange {
     val onsRange =
-        OnsRange(value, min, max, step, name, label, rich, classes ?: className.set, init)
+        OnsRange(value, min, max, step, name, label, rich, className, init)
     this.add(onsRange)
     return onsRange
 }

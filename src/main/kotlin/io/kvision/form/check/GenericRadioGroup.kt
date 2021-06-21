@@ -32,8 +32,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.ValidationStatus
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
 
 /**
@@ -66,7 +64,7 @@ open class GenericRadioGroup<T>(
         it as? T
     },
     init: (GenericRadioGroup<T>.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), GenericFormControl<T>, MutableState<T?> {
+) : SimplePanel("form-group"), GenericFormControl<T>, MutableState<T?> {
 
     protected val observers = mutableListOf<(T?) -> Unit>()
 
@@ -141,10 +139,10 @@ open class GenericRadioGroup<T>(
 
     private val idc = "kv_form_radiogroup_$counter"
     final override val input = RadioInput()
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
-    internal val container = SimplePanel(setOf("kv-radiogroup-container")) {
+    internal val container = SimplePanel("kv-radiogroup-container") {
         id = this@GenericRadioGroup.idc
     }
 
@@ -348,22 +346,3 @@ fun <T> Container.genericRadioGroup(
     this.add(genericRadioGroup)
     return genericRadioGroup
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S, T> Container.genericRadioGroup(
-    state: ObservableState<S>,
-    options: List<Pair<T, String>>? = null, value: T? = null, name: String? = null, inline: Boolean = false,
-    label: String? = null, rich: Boolean = false,
-    toStr: (T) -> String = {
-        it.toString()
-    },
-    fromStr: (String) -> T? = {
-        @Suppress("UNCHECKED_CAST")
-        it as? T
-    },
-    init: (GenericRadioGroup<T>.(S) -> Unit)
-) = genericRadioGroup(options, value, name, inline, label, rich, toStr, fromStr).bind(state, true, init)

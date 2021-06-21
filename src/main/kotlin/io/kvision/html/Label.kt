@@ -23,9 +23,6 @@ package io.kvision.html
 
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Simple component rendered as *label*.
@@ -34,14 +31,14 @@ import io.kvision.utils.set
  * @param content the text of the label
  * @param rich determines if [content] can contain HTML code
  * @param forId the ID of the labeled element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Label(
     content: String? = null, rich: Boolean = false, forId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Label.() -> Unit)? = null
-) : Tag(TAG.LABEL, content, rich, classes = classes) {
+) : Tag(TAG.LABEL, content, rich, className = className) {
 
     /**
      * The ID of the labeled element.
@@ -68,24 +65,10 @@ open class Label(
  */
 fun Container.label(
     content: String? = null, rich: Boolean = false, forId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Label.() -> Unit)? = null
 ): Label {
-    val label = Label(content, rich, forId, classes ?: className.set, init)
+    val label = Label(content, rich, forId, className, init)
     this.add(label)
     return label
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.label(
-    state: ObservableState<S>,
-    content: String? = null, rich: Boolean = false, forId: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Label.(S) -> Unit)
-) = label(content, rich, forId, classes, className).bind(state, true, init)

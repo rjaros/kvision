@@ -24,9 +24,6 @@ package io.kvision.table
 import io.kvision.html.Align
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 enum class Scope(internal val scope: String) {
     ROW("row"),
@@ -40,7 +37,7 @@ enum class Scope(internal val scope: String) {
  * @param content text content of the cell
  * @param rich determines if [content] can contain HTML code
  * @param align text align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class HeaderCell(
@@ -48,9 +45,9 @@ open class HeaderCell(
     rich: Boolean = false,
     align: Align? = null,
     scope: Scope? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (HeaderCell.() -> Unit)? = null
-) : Tag(TAG.TH, content, rich, align, classes) {
+) : Tag(TAG.TH, content, rich, align, className) {
 
     init {
         scope?.let {
@@ -72,30 +69,13 @@ fun Row.headerCell(
     rich: Boolean = false,
     align: Align? = null,
     scope: Scope? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (HeaderCell.() -> Unit)? = null
 ): HeaderCell {
-    val cell = HeaderCell(content, rich, align, scope, classes ?: className.set, init)
+    val cell = HeaderCell(content, rich, align, scope, className, init)
     this.add(cell)
     return cell
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Row.headerCell(
-    state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
-    scope: Scope? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (HeaderCell.(S) -> Unit)
-) = headerCell(content, rich, align, scope, classes, className).bind(state, true, init)
 
 /**
  * DSL builder extension function.
@@ -107,30 +87,13 @@ fun Table.headerCell(
     rich: Boolean = false,
     align: Align? = null,
     scope: Scope? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (HeaderCell.() -> Unit)? = null
 ): HeaderCell {
-    val headerCell = HeaderCell(content, rich, align, scope, classes ?: className.set, init)
+    val headerCell = HeaderCell(content, rich, align, scope, className, init)
     this.theadRow.add(headerCell)
     return headerCell
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Table.headerCell(
-    state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
-    scope: Scope? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (HeaderCell.(S) -> Unit)
-) = headerCell(content, rich, align, scope, classes, className).bind(state, true, init)
 
 /**
  * DSL builder extension function.
@@ -141,26 +104,10 @@ fun Row.thcell(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (HeaderCell.() -> Unit)? = null
 ): HeaderCell {
-    val headerCell = HeaderCell(content, rich, align, Scope.ROW, classes ?: className.set, init)
+    val headerCell = HeaderCell(content, rich, align, Scope.ROW, className, init)
     this.add(headerCell)
     return headerCell
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Row.thcell(
-    state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (HeaderCell.(S) -> Unit)
-) = thcell(content, rich, align, classes, className).bind(state, true, init)

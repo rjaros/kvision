@@ -25,9 +25,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import org.w3c.dom.HTMLIFrameElement
 import org.w3c.dom.Window
 
@@ -53,13 +50,13 @@ enum class Sandbox(internal val option: String) {
  * @param iframeWidth the width of the iframe
  * @param iframeHeight the height of the iframe
  * @param sandbox a set of Sandbox options
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 @TagMarker
 open class Iframe(
     src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
-    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null, classes: Set<String> = setOf()
-) : Widget(classes) {
+    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null, className: String? = null
+) : Widget(className) {
     /**
      * The iframe document address.
      */
@@ -150,12 +147,11 @@ open class Iframe(
 fun Container.iframe(
     src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
     iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Iframe.() -> Unit)? = null
 ): Iframe {
     val iframe =
-        Iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes ?: className.set).apply {
+        Iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, className).apply {
             init?.invoke(
                 this
             )
@@ -163,17 +159,3 @@ fun Container.iframe(
     this.add(iframe)
     return iframe
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.iframe(
-    state: ObservableState<S>,
-    src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
-    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Iframe.(S) -> Unit)
-) = iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes, className).bind(state, true, init)

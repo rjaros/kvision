@@ -43,16 +43,16 @@ import kotlin.js.Promise
  * @param actionSheetTitle a title of the action sheet
  * @param cancelable whether the action sheet can be canceled
  * @param animation determines if the transitions are animated
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class ActionSheet(
     actionSheetTitle: String? = null,
     cancelable: Boolean? = null,
     animation: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (ActionSheet.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     override var parent: Container? = Root.getFirstRoot()
 
@@ -214,9 +214,8 @@ fun Container.actionSheet(
     actionSheetTitle: String? = null,
     cancelable: Boolean? = null,
     animation: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ActionSheet.() -> Unit)? = null
 ): ActionSheet {
-    return ActionSheet(actionSheetTitle, cancelable, animation, classes ?: className.set, init)
+    return ActionSheet(actionSheetTitle, cancelable, animation, className, init)
 }

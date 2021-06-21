@@ -32,7 +32,6 @@ import io.kvision.onsenui.OnsenUi
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import io.kvision.utils.set
 
 /**
  * Onsen UI form field number component.
@@ -47,7 +46,7 @@ import io.kvision.utils.set
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsNumber(
@@ -60,9 +59,10 @@ open class OnsNumber(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsNumber.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), NumberFormControl, MutableState<Number?> {
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group"), NumberFormControl,
+    MutableState<Number?> {
 
     /**
      * Number input value.
@@ -196,7 +196,7 @@ open class OnsNumber(
             this.name = name
             this.eventTarget = this@OnsNumber
         }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -273,12 +273,11 @@ fun Container.onsNumber(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsNumber.() -> Unit)? = null
 ): OnsNumber {
     val onsNumber =
-        OnsNumber(value, min, max, step, placeholder, floatLabel, name, label, rich, classes ?: className.set, init)
+        OnsNumber(value, min, max, step, placeholder, floatLabel, name, label, rich, className, init)
     this.add(onsNumber)
     return onsNumber
 }

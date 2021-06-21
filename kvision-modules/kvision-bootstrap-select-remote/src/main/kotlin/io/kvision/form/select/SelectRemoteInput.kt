@@ -33,7 +33,6 @@ import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteOption
 import io.kvision.utils.JSON
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlinx.browser.window
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher
@@ -56,7 +55,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote data source
  * @param preload preload all options from remote data source
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SelectRemoteInput<T : Any>(
@@ -67,9 +66,9 @@ open class SelectRemoteInput<T : Any>(
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     private val preload: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (SelectRemoteInput<T>.() -> Unit)? = null
-) : SelectInput(null, value, multiple, null, classes) {
+) : SelectInput(null, value, multiple, null, className) {
     private val scope = CoroutineScope(window.asCoroutineDispatcher())
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
@@ -153,7 +152,9 @@ open class SelectRemoteInput<T : Any>(
                                 it.divider,
                                 it.disabled,
                                 false,
-                                it.className?.let { setOf(it) } ?: setOf()))
+                                it.className
+                            )
+                        )
                     }
             }
         }
@@ -215,7 +216,6 @@ fun <T : Any> Container.selectRemoteInput(
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     preload: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectRemoteInput<T>.() -> Unit)? = null
 ): SelectRemoteInput<T> {
@@ -228,7 +228,7 @@ fun <T : Any> Container.selectRemoteInput(
             multiple,
             ajaxOptions,
             preload,
-            classes ?: className.set, init
+            className, init
         )
     this.add(selectRemoteInput)
     return selectRemoteInput

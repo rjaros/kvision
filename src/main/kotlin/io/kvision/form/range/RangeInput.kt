@@ -31,9 +31,6 @@ import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import org.w3c.dom.HTMLInputElement
 
 internal const val DEFAULT_STEP = 1
@@ -46,13 +43,14 @@ internal const val DEFAULT_STEP = 1
  * @param min minimal value (default 0)
  * @param max maximal value (default 100)
  * @param step step value (default 1)
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class RangeInput(
     value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
-    classes: Set<String> = setOf(), init: (RangeInput.() -> Unit)? = null
-) : Widget(classes + "form-control-range"), GenericFormComponent<Number?>, FormInput, MutableState<Number?> {
+    className: String? = null, init: (RangeInput.() -> Unit)? = null
+) : Widget((className?.let { "$it " } ?: "") + "form-control-range"), GenericFormComponent<Number?>, FormInput,
+    MutableState<Number?> {
 
     protected val observers = mutableListOf<(Number?) -> Unit>()
 
@@ -238,24 +236,10 @@ open class RangeInput(
  */
 fun Container.rangeInput(
     value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (RangeInput.() -> Unit)? = null
 ): RangeInput {
-    val rangeInput = RangeInput(value, min, max, step, classes ?: className.set, init)
+    val rangeInput = RangeInput(value, min, max, step, className, init)
     this.add(rangeInput)
     return rangeInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.rangeInput(
-    state: ObservableState<S>,
-    value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (RangeInput.(S) -> Unit)
-) = rangeInput(value, min, max, step, classes, className).bind(state, true, init)

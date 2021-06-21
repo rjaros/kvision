@@ -36,10 +36,10 @@ import io.kvision.utils.SnOn
  * @constructor
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
-abstract class AbstractText(label: String? = null, rich: Boolean = false, classes: Set<String> = setOf()) :
-    SimplePanel(classes + "form-group"), StringFormControl, MutableState<String?> {
+abstract class AbstractText(label: String? = null, rich: Boolean = false, className: String? = null) :
+    SimplePanel((className?.let { "$it " } ?: "") + "form-group"), StringFormControl, MutableState<String?> {
 
     /**
      * Text input value.
@@ -124,7 +124,7 @@ abstract class AbstractText(label: String? = null, rich: Boolean = false, classe
     protected val idc = "kv_form_text_$counter"
     abstract override val input: AbstractTextInput
     final override val flabel: FieldLabel =
-        FieldLabel(idc, label, rich, setOf("control-label")).apply { visible = label != null }
+        FieldLabel(idc, label, rich, "control-label").apply { visible = label != null }
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

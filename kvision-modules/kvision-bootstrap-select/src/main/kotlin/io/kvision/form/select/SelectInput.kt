@@ -38,11 +38,8 @@ import io.kvision.form.ValidationStatus
 import io.kvision.html.ButtonStyle
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.asString
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * Select width types. See [Bootstrap Select width](http://silviomoreto.github.io/bootstrap-select/examples/#width).
@@ -72,15 +69,15 @@ enum class SelectDropdownAlign {
  * @param value selected value
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote (AJAX) data source
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-    classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
-) : SimplePanel(classes), GenericFormComponent<String?>, FormInput, MutableState<String?> {
+    className: String? = null, init: (SelectInput.() -> Unit)? = null
+) : SimplePanel(className), GenericFormComponent<String?>, FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -438,26 +435,11 @@ open class SelectInput(
 fun Container.selectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectInput.() -> Unit)? = null
 ): SelectInput {
     val selectInput =
-        SelectInput(options, value, multiple, ajaxOptions, classes ?: className.set, init)
+        SelectInput(options, value, multiple, ajaxOptions, className, init)
     this.add(selectInput)
     return selectInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.selectInput(
-    state: ObservableState<S>,
-    options: List<StringPair>? = null, value: String? = null,
-    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SelectInput.(S) -> Unit)
-) = selectInput(options, value, multiple, ajaxOptions, classes, className).bind(state, true, init)

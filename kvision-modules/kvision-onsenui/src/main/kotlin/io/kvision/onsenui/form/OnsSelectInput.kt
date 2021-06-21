@@ -23,14 +23,13 @@
 package io.kvision.onsenui.form
 
 import com.github.snabbdom.VNode
-import kotlinx.browser.window
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.StringPair
 import io.kvision.core.getElementJQuery
 import io.kvision.core.getElementJQueryD
 import io.kvision.form.select.SimpleSelectInput
-import io.kvision.utils.set
+import kotlinx.browser.window
 
 /**
  * OnsenUI select input component.
@@ -42,7 +41,7 @@ import io.kvision.utils.set
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param selectSize the number of visible options
  * @param selectId the ID of the select element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsSelectInput(
@@ -52,9 +51,15 @@ open class OnsSelectInput(
     multiple: Boolean = false,
     selectSize: Int? = null,
     selectId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsSelectInput.() -> Unit)? = null
-) : SimpleSelectInput(options, value, emptyOption, multiple, selectSize, classes + "kv-ons-form-control") {
+) : SimpleSelectInput(
+    options,
+    value,
+    emptyOption,
+    multiple,
+    selectSize,
+    (className?.let { "$it " } ?: "") + "kv-ons-form-control") {
 
     /**
      * The ID of the select element.
@@ -125,12 +130,11 @@ fun Container.onsSelectInput(
     multiple: Boolean = false,
     selectSize: Int? = null,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsSelectInput.() -> Unit)? = null
 ): OnsSelectInput {
     val onsSelectInput =
-        OnsSelectInput(options, value, emptyOption, multiple, selectSize, inputId, classes ?: className.set, init)
+        OnsSelectInput(options, value, emptyOption, multiple, selectSize, inputId, className, init)
     this.add(onsSelectInput)
     return onsSelectInput
 }

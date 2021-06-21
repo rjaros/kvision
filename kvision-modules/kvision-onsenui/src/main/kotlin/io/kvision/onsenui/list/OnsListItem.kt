@@ -28,7 +28,6 @@ import io.kvision.core.Color
 import io.kvision.core.Component
 import io.kvision.html.Div
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.set
 
 /**
  * List item divider types.
@@ -46,7 +45,7 @@ enum class DividerType(internal val type: String) {
  * @param rich whether [content] can contain HTML code
  * @param tappable whether the element reacts to taps
  * @param divider a divider type
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -55,29 +54,29 @@ open class OnsListItem(
     rich: Boolean = false,
     tappable: Boolean? = null,
     divider: DividerType? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsListItem.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * The left section of the list item.
      */
-    val leftPanel = Div(classes = setOf("left", "list-item__left"))
+    val leftPanel = Div(className = "left list-item__left")
 
     /**
      * The center section of the list item.
      */
-    val centerPanel = Div(content, rich, classes = setOf("center", "list-item__center"))
+    val centerPanel = Div(content, rich, className = "center list-item__center")
 
     /**
      * The right section of the list item.
      */
-    val rightPanel = Div(classes = setOf("right", "list-item__right"))
+    val rightPanel = Div(className = "right list-item__right")
 
     /**
      * The expandable section of the list item.
      */
-    val expandablePanel = Div(classes = setOf("expandable-content", "list-item__expandable-content"))
+    val expandablePanel = Div(className = "expandable-content list-item__expandable-content")
 
     /**
      *  The content of the center section.
@@ -303,11 +302,10 @@ fun OnsList.item(
     rich: Boolean = false,
     tappable: Boolean? = null,
     divider: DividerType? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsListItem.() -> Unit)? = null
 ): OnsListItem {
-    val onsListItem = OnsListItem(content, rich, tappable, divider, classes ?: className.set, init)
+    val onsListItem = OnsListItem(content, rich, tappable, divider, className, init)
     this.add(onsListItem)
     return onsListItem
 }

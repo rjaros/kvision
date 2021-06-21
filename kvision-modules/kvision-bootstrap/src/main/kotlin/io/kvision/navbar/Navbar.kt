@@ -34,9 +34,6 @@ import io.kvision.html.span
 import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Navbar types.
@@ -77,7 +74,7 @@ enum class NavbarExpand(override val className: String) : CssClass {
  * @param nColor the navbar color
  * @param bgColor the navbar background color
  * @param collapseOnClick the navbar is auto collapsed when the link is clicked
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Navbar(
@@ -88,8 +85,8 @@ open class Navbar(
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
     collapseOnClick: Boolean = false,
-    classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (Navbar.() -> Unit)? = null
+) : SimplePanel(className) {
 
     /**
      * The navbar header label.
@@ -136,8 +133,8 @@ open class Navbar(
 
     private val idc = "kv_navbar_$counter"
 
-    private val brandLink = Link(label ?: "", link, classes = setOf("navbar-brand"))
-    internal val container = SimplePanel(setOf("collapse", "navbar-collapse")) {
+    private val brandLink = Link(label ?: "", link, className = "navbar-brand")
+    internal val container = SimplePanel("collapse navbar-collapse") {
         id = this@Navbar.idc
     }
 
@@ -234,40 +231,19 @@ fun Container.navbar(
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
     collapseOnClick: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Navbar.() -> Unit)? = null
 ): Navbar {
-    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, classes ?: className.set, init)
+    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, className, init)
     this.add(navbar)
     return navbar
 }
 
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.navbar(
-    state: ObservableState<S>,
-    label: String? = null,
-    link: String? = null,
-    type: NavbarType? = null,
-    expand: NavbarExpand? = NavbarExpand.LG,
-    nColor: NavbarColor = NavbarColor.LIGHT,
-    bgColor: BsBgColor = BsBgColor.LIGHT,
-    collapseOnClick: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Navbar.(S) -> Unit)
-) = navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, classes, className).bind(state, true, init)
-
 fun Navbar.navText(
     label: String,
-    classes: Set<String>? = null,
     className: String? = null
 ): Span {
-    val text = Span(label, classes = (classes ?: className.set) + "navbar-text")
+    val text = Span(label, className = (className?.let { "$it " } ?: "") + "navbar-text")
     this.add(text)
     return text
 }
@@ -278,10 +254,10 @@ fun Navbar.navText(
  * The Bootstrap Navbar header button.
  */
 internal class NavbarButton(private val idc: String, private val toggle: String = "Toggle navigation") :
-    SimplePanel(setOf("navbar-toggler")) {
+    SimplePanel("navbar-toggler") {
 
     init {
-        span(classes = setOf("navbar-toggler-icon"))
+        span(className = "navbar-toggler-icon")
     }
 
     override fun render(): VNode {

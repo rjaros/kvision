@@ -35,7 +35,6 @@ import io.kvision.panel.Root
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.js.Promise
 
 /**
@@ -65,16 +64,16 @@ enum class NavAnimation(override val attributeValue: String) : DomAttribute {
  * @param animation an animation type.
  * @param swipeable an iOS swipe to pop feature
  * @param forceSwipeable force iOS swipe on Android platform
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Navigator(
     animation: NavAnimation? = null,
     swipeable: Boolean? = null,
     forceSwipeable: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Navigator.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * An animation type.
@@ -173,8 +172,10 @@ open class Navigator(
             this.dispatchEvent("onsPostpush", obj { detail = e })
         }
         this.getElementJQuery()?.on("postpop") { e, _ ->
-            (children.last() as? Page)?.dispatchDestroyEvent()
-            children.removeAt(children.size - 1).clearParent()
+            if (children != null) {
+                (children!!.last() as? Page)?.dispatchDestroyEvent()
+                children!!.removeAt(children!!.size - 1).clearParent()
+            }
             refreshPageStack()
             this.dispatchEvent("onsPostpop", obj { detail = e })
         }
@@ -209,7 +210,7 @@ open class Navigator(
      */
     @Suppress("UnsafeCastFromDynamic")
     open fun popPage(options: dynamic = undefined): Promise<Unit>? {
-        return if (children.size > 1) {
+        return if (children != null && children!!.size > 1) {
             getElement()?.asDynamic()?.popPage(options)
         } else {
             null
@@ -235,9 +236,9 @@ open class Navigator(
         add(page)
         @Suppress("UnsafeCastFromDynamic")
         return getElement()?.asDynamic()?.replacePage(page, options).then {
-            if (children.size > 1) {
-                (children.elementAt(children.size - 2) as? Page)?.dispatchDestroyEvent()
-                children.removeAt(children.size - 2).clearParent()
+            if (children != null && children!!.size > 1) {
+                (children!!.elementAt(children!!.size - 2) as? Page)?.dispatchDestroyEvent()
+                children!!.removeAt(children!!.size - 2).clearParent()
             }
             refreshPageStack()
         }
@@ -261,8 +262,9 @@ open class Navigator(
      */
     @Suppress("UnsafeCastFromDynamic")
     open fun insertPage(index: Int, page: Page, options: dynamic = undefined): Promise<Unit>? {
-        return if (index >= 0 && index < children.size) {
-            children.add(index, page)
+        return if (index >= 0 && index < (children?.size ?: 0)) {
+            if (children == null) children = mutableListOf()
+            children!!.add(index, page)
             page.parent?.remove(page)
             page.parent = this
             refreshPageStack()
@@ -279,10 +281,10 @@ open class Navigator(
      */
     @Suppress("UnsafeCastFromDynamic")
     open fun removePage(index: Int, options: dynamic = undefined): Promise<Unit>? {
-        return if (index >= 0 && index < children.size && children.size > 1) {
+        return if (children != null && index >= 0 && index < children!!.size && children!!.size > 1) {
             getElement()?.asDynamic()?.removePage(index, options).then {
-                (children[index] as? Page)?.dispatchDestroyEvent()
-                children.removeAt(index).clearParent()
+                (children!![index] as? Page)?.dispatchDestroyEvent()
+                children!!.removeAt(index).clearParent()
                 refreshPageStack()
             }
         } else {
@@ -309,13 +311,15 @@ open class Navigator(
         page.display = null
         add(page)
         return getElement()?.asDynamic()?.resetToPage(page, options).then {
-            children.take(children.size - 1).forEach {
-                (it as? Page)?.dispatchDestroyEvent()
-                it.clearParent()
+            if (children != null) {
+                children!!.take(children!!.size - 1).forEach {
+                    (it as? Page)?.dispatchDestroyEvent()
+                    it.clearParent()
+                }
+                children!!.clear()
+                children!!.add(page)
+                refresh()
             }
-            children.clear()
-            children.add(page)
-            refresh()
         }
     }
 
@@ -326,9 +330,9 @@ open class Navigator(
      */
     @Suppress("UnsafeCastFromDynamic")
     open fun bringPageTop(index: Int, options: dynamic = undefined): Promise<Unit>? {
-        return if (index >= 0 && index < children.size) {
+        return if (children != null && index >= 0 && index < children!!.size) {
             getElement()?.asDynamic()?.bringPageTop(index, options).then {
-                val page = children.removeAt(index).clearParent()
+                val page = children!!.removeAt(index).clearParent()
                 (page as? Page)?.display = null
                 add(page)
             }
@@ -338,9 +342,9 @@ open class Navigator(
     }
 
     protected open fun refreshPageStack() {
-        if (children.isNotEmpty()) {
-            children.take(children.size - 1).forEach { (it as? Page)?.display = Display.NONE }
-            (children.lastOrNull() as? Page)?.display = null
+        if (!children.isNullOrEmpty()) {
+            children!!.take(children!!.size - 1).forEach { (it as? Page)?.display = Display.NONE }
+            (children!!.lastOrNull() as? Page)?.display = null
         }
     }
 
@@ -389,11 +393,10 @@ fun Root.navigator(
     animation: NavAnimation? = null,
     swipeable: Boolean? = null,
     forceSwipeable: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Navigator.() -> Unit)? = null
 ): Navigator {
-    val navigator = Navigator(animation, swipeable, forceSwipeable, classes ?: className.set, init)
+    val navigator = Navigator(animation, swipeable, forceSwipeable, className, init)
     this.add(navigator)
     return navigator
 }
@@ -407,11 +410,10 @@ fun SplitterContent.navigator(
     animation: NavAnimation? = null,
     swipeable: Boolean? = null,
     forceSwipeable: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Navigator.() -> Unit)? = null
 ): Navigator {
-    val navigator = Navigator(animation, swipeable, forceSwipeable, classes ?: className.set, init)
+    val navigator = Navigator(animation, swipeable, forceSwipeable, className, init)
     this.add(navigator)
     return navigator
 }
@@ -425,11 +427,10 @@ fun Tab.navigator(
     animation: NavAnimation? = null,
     swipeable: Boolean? = null,
     forceSwipeable: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Navigator.() -> Unit)? = null
 ): Navigator {
-    val navigator = Navigator(animation, swipeable, forceSwipeable, classes ?: className.set, init)
+    val navigator = Navigator(animation, swipeable, forceSwipeable, className, init)
     this.add(navigator)
     return navigator
 }

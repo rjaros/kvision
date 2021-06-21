@@ -35,16 +35,16 @@ import io.kvision.utils.set
  * @param content the content of the component.
  * @param rich whether [content] can contain HTML code
  * @param align text align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsListTitle(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsListTitle.() -> Unit)? = null
-) : CustomTag("ons-list-title", content, rich, align, classes) {
+) : CustomTag("ons-list-title", content, rich, align, className) {
 
     /**
      * A modifier attribute to specify custom styles.
@@ -73,11 +73,10 @@ fun Container.onsListTitle(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsListTitle.() -> Unit)? = null
 ): OnsListTitle {
-    val onsListTitle = OnsListTitle(content, rich, align, classes ?: className.set, init)
+    val onsListTitle = OnsListTitle(content, rich, align, className, init)
     this.add(onsListTitle)
     return onsListTitle
 }

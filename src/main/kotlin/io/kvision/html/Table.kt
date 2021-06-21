@@ -22,22 +22,19 @@
 package io.kvision.html
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Simple component rendered as *table*.
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Table(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Table.() -> Unit)? = null
 ) :
-    Tag(TAG.TABLE, null, false, null, classes) {
+    Tag(TAG.TABLE, null, false, null, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -51,23 +48,10 @@ open class Table(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.table(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Table.() -> Unit)? = null
 ): Table {
-    val table = Table(classes ?: className.set, init)
+    val table = Table(className, init)
     this.add(table)
     return table
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.table(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Table.(S) -> Unit)
-) = table(classes, className).bind(state, true, init)

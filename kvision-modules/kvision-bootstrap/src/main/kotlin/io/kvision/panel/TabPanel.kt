@@ -28,10 +28,7 @@ import io.kvision.core.Container
 import io.kvision.core.ResString
 import io.kvision.core.WidgetWrapper
 import io.kvision.routing.RoutingManager
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * Tab position.
@@ -64,7 +61,7 @@ enum class SideTabSize {
  * @param sideTabSize side tab size
  * @param scrollableTabs determines if tabs are scrollable (default: false)
  * @param draggableTabs determines if tabs are draggable (default: false)
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -73,14 +70,14 @@ open class TabPanel(
     private val sideTabSize: SideTabSize = SideTabSize.SIZE_3,
     val scrollableTabs: Boolean = false,
     val draggableTabs: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (TabPanel.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     private val navClasses = when (tabPosition) {
-        TabPosition.TOP -> if (scrollableTabs) setOf("nav", "nav-tabs", "tabs-top") else setOf("nav", "nav-tabs")
-        TabPosition.LEFT -> setOf("nav", "nav-tabs", "tabs-left", "flex-column")
-        TabPosition.RIGHT -> setOf("nav", "nav-tabs", "tabs-right", "flex-column")
+        TabPosition.TOP -> if (scrollableTabs) "nav nav-tabs tabs-top" else "nav nav-tabs"
+        TabPosition.LEFT -> "nav nav-tabs tabs-left flex-column"
+        TabPosition.RIGHT -> "nav nav-tabs tabs-right flex-column"
     }
 
     internal val tabs = mutableListOf<Tab>()
@@ -123,15 +120,15 @@ open class TabPanel(
                 this.addSurroundingCssClass("container-fluid")
                 this.addCssClass("row")
                 val sizes = calculateSideClasses()
-                this.addPrivate(WidgetWrapper(nav, setOf(sizes.first, "pl-0", "pr-0")))
-                this.addPrivate(WidgetWrapper(content, setOf(sizes.second, "pl-0", "pr-0")))
+                this.addPrivate(WidgetWrapper(nav, "${sizes.first} pl-0 pr-0"))
+                this.addPrivate(WidgetWrapper(content, "${sizes.second} pl-0 pr-0"))
             }
             TabPosition.RIGHT -> {
                 this.addSurroundingCssClass("container-fluid")
                 this.addCssClass("row")
                 val sizes = calculateSideClasses()
-                this.addPrivate(WidgetWrapper(content, setOf(sizes.second, "pl-0", "pr-0")))
-                this.addPrivate(WidgetWrapper(nav, setOf(sizes.first, "pl-0", "pr-0")))
+                this.addPrivate(WidgetWrapper(content, "${sizes.second} pl-0 pr-0"))
+                this.addPrivate(WidgetWrapper(nav, "${sizes.first} pl-0 pr-0"))
             }
         }
         init?.invoke(this)
@@ -370,33 +367,15 @@ fun Container.tabPanel(
     sideTabSize: SideTabSize = SideTabSize.SIZE_3,
     scrollableTabs: Boolean = false,
     draggableTabs: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (TabPanel.() -> Unit)? = null
 ): TabPanel {
-    val tabPanel = TabPanel(tabPosition, sideTabSize, scrollableTabs, draggableTabs, classes ?: className.set, init)
+    val tabPanel = TabPanel(tabPosition, sideTabSize, scrollableTabs, draggableTabs, className, init)
     this.add(tabPanel)
     return tabPanel
 }
 
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.tabPanel(
-    state: ObservableState<S>,
-    tabPosition: TabPosition = TabPosition.TOP,
-    sideTabSize: SideTabSize = SideTabSize.SIZE_3,
-    scrollableTabs: Boolean = false,
-    draggableTabs: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (TabPanel.(S) -> Unit)
-) = tabPanel(tabPosition, sideTabSize, scrollableTabs, draggableTabs, classes, className).bind(state, true, init)
-
-
-internal class TabPanelNav(internal val tabPanel: TabPanel, classes: Set<String>) : SimplePanel(classes) {
+internal class TabPanelNav(internal val tabPanel: TabPanel, className: String) : SimplePanel(className) {
 
     override fun render(): VNode {
         return render("ul", childrenVNodes())

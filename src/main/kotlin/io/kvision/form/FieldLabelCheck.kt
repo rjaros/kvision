@@ -31,14 +31,14 @@ import io.kvision.KVManager
  * @param forId the value of *for* attribute
  * @param content the text of the label
  * @param rich determines if [content] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 internal class FieldLabelCheck(
     forId: String, content: String? = null, rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (FieldLabelCheck.() -> Unit)? = null
-) : FieldLabel(forId, content, rich, classes) {
+) : FieldLabel(forId, content, rich, className) {
 
     init {
         @Suppress("LeakingThis")

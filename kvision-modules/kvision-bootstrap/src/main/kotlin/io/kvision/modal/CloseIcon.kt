@@ -30,7 +30,7 @@ import io.kvision.core.Widget
 /**
  * Helper class for close icon component.
  */
-open class CloseIcon : Widget(setOf()) {
+open class CloseIcon : Widget() {
 
     override fun render(): VNode {
         return render("button", arrayOf(KVManager.virtualize("<span aria-hidden='true'>&times;</span>")))

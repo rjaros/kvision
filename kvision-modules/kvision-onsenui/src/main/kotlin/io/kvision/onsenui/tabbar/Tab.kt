@@ -31,7 +31,6 @@ import io.kvision.onsenui.core.Navigator
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.createInstance
-import io.kvision.utils.set
 
 /**
  * A tab component.
@@ -42,7 +41,7 @@ import io.kvision.utils.set
  * @param activeIcon the name of the icon when the tab is active
  * @param badge display a notification badge on top of the tab
  * @param active whether this tab is active on start
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Tab(
@@ -51,9 +50,9 @@ open class Tab(
     activeIcon: String? = null,
     badge: String? = null,
     active: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Tab.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      *  The label of the tab item.
@@ -153,11 +152,10 @@ fun Tabbar.tab(
     activeIcon: String? = null,
     badge: String? = null,
     active: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Tab.() -> Unit)? = null
 ): Tab {
-    val tab = Tab(label, icon, activeIcon, badge, active, classes ?: className.set, init)
+    val tab = Tab(label, icon, activeIcon, badge, active, className, init)
     this.add(tab)
     return tab
 }

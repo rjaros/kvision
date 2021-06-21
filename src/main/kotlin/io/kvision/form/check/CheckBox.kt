@@ -33,8 +33,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.html.span
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import org.w3c.dom.events.MouseEvent
 
@@ -63,7 +61,7 @@ open class CheckBox(
     value: Boolean = false, name: String? = null, label: String? = null,
     rich: Boolean = false,
     init: (CheckBox.() -> Unit)? = null
-) : SimplePanel(setOf("form-check", "abc-checkbox")), BoolFormControl, MutableState<Boolean> {
+) : SimplePanel("form-check abc-checkbox"), BoolFormControl, MutableState<Boolean> {
 
     /**
      * The selection state of the checkbox.
@@ -120,11 +118,11 @@ open class CheckBox(
     var inline by refreshOnUpdate(false)
 
     private val idc = "kv_form_checkbox_$counter"
-    final override val input: CheckBoxInput = CheckBoxInput(value, classes = setOf("form-check-input")).apply {
+    final override val input: CheckBoxInput = CheckBoxInput(value, className = "form-check-input").apply {
         this.id = this@CheckBox.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, classes = setOf("form-check-label")) {
+    final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, className = "form-check-label") {
         span()
     }
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
@@ -232,14 +230,3 @@ fun Container.checkBox(
     this.add(checkBox)
     return checkBox
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.checkBox(
-    state: ObservableState<S>,
-    value: Boolean = false, name: String? = null, label: String? = null,
-    rich: Boolean = false, init: (CheckBox.(S) -> Unit)
-) = checkBox(value, name, label, rich).bind(state, true, init)

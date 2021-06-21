@@ -28,9 +28,6 @@ import io.kvision.core.Container
 import io.kvision.core.CssClass
 import io.kvision.i18n.I18n
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import org.w3c.dom.Element
 
 /**
@@ -176,16 +173,16 @@ enum class Align(override val className: String) : CssClass {
  * @param content content text of the tag
  * @param rich determines if [content] can contain HTML code
  * @param align content align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param attributes a map of additional attributes
  * @param init an initializer extension function
  */
 @TagMarker
 open class Tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-    classes: Set<String> = setOf(), attributes: Map<String, String>? = null,
+    className: String? = null, attributes: Map<String, String>? = null,
     init: (Tag.() -> Unit)? = null
-) : SimplePanel(classes), Template {
+) : SimplePanel(className), Template {
 
     /**
      * Tag type.
@@ -277,26 +274,11 @@ open class Tag(
  */
 fun Container.tag(
     type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     attributes: Map<String, String>? = null,
     init: (Tag.() -> Unit)? = null
 ): Tag {
-    val tag = Tag(type, content, rich, align, classes ?: className.set, attributes, init)
+    val tag = Tag(type, content, rich, align, className, attributes, init)
     this.add(tag)
     return tag
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.tag(
-    state: ObservableState<S>,
-    type: TAG, content: String? = null, rich: Boolean = false, align: Align? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    attributes: Map<String, String>? = null,
-    init: (Tag.(S) -> Unit)
-) = tag(type, content, rich, align, classes, className, attributes).bind(state, true, init)

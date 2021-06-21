@@ -30,10 +30,7 @@ import io.kvision.form.FormPanel.Companion.create
 import io.kvision.html.Div
 import io.kvision.panel.FieldsetPanel
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.types.KFile
-import io.kvision.utils.set
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
 import org.w3c.dom.HTMLFormElement
@@ -119,9 +116,9 @@ enum class FormTarget(override val attributeValue: String) : DomAttribute {
 open class FormPanel<K : Any>(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     private val type: FormType? = null, condensed: Boolean = false,
-    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
+    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, className: String? = null,
     serializer: KSerializer<K>? = null, customSerializers: Map<KClass<*>, KSerializer<*>>? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * HTTP method.
@@ -205,7 +202,7 @@ open class FormPanel<K : Any>(
      * @suppress
      * Internal property.
      */
-    protected val validationAlert = Div(classes = setOf("alert", "alert-danger")).apply {
+    protected val validationAlert = Div(className = "alert alert-danger").apply {
         role = "alert"
         visible = false
     }
@@ -673,7 +670,7 @@ open class FormPanel<K : Any>(
         inline fun <reified K : Any> create(
             method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
             type: FormType? = null, condensed: Boolean = false,
-            horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, classes: Set<String> = setOf(),
+            horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2, className: String? = null,
             customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
             noinline init: (FormPanel<K>.() -> Unit)? = null
         ): FormPanel<K> {
@@ -685,7 +682,7 @@ open class FormPanel<K : Any>(
                     type,
                     condensed,
                     horizRatio,
-                    classes,
+                    className,
                     serializer<K>(),
                     customSerializers
                 )
@@ -705,7 +702,7 @@ inline fun <reified K : Any> Container.formPanel(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
-    classes: Set<String>? = null, className: String? = null,
+    className: String? = null,
     customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
     noinline init: (FormPanel<K>.() -> Unit)? = null
 ): FormPanel<K> {
@@ -717,38 +714,13 @@ inline fun <reified K : Any> Container.formPanel(
             type,
             condensed,
             horizRatio,
-            classes ?: className.set,
+            className,
             customSerializers
         )
     init?.invoke(formPanel)
     this.add(formPanel)
     return formPanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-inline fun <reified K : Any, S> Container.formPanel(
-    state: ObservableState<S>,
-    method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-    type: FormType? = null, condensed: Boolean = false,
-    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
-    classes: Set<String>? = null, className: String? = null,
-    customSerializers: Map<KClass<*>, KSerializer<*>>? = null,
-    noinline init: (FormPanel<K>.(S) -> Unit)
-) = formPanel<K>(
-    method,
-    action,
-    enctype,
-    type,
-    condensed,
-    horizRatio,
-    classes,
-    className,
-    customSerializers
-).bind(state, true, init)
 
 /**
  * DSL builder extension function.
@@ -759,7 +731,7 @@ fun Container.form(
     method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
     type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
-    classes: Set<String>? = null, className: String? = null,
+    className: String? = null,
     init: (FormPanel<Any>.() -> Unit)? = null
 ): FormPanel<Any> {
     val formPanel =
@@ -770,32 +742,9 @@ fun Container.form(
             type,
             condensed,
             horizRatio,
-            classes ?: className.set
+            className
         )
     init?.invoke(formPanel)
     this.add(formPanel)
     return formPanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * Simplified version of formPanel container without data model support.
- */
-fun <S> Container.form(
-    state: ObservableState<S>,
-    method: FormMethod? = null, action: String? = null, enctype: FormEnctype? = null,
-    type: FormType? = null, condensed: Boolean = false,
-    horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
-    classes: Set<String>? = null, className: String? = null,
-    init: (FormPanel<Any>.(S) -> Unit)
-) = form(
-    method,
-    action,
-    enctype,
-    type,
-    condensed,
-    horizRatio,
-    classes,
-    className
-).bind(state, true, init)
