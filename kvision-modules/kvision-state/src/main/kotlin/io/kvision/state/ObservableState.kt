@@ -19,29 +19,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision.state
 
 /**
- * An interface for observable state.
+ *  Returns a sub-store of the original ObservableState
+ *  @param extractor an extractor function
  */
-interface ObservableState<S> {
-    /**
-     * Get current state.
-     */
-    fun getState(): S
-
-    /**
-     * Subscribe for the state change notifications. Calls the observer with the current state.
-     */
-    fun subscribe(observer: (S) -> Unit): () -> Unit
-}
-
-/**
- * An interface for mutable observable state.
- */
-interface MutableState<S> : ObservableState<S> {
-    /**
-     * Set current state.
-     */
-    fun setState(state: S)
+fun <S, T> ObservableState<S>.sub(extractor: (S) -> T): ObservableState<T> {
+    val observableValue = ObservableValue(extractor(this.getState()))
+    this.subscribe { s ->
+        val newValue = extractor(s)
+        if (observableValue.value != newValue) {
+            observableValue.value = newValue
+        }
+    }
+    return observableValue
 }

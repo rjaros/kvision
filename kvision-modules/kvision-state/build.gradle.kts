@@ -6,15 +6,16 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val diffVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    api(project(":kvision-modules:kvision-state"))
+    implementation("io.github.petertrr:kotlin-multiplatform-diff-js:$diffVersion")
     testImplementation(kotlin("test-js"))
-    testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

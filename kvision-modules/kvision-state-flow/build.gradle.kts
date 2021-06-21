@@ -15,6 +15,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
+    api(project(":kvision-modules:kvision-state"))
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     testImplementation(kotlin("test-js"))
 }

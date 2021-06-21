@@ -39,7 +39,11 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
     protected var privateChildren: MutableList<Component>? = null
     protected var children: MutableList<Component>? = null
 
-    internal var archivedState: dynamic = null
+    /**
+     * @suppress
+     * Internal variable
+     */
+    var _archivedState: dynamic = null
 
     init {
         @Suppress("LeakingThis")

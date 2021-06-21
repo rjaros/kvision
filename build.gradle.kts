@@ -22,7 +22,6 @@ val kotlinVersion: String by System.getProperties()
 val serializationVersion: String by project
 val coroutinesVersion: String by project
 val snabbdomKotlinVersion: String by project
-val diffVersion: String by project
 
 // Custom Properties
 val webDir = file("src/main/web")
@@ -35,7 +34,6 @@ dependencies {
     api(project(":kvision-modules:kvision-common-types"))
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
     api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
-    implementation("io.github.petertrr:kotlin-multiplatform-diff-js:$diffVersion")
 //  Empty NPM placeholders
     implementation(npm("kvision-kvision-bootstrap-js-legacy", "npm:kvision-bootstrap@^0.0.1"))
     implementation(npm("kvision-kvision-bootstrap-css-js-legacy", "npm:kvision-bootstrap-css@^0.0.1"))
@@ -117,7 +115,6 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-cordova/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-datacontainer/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-electron/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-event-flow/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-fontawesome/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-handlebars/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-i18n/src/main/kotlin"))
@@ -132,6 +129,8 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-routing-navigo/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-routing-navigo-ng/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-server-ktor/src/jsMain/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-state/src/main/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-state-flow/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tabulator/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tabulator-remote/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-testutils/src/main/kotlin"))

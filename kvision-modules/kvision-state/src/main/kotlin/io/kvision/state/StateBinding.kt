@@ -81,10 +81,10 @@ fun <S, W : SimplePanel> W.bindEach(
         }
     }
 
-    this.archivedState = null
+    this._archivedState = null
     val unsubscribe = observableState.subscribe {
         this.singleRender {
-            val previousState = archivedState?.unsafeCast<List<S>>() ?: emptyList()
+            val previousState = _archivedState?.unsafeCast<List<S>>() ?: emptyList()
             val patch = diff(previousState, it, equalizer)
             val deltas = patch.deltas
             val iterator = deltas.listIterator(deltas.size)
@@ -120,11 +120,11 @@ fun <S, W : SimplePanel> W.bindEach(
                     }
                 }
             }
-            archivedState = it.toList()
+            _archivedState = it.toList()
         }
     }
     this.addBeforeDisposeHook {
-        this.archivedState = null
+        this._archivedState = null
         unsubscribe()
     }
     return this
