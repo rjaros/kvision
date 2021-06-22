@@ -21,11 +21,6 @@
  */
 package io.kvision.tabulator
 
-import kotlinx.browser.window
-import kotlinx.serialization.encodeToString
-import org.w3c.dom.get
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
 import io.kvision.core.Container
 import io.kvision.remote.CallAgent
 import io.kvision.remote.HttpMethod
@@ -36,9 +31,10 @@ import io.kvision.remote.RemoteFilter
 import io.kvision.remote.RemoteSorter
 import io.kvision.table.TableType
 import io.kvision.utils.JSON
-import io.kvision.utils.set
+import kotlinx.browser.window
+import kotlinx.serialization.encodeToString
+import org.w3c.dom.get
 import kotlin.reflect.KClass
-import kotlin.reflect.KFunction
 
 /**
  * Tabulator component connected to the multiplatform service.
@@ -71,9 +67,6 @@ open class TabulatorRemote<T : Any, E : Any>(
 
         val callAgent = CallAgent()
 
-        @Suppress("UnsafeCastFromDynamic")
-        val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = options.ajaxConfig?.beforeSend
-        if (beforeSend != null) options.ajaxConfig.beforeSend = undefined
         options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params ->
             @Suppress("UnsafeCastFromDynamic")
@@ -99,7 +92,7 @@ open class TabulatorRemote<T : Any, E : Any>(
 
             @Suppress("UnsafeCastFromDynamic")
             val data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
-            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name), beforeSend = beforeSend)
+            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name))
                 .then { r: dynamic ->
                     val result = kotlin.js.JSON.parse<dynamic>(r.result.unsafeCast<String>())
                     @Suppress("UnsafeCastFromDynamic")

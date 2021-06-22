@@ -26,7 +26,6 @@ kotlin {
         }
         val jsMain by getting {
             dependencies {
-                implementation("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
             }
         }
         val jsTest by getting {

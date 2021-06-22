@@ -24,8 +24,6 @@ package io.kvision.form.select
 import io.kvision.core.Container
 import io.kvision.core.getElementJQuery
 import io.kvision.core.getElementJQueryD
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
 import io.kvision.remote.CallAgent
 import io.kvision.remote.HttpMethod
 import io.kvision.remote.JsonRpcRequest
@@ -77,12 +75,10 @@ open class SelectRemoteInput<T : Any>(
     private val url: String
     private val labelsCache = mutableMapOf<String, String>()
     private var initRun = false
-    private var beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> dynamic)?
 
     init {
         val (_url, method) = serviceManager.requireCall(function)
         this.url = _url
-        this.beforeSend = ajaxOptions?.beforeSend
         if (!preload) {
             val data = obj {
                 q = "{{{q}}}"
@@ -109,7 +105,7 @@ open class SelectRemoteInput<T : Any>(
                 },
                 data = data,
                 beforeSend = { xhr, b ->
-                    beforeSend?.invoke(xhr, b)
+                    ajaxOptions?.beforeSend?.invoke(xhr, b)
                     @Suppress("UnsafeCastFromDynamic")
                     val q = kotlin.js.JSON.stringify(decodeURIComponent(b.asDynamic().data.substring(2)))
                     val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
@@ -138,8 +134,7 @@ open class SelectRemoteInput<T : Any>(
                 val values = callAgent.remoteCall(
                     url,
                     JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, null, state))),
-                    HttpMethod.POST,
-                    beforeSend = beforeSend
+                    HttpMethod.POST
                 ).await()
                 JSON.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), values.result as String)
                     .forEach {
@@ -182,8 +177,7 @@ open class SelectRemoteInput<T : Any>(
                         val initials = callAgent.remoteCall(
                             url,
                             JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, svalue, state))),
-                            HttpMethod.POST,
-                            beforeSend = beforeSend
+                            HttpMethod.POST
                         ).await()
                         JSON.plain.decodeFromString(
                             ListSerializer(RemoteOption.serializer()),

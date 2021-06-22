@@ -25,13 +25,11 @@ import io.kvision.core.Container
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.utils.JSON
-import io.kvision.utils.set
 import kotlinx.browser.window
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
-import kotlin.reflect.KFunction
 
 /**
  * The Typeahead control connected to the multiplatform service.

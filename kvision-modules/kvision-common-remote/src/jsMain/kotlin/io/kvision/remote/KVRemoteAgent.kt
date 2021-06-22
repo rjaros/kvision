@@ -35,10 +35,8 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.serializer
 import org.w3c.dom.get
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
+import org.w3c.fetch.RequestInit
 import kotlin.reflect.KClass
-import kotlin.reflect.KFunction
 
 /**
  * Client side agent for JSON-RPC remote calls.
@@ -47,7 +45,7 @@ import kotlin.reflect.KFunction
 @OptIn(ExperimentalCoroutinesApi::class, InternalSerializationApi::class)
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
-    val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
+    val beforeSend: (() -> RequestInit)? = null
 ) : RemoteAgent() {
 
     val callAgent = CallAgent()

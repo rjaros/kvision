@@ -24,9 +24,10 @@ package io.kvision.remote
 import kotlinx.browser.window
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
-import io.kvision.jquery.jQuery
+import org.w3c.dom.url.URLSearchParams
+import org.w3c.fetch.INCLUDE
+import org.w3c.fetch.RequestCredentials
+import org.w3c.fetch.RequestInit
 import kotlin.js.Promise
 import kotlin.js.JSON as NativeJSON
 
@@ -34,6 +35,15 @@ import kotlin.js.JSON as NativeJSON
  * HTTP status unauthorized (401).
  */
 const val HTTP_UNAUTHORIZED = 401
+
+/**
+ * HTTP response body types.
+ */
+enum class ResponseBodyType {
+    JSON,
+    TEXT,
+    READABLE_STREAM
+}
 
 /**
  * An agent responsible for remote calls.
@@ -56,21 +66,25 @@ open class CallAgent {
         url: String,
         data: List<String?> = listOf(),
         method: HttpMethod = HttpMethod.POST,
-        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
+        beforeSend: (() -> RequestInit)? = null
     ): Promise<String> {
+        val requestInit = beforeSend?.invoke() ?: RequestInit()
+        requestInit.method = method.name
+        requestInit.credentials = RequestCredentials.INCLUDE
         val jsonRpcRequest = JsonRpcRequest(counter++, url, data)
-        val jsonData = if (method == HttpMethod.GET) {
-            obj { id = jsonRpcRequest.id }
+        val urlAddr = urlPrefix + url.drop(1)
+        val fetchUrl = if (method == HttpMethod.GET) {
+            urlAddr + "?" + URLSearchParams(obj { id = jsonRpcRequest.id }).toString()
         } else {
-            JSON.plain.encodeToString(jsonRpcRequest)
+            requestInit.body = JSON.plain.encodeToString(jsonRpcRequest)
+            urlAddr
         }
+        requestInit.headers = js("{}")
+        requestInit.headers["Content-Type"] = "application/json"
         return Promise { resolve, reject ->
-            jQuery.ajax(urlPrefix + url.drop(1), obj {
-                this.contentType = "application/json"
-                this.data = jsonData
-                this.method = method.name
-                this.success =
-                    { data: dynamic, _: Any, _: Any ->
+            window.fetch(fetchUrl, requestInit).then { response ->
+                if (response.ok) {
+                    response.json().then { data: dynamic ->
                         when {
                             data.id != jsonRpcRequest.id -> reject(Exception("Invalid response ID"))
                             data.error != null -> {
@@ -84,26 +98,16 @@ open class CallAgent {
                             else -> reject(Exception("Invalid response"))
                         }
                     }
-                this.error =
-                    { xhr: JQueryXHR, _: String, errorText: String ->
-                        val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
-                            NativeJSON.stringify(xhr.responseJSON)
-                        } else if (xhr.responseText != undefined) {
-                            xhr.responseText
-                        } else {
-                            errorText
-                        }
-                        if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
-                            reject(SecurityException(message))
-                        } else {
-                            reject(Exception(message))
-                        }
+                } else {
+                    if (response.status.toInt() == HTTP_UNAUTHORIZED) {
+                        reject(SecurityException(response.statusText))
+                    } else {
+                        reject(Exception(response.statusText))
                     }
-                this.xhrFields = obj {
-                    this.withCredentials = true
                 }
-                this.beforeSend = beforeSend
-            })
+            }.catch {
+                reject(Exception(it.message))
+            }
         }
     }
 
@@ -122,38 +126,43 @@ open class CallAgent {
         data: dynamic = null,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
+        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
+        beforeSend: (() -> RequestInit)? = null
     ): Promise<dynamic> {
+        val requestInit = beforeSend?.invoke() ?: RequestInit()
+        requestInit.method = method.name
+        requestInit.credentials = RequestCredentials.INCLUDE
+        val urlAddr = urlPrefix + url.drop(1)
+        val fetchUrl = if (method == HttpMethod.GET) {
+            urlAddr + "?" + URLSearchParams(data).toString()
+        } else {
+            requestInit.body = when (contentType) {
+                "application/json" -> if (data is String) data else NativeJSON.stringify(data)
+                "application/x-www-form-urlencoded" -> URLSearchParams(data).toString()
+                else -> data
+            }
+            urlAddr
+        }
+        requestInit.headers = js("{}")
+        requestInit.headers["Content-Type"] = contentType
         return Promise { resolve, reject ->
-            jQuery.ajax(urlPrefix + url.drop(1), obj {
-                this.contentType = if (contentType != "multipart/form-data") contentType else false
-                this.data = data
-                this.method = method.name
-                this.processData = if (contentType != "multipart/form-data") undefined else false
-                this.success =
-                    { data: dynamic, _: Any, _: Any ->
-                        resolve(data)
+            window.fetch(fetchUrl, requestInit).then { response ->
+                if (response.ok) {
+                    when (responseBodyType) {
+                        ResponseBodyType.JSON -> response.json().then { resolve(it) }
+                        ResponseBodyType.TEXT -> response.text().then { resolve(it) }
+                        ResponseBodyType.READABLE_STREAM -> resolve(response.body)
                     }
-                this.error =
-                    { xhr: JQueryXHR, _: String, errorText: String ->
-                        val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
-                            NativeJSON.stringify(xhr.responseJSON)
-                        } else if (xhr.responseText != undefined) {
-                            xhr.responseText
-                        } else {
-                            errorText
-                        }
-                        if (xhr.status.toInt() == HTTP_UNAUTHORIZED) {
-                            reject(SecurityException(message))
-                        } else {
-                            reject(Exception(message))
-                        }
+                } else {
+                    if (response.status.toInt() == HTTP_UNAUTHORIZED) {
+                        reject(SecurityException(response.statusText))
+                    } else {
+                        reject(Exception(response.statusText))
                     }
-                this.beforeSend = beforeSend
-                this.xhrFields = obj {
-                    this.withCredentials = true
                 }
-            })
+            }.catch {
+                reject(Exception(it.message))
+            }
         }
     }
 }
