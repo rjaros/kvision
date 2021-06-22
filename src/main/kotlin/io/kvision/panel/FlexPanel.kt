@@ -21,6 +21,7 @@
  */
 package io.kvision.panel
 
+import io.kvision.KVManager
 import io.kvision.core.*
 import io.kvision.utils.px
 
@@ -46,7 +47,7 @@ open class FlexPanel(
     alignItems: AlignItems? = null,
     alignContent: AlignContent? = null,
     spacing: Int? = null,
-    private val useWrappers: Boolean = false,
+    private val useWrappers: Boolean = KVManager.panelsCompatibilityMode,
     className: String? = null,
     init: (FlexPanel.() -> Unit)? = null
 ) : SimplePanel(className) {
@@ -241,7 +242,7 @@ fun Container.flexPanel(
     direction: FlexDirection? = null, wrap: FlexWrap? = null, justify: JustifyContent? = null,
     alignItems: AlignItems? = null, alignContent: AlignContent? = null,
     spacing: Int? = null,
-    useWrappers: Boolean = false,
+    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
     className: String? = null,
     init: (FlexPanel.() -> Unit)? = null
 ): FlexPanel {

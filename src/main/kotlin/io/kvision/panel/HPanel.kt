@@ -21,6 +21,7 @@
  */
 package io.kvision.panel
 
+import io.kvision.KVManager
 import io.kvision.core.AlignItems
 import io.kvision.core.Container
 import io.kvision.core.JustifyContent
@@ -44,7 +45,7 @@ open class HPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    useWrappers: Boolean = false,
+    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
     className: String? = null,
     init: (HPanel.() -> Unit)? = null
 ) : FlexPanel(null, wrap, justify, alignItems, null, spacing, useWrappers, className) {
@@ -64,7 +65,7 @@ fun Container.hPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    useWrappers: Boolean = false,
+    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
     className: String? = null,
     init: (HPanel.() -> Unit)? = null
 ): HPanel {

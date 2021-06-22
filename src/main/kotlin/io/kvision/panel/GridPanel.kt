@@ -21,6 +21,7 @@
  */
 package io.kvision.panel
 
+import io.kvision.KVManager
 import io.kvision.core.*
 
 /**
@@ -49,7 +50,7 @@ open class GridPanel(
     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
-    alignContent: AlignContent? = null, private val useWrappers: Boolean = false,
+    alignContent: AlignContent? = null, private val useWrappers: Boolean = KVManager.panelsCompatibilityMode,
     className: String? = null, init: (GridPanel.() -> Unit)? = null
 ) : SimplePanel(className) {
 
@@ -230,7 +231,7 @@ fun Container.gridPanel(
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
     alignContent: AlignContent? = null,
-    useWrappers: Boolean = false,
+    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
     className: String? = null,
     init: (GridPanel.() -> Unit)? = null
 ): GridPanel {
