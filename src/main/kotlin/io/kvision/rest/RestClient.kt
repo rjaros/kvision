@@ -29,12 +29,14 @@ import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
-import org.w3c.dom.url.URL
 import org.w3c.dom.url.URLSearchParams
 import org.w3c.fetch.RequestInit
 import kotlin.js.Date
 import kotlin.js.Promise
 
+/**
+ * HTTP methods.
+ */
 enum class HttpMethod {
     GET,
     POST,
@@ -44,6 +46,9 @@ enum class HttpMethod {
     HEAD
 }
 
+/**
+ * HTTP response body types.
+ */
 enum class ResponseBodyType {
     JSON,
     TEXT,
@@ -445,14 +450,16 @@ open class RestClient(
         val requestInit = beforeSend?.invoke() ?: RequestInit()
         requestInit.method = method.name
         if (method != HttpMethod.GET && method != HttpMethod.HEAD) {
-            requestInit.body = if (contentType == "application/json") JSON.stringify(data) else data
+            requestInit.body = when (contentType) {
+                "application/json" -> JSON.stringify(data)
+                "application/x-www-form-urlencoded" -> URLSearchParams(data).toString()
+                else -> data
+            }
         }
         val fetchUrl = if (method == HttpMethod.GET && data != null) {
-            val uri = URL(url)
-            uri.search = "?" + URLSearchParams(data).toString()
-            uri
+            url + "?" + URLSearchParams(data).toString()
         } else {
-            URL(url)
+            url
         }
         requestInit.headers = js("{}")
         requestInit.headers["Content-Type"] = contentType
