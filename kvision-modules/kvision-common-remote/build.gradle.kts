@@ -10,7 +10,6 @@ plugins {
 // Versions
 val serializationVersion: String by project
 val coroutinesVersion: String by project
-val jqueryKotlinVersion: String by project
 val testNgVersion: String by project
 val hamcrestVersion: String by project
 
