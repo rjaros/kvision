@@ -27,7 +27,6 @@ import io.kvision.KVManagerOnsenui.ons
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.CssSize
 import io.kvision.core.DomAttribute
-import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.asString
@@ -195,21 +194,21 @@ open class SplitterSide(
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
-        this.getElementJQuery()?.on("preopen") { e, _ ->
+        this.getElement()?.addEventListener("preopen", { e ->
             this.dispatchEvent("onsPreopen", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("preclose") { e, _ ->
+        })
+        this.getElement()?.addEventListener("preclose", { e ->
             this.dispatchEvent("onsPreclose", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("postopen") { e, _ ->
+        })
+        this.getElement()?.addEventListener("postopen", { e ->
             this.dispatchEvent("onsPostopen", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("postclose") { e, _ ->
+        })
+        this.getElement()?.addEventListener("postclose", { e ->
             this.dispatchEvent("onsPostclose", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("modechange") { e, _ ->
+        })
+        this.getElement()?.addEventListener("modechange", { e ->
             this.dispatchEvent("onsModechange", obj { detail = e })
-        }
+        })
     }
 
     /**

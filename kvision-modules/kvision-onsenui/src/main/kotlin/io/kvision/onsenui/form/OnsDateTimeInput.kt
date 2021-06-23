@@ -27,8 +27,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.core.getElementJQuery
-import io.kvision.core.getElementJQueryD
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
@@ -231,8 +229,8 @@ open class OnsDateTimeInput(
      */
     protected open fun refreshState() {
         value?.let {
-            getElementJQuery()?.`val`(it.toStringF(mode.format))
-        } ?: getElementJQueryD()?.`val`(null)
+            getElementD()?.value = it.toStringF(mode.format)
+        } ?: run { getElementD()?.value = null }
     }
 
     /**
@@ -240,7 +238,7 @@ open class OnsDateTimeInput(
      * Internal function
      */
     protected open fun changeValue() {
-        val v = getElementJQuery()?.`val`() as String?
+        val v = getElementD()?.value?.unsafeCast<String>()
         if (v != null && v != "") {
             this.value = v.toDateF(mode.format)
         } else {

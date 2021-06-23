@@ -27,10 +27,11 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.DomAttribute
 import io.kvision.core.StringPair
 import io.kvision.core.Widget
-import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
+import org.w3c.dom.NodeList
+import org.w3c.dom.get
 import kotlin.js.Promise
 
 /**
@@ -153,7 +154,7 @@ open class Tabbar(
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
-        this.getElementJQuery()?.on("prechange") { e, _ ->
+        this.getElement()?.addEventListener("prechange", { e ->
             this.dispatchEvent("onsPrechange", obj { detail = e })
             if (tabbarStyleCallback != null) {
                 val widget = Widget()
@@ -165,17 +166,18 @@ open class Tabbar(
                     stylesList.add(key.unsafeCast<String>() to styles[key])
                 }
                 val style = stylesList.joinToString(";") { (key, value) -> "$key: $value" }
-                getElementJQuery()?.find(".tabbar")?.attr("style", style)
+                val element = getElementD()?.querySelectorAll(".tabbar")?.unsafeCast<NodeList>()?.get(0)?.asDynamic()
+                element?.setAttribute("style", style)
             }
             e.stopPropagation()
-        }
-        this.getElementJQuery()?.on("postchange") { e, _ ->
+        })
+        this.getElement()?.addEventListener("postchange", { e ->
             this.dispatchEvent("onsPostchange", obj { detail = e })
             e.stopPropagation()
-        }
-        this.getElementJQuery()?.on("reactive") { e, _ ->
+        })
+        this.getElement()?.addEventListener("reactive", { e ->
             this.dispatchEvent("onsReactive", obj { detail = e })
-        }
+        })
         if (tabbarStyleCallback != null) {
             val activeIndex = if (getActiveTabIndex().toInt() >= 0) {
                 getActiveTabIndex().toInt()
@@ -196,7 +198,8 @@ open class Tabbar(
                 stylesList.add(key.unsafeCast<String>() to styles[key])
             }
             val style = stylesList.joinToString(";") { (key, value) -> "$key: $value" }
-            getElementJQuery()?.find(".tabbar")?.attr("style", style)
+            val element = getElementD()?.querySelectorAll(".tabbar")?.unsafeCast<NodeList>()?.get(0)?.asDynamic()
+            element?.setAttribute("style", style)
         }
     }
 

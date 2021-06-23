@@ -148,16 +148,15 @@ open class SimpleSelectInput(
                     getElementD().value
                 }
                 @Suppress("UnsafeCastFromDynamic")
-                self.value = v?.let {
-                    calculateValue(it)
-                }
+                self.value = calculateValue(v)
             }
         }
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
-    protected open fun calculateValue(v: Any): String? {
+    protected open fun calculateValue(v: Any?): String? {
+        if (v == null) return null
         return if (this.multiple) {
             val arr = v.unsafeCast<Array<String>>()
             if (arr.isNotEmpty()) {

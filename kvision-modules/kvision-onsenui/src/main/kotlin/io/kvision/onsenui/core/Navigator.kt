@@ -27,7 +27,6 @@ import io.kvision.KVManagerOnsenui.ons
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Display
 import io.kvision.core.DomAttribute
-import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.BackButtonEvent
 import io.kvision.onsenui.splitter.SplitterContent
 import io.kvision.onsenui.tabbar.Tab
@@ -162,23 +161,23 @@ open class Navigator(
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
-        this.getElementJQuery()?.on("prepush") { e, _ ->
+        this.getElement()?.addEventListener("prepush", { e ->
             this.dispatchEvent("onsPrepush", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("prepop") { e, _ ->
+        })
+        this.getElement()?.addEventListener("prepop", { e ->
             this.dispatchEvent("onsPrepop", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("postpush") { e, _ ->
+        })
+        this.getElement()?.addEventListener("postpush", { e ->
             this.dispatchEvent("onsPostpush", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("postpop") { e, _ ->
+        })
+        this.getElement()?.addEventListener("postpop", { e ->
             if (children != null) {
                 (children!!.last() as? Page)?.dispatchDestroyEvent()
                 children!!.removeAt(children!!.size - 1).clearParent()
             }
             refreshPageStack()
             this.dispatchEvent("onsPostpop", obj { detail = e })
-        }
+        })
     }
 
     /**

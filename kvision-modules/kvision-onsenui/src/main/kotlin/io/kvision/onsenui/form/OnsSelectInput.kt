@@ -26,10 +26,12 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.StringPair
-import io.kvision.core.getElementJQuery
-import io.kvision.core.getElementJQueryD
 import io.kvision.form.select.SimpleSelectInput
 import kotlinx.browser.window
+import org.w3c.dom.HTMLCollection
+import org.w3c.dom.NodeList
+import org.w3c.dom.asList
+import org.w3c.dom.get
 
 /**
  * OnsenUI select input component.
@@ -76,8 +78,14 @@ open class OnsSelectInput(
         init?.invoke(this)
     }
 
-    override fun calculateValue(v: Any): String? {
-        val vInt = getElementJQuery()?.find("select")?.`val`()
+    override fun calculateValue(v: Any?): String? {
+        val element = getElementD()?.querySelectorAll("select")?.unsafeCast<NodeList>()?.get(0)?.asDynamic()
+        val vInt: Any? = if (multiple) {
+            element?.selectedOptions?.unsafeCast<HTMLCollection>()?.asList()?.map { it.asDynamic().value }
+                ?.toTypedArray()
+        } else {
+            element.value
+        }
         return vInt?.let { super.calculateValue(it) }
     }
 
@@ -96,7 +104,7 @@ open class OnsSelectInput(
     }
 
     override fun afterInsert(node: VNode) {
-        if ((getElementJQuery()?.find("select")?.length?.toInt() ?: 0) > 0) {
+        if ((getElementD()?.querySelectorAll("select")?.unsafeCast<NodeList>()?.length ?: 0) > 0) {
             refreshState()
         } else {
             window.setTimeout({
@@ -106,14 +114,19 @@ open class OnsSelectInput(
     }
 
     override fun refreshState() {
-        if ((getElementJQuery()?.find("select")?.length?.toInt() ?: 0) > 0) {
+        val element = getElementD()?.querySelectorAll("select")?.unsafeCast<NodeList>()?.get(0)?.asDynamic()
+        if (element != null) {
             value?.let {
                 if (this.multiple) {
-                    getElementJQuery()?.find("select")?.`val`(it.split(",").toTypedArray())
+                    val values = it.split(",")
+                    for (i in 0 until (element.options?.length?.unsafeCast<Int>() ?: 0)) {
+                        element.options[i].selected =
+                            values.contains(element.options[i].value?.unsafeCast<String>())
+                    }
                 } else {
-                    getElementJQuery()?.`val`(it)
+                    element.value = it
                 }
-            } ?: getElementJQueryD()?.`val`(null)
+            } ?: run { element.value = null }
         }
     }
 }

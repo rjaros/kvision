@@ -26,7 +26,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
-import io.kvision.core.getElementJQuery
 import io.kvision.html.Span
 import io.kvision.onsenui.BackButtonEvent
 import io.kvision.onsenui.dialog.Dialog
@@ -124,22 +123,22 @@ open class Page(className: String? = null, init: (Page.() -> Unit)? = null) :
         if (onDeviceBackButtonCallback != null) {
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback
         }
-        this.getElementJQuery()?.on("init") { e, _ ->
+        this.getElement()?.addEventListener("init", { e ->
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("onsInit", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("show") { e, _ ->
+        })
+        this.getElement()?.addEventListener("show", { e ->
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("onsShow", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hide") { e, _ ->
+        })
+        this.getElement()?.addEventListener("hide", { e ->
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("onsHide", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("destroy") { e, _ ->
+        })
+        this.getElement()?.addEventListener("destroy", { e ->
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("onsDestroy", obj { detail = e })
-        }
+        })
     }
 
     override fun add(child: Component): Page {

@@ -25,10 +25,10 @@ package io.kvision.onsenui.form
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.core.getElementJQuery
 import io.kvision.form.check.CheckInput
 import io.kvision.form.check.CheckInputType
 import kotlinx.browser.window
+import org.w3c.dom.NodeList
 
 /**
  * OnsenUI checkbox input component.
@@ -76,7 +76,7 @@ open class OnsCheckBoxInput(
     }
 
     override fun afterInsert(node: VNode) {
-        if ((getElementJQuery()?.find("input")?.length?.toInt() ?: 0) > 0) {
+        if ((getElementD()?.querySelectorAll("input")?.unsafeCast<NodeList>()?.length ?: 0) > 0) {
             refreshState()
         } else {
             window.setTimeout({
@@ -86,10 +86,10 @@ open class OnsCheckBoxInput(
     }
 
     override fun refreshState() {
-        if ((getElementJQuery()?.find("input")?.length?.toInt() ?: 0) > 0) {
-            val v = getElementJQuery()?.prop("checked") as Boolean?
+        if ((getElementD()?.querySelectorAll("input")?.unsafeCast<NodeList>()?.length ?: 0) > 0) {
+            val v = getElementD()?.checked?.unsafeCast<Boolean>()
             if (this.value != v) {
-                getElementJQuery()?.prop("checked", this.value)
+                getElementD()?.checked = this.value
             }
         }
     }

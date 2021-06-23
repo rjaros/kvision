@@ -25,7 +25,6 @@ package io.kvision.onsenui.core
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.CssSize
-import io.kvision.core.getElementJQuery
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
 import io.kvision.utils.asString
@@ -122,9 +121,9 @@ open class PullHook(
         if (onPullCallback != null) {
             getElement()?.asDynamic()?.onPull = onPullCallback
         }
-        this.getElementJQuery()?.on("changestate") { e, _ ->
+        this.getElement()?.addEventListener("changestate", { e ->
             this.dispatchEvent("onsChangestate", obj { detail = e })
-        }
+        })
     }
 
     /**

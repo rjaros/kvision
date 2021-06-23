@@ -27,8 +27,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.core.getElementJQuery
-import io.kvision.core.getElementJQueryD
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
@@ -225,8 +223,8 @@ open class OnsNumberInput(
      */
     protected open fun refreshState() {
         value?.let {
-            getElementJQuery()?.`val`("$it")
-        } ?: getElementJQueryD()?.`val`(null)
+            getElementD()?.value = "$it"
+        } ?: run { getElementD()?.value = null }
     }
 
     /**
@@ -234,7 +232,7 @@ open class OnsNumberInput(
      * Internal function
      */
     protected open fun changeValue() {
-        val v = getElementJQuery()?.`val`() as String?
+        val v = getElementD()?.value?.unsafeCast<String>()
         if (v != null && v != "") {
             val newValue = v.toDoubleOrNull()
             if (this.value != newValue) this.value = newValue

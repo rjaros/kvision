@@ -25,7 +25,6 @@ package io.kvision.onsenui.control
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.tabbar.Tabbar
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
@@ -90,10 +89,10 @@ open class Segment(
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("postchange") { e, _ ->
+        this.getElement()?.addEventListener("postchange", { e ->
             this.dispatchEvent("onsPostchange", obj { detail = e })
             e.stopPropagation()
-        }
+        })
     }
 
     /**

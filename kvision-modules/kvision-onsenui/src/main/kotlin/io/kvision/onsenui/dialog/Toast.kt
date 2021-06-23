@@ -28,7 +28,6 @@ import io.kvision.core.Container
 import io.kvision.core.Display
 import io.kvision.core.DomAttribute
 import io.kvision.core.Widget
-import io.kvision.core.getElementJQuery
 import io.kvision.onsenui.BackButtonEvent
 import io.kvision.panel.Root
 import io.kvision.panel.Root.Companion.addModal
@@ -98,19 +97,19 @@ open class Toast(
         if (onDeviceBackButtonCallback != null) {
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback
         }
-        this.getElementJQuery()?.on("preshow") { e, _ ->
+        this.getElement()?.addEventListener("preshow", { e ->
             this.dispatchEvent("onsPreshow", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("postshow") { e, _ ->
+        })
+        this.getElement()?.addEventListener("postshow", { e ->
             this.dispatchEvent("onsPostshow", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("prehide") { e, _ ->
+        })
+        this.getElement()?.addEventListener("prehide", { e ->
             this.dispatchEvent("onsPrehide", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("posthide") { e, _ ->
+        })
+        this.getElement()?.addEventListener("posthide", { e ->
             this.hide()
             this.dispatchEvent("onsPosthide", obj { detail = e })
-        }
+        })
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

@@ -25,7 +25,6 @@ package io.kvision.onsenui.control
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.core.getElementJQuery
 import io.kvision.html.CustomTag
 import io.kvision.onsenui.FloatDirection
 import io.kvision.onsenui.FloatPosition
@@ -143,12 +142,12 @@ open class SpeedDial(
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("open") { e, _ ->
+        this.getElement()?.addEventListener("open", { e ->
             this.dispatchEvent("onsOpen", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("close") { e, _ ->
+        })
+        this.getElement()?.addEventListener("close", { e ->
             this.dispatchEvent("onsClose", obj { detail = e })
-        }
+        })
     }
 
     /**
