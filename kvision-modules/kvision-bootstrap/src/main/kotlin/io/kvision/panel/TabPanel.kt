@@ -72,7 +72,7 @@ open class TabPanel(
     val draggableTabs: Boolean = false,
     className: String? = null,
     init: (TabPanel.() -> Unit)? = null
-) : SimplePanel(className) {
+) : SimplePanel((className?.let { "$it " } ?: "") + "kv-tab-panel") {
 
     private val navClasses = when (tabPosition) {
         TabPosition.TOP -> if (scrollableTabs) "nav nav-tabs tabs-top" else "nav nav-tabs"
