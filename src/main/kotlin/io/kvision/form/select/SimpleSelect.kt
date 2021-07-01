@@ -45,6 +45,7 @@ import io.kvision.utils.SnOn
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param floating use floating label
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
@@ -52,8 +53,9 @@ open class SimpleSelect(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    name: String? = null, label: String? = null, rich: Boolean = false, init: (SimpleSelect.() -> Unit)? = null
-) : SimplePanel("form-group"), StringFormControl, MutableState<String?> {
+    name: String? = null, label: String? = null, rich: Boolean = false,
+    val floating: Boolean = false, init: (SimpleSelect.() -> Unit)? = null
+) : SimplePanel(if (floating) "form-floating mb-3" else "form-group mb-3"), StringFormControl, MutableState<String?> {
 
     /**
      * A list of options (value to label pairs) for the select control.
@@ -155,14 +157,19 @@ open class SimpleSelect(
         this.id = this@SimpleSelect.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(flabel)
-        this.addPrivate(input)
+        if (!floating) {
+            this.addPrivate(flabel)
+            this.addPrivate(input)
+        } else {
+            this.addPrivate(input)
+            this.addPrivate(flabel)
+        }
         this.addPrivate(invalidFeedback)
         counter++
         @Suppress("LeakingThis")
@@ -267,10 +274,11 @@ fun Container.simpleSelect(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
+    floating: Boolean = false,
     init: (SimpleSelect.() -> Unit)? = null
 ): SimpleSelect {
     val simpleSelect =
-        SimpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich, init)
+        SimpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich, floating, init)
     this.add(simpleSelect)
     return simpleSelect
 }

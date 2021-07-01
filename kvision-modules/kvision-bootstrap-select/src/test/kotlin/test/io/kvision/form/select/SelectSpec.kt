@@ -47,8 +47,8 @@ class SelectSpec : DomSpec {
             val id = select.input.id
             assertEqualsHtml(
                 """
-                <div class="form-group">
-                    <label class="control-label" for="$id">Label</label>
+                <div class="form-group mb-3">
+                    <label class="form-label" for="$id">Label</label>
                     <div class="dropdown bootstrap-select show-tick form-control fit-width">
                         <select class="form-control selectpicker" id="$id" multiple="multiple" data-live-search="true" title="Choose ..." data-style="btn-default" data-width="fit">
                             <option value="#kvnull"></option>

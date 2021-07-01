@@ -31,9 +31,10 @@ import io.kvision.core.CssClass
 import io.kvision.html.Link
 import io.kvision.html.Span
 import io.kvision.html.span
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.panel.SimplePanel
+import io.kvision.utils.obj
+import org.w3c.dom.CustomEventInit
+import org.w3c.dom.Element
 
 /**
  * Navbar types.
@@ -61,6 +62,7 @@ enum class NavbarExpand(override val className: String) : CssClass {
     LG("navbar-expand-lg"),
     MD("navbar-expand-md"),
     SM("navbar-expand-sm"),
+    XXL("navbar-expand-xxl"),
 }
 
 /**
@@ -134,25 +136,29 @@ open class Navbar(
     private val idc = "kv_navbar_$counter"
 
     private val brandLink = Link(label ?: "", link, className = "navbar-brand")
+    private val toggler = NavbarButton(idc)
     internal val container = SimplePanel("collapse navbar-collapse") {
         id = this@Navbar.idc
     }
+    internal val extContainer = SimplePanel("container-fluid")
 
     init {
-        addPrivate(brandLink)
-        addPrivate(NavbarButton(idc))
-        addPrivate(container)
+        extContainer.add(brandLink)
+        extContainer.add(toggler)
+        extContainer.add(container)
+        addPrivate(extContainer)
         if (label == null) brandLink.hide()
         counter++
         if (collapseOnClick) {
             setInternalEventListener<Navbar> {
                 click = {
-                    val target = jQuery(it.target)
-                    if (target.`is`("a.nav-item.nav-link") || target.`is`("a.dropdown-item")) {
-                        val navbar = target.parents("nav.navbar").first()
-                        val toggler = navbar.children("button.navbar-toggler")
-                        val collapse = navbar.children("div.navbar-collapse")
-                        if (collapse.`is`(".show")) toggler.click()
+                    val target = it.target.unsafeCast<Element>()
+                    if (target.matches("a.nav-item.nav-link") || target.matches("a.dropdown-item")) {
+                        if (container.getElement()?.unsafeCast<Element>()?.matches(".show") == true) {
+                            toggler.dispatchEvent("click", obj<CustomEventInit> {
+                                bubbles = true
+                            })
+                        }
                     }
                 }
             }
@@ -267,8 +273,8 @@ internal class NavbarButton(private val idc: String, private val toggle: String 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "button")
-        attributeSetBuilder.add("data-toggle", "collapse")
-        attributeSetBuilder.add("data-target", "#$idc")
+        attributeSetBuilder.add("data-bs-toggle", "collapse")
+        attributeSetBuilder.add("data-bs-target", "#$idc")
         attributeSetBuilder.add("aria-controls", idc)
         attributeSetBuilder.add("aria-expanded", "false")
         attributeSetBuilder.add("aria-label", toggle)

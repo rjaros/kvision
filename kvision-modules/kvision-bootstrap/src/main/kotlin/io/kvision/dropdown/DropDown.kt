@@ -27,9 +27,9 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssSize
+import io.kvision.core.DomAttribute
 import io.kvision.core.ResString
 import io.kvision.core.StringPair
-import io.kvision.core.getElementJQuery
 import io.kvision.html.Button
 import io.kvision.html.ButtonStyle
 import io.kvision.html.ButtonType
@@ -37,6 +37,8 @@ import io.kvision.html.Div
 import io.kvision.html.Link
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
+import io.kvision.utils.toggle
+import org.w3c.dom.CustomEventInit
 
 /**
  * Useful options for use in DropDown's *elements* parameter.
@@ -53,8 +55,26 @@ enum class DD(val option: String) {
 enum class Direction(internal val direction: String) {
     DROPDOWN("dropdown"),
     DROPUP("dropup"),
-    DROPLEFT("dropleft"),
-    DROPRIGHT("dropright")
+    DROPSTART("dropstart"),
+    DROPEND("dropend"),
+    @Deprecated("Use DROPSTART instead", ReplaceWith("DROPSTART"))
+    DROPLEFT("dropstart"),
+    @Deprecated("Use DROPEND instead", ReplaceWith("DROPEND"))
+    DROPRIGHT("dropend"),
+}
+
+/**
+ * Dropdown auto close.
+ */
+enum class AutoClose(override val attributeValue: String) : DomAttribute {
+    TRUE("true"),
+    OUTSIDE("outside"),
+    INSIDE("inside"),
+    FALSE("false"),
+    ;
+
+    override val attributeName: String
+        get() = "data-bs-auto-close"
 }
 
 /**
@@ -69,6 +89,7 @@ enum class Direction(internal val direction: String) {
  * @param disabled determines if the component is disabled on start
  * @param forNavbar determines if the component will be used in a navbar
  * @param forDropDown determines if the component will be used in a dropdown
+ * @param dark use dark background
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -76,7 +97,7 @@ enum class Direction(internal val direction: String) {
 open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN, disabled: Boolean = false,
-    val forNavbar: Boolean = false, val forDropDown: Boolean = false,
+    val forNavbar: Boolean = false, val forDropDown: Boolean = false, dark: Boolean = false,
     className: String? = null, init: (DropDown.() -> Unit)? = null
 ) : SimplePanel(className) {
     /**
@@ -144,9 +165,27 @@ open class DropDown(
         }
 
     /**
+     * Use dark background for the dropdown.
+     */
+    var dark
+        get() = list.dark
+        set(value) {
+            list.dark = value
+        }
+
+    /**
      * The direction of the dropdown.
      */
     var direction by refreshOnUpdate(direction)
+
+    /**
+     * The auto closing mode of the dropdown menu.
+     */
+    var autoClose
+        get() = button.autoClose
+        set(value) {
+            button.autoClose = value
+        }
 
     /**
      * Width of the dropdown button.
@@ -165,12 +204,12 @@ open class DropDown(
 
     fun buttonId() = button.id
 
-    internal val list: DropDownDiv = DropDownDiv(idc)
+    internal val list: DropDownDiv = DropDownDiv(idc, dark)
 
     init {
         if (forDropDown) {
             this.style = ButtonStyle.LIGHT
-            this.direction = Direction.DROPRIGHT
+            this.direction = Direction.DROPEND
         }
         setChildrenFromElements()
         this.addPrivate(button)
@@ -239,22 +278,6 @@ open class DropDown(
         }
     }
 
-    @Suppress("UnsafeCastFromDynamic")
-    override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("show.bs.dropdown") { e, _ ->
-            this.dispatchEvent("showBsDropdown", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("shown.bs.dropdown") { e, _ ->
-            this.dispatchEvent("shownBsDropdown", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hide.bs.dropdown") { e, _ ->
-            this.dispatchEvent("hideBsDropdown", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hidden.bs.dropdown") { e, _ ->
-            this.dispatchEvent("hiddenBsDropdown", obj { detail = e })
-        }
-    }
-
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
         if (forNavbar) classSetBuilder.add("nav-item")
@@ -265,7 +288,9 @@ open class DropDown(
      * Toggles dropdown visibility.
      */
     open fun toggle() {
-        this.button.getElementJQuery()?.click()
+        this.button.dispatchEvent("click", obj<CustomEventInit> {
+            bubbles = true
+        })
     }
 
     companion object {
@@ -282,7 +307,7 @@ fun Container.dropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
     disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-    className: String? = null,
+    dark: Boolean = false, className: String? = null,
     init: (DropDown.() -> Unit)? = null
 ): DropDown {
     val dropDown =
@@ -295,6 +320,7 @@ fun Container.dropDown(
             disabled,
             forNavbar,
             forDropDown,
+            dark,
             className,
             init
         )
@@ -393,6 +419,7 @@ fun ContextMenu.cmLinkDisabled(
  * @param disabled determines if the component is disabled on start
  * @param forNavbar determines if the component will be used in a navbar
  * @param forDropDown determines if the component will be used in a dropdown
+ * @param autoClose the auto closing mode of the dropdown menu
  * @param className CSS class names
  */
 class DropDownButton(
@@ -403,9 +430,15 @@ class DropDownButton(
     disabled: Boolean = false,
     val forNavbar: Boolean = false,
     val forDropDown: Boolean = false,
+    autoClose: AutoClose = AutoClose.TRUE,
     className: String? = null
 ) :
     Button(text, icon, style, ButtonType.BUTTON, disabled, null, true, className) {
+
+    /**
+     * Whether to automatically close dropdown menu.
+     */
+    var autoClose by refreshOnUpdate(autoClose)
 
     init {
         this.id = id
@@ -415,7 +448,7 @@ class DropDownButton(
                 if (parent?.parent is ContextMenu) {
                     e.asDynamic().dropDownCM = true
                 } else if (forDropDown) {
-                    (parent as DropDown).list.getElementJQuery()?.toggle()
+                    (parent as DropDown).list.getElement()?.toggle()
                     e.stopPropagation()
                 }
             }
@@ -452,19 +485,26 @@ class DropDownButton(
                 attributeSetBuilder
             }
         )
-        attributeSetBuilder.add("data-toggle", "dropdown")
+        attributeSetBuilder.add("data-bs-toggle", "dropdown")
         attributeSetBuilder.add("aria-haspopup", "true")
         attributeSetBuilder.add("aria-expanded", "false")
         attributeSetBuilder.add("href", "javascript:void(0)")
+        attributeSetBuilder.add(autoClose)
     }
 }
 
-internal class DropDownDiv(private val ariaId: String) : Div(
+internal class DropDownDiv(private val ariaId: String, dark: Boolean = false) : Div(
     null, false, null, "dropdown-menu"
 ) {
+    var dark by refreshOnUpdate(dark)
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("aria-labelledby", ariaId)
+    }
+
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        if (dark) classSetBuilder.add("dropdown-menu-dark")
     }
 }

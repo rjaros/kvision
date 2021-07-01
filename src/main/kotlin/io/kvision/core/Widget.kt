@@ -679,7 +679,10 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         }
     }
 
-    protected open fun dispatchEvent(type: String, eventInitDict: CustomEventInit): Boolean? {
+    /**
+     * Dispatches a custom event.
+     */
+    open fun dispatchEvent(type: String, eventInitDict: CustomEventInit): Boolean? {
         val event = org.w3c.dom.CustomEvent(type, eventInitDict)
         return this.getElement()?.dispatchEvent(event)
     }

@@ -87,8 +87,8 @@ open class FlexPanel(
         } else {
             WidgetWrapper(child, className)
         }
+        if (spacing != null) applySpacing(wrapper.unsafeCast<Widget>())
         (wrapper as? Widget)?.let {
-            applySpacing(it)
             it.order = order
             it.flexGrow = grow
             it.flexShrink = shrink
@@ -120,8 +120,8 @@ open class FlexPanel(
         } else {
             WidgetWrapper(child, className)
         }
+        if (spacing != null) applySpacing(wrapper.unsafeCast<Widget>())
         (wrapper as? Widget)?.let {
-            applySpacing(it)
             it.order = order
             it.flexGrow = grow
             it.flexShrink = shrink
@@ -149,7 +149,7 @@ open class FlexPanel(
     }
 
     private fun refreshSpacing() {
-        getChildren().filterIsInstance<Widget>().map { applySpacing(it) }
+        getChildren().forEach { applySpacing(it.unsafeCast<Widget>()) }
     }
 
     private fun applySpacing(wrapper: Widget): Widget {

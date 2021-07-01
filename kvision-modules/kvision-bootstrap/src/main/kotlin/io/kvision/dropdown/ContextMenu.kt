@@ -25,6 +25,7 @@ import io.kvision.core.Display
 import io.kvision.core.Widget
 import io.kvision.panel.Root
 import io.kvision.panel.SimplePanel
+import io.kvision.utils.auto
 import io.kvision.utils.px
 import org.w3c.dom.events.MouseEvent
 
@@ -48,6 +49,7 @@ open class ContextMenu(
         hide()
         @Suppress("LeakingThis")
         display = Display.BLOCK
+        width = auto
         val root = element?.getRoot() ?: Root.getLastRoot()
         if (root != null) {
             @Suppress("LeakingThis")

@@ -28,6 +28,7 @@ import com.github.snabbdom.On
 import com.github.snabbdom.Props
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.VNodeStyle
+import com.github.snabbdom.set
 import io.kvision.core.StringBoolPair
 import io.kvision.core.StringPair
 import io.kvision.core.Widget
@@ -248,6 +249,11 @@ external interface BtOn : On {
 external interface SnOn<T> : BtOn {
     var self: T
 }
+
+/**
+ * Helper function for defining custom event types.
+ */
+inline fun <T> SnOn<T>.event(name: String, noinline handler: (Event) -> Unit) = set(name, handler)
 
 /**
  * Helper function for creating object parameters for Snabbdom.

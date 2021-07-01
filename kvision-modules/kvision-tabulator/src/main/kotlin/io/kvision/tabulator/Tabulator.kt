@@ -30,7 +30,6 @@ import io.kvision.i18n.I18n
 import io.kvision.panel.Root
 import io.kvision.state.ObservableList
 import io.kvision.state.ObservableState
-import io.kvision.table.TableType
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
 import io.kvision.utils.syncWithList
@@ -41,6 +40,17 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import kotlin.reflect.KClass
 import io.kvision.tabulator.js.Tabulator as JsTabulator
+
+/**
+ * Tabulator table types.
+ */
+enum class TableType(val type: String) {
+    STRIPED("table-striped"),
+    BORDERED("table-bordered"),
+    BORDERLESS("table-borderless"),
+    HOVER("table-hover"),
+    SMALL("table-sm")
+}
 
 /**
  * Tabulator row range lookup set option.

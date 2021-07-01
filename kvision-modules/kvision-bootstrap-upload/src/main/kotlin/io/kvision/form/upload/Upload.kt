@@ -47,7 +47,7 @@ import org.w3c.files.File
 open class Upload(
     uploadUrl: String? = null, multiple: Boolean = false, label: String? = null,
     rich: Boolean = false, init: (Upload.() -> Unit)? = null
-) : SimplePanel("form-group"), KFilesFormControl, MutableState<List<KFile>?> {
+) : SimplePanel("form-group mb-3"), KFilesFormControl, MutableState<List<KFile>?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -238,7 +238,7 @@ open class Upload(
             this.id = this@Upload.idc
             this.name = name
         }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

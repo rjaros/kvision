@@ -55,7 +55,7 @@ open class OnsRadioGroup(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsRadioGroup.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group"), StringFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group"), StringFormControl,
     MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
@@ -135,7 +135,7 @@ open class OnsRadioGroup(
 
     private val idc = "kv_ons_form_radiogroup_$counter"
     final override val input = OnsRadioInput()
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     internal val container = SimplePanel("kv-radiogroup-container") {

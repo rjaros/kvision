@@ -58,7 +58,7 @@ open class OnsDateTime(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsDateTime.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group"), DateFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group"), DateFormControl,
     MutableState<Date?> {
 
     /**
@@ -169,7 +169,7 @@ open class OnsDateTime(
         this.name = name
         this.eventTarget = this@OnsDateTime
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

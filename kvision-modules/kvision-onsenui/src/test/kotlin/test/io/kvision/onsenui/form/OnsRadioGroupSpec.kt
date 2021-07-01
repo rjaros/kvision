@@ -42,7 +42,7 @@ class OnsRadioGroupSpec : DomSpec {
             val inputId2 = (r.getChildren().lastOrNull() as? OnsRadio)?.input?.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"form-group kv-ons-form-group\"><label class=\"control-label\" for=\"$id\">label</label><div id=\"$id\" class=\"kv-radiogroup-container\"><div class=\"form-group kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" name=\"test\" value=\"1\" input-id=\"$inputId1\"></ons-radio><label for=\"$inputId1\">Option 1</label></div><div class=\"form-group kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" name=\"test\" value=\"2\" input-id=\"$inputId2\"></ons-radio><label for=\"$inputId2\">Option 2</label></div></div></div>",
+                "<div class=\"form-group mb-3 kv-ons-form-group\"><label class=\"form-label\" for=\"$id\">label</label><div id=\"$id\" class=\"kv-radiogroup-container\"><div class=\"form-group mb-3 kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" name=\"test\" value=\"1\" input-id=\"$inputId1\"></ons-radio><label for=\"$inputId1\">Option 1</label></div><div class=\"form-group mb-3 kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" name=\"test\" value=\"2\" input-id=\"$inputId2\"></ons-radio><label for=\"$inputId2\">Option 2</label></div></div></div>",
                 element?.innerHTML,
                 "Should render Onsen UI radio group form component"
             )

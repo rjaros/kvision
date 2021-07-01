@@ -120,15 +120,15 @@ open class TabPanel(
                 this.addSurroundingCssClass("container-fluid")
                 this.addCssClass("row")
                 val sizes = calculateSideClasses()
-                this.addPrivate(WidgetWrapper(nav, "${sizes.first} pl-0 pr-0"))
-                this.addPrivate(WidgetWrapper(content, "${sizes.second} pl-0 pr-0"))
+                this.addPrivate(WidgetWrapper(nav, "${sizes.first} ps-0 pe-0"))
+                this.addPrivate(WidgetWrapper(content, "${sizes.second} ps-0 pe-0"))
             }
             TabPosition.RIGHT -> {
                 this.addSurroundingCssClass("container-fluid")
                 this.addCssClass("row")
                 val sizes = calculateSideClasses()
-                this.addPrivate(WidgetWrapper(content, "${sizes.second} pl-0 pr-0"))
-                this.addPrivate(WidgetWrapper(nav, "${sizes.first} pl-0 pr-0"))
+                this.addPrivate(WidgetWrapper(content, "${sizes.second} ps-0 pe-0"))
+                this.addPrivate(WidgetWrapper(nav, "${sizes.first} ps-0 pe-0"))
             }
         }
         init?.invoke(this)

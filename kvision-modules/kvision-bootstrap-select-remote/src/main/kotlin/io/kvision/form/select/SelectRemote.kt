@@ -63,7 +63,7 @@ open class SelectRemote<T : Any>(
     label: String? = null,
     rich: Boolean = false,
     init: (SelectRemote<T>.() -> Unit)? = null
-) : SimplePanel("form-group"), StringFormControl, MutableState<String?> {
+) : SimplePanel("form-group mb-3"), StringFormControl, MutableState<String?> {
     /**
      * A value of the selected option.
      */
@@ -180,7 +180,7 @@ open class SelectRemote<T : Any>(
         this.id = this@SelectRemote.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

@@ -49,7 +49,7 @@ internal const val DEFAULT_STEP = 1
 open class RangeInput(
     value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
     className: String? = null, init: (RangeInput.() -> Unit)? = null
-) : Widget((className?.let { "$it " } ?: "") + "form-control-range"), GenericFormComponent<Number?>, FormInput,
+) : Widget((className?.let { "$it " } ?: "") + "form-range"), GenericFormComponent<Number?>, FormInput,
     MutableState<Number?> {
 
     protected val observers = mutableListOf<(Number?) -> Unit>()

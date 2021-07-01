@@ -51,7 +51,7 @@ open class OnsRadio(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsRadio.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group kv-ons-checkbox"),
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group kv-ons-checkbox"),
     BoolFormControl,
     MutableState<Boolean> {
 

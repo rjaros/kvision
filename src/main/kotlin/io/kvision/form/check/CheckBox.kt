@@ -61,7 +61,7 @@ open class CheckBox(
     value: Boolean = false, name: String? = null, label: String? = null,
     rich: Boolean = false,
     init: (CheckBox.() -> Unit)? = null
-) : SimplePanel("form-check abc-checkbox"), BoolFormControl, MutableState<Boolean> {
+) : SimplePanel("form-check"), BoolFormControl, MutableState<Boolean> {
 
     /**
      * The selection state of the checkbox.
@@ -117,6 +117,11 @@ open class CheckBox(
      */
     var inline by refreshOnUpdate(false)
 
+    /**
+     * Render as a switch.
+     */
+    var switch by refreshOnUpdate(false)
+
     private val idc = "kv_form_checkbox_$counter"
     final override val input: CheckBoxInput = CheckBoxInput(value, className = "form-check-input").apply {
         this.id = this@CheckBox.idc
@@ -155,6 +160,11 @@ open class CheckBox(
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
+        if (!switch) {
+            classSetBuilder.add("abc-checkbox")
+        } else {
+            classSetBuilder.add("form-switch")
+        }
         classSetBuilder.add(style)
         if (circled) {
             classSetBuilder.add("abc-checkbox-circle")
@@ -189,6 +199,7 @@ open class CheckBox(
 
     override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
         addCssClass("form-group")
+        addCssClass("mb-3")
         addSurroundingCssClass("row")
         addCssClass("offset-sm-${horizontalRatio.labels}")
         addCssClass("col-sm-${horizontalRatio.fields}")
@@ -200,6 +211,7 @@ open class CheckBox(
 
     override fun styleForVerticalFormPanel() {
         addCssClass("form-group")
+        addCssClass("mb-3")
     }
 
     override fun getState(): Boolean = input.getState()

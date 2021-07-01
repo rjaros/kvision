@@ -62,6 +62,7 @@ open class RichText(
         @Suppress("LeakingThis")
         input.eventTarget = this
         wrapper.add(input)
+        this.addPrivate(flabel)
         this.addPrivate(wrapper)
         this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")

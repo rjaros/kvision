@@ -42,13 +42,13 @@ class TypeaheadSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ti.input.id
             assertEqualsHtml(
-                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"test\" autocomplete=\"off\"></div>",
+                "<div class=\"form-group mb-3\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"test\" autocomplete=\"off\"></div>",
                 element?.innerHTML,
                 "Should render correct typeahead input form control"
             )
             ti.validatorError = "Validation Error"
             assertEqualsHtml(
-                "<div class=\"form-group text-danger\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"test\" autocomplete=\"off\"><div class=\"invalid-feedback\">Validation Error</div></div>",
+                "<div class=\"form-group mb-3 text-danger\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"test\" autocomplete=\"off\"><div class=\"invalid-feedback\">Validation Error</div></div>",
                 element?.innerHTML,
                 "Should render correct typeahead input form control with validation error"
             )

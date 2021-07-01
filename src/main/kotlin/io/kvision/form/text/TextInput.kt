@@ -23,6 +23,7 @@ package io.kvision.form.text
 
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
+import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 
 /**
@@ -73,6 +74,11 @@ open class TextInput(
 
     override fun render(): VNode {
         return render("input")
+    }
+
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        if (type == TextInputType.COLOR) classSetBuilder.add("form-control-color")
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

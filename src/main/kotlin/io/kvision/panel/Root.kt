@@ -44,7 +44,8 @@ enum class ContainerType(internal val type: String) {
     SM("container-sm"),
     MD("container-md"),
     LG("container-lg"),
-    XL("container-xl")
+    XL("container-xl"),
+    XXL("container-xxl")
 }
 
 /**

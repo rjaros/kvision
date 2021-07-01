@@ -35,10 +35,12 @@ import kotlin.collections.set
  * Bootstrap grid sizes.
  */
 enum class GridSize(internal val size: String) {
+    XS("xs"),
     SM("sm"),
     MD("md"),
     LG("lg"),
-    XL("xl")
+    XL("xl"),
+    XXL("xxl")
 }
 
 internal const val MAX_COLUMNS = 12

@@ -64,7 +64,7 @@ open class GenericRadioGroup<T>(
         it as? T
     },
     init: (GenericRadioGroup<T>.() -> Unit)? = null
-) : SimplePanel("form-group"), GenericFormControl<T>, MutableState<T?> {
+) : SimplePanel("form-group mb-3"), GenericFormControl<T>, MutableState<T?> {
 
     protected val observers = mutableListOf<(T?) -> Unit>()
 
@@ -139,7 +139,7 @@ open class GenericRadioGroup<T>(
 
     private val idc = "kv_form_radiogroup_$counter"
     final override val input = RadioInput()
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     internal val container = SimplePanel("kv-radiogroup-container") {

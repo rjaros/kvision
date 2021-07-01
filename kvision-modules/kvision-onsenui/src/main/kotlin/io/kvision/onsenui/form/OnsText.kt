@@ -51,7 +51,7 @@ open class OnsText(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsText.() -> Unit)? = null
-) : AbstractText(label, rich, (className?.let { "$it " } ?: "") + "kv-ons-form-group") {
+) : AbstractText(label, rich, false, (className?.let { "$it " } ?: "") + "kv-ons-form-group") {
 
     /**
      * Text input type.
@@ -101,6 +101,7 @@ open class OnsText(
     }
 
     init {
+        this.addPrivate(flabel)
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         if (input.floatLabel == true && OnsenUi.isAndroid()) flabel.display = Display.NONE

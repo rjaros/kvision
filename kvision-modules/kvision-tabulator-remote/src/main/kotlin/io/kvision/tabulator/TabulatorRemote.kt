@@ -29,7 +29,6 @@ import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteData
 import io.kvision.remote.RemoteFilter
 import io.kvision.remote.RemoteSorter
-import io.kvision.table.TableType
 import io.kvision.utils.JSON
 import kotlinx.browser.window
 import kotlinx.serialization.encodeToString

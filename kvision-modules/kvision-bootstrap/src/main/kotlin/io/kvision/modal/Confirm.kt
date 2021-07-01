@@ -27,6 +27,7 @@ import io.kvision.html.Button
 import io.kvision.html.ButtonStyle
 import io.kvision.html.TAG
 import io.kvision.html.Tag
+import io.kvision.utils.event
 
 /**
  * Confirm window based on Bootstrap modal.
@@ -138,7 +139,7 @@ open class Confirm(
         this.addButton(yesButton)
         refreshCancelButton()
         onEvent {
-            shownBsModal = {
+            event("shown.bs.modal") {
                 yesButton.focus()
             }
         }

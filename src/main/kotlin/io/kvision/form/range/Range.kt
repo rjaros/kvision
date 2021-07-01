@@ -48,7 +48,7 @@ import io.kvision.utils.SnOn
 open class Range(
     value: Number? = null, name: String? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
     label: String? = null, rich: Boolean = false, init: (Range.() -> Unit)? = null
-) : SimplePanel("form-group"), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Range input value.
@@ -150,7 +150,7 @@ open class Range(
         this.id = this@Range.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

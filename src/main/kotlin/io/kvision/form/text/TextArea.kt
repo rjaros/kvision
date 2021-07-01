@@ -33,12 +33,13 @@ import io.kvision.core.Container
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param floating use floating label
  * @param init an initializer extension function
  */
 open class TextArea(
     cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
-) : AbstractText(label, rich) {
+    label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (TextArea.() -> Unit)? = null
+) : AbstractText(label, rich, floating) {
 
     /**
      * Number of columns.
@@ -75,10 +76,17 @@ open class TextArea(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(input)
+        if (!floating) {
+            this.addPrivate(flabel)
+            this.addPrivate(input)
+        } else {
+            this.addPrivate(input)
+            this.addPrivate(flabel)
+        }
         this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")
         init?.invoke(this)
+        floatingPlaceholder()
     }
 }
 
@@ -89,9 +97,9 @@ open class TextArea(
  */
 fun Container.textArea(
     cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
+    label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (TextArea.() -> Unit)? = null
 ): TextArea {
-    val textArea = TextArea(cols, rows, value, name, label, rich, init)
+    val textArea = TextArea(cols, rows, value, name, label, rich, floating, init)
     this.add(textArea)
     return textArea
 }

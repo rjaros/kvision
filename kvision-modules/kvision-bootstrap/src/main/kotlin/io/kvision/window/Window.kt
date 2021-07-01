@@ -30,14 +30,20 @@ import io.kvision.core.Overflow
 import io.kvision.core.Position
 import io.kvision.core.Resize
 import io.kvision.core.UNIT
-import io.kvision.core.getElementJQuery
 import io.kvision.html.Icon
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.modal.CloseIcon
 import io.kvision.panel.SimplePanel
+import io.kvision.utils.height
 import io.kvision.utils.obj
+import io.kvision.utils.offsetHeight
+import io.kvision.utils.offsetLeft
+import io.kvision.utils.offsetTop
+import io.kvision.utils.offsetWidth
 import io.kvision.utils.px
+import io.kvision.utils.width
+import org.w3c.dom.Element
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
 
@@ -274,8 +280,8 @@ open class Window(
                 mousedown = { e ->
                     if (e.button.toInt() == 0) {
                         isDrag = true
-                        val dragStartX = this@Window.getElementJQuery()?.position()?.left?.toInt() ?: 0
-                        val dragStartY = this@Window.getElementJQuery()?.position()?.top?.toInt() ?: 0
+                        val dragStartX = this@Window.getElement()?.offsetLeft() ?: 0
+                        val dragStartY = this@Window.getElement()?.offsetTop() ?: 0
                         val dragMouseX = e.pageX
                         val dragMouseY = e.pageY
                         val moveCallback = { me: Event ->
@@ -305,12 +311,12 @@ open class Window(
         checkResizablEventHandler()
         if (isResizable) {
             resize = Resize.BOTH
-            val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
+            val intHeight = getElement()?.height() ?: 0
             content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
             content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
         } else {
             resize = Resize.NONE
-            val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
+            val intHeight = getElement()?.height() ?: 0
             content.height = (intHeight - WINDOW_HEADER_HEIGHT).px
             content.marginBottom = 0.px
         }
@@ -322,12 +328,12 @@ open class Window(
             if (!isResizeEvent) {
                 isResizeEvent = true
                 KVManagerBootstrap.setResizeEvent(this) {
-                    val eid = getElementJQuery()?.attr("id")
+                    val eid = getElement()?.unsafeCast<Element>()?.getAttribute("id")
                     if (isResizable && eid == id) {
-                        val outerWidth = (getElementJQuery()?.outerWidth()?.toInt() ?: 0)
-                        val outerHeight = (getElementJQuery()?.outerHeight()?.toInt() ?: 0)
-                        val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0)
-                        val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
+                        val outerWidth = getElement()?.offsetWidth() ?: 0
+                        val outerHeight = getElement()?.offsetHeight() ?: 0
+                        val intWidth = getElement()?.width() ?: 0
+                        val intHeight = getElement()?.height() ?: 0
                         content.width = intWidth.px
                         content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
                         width = outerWidth.px

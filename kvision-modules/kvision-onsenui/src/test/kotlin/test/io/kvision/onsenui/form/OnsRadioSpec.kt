@@ -38,7 +38,7 @@ class OnsRadioSpec : DomSpec {
             val id = radio.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"form-group kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" input-id=\"$id\"></ons-radio><label for=\"$id\">A radio button</label></div>",
+                "<div class=\"form-group mb-3 kv-ons-form-group kv-ons-checkbox\"><ons-radio type=\"radio\" input-id=\"$id\"></ons-radio><label for=\"$id\">A radio button</label></div>",
                 element?.innerHTML,
                 "Should render Onsen UI radio button form component"
             )

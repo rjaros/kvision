@@ -44,7 +44,7 @@ class RadioGroupInputSpec : DomSpec {
             val rid1 = ci.getChildren().filterIsInstance<Radio>().first().input.id
             val rid2 = ci.getChildren().filterIsInstance<Radio>().last().input.id
             assertEqualsHtml(
-                "<div class=\"form-group kv-radiogroup-inline\"><div class=\"form-check abc-radio\"><input class=\"form-check-input\" id=\"$rid1\" type=\"radio\" name=\"$name\" disabled=\"disabled\" value=\"a\"><label class=\"form-check-label\" for=\"$rid1\">A<span></span></label></div><div class=\"form-check abc-radio\"><input class=\"form-check-input\" id=\"$rid2\" type=\"radio\" name=\"$name\" disabled=\"disabled\" value=\"b\"><label class=\"form-check-label\" for=\"$rid2\">B<span></span></label></div></div>",
+                "<div class=\"form-group mb-3 kv-radiogroup-inline\"><div class=\"form-check abc-radio\"><input class=\"form-check-input\" id=\"$rid1\" type=\"radio\" name=\"$name\" disabled=\"disabled\" value=\"a\"><label class=\"form-check-label\" for=\"$rid1\">A<span></span></label></div><div class=\"form-check abc-radio\"><input class=\"form-check-input\" id=\"$rid2\" type=\"radio\" name=\"$name\" disabled=\"disabled\" value=\"b\"><label class=\"form-check-label\" for=\"$rid2\">B<span></span></label></div></div>",
                 element?.innerHTML,
                 "Should render correct radio button group form control"
             )

@@ -19,36 +19,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.io.kvision.navbar
 
-import kotlinx.browser.document
-import io.kvision.navbar.Nav
-import io.kvision.panel.Root
-import io.kvision.test.DomSpec
-import kotlin.test.Test
+package io.kvision.utils
 
-class NavSpec : DomSpec {
+import kotlinx.browser.window
+import org.w3c.dom.Element
+import org.w3c.dom.Node
 
-    @Test
-    fun render() {
-        run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val nav = Nav()
-            root.add(nav)
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                "<div class=\"navbar-nav\"></div>",
-                element?.innerHTML,
-                "Should render correct nav"
-            )
-            nav.rightAlign = true
-            assertEqualsHtml(
-                "<div class=\"navbar-nav ms-auto\"></div>",
-                element?.innerHTML,
-                "Should render correct right aligned nav"
-            )
-
-        }
+fun Node.toggle() {
+    if (this.asDynamic().style.display == "none") {
+        this.asDynamic().style.display = ""
+    } else {
+        this.asDynamic().style.display = "none"
     }
+}
 
+fun Node.width(): Int {
+    return window.getComputedStyle(this.unsafeCast<Element>()).width.replace("px", "").toIntOrNull() ?: 0
+}
+
+fun Node.height(): Int {
+    return window.getComputedStyle(this.unsafeCast<Element>()).height.replace("px", "").toIntOrNull() ?: 0
+}
+
+fun Node.offsetLeft(): Int {
+    return this.asDynamic().offsetLeft?.unsafeCast<Int>() ?: 0
+}
+
+fun Node.offsetTop(): Int {
+    return this.asDynamic().offsetTop?.unsafeCast<Int>() ?: 0
+}
+
+fun Node.offsetWidth(): Int {
+    return this.asDynamic().offsetWidth?.unsafeCast<Int>() ?: 0
+}
+
+fun Node.offsetHeight(): Int {
+    return this.asDynamic().offsetHeight?.unsafeCast<Int>() ?: 0
 }

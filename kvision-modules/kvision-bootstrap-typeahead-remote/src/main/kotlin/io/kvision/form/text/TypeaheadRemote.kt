@@ -39,16 +39,24 @@ import io.kvision.remote.KVServiceMgr
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param floating use floating label
  * @param init an initializer extension function
  */
 open class TypeaheadRemote<T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     private val stateFunction: (() -> String)? = null,
-    items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TypeaheadRemote<T>.() -> Unit)? = null
-) : AbstractText(label, rich) {
+    items: Int? = 8,
+    minLength: Int = 1,
+    delay: Int = 0,
+    type: TextInputType = TextInputType.TEXT,
+    value: String? = null,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    floating: Boolean = false,
+    init: (TypeaheadRemote<T>.() -> Unit)? = null
+) : AbstractText(label, rich, floating) {
 
     /**
      * The max number of items to display in the dropdown
@@ -131,10 +139,17 @@ open class TypeaheadRemote<T : Any>(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(input)
+        if (!floating) {
+            this.addPrivate(flabel)
+            this.addPrivate(input)
+        } else {
+            this.addPrivate(input)
+            this.addPrivate(flabel)
+        }
         this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")
         init?.invoke(this)
+        floatingPlaceholder()
     }
 }
 
@@ -147,9 +162,16 @@ fun <T : Any> Container.typeaheadRemote(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
-    items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TypeaheadRemote<T>.() -> Unit)? = null
+    items: Int? = 8,
+    minLength: Int = 1,
+    delay: Int = 0,
+    type: TextInputType = TextInputType.TEXT,
+    value: String? = null,
+    name: String? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    floating: Boolean = false,
+    init: (TypeaheadRemote<T>.() -> Unit)? = null
 ): TypeaheadRemote<T> {
     val typeaheadRemote = TypeaheadRemote(
         serviceManager,
@@ -163,6 +185,7 @@ fun <T : Any> Container.typeaheadRemote(
         name,
         label,
         rich,
+        floating,
         init
     )
     this.add(typeaheadRemote)

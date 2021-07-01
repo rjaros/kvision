@@ -40,7 +40,7 @@ class OnsRangeSpec : DomSpec {
             val id = number.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"form-group kv-ons-form-group\"><label class=\"control-label\" for=\"$id\">Label</label><ons-range class=\"kv-ons-form-control form-control-range\" type=\"range\" value=\"30\" min=\"0\" max=\"100\" step=\"10\" autofocus=\"autofocus\" input-id=\"$id\"></ons-range></div>",
+                "<div class=\"form-group mb-3 kv-ons-form-group\"><label class=\"form-label\" for=\"$id\">Label</label><ons-range class=\"kv-ons-form-control form-range\" type=\"range\" value=\"30\" min=\"0\" max=\"100\" step=\"10\" autofocus=\"autofocus\" input-id=\"$id\"></ons-range></div>",
                 element?.innerHTML,
                 "Should render Onsen UI range form component"
             )

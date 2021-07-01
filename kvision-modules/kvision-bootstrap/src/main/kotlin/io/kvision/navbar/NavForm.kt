@@ -50,7 +50,7 @@ open class NavForm(rightAlign: Boolean = false, className: String? = null, init:
         super.buildClassSet(classSetBuilder)
         classSetBuilder.add("form-inline")
         if (rightAlign) {
-            classSetBuilder.add("ml-auto")
+            classSetBuilder.add("ms-auto")
         }
     }
 }

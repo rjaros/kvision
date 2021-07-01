@@ -28,6 +28,7 @@ import io.kvision.html.ButtonStyle
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.utils.ENTER_KEY
+import io.kvision.utils.event
 
 /**
  * Alert window based on Bootstrap modal.
@@ -90,7 +91,7 @@ open class Alert(
                     hide()
                 }
             }
-            shownBsModal = {
+            event("shown.bs.modal") {
                 okButton.focus()
             }
         }

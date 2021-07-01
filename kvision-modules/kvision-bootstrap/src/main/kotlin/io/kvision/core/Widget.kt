@@ -22,20 +22,35 @@
 
 package io.kvision.core
 
+import io.kvision.Bootstrap
+import io.kvision.KVManagerBootstrap
+import io.kvision.utils.createInstance
+
+internal fun Widget.createBsInstance(constructor: Bootstrap.() -> dynamic, vararg args: dynamic): dynamic {
+    return getElement()?.let { KVManagerBootstrap.bootstrap.constructor().unsafeCast<Any>().createInstance(it, *args) }
+}
+
+internal fun Widget.getBsInstance(constructor: Bootstrap.() -> dynamic): dynamic {
+    return getElement()?.let { KVManagerBootstrap.bootstrap.constructor().getInstance(it) }
+}
+
 /**
  * Enables tooltip for the current widget.
  * @param options tooltip options
  * @return current widget
  */
 fun Widget.enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
+    disablePopover()
     tooltipOptions = options
-    getElementJQueryD()?.tooltip(
+    createBsInstance(
+        { Tooltip },
         options.copy(title = options.title?.let { translate(it) }).toJs()
     )
     if (!tooltipHooksActive) {
         addAfterInsertHook {
             if (tooltipOptions != null) {
-                getElementJQueryD()?.tooltip(
+                createBsInstance(
+                    { Tooltip },
                     tooltipOptions.unsafeCast<TooltipOptions>().copy(title = options.title?.let { translate(it) })
                         .toJs()
                 )
@@ -43,7 +58,7 @@ fun Widget.enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
         }
         addAfterDestroyHook {
             if (tooltipOptions != null) {
-                getElementJQueryD()?.tooltip("dispose")
+                getBsInstance { Tooltip }?.dispose()
             }
         }
         tooltipHooksActive = true
@@ -56,7 +71,7 @@ fun Widget.enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
  * @return current widget
  */
 fun Widget.showTooltip(): Widget {
-    if (tooltipOptions != null) getElementJQueryD()?.tooltip("show")
+    if (tooltipOptions != null) getBsInstance { Tooltip }?.show()
     return this
 }
 
@@ -65,7 +80,7 @@ fun Widget.showTooltip(): Widget {
  * @return current widget
  */
 fun Widget.hideTooltip(): Widget {
-    if (tooltipOptions != null) getElementJQueryD()?.tooltip("hide")
+    if (tooltipOptions != null) getBsInstance { Tooltip }?.hide()
     return this
 }
 
@@ -76,7 +91,7 @@ fun Widget.hideTooltip(): Widget {
 fun Widget.disableTooltip(): Widget {
     if (tooltipOptions != null) {
         tooltipOptions = null
-        getElementJQueryD()?.tooltip("dispose")
+        getBsInstance { Tooltip }?.dispose()
     }
     return this
 }
@@ -87,15 +102,18 @@ fun Widget.disableTooltip(): Widget {
  * @return current widget
  */
 fun Widget.enablePopover(options: PopoverOptions = PopoverOptions()): Widget {
+    disableTooltip()
     popoverOptions = options
-    getElementJQueryD()?.popover(
+    createBsInstance(
+        { Popover },
         options.copy(title = options.title?.let { translate(it) },
             content = options.content?.let { translate(it) }).toJs()
     )
     if (!popoverHooksActive) {
         addAfterInsertHook {
             if (popoverOptions != null) {
-                getElementJQueryD()?.popover(
+                createBsInstance(
+                    { Popover },
                     popoverOptions.unsafeCast<PopoverOptions>().copy(title = options.title?.let { translate(it) },
                         content = options.content?.let { translate(it) }).toJs()
                 )
@@ -103,7 +121,7 @@ fun Widget.enablePopover(options: PopoverOptions = PopoverOptions()): Widget {
         }
         addAfterDestroyHook {
             if (popoverOptions != null) {
-                getElementJQueryD()?.popover("dispose")
+                getBsInstance { Popover }?.dispose()
             }
         }
         popoverHooksActive = true
@@ -116,7 +134,7 @@ fun Widget.enablePopover(options: PopoverOptions = PopoverOptions()): Widget {
  * @return current widget
  */
 fun Widget.showPopover(): Widget {
-    if (popoverOptions != null) getElementJQueryD()?.popover("show")
+    if (popoverOptions != null) getBsInstance { Popover }?.show()
     return this
 }
 
@@ -125,7 +143,7 @@ fun Widget.showPopover(): Widget {
  * @return current widget
  */
 fun Widget.hidePopover(): Widget {
-    if (popoverOptions != null) getElementJQueryD()?.popover("hide")
+    if (popoverOptions != null) getBsInstance { Popover }?.hide()
     return this
 }
 
@@ -136,7 +154,7 @@ fun Widget.hidePopover(): Widget {
 fun Widget.disablePopover(): Widget {
     if (popoverOptions != null) {
         popoverOptions = null
-        getElementJQueryD()?.popover("dispose")
+        getBsInstance { Popover }?.dispose()
     }
     return this
 }

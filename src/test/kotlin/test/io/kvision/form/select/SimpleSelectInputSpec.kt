@@ -41,7 +41,7 @@ class SimpleSelectInputSpec : DomSpec {
             root.add(si)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<select class=\"form-control\" id=\"idti\" name=\"name\" disabled=\"disabled\"><option value=\"#kvnull\"></option><option value=\"test1\" selected=\"selected\">Test 1</option><option value=\"test2\">Test 2</option></select>",
+                "<select class=\"form-select\" id=\"idti\" name=\"name\" disabled=\"disabled\"><option value=\"#kvnull\"></option><option value=\"test1\" selected=\"selected\">Test 1</option><option value=\"test2\">Test 2</option></select>",
                 element?.innerHTML,
                 "Should render correct simple select input control"
             )

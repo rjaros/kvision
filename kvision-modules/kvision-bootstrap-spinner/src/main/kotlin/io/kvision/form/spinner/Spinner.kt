@@ -57,7 +57,7 @@ open class Spinner(
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
     decimalSeparator: String? = I18n.detectDecimalSeparator(), label: String? = null,
     rich: Boolean = false, init: (Spinner.() -> Unit)? = null
-) : SimplePanel("form-group"), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Spinner value.
@@ -206,7 +206,7 @@ open class Spinner(
                 this.id = this@Spinner.idc
                 this.name = name
             }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

@@ -46,7 +46,7 @@ import kotlin.js.Date
 open class DateTime(
     value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false, init: (DateTime.() -> Unit)? = null
-) : SimplePanel("form-group"), DateFormControl, MutableState<Date?> {
+) : SimplePanel("form-group mb-3"), DateFormControl, MutableState<Date?> {
 
     /**
      * Date/time input value.
@@ -242,7 +242,7 @@ open class DateTime(
         this.input.id = this@DateTime.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

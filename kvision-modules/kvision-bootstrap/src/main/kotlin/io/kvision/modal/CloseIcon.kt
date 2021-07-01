@@ -22,7 +22,6 @@
 package io.kvision.modal
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManager
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Widget
@@ -33,12 +32,12 @@ import io.kvision.core.Widget
 open class CloseIcon : Widget() {
 
     override fun render(): VNode {
-        return render("button", arrayOf(KVManager.virtualize("<span aria-hidden='true'>&times;</span>")))
+        return render("button")
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
-        classSetBuilder.add("close")
+        classSetBuilder.add("btn-close")
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

@@ -158,9 +158,11 @@ enum class TAG(internal val tagName: String) {
  * CSS align attributes.
  */
 enum class Align(override val className: String) : CssClass {
-    LEFT("text-left"),
+    LEFT("text-start"),
     CENTER("text-center"),
-    RIGHT("text-right"),
+    RIGHT("text-end"),
+
+    @Deprecated("Usage is discouraged", ReplaceWith("LEFT"))
     JUSTIFY("text-justify"),
     NOWRAP("text-nowrap")
 }

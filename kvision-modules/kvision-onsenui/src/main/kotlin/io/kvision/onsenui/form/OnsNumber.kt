@@ -61,7 +61,7 @@ open class OnsNumber(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsNumber.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-ons-form-group"), NumberFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group"), NumberFormControl,
     MutableState<Number?> {
 
     /**
@@ -196,7 +196,7 @@ open class OnsNumber(
             this.name = name
             this.eventTarget = this@OnsNumber
         }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "control-label")
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {

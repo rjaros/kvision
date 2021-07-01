@@ -56,7 +56,7 @@ open class SimpleSelectInput(
     multiple: Boolean = false,
     selectSize: Int? = null,
     className: String? = null, init: (SimpleSelectInput.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<String?>, FormInput,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-select"), GenericFormComponent<String?>, FormInput,
     MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
@@ -213,7 +213,7 @@ open class SimpleSelectInput(
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
         classSetBuilder.add(validationStatus)
-        classSetBuilder.add(size)
+        size?.className?.let { classSetBuilder.add(it.replace("control", "select")) }
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

@@ -43,13 +43,13 @@ class TextSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ti.input.id
             assertEqualsHtml(
-                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" type=\"text\" value=\"abc\"></div>",
+                "<div class=\"form-group mb-3\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" type=\"text\" value=\"abc\"></div>",
                 element?.innerHTML,
                 "Should render correct input form control"
             )
             ti.validatorError = "Validation Error"
             assertEqualsHtml(
-                "<div class=\"form-group text-danger\"><label class=\"control-label\" for=\"$id\">Label</label><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" type=\"text\" value=\"abc\"><div class=\"invalid-feedback\">Validation Error</div></div>",
+                "<div class=\"form-group mb-3 text-danger\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" type=\"text\" value=\"abc\"><div class=\"invalid-feedback\">Validation Error</div></div>",
                 element?.innerHTML,
                 "Should render correct input form control with validation error"
             )

@@ -27,8 +27,8 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssClass
 import io.kvision.core.Widget
-import io.kvision.core.getElementJQuery
-import io.kvision.core.getElementJQueryD
+import io.kvision.core.createBsInstance
+import io.kvision.core.getBsInstance
 import io.kvision.html.Button
 import io.kvision.html.TAG
 import io.kvision.html.Tag
@@ -252,24 +252,15 @@ open class Modal(
 
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
-        getElementJQueryD()?.modal(obj {
+        createBsInstance({ Modal }, obj {
             keyboard = escape
             backdrop = if (escape) "true" else "static"
         })
-        this.getElementJQuery()?.on("show.bs.modal") { e, _ ->
-            this.dispatchEvent("showBsModal", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("shown.bs.modal") { e, _ ->
-            this.dispatchEvent("shownBsModal", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hide.bs.modal") { e, _ ->
-            this.dispatchEvent("hideBsModal", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hidden.bs.modal") { e, _ ->
+        this.getElement()?.addEventListener("hidden.bs.modal", { e ->
             this.visible = false
             hide()
-            this.dispatchEvent("hiddenBsModal", obj { detail = e })
-        }
+        })
+        showInternal()
     }
 
     override fun hide(): Widget {
@@ -289,12 +280,12 @@ open class Modal(
 
     @Suppress("UnsafeCastFromDynamic")
     private fun showInternal() {
-        getElementJQueryD()?.modal("show")
+        getBsInstance { Modal }?.show()
     }
 
     @Suppress("UnsafeCastFromDynamic")
     private fun hideInternal() {
-        getElementJQueryD()?.modal("hide")
+        getBsInstance { Modal }?.hide()
     }
 
     override fun clearParent(): Widget {

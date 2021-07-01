@@ -51,7 +51,7 @@ open class Nav(rightAlign: Boolean = false, className: String? = null, init: (Na
         super.buildClassSet(classSetBuilder)
         classSetBuilder.add("navbar-nav")
         if (rightAlign) {
-            classSetBuilder.add("ml-auto")
+            classSetBuilder.add("ms-auto")
         }
     }
 }

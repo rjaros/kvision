@@ -26,11 +26,26 @@ import com.github.snabbdom.h
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
+import io.kvision.core.CssClass
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.snClasses
 import io.kvision.utils.snOpt
+
+/**
+ * HTML table color variants.
+ */
+enum class TableColor(override val className: String) : CssClass {
+    PRIMARY("table-primary"),
+    SECONDARY("table-secondary"),
+    SUCCESS("table-success"),
+    DANGER("table-danger"),
+    WARNING("table-warning"),
+    INFO("table-info"),
+    LIGHT("table-light"),
+    DARK("table-dark")
+}
 
 /**
  * HTML table types.
@@ -40,8 +55,7 @@ enum class TableType(val type: String) {
     BORDERED("table-bordered"),
     BORDERLESS("table-borderless"),
     HOVER("table-hover"),
-    SMALL("table-sm"),
-    DARK("table-dark")
+    SMALL("table-sm")
 }
 
 /**
@@ -52,15 +66,8 @@ enum class ResponsiveType(val type: String) {
     RESPONSIVESM("table-responsive-sm"),
     RESPONSIVEMD("table-responsive-md"),
     RESPONSIVELG("table-responsive-lg"),
-    RESPONSIVEXL("table-responsive-xl")
-}
-
-/**
- * HTML table header types.
- */
-enum class TheadType(internal val type: String) {
-    DARK("thead-dark"),
-    LIGHT("thead-light")
+    RESPONSIVEXL("table-responsive-xl"),
+    RESPONSIVEXXL("table-responsive-xxl")
 }
 
 /**
@@ -71,6 +78,8 @@ enum class TheadType(internal val type: String) {
  * @param types a set of table types
  * @param caption table caption
  * @param responsiveType determines if the table is responsive
+ * @param tableColor table color variant
+ * @param theadColor table header color variant
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -78,7 +87,8 @@ enum class TheadType(internal val type: String) {
 open class Table(
     headerNames: List<String>? = null,
     types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
-    theadType: TheadType? = null, className: String? = null, init: (Table.() -> Unit)? = null
+    tableColor: TableColor? = null, val theadColor: TableColor? = null,
+    className: String? = null, init: (Table.() -> Unit)? = null
 ) : SimplePanel((className?.let { "$it " } ?: "") + "table") {
 
     /**
@@ -101,9 +111,14 @@ open class Table(
      */
     var responsiveType by refreshOnUpdate(responsiveType)
 
+    /**
+     * Table color variant.
+     */
+    var tableColor by refreshOnUpdate(tableColor)
+
     internal val theadRow = Tag(TAG.TR)
     private val thead = Tag(TAG.THEAD).apply {
-        if (theadType != null) addCssClass(theadType.type)
+        if (theadColor != null) addCssClass(theadColor.className)
         add(this@Table.theadRow)
     }
     private val tbody = Tag(TAG.TBODY)
@@ -177,6 +192,7 @@ open class Table(
         types.forEach {
             classSetBuilder.add(it.type)
         }
+        classSetBuilder.add(tableColor)
     }
 
     override fun add(child: Component): Table {
@@ -233,12 +249,12 @@ open class Table(
 fun Container.table(
     headerNames: List<String>? = null,
     types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
-    theadType: TheadType? = null,
+    tableColor: TableColor? = null, theadColor: TableColor? = null,
     className: String? = null,
     init: (Table.() -> Unit)? = null
 ): Table {
     val table =
-        Table(headerNames, types, caption, responsiveType, theadType, className, init)
+        Table(headerNames, types, caption, responsiveType, tableColor, theadColor, className, init)
     this.add(table)
     return table
 }

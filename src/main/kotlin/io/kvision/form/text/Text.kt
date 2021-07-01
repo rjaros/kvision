@@ -32,12 +32,13 @@ import io.kvision.core.Container
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param floating use floating label
  * @param init an initializer extension function
  */
 open class Text(
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (Text.() -> Unit)? = null
-) : AbstractText(label, rich) {
+    label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Text.() -> Unit)? = null
+) : AbstractText(label, rich, floating) {
 
     /**
      * Text input type.
@@ -65,10 +66,17 @@ open class Text(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(input)
+        if (!floating) {
+            this.addPrivate(flabel)
+            this.addPrivate(input)
+        } else {
+            this.addPrivate(input)
+            this.addPrivate(flabel)
+        }
         this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")
         init?.invoke(this)
+        floatingPlaceholder()
     }
 }
 
@@ -79,9 +87,9 @@ open class Text(
  */
 fun Container.text(
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (Text.() -> Unit)? = null
+    label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Text.() -> Unit)? = null
 ): Text {
-    val text = Text(type, value, name, label, rich, init)
+    val text = Text(type, value, name, label, rich, floating, init)
     this.add(text)
     return text
 }

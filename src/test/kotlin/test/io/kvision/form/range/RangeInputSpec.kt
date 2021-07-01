@@ -41,7 +41,7 @@ class RangeInputSpec : DomSpec {
             root.add(ri)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<input class=\"form-control-range\" id=\"idri\" type=\"range\" value=\"12\" name=\"name\" min=\"10\" max=\"20\" step=\"2\" disabled=\"disabled\">",
+                "<input class=\"form-range\" id=\"idri\" type=\"range\" value=\"12\" name=\"name\" min=\"10\" max=\"20\" step=\"2\" disabled=\"disabled\">",
                 element?.innerHTML,
                 "Should render correct range input control"
             )

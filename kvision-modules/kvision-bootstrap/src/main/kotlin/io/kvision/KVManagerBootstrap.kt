@@ -23,15 +23,26 @@ package io.kvision
 
 import io.kvision.core.Component
 import io.kvision.utils.isIE11
+import kotlinx.browser.document
 
 internal val kVManagerBootstrapInit = KVManagerBootstrap.init()
+
+external object Bootstrap {
+    val Tooltip: dynamic
+    val Popover: dynamic
+    val Modal: dynamic
+}
 
 /**
  * Internal singleton object which initializes and configures KVision Bootstrap module.
  */
 internal object KVManagerBootstrap {
+    internal val bootstrap: Bootstrap
+
     init {
-        require("bootstrap")
+        document.body?.setAttribute("data-bs-no-jquery", "true")
+        @Suppress("UnsafeCastFromDynamic")
+        bootstrap = require("bootstrap")
         require("awesome-bootstrap-checkbox")
     }
 

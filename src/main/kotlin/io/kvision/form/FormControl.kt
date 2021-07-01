@@ -201,6 +201,7 @@ interface FormControl : Component {
      * Style form control element for inline form panel.
      */
     fun styleForInlineFormPanel() {
+        removeCssClass("mb-3")
     }
 }
 
