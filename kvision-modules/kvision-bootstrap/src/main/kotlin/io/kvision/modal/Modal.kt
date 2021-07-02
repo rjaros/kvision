@@ -256,7 +256,7 @@ open class Modal(
             keyboard = escape
             backdrop = if (escape) "true" else "static"
         })
-        this.getElement()?.addEventListener("hidden.bs.modal", { e ->
+        this.getElement()?.addEventListener("hidden.bs.modal", { _ ->
             this.visible = false
             hide()
         })
