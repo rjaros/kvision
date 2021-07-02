@@ -15,6 +15,7 @@ include(
     "kvision-modules:kvision-bootstrap-css",
     "kvision-modules:kvision-bootstrap-datetime",
     "kvision-modules:kvision-bootstrap-dialog",
+    "kvision-modules:kvision-bootstrap-icons",
     "kvision-modules:kvision-bootstrap-select",
     "kvision-modules:kvision-bootstrap-select-remote",
     "kvision-modules:kvision-bootstrap-spinner",

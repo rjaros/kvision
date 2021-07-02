@@ -32,7 +32,6 @@ internal object KVManagerUpload {
         val bootstrap = require("bootstrap")
         jQuery.fn.asDynamic()["modal"] = bootstrap.Modal.jQueryInterface
         jQuery.fn.asDynamic()["modal"].Constructor = bootstrap.Modal
-        require("bootstrap-icons/font/bootstrap-icons.css")
         require("bootstrap-fileinput/css/fileinput.min.css")
         require("bootstrap-fileinput/themes/explorer-fas/theme.min.css")
         require("bootstrap-fileinput")
