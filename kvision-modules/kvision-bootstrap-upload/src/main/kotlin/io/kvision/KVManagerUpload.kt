@@ -21,6 +21,8 @@
  */
 package io.kvision
 
+import io.kvision.jquery.jQuery
+
 internal val kVManagerUploadInit = KVManagerUpload.init()
 
 /**
@@ -29,6 +31,10 @@ internal val kVManagerUploadInit = KVManagerUpload.init()
 internal object KVManagerUpload {
 
     init {
+        val bootstrap = require("bootstrap")
+        jQuery.fn.asDynamic()["modal"] = bootstrap.Modal.jQueryInterface
+        jQuery.fn.asDynamic()["modal"].Constructor = bootstrap.Modal
+        require("bootstrap-icons/font/bootstrap-icons.css")
         require("bootstrap-fileinput/css/fileinput.min.css")
         require("bootstrap-fileinput/themes/explorer-fas/theme.min.css")
         require("bootstrap-fileinput")
@@ -69,7 +75,7 @@ internal object KVManagerUpload {
         require("kvision-assets/js/locales/bootstrap-fileinput/vi.js")
         require("kvision-assets/js/locales/bootstrap-fileinput/zh.js")
         require("bootstrap-fileinput/themes/explorer-fas/theme.js")
-        require("bootstrap-fileinput/themes/fas/theme.js")
+        require("bootstrap-fileinput/themes/bs5/theme.js")
     }
 
     internal fun init() {}

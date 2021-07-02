@@ -346,7 +346,7 @@ open class UploadInput(
         return obj {
             this.uploadUrl = uploadUrl
             this.uploadExtraData = uploadExtraData ?: undefined
-            this.theme = if (explorerTheme) "explorer-fas" else "fas"
+            this.theme = if (explorerTheme) "explorer-fas" else "bs5"
             this.required = required
             this.showCaption = showCaption
             this.showPreview = showPreview

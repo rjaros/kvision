@@ -18,7 +18,8 @@ dependencies {
     api(project(":kvision-modules:kvision-jquery"))
     api(rootProject)
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
-    implementation(npm("bootstrap-fileinput", "^5.1.5"))
+    implementation(npm("bootstrap-fileinput", "^5.2.2"))
+    implementation(npm("bootstrap-icons", "^1.5.0"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }
