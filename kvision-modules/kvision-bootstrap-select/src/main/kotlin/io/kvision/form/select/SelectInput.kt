@@ -36,10 +36,12 @@ import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.html.ButtonStyle
+import io.kvision.jquery.get
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.asString
 import io.kvision.utils.obj
+import kotlinx.browser.window
 
 /**
  * Select width types. See [Bootstrap Select width](http://silviomoreto.github.io/bootstrap-select/examples/#width).
@@ -282,14 +284,14 @@ open class SelectInput(
      * Opens dropdown with options.
      */
     open fun showOptions() {
-        getElementJQueryD()?.selectpicker("show")
+        getElementJQueryD()?.selectpicker("open")
     }
 
     /**
      * Hides dropdown with options.
      */
     open fun hideOptions() {
-        getElementJQueryD()?.selectpicker("hide")
+        getElementJQueryD()?.selectpicker("close")
     }
 
     /**
@@ -315,6 +317,7 @@ open class SelectInput(
     @Suppress("ComplexMethod")
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("data-live-search", "true")
         name?.let {
             attributeSetBuilder.add("name", it)
         }
@@ -323,9 +326,6 @@ open class SelectInput(
         }
         maxOptions?.let {
             attributeSetBuilder.add("data-max-options", "" + it)
-        }
-        if (liveSearch) {
-            attributeSetBuilder.add("data-live-search", "true")
         }
         placeholder?.let {
             attributeSetBuilder.add("title", translate(it))
@@ -369,30 +369,46 @@ open class SelectInput(
             getElementJQueryD()?.selectpicker("render").ajaxSelectPicker(it.toJs(emptyOption))
         } ?: getElementJQueryD()?.selectpicker("render")
 
-        this.getElementJQuery()?.on("show.bs.select") { e, _ ->
-            this.dispatchEvent("showBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("shown.bs.select") { e, _ ->
-            this.dispatchEvent("shownBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hide.bs.select") { e, _ ->
-            this.dispatchEvent("hideBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hidden.bs.select") { e, _ ->
-            this.dispatchEvent("hiddenBsSelect", obj { detail = e })
-        }
+        getElement()?.parentElement?.addEventListener("show.bs.dropdown", { e ->
+            this.dispatchEvent("show.bs.select", obj { detail = e })
+        })
+
+        getElement()?.parentElement?.addEventListener("shown.bs.dropdown", { e ->
+            getElement()?.parentElement?.classList?.add("show")
+            getElementJQuery()?.parent()?.find("input[type='search']")?.get(0)?.let { input ->
+                if (!liveSearch) {
+                    input.style.position = "absolute"
+                    input.style.left = "-30000px"
+                }
+                window.setTimeout({
+                    input.focus()
+                }, 0)
+            }
+            this.dispatchEvent("shown.bs.select", obj { detail = e })
+        })
+
+        getElement()?.parentElement?.addEventListener("hide.bs.dropdown", { e ->
+            this.dispatchEvent("hide.bs.select", obj { detail = e })
+        })
+
+        getElement()?.parentElement?.addEventListener("hidden.bs.dropdown", { e ->
+            getElement()?.parentElement?.classList?.remove("show")
+            this.dispatchEvent("hidden.bs.select", obj { detail = e })
+        })
+
         this.getElementJQuery()?.on("loaded.bs.select") { e, _ ->
-            this.dispatchEvent("loadedBsSelect", obj { detail = e })
+            this.dispatchEvent("loaded.bs.select", obj { detail = e })
         }
         this.getElementJQuery()?.on("rendered.bs.select") { e, _ ->
-            this.dispatchEvent("renderedBsSelect", obj { detail = e })
+            this.dispatchEvent("rendered.bs.select", obj { detail = e })
         }
         this.getElementJQuery()?.on("refreshed.bs.select") { e, _ ->
-            this.dispatchEvent("refreshedBsSelect", obj { detail = e })
+            this.dispatchEvent("refreshed.bs.select", obj { detail = e })
         }
         this.getElementJQueryD()?.on("changed.bs.select") { e, cIndex: Int ->
+            if (!multiple) hideOptions()
             e["clickedIndex"] = cIndex
-            this.dispatchEvent("changedBsSelect", obj { detail = e })
+            this.dispatchEvent("changed.bs.select", obj { detail = e })
         }
         refreshState()
     }
@@ -406,9 +422,13 @@ open class SelectInput(
                 } else {
                     getElementJQueryD()?.selectpicker("val", it)
                 }
-            } ?: getElementJQueryD()?.selectpicker("val", null)
+            } ?: run {
+                getElementJQueryD()?.selectpicker("val", null)
+                getElementD()?.selectedIndex = -1
+            }
         } else if (value == null) {
             getElementJQueryD()?.selectpicker("val", null)
+            getElementD()?.selectedIndex = -1
         }
     }
 

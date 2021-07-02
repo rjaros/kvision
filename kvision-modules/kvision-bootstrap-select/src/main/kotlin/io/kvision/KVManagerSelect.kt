@@ -21,6 +21,8 @@
  */
 package io.kvision
 
+import kotlinx.browser.window
+
 internal val kVManagerSelectInit = KVManagerSelect.init()
 
 /**
@@ -31,7 +33,9 @@ internal object KVManagerSelect {
     internal const val KVNULL = "#kvnull"
 
     init {
-        js("if ($.fn.dropdown === undefined) { $.fn.dropdown={'Constructor' : {'VERSION' : '4.0.0'}}; };")
+        val bootstrap = require("bootstrap")
+        window.asDynamic()["bootstrap"] = bootstrap
+        js("if ($.fn.dropdown === undefined) { $.fn.dropdown={'Constructor' : {'VERSION' : '5.0.0'}}; };")
         require("bootstrap-select/dist/css/bootstrap-select.min.css")
         require("bootstrap-select")
         require("kvision-assets/js/locales/bootstrap-select/bootstrap-select-i18n.min.js")
@@ -50,7 +54,7 @@ internal object KVManagerSelect {
         require("kvision-assets/js/locales/ajax-bootstrap-select/ajax-bootstrap-select.ru-RU.min.js")
         require("kvision-assets/js/locales/ajax-bootstrap-select/ajax-bootstrap-select.sr-SP.min.js")
         require("kvision-assets/js/locales/ajax-bootstrap-select/ajax-bootstrap-select.tr-TR.min.js")
-        js("$.fn.selectpicker.Constructor.BootstrapVersion = '4';")
+        js("$.fn.selectpicker.Constructor.BootstrapVersion = '5';")
         js("$.fn.selectpicker.Constructor.DEFAULTS.styleBase = 'form-control';")
         js("$.fn.selectpicker.Constructor.DEFAULTS.style = '';")
     }
