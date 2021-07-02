@@ -23,8 +23,6 @@ package io.kvision
 
 import kotlinx.browser.window
 
-internal val kVManagerSelectInit = KVManagerSelect.init()
-
 /**
  * Internal singleton object which initializes and configures KVision select module.
  */

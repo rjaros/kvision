@@ -23,11 +23,12 @@
 
 package io.kvision.pace
 
-import org.w3c.dom.events.Event
-import org.w3c.dom.get
+import io.kvision.KVManagerPace
 import io.kvision.require
 import io.kvision.utils.obj
 import kotlinx.browser.window
+import org.w3c.dom.events.Event
+import org.w3c.dom.get
 
 class PaceAjaxOptions(
     trackMethods: Array<dynamic>? = null,
@@ -152,6 +153,7 @@ class Pace {
             @Suppress("UNUSED_PARAMETER") req: dynamic =
                 require("pace-progressbar/themes/blue/pace-theme-flash.css")
         ) {
+            KVManagerPace.init()
         }
 
         fun setOptions(options: PaceOptions) {

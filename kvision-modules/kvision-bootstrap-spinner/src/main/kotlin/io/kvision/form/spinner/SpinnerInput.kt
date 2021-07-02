@@ -23,6 +23,7 @@ package io.kvision.form.spinner
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
+import io.kvision.KVManagerSpinner
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -174,6 +175,7 @@ open class SpinnerInput(
     private var siblings: JQuery? = null
 
     init {
+        KVManagerSpinner.init()
         this.addSurroundingCssClass("input-group")
         this.addSurroundingCssClass("kv-spinner")
         when (buttonsType) {

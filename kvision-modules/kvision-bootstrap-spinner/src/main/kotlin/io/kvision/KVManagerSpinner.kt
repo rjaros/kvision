@@ -21,8 +21,6 @@
  */
 package io.kvision
 
-internal val kVManagerSpinnerInit = KVManagerSpinner.init()
-
 /**
  * Internal singleton object which initializes and configures KVision spinner module.
  */

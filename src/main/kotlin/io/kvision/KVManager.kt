@@ -42,21 +42,8 @@ external fun require(name: String): dynamic
 /**
  * Singleton object which initializes and configures KVision framework.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 object KVManager {
     init {
-        try {
-            require("kvision-kvision-bootstrap-css-js-legacy").io.kvision.KVManagerBootstrapCss
-        } catch (e: Throwable) {
-        }
-        try {
-            require("kvision-kvision-bootstrap-js-legacy").io.kvision.KVManagerBootstrap
-        } catch (e: Throwable) {
-        }
-        try {
-            require("kvision-kvision-fontawesome-js-legacy").io.kvision.KVManagerFontAwesome
-        } catch (e: Throwable) {
-        }
         require("kvision-assets/css/style.css")
     }
 

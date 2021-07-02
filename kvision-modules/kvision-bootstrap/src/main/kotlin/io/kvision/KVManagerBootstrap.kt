@@ -25,9 +25,7 @@ import io.kvision.core.Component
 import io.kvision.utils.isIE11
 import kotlinx.browser.document
 
-internal val kVManagerBootstrapInit = KVManagerBootstrap.init()
-
-external object Bootstrap {
+internal external object Bootstrap {
     val Tooltip: dynamic
     val Popover: dynamic
     val Modal: dynamic

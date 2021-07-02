@@ -21,8 +21,6 @@
  */
 package io.kvision
 
-internal val kVManagerHandlebarsInit = KVManagerHandlebars.init()
-
 /**
  * Internal singleton object which initializes and configures KVision handlebars module.
  */

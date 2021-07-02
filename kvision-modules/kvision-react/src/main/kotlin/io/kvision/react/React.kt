@@ -62,6 +62,10 @@ class React<S>(
         builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
     ) : this(js("{}"), className, builder)
 
+    init {
+        KVManagerReact.init()
+    }
+
     override fun afterInsert(node: VNode) {
         ReactRender(node.elm as HTMLElement, {}) {
             child(reactWrapper<S> { refresh ->

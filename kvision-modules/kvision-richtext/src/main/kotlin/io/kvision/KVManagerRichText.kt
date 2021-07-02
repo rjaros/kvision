@@ -25,8 +25,6 @@ import io.kvision.i18n.I18n
 import io.kvision.utils.obj
 import kotlinx.browser.window
 
-internal val kVManagerRichTextInit = KVManagerRichText.init()
-
 /**
  * Internal singleton object which initializes and configures KVision RichText module.
  */

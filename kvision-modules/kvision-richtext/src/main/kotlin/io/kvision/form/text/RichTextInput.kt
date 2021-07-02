@@ -22,6 +22,7 @@
 package io.kvision.form.text
 
 import com.github.snabbdom.VNode
+import io.kvision.KVManagerRichText
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import kotlinx.browser.document
@@ -44,6 +45,7 @@ open class RichTextInput(
     private var trixId: String? = null
 
     init {
+        KVManagerRichText.init()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

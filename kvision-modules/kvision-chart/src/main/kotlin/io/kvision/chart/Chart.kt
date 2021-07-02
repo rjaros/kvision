@@ -22,6 +22,7 @@
 package io.kvision.chart
 
 import com.github.snabbdom.VNode
+import io.kvision.KVManagerChart
 import io.kvision.chart.js.Chart.ChartConfiguration
 import io.kvision.chart.js.Chart.PluginServiceGlobalRegistration
 import io.kvision.core.Container
@@ -64,6 +65,7 @@ open class Chart(
     internal val chartCanvas: ChartCanvas = ChartCanvas(chartWidth, chartHeight, configuration)
 
     init {
+        KVManagerChart.init()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

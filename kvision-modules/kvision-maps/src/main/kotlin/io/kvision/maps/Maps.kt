@@ -23,6 +23,7 @@
 package io.kvision.maps
 
 import com.github.snabbdom.VNode
+import io.kvision.KVManagerMaps
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import org.w3c.dom.Element
@@ -60,6 +61,7 @@ open class Maps(
     private val featureGroup: dynamic = L.featureGroup()
 
     init {
+        KVManagerMaps.init()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

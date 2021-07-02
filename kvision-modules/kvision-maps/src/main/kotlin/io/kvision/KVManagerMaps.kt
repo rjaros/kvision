@@ -23,8 +23,6 @@ package io.kvision
 
 import io.kvision.utils.obj
 
-internal val kVManagerMapsInit = KVManagerMaps.init()
-
 /**
  * Internal singleton object which initializes and configures KVision Maps module.
  */

@@ -22,6 +22,7 @@
 package io.kvision.form.text
 
 import com.github.snabbdom.VNode
+import io.kvision.KVManagerTypeahead
 import io.kvision.core.Container
 import io.kvision.core.getElementJQueryD
 import io.kvision.jquery.JQueryXHR
@@ -104,6 +105,7 @@ open class TypeaheadInput(
     var fitToElement by refreshOnUpdate(false) { refreshTypeahead() }
 
     init {
+        KVManagerTypeahead.init()
         autocomplete = false
         @Suppress("LeakingThis")
         init?.invoke(this)

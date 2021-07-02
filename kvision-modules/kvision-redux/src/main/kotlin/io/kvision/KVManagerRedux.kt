@@ -22,10 +22,10 @@
 
 package io.kvision
 
+import io.kvision.utils.obj
 import kotlinext.js.Object
 import kotlinext.js.assign
 import kotlinx.browser.window
-import io.kvision.utils.obj
 import redux.Action
 import redux.Enhancer
 import redux.Middleware
@@ -34,8 +34,6 @@ import redux.Reducer
 import redux.Store
 import redux.StoreCreator
 import redux.WrapperAction
-
-internal val kVManagerReduxInit = KVManagerRedux.init()
 
 /**
  * Internal singleton object which initializes and configures KVision Redux module.

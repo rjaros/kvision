@@ -34,11 +34,6 @@ dependencies {
     api(project(":kvision-modules:kvision-common-types"))
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
     api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
-//  Empty NPM placeholders
-    implementation(npm("kvision-kvision-bootstrap-js-legacy", "npm:kvision-bootstrap@^0.0.1"))
-    implementation(npm("kvision-kvision-bootstrap-css-js-legacy", "npm:kvision-bootstrap-css@^0.0.1"))
-    implementation(npm("kvision-kvision-fontawesome-js-legacy", "npm:kvision-fontawesome@^0.0.1"))
-//
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-1.0.5.tgz"))
     implementation(npm("kvision-assets", "^1.0.5"))

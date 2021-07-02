@@ -23,8 +23,6 @@ package io.kvision
 
 import io.kvision.jquery.jQuery
 
-internal val kVManagerUploadInit = KVManagerUpload.init()
-
 /**
  * Internal singleton object which initializes and configures KVision upload module.
  */

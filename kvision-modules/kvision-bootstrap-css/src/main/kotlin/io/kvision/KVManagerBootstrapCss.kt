@@ -21,8 +21,6 @@
  */
 package io.kvision
 
-internal val kVManagerBootstrapCssInit = KVManagerBootstrapCss.init()
-
 /**
  * Internal singleton object which initializes and configures KVision Bootstrap CSS module.
  */

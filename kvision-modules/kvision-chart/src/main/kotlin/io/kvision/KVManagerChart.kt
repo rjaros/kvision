@@ -21,8 +21,6 @@
  */
 package io.kvision
 
-internal val kVManagerChartInit = KVManagerChart.init()
-
 /**
  * Internal singleton object which initializes and configures KVision Chart module.
  */

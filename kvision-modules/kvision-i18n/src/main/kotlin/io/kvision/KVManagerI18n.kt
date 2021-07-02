@@ -21,8 +21,6 @@
  */
 package io.kvision
 
-internal val kVManagerI18nInit = KVManagerI18n.init()
-
 /**
  * Internal singleton object which initializes and configures KVision i18n module.
  */

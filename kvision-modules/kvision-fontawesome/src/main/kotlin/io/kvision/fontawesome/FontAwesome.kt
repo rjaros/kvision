@@ -19,15 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-/**
- * Internal singleton object which initializes and configures KVision typeahead module.
- */
-internal object KVManagerTypeahead {
-    init {
-        require("eam_bootstrap-3-typeahead")
+package io.kvision.fontawesome
+
+import io.kvision.KVManagerFontAwesome
+
+object FontAwesome {
+    fun init() {
+        KVManagerFontAwesome.init()
     }
-
-    internal fun init() {}
 }

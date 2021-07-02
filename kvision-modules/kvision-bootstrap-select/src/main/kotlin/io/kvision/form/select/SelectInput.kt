@@ -22,6 +22,7 @@
 package io.kvision.form.select
 
 import com.github.snabbdom.VNode
+import io.kvision.KVManagerSelect
 import io.kvision.KVManagerSelect.KVNULL
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
@@ -192,6 +193,7 @@ open class SelectInput(
         }
 
     init {
+        KVManagerSelect.init()
         setChildrenFromOptions()
         this.setInternalEventListener<SelectInput> {
             change = {

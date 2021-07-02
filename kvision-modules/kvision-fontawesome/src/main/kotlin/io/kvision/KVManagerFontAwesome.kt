@@ -21,8 +21,6 @@
  */
 package io.kvision
 
-internal val kVManagerFontAwesomeInit = KVManagerFontAwesome.init()
-
 /**
  * Internal singleton object which initializes and configures KVision Font Awesome module.
  */

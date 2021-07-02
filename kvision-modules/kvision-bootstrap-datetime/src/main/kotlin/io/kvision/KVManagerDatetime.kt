@@ -21,8 +21,6 @@
  */
 package io.kvision
 
-internal val kVManagerDatetimeInit = KVManagerDatetime.init()
-
 /**
  * Internal singleton object which initializes and configures KVision datetime module.
  */

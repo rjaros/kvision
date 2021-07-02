@@ -22,8 +22,6 @@
  */
 package io.kvision
 
-internal val kVManagerPaceInit = KVManagerPace.init()
-
 /**
  * Internal singleton object which initializes and configures KVision Moment module.
  */

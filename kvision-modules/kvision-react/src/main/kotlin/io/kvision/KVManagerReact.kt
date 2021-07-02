@@ -21,8 +21,6 @@
  */
 package io.kvision
 
-internal val kVManagerReactInit = KVManagerReact.init()
-
 /**
  * Internal singleton object which initializes and configures KVision React module.
  */
