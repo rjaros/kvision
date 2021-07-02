@@ -255,15 +255,14 @@ open class SpinnerInput(
         siblings = getElementJQuery()?.parent(".bootstrap-touchspin")?.children("span")
         this.getElementJQuery()?.on("change") { e, _ ->
             if (e.asDynamic().isTrigger != null) {
-                val event = org.w3c.dom.events.Event("change")
-                this.getElement()?.dispatchEvent(event)
+                this.dispatchEvent("change", obj { detail = e })
             }
         }
         this.getElementJQuery()?.on("touchspin.on.min") { e, _ ->
-            this.dispatchEvent("onMinBsSpinner", obj { detail = e })
+            this.dispatchEvent("touchspin.on.min", obj { detail = e })
         }
         this.getElementJQuery()?.on("touchspin.on.max") { e, _ ->
-            this.dispatchEvent("onMaxBsSpinner", obj { detail = e })
+            this.dispatchEvent("touchspin.on.max", obj { detail = e })
         }
         refreshState()
     }
