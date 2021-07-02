@@ -26,7 +26,6 @@ package io.kvision.utils
 import io.kvision.core.CssSize
 import io.kvision.core.StringPair
 import io.kvision.core.UNIT
-import kotlinx.browser.window
 
 /**
  * Extension property to convert Int to CSS px units.
@@ -191,12 +190,6 @@ fun Int.toHexString(): String {
     }
     return result
 }
-
-/**
- * Utility function to detect Internet Explorer 11.
- * @return true if the current browser is IE11
- */
-fun isIE11(): Boolean = window.navigator.userAgent.matches("Trident\\/7\\.")
 
 /**
  * Utility extension function to synchronise elements of the MutableList.
