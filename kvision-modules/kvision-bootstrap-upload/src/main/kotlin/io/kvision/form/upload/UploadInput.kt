@@ -190,7 +190,6 @@ open class UploadInput(
     private val nativeFiles: MutableMap<KFile, File> = mutableMapOf()
 
     init {
-        KVManagerUpload.init()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -384,6 +383,12 @@ open class UploadInput(
 
     override fun setState(state: List<KFile>?) {
         value = state
+    }
+
+    companion object {
+        init {
+            KVManagerUpload.init()
+        }
     }
 }
 

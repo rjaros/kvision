@@ -175,7 +175,6 @@ open class SpinnerInput(
     private var siblings: JQuery? = null
 
     init {
-        KVManagerSpinner.init()
         this.addSurroundingCssClass("input-group")
         this.addSurroundingCssClass("kv-spinner")
         when (buttonsType) {
@@ -366,6 +365,12 @@ open class SpinnerInput(
 
     override fun setState(state: Number?) {
         value = state
+    }
+
+    companion object {
+        init {
+            KVManagerSpinner.init()
+        }
     }
 }
 

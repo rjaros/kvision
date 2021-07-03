@@ -24,7 +24,14 @@ package io.kvision.bootstrap
 
 import io.kvision.KVManagerBootstrapCss
 
+/**
+ * Initialization for Bootstrap CSS module.
+ */
 object BootstrapCss {
+
+    /**
+     * Initialize Bootstrap CSS module.
+     */
     fun init() {
         KVManagerBootstrapCss.init()
     }

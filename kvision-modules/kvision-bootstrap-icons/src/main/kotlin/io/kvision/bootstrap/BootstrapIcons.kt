@@ -24,7 +24,14 @@ package io.kvision.bootstrap
 
 import io.kvision.KVManagerBootstrapIcons
 
+/**
+ * Initialization for Bootstrap Icons module.
+ */
 object BootstrapIcons {
+
+    /**
+     * Initialize Bootstrap Icons module.
+     */
     fun init() {
         KVManagerBootstrapIcons.init()
     }

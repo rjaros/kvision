@@ -20,19 +20,19 @@
  * SOFTWARE.
  */
 
-package io.kvision.fontawesome
+package io.kvision.handlebars
 
-import io.kvision.KVManagerFontAwesome
+import io.kvision.KVManagerHandlebars
 
 /**
- * Initialization for Font Awesome module.
+ * Initialization for Handlebars module.
  */
-object FontAwesome {
+object Handlebars {
 
     /**
-     * Initialize Font Awesome module.
+     * Initialize Handlebars module.
      */
     fun init() {
-        KVManagerFontAwesome.init()
+        KVManagerHandlebars.init()
     }
 }

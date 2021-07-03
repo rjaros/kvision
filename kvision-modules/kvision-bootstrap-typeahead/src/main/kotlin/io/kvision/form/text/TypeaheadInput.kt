@@ -105,7 +105,6 @@ open class TypeaheadInput(
     var fitToElement by refreshOnUpdate(false) { refreshTypeahead() }
 
     init {
-        KVManagerTypeahead.init()
         autocomplete = false
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -188,6 +187,11 @@ open class TypeaheadInput(
         getElementJQueryD()?.typeahead(getSettingsObj())
     }
 
+    companion object {
+        init {
+            KVManagerTypeahead.init()
+        }
+    }
 }
 
 /**

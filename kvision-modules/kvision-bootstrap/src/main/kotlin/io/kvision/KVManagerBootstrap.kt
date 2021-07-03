@@ -26,6 +26,7 @@ import io.kvision.utils.isIE11
 import kotlinx.browser.document
 
 internal external object Bootstrap {
+    val Dropdown: dynamic
     val Tooltip: dynamic
     val Popover: dynamic
     val Modal: dynamic

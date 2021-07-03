@@ -193,7 +193,6 @@ open class SelectInput(
         }
 
     init {
-        KVManagerSelect.init()
         setChildrenFromOptions()
         this.setInternalEventListener<SelectInput> {
             change = {
@@ -446,6 +445,12 @@ open class SelectInput(
 
     override fun setState(state: String?) {
         value = state
+    }
+
+    companion object {
+        init {
+            KVManagerSelect.init()
+        }
     }
 }
 

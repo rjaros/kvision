@@ -22,6 +22,7 @@
 package io.kvision.chart
 
 import com.github.snabbdom.VNode
+import io.kvision.KVManagerChart
 import io.kvision.chart.js.Chart.ChartConfiguration
 import io.kvision.html.Canvas
 import io.kvision.i18n.I18n
@@ -98,4 +99,9 @@ internal class ChartCanvas(
         return jsChart?.toBase64Image()
     }
 
+    companion object {
+        init {
+            KVManagerChart.init()
+        }
+    }
 }

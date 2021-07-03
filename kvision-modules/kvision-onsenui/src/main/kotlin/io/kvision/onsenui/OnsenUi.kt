@@ -22,10 +22,11 @@
 
 package io.kvision.onsenui
 
-import org.w3c.dom.HTMLElement
+import io.kvision.KVManagerOnsenui
 import io.kvision.KVManagerOnsenui.ons
 import io.kvision.core.DomAttribute
 import io.kvision.core.Widget
+import org.w3c.dom.HTMLElement
 
 /**
  * Floating directions.
@@ -103,6 +104,13 @@ enum class Platform(internal val type: String) {
  */
 @Suppress("UnsafeCastFromDynamic")
 object OnsenUi {
+
+    /**
+     * Initialize Onsen UI module.
+     */
+    fun init() {
+        KVManagerOnsenui.init()
+    }
 
     /**
      * Whether OnsenUI engine is loaded and ready.

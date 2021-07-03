@@ -222,7 +222,6 @@ open class DateTimeInput(
     var focusOnShow by refreshOnUpdate(true) { refreshDatePicker() }
 
     init {
-        KVManagerDatetime.init()
         addPrivate(input)
         addPrivate(addon)
         init?.invoke(this)
@@ -445,6 +444,12 @@ open class DateTimeInput(
 
     override fun setState(state: Date?) {
         value = state
+    }
+
+    companion object {
+        init {
+            KVManagerDatetime.init()
+        }
     }
 }
 

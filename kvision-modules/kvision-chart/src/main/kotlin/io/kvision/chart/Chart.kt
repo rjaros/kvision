@@ -65,7 +65,6 @@ open class Chart(
     internal val chartCanvas: ChartCanvas = ChartCanvas(chartWidth, chartHeight, configuration)
 
     init {
-        KVManagerChart.init()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -133,6 +132,9 @@ open class Chart(
     }
 
     companion object {
+        init {
+            KVManagerChart.init()
+        }
 
         fun registerPlugin(plugin: dynamic) {
             JsChart.plugins.register(plugin.unsafeCast<PluginServiceGlobalRegistration>())

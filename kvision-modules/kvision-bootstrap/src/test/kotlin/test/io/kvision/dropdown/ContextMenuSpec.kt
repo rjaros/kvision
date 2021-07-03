@@ -21,13 +21,14 @@
  */
 package test.io.kvision.dropdown
 
-import kotlinx.browser.document
+import io.kvision.bootstrap.Bootstrap
 import io.kvision.dropdown.ContextMenu
 import io.kvision.dropdown.setContextMenu
 import io.kvision.html.link
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import io.kvision.utils.obj
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class ContextMenuSpec : DomSpec {
@@ -71,6 +72,12 @@ class ContextMenuSpec : DomSpec {
                 element?.innerHTML,
                 "Should place context menu in the correct position"
             )
+        }
+    }
+
+    companion object {
+        init {
+            Bootstrap.init()
         }
     }
 }

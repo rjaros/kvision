@@ -45,7 +45,6 @@ open class RichTextInput(
     private var trixId: String? = null
 
     init {
-        KVManagerRichText.init()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -127,6 +126,12 @@ open class RichTextInput(
 
     override fun changeValue() {
         // disabled parent class functionality
+    }
+
+    companion object {
+        init {
+            KVManagerRichText.init()
+        }
     }
 }
 
