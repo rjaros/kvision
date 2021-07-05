@@ -87,31 +87,29 @@ fun <T> Any?.createInstance(vararg args: dynamic): T {
 }
 
 /**
- * Helper function to enumerate properties of a data class.
+ * Helper function to enumerate properties of a data class for IR backend.
  */
 @Suppress("UnsafeCastFromDynamic")
-fun getAllPropertyNames(obj: Any): List<String> {
+fun getAllPropertyNamesForIR(obj: Any): List<String> {
     val prototype = js("Object").getPrototypeOf(obj)
     val prototypeProps: Array<String> = js("Object").getOwnPropertyNames(prototype)
-    val pList = prototypeProps.filter { it != "constructor" }.filterNot { prototype.propertyIsEnumerable(it) }.toList()
-    return if (isLegacyBackend) {
-        val ownProps: Array<String> = js("Object").getOwnPropertyNames(obj)
-        ownProps.toList() + pList
-    } else {
-        pList
-    }
+    return prototypeProps.filter { it != "constructor" }.filterNot { prototype.propertyIsEnumerable(it) }.toList()
 }
 
 /**
  * Helper extension function to convert a data class to a plain JS object.
  */
 fun toPlainObj(data: Any): dynamic {
-    val properties = getAllPropertyNames(data)
-    val ret = js("{}")
-    properties.forEach {
-        ret[it] = data.asDynamic()[it]
+    return if (isLegacyBackend) {
+        data
+    } else {
+        val properties = getAllPropertyNamesForIR(data)
+        val ret = js("{}")
+        properties.forEach {
+            ret[it] = data.asDynamic()[it]
+        }
+        ret
     }
-    return ret
 }
 
 /**
