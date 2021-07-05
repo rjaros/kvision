@@ -116,11 +116,16 @@ fun toPlainObj(data: Any): dynamic {
  * Helper function to convert a plain JS object to a data class.
  */
 fun <T : Any> toKotlinObj(data: dynamic, kClass: KClass<T>): T {
-    val newT = kClass.js.createInstance<T>()
-    for (key in js("Object").keys(data)) {
-        newT.asDynamic()[key] = data[key]
+    val prototype = js("Object").getPrototypeOf(data)
+    return if (isLegacyBackend && prototype != null && prototype.constructor != undefined && prototype.constructor.name == kClass.simpleName) {
+        data.unsafeCast<T>()
+    } else {
+        val newT = kClass.js.createInstance<T>()
+        for (key in js("Object").keys(data)) {
+            newT.asDynamic()[key] = data[key]
+        }
+        newT
     }
-    return newT
 }
 
 /**
