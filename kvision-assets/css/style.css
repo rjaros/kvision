@@ -87,9 +87,8 @@ trix-toolbar .trix-button-group {
 }
 
 .tabulator-row .tabulator-cell.tabulator-editing input:focus, .tabulator-row .tabulator-cell.tabulator-editing select:focus {
-    border-color: #66afe9;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
 }
 
 .tabulator-row .tabulator-cell.tabulator-editing {
