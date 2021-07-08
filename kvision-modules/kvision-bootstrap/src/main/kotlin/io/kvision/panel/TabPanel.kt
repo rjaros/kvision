@@ -66,24 +66,24 @@ enum class SideTabSize {
  */
 @Suppress("LeakingThis")
 open class TabPanel(
-    private val tabPosition: TabPosition = TabPosition.TOP,
-    private val sideTabSize: SideTabSize = SideTabSize.SIZE_3,
+    protected val tabPosition: TabPosition = TabPosition.TOP,
+    protected val sideTabSize: SideTabSize = SideTabSize.SIZE_3,
     val scrollableTabs: Boolean = false,
     val draggableTabs: Boolean = false,
     className: String? = null,
     init: (TabPanel.() -> Unit)? = null
 ) : SimplePanel((className?.let { "$it " } ?: "") + "kv-tab-panel") {
 
-    private val navClasses = when (tabPosition) {
+    protected val navClasses = when (tabPosition) {
         TabPosition.TOP -> if (scrollableTabs) "nav nav-tabs tabs-top" else "nav nav-tabs"
         TabPosition.LEFT -> "nav nav-tabs tabs-left flex-column"
         TabPosition.RIGHT -> "nav nav-tabs tabs-right flex-column"
     }
 
-    internal val tabs = mutableListOf<Tab>()
+    protected val tabs = mutableListOf<Tab>()
 
-    private val nav = TabPanelNav(this, navClasses)
-    private val content = TabPanelContent(this)
+    protected val nav = TabPanelNav(this, navClasses)
+    protected val content = TabPanelContent(this)
 
     /**
      * The index of the active tab.
@@ -134,7 +134,7 @@ open class TabPanel(
         init?.invoke(this)
     }
 
-    private fun calculateSideClasses(): Pair<String, String> {
+    protected fun calculateSideClasses(): Pair<String, String> {
         return when (sideTabSize) {
             SideTabSize.SIZE_1 -> Pair("col-sm-1", "col-sm-11")
             SideTabSize.SIZE_2 -> Pair("col-sm-2", "col-sm-10")
@@ -355,6 +355,34 @@ open class TabPanel(
         removeAll()
         return this
     }
+
+    /**
+     * A helper component for rendering tabs.
+     */
+    class TabPanelNav(internal val tabPanel: TabPanel, className: String) : SimplePanel(className) {
+
+        override fun render(): VNode {
+            return render("ul", childrenVNodes())
+        }
+
+        override fun childrenVNodes(): Array<VNode> {
+            return tabPanel.tabs.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+        }
+
+    }
+
+    /**
+     * A helper component for rendering tab content.
+     */
+    class TabPanelContent(private val tabPanel: TabPanel) : SimplePanel() {
+
+        override fun childrenVNodes(): Array<VNode> {
+            return tabPanel.tabs.getOrNull(tabPanel.activeIndex)?.getChildren()?.map { it.renderVNode() }
+                ?.toTypedArray()
+                ?: emptyArray()
+        }
+
+    }
 }
 
 /**
@@ -373,25 +401,4 @@ fun Container.tabPanel(
     val tabPanel = TabPanel(tabPosition, sideTabSize, scrollableTabs, draggableTabs, className, init)
     this.add(tabPanel)
     return tabPanel
-}
-
-internal class TabPanelNav(internal val tabPanel: TabPanel, className: String) : SimplePanel(className) {
-
-    override fun render(): VNode {
-        return render("ul", childrenVNodes())
-    }
-
-    override fun childrenVNodes(): Array<VNode> {
-        return tabPanel.tabs.filter { it.visible }.map { it.renderVNode() }.toTypedArray()
-    }
-
-}
-
-internal class TabPanelContent(private val tabPanel: TabPanel) : SimplePanel() {
-
-    override fun childrenVNodes(): Array<VNode> {
-        return tabPanel.tabs.getOrNull(tabPanel.activeIndex)?.getChildren()?.map { it.renderVNode() }?.toTypedArray()
-            ?: emptyArray()
-    }
-
 }

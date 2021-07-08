@@ -98,12 +98,12 @@ open class Tab(
             closeIcon.visible = value
         }
 
-    internal val closeIcon = Icon("fas fa-times").apply {
+    protected val closeIcon = Icon("fas fa-times").apply {
         addCssClass("kv-tab-close")
         visible = closable
         setEventListener<Icon> {
             click = { e ->
-                val tabPanel = (this@Tab.parent as? TabPanelNav)?.tabPanel
+                val tabPanel = (this@Tab.parent as? TabPanel.TabPanelNav)?.tabPanel
                 val actIndex = tabPanel?.getTabIndex(this@Tab) ?: -1
                 e.asDynamic().data = actIndex
                 @Suppress("UnsafeCastFromDynamic")
@@ -129,13 +129,13 @@ open class Tab(
     internal val tabId = counter++
 
     protected val routingHandler = { _: Any ->
-        (this@Tab.parent as? TabPanelNav)?.tabPanel?.activeTab = this
+        (this@Tab.parent as? TabPanel.TabPanelNav)?.tabPanel?.activeTab = this
     }
 
     init {
         addPrivate(link)
         onClick { e ->
-            (this@Tab.parent as? TabPanelNav)?.tabPanel?.activeTab = this
+            (this@Tab.parent as? TabPanel.TabPanelNav)?.tabPanel?.activeTab = this
             e.preventDefault()
             if (route != null) {
                 RoutingManager.getRouter().kvNavigate(route)

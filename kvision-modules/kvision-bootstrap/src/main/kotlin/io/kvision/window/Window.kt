@@ -86,9 +86,9 @@ open class Window(
      * Window caption text.
      */
     var caption
-        get() = captionTag.content
+        get() = captionContainer.content
         set(value) {
-            captionTag.content = value
+            captionContainer.content = value
             checkHeaderVisibility()
         }
 
@@ -169,22 +169,48 @@ open class Window(
             windowIcon.visible = (value != null && value != "")
         }
 
-    private val header = SimplePanel("modal-header")
+    /**
+     * The header of the window.
+     */
+    protected val header = SimplePanel("modal-header")
 
     /**
-     * @suppress
-     * Internal property.
+     * The content of the window.
      */
     protected val content = SimplePanel().apply {
         this.height = contentHeight
         this.overflow = Overflow.AUTO
     }
-    private val closeIcon = CloseIcon()
-    private val maximizeIcon = MaximizeIcon()
-    private val minimizeIcon = MinimizeIcon()
-    private val captionTag = Tag(TAG.H5, caption, className = "modal-title")
-    private val iconsContainer = SimplePanel("kv-window-icons-container")
-    private val windowIcon = Icon(icon ?: "").apply {
+
+    /**
+     * The close icon.
+     */
+    protected val closeIcon = CloseIcon()
+
+    /**
+     * The maximize icon.
+     */
+    protected val maximizeIcon = MaximizeIcon()
+
+    /**
+     * The minimize icon.
+     */
+    protected val minimizeIcon = MinimizeIcon()
+
+    /**
+     * The caption container.
+     */
+    protected val captionContainer = Tag(TAG.H5, caption, className = "modal-title")
+
+    /**
+     * The icons container.
+     */
+    protected val iconsContainer = SimplePanel("kv-window-icons-container")
+
+    /**
+     * The window icon.
+     */
+    protected val windowIcon = Icon(icon ?: "").apply {
         addCssClass("window-icon")
         visible = (icon != null && icon != "")
     }
@@ -201,8 +227,8 @@ open class Window(
         width = contentWidth
         @Suppress("LeakingThis")
         zIndex = ++zIndexCounter
-        header.add(captionTag)
-        captionTag.add(windowIcon)
+        header.add(captionContainer)
+        captionContainer.add(windowIcon)
         header.add(iconsContainer)
         minimizeIcon.visible = minimizeButton
         minimizeIcon.setEventListener<MinimizeIcon> {
@@ -264,7 +290,10 @@ open class Window(
         counter++
     }
 
-    private fun checkHeaderVisibility() {
+    /**
+     * Hides od shows the header based on contitions.
+     */
+    protected open fun checkHeaderVisibility() {
         @Suppress("ComplexCondition")
         if (!closeButton && !maximizeButton && !minimizeButton && caption == null && !isDraggable) {
             header.hide()
@@ -280,6 +309,10 @@ open class Window(
                 mousedown = { e ->
                     if (e.button.toInt() == 0) {
                         isDrag = true
+                        @Suppress("UnsafeCastFromDynamic")
+                        this@Window.dispatchEvent("dragStartWindow", obj {
+                            detail = e
+                        })
                         val dragStartX = this@Window.getElement()?.offsetLeft() ?: 0
                         val dragStartY = this@Window.getElement()?.offsetTop() ?: 0
                         val dragMouseX = e.pageX
@@ -294,6 +327,10 @@ open class Window(
                         var upCallback: ((Event) -> Unit)? = null
                         upCallback = {
                             isDrag = false
+                            @Suppress("UnsafeCastFromDynamic")
+                            this@Window.dispatchEvent("dragEndWindow", obj {
+                                detail = e
+                            })
                             kotlinx.browser.window.removeEventListener("mousemove", moveCallback)
                             kotlinx.browser.window.removeEventListener("mouseup", upCallback)
                         }

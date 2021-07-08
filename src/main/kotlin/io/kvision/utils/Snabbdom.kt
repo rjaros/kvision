@@ -67,6 +67,8 @@ external interface BtOn : On {
     var closeWindow: ((KvEvent) -> Unit)?
     var maximizeWindow: ((KvEvent) -> Unit)?
     var minimizeWindow: ((KvEvent) -> Unit)?
+    var dragStartWindow: ((KvEvent) -> Unit)?
+    var dragEndWindow: ((KvEvent) -> Unit)?
     var tabulatorRowClick: ((KvEvent) -> Unit)?
     var tabulatorRowDblClick: ((KvEvent) -> Unit)?
     var tabulatorRowSelectionChanged: ((KvEvent) -> Unit)?
