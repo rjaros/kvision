@@ -35,14 +35,16 @@ import kotlin.js.Date
  * @param W the widget type
  * @param stateFlow the StateFlow instance
  * @param removeChildren remove all children of the component
+ * @param runImmediately whether to run factory function immediately with the current state
  * @param factory a function which re-creates the view based on the given state
  */
 fun <S, W : Widget> W.bind(
     stateFlow: StateFlow<S>,
     removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
     factory: (W.(S) -> Unit)
 ): W {
-    return this.bind(stateFlow.observableState, removeChildren, factory)
+    return this.bind(stateFlow.observableState, removeChildren, runImmediately, factory)
 }
 
 /**

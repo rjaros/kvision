@@ -159,6 +159,36 @@ class StateBindingSpec : DomSpec {
     }
 
     @Test
+    fun bindNotImmediately() {
+        run {
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                synchronousMode = true
+            }
+            val container = SimplePanel()
+            val observableList = observableListOf(1, 2, 3)
+            container.bind(observableList, runImmediately = false) { state ->
+                setAttribute("data-count", "${state.size}")
+                state.forEach {
+                    div("$it")
+                }
+            }
+            root.add(container)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div></div>",
+                element?.innerHTML,
+                "Should render empty widget"
+            )
+            observableList.add(4)
+            assertEqualsHtml(
+                "<div data-count=\"4\"><div>1</div><div>2</div><div>3</div><div>4</div></div>",
+                element?.innerHTML,
+                "Should render new state of the widget"
+            )
+        }
+    }
+
+    @Test
     fun bindEach() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {

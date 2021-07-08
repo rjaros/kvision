@@ -16,6 +16,8 @@ dependencies {
     api(rootProject)
     implementation("io.github.petertrr:kotlin-multiplatform-diff-js:$diffVersion")
     testImplementation(kotlin("test-js"))
+    testImplementation(project(":kvision-modules:kvision-testutils"))
+    testImplementation(project(":kvision-modules:kvision-jquery"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
