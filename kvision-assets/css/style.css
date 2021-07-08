@@ -93,8 +93,9 @@ trix-toolbar .trix-button-group {
 
 .tabulator-row .tabulator-cell.tabulator-editing {
     border-right: 1px solid #1d68cd !important;
-    padding: 2px !important;
+    padding: 6px !important;
 }
+
 .tabulator.table-bordered>:not(caption)>*>* {
     border-bottom: 1px solid #dee2e6;
 }
