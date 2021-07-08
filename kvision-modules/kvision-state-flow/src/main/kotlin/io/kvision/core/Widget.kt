@@ -21,22 +21,28 @@
  */
 package io.kvision.core
 
+import io.kvision.utils.event
 import kotlinx.browser.window
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
 
-val KVScope = CoroutineScope(window.asCoroutineDispatcher())
+val KVScope = CoroutineScope(window.asCoroutineDispatcher()) + SupervisorJob()
 
 /**
  * An extension function for defining on click suspending event handlers.
  */
-inline fun <reified T : Widget> T.onClickLaunch(noinline handler: suspend T.(MouseEvent) -> Unit): Int {
+inline fun <reified T : Widget> T.onClickLaunch(
+    coroutineScope: CoroutineScope = KVScope,
+    noinline handler: suspend T.(MouseEvent) -> Unit
+): Int {
     return this.setEventListener<T> {
         click = { e ->
-            KVScope.launch {
+            coroutineScope.launch {
                 self.handler(e)
             }
         }
@@ -46,10 +52,13 @@ inline fun <reified T : Widget> T.onClickLaunch(noinline handler: suspend T.(Mou
 /**
  * An extension function for defining on change suspending event handlers.
  */
-inline fun <reified T : Widget> T.onInputLaunch(noinline handler: suspend T.(Event) -> Unit): Int {
+inline fun <reified T : Widget> T.onInputLaunch(
+    coroutineScope: CoroutineScope = KVScope,
+    noinline handler: suspend T.(Event) -> Unit
+): Int {
     return this.setEventListener<T> {
         input = { e ->
-            KVScope.launch {
+            coroutineScope.launch {
                 self.handler(e)
             }
         }
@@ -59,10 +68,13 @@ inline fun <reified T : Widget> T.onInputLaunch(noinline handler: suspend T.(Eve
 /**
  * An extension function for defining on change suspending event handlers.
  */
-inline fun <reified T : Widget> T.onChangeLaunch(noinline handler: suspend T.(Event) -> Unit): Int {
+inline fun <reified T : Widget> T.onChangeLaunch(
+    coroutineScope: CoroutineScope = KVScope,
+    noinline handler: suspend T.(Event) -> Unit
+): Int {
     return this.setEventListener<T> {
         change = { e ->
-            KVScope.launch {
+            coroutineScope.launch {
                 self.handler(e)
             }
         }
@@ -72,10 +84,14 @@ inline fun <reified T : Widget> T.onChangeLaunch(noinline handler: suspend T.(Ev
 /**
  * An extension function for defining on change suspending event handlers.
  */
-inline fun <reified T : Widget> T.onEventLaunch(event: String, noinline handler: suspend T.(Event) -> Unit): Int {
+inline fun <reified T : Widget> T.onEventLaunch(
+    event: String,
+    coroutineScope: CoroutineScope = KVScope,
+    noinline handler: suspend T.(Event) -> Unit
+): Int {
     return this.setEventListener<T> {
-        this.asDynamic()[event] = { e ->
-            KVScope.launch {
+        event(event) { e ->
+            coroutineScope.launch {
                 self.handler(e)
             }
         }

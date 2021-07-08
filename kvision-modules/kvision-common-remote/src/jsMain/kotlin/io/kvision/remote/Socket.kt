@@ -23,10 +23,12 @@ package io.kvision.remote
 
 import kotlinx.browser.window
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 import org.w3c.dom.CloseEvent
 import org.w3c.dom.ErrorEvent
 import org.w3c.dom.MessageEvent
@@ -51,7 +53,7 @@ class SocketClosedException(val reason: String) : Throwable(reason)
  * A websocket client implementation.
  */
 class Socket {
-    private val scope = CoroutineScope(window.asCoroutineDispatcher())
+    private val scope = CoroutineScope(window.asCoroutineDispatcher()) + SupervisorJob()
     private var eventQueue: Channel<Event> = Channel(Channel.UNLIMITED)
     private lateinit var ws: WebSocket
     val state: Short

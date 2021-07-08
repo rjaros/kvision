@@ -34,9 +34,11 @@ import io.kvision.utils.event
 import io.kvision.utils.obj
 import kotlinx.browser.window
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
@@ -68,7 +70,7 @@ open class SelectRemoteInput<T : Any>(
     className: String? = null,
     init: (SelectRemoteInput<T>.() -> Unit)? = null
 ) : SelectInput(null, value, multiple, null, className) {
-    private val scope = CoroutineScope(window.asCoroutineDispatcher())
+    private val scope = CoroutineScope(window.asCoroutineDispatcher()) + SupervisorJob()
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
