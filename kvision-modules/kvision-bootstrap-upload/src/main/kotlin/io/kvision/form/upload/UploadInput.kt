@@ -165,6 +165,36 @@ open class UploadInput(
     var dropZoneEnabled: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
 
     /**
+     * Whether to hide the preview content (image, pdf content, text content, etc.) within the thumbnail.
+     */
+    var hideThumbnailContent: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+
+    /**
+     * Whether to to display the file upload statistics.
+     */
+    var showUploadStats: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
+    /**
+     * Whether the batch upload of multiple files will be asynchronous/in parallel.
+     */
+    var uploadAsync: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
+    /**
+     * The maximum file size for upload in KB.
+     */
+    var maxFileSize: Double? by refreshOnUpdate { refreshUploadInput() }
+
+    /**
+     * The minimum file size for upload in KB.
+     */
+    var minFileSize: Double? by refreshOnUpdate { refreshUploadInput() }
+
+    /**
+     * Additional ajax settings to pass to the plugin before submitting the ajax request for upload.
+     */
+    var ajaxSettings: dynamic by refreshOnUpdate { refreshUploadInput() }
+
+    /**
      * The placeholder for the upload control.
      */
     var placeholder: String? by refreshOnUpdate { refreshUploadInput() }
@@ -358,6 +388,12 @@ open class UploadInput(
             this.purifyHtml = false
             if (placeholder != null) this.msgPlaceholder = placeholder
             this.language = language
+            this.hideThumbnailContent = hideThumbnailContent
+            this.showUploadStats = showUploadStats
+            this.uploadAsync = uploadAsync
+            if (maxFileSize != null) this.maxFileSize = maxFileSize
+            if (minFileSize != null) this.minFileSize = minFileSize
+            if (ajaxSettings != null) this.ajaxSettings = ajaxSettings
         }
     }
 
