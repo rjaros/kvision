@@ -57,6 +57,7 @@ external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExt
 external interface BtOn : On {
     var dragSplitPanel: ((KvEvent) -> Unit)?
     var dragEndSplitPanel: ((KvEvent) -> Unit)?
+    var updateModel: ((KvEvent) -> Unit)?
     var resizeWindow: ((KvEvent) -> Unit)?
     var closeWindow: ((KvEvent) -> Unit)?
     var maximizeWindow: ((KvEvent) -> Unit)?
@@ -79,6 +80,31 @@ external interface BtOn : On {
     var changeTab: ((KvEvent) -> Unit)?
     var closingTab: ((KvEvent) -> Unit)?
     var closedTab: ((KvEvent) -> Unit)?
+    var prepush: ((KvEvent) -> Unit)?
+    var prepop: ((KvEvent) -> Unit)?
+    var postpush: ((KvEvent) -> Unit)?
+    var postpop: ((KvEvent) -> Unit)?
+    var init: ((KvEvent) -> Unit)?
+    var show: ((KvEvent) -> Unit)?
+    var hide: ((KvEvent) -> Unit)?
+    var destroy: ((KvEvent) -> Unit)?
+    var preopen: ((KvEvent) -> Unit)?
+    var preclose: ((KvEvent) -> Unit)?
+    var postopen: ((KvEvent) -> Unit)?
+    var postclose: ((KvEvent) -> Unit)?
+    var modechange: ((KvEvent) -> Unit)?
+    var prechange: ((KvEvent) -> Unit)?
+    var postchange: ((KvEvent) -> Unit)?
+    var reactive: ((KvEvent) -> Unit)?
+    var refresh: ((KvEvent) -> Unit)?
+    var overscroll: ((KvEvent) -> Unit)?
+    var changestate: ((KvEvent) -> Unit)?
+    var open: ((KvEvent) -> Unit)?
+    var close: ((KvEvent) -> Unit)?
+    var preshow: ((KvEvent) -> Unit)?
+    var prehide: ((KvEvent) -> Unit)?
+    var postshow: ((KvEvent) -> Unit)?
+    var posthide: ((KvEvent) -> Unit)?
     var dragleft: ((KvEvent) -> Unit)?
     var dragright: ((KvEvent) -> Unit)?
     var dragup: ((KvEvent) -> Unit)?
