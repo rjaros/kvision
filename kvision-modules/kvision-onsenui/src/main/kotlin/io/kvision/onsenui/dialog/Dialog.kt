@@ -31,7 +31,6 @@ import io.kvision.onsenui.BackButtonEvent
 import io.kvision.panel.Root
 import io.kvision.panel.Root.Companion.addModal
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.obj
 import kotlin.js.Promise
 
 /**
@@ -106,18 +105,8 @@ open class Dialog(
         if (onDeviceBackButtonCallback != null) {
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback
         }
-        this.getElement()?.addEventListener("preshow", { e ->
-            this.dispatchEvent("onsPreshow", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("postshow", { e ->
-            this.dispatchEvent("onsPostshow", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("prehide", { e ->
-            this.dispatchEvent("onsPrehide", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("posthide", { e ->
+        this.getElement()?.addEventListener("posthide", { _ ->
             this.hide()
-            this.dispatchEvent("onsPosthide", obj { detail = e })
         })
     }
 

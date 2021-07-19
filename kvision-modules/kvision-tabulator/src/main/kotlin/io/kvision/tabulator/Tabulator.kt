@@ -141,80 +141,80 @@ open class Tabulator<T : Any>(
         if (options.rowClick == null) {
             options.rowClick = { _, row ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowClick", obj { detail = row })
+                this.dispatchEvent("rowClickTabulator", obj { detail = row })
             }
         }
         if (options.rowDblClick == null) {
             options.rowDblClick = { _, row ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowDblClick", obj { detail = row })
+                this.dispatchEvent("rowDblClickTabulator", obj { detail = row })
             }
         }
         if (options.rowSelectionChanged == null) {
             options.rowSelectionChanged = { _, rows ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowSelectionChanged", obj { detail = rows })
+                this.dispatchEvent("rowSelectionChangedTabulator", obj { detail = rows })
             }
         }
         if (options.rowSelected == null) {
             options.rowSelected = { row ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowSelected", obj { detail = row })
+                this.dispatchEvent("rowSelectedTabulator", obj { detail = row })
             }
         }
         if (options.rowDeselected == null) {
             options.rowDeselected = { row ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowDeselected", obj { detail = row })
+                this.dispatchEvent("rowDeselectedTabulator", obj { detail = row })
             }
         }
         if (options.cellClick == null) {
             options.cellClick = { _, cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellClick", obj { detail = cell })
+                this.dispatchEvent("cellClickTabulator", obj { detail = cell })
             }
         }
         if (options.cellDblClick == null) {
             options.cellDblClick = { _, cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellDblClick", obj { detail = cell })
+                this.dispatchEvent("cellDblClickTabulator", obj { detail = cell })
             }
         }
         if (options.cellEditing == null) {
             options.cellEditing = { cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellEditing", obj { detail = cell })
+                this.dispatchEvent("cellEditingTabulator", obj { detail = cell })
             }
         }
         if (options.cellEdited == null) {
             options.cellEdited = { cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellEdited", obj { detail = cell })
+                this.dispatchEvent("cellEditedTabulator", obj { detail = cell })
             }
         }
         if (options.cellEditCancelled == null) {
             options.cellEditCancelled = { cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellEditCancelled", obj { detail = cell })
+                this.dispatchEvent("cellEditCancelledTabulator", obj { detail = cell })
             }
         }
         if (options.dataLoading == null) {
             options.dataLoading = { data ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorDataLoading", obj { detail = data })
+                this.dispatchEvent("dataLoadingTabulator", obj { detail = data })
             }
         }
         if (options.dataLoaded == null) {
             options.dataLoaded = { data ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorDataLoaded", obj { detail = data })
+                this.dispatchEvent("dataLoadedTabulator", obj { detail = data })
             }
         }
         if (options.dataChanged == null) {
             options.dataChanged = { data ->
                 val fixedData = fixData(data)!!
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorDataEdited", obj { detail = fixedData })
+                this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })
                 if (dataUpdateOnEdit && this.data is MutableList<T>) {
                     window.setTimeout({
                         this.data.syncWithList(fixedData)

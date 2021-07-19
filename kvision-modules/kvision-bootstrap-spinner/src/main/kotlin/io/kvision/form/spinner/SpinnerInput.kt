@@ -28,8 +28,10 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.core.bindAllJQueryListeners
 import io.kvision.core.getElementJQuery
 import io.kvision.core.getElementJQueryD
+import io.kvision.core.removeAllJQueryListeners
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
@@ -259,13 +261,15 @@ open class SpinnerInput(
                 this.dispatchEvent("change", obj { detail = e })
             }
         }
-        this.getElementJQuery()?.on("touchspin.on.min") { e, _ ->
-            this.dispatchEvent("touchspin.on.min", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("touchspin.on.max") { e, _ ->
-            this.dispatchEvent("touchspin.on.max", obj { detail = e })
-        }
         refreshState()
+    }
+
+    override fun bindAllJQueryListeners() {
+        bindAllJQueryListeners(this, jqueryListenersMap)
+    }
+
+    override fun removeAllJQueryListeners() {
+        removeAllJQueryListeners(this, jqueryListenersMap)
     }
 
     override fun afterDestroy() {

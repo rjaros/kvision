@@ -97,7 +97,7 @@ open class TabPanel(
                 }
                 tabs.getOrNull(value)?.link?.addCssClass("active")
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabChange", obj { detail = obj { data = value } })
+                this.dispatchEvent("changeTab", obj { detail = obj { data = value } })
             }
         }
 

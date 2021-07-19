@@ -123,22 +123,6 @@ open class Page(className: String? = null, init: (Page.() -> Unit)? = null) :
         if (onDeviceBackButtonCallback != null) {
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback
         }
-        this.getElement()?.addEventListener("init", { e ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("onsInit", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("show", { e ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("onsShow", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("hide", { e ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("onsHide", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("destroy", { e ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("onsDestroy", obj { detail = e })
-        })
     }
 
     override fun add(child: Component): Page {
@@ -224,12 +208,12 @@ open class Page(className: String? = null, init: (Page.() -> Unit)? = null) :
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun dispatchHideEvent() {
-        this.dispatchEvent("onsHide", obj { })
+        this.dispatchEvent("hide", obj { })
     }
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun dispatchDestroyEvent() {
-        this.dispatchEvent("onsDestroy", obj { })
+        this.dispatchEvent("destroy", obj { })
     }
 
     override fun dispose() {

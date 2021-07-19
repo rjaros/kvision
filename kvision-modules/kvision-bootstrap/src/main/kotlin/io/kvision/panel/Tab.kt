@@ -107,11 +107,11 @@ open class Tab(
                 val actIndex = tabPanel?.getTabIndex(this@Tab) ?: -1
                 e.asDynamic().data = actIndex
                 @Suppress("UnsafeCastFromDynamic")
-                val event = org.w3c.dom.CustomEvent("tabClosing", obj { detail = e; cancelable = true })
+                val event = org.w3c.dom.CustomEvent("closingTab", obj { detail = e; cancelable = true })
                 if (tabPanel?.getElement()?.dispatchEvent(event) != false) {
                     tabPanel?.removeTab(actIndex)
                     @Suppress("UnsafeCastFromDynamic")
-                    val closed = org.w3c.dom.CustomEvent("tabClosed", obj { detail = e })
+                    val closed = org.w3c.dom.CustomEvent("closedTab", obj { detail = e })
                     tabPanel?.getElement()?.dispatchEvent(closed)
                 }
                 e.stopPropagation()

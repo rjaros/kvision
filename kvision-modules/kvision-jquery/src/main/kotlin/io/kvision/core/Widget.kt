@@ -22,6 +22,10 @@
 
 package io.kvision.core
 
+import com.github.snabbdom.set
+import io.kvision.core.Widget.Companion.KV_JQUERY_EVENT_PREFIX
+import io.kvision.jquery.JQueryEventObject
+import io.kvision.utils.SnOn
 import io.kvision.utils.toCamelCase
 
 enum class Easing(internal val easing: String) {
@@ -211,5 +215,89 @@ fun Widget.animate(
         widget.dispose()
         this.styles()
         complete?.invoke()
+    }
+}
+
+/**
+ * Helper function for defining jquery event types.
+ */
+inline fun <T> SnOn<T>.jqueryEvent(
+    name: String,
+    noinline handler: (eventObject: JQueryEventObject) -> dynamic
+) = set(KV_JQUERY_EVENT_PREFIX + name, handler.unsafeCast<(dynamic) -> Unit>())
+
+/**
+ * Helper function for defining jquery event types with additional argument.
+ */
+inline fun <T> SnOn<T>.jqueryEvent(
+    name: String,
+    noinline handler: (eventObject: JQueryEventObject, arg: dynamic) -> dynamic
+) = set(KV_JQUERY_EVENT_PREFIX + name, handler.unsafeCast<(dynamic) -> Unit>())
+
+/**
+ * Helper function for defining jquery event types with additional arguments.
+ */
+inline fun <T> SnOn<T>.jqueryEvent(
+    name: String,
+    noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic) -> dynamic
+) = set(KV_JQUERY_EVENT_PREFIX + name, handler.unsafeCast<(dynamic) -> Unit>())
+
+/**
+ * Helper function for defining jquery event types with additional arguments.
+ */
+inline fun <T> SnOn<T>.jqueryEvent(
+    name: String,
+    noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic, arg3: dynamic) -> dynamic
+) = set(KV_JQUERY_EVENT_PREFIX + name, handler.unsafeCast<(dynamic) -> Unit>())
+
+/**
+ * Helper function for defining jquery event types with additional arguments.
+ */
+inline fun <T> SnOn<T>.jqueryEvent(
+    name: String,
+    noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic, arg3: dynamic, arg4: dynamic) -> dynamic
+) = set(KV_JQUERY_EVENT_PREFIX + name, handler.unsafeCast<(dynamic) -> Unit>())
+
+/**
+ * Helper function for defining jquery event types with additional arguments.
+ */
+inline fun <T> SnOn<T>.jqueryEvent(
+    name: String,
+    noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic, arg3: dynamic, arg4: dynamic, arg5: dynamic) -> dynamic
+) = set(KV_JQUERY_EVENT_PREFIX + name, handler.unsafeCast<(dynamic) -> Unit>())
+
+/**
+ * Helper function for defining jquery event types with additional arguments.
+ */
+inline fun <T> SnOn<T>.jqueryEvent(
+    name: String,
+    noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic, arg3: dynamic, arg4: dynamic, arg5: dynamic, arg6: dynamic) -> dynamic
+) = set(KV_JQUERY_EVENT_PREFIX + name, handler.unsafeCast<(dynamic) -> Unit>())
+
+/**
+ * @suppress
+ * Internal function
+ */
+fun bindAllJQueryListeners(widget: Widget, jqueryListenersMap: MutableMap<String, MutableMap<Int, (Any) -> Unit>>?) {
+    widget.getElementJQuery()?.let { jq ->
+        jqueryListenersMap?.forEach { (event, handlers) ->
+            handlers.forEach { (_, handler) ->
+                jq.on(event, handler.unsafeCast<(JQueryEventObject, Any) -> Any?>())
+            }
+        }
+    }
+}
+
+/**
+ * @suppress
+ * Internal function
+ */
+fun removeAllJQueryListeners(widget: Widget, jqueryListenersMap: MutableMap<String, MutableMap<Int, (Any) -> Unit>>?) {
+    widget.getElementJQuery()?.let { jq ->
+        jqueryListenersMap?.forEach { (event, handlers) ->
+            handlers.forEach { (_, handler) ->
+                jq.off(event, handler.unsafeCast<(JQueryEventObject, Any) -> Any?>())
+            }
+        }
     }
 }

@@ -29,7 +29,6 @@ import io.kvision.core.StringPair
 import io.kvision.core.Widget
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.obj
 import org.w3c.dom.NodeList
 import org.w3c.dom.get
 import kotlin.js.Promise
@@ -155,7 +154,6 @@ open class Tabbar(
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
         this.getElement()?.addEventListener("prechange", { e ->
-            this.dispatchEvent("onsPrechange", obj { detail = e })
             if (tabbarStyleCallback != null) {
                 val widget = Widget()
                 tabbarStyleCallback?.let { widget.it(e.asDynamic().detail.index) }
@@ -170,13 +168,6 @@ open class Tabbar(
                 element?.setAttribute("style", style)
             }
             e.stopPropagation()
-        })
-        this.getElement()?.addEventListener("postchange", { e ->
-            this.dispatchEvent("onsPostchange", obj { detail = e })
-            e.stopPropagation()
-        })
-        this.getElement()?.addEventListener("reactive", { e ->
-            this.dispatchEvent("onsReactive", obj { detail = e })
         })
         if (tabbarStyleCallback != null) {
             val activeIndex = if (getActiveTabIndex().toInt() >= 0) {

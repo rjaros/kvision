@@ -28,7 +28,6 @@ import io.kvision.core.CssSize
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
 import io.kvision.utils.asString
-import io.kvision.utils.obj
 
 /**
  * A pull hook component supporting "Pull to refresh" functionality.
@@ -121,9 +120,6 @@ open class PullHook(
         if (onPullCallback != null) {
             getElement()?.asDynamic()?.onPull = onPullCallback
         }
-        this.getElement()?.addEventListener("changestate", { e ->
-            this.dispatchEvent("onsChangestate", obj { detail = e })
-        })
     }
 
     /**

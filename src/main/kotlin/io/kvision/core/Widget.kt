@@ -58,6 +58,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     internal var internalListenersMap: MutableMap<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>? = null
     internal var listenersMap: MutableMap<String, MutableMap<Int, SnOn<Widget>.() -> Unit>>? = null
     internal var listenerCounter: Int = 0
+    protected var jqueryListenersMap: MutableMap<String, MutableMap<Int, (Any) -> Unit>>? = null
 
     override var parent: Container? = null
 
@@ -331,6 +332,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
                 vnode = v
                 afterInsertInternal(v)
                 afterInsert(v)
+                bindAllJQueryListeners()
                 afterInsertHooks?.forEach { it(v) }
             }
             destroy = {
@@ -388,6 +390,8 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     @Suppress("UNCHECKED_CAST", "UnsafeCastFromDynamic")
     open fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         if (listenersMap == null) listenersMap = mutableMapOf()
+        if (jqueryListenersMap == null) jqueryListenersMap = mutableMapOf()
+        removeAllJQueryListeners()
         val handlerCounter = listenerCounter++
         val blockAsWidget = block as SnOn<Widget>.() -> Unit
         val handlers = on(eventTarget ?: this)
@@ -395,15 +399,26 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         for (key: String in js("Object").keys(handlers)) {
             if (key != "self") {
                 val handler = handlers.asDynamic()[key]
-                val map = listenersMap!![key]
-                if (map != null) {
-                    map[handlerCounter] = handler
+                if (!key.startsWith(KV_JQUERY_EVENT_PREFIX)) {
+                    val map = listenersMap!![key]
+                    if (map != null) {
+                        map[handlerCounter] = handler
+                    } else {
+                        listenersMap!![key] = mutableMapOf(handlerCounter to handler)
+                    }
                 } else {
-                    listenersMap!![key] = mutableMapOf(handlerCounter to handler)
+                    val jqueryKey = key.substring(KV_JQUERY_EVENT_PREFIX.length)
+                    val map = jqueryListenersMap!![jqueryKey]
+                    if (map != null) {
+                        map[handlerCounter] = handler
+                    } else {
+                        jqueryListenersMap!![jqueryKey] = mutableMapOf(handlerCounter to handler)
+                    }
                 }
             }
         }
         refresh()
+        bindAllJQueryListeners()
         return handlerCounter
     }
 
@@ -414,6 +429,9 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
      */
     open fun removeEventListener(id: Int): Widget {
         listenersMap?.forEach { it.value.remove(id) }
+        removeAllJQueryListeners()
+        jqueryListenersMap?.forEach { it.value.remove(id) }
+        bindAllJQueryListeners()
         refresh()
         return this
     }
@@ -424,8 +442,24 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
      */
     open fun removeEventListeners(): Widget {
         listenersMap?.clear()
+        removeAllJQueryListeners()
+        jqueryListenersMap?.clear()
         refresh()
         return this
+    }
+
+    /**
+     * @suppress internal function
+     * Binds all jQuery event listeners.
+     */
+    protected open fun bindAllJQueryListeners() {
+    }
+
+    /**
+     * @suppress internal function
+     * Removes all jQuery event listeners.
+     */
+    protected open fun removeAllJQueryListeners() {
     }
 
     /**
@@ -736,6 +770,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     }
 
     companion object {
+        const val KV_JQUERY_EVENT_PREFIX = "KVJQUERYEVENT##"
         private var counter: Int = 0
     }
 }

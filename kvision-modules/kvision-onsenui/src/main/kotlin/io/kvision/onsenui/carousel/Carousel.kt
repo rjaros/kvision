@@ -29,7 +29,6 @@ import io.kvision.core.Container
 import io.kvision.core.CssSize
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.asString
-import io.kvision.utils.obj
 import kotlin.js.Promise
 
 /**
@@ -161,20 +160,6 @@ open class Carousel(
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
-        this.getElement()?.addEventListener("prechange", { e ->
-            this.dispatchEvent("onsPrechange", obj { detail = e })
-            e.stopPropagation()
-        })
-        this.getElement()?.addEventListener("postchange", { e ->
-            this.dispatchEvent("onsPostchange", obj { detail = e })
-            e.stopPropagation()
-        })
-        this.getElement()?.addEventListener("refresh", { e ->
-            this.dispatchEvent("onsRefresh", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("overscroll", { e ->
-            this.dispatchEvent("onsOverscroll", obj { detail = e })
-        })
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

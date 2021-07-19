@@ -25,8 +25,10 @@ import com.github.snabbdom.VNode
 import io.kvision.KVManagerDatetime
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
+import io.kvision.core.bindAllJQueryListeners
 import io.kvision.core.getElementJQuery
 import io.kvision.core.getElementJQueryD
+import io.kvision.core.removeAllJQueryListeners
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.text.TextInput
@@ -374,7 +376,7 @@ open class DateTimeInput(
             @Suppress("UnsafeCastFromDynamic")
             this.dispatchEvent("change", obj { detail = e })
         }
-        this.getElementJQuery()?.on("dp.show") { e, _ ->
+        this.getElementJQuery()?.on("dp.show") { _, _ ->
             val inTabulator = this.getElementJQuery()?.closest(".tabulator-cell")?.length == 1
             if (inTabulator) {
                 val datepicker = jQuery("body").find(".bootstrap-datetimepicker-widget:last")
@@ -400,13 +402,15 @@ open class DateTimeInput(
                     datepicker.css(obj { this.left = newLeft })
                 }
             }
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("dp.show", obj { detail = e })
         }
-        this.getElementJQuery()?.on("dp.hide") { e, _ ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("dp.hide", obj { detail = e })
-        }
+    }
+
+    override fun bindAllJQueryListeners() {
+        bindAllJQueryListeners(this, jqueryListenersMap)
+    }
+
+    override fun removeAllJQueryListeners() {
+        removeAllJQueryListeners(this, jqueryListenersMap)
     }
 
     /**

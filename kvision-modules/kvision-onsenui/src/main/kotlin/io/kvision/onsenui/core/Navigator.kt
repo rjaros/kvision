@@ -33,7 +33,6 @@ import io.kvision.onsenui.tabbar.Tab
 import io.kvision.panel.Root
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.createInstance
-import io.kvision.utils.obj
 import kotlin.js.Promise
 
 /**
@@ -161,22 +160,12 @@ open class Navigator(
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
-        this.getElement()?.addEventListener("prepush", { e ->
-            this.dispatchEvent("onsPrepush", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("prepop", { e ->
-            this.dispatchEvent("onsPrepop", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("postpush", { e ->
-            this.dispatchEvent("onsPostpush", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("postpop", { e ->
+        this.getElement()?.addEventListener("postpop", { _ ->
             if (children != null) {
                 (children!!.last() as? Page)?.dispatchDestroyEvent()
                 children!!.removeAt(children!!.size - 1).clearParent()
             }
             refreshPageStack()
-            this.dispatchEvent("onsPostpop", obj { detail = e })
         })
     }
 

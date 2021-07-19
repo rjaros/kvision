@@ -27,8 +27,10 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.core.bindAllJQueryListeners
 import io.kvision.core.getElementJQuery
 import io.kvision.core.getElementJQueryD
+import io.kvision.core.removeAllJQueryListeners
 import io.kvision.form.Form
 import io.kvision.form.FormInput
 import io.kvision.form.FormPanel
@@ -230,32 +232,20 @@ open class UploadInput(
         getElementJQuery()?.parent()?.parent()?.parent()?.find("input.file-caption-name")?.attr("tabindex", "-1")
         getElementJQuery()?.parent()?.parent()?.parent()?.find("button.fileinput-remove")?.removeAttr("tabindex")
         getElementJQuery()?.parent()?.parent()?.parent()?.find("div.btn-file")?.removeAttr("tabindex")
-        if (uploadUrl != null) {
-            this.getElementJQuery()?.on("fileselect") { e, _ ->
-                this.dispatchEvent("fileSelectUpload", obj { detail = e })
-            }
-            this.getElementJQuery()?.on("fileclear") { e, _ ->
-                this.dispatchEvent("fileClearUpload", obj { detail = e })
-            }
-            this.getElementJQuery()?.on("filereset") { e, _ ->
-                this.dispatchEvent("fileResetUpload", obj { detail = e })
-            }
-            this.getElementJQuery()?.on("filebrowse") { e, _ ->
-                this.dispatchEvent("fileBrowseUpload", obj { detail = e })
-            }
-            this.getElementJQueryD()?.on("filepreupload") lambda@{ _, data, previewId, index ->
-                data["previewId"] = previewId
-                data["index"] = index
-                this.dispatchEvent("filePreUpload", obj { detail = data })
-                return@lambda null
-            }
-        }
         this.getElementJQuery()?.on("focus") { _, _ ->
             getElementJQuery()?.parent()?.parent()?.parent()?.addClass("kv-focus")
         }
         this.getElementJQuery()?.on("blur") { _, _ ->
             getElementJQuery()?.parent()?.parent()?.parent()?.removeClass("kv-focus")
         }
+    }
+
+    override fun bindAllJQueryListeners() {
+        bindAllJQueryListeners(this, jqueryListenersMap)
+    }
+
+    override fun removeAllJQueryListeners() {
+        removeAllJQueryListeners(this, jqueryListenersMap)
     }
 
     override fun afterDestroy() {

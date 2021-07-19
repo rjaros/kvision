@@ -57,59 +57,28 @@ external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExt
 external interface BtOn : On {
     var dragSplitPanel: ((KvEvent) -> Unit)?
     var dragEndSplitPanel: ((KvEvent) -> Unit)?
-    var updateModel: ((KvEvent) -> Unit)?
-    var fileSelectUpload: ((KvEvent) -> Unit)?
-    var fileClearUpload: ((KvEvent) -> Unit)?
-    var fileResetUpload: ((KvEvent) -> Unit)?
-    var fileBrowseUpload: ((KvEvent) -> Unit)?
-    var filePreUpload: ((KvEvent) -> Unit)?
     var resizeWindow: ((KvEvent) -> Unit)?
     var closeWindow: ((KvEvent) -> Unit)?
     var maximizeWindow: ((KvEvent) -> Unit)?
     var minimizeWindow: ((KvEvent) -> Unit)?
     var dragStartWindow: ((KvEvent) -> Unit)?
     var dragEndWindow: ((KvEvent) -> Unit)?
-    var tabulatorRowClick: ((KvEvent) -> Unit)?
-    var tabulatorRowDblClick: ((KvEvent) -> Unit)?
-    var tabulatorRowSelectionChanged: ((KvEvent) -> Unit)?
-    var tabulatorRowSelected: ((KvEvent) -> Unit)?
-    var tabulatorRowDeselected: ((KvEvent) -> Unit)?
-    var tabulatorCellClick: ((KvEvent) -> Unit)?
-    var tabulatorCellDblClick: ((KvEvent) -> Unit)?
-    var tabulatorCellEditing: ((KvEvent) -> Unit)?
-    var tabulatorCellEdited: ((KvEvent) -> Unit)?
-    var tabulatorCellEditCancelled: ((KvEvent) -> Unit)?
-    var tabulatorDataLoading: ((KvEvent) -> Unit)?
-    var tabulatorDataLoaded: ((KvEvent) -> Unit)?
-    var tabulatorDataEdited: ((KvEvent) -> Unit)?
-    var tabChange: ((KvEvent) -> Unit)?
-    var tabClosing: ((KvEvent) -> Unit)?
-    var tabClosed: ((KvEvent) -> Unit)?
-    var onsPrepush: ((KvEvent) -> Unit)?
-    var onsPrepop: ((KvEvent) -> Unit)?
-    var onsPostpush: ((KvEvent) -> Unit)?
-    var onsPostpop: ((KvEvent) -> Unit)?
-    var onsInit: ((KvEvent) -> Unit)?
-    var onsShow: ((KvEvent) -> Unit)?
-    var onsHide: ((KvEvent) -> Unit)?
-    var onsDestroy: ((KvEvent) -> Unit)?
-    var onsPreopen: ((KvEvent) -> Unit)?
-    var onsPreclose: ((KvEvent) -> Unit)?
-    var onsPostopen: ((KvEvent) -> Unit)?
-    var onsPostclose: ((KvEvent) -> Unit)?
-    var onsModechange: ((KvEvent) -> Unit)?
-    var onsPrechange: ((KvEvent) -> Unit)?
-    var onsPostchange: ((KvEvent) -> Unit)?
-    var onsReactive: ((KvEvent) -> Unit)?
-    var onsRefresh: ((KvEvent) -> Unit)?
-    var onsOverscroll: ((KvEvent) -> Unit)?
-    var onsChangestate: ((KvEvent) -> Unit)?
-    var onsOpen: ((KvEvent) -> Unit)?
-    var onsClose: ((KvEvent) -> Unit)?
-    var onsPreshow: ((KvEvent) -> Unit)?
-    var onsPrehide: ((KvEvent) -> Unit)?
-    var onsPostshow: ((KvEvent) -> Unit)?
-    var onsPosthide: ((KvEvent) -> Unit)?
+    var rowClickTabulator: ((KvEvent) -> Unit)?
+    var rowDblClickTabulator: ((KvEvent) -> Unit)?
+    var rowSelectionChangedTabulator: ((KvEvent) -> Unit)?
+    var rowSelectedTabulator: ((KvEvent) -> Unit)?
+    var rowDeselectedTabulator: ((KvEvent) -> Unit)?
+    var cellClickTabulator: ((KvEvent) -> Unit)?
+    var cellDblClickTabulator: ((KvEvent) -> Unit)?
+    var cellEditingTabulator: ((KvEvent) -> Unit)?
+    var cellEditedTabulator: ((KvEvent) -> Unit)?
+    var cellEditCancelledTabulator: ((KvEvent) -> Unit)?
+    var dataLoadingTabulator: ((KvEvent) -> Unit)?
+    var dataLoadedTabulator: ((KvEvent) -> Unit)?
+    var dataEditedTabulator: ((KvEvent) -> Unit)?
+    var changeTab: ((KvEvent) -> Unit)?
+    var closingTab: ((KvEvent) -> Unit)?
+    var closedTab: ((KvEvent) -> Unit)?
     var dragleft: ((KvEvent) -> Unit)?
     var dragright: ((KvEvent) -> Unit)?
     var dragup: ((KvEvent) -> Unit)?

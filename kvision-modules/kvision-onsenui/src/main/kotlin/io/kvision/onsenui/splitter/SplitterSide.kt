@@ -31,7 +31,6 @@ import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.asString
 import io.kvision.utils.createInstance
-import io.kvision.utils.obj
 import org.w3c.dom.HTMLElement
 import kotlin.js.Promise
 
@@ -194,21 +193,6 @@ open class SplitterSide(
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
-        this.getElement()?.addEventListener("preopen", { e ->
-            this.dispatchEvent("onsPreopen", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("preclose", { e ->
-            this.dispatchEvent("onsPreclose", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("postopen", { e ->
-            this.dispatchEvent("onsPostopen", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("postclose", { e ->
-            this.dispatchEvent("onsPostclose", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("modechange", { e ->
-            this.dispatchEvent("onsModechange", obj { detail = e })
-        })
     }
 
     /**

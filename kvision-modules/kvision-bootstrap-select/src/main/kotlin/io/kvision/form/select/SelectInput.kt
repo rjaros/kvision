@@ -24,14 +24,7 @@ package io.kvision.form.select
 import com.github.snabbdom.VNode
 import io.kvision.KVManagerSelect
 import io.kvision.KVManagerSelect.KVNULL
-import io.kvision.core.AttributeSetBuilder
-import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Component
-import io.kvision.core.Container
-import io.kvision.core.CssSize
-import io.kvision.core.StringPair
-import io.kvision.core.getElementJQuery
-import io.kvision.core.getElementJQueryD
+import io.kvision.core.*
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
@@ -41,7 +34,6 @@ import io.kvision.jquery.get
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.asString
-import io.kvision.utils.obj
 import kotlinx.browser.window
 
 /**
@@ -371,7 +363,7 @@ open class SelectInput(
         } ?: getElementJQueryD()?.selectpicker("render")
 
         getElement()?.parentElement?.addEventListener("show.bs.dropdown", { e ->
-            this.dispatchEvent("show.bs.select", obj { detail = e })
+            getElementJQuery()?.trigger("show.bs.select", e)
         })
 
         getElement()?.parentElement?.addEventListener("shown.bs.dropdown", { e ->
@@ -385,33 +377,30 @@ open class SelectInput(
                     input.focus()
                 }, 0)
             }
-            this.dispatchEvent("shown.bs.select", obj { detail = e })
+            getElementJQuery()?.trigger("shown.bs.select", e)
         })
 
         getElement()?.parentElement?.addEventListener("hide.bs.dropdown", { e ->
-            this.dispatchEvent("hide.bs.select", obj { detail = e })
+            getElementJQuery()?.trigger("hide.bs.select", e)
         })
 
         getElement()?.parentElement?.addEventListener("hidden.bs.dropdown", { e ->
             getElement()?.parentElement?.classList?.remove("show")
-            this.dispatchEvent("hidden.bs.select", obj { detail = e })
+            getElementJQuery()?.trigger("hidden.bs.select", e)
         })
 
-        this.getElementJQuery()?.on("loaded.bs.select") { e, _ ->
-            this.dispatchEvent("loaded.bs.select", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("rendered.bs.select") { e, _ ->
-            this.dispatchEvent("rendered.bs.select", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("refreshed.bs.select") { e, _ ->
-            this.dispatchEvent("refreshed.bs.select", obj { detail = e })
-        }
-        this.getElementJQueryD()?.on("changed.bs.select") { e, cIndex: Int ->
+        this.getElementJQuery()?.on("changed.bs.select") { _, _ ->
             if (!multiple) hideOptions()
-            e["clickedIndex"] = cIndex
-            this.dispatchEvent("changed.bs.select", obj { detail = e })
         }
         refreshState()
+    }
+
+    override fun bindAllJQueryListeners() {
+        bindAllJQueryListeners(this, jqueryListenersMap)
+    }
+
+    override fun removeAllJQueryListeners() {
+        removeAllJQueryListeners(this, jqueryListenersMap)
     }
 
     @Suppress("UnsafeCastFromDynamic")

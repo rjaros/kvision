@@ -27,7 +27,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.onsenui.tabbar.Tabbar
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.obj
 import kotlin.js.Promise
 
 /**
@@ -85,14 +84,6 @@ open class Segment(
         modifier?.let {
             attributeSetBuilder.add("modifier", it)
         }
-    }
-
-    @Suppress("UnsafeCastFromDynamic")
-    override fun afterInsert(node: VNode) {
-        this.getElement()?.addEventListener("postchange", { e ->
-            this.dispatchEvent("onsPostchange", obj { detail = e })
-            e.stopPropagation()
-        })
     }
 
     /**

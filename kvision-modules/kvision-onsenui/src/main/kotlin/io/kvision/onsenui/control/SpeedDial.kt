@@ -28,7 +28,6 @@ import io.kvision.core.Container
 import io.kvision.html.CustomTag
 import io.kvision.onsenui.FloatDirection
 import io.kvision.onsenui.FloatPosition
-import io.kvision.utils.obj
 import org.w3c.dom.events.MouseEvent
 
 /**
@@ -138,16 +137,6 @@ open class SpeedDial(
         if (disabled == true) {
             attributeSetBuilder.add("disabled")
         }
-    }
-
-    @Suppress("UnsafeCastFromDynamic")
-    override fun afterInsert(node: VNode) {
-        this.getElement()?.addEventListener("open", { e ->
-            this.dispatchEvent("onsOpen", obj { detail = e })
-        })
-        this.getElement()?.addEventListener("close", { e ->
-            this.dispatchEvent("onsClose", obj { detail = e })
-        })
     }
 
     /**

@@ -30,7 +30,6 @@ import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteOption
 import io.kvision.utils.JSON
-import io.kvision.utils.event
 import io.kvision.utils.obj
 import kotlinx.browser.window
 import kotlinx.coroutines.CoroutineScope
@@ -120,16 +119,6 @@ open class SelectRemoteInput<T : Any>(
                 cache = false,
                 preserveSelected = ajaxOptions?.preserveSelected ?: true
             )
-            if (this.ajaxOptions?.emptyRequest == true) {
-                this.setInternalEventListener<SelectRemote<*>> {
-                    event("shown.bs.select") {
-                        val input = self.getElementJQuery()?.parent()?.find("input")
-                        input?.trigger("keyup", null)
-                        input?.hide(0)
-                    }
-                }
-
-            }
         } else {
             scope.launch {
                 val callAgent = CallAgent()
