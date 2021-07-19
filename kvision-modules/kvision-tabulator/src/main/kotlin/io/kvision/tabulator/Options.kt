@@ -388,13 +388,13 @@ data class ColumnDefinition<T : Any>(
     val accessor: dynamic = null,
     val accessorParams: dynamic = null,
     val maxWidth: Int? = null,
-    val mutatorData: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorData: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorDataParams: dynamic = null,
-    val mutatorEdit: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorEdit: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorEditParams: dynamic = null,
-    val mutatorClipboard: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorClipboard: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorClipboardParams: dynamic = null,
-    val mutator: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutator: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorParams: dynamic = null,
 )
 
