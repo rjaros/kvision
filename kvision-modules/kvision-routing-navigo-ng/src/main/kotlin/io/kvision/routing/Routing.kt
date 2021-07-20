@@ -23,7 +23,7 @@
 package io.kvision.routing
 
 import io.kvision.navigo.Navigo
-import io.kvision.navigo.ResolveOptions
+import io.kvision.navigo.RouterOptions
 import io.kvision.utils.obj
 import kotlinx.browser.window
 
@@ -45,12 +45,18 @@ internal fun calculateRoot(root: String?, useHash: Boolean): String {
 /**
  * Generate ResolveOptions JS native object.
  */
-internal fun calculateOptions(useHash: Boolean, strategy: Strategy, noMatchWarning: Boolean): ResolveOptions {
+internal fun calculateOptions(
+    useHash: Boolean,
+    strategy: Strategy,
+    noMatchWarning: Boolean,
+    linksSelector: String?
+): RouterOptions {
     return obj {
         this.hash = useHash
         this.strategy = strategy.name
         this.noMatchWarning = noMatchWarning
-    }.unsafeCast<ResolveOptions>()
+        if (linksSelector != null) this.linksSelector = linksSelector
+    }.unsafeCast<RouterOptions>()
 }
 
 /**
@@ -59,14 +65,16 @@ internal fun calculateOptions(useHash: Boolean, strategy: Strategy, noMatchWarni
  * @param useHash whether to use hash based routing
  * @param strategy a routing strategy
  * @param noMatchWarning do not show warnings when there is no matching route
+ * @param linksSelector CSS links selector
  */
 open class Routing(
     root: String? = null,
     useHash: Boolean = true,
     strategy: Strategy = Strategy.ONE,
-    noMatchWarning: Boolean = false
+    noMatchWarning: Boolean = false,
+    linksSelector: String? = null
 ) :
-    Navigo(calculateRoot(root, useHash), calculateOptions(useHash, strategy, noMatchWarning)), KVRouter {
+    Navigo(calculateRoot(root, useHash), calculateOptions(useHash, strategy, noMatchWarning, linksSelector)), KVRouter {
 
     override fun kvNavigate(route: String) {
         navigate(route)
@@ -96,15 +104,17 @@ open class Routing(
          * @param useHash whether to use hash based routing
          * @param strategy a routing strategy
          * @param noMatchWarning do not show warnings when there is no matching route
+         * @param linksSelector CSS links selector
          */
         fun init(
             root: String? = null,
             useHash: Boolean = true,
             strategy: Strategy = Strategy.ONE,
-            noMatchWarning: Boolean = false
+            noMatchWarning: Boolean = false,
+            linksSelector: String? = null
         ) {
-            RoutingManager.routerFactory = NavigoRouterFactory(root, useHash, strategy, noMatchWarning)
-            routing = Routing(root, useHash, strategy, noMatchWarning)
+            RoutingManager.routerFactory = NavigoRouterFactory(root, useHash, strategy, noMatchWarning, linksSelector)
+            routing = Routing(root, useHash, strategy, noMatchWarning, linksSelector)
         }
     }
 }
@@ -115,12 +125,14 @@ open class Routing(
  * @param useHash whether to use hash based routing
  * @param strategy a routing strategy
  * @param noMatchWarning do not show warnings when there is no matching route
+ * @param linksSelector CSS links selector
  */
 class NavigoRouterFactory(
     val root: String? = null,
     val useHash: Boolean = true,
     val strategy: Strategy = Strategy.ONE,
-    val noMatchWarning: Boolean = false
+    val noMatchWarning: Boolean = false,
+    val linksSelector: String? = null
 ) : RouterFactory {
 
     override fun getRouter(): KVRouter {
@@ -128,7 +140,7 @@ class NavigoRouterFactory(
     }
 
     override fun initRouter() {
-        routing = Routing(root, useHash, strategy, noMatchWarning)
+        routing = Routing(root, useHash, strategy, noMatchWarning, linksSelector)
     }
 
     override fun shutdownRouter() {
