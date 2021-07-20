@@ -30,14 +30,19 @@ import io.kvision.i18n.I18n
 import io.kvision.panel.Root
 import io.kvision.state.ObservableList
 import io.kvision.state.ObservableState
+import io.kvision.types.DateSerializer
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
 import io.kvision.utils.syncWithList
 import io.kvision.utils.toKotlinObj
 import io.kvision.utils.toPlainObj
 import kotlinx.browser.window
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
+import kotlin.js.Date
 import kotlin.reflect.KClass
 import io.kvision.tabulator.js.Tabulator as JsTabulator
 
@@ -72,6 +77,9 @@ enum class RowRangeLookup(internal val set: String) {
  * @param options tabulator options
  * @param types a set of table types
  * @param className CSS class names
+ * @param kClass Kotlin class
+ * @param serializer the serializer for type T
+ * @param serializersModule optional serialization module with custom serializers
  */
 @Suppress("LargeClass", "TooManyFunctions")
 open class Tabulator<T : Any>(
@@ -81,8 +89,18 @@ open class Tabulator<T : Any>(
     types: Set<TableType> = setOf(),
     className: String? = null,
     protected val kClass: KClass<T>? = null,
-) :
-    Widget(className) {
+    protected val serializer: KSerializer<T>? = null,
+    protected val module: SerializersModule? = null
+) : Widget(className) {
+
+    protected val jsonHelper = if (serializer != null) Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+        serializersModule = SerializersModule {
+            contextual(Date::class, DateSerializer)
+            module?.let { this.include(it) }
+        }
+    } else null
 
     /**
      * Table types.
@@ -722,7 +740,7 @@ open class Tabulator<T : Any>(
         EditorRoot.root = null
     }
 
-    protected open fun fixData(data: List<T>?): List<T>? {
+    protected open fun fixData(data: List<dynamic>?): List<T>? {
         return if (kClass != null) {
             data?.map {
                 toKotlinObjTabulator(it, kClass)
@@ -732,7 +750,8 @@ open class Tabulator<T : Any>(
         }
     }
 
-    protected open fun fixData(data: T): T {
+    protected open fun fixData(data: dynamic): T {
+        @Suppress("UnsafeCastFromDynamic")
         return if (kClass != null) {
             toKotlinObjTabulator(data, kClass)
         } else {
@@ -740,16 +759,24 @@ open class Tabulator<T : Any>(
         }
     }
 
-    protected open fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
+    internal fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
         if (data._children != null) {
             data._children =
                 data._children.unsafeCast<Array<dynamic>>().map { toKotlinObjTabulator(it, kClass) }.toTypedArray()
         }
-        return toKotlinObj(data, kClass)
+        return if (jsonHelper == null || serializer == null) {
+            toKotlinObj(data, kClass)
+        } else {
+            jsonHelper.decodeFromString(serializer, JSON.stringify(data))
+        }
     }
 
-    protected open fun toPlainObjTabulator(data: T): T {
-        val obj = toPlainObj(data)
+    internal fun toPlainObjTabulator(data: T): T {
+        val obj = if (jsonHelper == null || serializer == null) {
+            toPlainObj(data)
+        } else {
+            JSON.parse(jsonHelper.encodeToString(serializer, data))
+        }
         if (obj._children != null) {
             obj._children = obj._children.unsafeCast<Array<T>>().map { toPlainObjTabulator(it) }.toTypedArray()
         }
@@ -771,7 +798,7 @@ open class Tabulator<T : Any>(
 
     companion object {
         /**
-         * A helper function to create a Tabulator object with correct serializer.
+         * A helper function to create a Tabulator object.
          */
         inline fun <reified T : Any> create(
             data: List<T>? = null,
@@ -779,15 +806,18 @@ open class Tabulator<T : Any>(
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             className: String? = null,
+            serializer: KSerializer<T>? = null,
+            serializersModule: SerializersModule? = null,
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
-            val tabulator = Tabulator(data, dataUpdateOnEdit, options, types, className, T::class)
+            val tabulator =
+                Tabulator(data, dataUpdateOnEdit, options, types, className, T::class, serializer, serializersModule)
             init?.invoke(tabulator)
             return tabulator
         }
 
         /**
-         * A helper function to create a Tabulator object with correct serializer and a general observable store.
+         * A helper function to create a Tabulator object with a general observable store.
          */
         inline fun <reified T : Any, S : Any> create(
             store: ObservableState<S>,
@@ -795,10 +825,12 @@ open class Tabulator<T : Any>(
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             className: String? = null,
+            serializer: KSerializer<T>? = null,
+            serializersModule: SerializersModule? = null,
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val data = dataFactory(store.getState())
-            val tabulator = Tabulator(data, false, options, types, className, T::class)
+            val tabulator = Tabulator(data, false, options, types, className, T::class, serializer, serializersModule)
             init?.invoke(tabulator)
             tabulator.addBeforeDisposeHook(store.subscribe { s ->
                 tabulator.replaceData(dataFactory(s).toTypedArray())
@@ -819,9 +851,11 @@ inline fun <reified T : Any> Container.tabulator(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     className: String? = null,
+    serializer: KSerializer<T>? = null,
+    serializersModule: SerializersModule? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, className)
+    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, className, serializer, serializersModule)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
@@ -836,9 +870,11 @@ inline fun <reified T : Any, S : Any> Container.tabulator(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     className: String? = null,
+    serializer: KSerializer<T>? = null,
+    serializersModule: SerializersModule? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator.create(store, dataFactory, options, types, className)
+    val tabulator = Tabulator.create(store, dataFactory, options, types, className, serializer, serializersModule)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
