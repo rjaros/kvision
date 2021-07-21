@@ -121,6 +121,7 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-pace/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-react/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-redux/src/main/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-rest/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-richtext/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-routing-navigo/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-routing-navigo-ng/src/main/kotlin"))

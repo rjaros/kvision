@@ -19,24 +19,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.rest
+package io.kvision.jquery.rest
 
-import io.kvision.core.StringPair
+import io.kvision.jquery.JQueryAjaxSettings
+import io.kvision.jquery.JQueryXHR
+import io.kvision.jquery.jQuery
 import io.kvision.types.DateSerializer
-import kotlinx.browser.window
+import io.kvision.utils.obj
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
-import org.w3c.dom.url.URLSearchParams
-import org.w3c.fetch.RequestInit
 import kotlin.js.Date
 import kotlin.js.Promise
 
-/**
- * HTTP methods.
- */
 enum class HttpMethod {
     GET,
     POST,
@@ -47,21 +44,9 @@ enum class HttpMethod {
 }
 
 /**
- * HTTP response body types.
- */
-enum class ResponseBodyType {
-    JSON,
-    TEXT,
-    BLOB,
-    FORM_DATA,
-    ARRAY_BUFFER,
-    READABLE_STREAM
-}
-
-/**
  * A response wrapper
  */
-data class Response<T>(val data: T, val textStatus: String, val response: org.w3c.fetch.Response)
+data class Response<T>(val data: T, val textStatus: String, val jqXHR: JQueryXHR)
 
 const val XHR_ERROR: Short = 0
 const val HTTP_BAD_REQUEST: Short = 400
@@ -131,13 +116,10 @@ class ServiceUnavailable(url: String, method: HttpMethod, message: String) :
     RemoteRequestException(HTTP_SERVICE_UNAVAILABLE, url, method, message)
 
 /**
- * A HTTP REST client
+ * An agent responsible for remote calls.
  */
-open class RestClient(
-    protected val module: SerializersModule? = null,
-    protected val headers: (() -> List<StringPair>)? = null,
-    protected val requestModifier: (RequestInit.() -> Unit)? = null
-) {
+@Deprecated("Use io.kvision.rest.RestClient instead")
+open class LegacyRestClient(protected val module: SerializersModule? = null) {
 
     protected val Json = Json {
         ignoreUnknownKeys = true
@@ -154,7 +136,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
@@ -164,10 +145,9 @@ open class RestClient(
         data: dynamic = null,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null,
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
-        return remoteRequest(url, data, method, contentType, responseBodyType, beforeSend).then { it.data }
+        return remoteRequest(url, data, method, contentType, beforeSend).then { it.data }
     }
 
     /**
@@ -177,7 +157,6 @@ open class RestClient(
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
@@ -188,11 +167,10 @@ open class RestClient(
         deserializer: DeserializationStrategy<T>,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null,
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
-        return remoteCall(url, data, method, contentType, responseBodyType, beforeSend).then { result: dynamic ->
+        return remoteCall(url, data, method, contentType, beforeSend).then { result: dynamic ->
             val transformed = if (transform != null) {
                 transform(result)
             } else {
@@ -210,7 +188,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
@@ -220,12 +197,11 @@ open class RestClient(
         data: V,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null,
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
         val dataSer =
             if (method == HttpMethod.GET) data.toObj(serializer) else Json.encodeToString(serializer, data)
-        return remoteCall(url, dataSer, method, contentType, responseBodyType, beforeSend)
+        return remoteCall(url, dataSer, method, contentType, beforeSend)
     }
 
 
@@ -237,7 +213,6 @@ open class RestClient(
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
@@ -249,8 +224,7 @@ open class RestClient(
         deserializer: DeserializationStrategy<T>,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null,
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
         val dataSer =
@@ -260,7 +234,6 @@ open class RestClient(
             dataSer,
             method,
             contentType,
-            responseBodyType,
             beforeSend
         ).then { result: dynamic ->
             val transformed = if (transform != null) {
@@ -279,7 +252,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
@@ -289,11 +261,10 @@ open class RestClient(
         data: dynamic = null,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
-        return remoteCall(url, data, serializer(), method, contentType, responseBodyType, beforeSend, transform)
+        return remoteCall(url, data, serializer(), method, contentType, beforeSend, transform)
     }
 
     /**
@@ -302,7 +273,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @return a promise of the result
      */
@@ -311,8 +281,7 @@ open class RestClient(
         data: V,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<dynamic> {
         return remoteCall(
             url,
@@ -320,7 +289,6 @@ open class RestClient(
             data,
             method,
             contentType,
-            responseBodyType,
             beforeSend
         )
     }
@@ -332,7 +300,6 @@ open class RestClient(
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
@@ -343,8 +310,7 @@ open class RestClient(
         deserializer: DeserializationStrategy<T>,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
         return remoteCall(
@@ -354,7 +320,6 @@ open class RestClient(
             deserializer,
             method,
             contentType,
-            responseBodyType,
             beforeSend,
             transform
         )
@@ -367,7 +332,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
@@ -378,8 +342,7 @@ open class RestClient(
         data: V,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
         return remoteCall(
@@ -389,7 +352,6 @@ open class RestClient(
             serializer(),
             method,
             contentType,
-            responseBodyType,
             beforeSend,
             transform
         )
@@ -401,7 +363,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the result
@@ -411,8 +372,7 @@ open class RestClient(
         data: V,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<T> {
         return remoteCall(
@@ -422,7 +382,6 @@ open class RestClient(
             serializer(),
             method,
             contentType,
-            responseBodyType,
             beforeSend,
             transform
         )
@@ -434,7 +393,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @return a promise of the response
      */
@@ -444,65 +402,34 @@ open class RestClient(
         data: dynamic = null,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<Response<dynamic>> {
-        val requestInit = beforeSend?.invoke() ?: RequestInit()
-        requestInit.method = method.name
-        if (method != HttpMethod.GET && method != HttpMethod.HEAD) {
-            requestInit.body = when (contentType) {
-                "application/json" -> JSON.stringify(data)
-                "application/x-www-form-urlencoded" -> URLSearchParams(data).toString()
-                else -> data
-            }
-        }
-        val fetchUrl = if (method == HttpMethod.GET && data != null) {
-            url + "?" + URLSearchParams(data).toString()
-        } else {
-            url
-        }
-        requestInit.headers = js("{}")
-        requestInit.headers["Content-Type"] = contentType
-        headers?.invoke()?.forEach {
-            requestInit.headers[it.first] = it.second
-        }
-        this.requestModifier?.invoke(requestInit)
         return Promise { resolve, reject ->
-            window.fetch(fetchUrl, requestInit).then { response ->
-                if (response.ok) {
-                    val statusText = response.statusText
-                    if (responseBodyType == ResponseBodyType.READABLE_STREAM) {
-                        resolve(Response(response.body, statusText, response))
-                    } else {
-                        val body = when (responseBodyType) {
-                            ResponseBodyType.JSON -> response.json()
-                            ResponseBodyType.TEXT -> response.text()
-                            ResponseBodyType.BLOB -> response.blob()
-                            ResponseBodyType.FORM_DATA -> response.formData()
-                            ResponseBodyType.ARRAY_BUFFER -> response.arrayBuffer()
-                            ResponseBodyType.READABLE_STREAM -> throw IllegalStateException() // not possible
-                        }
-                        body.then {
-                            resolve(Response(it, statusText, response))
-                        }.catch {
-                            reject(
-                                RemoteRequestException.create(
-                                    XHR_ERROR,
-                                    url,
-                                    method,
-                                    it.message ?: "Incorrect body type"
-                                )
-                            )
-                        }
+            jQuery.ajax(url, obj {
+                this.contentType = if (contentType != "multipart/form-data") contentType else false
+                this.data = data
+                this.method = method.name
+                this.processData = if (contentType != "multipart/form-data") undefined else false
+                this.success =
+                    { data: dynamic, textStatus: String, jqXHR: JQueryXHR ->
+                        resolve(Response(data, textStatus, jqXHR))
                     }
-                } else {
-                    reject(RemoteRequestException.create(response.status, url, method, response.statusText))
-                }
-            }.catch {
-                reject(RemoteRequestException.create(XHR_ERROR, url, method, it.message ?: "Connection error"))
-            }
+                this.error =
+                    { xhr: JQueryXHR, _: String, errorText: String ->
+                        val message = if (xhr.responseJSON != null && xhr.responseJSON != undefined) {
+                            JSON.stringify(xhr.responseJSON)
+                        } else if (xhr.responseText != undefined) {
+                            xhr.responseText
+                        } else {
+                            errorText
+                        }
+                        reject(RemoteRequestException.create(xhr.status, url, method, message))
+                    }
+                this.beforeSend = beforeSend
+            })
         }
     }
+
 
     /**
      * Makes a remote call to the remote server.
@@ -511,7 +438,6 @@ open class RestClient(
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
@@ -522,18 +448,10 @@ open class RestClient(
         deserializer: DeserializationStrategy<T>,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null,
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
-        return remoteRequest(
-            url,
-            data,
-            method,
-            contentType,
-            responseBodyType,
-            beforeSend
-        ).then { result: Response<dynamic> ->
+        return remoteRequest(url, data, method, contentType, beforeSend).then { result: Response<dynamic> ->
             val transformed = if (transform != null) {
                 transform(result.data)
             } else {
@@ -542,7 +460,7 @@ open class RestClient(
             Response(
                 @Suppress("UnsafeCastFromDynamic")
                 Json.decodeFromString(deserializer, JSON.stringify(transformed)),
-                result.textStatus, result.response
+                result.textStatus, result.jqXHR
             )
         }
     }
@@ -554,7 +472,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @return a promise of the response
      */
@@ -564,13 +481,13 @@ open class RestClient(
         data: V,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<Response<dynamic>> {
         val dataSer =
             if (method == HttpMethod.GET) data.toObj(serializer) else Json.encodeToString(serializer, data)
-        return remoteRequest(url, dataSer, method, contentType, responseBodyType, beforeSend)
+        return remoteRequest(url, dataSer, method, contentType, beforeSend)
     }
+
 
     /**
      * Makes a remote call to the remote server.
@@ -580,7 +497,6 @@ open class RestClient(
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
@@ -592,8 +508,7 @@ open class RestClient(
         deserializer: DeserializationStrategy<T>,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null,
+        beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
         val dataSer =
@@ -603,7 +518,6 @@ open class RestClient(
             dataSer,
             method,
             contentType,
-            responseBodyType,
             beforeSend
         ).then { result: Response<dynamic> ->
             val transformed = if (transform != null) {
@@ -614,7 +528,7 @@ open class RestClient(
             Response(
                 @Suppress("UnsafeCastFromDynamic")
                 Json.decodeFromString(deserializer, JSON.stringify(transformed)),
-                result.textStatus, result.response
+                result.textStatus, result.jqXHR
             )
         }
     }
@@ -625,7 +539,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
@@ -635,11 +548,10 @@ open class RestClient(
         data: dynamic = null,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
-        return remoteRequest(url, data, serializer(), method, contentType, responseBodyType, beforeSend, transform)
+        return remoteRequest(url, data, serializer(), method, contentType, beforeSend, transform)
     }
 
     /**
@@ -648,7 +560,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @return a promise of the response
      */
@@ -657,8 +568,7 @@ open class RestClient(
         data: V,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
     ): Promise<Response<dynamic>> {
         return remoteRequest(
             url,
@@ -666,7 +576,6 @@ open class RestClient(
             data,
             method,
             contentType,
-            responseBodyType,
             beforeSend
         )
     }
@@ -678,7 +587,6 @@ open class RestClient(
      * @param deserializer a deserializer for the result value
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
@@ -689,8 +597,7 @@ open class RestClient(
         deserializer: DeserializationStrategy<T>,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
         return remoteRequest(
@@ -700,7 +607,6 @@ open class RestClient(
             deserializer,
             method,
             contentType,
-            responseBodyType,
             beforeSend,
             transform
         )
@@ -713,7 +619,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
@@ -724,8 +629,7 @@ open class RestClient(
         data: V,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
         return remoteRequest(
@@ -735,7 +639,6 @@ open class RestClient(
             serializer(),
             method,
             contentType,
-            responseBodyType,
             beforeSend,
             transform
         )
@@ -747,7 +650,6 @@ open class RestClient(
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param responseBodyType type of the response data
      * @param beforeSend a function to set request parameters
      * @param transform a function to transform the result of the call
      * @return a promise of the response
@@ -757,8 +659,7 @@ open class RestClient(
         data: V,
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
-        responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        noinline beforeSend: (() -> RequestInit)? = null,
+        noinline beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null,
         noinline transform: ((dynamic) -> dynamic)? = null
     ): Promise<Response<T>> {
         return remoteRequest(
@@ -768,7 +669,6 @@ open class RestClient(
             serializer(),
             method,
             contentType,
-            responseBodyType,
             beforeSend,
             transform
         )

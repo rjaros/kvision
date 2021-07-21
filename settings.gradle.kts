@@ -38,6 +38,7 @@ include(
     "kvision-modules:kvision-react",
     "kvision-modules:kvision-redux",
     "kvision-modules:kvision-redux-kotlin",
+    "kvision-modules:kvision-rest",
     "kvision-modules:kvision-richtext",
     "kvision-modules:kvision-routing-navigo",
     "kvision-modules:kvision-routing-navigo-ng",
