@@ -130,9 +130,9 @@ class Root : SimplePanel {
 
     override fun render(): VNode {
         return if (addRow) {
-            render("div#$id", arrayOf(h("div", snOpt {
+            render("div#$id", stylesVNodes() + arrayOf(h("div", snOpt {
                 `class` = snClasses(listOf("row" to true))
-            }, stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())))
+            }, childrenVNodes())) + modalsVNodes() + contextMenusVNodes())
         } else {
             render("div#$id", stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())
         }
