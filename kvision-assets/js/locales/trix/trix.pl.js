@@ -1,4 +1,4 @@
-(function($){
+(function(){
 	window.Trix.config.languages["pl"] = {
 		GB:"GB",
 		KB:"KB",
@@ -27,4 +27,4 @@
 		url:"URL",
 		attachFiles:"Załącz pliki"
 	}
-}(jQuery));
+}());

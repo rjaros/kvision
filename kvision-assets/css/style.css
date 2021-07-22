@@ -78,7 +78,7 @@
 }
 
 trix-toolbar .trix-button-group {
-  margin-bottom: 3px;
+  margin-bottom: 3px !important;
 }
 
 .tabulator-row .tabulator-cell.tabulator-editing input, .tabulator-row .tabulator-cell.tabulator-editing select {
@@ -328,6 +328,12 @@ label.form-check-label.required-label>span::after {
 
 .kv-window .kv-window-icons-container {
     display: flex;
+}
+
+.kv-window .kv-window-icons-container button.kv-window-button {
+    background: transparent;
+    line-height: 1rem;
+    font-weight: bold;
 }
 
 .kv-preview-thumb .btn, .kv-zoom-actions .btn, .file-zoom-dialog .floating-buttons .btn {

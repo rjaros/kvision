@@ -32,7 +32,7 @@ internal object KVManagerRichText {
 
     init {
         require("trix/dist/trix.css")
-        val trix = require("trix")
+        val trix = require("trix/dist/trix-core.js")
         window.asDynamic().Trix = trix
         trix.config.languages = obj {}
         trix.config.languages["en"] = obj {}
