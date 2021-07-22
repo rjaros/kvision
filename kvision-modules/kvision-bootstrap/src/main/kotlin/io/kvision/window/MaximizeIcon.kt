@@ -30,15 +30,10 @@ import io.kvision.core.Widget
 /**
  * Helper class for maximize icon component.
  */
-open class MaximizeIcon : Widget() {
+open class MaximizeIcon : Widget("btn-close kv-window-button") {
 
     override fun render(): VNode {
         return render("button", arrayOf(KVManager.virtualize("<span aria-hidden='true'>&#x1f5d6;</span>")))
-    }
-
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        super.buildClassSet(classSetBuilder)
-        classSetBuilder.add("close")
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

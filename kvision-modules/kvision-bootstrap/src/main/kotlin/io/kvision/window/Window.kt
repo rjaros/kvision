@@ -371,7 +371,7 @@ open class Window(
                         val outerHeight = getElement()?.offsetHeight() ?: 0
                         val intWidth = getElement()?.width() ?: 0
                         val intHeight = getElement()?.height() ?: 0
-                        content.width = intWidth.px
+                        content.width = (intWidth - 8).px
                         content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
                         width = outerWidth.px
                         height = outerHeight.px
