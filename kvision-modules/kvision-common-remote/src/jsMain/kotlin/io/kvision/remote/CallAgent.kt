@@ -81,6 +81,7 @@ open class CallAgent {
         }
         requestInit.headers = js("{}")
         requestInit.headers["Content-Type"] = "application/json"
+        requestInit.headers["X-Requested-With"] = "XMLHttpRequest"
         return Promise { resolve, reject ->
             window.fetch(fetchUrl, requestInit).then { response ->
                 if (response.ok) {
@@ -145,6 +146,7 @@ open class CallAgent {
         }
         requestInit.headers = js("{}")
         requestInit.headers["Content-Type"] = contentType
+        requestInit.headers["X-Requested-With"] = "XMLHttpRequest"
         return Promise { resolve, reject ->
             window.fetch(fetchUrl, requestInit).then { response ->
                 if (response.ok) {
