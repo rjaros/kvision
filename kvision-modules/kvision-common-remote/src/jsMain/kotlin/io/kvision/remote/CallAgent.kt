@@ -59,6 +59,7 @@ open class CallAgent {
      * @param url an URL address
      * @param data data to be sent
      * @param method a HTTP method
+     * @param requestFilter a request filtering function
      * @return a promise of the result
      */
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
@@ -66,9 +67,9 @@ open class CallAgent {
         url: String,
         data: List<String?> = listOf(),
         method: HttpMethod = HttpMethod.POST,
-        beforeSend: (() -> RequestInit)? = null
+        requestFilter: (RequestInit.() -> Unit)? = null
     ): Promise<String> {
-        val requestInit = beforeSend?.invoke() ?: RequestInit()
+        val requestInit = RequestInit()
         requestInit.method = method.name
         requestInit.credentials = RequestCredentials.INCLUDE
         val jsonRpcRequest = JsonRpcRequest(counter++, url, data)
@@ -82,6 +83,7 @@ open class CallAgent {
         requestInit.headers = js("{}")
         requestInit.headers["Content-Type"] = "application/json"
         requestInit.headers["X-Requested-With"] = "XMLHttpRequest"
+        requestFilter?.invoke(requestInit)
         return Promise { resolve, reject ->
             window.fetch(fetchUrl, requestInit).then { response ->
                 if (response.ok) {
@@ -118,7 +120,8 @@ open class CallAgent {
      * @param data data to be sent
      * @param method a HTTP method
      * @param contentType a content type of the request
-     * @param beforeSend a function to set request parameters
+     * @param responseBodyType response body type
+     * @param requestFilter a request filtering function
      * @return a promise of the result
      */
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
@@ -128,9 +131,9 @@ open class CallAgent {
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
         responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        beforeSend: (() -> RequestInit)? = null
+        requestFilter: (RequestInit.() -> Unit)? = null
     ): Promise<dynamic> {
-        val requestInit = beforeSend?.invoke() ?: RequestInit()
+        val requestInit = RequestInit()
         requestInit.method = method.name
         requestInit.credentials = RequestCredentials.INCLUDE
         val urlAddr = urlPrefix + url.drop(1)
@@ -147,6 +150,7 @@ open class CallAgent {
         requestInit.headers = js("{}")
         requestInit.headers["Content-Type"] = contentType
         requestInit.headers["X-Requested-With"] = "XMLHttpRequest"
+        requestFilter?.invoke(requestInit)
         return Promise { resolve, reject ->
             window.fetch(fetchUrl, requestInit).then { response ->
                 if (response.ok) {
