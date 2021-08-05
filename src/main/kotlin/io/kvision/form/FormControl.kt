@@ -176,6 +176,13 @@ interface FormControl : Component {
             invalidFeedback.content = value
             invalidFeedback.visible = value != null
             input.validationStatus = if (value != null) ValidationStatus.INVALID else null
+            if (hasCssClass("kv-control-horiz")) {
+                if (value != null) {
+                    input.addSurroundingCssClass("is-invalid")
+                } else {
+                    input.removeSurroundingCssClass("is-invalid")
+                }
+            }
             refresh()
         }
 
@@ -190,9 +197,10 @@ interface FormControl : Component {
      */
     fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
         addCssClass("row")
+        addCssClass("kv-control-horiz")
         flabel.addCssClass("col-sm-${horizontalRatio.labels}")
         flabel.addCssClass("col-form-label")
-        input.addCssClass("col-sm-${horizontalRatio.fields}")
+        input.addSurroundingCssClass("col-sm-${horizontalRatio.fields}")
         invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
         invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
     }
