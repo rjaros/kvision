@@ -85,8 +85,8 @@ class Root : SimplePanel {
      */
     constructor(
         id: String,
-        containerType: ContainerType = ContainerType.FLUID,
-        addRow: Boolean = containerType != ContainerType.FIXED,
+        containerType: ContainerType = ContainerType.NONE,
+        addRow: Boolean = containerType != ContainerType.FIXED && containerType != ContainerType.NONE,
         init: (Root.() -> Unit)? = null
     ) : super() {
         this.containerType = containerType
@@ -109,8 +109,8 @@ class Root : SimplePanel {
      */
     constructor(
         element: HTMLElement,
-        containerType: ContainerType = ContainerType.FLUID,
-        addRow: Boolean = containerType != ContainerType.FIXED,
+        containerType: ContainerType = ContainerType.NONE,
+        addRow: Boolean = containerType != ContainerType.FIXED && containerType != ContainerType.NONE,
         init: (Root.() -> Unit)? = null
     ) : super() {
         this.containerType = containerType
@@ -295,8 +295,8 @@ class Root : SimplePanel {
 @Suppress("unused")
 fun Application.root(
     id: String,
-    containerType: ContainerType = ContainerType.FLUID,
-    addRow: Boolean = containerType != ContainerType.FIXED,
+    containerType: ContainerType = ContainerType.NONE,
+    addRow: Boolean = containerType != ContainerType.FIXED && containerType != ContainerType.NONE,
     init: (Root.() -> Unit)? = null
 ): Root {
     return Root(id, containerType, addRow, init)
@@ -314,8 +314,8 @@ fun Application.root(
 @Suppress("unused")
 fun Application.root(
     element: HTMLElement,
-    containerType: ContainerType = ContainerType.FLUID,
-    addRow: Boolean = containerType != ContainerType.FIXED,
+    containerType: ContainerType = ContainerType.NONE,
+    addRow: Boolean = containerType != ContainerType.FIXED && containerType != ContainerType.NONE,
     init: (Root.() -> Unit)? = null
 ): Root {
     return Root(element, containerType, addRow, init)

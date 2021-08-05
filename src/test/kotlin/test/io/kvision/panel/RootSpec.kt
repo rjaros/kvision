@@ -34,7 +34,7 @@ class RootSpec : DomSpec {
         run {
             Root("test")
             val rootElem = document.getElementById("test")
-            assertTrue("Standard root child has correct css class") { rootElem?.className == "container-fluid" }
+            assertTrue("Standard root container has no css class") { rootElem?.className == "" }
         }
     }
 
@@ -43,7 +43,7 @@ class RootSpec : DomSpec {
         run {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
             val rootElem = document.getElementById("test")
-            assertTrue("Fluid root child has correct css class") { rootElem?.className == "container" }
+            assertTrue("Fixed root container has correct css class") { rootElem?.className == "container" }
         }
     }
 
