@@ -172,7 +172,7 @@ class RestRequestConfig<T : Any, V : Any> {
     /**
      * Request content type.
      */
-    var contentType: String = "application/json"
+    var contentType: String? = "application/json"
 
     /**
      * Response body type.
@@ -272,7 +272,9 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
         }
         val fetchUrl = if (restClientConfig.baseUrl != null) restClientConfig.baseUrl + dataUrl else dataUrl
         requestInit.headers = js("{}")
-        requestInit.headers["Content-Type"] = restRequestConfig.contentType
+        if (restRequestConfig.contentType != null) {
+            requestInit.headers["Content-Type"] = restRequestConfig.contentType
+        }
         restClientConfig.headers?.invoke()?.forEach {
             requestInit.headers[it.first] = it.second
         }
