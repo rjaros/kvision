@@ -100,6 +100,10 @@ trix-toolbar .trix-button-group {
     border-bottom: 1px solid #dee2e6;
 }
 
+.tabulator.table-sm > :not(caption) > * > .tabulator-row {
+    padding-right: 0;
+}
+
 .input-group.date.is-invalid~.invalid-feedback {
     display: block;
 }
@@ -198,6 +202,10 @@ label.form-check-label.required-label>span::after {
 
 .form-check-inline.form-check {
     padding-left: 0px;
+}
+
+.form-horizontal .row .form-check {
+    padding-left: 1rem;
 }
 
 .form-horizontal.container-fluid {
