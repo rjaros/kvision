@@ -22,7 +22,7 @@
 package io.kvision.form.text
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerTypeahead
+import io.kvision.BootstrapTypeaheadModule
 import io.kvision.core.Container
 import io.kvision.core.getElementJQueryD
 import io.kvision.jquery.JQueryXHR
@@ -189,7 +189,7 @@ open class TypeaheadInput(
 
     companion object {
         init {
-            KVManagerTypeahead.init()
+            BootstrapTypeaheadModule.initialize()
         }
     }
 }

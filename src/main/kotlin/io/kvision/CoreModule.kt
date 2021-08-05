@@ -20,19 +20,23 @@
  * SOFTWARE.
  */
 
-package io.kvision.fontawesome
-
-import io.kvision.KVManagerFontAwesome
+package io.kvision
 
 /**
- * Initialization for Font Awesome module.
+ * KVision Module initializer.
  */
-object FontAwesome {
-
+interface ModuleInitializer {
     /**
-     * Initialize Font Awesome module.
+     * Initialize KVision module.
      */
-    fun init() {
-        KVManagerFontAwesome.init()
+    fun initialize()
+}
+
+/**
+ * Initializer for KVision core module.
+ */
+object CoreModule : ModuleInitializer {
+    override fun initialize() {
+        require("kvision-assets/css/style.css")
     }
 }

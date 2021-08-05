@@ -23,8 +23,8 @@ package io.kvision.form.select
 
 import io.kvision.jquery.JQueryAjaxSettings
 import io.kvision.jquery.JQueryXHR
-import io.kvision.KVManagerSelect.AJAX_REQUEST_DELAY
-import io.kvision.KVManagerSelect.KVNULL
+import io.kvision.BootstrapSelectModule.AJAX_REQUEST_DELAY
+import io.kvision.BootstrapSelectModule.KVNULL
 import io.kvision.i18n.I18n
 import io.kvision.utils.obj
 

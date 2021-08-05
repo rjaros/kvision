@@ -19,20 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision Print module.
+ * Initializer for Bootstrap Icons module.
  */
-internal object KVManagerPrint {
+object BootstrapIconsModule : ModuleInitializer {
 
-    init {
-        require("print-js/dist/print.css")
+    override fun initialize() {
+        require("bootstrap-icons/font/bootstrap-icons.css")
     }
-
-    internal val printjs = require("print-js")
-
-    internal fun init() {}
-
-    internal var counter = 0
 }

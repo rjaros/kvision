@@ -22,7 +22,7 @@
 package io.kvision.form.upload
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerUpload
+import io.kvision.BootstrapUploadModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -413,7 +413,7 @@ open class UploadInput(
 
     companion object {
         init {
-            KVManagerUpload.init()
+            BootstrapUploadModule.initialize()
         }
     }
 }

@@ -55,10 +55,25 @@ abstract class Application {
 
 /**
  * Main function for creating KVision applications.
+ * Initialize KVision modules.
+ * @param builder application builder function
+ * @param hot HMR module
+ * @param moduleInitializer modules initializer objects
+ * @param panelsCompatibilityMode whether to use component wrappers in Flex/H/V/Grid panels, set to *true* to use KVision 4 compatibility mode
  */
-fun startApplication(builder: () -> Application, hot: Hot? = null) {
+fun startApplication(
+    builder: () -> Application,
+    hot: Hot? = null,
+    vararg moduleInitializer: ModuleInitializer,
+    panelsCompatibilityMode: Boolean = false
+) {
     @Suppress("UnsafeCastFromDynamic")
     if (window.asDynamic().__karma__) return
+
+    KVManager.panelsCompatibilityMode = panelsCompatibilityMode
+    moduleInitializer.forEach {
+        it.initialize()
+    }
 
     fun start(state: dynamic): Application {
         if (state?.appState != undefined) {

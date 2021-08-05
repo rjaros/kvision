@@ -27,7 +27,7 @@ import io.kvision.core.Container
 import io.kvision.core.Widget
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
-import io.kvision.KVManagerMaps.leaflet as L
+import io.kvision.MapsModule.leaflet as L
 
 /**
  * Maps component.

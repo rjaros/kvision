@@ -19,21 +19,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision
 
 import kotlinx.browser.window
 
 /**
- * Internal singleton object which initializes and configures KVision select module.
+ * Initializer for KVision Bootstrap select module.
  */
-internal object KVManagerSelect {
-    internal const val AJAX_REQUEST_DELAY = 300
-    internal const val KVNULL = "#kvnull"
+object BootstrapSelectModule : ModuleInitializer {
 
     init {
         val bootstrap = require("bootstrap")
         window.asDynamic()["bootstrap"] = bootstrap
         js("if ($.fn.dropdown === undefined) { $.fn.dropdown={'Constructor' : {'VERSION' : '5.0.0'}}; };")
+    }
+
+    internal const val AJAX_REQUEST_DELAY = 300
+    internal const val KVNULL = "#kvnull"
+
+    override fun initialize() {
         require("bootstrap-select/dist/css/bootstrap-select.min.css")
         require("bootstrap-select")
         require("kvision-assets/js/locales/bootstrap-select/bootstrap-select-i18n.min.js")
@@ -56,6 +61,4 @@ internal object KVManagerSelect {
         js("$.fn.selectpicker.Constructor.DEFAULTS.styleBase = 'form-control';")
         js("$.fn.selectpicker.Constructor.DEFAULTS.style = '';")
     }
-
-    internal fun init() {}
 }

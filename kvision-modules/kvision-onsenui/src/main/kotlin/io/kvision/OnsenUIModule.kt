@@ -22,13 +22,16 @@
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision spinner module.
+ * Initializer for KVision OnsenUI module.
  */
-internal object KVManagerSpinner {
-    init {
-        require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")
-        require("bootstrap-touchspin")
-    }
+object OnsenUIModule : ModuleInitializer {
 
-    internal fun init() {}
+    internal val ons = require("onsenui")
+
+    override fun initialize() {
+        require("onsenui/css/ionicons/css/ionicons.min.css")
+        require("onsenui/css/material-design-iconic-font/css/material-design-iconic-font.min.css")
+        require("onsenui/css/onsenui-core.min.css")
+        require("onsenui/css/onsen-css-components.min.css")
+    }
 }

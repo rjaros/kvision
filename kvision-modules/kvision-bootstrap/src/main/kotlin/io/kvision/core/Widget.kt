@@ -22,16 +22,18 @@
 
 package io.kvision.core
 
-import io.kvision.Bootstrap
-import io.kvision.KVManagerBootstrap
+import io.kvision.BootstrapModule
 import io.kvision.utils.createInstance
 
-internal fun Widget.createBsInstance(constructor: Bootstrap.() -> dynamic, vararg args: dynamic): dynamic {
-    return getElement()?.let { KVManagerBootstrap.bootstrap.constructor().unsafeCast<Any>().createInstance(it, *args) }
+internal fun Widget.createBsInstance(
+    constructor: Bootstrap.() -> dynamic,
+    vararg args: dynamic
+): dynamic {
+    return getElement()?.let { BootstrapModule.bootstrap.constructor().unsafeCast<Any>().createInstance(it, *args) }
 }
 
 internal fun Widget.getBsInstance(constructor: Bootstrap.() -> dynamic): dynamic {
-    return getElement()?.let { KVManagerBootstrap.bootstrap.constructor().getInstance(it) }
+    return getElement()?.let { BootstrapModule.bootstrap.constructor().getInstance(it) }
 }
 
 /**

@@ -19,20 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package io.kvision.handlebars
-
-import io.kvision.KVManagerHandlebars
+package io.kvision
 
 /**
- * Initialization for Handlebars module.
+ * Initializer for KVision React module.
  */
-object Handlebars {
+object ReactModule : ModuleInitializer {
 
-    /**
-     * Initialize Handlebars module.
-     */
-    fun init() {
-        KVManagerHandlebars.init()
-    }
+    internal val reactDom = require("react-dom")
+
+    override fun initialize() {}
 }

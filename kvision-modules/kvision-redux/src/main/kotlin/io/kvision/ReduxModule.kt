@@ -36,9 +36,9 @@ import redux.StoreCreator
 import redux.WrapperAction
 
 /**
- * Internal singleton object which initializes and configures KVision Redux module.
+ * Initializer for KVision Redux module.
  */
-internal object KVManagerRedux {
+object ReduxModule : ModuleInitializer {
 
     private val redux = require("redux/dist/redux.js")
     internal val reduxThunk = require("redux-thunk/dist/redux-thunk.js").default
@@ -96,5 +96,5 @@ internal object KVManagerRedux {
         }
     }
 
-    internal fun init() {}
+    override fun initialize() {}
 }

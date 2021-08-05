@@ -22,7 +22,7 @@
 package io.kvision.form.time
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerDatetime
+import io.kvision.BootstrapDatetimeModule
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.bindAllJQueryListeners
@@ -452,7 +452,7 @@ open class DateTimeInput(
 
     companion object {
         init {
-            KVManagerDatetime.init()
+            BootstrapDatetimeModule.initialize()
         }
     }
 }

@@ -22,7 +22,7 @@
 
 package io.kvision.toast
 
-import io.kvision.KVManagerToast
+import io.kvision.ToastModule
 import io.kvision.utils.obj
 
 /**
@@ -127,6 +127,10 @@ internal fun ToastOptions.toJs(): dynamic {
  */
 object Toast {
 
+    init {
+        ToastModule.initialize()
+    }
+
     /**
      * Shows a success toast.
      * @param message a toast message
@@ -169,9 +173,9 @@ object Toast {
 
     private fun show(type: ToastType, message: String, title: String? = null, options: ToastOptions? = null) {
         if (options != null) {
-            KVManagerToast.toastr[type.type](message, title, options.toJs())
+            ToastModule.toastr[type.type](message, title, options.toJs())
         } else {
-            KVManagerToast.toastr[type.type](message, title)
+            ToastModule.toastr[type.type](message, title)
         }
     }
 

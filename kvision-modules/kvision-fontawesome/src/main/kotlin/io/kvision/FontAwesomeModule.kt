@@ -22,12 +22,10 @@
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision typeahead module.
+ * Initializer for KVision Font Awesome module.
  */
-internal object KVManagerTypeahead {
-    init {
-        require("eam_bootstrap-3-typeahead")
+object FontAwesomeModule : ModuleInitializer {
+    override fun initialize() {
+        require("@fortawesome/fontawesome-free/css/all.min.css")
     }
-
-    internal fun init() {}
 }

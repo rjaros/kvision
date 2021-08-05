@@ -23,7 +23,7 @@ package io.kvision.form.spinner
 
 import com.github.snabbdom.VNode
 import com.github.snabbdom.h
-import io.kvision.KVManagerSpinner
+import io.kvision.BootstrapSpinnerModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -373,7 +373,7 @@ open class SpinnerInput(
 
     companion object {
         init {
-            KVManagerSpinner.init()
+            BootstrapSpinnerModule.initialize()
         }
     }
 }

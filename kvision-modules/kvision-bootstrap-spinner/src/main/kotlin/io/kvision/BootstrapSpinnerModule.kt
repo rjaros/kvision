@@ -21,38 +21,13 @@
  */
 package io.kvision
 
-import io.kvision.i18n.I18n
-import io.kvision.utils.obj
-import kotlinx.browser.window
-
 /**
- * Internal singleton object which initializes and configures KVision RichText module.
+ * Initializer for KVision Bootstrap spinner module.
  */
-internal object KVManagerRichText {
+object BootstrapSpinnerModule : ModuleInitializer {
 
-    init {
-        require("trix/dist/trix.css")
-        val trix = require("trix/dist/trix-core.js")
-        window.asDynamic().Trix = trix
-        trix.config.languages = obj {}
-        trix.config.languages["en"] = obj {}
-        for (key in js("Object").keys(trix.config.lang)) {
-            trix.config.languages["en"][key] = trix.config.lang[key]
-        }
-        val orig = trix.config.toolbar.getDefaultHTML
-        trix.config.toolbar.getDefaultHTML = {
-            val config = if (trix.config.languages[I18n.language] != undefined) {
-                trix.config.languages[I18n.language]
-            } else {
-                trix.config.languages["en"]
-            }
-            for (key in js("Object").keys(trix.config.lang)) {
-                trix.config.lang[key] = config[key]
-            }
-            orig()
-        }
-        require("kvision-assets/js/locales/trix/trix.pl.js")
+    override fun initialize() {
+        require("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")
+        require("bootstrap-touchspin")
     }
-
-    internal fun init() {}
 }

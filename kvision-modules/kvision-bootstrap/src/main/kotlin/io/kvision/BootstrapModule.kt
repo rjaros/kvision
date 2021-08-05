@@ -19,30 +19,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision
 
+import io.kvision.core.Bootstrap
 import io.kvision.core.Component
 import io.kvision.utils.isIE11
 import kotlinx.browser.document
 
-internal external object Bootstrap {
-    val Dropdown: dynamic
-    val Tooltip: dynamic
-    val Popover: dynamic
-    val Modal: dynamic
-}
-
 /**
- * Internal singleton object which initializes and configures KVision Bootstrap module.
+ * Initializer for Bootstrap module.
  */
-internal object KVManagerBootstrap {
+object BootstrapModule : ModuleInitializer {
+
     internal val bootstrap: Bootstrap
 
     init {
         document.body?.setAttribute("data-bs-no-jquery", "true")
         @Suppress("UnsafeCastFromDynamic")
         bootstrap = require("bootstrap")
-        require("awesome-bootstrap-checkbox")
     }
 
     private val elementResizeEvent = require("element-resize-event")
@@ -67,5 +62,7 @@ internal object KVManagerBootstrap {
         }
     }
 
-    internal fun init() {}
+    override fun initialize() {
+        require("awesome-bootstrap-checkbox")
+    }
 }

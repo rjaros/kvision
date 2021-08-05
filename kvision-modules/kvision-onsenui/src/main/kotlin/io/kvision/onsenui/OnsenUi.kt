@@ -22,8 +22,8 @@
 
 package io.kvision.onsenui
 
-import io.kvision.KVManagerOnsenui
-import io.kvision.KVManagerOnsenui.ons
+import io.kvision.OnsenUIModule
+import io.kvision.OnsenUIModule.ons
 import io.kvision.core.DomAttribute
 import io.kvision.core.Widget
 import org.w3c.dom.HTMLElement
@@ -109,7 +109,7 @@ object OnsenUi {
      * Initialize Onsen UI module.
      */
     fun init() {
-        KVManagerOnsenui.init()
+        OnsenUIModule.initialize()
     }
 
     /**

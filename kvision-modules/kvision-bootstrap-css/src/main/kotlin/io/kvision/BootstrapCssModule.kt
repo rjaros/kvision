@@ -19,15 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision Bootstrap CSS module.
+ * Initializer for Bootstrap CSS module.
  */
-internal object KVManagerBootstrapCss {
-    init {
+object BootstrapCssModule : ModuleInitializer {
+
+    override fun initialize() {
         require("bootstrap/dist/css/bootstrap.min.css")
     }
-
-    internal fun init() {}
 }

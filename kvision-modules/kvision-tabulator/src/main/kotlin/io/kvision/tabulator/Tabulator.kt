@@ -22,7 +22,7 @@
 package io.kvision.tabulator
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerTabulator
+import io.kvision.TabulatorModule
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
@@ -255,7 +255,7 @@ open class Tabulator<T : Any>(
     protected open fun createJsTabulator() {
         (this.getElement() as? HTMLElement)?.let {
             jsTabulator =
-                KVManagerTabulator.getConstructor()
+                TabulatorModule.getConstructor()
                     .createInstance(it, options.toJs(this, this::translate, kClass))
             if (currentPage != null) {
                 jsTabulator?.setPageSize(pageSize ?: 0)
@@ -797,6 +797,11 @@ open class Tabulator<T : Any>(
     }
 
     companion object {
+
+        init {
+            TabulatorModule.initialize()
+        }
+
         /**
          * A helper function to create a Tabulator object.
          */

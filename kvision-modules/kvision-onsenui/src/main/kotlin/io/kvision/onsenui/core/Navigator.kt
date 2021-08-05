@@ -23,7 +23,7 @@
 package io.kvision.onsenui.core
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerOnsenui.ons
+import io.kvision.OnsenUIModule.ons
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Display
 import io.kvision.core.DomAttribute

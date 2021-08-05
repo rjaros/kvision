@@ -23,7 +23,7 @@
 package io.kvision.onsenui.splitter
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerOnsenui.ons
+import io.kvision.OnsenUIModule.ons
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.CssSize
 import io.kvision.core.DomAttribute

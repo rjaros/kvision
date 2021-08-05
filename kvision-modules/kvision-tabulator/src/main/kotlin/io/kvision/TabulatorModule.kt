@@ -22,12 +22,18 @@
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision Font Awesome module.
+ * Initializer for KVision Tabulator module.
  */
-internal object KVManagerFontAwesome {
-    init {
-        require("@fortawesome/fontawesome-free/css/all.min.css")
+object TabulatorModule : ModuleInitializer {
+
+    private val tabulator = require("tabulator-tables/dist/js/tabulator.js")
+
+    @Suppress("UnsafeCastFromDynamic")
+    fun getConstructor(): Any {
+        return tabulator
     }
 
-    internal fun init() {}
+    override fun initialize() {
+        require("tabulator-tables/dist/css/bootstrap/tabulator_bootstrap4.min.css")
+    }
 }

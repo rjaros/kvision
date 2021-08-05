@@ -19,16 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision handlebars module.
+ * Initializer for KVision Bootstrap datetime module.
  */
-internal object KVManagerHandlebars {
-
-    init {
-        require("handlebars/dist/handlebars.runtime.js")
+object BootstrapDatetimeModule : ModuleInitializer {
+    override fun initialize() {
+        require("pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.min.css")
+        require("pc-bootstrap4-datetimepicker")
     }
-
-    internal fun init() {}
 }

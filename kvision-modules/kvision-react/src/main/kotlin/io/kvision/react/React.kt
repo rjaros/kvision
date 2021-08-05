@@ -23,7 +23,7 @@
 package io.kvision.react
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerReact
+import io.kvision.ReactModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.state.ObservableState
@@ -62,10 +62,6 @@ class React<S>(
         builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
     ) : this(js("{}"), className, builder)
 
-    init {
-        KVManagerReact.init()
-    }
-
     override fun afterInsert(node: VNode) {
         ReactRender(node.elm as HTMLElement, {}) {
             child(reactWrapper<S> { refresh ->
@@ -80,7 +76,7 @@ class React<S>(
 
     override fun afterDestroy() {
         vnode?.elm?.let {
-            KVManagerReact.reactDom.unmountComponentAtNode(it)
+            ReactModule.reactDom.unmountComponentAtNode(it)
         }
     }
 
@@ -91,6 +87,12 @@ class React<S>(
         observer(state)
         return {
             observers -= observer
+        }
+    }
+
+    companion object {
+        init {
+            ReactModule.initialize()
         }
     }
 }

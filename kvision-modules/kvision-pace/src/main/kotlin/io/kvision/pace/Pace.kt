@@ -23,7 +23,6 @@
 
 package io.kvision.pace
 
-import io.kvision.KVManagerPace
 import io.kvision.require
 import io.kvision.utils.obj
 import kotlinx.browser.window
@@ -153,7 +152,7 @@ class Pace {
             @Suppress("UNUSED_PARAMETER") req: dynamic =
                 require("pace-progressbar/themes/blue/pace-theme-flash.css")
         ) {
-            KVManagerPace.init()
+            require("pace-progressbar").default
         }
 
         fun setOptions(options: PaceOptions) {

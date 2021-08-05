@@ -19,20 +19,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package io.kvision.bootstrap
-
-import io.kvision.KVManagerBootstrapIcons
+package io.kvision
 
 /**
- * Initialization for Bootstrap Icons module.
+ * Initializer for KVision Print module.
  */
-object BootstrapIcons {
+object PrintModule : ModuleInitializer {
 
-    /**
-     * Initialize Bootstrap Icons module.
-     */
-    fun init() {
-        KVManagerBootstrapIcons.init()
+    internal val printjs = require("print-js")
+
+    internal var counter = 0
+
+    override fun initialize() {
+        require("print-js/dist/print.css")
     }
 }

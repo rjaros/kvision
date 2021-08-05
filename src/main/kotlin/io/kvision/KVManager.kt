@@ -43,10 +43,6 @@ external fun require(name: String): dynamic
  * Singleton object which initializes and configures KVision framework.
  */
 object KVManager {
-    init {
-        require("kvision-assets/css/style.css")
-    }
-
     internal val splitjs = require("split.js").default
     internal val fecha = require("fecha").default
     private val sdPatch = Snabbdom.init(
@@ -80,9 +76,5 @@ object KVManager {
         return sdVirtualize(html)
     }
 
-    /**
-     * Whether to use component wrappers in Flex/H/V/Grid panels.
-     * Set to *true* to use KVision 4 compatibility mode.
-     */
-    var panelsCompatibilityMode = false
+    internal var panelsCompatibilityMode = false
 }

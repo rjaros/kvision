@@ -21,7 +21,7 @@
  */
 package test.io.kvision.dropdown
 
-import io.kvision.bootstrap.Bootstrap
+import io.kvision.BootstrapModule
 import io.kvision.dropdown.ContextMenu
 import io.kvision.dropdown.setContextMenu
 import io.kvision.html.link
@@ -77,7 +77,7 @@ class ContextMenuSpec : DomSpec {
 
     companion object {
         init {
-            Bootstrap.init()
+            BootstrapModule.initialize()
         }
     }
 }

@@ -22,11 +22,11 @@
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision React module.
+ * Initializer for KVision Bootstrap typeahead module.
  */
-internal object KVManagerReact {
+object BootstrapTypeaheadModule: ModuleInitializer {
 
-    internal val reactDom = require("react-dom")
-
-    internal fun init() {}
+    override fun initialize() {
+        require("eam_bootstrap-3-typeahead")
+    }
 }

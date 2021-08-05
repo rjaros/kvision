@@ -22,7 +22,7 @@
 package io.kvision.form.text
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerRichText
+import io.kvision.RichTextModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import kotlinx.browser.document
@@ -130,7 +130,7 @@ open class RichTextInput(
 
     companion object {
         init {
-            KVManagerRichText.init()
+            RichTextModule.initialize()
         }
     }
 }

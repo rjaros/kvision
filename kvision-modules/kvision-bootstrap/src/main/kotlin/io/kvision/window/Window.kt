@@ -22,7 +22,7 @@
 package io.kvision.window
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerBootstrap
+import io.kvision.BootstrapModule
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssSize
@@ -364,7 +364,7 @@ open class Window(
         if (isResizable) {
             if (!isResizeEvent) {
                 isResizeEvent = true
-                KVManagerBootstrap.setResizeEvent(this) {
+                BootstrapModule.setResizeEvent(this) {
                     val eid = getElement()?.unsafeCast<Element>()?.getAttribute("id")
                     if (isResizable && eid == id) {
                         val outerWidth = getElement()?.offsetWidth() ?: 0
@@ -385,7 +385,7 @@ open class Window(
                 }
             }
         } else if (isResizeEvent) {
-            KVManagerBootstrap.clearResizeEvent(this)
+            BootstrapModule.clearResizeEvent(this)
             isResizeEvent = false
         }
     }
@@ -435,7 +435,7 @@ open class Window(
 
     override fun afterDestroy() {
         if (isResizeEvent) {
-            KVManagerBootstrap.clearResizeEvent(this)
+            BootstrapModule.clearResizeEvent(this)
             isResizeEvent = false
         }
     }

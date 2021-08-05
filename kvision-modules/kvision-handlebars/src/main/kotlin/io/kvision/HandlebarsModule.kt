@@ -19,20 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package io.kvision.bootstrap
-
-import io.kvision.KVManagerBootstrap
+package io.kvision
 
 /**
- * Initialization for Bootstrap module.
+ * Initializer for KVision handlebars module.
  */
-object Bootstrap {
+object HandlebarsModule : ModuleInitializer {
 
-    /**
-     * Initialize Bootstrap module.
-     */
-    fun init() {
-        KVManagerBootstrap.init()
+    override fun initialize() {
+        require("handlebars/dist/handlebars.runtime.js")
     }
 }

@@ -22,7 +22,7 @@
 
 package io.kvision.onsenui.dialog
 
-import io.kvision.KVManagerOnsenui.ons
+import io.kvision.OnsenUIModule.ons
 import io.kvision.utils.obj
 import kotlin.js.Promise
 

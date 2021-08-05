@@ -21,27 +21,12 @@
  */
 package io.kvision
 
-import io.kvision.utils.obj
-
 /**
- * Internal singleton object which initializes and configures KVision Maps module.
+ * Initializer for KVision Bootstrap chart module.
  */
-internal object KVManagerMaps {
+object ChartModule : ModuleInitializer {
 
-    init {
-        require("leaflet/dist/leaflet.css")
+    override fun initialize() {
+        require("chart.js/dist/Chart.bundle.js")
     }
-
-    internal val leaflet = require("leaflet")
-
-    init {
-        leaflet.Icon.Default.imagePath = "./"
-        leaflet.Icon.Default.mergeOptions(obj {
-            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png")
-            iconUrl = require("leaflet/dist/images/marker-icon.png")
-            shadowUrl = require("leaflet/dist/images/marker-shadow.png")
-        })
-    }
-
-    internal fun init() {}
 }

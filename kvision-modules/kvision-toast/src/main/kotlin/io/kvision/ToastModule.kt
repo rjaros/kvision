@@ -22,13 +22,13 @@
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision Chart module.
+ * Internal singleton object which initializes and configures KVision Toast module.
  */
-internal object KVManagerChart {
+object ToastModule : ModuleInitializer {
 
-    init {
-        require("chart.js/dist/Chart.bundle.js")
+    internal val toastr = require("toastr")
+
+    override fun initialize() {
+        require("toastr/build/toastr.min.css")
     }
-
-    internal fun init() {}
 }

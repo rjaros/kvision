@@ -23,13 +23,12 @@
 package io.kvision
 
 /**
- * Internal singleton object which initializes and configures KVision Moment module.
+ * Initializer for KVision moment module.
  */
-internal object KVManagerPace {
-
+object MomentModule : ModuleInitializer {
     init {
-        require("pace-progressbar").default
+        require("moment")
     }
 
-    internal fun init() {}
+    override fun initialize() {}
 }

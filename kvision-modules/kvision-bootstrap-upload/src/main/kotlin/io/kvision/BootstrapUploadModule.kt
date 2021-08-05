@@ -24,14 +24,16 @@ package io.kvision
 import io.kvision.jquery.jQuery
 
 /**
- * Internal singleton object which initializes and configures KVision upload module.
+ * Initializer for KVision Bootstrap spinner module.
  */
-internal object KVManagerUpload {
-
+object BootstrapUploadModule : ModuleInitializer {
     init {
         val bootstrap = require("bootstrap")
         jQuery.fn.asDynamic()["modal"] = bootstrap.Modal.jQueryInterface
         jQuery.fn.asDynamic()["modal"].Constructor = bootstrap.Modal
+    }
+
+    override fun initialize() {
         require("bootstrap-fileinput/css/fileinput.min.css")
         require("bootstrap-fileinput/themes/explorer-fas/theme.min.css")
         require("bootstrap-fileinput")
@@ -74,6 +76,4 @@ internal object KVManagerUpload {
         require("bootstrap-fileinput/themes/explorer-fas/theme.js")
         require("bootstrap-fileinput/themes/bs5/theme.js")
     }
-
-    internal fun init() {}
 }

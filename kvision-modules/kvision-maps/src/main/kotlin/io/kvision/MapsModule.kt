@@ -19,20 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package io.kvision
 
-package io.kvision.bootstrap
-
-import io.kvision.KVManagerBootstrapCss
+import io.kvision.utils.obj
 
 /**
- * Initialization for Bootstrap CSS module.
+ * Initializer for KVision maps module.
  */
-object BootstrapCss {
+object MapsModule : ModuleInitializer {
 
-    /**
-     * Initialize Bootstrap CSS module.
-     */
-    fun init() {
-        KVManagerBootstrapCss.init()
+    internal val leaflet = require("leaflet")
+
+    init {
+        leaflet.Icon.Default.imagePath = "./"
+        leaflet.Icon.Default.mergeOptions(obj {
+            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png")
+            iconUrl = require("leaflet/dist/images/marker-icon.png")
+            shadowUrl = require("leaflet/dist/images/marker-shadow.png")
+        })
+    }
+
+    override fun initialize() {
+        require("leaflet/dist/leaflet.css")
     }
 }

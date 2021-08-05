@@ -22,8 +22,8 @@
 package io.kvision.form.select
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerSelect
-import io.kvision.KVManagerSelect.KVNULL
+import io.kvision.BootstrapSelectModule
+import io.kvision.BootstrapSelectModule.KVNULL
 import io.kvision.core.*
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
@@ -438,7 +438,7 @@ open class SelectInput(
 
     companion object {
         init {
-            KVManagerSelect.init()
+            BootstrapSelectModule.initialize()
         }
     }
 }

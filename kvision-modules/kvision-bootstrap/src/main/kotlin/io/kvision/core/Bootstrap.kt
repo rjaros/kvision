@@ -19,16 +19,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-/**
- * Internal singleton object which initializes and configures KVision datetime module.
- */
-internal object KVManagerDatetime {
-    init {
-        require("pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.min.css")
-        require("pc-bootstrap4-datetimepicker")
-    }
+package io.kvision.core
 
-    internal fun init() {}
+internal external object Bootstrap {
+    val Dropdown: dynamic
+    val Tooltip: dynamic
+    val Popover: dynamic
+    val Modal: dynamic
 }
