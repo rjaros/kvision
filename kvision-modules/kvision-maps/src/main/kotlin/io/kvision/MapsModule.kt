@@ -21,6 +21,7 @@
  */
 package io.kvision
 
+import io.kvision.utils.delete
 import io.kvision.utils.obj
 
 /**
@@ -31,7 +32,8 @@ object MapsModule : ModuleInitializer {
     internal val leaflet = require("leaflet")
 
     init {
-        leaflet.Icon.Default.imagePath = "./"
+        leaflet.Icon.Default.imagePath = ""
+        delete(leaflet.Icon.Default.prototype._getIconUrl)
         leaflet.Icon.Default.mergeOptions(obj {
             iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png")
             iconUrl = require("leaflet/dist/images/marker-icon.png")
