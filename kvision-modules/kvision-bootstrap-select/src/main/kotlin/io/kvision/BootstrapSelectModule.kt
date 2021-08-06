@@ -28,9 +28,9 @@ import kotlinx.browser.window
  * Initializer for KVision Bootstrap select module.
  */
 object BootstrapSelectModule : ModuleInitializer {
+    internal val bootstrap = require("bootstrap")
 
     init {
-        val bootstrap = require("bootstrap")
         window.asDynamic()["bootstrap"] = bootstrap
         js("if ($.fn.dropdown === undefined) { $.fn.dropdown={'Constructor' : {'VERSION' : '5.0.0'}}; };")
     }

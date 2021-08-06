@@ -35,6 +35,7 @@ import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.asString
 import kotlinx.browser.window
+import org.w3c.dom.get
 
 /**
  * Select width types. See [Bootstrap Select width](http://silviomoreto.github.io/bootstrap-select/examples/#width).
@@ -367,7 +368,9 @@ open class SelectInput(
         })
 
         getElement()?.parentElement?.addEventListener("shown.bs.dropdown", { e ->
-            getElement()?.parentElement?.classList?.add("show")
+            window.setTimeout({
+                getElement()?.parentElement?.classList?.add("show")
+            }, 0)
             getElementJQuery()?.parent()?.find("input[type='search']")?.get(0)?.let { input ->
                 if (!liveSearch) {
                     input.style.position = "absolute"
@@ -390,7 +393,7 @@ open class SelectInput(
         })
 
         this.getElementJQuery()?.on("changed.bs.select") { _, _ ->
-            if (!multiple) hideOptions()
+            if (!multiple) getElement()?.parentElement?.childNodes?.get(1)?.getBsInstance { Dropdown }?.hide()
         }
         refreshState()
     }
