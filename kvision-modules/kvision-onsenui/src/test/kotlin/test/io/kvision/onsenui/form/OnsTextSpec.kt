@@ -41,7 +41,7 @@ class OnsTextSpec : DomSpec {
             val id = text.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"kv-ons-form-group form-group mb-3\"><label class=\"form-label\" for=\"${id}\">Label</label><ons-input class=\"kv-ons-form-control form-control\" placeholder=\"password\" autofocus=\"autofocus\" type=\"email\" input-id=\"${id}\" modifier=\"underbar\"></ons-input></div>",
+                "<div class=\"kv-ons-form-group form-group kv-mb-3\"><label class=\"form-label\" for=\"${id}\">Label</label><ons-input class=\"kv-ons-form-control form-control\" placeholder=\"password\" autofocus=\"autofocus\" type=\"email\" input-id=\"${id}\" modifier=\"underbar\"></ons-input></div>",
                 element?.innerHTML,
                 "Should render Onsen UI text form component"
             )

@@ -55,7 +55,7 @@ open class OnsRange(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsRange.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group"), NumberFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-mb-3 kv-ons-form-group"), NumberFormControl,
     MutableState<Number?> {
 
     /**

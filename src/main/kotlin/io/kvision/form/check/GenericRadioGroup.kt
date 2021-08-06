@@ -64,7 +64,7 @@ open class GenericRadioGroup<T>(
         it as? T
     },
     init: (GenericRadioGroup<T>.() -> Unit)? = null
-) : SimplePanel("form-group mb-3"), GenericFormControl<T>, MutableState<T?> {
+) : SimplePanel("form-group kv-mb-3"), GenericFormControl<T>, MutableState<T?> {
 
     protected val observers = mutableListOf<(T?) -> Unit>()
 

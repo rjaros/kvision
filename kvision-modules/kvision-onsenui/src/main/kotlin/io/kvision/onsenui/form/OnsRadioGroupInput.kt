@@ -47,7 +47,7 @@ open class OnsRadioGroupInput(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     className: String? = null,
     init: (OnsRadioGroupInput.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group"), GenericFormComponent<String?>,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-mb-3 kv-ons-form-group"), GenericFormComponent<String?>,
     FormInput,
     MutableState<String?> {
 

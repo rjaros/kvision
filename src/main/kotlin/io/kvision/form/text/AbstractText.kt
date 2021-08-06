@@ -45,7 +45,7 @@ abstract class AbstractText(
     val floating: Boolean = false,
     className: String? = null
 ) :
-    SimplePanel((className?.let { "$it " } ?: "") + if (floating) "form-floating mb-3" else "form-group mb-3"),
+    SimplePanel((className?.let { "$it " } ?: "") + if (floating) "form-floating kv-mb-3" else "form-group kv-mb-3"),
     StringFormControl, MutableState<String?> {
 
     /**

@@ -38,7 +38,7 @@ class OnsSwitchSpec : DomSpec {
             val id = switch.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"form-group mb-3 kv-ons-form-group kv-ons-checkbox\"><ons-switch type=\"checkbox\" input-id=\"$id\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"></ons-switch><label for=\"$id\">A switch</label></div>",
+                "<div class=\"form-group kv-mb-3 kv-ons-form-group kv-ons-checkbox\"><ons-switch type=\"checkbox\" input-id=\"$id\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\"></ons-switch><label for=\"$id\">A switch</label></div>",
                 element?.innerHTML,
                 "Should render Onsen UI switch form component"
             )

@@ -57,7 +57,7 @@ open class Spinner(
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
     decimalSeparator: String? = I18n.detectDecimalSeparator(), label: String? = null,
     rich: Boolean = false, init: (Spinner.() -> Unit)? = null
-) : SimplePanel("form-group mb-3"), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Spinner value.

@@ -56,13 +56,13 @@ class DateTimeSpec : DomSpec {
             val id = ti.input.input.id
             val datastr = data.toStringF(ti.format)
             assertEqualsHtml(
-                "<div class=\"form-group mb-3\"><label class=\"form-label\" for=\"$id\">Label</label><div class=\"input-group date\"><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"\" type=\"text\" value=\"$datastr\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div></div>",
+                "<div class=\"form-group kv-mb-3\"><label class=\"form-label\" for=\"$id\">Label</label><div class=\"input-group date\"><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"\" type=\"text\" value=\"$datastr\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div></div>",
                 element?.innerHTML,
                 "Should render correct date time input form control"
             )
             ti.validatorError = "Validation Error"
             assertEqualsHtml(
-                "<div class=\"form-group mb-3 text-danger\"><label class=\"form-label\" for=\"$id\">Label</label><div class=\"input-group date is-invalid\"><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"\" type=\"text\" value=\"$datastr\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div><div class=\"invalid-feedback\">Validation Error</div></div>",
+                "<div class=\"form-group kv-mb-3 text-danger\"><label class=\"form-label\" for=\"$id\">Label</label><div class=\"input-group date is-invalid\"><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"\" type=\"text\" value=\"$datastr\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div><div class=\"invalid-feedback\">Validation Error</div></div>",
                 element?.innerHTML,
                 "Should render correct date time input form control with validation error"
             )

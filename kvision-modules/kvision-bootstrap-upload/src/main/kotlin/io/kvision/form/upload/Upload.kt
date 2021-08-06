@@ -47,7 +47,7 @@ import org.w3c.files.File
 open class Upload(
     uploadUrl: String? = null, multiple: Boolean = false, label: String? = null,
     rich: Boolean = false, init: (Upload.() -> Unit)? = null
-) : SimplePanel("form-group mb-3"), KFilesFormControl, MutableState<List<KFile>?> {
+) : SimplePanel("form-group kv-mb-3"), KFilesFormControl, MutableState<List<KFile>?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 

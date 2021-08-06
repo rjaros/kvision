@@ -59,7 +59,7 @@ open class OnsSelect(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsSelect.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group"), StringFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-mb-3 kv-ons-form-group"), StringFormControl,
     MutableState<String?> {
     /**
      * A list of options (value to label pairs) for the select control.

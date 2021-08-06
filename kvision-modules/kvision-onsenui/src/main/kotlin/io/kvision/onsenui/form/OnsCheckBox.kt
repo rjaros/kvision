@@ -49,7 +49,7 @@ open class OnsCheckBox(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsCheckBox.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group kv-ons-checkbox"), BoolFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-mb-3 kv-ons-form-group kv-ons-checkbox"), BoolFormControl,
     MutableState<Boolean> {
 
     /**

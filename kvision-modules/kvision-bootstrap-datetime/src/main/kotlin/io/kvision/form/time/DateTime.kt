@@ -46,7 +46,7 @@ import kotlin.js.Date
 open class DateTime(
     value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false, init: (DateTime.() -> Unit)? = null
-) : SimplePanel("form-group mb-3"), DateFormControl, MutableState<Date?> {
+) : SimplePanel("form-group kv-mb-3"), DateFormControl, MutableState<Date?> {
 
     /**
      * Date/time input value.

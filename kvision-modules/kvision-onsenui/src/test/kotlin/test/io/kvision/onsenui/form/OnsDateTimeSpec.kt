@@ -41,7 +41,7 @@ class OnsDateTimeSpec : DomSpec {
             val id = datetime.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"form-group mb-3 kv-ons-form-group\"><label class=\"form-label\" for=\"$id\">Label</label><ons-input class=\"kv-ons-form-control\" type=\"date\" input-id=\"$id\" modifier=\"underbar\" autofocus=\"autofocus\"></ons-input></div>",
+                "<div class=\"form-group kv-mb-3 kv-ons-form-group\"><label class=\"form-label\" for=\"$id\">Label</label><ons-input class=\"kv-ons-form-control\" type=\"date\" input-id=\"$id\" modifier=\"underbar\" autofocus=\"autofocus\"></ons-input></div>",
                 element?.innerHTML,
                 "Should render Onsen UI date/time form component"
             )

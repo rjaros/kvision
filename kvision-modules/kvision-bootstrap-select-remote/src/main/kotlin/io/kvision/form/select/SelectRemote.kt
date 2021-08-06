@@ -63,7 +63,7 @@ open class SelectRemote<T : Any>(
     label: String? = null,
     rich: Boolean = false,
     init: (SelectRemote<T>.() -> Unit)? = null
-) : SimplePanel("form-group mb-3"), StringFormControl, MutableState<String?> {
+) : SimplePanel("form-group kv-mb-3"), StringFormControl, MutableState<String?> {
     /**
      * A value of the selected option.
      */

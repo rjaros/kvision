@@ -204,7 +204,7 @@ open class Radio(
 
     override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
         addCssClass("form-group")
-        addCssClass("mb-3")
+        addCssClass("kv-mb-3")
         addSurroundingCssClass("row")
         addCssClass("offset-sm-${horizontalRatio.labels}")
         addCssClass("col-sm-${horizontalRatio.fields}")
@@ -216,7 +216,7 @@ open class Radio(
 
     override fun styleForVerticalFormPanel() {
         addCssClass("form-group")
-        addCssClass("mb-3")
+        addCssClass("kv-mb-3")
     }
 
     override fun getState(): Boolean = input.getState()

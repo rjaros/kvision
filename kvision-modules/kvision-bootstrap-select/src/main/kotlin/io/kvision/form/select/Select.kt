@@ -54,7 +54,7 @@ open class Select(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
     rich: Boolean = false, init: (Select.() -> Unit)? = null
-) : SimplePanel("form-group mb-3"), StringFormControl, MutableState<String?> {
+) : SimplePanel("form-group kv-mb-3"), StringFormControl, MutableState<String?> {
 
     /**
      * A list of options (value to label pairs) for the select control.

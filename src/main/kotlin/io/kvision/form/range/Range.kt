@@ -48,7 +48,7 @@ import io.kvision.utils.SnOn
 open class Range(
     value: Number? = null, name: String? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
     label: String? = null, rich: Boolean = false, init: (Range.() -> Unit)? = null
-) : SimplePanel("form-group mb-3"), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Range input value.

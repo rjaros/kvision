@@ -55,7 +55,7 @@ open class OnsRadioGroup(
     rich: Boolean = false,
     className: String? = null,
     init: (OnsRadioGroup.() -> Unit)? = null
-) : SimplePanel((className?.let { "$it " } ?: "") + "form-group mb-3 kv-ons-form-group"), StringFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-mb-3 kv-ons-form-group"), StringFormControl,
     MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()

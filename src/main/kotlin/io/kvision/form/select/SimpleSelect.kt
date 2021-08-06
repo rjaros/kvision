@@ -55,7 +55,7 @@ open class SimpleSelect(
     selectSize: Int? = null,
     name: String? = null, label: String? = null, rich: Boolean = false,
     val floating: Boolean = false, init: (SimpleSelect.() -> Unit)? = null
-) : SimplePanel(if (floating) "form-floating mb-3" else "form-group mb-3"), StringFormControl, MutableState<String?> {
+) : SimplePanel(if (floating) "form-floating kv-mb-3" else "form-group kv-mb-3"), StringFormControl, MutableState<String?> {
 
     /**
      * A list of options (value to label pairs) for the select control.
