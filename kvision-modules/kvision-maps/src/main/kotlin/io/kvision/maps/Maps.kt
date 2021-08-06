@@ -23,6 +23,7 @@
 package io.kvision.maps
 
 import com.github.snabbdom.VNode
+import io.kvision.MapsModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import org.w3c.dom.Element
@@ -162,6 +163,11 @@ open class Maps(
         map?.remove()
     }
 
+    companion object {
+        init {
+            MapsModule.initialize()
+        }
+    }
 }
 
 /**
