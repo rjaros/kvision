@@ -26,6 +26,7 @@ import com.google.inject.Guice
 import com.google.inject.Module
 import io.javalin.Javalin
 import io.javalin.http.Context
+import io.javalin.http.staticfiles.Location
 import io.javalin.websocket.WsContext
 
 const val KV_INJECTOR_KEY = "io.kvision.injector.key"
@@ -62,7 +63,7 @@ fun Javalin.kvisionInit(initStaticResources: Boolean = true, vararg modules: Mod
  * Initialize default static resources for Javalin server.
  */
 fun Javalin.initStaticResources() {
-    config.addStaticFiles("/assets")
+    _conf.addStaticFiles("/assets", Location.CLASSPATH)
 }
 
 internal class MainModule(private val javalin: Javalin) : AbstractModule() {

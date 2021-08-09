@@ -23,9 +23,9 @@ package io.kvision.remote
 
 import com.google.inject.Injector
 import io.javalin.Javalin
-import io.javalin.core.security.Role
+import io.javalin.core.security.RouteRole
 import io.javalin.http.Context
-import io.javalin.websocket.WsHandler
+import io.javalin.websocket.WsConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 
 typealias RequestHandler = (Context) -> Unit
-typealias WebsocketHandler = (WsHandler) -> Unit
+typealias WebsocketHandler = (WsConfig) -> Unit
 
 /**
  * Multiplatform service manager for Javalin.
@@ -65,9 +65,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ): RequestHandler =
         { ctx ->
             val jsonRpcRequest = if (method == HttpMethod.GET) {
-                JsonRpcRequest(ctx.queryParam<Int>("id").get(), "", listOf())
+                JsonRpcRequest(ctx.queryParamAsClass<Int>("id").get(), "", listOf())
             } else {
-                ctx.body<JsonRpcRequest>()
+                ctx.bodyAsClass<JsonRpcRequest>()
             }
             val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)
@@ -88,7 +88,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     )
                 }
             }
-            ctx.json(future)
+            ctx.future(future)
         }
 
     override fun <REQ, RES> createWebsocketHandler(
@@ -144,17 +144,17 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
 /**
  * A function to generate routes based on definitions from the service manager.
  */
-fun <T : Any> Javalin.applyRoutes(serviceManager: KVServiceManager<T>, roles: Set<Role> = setOf()) {
+fun <T : Any> Javalin.applyRoutes(serviceManager: KVServiceManager<T>, roles: Set<RouteRole> = setOf()) {
     serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
         when (method) {
-            HttpMethod.GET -> get(path, handler, roles)
-            HttpMethod.POST -> post(path, handler, roles)
-            HttpMethod.PUT -> put(path, handler, roles)
-            HttpMethod.DELETE -> delete(path, handler, roles)
-            HttpMethod.OPTIONS -> options(path, handler, roles)
+            HttpMethod.GET -> get(path, handler, *roles.toTypedArray())
+            HttpMethod.POST -> post(path, handler, *roles.toTypedArray())
+            HttpMethod.PUT -> put(path, handler, *roles.toTypedArray())
+            HttpMethod.DELETE -> delete(path, handler, *roles.toTypedArray())
+            HttpMethod.OPTIONS -> options(path, handler, *roles.toTypedArray())
         }
     }
     serviceManager.webSocketRequests.forEach { (path, handler) ->
-        ws(path, handler, roles)
+        ws(path, handler, *roles.toTypedArray())
     }
 }
