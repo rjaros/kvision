@@ -23,11 +23,10 @@
 package io.kvision.onsenui.control
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.html.CustomTag
 import io.kvision.onsenui.visual.Icon
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * An Onsen UI speed dial component item.
@@ -36,7 +35,7 @@ import io.kvision.utils.set
  * @param icon an icon placed on the speed dial item
  * @param content the content the item.
  * @param rich whether [content] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -44,9 +43,9 @@ open class SpeedDialItem(
     icon: String? = null,
     content: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (SpeedDialItem.() -> Unit)? = null
-) : CustomTag("ons-speed-dial-item", content, rich, null, classes) {
+) : CustomTag("ons-speed-dial-item", content, rich, null, className) {
 
     /**
      * An icon placed on the speed dial item.
@@ -124,11 +123,10 @@ fun SpeedDial.speedDialItem(
     icon: String? = null,
     content: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SpeedDialItem.() -> Unit)? = null
 ): SpeedDialItem {
-    val speedDialItem = SpeedDialItem(icon, content, rich, classes ?: className.set, init)
+    val speedDialItem = SpeedDialItem(icon, content, rich, className, init)
     this.add(speedDialItem)
     return speedDialItem
 }

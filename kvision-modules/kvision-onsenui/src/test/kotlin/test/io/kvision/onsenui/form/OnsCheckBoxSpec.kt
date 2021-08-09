@@ -38,7 +38,7 @@ class OnsCheckBoxSpec : DomSpec {
             val id = checkbox.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"form-group kv-ons-form-group kv-ons-checkbox\"><ons-checkbox type=\"checkbox\" input-id=\"$id\"></ons-checkbox><label for=\"$id\">A checkbox</label></div>",
+                "<div class=\"form-group kv-mb-3 kv-ons-form-group kv-ons-checkbox\"><ons-checkbox type=\"checkbox\" input-id=\"$id\"></ons-checkbox><label for=\"$id\">A checkbox</label></div>",
                 element?.innerHTML,
                 "Should render Onsen UI checkbox form component"
             )

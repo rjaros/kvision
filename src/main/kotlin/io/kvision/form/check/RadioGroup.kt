@@ -24,8 +24,6 @@ package io.kvision.form.check
 import io.kvision.core.Container
 import io.kvision.core.StringPair
 import io.kvision.form.StringFormControl
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * The form field component rendered as a group of HTML *input type="radio"* elements with the same name attribute.
@@ -75,14 +73,3 @@ fun Container.radioGroup(
     this.add(radioGroup)
     return radioGroup
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.radioGroup(
-    state: ObservableState<S>,
-    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
-    label: String? = null, rich: Boolean = false, init: (RadioGroup.(S) -> Unit)
-) = radioGroup(options, value, name, inline, label, rich).bind(state, true, init)

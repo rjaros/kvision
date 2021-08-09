@@ -21,22 +21,18 @@
  */
 package io.kvision.html
 
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
-
 /**
  * Simple component rendered as *thead*.
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Thead(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Thead.() -> Unit)? = null
 ) :
-    Tag(TAG.THEAD, null, false, null, classes) {
+    Tag(TAG.THEAD, null, false, null, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -50,23 +46,10 @@ open class Thead(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Table.thead(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Thead.() -> Unit)? = null
 ): Thead {
-    val thead = Thead(classes ?: className.set, init)
+    val thead = Thead(className, init)
     this.add(thead)
     return thead
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Table.thead(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Thead.(S) -> Unit)
-) = thead(classes, className).bind(state, true, init)

@@ -22,8 +22,6 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * Form field textarea component.
@@ -35,12 +33,13 @@ import io.kvision.state.bind
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param floating use floating label
  * @param init an initializer extension function
  */
 open class TextArea(
     cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
-) : AbstractText(label, rich) {
+    label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (TextArea.() -> Unit)? = null
+) : AbstractText(label, rich, floating) {
 
     /**
      * Number of columns.
@@ -77,10 +76,17 @@ open class TextArea(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(input)
+        if (!floating) {
+            this.addPrivate(flabel)
+            this.addPrivate(input)
+        } else {
+            this.addPrivate(input)
+            this.addPrivate(flabel)
+        }
         this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")
         init?.invoke(this)
+        floatingPlaceholder()
     }
 }
 
@@ -91,20 +97,9 @@ open class TextArea(
  */
 fun Container.textArea(
     cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TextArea.() -> Unit)? = null
+    label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (TextArea.() -> Unit)? = null
 ): TextArea {
-    val textArea = TextArea(cols, rows, value, name, label, rich, init)
+    val textArea = TextArea(cols, rows, value, name, label, rich, floating, init)
     this.add(textArea)
     return textArea
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.textArea(
-    state: ObservableState<S>,
-    cols: Int? = null, rows: Int? = null, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TextArea.(S) -> Unit)
-) = textArea(cols, rows, value, name, label, rich).bind(state, true, init)

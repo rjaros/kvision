@@ -22,9 +22,6 @@
 package io.kvision.html
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Simple component rendered as *ul*.
@@ -32,14 +29,14 @@ import io.kvision.utils.set
  * @constructor
  * @param elements optional list of elements
  * @param rich determines if [elements] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Ul(
     elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String> = setOf(), init: (Ul.() -> Unit)? = null
+    className: String? = null, init: (Ul.() -> Unit)? = null
 ) :
-    ListTag(ListType.UL, elements, rich, classes) {
+    ListTag(ListType.UL, elements, rich, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -54,24 +51,10 @@ open class Ul(
  */
 fun Container.ul(
     elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Ul.() -> Unit)? = null
 ): Ul {
-    val ul = Ul(elements, rich, classes ?: className.set, init)
+    val ul = Ul(elements, rich, className, init)
     this.add(ul)
     return ul
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.ul(
-    state: ObservableState<S>,
-    elements: List<String>? = null, rich: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Ul.(S) -> Unit)
-) = ul(elements, rich, classes, className).bind(state, true, init)

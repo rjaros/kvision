@@ -26,10 +26,7 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.FlexDirection
 import io.kvision.core.JustifyContent
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.perc
-import io.kvision.utils.set
 
 /**
  * Dock layout directions.
@@ -46,11 +43,11 @@ enum class Side {
  * The container with dock layout (up, down, left, right and center positions).
  *
  * @constructor
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
-open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit)? = null) :
-    SimplePanel(classes = classes) {
+open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = null) :
+    SimplePanel(className) {
     /**
      * @suppress
      * Internal property.
@@ -86,7 +83,10 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * Internal property.
      */
     protected val mainContainer = FlexPanel(
-        direction = FlexDirection.COLUMN, justify = JustifyContent.SPACEBETWEEN, alignItems = AlignItems.STRETCH
+        direction = FlexDirection.COLUMN,
+        justify = JustifyContent.SPACEBETWEEN,
+        alignItems = AlignItems.STRETCH,
+        useWrappers = true
     ) {
         @Suppress("MagicNumber")
         width = 100.perc
@@ -98,12 +98,13 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
      * @suppress
      * Internal property.
      */
-    protected val subContainer = FlexPanel(justify = JustifyContent.SPACEBETWEEN, alignItems = AlignItems.STRETCH) {
-        @Suppress("MagicNumber")
-        width = 100.perc
-        @Suppress("MagicNumber")
-        height = 100.perc
-    }
+    protected val subContainer =
+        FlexPanel(justify = JustifyContent.SPACEBETWEEN, alignItems = AlignItems.STRETCH, useWrappers = true) {
+            @Suppress("MagicNumber")
+            width = 100.perc
+            @Suppress("MagicNumber")
+            height = 100.perc
+        }
 
     init {
         this.addPrivate(mainContainer)
@@ -294,23 +295,10 @@ open class DockPanel(classes: Set<String> = setOf(), init: (DockPanel.() -> Unit
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.dockPanel(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (DockPanel.() -> Unit)? = null
 ): DockPanel {
-    val dockPanel = DockPanel(classes ?: className.set, init)
+    val dockPanel = DockPanel(className, init)
     this.add(dockPanel)
     return dockPanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.dockPanel(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (DockPanel.(S) -> Unit)
-) = dockPanel(classes, className).bind(state, true, init)

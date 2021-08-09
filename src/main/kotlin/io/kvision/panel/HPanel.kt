@@ -21,12 +21,10 @@
  */
 package io.kvision.panel
 
+import io.kvision.KVManager
 import io.kvision.core.AlignItems
 import io.kvision.core.Container
 import io.kvision.core.JustifyContent
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * The container with horizontal layout.
@@ -38,8 +36,8 @@ import io.kvision.utils.set
  * @param justify flexbox content justification
  * @param alignItems flexbox items alignment
  * @param spacing spacing between columns/rows
- * @param noWrappers do not use additional div wrappers for child items
- * @param classes a set of CSS class names
+ * @param useWrappers use additional div wrappers for child items
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class HPanel(
@@ -47,13 +45,10 @@ open class HPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    noWrappers: Boolean = false,
-    classes: Set<String> = setOf(),
+    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    className: String? = null,
     init: (HPanel.() -> Unit)? = null
-) : FlexPanel(
-    null,
-    wrap, justify, alignItems, null, spacing, noWrappers, classes
-) {
+) : FlexPanel(null, wrap, justify, alignItems, null, spacing, useWrappers, className) {
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -70,29 +65,11 @@ fun Container.hPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    noWrappers: Boolean = false,
-    classes: Set<String>? = null,
+    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
     className: String? = null,
     init: (HPanel.() -> Unit)? = null
 ): HPanel {
-    val hpanel = HPanel(wrap, justify, alignItems, spacing, noWrappers, classes ?: className.set, init)
+    val hpanel = HPanel(wrap, justify, alignItems, spacing, useWrappers, className, init)
     this.add(hpanel)
     return hpanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.hPanel(
-    state: ObservableState<S>,
-    wrap: io.kvision.core.FlexWrap? = null,
-    justify: JustifyContent? = null,
-    alignItems: AlignItems? = null,
-    spacing: Int? = null,
-    noWrappers: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (HPanel.(S) -> Unit)
-) = hPanel(wrap, justify, alignItems, spacing, noWrappers, classes, className).bind(state, true, init)

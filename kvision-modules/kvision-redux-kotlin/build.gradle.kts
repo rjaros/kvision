@@ -20,6 +20,7 @@ dependencies {
     api("org.reduxkotlin:redux-kotlin-thunk-js:$reduxKotlinThunkVersion")
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
+    testImplementation(project(":kvision-modules:kvision-state"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

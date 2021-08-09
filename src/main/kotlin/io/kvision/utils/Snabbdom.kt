@@ -28,105 +28,13 @@ import com.github.snabbdom.On
 import com.github.snabbdom.Props
 import com.github.snabbdom.VNodeData
 import com.github.snabbdom.VNodeStyle
+import com.github.snabbdom.set
 import io.kvision.core.StringBoolPair
 import io.kvision.core.StringPair
 import io.kvision.core.Widget
-import io.kvision.jquery.JQueryEventObject
 import org.w3c.dom.CustomEvent
 import org.w3c.dom.CustomEventInit
-import kotlin.reflect.KClass
-
-/**
- * JavaScript Object type
- */
-external class Object
-
-/**
- * JavaScript delete operator
- */
-external fun delete(p: dynamic): Boolean
-
-internal data class LegacyTest(val test: Boolean = true)
-
-/**
- * A helper property to test whether current compiler is running in legacy mode.
- */
-val isLegacyBackend by lazy {
-    LegacyTest().asDynamic()["test"] == true
-}
-
-/**
- * A helper function for JavaScript delete operator
- */
-fun delete(thing: dynamic, key: String) {
-    delete(thing[key])
-}
-
-/**
- * Helper function for creating JavaScript objects.
- */
-inline fun obj(init: dynamic.() -> Unit): dynamic {
-    return (Object()).apply(init)
-}
-
-/**
- * Helper function for creating JavaScript objects with given type.
- */
-inline fun <T> obj(init: T.() -> Unit): T {
-    return (js("{}") as T).apply(init)
-}
-
-/**
- * Helper function for creating JavaScript objects from dynamic constructors.
- */
-@Suppress("UNUSED_VARIABLE")
-fun <T> Any?.createInstance(vararg args: dynamic): T {
-    val jsClassConstructor = this
-    val argsArray = (listOf<dynamic>(null) + args).toTypedArray()
-    return js("new (Function.prototype.bind.apply(jsClassConstructor, argsArray))").unsafeCast<T>()
-}
-
-/**
- * Helper function to enumerate properties of a data class for IR backend.
- */
-@Suppress("UnsafeCastFromDynamic")
-fun getAllPropertyNamesForIR(obj: Any): List<String> {
-    val prototype = js("Object").getPrototypeOf(obj)
-    val prototypeProps: Array<String> = js("Object").getOwnPropertyNames(prototype)
-    return prototypeProps.filter { it != "constructor" }.filterNot { prototype.propertyIsEnumerable(it) }.toList()
-}
-
-/**
- * Helper extension function to convert a data class to a plain JS object.
- */
-fun toPlainObj(data: Any): dynamic {
-    return if (isLegacyBackend) {
-        data
-    } else {
-        val properties = getAllPropertyNamesForIR(data)
-        val ret = js("{}")
-        properties.forEach {
-            ret[it] = data.asDynamic()[it]
-        }
-        ret
-    }
-}
-
-/**
- * Helper function to convert a plain JS object to a data class.
- */
-fun <T : Any> toKotlinObj(data: dynamic, kClass: KClass<T>): T {
-    val prototype = js("Object").getPrototypeOf(data)
-    return if (isLegacyBackend && prototype != null && prototype.constructor != undefined && prototype.constructor.name == kClass.simpleName) {
-        data.unsafeCast<T>()
-    } else {
-        val newT = kClass.js.createInstance<T>()
-        for (key in js("Object").keys(data)) {
-            newT.asDynamic()[key] = data[key]
-        }
-        newT
-    }
-}
+import org.w3c.dom.events.Event
 
 /**
  * @suppress
@@ -136,20 +44,10 @@ fun <T : Any> toKotlinObj(data: dynamic, kClass: KClass<T>): T {
 inline fun vNodeData(): VNodeData = js("{}")
 
 /**
- * @suppress
- * Internal interface.
- */
-external interface KvJQueryEventObject : JQueryEventObject {
-    val clickedIndex: Int
-    val width: Int
-    val height: Int
-}
-
-/**
  * Helper class for defining custom events.
  */
 external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExternally) : CustomEvent {
-    override val detail: KvJQueryEventObject
+    override val detail: Event
 }
 
 /**
@@ -157,80 +55,56 @@ external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExt
  * Internal interface.
  */
 external interface BtOn : On {
-    var showBsDropdown: ((KvEvent) -> Unit)?
-    var shownBsDropdown: ((KvEvent) -> Unit)?
-    var hideBsDropdown: ((KvEvent) -> Unit)?
-    var hiddenBsDropdown: ((KvEvent) -> Unit)?
-    var showBsModal: ((KvEvent) -> Unit)?
-    var shownBsModal: ((KvEvent) -> Unit)?
-    var hideBsModal: ((KvEvent) -> Unit)?
-    var hiddenBsModal: ((KvEvent) -> Unit)?
     var dragSplitPanel: ((KvEvent) -> Unit)?
     var dragEndSplitPanel: ((KvEvent) -> Unit)?
-    var showBsSelect: ((KvEvent) -> Unit)?
-    var shownBsSelect: ((KvEvent) -> Unit)?
-    var hideBsSelect: ((KvEvent) -> Unit)?
-    var hiddenBsSelect: ((KvEvent) -> Unit)?
-    var loadedBsSelect: ((KvEvent) -> Unit)?
-    var renderedBsSelect: ((KvEvent) -> Unit)?
-    var refreshedBsSelect: ((KvEvent) -> Unit)?
-    var changedBsSelect: ((KvEvent) -> Unit)?
-    var changeDate: ((KvEvent) -> Unit)?
-    var showBsDateTime: ((KvEvent) -> Unit)?
-    var hideBsDateTime: ((KvEvent) -> Unit)?
-    var onMinBsSpinner: ((KvEvent) -> Unit)?
-    var onMaxBsSpinner: ((KvEvent) -> Unit)?
     var updateModel: ((KvEvent) -> Unit)?
-    var fileSelectUpload: ((KvEvent) -> Unit)?
-    var fileClearUpload: ((KvEvent) -> Unit)?
-    var fileResetUpload: ((KvEvent) -> Unit)?
-    var fileBrowseUpload: ((KvEvent) -> Unit)?
-    var filePreUpload: ((KvEvent) -> Unit)?
     var resizeWindow: ((KvEvent) -> Unit)?
     var closeWindow: ((KvEvent) -> Unit)?
     var maximizeWindow: ((KvEvent) -> Unit)?
     var minimizeWindow: ((KvEvent) -> Unit)?
-    var tabulatorRowClick: ((KvEvent) -> Unit)?
-    var tabulatorRowDblClick: ((KvEvent) -> Unit)?
-    var tabulatorRowSelectionChanged: ((KvEvent) -> Unit)?
-    var tabulatorRowSelected: ((KvEvent) -> Unit)?
-    var tabulatorRowDeselected: ((KvEvent) -> Unit)?
-    var tabulatorCellClick: ((KvEvent) -> Unit)?
-    var tabulatorCellDblClick: ((KvEvent) -> Unit)?
-    var tabulatorCellEditing: ((KvEvent) -> Unit)?
-    var tabulatorCellEdited: ((KvEvent) -> Unit)?
-    var tabulatorCellEditCancelled: ((KvEvent) -> Unit)?
-    var tabulatorDataLoading: ((KvEvent) -> Unit)?
-    var tabulatorDataLoaded: ((KvEvent) -> Unit)?
-    var tabulatorDataEdited: ((KvEvent) -> Unit)?
-    var tabChange: ((KvEvent) -> Unit)?
-    var tabClosing: ((KvEvent) -> Unit)?
-    var tabClosed: ((KvEvent) -> Unit)?
-    var onsPrepush: ((KvEvent) -> Unit)?
-    var onsPrepop: ((KvEvent) -> Unit)?
-    var onsPostpush: ((KvEvent) -> Unit)?
-    var onsPostpop: ((KvEvent) -> Unit)?
-    var onsInit: ((KvEvent) -> Unit)?
-    var onsShow: ((KvEvent) -> Unit)?
-    var onsHide: ((KvEvent) -> Unit)?
-    var onsDestroy: ((KvEvent) -> Unit)?
-    var onsPreopen: ((KvEvent) -> Unit)?
-    var onsPreclose: ((KvEvent) -> Unit)?
-    var onsPostopen: ((KvEvent) -> Unit)?
-    var onsPostclose: ((KvEvent) -> Unit)?
-    var onsModechange: ((KvEvent) -> Unit)?
-    var onsPrechange: ((KvEvent) -> Unit)?
-    var onsPostchange: ((KvEvent) -> Unit)?
-    var onsReactive: ((KvEvent) -> Unit)?
-    var onsRefresh: ((KvEvent) -> Unit)?
-    var onsOverscroll: ((KvEvent) -> Unit)?
-    var onsChangestate: ((KvEvent) -> Unit)?
-    var onsOpen: ((KvEvent) -> Unit)?
-    var onsClose: ((KvEvent) -> Unit)?
-    var onsPreshow: ((KvEvent) -> Unit)?
-    var onsPrehide: ((KvEvent) -> Unit)?
-    var onsPostshow: ((KvEvent) -> Unit)?
-    var onsPosthide: ((KvEvent) -> Unit)?
+    var dragStartWindow: ((KvEvent) -> Unit)?
+    var dragEndWindow: ((KvEvent) -> Unit)?
+    var rowClickTabulator: ((KvEvent) -> Unit)?
+    var rowDblClickTabulator: ((KvEvent) -> Unit)?
+    var rowSelectionChangedTabulator: ((KvEvent) -> Unit)?
+    var rowSelectedTabulator: ((KvEvent) -> Unit)?
+    var rowDeselectedTabulator: ((KvEvent) -> Unit)?
+    var cellClickTabulator: ((KvEvent) -> Unit)?
+    var cellDblClickTabulator: ((KvEvent) -> Unit)?
+    var cellEditingTabulator: ((KvEvent) -> Unit)?
+    var cellEditedTabulator: ((KvEvent) -> Unit)?
+    var cellEditCancelledTabulator: ((KvEvent) -> Unit)?
+    var dataLoadingTabulator: ((KvEvent) -> Unit)?
+    var dataLoadedTabulator: ((KvEvent) -> Unit)?
+    var dataEditedTabulator: ((KvEvent) -> Unit)?
+    var changeTab: ((KvEvent) -> Unit)?
+    var closingTab: ((KvEvent) -> Unit)?
+    var closedTab: ((KvEvent) -> Unit)?
+    var prepush: ((KvEvent) -> Unit)?
+    var prepop: ((KvEvent) -> Unit)?
+    var postpush: ((KvEvent) -> Unit)?
+    var postpop: ((KvEvent) -> Unit)?
+    var init: ((KvEvent) -> Unit)?
+    var show: ((KvEvent) -> Unit)?
+    var hide: ((KvEvent) -> Unit)?
+    var destroy: ((KvEvent) -> Unit)?
+    var preopen: ((KvEvent) -> Unit)?
+    var preclose: ((KvEvent) -> Unit)?
+    var postopen: ((KvEvent) -> Unit)?
+    var postclose: ((KvEvent) -> Unit)?
+    var modechange: ((KvEvent) -> Unit)?
+    var prechange: ((KvEvent) -> Unit)?
+    var postchange: ((KvEvent) -> Unit)?
+    var reactive: ((KvEvent) -> Unit)?
+    var refresh: ((KvEvent) -> Unit)?
+    var overscroll: ((KvEvent) -> Unit)?
+    var changestate: ((KvEvent) -> Unit)?
+    var open: ((KvEvent) -> Unit)?
+    var close: ((KvEvent) -> Unit)?
+    var preshow: ((KvEvent) -> Unit)?
+    var prehide: ((KvEvent) -> Unit)?
+    var postshow: ((KvEvent) -> Unit)?
+    var posthide: ((KvEvent) -> Unit)?
     var dragleft: ((KvEvent) -> Unit)?
     var dragright: ((KvEvent) -> Unit)?
     var dragup: ((KvEvent) -> Unit)?
@@ -261,6 +135,11 @@ external interface BtOn : On {
 external interface SnOn<T> : BtOn {
     var self: T
 }
+
+/**
+ * Helper function for defining custom event types.
+ */
+inline fun <T> SnOn<T>.event(name: String, noinline handler: (Event) -> Unit) = set(name, handler)
 
 /**
  * Helper function for creating object parameters for Snabbdom.

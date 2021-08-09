@@ -22,8 +22,8 @@
 package io.kvision.form.select
 
 import io.kvision.core.Container
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
 import io.kvision.remote.CallAgent
 import io.kvision.remote.HttpMethod
 import io.kvision.remote.JsonRpcRequest
@@ -31,12 +31,13 @@ import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteOption
 import io.kvision.utils.JSON
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlinx.browser.window
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
@@ -54,7 +55,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote data source
  * @param preload preload all options from remote data source
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SelectRemoteInput<T : Any>(
@@ -65,10 +66,10 @@ open class SelectRemoteInput<T : Any>(
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     private val preload: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (SelectRemoteInput<T>.() -> Unit)? = null
-) : SelectInput(null, value, multiple, null, classes) {
-    private val scope = CoroutineScope(window.asCoroutineDispatcher())
+) : SelectInput(null, value, multiple, null, className) {
+    private val scope = CoroutineScope(window.asCoroutineDispatcher()) + SupervisorJob()
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
@@ -76,12 +77,10 @@ open class SelectRemoteInput<T : Any>(
     private val url: String
     private val labelsCache = mutableMapOf<String, String>()
     private var initRun = false
-    private var beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> dynamic)?
 
     init {
         val (_url, method) = serviceManager.requireCall(function)
         this.url = _url
-        this.beforeSend = ajaxOptions?.beforeSend
         if (!preload) {
             val data = obj {
                 q = "{{{q}}}"
@@ -108,7 +107,7 @@ open class SelectRemoteInput<T : Any>(
                 },
                 data = data,
                 beforeSend = { xhr, b ->
-                    beforeSend?.invoke(xhr, b)
+                    ajaxOptions?.beforeSend?.invoke(xhr, b)
                     @Suppress("UnsafeCastFromDynamic")
                     val q = kotlin.js.JSON.stringify(decodeURIComponent(b.asDynamic().data.substring(2)))
                     val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
@@ -120,16 +119,6 @@ open class SelectRemoteInput<T : Any>(
                 cache = false,
                 preserveSelected = ajaxOptions?.preserveSelected ?: true
             )
-            if (this.ajaxOptions?.emptyRequest == true) {
-                this.setInternalEventListener<SelectRemote<*>> {
-                    shownBsSelect = {
-                        val input = self.getElementJQuery()?.parent()?.find("input")
-                        input?.trigger("keyup", null)
-                        input?.hide(0)
-                    }
-                }
-
-            }
         } else {
             scope.launch {
                 val callAgent = CallAgent()
@@ -137,8 +126,7 @@ open class SelectRemoteInput<T : Any>(
                 val values = callAgent.remoteCall(
                     url,
                     JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, null, state))),
-                    HttpMethod.POST,
-                    beforeSend = beforeSend
+                    HttpMethod.POST
                 ).await()
                 JSON.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), values.result as String)
                     .forEach {
@@ -151,7 +139,9 @@ open class SelectRemoteInput<T : Any>(
                                 it.divider,
                                 it.disabled,
                                 false,
-                                it.className?.let { setOf(it) } ?: setOf()))
+                                it.className
+                            )
+                        )
                     }
             }
         }
@@ -179,8 +169,7 @@ open class SelectRemoteInput<T : Any>(
                         val initials = callAgent.remoteCall(
                             url,
                             JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, svalue, state))),
-                            HttpMethod.POST,
-                            beforeSend = beforeSend
+                            HttpMethod.POST
                         ).await()
                         JSON.plain.decodeFromString(
                             ListSerializer(RemoteOption.serializer()),
@@ -213,7 +202,6 @@ fun <T : Any> Container.selectRemoteInput(
     multiple: Boolean = false,
     ajaxOptions: AjaxOptions? = null,
     preload: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectRemoteInput<T>.() -> Unit)? = null
 ): SelectRemoteInput<T> {
@@ -226,7 +214,7 @@ fun <T : Any> Container.selectRemoteInput(
             multiple,
             ajaxOptions,
             preload,
-            classes ?: className.set, init
+            className, init
         )
     this.add(selectRemoteInput)
     return selectRemoteInput

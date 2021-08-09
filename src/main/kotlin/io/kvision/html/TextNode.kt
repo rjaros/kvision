@@ -25,8 +25,6 @@ import com.github.snabbdom.VNode
 import io.kvision.KVManager
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * Simple component for rendering text DOM node.
@@ -81,14 +79,3 @@ fun Container.textNode(
     this.add(textNode)
     return textNode
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.textNode(
-    state: ObservableState<S>,
-    content: String, rich: Boolean = false,
-    init: (TextNode.(S) -> Unit)
-) = textNode(content, rich).bind(state, true, init)

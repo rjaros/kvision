@@ -12,6 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
+    api(project(":kvision-modules:kvision-state"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

@@ -26,7 +26,6 @@ import io.kvision.core.Display
 import io.kvision.form.text.AbstractText
 import io.kvision.form.text.TextInputType
 import io.kvision.onsenui.OnsenUi
-import io.kvision.utils.set
 
 /**
  * Onsen UI form field text component.
@@ -39,7 +38,7 @@ import io.kvision.utils.set
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsText(
@@ -50,9 +49,9 @@ open class OnsText(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsText.() -> Unit)? = null
-) : AbstractText(label, rich, classes + "kv-ons-form-group") {
+) : AbstractText(label, rich, false, (className?.let { "$it " } ?: "") + "kv-ons-form-group") {
 
     /**
      * Text input type.
@@ -102,6 +101,7 @@ open class OnsText(
     }
 
     init {
+        this.addPrivate(flabel)
         this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         if (input.floatLabel == true && OnsenUi.isAndroid()) flabel.display = Display.NONE
@@ -123,12 +123,11 @@ fun Container.onsText(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsText.() -> Unit)? = null
 ): OnsText {
     val onsText =
-        OnsText(type, value, placeholder, floatLabel, name, label, rich, classes ?: className.set, init)
+        OnsText(type, value, placeholder, floatLabel, name, label, rich, className, init)
     this.add(onsText)
     return onsText
 }

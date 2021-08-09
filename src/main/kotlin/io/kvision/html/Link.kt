@@ -22,14 +22,11 @@
 package io.kvision.html
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.ResString
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * Link component.
@@ -42,15 +39,15 @@ import io.kvision.utils.set
  * @param separator a separator between label and icon/image (defaults to space)
  * @param labelFirst determines if the label is put before children elements (defaults to true)
  * @param target link target
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @TagMarker
 open class Link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
     separator: String? = null, labelFirst: Boolean = true, target: String? = null,
-    classes: Set<String> = setOf(), init: (Link.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (Link.() -> Unit)? = null
+) : SimplePanel(className) {
 
     /**
      * Link label.
@@ -132,7 +129,6 @@ open class Link(
 fun Container.link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
     separator: String? = null, labelFirst: Boolean = true, target: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
@@ -145,23 +141,9 @@ fun Container.link(
             separator,
             labelFirst,
             target,
-            classes ?: className.set,
+            className,
             init
         )
     this.add(link)
     return link
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.link(
-    state: ObservableState<S>,
-    label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    separator: String? = null, labelFirst: Boolean = true, target: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Link.(S) -> Unit)
-) = link(label, url, icon, image, separator, labelFirst, target, classes, className).bind(state, true, init)

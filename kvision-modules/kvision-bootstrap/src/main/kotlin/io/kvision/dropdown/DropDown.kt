@@ -27,6 +27,7 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssSize
+import io.kvision.core.DomAttribute
 import io.kvision.core.ResString
 import io.kvision.core.StringPair
 import io.kvision.html.Button
@@ -35,10 +36,9 @@ import io.kvision.html.ButtonType
 import io.kvision.html.Div
 import io.kvision.html.Link
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
-import io.kvision.utils.set
+import io.kvision.utils.toggle
+import org.w3c.dom.CustomEventInit
 
 /**
  * Useful options for use in DropDown's *elements* parameter.
@@ -55,8 +55,26 @@ enum class DD(val option: String) {
 enum class Direction(internal val direction: String) {
     DROPDOWN("dropdown"),
     DROPUP("dropup"),
-    DROPLEFT("dropleft"),
-    DROPRIGHT("dropright")
+    DROPSTART("dropstart"),
+    DROPEND("dropend"),
+    @Deprecated("Use DROPSTART instead", ReplaceWith("DROPSTART"))
+    DROPLEFT("dropstart"),
+    @Deprecated("Use DROPEND instead", ReplaceWith("DROPEND"))
+    DROPRIGHT("dropend"),
+}
+
+/**
+ * Dropdown auto close.
+ */
+enum class AutoClose(override val attributeValue: String) : DomAttribute {
+    TRUE("true"),
+    OUTSIDE("outside"),
+    INSIDE("inside"),
+    FALSE("false"),
+    ;
+
+    override val attributeName: String
+        get() = "data-bs-auto-close"
 }
 
 /**
@@ -71,16 +89,17 @@ enum class Direction(internal val direction: String) {
  * @param disabled determines if the component is disabled on start
  * @param forNavbar determines if the component will be used in a navbar
  * @param forDropDown determines if the component will be used in a dropdown
- * @param classes a set of CSS class names
+ * @param dark use dark background
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN, disabled: Boolean = false,
-    val forNavbar: Boolean = false, val forDropDown: Boolean = false,
-    classes: Set<String> = setOf(), init: (DropDown.() -> Unit)? = null
-) : SimplePanel(classes) {
+    val forNavbar: Boolean = false, val forDropDown: Boolean = false, dark: Boolean = false,
+    className: String? = null, init: (DropDown.() -> Unit)? = null
+) : SimplePanel(className) {
     /**
      * Label of the dropdown button.
      */
@@ -146,9 +165,27 @@ open class DropDown(
         }
 
     /**
+     * Use dark background for the dropdown.
+     */
+    var dark
+        get() = list.dark
+        set(value) {
+            list.dark = value
+        }
+
+    /**
      * The direction of the dropdown.
      */
     var direction by refreshOnUpdate(direction)
+
+    /**
+     * The auto closing mode of the dropdown menu.
+     */
+    var autoClose
+        get() = button.autoClose
+        set(value) {
+            button.autoClose = value
+        }
 
     /**
      * Width of the dropdown button.
@@ -167,12 +204,12 @@ open class DropDown(
 
     fun buttonId() = button.id
 
-    internal val list: DropDownDiv = DropDownDiv(idc)
+    internal val list: DropDownDiv = DropDownDiv(idc, dark)
 
     init {
         if (forDropDown) {
             this.style = ButtonStyle.LIGHT
-            this.direction = Direction.DROPRIGHT
+            this.direction = Direction.DROPEND
         }
         setChildrenFromElements()
         this.addPrivate(button)
@@ -229,31 +266,15 @@ open class DropDown(
                     DD.HEADER.option -> Header(it.first)
                     DD.SEPARATOR.option -> Separator()
                     DD.DISABLED.option -> {
-                        Link(it.first, "javascript:void(0)", classes = setOf("dropdown-item", "disabled")).apply {
+                        Link(it.first, "javascript:void(0)", className = "dropdown-item disabled").apply {
                             tabindex = -1
                             setAttribute("aria-disabled", "true")
                         }
                     }
-                    else -> Link(it.first, it.second, classes = setOf("dropdown-item"))
+                    else -> Link(it.first, it.second, className = "dropdown-item")
                 }
             }
             list.addAll(c)
-        }
-    }
-
-    @Suppress("UnsafeCastFromDynamic")
-    override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("show.bs.dropdown") { e, _ ->
-            this.dispatchEvent("showBsDropdown", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("shown.bs.dropdown") { e, _ ->
-            this.dispatchEvent("shownBsDropdown", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hide.bs.dropdown") { e, _ ->
-            this.dispatchEvent("hideBsDropdown", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hidden.bs.dropdown") { e, _ ->
-            this.dispatchEvent("hiddenBsDropdown", obj { detail = e })
         }
     }
 
@@ -267,7 +288,9 @@ open class DropDown(
      * Toggles dropdown visibility.
      */
     open fun toggle() {
-        this.button.getElementJQuery()?.click()
+        this.button.dispatchEvent("click", obj<CustomEventInit> {
+            bubbles = true
+        })
     }
 
     companion object {
@@ -284,8 +307,7 @@ fun Container.dropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
     disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
+    dark: Boolean = false, className: String? = null,
     init: (DropDown.() -> Unit)? = null
 ): DropDown {
     val dropDown =
@@ -298,38 +320,13 @@ fun Container.dropDown(
             disabled,
             forNavbar,
             forDropDown,
-            classes ?: className.set,
+            dark,
+            className,
             init
         )
     this.add(dropDown)
     return dropDown
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.dropDown(
-    state: ObservableState<S>,
-    text: String, elements: List<StringPair>? = null, icon: String? = null,
-    style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
-    disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (DropDown.(S) -> Unit)
-) = dropDown(
-    text,
-    elements,
-    icon,
-    style,
-    direction,
-    disabled,
-    forNavbar,
-    forDropDown,
-    classes,
-    className
-).bind(state, true, init)
 
 /**
  * DSL builder extension function for a link in a dropdown list.
@@ -338,11 +335,11 @@ fun <S> Container.dropDown(
  */
 fun DropDown.ddLink(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item", init)
+    val link =
+        Link(label, url, icon, image, null, true, null, (className?.let { "$it " } ?: "") + "dropdown-item", init)
     this.add(link)
     return link
 }
@@ -354,11 +351,11 @@ fun DropDown.ddLink(
  */
 fun ContextMenu.cmLink(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
-    val link = Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "dropdown-item", init)
+    val link =
+        Link(label, url, icon, image, null, true, null, (className?.let { "$it " } ?: "") + "dropdown-item", init)
     this.add(link)
     return link
 }
@@ -370,7 +367,6 @@ fun ContextMenu.cmLink(
  */
 fun DropDown.ddLinkDisabled(
     label: String, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
@@ -379,7 +375,7 @@ fun DropDown.ddLinkDisabled(
         "javascript:void(0)",
         icon,
         image, null, true, null,
-        (classes ?: className.set) + "dropdown-item" + "disabled", init
+        (className?.let { "$it " } ?: "") + "dropdown-item disabled", init
     ).apply {
         tabindex = -1
         setAttribute("aria-disabled", "true")
@@ -395,7 +391,6 @@ fun DropDown.ddLinkDisabled(
  */
 fun ContextMenu.cmLinkDisabled(
     label: String, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
@@ -404,7 +399,7 @@ fun ContextMenu.cmLinkDisabled(
         "javascript:void(0)",
         icon,
         image, null, true, null,
-        (classes ?: className.set) + "dropdown-item" + "disabled", init
+        (className?.let { "$it " } ?: "") + "dropdown-item disabled", init
     ).apply {
         tabindex = -1
         setAttribute("aria-disabled", "true")
@@ -424,7 +419,8 @@ fun ContextMenu.cmLinkDisabled(
  * @param disabled determines if the component is disabled on start
  * @param forNavbar determines if the component will be used in a navbar
  * @param forDropDown determines if the component will be used in a dropdown
- * @param classes a set of CSS class names
+ * @param autoClose the auto closing mode of the dropdown menu
+ * @param className CSS class names
  */
 class DropDownButton(
     id: String,
@@ -434,9 +430,15 @@ class DropDownButton(
     disabled: Boolean = false,
     val forNavbar: Boolean = false,
     val forDropDown: Boolean = false,
-    classes: Set<String> = setOf()
+    autoClose: AutoClose = AutoClose.TRUE,
+    className: String? = null
 ) :
-    Button(text, icon, style, ButtonType.BUTTON, disabled, null, true, classes) {
+    Button(text, icon, style, ButtonType.BUTTON, disabled, null, true, className) {
+
+    /**
+     * Whether to automatically close dropdown menu.
+     */
+    var autoClose by refreshOnUpdate(autoClose)
 
     init {
         this.id = id
@@ -446,7 +448,7 @@ class DropDownButton(
                 if (parent?.parent is ContextMenu) {
                     e.asDynamic().dropDownCM = true
                 } else if (forDropDown) {
-                    (parent as DropDown).list.getElementJQuery()?.toggle()
+                    (parent as DropDown).list.getElement()?.toggle()
                     e.stopPropagation()
                 }
             }
@@ -483,19 +485,26 @@ class DropDownButton(
                 attributeSetBuilder
             }
         )
-        attributeSetBuilder.add("data-toggle", "dropdown")
+        attributeSetBuilder.add("data-bs-toggle", "dropdown")
         attributeSetBuilder.add("aria-haspopup", "true")
         attributeSetBuilder.add("aria-expanded", "false")
         attributeSetBuilder.add("href", "javascript:void(0)")
+        attributeSetBuilder.add(autoClose)
     }
 }
 
-internal class DropDownDiv(private val ariaId: String) : Div(
-    null, false, null, setOf("dropdown-menu")
+internal class DropDownDiv(private val ariaId: String, dark: Boolean = false) : Div(
+    null, false, null, "dropdown-menu"
 ) {
+    var dark by refreshOnUpdate(dark)
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("aria-labelledby", ariaId)
+    }
+
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        if (dark) classSetBuilder.add("dropdown-menu-dark")
     }
 }

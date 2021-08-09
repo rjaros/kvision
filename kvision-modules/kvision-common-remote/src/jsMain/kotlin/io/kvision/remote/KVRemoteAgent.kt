@@ -35,10 +35,8 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.serializer
 import org.w3c.dom.get
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
+import org.w3c.fetch.RequestInit
 import kotlin.reflect.KClass
-import kotlin.reflect.KFunction
 
 /**
  * Client side agent for JSON-RPC remote calls.
@@ -47,7 +45,7 @@ import kotlin.reflect.KFunction
 @OptIn(ExperimentalCoroutinesApi::class, InternalSerializationApi::class)
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
-    val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null
+    val requestFilter: (RequestInit.() -> Unit)? = null
 ) : RemoteAgent() {
 
     val callAgent = CallAgent()
@@ -57,7 +55,7 @@ open class KVRemoteAgent<T : Any>(
      */
     suspend inline fun <reified RET : Any, T> call(noinline function: suspend T.() -> RET): RET {
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, method = method, beforeSend = beforeSend).then {
+        return callAgent.jsonRpcCall(url, method = method, requestFilter = requestFilter).then {
             try {
                 @Suppress("UNCHECKED_CAST")
                 deserialize(it, RET::class.js.name)
@@ -79,7 +77,7 @@ open class KVRemoteAgent<T : Any>(
         noinline function: suspend T.() -> List<RET>
     ): List<RET> {
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, method = method, beforeSend = beforeSend).then {
+        return callAgent.jsonRpcCall(url, method = method, requestFilter = requestFilter).then {
             try {
                 deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
@@ -101,7 +99,7 @@ open class KVRemoteAgent<T : Any>(
     ): RET {
         val data = serialize(p)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data), method, requestFilter).then {
             try {
                 @Suppress("UNCHECKED_CAST")
                 deserialize(it, RET::class.js.name)
@@ -124,7 +122,7 @@ open class KVRemoteAgent<T : Any>(
     ): List<RET> {
         val data = serialize(p)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data), method, requestFilter).then {
             try {
                 deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
@@ -147,7 +145,7 @@ open class KVRemoteAgent<T : Any>(
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2), method, requestFilter).then {
             try {
                 @Suppress("UNCHECKED_CAST")
                 deserialize(it, RET::class.js.name)
@@ -171,7 +169,7 @@ open class KVRemoteAgent<T : Any>(
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2), method, requestFilter).then {
             try {
                 deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
@@ -195,7 +193,7 @@ open class KVRemoteAgent<T : Any>(
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, requestFilter).then {
             try {
                 @Suppress("UNCHECKED_CAST")
                 deserialize(it, RET::class.js.name)
@@ -220,7 +218,7 @@ open class KVRemoteAgent<T : Any>(
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, requestFilter).then {
             try {
                 deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
@@ -245,7 +243,7 @@ open class KVRemoteAgent<T : Any>(
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, requestFilter).then {
             try {
                 @Suppress("UNCHECKED_CAST")
                 deserialize(it, RET::class.js.name)
@@ -275,7 +273,7 @@ open class KVRemoteAgent<T : Any>(
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, requestFilter).then {
             try {
                 deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
@@ -308,7 +306,7 @@ open class KVRemoteAgent<T : Any>(
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, requestFilter).then {
             try {
                 @Suppress("UNCHECKED_CAST")
                 deserialize(it, RET::class.js.name)
@@ -342,7 +340,7 @@ open class KVRemoteAgent<T : Any>(
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, beforeSend).then {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, requestFilter).then {
             try {
                 deserializeList(it, RET::class.js.name)
             } catch (t: NotStandardTypeException) {
@@ -377,19 +375,20 @@ open class KVRemoteAgent<T : Any>(
         val data5 = serialize(p5)
         val data6 = serialize(p6)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, beforeSend).then {
-            try {
-                @Suppress("UNCHECKED_CAST")
-                deserialize(it, RET::class.js.name)
-            } catch (t: NotStandardTypeException) {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, requestFilter)
+            .then {
                 try {
                     @Suppress("UNCHECKED_CAST")
-                    tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
-                } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                    deserialize(it, RET::class.js.name)
+                } catch (t: NotStandardTypeException) {
+                    try {
+                        @Suppress("UNCHECKED_CAST")
+                        tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
+                    } catch (t: NotEnumTypeException) {
+                        JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                    }
                 }
-            }
-        }.asDeferred().await()
+            }.asDeferred().await()
     }
 
     /**
@@ -413,18 +412,19 @@ open class KVRemoteAgent<T : Any>(
         val data5 = serialize(p5)
         val data6 = serialize(p6)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, beforeSend).then {
-            try {
-                deserializeList(it, RET::class.js.name)
-            } catch (t: NotStandardTypeException) {
+        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, requestFilter)
+            .then {
                 try {
-                    @Suppress("UNCHECKED_CAST")
-                    tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
-                } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                    deserializeList(it, RET::class.js.name)
+                } catch (t: NotStandardTypeException) {
+                    try {
+                        @Suppress("UNCHECKED_CAST")
+                        tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
+                    } catch (t: NotEnumTypeException) {
+                        JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                    }
                 }
-            }
-        }.asDeferred().await()
+            }.asDeferred().await()
     }
 
     /**

@@ -47,19 +47,19 @@ class DataContainerSpec : DomSpec {
             root.add(container)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div style=\"display: flex; flex-direction: column;\"><div><span>First</span></div><div><span>Second</span></div></div>",
+                "<div style=\"display: flex; flex-direction: column;\"><span>First</span><span>Second</span></div>",
                 element?.innerHTML,
                 "Should render correct data container"
             )
             model.add(Model("Third"))
             assertEqualsHtml(
-                "<div style=\"display: flex; flex-direction: column;\"><div><span>First</span></div><div><span>Second</span></div><div><span>Third</span></div></div>",
+                "<div style=\"display: flex; flex-direction: column;\"><span>First</span><span>Second</span><span>Third</span></div>",
                 element?.innerHTML,
                 "Should render correct data container after model change"
             )
             model[1].value = "Changed"
             assertEqualsHtml(
-                "<div style=\"display: flex; flex-direction: column;\"><div><span>First</span></div><div><span>Changed</span></div><div><span>Third</span></div></div>",
+                "<div style=\"display: flex; flex-direction: column;\"><span>First</span><span>Changed</span><span>Third</span></div>",
                 element?.innerHTML,
                 "Should render correct data container after model element change"
             )

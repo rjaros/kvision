@@ -36,7 +36,7 @@ import io.kvision.utils.set
  * @param rich whether [content] can contain HTML code
  * @param align text align
  * @param icon an icon placed on the button
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -45,9 +45,9 @@ open class ActionSheetButton(
     rich: Boolean = false,
     align: Align? = null,
     icon: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (ActionSheetButton.() -> Unit)? = null
-) : CustomTag("ons-action-sheet-button", content, rich, align, classes) {
+) : CustomTag("ons-action-sheet-button", content, rich, align, className) {
 
     /**
      *  The icon placed on the button.
@@ -96,11 +96,10 @@ fun ActionSheet.actionSheetButton(
     rich: Boolean = false,
     align: Align? = null,
     icon: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ActionSheetButton.() -> Unit)? = null
 ): ActionSheetButton {
-    val actionSheetButton = ActionSheetButton(content, rich, align, icon, classes ?: className.set, init)
+    val actionSheetButton = ActionSheetButton(content, rich, align, icon, className, init)
     this.add(actionSheetButton)
     return actionSheetButton
 }

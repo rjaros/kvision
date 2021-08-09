@@ -37,7 +37,7 @@ class CloseIconSpec : DomSpec {
             root.add(ci)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<button class=\"close\" type=\"button\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button>",
+                "<button class=\"btn-close\" type=\"button\" aria-label=\"Close\"></button>",
                 element?.innerHTML,
                 "Should render correct close icon"
             )

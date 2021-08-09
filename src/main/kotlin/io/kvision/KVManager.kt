@@ -40,27 +40,10 @@ import org.w3c.dom.HTMLElement
 external fun require(name: String): dynamic
 
 /**
- * Internal singleton object which initializes and configures KVision framework.
+ * Singleton object which initializes and configures KVision framework.
  */
-@Suppress("EmptyCatchBlock", "TooGenericExceptionCaught")
 object KVManager {
-    init {
-        try {
-            require("kvision-kvision-bootstrap-css-js-legacy").io.kvision.KVManagerBootstrapCss
-        } catch (e: Throwable) {
-        }
-        try {
-            require("kvision-kvision-bootstrap-js-legacy").io.kvision.KVManagerBootstrap
-        } catch (e: Throwable) {
-        }
-        try {
-            require("kvision-kvision-fontawesome-js-legacy").io.kvision.KVManagerFontAwesome
-        } catch (e: Throwable) {
-        }
-        require("kvision-assets/css/style.css")
-        require("jquery-resizable-dom")
-    }
-
+    internal val splitjs = require("split.js").default
     internal val fecha = require("fecha").default
     private val sdPatch = Snabbdom.init(
         arrayOf(
@@ -92,4 +75,6 @@ object KVManager {
     fun virtualize(html: String): VNode {
         return sdVirtualize(html)
     }
+
+    internal var panelsCompatibilityMode = false
 }

@@ -42,7 +42,7 @@ class VPanelSpec : DomSpec {
             vPanel.add(Span("ghi"), 3)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div style=\"display: flex; flex-direction: column; justify-content: space-between;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",
+                "<div style=\"display: flex; flex-direction: column; justify-content: space-between;\"><span style=\"order: 1;\">abc</span><span style=\"order: 2;\">def</span><span style=\"order: 3;\">ghi</span></div>",
                 element?.innerHTML,
                 "Should render correct vertical panel"
             )

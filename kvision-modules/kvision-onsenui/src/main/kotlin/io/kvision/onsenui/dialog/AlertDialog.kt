@@ -28,7 +28,6 @@ import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.html.Div
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.set
 
 /**
  * An alert dialog component.
@@ -38,7 +37,7 @@ import io.kvision.utils.set
  * @param cancelable whether the dialog can be canceled
  * @param animation determines if the transitions are animated
  * @param rowfooter horizontally aligns the footer buttons
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -47,9 +46,9 @@ open class AlertDialog(
     cancelable: Boolean? = null,
     animation: Boolean? = null,
     rowfooter: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (AlertDialog.() -> Unit)? = null
-) : Dialog(cancelable, animation, classes) {
+) : Dialog(cancelable, animation, className) {
 
     /**
      * A title of the alert dialog.
@@ -68,17 +67,17 @@ open class AlertDialog(
     /**
      * The alert dialog title component.
      */
-    val titlePanel = Div(dialogTitle, classes = setOf("alert-dialog-title"))
+    val titlePanel = Div(dialogTitle, className = "alert-dialog-title")
 
     /**
      * The alert dialog content container.
      */
-    val contentPanel = SimplePanel(setOf("alert-dialog-content"))
+    val contentPanel = SimplePanel("alert-dialog-content")
 
     /**
      * The alert dialog footer container.
      */
-    val footerPanel = SimplePanel(setOf("alert-dialog-footer"))
+    val footerPanel = SimplePanel("alert-dialog-footer")
 
     init {
         titlePanel.parent = this
@@ -161,9 +160,8 @@ fun Container.alertDialog(
     cancelable: Boolean? = null,
     animation: Boolean? = null,
     rowfooter: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (AlertDialog.() -> Unit)? = null
 ): AlertDialog {
-    return AlertDialog(dialogTitle, cancelable, animation, rowfooter, classes ?: className.set, init)
+    return AlertDialog(dialogTitle, cancelable, animation, rowfooter, className, init)
 }

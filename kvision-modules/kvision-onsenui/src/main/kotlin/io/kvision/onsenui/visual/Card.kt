@@ -27,21 +27,18 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.html.Div
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * A card component.
  *
  * @constructor Creates a card component.
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Card(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Card.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * A modifier attribute to specify custom styles.
@@ -71,7 +68,7 @@ open class Card(
      * @param builder a builder extension function
      */
     open fun title(content: String? = null, rich: Boolean = false, builder: (Div.() -> Unit)? = null): Div {
-        val titleDiv = Div(content, rich, classes = setOf("title"))
+        val titleDiv = Div(content, rich, className = "title")
         builder?.invoke(titleDiv)
         add(titleDiv)
         return titleDiv
@@ -84,7 +81,7 @@ open class Card(
      * @param builder a builder extension function
      */
     open fun content(content: String? = null, rich: Boolean = false, builder: (Div.() -> Unit)? = null): Div {
-        val contentDiv = Div(content, rich, classes = setOf("content"))
+        val contentDiv = Div(content, rich, className = "content")
         builder?.invoke(contentDiv)
         add(contentDiv)
         return contentDiv
@@ -98,23 +95,10 @@ open class Card(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.card(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Card.() -> Unit)? = null
 ): Card {
-    val card = Card(classes ?: className.set, init)
+    val card = Card(className, init)
     this.add(card)
     return card
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.card(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Card.(S) -> Unit)
-) = card(classes, className).bind(state, true, init)

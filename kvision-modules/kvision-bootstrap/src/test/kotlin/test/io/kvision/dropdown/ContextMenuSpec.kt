@@ -21,13 +21,14 @@
  */
 package test.io.kvision.dropdown
 
-import kotlinx.browser.document
+import io.kvision.BootstrapModule
 import io.kvision.dropdown.ContextMenu
 import io.kvision.dropdown.setContextMenu
 import io.kvision.html.link
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import io.kvision.utils.obj
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class ContextMenuSpec : DomSpec {
@@ -44,7 +45,7 @@ class ContextMenuSpec : DomSpec {
             m.show()
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"dropdown-menu\" style=\"display: block;\"><a href=\"b\">a</a><a href=\"d\">c</a></div>",
+                "<div class=\"dropdown-menu\" style=\"display: block; width: auto;\"><a href=\"b\">a</a><a href=\"d\">c</a></div>",
                 element?.innerHTML,
                 "Should render correct context menu"
             )
@@ -67,10 +68,16 @@ class ContextMenuSpec : DomSpec {
             })
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"dropdown-menu\" style=\"display: block; top: 50px; left: 40px;\"><a href=\"b\">a</a><a href=\"d\">c</a></div>",
+                "<div class=\"dropdown-menu\" style=\"display: block; width: auto; top: 50px; left: 40px;\"><a href=\"b\">a</a><a href=\"d\">c</a></div>",
                 element?.innerHTML,
                 "Should place context menu in the correct position"
             )
+        }
+    }
+
+    companion object {
+        init {
+            BootstrapModule.initialize()
         }
     }
 }

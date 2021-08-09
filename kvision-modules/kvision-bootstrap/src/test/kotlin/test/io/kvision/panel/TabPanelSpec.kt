@@ -49,7 +49,7 @@ class TabPanelSpec : DomSpec {
             tabs.add(Tab("DEF", label2))
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">DEF</a></li></ul><div><span>abc</span></div></div>",
+                "<div class=\"kv-tab-panel\"><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">DEF</a></li></ul><div><span>abc</span></div></div>",
                 element?.innerHTML,
                 "Should render correct tabs"
             )
@@ -72,7 +72,7 @@ class TabPanelSpec : DomSpec {
             tabs.activeIndex = 1
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li></ul><div><span>def</span></div></div>",
+                "<div class=\"kv-tab-panel\"><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li></ul><div><span>def</span></div></div>",
                 element?.innerHTML,
                 "Should change selected tab by index"
             )
@@ -96,7 +96,7 @@ class TabPanelSpec : DomSpec {
             tabs.activeTab = tab
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li></ul><div><span>def</span></div></div>",
+                "<div class=\"kv-tab-panel\"><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li></ul><div><span>def</span></div></div>",
                 element?.innerHTML,
                 "Should change selected tab by Tab component"
             )
@@ -174,7 +174,7 @@ class TabPanelSpec : DomSpec {
             tabs.removeTab(1)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">ABC</a></li></ul><div><span>abc</span></div></div>",
+                "<div class=\"kv-tab-panel\"><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">ABC</a></li></ul><div><span>abc</span></div></div>",
                 element?.innerHTML,
                 "Should remove tab"
             )
@@ -217,7 +217,7 @@ class TabPanelSpec : DomSpec {
             tabs.moveTab(1, 0)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li></ul><div><span>def</span></div></div>",
+                "<div class=\"kv-tab-panel\"><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">DEF</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">ABC</a></li></ul><div><span>def</span></div></div>",
                 element?.innerHTML,
                 "Should move the tab to different index"
             )
@@ -243,7 +243,7 @@ class TabPanelSpec : DomSpec {
             jQuery("#test a")[1]?.click()
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">DEF</a></li><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">GHI</a></li></ul><div><span>ghi</span></div></div>",
+                "<div class=\"kv-tab-panel\"><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">DEF</a></li><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">GHI</a></li></ul><div><span>ghi</span></div></div>",
                 element?.innerHTML,
                 "Should select correct tab by clicking"
             )

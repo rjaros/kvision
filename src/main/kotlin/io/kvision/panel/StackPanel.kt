@@ -25,10 +25,8 @@ import com.github.snabbdom.VNode
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.routing.RoutingManager
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import kotlinx.browser.window
+import kotlin.collections.set
 
 /**
  * The container with only one active (visible) child at any moment.
@@ -37,13 +35,13 @@ import kotlinx.browser.window
  *
  * @constructor
  * @param activateLast determines if added component is automatically activated (default true)
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class StackPanel(
     private val activateLast: Boolean = true,
-    classes: Set<String> = setOf(), init: (StackPanel.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (StackPanel.() -> Unit)? = null
+) : SimplePanel(className) {
 
     /**
      * The index of active (visible) child.
@@ -53,10 +51,10 @@ open class StackPanel(
     /**
      * The active (visible) child.
      */
-    var activeChild
-        get() = children[activeIndex]
+    var activeChild: Component?
+        get() = children?.get(activeIndex)
         set(value) {
-            activeIndex = children.indexOf(value)
+            activeIndex = children?.indexOf(value) ?: -1
         }
 
     internal val childrenMap = mutableMapOf<Int, Component>()
@@ -67,8 +65,8 @@ open class StackPanel(
     }
 
     override fun childrenVNodes(): Array<VNode> {
-        return if (activeIndex in children.indices) {
-            arrayOf(children[activeIndex].renderVNode())
+        return if (children != null && activeIndex in children!!.indices) {
+            arrayOf(children!![activeIndex].renderVNode())
         } else {
             arrayOf()
         }
@@ -109,21 +107,21 @@ open class StackPanel(
 
     override fun add(child: Component): StackPanel {
         super.add(child)
-        if (activateLast) activeIndex = children.size - 1
+        if (activateLast) activeIndex = children!!.size - 1
         else if (activeIndex == -1) activeIndex = 0
         return this
     }
 
     override fun add(position: Int, child: Component): SimplePanel {
         super.add(position, child)
-        if (activateLast) activeIndex = children.size - 1
+        if (activateLast) activeIndex = children!!.size - 1
         else if (activeIndex == -1) activeIndex = 0
         return this
     }
 
     override fun addAll(children: List<Component>): StackPanel {
         super.addAll(children)
-        if (activateLast) activeIndex = this.children.size - 1
+        if (activateLast) activeIndex = this.children!!.size - 1
         else if (activeIndex == -1) activeIndex = 0
         return this
     }
@@ -133,12 +131,12 @@ open class StackPanel(
         childrenMap.filter { it.value == child }.keys.firstOrNull()?.let {
             childrenMap.remove(it)
         }
-        if (activeIndex > children.size - 1) activeIndex = children.size - 1
+        if (children != null && activeIndex > children!!.size - 1) activeIndex = children!!.size - 1
         return this
     }
 
     override fun removeAt(position: Int): StackPanel {
-        val child = children.getOrNull(position)
+        val child = children?.getOrNull(position)
         if (child != null) remove(child)
         return this
     }
@@ -146,7 +144,7 @@ open class StackPanel(
     override fun removeAll(): StackPanel {
         super.removeAll()
         childrenMap.clear()
-        if (activeIndex > children.size - 1) activeIndex = children.size - 1
+        if (children != null && activeIndex > children!!.size - 1) activeIndex = children!!.size - 1
         return this
     }
 
@@ -162,24 +160,10 @@ open class StackPanel(
  */
 fun Container.stackPanel(
     activateLast: Boolean = true,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (StackPanel.() -> Unit)? = null
 ): StackPanel {
-    val stackPanel = StackPanel(activateLast, classes ?: className.set, init)
+    val stackPanel = StackPanel(activateLast, className, init)
     this.add(stackPanel)
     return stackPanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.stackPanel(
-    state: ObservableState<S>,
-    activateLast: Boolean = true,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (StackPanel.(S) -> Unit)
-) = stackPanel(activateLast, classes, className).bind(state, true, init)

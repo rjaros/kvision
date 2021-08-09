@@ -33,13 +33,13 @@ import kotlinx.browser.window
  * An Onsen UI lazy repeat helper component.
  *
  * @constructor Creates a lazy repeat helper component.
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsLazyRepeat(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsLazyRepeat.() -> Unit)? = null
-) : Widget(classes) {
+) : Widget(className) {
 
     /**
      * A callback function for creating new list items.
@@ -183,11 +183,10 @@ open class OnsLazyRepeat(
  * It takes the same parameters as the constructor of the built component.
  */
 fun OnsList.onsLazyRepeat(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsLazyRepeat.() -> Unit)? = null
 ): OnsLazyRepeat {
-    val onsLazyRepeat = OnsLazyRepeat(classes ?: className.set, init)
+    val onsLazyRepeat = OnsLazyRepeat(className, init)
     this.add(onsLazyRepeat)
     return onsLazyRepeat
 }
@@ -199,11 +198,10 @@ fun OnsList.onsLazyRepeat(
  */
 fun OnsList.onsLazyRepeat(
     itemsCount: Int,
-    classes: Set<String>? = null,
     className: String? = null,
     createItemContentCallback: (index: Int) -> HTMLElement
 ): OnsLazyRepeat {
-    val onsLazyRepeat = OnsLazyRepeat(classes ?: className.set) {
+    val onsLazyRepeat = OnsLazyRepeat(className) {
         countItems { itemsCount }
         createItemContent(createItemContentCallback)
     }

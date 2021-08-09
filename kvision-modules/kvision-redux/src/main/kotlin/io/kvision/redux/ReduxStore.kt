@@ -21,7 +21,7 @@
  */
 package io.kvision.redux
 
-import io.kvision.KVManagerRedux
+import io.kvision.ReduxModule
 import io.kvision.state.ObservableState
 import redux.Reducer
 import redux.Store
@@ -67,7 +67,7 @@ class ReduxStore<S : Any, A : RAction>(
 
     init {
         @Suppress("UnsafeCastFromDynamic")
-        store = KVManagerRedux.createStore(
+        store = ReduxModule.createStore(
             { s: S, a: RAction ->
                 @Suppress("UnsafeCastFromDynamic")
                 if (a == undefined || (a.asDynamic().type is String && a.asDynamic().type.startsWith("@@"))) {
@@ -79,11 +79,11 @@ class ReduxStore<S : Any, A : RAction>(
             },
             initialState,
             @Suppress("SpreadOperator")
-            (KVManagerRedux.compose(
-                KVManagerRedux.applyMiddleware<S, RAction, WrapperAction, Any, Any>(
-                    KVManagerRedux.reduxThunk,
+            (ReduxModule.compose(
+                ReduxModule.applyMiddleware<S, RAction, WrapperAction, Any, Any>(
+                    ReduxModule.reduxThunk,
                     *middlewares
-                ), KVManagerRedux.rEnhancer()
+                ), ReduxModule.rEnhancer()
             )).asDynamic()
         )
     }

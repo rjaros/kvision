@@ -33,8 +33,8 @@ import io.kvision.utils.perc
  * A base class for the progress bar tag. This class only exposes utility methods in order to set the typical
  * attributes used by the bootstrap progress bar in a type-safe manner.
  */
-abstract class ProgressBarTag<T>(classes: Set<String> = setOf(), bgColor: BsBgColor? = null) :
-    Div(classes = classes) {
+abstract class ProgressBarTag<T>(className: String? = null, bgColor: BsBgColor? = null) :
+    Div(className = className) {
     init {
         role = "progressbar"
     }

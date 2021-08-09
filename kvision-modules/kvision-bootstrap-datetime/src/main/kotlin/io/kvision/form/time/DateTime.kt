@@ -29,8 +29,6 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 import kotlin.js.Date
 
@@ -48,7 +46,7 @@ import kotlin.js.Date
 open class DateTime(
     value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
     rich: Boolean = false, init: (DateTime.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), DateFormControl, MutableState<Date?> {
+) : SimplePanel("form-group kv-mb-3"), DateFormControl, MutableState<Date?> {
 
     /**
      * Date/time input value.
@@ -244,7 +242,7 @@ open class DateTime(
         this.input.id = this@DateTime.idc
         this.name = name
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -341,14 +339,3 @@ fun Container.dateTime(
     this.add(dateTime)
     return dateTime
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.dateTime(
-    state: ObservableState<S>,
-    value: Date? = null, name: String? = null, format: String = "YYYY-MM-DD HH:mm", label: String? = null,
-    rich: Boolean = false, init: (DateTime.(S) -> Unit)
-) = dateTime(value, name, format, label, rich).bind(state, true, init)

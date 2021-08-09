@@ -22,11 +22,10 @@
 
 package io.kvision.onsenui.dialog
 
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * An alert dialog button component.
@@ -36,7 +35,7 @@ import io.kvision.utils.set
  * @param rich whether [content] can contain HTML code
  * @param align text align
  * @param icon an icon placed on the button
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -45,9 +44,9 @@ open class AlertDialogButton(
     rich: Boolean = false,
     align: Align? = null,
     icon: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (AlertDialogButton.() -> Unit)? = null
-) : CustomTag("ons-alert-dialog-button", content, rich, align, classes) {
+) : CustomTag("ons-alert-dialog-button", content, rich, align, className) {
 
     /**
      *  The icon placed on the button.
@@ -96,11 +95,10 @@ fun AlertDialog.alertDialogButton(
     rich: Boolean = false,
     align: Align? = null,
     icon: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (AlertDialogButton.() -> Unit)? = null
 ): AlertDialogButton {
-    val alertDialogButton = AlertDialogButton(content, rich, align, icon, classes ?: className.set, init)
+    val alertDialogButton = AlertDialogButton(content, rich, align, icon, className, init)
     this.footerPanel.add(alertDialogButton)
     return alertDialogButton
 }

@@ -21,6 +21,7 @@
  */
 package test.io.kvision.form.text
 
+import io.kvision.core.getElementJQuery
 import io.kvision.form.text.TypeaheadInput
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec

@@ -27,23 +27,25 @@ import io.kvision.core.WidgetWrapper
 import io.kvision.html.Align
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.set
 
 /**
  * Bootstrap grid sizes.
  */
 enum class GridSize(internal val size: String) {
+    XS("xs"),
     SM("sm"),
     MD("md"),
     LG("lg"),
-    XL("xl")
+    XL("xl"),
+    XXL("xxl")
 }
 
 internal const val MAX_COLUMNS = 12
 
-internal data class WidgetParam(val widget: Component, val size: Int, val offset: Int)
+internal data class WidgetParam(val widget: Component, val size: Int, val offset: Int, val className: String?)
 
 /**
  * The container with support for Bootstrap responsive grid layout.
@@ -53,14 +55,14 @@ internal data class WidgetParam(val widget: Component, val size: Int, val offset
  * @param rows number of rows
  * @param cols number of columns
  * @param align text align of grid cells
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class ResponsiveGridPanel(
     private val gridSize: GridSize = GridSize.MD,
     private var rows: Int = 0, private var cols: Int = 0, align: Align? = null,
-    classes: Set<String> = setOf(), init: (ResponsiveGridPanel.() -> Unit)? = null
-) : SimplePanel(classes + "container-fluid") {
+    className: String? = null, init: (ResponsiveGridPanel.() -> Unit)? = null
+) : SimplePanel((className?.let { "$it " } ?: "") + "container-fluid") {
 
     /**
      * Text align of grid cells.
@@ -82,14 +84,22 @@ open class ResponsiveGridPanel(
      * @param row row number
      * @param size cell size (colspan)
      * @param offset cell offset
+     * @param className additional css styles
      * @return this container
      */
-    open fun add(child: Component, col: Int, row: Int, size: Int = 0, offset: Int = 0): ResponsiveGridPanel {
+    open fun add(
+        child: Component,
+        col: Int,
+        row: Int,
+        size: Int = 0,
+        offset: Int = 0,
+        className: String? = null
+    ): ResponsiveGridPanel {
         val cRow = maxOf(row, 1)
         val cCol = maxOf(col, 1)
         if (cRow > rows) rows = cRow
         if (cCol > cols) cols = cCol
-        map.getOrPut(cRow) { mutableMapOf() }[cCol] = WidgetParam(child, size, offset)
+        map.getOrPut(cRow) { mutableMapOf() }[cCol] = WidgetParam(child, size, offset, className)
         if (size > 0 || offset > 0) auto = false
         refreshRowContainers()
         return this
@@ -100,12 +110,12 @@ open class ResponsiveGridPanel(
      * @param builder DSL builder function
      */
     open fun options(
-        col: Int, row: Int, size: Int = 0, offset: Int = 0,
+        col: Int, row: Int, size: Int = 0, offset: Int = 0, className: String? = null,
         builder: Container.() -> Unit
     ) {
         object : Container by this@ResponsiveGridPanel {
             override fun add(child: Component): Container {
-                return add(child, col, row, size, offset)
+                return add(child, col, row, size, offset, className)
             }
         }.builder()
     }
@@ -147,14 +157,16 @@ open class ResponsiveGridPanel(
             disposeAll()
             val num = MAX_COLUMNS / cols
             for (i in 1..rows) {
-                val rowContainer = SimplePanel(setOf("row"))
+                val rowContainer = SimplePanel("row")
                 val row = map[i]
                 if (row != null) {
                     (1..cols).map { row[it] }.forEach { wp ->
                         if (auto) {
                             val widget = wp?.widget?.let {
-                                WidgetWrapper(it, setOf("col-" + gridSize.size + "-" + num))
-                            } ?: Tag(TAG.DIV, classes = setOf("col-" + gridSize.size + "-" + num))
+                                WidgetWrapper(
+                                    it,
+                                    "col-" + gridSize.size + "-" + num + (wp.className?.let { " $it" } ?: ""))
+                            } ?: Tag(TAG.DIV, className = "col-" + gridSize.size + "-" + num)
                             align?.let {
                                 widget.addCssClass(it.className)
                             }
@@ -162,7 +174,9 @@ open class ResponsiveGridPanel(
                         } else {
                             if (wp != null) {
                                 val s = if (wp.size > 0) wp.size else num
-                                val widget = WidgetWrapper(wp.widget, setOf("col-" + gridSize.size + "-" + s))
+                                val widget = WidgetWrapper(
+                                    wp.widget,
+                                    "col-" + gridSize.size + "-" + s + (wp.className?.let { " $it" } ?: ""))
                                 if (wp.offset > 0) {
                                     widget.addCssClass("offset-" + gridSize.size + "-" + wp.offset)
                                 }
@@ -188,25 +202,10 @@ open class ResponsiveGridPanel(
 fun Container.responsiveGridPanel(
     gridSize: GridSize = GridSize.MD,
     rows: Int = 0, cols: Int = 0, align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ResponsiveGridPanel.() -> Unit)? = null
 ): ResponsiveGridPanel {
-    val responsiveGridPanel = ResponsiveGridPanel(gridSize, rows, cols, align, classes ?: className.set, init)
+    val responsiveGridPanel = ResponsiveGridPanel(gridSize, rows, cols, align, className, init)
     this.add(responsiveGridPanel)
     return responsiveGridPanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.responsiveGridPanel(
-    state: ObservableState<S>,
-    gridSize: GridSize = GridSize.MD,
-    rows: Int = 0, cols: Int = 0, align: Align? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (ResponsiveGridPanel.(S) -> Unit)
-) = responsiveGridPanel(gridSize, rows, cols, align, classes, className).bind(state, true, init)

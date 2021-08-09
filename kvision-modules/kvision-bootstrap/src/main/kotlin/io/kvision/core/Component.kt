@@ -25,13 +25,13 @@ enum class BsBorder(internal val className: String) {
     BORDER("border"),
     BORDERTOP("border-top"),
     BORDERBOTTOM("border-bottom"),
-    BORDERRIGHT("border-right"),
-    BORDERLEFT("border-left"),
+    BORDERRIGHT("border-end"),
+    BORDERLEFT("border-start"),
     BORDER_0("border-0"),
     BORDERTOP_0("border-top-0"),
     BORDERBOTTOM_0("border-bottom-0"),
-    BORDERRIGHT_0("border-right-0"),
-    BORDERLEFT_0("border-left-0"),
+    BORDERRIGHT_0("border-end-0"),
+    BORDERLEFT_0("border-start-0"),
     BORDERPRIMARY("border-primary"),
     BORDERSECONDARY("border-secondary"),
     BORDERSUCCESS("border-success"),
@@ -59,12 +59,18 @@ enum class BsRounded(internal val className: String) {
     ROUNDED("rounded"),
     ROUNDEDTOP("rounded-top"),
     ROUNDEDBOTTOM("rounded-bottom"),
-    ROUNDEDLEFT("rounded-left"),
-    ROUNDEDRIGHT("rounded-right"),
+    ROUNDEDLEFT("rounded-start"),
+    ROUNDEDRIGHT("rounded-end"),
     ROUNDEDCIRCLE("rounded-circle"),
     ROUNDEDPILL("rounded-pill"),
-    ROUNDEDLG("rounded-lg"),
-    ROUNDEDSM("rounded-sm")
+    @Deprecated("Use ROUNDED3 instead", ReplaceWith("ROUNDED3"))
+    ROUNDEDLG("rounded-3"),
+    @Deprecated("Use ROUNDED1 instead", ReplaceWith("ROUNDED1"))
+    ROUNDEDSM("rounded-1"),
+    ROUNDED0("rounded-0"),
+    ROUNDED1("rounded-1"),
+    ROUNDED2("rounded-2"),
+    ROUNDED3("rounded-3"),
 }
 
 fun Component.addBsRounded(vararg bsRounded: BsRounded) {

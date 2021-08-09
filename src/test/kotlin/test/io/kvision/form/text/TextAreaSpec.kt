@@ -43,7 +43,7 @@ class TextAreaSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ti.input.id
             assertEqualsHtml(
-                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><textarea class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" cols=\"5\" rows=\"2\">abc</textarea></div>",
+                "<div class=\"form-group kv-mb-3\"><label class=\"form-label\" for=\"$id\">Label</label><textarea class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" maxlength=\"15\" disabled=\"disabled\" cols=\"5\" rows=\"2\">abc</textarea></div>",
                 element?.innerHTML,
                 "Should render correct input form control"
             )

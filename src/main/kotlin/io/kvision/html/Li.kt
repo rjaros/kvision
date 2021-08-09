@@ -22,9 +22,6 @@
 package io.kvision.html
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Simple component rendered as *li*.
@@ -33,17 +30,17 @@ import io.kvision.utils.set
  * @param content element text
  * @param rich determines if [content] can contain HTML code
  * @param align content align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Li(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Li.() -> Unit)? = null
 ) :
-    Tag(TAG.LI, content, rich, align, classes) {
+    Tag(TAG.LI, content, rich, align, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -60,26 +57,10 @@ fun Container.li(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Li.() -> Unit)? = null
 ): Li {
-    val li = Li(content, rich, align, classes ?: className.set, init)
+    val li = Li(content, rich, align, className, init)
     this.add(li)
     return li
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.li(
-    state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Li.(S) -> Unit)
-) = li(content, rich, align, classes, className).bind(state, true, init)

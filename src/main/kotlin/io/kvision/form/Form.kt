@@ -282,9 +282,9 @@ class Form<K : Any>(
      * @param model data model
      */
     fun setData(model: K) {
-        fields.forEach { it.value.setValue(null) }
         val json = jsonFactory?.invoke(model) ?: throw IllegalStateException("Serializer not defined")
-        for (key in js("Object").keys(json)) {
+        val keys = js("Object").keys(json).unsafeCast<Array<String>>()
+        for (key in keys) {
             val jsonValue = json[key]
             if (jsonValue != null) {
                 when (val formField = fields[key]) {
@@ -297,8 +297,11 @@ class Form<K : Any>(
                     }
                     else -> formField?.setValue(jsonValue)
                 }
+            } else {
+                fields[key]?.setValue(null)
             }
         }
+        fields.forEach { if (!keys.contains(it.key)) it.value.setValue(null) }
     }
 
     /**

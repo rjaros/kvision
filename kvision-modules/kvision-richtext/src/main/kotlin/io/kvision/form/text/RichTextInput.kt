@@ -22,28 +22,25 @@
 package io.kvision.form.text
 
 import com.github.snabbdom.VNode
+import io.kvision.RichTextModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 import kotlinx.browser.document
+import org.w3c.dom.Element
 
 /**
  * Basic rich text component.
  *
  * @constructor
  * @param value text input value
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class RichTextInput(
     value: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (RichTextInput.() -> Unit)? = null
-) : AbstractTextInput(value, classes + "form-control" + "trix-control") {
+) : AbstractTextInput(value, (className?.let { "$it " } ?: "") + "form-control trix-control") {
 
     private var trixId: String? = null
 
@@ -77,11 +74,11 @@ open class RichTextInput(
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
     override fun afterInsert(node: VNode) {
         if (this.disabled || this.readonly == true) {
-            this.getElementJQuery()?.removeAttr("contenteditable")
+            this.getElement()?.unsafeCast<Element>()?.removeAttribute("contenteditable")
         } else {
-            this.getElementJQuery()?.on("trix-change") { _, _ ->
+            this.getElement()?.addEventListener("trix-change", { _ ->
                 if (trixId != null) {
-                    val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
+                    val v = document.getElementById("trix-input-$trixId")?.let { it.asDynamic().value }
                     value = if (v != null && v != "") {
                         v
                     } else {
@@ -90,30 +87,30 @@ open class RichTextInput(
                     val event = org.w3c.dom.events.Event("change")
                     this.getElement()?.dispatchEvent(event)
                 }
-            }
+            })
         }
-        this.getElementJQuery()?.on("trix-initialize") { _, _ ->
-            trixId = this.getElementJQuery()?.attr("trix-id")
+        this.getElement()?.addEventListener("trix-initialize", { _ ->
+            trixId = this.getElement()?.unsafeCast<Element>()?.getAttribute("trix-id")
             if (trixId != null) {
                 value?.let {
-                    if (this.getElement().asDynamic().editor != undefined) {
-                        this.getElement().asDynamic().editor.loadHTML(it)
+                    if (this.getElementD().editor != undefined) {
+                        this.getElementD().editor.loadHTML(it)
                     }
                 }
             }
-        }
-        this.getElementJQuery()?.on("trix-file-accept") { e, _ -> e.preventDefault() }
+        })
+        this.getElement()?.addEventListener("trix-file-accept", { e -> e.preventDefault() })
     }
 
     override fun afterDestroy() {
-        document.getElementById("trix-input-$trixId")?.let { jQuery(it).remove() }
-        document.getElementById("trix-toolbar-$trixId")?.let { jQuery(it).remove() }
+        document.getElementById("trix-input-$trixId")?.let { it.parentNode?.removeChild(it) }
+        document.getElementById("trix-toolbar-$trixId")?.let { it.parentNode?.removeChild(it) }
         trixId = null
     }
 
     @Suppress("UnsafeCastFromDynamic")
     override fun refreshState() {
-        val v = document.getElementById("trix-input-$trixId")?.let { jQuery(it).`val`() as String? }
+        val v = document.getElementById("trix-input-$trixId")?.let { it.asDynamic().value }
         if (value != v) {
             val element = this.getElement()
             if (element != null) {
@@ -130,6 +127,12 @@ open class RichTextInput(
     override fun changeValue() {
         // disabled parent class functionality
     }
+
+    companion object {
+        init {
+            RichTextModule.initialize()
+        }
+    }
 }
 
 /**
@@ -139,24 +142,10 @@ open class RichTextInput(
  */
 fun Container.richTextInput(
     value: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (RichTextInput.() -> Unit)? = null
 ): RichTextInput {
-    val richTextInput = RichTextInput(value, classes ?: className.set, init)
+    val richTextInput = RichTextInput(value, className, init)
     this.add(richTextInput)
     return richTextInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.richTextInput(
-    state: ObservableState<S>,
-    value: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (RichTextInput.(S) -> Unit)
-) = richTextInput(value, classes, className).bind(state, true, init)

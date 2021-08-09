@@ -21,11 +21,6 @@
  */
 package io.kvision.tabulator
 
-import kotlinx.browser.window
-import kotlinx.serialization.encodeToString
-import org.w3c.dom.get
-import io.kvision.jquery.JQueryAjaxSettings
-import io.kvision.jquery.JQueryXHR
 import io.kvision.core.Container
 import io.kvision.remote.CallAgent
 import io.kvision.remote.HttpMethod
@@ -34,11 +29,11 @@ import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteData
 import io.kvision.remote.RemoteFilter
 import io.kvision.remote.RemoteSorter
-import io.kvision.table.TableType
 import io.kvision.utils.JSON
-import io.kvision.utils.set
+import kotlinx.browser.window
+import kotlinx.serialization.encodeToString
+import org.w3c.dom.get
 import kotlin.reflect.KClass
-import kotlin.reflect.KFunction
 
 /**
  * Tabulator component connected to the multiplatform service.
@@ -51,7 +46,7 @@ import kotlin.reflect.KFunction
  * @param stateFunction a function to generate the state object passed with the remote request
  * @param options tabulator options
  * @param types a set of table types
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceMgr<E>,
@@ -59,9 +54,9 @@ open class TabulatorRemote<T : Any, E : Any>(
     stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
+    className: String? = null,
     kClass: KClass<T>? = null,
-) : Tabulator<T>(null, false, options, types, classes, kClass) {
+) : Tabulator<T>(null, false, options, types, className, kClass) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
@@ -71,9 +66,6 @@ open class TabulatorRemote<T : Any, E : Any>(
 
         val callAgent = CallAgent()
 
-        @Suppress("UnsafeCastFromDynamic")
-        val beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = options.ajaxConfig?.beforeSend
-        if (beforeSend != null) options.ajaxConfig.beforeSend = undefined
         options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params ->
             @Suppress("UnsafeCastFromDynamic")
@@ -99,7 +91,7 @@ open class TabulatorRemote<T : Any, E : Any>(
 
             @Suppress("UnsafeCastFromDynamic")
             val data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
-            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name), beforeSend = beforeSend)
+            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name))
                 .then { r: dynamic ->
                     val result = kotlin.js.JSON.parse<dynamic>(r.result.unsafeCast<String>())
                     @Suppress("UnsafeCastFromDynamic")
@@ -127,12 +119,11 @@ inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
     noinline stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String>? = null,
     className: String? = null,
     noinline init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
     val tabulatorRemote =
-        TabulatorRemote(serviceManager, function, stateFunction, options, types, classes ?: className.set, T::class)
+        TabulatorRemote(serviceManager, function, stateFunction, options, types, className, T::class)
     init?.invoke(tabulatorRemote)
     this.add(tabulatorRemote)
     return tabulatorRemote

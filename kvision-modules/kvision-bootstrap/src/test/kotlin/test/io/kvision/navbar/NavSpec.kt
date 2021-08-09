@@ -43,7 +43,7 @@ class NavSpec : DomSpec {
             )
             nav.rightAlign = true
             assertEqualsHtml(
-                "<div class=\"navbar-nav ml-auto\"></div>",
+                "<div class=\"navbar-nav ms-auto\"></div>",
                 element?.innerHTML,
                 "Should render correct right aligned nav"
             )

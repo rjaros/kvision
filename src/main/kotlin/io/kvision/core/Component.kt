@@ -22,7 +22,6 @@
 package io.kvision.core
 
 import com.github.snabbdom.VNode
-import io.kvision.jquery.JQuery
 import io.kvision.panel.Root
 import org.w3c.dom.Node
 
@@ -139,16 +138,10 @@ interface Component {
     fun getElement(): Node?
 
     /**
-     * Returns JQuery element bound to the current component.
-     * @return JQuery element
+     * Returns DOM element bound to the current component as a *dynamic* type.
+     * @return DOM element as a *dynamic* type
      */
-    fun getElementJQuery(): JQuery?
-
-    /**
-     * Returns JQuery element bound to the current component as a *dynamic* type.
-     * @return JQuery element as a *dynamic* type
-     */
-    fun getElementJQueryD(): dynamic
+    fun getElementD(): dynamic
 
     /**
      * @suppress
@@ -177,14 +170,14 @@ interface Component {
      * Makes the element focused.
      */
     fun focus() {
-        getElementJQuery()?.focus()
+        getElementD()?.focus()
     }
 
     /**
      * Makes the element blur.
      */
     fun blur() {
-        getElementJQuery()?.blur()
+        getElementD()?.blur()
     }
 
     /**

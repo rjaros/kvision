@@ -21,13 +21,13 @@
  */
 package test.io.kvision.progress
 
-import kotlinx.browser.document
-import org.w3c.dom.Element
 import io.kvision.panel.Root
 import io.kvision.progress.FormatFractionContentGenerator
 import io.kvision.progress.progress
 import io.kvision.progress.progressNumeric
 import io.kvision.test.DomSpec
+import kotlinx.browser.document
+import org.w3c.dom.Element
 import kotlin.test.Test
 
 class ProgressBarSpec : DomSpec {
@@ -59,7 +59,7 @@ class ProgressBarSpec : DomSpec {
     fun simpleProgress_withAdditionalBarClass_rendersCorrectly() {
         run {
             // execution
-            root.progress { progressNumeric(25, classes = setOf("class-for-bar")) }
+            root.progress { progressNumeric(25, className = "class-for-bar") }
 
             // evaluation
             assertEqualsHtml(
@@ -76,7 +76,7 @@ class ProgressBarSpec : DomSpec {
             // execution
             root.progress {
                 progressNumeric(25)
-                progressNumeric(30, classes = setOf("second-progress-bar"))
+                progressNumeric(30, className = "second-progress-bar")
             }
 
             // evaluation

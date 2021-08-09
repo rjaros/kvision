@@ -24,8 +24,6 @@ package io.kvision.form.text
 import io.kvision.core.Container
 import io.kvision.form.FormHorizontalRatio
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.px
 
 /**
@@ -58,12 +56,13 @@ open class RichText(
         this.name = name
     }
 
-    val wrapper = SimplePanel(setOf("kv-richtext-container"))
+    val wrapper = SimplePanel("kv-richtext-container")
 
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
         wrapper.add(input)
+        this.addPrivate(flabel)
         this.addPrivate(wrapper)
         this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")
@@ -98,17 +97,3 @@ fun Container.richText(
     this.add(richText)
     return richText
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.richText(
-    state: ObservableState<S>,
-    value: String? = null,
-    name: String? = null,
-    label: String? = null,
-    rich: Boolean = false,
-    init: (RichText.(S) -> Unit)
-) = richText(value, name, label, rich).bind(state, true, init)

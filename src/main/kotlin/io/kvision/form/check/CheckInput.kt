@@ -46,23 +46,23 @@ enum class CheckInputType(internal val type: String) {
  * @constructor
  * @param type type of the input control
  * @param value selection state
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 abstract class CheckInput(
     type: CheckInputType = CheckInputType.CHECKBOX, value: Boolean = false,
-    classes: Set<String> = setOf()
-) : Widget(classes), GenericFormComponent<Boolean>, FormInput, MutableState<Boolean> {
+    className: String? = null
+) : Widget(className), GenericFormComponent<Boolean>, FormInput, MutableState<Boolean> {
 
     protected val observers = mutableListOf<(Boolean) -> Unit>()
 
     init {
         this.setInternalEventListener<CheckInput> {
             click = {
-                val v = getElementJQuery()?.prop("checked") as Boolean?
+                val v = getElementD()?.checked?.unsafeCast<Boolean>()
                 self.value = (v == true)
             }
             change = {
-                val v = getElementJQuery()?.prop("checked") as Boolean?
+                val v = getElementD()?.checked?.unsafeCast<Boolean>()
                 self.value = (v == true)
             }
         }
@@ -143,9 +143,9 @@ abstract class CheckInput(
     }
 
     protected open fun refreshState() {
-        val v = getElementJQuery()?.prop("checked") as Boolean?
+        val v = getElementD()?.checked?.unsafeCast<Boolean>()
         if (this.value != v) {
-            getElementJQuery()?.prop("checked", this.value)
+            getElementD()?.checked = this.value
         }
     }
 
@@ -159,20 +159,6 @@ abstract class CheckInput(
             }
         }
         return this
-    }
-
-    /**
-     * Makes the input element focused.
-     */
-    override fun focus() {
-        getElementJQuery()?.focus()
-    }
-
-    /**
-     * Makes the input element blur.
-     */
-    override fun blur() {
-        getElementJQuery()?.blur()
     }
 
     override fun getState(): Boolean = value

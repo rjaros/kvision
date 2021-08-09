@@ -26,7 +26,6 @@ package io.kvision.utils
 import io.kvision.core.CssSize
 import io.kvision.core.StringPair
 import io.kvision.core.UNIT
-import kotlinx.browser.window
 
 /**
  * Extension property to convert Int to CSS px units.
@@ -193,12 +192,6 @@ fun Int.toHexString(): String {
 }
 
 /**
- * Utility function to detect Internet Explorer 11.
- * @return true if the current browser is IE11
- */
-fun isIE11(): Boolean = window.navigator.userAgent.matches("Trident\\/7\\.")
-
-/**
  * Utility extension function to synchronise elements of the MutableList.
  */
 fun <T> MutableList<T>.syncWithList(list: List<T>) {
@@ -219,9 +212,33 @@ fun <T> MutableList<T>.syncWithList(list: List<T>) {
 /**
  * Utility extension property to generate a set of strings to simplify the notation when using classes parameter.
  */
-val String?.set: Set<String>
+inline val String.set: Set<String>
     get() {
-        return this?.split(" ")?.toSet() ?: setOf()
+        return this.split(" ").toSet()
+    }
+
+/**
+ * Utility extension property to generate a mutable set of strings to simplify the notation when using classes parameter.
+ */
+inline val String.mutableSet: MutableSet<String>
+    get() {
+        return this.split(" ").toMutableSet()
+    }
+
+/**
+ * Utility extension property to generate a set of strings to simplify the notation when using classes parameter.
+ */
+inline val String?.set: Set<String>
+    get() {
+        return this?.set ?: setOf()
+    }
+
+/**
+ * Utility extension property to generate a mutable set of strings to simplify the notation when using classes parameter.
+ */
+inline val String?.mutableSet: MutableSet<String>
+    get() {
+        return this?.mutableSet ?: mutableSetOf()
     }
 
 /**

@@ -22,8 +22,6 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * Form field password component.
@@ -33,6 +31,7 @@ import io.kvision.state.bind
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param floating use floating label
  * @param init an initializer extension function
  */
 open class Password(
@@ -40,15 +39,18 @@ open class Password(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
+    floating: Boolean = false,
     init: (Password.() -> Unit)? = null
 ) : Text(
     TextInputType.PASSWORD,
-    value, name, label, rich
+    value, name, label, rich, floating
 ) {
 
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
+        floatingPlaceholder()
+
     }
 
 }
@@ -63,23 +65,10 @@ fun Container.password(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
+    floating: Boolean = false,
     init: (Password.() -> Unit)? = null
 ): Password {
-    val password = Password(value, name, label, rich, init)
+    val password = Password(value, name, label, rich, floating, init)
     this.add(password)
     return password
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.password(
-    state: ObservableState<S>,
-    value: String? = null,
-    name: String? = null,
-    label: String? = null,
-    rich: Boolean = false,
-    init: (Password.(S) -> Unit)
-) = password(value, name, label, rich).bind(state, true, init)

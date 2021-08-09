@@ -26,9 +26,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * A progress bar component.
@@ -37,16 +34,16 @@ import io.kvision.utils.set
  * @param value the current progress (should be a value between 0 and 100)
  * @param secondaryValue the current secondary progress (should be a value between 0 and 100)
  * @param indeterminate whether infinite looping animation is shown
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class ProgressBar(
     value: Number? = null,
     secondaryValue: Number? = null,
     indeterminate: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (ProgressBar.() -> Unit)? = null
-) : Widget(classes) {
+) : Widget(className) {
 
     /**
      * The current progress (should be a value between 0 and 100).
@@ -103,26 +100,10 @@ fun Container.progressBar(
     value: Number? = null,
     secondaryValue: Number? = null,
     indeterminate: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ProgressBar.() -> Unit)? = null
 ): ProgressBar {
-    val progressBar = ProgressBar(value, secondaryValue, indeterminate, classes ?: className.set, init)
+    val progressBar = ProgressBar(value, secondaryValue, indeterminate, className, init)
     this.add(progressBar)
     return progressBar
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.progressBar(
-    state: ObservableState<S>,
-    value: Number? = null,
-    secondaryValue: Number? = null,
-    indeterminate: Boolean? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (ProgressBar.(S) -> Unit)
-) = progressBar(value, secondaryValue, indeterminate, classes, className).bind(state, true, init)

@@ -44,7 +44,7 @@ class DateTimeInputSpec : DomSpec {
             val element = document.getElementById("test")
             val datastr = data.toStringF(dti.format)
             assertEqualsHtml(
-                "<div class=\"input-group date\" id=\"idti\"><input class=\"form-control\" placeholder=\"place\" type=\"text\" value=\"$datastr\"><div class=\"input-group-append\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div></div>",
+                "<div class=\"input-group date\" id=\"idti\"><input class=\"form-control\" placeholder=\"place\" type=\"text\" value=\"$datastr\"><span class=\"input-group-text datepickerbutton\"><span class=\"fas fa-calendar-alt\"></span></span></div>",
                 element?.innerHTML,
                 "Should render date time input with correctly formatted value"
             )

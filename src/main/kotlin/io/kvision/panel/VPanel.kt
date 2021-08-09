@@ -21,13 +21,11 @@
  */
 package io.kvision.panel
 
+import io.kvision.KVManager
 import io.kvision.core.AlignItems
 import io.kvision.core.Container
 import io.kvision.core.FlexDirection
 import io.kvision.core.JustifyContent
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * The container with vertical layout.
@@ -38,17 +36,17 @@ import io.kvision.utils.set
  * @param justify flexbox content justification
  * @param alignItems flexbox items alignment
  * @param spacing spacing between columns/rows
- * @param noWrappers do not use additional div wrappers for child items
- * @param classes a set of CSS class names
+ * @param useWrappers use additional div wrappers for child items
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class VPanel(
     justify: JustifyContent? = null, alignItems: AlignItems? = null, spacing: Int? = null,
-    noWrappers: Boolean = false,
-    classes: Set<String> = setOf(), init: (VPanel.() -> Unit)? = null
+    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    className: String? = null, init: (VPanel.() -> Unit)? = null
 ) : FlexPanel(
     FlexDirection.COLUMN,
-    null, justify, alignItems, null, spacing, noWrappers, classes
+    null, justify, alignItems, null, spacing, useWrappers, className
 ) {
     init {
         @Suppress("LeakingThis")
@@ -63,26 +61,11 @@ open class VPanel(
  */
 fun Container.vPanel(
     justify: JustifyContent? = null, alignItems: AlignItems? = null, spacing: Int? = null,
-    noWrappers: Boolean = false,
-    classes: Set<String>? = null,
+    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
     className: String? = null,
     init: (VPanel.() -> Unit)? = null
 ): VPanel {
-    val vpanel = VPanel(justify, alignItems, spacing, noWrappers, classes ?: className.set, init)
+    val vpanel = VPanel(justify, alignItems, spacing, useWrappers, className, init)
     this.add(vpanel)
     return vpanel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.vPanel(
-    state: ObservableState<S>,
-    justify: JustifyContent? = null, alignItems: AlignItems? = null, spacing: Int? = null,
-    noWrappers: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (VPanel.(S) -> Unit)
-) = vPanel(justify, alignItems, spacing, noWrappers, classes, className).bind(state, true, init)

@@ -36,14 +36,14 @@ import io.kvision.utils.set
  * @param icon the icon before the label of the option
  * @param divider renders this option as a divider
  * @param disabled renders a disabled option
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SelectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-    classes: Set<String> = setOf(), init: (SelectOption.() -> Unit)? = null
-) : Widget(classes) {
+    className: String? = null, init: (SelectOption.() -> Unit)? = null
+) : Widget(className) {
 
     /**
      * The value of the option.
@@ -126,12 +126,11 @@ open class SelectOption(
 fun Select.selectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set, init)
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, className, init)
     this.add(selectOption)
     return selectOption
 }
@@ -144,12 +143,11 @@ fun Select.selectOption(
 fun SelectInput.selectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set, init)
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, className, init)
     this.add(selectOption)
     return selectOption
 }
@@ -162,12 +160,11 @@ fun SelectInput.selectOption(
 fun SelectOptGroup.selectOption(
     value: String? = null, label: String? = null, subtext: String? = null, icon: String? = null,
     divider: Boolean = false, disabled: Boolean = false, selected: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectOption.() -> Unit)? = null
 ): SelectOption {
     val selectOption =
-        SelectOption(value, label, subtext, icon, divider, disabled, selected, classes ?: className.set, init)
+        SelectOption(value, label, subtext, icon, divider, disabled, selected, className, init)
     this.add(selectOption)
     return selectOption
 }

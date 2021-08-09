@@ -22,10 +22,9 @@
 
 package io.kvision.onsenui.carousel
 
-import org.w3c.dom.events.MouseEvent
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * A carousel item component.
@@ -34,16 +33,16 @@ import io.kvision.utils.set
  * @param content the content of the component.
  * @param rich whether [content] can contain HTML code
  * @param align text align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class CarouselItem(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (CarouselItem.() -> Unit)? = null
-) : CustomTag("ons-carousel-item", content, rich, align, classes) {
+) : CustomTag("ons-carousel-item", content, rich, align, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -72,11 +71,10 @@ fun Carousel.carouselItem(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (CarouselItem.() -> Unit)? = null
 ): CarouselItem {
-    val carouselItem = CarouselItem(content, rich, align, classes ?: className.set, init)
+    val carouselItem = CarouselItem(content, rich, align, className, init)
     this.add(carouselItem)
     return carouselItem
 }

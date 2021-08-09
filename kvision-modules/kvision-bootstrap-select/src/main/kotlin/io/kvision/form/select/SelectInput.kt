@@ -22,25 +22,20 @@
 package io.kvision.form.select
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerSelect.KVNULL
-import io.kvision.core.AttributeSetBuilder
-import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Component
-import io.kvision.core.Container
-import io.kvision.core.CssSize
-import io.kvision.core.StringPair
+import io.kvision.BootstrapSelectModule
+import io.kvision.BootstrapSelectModule.KVNULL
+import io.kvision.core.*
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.html.ButtonStyle
+import io.kvision.jquery.get
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.asString
-import io.kvision.utils.obj
-import io.kvision.utils.set
+import kotlinx.browser.window
+import org.w3c.dom.get
 
 /**
  * Select width types. See [Bootstrap Select width](http://silviomoreto.github.io/bootstrap-select/examples/#width).
@@ -70,15 +65,15 @@ enum class SelectDropdownAlign {
  * @param value selected value
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote (AJAX) data source
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-    classes: Set<String> = setOf(), init: (SelectInput.() -> Unit)? = null
-) : SimplePanel(classes), GenericFormComponent<String?>, FormInput, MutableState<String?> {
+    className: String? = null, init: (SelectInput.() -> Unit)? = null
+) : SimplePanel(className), GenericFormComponent<String?>, FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -283,14 +278,14 @@ open class SelectInput(
      * Opens dropdown with options.
      */
     open fun showOptions() {
-        getElementJQueryD()?.selectpicker("show")
+        getElementJQueryD()?.selectpicker("open")
     }
 
     /**
      * Hides dropdown with options.
      */
     open fun hideOptions() {
-        getElementJQueryD()?.selectpicker("hide")
+        getElementJQueryD()?.selectpicker("close")
     }
 
     /**
@@ -316,6 +311,7 @@ open class SelectInput(
     @Suppress("ComplexMethod")
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
+        attributeSetBuilder.add("data-live-search", "true")
         name?.let {
             attributeSetBuilder.add("name", it)
         }
@@ -324,9 +320,6 @@ open class SelectInput(
         }
         maxOptions?.let {
             attributeSetBuilder.add("data-max-options", "" + it)
-        }
-        if (liveSearch) {
-            attributeSetBuilder.add("data-live-search", "true")
         }
         placeholder?.let {
             attributeSetBuilder.add("title", translate(it))
@@ -370,32 +363,47 @@ open class SelectInput(
             getElementJQueryD()?.selectpicker("render").ajaxSelectPicker(it.toJs(emptyOption))
         } ?: getElementJQueryD()?.selectpicker("render")
 
-        this.getElementJQuery()?.on("show.bs.select") { e, _ ->
-            this.dispatchEvent("showBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("shown.bs.select") { e, _ ->
-            this.dispatchEvent("shownBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hide.bs.select") { e, _ ->
-            this.dispatchEvent("hideBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hidden.bs.select") { e, _ ->
-            this.dispatchEvent("hiddenBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("loaded.bs.select") { e, _ ->
-            this.dispatchEvent("loadedBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("rendered.bs.select") { e, _ ->
-            this.dispatchEvent("renderedBsSelect", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("refreshed.bs.select") { e, _ ->
-            this.dispatchEvent("refreshedBsSelect", obj { detail = e })
-        }
-        this.getElementJQueryD()?.on("changed.bs.select") { e, cIndex: Int ->
-            e["clickedIndex"] = cIndex
-            this.dispatchEvent("changedBsSelect", obj { detail = e })
+        getElement()?.parentElement?.addEventListener("show.bs.dropdown", { e ->
+            getElementJQuery()?.trigger("show.bs.select", e)
+        })
+
+        getElement()?.parentElement?.addEventListener("shown.bs.dropdown", { e ->
+            window.setTimeout({
+                getElement()?.parentElement?.classList?.add("show")
+            }, 0)
+            getElementJQuery()?.parent()?.find("input[type='search']")?.get(0)?.let { input ->
+                if (!liveSearch) {
+                    input.style.position = "absolute"
+                    input.style.left = "-30000px"
+                }
+                window.setTimeout({
+                    input.focus()
+                }, 0)
+            }
+            getElementJQuery()?.trigger("shown.bs.select", e)
+        })
+
+        getElement()?.parentElement?.addEventListener("hide.bs.dropdown", { e ->
+            getElementJQuery()?.trigger("hide.bs.select", e)
+        })
+
+        getElement()?.parentElement?.addEventListener("hidden.bs.dropdown", { e ->
+            getElement()?.parentElement?.classList?.remove("show")
+            getElementJQuery()?.trigger("hidden.bs.select", e)
+        })
+
+        this.getElementJQuery()?.on("changed.bs.select") { _, _ ->
+            if (!multiple) getElement()?.parentElement?.childNodes?.get(1)?.getBsInstance { Dropdown }?.hide()
         }
         refreshState()
+    }
+
+    override fun bindAllJQueryListeners() {
+        bindAllJQueryListeners(this, jqueryListenersMap)
+    }
+
+    override fun removeAllJQueryListeners() {
+        removeAllJQueryListeners(this, jqueryListenersMap)
     }
 
     @Suppress("UnsafeCastFromDynamic")
@@ -407,9 +415,13 @@ open class SelectInput(
                 } else {
                     getElementJQueryD()?.selectpicker("val", it)
                 }
-            } ?: getElementJQueryD()?.selectpicker("val", null)
+            } ?: run {
+                getElementJQueryD()?.selectpicker("val", null)
+                getElementD()?.selectedIndex = -1
+            }
         } else if (value == null) {
             getElementJQueryD()?.selectpicker("val", null)
+            getElementD()?.selectedIndex = -1
         }
     }
 
@@ -426,6 +438,12 @@ open class SelectInput(
     override fun setState(state: String?) {
         value = state
     }
+
+    companion object {
+        init {
+            BootstrapSelectModule.initialize()
+        }
+    }
 }
 
 /**
@@ -436,26 +454,11 @@ open class SelectInput(
 fun Container.selectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectInput.() -> Unit)? = null
 ): SelectInput {
     val selectInput =
-        SelectInput(options, value, multiple, ajaxOptions, classes ?: className.set, init)
+        SelectInput(options, value, multiple, ajaxOptions, className, init)
     this.add(selectInput)
     return selectInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.selectInput(
-    state: ObservableState<S>,
-    options: List<StringPair>? = null, value: String? = null,
-    multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SelectInput.(S) -> Unit)
-) = selectInput(options, value, multiple, ajaxOptions, classes, className).bind(state, true, init)

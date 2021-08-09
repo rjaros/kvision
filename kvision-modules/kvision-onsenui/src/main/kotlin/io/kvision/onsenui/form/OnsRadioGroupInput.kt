@@ -31,7 +31,6 @@ import io.kvision.form.ValidationStatus
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * The input component rendered as a group of Onsen UI radio buttons with the same name attribute.
@@ -46,9 +45,10 @@ import io.kvision.utils.set
  */
 open class OnsRadioGroupInput(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsRadioGroupInput.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), GenericFormComponent<String?>, FormInput,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-mb-3 kv-ons-form-group"), GenericFormComponent<String?>,
+    FormInput,
     MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
@@ -224,11 +224,10 @@ open class OnsRadioGroupInput(
  */
 fun Container.onsRadioGroupInput(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsRadioGroupInput.() -> Unit)? = null
 ): OnsRadioGroupInput {
-    val onsRadioGroupInput = OnsRadioGroupInput(options, value, name, classes ?: className.set, init)
+    val onsRadioGroupInput = OnsRadioGroupInput(options, value, name, className, init)
     this.add(onsRadioGroupInput)
     return onsRadioGroupInput
 }

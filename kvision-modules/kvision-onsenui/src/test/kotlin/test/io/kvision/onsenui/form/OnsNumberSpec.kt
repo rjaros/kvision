@@ -40,7 +40,7 @@ class OnsNumberSpec : DomSpec {
             val id = number.input.inputId
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"form-group kv-ons-form-group\"><label class=\"control-label\" for=\"$id\">Label</label><ons-input class=\"kv-ons-form-control\" type=\"number\" min=\"0\" max=\"100\" step=\"10\" input-id=\"$id\" modifier=\"underbar\" autofocus=\"autofocus\"></ons-input></div>",
+                "<div class=\"form-group kv-mb-3 kv-ons-form-group\"><label class=\"form-label\" for=\"$id\">Label</label><ons-input class=\"kv-ons-form-control\" type=\"number\" min=\"0\" max=\"100\" step=\"10\" input-id=\"$id\" modifier=\"underbar\" autofocus=\"autofocus\"></ons-input></div>",
                 element?.innerHTML,
                 "Should render Onsen UI number form component"
             )

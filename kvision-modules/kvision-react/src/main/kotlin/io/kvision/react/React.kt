@@ -23,27 +23,27 @@
 package io.kvision.react
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.HTMLElement
-import io.kvision.KVManagerReact
+import io.kvision.ReactModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.state.ObservableState
-import io.kvision.utils.set
+import org.w3c.dom.HTMLElement
 import react.RBuilder
+import react.StateSetter
 import react.child
 import react.dom.render as ReactRender
 
 /**
  * React component for KVision with support for state holder.
  * @param S state type
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param builder a builder function for external react components with support for the state holder.
  */
 class React<S>(
     state: S,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     private val builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
-) : Widget(classes), ObservableState<S> {
+) : Widget(className), ObservableState<S> {
 
     private val observers = mutableListOf<(S) -> Unit>()
 
@@ -54,16 +54,16 @@ class React<S>(
             observers.forEach { it(state) }
         }
 
-    private var refreshFunction: ((S) -> Unit)? = null
+    private var refreshFunction: (StateSetter<S>)? = null
 
     @Suppress("UnsafeCastFromDynamic")
     internal constructor(
-        classes: Set<String> = setOf(),
+        className: String? = null,
         builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
-    ) : this(js("{}"), classes, builder)
+    ) : this(js("{}"), className, builder)
 
     override fun afterInsert(node: VNode) {
-        ReactRender(node.elm as HTMLElement) {
+        ReactRender(node.elm as HTMLElement, {}) {
             child(reactWrapper<S> { refresh ->
                 refreshFunction = refresh
                 builder({ state }) { changeState: (S) -> S ->
@@ -76,7 +76,7 @@ class React<S>(
 
     override fun afterDestroy() {
         vnode?.elm?.let {
-            KVManagerReact.reactDom.unmountComponentAtNode(it)
+            ReactModule.reactDom.unmountComponentAtNode(it)
         }
     }
 
@@ -89,6 +89,12 @@ class React<S>(
             observers -= observer
         }
     }
+
+    companion object {
+        init {
+            ReactModule.initialize()
+        }
+    }
 }
 
 /**
@@ -98,11 +104,10 @@ class React<S>(
  */
 fun <S> Container.react(
     state: S,
-    classes: Set<String>? = null,
     className: String? = null,
     builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
 ): React<S> {
-    val react = React(state, classes ?: className.set, builder)
+    val react = React(state, className, builder)
     this.add(react)
     return react
 }
@@ -114,11 +119,10 @@ fun <S> Container.react(
  */
 fun <S> Container.reactBind(
     state: ObservableState<S>,
-    classes: Set<String>? = null,
     className: String? = null,
     builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
 ): React<S> {
-    val react = React(state.getState(), classes ?: className.set, builder)
+    val react = React(state.getState(), className, builder)
     react.addBeforeDisposeHook(state.subscribe { react.state = it })
     this.add(react)
     return react
@@ -130,14 +134,13 @@ fun <S> Container.reactBind(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.react(
-    classes: Set<String>? = null,
     className: String? = null,
     builder: RBuilder.() -> Unit
 ): React<dynamic> {
     val fullBuilder = fun RBuilder.(_: () -> dynamic, _: ((dynamic) -> dynamic) -> Unit) {
         this.builder()
     }
-    val react = React(classes ?: className.set, fullBuilder)
+    val react = React(className, fullBuilder)
     this.add(react)
     return react
 }

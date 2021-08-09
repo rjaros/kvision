@@ -30,7 +30,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import io.kvision.utils.set
 import kotlin.js.Date
 
 /**
@@ -45,7 +44,7 @@ import kotlin.js.Date
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsDateTime(
@@ -57,9 +56,9 @@ open class OnsDateTime(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsDateTime.() -> Unit)? = null
-) : SimplePanel(classes + setOf("form-group", "kv-ons-form-group")), DateFormControl,
+) : SimplePanel((className?.let { "$it " } ?: "") + "form-group kv-mb-3 kv-ons-form-group"), DateFormControl,
     MutableState<Date?> {
 
     /**
@@ -170,7 +169,7 @@ open class OnsDateTime(
         this.name = name
         this.eventTarget = this@OnsDateTime
     }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -245,12 +244,11 @@ fun Container.onsDateTime(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsDateTime.() -> Unit)? = null
 ): OnsDateTime {
     val onsDateTime =
-        OnsDateTime(value, mode, min, max, step, name, label, rich, classes ?: className.set, init)
+        OnsDateTime(value, mode, min, max, step, name, label, rich, className, init)
     this.add(onsDateTime)
     return onsDateTime
 }

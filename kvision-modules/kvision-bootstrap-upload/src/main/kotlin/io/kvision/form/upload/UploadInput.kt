@@ -22,10 +22,15 @@
 package io.kvision.form.upload
 
 import com.github.snabbdom.VNode
+import io.kvision.BootstrapUploadModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.core.bindAllJQueryListeners
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
+import io.kvision.core.removeAllJQueryListeners
 import io.kvision.form.Form
 import io.kvision.form.FormInput
 import io.kvision.form.FormPanel
@@ -34,13 +39,11 @@ import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.i18n.I18n
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.types.KFile
 import io.kvision.utils.getContent
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import org.w3c.files.File
+import kotlin.collections.set
 import kotlin.reflect.KProperty1
 
 /**
@@ -49,17 +52,18 @@ import kotlin.reflect.KProperty1
  * @constructor
  * @param uploadUrl the optional URL for the upload processing action
  * @param multiple determines if multiple file upload is supported
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
 open class UploadInput(
     uploadUrl: String? = null,
     multiple: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (UploadInput.() -> Unit)? = null
 ) :
-    Widget(classes + "form-control"), GenericFormComponent<List<KFile>?>, FormInput, MutableState<List<KFile>?> {
+    Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<List<KFile>?>, FormInput,
+    MutableState<List<KFile>?> {
 
     protected val observers = mutableListOf<(List<KFile>?) -> Unit>()
 
@@ -161,6 +165,36 @@ open class UploadInput(
     var dropZoneEnabled: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
 
     /**
+     * Whether to hide the preview content (image, pdf content, text content, etc.) within the thumbnail.
+     */
+    var hideThumbnailContent: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+
+    /**
+     * Whether to to display the file upload statistics.
+     */
+    var showUploadStats: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
+    /**
+     * Whether the batch upload of multiple files will be asynchronous/in parallel.
+     */
+    var uploadAsync: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+
+    /**
+     * The maximum file size for upload in KB.
+     */
+    var maxFileSize: Double? by refreshOnUpdate { refreshUploadInput() }
+
+    /**
+     * The minimum file size for upload in KB.
+     */
+    var minFileSize: Double? by refreshOnUpdate { refreshUploadInput() }
+
+    /**
+     * Additional ajax settings to pass to the plugin before submitting the ajax request for upload.
+     */
+    var ajaxSettings: dynamic by refreshOnUpdate { refreshUploadInput() }
+
+    /**
      * The placeholder for the upload control.
      */
     var placeholder: String? by refreshOnUpdate { refreshUploadInput() }
@@ -228,32 +262,20 @@ open class UploadInput(
         getElementJQuery()?.parent()?.parent()?.parent()?.find("input.file-caption-name")?.attr("tabindex", "-1")
         getElementJQuery()?.parent()?.parent()?.parent()?.find("button.fileinput-remove")?.removeAttr("tabindex")
         getElementJQuery()?.parent()?.parent()?.parent()?.find("div.btn-file")?.removeAttr("tabindex")
-        if (uploadUrl != null) {
-            this.getElementJQuery()?.on("fileselect") { e, _ ->
-                this.dispatchEvent("fileSelectUpload", obj { detail = e })
-            }
-            this.getElementJQuery()?.on("fileclear") { e, _ ->
-                this.dispatchEvent("fileClearUpload", obj { detail = e })
-            }
-            this.getElementJQuery()?.on("filereset") { e, _ ->
-                this.dispatchEvent("fileResetUpload", obj { detail = e })
-            }
-            this.getElementJQuery()?.on("filebrowse") { e, _ ->
-                this.dispatchEvent("fileBrowseUpload", obj { detail = e })
-            }
-            this.getElementJQueryD()?.on("filepreupload") lambda@{ _, data, previewId, index ->
-                data["previewId"] = previewId
-                data["index"] = index
-                this.dispatchEvent("filePreUpload", obj { detail = data })
-                return@lambda null
-            }
-        }
         this.getElementJQuery()?.on("focus") { _, _ ->
             getElementJQuery()?.parent()?.parent()?.parent()?.addClass("kv-focus")
         }
         this.getElementJQuery()?.on("blur") { _, _ ->
             getElementJQuery()?.parent()?.parent()?.parent()?.removeClass("kv-focus")
         }
+    }
+
+    override fun bindAllJQueryListeners() {
+        bindAllJQueryListeners(this, jqueryListenersMap)
+    }
+
+    override fun removeAllJQueryListeners() {
+        removeAllJQueryListeners(this, jqueryListenersMap)
     }
 
     override fun afterDestroy() {
@@ -345,7 +367,7 @@ open class UploadInput(
         return obj {
             this.uploadUrl = uploadUrl
             this.uploadExtraData = uploadExtraData ?: undefined
-            this.theme = if (explorerTheme) "explorer-fas" else "fas"
+            this.theme = if (explorerTheme) "explorer-fas" else "bs5"
             this.required = required
             this.showCaption = showCaption
             this.showPreview = showPreview
@@ -366,6 +388,12 @@ open class UploadInput(
             this.purifyHtml = false
             if (placeholder != null) this.msgPlaceholder = placeholder
             this.language = language
+            this.hideThumbnailContent = hideThumbnailContent
+            this.showUploadStats = showUploadStats
+            this.uploadAsync = uploadAsync
+            if (maxFileSize != null) this.maxFileSize = maxFileSize
+            if (minFileSize != null) this.minFileSize = minFileSize
+            if (ajaxSettings != null) this.ajaxSettings = ajaxSettings
         }
     }
 
@@ -382,6 +410,12 @@ open class UploadInput(
     override fun setState(state: List<KFile>?) {
         value = state
     }
+
+    companion object {
+        init {
+            BootstrapUploadModule.initialize()
+        }
+    }
 }
 
 /**
@@ -392,28 +426,13 @@ open class UploadInput(
 fun Container.uploadInput(
     uploadUrl: String? = null,
     multiple: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (UploadInput.() -> Unit)? = null
 ): UploadInput {
-    val uploadInput = UploadInput(uploadUrl, multiple, classes ?: className.set, init)
+    val uploadInput = UploadInput(uploadUrl, multiple, className, init)
     this.add(uploadInput)
     return uploadInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.uploadInput(
-    state: ObservableState<S>,
-    uploadUrl: String? = null,
-    multiple: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (UploadInput.(S) -> Unit)
-) = uploadInput(uploadUrl, multiple, classes, className).bind(state, true, init)
 
 /**
  * Returns file with the content read.

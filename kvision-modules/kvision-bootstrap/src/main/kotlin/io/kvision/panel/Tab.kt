@@ -30,8 +30,6 @@ import io.kvision.html.Link
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.routing.RoutingManager
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
 
 /**
@@ -49,7 +47,7 @@ open class Tab(
     label: String? = null, icon: String? = null,
     image: ResString? = null, closable: Boolean = false, val route: String? = null,
     init: (Tab.() -> Unit)? = null
-) : Tag(TAG.LI, classes = setOf("nav-item")) {
+) : Tag(TAG.LI, className = "nav-item") {
 
     constructor(
         label: String? = null,
@@ -100,20 +98,20 @@ open class Tab(
             closeIcon.visible = value
         }
 
-    internal val closeIcon = Icon("fas fa-times").apply {
+    protected val closeIcon = Icon("fas fa-times").apply {
         addCssClass("kv-tab-close")
         visible = closable
         setEventListener<Icon> {
             click = { e ->
-                val tabPanel = (this@Tab.parent as? TabPanelNav)?.tabPanel
+                val tabPanel = (this@Tab.parent as? TabPanel.TabPanelNav)?.tabPanel
                 val actIndex = tabPanel?.getTabIndex(this@Tab) ?: -1
                 e.asDynamic().data = actIndex
                 @Suppress("UnsafeCastFromDynamic")
-                val event = org.w3c.dom.CustomEvent("tabClosing", obj { detail = e; cancelable = true })
+                val event = org.w3c.dom.CustomEvent("closingTab", obj { detail = e; cancelable = true })
                 if (tabPanel?.getElement()?.dispatchEvent(event) != false) {
                     tabPanel?.removeTab(actIndex)
                     @Suppress("UnsafeCastFromDynamic")
-                    val closed = org.w3c.dom.CustomEvent("tabClosed", obj { detail = e })
+                    val closed = org.w3c.dom.CustomEvent("closedTab", obj { detail = e })
                     tabPanel?.getElement()?.dispatchEvent(closed)
                 }
                 e.stopPropagation()
@@ -124,20 +122,20 @@ open class Tab(
     /**
      * A link component within the tab.
      */
-    val link = Link(label ?: "", "#", icon, image, classes = setOf("nav-link")).apply {
+    val link = Link(label ?: "", "#", icon, image, className = "nav-link").apply {
         add(this@Tab.closeIcon)
     }
 
     internal val tabId = counter++
 
     protected val routingHandler = { _: Any ->
-        (this@Tab.parent as? TabPanelNav)?.tabPanel?.activeTab = this
+        (this@Tab.parent as? TabPanel.TabPanelNav)?.tabPanel?.activeTab = this
     }
 
     init {
         addPrivate(link)
         onClick { e ->
-            (this@Tab.parent as? TabPanelNav)?.tabPanel?.activeTab = this
+            (this@Tab.parent as? TabPanel.TabPanelNav)?.tabPanel?.activeTab = this
             e.preventDefault()
             if (route != null) {
                 RoutingManager.getRouter().kvNavigate(route)
@@ -153,7 +151,7 @@ open class Tab(
     }
 
     override fun childrenVNodes(): Array<VNode> {
-        return (privateChildren).filter { it.visible }.map { it.renderVNode() }.toTypedArray()
+        return (privateChildren!!).filter { it.visible }.map { it.renderVNode() }.toTypedArray()
     }
 
     override fun dispose() {
@@ -180,15 +178,3 @@ fun TabPanel.tab(
     this.add(tab)
     return tab
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> TabPanel.tab(
-    state: ObservableState<S>,
-    label: String? = null, icon: String? = null,
-    image: ResString? = null, closable: Boolean = false, route: String? = null,
-    init: (Tab.(S) -> Unit)
-) = tab(label, icon, image, closable, route).bind(state, true, init)

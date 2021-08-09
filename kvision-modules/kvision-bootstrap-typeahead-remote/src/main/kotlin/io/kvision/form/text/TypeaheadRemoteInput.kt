@@ -25,13 +25,11 @@ import io.kvision.core.Container
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.utils.JSON
-import io.kvision.utils.set
 import kotlinx.browser.window
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
-import kotlin.reflect.KFunction
 
 /**
  * The Typeahead control connected to the multiplatform service.
@@ -46,7 +44,7 @@ import kotlin.reflect.KFunction
  * @param type text input type (default "text")
  * @param value text input value
  * @param taAjaxOptions AJAX options for remote data source
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class TypeaheadRemoteInput<T : Any>(
@@ -56,9 +54,9 @@ open class TypeaheadRemoteInput<T : Any>(
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null,
     taAjaxOptions: TaAjaxOptions? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (TypeaheadRemoteInput<T>.() -> Unit)? = null
-) : TypeaheadInput(null, null, null, items, minLength, delay, type, value, classes) {
+) : TypeaheadInput(null, null, null, items, minLength, delay, type, value, className) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
@@ -96,7 +94,6 @@ fun <T : Any> Container.typeaheadRemoteInput(
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null,
     taAjaxOptions: TaAjaxOptions? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (TypeaheadRemoteInput<T>.() -> Unit)? = null
 ): TypeaheadRemoteInput<T> {
@@ -111,7 +108,7 @@ fun <T : Any> Container.typeaheadRemoteInput(
             type,
             value,
             taAjaxOptions,
-            classes ?: className.set,
+            className,
             init
         )
     this.add(typeaheadRemoteInput)

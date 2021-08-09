@@ -12,12 +12,13 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("popper.js", "^1.16.1"))
-    implementation(npm("bootstrap", "^4.6.0"))
+    implementation(npm("@popperjs/core", "^2.9.3"))
+    implementation(npm("bootstrap", "^5.1.0"))
     implementation(npm("awesome-bootstrap-checkbox", "^1.0.1"))
-    implementation(npm("element-resize-event", "^3.0.3"))
+    implementation(npm("element-resize-event", "^3.0.6"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
+    testImplementation(project(":kvision-modules:kvision-jquery"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

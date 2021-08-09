@@ -23,12 +23,15 @@
 package io.kvision.onsenui.form
 
 import com.github.snabbdom.VNode
-import kotlinx.browser.window
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.StringPair
 import io.kvision.form.select.SimpleSelectInput
-import io.kvision.utils.set
+import kotlinx.browser.window
+import org.w3c.dom.HTMLCollection
+import org.w3c.dom.NodeList
+import org.w3c.dom.asList
+import org.w3c.dom.get
 
 /**
  * OnsenUI select input component.
@@ -40,7 +43,7 @@ import io.kvision.utils.set
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param selectSize the number of visible options
  * @param selectId the ID of the select element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsSelectInput(
@@ -50,9 +53,15 @@ open class OnsSelectInput(
     multiple: Boolean = false,
     selectSize: Int? = null,
     selectId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsSelectInput.() -> Unit)? = null
-) : SimpleSelectInput(options, value, emptyOption, multiple, selectSize, classes + "kv-ons-form-control") {
+) : SimpleSelectInput(
+    options,
+    value,
+    emptyOption,
+    multiple,
+    selectSize,
+    (className?.let { "$it " } ?: "") + "kv-ons-form-control") {
 
     /**
      * The ID of the select element.
@@ -69,8 +78,14 @@ open class OnsSelectInput(
         init?.invoke(this)
     }
 
-    override fun calculateValue(v: Any): String? {
-        val vInt = getElementJQuery()?.find("select")?.`val`()
+    override fun calculateValue(v: Any?): String? {
+        val element = getElementD()?.querySelectorAll("select")?.unsafeCast<NodeList>()?.get(0)?.asDynamic()
+        val vInt: Any? = if (multiple) {
+            element?.selectedOptions?.unsafeCast<HTMLCollection>()?.asList()?.map { it.asDynamic().value }
+                ?.toTypedArray()
+        } else {
+            element.value
+        }
         return vInt?.let { super.calculateValue(it) }
     }
 
@@ -89,7 +104,7 @@ open class OnsSelectInput(
     }
 
     override fun afterInsert(node: VNode) {
-        if ((getElementJQuery()?.find("select")?.length?.toInt() ?: 0) > 0) {
+        if ((getElementD()?.querySelectorAll("select")?.unsafeCast<NodeList>()?.length ?: 0) > 0) {
             refreshState()
         } else {
             window.setTimeout({
@@ -99,14 +114,19 @@ open class OnsSelectInput(
     }
 
     override fun refreshState() {
-        if ((getElementJQuery()?.find("select")?.length?.toInt() ?: 0) > 0) {
+        val element = getElementD()?.querySelectorAll("select")?.unsafeCast<NodeList>()?.get(0)?.asDynamic()
+        if (element != null) {
             value?.let {
                 if (this.multiple) {
-                    getElementJQuery()?.find("select")?.`val`(it.split(",").toTypedArray())
+                    val values = it.split(",")
+                    for (i in 0 until (element.options?.length?.unsafeCast<Int>() ?: 0)) {
+                        element.options[i].selected =
+                            values.contains(element.options[i].value?.unsafeCast<String>())
+                    }
                 } else {
-                    getElementJQuery()?.`val`(it)
+                    element.value = it
                 }
-            } ?: getElementJQueryD()?.`val`(null)
+            } ?: run { element.value = null }
         }
     }
 }
@@ -123,12 +143,11 @@ fun Container.onsSelectInput(
     multiple: Boolean = false,
     selectSize: Int? = null,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsSelectInput.() -> Unit)? = null
 ): OnsSelectInput {
     val onsSelectInput =
-        OnsSelectInput(options, value, emptyOption, multiple, selectSize, inputId, classes ?: className.set, init)
+        OnsSelectInput(options, value, emptyOption, multiple, selectSize, inputId, className, init)
     this.add(onsSelectInput)
     return onsSelectInput
 }

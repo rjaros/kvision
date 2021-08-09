@@ -25,11 +25,12 @@ package io.kvision.onsenui.tabbar
 import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.DomAttribute
+import io.kvision.core.StringPair
 import io.kvision.core.Widget
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.obj
-import io.kvision.utils.set
+import org.w3c.dom.NodeList
+import org.w3c.dom.get
 import kotlin.js.Promise
 
 /**
@@ -52,16 +53,16 @@ enum class TabsPosition(override val attributeValue: String) : DomAttribute {
  * @param tabPosition the tab bar position
  * @param animation determines if the transitions are animated
  * @param swipeable determines if the tab bar can be scrolled by drag or swipe
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Tabbar(
     tabPosition: TabsPosition? = null,
     animation: Boolean? = null,
     swipeable: Boolean? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Tabbar.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * The tab bar position.
@@ -152,23 +153,22 @@ open class Tabbar(
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
         }
-        this.getElementJQuery()?.on("prechange") { e, _ ->
-            this.dispatchEvent("onsPrechange", obj { detail = e })
+        this.getElement()?.addEventListener("prechange", { e ->
             if (tabbarStyleCallback != null) {
                 val widget = Widget()
                 tabbarStyleCallback?.let { widget.it(e.asDynamic().detail.index) }
-                val style = widget.getSnStyle().joinToString(";") { (key, value) -> "$key: $value" }
-                getElementJQuery()?.find(".tabbar")?.attr("style", style)
+                val styles = widget.getSnStyle()
+                val stylesList = mutableListOf<StringPair>()
+                for (key in js("Object").keys(styles)) {
+                    @Suppress("UnsafeCastFromDynamic")
+                    stylesList.add(key.unsafeCast<String>() to styles[key])
+                }
+                val style = stylesList.joinToString(";") { (key, value) -> "$key: $value" }
+                val element = getElementD()?.querySelectorAll(".tabbar")?.unsafeCast<NodeList>()?.get(0)?.asDynamic()
+                element?.setAttribute("style", style)
             }
             e.stopPropagation()
-        }
-        this.getElementJQuery()?.on("postchange") { e, _ ->
-            this.dispatchEvent("onsPostchange", obj { detail = e })
-            e.stopPropagation()
-        }
-        this.getElementJQuery()?.on("reactive") { e, _ ->
-            this.dispatchEvent("onsReactive", obj { detail = e })
-        }
+        })
         if (tabbarStyleCallback != null) {
             val activeIndex = if (getActiveTabIndex().toInt() >= 0) {
                 getActiveTabIndex().toInt()
@@ -182,13 +182,20 @@ open class Tabbar(
             }
             val widget = Widget()
             tabbarStyleCallback?.let { widget.it(activeIndex) }
-            val style = widget.getSnStyle().joinToString(";") { (key, value) -> "$key: $value" }
-            getElementJQuery()?.find(".tabbar")?.attr("style", style)
+            val styles = widget.getSnStyle()
+            val stylesList = mutableListOf<StringPair>()
+            for (key in js("Object").keys(styles)) {
+                @Suppress("UnsafeCastFromDynamic")
+                stylesList.add(key.unsafeCast<String>() to styles[key])
+            }
+            val style = stylesList.joinToString(";") { (key, value) -> "$key: $value" }
+            val element = getElementD()?.querySelectorAll(".tabbar")?.unsafeCast<NodeList>()?.get(0)?.asDynamic()
+            element?.setAttribute("style", style)
         }
     }
 
     override fun afterDestroy() {
-        children.forEach {
+        children?.forEach {
             if (it is Page) remove(it)
         }
     }
@@ -267,11 +274,10 @@ fun Page.tabbar(
     tabPosition: TabsPosition? = null,
     animation: Boolean = true,
     swipeable: Boolean? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Tabbar.() -> Unit)? = null
 ): Tabbar {
-    val tabbar = Tabbar(tabPosition, animation, swipeable, classes ?: className.set, init)
+    val tabbar = Tabbar(tabPosition, animation, swipeable, className, init)
     this.add(tabbar)
     return tabbar
 }

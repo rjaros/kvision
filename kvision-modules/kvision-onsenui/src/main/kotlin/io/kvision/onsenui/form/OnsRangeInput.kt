@@ -26,7 +26,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.form.range.RangeInput
-import io.kvision.utils.set
 
 /**
  * OnsenUI range input component.
@@ -37,7 +36,7 @@ import io.kvision.utils.set
  * @param max maximal value (default 100)
  * @param step step value (default 1)
  * @param inputId the ID of the input element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsRangeInput(
@@ -46,9 +45,9 @@ open class OnsRangeInput(
     max: Number = 100,
     step: Number = DEFAULT_STEP,
     inputId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsRangeInput.() -> Unit)? = null
-) : RangeInput(value, min, max, step, classes + "kv-ons-form-control") {
+) : RangeInput(value, min, max, step, (className?.let { "$it " } ?: "") + "kv-ons-form-control") {
 
     /**
      * The ID of the input element.
@@ -91,12 +90,11 @@ fun Container.onsRangeInput(
     max: Number = 100,
     step: Number = DEFAULT_STEP,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsRangeInput.() -> Unit)? = null
 ): OnsRangeInput {
     val onsRangeInput =
-        OnsRangeInput(value, min, max, step, inputId, classes ?: className.set, init)
+        OnsRangeInput(value, min, max, step, inputId, className, init)
     this.add(onsRangeInput)
     return onsRangeInput
 }

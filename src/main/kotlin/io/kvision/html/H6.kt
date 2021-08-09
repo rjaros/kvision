@@ -22,9 +22,6 @@
 package io.kvision.html
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Simple component rendered as *h6*.
@@ -33,17 +30,17 @@ import io.kvision.utils.set
  * @param content element text
  * @param rich determines if [content] can contain HTML code
  * @param align content align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class H6(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (H6.() -> Unit)? = null
 ) :
-    Tag(TAG.H6, content, rich, align, classes) {
+    Tag(TAG.H6, content, rich, align, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -60,26 +57,10 @@ fun Container.h6(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (H6.() -> Unit)? = null
 ): H6 {
-    val h6 = H6(content, rich, align, classes ?: className.set, init)
+    val h6 = H6(content, rich, align, className, init)
     this.add(h6)
     return h6
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.h6(
-    state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (H6.(S) -> Unit)
-) = h6(content, rich, align, classes, className).bind(state, true, init)

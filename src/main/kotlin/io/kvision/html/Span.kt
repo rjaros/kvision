@@ -22,9 +22,6 @@
 package io.kvision.html
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Simple component rendered as *span*.
@@ -33,17 +30,17 @@ import io.kvision.utils.set
  * @param content element text
  * @param rich determines if [content] can contain HTML code
  * @param align content align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Span(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Span.() -> Unit)? = null
 ) :
-    Tag(TAG.SPAN, content, rich, align, classes) {
+    Tag(TAG.SPAN, content, rich, align, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -60,26 +57,10 @@ fun Container.span(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Span.() -> Unit)? = null
 ): Span {
-    val span = Span(content, rich, align, classes ?: className.set, init)
+    val span = Span(content, rich, align, className, init)
     this.add(span)
     return span
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.span(
-    state: ObservableState<S>,
-    content: String? = null,
-    rich: Boolean = false,
-    align: Align? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Span.(S) -> Unit)
-) = span(content, rich, align, classes, className).bind(state, true, init)

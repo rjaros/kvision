@@ -43,9 +43,9 @@ class StyleSpec : DomSpec {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
                     style {
+                        overflow = Overflow.SCROLL
                         margin = 2.px
                         color = Color.name(Col.SILVER)
-                        overflow = Overflow.SCROLL
                         setStyle("box-shadow", "10px 10px")
                     }
                 }
@@ -65,9 +65,9 @@ class StyleSpec : DomSpec {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
                     style(".customclass") {
+                        overflow = Overflow.SCROLL
                         margin = 2.px
                         color = Color.name(Col.SILVER)
-                        overflow = Overflow.SCROLL
                     }
                 }
             }
@@ -86,9 +86,9 @@ class StyleSpec : DomSpec {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
                     style(".customclass") {
+                        overflow = Overflow.SCROLL
                         margin = 2.px
                         color = Color.name(Col.SILVER)
-                        overflow = Overflow.SCROLL
                         style("image") {
                             marginTop = 10.px
                         }
@@ -142,9 +142,9 @@ class StyleSpec : DomSpec {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
                     style(".customclass", PClass.HOVER) {
+                        overflow = Overflow.SCROLL
                         margin = 2.px
                         color = Color.name(Col.SILVER)
-                        overflow = Overflow.SCROLL
                     }
                 }
             }
@@ -163,9 +163,9 @@ class StyleSpec : DomSpec {
             Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 widget {
                     style(".customclass", pElement = PElement.FIRSTLETTER) {
+                        overflow = Overflow.SCROLL
                         margin = 2.px
                         color = Color.name(Col.SILVER)
-                        overflow = Overflow.SCROLL
                     }
                 }
             }
@@ -185,9 +185,9 @@ class StyleSpec : DomSpec {
                 widget {
                     style {
                         mediaQuery = "min-width: 700px"
+                        overflow = Overflow.SCROLL
                         margin = 2.px
                         color = Color.name(Col.SILVER)
-                        overflow = Overflow.SCROLL
                         setStyle("box-shadow", "10px 10px")
                     }
                 }

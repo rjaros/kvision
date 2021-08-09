@@ -30,15 +30,10 @@ import io.kvision.core.Widget
 /**
  * Helper class for minimize icon component.
  */
-open class MinimizeIcon : Widget(setOf()) {
+open class MinimizeIcon : Widget("btn-close kv-window-button") {
 
     override fun render(): VNode {
         return render("button", arrayOf(KVManager.virtualize("<span aria-hidden='true'>&#x1f5d5;</span>")))
-    }
-
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        super.buildClassSet(classSetBuilder)
-        classSetBuilder.add("close")
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

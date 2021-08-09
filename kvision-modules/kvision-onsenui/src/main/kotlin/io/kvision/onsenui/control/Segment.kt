@@ -27,21 +27,19 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.onsenui.tabbar.Tabbar
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.js.Promise
 
 /**
  * A segment component.
  *
  * @constructor Creates a segment component.
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Segment(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Segment.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * The connected tab bar component.
@@ -88,14 +86,6 @@ open class Segment(
         }
     }
 
-    @Suppress("UnsafeCastFromDynamic")
-    override fun afterInsert(node: VNode) {
-        this.getElementJQuery()?.on("postchange") { e, _ ->
-            this.dispatchEvent("onsPostchange", obj { detail = e })
-            e.stopPropagation()
-        }
-    }
-
     /**
      * Activates the button at given index.
      * @param index the button index
@@ -122,11 +112,10 @@ open class Segment(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.segment(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Segment.() -> Unit)? = null
 ): Segment {
-    val segment = Segment(classes ?: className.set, init)
+    val segment = Segment(className, init)
     this.add(segment)
     return segment
 }

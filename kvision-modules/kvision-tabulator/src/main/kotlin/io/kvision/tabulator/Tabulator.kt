@@ -22,7 +22,7 @@
 package io.kvision.tabulator
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerTabulator
+import io.kvision.TabulatorModule
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
@@ -30,17 +30,32 @@ import io.kvision.i18n.I18n
 import io.kvision.panel.Root
 import io.kvision.state.ObservableList
 import io.kvision.state.ObservableState
-import io.kvision.table.TableType
+import io.kvision.types.DateSerializer
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import io.kvision.utils.syncWithList
 import io.kvision.utils.toKotlinObj
 import io.kvision.utils.toPlainObj
 import kotlinx.browser.window
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
+import kotlin.js.Date
 import kotlin.reflect.KClass
 import io.kvision.tabulator.js.Tabulator as JsTabulator
+
+/**
+ * Tabulator table types.
+ */
+enum class TableType(val type: String) {
+    STRIPED("table-striped"),
+    BORDERED("table-bordered"),
+    BORDERLESS("table-borderless"),
+    HOVER("table-hover"),
+    SMALL("table-sm")
+}
 
 /**
  * Tabulator row range lookup set option.
@@ -61,7 +76,10 @@ enum class RowRangeLookup(internal val set: String) {
  * @param dataUpdateOnEdit determines if the data model is automatically updated after tabulator edit action
  * @param options tabulator options
  * @param types a set of table types
- * @param classes a set of CSS class names
+ * @param className CSS class names
+ * @param kClass Kotlin class
+ * @param serializer the serializer for type T
+ * @param serializersModule optional serialization module with custom serializers
  */
 @Suppress("LargeClass", "TooManyFunctions")
 open class Tabulator<T : Any>(
@@ -69,10 +87,20 @@ open class Tabulator<T : Any>(
     protected val dataUpdateOnEdit: Boolean = true,
     val options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String> = setOf(),
+    className: String? = null,
     protected val kClass: KClass<T>? = null,
-) :
-    Widget(classes) {
+    protected val serializer: KSerializer<T>? = null,
+    protected val module: SerializersModule? = null
+) : Widget(className) {
+
+    protected val jsonHelper = if (serializer != null) Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+        serializersModule = SerializersModule {
+            contextual(Date::class, DateSerializer)
+            module?.let { this.include(it) }
+        }
+    } else null
 
     /**
      * Table types.
@@ -131,80 +159,80 @@ open class Tabulator<T : Any>(
         if (options.rowClick == null) {
             options.rowClick = { _, row ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowClick", obj { detail = row })
+                this.dispatchEvent("rowClickTabulator", obj { detail = row })
             }
         }
         if (options.rowDblClick == null) {
             options.rowDblClick = { _, row ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowDblClick", obj { detail = row })
+                this.dispatchEvent("rowDblClickTabulator", obj { detail = row })
             }
         }
         if (options.rowSelectionChanged == null) {
             options.rowSelectionChanged = { _, rows ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowSelectionChanged", obj { detail = rows })
+                this.dispatchEvent("rowSelectionChangedTabulator", obj { detail = rows })
             }
         }
         if (options.rowSelected == null) {
             options.rowSelected = { row ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowSelected", obj { detail = row })
+                this.dispatchEvent("rowSelectedTabulator", obj { detail = row })
             }
         }
         if (options.rowDeselected == null) {
             options.rowDeselected = { row ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorRowDeselected", obj { detail = row })
+                this.dispatchEvent("rowDeselectedTabulator", obj { detail = row })
             }
         }
         if (options.cellClick == null) {
             options.cellClick = { _, cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellClick", obj { detail = cell })
+                this.dispatchEvent("cellClickTabulator", obj { detail = cell })
             }
         }
         if (options.cellDblClick == null) {
             options.cellDblClick = { _, cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellDblClick", obj { detail = cell })
+                this.dispatchEvent("cellDblClickTabulator", obj { detail = cell })
             }
         }
         if (options.cellEditing == null) {
             options.cellEditing = { cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellEditing", obj { detail = cell })
+                this.dispatchEvent("cellEditingTabulator", obj { detail = cell })
             }
         }
         if (options.cellEdited == null) {
             options.cellEdited = { cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellEdited", obj { detail = cell })
+                this.dispatchEvent("cellEditedTabulator", obj { detail = cell })
             }
         }
         if (options.cellEditCancelled == null) {
             options.cellEditCancelled = { cell ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorCellEditCancelled", obj { detail = cell })
+                this.dispatchEvent("cellEditCancelledTabulator", obj { detail = cell })
             }
         }
         if (options.dataLoading == null) {
             options.dataLoading = { data ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorDataLoading", obj { detail = data })
+                this.dispatchEvent("dataLoadingTabulator", obj { detail = data })
             }
         }
         if (options.dataLoaded == null) {
             options.dataLoaded = { data ->
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorDataLoaded", obj { detail = data })
+                this.dispatchEvent("dataLoadedTabulator", obj { detail = data })
             }
         }
         if (options.dataChanged == null) {
             options.dataChanged = { data ->
                 val fixedData = fixData(data)!!
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("tabulatorDataEdited", obj { detail = fixedData })
+                this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })
                 if (dataUpdateOnEdit && this.data is MutableList<T>) {
                     window.setTimeout({
                         this.data.syncWithList(fixedData)
@@ -227,7 +255,7 @@ open class Tabulator<T : Any>(
     protected open fun createJsTabulator() {
         (this.getElement() as? HTMLElement)?.let {
             jsTabulator =
-                KVManagerTabulator.getConstructor()
+                TabulatorModule.getConstructor()
                     .createInstance(it, options.toJs(this, this::translate, kClass))
             if (currentPage != null) {
                 jsTabulator?.setPageSize(pageSize ?: 0)
@@ -269,7 +297,7 @@ open class Tabulator<T : Any>(
     open fun replaceData(data: Array<T>) {
         val jsData = data.map { toPlainObjTabulator(it) }.toTypedArray()
         options.data = jsData
-        if ((getElementJQuery()?.find(".tabulator-editing")?.length?.toInt() ?: 0) > 0) {
+        if ((getElement()?.unsafeCast<Element>()?.querySelectorAll(".tabulator-editing")?.length ?: 0) > 0) {
             this.removeCustomEditors()
         }
         jsTabulator?.replaceData(jsData, null, null)
@@ -684,7 +712,11 @@ open class Tabulator<T : Any>(
         insertRightOfTarget: Boolean? = null,
         positionTarget: String? = null
     ) {
-        jsTabulator?.addColumn(columnDefinition.toJs(this, this::translate, kClass), insertRightOfTarget, positionTarget)
+        jsTabulator?.addColumn(
+            columnDefinition.toJs(this, this::translate, kClass),
+            insertRightOfTarget,
+            positionTarget
+        )
     }
 
     /**
@@ -708,7 +740,7 @@ open class Tabulator<T : Any>(
         EditorRoot.root = null
     }
 
-    protected open fun fixData(data: List<T>?): List<T>? {
+    protected open fun fixData(data: List<dynamic>?): List<T>? {
         return if (kClass != null) {
             data?.map {
                 toKotlinObjTabulator(it, kClass)
@@ -718,7 +750,8 @@ open class Tabulator<T : Any>(
         }
     }
 
-    protected open fun fixData(data: T): T {
+    protected open fun fixData(data: dynamic): T {
+        @Suppress("UnsafeCastFromDynamic")
         return if (kClass != null) {
             toKotlinObjTabulator(data, kClass)
         } else {
@@ -726,16 +759,24 @@ open class Tabulator<T : Any>(
         }
     }
 
-    protected open fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
+    internal fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
         if (data._children != null) {
             data._children =
                 data._children.unsafeCast<Array<dynamic>>().map { toKotlinObjTabulator(it, kClass) }.toTypedArray()
         }
-        return toKotlinObj(data, kClass)
+        return if (jsonHelper == null || serializer == null) {
+            toKotlinObj(data, kClass)
+        } else {
+            jsonHelper.decodeFromString(serializer, JSON.stringify(data))
+        }
     }
 
-    protected open fun toPlainObjTabulator(data: T): T {
-        val obj = toPlainObj(data)
+    internal fun toPlainObjTabulator(data: T): T {
+        val obj = if (jsonHelper == null || serializer == null) {
+            toPlainObj(data)
+        } else {
+            JSON.parse(jsonHelper.encodeToString(serializer, data))
+        }
         if (obj._children != null) {
             obj._children = obj._children.unsafeCast<Array<T>>().map { toPlainObjTabulator(it) }.toTypedArray()
         }
@@ -756,35 +797,45 @@ open class Tabulator<T : Any>(
     }
 
     companion object {
+
+        init {
+            TabulatorModule.initialize()
+        }
+
         /**
-         * A helper function to create a Tabulator object with correct serializer.
+         * A helper function to create a Tabulator object.
          */
         inline fun <reified T : Any> create(
             data: List<T>? = null,
             dataUpdateOnEdit: Boolean = true,
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
+            className: String? = null,
+            serializer: KSerializer<T>? = null,
+            serializersModule: SerializersModule? = null,
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
-            val tabulator = Tabulator(data, dataUpdateOnEdit, options, types, classes, T::class)
+            val tabulator =
+                Tabulator(data, dataUpdateOnEdit, options, types, className, T::class, serializer, serializersModule)
             init?.invoke(tabulator)
             return tabulator
         }
 
         /**
-         * A helper function to create a Tabulator object with correct serializer and a general observable store.
+         * A helper function to create a Tabulator object with a general observable store.
          */
         inline fun <reified T : Any, S : Any> create(
             store: ObservableState<S>,
             noinline dataFactory: (S) -> List<T>,
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
-            classes: Set<String> = setOf(),
+            className: String? = null,
+            serializer: KSerializer<T>? = null,
+            serializersModule: SerializersModule? = null,
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
             val data = dataFactory(store.getState())
-            val tabulator = Tabulator(data, false, options, types, classes, T::class)
+            val tabulator = Tabulator(data, false, options, types, className, T::class, serializer, serializersModule)
             init?.invoke(tabulator)
             tabulator.addBeforeDisposeHook(store.subscribe { s ->
                 tabulator.replaceData(dataFactory(s).toTypedArray())
@@ -804,11 +855,12 @@ inline fun <reified T : Any> Container.tabulator(
     dataUpdateOnEdit: Boolean = true,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String>? = null,
     className: String? = null,
+    serializer: KSerializer<T>? = null,
+    serializersModule: SerializersModule? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, classes ?: className.set)
+    val tabulator = Tabulator.create(data, dataUpdateOnEdit, options, types, className, serializer, serializersModule)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
@@ -822,11 +874,12 @@ inline fun <reified T : Any, S : Any> Container.tabulator(
     noinline dataFactory: (S) -> List<T>,
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String>? = null,
     className: String? = null,
+    serializer: KSerializer<T>? = null,
+    serializersModule: SerializersModule? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
-    val tabulator = Tabulator.create(store, dataFactory, options, types, classes ?: className.set)
+    val tabulator = Tabulator.create(store, dataFactory, options, types, className, serializer, serializersModule)
     init?.invoke(tabulator)
     this.add(tabulator)
     return tabulator
@@ -838,7 +891,6 @@ inline fun <reified T : Any, S : Any> Container.tabulator(
 inline fun <reified T : Any> Container.tabulator(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
-    classes: Set<String>? = null,
     className: String? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
@@ -847,7 +899,7 @@ inline fun <reified T : Any> Container.tabulator(
             dataUpdateOnEdit = false,
             options = options,
             types = types,
-            classes = classes ?: className.set,
+            className = className,
             kClass = T::class
         )
     init?.invoke(tabulator)

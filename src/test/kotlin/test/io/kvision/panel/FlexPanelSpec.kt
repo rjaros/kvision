@@ -44,7 +44,7 @@ class FlexPanelSpec : DomSpec {
             flexPanel.add(Span("ghi"), 3)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div style=\"display: flex; flex-direction: row-reverse; justify-content: space-evenly;\"><div style=\"order: 1;\"><span>abc</span></div><div style=\"order: 2;\"><span>def</span></div><div style=\"order: 3;\"><span>ghi</span></div></div>",
+                "<div style=\"display: flex; flex-direction: row-reverse; justify-content: space-evenly;\"><span style=\"order: 1;\">abc</span><span style=\"order: 2;\">def</span><span style=\"order: 3;\">ghi</span></div>",
                 element?.innerHTML,
                 "Should render correct flex panel"
             )
@@ -55,7 +55,7 @@ class FlexPanelSpec : DomSpec {
     fun renderWithDSL() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val flexPanel = FlexPanel(FlexDirection.ROWREV, justify = JustifyContent.SPACEEVENLY) {
+            val flexPanel = FlexPanel(FlexDirection.ROWREV, justify = JustifyContent.SPACEEVENLY, useWrappers = true) {
                 options(order = 1) {
                     span("abc")
                 }

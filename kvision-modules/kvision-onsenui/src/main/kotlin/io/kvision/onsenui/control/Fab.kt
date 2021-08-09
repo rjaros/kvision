@@ -23,13 +23,12 @@
 package io.kvision.onsenui.control
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.html.CustomTag
 import io.kvision.onsenui.FloatPosition
 import io.kvision.onsenui.visual.Icon
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * An Onsen UI fab component.
@@ -39,7 +38,7 @@ import io.kvision.utils.set
  * @param floatPosition a position of the button
  * @param content the content the button.
  * @param rich whether [content] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -48,9 +47,9 @@ open class Fab(
     floatPosition: FloatPosition? = null,
     content: String? = null,
     rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Fab.() -> Unit)? = null
-) : CustomTag("ons-fab", content, rich, null, classes) {
+) : CustomTag("ons-fab", content, rich, null, className) {
 
     /**
      * The name of the icon placed on the button.
@@ -174,11 +173,10 @@ fun Container.fab(
     floatPosition: FloatPosition? = null,
     content: String? = null,
     rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Fab.() -> Unit)? = null
 ): Fab {
-    val fab = Fab(icon, floatPosition, content, rich, classes ?: className.set, init)
+    val fab = Fab(icon, floatPosition, content, rich, className, init)
     this.add(fab)
     return fab
 }

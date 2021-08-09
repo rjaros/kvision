@@ -22,10 +22,16 @@
 package io.kvision.form.spinner
 
 import com.github.snabbdom.VNode
+import com.github.snabbdom.h
+import io.kvision.BootstrapSpinnerModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.core.bindAllJQueryListeners
+import io.kvision.core.getElementJQuery
+import io.kvision.core.getElementJQueryD
+import io.kvision.core.removeAllJQueryListeners
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
@@ -34,10 +40,7 @@ import io.kvision.html.ButtonStyle
 import io.kvision.i18n.I18n
 import io.kvision.jquery.JQuery
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * Spinner buttons layout types.
@@ -73,7 +76,7 @@ internal const val DEFAULT_STEP = 1
  * @param forceType spinner force rounding type
  * @param buttonStyle the style of the up/down buttons
  * @param decimalSeparator the decimal separator (default: auto detect)
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
@@ -82,8 +85,9 @@ open class SpinnerInput(
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
     decimalSeparator: String? = I18n.detectDecimalSeparator(),
-    classes: Set<String> = setOf(), init: (SpinnerInput.() -> Unit)? = null
-) : Widget(classes + "form-control"), GenericFormComponent<Number?>, FormInput, MutableState<Number?> {
+    className: String? = null, init: (SpinnerInput.() -> Unit)? = null
+) : Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<Number?>, FormInput,
+    MutableState<Number?> {
 
     protected val observers = mutableListOf<(Number?) -> Unit>()
 
@@ -180,7 +184,6 @@ open class SpinnerInput(
             ButtonsType.VERTICAL -> this.addSurroundingCssClass("kv-spinner-btn-vertical")
             ButtonsType.HORIZONTAL -> this.addSurroundingCssClass("kv-spinner-btn-horizontal")
         }
-        this.surroundingSpan = true
         this.setInternalEventListener<SpinnerInput> {
             change = {
                 self.changeValue()
@@ -191,7 +194,7 @@ open class SpinnerInput(
     }
 
     override fun render(): VNode {
-        return render("input")
+        return h("span", arrayOf(render("input")))
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -255,17 +258,18 @@ open class SpinnerInput(
         siblings = getElementJQuery()?.parent(".bootstrap-touchspin")?.children("span")
         this.getElementJQuery()?.on("change") { e, _ ->
             if (e.asDynamic().isTrigger != null) {
-                val event = org.w3c.dom.events.Event("change")
-                this.getElement()?.dispatchEvent(event)
+                this.dispatchEvent("change", obj { detail = e })
             }
         }
-        this.getElementJQuery()?.on("touchspin.on.min") { e, _ ->
-            this.dispatchEvent("onMinBsSpinner", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("touchspin.on.max") { e, _ ->
-            this.dispatchEvent("onMaxBsSpinner", obj { detail = e })
-        }
         refreshState()
+    }
+
+    override fun bindAllJQueryListeners() {
+        bindAllJQueryListeners(this, jqueryListenersMap)
+    }
+
+    override fun removeAllJQueryListeners() {
+        removeAllJQueryListeners(this, jqueryListenersMap)
     }
 
     override fun afterDestroy() {
@@ -366,6 +370,12 @@ open class SpinnerInput(
     override fun setState(state: Number?) {
         value = state
     }
+
+    companion object {
+        init {
+            BootstrapSpinnerModule.initialize()
+        }
+    }
 }
 
 /**
@@ -377,7 +387,7 @@ fun Container.spinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
-    decimalSeparator: String? = I18n.detectDecimalSeparator(), classes: Set<String>? = null,
+    decimalSeparator: String? = I18n.detectDecimalSeparator(),
     className: String? = null,
     init: (SpinnerInput.() -> Unit)? = null
 ): SpinnerInput {
@@ -392,36 +402,9 @@ fun Container.spinnerInput(
             forceType,
             buttonStyle,
             decimalSeparator,
-            classes ?: className.set,
+            className,
             init
         )
     this.add(spinnerInput)
     return spinnerInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.spinnerInput(
-    state: ObservableState<S>,
-    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
-    decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
-    forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
-    decimalSeparator: String? = I18n.detectDecimalSeparator(), classes: Set<String>? = null,
-    className: String? = null,
-    init: (SpinnerInput.(S) -> Unit)
-) = spinnerInput(
-    value,
-    min,
-    max,
-    step,
-    decimals,
-    buttonsType,
-    forceType,
-    buttonStyle,
-    decimalSeparator,
-    classes,
-    className
-).bind(state, true, init)

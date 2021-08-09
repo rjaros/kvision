@@ -31,12 +31,10 @@ import io.kvision.core.CssClass
 import io.kvision.html.Link
 import io.kvision.html.Span
 import io.kvision.html.span
-import io.kvision.jquery.invoke
-import io.kvision.jquery.jQuery
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
+import io.kvision.utils.obj
+import org.w3c.dom.CustomEventInit
+import org.w3c.dom.Element
 
 /**
  * Navbar types.
@@ -64,6 +62,7 @@ enum class NavbarExpand(override val className: String) : CssClass {
     LG("navbar-expand-lg"),
     MD("navbar-expand-md"),
     SM("navbar-expand-sm"),
+    XXL("navbar-expand-xxl"),
 }
 
 /**
@@ -77,7 +76,7 @@ enum class NavbarExpand(override val className: String) : CssClass {
  * @param nColor the navbar color
  * @param bgColor the navbar background color
  * @param collapseOnClick the navbar is auto collapsed when the link is clicked
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Navbar(
@@ -88,8 +87,8 @@ open class Navbar(
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
     collapseOnClick: Boolean = false,
-    classes: Set<String> = setOf(), init: (Navbar.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (Navbar.() -> Unit)? = null
+) : SimplePanel(className) {
 
     /**
      * The navbar header label.
@@ -136,26 +135,30 @@ open class Navbar(
 
     private val idc = "kv_navbar_$counter"
 
-    private val brandLink = Link(label ?: "", link, classes = setOf("navbar-brand"))
-    internal val container = SimplePanel(setOf("collapse", "navbar-collapse")) {
+    private val brandLink = Link(label ?: "", link, className = "navbar-brand")
+    private val toggler = NavbarButton(idc)
+    internal val container = SimplePanel("collapse navbar-collapse") {
         id = this@Navbar.idc
     }
+    internal val extContainer = SimplePanel("container-fluid")
 
     init {
-        addPrivate(brandLink)
-        addPrivate(NavbarButton(idc))
-        addPrivate(container)
+        extContainer.add(brandLink)
+        extContainer.add(toggler)
+        extContainer.add(container)
+        addPrivate(extContainer)
         if (label == null) brandLink.hide()
         counter++
         if (collapseOnClick) {
             setInternalEventListener<Navbar> {
                 click = {
-                    val target = jQuery(it.target)
-                    if (target.`is`("a.nav-item.nav-link") || target.`is`("a.dropdown-item")) {
-                        val navbar = target.parents("nav.navbar").first()
-                        val toggler = navbar.children("button.navbar-toggler")
-                        val collapse = navbar.children("div.navbar-collapse")
-                        if (collapse.`is`(".show")) toggler.click()
+                    val target = it.target.unsafeCast<Element>()
+                    if (target.matches("a.nav-item.nav-link") || target.matches("a.dropdown-item")) {
+                        if (container.getElement()?.unsafeCast<Element>()?.matches(".show") == true) {
+                            toggler.dispatchEvent("click", obj<CustomEventInit> {
+                                bubbles = true
+                            })
+                        }
                     }
                 }
             }
@@ -234,40 +237,19 @@ fun Container.navbar(
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
     collapseOnClick: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Navbar.() -> Unit)? = null
 ): Navbar {
-    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, classes ?: className.set, init)
+    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, className, init)
     this.add(navbar)
     return navbar
 }
 
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.navbar(
-    state: ObservableState<S>,
-    label: String? = null,
-    link: String? = null,
-    type: NavbarType? = null,
-    expand: NavbarExpand? = NavbarExpand.LG,
-    nColor: NavbarColor = NavbarColor.LIGHT,
-    bgColor: BsBgColor = BsBgColor.LIGHT,
-    collapseOnClick: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Navbar.(S) -> Unit)
-) = navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, classes, className).bind(state, true, init)
-
 fun Navbar.navText(
     label: String,
-    classes: Set<String>? = null,
     className: String? = null
 ): Span {
-    val text = Span(label, classes = (classes ?: className.set) + "navbar-text")
+    val text = Span(label, className = (className?.let { "$it " } ?: "") + "navbar-text")
     this.add(text)
     return text
 }
@@ -278,10 +260,10 @@ fun Navbar.navText(
  * The Bootstrap Navbar header button.
  */
 internal class NavbarButton(private val idc: String, private val toggle: String = "Toggle navigation") :
-    SimplePanel(setOf("navbar-toggler")) {
+    SimplePanel("navbar-toggler") {
 
     init {
-        span(classes = setOf("navbar-toggler-icon"))
+        span(className = "navbar-toggler-icon")
     }
 
     override fun render(): VNode {
@@ -291,8 +273,8 @@ internal class NavbarButton(private val idc: String, private val toggle: String 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "button")
-        attributeSetBuilder.add("data-toggle", "collapse")
-        attributeSetBuilder.add("data-target", "#$idc")
+        attributeSetBuilder.add("data-bs-toggle", "collapse")
+        attributeSetBuilder.add("data-bs-target", "#$idc")
         attributeSetBuilder.add("aria-controls", idc)
         attributeSetBuilder.add("aria-expanded", "false")
         attributeSetBuilder.add("aria-label", toggle)

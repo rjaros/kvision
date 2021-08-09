@@ -22,8 +22,6 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 
 /**
  * Form field typeahead component.
@@ -40,6 +38,7 @@ import io.kvision.state.bind
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param floating use floating label
  * @param init an initializer extension function
  */
 open class Typeahead(
@@ -47,8 +46,8 @@ open class Typeahead(
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (Typeahead.() -> Unit)? = null
-) : AbstractText(label, rich) {
+    label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Typeahead.() -> Unit)? = null
+) : AbstractText(label, rich, floating) {
 
     /**
      * A static list of options for a typeahead control
@@ -158,10 +157,17 @@ open class Typeahead(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(input)
+        if (!floating) {
+            this.addPrivate(flabel)
+            this.addPrivate(input)
+        } else {
+            this.addPrivate(input)
+            this.addPrivate(flabel)
+        }
         this.addPrivate(invalidFeedback)
         @Suppress("LeakingThis")
         init?.invoke(this)
+        floatingPlaceholder()
     }
 }
 
@@ -175,25 +181,24 @@ fun Container.typeahead(
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
     type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (Typeahead.() -> Unit)? = null
+    label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Typeahead.() -> Unit)? = null
 ): Typeahead {
     val typeahead =
-        Typeahead(options, taAjaxOptions, source, items, minLength, delay, type, value, name, label, rich, init)
+        Typeahead(
+            options,
+            taAjaxOptions,
+            source,
+            items,
+            minLength,
+            delay,
+            type,
+            value,
+            name,
+            label,
+            rich,
+            floating,
+            init
+        )
     this.add(typeahead)
     return typeahead
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.typeahead(
-    state: ObservableState<S>,
-    options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
-    source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
-    items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (Typeahead.(S) -> Unit)
-) = typeahead(options, taAjaxOptions, source, items, minLength, delay, type, value, name, label, rich)
-    .bind(state, true, init)

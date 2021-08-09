@@ -29,8 +29,6 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.KFilesFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.types.KFile
 import io.kvision.utils.SnOn
 import org.w3c.files.File
@@ -49,7 +47,7 @@ import org.w3c.files.File
 open class Upload(
     uploadUrl: String? = null, multiple: Boolean = false, label: String? = null,
     rich: Boolean = false, init: (Upload.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), KFilesFormControl, MutableState<List<KFile>?> {
+) : SimplePanel("form-group kv-mb-3"), KFilesFormControl, MutableState<List<KFile>?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
@@ -240,7 +238,7 @@ open class Upload(
             this.id = this@Upload.idc
             this.name = name
         }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -370,17 +368,3 @@ fun Container.upload(
     this.add(upload)
     return upload
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.upload(
-    state: ObservableState<S>,
-    uploadUrl: String? = null,
-    multiple: Boolean = false,
-    label: String? = null,
-    rich: Boolean = false,
-    init: (Upload.(S) -> Unit)
-) = upload(uploadUrl, multiple, label, rich).bind(state, true, init)

@@ -32,15 +32,15 @@ import io.kvision.utils.set
  * @constructor Creates a switch input component.
  * @param value switch input value
  * @param inputId the ID of the input element
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsSwitchInput(
     value: Boolean = false,
     inputId: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsSwitchInput.() -> Unit)? = null
-) : OnsCheckBoxInput(value, inputId, classes) {
+) : OnsCheckBoxInput(value, inputId, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -60,11 +60,10 @@ open class OnsSwitchInput(
 fun Container.onsSwitchInput(
     value: Boolean = false,
     inputId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsSwitchInput.() -> Unit)? = null
 ): OnsSwitchInput {
-    val onsSwitchInput = OnsSwitchInput(value, inputId, classes ?: className.set, init)
+    val onsSwitchInput = OnsSwitchInput(value, inputId, className, init)
     this.add(onsSwitchInput)
     return onsSwitchInput
 }

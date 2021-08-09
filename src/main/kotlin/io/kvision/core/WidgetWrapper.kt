@@ -29,9 +29,9 @@ import io.kvision.panel.SimplePanel
  *
  * @constructor
  * @param wrapped wrapped component
- * @param classes Set of CSS class names
+ * @param className Set of CSS class names
  */
-class WidgetWrapper(internal var wrapped: Component?, classes: Set<String> = setOf()) : SimplePanel(classes) {
+class WidgetWrapper(internal var wrapped: Component?, className: String? = null) : SimplePanel(className) {
 
     override var visible
         get() = wrapped?.visible == true

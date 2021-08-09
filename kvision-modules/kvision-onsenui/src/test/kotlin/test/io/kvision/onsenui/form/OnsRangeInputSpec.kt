@@ -38,7 +38,7 @@ class OnsRangeInputSpec : DomSpec {
 
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-range class=\"kv-ons-form-control form-control-range\" type=\"range\" value=\"50\" min=\"0\" max=\"100\" step=\"5\"></ons-range>",
+                "<ons-range class=\"kv-ons-form-control form-range\" type=\"range\" value=\"50\" min=\"0\" max=\"100\" step=\"5\"></ons-range>",
                 element?.innerHTML,
                 "Should render Onsen UI range input component"
             )

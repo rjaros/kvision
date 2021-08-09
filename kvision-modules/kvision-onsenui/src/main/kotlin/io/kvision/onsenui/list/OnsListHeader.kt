@@ -25,7 +25,6 @@ package io.kvision.onsenui.list
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
-import io.kvision.utils.set
 
 /**
  * An Onsen UI list header component.
@@ -34,16 +33,16 @@ import io.kvision.utils.set
  * @param content the content of the component.
  * @param rich whether [content] can contain HTML code
  * @param align text align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsListHeader(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsListHeader.() -> Unit)? = null
-) : CustomTag("ons-list-header", content, rich, align, classes) {
+) : CustomTag("ons-list-header", content, rich, align, className) {
 
     /**
      * A modifier attribute to specify custom styles.
@@ -72,11 +71,10 @@ fun OnsList.header(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsListHeader.() -> Unit)? = null
 ): OnsListHeader {
-    val onsListHeader = OnsListHeader(content, rich, align, classes ?: className.set, init)
+    val onsListHeader = OnsListHeader(content, rich, align, className, init)
     this.add(onsListHeader)
     return onsListHeader
 }

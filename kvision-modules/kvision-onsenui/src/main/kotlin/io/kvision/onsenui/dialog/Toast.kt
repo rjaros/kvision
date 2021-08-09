@@ -32,8 +32,6 @@ import io.kvision.onsenui.BackButtonEvent
 import io.kvision.panel.Root
 import io.kvision.panel.Root.Companion.addModal
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlin.js.Promise
 
 enum class ToastAnimation(override val attributeValue: String) : DomAttribute {
@@ -53,14 +51,14 @@ enum class ToastAnimation(override val attributeValue: String) : DomAttribute {
  *
  * @constructor Creates a toast component.
  * @param animation the type of animation
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Toast(
     animation: ToastAnimation? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Toast.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     override var parent: Container? = Root.getFirstRoot()
 
@@ -98,19 +96,9 @@ open class Toast(
         if (onDeviceBackButtonCallback != null) {
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback
         }
-        this.getElementJQuery()?.on("preshow") { e, _ ->
-            this.dispatchEvent("onsPreshow", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("postshow") { e, _ ->
-            this.dispatchEvent("onsPostshow", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("prehide") { e, _ ->
-            this.dispatchEvent("onsPrehide", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("posthide") { e, _ ->
+        this.getElement()?.addEventListener("posthide", { _ ->
             this.hide()
-            this.dispatchEvent("onsPosthide", obj { detail = e })
-        }
+        })
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
@@ -178,9 +166,8 @@ open class Toast(
 @Suppress("unused")
 fun Container.toast(
     animation: ToastAnimation? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Toast.() -> Unit)? = null
 ): Toast {
-    return Toast(animation, classes ?: className.set, init)
+    return Toast(animation, className, init)
 }

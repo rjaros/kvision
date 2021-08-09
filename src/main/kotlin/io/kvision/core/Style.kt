@@ -71,31 +71,29 @@ enum class PElement(internal val pname: String) {
  * CSS style object.
  *
  * @constructor
- * @param className optional name of the CSS class, it will be generated if not specified
+ * @param selector optional name of the CSS selector, it will be generated if not specified
  * @param pClass CSS pseudo class
  * @param pElement CSS pseudo element
- * @param parentStyle parent CSS style object
  * @param mediaQuery CSS media query
+ * @param parentStyle parent CSS style object
  * @param init an initializer extension function
  */
 open class Style(
-    className: String? = null,
+    selector: String? = null,
     pClass: PClass? = null,
     pElement: PElement? = null,
-    val parentStyle: Style? = null,
     mediaQuery: String? = null,
+    val parentStyle: Style? = null,
     init: (Style.() -> Unit)? = null
-) :
-    StyledComponent() {
+) : StyledComponent() {
     private val propertyValues = js("{}")
-    private val isGenerated: Boolean = className == null
 
     /**
-     * The name of the CSS class.
+     * The name of the CSS selector.
      */
-    val className = className ?: "kv_styleclass_${counter++}"
+    val selector = selector ?: ".kv_styleclass_${counter++}"
 
-    internal val cssClassName = this.className.split(' ').last().split('.').last()
+    internal val cssClassName = this.selector.split(' ').last().split('.').last()
 
     /**
      * The CSS pseudo class.
@@ -127,13 +125,18 @@ open class Style(
     private fun getStyleDeclaration(): String {
         val pseudoElementName = pElement?.let { "::${it.pname}" } ?: ""
         val pseudoClassName = customPClass?.let { ":$it" } ?: pClass?.let { ":${it.pname}" } ?: ""
-        val fullClassName = "${if (isGenerated) "." else ""}$className$pseudoElementName$pseudoClassName"
-        return (parentStyle?.let { it.getStyleDeclaration() + " " } ?: "") + fullClassName
+        val fullSelector = "$selector$pseudoElementName$pseudoClassName"
+        return (parentStyle?.let { it.getStyleDeclaration() + " " } ?: "") + fullSelector
     }
 
     internal fun generateStyle(): String {
-        val styles = getSnStyleInternal()
-        return "${getStyleDeclaration()} {\n" + styles.joinToString("\n") {
+        val styles = getSnStyle()
+        val stylesList = mutableListOf<StringPair>()
+        for (key in js("Object").keys(styles)) {
+            @Suppress("UnsafeCastFromDynamic")
+            stylesList.add(key.unsafeCast<String>() to styles[key])
+        }
+        return "${getStyleDeclaration()} {\n" + stylesList.joinToString("\n") {
             "${it.first}: ${it.second};"
         } + "\n}"
     }
@@ -193,13 +196,13 @@ open class Style(
  * It takes the same parameters as the constructor of the built component.
  */
 fun style(
-    className: String? = null,
+    selector: String? = null,
     pClass: PClass? = null,
     pElement: PElement? = null,
     mediaQuery: String? = null,
     init: (Style.() -> Unit)? = null
 ): Style {
-    return Style(className, pClass, pElement, null, mediaQuery, init)
+    return Style(selector, pClass, pElement, mediaQuery, null, init)
 }
 
 /**
@@ -208,13 +211,13 @@ fun style(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Widget.style(
-    className: String? = null,
+    selector: String? = null,
     pClass: PClass? = null,
     pElement: PElement? = null,
     mediaQuery: String? = null,
     init: (Style.() -> Unit)? = null
 ): Style {
-    val style = Style(className, pClass, pElement, null, mediaQuery, init)
+    val style = Style(selector, pClass, pElement, mediaQuery, null, init)
     this.addCssStyle(style)
     return style
 }
@@ -225,11 +228,11 @@ fun Widget.style(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Style.style(
-    className: String? = null,
+    selector: String? = null,
     pClass: PClass? = null,
     pElement: PElement? = null,
     mediaQuery: String? = null,
     init: (Style.() -> Unit)? = null
 ): Style {
-    return Style(className, pClass, pElement, this, mediaQuery, init)
+    return Style(selector, pClass, pElement, mediaQuery, this, init)
 }

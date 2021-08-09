@@ -22,7 +22,7 @@
 package io.kvision.window
 
 import com.github.snabbdom.VNode
-import io.kvision.KVManagerBootstrap
+import io.kvision.BootstrapModule
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssSize
@@ -35,11 +35,15 @@ import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.modal.CloseIcon
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
+import io.kvision.utils.height
 import io.kvision.utils.obj
+import io.kvision.utils.offsetHeight
+import io.kvision.utils.offsetLeft
+import io.kvision.utils.offsetTop
+import io.kvision.utils.offsetWidth
 import io.kvision.utils.px
-import io.kvision.utils.set
+import io.kvision.utils.width
+import org.w3c.dom.Element
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
 
@@ -59,7 +63,7 @@ internal const val WINDOW_CONTENT_MARGIN_BOTTOM = 11
  * @param closeButton determines if Close button is visible
  * @param maximizeButton determines if Maximize button is visible
  * @param minimizeButton determines if Minimize button is visible
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
@@ -73,18 +77,18 @@ open class Window(
     maximizeButton: Boolean = false,
     minimizeButton: Boolean = false,
     icon: String? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (Window.() -> Unit)? = null
 ) :
-    SimplePanel(classes + setOf("modal-content", "kv-window")) {
+    SimplePanel((className?.let { "$it " } ?: "") + "modal-content kv-window") {
 
     /**
      * Window caption text.
      */
     var caption
-        get() = captionTag.content
+        get() = captionContainer.content
         set(value) {
-            captionTag.content = value
+            captionContainer.content = value
             checkHeaderVisibility()
         }
 
@@ -165,22 +169,48 @@ open class Window(
             windowIcon.visible = (value != null && value != "")
         }
 
-    private val header = SimplePanel(setOf("modal-header"))
+    /**
+     * The header of the window.
+     */
+    protected val header = SimplePanel("modal-header")
 
     /**
-     * @suppress
-     * Internal property.
+     * The content of the window.
      */
     protected val content = SimplePanel().apply {
         this.height = contentHeight
         this.overflow = Overflow.AUTO
     }
-    private val closeIcon = CloseIcon()
-    private val maximizeIcon = MaximizeIcon()
-    private val minimizeIcon = MinimizeIcon()
-    private val captionTag = Tag(TAG.H5, caption, classes = setOf("modal-title"))
-    private val iconsContainer = SimplePanel(setOf("kv-window-icons-container"))
-    private val windowIcon = Icon(icon ?: "").apply {
+
+    /**
+     * The close icon.
+     */
+    protected val closeIcon = CloseIcon()
+
+    /**
+     * The maximize icon.
+     */
+    protected val maximizeIcon = MaximizeIcon()
+
+    /**
+     * The minimize icon.
+     */
+    protected val minimizeIcon = MinimizeIcon()
+
+    /**
+     * The caption container.
+     */
+    protected val captionContainer = Tag(TAG.H5, caption, className = "modal-title")
+
+    /**
+     * The icons container.
+     */
+    protected val iconsContainer = SimplePanel("kv-window-icons-container")
+
+    /**
+     * The window icon.
+     */
+    protected val windowIcon = Icon(icon ?: "").apply {
         addCssClass("window-icon")
         visible = (icon != null && icon != "")
     }
@@ -197,8 +227,8 @@ open class Window(
         width = contentWidth
         @Suppress("LeakingThis")
         zIndex = ++zIndexCounter
-        header.add(captionTag)
-        captionTag.add(windowIcon)
+        header.add(captionContainer)
+        captionContainer.add(windowIcon)
         header.add(iconsContainer)
         minimizeIcon.visible = minimizeButton
         minimizeIcon.setEventListener<MinimizeIcon> {
@@ -260,7 +290,10 @@ open class Window(
         counter++
     }
 
-    private fun checkHeaderVisibility() {
+    /**
+     * Hides od shows the header based on contitions.
+     */
+    protected open fun checkHeaderVisibility() {
         @Suppress("ComplexCondition")
         if (!closeButton && !maximizeButton && !minimizeButton && caption == null && !isDraggable) {
             header.hide()
@@ -276,8 +309,12 @@ open class Window(
                 mousedown = { e ->
                     if (e.button.toInt() == 0) {
                         isDrag = true
-                        val dragStartX = this@Window.getElementJQuery()?.position()?.left?.toInt() ?: 0
-                        val dragStartY = this@Window.getElementJQuery()?.position()?.top?.toInt() ?: 0
+                        @Suppress("UnsafeCastFromDynamic")
+                        this@Window.dispatchEvent("dragStartWindow", obj {
+                            detail = e
+                        })
+                        val dragStartX = this@Window.getElement()?.offsetLeft() ?: 0
+                        val dragStartY = this@Window.getElement()?.offsetTop() ?: 0
                         val dragMouseX = e.pageX
                         val dragMouseY = e.pageY
                         val moveCallback = { me: Event ->
@@ -290,6 +327,10 @@ open class Window(
                         var upCallback: ((Event) -> Unit)? = null
                         upCallback = {
                             isDrag = false
+                            @Suppress("UnsafeCastFromDynamic")
+                            this@Window.dispatchEvent("dragEndWindow", obj {
+                                detail = e
+                            })
                             kotlinx.browser.window.removeEventListener("mousemove", moveCallback)
                             kotlinx.browser.window.removeEventListener("mouseup", upCallback)
                         }
@@ -307,12 +348,12 @@ open class Window(
         checkResizablEventHandler()
         if (isResizable) {
             resize = Resize.BOTH
-            val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
+            val intHeight = getElement()?.height() ?: 0
             content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
             content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
         } else {
             resize = Resize.NONE
-            val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
+            val intHeight = getElement()?.height() ?: 0
             content.height = (intHeight - WINDOW_HEADER_HEIGHT).px
             content.marginBottom = 0.px
         }
@@ -323,14 +364,14 @@ open class Window(
         if (isResizable) {
             if (!isResizeEvent) {
                 isResizeEvent = true
-                KVManagerBootstrap.setResizeEvent(this) {
-                    val eid = getElementJQuery()?.attr("id")
+                BootstrapModule.setResizeEvent(this) {
+                    val eid = getElement()?.unsafeCast<Element>()?.getAttribute("id")
                     if (isResizable && eid == id) {
-                        val outerWidth = (getElementJQuery()?.outerWidth()?.toInt() ?: 0)
-                        val outerHeight = (getElementJQuery()?.outerHeight()?.toInt() ?: 0)
-                        val intWidth = (getElementJQuery()?.width()?.toInt() ?: 0)
-                        val intHeight = (getElementJQuery()?.height()?.toInt() ?: 0)
-                        content.width = intWidth.px
+                        val outerWidth = getElement()?.offsetWidth() ?: 0
+                        val outerHeight = getElement()?.offsetHeight() ?: 0
+                        val intWidth = getElement()?.width() ?: 0
+                        val intHeight = getElement()?.height() ?: 0
+                        content.width = (intWidth - 8).px
                         content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
                         width = outerWidth.px
                         height = outerHeight.px
@@ -344,7 +385,7 @@ open class Window(
                 }
             }
         } else if (isResizeEvent) {
-            KVManagerBootstrap.clearResizeEvent(this)
+            BootstrapModule.clearResizeEvent(this)
             isResizeEvent = false
         }
     }
@@ -394,7 +435,7 @@ open class Window(
 
     override fun afterDestroy() {
         if (isResizeEvent) {
-            KVManagerBootstrap.clearResizeEvent(this)
+            BootstrapModule.clearResizeEvent(this)
             isResizeEvent = false
         }
     }
@@ -446,7 +487,6 @@ fun Container.window(
     maximizeButton: Boolean = false,
     minimizeButton: Boolean = false,
     icon: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Window.() -> Unit)? = null
 ): Window {
@@ -461,42 +501,9 @@ fun Container.window(
             maximizeButton,
             minimizeButton,
             icon,
-            classes ?: className.set,
+            className,
             init
         )
     this.add(window)
     return window
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.window(
-    state: ObservableState<S>,
-    caption: String? = null,
-    contentWidth: CssSize? = CssSize(0, UNIT.auto),
-    contentHeight: CssSize? = CssSize(0, UNIT.auto),
-    isResizable: Boolean = true,
-    isDraggable: Boolean = true,
-    closeButton: Boolean = false,
-    maximizeButton: Boolean = false,
-    minimizeButton: Boolean = false,
-    icon: String? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Window.(S) -> Unit)
-) = window(
-    caption,
-    contentWidth,
-    contentHeight,
-    isResizable,
-    isDraggable,
-    closeButton,
-    maximizeButton,
-    minimizeButton,
-    icon,
-    classes,
-    className
-).bind(state, true, init)

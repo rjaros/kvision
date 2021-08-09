@@ -62,7 +62,7 @@ class DataContainer<M, C : Component, CONT : Container>(
     private val sorterType: () -> SorterType = { SorterType.ASC },
     init: (DataContainer<M, C, CONT>.() -> Unit)? = null
 ) :
-    Widget(setOf()), Container, DataUpdatable {
+    Widget(), Container, DataUpdatable {
 
     override var visible
         get() = container.visible

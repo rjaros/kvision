@@ -25,9 +25,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Helper class for HTML label element.
@@ -36,14 +33,14 @@ import io.kvision.utils.set
  * @param forId the value of *for* attribute
  * @param content the text of the label
  * @param rich determines if [content] can contain HTML code
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class FieldLabel(
     internal val forId: String, content: String? = null, rich: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (FieldLabel.() -> Unit)? = null
-) : Tag(TAG.LABEL, content, rich, classes = classes) {
+) : Tag(TAG.LABEL, content, rich, className = className) {
 
     init {
         @Suppress("LeakingThis")
@@ -63,24 +60,10 @@ open class FieldLabel(
  */
 fun Container.fieldLabel(
     forId: String, content: String? = null, rich: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (FieldLabel.() -> Unit)? = null
 ): FieldLabel {
-    val fieldLabel = FieldLabel(forId, content, rich, classes ?: className.set, init)
+    val fieldLabel = FieldLabel(forId, content, rich, className, init)
     this.add(fieldLabel)
     return fieldLabel
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.fieldLabel(
-    state: ObservableState<S>,
-    forId: String, content: String? = null, rich: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (FieldLabel.(S) -> Unit)
-) = fieldLabel(forId, content, rich, classes, className).bind(state, true, init)

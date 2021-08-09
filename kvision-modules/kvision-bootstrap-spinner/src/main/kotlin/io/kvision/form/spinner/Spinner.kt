@@ -32,8 +32,6 @@ import io.kvision.html.ButtonStyle
 import io.kvision.i18n.I18n
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.SnOn
 
 /**
@@ -59,7 +57,7 @@ open class Spinner(
     forceType: ForceType = ForceType.NONE, buttonStyle: ButtonStyle? = null,
     decimalSeparator: String? = I18n.detectDecimalSeparator(), label: String? = null,
     rich: Boolean = false, init: (Spinner.() -> Unit)? = null
-) : SimplePanel(setOf("form-group")), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Spinner value.
@@ -208,7 +206,7 @@ open class Spinner(
                 this.id = this@Spinner.idc
                 this.name = name
             }
-    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, setOf("control-label"))
+    final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
@@ -335,26 +333,3 @@ fun Container.spinner(
     this.add(spinner)
     return spinner
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.spinner(
-    state: ObservableState<S>,
-    value: Number? = null,
-    name: String? = null,
-    min: Number? = null,
-    max: Number? = null,
-    step: Number = DEFAULT_STEP,
-    decimals: Int = 0,
-    buttonsType: ButtonsType = ButtonsType.VERTICAL,
-    forceType: ForceType = ForceType.NONE,
-    buttonStyle: ButtonStyle? = null,
-    decimalSeparator: String? = I18n.detectDecimalSeparator(),
-    label: String? = null,
-    rich: Boolean = false,
-    init: (Spinner.(S) -> Unit)
-) = spinner(value, name, min, max, step, decimals, buttonsType, forceType, buttonStyle, decimalSeparator, label, rich)
-    .bind(state, true, init)

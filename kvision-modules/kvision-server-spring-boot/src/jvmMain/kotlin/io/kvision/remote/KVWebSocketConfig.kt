@@ -23,6 +23,7 @@ package io.kvision.remote
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -54,7 +55,7 @@ class KVWebSocketHandler(
     private val services: List<KVServiceManager<*>>,
     private val threadLocalWebSocketSession: ThreadLocal<WebSocketSession>,
     private val applicationContext: ApplicationContext
-) : WebSocketHandler, CoroutineScope by CoroutineScope(Dispatchers.Default) {
+) : WebSocketHandler, CoroutineScope by CoroutineScope(SupervisorJob() + Dispatchers.Default) {
 
     private fun getHandler(session: WebSocketSession): (suspend (
         WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext,

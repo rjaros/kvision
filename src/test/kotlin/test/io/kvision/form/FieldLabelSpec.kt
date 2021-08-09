@@ -33,11 +33,11 @@ class FieldLabelSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val fl = FieldLabel("input", "Label", classes = setOf("control-label"))
+            val fl = FieldLabel("input", "Label", className = "form-label")
             root.add(fl)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<label class=\"control-label\" for=\"input\">Label</label>",
+                "<label class=\"form-label\" for=\"input\">Label</label>",
                 element?.innerHTML,
                 "Should render correct label"
             )

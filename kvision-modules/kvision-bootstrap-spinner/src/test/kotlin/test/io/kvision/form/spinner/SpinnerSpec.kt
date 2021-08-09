@@ -43,13 +43,13 @@ class SpinnerSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ti.input.id
             assertEqualsHtml(
-                "<div class=\"form-group\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"input-group kv-spinner kv-spinner-btn-vertical\"><span><div class=\"input-group  bootstrap-touchspin bootstrap-touchspin-injected\"><input class=\"form-control\" id=\"$id\" type=\"text\" value=\"13\" placeholder=\"place\" name=\"name\" disabled=\"disabled\"><span class=\"input-group-btn-vertical\"><button class=\"btn btn-secondary bootstrap-touchspin-up \" type=\"button\">▲</button><button class=\"btn btn-secondary bootstrap-touchspin-down \" type=\"button\">▼</button></span></div></span></div></div>",
+                "<div class=\"form-group kv-mb-3\"><label class=\"form-label\" for=\"$id\">Label</label><div class=\"input-group kv-spinner kv-spinner-btn-vertical\"><span><div class=\"input-group  bootstrap-touchspin bootstrap-touchspin-injected\"><input class=\"form-control\" id=\"$id\" type=\"text\" value=\"13\" placeholder=\"place\" name=\"name\" disabled=\"disabled\"><span class=\"input-group-btn-vertical\"><button class=\"btn btn-secondary bootstrap-touchspin-up \" type=\"button\">▲</button><button class=\"btn btn-secondary bootstrap-touchspin-down \" type=\"button\">▼</button></span></div></span></div></div>",
                 element?.innerHTML,
                 "Should render correct spinner input form control"
             )
             ti.validatorError = "Validation Error"
             assertEqualsHtml(
-                "<div class=\"form-group text-danger\"><label class=\"control-label\" for=\"$id\">Label</label><div class=\"input-group kv-spinner kv-spinner-btn-vertical is-invalid\"><span><div class=\"input-group  bootstrap-touchspin bootstrap-touchspin-injected\"><input class=\"form-control is-invalid\" id=\"$id\" type=\"text\" value=\"13\" placeholder=\"place\" name=\"name\" disabled=\"disabled\"><span class=\"input-group-btn-vertical\"><button class=\"btn btn-secondary bootstrap-touchspin-up \" type=\"button\">▲</button><button class=\"btn btn-secondary bootstrap-touchspin-down \" type=\"button\">▼</button></span></div></span></div><div class=\"invalid-feedback\">Validation Error</div></div>",
+                "<div class=\"form-group kv-mb-3 text-danger\"><label class=\"form-label\" for=\"$id\">Label</label><div class=\"input-group kv-spinner kv-spinner-btn-vertical is-invalid\"><span><div class=\"input-group  bootstrap-touchspin bootstrap-touchspin-injected\"><input class=\"form-control is-invalid\" id=\"$id\" type=\"text\" value=\"13\" placeholder=\"place\" name=\"name\" disabled=\"disabled\"><span class=\"input-group-btn-vertical\"><button class=\"btn btn-secondary bootstrap-touchspin-up \" type=\"button\">▲</button><button class=\"btn btn-secondary bootstrap-touchspin-down \" type=\"button\">▼</button></span></div></span></div><div class=\"invalid-feedback\">Validation Error</div></div>",
                 element?.innerHTML,
                 "Should render correct spinner input form control with validation error"
             )

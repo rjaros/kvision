@@ -1,6 +1,6 @@
 plugins {
     val npmPublishVersion: String by System.getProperties()
-    id("lt.petuska.npm.publish") version npmPublishVersion
+    id("dev.petuska.npm.publish") version npmPublishVersion
 }
 
 npmPublishing {
@@ -14,11 +14,11 @@ npmPublishing {
                 }
             }
             packageJson {
-                version = "1.0.5"
+                version = "5.0.0"
                 description = "The assets for the KVision framework"
                 keywords = jsonArray("kvision", "kotlin")
                 homepage = "https://kvision.io"
-                licence = "MIT"
+                license = "MIT"
                 repository {
                     type = "git"
                     url = "git+https://github.com/rjaros/kvision.git"

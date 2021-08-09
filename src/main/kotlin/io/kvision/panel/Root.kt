@@ -44,7 +44,8 @@ enum class ContainerType(internal val type: String) {
     SM("container-sm"),
     MD("container-md"),
     LG("container-lg"),
-    XL("container-xl")
+    XL("container-xl"),
+    XXL("container-xxl")
 }
 
 /**
@@ -84,8 +85,8 @@ class Root : SimplePanel {
      */
     constructor(
         id: String,
-        containerType: ContainerType = ContainerType.FLUID,
-        addRow: Boolean = containerType != ContainerType.FIXED,
+        containerType: ContainerType = ContainerType.NONE,
+        addRow: Boolean = containerType != ContainerType.FIXED && containerType != ContainerType.NONE,
         init: (Root.() -> Unit)? = null
     ) : super() {
         this.containerType = containerType
@@ -108,8 +109,8 @@ class Root : SimplePanel {
      */
     constructor(
         element: HTMLElement,
-        containerType: ContainerType = ContainerType.FLUID,
-        addRow: Boolean = containerType != ContainerType.FIXED,
+        containerType: ContainerType = ContainerType.NONE,
+        addRow: Boolean = containerType != ContainerType.FIXED && containerType != ContainerType.NONE,
         init: (Root.() -> Unit)? = null
     ) : super() {
         this.containerType = containerType
@@ -129,9 +130,9 @@ class Root : SimplePanel {
 
     override fun render(): VNode {
         return if (addRow) {
-            render("div#$id", arrayOf(h("div", snOpt {
+            render("div#$id", stylesVNodes() + arrayOf(h("div", snOpt {
                 `class` = snClasses(listOf("row" to true))
-            }, stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())))
+            }, childrenVNodes())) + modalsVNodes() + contextMenusVNodes())
         } else {
             render("div#$id", stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())
         }
@@ -294,8 +295,8 @@ class Root : SimplePanel {
 @Suppress("unused")
 fun Application.root(
     id: String,
-    containerType: ContainerType = ContainerType.FLUID,
-    addRow: Boolean = containerType != ContainerType.FIXED,
+    containerType: ContainerType = ContainerType.NONE,
+    addRow: Boolean = containerType != ContainerType.FIXED && containerType != ContainerType.NONE,
     init: (Root.() -> Unit)? = null
 ): Root {
     return Root(id, containerType, addRow, init)
@@ -313,8 +314,8 @@ fun Application.root(
 @Suppress("unused")
 fun Application.root(
     element: HTMLElement,
-    containerType: ContainerType = ContainerType.FLUID,
-    addRow: Boolean = containerType != ContainerType.FIXED,
+    containerType: ContainerType = ContainerType.NONE,
+    addRow: Boolean = containerType != ContainerType.FIXED && containerType != ContainerType.NONE,
     init: (Root.() -> Unit)? = null
 ): Root {
     return Root(element, containerType, addRow, init)

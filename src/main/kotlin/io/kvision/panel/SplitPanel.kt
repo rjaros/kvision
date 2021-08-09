@@ -22,17 +22,11 @@
 package io.kvision.panel
 
 import com.github.snabbdom.VNode
-import io.kvision.jquery.JQuery
-import io.kvision.jquery.JQueryEventObject
+import io.kvision.KVManager
 import io.kvision.core.Container
 import io.kvision.core.StyledComponent
 import io.kvision.core.UNIT
-import io.kvision.html.TAG
-import io.kvision.html.Tag
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * Split panel direction.
@@ -50,16 +44,18 @@ enum class Direction(internal val dir: String) {
  *
  * @constructor
  * @param direction direction of the splitter
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SplitPanel(
     private val direction: Direction = Direction.VERTICAL,
-    classes: Set<String> = setOf(), init: (SplitPanel.() -> Unit)? = null
-) : SimplePanel(classes + ("splitpanel-" + direction.dir)) {
+    className: String? = null, init: (SplitPanel.() -> Unit)? = null
+) : SimplePanel((className?.let { "$it " } ?: "") + ("splitpanel-" + direction.dir)) {
 
     @Suppress("LeakingThis")
     internal val splitter = Splitter(this, direction)
+
+    protected var splitJs: dynamic = null
 
     init {
         @Suppress("LeakingThis")
@@ -68,25 +64,65 @@ open class SplitPanel(
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun afterInsertSplitter() {
-        if (children.size == 2) {
+        if (children?.size == 2) {
             val horizontal = direction == Direction.HORIZONTAL
-            val px = UNIT.px
+            val perc = UNIT.perc
             val self = this
-            children[0].getElementJQueryD()?.resizable(obj {
-                handleSelector = "#" + splitter.id
-                resizeWidth = !horizontal
-                resizeHeight = horizontal
-                onDrag = lok@{ e: JQueryEventObject, _: JQuery, newWidth: Int, newHeight: Int, _: dynamic ->
-                    e.asDynamic()["newWidth"] = newWidth
-                    e.asDynamic()["newHeight"] = newHeight
-                    self.dispatchEvent("dragSplitPanel", obj { detail = e })
-                    return@lok !e.isDefaultPrevented()
-                }
-                onDragEnd = { e: JQueryEventObject, el: JQuery, _: dynamic ->
-                    if (horizontal) {
-                        (children[0] as? StyledComponent)?.height = el.height().toInt() to px
+            val splitJsDirection = if (direction == Direction.HORIZONTAL) "vertical" else "horizontal"
+            val sizes = if (horizontal) {
+                val h1 = (children!![0] as? StyledComponent)?.height
+                if (h1 != null && h1.second == UNIT.perc) {
+                    arrayOf(h1.first, (100 - h1.first.toDouble()))
+                } else {
+                    val height = getElementD()?.getBoundingClientRect().height ?: 0
+                    val firstHeight = getElement()?.firstChild?.asDynamic().getBoundingClientRect().height ?: 0
+                    if (height != 0 && firstHeight != 0) {
+                        val firstPerc = firstHeight.unsafeCast<Double>() * 100 / height.unsafeCast<Double>()
+                        arrayOf(firstPerc, 100 - firstPerc)
                     } else {
-                        (children[0] as? StyledComponent)?.width = el.width().toInt() to px
+                        arrayOf(0, 100)
+                    }
+                }
+            } else {
+                val h1 = (children!![0] as? StyledComponent)?.width
+                if (h1 != null && h1.second == UNIT.perc) {
+                    arrayOf(h1.first, (100 - h1.first.toDouble()))
+                } else {
+                    val width = getElementD()?.getBoundingClientRect().width ?: 0
+                    val firstWidth = getElement()?.firstChild?.asDynamic().getBoundingClientRect().width ?: 0
+                    if (width != 0 && firstWidth != 0) {
+                        val firstPerc = firstWidth.unsafeCast<Double>() * 100 / width.unsafeCast<Double>()
+                        arrayOf(firstPerc, 100 - firstPerc)
+                    } else {
+                        arrayOf(0, 100)
+                    }
+                }
+            }
+            splitJs = KVManager.splitjs(arrayOf(getElement()?.firstChild, getElement()?.lastChild), obj {
+                this.sizes = sizes
+                this.direction = splitJsDirection
+                this.gutter = {
+                    splitter.getElement()
+                }
+                this.gutterSize = 9
+                this.minSize = 0
+                this.snapOffset = 0
+                this.onDrag = { sizes: Array<Int> ->
+                    val e = obj {
+                        this.sizes = sizes
+                    }
+                    self.dispatchEvent("dragSplitPanel", obj { detail = e })
+                }
+                this.onDragEnd = { sizes: Array<Int> ->
+                    val e = obj {
+                        this.sizes = sizes
+                    }
+                    if (horizontal) {
+                        (children!![0] as? StyledComponent)?.height = sizes[0] to perc
+                        (children!![1] as? StyledComponent)?.height = sizes[1] to perc
+                    } else {
+                        (children!![0] as? StyledComponent)?.width = sizes[0] to perc
+                        (children!![1] as? StyledComponent)?.width = sizes[1] to perc
                     }
                     self.dispatchEvent("dragEndSplitPanel", obj { detail = e })
                 }
@@ -94,9 +130,16 @@ open class SplitPanel(
         }
     }
 
+    override fun afterDestroy() {
+        if (splitJs != null) {
+            splitJs.destroy(false, true)
+            splitJs = null
+        }
+    }
+
     override fun childrenVNodes(): Array<VNode> {
-        return if (children.size == 2) {
-            arrayOf(children[0].renderVNode(), splitter.renderVNode(), children[1].renderVNode())
+        return if (children?.size == 2) {
+            arrayOf(children!![0].renderVNode(), splitter.renderVNode(), children!![1].renderVNode())
         } else {
             arrayOf()
         }
@@ -110,44 +153,18 @@ open class SplitPanel(
  */
 fun Container.splitPanel(
     direction: Direction = Direction.VERTICAL,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SplitPanel.() -> Unit)? = null
 ): SplitPanel {
-    val splitPanel = SplitPanel(direction, classes ?: className.set, init)
+    val splitPanel = SplitPanel(direction, className, init)
     this.add(splitPanel)
     return splitPanel
 }
 
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.splitPanel(
-    state: ObservableState<S>,
-    direction: Direction = Direction.VERTICAL,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (SplitPanel.(S) -> Unit)
-) = splitPanel(direction, classes, className).bind(state, true, init)
-
-internal class Splitter(private val splitPanel: SplitPanel, direction: Direction) : Tag(
-    TAG.DIV,
-    classes = setOf("splitter-" + direction.dir)
+internal class Splitter(private val splitPanel: SplitPanel, direction: Direction) : SimplePanel(
+    "splitter-" + direction.dir
 ) {
-    private val idc = "kv_splitter_$counter"
-
-    init {
-        this.id = idc
-        counter++
-    }
-
     override fun afterInsert(node: VNode) {
         splitPanel.afterInsertSplitter()
-    }
-
-    companion object {
-        internal var counter = 0
     }
 }

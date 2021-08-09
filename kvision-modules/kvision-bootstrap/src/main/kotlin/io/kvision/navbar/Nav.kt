@@ -23,22 +23,19 @@ package io.kvision.navbar
 
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.ResString
-import io.kvision.html.Div
 import io.kvision.html.Link
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
+import io.kvision.panel.SimplePanel
 
 /**
  * The Bootstrap Nav container.
  *
  * @constructor
  * @param rightAlign determines if the nav is aligned to the right
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
-open class Nav(rightAlign: Boolean = false, classes: Set<String> = setOf(), init: (Nav.() -> Unit)? = null) :
-    Div(classes = classes) {
+open class Nav(rightAlign: Boolean = false, className: String? = null, init: (Nav.() -> Unit)? = null) :
+    SimplePanel(className) {
 
     /**
      * Determines if the nav is aligned to the right.
@@ -54,7 +51,7 @@ open class Nav(rightAlign: Boolean = false, classes: Set<String> = setOf(), init
         super.buildClassSet(classSetBuilder)
         classSetBuilder.add("navbar-nav")
         if (rightAlign) {
-            classSetBuilder.add("ml-auto")
+            classSetBuilder.add("ms-auto")
         }
     }
 }
@@ -66,27 +63,13 @@ open class Nav(rightAlign: Boolean = false, classes: Set<String> = setOf(), init
  */
 fun Navbar.nav(
     rightAlign: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Nav.() -> Unit)? = null
 ): Nav {
-    val nav = Nav(rightAlign, classes ?: className.set, init)
+    val nav = Nav(rightAlign, className, init)
     this.add(nav)
     return nav
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Navbar.nav(
-    state: ObservableState<S>,
-    rightAlign: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Nav.(S) -> Unit)
-) = nav(rightAlign, classes, className).bind(state, true, init)
 
 /**
  * DSL builder extension function for a link in a nav list.
@@ -95,12 +78,11 @@ fun <S> Navbar.nav(
  */
 fun Nav.navLink(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
     val link =
-        Link(label, url, icon, image, null, true, null, (classes ?: className.set) + "nav-item" + "nav-link", init)
+        Link(label, url, icon, image, null, true, null, (className?.let { "$it " } ?: "") + "nav-item nav-link", init)
     this.add(link)
     return link
 }
@@ -112,7 +94,6 @@ fun Nav.navLink(
  */
 fun Nav.navLinkDisabled(
     label: String, icon: String? = null, image: ResString? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
@@ -122,7 +103,7 @@ fun Nav.navLinkDisabled(
             "javascript:void(0)",
             icon,
             image, null, true, null,
-            (classes ?: className.set) + "nav-item" + "nav-link" + "disabled",
+            (className?.let { "$it " } ?: "") + "nav-item nav-link disabled",
             init
         ).apply {
             tabindex = -1

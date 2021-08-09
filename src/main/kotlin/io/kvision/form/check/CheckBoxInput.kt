@@ -22,23 +22,20 @@
 package io.kvision.form.check
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * The basic input component rendered as HTML *input type="checkbox"*.
  *
  * @constructor
  * @param value selection state
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class CheckBoxInput(
     value: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (CheckBoxInput.() -> Unit)? = null
-) : CheckInput(CheckInputType.CHECKBOX, value, classes) {
+) : CheckInput(CheckInputType.CHECKBOX, value, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -54,24 +51,10 @@ open class CheckBoxInput(
  */
 fun Container.checkBoxInput(
     value: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (CheckBoxInput.() -> Unit)? = null
 ): CheckBoxInput {
-    val checkBoxInput = CheckBoxInput(value, classes ?: className.set, init)
+    val checkBoxInput = CheckBoxInput(value, className, init)
     this.add(checkBoxInput)
     return checkBoxInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.checkBoxInput(
-    state: ObservableState<S>,
-    value: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (CheckBoxInput.(S) -> Unit)
-) = checkBoxInput(value, classes, className).bind(state, true, init)

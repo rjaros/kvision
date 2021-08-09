@@ -50,7 +50,7 @@ class RichTextSpec : DomSpec {
             )
             val label = document.getElementById("test")?.let { jQuery(it).find("label")[0]?.outerHTML }
             assertEqualsHtml(
-                "<label class=\"control-label\" for=\"$iid\">Field</label>",
+                "<label class=\"form-label\" for=\"$iid\">Field</label>",
                 label,
                 "Should render correct label for html area form control"
             )

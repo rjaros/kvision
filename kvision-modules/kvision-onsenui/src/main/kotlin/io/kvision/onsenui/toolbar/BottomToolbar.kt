@@ -26,20 +26,19 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.set
 
 /**
  * An toolbar component located at the bottom of the page.
  *
  * @constructor Creates a bottom toolbar component.
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
 open class BottomToolbar(
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (BottomToolbar.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      * A modifier attribute to specify custom styles.
@@ -68,11 +67,10 @@ open class BottomToolbar(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Page.bottomToolbar(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (BottomToolbar.() -> Unit)? = null
 ): BottomToolbar {
-    val bottomToolbar = BottomToolbar(classes ?: className.set, init)
+    val bottomToolbar = BottomToolbar(className, init)
     this.add(bottomToolbar)
     return bottomToolbar
 }

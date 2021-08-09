@@ -31,7 +31,7 @@ interface ObservableState<S> {
     fun getState(): S
 
     /**
-     * Subscribe for the state change notifications.
+     * Subscribe for the state change notifications. Calls the observer with the current state.
      */
     fun subscribe(observer: (S) -> Unit): () -> Unit
 }
@@ -44,19 +44,4 @@ interface MutableState<S> : ObservableState<S> {
      * Set current state.
      */
     fun setState(state: S)
-}
-
-/**
- *  Returns a sub-store of the original ObservableState
- *  @param extractor an extractor function
- */
-fun <S, T> ObservableState<S>.sub(extractor: (S) -> T): ObservableState<T> {
-    val observableValue = ObservableValue(extractor(this.getState()))
-    this.subscribe { s ->
-        val newValue = extractor(s)
-        if (observableValue.value != newValue) {
-            observableValue.value = newValue
-        }
-    }
-    return observableValue
 }

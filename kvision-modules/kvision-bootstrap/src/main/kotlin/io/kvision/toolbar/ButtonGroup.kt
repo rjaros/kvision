@@ -25,10 +25,7 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.CssClass
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
 import io.kvision.utils.px
-import io.kvision.utils.set
 
 /**
  * Button group sizes.
@@ -44,13 +41,13 @@ enum class ButtonGroupSize(override val className: String) : CssClass {
  * @constructor
  * @param size button group size
  * @param vertical determines if button group is aligned vertically
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class ButtonGroup(
     size: ButtonGroupSize? = null, vertical: Boolean = false,
-    classes: Set<String> = setOf(), init: (ButtonGroup.() -> Unit)? = null
-) : SimplePanel(classes) {
+    className: String? = null, init: (ButtonGroup.() -> Unit)? = null
+) : SimplePanel(className) {
 
     /**
      * Button group size.
@@ -82,27 +79,13 @@ open class ButtonGroup(
  */
 fun Container.buttonGroup(
     size: ButtonGroupSize? = null, vertical: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ButtonGroup.() -> Unit)? = null
 ): ButtonGroup {
-    val group = ButtonGroup(size, vertical, classes ?: className.set, init)
+    val group = ButtonGroup(size, vertical, className, init)
     this.add(group)
     return group
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.buttonGroup(
-    state: ObservableState<S>,
-    size: ButtonGroupSize? = null, vertical: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (ButtonGroup.(S) -> Unit)
-) = buttonGroup(size, vertical, classes, className).bind(state, true, init)
 
 /**
  * DSL builder extension function for toolbar.
@@ -110,25 +93,12 @@ fun <S> Container.buttonGroup(
  * It creates button groups with size and vertical parameters of the toolbar.
  */
 fun Toolbar.buttonGroup(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (ButtonGroup.() -> Unit)? = null
 ): ButtonGroup {
-    val group = ButtonGroup(this.size, this.vertical, classes ?: className.set, init).apply {
+    val group = ButtonGroup(this.size, this.vertical, className, init).apply {
         marginRight = this@buttonGroup.spacing.px
     }
     this.add(group)
     return group
 }
-
-/**
- * DSL builder extension function for toolbar for observable state.
- *
- * It creates button groups with size and vertical parameters of the toolbar.
- */
-fun <S> Toolbar.buttonGroup(
-    state: ObservableState<S>,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (ButtonGroup.(S) -> Unit)
-) = buttonGroup(classes, className).bind(state, true, init)

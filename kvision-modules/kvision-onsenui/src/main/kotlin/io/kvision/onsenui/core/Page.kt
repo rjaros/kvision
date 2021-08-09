@@ -36,18 +36,18 @@ import io.kvision.onsenui.toolbar.Toolbar
 import io.kvision.panel.Root
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
-import io.kvision.utils.set
+import kotlin.collections.set
 
 /**
  * A page component.
  *
  * @constructor Creates a page component.
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
-open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null) :
-    SimplePanel(setOf("page") + classes) {
+open class Page(className: String? = null, init: (Page.() -> Unit)? = null) :
+    SimplePanel((className?.let { "$it " } ?: "") + "page") {
 
     /**
      * The page toolbar.
@@ -61,12 +61,12 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
     /**
      * The page background.
      */
-    val backgroundPanel = SimplePanel(setOf("page__background"))
+    val backgroundPanel = SimplePanel("page__background")
 
     /**
      * The page content.
      */
-    val contentPanel = SimplePanel(setOf("page__content"))
+    val contentPanel = SimplePanel("page__content")
 
     /**
      * Fixed content.
@@ -122,22 +122,6 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
         }
         if (onDeviceBackButtonCallback != null) {
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback
-        }
-        this.getElementJQuery()?.on("init") { e, _ ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("onsInit", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("show") { e, _ ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("onsShow", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("hide") { e, _ ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("onsHide", obj { detail = e })
-        }
-        this.getElementJQuery()?.on("destroy") { e, _ ->
-            @Suppress("UnsafeCastFromDynamic")
-            this.dispatchEvent("onsDestroy", obj { detail = e })
         }
     }
 
@@ -224,12 +208,12 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun dispatchHideEvent() {
-        this.dispatchEvent("onsHide", obj { })
+        this.dispatchEvent("hide", obj { })
     }
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun dispatchDestroyEvent() {
-        this.dispatchEvent("onsDestroy", obj { })
+        this.dispatchEvent("destroy", obj { })
     }
 
     override fun dispose() {
@@ -247,11 +231,10 @@ open class Page(classes: Set<String> = setOf(), init: (Page.() -> Unit)? = null)
  * It takes the same parameters as the constructor of the built component.
  */
 fun Root.page(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Page.() -> Unit)? = null
 ): Page {
-    val page = Page(classes ?: className.set, init)
+    val page = Page(className, init)
     this.add(page)
     return page
 }
@@ -263,11 +246,10 @@ fun Root.page(
  */
 fun Navigator.page(
     pageId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Page.() -> Unit)? = null
 ): Page {
-    val page = Page(classes ?: className.set, init)
+    val page = Page(className, init)
     if (pageId == null || this.getChildren().isEmpty()) {
         this.add(page)
     }
@@ -282,11 +264,10 @@ fun Navigator.page(
  */
 fun SplitterSide.page(
     pageId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Page.() -> Unit)? = null
 ): Page {
-    val page = Page(classes ?: className.set, init)
+    val page = Page(className, init)
     if (pageId == null || this.getChildren().isEmpty()) {
         this.add(page)
     }
@@ -301,11 +282,10 @@ fun SplitterSide.page(
  */
 fun SplitterContent.page(
     pageId: String? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Page.() -> Unit)? = null
 ): Page {
-    val page = Page(classes ?: className.set, init)
+    val page = Page(className, init)
     if (pageId == null || this.getChildren().isEmpty()) {
         this.add(page)
     }
@@ -319,11 +299,10 @@ fun SplitterContent.page(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Tab.page(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Page.() -> Unit)? = null
 ): Page {
-    val page = Page(classes ?: className.set, init)
+    val page = Page(className, init)
     this.add(page)
     return page
 }
@@ -334,11 +313,10 @@ fun Tab.page(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Dialog.page(
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Page.() -> Unit)? = null
 ): Page {
-    val page = Page(classes ?: className.set, init)
+    val page = Page(className, init)
     this.add(page)
     return page
 }

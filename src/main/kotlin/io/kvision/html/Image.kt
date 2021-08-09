@@ -28,9 +28,6 @@ import io.kvision.core.Container
 import io.kvision.core.CssClass
 import io.kvision.core.ResString
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * Image shapes.
@@ -50,14 +47,14 @@ enum class ImageShape(override val className: String) : CssClass {
  * @param responsive determines if the image is rendered as responsive
  * @param shape image shape
  * @param centered determines if the image is rendered centered
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @TagMarker
 open class Image(
     src: ResString?, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
-    centered: Boolean = false, classes: Set<String> = setOf(), init: (Image.() -> Unit)? = null
-) : Widget(classes) {
+    centered: Boolean = false, className: String? = null, init: (Image.() -> Unit)? = null
+) : Widget(className) {
     /**
      * URL of the image.
      */
@@ -122,25 +119,10 @@ open class Image(
 fun Container.image(
     src: ResString?, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
     centered: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Image.() -> Unit)? = null
 ): Image {
-    val image = Image(src, alt, responsive, shape, centered, classes ?: className.set, init)
+    val image = Image(src, alt, responsive, shape, centered, className, init)
     this.add(image)
     return image
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.image(
-    state: ObservableState<S>,
-    src: ResString?, alt: String? = null, responsive: Boolean = false, shape: ImageShape? = null,
-    centered: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Image.(S) -> Unit)
-) = image(src, alt, responsive, shape, centered, classes, className).bind(state, true, init)

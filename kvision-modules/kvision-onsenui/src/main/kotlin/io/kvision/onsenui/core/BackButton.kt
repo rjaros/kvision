@@ -23,13 +23,12 @@
 package io.kvision.onsenui.core
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Component
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
 import io.kvision.html.Div
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * A back button component designed to be placed inside the toolbar.
@@ -38,7 +37,7 @@ import io.kvision.utils.set
  * @param content the content of the button.
  * @param rich whether [content] can contain HTML code
  * @param align text align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -46,9 +45,9 @@ open class BackButton(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (BackButton.() -> Unit)? = null
-) : CustomTag("ons-back-button", content, rich, align, classes) {
+) : CustomTag("ons-back-button", content, rich, align, className) {
 
     /**
      * A modifier attribute to specify custom styles.
@@ -101,11 +100,10 @@ fun Div.backButton(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (BackButton.() -> Unit)? = null
 ): BackButton {
-    val backButton = BackButton(content, rich, align, classes ?: className.set, init)
+    val backButton = BackButton(content, rich, align, className, init)
     this.add(backButton)
     return backButton
 }

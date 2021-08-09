@@ -28,8 +28,6 @@ import io.kvision.core.CssSize
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
 import io.kvision.utils.asString
-import io.kvision.utils.obj
-import io.kvision.utils.set
 
 /**
  * A pull hook component supporting "Pull to refresh" functionality.
@@ -38,7 +36,7 @@ import io.kvision.utils.set
  * @param content the content of the component.
  * @param rich whether [content] can contain HTML code
  * @param align text align
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 @Suppress("LeakingThis")
@@ -46,9 +44,9 @@ open class PullHook(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (PullHook.() -> Unit)? = null
-) : CustomTag("ons-pull-hook", content, rich, align, classes) {
+) : CustomTag("ons-pull-hook", content, rich, align, className) {
 
     /**
      * When pulled down further than this value it will switch to the "preaction" state.
@@ -122,9 +120,6 @@ open class PullHook(
         if (onPullCallback != null) {
             getElement()?.asDynamic()?.onPull = onPullCallback
         }
-        this.getElementJQuery()?.on("changestate") { e, _ ->
-            this.dispatchEvent("onsChangestate", obj { detail = e })
-        }
     }
 
     /**
@@ -171,11 +166,10 @@ fun Page.pullHook(
     content: String? = null,
     rich: Boolean = false,
     align: Align? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (PullHook.() -> Unit)? = null
 ): PullHook {
-    val pullHook = PullHook(content, rich, align, classes ?: className.set, init)
+    val pullHook = PullHook(content, rich, align, className, init)
     this.add(pullHook)
     return pullHook
 }

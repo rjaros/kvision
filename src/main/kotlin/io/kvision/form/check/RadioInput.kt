@@ -22,23 +22,20 @@
 package io.kvision.form.check
 
 import io.kvision.core.Container
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * The basic input component rendered as HTML *input type="radio"*.
  *
  * @constructor
  * @param value selection state
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class RadioInput(
     value: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (RadioInput.() -> Unit)? = null
-) : CheckInput(CheckInputType.RADIO, value, classes) {
+) : CheckInput(CheckInputType.RADIO, value, className) {
 
     init {
         @Suppress("LeakingThis")
@@ -54,24 +51,10 @@ open class RadioInput(
  */
 fun Container.radioInput(
     value: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (RadioInput.() -> Unit)? = null
 ): RadioInput {
-    val checkBoxInput = RadioInput(value, classes ?: className.set, init)
+    val checkBoxInput = RadioInput(value, className, init)
     this.add(checkBoxInput)
     return checkBoxInput
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.radioInput(
-    state: ObservableState<S>,
-    value: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (RadioInput.(S) -> Unit)
-) = radioInput(value, classes, className).bind(state, true, init)

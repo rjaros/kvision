@@ -26,9 +26,6 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.panel.SimplePanel
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * An Onsen UI list component.
@@ -36,15 +33,15 @@ import io.kvision.utils.set
  * @constructor Creates a list component.
  * @param inset whether the list doesn’t cover the whole width of the parent
  * @param noborder whether the list has no borders at the top and bottom
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class OnsList(
     inset: Boolean = false,
     noborder: Boolean = false,
-    classes: Set<String> = setOf(),
+    className: String? = null,
     init: (OnsList.() -> Unit)? = null
-) : SimplePanel(classes) {
+) : SimplePanel(className) {
 
     /**
      *  Whether the list doesn’t cover the whole width of the parent.
@@ -96,25 +93,10 @@ open class OnsList(
 fun Container.onsList(
     inset: Boolean = false,
     noborder: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (OnsList.() -> Unit)? = null
 ): OnsList {
-    val onsList = OnsList(inset, noborder, classes ?: className.set, init)
+    val onsList = OnsList(inset, noborder, className, init)
     this.add(onsList)
     return onsList
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.onsList(
-    state: ObservableState<S>,
-    inset: Boolean = false,
-    noborder: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (OnsList.(S) -> Unit)
-) = onsList(inset, noborder, classes, className).bind(state, true, init)

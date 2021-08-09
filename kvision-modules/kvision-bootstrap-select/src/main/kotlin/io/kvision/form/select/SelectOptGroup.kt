@@ -38,13 +38,13 @@ import io.kvision.utils.set
  * @param options an optional list of options (label to value pairs) for the group
  * @param maxOptions maximal number of selected options in the group
  * @param disabled renders a disabled group
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SelectOptGroup(
     label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
-    disabled: Boolean = false, classes: Set<String> = setOf(), init: (SelectOptGroup.() -> Unit)? = null
-) : SimplePanel(classes) {
+    disabled: Boolean = false, className: String? = null, init: (SelectOptGroup.() -> Unit)? = null
+) : SimplePanel(className) {
     /**
      * A label for the group.
      */
@@ -105,12 +105,11 @@ open class SelectOptGroup(
 fun Select.selectOptGroup(
     label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
     disabled: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectOptGroup.() -> Unit)? = null
 ): SelectOptGroup {
     val selectOptGroup =
-        SelectOptGroup(label, options, maxOptions, disabled, classes ?: className.set, init)
+        SelectOptGroup(label, options, maxOptions, disabled, className, init)
     this.add(selectOptGroup)
     return selectOptGroup
 }
@@ -123,12 +122,11 @@ fun Select.selectOptGroup(
 fun SelectInput.selectOptGroup(
     label: String, options: List<StringPair>? = null, maxOptions: Int? = null,
     disabled: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (SelectOptGroup.() -> Unit)? = null
 ): SelectOptGroup {
     val selectOptGroup =
-        SelectOptGroup(label, options, maxOptions, disabled, classes ?: className.set, init)
+        SelectOptGroup(label, options, maxOptions, disabled, className, init)
     this.add(selectOptGroup)
     return selectOptGroup
 }

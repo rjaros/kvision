@@ -21,8 +21,8 @@
  */
 package io.kvision.modal
 
-import kotlinx.coroutines.suspendCancellableCoroutine
 import io.kvision.core.Widget
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
 /**
@@ -36,15 +36,15 @@ import kotlin.coroutines.resume
  * @param centered determines if modal dialog is vertically centered
  * @param scrollable determines if modal dialog content is scrollable
  * @param escape determines if dialog can be closed with Esc key
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Dialog<R>(
     caption: String? = null, closeButton: Boolean = true,
     size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
     scrollable: Boolean = false, escape: Boolean = true,
-    classes: Set<String> = setOf(), init: (Dialog<R>.() -> Unit)? = null
-) : Modal(caption, closeButton, size, animation, centered, scrollable, escape, classes) {
+    className: String? = null, init: (Dialog<R>.() -> Unit)? = null
+) : Modal(caption, closeButton, size, animation, centered, scrollable, escape, className) {
 
     internal var resultCallback: ((R?) -> Unit)? = null
 

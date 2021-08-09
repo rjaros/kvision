@@ -24,20 +24,17 @@ package io.kvision.navbar
 import io.kvision.core.ClassSetBuilder
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
 
 /**
  * The Bootstrap Nav form container.
  *
  * @constructor
  * @param rightAlign determines if the nav form is aligned to the right
- * @param classes a set of CSS class names
+ * @param className CSS class names
  * @param init an initializer extension function
  */
-open class NavForm(rightAlign: Boolean = false, classes: Set<String> = setOf(), init: (NavForm.() -> Unit)? = null) :
-    Tag(TAG.FORM, classes = classes) {
+open class NavForm(rightAlign: Boolean = false, className: String? = null, init: (NavForm.() -> Unit)? = null) :
+    Tag(TAG.FORM, className = className) {
 
     /**
      * Determines if the nav form is aligned to the right.
@@ -53,7 +50,7 @@ open class NavForm(rightAlign: Boolean = false, classes: Set<String> = setOf(), 
         super.buildClassSet(classSetBuilder)
         classSetBuilder.add("form-inline")
         if (rightAlign) {
-            classSetBuilder.add("ml-auto")
+            classSetBuilder.add("ms-auto")
         }
     }
 }
@@ -65,24 +62,10 @@ open class NavForm(rightAlign: Boolean = false, classes: Set<String> = setOf(), 
  */
 fun Navbar.navForm(
     rightAlign: Boolean = false,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (NavForm.() -> Unit)? = null
 ): NavForm {
-    val navForm = NavForm(rightAlign, classes ?: className.set, init)
+    val navForm = NavForm(rightAlign, className, init)
     this.add(navForm)
     return navForm
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Navbar.navForm(
-    state: ObservableState<S>,
-    rightAlign: Boolean = false,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (NavForm.(S) -> Unit)
-) = navForm(rightAlign, classes, className).bind(state, true, init)

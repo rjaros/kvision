@@ -43,7 +43,7 @@ class NavFormSpec : DomSpec {
             )
             navf.rightAlign = true
             assertEqualsHtml(
-                "<form class=\"form-inline ml-auto\"></form>",
+                "<form class=\"form-inline ms-auto\"></form>",
                 element?.innerHTML,
                 "Should render correct right aligned nav form"
             )

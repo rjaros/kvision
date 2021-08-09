@@ -22,13 +22,11 @@
 package io.kvision.html
 
 import com.github.snabbdom.VNode
-import org.w3c.dom.Window
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.state.ObservableState
-import io.kvision.state.bind
-import io.kvision.utils.set
+import org.w3c.dom.HTMLIFrameElement
+import org.w3c.dom.Window
 
 /**
  * Iframe sandbox options.
@@ -52,13 +50,13 @@ enum class Sandbox(internal val option: String) {
  * @param iframeWidth the width of the iframe
  * @param iframeHeight the height of the iframe
  * @param sandbox a set of Sandbox options
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
 @TagMarker
 open class Iframe(
     src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
-    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null, classes: Set<String> = setOf()
-) : Widget(classes) {
+    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null, className: String? = null
+) : Widget(className) {
     /**
      * The iframe document address.
      */
@@ -124,22 +122,20 @@ open class Iframe(
         }
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     private fun getLocationHref(): String? {
-        return getElementJQueryD()[0].contentWindow.location.href
+        return getElement()?.unsafeCast<HTMLIFrameElement>()?.contentWindow?.location?.href
     }
 
     private fun setLocationHref(location: String?) {
-        getElementJQueryD()[0].contentWindow.location.href = location ?: "about:blank"
+        getElement()?.unsafeCast<HTMLIFrameElement>()?.contentWindow?.location?.href = location ?: "about:blank"
     }
 
     /**
      * Returns content window object of the iframe.
      * @return content window object
      */
-    @Suppress("UnsafeCastFromDynamic")
-    open fun getIframeWindow(): Window {
-        return getElementJQueryD()[0].contentWindow
+    open fun getIframeWindow(): Window? {
+        return getElement()?.unsafeCast<HTMLIFrameElement>()?.contentWindow
     }
 }
 
@@ -151,12 +147,11 @@ open class Iframe(
 fun Container.iframe(
     src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
     iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null,
-    classes: Set<String>? = null,
     className: String? = null,
     init: (Iframe.() -> Unit)? = null
 ): Iframe {
     val iframe =
-        Iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes ?: className.set).apply {
+        Iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, className).apply {
             init?.invoke(
                 this
             )
@@ -164,17 +159,3 @@ fun Container.iframe(
     this.add(iframe)
     return iframe
 }
-
-/**
- * DSL builder extension function for observable state.
- *
- * It takes the same parameters as the constructor of the built component.
- */
-fun <S> Container.iframe(
-    state: ObservableState<S>,
-    src: String? = null, srcdoc: String? = null, name: String? = null, iframeWidth: Int? = null,
-    iframeHeight: Int? = null, sandbox: Set<Sandbox>? = null,
-    classes: Set<String>? = null,
-    className: String? = null,
-    init: (Iframe.(S) -> Unit)
-) = iframe(src, srcdoc, name, iframeWidth, iframeHeight, sandbox, classes, className).bind(state, true, init)

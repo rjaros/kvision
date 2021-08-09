@@ -27,6 +27,7 @@ import de.jensklingenberg.mpapt.model.AbstractProcessor
 import de.jensklingenberg.mpapt.model.Element
 import de.jensklingenberg.mpapt.model.RoundEnvironment
 import de.jensklingenberg.mpapt.utils.KotlinPlatformValues
+import io.kvision.annotations.KVService
 import org.jetbrains.kotlin.backend.common.descriptors.allParameters
 import org.jetbrains.kotlin.cli.common.config.kotlinSourceRoots
 import org.jetbrains.kotlin.descriptors.CallableMemberDescriptor
@@ -37,7 +38,6 @@ import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.platform.TargetPlatform
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.types.KotlinType
-import io.kvision.annotations.KVService
 import java.io.File
 
 class KVProcessor : AbstractProcessor() {
@@ -56,7 +56,8 @@ class KVProcessor : AbstractProcessor() {
 
     @Suppress("MaxLineLength", "ComplexMethod", "NestedBlockDepth")
     override fun process(roundEnvironment: RoundEnvironment) {
-        val isCommon = this.configuration.kotlinSourceRoots.find { !it.isCommon } == null
+        val isCommon =
+            this.configuration.kotlinSourceRoots.find { !it.path.contains("src${File.separator}common") } == null
         if (isCommon) {
             roundEnvironment.getElementsAnnotatedWith(KVService::class.java.name).forEach {
                 if (it is Element.ClassElement && it.classDescriptor.name.asString().startsWith("I")
@@ -152,14 +153,13 @@ class KVProcessor : AbstractProcessor() {
                         appendLine("//")
                         appendLine("package $packageName")
                         appendLine()
-                        appendLine("import io.kvision.jquery.JQueryAjaxSettings")
-                        appendLine("import io.kvision.jquery.JQueryXHR")
+                        appendLine("import org.w3c.fetch.RequestInit")
                         appendLine("import io.kvision.remote.KVRemoteAgent")
                         getTypes(cl.methods()).sorted().forEach {
                             appendLine("import $it")
                         }
                         appendLine()
-                        appendLine("actual class $baseName(beforeSend: ((JQueryXHR, JQueryAjaxSettings) -> Boolean)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, beforeSend) {")
+                        appendLine("actual class $baseName(requestFilter: (RequestInit.() -> Unit)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, requestFilter) {")
                         cl.methods().forEach {
                             val name = it.name
                             val params = it.allParameters.drop(1)
@@ -171,14 +171,18 @@ class KVProcessor : AbstractProcessor() {
                                 if (params.isNotEmpty()) {
                                     when {
                                         it.returnType.toString().startsWith("RemoteData") -> appendLine(
-                                            "    override suspend fun $name(${getParameterList(
-                                                params
-                                            )}) = ${it.returnType.toString()}()"
+                                            "    override suspend fun $name(${
+                                                getParameterList(
+                                                    params
+                                                )
+                                            }) = ${it.returnType.toString()}()"
                                         )
                                         else -> appendLine(
-                                            "    override suspend fun $name(${getParameterList(params)}) = call($iName::$name, ${getParameterNames(
-                                                params
-                                            )})"
+                                            "    override suspend fun $name(${getParameterList(params)}) = call($iName::$name, ${
+                                                getParameterNames(
+                                                    params
+                                                )
+                                            })"
                                         )
                                     }
                                 } else {

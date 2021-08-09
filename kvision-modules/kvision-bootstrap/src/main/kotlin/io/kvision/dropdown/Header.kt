@@ -23,17 +23,16 @@ package io.kvision.dropdown
 
 import io.kvision.html.TAG
 import io.kvision.html.Tag
-import io.kvision.utils.set
 
 /**
  * Menu header component.
  *
  * @constructor
  * @param content header content text
- * @param classes a set of CSS class names
+ * @param className CSS class names
  */
-open class Header(content: String? = null, classes: Set<String> = setOf()) :
-    Tag(TAG.H6, content, classes = classes + "dropdown-header")
+open class Header(content: String? = null, className: String? = null) :
+    Tag(TAG.H6, content, className = (className?.let { "$it " } ?: "") + "dropdown-header")
 
 /**
  * DSL builder extension function.
@@ -42,10 +41,9 @@ open class Header(content: String? = null, classes: Set<String> = setOf()) :
  */
 fun ContextMenu.header(
     content: String? = null,
-    classes: Set<String>? = null,
     className: String? = null
 ): Header {
-    val header = Header(content, classes ?: className.set)
+    val header = Header(content, className)
     this.add(header)
     return header
 }
@@ -57,10 +55,9 @@ fun ContextMenu.header(
  */
 fun DropDown.header(
     content: String? = null,
-    classes: Set<String>? = null,
     className: String? = null
 ): Header {
-    val header = Header(content, classes ?: className.set)
+    val header = Header(content, className)
     this.add(header)
     return header
 }

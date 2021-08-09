@@ -50,7 +50,7 @@ class LoginService(val loginEndpoint: String) {
             loginAgent.remoteCall(loginEndpoint, obj {
                 this.username = credentials.username
                 this.password = credentials.password
-            }, HttpMethod.POST, "application/x-www-form-urlencoded").then { _: dynamic -> true }.asDeferred().await()
+            }, HttpMethod.POST, "application/x-www-form-urlencoded", ResponseBodyType.READABLE_STREAM).then { _: dynamic -> true }.asDeferred().await()
         } else {
             throw SecurityException("Credentials cannot be empty")
         }

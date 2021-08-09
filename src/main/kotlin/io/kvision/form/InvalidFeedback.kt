@@ -33,5 +33,5 @@ import io.kvision.html.Tag
  */
 open class InvalidFeedback(content: String? = null, rich: Boolean = false) : Tag(
     TAG.DIV, content, rich,
-    classes = setOf("invalid-feedback")
+    className = "invalid-feedback"
 )

@@ -31,7 +31,6 @@ import io.kvision.tabulator.EditorRoot.disposeTimer
 import io.kvision.tabulator.EditorRoot.root
 import io.kvision.tabulator.js.Tabulator
 import io.kvision.utils.obj
-import io.kvision.utils.toKotlinObj
 import kotlinx.browser.document
 import kotlinx.browser.window
 import org.w3c.dom.HTMLElement
@@ -388,13 +387,13 @@ data class ColumnDefinition<T : Any>(
     val accessor: dynamic = null,
     val accessorParams: dynamic = null,
     val maxWidth: Int? = null,
-    val mutatorData: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorData: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorDataParams: dynamic = null,
-    val mutatorEdit: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorEdit: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorEditParams: dynamic = null,
-    val mutatorClipboard: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutatorClipboard: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorClipboardParams: dynamic = null,
-    val mutator: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
+    val mutator: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorParams: dynamic = null,
 )
 
@@ -420,7 +419,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
             if (cell.getElement().asDynamic() != false) cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
             if (kClass == null) throw IllegalStateException("The data class type is unknown")
-            val data = toKotlinObj(cell.getData(), kClass)
+            val data = tabulator.toKotlinObjTabulator(cell.getData(), kClass)
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, { value ->
@@ -458,7 +457,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
           onRendered: (callback: () -> Unit) -> Unit ->
             var onRenderedCallback: (() -> Unit)? = null
             if (kClass == null) throw IllegalStateException("The data class type is unknown")
-            val data = toKotlinObj(cell.getData(), kClass)
+            val data = tabulator.toKotlinObjTabulator(cell.getData(), kClass)
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, data)

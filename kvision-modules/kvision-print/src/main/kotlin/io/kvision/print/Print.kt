@@ -22,8 +22,8 @@
 
 package io.kvision.print
 
-import io.kvision.KVManagerPrint
-import io.kvision.KVManagerPrint.counter
+import io.kvision.PrintModule
+import io.kvision.PrintModule.counter
 import io.kvision.core.Widget
 import io.kvision.utils.obj
 
@@ -106,9 +106,9 @@ fun Widget.print(options: PrintOptions? = null) {
     val id = "kv_print_js_id_${counter++}"
     this.id = id
     if (options != null) {
-        KVManagerPrint.printjs(options.toJs(id, PrintType.HTML))
+        PrintModule.printjs(options.toJs(id, PrintType.HTML))
     } else {
-        KVManagerPrint.printjs(id, "html")
+        PrintModule.printjs(id, "html")
     }
     this.id = previousId
 }
@@ -118,6 +118,10 @@ fun Widget.print(options: PrintOptions? = null) {
  */
 object Print {
 
+    init {
+        PrintModule.initialize()
+    }
+
     /**
      * Prints the given data directly from the browser window.
      * @param data an URL or printable data object
@@ -126,9 +130,9 @@ object Print {
      */
     fun print(data: dynamic, type: PrintType, options: PrintOptions? = null) {
         if (options != null) {
-            KVManagerPrint.printjs(options.toJs(data, type))
+            PrintModule.printjs(options.toJs(data, type))
         } else {
-            KVManagerPrint.printjs(data, type.type)
+            PrintModule.printjs(data, type.type)
         }
     }
 

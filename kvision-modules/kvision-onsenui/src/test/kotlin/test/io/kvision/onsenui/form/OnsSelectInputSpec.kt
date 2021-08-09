@@ -38,7 +38,7 @@ class OnsSelectInputSpec : DomSpec {
 
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<ons-select class=\"kv-ons-form-control form-control\"><option value=\"1\">Option 1</option><option value=\"2\" selected=\"selected\">Option 2</option></ons-select>",
+                "<ons-select class=\"kv-ons-form-control form-select\"><option value=\"1\">Option 1</option><option value=\"2\" selected=\"selected\">Option 2</option></ons-select>",
                 element?.innerHTML,
                 "Should render Onsen UI select input component"
             )
