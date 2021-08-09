@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("@popperjs/core", "^2.9.2"))
+    implementation(npm("@popperjs/core", "^2.9.3"))
     implementation(npm("bootstrap", "^5.1.0"))
     implementation(npm("awesome-bootstrap-checkbox", "^1.0.1"))
     implementation(npm("element-resize-event", "^3.0.6"))
