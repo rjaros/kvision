@@ -45,7 +45,7 @@ enum class GridSize(internal val size: String) {
 
 internal const val MAX_COLUMNS = 12
 
-internal data class WidgetParam(val widget: Component, val size: Int, val offset: Int)
+internal data class WidgetParam(val widget: Component, val size: Int, val offset: Int, val className: String?)
 
 /**
  * The container with support for Bootstrap responsive grid layout.
@@ -84,14 +84,22 @@ open class ResponsiveGridPanel(
      * @param row row number
      * @param size cell size (colspan)
      * @param offset cell offset
+     * @param className additional css styles
      * @return this container
      */
-    open fun add(child: Component, col: Int, row: Int, size: Int = 0, offset: Int = 0): ResponsiveGridPanel {
+    open fun add(
+        child: Component,
+        col: Int,
+        row: Int,
+        size: Int = 0,
+        offset: Int = 0,
+        className: String? = null
+    ): ResponsiveGridPanel {
         val cRow = maxOf(row, 1)
         val cCol = maxOf(col, 1)
         if (cRow > rows) rows = cRow
         if (cCol > cols) cols = cCol
-        map.getOrPut(cRow) { mutableMapOf() }[cCol] = WidgetParam(child, size, offset)
+        map.getOrPut(cRow) { mutableMapOf() }[cCol] = WidgetParam(child, size, offset, className)
         if (size > 0 || offset > 0) auto = false
         refreshRowContainers()
         return this
@@ -102,12 +110,12 @@ open class ResponsiveGridPanel(
      * @param builder DSL builder function
      */
     open fun options(
-        col: Int, row: Int, size: Int = 0, offset: Int = 0,
+        col: Int, row: Int, size: Int = 0, offset: Int = 0, className: String? = null,
         builder: Container.() -> Unit
     ) {
         object : Container by this@ResponsiveGridPanel {
             override fun add(child: Component): Container {
-                return add(child, col, row, size, offset)
+                return add(child, col, row, size, offset, className)
             }
         }.builder()
     }
@@ -155,7 +163,9 @@ open class ResponsiveGridPanel(
                     (1..cols).map { row[it] }.forEach { wp ->
                         if (auto) {
                             val widget = wp?.widget?.let {
-                                WidgetWrapper(it, "col-" + gridSize.size + "-" + num)
+                                WidgetWrapper(
+                                    it,
+                                    "col-" + gridSize.size + "-" + num + (wp.className?.let { " $it" } ?: ""))
                             } ?: Tag(TAG.DIV, className = "col-" + gridSize.size + "-" + num)
                             align?.let {
                                 widget.addCssClass(it.className)
@@ -164,7 +174,9 @@ open class ResponsiveGridPanel(
                         } else {
                             if (wp != null) {
                                 val s = if (wp.size > 0) wp.size else num
-                                val widget = WidgetWrapper(wp.widget, "col-" + gridSize.size + "-" + s)
+                                val widget = WidgetWrapper(
+                                    wp.widget,
+                                    "col-" + gridSize.size + "-" + s + (wp.className?.let { " $it" } ?: ""))
                                 if (wp.offset > 0) {
                                     widget.addCssClass("offset-" + gridSize.size + "-" + wp.offset)
                                 }
