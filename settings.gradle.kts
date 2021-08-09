@@ -55,6 +55,6 @@ include(
     "kvision-modules:kvision-server-micronaut",
     "kvision-modules:kvision-testutils",
     "kvision-tools:kvision-compiler-plugin",
-    "kvision-tools:kvision-gradle-plugin",
+    "kvision-tools:io.kvision.gradle.plugin",
     "kvision-assets"
 )

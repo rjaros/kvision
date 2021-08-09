@@ -1,4 +1,5 @@
 plugins {
+    `kotlin-dsl`
     kotlin("jvm")
     id("java-gradle-plugin")
     id("maven-publish")
@@ -22,7 +23,7 @@ gradlePlugin {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin-api:$kotlinVersion")
+    compileOnly(kotlin("gradle-plugin"))
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
