@@ -32,7 +32,7 @@ import io.micronaut.http.annotation.Options
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.annotation.Put
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 /**
  * Controller for handling automatic routes.

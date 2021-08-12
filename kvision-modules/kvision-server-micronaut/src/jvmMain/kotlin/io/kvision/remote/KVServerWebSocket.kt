@@ -28,12 +28,12 @@ import io.micronaut.websocket.annotation.OnClose
 import io.micronaut.websocket.annotation.OnMessage
 import io.micronaut.websocket.annotation.OnOpen
 import io.micronaut.websocket.annotation.ServerWebSocket
+import jakarta.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
-import javax.inject.Inject
 
 /**
  * Micronaut WebSocket handler.
