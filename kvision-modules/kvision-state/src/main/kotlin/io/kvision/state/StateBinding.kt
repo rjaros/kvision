@@ -45,15 +45,32 @@ fun <S, W : Component> W.bind(
     return this
 }
 
-internal fun <S, W : Component> W.bindSync(
+/**
+ * An extension function which binds the widget to the observable state synchronously.
+ * It's less efficient than [bind], but fully compatible with KVision 4 state bindings.
+ *
+ * @param S the state type
+ * @param W the widget type
+ * @param observableState the state
+ * @param removeChildren remove all children of the component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : Component> W.bindSync(
     observableState: ObservableState<S>,
     removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
     factory: (W.(S) -> Unit)
 ): W {
+    var skip = !runImmediately
     this.addBeforeDisposeHook(observableState.subscribe {
-        this.singleRender {
-            if (removeChildren) (this as? Container)?.disposeAll()
-            factory(it)
+        if (!skip) {
+            this.singleRender {
+                if (removeChildren) (this as? Container)?.disposeAll()
+                factory(it)
+            }
+        } else {
+            skip = false
         }
     })
     return this
