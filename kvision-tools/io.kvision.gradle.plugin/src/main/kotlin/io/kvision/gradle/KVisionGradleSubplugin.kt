@@ -27,6 +27,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.Exec
 import org.gradle.api.tasks.bundling.Zip
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByName
@@ -82,6 +83,9 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                         outputs.file(archiveFile)
                     }
                 }
+                extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+                    versions.webpackDevServer.version = "4.0.0"
+                }
             }
         }
         plugins.withId("org.jetbrains.kotlin.multiplatform") {
@@ -106,6 +110,9 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                     getByName("compileKotlinFrontend") {
                         dependsOn("compileKotlinMetadata")
                     }
+                }
+                extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+                    versions.webpackDevServer.version = "4.0.0"
                 }
             }
         }
