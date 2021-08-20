@@ -101,9 +101,33 @@
       ]
     },
     {
+      "name": "kvision-bootstrap-icons",
+      "description": "Bootstrap Icons support",
+      "excludes": [
+        "kvision-onsenui"
+      ],
+      "initializer": "BootstrapIconsModule"
+    },
+    {
       "name": "kvision-fontawesome",
       "description": "Font Awesome support",
       "initializer": "FontAwesomeModule"
+    },
+    {
+      "name": "kvision-state",
+      "description": "State bindings and observable data structures"
+    },
+    {
+      "name": "kvision-state-flow",
+      "description": "Extensions for Kotlin coroutines Flow, StateFlow and SharedFlow"
+    },
+    {
+      "name": "kvision-rest",
+      "description": "Configurable REST/HTTP client"
+    },
+    {
+      "name": "kvision-jquery",
+      "description": "jQuery bindings, events and animations"
     },
     {
       "name": "kvision-handlebars",
@@ -159,10 +183,6 @@
       "excludes": [
         "kvision-redux"
       ]
-    },
-    {
-      "name": "kvision-event-flow",
-      "description": "Extension functions for coroutines Flow, StateFlow and SharedFlow"
     },
     {
       "name": "kvision-maps",
