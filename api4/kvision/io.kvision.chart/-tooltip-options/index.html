@@ -1,0 +1,689 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>TooltipOptions</title>
+<link href="../../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="kvision::io.kvision.chart/TooltipOptions///PointingToDeclaration//978196697">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">kvision</a>/<a href="../index.html">io.kvision.chart</a>/<a href="index.html">TooltipOptions</a></div>
+            <div class="pull-right d-flex">
+              <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector js-like" data-active="" data-filter=":dokkaHtml/kvision">js</button></div>
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Tooltip</span><wbr></wbr><span>Options</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace">data class <a href="index.html">TooltipOptions</a>(enabled: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>, custom: (a: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>?, mode: <a href="../-interaction-mode/index.html">InteractionMode</a>, intersect: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>, position: <a href="../-tooltip-position/index.html">TooltipPosition</a>, callbacks: <a href="../-tooltip-callback/index.html">TooltipCallback</a>?, filter: (item: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>, data: <a href="../../io.kvision.chart.js/-chart/-chart-data/index.html">Chart.ChartData</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?, itemSort: (itemA: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>, itemB: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>?, backgroundColor: <a href="../../io.kvision.core/-color/index.html">Color</a>?, titleFontSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, titleFontStyle: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>?, titleFontColor: <a href="../../io.kvision.core/-color/index.html">Color</a>?, titleFontFamily: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, titleSpacing: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, titleMarginBottom: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, bodyFontSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, bodyFontStyle: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>?, bodyFontColor: <a href="../../io.kvision.core/-color/index.html">Color</a>?, bodyFontFamily: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, bodySpacing: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, footerFontSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, footerFontStyle: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>?, footerFontColor: <a href="../../io.kvision.core/-color/index.html">Color</a>?, footerFontFamily: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, footerSpacing: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, footerMarginTop: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, xPadding: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, yPadding: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, caretPadding: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, caretSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, cornerRadius: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, multiKeyBackground: <a href="../../io.kvision.core/-color/index.html">Color</a>?, displayColors: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>, borderColor: <a href="../../io.kvision.core/-color/index.html">Color</a>?, borderWidth: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, titleAlign: <a href="../-tooltip-align/index.html">TooltipAlign</a>?, bodyAlign: <a href="../-tooltip-align/index.html">TooltipAlign</a>?, footerAlign: <a href="../-tooltip-align/index.html">TooltipAlign</a>?)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Chart tooltip options.</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Extensions">Extensions</button></div>
+            <div class="tabs-section-body">
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="-1500254037%2FConstructors%2F978196697" anchor-label="TooltipOptions" id="-1500254037%2FConstructors%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-tooltip-options.html">TooltipOptions</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1500254037%2FConstructors%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace">fun <a href="-tooltip-options.html">TooltipOptions</a>(enabled: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = true, custom: (a: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null, mode: <a href="../-interaction-mode/index.html">InteractionMode</a> = InteractionMode.NEAREST, intersect: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = true, position: <a href="../-tooltip-position/index.html">TooltipPosition</a> = TooltipPosition.AVERAGE, callbacks: <a href="../-tooltip-callback/index.html">TooltipCallback</a>? = null, filter: (item: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>, data: <a href="../../io.kvision.chart.js/-chart/-chart-data/index.html">Chart.ChartData</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null, itemSort: (itemA: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>, itemB: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>? = null, backgroundColor: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null, titleFontSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 12, titleFontStyle: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>? = null, titleFontColor: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null, titleFontFamily: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, titleSpacing: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2, titleMarginBottom: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6, bodyFontSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 12, bodyFontStyle: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>? = null, bodyFontColor: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null, bodyFontFamily: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, bodySpacing: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2, footerFontSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 12, footerFontStyle: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>? = null, footerFontColor: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null, footerFontFamily: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null, footerSpacing: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2, footerMarginTop: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6, xPadding: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6, yPadding: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6, caretPadding: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2, caretSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 5, cornerRadius: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6, multiKeyBackground: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null, displayColors: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = true, borderColor: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null, borderWidth: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 0, titleAlign: <a href="../-tooltip-align/index.html">TooltipAlign</a>? = null, bodyAlign: <a href="../-tooltip-align/index.html">TooltipAlign</a>? = null, footerAlign: <a href="../-tooltip-align/index.html">TooltipAlign</a>? = null)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="200432200%2FProperties%2F978196697" anchor-label="backgroundColor" id="200432200%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="background-color.html">backgroundColor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="200432200%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="200432200%2FProperties%2F978196697" anchor-label="backgroundColor" id="200432200%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="background-color.html">backgroundColor</a>: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1610621350%2FProperties%2F978196697" anchor-label="bodyAlign" id="-1610621350%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="body-align.html">bodyAlign</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1610621350%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1610621350%2FProperties%2F978196697" anchor-label="bodyAlign" id="-1610621350%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="body-align.html">bodyAlign</a>: <a href="../-tooltip-align/index.html">TooltipAlign</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-73376021%2FProperties%2F978196697" anchor-label="bodyFontColor" id="-73376021%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="body-font-color.html">bodyFontColor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-73376021%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-73376021%2FProperties%2F978196697" anchor-label="bodyFontColor" id="-73376021%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="body-font-color.html">bodyFontColor</a>: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1118495176%2FProperties%2F978196697" anchor-label="bodyFontFamily" id="1118495176%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="body-font-family.html">bodyFontFamily</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1118495176%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1118495176%2FProperties%2F978196697" anchor-label="bodyFontFamily" id="1118495176%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="body-font-family.html">bodyFontFamily</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1575270517%2FProperties%2F978196697" anchor-label="bodyFontSize" id="-1575270517%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="body-font-size.html">bodyFontSize</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1575270517%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1575270517%2FProperties%2F978196697" anchor-label="bodyFontSize" id="-1575270517%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="body-font-size.html">bodyFontSize</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 12<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1268483165%2FProperties%2F978196697" anchor-label="bodyFontStyle" id="1268483165%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="body-font-style.html">bodyFontStyle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1268483165%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1268483165%2FProperties%2F978196697" anchor-label="bodyFontStyle" id="1268483165%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="body-font-style.html">bodyFontStyle</a>: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1636902308%2FProperties%2F978196697" anchor-label="bodySpacing" id="-1636902308%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="body-spacing.html">bodySpacing</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1636902308%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1636902308%2FProperties%2F978196697" anchor-label="bodySpacing" id="-1636902308%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="body-spacing.html">bodySpacing</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1548519622%2FProperties%2F978196697" anchor-label="borderColor" id="1548519622%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="border-color.html">borderColor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1548519622%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1548519622%2FProperties%2F978196697" anchor-label="borderColor" id="1548519622%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="border-color.html">borderColor</a>: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-142970941%2FProperties%2F978196697" anchor-label="borderWidth" id="-142970941%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="border-width.html">borderWidth</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-142970941%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-142970941%2FProperties%2F978196697" anchor-label="borderWidth" id="-142970941%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="border-width.html">borderWidth</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 0<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-965528977%2FProperties%2F978196697" anchor-label="callbacks" id="-965528977%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="callbacks.html">callbacks</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-965528977%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-965528977%2FProperties%2F978196697" anchor-label="callbacks" id="-965528977%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="callbacks.html">callbacks</a>: <a href="../-tooltip-callback/index.html">TooltipCallback</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1244684463%2FProperties%2F978196697" anchor-label="caretPadding" id="1244684463%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="caret-padding.html">caretPadding</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1244684463%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1244684463%2FProperties%2F978196697" anchor-label="caretPadding" id="1244684463%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="caret-padding.html">caretPadding</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="364930521%2FProperties%2F978196697" anchor-label="caretSize" id="364930521%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="caret-size.html">caretSize</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="364930521%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="364930521%2FProperties%2F978196697" anchor-label="caretSize" id="364930521%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="caret-size.html">caretSize</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 5<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-297439594%2FProperties%2F978196697" anchor-label="cornerRadius" id="-297439594%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="corner-radius.html">cornerRadius</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-297439594%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-297439594%2FProperties%2F978196697" anchor-label="cornerRadius" id="-297439594%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="corner-radius.html">cornerRadius</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-703451732%2FProperties%2F978196697" anchor-label="custom" id="-703451732%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="custom.html">custom</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-703451732%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-703451732%2FProperties%2F978196697" anchor-label="custom" id="-703451732%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="custom.html">custom</a>: (a: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1495736597%2FProperties%2F978196697" anchor-label="displayColors" id="-1495736597%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="display-colors.html">displayColors</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1495736597%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1495736597%2FProperties%2F978196697" anchor-label="displayColors" id="-1495736597%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="display-colors.html">displayColors</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = true<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="454563676%2FProperties%2F978196697" anchor-label="enabled" id="454563676%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="enabled.html">enabled</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="454563676%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="454563676%2FProperties%2F978196697" anchor-label="enabled" id="454563676%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="enabled.html">enabled</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = true<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1214696571%2FProperties%2F978196697" anchor-label="filter" id="-1214696571%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="filter.html">filter</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1214696571%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1214696571%2FProperties%2F978196697" anchor-label="filter" id="-1214696571%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="filter.html">filter</a>: (item: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>, data: <a href="../../io.kvision.chart.js/-chart/-chart-data/index.html">Chart.ChartData</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="834400403%2FProperties%2F978196697" anchor-label="footerAlign" id="834400403%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="footer-align.html">footerAlign</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="834400403%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="834400403%2FProperties%2F978196697" anchor-label="footerAlign" id="834400403%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="footer-align.html">footerAlign</a>: <a href="../-tooltip-align/index.html">TooltipAlign</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1344711844%2FProperties%2F978196697" anchor-label="footerFontColor" id="1344711844%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="footer-font-color.html">footerFontColor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1344711844%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1344711844%2FProperties%2F978196697" anchor-label="footerFontColor" id="1344711844%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="footer-font-color.html">footerFontColor</a>: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2129546031%2FProperties%2F978196697" anchor-label="footerFontFamily" id="2129546031%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="footer-font-family.html">footerFontFamily</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2129546031%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="2129546031%2FProperties%2F978196697" anchor-label="footerFontFamily" id="2129546031%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="footer-font-family.html">footerFontFamily</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-282599758%2FProperties%2F978196697" anchor-label="footerFontSize" id="-282599758%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="footer-font-size.html">footerFontSize</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-282599758%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-282599758%2FProperties%2F978196697" anchor-label="footerFontSize" id="-282599758%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="footer-font-size.html">footerFontSize</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 12<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1608396266%2FProperties%2F978196697" anchor-label="footerFontStyle" id="-1608396266%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="footer-font-style.html">footerFontStyle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1608396266%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1608396266%2FProperties%2F978196697" anchor-label="footerFontStyle" id="-1608396266%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="footer-font-style.html">footerFontStyle</a>: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-2077371503%2FProperties%2F978196697" anchor-label="footerMarginTop" id="-2077371503%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="footer-margin-top.html">footerMarginTop</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2077371503%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-2077371503%2FProperties%2F978196697" anchor-label="footerMarginTop" id="-2077371503%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="footer-margin-top.html">footerMarginTop</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1318108587%2FProperties%2F978196697" anchor-label="footerSpacing" id="-1318108587%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="footer-spacing.html">footerSpacing</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1318108587%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1318108587%2FProperties%2F978196697" anchor-label="footerSpacing" id="-1318108587%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="footer-spacing.html">footerSpacing</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1403421502%2FProperties%2F978196697" anchor-label="intersect" id="1403421502%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="intersect.html">intersect</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1403421502%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1403421502%2FProperties%2F978196697" anchor-label="intersect" id="1403421502%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="intersect.html">intersect</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = true<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1401282100%2FProperties%2F978196697" anchor-label="itemSort" id="-1401282100%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="item-sort.html">itemSort</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1401282100%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1401282100%2FProperties%2F978196697" anchor-label="itemSort" id="-1401282100%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="item-sort.html">itemSort</a>: (itemA: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>, itemB: <a href="../../io.kvision.chart.js/-chart/-chart-tooltip-item/index.html">Chart.ChartTooltipItem</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="685476794%2FProperties%2F978196697" anchor-label="mode" id="685476794%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="mode.html">mode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="685476794%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="685476794%2FProperties%2F978196697" anchor-label="mode" id="685476794%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="mode.html">mode</a>: <a href="../-interaction-mode/index.html">InteractionMode</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1826838967%2FProperties%2F978196697" anchor-label="multiKeyBackground" id="-1826838967%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="multi-key-background.html">multiKeyBackground</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1826838967%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1826838967%2FProperties%2F978196697" anchor-label="multiKeyBackground" id="-1826838967%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="multi-key-background.html">multiKeyBackground</a>: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1915588876%2FProperties%2F978196697" anchor-label="position" id="-1915588876%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="position.html">position</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1915588876%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1915588876%2FProperties%2F978196697" anchor-label="position" id="-1915588876%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="position.html">position</a>: <a href="../-tooltip-position/index.html">TooltipPosition</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="330659088%2FProperties%2F978196697" anchor-label="titleAlign" id="330659088%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="title-align.html">titleAlign</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="330659088%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="330659088%2FProperties%2F978196697" anchor-label="titleAlign" id="330659088%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="title-align.html">titleAlign</a>: <a href="../-tooltip-align/index.html">TooltipAlign</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-660624735%2FProperties%2F978196697" anchor-label="titleFontColor" id="-660624735%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="title-font-color.html">titleFontColor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-660624735%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-660624735%2FProperties%2F978196697" anchor-label="titleFontColor" id="-660624735%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="title-font-color.html">titleFontColor</a>: <a href="../../io.kvision.core/-color/index.html">Color</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="93654226%2FProperties%2F978196697" anchor-label="titleFontFamily" id="93654226%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="title-font-family.html">titleFontFamily</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="93654226%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="93654226%2FProperties%2F978196697" anchor-label="titleFontFamily" id="93654226%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="title-font-family.html">titleFontFamily</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-624382699%2FProperties%2F978196697" anchor-label="titleFontSize" id="-624382699%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="title-font-size.html">titleFontSize</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-624382699%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-624382699%2FProperties%2F978196697" anchor-label="titleFontSize" id="-624382699%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="title-font-size.html">titleFontSize</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 12<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="681234451%2FProperties%2F978196697" anchor-label="titleFontStyle" id="681234451%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="title-font-style.html">titleFontStyle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="681234451%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="681234451%2FProperties%2F978196697" anchor-label="titleFontStyle" id="681234451%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="title-font-style.html">titleFontStyle</a>: <a href="../../io.kvision.core/-font-style/index.html">FontStyle</a>? = null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1799105364%2FProperties%2F978196697" anchor-label="titleMarginBottom" id="-1799105364%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="title-margin-bottom.html">titleMarginBottom</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1799105364%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1799105364%2FProperties%2F978196697" anchor-label="titleMarginBottom" id="-1799105364%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="title-margin-bottom.html">titleMarginBottom</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-82207854%2FProperties%2F978196697" anchor-label="titleSpacing" id="-82207854%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="title-spacing.html">titleSpacing</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-82207854%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-82207854%2FProperties%2F978196697" anchor-label="titleSpacing" id="-82207854%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="title-spacing.html">titleSpacing</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1480948316%2FProperties%2F978196697" anchor-label="xPadding" id="-1480948316%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="x-padding.html">xPadding</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1480948316%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1480948316%2FProperties%2F978196697" anchor-label="xPadding" id="-1480948316%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="x-padding.html">xPadding</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="630342053%2FProperties%2F978196697" anchor-label="yPadding" id="630342053%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="y-padding.html">yPadding</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="630342053%2FProperties%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="630342053%2FProperties%2F978196697" anchor-label="yPadding" id="630342053%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace">val <a href="y-padding.html">yPadding</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 6<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="tabbedcontent">Extensions</h2>
+              <div class="table" data-togglable="Extensions"><a data-name="-1758311732%2FExtensions%2F978196697" anchor-label="toJs" id="-1758311732%2FExtensions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../to-js.html">toJs</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1758311732%2FExtensions%2F978196697"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="platform-tags ">
+                        <div class="platform-tag js-like">js</div>
+                      </div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace">fun <a href="index.html">TooltipOptions</a>.<a href="../to-js.html">toJs</a>(): dynamic<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1758311732%2FExtensions%2F978196697" anchor-label="toJs" id="-1758311732%2FExtensions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="brief "><a data-name="-1758311732%2FExtensions%2F978196697" anchor-label="toJs" id="-1758311732%2FExtensions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>An extension function to convert configuration class to JS object.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
