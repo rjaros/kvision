@@ -257,8 +257,10 @@ open class Modal(
             backdrop = if (escape) "true" else "static"
         })
         this.getElement()?.addEventListener("hidden.bs.modal", { _ ->
-            this.visible = false
-            hide()
+            if (this.visible) {
+                this.visible = false
+                hide()
+            }
         })
         showInternal()
     }
