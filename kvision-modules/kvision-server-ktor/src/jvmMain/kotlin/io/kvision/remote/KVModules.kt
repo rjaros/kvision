@@ -35,6 +35,7 @@ import io.ktor.util.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.serialization.json.Json
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -48,7 +49,14 @@ fun Application.kvisionInit(vararg modules: Module) = kvisionInit(true, *modules
  */
 fun Application.kvisionInit(initStaticResources: Boolean = true, vararg modules: Module) {
     install(ContentNegotiation) {
-        json()
+        json(json = Json {
+            encodeDefaults = true
+            isLenient = false // workaround for https://github.com/Kotlin/kotlinx.serialization/issues/1600
+            allowSpecialFloatingPointValues = true
+            allowStructuredMapKeys = true
+            prettyPrint = false
+            useArrayPolymorphism = true
+        })
     }
 
     if (initStaticResources) initStaticResources()
