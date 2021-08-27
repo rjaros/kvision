@@ -25,7 +25,6 @@ package io.kvision.remote
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
@@ -218,9 +217,8 @@ private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, Websocket
     ): RouteHandler =
         { runBlocking { function.invoke(HANDLER_THIS, it) } }
 
+    @OptIn(FlowPreview::class, DelicateCoroutinesApi::class)
     @Suppress("UNCHECKED_CAST")
-    @DelicateCoroutinesApi
-    @FlowPreview
     override fun <REQ, RES> createWebsocketHandler(
         function: suspend Any.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
         requestSerializer: KSerializer<REQ>,

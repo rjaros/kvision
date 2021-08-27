@@ -31,6 +31,7 @@ import io.kvision.remote.RemoteFilter
 import io.kvision.remote.RemoteSorter
 import io.kvision.utils.JSON
 import kotlinx.browser.window
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import kotlin.reflect.KClass
@@ -48,6 +49,7 @@ import kotlin.reflect.KClass
  * @param types a set of table types
  * @param className CSS class names
  */
+@OptIn(ExperimentalSerializationApi::class)
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceMgr<E>,
     function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,

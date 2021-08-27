@@ -28,6 +28,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.serializer
 import io.kvision.types.JsonDateSerializer
 import io.kvision.types.toStringInternal
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlin.js.Date
 import kotlin.reflect.KClass
 
@@ -38,6 +39,7 @@ class NotEnumTypeException : Exception("Not the Enum type!")
 /**
  * Interface for client side agent for JSON-RPC remote calls.
  */
+@OptIn(ExperimentalSerializationApi::class)
 open class RemoteAgent {
 
     /**

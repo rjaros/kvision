@@ -38,6 +38,7 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
@@ -58,6 +59,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param className CSS class names
  * @param init an initializer extension function
  */
+@OptIn(ExperimentalSerializationApi::class)
 open class SelectRemoteInput<T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
