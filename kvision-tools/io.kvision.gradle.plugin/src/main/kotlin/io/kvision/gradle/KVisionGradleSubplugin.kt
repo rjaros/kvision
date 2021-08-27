@@ -83,7 +83,7 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                         outputs.file(archiveFile)
                     }
                 }
-                extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+                rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
                     versions.webpackDevServer.version = "4.0.0"
                 }
             }
@@ -111,7 +111,7 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                         dependsOn("compileKotlinMetadata")
                     }
                 }
-                extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+                rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
                     versions.webpackDevServer.version = "4.0.0"
                 }
             }
