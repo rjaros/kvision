@@ -1,7 +1,7 @@
 {
-  "kvision": "5.0.1",
-  "kotlin": "1.5.21",
-  "serialization": "1.2.1",
+  "kvision": "5.1.0",
+  "kotlin": "1.5.30",
+  "serialization": "1.2.2",
   "coroutines": "1.5.1",
   "template-javalin": {
   },
@@ -9,7 +9,7 @@
     "jooby": "2.10.0"
   },
   "template-ktor": {
-    "ktor": "1.6.2"
+    "ktor": "1.6.3"
   },
   "template-micronaut": {
     "micronaut": "3.0.0"
