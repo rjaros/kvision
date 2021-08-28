@@ -119,7 +119,7 @@ open class SelectRemoteInput<T : Any>(
                 },
                 httpType = HttpType.valueOf(method.name),
                 cache = false,
-                preserveSelected = ajaxOptions?.preserveSelected ?: true
+                preserveSelected = ajaxOptions?.preserveSelected ?: false
             )
         } else {
             scope.launch {
