@@ -17,7 +17,7 @@ dependencies {
     api("org.jetbrains.kotlin-wrappers:kotlin-redux:$kotlinReduxVersion") {
         exclude("org.jetbrains.kotlinx", "kotlinx-html-js")
     }
-    implementation(npm("redux", "^4.1.0"))
+    implementation(npm("redux", "^4.1.1"))
     implementation(npm("redux-thunk", "^2.3.0"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
