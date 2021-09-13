@@ -22,16 +22,11 @@
 package io.kvision.core
 
 import io.kvision.utils.event
-import kotlinx.browser.window
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
+import kotlinx.coroutines.*
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
 
-val KVScope = CoroutineScope(window.asCoroutineDispatcher()) + SupervisorJob()
+val KVScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
 /**
  * An extension function for defining on click suspending event handlers.
