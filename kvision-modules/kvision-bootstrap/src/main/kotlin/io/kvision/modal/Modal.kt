@@ -124,7 +124,11 @@ open class Modal(
         }
 
     private val dialog = ModalDialog(size, centered, scrollable)
-    private val header = SimplePanel("modal-header")
+
+    /**
+     * The modal dialog header component.
+     */
+    val header = SimplePanel("modal-header")
 
     /**
      * @suppress
@@ -138,7 +142,11 @@ open class Modal(
      * Internal property.
      */
     protected val body = SimplePanel("modal-body")
-    private val footer = SimplePanel("modal-footer")
+
+    /**
+     * The modal dialog footer component.
+     */
+    val footer = SimplePanel("modal-footer")
 
     init {
         this.hide()
