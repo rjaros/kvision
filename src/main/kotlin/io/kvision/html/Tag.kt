@@ -233,7 +233,7 @@ open class Tag(
 
     override fun render(): VNode {
         if (templateDataObj != null && lastLanguage != null && lastLanguage != I18n.language) {
-            getRoot()?.let { it.singleRenderers++ }
+            getRoot()?.let { it.singleRenderers++ } // disable rendering without re-rendering
             templateData = templateDataObj
             getRoot()?.let { it.singleRenderers-- }
         }

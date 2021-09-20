@@ -68,12 +68,21 @@ class Root : SimplePanel {
     private var asyncBuffer: MutableList<() -> Unit> = mutableListOf()
     private var asyncTimer: Int? = null
 
+    private val isFirstRoot = roots.isEmpty()
+
     /**
      * Sets the root container to the synchronous mode. Should be used for tests only.
      */
     var synchronousMode = false
 
-    val isFirstRoot = roots.isEmpty()
+    /**
+     * Disables rendering of the component tree under this root.
+     */
+    var disableRendering = false
+        set(value) {
+            field = value
+            if (!disableRendering) reRender()
+        }
 
     /**
      * @constructor
@@ -190,24 +199,35 @@ class Root : SimplePanel {
     }
 
     internal fun reRender(): Root {
-        if (singleRenderers == 0 && rootVnode != null) {
+        if (singleRenderers == 0 && !disableRendering && rootVnode != null) {
             rootVnode = KVManager.patch(rootVnode!!, renderVNode())
         }
         return this
     }
 
+    override fun <T> singleRender(block: () -> T): T {
+        singleRenderers++
+        val result = block()
+        singleRenderers--
+        reRender()
+        return result
+    }
+
     override fun singleRenderAsync(block: () -> Unit) {
         if (synchronousMode) {
-            block()
+            singleRender {
+                block()
+            }
         } else {
             asyncBuffer.add(block)
             if (asyncTimer != null) {
                 window.clearTimeout(asyncTimer!!)
             }
             asyncTimer = window.setTimeout({
-                asyncBuffer.forEach { it() }
-                asyncBuffer.clear()
-                reRender()
+                singleRender {
+                    asyncBuffer.forEach { it() }
+                    asyncBuffer.clear()
+                }
                 asyncTimer = null
             }, 0)
         }
