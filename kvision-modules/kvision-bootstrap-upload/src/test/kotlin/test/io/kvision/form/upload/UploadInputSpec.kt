@@ -21,18 +21,20 @@
  */
 package test.io.kvision.form.upload
 
-import io.kvision.jquery.jQuery
-import io.kvision.jquery.invoke
-import io.kvision.jquery.get
 import io.kvision.form.upload.UploadInput
+import io.kvision.jquery.get
+import io.kvision.jquery.invoke
+import io.kvision.jquery.jQuery
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
+import kotlin.test.Ignore
 import kotlin.test.Test
 
 class UploadInputSpec : DomSpec {
 
     @Test
+    @Ignore // workaround for https://github.com/kartik-v/bootstrap-fileinput/issues/1756
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)

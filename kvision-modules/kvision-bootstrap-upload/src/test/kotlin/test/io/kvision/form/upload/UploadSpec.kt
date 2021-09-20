@@ -21,16 +21,17 @@
  */
 package test.io.kvision.form.upload
 
-import kotlinx.browser.document
-import kotlinx.serialization.Serializable
+import io.kvision.form.Form
+import io.kvision.form.upload.Upload
 import io.kvision.jquery.get
 import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
-import io.kvision.form.Form
-import io.kvision.form.upload.Upload
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import io.kvision.types.KFile
+import kotlinx.browser.document
+import kotlinx.serialization.Serializable
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -43,6 +44,7 @@ data class DataForm(
 class UploadSpec : DomSpec {
 
     @Test
+    @Ignore // workaround for https://github.com/kartik-v/bootstrap-fileinput/issues/1756
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
@@ -66,6 +68,7 @@ class UploadSpec : DomSpec {
     }
 
     @Test
+    @Ignore // workaround for https://github.com/kartik-v/bootstrap-fileinput/issues/1756
     fun workInForm() {
         run {
             val form = Form.create<DataForm>()
