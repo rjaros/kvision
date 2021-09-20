@@ -168,7 +168,7 @@ open class SelectInput(
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
     /**
-     * The index of currently selected option or -1 if none.
+     * The index of the currently selected option or -1 if none.
      */
     @Suppress("UnsafeCastFromDynamic")
     var selectedIndex: Int
@@ -183,6 +183,21 @@ open class SelectInput(
             options?.getOrNull(value)?.let {
                 this.value = it.first
             }
+        }
+
+    /**
+     * The label of the currently selected option.
+     */
+    var selectedLabel: String?
+        get() = getElementJQuery()?.next()?.prop("title")?.toString()
+            ?: value?.let { v ->
+                options?.find { it.first == v }?.second
+            }
+        set(value) {
+            val button = getElementJQuery()?.next()
+            button?.removeClass("bs-placeholder")
+            button?.prop("title", value ?: "")
+            button?.find(".filter-option-inner-inner")?.html(value ?: "")
         }
 
     init {

@@ -192,12 +192,21 @@ open class Select(
         }
 
     /**
-     * The index of currently selected option or -1 if none.
+     * The index of the currently selected option or -1 if none.
      */
     var selectedIndex
         get() = input.selectedIndex
         set(value) {
             input.selectedIndex = value
+        }
+
+    /**
+     * The label of the currently selected option.
+     */
+    var selectedLabel
+        get() = input.selectedLabel
+        set(value) {
+            input.selectedLabel = value
         }
 
     private val idc = "kv_form_select_$counter"
