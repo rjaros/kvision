@@ -36,7 +36,7 @@ dependencies {
     api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-5.0.0.tgz"))
-    implementation(npm("kvision-assets", "^5.0.0"))
+    implementation(npm("kvision-assets", "^5.0.1"))
     implementation(npm("css-loader", "^6.2.0"))
     implementation(npm("style-loader", "^3.2.1"))
     implementation(npm("less", "^4.1.1"))

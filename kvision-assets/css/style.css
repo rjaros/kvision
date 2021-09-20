@@ -104,8 +104,8 @@ trix-toolbar .trix-button-group {
     border-bottom: 1px solid #dee2e6;
 }
 
-.tabulator.table-sm > :not(caption) > * > .tabulator-row {
-    padding-right: 0;
+.tabulator.table-sm > :not(caption) > * > * {
+    padding: inherit;
 }
 
 .input-group.date.is-invalid~.invalid-feedback {
