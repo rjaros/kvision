@@ -53,12 +53,12 @@ class FormSpec : SimpleSpec {
             val data = DataForm(a = "Test value")
             form.setData(data)
             val result = form.getData()
-            assertNull(result.a, "Form should return null without adding any control")
+            assertEquals("Test value", result.a, "Form should return initial value without adding any control")
             val textField = Text()
             form.add(DataForm::a, textField)
             form.setData(data)
             val result2 = form.getData()
-            assertEquals("Test value", result2.a, "Form should return initial value")
+            assertEquals("Test value", result2.a, "Form should return initial value after adding a control")
         }
     }
 

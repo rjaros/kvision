@@ -77,7 +77,11 @@ class DateTimeSpec : DomSpec {
             val data = DataForm(a = now)
             form.setData(data)
             val result = form.getData()
-            assertNull(result.a, "Form should return null without adding any control")
+            assertEquals(
+                now.toStringF("YYYY-MM-DD HH:mm"),
+                result.a?.toStringF("YYYY-MM-DD HH:mm"),
+                "Form should return initial value without a datetime control"
+            )
             val dateTimeField = DateTime()
             form.add(DataForm::a, dateTimeField)
             form.setData(data)
@@ -85,7 +89,7 @@ class DateTimeSpec : DomSpec {
             assertEquals(
                 now.toStringF("YYYY-MM-DD HH:mm"),
                 result2.a?.toStringF("YYYY-MM-DD HH:mm"),
-                "Form should return initial value"
+                "Form should return initial value with a datetime control"
             )
         }
     }

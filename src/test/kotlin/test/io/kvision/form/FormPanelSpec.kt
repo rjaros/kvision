@@ -39,12 +39,12 @@ class FormPanelSpec : SimpleSpec {
             val data = DataForm(a = "Test value")
             formPanel.setData(data)
             val result = formPanel.getData()
-            assertNull(result.a, "FormPanel should return null without adding any control")
+            assertEquals("Test value", result.a, "FormPanel should return initial value without adding any control")
             val textField = Text()
             formPanel.add(DataForm::a, textField)
             formPanel.setData(data)
             val result2 = formPanel.getData()
-            assertEquals("Test value", result2.a, "FormPanel should return initial value")
+            assertEquals("Test value", result2.a, "FormPanel should return initial value after adding a control")
         }
     }
 

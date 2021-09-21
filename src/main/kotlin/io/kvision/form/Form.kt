@@ -63,13 +63,25 @@ class Form<K : Any>(
     private val serializer: KSerializer<K>? = null,
     private val customSerializers: Map<KClass<*>, KSerializer<*>>? = null
 ) {
-
+    private val dataMap = mutableMapOf<String, Any?>()
     val modelFactory: ((Map<String, Any?>) -> K)?
-    val jsonFactory: ((K) -> dynamic)?
+    private val jsonFactory: ((K) -> dynamic)?
     val fields: LinkedHashMap<String, FormControl> = linkedMapOf()
     internal val fieldsParams: MutableMap<String, Any> = mutableMapOf()
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
+
+    private val Json = serializer?.let {
+        kotlinx.serialization.json.Json {
+            encodeDefaults = true
+            serializersModule = SerializersModule {
+                contextual(Date::class, DateSerializer)
+                customSerializers?.forEach { (kclass, serializer) ->
+                    contextual(kclass.unsafeCast<KClass<Any>>(), serializer.unsafeCast<KSerializer<Any>>())
+                }
+            }
+        }
+    }
 
     init {
         modelFactory = serializer?.let {
@@ -88,28 +100,12 @@ class Form<K : Any>(
                     }
                     if (v != null) json[key] = v
                 }
-                kotlinx.serialization.json.Json {
-                    encodeDefaults = true
-                    serializersModule = SerializersModule {
-                        contextual(Date::class, DateSerializer)
-                        customSerializers?.forEach { (kclass, serializer) ->
-                            contextual(kclass.unsafeCast<KClass<Any>>(), serializer.unsafeCast<KSerializer<Any>>())
-                        }
-                    }
-                }.decodeFromString(serializer, NativeJSON.stringify(json))
+                Json!!.decodeFromString(serializer, NativeJSON.stringify(json))
             }
         }
         jsonFactory = serializer?.let {
             {
-                NativeJSON.parse(kotlinx.serialization.json.Json {
-                    encodeDefaults = true
-                    serializersModule = SerializersModule {
-                        contextual(Date::class, DateSerializer)
-                        customSerializers?.forEach { (kclass, serializer) ->
-                            contextual(kclass.unsafeCast<KClass<Any>>(), serializer.unsafeCast<KSerializer<Any>>())
-                        }
-                    }
-                }.encodeToString(serializer, it))
+                NativeJSON.parse(Json!!.encodeToString(serializer, it))
             }
         }
     }
@@ -282,6 +278,7 @@ class Form<K : Any>(
      * @param model data model
      */
     fun setData(model: K) {
+        dataMap.clear()
         val json = jsonFactory?.invoke(model) ?: throw IllegalStateException("Serializer not defined")
         val keys = js("Object").keys(json).unsafeCast<Array<String>>()
         for (key in keys) {
@@ -295,7 +292,13 @@ class Form<K : Any>(
                             kotlin.js.JSON.stringify(jsonValue)
                         )
                     }
-                    else -> formField?.setValue(jsonValue)
+                    else -> {
+                        if (formField != null) {
+                            formField.setValue(jsonValue)
+                        } else {
+                            dataMap[key] = jsonValue
+                        }
+                    }
                 }
             } else {
                 fields[key]?.setValue(null)
@@ -308,6 +311,7 @@ class Form<K : Any>(
      * Sets the values of all controls to null.
      */
     fun clearData() {
+        dataMap.clear()
         fields.forEach { it.value.setValue(null) }
     }
 
@@ -316,7 +320,7 @@ class Form<K : Any>(
      * @return data model
      */
     fun getData(): K {
-        val map = fields.entries.associateBy({ it.key }, { it.value.getValue() })
+        val map = dataMap + fields.entries.associateBy({ it.key }, { it.value.getValue() })
         return modelFactory?.invoke(map.withDefault { null }) ?: throw IllegalStateException("Serializer not defined")
     }
 
@@ -327,15 +331,7 @@ class Form<K : Any>(
     fun getDataJson(): Json {
         return if (serializer != null) {
             NativeJSON.parse(
-                kotlinx.serialization.json.Json {
-                    encodeDefaults = true
-                    serializersModule = SerializersModule {
-                        contextual(Date::class, DateSerializer)
-                        customSerializers?.map {
-                            contextual(it.key.unsafeCast<KClass<Any>>(), it.value.unsafeCast<KSerializer<Any>>())
-                        }
-                    }
-                }.encodeToString(
+                Json!!.encodeToString(
                     serializer,
                     getData()
                 )
