@@ -122,7 +122,7 @@ open class Style(
         init?.invoke(this)
     }
 
-    private fun getStyleDeclaration(): String {
+    protected open fun getStyleDeclaration(): String {
         val pseudoElementName = pElement?.let { "::${it.pname}" } ?: ""
         val pseudoClassName = customPClass?.let { ":$it" } ?: pClass?.let { ":${it.pname}" } ?: ""
         val fullSelector = "$selector$pseudoElementName$pseudoClassName"
