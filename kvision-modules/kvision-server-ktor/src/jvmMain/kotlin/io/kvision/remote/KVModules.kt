@@ -47,7 +47,7 @@ fun Application.kvisionInit(vararg modules: Module) = kvisionInit(true, *modules
  * Initialization function for Ktor server.
  * @param initStaticResources initialize default static resources
  */
-fun Application.kvisionInit(initStaticResources: Boolean = true, vararg modules: Module) {
+fun Application.kvisionInit(initStaticResources: Boolean = true, vararg modules: Module): Injector {
     install(ContentNegotiation) {
         json(json = Json {
             encodeDefaults = true
@@ -67,6 +67,7 @@ fun Application.kvisionInit(initStaticResources: Boolean = true, vararg modules:
     intercept(ApplicationCallPipeline.Features) {
         call.attributes.put(injectorKey, injector.createChildInjector(CallModule(call)))
     }
+    return injector
 }
 
 /**

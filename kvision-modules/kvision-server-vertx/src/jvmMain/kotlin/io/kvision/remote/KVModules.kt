@@ -23,6 +23,7 @@ package io.kvision.remote
 
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
+import com.google.inject.Injector
 import com.google.inject.Module
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpServer
@@ -46,7 +47,7 @@ fun Vertx.kvisionInit(
     initStaticResources: Boolean = true,
     router: Router,
     vararg modules: Module
-) {
+): Injector {
     if (initStaticResources) router.initStaticResources()
 
     router.route("/kv/*").handler(BodyHandler.create(false))
@@ -57,6 +58,7 @@ fun Vertx.kvisionInit(
         rctx.put(KV_INJECTOR_KEY, injector.createChildInjector(RoutingContextModule(rctx)))
         rctx.next()
     }
+    return injector
 }
 
 /**
@@ -79,7 +81,7 @@ fun Vertx.kvisionInit(
     server: HttpServer,
     wsServiceManagers: List<KVServiceManager<*>> = emptyList(),
     vararg modules: Module
-) {
+): Injector {
     if (initStaticResources) router.initStaticResources()
 
     router.route("/kv/*").handler(BodyHandler.create(false))
@@ -100,6 +102,7 @@ fun Vertx.kvisionInit(
             }
         }
     }
+    return injector
 }
 
 /**

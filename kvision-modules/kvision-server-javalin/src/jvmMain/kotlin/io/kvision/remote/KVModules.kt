@@ -23,6 +23,7 @@ package io.kvision.remote
 
 import com.google.inject.AbstractModule
 import com.google.inject.Guice
+import com.google.inject.Injector
 import com.google.inject.Module
 import io.javalin.Javalin
 import io.javalin.http.Context
@@ -40,7 +41,7 @@ fun Javalin.kvisionInit(vararg modules: Module) = kvisionInit(true, *modules)
  * Initialization function for Javalin server.
  * @param initStaticResources initialize default static resources
  */
-fun Javalin.kvisionInit(initStaticResources: Boolean = true, vararg modules: Module) {
+fun Javalin.kvisionInit(initStaticResources: Boolean = true, vararg modules: Module): Injector {
     if (initStaticResources) initStaticResources()
 
     @Suppress("SpreadOperator")
@@ -57,6 +58,7 @@ fun Javalin.kvisionInit(initStaticResources: Boolean = true, vararg modules: Mod
             )
         }
     }
+    return injector
 }
 
 /**
