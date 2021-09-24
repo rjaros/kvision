@@ -44,7 +44,6 @@ data class DataForm(
 class UploadSpec : DomSpec {
 
     @Test
-    @Ignore // workaround for https://github.com/kartik-v/bootstrap-fileinput/issues/1756
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
@@ -68,19 +67,18 @@ class UploadSpec : DomSpec {
     }
 
     @Test
-    @Ignore // workaround for https://github.com/kartik-v/bootstrap-fileinput/issues/1756
     fun workInForm() {
         run {
             val form = Form.create<DataForm>()
             val data = DataForm(a = listOf(KFile("file", 5)))
             form.setData(data)
             val result = form.getData()
-            assertNull(result.a, "Form should return null without adding any control")
+            assertEquals(listOf(KFile("file", 5)), result.a, "Form should return initial value without any control")
             val uploadField = Upload()
             form.add(DataForm::a, uploadField)
             form.setData(data)
             val result2 = form.getData()
-            assertEquals(listOf(KFile("file", 5)), result2.a, "Form should return initial value")
+            assertEquals(listOf(KFile("file", 5)), result2.a, "Form should return initial value with upload control")
         }
     }
 }

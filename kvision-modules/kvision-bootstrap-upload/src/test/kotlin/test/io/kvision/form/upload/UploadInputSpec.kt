@@ -34,7 +34,6 @@ import kotlin.test.Test
 class UploadInputSpec : DomSpec {
 
     @Test
-    @Ignore // workaround for https://github.com/kartik-v/bootstrap-fileinput/issues/1756
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
