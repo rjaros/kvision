@@ -44,7 +44,7 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
     override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
         groupId = "io.kvision",
         artifactId = "kvision-compiler-plugin",
-        version = "5.1.1"
+        version = "5.2.0"
     )
 
     override fun apply(target: Project) = with(target) {
