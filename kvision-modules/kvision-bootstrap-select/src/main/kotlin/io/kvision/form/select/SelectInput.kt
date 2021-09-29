@@ -318,9 +318,11 @@ open class SelectInput(
     }
 
     protected open fun refreshSelectInput() {
-        getElementJQueryD()?.selectpicker("refresh")
-        refreshState()
-        getElementJQueryD()?.trigger("change")?.data("AjaxBootstrapSelect")?.list?.cache = {}
+        window.setTimeout({
+            getElementJQueryD()?.selectpicker("refresh")
+            refreshState()
+            getElementJQueryD()?.trigger("change")?.data("AjaxBootstrapSelect")?.list?.cache = {}
+        }, 0)
     }
 
     @Suppress("ComplexMethod")
