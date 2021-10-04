@@ -591,14 +591,18 @@ open class FormPanel<K : Any>(
      * @param model data model
      */
     open fun setData(model: K) {
-        form.setData(model)
+        singleRender {
+            form.setData(model)
+        }
     }
 
     /**
      * Sets the values of all controls to null.
      */
     open fun clearData() {
-        form.clearData()
+        singleRender {
+            form.clearData()
+        }
     }
 
     /**
@@ -623,14 +627,18 @@ open class FormPanel<K : Any>(
      * @return validation result
      */
     open fun validate(markFields: Boolean = true): Boolean {
-        return form.validate(markFields)
+        return singleRender {
+            form.validate(markFields)
+        }
     }
 
     /**
      * Clear validation information from all fields.
      */
     open fun clearValidation() {
-        form.clearValidation()
+        singleRender {
+            form.clearValidation()
+        }
     }
 
     /**
