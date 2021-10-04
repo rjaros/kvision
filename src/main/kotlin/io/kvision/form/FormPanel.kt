@@ -582,8 +582,8 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @return value of the control
      */
-    operator fun get(key: KProperty1<K, *>): Any? {
-        return getControl(key)?.getValue()
+    operator fun <V>get(key: KProperty1<K, V>): V? {
+        return getControl(key)?.getValue()?.unsafeCast<V>()
     }
 
     /**

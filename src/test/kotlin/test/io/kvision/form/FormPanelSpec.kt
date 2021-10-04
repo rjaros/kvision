@@ -121,7 +121,7 @@ class FormPanelSpec : SimpleSpec {
         run {
             val formPanel = FormPanel.create<DataForm2>()
             formPanel.add(DataForm2::s, Text()) {
-                it.getValue()?.length ?: 0 > 4
+                (it.getValue()?.length ?: 0) > 4
             }
             formPanel.add(DataForm2::d, Text(), required = true)
             formPanel.setData(DataForm2(s = "123"))
