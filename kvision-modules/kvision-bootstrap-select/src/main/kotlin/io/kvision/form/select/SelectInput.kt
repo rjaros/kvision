@@ -338,8 +338,10 @@ open class SelectInput(
         maxOptions?.let {
             attributeSetBuilder.add("data-max-options", "" + it)
         }
-        placeholder?.let {
-            attributeSetBuilder.add("title", translate(it))
+        if (placeholder != null) {
+            attributeSetBuilder.add("title", translate(placeholder!!))
+        } else if (!emptyOption) {
+            attributeSetBuilder.add("title", "\u00a0")
         }
         if (autofocus == true) {
             attributeSetBuilder.add("autofocus")
