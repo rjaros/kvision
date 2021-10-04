@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
+import io.kvision.html.Autocomplete
 
 /**
  * Text input types.
@@ -63,9 +64,9 @@ open class TextInput(
     var type by refreshOnUpdate(type)
 
     /**
-     * Determines if autocomplete is enabled for the input element.
+     * Specifies the auto complete mode of the input element
      */
-    var autocomplete: Boolean? by refreshOnUpdate()
+    var autocomplete: Autocomplete? by refreshOnUpdate()
 
     init {
         @Suppress("LeakingThis")
@@ -88,7 +89,7 @@ open class TextInput(
             attributeSetBuilder.add("value", it)
         }
         autocomplete?.let {
-            attributeSetBuilder.add("autocomplete", if (it) "on" else "off")
+            attributeSetBuilder.add("autocomplete", it.type)
         }
     }
 }

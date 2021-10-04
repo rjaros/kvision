@@ -31,6 +31,7 @@ import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
+import io.kvision.html.Autocomplete
 import io.kvision.state.MutableState
 import io.kvision.types.toDateF
 import io.kvision.types.toStringF
@@ -146,9 +147,9 @@ open class OnsDateTimeInput(
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
     /**
-     * Determines if autocomplete is enabled for the input element.
+     * Specifies the auto complete mode of the input element.
      */
-    var autocomplete: Boolean? by refreshOnUpdate()
+    var autocomplete: Autocomplete? by refreshOnUpdate()
 
     init {
         this.setInternalEventListener<OnsDateTimeInput> {
@@ -215,7 +216,7 @@ open class OnsDateTimeInput(
             attributeSetBuilder.add("disabled")
         }
         autocomplete?.let {
-            attributeSetBuilder.add("autocomplete", if (it) "on" else "off")
+            attributeSetBuilder.add("autocomplete", it.type)
         }
     }
 

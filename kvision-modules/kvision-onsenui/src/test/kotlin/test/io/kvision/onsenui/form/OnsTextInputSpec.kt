@@ -22,6 +22,7 @@
 package test.io.kvision.onsenui.form
 
 import io.kvision.form.text.TextInputType
+import io.kvision.html.Autocomplete
 import io.kvision.onsenui.form.onsTextInput
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
@@ -36,7 +37,7 @@ class OnsTextInputSpec : DomSpec {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
             root.onsTextInput(TextInputType.PASSWORD, placeholder = "password") {
-                this.autocomplete = false
+                this.autocomplete = Autocomplete.OFF
             }
 
             val element = document.getElementById("test")

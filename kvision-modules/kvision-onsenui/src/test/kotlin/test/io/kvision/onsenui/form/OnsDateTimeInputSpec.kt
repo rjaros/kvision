@@ -21,6 +21,7 @@
  */
 package test.io.kvision.onsenui.form
 
+import io.kvision.html.Autocomplete
 import io.kvision.onsenui.form.DateTimeMode
 import io.kvision.onsenui.form.onsDateTimeInput
 import io.kvision.panel.ContainerType
@@ -36,7 +37,7 @@ class OnsDateTimeInputSpec : DomSpec {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
             root.onsDateTimeInput(mode = DateTimeMode.DATETIME) {
-                this.autocomplete = false
+                this.autocomplete = Autocomplete.OFF
             }
 
             val element = document.getElementById("test")

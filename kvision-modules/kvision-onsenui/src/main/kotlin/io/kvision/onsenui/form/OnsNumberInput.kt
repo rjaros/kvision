@@ -31,6 +31,7 @@ import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
+import io.kvision.html.Autocomplete
 import io.kvision.state.MutableState
 
 internal const val DEFAULT_STEP = 1
@@ -143,9 +144,9 @@ open class OnsNumberInput(
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
     /**
-     * Determines if autocomplete is enabled for the input element.
+     * Specifies the auto complete mode of the input element.
      */
-    var autocomplete: Boolean? by refreshOnUpdate()
+    var autocomplete: Autocomplete? by refreshOnUpdate()
 
     init {
         this.setInternalEventListener<OnsNumberInput> {
@@ -209,7 +210,7 @@ open class OnsNumberInput(
             attributeSetBuilder.add("disabled")
         }
         autocomplete?.let {
-            attributeSetBuilder.add("autocomplete", if (it) "on" else "off")
+            attributeSetBuilder.add("autocomplete", it.type)
         }
     }
 

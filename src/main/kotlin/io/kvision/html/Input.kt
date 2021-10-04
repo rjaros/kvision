@@ -55,6 +55,58 @@ enum class InputType(internal val type: String) {
 }
 
 /**
+ * Input types.
+ */
+enum class Autocomplete(val type: String) {
+    OFF("off"),
+    ON("on"),
+    NAME("name"),
+    HONORIFIC_PREFIX("honorific-prefix"),
+    GIVEN_NAME("given-name"),
+    ADDITIONAL_NAME("additional-name"),
+    FAMILY_NAME("family-name"),
+    HONORIFIC_SUFFIX("honorific-suffix"),
+    NICKNAME("nickname"),
+    USERNAME("username"),
+    NEW_PASSWORD("new-password"),
+    CURRENT_PASSWORD("current-password"),
+    ONE_TIME_CODE("one-time-code"),
+    ORGANIZATION_TITLE("organization-title"),
+    ORGANIZATION("organization"),
+    STREET_ADDRESS("street-address"),
+    ADDRESS_LINE1("address-line1"),
+    ADDRESS_LINE2("address-line2"),
+    ADDRESS_LINE3("address-line3"),
+    ADDRESS_LEVEL4("address-level4"),
+    ADDRESS_LEVEL3("address-level3"),
+    ADDRESS_LEVEL2("address-level2"),
+    ADDRESS_LEVEL1("address-level1"),
+    COUNTRY("country"),
+    COUNTRY_NAME("country-name"),
+    POSTAL_CODE("postal-code"),
+    CC_NAME("cc-name"),
+    CC_GIVEN_NAME("cc-given-name"),
+    CC_ADDITIONAL_NAME("cc-additional-name"),
+    CC_FAMILY_NAME("cc-family-name"),
+    CC_NUMBER("cc-number"),
+    CC_EXP("cc-exp"),
+    CC_EXP_MONTH("cc-exp-month"),
+    CC_EXP_YEAR("cc-exp-year"),
+    CC_CSC("cc-csc"),
+    CC_TYPE("cc-type"),
+    TRANSACTION_CURRENCY("transaction-currency"),
+    TRANSACTION_AMOUNT("transaction-amount"),
+    LANGUAGE("language"),
+    BDAY("bday"),
+    BDAY_DAY("bday-day"),
+    BDAY_MONTH("bday-month"),
+    BDAY_YEAR("bday-year"),
+    SEX("sex"),
+    URL("url"),
+    PHOTO("photo")
+}
+
+/**
  * Generic input element.
  *
  * @constructor
@@ -84,9 +136,9 @@ open class Input(
     var alt: String? by refreshOnUpdate()
 
     /**
-     * Specifies whether an <input> element should have autocomplete enabled.
+     * Specifies the auto complete mode of the <input> element.
      */
-    var autocomplete: Boolean? by refreshOnUpdate()
+    var autocomplete: Autocomplete? by refreshOnUpdate()
 
     /**
      * Specifies that an <input> element should automatically get focus when the page loads.
@@ -224,7 +276,7 @@ open class Input(
             attributeSetBuilder.add("alt", it)
         }
         autocomplete?.let {
-            attributeSetBuilder.add("autocomplete", if (it) "on" else "off")
+            attributeSetBuilder.add("autocomplete", it.type)
         }
         autofocus?.let {
             if (it) attributeSetBuilder.add("autofocus")

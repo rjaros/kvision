@@ -25,6 +25,7 @@ import com.github.snabbdom.VNode
 import io.kvision.BootstrapTypeaheadModule
 import io.kvision.core.Container
 import io.kvision.core.getElementJQueryD
+import io.kvision.html.Autocomplete
 import io.kvision.jquery.JQueryXHR
 import io.kvision.jquery.jQuery
 import io.kvision.utils.obj
@@ -105,7 +106,7 @@ open class TypeaheadInput(
     var fitToElement by refreshOnUpdate(false) { refreshTypeahead() }
 
     init {
-        autocomplete = false
+        autocomplete = Autocomplete.OFF
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

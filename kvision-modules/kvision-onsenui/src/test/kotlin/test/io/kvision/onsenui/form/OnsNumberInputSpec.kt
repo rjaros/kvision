@@ -21,6 +21,7 @@
  */
 package test.io.kvision.onsenui.form
 
+import io.kvision.html.Autocomplete
 import io.kvision.onsenui.form.onsNumberInput
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
@@ -35,7 +36,7 @@ class OnsNumberInputSpec : DomSpec {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
             root.onsNumberInput(min = 0, max = 100, step = 5) {
-                this.autocomplete = false
+                this.autocomplete = Autocomplete.OFF
             }
 
             val element = document.getElementById("test")
