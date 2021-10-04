@@ -216,6 +216,10 @@ label.form-check-label.required-label>span::after {
     width: inherit;
 }
 
+.kv-control-horiz .invalid-feedback {
+    width: inherit;
+}
+
 .form-inline {
   display: -ms-flexbox;
   display: flex;
