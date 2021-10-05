@@ -13,6 +13,7 @@ import io.kvision.core.Container
 import io.kvision.core.Display
 import io.kvision.form.GenericFormComponent
 import io.kvision.panel.SimplePanel
+import io.kvision.panel.simplePanel
 import kotlin.js.Date
 
 /**
@@ -43,6 +44,58 @@ fun <S, W : Component> W.bind(
         }
     })
     return this
+}
+
+/**
+ * An extension function which renders child component and binds it to the observable state
+ * when the given condition is true.
+ *
+ * @param S the state type
+ * @param W the container type
+ * @param observableState the state
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : Container> W.whenCondition(
+    observableState: ObservableState<S>,
+    condition: (S) -> Boolean,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: Container.(S) -> Unit
+) {
+    simplePanel {
+        display = Display.CONTENTS
+    }.bind(observableState, removeChildren, runImmediately) { state ->
+        if (condition(state)) {
+            factory(state)
+            this.show()
+        } else {
+            this.hide()
+        }
+    }
+}
+
+/**
+ * An extension function which renders child component and binds it to the observable state
+ * when the state value is not null.
+ *
+ * @param S the state type
+ * @param W the container type
+ * @param observableState the state
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : Container> W.whenNotNull(
+    observableState: ObservableState<S?>,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: Container.(S) -> Unit
+) {
+    whenCondition(observableState, { it != null }, removeChildren, runImmediately) {
+        factory(it!!)
+    }
 }
 
 /**

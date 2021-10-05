@@ -21,6 +21,8 @@
  */
 package io.kvision.state
 
+import io.kvision.core.Component
+import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.form.GenericFormComponent
 import io.kvision.panel.SimplePanel
@@ -45,6 +47,67 @@ fun <S, W : Widget> W.bind(
     factory: (W.(S) -> Unit)
 ): W {
     return this.bind(stateFlow.observableState, removeChildren, runImmediately, factory)
+}
+
+/**
+ * An extension function which renders child component and binds it to the given state flow
+ * when the given condition is true.
+ *
+ * @param S the state type
+ * @param W the container type
+ * @param stateFlow the StateFlow instance
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : Container> W.whenCondition(
+    stateFlow: StateFlow<S>,
+    condition: (S) -> Boolean,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: Container.(S) -> Unit
+) {
+    return this.whenCondition(stateFlow.observableState, condition, removeChildren, runImmediately, factory)
+}
+
+/**
+ * An extension function which renders child component and binds it to the given state flow
+ * when the state value is not null.
+ *
+ * @param S the state type
+ * @param W the container type
+ * @param stateFlow the StateFlow instance
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : Container> W.whenNotNull(
+    stateFlow: StateFlow<S?>,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: Container.(S) -> Unit
+) {
+    return this.whenNotNull(stateFlow.observableState, removeChildren, runImmediately, factory)
+}
+
+/**
+ * An extension function which binds the widget to the given state flow synchronously.
+ * It's less efficient than [bind], but fully compatible with KVision 4 state bindings.
+ *
+ * @param S the state type
+ * @param W the widget type
+ * @param stateFlow the StateFlow instance
+ * @param removeChildren remove all children of the component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : Component> W.bindSync(
+    stateFlow: StateFlow<S>,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: (W.(S) -> Unit)
+): W {
+    return this.bindSync(stateFlow.observableState, removeChildren, runImmediately, factory)
 }
 
 /**
