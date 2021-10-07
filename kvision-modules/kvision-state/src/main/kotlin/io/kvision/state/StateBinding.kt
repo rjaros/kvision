@@ -47,7 +47,7 @@ fun <S, W : Component> W.bind(
 }
 
 /**
- * An extension function which renders child component and binds it to the observable state
+ * An extension function which inserts child component and binds it to the observable state
  * when the given condition is true.
  *
  * @param S the state type
@@ -57,7 +57,7 @@ fun <S, W : Component> W.bind(
  * @param runImmediately whether to run factory function immediately with the current state
  * @param factory a function which re-creates the view based on the given state
  */
-fun <S, W : Container> W.whenCondition(
+fun <S, W : Container> W.insertWhen(
     observableState: ObservableState<S>,
     condition: (S) -> Boolean,
     removeChildren: Boolean = true,
@@ -77,7 +77,7 @@ fun <S, W : Container> W.whenCondition(
 }
 
 /**
- * An extension function which renders child component and binds it to the observable state
+ * An extension function which inserts child component and binds it to the observable state
  * when the state value is not null.
  *
  * @param S the state type
@@ -87,14 +87,35 @@ fun <S, W : Container> W.whenCondition(
  * @param runImmediately whether to run factory function immediately with the current state
  * @param factory a function which re-creates the view based on the given state
  */
-fun <S, W : Container> W.whenNotNull(
+fun <S, W : Container> W.insertNotNull(
     observableState: ObservableState<S?>,
     removeChildren: Boolean = true,
     runImmediately: Boolean = true,
     factory: Container.(S) -> Unit
 ) {
-    whenCondition(observableState, { it != null }, removeChildren, runImmediately) {
+    insertWhen(observableState, { it != null }, removeChildren, runImmediately) {
         factory(it!!)
+    }
+}
+
+/**
+ * An extension function which inserts child component and binds it to the observable state.
+ *
+ * @param S the state type
+ * @param W the container type
+ * @param observableState the state
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : Container> W.insert(
+    observableState: ObservableState<S>,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: Container.(S) -> Unit
+) {
+    insertWhen(observableState, { true }, removeChildren, runImmediately) {
+        factory(it)
     }
 }
 

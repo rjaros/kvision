@@ -50,7 +50,7 @@ fun <S, W : Widget> W.bind(
 }
 
 /**
- * An extension function which renders child component and binds it to the given state flow
+ * An extension function which inserts child component and binds it to the given state flow
  * when the given condition is true.
  *
  * @param S the state type
@@ -60,18 +60,18 @@ fun <S, W : Widget> W.bind(
  * @param runImmediately whether to run factory function immediately with the current state
  * @param factory a function which re-creates the view based on the given state
  */
-fun <S, W : Container> W.whenCondition(
+fun <S, W : Container> W.insertWhen(
     stateFlow: StateFlow<S>,
     condition: (S) -> Boolean,
     removeChildren: Boolean = true,
     runImmediately: Boolean = true,
     factory: Container.(S) -> Unit
 ) {
-    return this.whenCondition(stateFlow.observableState, condition, removeChildren, runImmediately, factory)
+    return this.insertWhen(stateFlow.observableState, condition, removeChildren, runImmediately, factory)
 }
 
 /**
- * An extension function which renders child component and binds it to the given state flow
+ * An extension function which inserts child component and binds it to the given state flow
  * when the state value is not null.
  *
  * @param S the state type
@@ -81,13 +81,32 @@ fun <S, W : Container> W.whenCondition(
  * @param runImmediately whether to run factory function immediately with the current state
  * @param factory a function which re-creates the view based on the given state
  */
-fun <S, W : Container> W.whenNotNull(
+fun <S, W : Container> W.insertNotNull(
     stateFlow: StateFlow<S?>,
     removeChildren: Boolean = true,
     runImmediately: Boolean = true,
     factory: Container.(S) -> Unit
 ) {
-    return this.whenNotNull(stateFlow.observableState, removeChildren, runImmediately, factory)
+    return this.insertNotNull(stateFlow.observableState, removeChildren, runImmediately, factory)
+}
+
+/**
+ * An extension function which inserts child component and binds it to the given state flow.
+ *
+ * @param S the state type
+ * @param W the container type
+ * @param stateFlow the StateFlow instance
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, W : Container> W.insert(
+    stateFlow: StateFlow<S>,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: Container.(S) -> Unit
+) {
+    return this.insert(stateFlow.observableState, removeChildren, runImmediately, factory)
 }
 
 /**
