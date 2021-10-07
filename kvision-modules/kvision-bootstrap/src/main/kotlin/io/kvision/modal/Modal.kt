@@ -270,11 +270,11 @@ open class Modal(
                 hide()
             }
         })
-        showInternal()
+        showBootstrap()
     }
 
     override fun hide(): Widget {
-        if (visible) hideInternal()
+        if (visible) hideBootstrap()
         return super.hide()
     }
 
@@ -288,13 +288,19 @@ open class Modal(
             show()
     }
 
+    /**
+     * Show modal window with Bootstrap function.
+     */
     @Suppress("UnsafeCastFromDynamic")
-    private fun showInternal() {
+    fun showBootstrap() {
         getBsInstance { Modal }?.show()
     }
 
+    /**
+     * Hide modal window with Bootstrap function.
+     */
     @Suppress("UnsafeCastFromDynamic")
-    private fun hideInternal() {
+    fun hideBootstrap() {
         getBsInstance { Modal }?.hide()
     }
 
