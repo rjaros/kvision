@@ -140,7 +140,7 @@ label:not(.form-check-label).required-label::after {
     content: " *";
     color: #dc3545;
 }
-label.form-check-label.required-label>span::after {
+label.form-check-label.required-label>span:last-child::after {
     content: " *";
     color: #dc3545;
 }
