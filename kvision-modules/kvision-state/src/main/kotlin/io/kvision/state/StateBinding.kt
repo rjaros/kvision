@@ -11,6 +11,7 @@ import io.github.petertrr.diffutils.patch.InsertDelta
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.Display
+import io.kvision.core.Widget
 import io.kvision.form.GenericFormComponent
 import io.kvision.panel.SimplePanel
 import io.kvision.panel.simplePanel
@@ -47,6 +48,33 @@ fun <S, W : Component> W.bind(
 }
 
 /**
+ * An extension function which binds the widget to the observable state using the sub state extractor.
+ *
+ * @param S the state type
+ * @param T the sub state type
+ * @param W the widget type
+ * @param observableState the state
+ * @param sub an extractor function for sub state
+ * @param removeChildren remove all children of the component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, T, W : Component> W.bind(
+    observableState: ObservableState<S>,
+    sub: (S) -> T,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: (W.(T) -> Unit)
+): W {
+    return this.bind(
+        observableState.sub(this.unsafeCast<Widget>(), sub),
+        removeChildren,
+        runImmediately,
+        factory
+    )
+}
+
+/**
  * An extension function which inserts child component and binds it to the observable state
  * when the given condition is true.
  *
@@ -57,14 +85,14 @@ fun <S, W : Component> W.bind(
  * @param runImmediately whether to run factory function immediately with the current state
  * @param factory a function which re-creates the view based on the given state
  */
-fun <S, W : Container> W.insertWhen(
+fun <S, W : SimplePanel> W.insertWhen(
     observableState: ObservableState<S>,
     condition: (S) -> Boolean,
     removeChildren: Boolean = true,
     runImmediately: Boolean = true,
-    factory: Container.(S) -> Unit
-) {
-    simplePanel {
+    factory: SimplePanel.(S) -> Unit
+): SimplePanel {
+    return simplePanel {
         display = Display.CONTENTS
     }.bind(observableState, removeChildren, runImmediately) { state ->
         if (condition(state)) {
@@ -74,6 +102,41 @@ fun <S, W : Container> W.insertWhen(
             this.hide()
         }
     }
+}
+
+/**
+ * An extension function which inserts child component and binds it to the observable state using the sub state extractor
+ * when the given condition is true.
+ *
+ * @param S the state type
+ * @param T the sub state type
+ * @param W the container type
+ * @param observableState the state
+ * @param sub an extractor function for sub state
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, T, W : SimplePanel> W.insertWhen(
+    observableState: ObservableState<S>,
+    sub: (S) -> T,
+    condition: (T) -> Boolean,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: SimplePanel.(T) -> Unit
+): SimplePanel {
+    val simplePanel = simplePanel {
+        display = Display.CONTENTS
+    }
+    simplePanel.bind(observableState.sub(simplePanel, sub), removeChildren, runImmediately) { state ->
+        if (condition(state)) {
+            factory(state)
+            this.show()
+        } else {
+            this.hide()
+        }
+    }
+    return simplePanel
 }
 
 /**
@@ -87,13 +150,38 @@ fun <S, W : Container> W.insertWhen(
  * @param runImmediately whether to run factory function immediately with the current state
  * @param factory a function which re-creates the view based on the given state
  */
-fun <S, W : Container> W.insertNotNull(
+fun <S, W : SimplePanel> W.insertNotNull(
     observableState: ObservableState<S?>,
     removeChildren: Boolean = true,
     runImmediately: Boolean = true,
-    factory: Container.(S) -> Unit
-) {
-    insertWhen(observableState, { it != null }, removeChildren, runImmediately) {
+    factory: SimplePanel.(S) -> Unit
+): SimplePanel {
+    return insertWhen(observableState, { it != null }, removeChildren, runImmediately) {
+        factory(it!!)
+    }
+}
+
+/**
+ * An extension function which inserts child component and binds it to the observable state using the sub state extractor
+ * when the state value is not null.
+ *
+ * @param S the state type
+ * @param T the sub state type
+ * @param W the container type
+ * @param observableState the state
+ * @param sub an extractor function for sub state
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, T, W : SimplePanel> W.insertNotNull(
+    observableState: ObservableState<S?>,
+    sub: (S?) -> T?,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: SimplePanel.(T) -> Unit
+): SimplePanel {
+    return insertWhen(observableState, sub, { it != null }, removeChildren, runImmediately) {
         factory(it!!)
     }
 }
@@ -108,15 +196,35 @@ fun <S, W : Container> W.insertNotNull(
  * @param runImmediately whether to run factory function immediately with the current state
  * @param factory a function which re-creates the view based on the given state
  */
-fun <S, W : Container> W.insert(
+fun <S, W : SimplePanel> W.insert(
     observableState: ObservableState<S>,
     removeChildren: Boolean = true,
     runImmediately: Boolean = true,
-    factory: Container.(S) -> Unit
-) {
-    insertWhen(observableState, { true }, removeChildren, runImmediately) {
-        factory(it)
-    }
+    factory: SimplePanel.(S) -> Unit
+): SimplePanel {
+    return insertWhen(observableState, { true }, removeChildren, runImmediately, factory)
+}
+
+/**
+ * An extension function which inserts child component and binds it to the observable state using the sub state extractor.
+ *
+ * @param S the state type
+ * @param T the sub state type
+ * @param W the container type
+ * @param observableState the state
+ * @param sub an extractor function for sub state
+ * @param removeChildren remove all children of the child component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, T, W : SimplePanel> W.insert(
+    observableState: ObservableState<S>,
+    sub: (S) -> T,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: SimplePanel.(T) -> Unit
+): SimplePanel {
+    return insertWhen(observableState, sub, { true }, removeChildren, runImmediately, factory)
 }
 
 /**
@@ -148,6 +256,34 @@ fun <S, W : Component> W.bindSync(
         }
     })
     return this
+}
+
+/**
+ * An extension function which binds the widget to the observable state synchronously using the sub state extractor.
+ * It's less efficient than [bind], but fully compatible with KVision 4 state bindings.
+ *
+ * @param S the state type
+ * @param T the sub state type
+ * @param W the widget type
+ * @param observableState the state
+ * @param sub an extractor function for sub state
+ * @param removeChildren remove all children of the component
+ * @param runImmediately whether to run factory function immediately with the current state
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, T, W : Component> W.bindSync(
+    observableState: ObservableState<S>,
+    sub: (S) -> T,
+    removeChildren: Boolean = true,
+    runImmediately: Boolean = true,
+    factory: (W.(T) -> Unit)
+): W {
+    return this.bindSync(
+        observableState.sub(this.unsafeCast<Widget>(), sub),
+        removeChildren,
+        runImmediately,
+        factory
+    )
 }
 
 /**
@@ -226,6 +362,26 @@ fun <S, W : SimplePanel> W.bindEach(
         unsubscribe()
     }
     return this
+}
+
+/**
+ * An extension function which binds the container to the observable state with a list of items using the sub state extractor.
+ *
+ * @param S the state type
+ * @param T the sub state type
+ * @param W the container type
+ * @param observableState the state
+ * @param sub an extractor function for sub state
+ * @param equalizer optional custom equalizer function
+ * @param factory a function which re-creates the view based on the given state
+ */
+fun <S, T, W : SimplePanel> W.bindEach(
+    observableState: ObservableState<S>,
+    sub: (S) -> List<T>,
+    equalizer: ((T, T) -> Boolean)? = null,
+    factory: (SimplePanel.(T) -> Unit)
+): W {
+    return bindEach(observableState.sub(this, sub), equalizer, factory)
 }
 
 /**

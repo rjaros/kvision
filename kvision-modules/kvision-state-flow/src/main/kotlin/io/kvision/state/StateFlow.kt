@@ -22,7 +22,7 @@
 package io.kvision.state
 
 import io.kvision.core.KVScope
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -35,8 +35,8 @@ import kotlinx.coroutines.flow.stateIn
 /**
  * Extension function returning a sub state flow.
  */
-fun <T, S> StateFlow<S>.subFlow(sub: (S) -> T): StateFlow<T> {
-    return this.map { sub(it) }.stateIn(KVScope, SharingStarted.Eagerly, sub(this.value))
+fun <T, S> StateFlow<S>.subFlow(contextScope: CoroutineScope = KVScope, sub: (S) -> T): StateFlow<T> {
+    return this.map { sub(it) }.stateIn(contextScope, SharingStarted.Eagerly, sub(this.value))
 }
 
 /**
@@ -46,13 +46,6 @@ inline val <S> ObservableState<S>.stateFlow: StateFlow<S>
     get() = MutableStateFlow(getState()).apply {
         this@stateFlow.subscribe { this.value = it }
     }
-
-/**
- * Extension function returning a sub StateFlow<S> for an ObservableState<S>.
- */
-fun <T, S> ObservableState<S>.stateFlow(sub: (S) -> T): StateFlow<T> {
-    return this.stateFlow.subFlow(sub)
-}
 
 /**
  * Extension property returning a MutableStateFlow<S> for a MutableState<S>.
@@ -69,26 +62,10 @@ inline val <S> MutableState<S>.mutableStateFlow: MutableStateFlow<S>
  * Extension property returning an ObservableState<S> for a StateFlow<S>.
  */
 inline val <S>StateFlow<S>.observableState: ObservableState<S>
-    get() = object : ObservableValue<S>(this.value) {
-
-        var job: Job? = null
-
-        override fun subscribe(observer: (S) -> Unit): () -> Unit {
-            observers += observer
-            observer(value)
-            if (job == null) {
-                job = this@observableState.onEach {
-                    this.value = it
-                }.launchIn(KVScope)
-            }
-            return {
-                observers -= observer
-                if (observers.isEmpty()) {
-                    job?.cancel()
-                    job = null
-                }
-            }
-        }
+    get() = ObservableValue(this.value).apply {
+        this@observableState.onEach {
+            this.value = it
+        }.launchIn(KVScope)
     }
 
 /**
@@ -96,24 +73,10 @@ inline val <S>StateFlow<S>.observableState: ObservableState<S>
  */
 inline val <S>MutableStateFlow<S>.mutableState: MutableState<S>
     get() = object : ObservableValue<S>(this.value) {
-
-        var job: Job? = null
-
-        override fun subscribe(observer: (S) -> Unit): () -> Unit {
-            observers += observer
-            observer(value)
-            if (job == null) {
-                job = this@mutableState.onEach {
-                    this.value = it
-                }.launchIn(KVScope)
-            }
-            return {
-                observers -= observer
-                if (observers.isEmpty()) {
-                    job?.cancel()
-                    job = null
-                }
-            }
+        init {
+            this@mutableState.onEach {
+                this.value = it
+            }.launchIn(KVScope)
         }
 
         override fun setState(state: S) {
@@ -126,24 +89,8 @@ inline val <S>MutableStateFlow<S>.mutableState: MutableState<S>
  * Extension property returning an ObservableState<S?> for a Flow<S>.
  */
 inline val <S>Flow<S>.observableState: ObservableState<S?>
-    get() = object : ObservableValue<S?>(null) {
-
-        var job: Job? = null
-
-        override fun subscribe(observer: (S?) -> Unit): () -> Unit {
-            observers += observer
-            observer(value)
-            if (job == null) {
-                job = this@observableState.onEach {
-                    this.value = it
-                }.launchIn(KVScope)
-            }
-            return {
-                observers -= observer
-                if (observers.isEmpty()) {
-                    job?.cancel()
-                    job = null
-                }
-            }
-        }
+    get() = ObservableValue<S?>(null).apply {
+        this@observableState.onEach {
+            this.value = it
+        }.launchIn(KVScope)
     }

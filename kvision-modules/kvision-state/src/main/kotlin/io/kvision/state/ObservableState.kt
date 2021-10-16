@@ -22,16 +22,23 @@
 
 package io.kvision.state
 
+import io.kvision.core.Widget
+
 /**
  *  Returns a sub-store of the original ObservableState
  *  @param extractor an extractor function
  */
-fun <S, T> ObservableState<S>.sub(extractor: (S) -> T): ObservableState<T> {
+fun <S, T> ObservableState<S>.sub(contextWidget: Widget? = null, extractor: (S) -> T): ObservableState<T> {
     val observableValue = ObservableValue(extractor(this.getState()))
-    this.subscribe { s ->
+    val unsubscribe = this.subscribe { s ->
         val newValue = extractor(s)
         if (observableValue.value != newValue) {
             observableValue.value = newValue
+        }
+    }
+    contextWidget?.let {
+        it.addBeforeDisposeHook {
+            unsubscribe()
         }
     }
     return observableValue

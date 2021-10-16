@@ -99,6 +99,8 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     var popoverOptions: dynamic = null
     var popoverHooksActive = false
 
+    var kvscope: dynamic = null
+
     var eventTarget: Widget? = null
 
     private var vnkey = "kv_widget_${counter++}"
