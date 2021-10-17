@@ -45,12 +45,12 @@ import org.w3c.dom.get
 external fun decodeURIComponent(encodedURI: String): String
 
 /**
- * The Select control connected to the multiplatform service.
+ * The Select control connected to the fullstack service.
  *
  * @constructor
  * @param value selected value
- * @param serviceManager multiplatform service manager
- * @param function multiplatform service method returning the list of options
+ * @param serviceManager fullstack service manager
+ * @param function fullstack service method returning the list of options
  * @param stateFunction a function to generate the state object passed with the remote request
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param ajaxOptions additional options for remote data source

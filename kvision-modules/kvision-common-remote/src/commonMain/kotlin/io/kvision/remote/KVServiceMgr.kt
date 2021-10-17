@@ -23,7 +23,7 @@
 package io.kvision.remote
 
 /**
- * Base interface for multiplatform service manager.
+ * Base interface for fullstack service manager.
  */
 interface KVServiceMgr<T : Any> {
     fun getCall(function: Function<*>): Pair<String, HttpMethod>? = null

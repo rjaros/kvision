@@ -24,7 +24,7 @@ package io.kvision.types
 import kotlinx.serialization.Serializable
 
 /**
- * A serializable class for a multiplatform File type.
+ * A serializable class for a fullstack File type.
  */
 @Serializable
 data class KFile(

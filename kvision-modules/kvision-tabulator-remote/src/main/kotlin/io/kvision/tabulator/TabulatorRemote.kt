@@ -37,13 +37,13 @@ import org.w3c.dom.get
 import kotlin.reflect.KClass
 
 /**
- * Tabulator component connected to the multiplatform service.
+ * Tabulator component connected to the fullstack service.
  *
  * @constructor
  * @param T type of row data
  * @param E type of service manager
- * @param serviceManager multiplatform service manager
- * @param function multiplatform service method returning tabulator rows data
+ * @param serviceManager fullstack service manager
+ * @param function fullstack service method returning tabulator rows data
  * @param stateFunction a function to generate the state object passed with the remote request
  * @param options tabulator options
  * @param types a set of table types

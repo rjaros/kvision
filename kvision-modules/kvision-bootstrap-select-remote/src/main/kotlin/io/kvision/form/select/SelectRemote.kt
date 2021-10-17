@@ -39,8 +39,8 @@ import io.kvision.utils.SnOn
  *
  * @constructor
  * @param value selected value
- * @param serviceManager multiplatform service manager
- * @param function multiplatform service method returning the list of options
+ * @param serviceManager fullstack service manager
+ * @param function fullstack service method returning the list of options
  * @param stateFunction a function to generate the state object passed with the remote request
  * @param name the name attribute of the generated HTML input element
  * @param multiple allows multiple value selection (multiple values are comma delimited)

@@ -25,11 +25,11 @@ import io.kvision.core.Container
 import io.kvision.remote.KVServiceMgr
 
 /**
- * Form field typeahead component connected to the multiplatform service.
+ * Form field typeahead component connected to the fullstack service.
  *
  * @constructor
- * @param serviceManager multiplatform service manager
- * @param function multiplatform service method returning the list of options
+ * @param serviceManager fullstack service manager
+ * @param function fullstack service method returning the list of options
  * @param stateFunction a function to generate the state object passed with the remote request
  * @param items the max number of items to display in the dropdown
  * @param minLength the minimum character length needed before triggering dropdown
