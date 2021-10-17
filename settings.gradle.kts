@@ -42,6 +42,7 @@ include(
     "kvision-modules:kvision-richtext",
     "kvision-modules:kvision-routing-navigo",
     "kvision-modules:kvision-routing-navigo-ng",
+    "kvision-modules:kvision-simple-select-remote",
     "kvision-modules:kvision-state",
     "kvision-modules:kvision-state-flow",
     "kvision-modules:kvision-tabulator",

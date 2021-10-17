@@ -124,6 +124,7 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-routing-navigo/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-routing-navigo-ng/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-server-ktor/src/jsMain/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-simple-select-remote/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-state/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-state-flow/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tabulator/src/main/kotlin"))

@@ -30,6 +30,7 @@ enum class HttpMethod {
     DELETE,
     OPTIONS,
     ;
+
     companion object {
         fun fromStringOrNull(txt: String): HttpMethod? =
             try {
@@ -52,6 +53,12 @@ data class RemoteOption(
     val content: String? = null,
     val disabled: Boolean = false,
     val divider: Boolean = false
+)
+
+@Serializable
+data class SimpleRemoteOption(
+    val value: String,
+    val text: String? = null
 )
 
 @Serializable
