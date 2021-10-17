@@ -110,6 +110,11 @@ open class SimpleSelectInput(
     var selectSize: Int? by refreshOnUpdate(selectSize)
 
     /**
+     * The placeholder for the input element.
+     */
+    var placeholder: String? by refreshOnUpdate { setChildrenFromOptions() }
+
+    /**
      * The size of the input.
      */
     override var size: InputSize? by refreshOnUpdate()
@@ -180,8 +185,26 @@ open class SimpleSelectInput(
 
     private fun setChildrenFromOptions() {
         super.removeAll()
+        placeholder?.let {
+            super.add(
+                Tag(
+                    TAG.OPTION,
+                    it,
+                    attributes = mapOf(
+                        "value" to "",
+                        "disabled" to "disabled",
+                        "hidden" to "hidden",
+                        "selected" to "selected"
+                    )
+                )
+            )
+        }
         if (emptyOption) {
             super.add(Tag(TAG.OPTION, "", attributes = mapOf("value" to KVNULL)))
+        } else {
+            if (value == null && !options.isNullOrEmpty()) {
+                value = options?.firstOrNull()?.first
+            }
         }
         val valueSet = if (this.multiple) value?.split(",") ?: emptySet() else setOf(value)
         options?.let {
@@ -234,6 +257,9 @@ open class SimpleSelectInput(
         }
         if (disabled) {
             attributeSetBuilder.add("disabled")
+        }
+        if (placeholder != null) {
+            attributeSetBuilder.add("required")
         }
     }
 

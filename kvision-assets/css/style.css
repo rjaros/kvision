@@ -413,6 +413,10 @@ select.form-select, .tabulator-row .tabulator-cell.tabulator-editing select {
     background-size: 21px 10px,calc(.75em + .375rem) calc(.75em + .375rem);
 }
 
+select.form-select:invalid {
+    color: gray;
+}
+
 .abc-checkbox input[type="checkbox"]:checked+label::after,
 .abc-checkbox input[type="radio"]:checked+label::after {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;

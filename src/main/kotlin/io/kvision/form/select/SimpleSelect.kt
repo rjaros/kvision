@@ -124,6 +124,15 @@ open class SimpleSelect(
         }
 
     /**
+     * The placeholder for the select control.
+     */
+    var placeholder
+        get() = input.placeholder
+        set(value) {
+            input.placeholder = value
+        }
+
+    /**
      * The label text bound to the select element.
      */
     var label
