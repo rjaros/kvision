@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("bootstrap", "^5.1.0"))
+    implementation(npm("bootstrap", "^5.1.3"))
     testImplementation(kotlin("test-js"))
 }
 

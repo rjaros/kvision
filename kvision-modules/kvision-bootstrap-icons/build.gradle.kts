@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("bootstrap-icons", "^1.5.0"))
+    implementation(npm("bootstrap-icons", "^1.6.0"))
     testImplementation(kotlin("test-js"))
 }
 
