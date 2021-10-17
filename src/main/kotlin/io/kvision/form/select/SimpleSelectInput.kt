@@ -201,10 +201,9 @@ open class SimpleSelectInput(
         }
         if (emptyOption) {
             super.add(Tag(TAG.OPTION, "", attributes = mapOf("value" to KVNULL)))
-        } else {
-            if (value == null && !options.isNullOrEmpty()) {
-                value = options?.firstOrNull()?.first
-            }
+        }
+        if (!emptyOption && placeholder == null && value == null && !options.isNullOrEmpty()) {
+            value = options?.firstOrNull()?.first
         }
         val valueSet = if (this.multiple) value?.split(",") ?: emptySet() else setOf(value)
         options?.let {
