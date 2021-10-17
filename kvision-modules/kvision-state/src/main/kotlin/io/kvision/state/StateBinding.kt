@@ -175,8 +175,8 @@ fun <S, W : SimplePanel> W.insertNotNull(
  * @param factory a function which re-creates the view based on the given state
  */
 fun <S, T, W : SimplePanel> W.insertNotNull(
-    observableState: ObservableState<S?>,
-    sub: (S?) -> T?,
+    observableState: ObservableState<S>,
+    sub: (S) -> T?,
     removeChildren: Boolean = true,
     runImmediately: Boolean = true,
     factory: SimplePanel.(T) -> Unit

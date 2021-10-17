@@ -72,12 +72,20 @@ fun <S, W : Component> W.bind(
     factory: (W.(S) -> Unit)
 ): W {
     initWidgetScope(this.unsafeCast<Widget>())
-    var skip = !runImmediately
+    if (runImmediately) {
+        this.singleRenderAsync {
+            if (removeChildren) (this as? Container)?.disposeAll()
+            factory(stateFlow.value)
+        }
+    }
+    var skip = true
     stateFlow.onEach {
         if (!skip) {
             this.singleRenderAsync {
-                if (removeChildren) (this as? Container)?.disposeAll()
-                factory(it)
+                if (this.unsafeCast<Widget>().kvscope != null) {
+                    if (removeChildren) (this as? Container)?.disposeAll()
+                    factory(it)
+                }
             }
         } else {
             skip = false
@@ -222,8 +230,8 @@ fun <S, W : SimplePanel> W.insertNotNull(
  * @param factory a function which re-creates the view based on the given state
  */
 fun <S, T, W : SimplePanel> W.insertNotNull(
-    stateFlow: StateFlow<S?>,
-    sub: (S?) -> T?,
+    stateFlow: StateFlow<S>,
+    sub: (S) -> T?,
     removeChildren: Boolean = true,
     runImmediately: Boolean = true,
     factory: SimplePanel.(T) -> Unit
@@ -292,12 +300,20 @@ fun <S, W : Component> W.bindSync(
     factory: (W.(S) -> Unit)
 ): W {
     initWidgetScope(this.unsafeCast<Widget>())
-    var skip = !runImmediately
+    if (runImmediately) {
+        this.singleRender {
+            if (removeChildren) (this as? Container)?.disposeAll()
+            factory(stateFlow.value)
+        }
+    }
+    var skip = true
     stateFlow.onEach {
         if (!skip) {
             this.singleRender {
-                if (removeChildren) (this as? Container)?.disposeAll()
-                factory(it)
+                if (this.unsafeCast<Widget>().kvscope != null) {
+                    if (removeChildren) (this as? Container)?.disposeAll()
+                    factory(it)
+                }
             }
         } else {
             skip = false
@@ -367,43 +383,45 @@ fun <S, W : SimplePanel> W.bindEach(
     this._archivedState = null
     stateFlow.onEach {
         this.singleRender {
-            val previousState = _archivedState?.unsafeCast<List<S>>() ?: emptyList()
-            val patch = diff(previousState, it, equalizer)
-            val deltas = patch.deltas
-            val iterator = deltas.listIterator(deltas.size)
-            while (iterator.hasPrevious()) {
-                when (val delta = iterator.previous()) {
-                    is ChangeDelta -> {
-                        val position: Int = delta.source.position
-                        val size: Int = delta.source.size()
-                        for (i in 0 until size) {
-                            val component = this.getChildren()[position]
-                            this.removeAt(position)
-                            component.dispose()
+            if (this.unsafeCast<Widget>().kvscope != null) {
+                val previousState = _archivedState?.unsafeCast<List<S>>() ?: emptyList()
+                val patch = diff(previousState, it, equalizer)
+                val deltas = patch.deltas
+                val iterator = deltas.listIterator(deltas.size)
+                while (iterator.hasPrevious()) {
+                    when (val delta = iterator.previous()) {
+                        is ChangeDelta -> {
+                            val position: Int = delta.source.position
+                            val size: Int = delta.source.size()
+                            for (i in 0 until size) {
+                                val component = this.getChildren()[position]
+                                this.removeAt(position)
+                                component.dispose()
+                            }
+                            delta.target.lines.forEachIndexed { i, line ->
+                                this.add(position + i, getSingleComponent(line))
+                            }
                         }
-                        delta.target.lines.forEachIndexed { i, line ->
-                            this.add(position + i, getSingleComponent(line))
+                        is DeleteDelta -> {
+                            val position = delta.source.position
+                            for (i in 0 until delta.source.size()) {
+                                val component = this.getChildren()[position]
+                                this.removeAt(position)
+                                component.dispose()
+                            }
                         }
-                    }
-                    is DeleteDelta -> {
-                        val position = delta.source.position
-                        for (i in 0 until delta.source.size()) {
-                            val component = this.getChildren()[position]
-                            this.removeAt(position)
-                            component.dispose()
+                        is InsertDelta -> {
+                            val position = delta.source.position
+                            delta.target.lines.forEachIndexed { i, line ->
+                                this.add(position + i, getSingleComponent(line))
+                            }
                         }
-                    }
-                    is InsertDelta -> {
-                        val position = delta.source.position
-                        delta.target.lines.forEachIndexed { i, line ->
-                            this.add(position + i, getSingleComponent(line))
+                        is EqualDelta -> {
                         }
-                    }
-                    is EqualDelta -> {
                     }
                 }
+                _archivedState = it.toList()
             }
-            _archivedState = it.toList()
         }
     }.launchIn(this.kvscope.unsafeCast<CoroutineScope>())
     this.addBeforeDisposeHook {
