@@ -1,5 +1,5 @@
 {
-  "kvision": "5.3.0",
+  "kvision": "5.4.0",
   "kotlin": "1.5.31",
   "serialization": "1.3.0",
   "coroutines": "1.5.2",
@@ -12,7 +12,7 @@
     "ktor": "1.6.4"
   },
   "template-micronaut": {
-    "micronaut": "3.0.3"
+    "micronaut": "3.1.0"
   },
   "template-spring-boot": {
     "spring-boot": "2.5.5"
@@ -160,6 +160,10 @@
       "name": "kvision-tabulator-remote",
       "description": "Fullstack version of the tabulator component",
       "initializer": "TabulatorModule"
+    },
+    {
+      "name": "kvision-simple-select-remote",
+      "description": "Fullstack version of the simple select form component"
     },
     {
       "name": "kvision-moment",
