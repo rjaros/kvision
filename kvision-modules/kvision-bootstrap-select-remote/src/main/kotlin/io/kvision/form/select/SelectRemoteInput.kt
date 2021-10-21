@@ -160,7 +160,7 @@ open class SelectRemoteInput<T : Any>(
             }
             val elementValue = getElementJQuery()?.`val`()
             @Suppress("SimplifyBooleanWithConstants")
-            if (!preload && elementValue == null && initRun == false) {
+            if (!preload && (elementValue == null || elementValue == "") && initRun == false) {
                 initRun = true
                 scope.launch {
                     val labels = labelsCache.getOrPut(it) {
