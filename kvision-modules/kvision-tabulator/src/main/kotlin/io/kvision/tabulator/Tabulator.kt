@@ -79,7 +79,7 @@ enum class RowRangeLookup(internal val set: String) {
  * @param className CSS class names
  * @param kClass Kotlin class
  * @param serializer the serializer for type T
- * @param serializersModule optional serialization module with custom serializers
+ * @param module optional serialization module with custom serializers
  */
 @Suppress("LargeClass", "TooManyFunctions")
 open class Tabulator<T : Any>(

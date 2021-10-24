@@ -32,7 +32,9 @@ import io.kvision.remote.RemoteSorter
 import io.kvision.utils.JSON
 import kotlinx.browser.window
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.modules.SerializersModule
 import org.w3c.dom.get
 import kotlin.reflect.KClass
 
@@ -48,6 +50,9 @@ import kotlin.reflect.KClass
  * @param options tabulator options
  * @param types a set of table types
  * @param className CSS class names
+ * @param kClass Kotlin class
+ * @param serializer the serializer for type T
+ * @param serializersModule optional serialization module with custom serializers
  */
 @OptIn(ExperimentalSerializationApi::class)
 open class TabulatorRemote<T : Any, E : Any>(
@@ -58,7 +63,9 @@ open class TabulatorRemote<T : Any, E : Any>(
     types: Set<TableType> = setOf(),
     className: String? = null,
     kClass: KClass<T>? = null,
-) : Tabulator<T>(null, false, options, types, className, kClass) {
+    serializer: KSerializer<T>? = null,
+    serializersModule: SerializersModule? = null
+) : Tabulator<T>(null, false, options, types, className, kClass, serializer, serializersModule) {
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
@@ -122,10 +129,22 @@ inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     className: String? = null,
+    serializer: KSerializer<T>? = null,
+    serializersModule: SerializersModule? = null,
     noinline init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
     val tabulatorRemote =
-        TabulatorRemote(serviceManager, function, stateFunction, options, types, className, T::class)
+        TabulatorRemote(
+            serviceManager,
+            function,
+            stateFunction,
+            options,
+            types,
+            className,
+            T::class,
+            serializer,
+            serializersModule
+        )
     init?.invoke(tabulatorRemote)
     this.add(tabulatorRemote)
     return tabulatorRemote
