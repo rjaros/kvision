@@ -41,7 +41,7 @@ import redux.WrapperAction
 object ReduxModule : ModuleInitializer {
 
     private val redux = require("redux/dist/redux.js")
-    internal val reduxThunk = require("redux-thunk/dist/redux-thunk.js").default
+    internal val reduxThunk = require("redux-thunk/dist/redux-thunk.js")
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun <S, A, R> createStore(
