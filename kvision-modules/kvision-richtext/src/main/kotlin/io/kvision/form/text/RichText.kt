@@ -74,7 +74,6 @@ open class RichText(
         flabel.addCssClass("col-sm-${horizontalRatio.labels}")
         flabel.addCssClass("col-form-label")
         wrapper.addCssClass("col-sm-${horizontalRatio.fields}")
-        wrapper.marginLeft = (-15).px
         invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
         invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
     }

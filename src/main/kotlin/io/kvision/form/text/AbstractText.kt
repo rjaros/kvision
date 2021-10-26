@@ -24,6 +24,7 @@ package io.kvision.form.text
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Widget
 import io.kvision.form.FieldLabel
+import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
@@ -144,6 +145,18 @@ abstract class AbstractText(
 
     protected fun floatingPlaceholder() {
         if (floating && placeholder == null && label != null) placeholder = label ?: "Enter data"
+    }
+
+    override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
+        if (!floating) {
+            addCssClass("row")
+            addCssClass("kv-control-horiz")
+            flabel.addCssClass("col-sm-${horizontalRatio.labels}")
+            flabel.addCssClass("col-form-label")
+            input.addSurroundingCssClass("col-sm-${horizontalRatio.fields}")
+            invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
+            invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
+        }
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {

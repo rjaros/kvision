@@ -177,7 +177,6 @@ open class SpinnerInput(
     private var siblings: JQuery? = null
 
     init {
-        this.addSurroundingCssClass("input-group")
         this.addSurroundingCssClass("kv-spinner")
         when (buttonsType) {
             ButtonsType.NONE -> this.addSurroundingCssClass("kv-spinner-btn-none")
