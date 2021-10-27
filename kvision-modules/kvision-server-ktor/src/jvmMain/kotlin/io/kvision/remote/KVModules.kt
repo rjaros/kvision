@@ -38,21 +38,12 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.CoroutineContext
 
-private val DEFAULT_JSON = Json {
-    encodeDefaults = true
-    isLenient = false // workaround for https://github.com/Kotlin/kotlinx.serialization/issues/1600
-    allowSpecialFloatingPointValues = true
-    allowStructuredMapKeys = true
-    prettyPrint = false
-    useArrayPolymorphism = true
-}
-
 private const val DEFAULT_INIT_STATIC_RESOURCES = true
 
 /**
  * Initialization function for Ktor server.
  */
-fun Application.kvisionInit(vararg modules: Module) = kvisionInit(DEFAULT_INIT_STATIC_RESOURCES, DEFAULT_JSON, *modules)
+fun Application.kvisionInit(vararg modules: Module) = kvisionInit(DEFAULT_INIT_STATIC_RESOURCES, DefaultJson, *modules)
 
 /**
  * Initialization function for Ktor server with custom JsonSerializer.
@@ -66,7 +57,7 @@ fun Application.kvisionInit(json: Json, vararg modules: Module) =
  * @param initStaticResources initialize default static resources
  */
 fun Application.kvisionInit(initStaticResources: Boolean, vararg modules: Module) =
-    kvisionInit(initStaticResources, DEFAULT_JSON, *modules)
+    kvisionInit(initStaticResources, DefaultJson, *modules)
 
 /**
  * Initialization function for Ktor server.
