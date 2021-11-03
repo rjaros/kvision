@@ -202,6 +202,10 @@ Kotlin bindings for Tabulator API.
 
 Helper functions for running unit tests.
 
+# Package io.kvision.jquery.rest
+
+Legacy, jquery-based RESTful API client with support for type-safe connectivity.
+
 # Package io.kvision.rest
 
 RESTful API client with support for type-safe connectivity.
