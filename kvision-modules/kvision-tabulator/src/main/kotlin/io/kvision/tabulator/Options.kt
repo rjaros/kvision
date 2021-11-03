@@ -660,7 +660,7 @@ data class TabulatorOptions<T : Any>(
     val initialHeaderFilter: List<Any?>? = null,
     val pagination: PaginationMode? = null,
     val paginationSize: Int? = null,
-    val paginationSizeSelector: Boolean? = null,
+    val paginationSizeSelector: dynamic = null,
     val paginationElement: dynamic = null,
     val paginationDataReceived: dynamic = null,
     val paginationDataSent: dynamic = null,
