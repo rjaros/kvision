@@ -103,7 +103,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
 
     var eventTarget: Widget? = null
 
-    private var vnkey = "kv_widget_${counter++}"
+    protected var vnkey: String? = undefined
     protected var vnode: VNode? = null
 
     private var snAttrsCache: SingleObjectCache<Attrs> =
@@ -125,6 +125,14 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         init?.invoke(this)
     }
 
+
+    /**
+     * Makes the component use distinct snabbdom key.
+     */
+    protected fun useSnabbdomDistinctKey() {
+        vnkey = "kv_widget_${counter++}"
+    }
+
     /**
      * The supplied function is called before the widget is disposed.
      */
@@ -137,6 +145,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
      * The supplied function is called after the widget is removed from the DOM.
      */
     override fun addAfterDestroyHook(hook: () -> Unit) = (afterDestroyHooks ?: run {
+        useSnabbdomDistinctKey()
         afterDestroyHooks = mutableListOf()
         afterDestroyHooks!!
     }).add(hook)
@@ -145,6 +154,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
      * The supplied function is called after the widget is inserted into the DOM.
      */
     override fun addAfterInsertHook(hook: (VNode) -> Unit) = (afterInsertHooks ?: run {
+        useSnabbdomDistinctKey()
         afterInsertHooks = mutableListOf()
         afterInsertHooks!!
     }).add(hook)
@@ -174,6 +184,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
             render()
         } else {
             val opt = snOpt {
+                key = vnkey
                 `class` = snClasses(surroundingClasses!!.map { c -> c to true })
             }
             h("div", opt, arrayOf(render()))
@@ -241,6 +252,25 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
             `class` = snClassCache.value
             on = getSnOn()
             hook = getSnHooksInternal()
+        }
+    }
+
+    /**
+     * Generates VNodeData to creating Snabbdom VNode with unique key id.
+     */
+    protected fun getSnOptSimple(): VNodeData {
+        return snOpt {
+            key = vnkey?.let { "kv_s_$it" } ?: undefined
+        }
+    }
+
+    /**
+     * Generates VNodeData to creating Snabbdom wrapper VNode with unique key id.
+     */
+    protected fun getSnOptContents(): VNodeData {
+        return snOpt {
+            style = obj { this.display = "contents" }.unsafeCast<VNodeStyle>()
+            key = vnkey?.let { "kv_s_$it" } ?: undefined
         }
     }
 
@@ -726,6 +756,9 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     }
 
     override fun dispose() {
+        afterDestroyInternal()
+        afterDestroy()
+        afterDestroyHooks?.forEach { it() }
         beforeDisposeHooks?.forEach { it() }
     }
 

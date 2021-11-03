@@ -147,6 +147,7 @@ open class Carousel(
     protected var onSwipeCallback: ((Number) -> Unit)? = null
 
     init {
+        useSnabbdomDistinctKey()
         swiperPanel.parent = this
         init?.invoke(this)
     }

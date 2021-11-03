@@ -149,6 +149,7 @@ open class OnsNumberInput(
     var autocomplete: Autocomplete? by refreshOnUpdate()
 
     init {
+        useSnabbdomDistinctKey()
         this.setInternalEventListener<OnsNumberInput> {
             input = {
                 self.changeValue()

@@ -116,6 +116,7 @@ open class Tabbar(
     protected var tabbarStyleCallback: (Widget.(Int) -> Unit)? = null
 
     init {
+        useSnabbdomDistinctKey()
         this.id = "kv_ons_tabbar_${counter++}"
         @Suppress("LeakingThis")
         init?.invoke(this)

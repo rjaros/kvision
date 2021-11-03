@@ -149,6 +149,7 @@ open class Modal(
     val footer = SimplePanel("modal-footer")
 
     init {
+        useSnabbdomDistinctKey()
         this.hide()
         this.role = "dialog"
         this.tabindex = -1

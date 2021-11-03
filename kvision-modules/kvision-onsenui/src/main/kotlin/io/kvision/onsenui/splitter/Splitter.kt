@@ -28,7 +28,6 @@ import io.kvision.onsenui.BackButtonEvent
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.Root
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.set
 
 /**
  * A splitter component.
@@ -76,6 +75,7 @@ open class Splitter(
     protected var onDeviceBackButtonCallback: ((BackButtonEvent) -> Unit)? = null
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

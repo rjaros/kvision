@@ -61,6 +61,7 @@ open class Maps(
     private val featureGroup: dynamic = L.featureGroup()
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

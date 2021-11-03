@@ -47,6 +47,10 @@ internal class ChartCanvas(
 
     var jsChart: JsChart? = null
 
+    init {
+        useSnabbdomDistinctKey()
+    }
+
     override fun render(): VNode {
         if (lastLanguage != null && lastLanguage != I18n.language) {
             val newConfig = configuration.toJs(this::translate)

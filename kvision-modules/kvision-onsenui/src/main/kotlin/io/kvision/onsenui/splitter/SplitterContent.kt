@@ -52,6 +52,7 @@ open class SplitterContent(
     internal val pagesMap = mutableMapOf<String, Page>()
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

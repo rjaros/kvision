@@ -143,6 +143,7 @@ open class SimpleSelectInput(
         }
 
     init {
+        useSnabbdomDistinctKey()
         setChildrenFromOptions()
         this.setInternalEventListener<SimpleSelectInput> {
             change = {

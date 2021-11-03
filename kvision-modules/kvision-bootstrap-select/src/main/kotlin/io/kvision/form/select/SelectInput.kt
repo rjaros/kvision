@@ -22,6 +22,7 @@
 package io.kvision.form.select
 
 import com.github.snabbdom.VNode
+import com.github.snabbdom.h
 import io.kvision.BootstrapSelectModule
 import io.kvision.BootstrapSelectModule.KVNULL
 import io.kvision.core.*
@@ -76,6 +77,8 @@ open class SelectInput(
 ) : SimplePanel(className), GenericFormComponent<String?>, FormInput, MutableState<String?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
+
+    private var initialized = false
 
     /**
      * A list of options (value to label pairs) for the select control.
@@ -201,6 +204,7 @@ open class SelectInput(
         }
 
     init {
+        useSnabbdomDistinctKey()
         setChildrenFromOptions()
         this.setInternalEventListener<SelectInput> {
             change = {
@@ -234,7 +238,7 @@ open class SelectInput(
     }
 
     override fun render(): VNode {
-        return render("select", childrenVNodes())
+        return h("span", getSnOptContents(), arrayOf(render("select", childrenVNodes())))
     }
 
     override fun add(child: Component): SelectInput {
@@ -415,6 +419,14 @@ open class SelectInput(
             if (!multiple) getElement()?.parentElement?.childNodes?.get(1)?.getBsInstance { Dropdown }?.hide()
         }
         refreshState()
+        initialized = true
+    }
+
+    override fun afterDestroy() {
+        if (initialized) {
+            getElementJQueryD()?.selectpicker("destroy")
+            initialized = false
+        }
     }
 
     override fun bindAllJQueryListeners() {

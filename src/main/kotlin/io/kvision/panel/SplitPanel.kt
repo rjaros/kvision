@@ -164,6 +164,10 @@ fun Container.splitPanel(
 internal class Splitter(private val splitPanel: SplitPanel, direction: Direction) : SimplePanel(
     "splitter-" + direction.dir
 ) {
+    init {
+        useSnabbdomDistinctKey()
+    }
+
     override fun afterInsert(node: VNode) {
         splitPanel.afterInsertSplitter()
     }

@@ -95,6 +95,7 @@ open class Page(className: String? = null, init: (Page.() -> Unit)? = null) :
     protected var onDeviceBackButtonCallback: ((BackButtonEvent) -> Unit)? = null
 
     init {
+        useSnabbdomDistinctKey()
         backgroundPanel.parent = this
         contentPanel.parent = this
         fixedPanel.parent = this

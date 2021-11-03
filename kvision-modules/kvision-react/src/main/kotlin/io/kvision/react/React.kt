@@ -30,7 +30,6 @@ import io.kvision.state.ObservableState
 import org.w3c.dom.HTMLElement
 import react.RBuilder
 import react.StateSetter
-import react.child
 import react.dom.render as ReactRender
 
 /**
@@ -55,6 +54,10 @@ class React<S>(
         }
 
     private var refreshFunction: (StateSetter<S>)? = null
+
+    init {
+        useSnabbdomDistinctKey()
+    }
 
     @Suppress("UnsafeCastFromDynamic")
     internal constructor(

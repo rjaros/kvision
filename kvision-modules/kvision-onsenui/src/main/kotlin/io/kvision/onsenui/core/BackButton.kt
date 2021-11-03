@@ -55,6 +55,7 @@ open class BackButton(
     var modifier: String? by refreshOnUpdate()
 
     init {
+        useSnabbdomDistinctKey()
         init?.invoke(this)
     }
 

@@ -177,6 +177,7 @@ open class SpinnerInput(
     private var siblings: JQuery? = null
 
     init {
+        useSnabbdomDistinctKey()
         this.addSurroundingCssClass("kv-spinner")
         when (buttonsType) {
             ButtonsType.NONE -> this.addSurroundingCssClass("kv-spinner-btn-none")
@@ -193,7 +194,7 @@ open class SpinnerInput(
     }
 
     override fun render(): VNode {
-        return h("span", arrayOf(render("input")))
+        return h("span", getSnOptSimple(), arrayOf(render("input")))
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {

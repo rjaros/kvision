@@ -119,6 +119,7 @@ open class Tabulator<T : Any>(
     protected var filter: ((T) -> Boolean)? = null
 
     init {
+        useSnabbdomDistinctKey()
         if (data != null) {
             @Suppress("UnsafeCastFromDynamic")
             options.data = data.map { toPlainObjTabulator(it) }.toTypedArray()

@@ -84,6 +84,7 @@ open class Tab(
     private val idc = "kv_ons_tab_${counter}"
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
         counter++

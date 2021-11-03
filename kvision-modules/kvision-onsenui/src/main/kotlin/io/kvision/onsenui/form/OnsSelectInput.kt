@@ -74,6 +74,7 @@ open class OnsSelectInput(
     var modifier: String? by refreshOnUpdate()
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

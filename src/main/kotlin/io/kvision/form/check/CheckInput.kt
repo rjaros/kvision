@@ -56,6 +56,7 @@ abstract class CheckInput(
     protected val observers = mutableListOf<(Boolean) -> Unit>()
 
     init {
+        useSnabbdomDistinctKey()
         this.setInternalEventListener<CheckInput> {
             click = {
                 val v = getElementD()?.checked?.unsafeCast<Boolean>()

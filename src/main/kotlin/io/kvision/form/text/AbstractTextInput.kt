@@ -46,6 +46,7 @@ abstract class AbstractTextInput(
     protected val observers = mutableListOf<(String?) -> Unit>()
 
     init {
+        useSnabbdomDistinctKey()
         this.setInternalEventListener<AbstractTextInput> {
             input = {
                 self.changeValue()

@@ -22,6 +22,7 @@
 package io.kvision.form.text
 
 import com.github.snabbdom.VNode
+import com.github.snabbdom.h
 import io.kvision.RichTextModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
@@ -45,12 +46,13 @@ open class RichTextInput(
     private var trixId: String? = null
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
     override fun render(): VNode {
-        return render("trix-editor")
+        return h("span", getSnOptContents(), arrayOf(render("trix-editor")))
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

@@ -93,6 +93,7 @@ open class PullHook(
     protected var onPullCallback: ((Number) -> Unit)? = null
 
     init {
+        useSnabbdomDistinctKey()
         init?.invoke(this)
     }
 

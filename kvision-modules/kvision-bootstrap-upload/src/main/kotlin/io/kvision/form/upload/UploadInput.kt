@@ -22,6 +22,7 @@
 package io.kvision.form.upload
 
 import com.github.snabbdom.VNode
+import com.github.snabbdom.h
 import io.kvision.BootstrapUploadModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
@@ -222,12 +223,13 @@ open class UploadInput(
     private val nativeFiles: MutableMap<KFile, File> = mutableMapOf()
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
     override fun render(): VNode {
-        return render("input")
+        return h("span", getSnOptContents(), arrayOf(render("input")))
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {

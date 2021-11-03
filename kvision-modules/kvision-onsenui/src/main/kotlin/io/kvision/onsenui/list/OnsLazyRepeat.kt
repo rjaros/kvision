@@ -26,7 +26,6 @@ import com.github.snabbdom.VNode
 import org.w3c.dom.HTMLElement
 import io.kvision.core.Widget
 import io.kvision.utils.obj
-import io.kvision.utils.set
 import kotlinx.browser.window
 
 /**
@@ -64,6 +63,7 @@ open class OnsLazyRepeat(
     private var countItems: Int = 0
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }

@@ -115,6 +115,7 @@ open class RangeInput(
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
     init {
+        useSnabbdomDistinctKey()
         this.setInternalEventListener<RangeInput> {
             input = {
                 self.changeValue()

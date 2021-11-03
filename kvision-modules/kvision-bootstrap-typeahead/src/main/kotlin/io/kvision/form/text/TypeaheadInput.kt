@@ -106,6 +106,7 @@ open class TypeaheadInput(
     var fitToElement by refreshOnUpdate(false) { refreshTypeahead() }
 
     init {
+        useSnabbdomDistinctKey()
         autocomplete = Autocomplete.OFF
         @Suppress("LeakingThis")
         init?.invoke(this)

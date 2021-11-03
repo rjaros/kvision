@@ -49,6 +49,7 @@ class SelectSpec : DomSpec {
                 """
                 <div class="form-group kv-mb-3">
                     <label class="form-label" for="$id">Label</label>
+                    <span style="display: contents;">
                     <div class="dropdown bootstrap-select show-tick form-control fit-width">
                         <select class="form-control selectpicker" id="$id" multiple="multiple" data-live-search="true" title="Choose ..." data-style="btn-default" data-width="fit">
                             <option value="#kvnull"></option>
@@ -56,6 +57,7 @@ class SelectSpec : DomSpec {
                             <option value="test2">Test 2</option>
                         </select>
                     </div>
+                    </span>
                 </div>""".replace("\n\\s*".toRegex(), ""),
                 document.getElementById("test")?.innerHTML,
                 "Should render correct select form control"

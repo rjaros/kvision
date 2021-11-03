@@ -152,6 +152,7 @@ open class OnsDateTimeInput(
     var autocomplete: Autocomplete? by refreshOnUpdate()
 
     init {
+        useSnabbdomDistinctKey()
         this.setInternalEventListener<OnsDateTimeInput> {
             input = {
                 self.changeValue()

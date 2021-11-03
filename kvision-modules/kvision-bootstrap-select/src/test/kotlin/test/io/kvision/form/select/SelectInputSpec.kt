@@ -45,7 +45,7 @@ class SelectInputSpec : DomSpec {
             removeAllAfter(requireNotNull(document.querySelector("select")))
             val element = document.getElementById("test")
             assertEqualsHtml(
-                """<div class="dropdown bootstrap-select show-tick fit-width"><select class="selectpicker" multiple="multiple" data-live-search="true" title="Choose ..." data-style="btn-default" data-width="fit"><option value="#kvnull"></option><option value="test1">Test 1</option><option value="test2">Test 2</option></select>""",
+                """<span style="display: contents;"><div class="dropdown bootstrap-select show-tick fit-width"><select class="selectpicker" multiple="multiple" data-live-search="true" title="Choose ..." data-style="btn-default" data-width="fit"><option value="#kvnull"></option><option value="test1">Test 1</option><option value="test2">Test 2</option></select></div></span>""",
                 element?.innerHTML,
                 "Should render correct select input"
             )

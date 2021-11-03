@@ -33,8 +33,8 @@ import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.text.TextInput
 import io.kvision.html.Icon
+import io.kvision.html.Span
 import io.kvision.html.icon
-import io.kvision.html.span
 import io.kvision.i18n.I18n
 import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
@@ -70,7 +70,7 @@ open class DateTimeInput(
 
     val input = TextInput(value = value?.toStringF(format))
     private lateinit var icon: Icon
-    private val addon = span(className = "input-group-text datepickerbutton") {
+    private val addon = Span(className = "input-group-text datepickerbutton") {
         this@DateTimeInput.icon = icon(this@DateTimeInput.getIconClass(format))
     }
 
@@ -224,6 +224,7 @@ open class DateTimeInput(
     var focusOnShow by refreshOnUpdate(true) { refreshDatePicker() }
 
     init {
+        useSnabbdomDistinctKey()
         addPrivate(input)
         addPrivate(addon)
         init?.invoke(this)

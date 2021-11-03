@@ -101,6 +101,7 @@ open class Popover(
     protected var onDeviceBackButtonCallback: ((BackButtonEvent) -> Unit)? = null
 
     init {
+        useSnabbdomDistinctKey()
         this.hide()
         @Suppress("LeakingThis")
         addModal(this)
