@@ -369,6 +369,10 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
                 bindAllJQueryListeners()
                 afterInsertHooks?.forEach { it(v) }
             }
+            postpatch = { _, v ->
+                vnode = v
+                afterPatch(v)
+            }
             destroy = {
                 afterDestroyInternal()
                 afterDestroy()
@@ -625,6 +629,12 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
      * Method called after inserting Snabbdom vnode into the DOM.
      */
     protected open fun afterInsert(node: VNode) {
+    }
+
+    /**
+     * Method called after patching Snabbdom vnode.
+     */
+    protected open fun afterPatch(node: VNode) {
     }
 
     /**
