@@ -37,7 +37,6 @@ import io.kvision.html.Div
 import io.kvision.html.Link
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
-import io.kvision.utils.toggle
 import org.w3c.dom.CustomEventInit
 
 /**
@@ -57,8 +56,10 @@ enum class Direction(internal val direction: String) {
     DROPUP("dropup"),
     DROPSTART("dropstart"),
     DROPEND("dropend"),
+
     @Deprecated("Use DROPSTART instead", ReplaceWith("DROPSTART"))
     DROPLEFT("dropstart"),
+
     @Deprecated("Use DROPEND instead", ReplaceWith("DROPEND"))
     DROPRIGHT("dropend"),
 }
@@ -448,10 +449,7 @@ class DropDownButton(
                 if (parent?.parent is ContextMenu) {
                     e.asDynamic().dropDownCM = true
                 } else if (forDropDown) {
-                   if (e !is DropDown) {
-                        (parent as DropDown).list.getElement()?.toggle()
-                        e.stopPropagation()
-                    }
+                    e.stopPropagation()
                 }
             }
         }
