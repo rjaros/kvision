@@ -448,8 +448,10 @@ class DropDownButton(
                 if (parent?.parent is ContextMenu) {
                     e.asDynamic().dropDownCM = true
                 } else if (forDropDown) {
-                    (parent as DropDown).list.getElement()?.toggle()
-                    e.stopPropagation()
+                   if (e !is DropDown) {
+                        (parent as DropDown).list.getElement()?.toggle()
+                        e.stopPropagation()
+                    }
                 }
             }
         }
