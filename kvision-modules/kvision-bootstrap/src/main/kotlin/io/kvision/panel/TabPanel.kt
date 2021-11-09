@@ -377,7 +377,7 @@ open class TabPanel(
     class TabPanelContent(private val tabPanel: TabPanel) : SimplePanel() {
 
         override fun childrenVNodes(): Array<VNode> {
-            return tabPanel.tabs.getOrNull(tabPanel.activeIndex)?.getChildren()?.map { it.renderVNode() }
+            return tabPanel.tabs.getOrNull(tabPanel.activeIndex)?.getChildren()?.filter { it.visible }?.map { it.renderVNode() }
                 ?.toTypedArray()
                 ?: emptyArray()
         }
