@@ -23,7 +23,7 @@
 
 package io.kvision.core
 
-import com.github.snabbdom.Attrs
+import io.kvision.snabbdom.Attrs
 
 interface AttributeSetBuilder {
     fun add(name: String, value: String = name)

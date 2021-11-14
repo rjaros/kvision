@@ -19,30 +19,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.modal
 
-import io.kvision.snabbdom.VNode
-import io.kvision.core.AttributeSetBuilder
-import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Widget
+@file:JsModule("snabbdom")
+@file:JsNonModule
 
-/**
- * Helper class for close icon component.
- */
-open class CloseIcon : Widget() {
+package io.kvision.snabbdom
 
-    override fun render(): VNode {
-        return render("button")
-    }
+external fun h(sel: String): VNode = definedExternally
 
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        super.buildClassSet(classSetBuilder)
-        classSetBuilder.add("btn-close")
-    }
+external fun h(sel: String, data: VNodeData): VNode = definedExternally
 
-    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributeSet(attributeSetBuilder)
-        attributeSetBuilder.add("type", "button")
-        attributeSetBuilder.add("aria-label", "Close")
-    }
-}
+external fun h(sel: String, text: String): VNode = definedExternally
+
+external fun h(sel: String, children: Array<dynamic>): VNode = definedExternally
+
+external fun h(sel: String, data: VNodeData, text: String): VNode = definedExternally
+
+external fun h(sel: String, data: VNodeData, children: Array<dynamic>): VNode = definedExternally

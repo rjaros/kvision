@@ -21,16 +21,16 @@
  */
 package io.kvision.core
 
-import com.github.snabbdom.Attrs
-import com.github.snabbdom.Classes
-import com.github.snabbdom.VNode
-import com.github.snabbdom.VNodeData
-import com.github.snabbdom.VNodeStyle
-import com.github.snabbdom.h
 import io.kvision.KVManager
 import io.kvision.i18n.I18n
 import io.kvision.i18n.I18n.trans
 import io.kvision.panel.Root
+import io.kvision.snabbdom.Attrs
+import io.kvision.snabbdom.Classes
+import io.kvision.snabbdom.VNode
+import io.kvision.snabbdom.VNodeData
+import io.kvision.snabbdom.VNodeStyle
+import io.kvision.snabbdom.h
 import io.kvision.utils.*
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.DragEvent
@@ -111,8 +111,8 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
             .clearOn { lastLanguage != null && lastLanguage != I18n.language }
 
     private var snClassCache: SingleObjectCache<Classes> = LazyCache { buildClassSet(this::buildClassSet) }
-    private var snOnCache: com.github.snabbdom.On? = null
-    private var snHooksCache: com.github.snabbdom.Hooks? = null
+    private var snOnCache: io.kvision.snabbdom.On? = null
+    private var snHooksCache: io.kvision.snabbdom.Hooks? = null
 
     protected var lastLanguage: String? = null
 
@@ -274,7 +274,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         }
     }
 
-    private fun getSnHooksInternal(): com.github.snabbdom.Hooks? =
+    private fun getSnHooksInternal(): io.kvision.snabbdom.Hooks? =
         snHooksCache ?: getSnHooks().also { snHooksCache = it }
 
     /**
@@ -320,7 +320,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
      * Returns list of event handlers in the form of a Snabbdom *On* object.
      * @return list of event handlers
      */
-    protected open fun getSnOn(): com.github.snabbdom.On? {
+    protected open fun getSnOn(): io.kvision.snabbdom.On? {
         if (internalListenersMap == null && listenersMap == null) return null
         val map = internalListenersMap?.filter { it.key != "self" && it.value.isNotEmpty() }?.map {
             val internalListeners = mutableMapOf<Int, SnOn<Widget>.() -> Unit>()
@@ -355,7 +355,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
      * Returns list of hooks in the form of a Snabbdom *Hooks* object.
      * @return list of hooks
      */
-    protected open fun getSnHooks(): com.github.snabbdom.Hooks? {
+    protected open fun getSnHooks(): io.kvision.snabbdom.Hooks? {
         val hooks = hooks()
         hooks.apply {
             create = { _, v ->

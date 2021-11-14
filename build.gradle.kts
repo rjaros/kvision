@@ -33,7 +33,6 @@ kotlin {
 dependencies {
     api(project(":kvision-modules:kvision-common-types"))
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
-    api("io.kvision:snabbdom-kotlin:$snabbdomKotlinVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-5.0.0.tgz"))
     implementation(npm("kvision-assets", "^5.0.5"))
@@ -41,8 +40,8 @@ dependencies {
     implementation(npm("style-loader", "^3.3.1"))
     implementation(npm("imports-loader", "^3.1.1"))
     implementation(npm("fecha", "^4.2.1"))
-    implementation(npm("snabbdom", "^0.7.4"))
-    implementation(npm("snabbdom-virtualize", "^0.7.0"))
+    implementation(npm("snabbdom", "^3.1.0"))
+    implementation(npm("snabbdom-virtualize", "github:rjaros/snabbdom-virtualize"))
     implementation(npm("split.js", "^1.6.4"))
     implementation(npm("gettext.js", "^1.0.1"))
     implementation(npm("gettext-extract", "^2.0.1"))

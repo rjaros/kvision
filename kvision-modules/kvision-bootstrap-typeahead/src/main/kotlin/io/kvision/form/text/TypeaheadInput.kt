@@ -21,7 +21,7 @@
  */
 package io.kvision.form.text
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.BootstrapTypeaheadModule
 import io.kvision.core.Container
 import io.kvision.core.getElementJQueryD

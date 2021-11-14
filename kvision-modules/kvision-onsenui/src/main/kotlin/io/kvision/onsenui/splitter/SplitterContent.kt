@@ -22,7 +22,7 @@
 
 package io.kvision.onsenui.splitter
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import org.w3c.dom.HTMLElement
 import io.kvision.OnsenUIModule.ons
 import io.kvision.onsenui.core.Page

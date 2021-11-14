@@ -19,30 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.modal
 
-import io.kvision.snabbdom.VNode
-import io.kvision.core.AttributeSetBuilder
-import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Widget
+package io.kvision.snabbdom
 
-/**
- * Helper class for close icon component.
- */
-open class CloseIcon : Widget() {
-
-    override fun render(): VNode {
-        return render("button")
-    }
-
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        super.buildClassSet(classSetBuilder)
-        classSetBuilder.add("btn-close")
-    }
-
-    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributeSet(attributeSetBuilder)
-        attributeSetBuilder.add("type", "button")
-        attributeSetBuilder.add("aria-label", "Close")
-    }
-}
+typealias Patch = (oldVnode: dynamic, vnode: VNode) -> VNode

@@ -21,8 +21,8 @@
  */
 package io.kvision.form.spinner
 
-import com.github.snabbdom.VNode
-import com.github.snabbdom.h
+import io.kvision.snabbdom.VNode
+import io.kvision.snabbdom.h
 import io.kvision.BootstrapSpinnerModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder

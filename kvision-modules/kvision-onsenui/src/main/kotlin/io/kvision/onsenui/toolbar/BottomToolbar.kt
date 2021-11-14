@@ -22,7 +22,7 @@
 
 package io.kvision.onsenui.toolbar
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.onsenui.core.Page
 import io.kvision.panel.SimplePanel
