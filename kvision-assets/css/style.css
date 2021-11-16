@@ -217,7 +217,7 @@ label.form-check-label.required-label>span:last-child::after {
 }
 
 .kv-control-horiz .invalid-feedback {
-    width: inherit;
+    width: fit-content;
 }
 
 .form-inline {
