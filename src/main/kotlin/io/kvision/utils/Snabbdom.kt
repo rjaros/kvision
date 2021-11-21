@@ -21,17 +21,17 @@
  */
 package io.kvision.utils
 
-import com.github.snabbdom.Attrs
-import com.github.snabbdom.Classes
-import com.github.snabbdom.Hooks
-import com.github.snabbdom.On
-import com.github.snabbdom.Props
-import com.github.snabbdom.VNodeData
-import com.github.snabbdom.VNodeStyle
-import com.github.snabbdom.set
 import io.kvision.core.StringBoolPair
 import io.kvision.core.StringPair
 import io.kvision.core.Widget
+import io.kvision.snabbdom.Attrs
+import io.kvision.snabbdom.Classes
+import io.kvision.snabbdom.Hooks
+import io.kvision.snabbdom.On
+import io.kvision.snabbdom.Props
+import io.kvision.snabbdom.VNodeData
+import io.kvision.snabbdom.VNodeStyle
+import io.kvision.snabbdom.set
 import org.w3c.dom.CustomEvent
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.events.Event

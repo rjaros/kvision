@@ -22,7 +22,7 @@
 
 package io.kvision.onsenui.dialog
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Display

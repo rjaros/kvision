@@ -21,7 +21,7 @@
  */
 package io.kvision.form.time
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.BootstrapDatetimeModule
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container

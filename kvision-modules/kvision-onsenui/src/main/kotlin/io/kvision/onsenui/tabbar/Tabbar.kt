@@ -22,7 +22,7 @@
 
 package io.kvision.onsenui.tabbar
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.DomAttribute
 import io.kvision.core.StringPair

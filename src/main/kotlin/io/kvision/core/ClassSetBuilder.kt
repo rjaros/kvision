@@ -23,7 +23,7 @@
 
 package io.kvision.core
 
-import com.github.snabbdom.Classes
+import io.kvision.snabbdom.Classes
 
 /**
  * A builder in order to create a set of CSS-classes

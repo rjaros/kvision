@@ -21,7 +21,7 @@
  */
 package io.kvision.navbar
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.BsBgColor
 import io.kvision.core.ClassSetBuilder

@@ -21,7 +21,7 @@
  */
 package test.io.kvision
 
-import com.github.snabbdom.h
+import io.kvision.snabbdom.h
 import io.kvision.KVManager
 import io.kvision.utils.snAttrs
 import io.kvision.utils.snOpt

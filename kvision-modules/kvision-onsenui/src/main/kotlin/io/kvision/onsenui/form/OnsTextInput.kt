@@ -22,7 +22,7 @@
 
 package io.kvision.onsenui.form
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.form.text.TextInput

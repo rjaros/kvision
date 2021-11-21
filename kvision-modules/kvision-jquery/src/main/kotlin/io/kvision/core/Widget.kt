@@ -22,7 +22,7 @@
 
 package io.kvision.core
 
-import com.github.snabbdom.set
+import io.kvision.snabbdom.set
 import io.kvision.core.Widget.Companion.KV_JQUERY_EVENT_PREFIX
 import io.kvision.jquery.JQueryEventObject
 import io.kvision.utils.SnOn

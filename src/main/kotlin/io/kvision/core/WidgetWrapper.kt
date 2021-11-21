@@ -21,7 +21,7 @@
  */
 package io.kvision.core
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.panel.SimplePanel
 
 /**

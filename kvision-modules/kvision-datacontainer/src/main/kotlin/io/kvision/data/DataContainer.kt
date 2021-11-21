@@ -21,7 +21,7 @@
  */
 package io.kvision.data
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.Widget

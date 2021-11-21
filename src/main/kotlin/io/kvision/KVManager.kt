@@ -21,14 +21,13 @@
  */
 package io.kvision
 
-import com.github.snabbdom.Snabbdom
-import com.github.snabbdom.VNode
-import com.github.snabbdom.attributesModule
-import com.github.snabbdom.classModule
-import com.github.snabbdom.datasetModule
-import com.github.snabbdom.eventListenersModule
-import com.github.snabbdom.propsModule
-import com.github.snabbdom.styleModule
+import io.kvision.snabbdom.VNode
+import io.kvision.snabbdom.attributesModule
+import io.kvision.snabbdom.classModule
+import io.kvision.snabbdom.eventListenersModule
+import io.kvision.snabbdom.init
+import io.kvision.snabbdom.propsModule
+import io.kvision.snabbdom.styleModule
 import kotlinx.browser.document
 import kotlinx.dom.clear
 import org.w3c.dom.HTMLElement
@@ -45,13 +44,12 @@ external fun require(name: String): dynamic
 object KVManager {
     internal val splitjs = require("split.js").default
     internal val fecha = require("fecha").default
-    private val sdPatch = Snabbdom.init(
+    private val sdPatch = init(
         arrayOf(
-            classModule, attributesModule, propsModule, styleModule,
-            eventListenersModule, datasetModule
+            classModule, attributesModule, propsModule, styleModule, eventListenersModule
         )
     )
-    private val sdVirtualize = require("snabbdom-virtualize/strings").default
+    private val sdVirtualize = require("snabbdom-virtualize/src/strings.js").default
 
     internal fun patch(id: String, vnode: VNode): VNode {
         val container = document.getElementById(id)

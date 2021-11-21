@@ -21,7 +21,7 @@
  */
 package io.kvision.form.select
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Widget
 import io.kvision.utils.set

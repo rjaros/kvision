@@ -22,7 +22,7 @@
 
 package io.kvision.react
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.ReactModule
 import io.kvision.core.Container
 import io.kvision.core.Widget

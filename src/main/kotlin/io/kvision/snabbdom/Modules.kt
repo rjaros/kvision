@@ -19,30 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.modal
 
-import io.kvision.snabbdom.VNode
-import io.kvision.core.AttributeSetBuilder
-import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Widget
+@file:Suppress("UnsafeCastFromDynamic")
 
-/**
- * Helper class for close icon component.
- */
-open class CloseIcon : Widget() {
+package io.kvision.snabbdom
 
-    override fun render(): VNode {
-        return render("button")
-    }
+@JsModule("snabbdom")
+@JsNonModule
 
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        super.buildClassSet(classSetBuilder)
-        classSetBuilder.add("btn-close")
-    }
+external val modulesExt: dynamic = definedExternally
 
-    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributeSet(attributeSetBuilder)
-        attributeSetBuilder.add("type", "button")
-        attributeSetBuilder.add("aria-label", "Close")
-    }
+val attributesModule: Module = modulesExt.attributesModule
+val classModule: Module = modulesExt.classModule
+val propsModule: Module = modulesExt.propsModule
+val styleModule: Module = modulesExt.styleModule
+val eventListenersModule: Module = modulesExt.eventListenersModule
+
+external interface Module {
+    var pre: PreHook?
+    var create: CreateHook?
+    var update: UpdateHook?
+    var destroy: DestroyHook?
+    var remove: RemoveHook?
+    var post: PostHook?
 }

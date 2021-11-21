@@ -23,7 +23,7 @@
 
 package test.io.kvision.core
 
-import com.github.snabbdom.Attrs
+import io.kvision.snabbdom.Attrs
 import io.kvision.core.AttributeSetBuilderImpl
 import io.kvision.core.buildAttributeSet
 import io.kvision.test.toKeyValuePairString

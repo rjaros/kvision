@@ -22,7 +22,7 @@
 
 package io.kvision.onsenui.control
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.html.CustomTag

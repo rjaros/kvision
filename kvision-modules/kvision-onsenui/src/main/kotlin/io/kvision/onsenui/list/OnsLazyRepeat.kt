@@ -22,7 +22,7 @@
 
 package io.kvision.onsenui.list
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import org.w3c.dom.HTMLElement
 import io.kvision.core.Widget
 import io.kvision.utils.obj

@@ -21,7 +21,7 @@
  */
 package io.kvision.chart
 
-import com.github.snabbdom.VNode
+import io.kvision.snabbdom.VNode
 import io.kvision.chart.js.Chart.ChartConfiguration
 import io.kvision.chart.js.Chart.PluginServiceGlobalRegistration
 import io.kvision.core.Container

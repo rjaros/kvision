@@ -21,8 +21,8 @@
  */
 package io.kvision.html
 
-import com.github.snabbdom.VNode
-import com.github.snabbdom.h
+import io.kvision.snabbdom.VNode
+import io.kvision.snabbdom.h
 import io.kvision.KVManager
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component

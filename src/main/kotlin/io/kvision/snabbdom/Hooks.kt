@@ -19,30 +19,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.modal
 
-import io.kvision.snabbdom.VNode
-import io.kvision.core.AttributeSetBuilder
-import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Widget
+package io.kvision.snabbdom
 
-/**
- * Helper class for close icon component.
- */
-open class CloseIcon : Widget() {
-
-    override fun render(): VNode {
-        return render("button")
-    }
-
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        super.buildClassSet(classSetBuilder)
-        classSetBuilder.add("btn-close")
-    }
-
-    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributeSet(attributeSetBuilder)
-        attributeSetBuilder.add("type", "button")
-        attributeSetBuilder.add("aria-label", "Close")
-    }
+external interface Hooks {
+    var pre: PreHook?
+    var init: InitHook?
+    var create: CreateHook?
+    var insert: InsertHook?
+    var prepatch: PrePatchHook?
+    var update: UpdateHook?
+    var postpatch: PostPatchHook?
+    var destroy: DestroyHook?
+    var remove: RemoveHook?
+    var post: PostHook?
 }
+
+typealias PreHook = () -> dynamic
+typealias InitHook = (vNode: VNode) -> dynamic
+typealias CreateHook = (emptyVNode: VNode, vNode: VNode) -> dynamic
+typealias InsertHook = (vNode: VNode) -> dynamic
+typealias PrePatchHook = (oldVNode: VNode, vNode: VNode) -> dynamic
+typealias UpdateHook = (oldVNode: VNode, vNode: VNode) -> dynamic
+typealias PostPatchHook = (oldVNode: VNode, vNode: VNode) -> dynamic
+typealias DestroyHook = (vNode: VNode) -> dynamic
+typealias RemoveHook = (vNode: VNode, removeCallback: () -> Unit) -> dynamic
+typealias PostHook = () -> dynamic

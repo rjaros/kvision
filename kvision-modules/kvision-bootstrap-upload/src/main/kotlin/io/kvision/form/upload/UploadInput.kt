@@ -21,8 +21,8 @@
  */
 package io.kvision.form.upload
 
-import com.github.snabbdom.VNode
-import com.github.snabbdom.h
+import io.kvision.snabbdom.VNode
+import io.kvision.snabbdom.h
 import io.kvision.BootstrapUploadModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
