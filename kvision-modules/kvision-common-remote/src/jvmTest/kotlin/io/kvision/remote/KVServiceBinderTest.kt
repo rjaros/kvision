@@ -67,14 +67,15 @@ private typealias BindingInitializer = KVServiceBinder<Any, RouteHandler, *>.(me
 
 // Array of some helper functions, for binding each of the seven sample request handler implementations, so we can
 // easily iterate them in the tests:
-val BINDING_INITIALIZERS: Array<BindingInitializer> = arrayOf(
+@Suppress("RemoveExplicitTypeArguments") // Workaround KT-49573
+val BINDING_INITIALIZERS = arrayOf<BindingInitializer>(
     { method, route -> bind(PARAM_0_FUN, method, route) },
-    { method, route -> bind(PARAM_1_FUN, method, route) },
-    { method, route -> bind(PARAM_2_FUN, method, route) },
-    { method, route -> bind(PARAM_3_FUN, method, route) },
-    { method, route -> bind(PARAM_4_FUN, method, route) },
-    { method, route -> bind(PARAM_5_FUN, method, route) },
-    { method, route -> bind(PARAM_6_FUN, method, route) },
+    { method, route -> bind<String,String>(PARAM_1_FUN, method, route) },
+    { method, route -> bind<String, Int, Int>(PARAM_2_FUN, method, route) },
+    { method, route -> bind<String, Int, Double, Double>(PARAM_3_FUN, method, route) },
+    { method, route -> bind<String, Int, Double, Float, Float>(PARAM_4_FUN, method, route) },
+    { method, route -> bind<String, Int, Double, Float, Byte, Byte>(PARAM_5_FUN, method, route) },
+    { method, route -> bind<String, Int, Double, Float, Byte, Char, Char>(PARAM_6_FUN, method, route) },
 )
 
 // Just a sample object which is supposed to arrive as `this` for the handler methods:

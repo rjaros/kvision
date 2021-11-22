@@ -144,11 +144,11 @@ open class ListTag(
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
-        @Suppress("NON_EXHAUSTIVE_WHEN")
         when (type) {
             ListType.UNSTYLED -> classSetBuilder.add("list-unstyled")
             ListType.INLINE -> classSetBuilder.add("list-inline")
             ListType.DL_HORIZ -> classSetBuilder.add("dl-horizontal")
+            else -> {}
         }
     }
 }
