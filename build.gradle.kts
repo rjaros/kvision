@@ -41,7 +41,7 @@ dependencies {
     implementation(npm("imports-loader", "^3.1.1"))
     implementation(npm("fecha", "^4.2.1"))
     implementation(npm("snabbdom", "^3.1.0"))
-    implementation(npm("snabbdom-virtualize", "github:rjaros/snabbdom-virtualize"))
+    implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.0"))
     implementation(npm("split.js", "^1.6.4"))
     implementation(npm("gettext.js", "^1.0.1"))
     implementation(npm("gettext-extract", "^2.0.1"))

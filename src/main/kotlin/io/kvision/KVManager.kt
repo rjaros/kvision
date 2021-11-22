@@ -49,7 +49,7 @@ object KVManager {
             classModule, attributesModule, propsModule, styleModule, eventListenersModule
         )
     )
-    private val sdVirtualize = require("snabbdom-virtualize/src/strings.js").default
+    private val sdVirtualize = require("@rjaros/snabbdom-virtualize/strings").default
 
     internal fun patch(id: String, vnode: VNode): VNode {
         val container = document.getElementById(id)
