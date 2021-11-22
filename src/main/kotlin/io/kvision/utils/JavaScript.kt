@@ -116,9 +116,3 @@ fun <T : Any> toKotlinObj(data: dynamic, kClass: KClass<T>): T {
         newT
     }
 }
-
-/**
- * Utility function to detect Internet Explorer 11.
- * @return true if the current browser is IE11
- */
-fun isIE11(): Boolean = window.navigator.userAgent.matches("Trident\\/7\\.")

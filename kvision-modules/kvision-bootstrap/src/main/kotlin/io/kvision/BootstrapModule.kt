@@ -24,7 +24,6 @@ package io.kvision
 
 import io.kvision.core.Bootstrap
 import io.kvision.core.Component
-import io.kvision.utils.isIE11
 import kotlinx.browser.document
 
 /**
@@ -44,20 +43,16 @@ object BootstrapModule : ModuleInitializer {
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun setResizeEvent(component: Component, callback: () -> Unit) {
-        if (!isIE11()) {
-            component.getElement()?.let {
-                elementResizeEvent(it, callback)
-            }
+        component.getElement()?.let {
+            elementResizeEvent(it, callback)
         }
     }
 
     @Suppress("UnsafeCastFromDynamic")
     internal fun clearResizeEvent(component: Component) {
-        if (!isIE11()) {
-            if (component.getElement()?.asDynamic()?.__resizeTrigger__?.contentDocument != null) {
-                component.getElement()?.let {
-                    elementResizeEvent.unbind(it)
-                }
+        if (component.getElement()?.asDynamic()?.__resizeTrigger__?.contentDocument != null) {
+            component.getElement()?.let {
+                elementResizeEvent.unbind(it)
             }
         }
     }

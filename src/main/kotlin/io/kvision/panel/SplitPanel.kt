@@ -21,12 +21,13 @@
  */
 package io.kvision.panel
 
-import io.kvision.snabbdom.VNode
 import io.kvision.KVManager
 import io.kvision.core.Container
 import io.kvision.core.StyledComponent
 import io.kvision.core.UNIT
+import io.kvision.snabbdom.VNode
 import io.kvision.utils.obj
+import kotlin.math.ceil
 
 /**
  * Split panel direction.
@@ -77,7 +78,7 @@ open class SplitPanel(
                     val height = getElementD()?.getBoundingClientRect().height ?: 0
                     val firstHeight = getElement()?.firstChild?.asDynamic().getBoundingClientRect().height ?: 0
                     if (height != 0 && firstHeight != 0) {
-                        val firstPerc = firstHeight.unsafeCast<Double>() * 100 / height.unsafeCast<Double>()
+                        val firstPerc = ceil(firstHeight.unsafeCast<Double>() * 100 / height.unsafeCast<Double>())
                         arrayOf(firstPerc, 100 - firstPerc)
                     } else {
                         arrayOf(0, 100)
@@ -91,7 +92,7 @@ open class SplitPanel(
                     val width = getElementD()?.getBoundingClientRect().width ?: 0
                     val firstWidth = getElement()?.firstChild?.asDynamic().getBoundingClientRect().width ?: 0
                     if (width != 0 && firstWidth != 0) {
-                        val firstPerc = firstWidth.unsafeCast<Double>() * 100 / width.unsafeCast<Double>()
+                        val firstPerc = ceil(firstWidth.unsafeCast<Double>() * 100 / width.unsafeCast<Double>())
                         arrayOf(firstPerc, 100 - firstPerc)
                     } else {
                         arrayOf(0, 100)
