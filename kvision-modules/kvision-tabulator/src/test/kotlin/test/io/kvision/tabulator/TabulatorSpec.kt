@@ -23,6 +23,7 @@ package test.io.kvision.tabulator
 
 import kotlinx.browser.document
 import io.kvision.panel.Root
+import io.kvision.tabulator.RenderType
 import io.kvision.tabulator.Tabulator
 import io.kvision.tabulator.TabulatorOptions
 import io.kvision.utils.obj
@@ -44,7 +45,7 @@ class TabulatorSpec : DomSpec {
                 id = 2
                 name = "Name2"
                 age = 50
-            }), virtualDom = false))
+            }), renderVertical = RenderType.BASIC))
             root.add(tabulator)
             tabulator.redraw(true)
             val element = document.getElementById("test")
