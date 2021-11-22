@@ -21,39 +21,46 @@
  */
 package test.io.kvision.tabulator
 
-import kotlinx.browser.document
 import io.kvision.panel.Root
 import io.kvision.tabulator.RenderType
 import io.kvision.tabulator.Tabulator
 import io.kvision.tabulator.TabulatorOptions
-import io.kvision.utils.obj
 import io.kvision.test.DomSpec
+import io.kvision.utils.obj
+import kotlinx.browser.document
 import kotlin.test.Test
 
 class TabulatorSpec : DomSpec {
 
     @Test
-    fun render() {
-        run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            @Suppress("UnsafeCastFromDynamic")
-            val tabulator = Tabulator<Any>(options = TabulatorOptions(data = arrayOf(obj {
-                id = 1
-                name = "Name"
-                age = 40
-            }, obj {
-                id = 2
-                name = "Name2"
-                age = 50
-            }), renderVertical = RenderType.BASIC))
-            root.add(tabulator)
+    fun render() = runAsync { resolve, reject ->
+        val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+        val element = document.getElementById("test")
+
+        @Suppress("UnsafeCastFromDynamic")
+        val tabulator = Tabulator<Any>(
+            options = TabulatorOptions(
+                data = arrayOf(obj {
+                    id = 1
+                    name = "Name"
+                    age = 40
+                }, obj {
+                    id = 2
+                    name = "Name2"
+                    age = 50
+                }),
+                renderVertical = RenderType.BASIC
+            )
+        )
+        root.add(tabulator)
+        tabulator.jsTabulator?.on("tableBuilt") {
             tabulator.redraw(true)
-            val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"tabulator\" role=\"grid\" tabulator-layout=\"fitData\"><div class=\"tabulator-header\" style=\"padding-right: 0px;\"><div class=\"tabulator-headers\" style=\"margin-left: 0px;\"><div class=\"tabulator-col tabulator-sortable\" role=\"columnheader\" aria-sort=\"none\" tabulator-field=\"id\" title=\"\" style=\"min-width: 40px;\"><div class=\"tabulator-col-content\"><div class=\"tabulator-col-title-holder\"><div class=\"tabulator-col-title\">id</div><div class=\"tabulator-col-sorter\"><div class=\"tabulator-arrow\"></div></div></div></div><div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-col tabulator-sortable\" role=\"columnheader\" aria-sort=\"none\" tabulator-field=\"name\" title=\"\" style=\"min-width: 40px;\"><div class=\"tabulator-col-content\"><div class=\"tabulator-col-title-holder\"><div class=\"tabulator-col-title\">name</div><div class=\"tabulator-col-sorter\"><div class=\"tabulator-arrow\"></div></div></div></div><div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-col tabulator-sortable\" role=\"columnheader\" aria-sort=\"none\" tabulator-field=\"age\" title=\"\" style=\"min-width: 40px;\"><div class=\"tabulator-col-content\"><div class=\"tabulator-col-title-holder\"><div class=\"tabulator-col-title\">age</div><div class=\"tabulator-col-sorter\"><div class=\"tabulator-arrow\"></div></div></div></div><div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div></div><div class=\"tabulator-frozen-rows-holder\"></div></div><div class=\"tabulator-tableHolder\" tabindex=\"0\"><div class=\"tabulator-table\"><div class=\"tabulator-row tabulator-selectable tabulator-row-odd\" role=\"row\" style=\"padding-left: 0px;\"><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"id\" title=\"\">1<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"name\" title=\"\">Name<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"age\" title=\"\">40<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div></div><div class=\"tabulator-row tabulator-selectable tabulator-row-even\" role=\"row\" style=\"padding-left: 0px;\"><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"id\" title=\"\">2<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"name\" title=\"\">Name2<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"age\" title=\"\">50<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div></div></div></div></div>",
+                "<div class=\"tabulator\" role=\"grid\" tabulator-layout=\"fitData\"><div class=\"tabulator-header\" role=\"rowgroup\" style=\"padding-right: 0px;\"><div class=\"tabulator-headers\" role=\"row\" style=\"margin-left: 0px;\"><div class=\"tabulator-col tabulator-sortable\" role=\"columnheader\" aria-sort=\"none\" tabulator-field=\"id\" title=\"\" style=\"min-width: 40px;\"><div class=\"tabulator-col-content\"><div class=\"tabulator-col-title-holder\"><div class=\"tabulator-col-title\">id</div><div class=\"tabulator-col-sorter\"><div class=\"tabulator-arrow\"></div></div></div></div><div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-col tabulator-sortable\" role=\"columnheader\" aria-sort=\"none\" tabulator-field=\"name\" title=\"\" style=\"min-width: 40px;\"><div class=\"tabulator-col-content\"><div class=\"tabulator-col-title-holder\"><div class=\"tabulator-col-title\">name</div><div class=\"tabulator-col-sorter\"><div class=\"tabulator-arrow\"></div></div></div></div><div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-col tabulator-sortable\" role=\"columnheader\" aria-sort=\"none\" tabulator-field=\"age\" title=\"\" style=\"min-width: 40px;\"><div class=\"tabulator-col-content\"><div class=\"tabulator-col-title-holder\"><div class=\"tabulator-col-title\">age</div><div class=\"tabulator-col-sorter\"><div class=\"tabulator-arrow\"></div></div></div></div><div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div></div><div class=\"tabulator-frozen-rows-holder\"></div></div><div class=\"tabulator-tableholder\" tabindex=\"0\" role=\"rowgroup\" style=\"height: 0px;\"><div class=\"tabulator-table\" role=\"rowgroup\"><div class=\"tabulator-row tabulator-selectable tabulator-row-odd\" role=\"row\" style=\"padding-left: 0px;\"><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"id\" title=\"\">1<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"name\" title=\"\">Name<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"age\" title=\"\">40<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div></div><div class=\"tabulator-row tabulator-selectable tabulator-row-even\" role=\"row\" style=\"padding-left: 0px;\"><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"id\" title=\"\">2<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"name\" title=\"\">Name2<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div><div class=\"tabulator-cell\" role=\"gridcell\" tabulator-field=\"age\" title=\"\">50<div class=\"tabulator-col-resize-handle\"></div><div class=\"tabulator-col-resize-handle prev\"></div></div></div></div></div></div>",
                 element?.innerHTML,
                 "Should render correct tabulator table"
             )
+            resolve()
         }
     }
 }

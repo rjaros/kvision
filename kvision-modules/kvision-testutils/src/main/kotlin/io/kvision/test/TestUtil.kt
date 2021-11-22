@@ -21,16 +21,17 @@
  */
 package io.kvision.test
 
-import kotlinx.browser.document
-import org.w3c.dom.Element
-import org.w3c.dom.Node
-import org.w3c.dom.asList
+import io.kvision.core.Widget
 import io.kvision.jquery.JQuery
 import io.kvision.jquery.get
 import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
-import io.kvision.core.Widget
 import io.kvision.panel.Root
+import kotlinx.browser.document
+import org.w3c.dom.Element
+import org.w3c.dom.Node
+import org.w3c.dom.asList
+import kotlin.js.Promise
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -43,6 +44,16 @@ interface TestSpec {
         beforeTest()
         code()
         afterTest()
+    }
+
+    fun runAsync(code: (resolve: () -> Unit, reject: (Throwable) -> Unit) -> Unit): Promise<Unit> {
+        beforeTest()
+        @Suppress("UnsafeCastFromDynamic")
+        return Promise<Unit> { resolve, reject ->
+            code({ resolve(Unit) }, reject)
+        }.asDynamic().finally {
+            afterTest()
+        }
     }
 }
 
@@ -106,8 +117,8 @@ interface WSpec : DomSpec {
 
 fun removeAllAfter(referenceElement: Node) {
     var element = referenceElement
-    while(true) {
-        while(element.nextSibling?.also { it.parentNode?.removeChild(it) } != null) {
+    while (true) {
+        while (element.nextSibling?.also { it.parentNode?.removeChild(it) } != null) {
             // intentionally blank
         }
         element = element.parentNode ?: return
