@@ -35,7 +35,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-5.0.0.tgz"))
-    implementation(npm("kvision-assets", "^5.0.6"))
+    implementation(npm("kvision-assets", "^5.0.7"))
     implementation(npm("css-loader", "^6.5.1"))
     implementation(npm("style-loader", "^3.3.1"))
     implementation(npm("imports-loader", "^3.1.1"))

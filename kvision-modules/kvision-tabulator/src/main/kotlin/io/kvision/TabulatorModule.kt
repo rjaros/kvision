@@ -26,7 +26,7 @@ package io.kvision
  */
 object TabulatorModule : ModuleInitializer {
 
-    private val tabulator = require("tabulator-tables/dist/js/tabulator.js")
+    private val tabulator = require("tabulator-tables").TabulatorFull
 
     @Suppress("UnsafeCastFromDynamic")
     fun getConstructor(): Any {
@@ -34,6 +34,6 @@ object TabulatorModule : ModuleInitializer {
     }
 
     override fun initialize() {
-        require("tabulator-tables/dist/css/bootstrap/tabulator_bootstrap4.min.css")
+        require("tabulator-tables/dist/css/tabulator_bootstrap4.min.css")
     }
 }

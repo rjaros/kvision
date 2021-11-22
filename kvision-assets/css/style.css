@@ -100,8 +100,12 @@ trix-toolbar .trix-button-group {
     padding: 6px !important;
 }
 
-.tabulator.table-bordered > .tabulator-tableHolder > * > * {
+.tabulator.table-bordered > .tabulator-tableHolder > * > *, .tabulator.table-bordered > .tabulator-tableholder > * > * {
     border-bottom: 1px solid #dee2e6;
+}
+
+.tabulator .tabulator-footer {
+    background-color: inherit;
 }
 
 .tabulator.table-sm > :not(caption) > * > * {

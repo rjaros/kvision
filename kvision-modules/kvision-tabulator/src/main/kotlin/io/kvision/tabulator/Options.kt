@@ -240,6 +240,22 @@ enum class PaginationMode(internal val mode: String) {
 }
 
 /**
+ * Sort modes.
+ */
+enum class SortMode(internal val mode: String) {
+    LOCAL("local"),
+    REMOTE("remote")
+}
+
+/**
+ * Filter modes.
+ */
+enum class FilterMode(internal val mode: String) {
+    LOCAL("local"),
+    REMOTE("remote")
+}
+
+/**
  * Add row modes.
  */
 enum class AddRowMode(internal val mode: String) {
@@ -254,6 +270,14 @@ enum class TextDirection(internal val dir: String) {
     AUTO("auto"),
     LTR("ltr"),
     RTL("rtl")
+}
+
+/**
+ * Virtual DOM options.
+ */
+enum class RenderType(internal val type: String) {
+    BASIC("basic"),
+    VIRTUAL("virtual")
 }
 
 /**
@@ -290,7 +314,7 @@ data class ColumnDefinition<T : Any>(
     val minWidth: Int? = null,
     val widthGrow: Int? = null,
     val widthShrink: Int? = null,
-    val resizable: Boolean? = null,
+    val resizable: dynamic = null,
     val frozen: Boolean? = null,
     val responsive: Int? = null,
     val tooltip: ((cell: Tabulator.CellComponent) -> String)? = null,
@@ -476,6 +500,14 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         }
     }
 
+    val tmpTooltip = tooltip?.let {
+        { o: dynamic ->
+            if (o["_cell"] != undefined) {
+                it(o)
+            } else ""
+        }
+    }
+
     return obj {
         this.title = i18nTranslator(title)
         if (field != null) this.field = field
@@ -489,7 +521,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (resizable != null) this.resizable = resizable
         if (frozen != null) this.frozen = frozen
         if (responsive != null) this.responsive = responsive
-        if (tooltip != null) this.tooltip = tooltip
+        if (tmpTooltip != null) this.tooltip = tmpTooltip
         if (cssClass != null) this.cssClass = cssClass
         if (rowHandle != null) this.rowHandle = rowHandle
         if (hideInHtml != null) this.hideInHtml = hideInHtml
@@ -598,11 +630,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
  */
 data class TabulatorOptions<T : Any>(
     val height: String? = null,
-    val virtualDom: Boolean? = null,
-    val virtualDomBuffer: Int? = null,
     val placeholder: String? = null,
     val footerElement: String? = null,
-    val tooltips: ((cell: Tabulator.CellComponent) -> String)? = null,
     val tooltipGenerationMode: TooltipGenerationMode? = null,
     val history: Boolean? = null,
     val keybindings: dynamic = null,
@@ -617,11 +646,7 @@ data class TabulatorOptions<T : Any>(
     val responsiveLayout: ResponsiveLayout? = null,
     val responsiveLayoutCollapseStartOpen: Boolean? = null,
     val responsiveLayoutCollapseUseFormatters: Boolean? = null,
-    val columnMinWidth: Int? = null,
-    val resizableColumns: Boolean? = null,
     val movableColumns: Boolean? = null,
-    val tooltipsHeader: Boolean? = null,
-    val headerFilterPlaceholder: String? = null,
     val scrollToColumnPosition: ColumnPosition? = null,
     val scrollToColumnIfVisible: Boolean? = null,
     val rowFormatter: ((row: Tabulator.RowComponent) -> Unit)? = null,
@@ -646,24 +671,23 @@ data class TabulatorOptions<T : Any>(
     val ajaxContentType: dynamic = null,
     val ajaxURLGenerator: ((url: String, config: dynamic, params: dynamic) -> String)? = null,
     var ajaxRequestFunc: ((url: String, config: dynamic, params: dynamic) -> Promise<Any>)? = null,
-    val ajaxFiltering: Boolean? = null,
-    val ajaxSorting: Boolean? = null,
-    val ajaxProgressiveLoad: ProgressiveMode? = null,
-    val ajaxProgressiveLoadDelay: Int? = null,
-    val ajaxProgressiveLoadScrollMargin: Int? = null,
-    val ajaxLoader: Boolean? = null,
-    val ajaxLoaderLoading: String? = null,
-    val ajaxLoaderError: String? = null,
+    val progressiveLoad: ProgressiveMode? = null,
+    val progressiveLoadDelay: Int? = null,
+    val progressiveLoadScrollMargin: Int? = null,
+    val dataLoader: Boolean? = null,
+    val dataLoaderLoading: String? = null,
+    val dataLoaderError: String? = null,
     val initialSort: List<Tabulator.Sorter>? = null,
     val sortOrderReverse: Boolean? = null,
     val initialFilter: List<Tabulator.Filter>? = null,
     val initialHeaderFilter: List<Any?>? = null,
-    val pagination: PaginationMode? = null,
+    val pagination: Boolean? = null,
+    val paginationMode: PaginationMode? = null,
     val paginationSize: Int? = null,
     val paginationSizeSelector: dynamic = null,
     val paginationElement: dynamic = null,
-    val paginationDataReceived: dynamic = null,
-    val paginationDataSent: dynamic = null,
+    val dataReceiveParams: dynamic = null,
+    val dataSendParams: dynamic = null,
     val paginationAddRow: AddRowMode? = null,
     val paginationButtonCount: Int? = null,
     val persistenceID: String? = null,
@@ -684,8 +708,6 @@ data class TabulatorOptions<T : Any>(
     val printFooter: String? = null,
     val printFormatter: ((tableHolder: dynamic, table: dynamic) -> Unit)? = null,
     val tabEndNewRow: dynamic = null,
-    val headerSort: Boolean? = null,
-    val headerSortTristate: Boolean? = null,
     val invalidOptionWarnings: Boolean? = null,
     val dataTree: Boolean? = null,
     val dataTreeChildField: String? = null,
@@ -695,83 +717,8 @@ data class TabulatorOptions<T : Any>(
     val dataTreeBranchElement: dynamic = null,
     val dataTreeChildIndent: Number? = null,
     val dataTreeStartExpanded: ((row: Tabulator.RowComponent, level: Number) -> Boolean)? = null,
-    val dataTreeRowExpanded: ((row: Tabulator.RowComponent, level: Number) -> Unit)? = null,
-    val dataTreeRowCollapsed: ((row: Tabulator.RowComponent, level: Number) -> Unit)? = null,
-    val movableRowsSendingStart: ((toTables: Array<Any>) -> Unit)? = null,
-    val movableRowsSent: ((
-        fromRow: Tabulator.RowComponent,
-        toRow: Tabulator.RowComponent, toTable: Tabulator
-    ) -> Unit)? = null,
-    val movableRowsSentFailed: ((
-        fromRow: Tabulator.RowComponent,
-        toRow: Tabulator.RowComponent, toTable: Tabulator
-    ) -> Unit)? = null,
-    val movableRowsSendingStop: ((toTables: Array<Any>) -> Unit)? = null,
-    val movableRowsReceivingStart: ((fromRow: Tabulator.RowComponent, toTable: Tabulator) -> Unit)? = null,
-    val movableRowsReceived: ((
-        fromRow: Tabulator.RowComponent,
-        toRow: Tabulator.RowComponent, fromTable: Tabulator
-    ) -> Unit)? = null,
-    val movableRowsReceivedFailed: ((
-        fromRow: Tabulator.RowComponent,
-        toRow: Tabulator.RowComponent, fromTable: Tabulator
-    ) -> Unit)? = null,
-    val movableRowsReceivingStop: ((fromTable: Tabulator) -> Unit)? = null,
-    var rowClick: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowDblClick: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowContext: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowTap: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowDblTap: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowTapHold: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowMouseEnter: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowMouseLeave: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowMouseOver: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowMouseOut: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowMouseMove: ((e: dynamic, row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowAdded: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowUpdated: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowDeleted: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowMoved: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    val rowResized: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowSelectionChanged: ((data: Array<Any>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
-    var rowSelected: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var rowDeselected: ((row: Tabulator.RowComponent) -> Unit)? = null,
-    var cellClick: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellDblClick: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellContext: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellTap: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellDblTap: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellTapHold: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseEnter: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseLeave: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseOver: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseOut: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    val cellMouseMove: ((e: Any, cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellEditing: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellEdited: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    var cellEditCancelled: ((cell: Tabulator.CellComponent) -> Unit)? = null,
-    val columnMoved: ((column: Tabulator.ColumnComponent, columns: Array<dynamic>) -> Unit)? = null,
-    val columnResized: ((column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val columnVisibilityChanged: ((column: Tabulator.ColumnComponent, visible: Boolean) -> Unit)? = null,
-    val columnTitleChanged: ((column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val tableBuilding: (() -> Unit)? = null,
-    val tableBuilt: (() -> Unit)? = null,
-    val renderStarted: (() -> Unit)? = null,
-    val renderComplete: (() -> Unit)? = null,
-    val htmlImporting: (() -> Unit)? = null,
-    val htmlImported: (() -> Unit)? = null,
-    var dataLoading: ((data: List<T>) -> Unit)? = null,
-    var dataLoaded: ((data: List<T>) -> Unit)? = null,
-    var dataChanged: ((data: List<T>) -> Unit)? = null,
-    val pageLoaded: ((pageno: Int) -> Unit)? = null,
-    val dataSorting: ((sorters: Array<Tabulator.Sorter>) -> Unit)? = null,
-    val dataSorted: ((sorters: Array<Tabulator.Sorter>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
-    val dataFiltering: ((filters: Array<Tabulator.Filter>) -> Unit)? = null,
-    val dataFiltered: ((filters: Array<Tabulator.Filter>, rows: Array<Tabulator.RowComponent>) -> Unit)? = null,
-    val validationFailed: ((cell: Tabulator.CellComponent, value: Any, validators: dynamic) -> Unit)? = null,
     val ajaxRequesting: ((url: String, params: dynamic) -> Boolean)? = null,
     val ajaxResponse: ((url: String, params: dynamic, response: dynamic) -> Any)? = null,
-    val ajaxError: ((errorThrown: dynamic) -> Unit)? = null,
     val persistence: dynamic = null,
     val persistenceReaderFunc: dynamic = null,
     val persistenceWriterFunc: dynamic = null,
@@ -782,18 +729,19 @@ data class TabulatorOptions<T : Any>(
     val rowContextMenu: dynamic = null,
     val dataTreeChildColumnCalcs: Boolean? = null,
     val dataTreeSelectPropagate: Boolean? = null,
-    val cellHozAlign: Align? = null,
-    val cellVertAlign: VAlign? = null,
     val headerFilterLiveFilterDelay: Int? = null,
     val textDirection: TextDirection? = null,
-    val virtualDomHoz: Boolean? = null,
     val autoColumnsDefinitions: dynamic = null,
     val rowClickMenu: dynamic = null,
-    val headerHozAlign: Align? = null,
     val headerSortElement: String? = null,
     val dataTreeFilter: Boolean? = null,
     val dataTreeSort: Boolean? = null,
-    val columnMaxWidth: Int? = null,
+    val renderVertical: RenderType? = null,
+    val renderVerticalBuffer: Int? = null,
+    val renderHorizontal: RenderType? = null,
+    val columnDefaults: ColumnDefinition<T>? = null,
+    val sortMode: SortMode? = null,
+    val filterMode: FilterMode? = null
 )
 
 /**
@@ -805,27 +753,10 @@ fun <T : Any> TabulatorOptions<T>.toJs(
     i18nTranslator: (String) -> (String),
     kClass: KClass<T>?
 ): Tabulator.Options {
-    val allColumns = this.columns?.let { c -> c + c.mapNotNull { it.columns }.flatten() }
-    val tmpCellEditCancelled = allColumns?.find { it.editorComponentFunction != null }?.let {
-        { cell: Tabulator.CellComponent ->
-            cellEditCancelled?.invoke(cell)
-            window.setTimeout({
-                try {
-                    cell.getTable().redraw(true)
-                } catch (e: Throwable) {
-                    console.log("Table redraw failed. Probably it's not visible anymore.")
-                }
-            }, 0)
-        }
-    } ?: cellEditCancelled
-
     return obj {
         if (height != null) this.height = height
-        if (virtualDom != null) this.virtualDom = virtualDom
-        if (virtualDomBuffer != null) this.virtualDomBuffer = virtualDomBuffer
         if (placeholder != null) this.placeholder = i18nTranslator(placeholder)
         if (footerElement != null) this.footerElement = i18nTranslator(footerElement)
-        if (tooltips != null) this.tooltips = tooltips
         if (tooltipGenerationMode != null) this.tooltipGenerationMode = tooltipGenerationMode.mode
         if (history != null) this.history = history
         if (keybindings != null) this.keybindings = keybindings
@@ -846,11 +777,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
             responsiveLayoutCollapseStartOpen
         if (responsiveLayoutCollapseUseFormatters != null) this.responsiveLayoutCollapseUseFormatters =
             responsiveLayoutCollapseUseFormatters
-        if (columnMinWidth != null) this.columnMinWidth = columnMinWidth
-        if (resizableColumns != null) this.resizableColumns = resizableColumns
         if (movableColumns != null) this.movableColumns = movableColumns
-        if (tooltipsHeader != null) this.tooltipsHeader = tooltipsHeader
-        if (headerFilterPlaceholder != null) this.headerFilterPlaceholder = i18nTranslator(headerFilterPlaceholder)
         if (scrollToColumnPosition != null) this.scrollToColumnPosition = scrollToColumnPosition.position
         if (scrollToColumnIfVisible != null) this.scrollToColumnIfVisible = scrollToColumnIfVisible
         if (rowFormatter != null) this.rowFormatter = rowFormatter
@@ -875,25 +802,26 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (ajaxContentType != null) this.ajaxContentType = ajaxContentType
         if (ajaxURLGenerator != null) this.ajaxURLGenerator = ajaxURLGenerator
         if (ajaxRequestFunc != null) this.ajaxRequestFunc = ajaxRequestFunc
-        if (ajaxFiltering != null) this.ajaxFiltering = ajaxFiltering
-        if (ajaxSorting != null) this.ajaxSorting = ajaxSorting
-        if (ajaxProgressiveLoad != null) this.ajaxProgressiveLoad = ajaxProgressiveLoad.mode
-        if (ajaxProgressiveLoadDelay != null) this.ajaxProgressiveLoadDelay = ajaxProgressiveLoadDelay
-        if (ajaxProgressiveLoadScrollMargin != null) this.ajaxProgressiveLoadScrollMargin =
-            ajaxProgressiveLoadScrollMargin
-        if (ajaxLoader != null) this.ajaxLoader = ajaxLoader
-        if (ajaxLoaderLoading != null) this.ajaxLoaderLoading = i18nTranslator(ajaxLoaderLoading)
-        if (ajaxLoaderError != null) this.ajaxLoaderError = i18nTranslator(ajaxLoaderError)
+        if (filterMode != null) this.filterMode = filterMode.mode
+        if (sortMode != null) this.sortMode = sortMode.mode
+        if (progressiveLoad != null) this.progressiveLoad = progressiveLoad.mode
+        if (progressiveLoadDelay != null) this.progressiveLoadDelay = progressiveLoadDelay
+        if (progressiveLoadScrollMargin != null) this.progressiveLoadScrollMargin =
+            progressiveLoadScrollMargin
+        if (dataLoader != null) this.dataLoader = dataLoader
+        if (dataLoaderLoading != null) this.dataLoaderLoading = i18nTranslator(dataLoaderLoading)
+        if (dataLoaderError != null) this.dataLoaderError = i18nTranslator(dataLoaderError)
         if (initialSort != null) this.initialSort = initialSort.toTypedArray()
         if (sortOrderReverse != null) this.sortOrderReverse = sortOrderReverse
         if (initialFilter != null) this.initialFilter = initialFilter.toTypedArray()
         if (initialHeaderFilter != null) this.initialHeaderFilter = initialHeaderFilter.toTypedArray()
-        if (pagination != null) this.pagination = pagination.mode
+        if (pagination != null) this.pagination = pagination
+        if (paginationMode != null) this.paginationMode = paginationMode.mode
         if (paginationSize != null) this.paginationSize = paginationSize
         if (paginationSizeSelector != null) this.paginationSizeSelector = paginationSizeSelector
         if (paginationElement != null) this.paginationElement = paginationElement
-        if (paginationDataReceived != null) this.paginationDataReceived = paginationDataReceived
-        if (paginationDataSent != null) this.paginationDataSent = paginationDataSent
+        if (dataReceiveParams != null) this.dataReceiveParams = dataReceiveParams
+        if (dataSendParams != null) this.dataSendParams = dataSendParams
         if (paginationAddRow != null) this.paginationAddRow = paginationAddRow.mode
         if (paginationButtonCount != null) this.paginationButtonCount = paginationButtonCount
         if (persistenceID != null) this.persistenceID = persistenceID
@@ -914,8 +842,6 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (printFooter != null) this.printFooter = printFooter
         if (printFormatter != null) this.printFormatter = printFormatter
         if (tabEndNewRow != null) this.tabEndNewRow = tabEndNewRow
-        if (headerSort != null) this.headerSort = headerSort
-        if (headerSortTristate != null) this.headerSortTristate = headerSortTristate
         if (invalidOptionWarnings != null) this.invalidOptionWarnings = invalidOptionWarnings
         if (dataTree != null) this.dataTree = dataTree
         if (dataTreeChildField != null) this.dataTreeChildField = dataTreeChildField
@@ -925,88 +851,8 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (dataTreeBranchElement != null) this.dataTreeBranchElement = dataTreeBranchElement
         if (dataTreeChildIndent != null) this.dataTreeChildIndent = dataTreeChildIndent
         if (dataTreeStartExpanded != null) this.dataTreeStartExpanded = dataTreeStartExpanded
-        if (dataTreeRowExpanded != null) this.dataTreeRowExpanded = dataTreeRowExpanded
-        if (dataTreeRowCollapsed != null) this.dataTreeRowCollapsed = dataTreeRowCollapsed
-        if (movableRowsSendingStart != null) this.movableRowsSendingStart = movableRowsSendingStart
-        if (movableRowsSent != null) this.movableRowsSent = movableRowsSent
-        if (movableRowsSentFailed != null) this.movableRowsSentFailed = movableRowsSentFailed
-        if (movableRowsSendingStop != null) this.movableRowsSendingStop = movableRowsSendingStop
-        if (movableRowsReceivingStart != null) this.movableRowsReceivingStart = movableRowsReceivingStart
-        if (movableRowsReceived != null) this.movableRowsReceived = movableRowsReceived
-        if (movableRowsReceivedFailed != null) this.movableRowsReceivedFailed = movableRowsReceivedFailed
-        if (movableRowsReceivingStop != null) this.movableRowsReceivingStop = movableRowsReceivingStop
-        if (rowClick != null) this.rowClick = rowClick
-        if (rowDblClick != null) this.rowDblClick = rowDblClick
-        if (rowContext != null) this.rowContext = rowContext
-        if (rowTap != null) this.rowTap = rowTap
-        if (rowDblTap != null) this.rowDblTap = rowDblTap
-        if (rowTapHold != null) this.rowTapHold = rowTapHold
-        if (rowMouseEnter != null) this.rowMouseEnter = rowMouseEnter
-        if (rowMouseLeave != null) this.rowMouseLeave = rowMouseLeave
-        if (rowMouseOver != null) this.rowMouseOver = rowMouseOver
-        if (rowMouseOut != null) this.rowMouseOut = rowMouseOut
-        if (rowMouseMove != null) this.rowMouseMove = rowMouseMove
-        if (rowAdded != null) this.rowAdded = rowAdded
-        if (rowUpdated != null) this.rowUpdated = rowUpdated
-        if (rowDeleted != null) this.rowDeleted = rowDeleted
-        if (rowMoved != null) this.rowMoved = rowMoved
-        if (rowResized != null) this.rowResized = rowResized
-        if (rowSelectionChanged != null) this.rowSelectionChanged = rowSelectionChanged
-        if (rowSelected != null) this.rowSelected = rowSelected
-        if (rowDeselected != null) this.rowDeselected = rowDeselected
-        if (cellClick != null) this.cellClick = cellClick
-        if (cellDblClick != null) this.cellDblClick = cellDblClick
-        if (cellContext != null) this.cellContext = cellContext
-        if (cellTap != null) this.cellTap = cellTap
-        if (cellDblTap != null) this.cellDblTap = cellDblTap
-        if (cellTapHold != null) this.cellTapHold = cellTapHold
-        if (cellMouseEnter != null) this.cellMouseEnter = cellMouseEnter
-        if (cellMouseLeave != null) this.cellMouseLeave = cellMouseLeave
-        if (cellMouseOver != null) this.cellMouseOver = cellMouseOver
-        if (cellMouseOut != null) this.cellMouseOut = cellMouseOut
-        if (cellMouseMove != null) this.cellMouseMove = cellMouseMove
-        if (cellEditing != null) this.cellEditing = cellEditing
-        if (cellEdited != null) this.cellEdited = cellEdited
-        if (tmpCellEditCancelled != null) {
-            this.cellEditCancelled = tmpCellEditCancelled
-        }
-        if (columnMoved != null) this.columnMoved = columnMoved
-        if (columnResized != null) this.columnResized = columnResized
-        if (columnVisibilityChanged != null) this.columnVisibilityChanged = columnVisibilityChanged
-        if (columnTitleChanged != null) this.columnTitleChanged = columnTitleChanged
-        if (tableBuilding != null) this.tableBuilding = tableBuilding
-        if (tableBuilt != null) this.tableBuilt = tableBuilt
-        if (renderStarted != null) this.renderStarted = renderStarted
-        if (renderComplete != null) this.renderComplete = renderComplete
-        if (htmlImporting != null) this.htmlImporting = htmlImporting
-        if (htmlImported != null) this.htmlImported = htmlImported
-        val dataLoadingFun = dataLoading?.let {
-            { data: Array<T> ->
-                it(data.toList())
-            }
-        }
-        if (dataLoadingFun != null) this.dataLoading = dataLoadingFun
-        val dataLoadedFun = dataLoaded?.let {
-            { data: Array<T> ->
-                it(data.toList())
-            }
-        }
-        if (dataLoadedFun != null) this.dataLoaded = dataLoadedFun
-        val dataChangedFun = dataChanged?.let {
-            { data: Array<T> ->
-                it(data.toList())
-            }
-        }
-        if (dataChangedFun != null) this.dataChanged = dataChangedFun
-        if (pageLoaded != null) this.pageLoaded = pageLoaded
-        if (dataSorting != null) this.dataSorting = dataSorting
-        if (dataSorted != null) this.dataSorted = dataSorted
-        if (dataFiltering != null) this.dataFiltering = dataFiltering
-        if (dataFiltered != null) this.dataFiltered = dataFiltered
-        if (validationFailed != null) this.validationFailed = validationFailed
         if (ajaxRequesting != null) this.ajaxRequesting = ajaxRequesting
         if (ajaxResponse != null) this.ajaxResponse = ajaxResponse
-        if (ajaxError != null) this.ajaxError = ajaxError
         if (persistence != null) this.persistence = persistence
         if (persistenceReaderFunc != null) this.persistenceReaderFunc = persistenceReaderFunc
         if (persistenceWriterFunc != null) this.persistenceWriterFunc = persistenceWriterFunc
@@ -1017,17 +863,16 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (rowContextMenu != null) this.rowContextMenu = rowContextMenu
         if (dataTreeChildColumnCalcs != null) this.dataTreeChildColumnCalcs = dataTreeChildColumnCalcs
         if (dataTreeSelectPropagate != null) this.dataTreeSelectPropagate = dataTreeSelectPropagate
-        if (cellHozAlign != null) this.cellHozAlign = cellHozAlign.align
-        if (cellVertAlign != null) this.cellVertAlign = cellVertAlign.valign
         if (headerFilterLiveFilterDelay != null) this.headerFilterLiveFilterDelay = headerFilterLiveFilterDelay
         if (textDirection != null) this.textDirection = textDirection.dir
-        if (virtualDomHoz != null) this.virtualDomHoz = virtualDomHoz
         if (autoColumnsDefinitions != null) this.autoColumnsDefinitions = autoColumnsDefinitions
         if (rowClickMenu != null) this.rowClickMenu = rowClickMenu
-        if (headerHozAlign != null) this.headerHozAlign = headerHozAlign.align
         if (headerSortElement != null) this.headerSortElement = headerSortElement
         if (dataTreeFilter != null) this.dataTreeFilter = dataTreeFilter
         if (dataTreeSort != null) this.dataTreeSort = dataTreeSort
-        if (columnMaxWidth != null) this.columnMaxWidth = columnMaxWidth
+        if (renderVertical != null) this.renderVertical = renderVertical.type
+        if (renderVerticalBuffer != null) this.renderVerticalBuffer = renderVerticalBuffer
+        if (renderHorizontal != null) this.renderHorizontal = renderHorizontal.type
+        if (columnDefaults != null) this.columnDefaults = columnDefaults.toJs(tabulator, i18nTranslator, kClass)
     } as Tabulator.Options
 }

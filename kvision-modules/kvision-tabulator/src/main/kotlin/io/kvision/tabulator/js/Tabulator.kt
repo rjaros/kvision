@@ -10,17 +10,20 @@
 
 package io.kvision.tabulator.js
 
+import io.kvision.tabulator.js.Tabulator.*
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent
 import org.w3c.dom.events.UIEvent
-import io.kvision.tabulator.js.Tabulator.*
 import kotlin.js.Promise
 
-typealias FilterFunction = (field: String, type: String /* '=' | '!=' | 'like' | '<' | '>' | '<=' | '>=' | 'in' | 'regex' | 'starts' | 'ends' */, value: Any, filterParams: FilterParams) -> Unit
+typealias FilterFunction = (field: String, type: String /* "=" | "!=" | "like" | "<" | ">" | "<=" | ">=" | "in" | "regex" | "starts" | "ends" */, value: Any, filterParams: FilterParams) -> Unit
 
-typealias CustomMutator = (value: Any, data: Any, type: String /* 'data' | 'edit' */, mutatorParams: Any, cell: CellComponent) -> Any
+typealias GroupValuesArg = Array<Array<Any>>
 
-typealias CustomAccessor = (value: Any, data: Any, type: String /* 'data' | 'download' | 'clipboard' */, AccessorParams: Any, column: ColumnComponent) -> Any
+typealias CustomMutator = (value: Any, data: Any, type: String /* "data" | "edit" */, mutatorParams: Any, cell: CellComponent) -> Any
+
+typealias CustomAccessor = (value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, AccessorParams: Any, column: ColumnComponent, row: RowComponent) -> Any
 
 typealias ColumnCalcParams = (values: Any, data: Any) -> Any
 
@@ -44,11 +47,107 @@ typealias RowChangedCallback = (row: RowComponent) -> Unit
 
 typealias GroupEventCallback = (e: UIEvent, group: GroupComponent) -> Unit
 
-typealias ColumnSorterParamLookupFunction = (column: ColumnComponent, dir: String /* 'asc' | 'desc' */) -> Any
+typealias ColumnSorterParamLookupFunction = (column: ColumnComponent, dir: String /* "asc" | "desc" */) -> Any
+
+external interface EventCallBackMethods {
+    var validationFailed: (cell: CellComponent, value: Any, validators: Array<Validator>) -> Unit
+    var scrollHorizontal: (left: Number) -> Unit
+    var scrollVertical: (top: Number) -> Unit
+    var rowAdded: (row: RowComponent) -> Unit
+    var rowDeleted: (row: RowComponent) -> Unit
+    var rowMoved: (row: RowComponent) -> Unit
+    var rowUpdated: (row: RowComponent) -> Unit
+    var rowSelectionChanged: () -> Unit
+    var rowSelected: (row: RowComponent) -> Unit
+    var rowDeselected: (row: RowComponent) -> Unit
+    var rowResized: (row: RowComponent) -> Unit
+    var rowClick: (event: UIEvent, row: RowComponent) -> Unit
+    var rowDblClick: (event: UIEvent, row: RowComponent) -> Unit
+    var rowContext: (event: UIEvent, row: RowComponent) -> Unit
+    var rowTap: (event: UIEvent, row: RowComponent) -> Unit
+    var rowDblTap: (event: UIEvent, row: RowComponent) -> Unit
+    var rowTapHold: (event: UIEvent, row: RowComponent) -> Unit
+    var rowMouseEnter: (event: UIEvent, row: RowComponent) -> Unit
+    var rowMouseLeave: (event: UIEvent, row: RowComponent) -> Unit
+    var rowMouseOver: (event: UIEvent, row: RowComponent) -> Unit
+    var rowMouseOut: (event: UIEvent, row: RowComponent) -> Unit
+    var rowMouseMove: (event: UIEvent, row: RowComponent) -> Unit
+    var htmlImporting: () -> Unit
+    var htmlImported: () -> Unit
+    var ajaxError: () -> Unit
+    var clipboardCopied: (clipboard: String) -> Unit
+    var clipboardPasted: (clipboard: String, rowData: Array<Any>, rows: Array<RowComponent>) -> Unit
+    var clipboardPasteError: (clipboard: String) -> Unit
+    var downloadComplete: () -> Unit
+    var dataTreeRowExpanded: (row: RowComponent, level: Number) -> Unit
+    var dataTreeRowCollapsed: (row: RowComponent, level: Number) -> Unit
+    var pageLoaded: (pageNo: Number) -> Unit
+    var headerClick: (event: UIEvent, column: ColumnComponent) -> Unit
+    var headerDblClick: (event: UIEvent, column: ColumnComponent) -> Unit
+    var headerContext: (event: UIEvent, column: ColumnComponent) -> Unit
+    var headerTap: (event: UIEvent, column: ColumnComponent) -> Unit
+    var headerDblTap: (event: UIEvent, column: ColumnComponent) -> Unit
+    var headerTapHold: (event: UIEvent, column: ColumnComponent) -> Unit
+    var groupClick: (event: UIEvent, group: GroupComponent) -> Unit
+    var groupDblClick: (event: UIEvent, group: GroupComponent) -> Unit
+    var groupContext: (event: UIEvent, group: GroupComponent) -> Unit
+    var groupTap: (event: UIEvent, group: GroupComponent) -> Unit
+    var groupDblTap: (event: UIEvent, group: GroupComponent) -> Unit
+    var groupTapHold: (event: UIEvent, group: GroupComponent) -> Unit
+    var tableBuilding: () -> Unit
+    var tableBuilt: () -> Unit
+    var dataLoading: (data: Array<Any>) -> Unit
+    var dataLoaded: (data: Array<Any>) -> Unit
+    var dataChanged: (data: Array<Any>) -> Unit
+    var dataFiltering: (filters: Array<Filter>) -> Unit
+    var dataFiltered: (filters: Array<Filter>, rows: Array<RowComponent>) -> Unit
+    var dataSorting: (sorters: Sorter) -> Unit
+    var dataSorted: (sorters: Sorter, rows: Array<RowComponent>) -> Unit
+    var movableRowsSendingStart: (toTables: Array<Tabulator>) -> Unit
+    var movableRowsSent: (fromRow: RowComponent, toRow: RowComponent, toTable: Tabulator) -> Unit
+    var movableRowsSentFailed: (fromRow: RowComponent, toRow: RowComponent, toTable: Tabulator) -> Unit
+    var movableRowsSendingStop: (toTables: Array<Tabulator>) -> Unit
+    var movableRowsReceivingStart: (fromRow: RowComponent, fromTable: Tabulator) -> Unit
+    var movableRowsReceived: (fromRow: RowComponent, toRow: RowComponent, fromTable: Tabulator) -> Unit
+    var movableRowsReceivedFailed: (fromRow: RowComponent, toRow: RowComponent, fromTable: Tabulator) -> Unit
+    var movableRowsReceivingStop: (fromTable: Tabulator) -> Unit
+    var movableRowsElementDrop: (event: UIEvent, element: Element, row: RowComponent) -> Unit
+    var dataGrouping: () -> Unit
+    var dataGrouped: (groups: Array<GroupComponent>) -> Unit
+    var groupVisibilityChanged: (group: GroupComponent, visible: Boolean) -> Unit
+    var localized: (locale: String, lang: Any) -> Unit
+    var renderStarted: () -> Unit
+    var renderComplete: () -> Unit
+    var columnMoved: (column: ColumnComponent, columns: Array<ColumnComponent>) -> Unit
+    var columnResized: (column: ColumnComponent) -> Unit
+    var columnTitleChanged: (column: ColumnComponent) -> Unit
+    var columnVisibilityChanged: (column: ColumnComponent, visible: Boolean) -> Unit
+    var historyUndo: (action: String /* "cellEdit" | "rowAdd" | "rowDelete" | "rowMoved" */, component: Any, data: Array<Any>) -> Unit
+    var historyRedo: (action: String /* "cellEdit" | "rowAdd" | "rowDelete" | "rowMoved" */, component: Any, data: Array<Any>) -> Unit
+    var cellEditing: (cell: CellComponent) -> Unit
+    var cellEdited: (cell: CellComponent) -> Unit
+    var cellEditCancelled: (cell: CellComponent) -> Unit
+    var cellClick: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellDblClick: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellContext: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellTap: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellDblTap: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellTapHold: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellMouseEnter: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellMouseLeave: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellMouseOver: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellMouseOut: (event: UIEvent, cell: CellComponent) -> Unit
+    var cellMouseMove: (event: UIEvent, cell: CellComponent) -> Unit
+    var dataLoadError: (error: Error) -> Unit
+    var dataProcessing: () -> Unit
+    var dataProcessed: () -> Unit
+}
 
 open external class Tabulator {
-    constructor(selector: String, options: Options)
-    constructor(selector: HTMLElement, options: Options)
+    constructor(selector: String, options: Options = definedExternally)
+    constructor(selector: String)
+    constructor(selector: HTMLElement, options: Options = definedExternally)
+    constructor(selector: HTMLElement)
 
     open var columnManager: Any
     open var rowManager: Any
@@ -58,6 +157,7 @@ open external class Tabulator {
     open var modules: Any
     open var options: Options
     open var element: HTMLElement
+
     open fun download(
         downloadType: dynamic /* 'csv' | 'json' | 'xlsx' | 'pdf' | 'html' | (columns: Array<Tabulator.ColumnDefinition>, data: Any, options: Any, setFileContents: Any) -> Any */,
         fileName: String?,
@@ -284,8 +384,6 @@ open external class Tabulator {
     open fun navigateRight(): Unit = definedExternally
     open fun navigateUp(): Unit = definedExternally
     open fun navigateDown(): Unit = definedExternally
-    open fun extendModule(name: String, property: String, values: Any): Unit = definedExternally
-    open fun findTable(query: String): Tabulator = definedExternally
     open fun getInvalidCells(): Array<CellComponent> = definedExternally
     open fun clearCellValidation(clearType: dynamic /* Tabulator.CellComponent | Array<Tabulator.CellComponent> */): Unit =
         definedExternally
@@ -294,12 +392,25 @@ open external class Tabulator {
     open fun refreshFilters(): dynamic = definedExternally
     open fun clearHistory(): dynamic = definedExternally
 
+    open fun setGroupValues(data: GroupValuesArg): Unit = definedExternally
+    open fun on(event: String, callback: Any): Unit = definedExternally
+    open fun off(event: String, callback: Any): Unit = definedExternally
+
     interface Options : OptionsGeneral, OptionsMenu, OptionsHistory, OptionsLocale, OptionsDownload, OptionsColumns,
         OptionsRows, OptionsData, OptionsSorting, OptionsFiltering, OptionsRowGrouping, OptionsPagination,
-        OptionsPersistentConfiguration, OptionsClipboard, OptionsDataTree, OptionsCell, OptionsHTML
+        OptionsPersistentConfiguration, OptionsClipboard, OptionsDataTree, OptionsCell, OptionsDebug, OptionsHTML
+
+    interface OptionsDebug {
+        var invalidOptionWarning: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var debugInvalidOptions: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+    }
 
     interface OptionsCells : CellCallbacks {
-        var validationFailed: ((cell: CellComponent, value: Any, validators: dynamic /* Array<Validator> | Array<String /* 'required' | 'unique' | 'integer' | 'float' | 'numeric' | 'string' */> */) -> Unit)?
+        var validationFailed: ((cell: CellComponent, value: Any, validators: dynamic /* Array<Validator> | Array<String /* "required" | "unique" | "integer" | "float" | "numeric" | "string" */> */) -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -308,10 +419,10 @@ open external class Tabulator {
         var dataTree: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var dataTreeElementColumn: dynamic /* Boolean | String */
+        var dataTreeElementColumn: dynamic /* Boolean? | String? */
             get() = definedExternally
             set(value) = definedExternally
-        var dataTreeBranchElement: dynamic /* Boolean | String */
+        var dataTreeBranchElement: dynamic /* Boolean? | String? */
             get() = definedExternally
             set(value) = definedExternally
         var dataTreeChildIndent: Number?
@@ -320,39 +431,49 @@ open external class Tabulator {
         var dataTreeChildField: String?
             get() = definedExternally
             set(value) = definedExternally
-        var dataTreeCollapseElement: dynamic /* String | HTMLElement | Boolean */
+        var dataTreeCollapseElement: dynamic /* String? | HTMLElement? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var dataTreeExpandElement: dynamic /* String | HTMLElement | Boolean */
+        var dataTreeExpandElement: dynamic /* String? | HTMLElement? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var dataTreeStartExpanded: dynamic /* Boolean | Array<Boolean> | (row: RowComponent, level: Number) -> Boolean */
+        var dataTreeStartExpanded: dynamic /* Boolean? | Array<Boolean>? | ((row: RowComponent, level: Number) -> Boolean)? */
             get() = definedExternally
             set(value) = definedExternally
         var dataTreeSelectPropagate: Boolean?
             get() = definedExternally
             set(value) = definedExternally
+        var dataTreeFilter: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var dataTreeSort: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface OptionsClipboard {
-        var clipboard: dynamic /* Boolean | 'copy' | 'paste' */
+        var clipboard: dynamic /* Boolean? | "copy" | "paste" */
             get() = definedExternally
             set(value) = definedExternally
-        var clipboardCopyRowRange: String /* 'visible' | 'active' | 'selected' | 'all' */
-        var clipboardCopyFormatter: dynamic /* 'table' | (type: String /* 'plain' | 'html' */, output: String) -> String */
+        var clipboardCopyRowRange: String? /* "visible" | "active" | "selected" | "all" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var clipboardCopyFormatter: dynamic /* "table" | ((type: String /* "plain" | "html" */, output: String) -> String)? */
             get() = definedExternally
             set(value) = definedExternally
         var clipboardCopyHeader: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var clipboardPasteParser: dynamic /* String | (clipboard: Any) -> Array<Any> */
+        var clipboardPasteParser: dynamic /* String? | ((clipboard: Any) -> Array<Any>)? */
             get() = definedExternally
             set(value) = definedExternally
-        var clipboardPasteAction: String /* 'insert' | 'update' | 'replace' */
+        var clipboardPasteAction: String? /* "insert" | "update" | "replace" */
+            get() = definedExternally
+            set(value) = definedExternally
         var clipboardCopyStyled: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var clipboardCopyConfig: dynamic /* AddditionalExportOptions | Boolean */
+        var clipboardCopyConfig: dynamic /* AddditionalExportOptions? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
         var clipboardCopied: (() -> Unit)?
@@ -364,10 +485,10 @@ open external class Tabulator {
         var clipboardPasteError: (() -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
-        var groupHeaderClipboard: dynamic /* (value: Any, count: Number, data: Any, group: GroupComponent) -> String | Array<(value: Any, count: Number, data: Any) -> String> */
+        var groupHeaderClipboard: dynamic /* ((value: Any, count: Number, data: Any, group: GroupComponent) -> String)? | Array<(value: Any, count: Number, data: Any) -> String>? */
             get() = definedExternally
             set(value) = definedExternally
-        var groupHeaderHtmlOutput: dynamic /* (value: Any, count: Number, data: Any, group: GroupComponent) -> String | Array<(value: Any, count: Number, data: Any) -> String> */
+        var groupHeaderHtmlOutput: dynamic /* ((value: Any, count: Number, data: Any, group: GroupComponent) -> String)? | Array<(value: Any, count: Number, data: Any) -> String>? */
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -376,7 +497,7 @@ open external class Tabulator {
         var persistenceID: String?
             get() = definedExternally
             set(value) = definedExternally
-        var persistenceMode: dynamic /* 'local' | 'cookie' | Boolean */
+        var persistenceMode: dynamic /* "local" | "cookie" | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
         var persistentLayout: Boolean?
@@ -388,13 +509,13 @@ open external class Tabulator {
         var persistentFilter: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var persistence: dynamic /* Boolean | PersistenceOptions */
+        var persistence: dynamic /* Boolean? | PersistenceOptions? */
             get() = definedExternally
             set(value) = definedExternally
-        var persistenceWriterFunc: ((id: String, type: Any, data: Any) -> Any)?
+        var persistenceWriterFunc: ((id: String, type: String? /* "sort" | "filter" | "group" | "page" | "columns" */, data: Any) -> Any)?
             get() = definedExternally
             set(value) = definedExternally
-        var persistenceReaderFunc: ((id: String, type: Any) -> Any)?
+        var persistenceReaderFunc: ((id: String, type: String? /* "sort" | "filter" | "group" | "page" | "columns" */) -> Any)?
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -406,13 +527,13 @@ open external class Tabulator {
         var filter: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var group: dynamic /* Boolean | PersistenceGroupOptions */
+        var group: dynamic /* Boolean? | PersistenceGroupOptions? */
             get() = definedExternally
             set(value) = definedExternally
-        var page: dynamic /* Boolean | PersistencePageOptions */
+        var page: dynamic /* Boolean? | PersistencePageOptions? */
             get() = definedExternally
             set(value) = definedExternally
-        var columns: dynamic /* Boolean | Array<String> */
+        var columns: dynamic /* Boolean? | Array<String>? */
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -439,23 +560,30 @@ open external class Tabulator {
     }
 
     interface OptionsPagination {
-        var pagination: String /* 'remote' | 'local' */
+        var pagination: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var paginationMode: String? /* "remote" | "local" */
+            get() = definedExternally
+            set(value) = definedExternally
         var paginationSize: Number?
             get() = definedExternally
             set(value) = definedExternally
-        var paginationSizeSelector: dynamic /* Boolean | Array<Number> | Array<Any> */
+        var paginationSizeSelector: dynamic /* Boolean? | Array<Number>? | Array<Any>? */
             get() = definedExternally
             set(value) = definedExternally
-        var paginationElement: dynamic /* HTMLElement | String */
+        var paginationElement: dynamic /* HTMLElement? | String? */
             get() = definedExternally
             set(value) = definedExternally
-        var paginationDataReceived: Any?
+        var dataReceiveParams: dynamic
             get() = definedExternally
             set(value) = definedExternally
-        var paginationDataSent: Any?
+        var dataSendParams: dynamic
             get() = definedExternally
             set(value) = definedExternally
-        var paginationAddRow: String /* 'table' | 'page' */
+        var paginationAddRow: String? /* "table" | "page" */
+            get() = definedExternally
+            set(value) = definedExternally
         var paginationButtonCount: Number?
             get() = definedExternally
             set(value) = definedExternally
@@ -465,22 +593,22 @@ open external class Tabulator {
     }
 
     interface OptionsRowGrouping {
-        var groupBy: dynamic /* String | (data: Any) -> Any */
+        var groupBy: dynamic /* String? | Array<String>? | ((data: Any) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var groupValues: Array<Array<Any>>?
+        var groupValues: GroupValuesArg?
             get() = definedExternally
             set(value) = definedExternally
-        var groupHeader: dynamic /* (value: Any, count: Number, data: Any, group: GroupComponent) -> String | Array<(value: Any, count: Number, data: Any) -> String> */
+        var groupHeader: dynamic /* ((value: Any, count: Number, data: Any, group: GroupComponent) -> String)? | Array<(value: Any, count: Number, data: Any) -> String>? */
             get() = definedExternally
             set(value) = definedExternally
-        var groupHeaderPrint: dynamic /* (value: Any, count: Number, data: Any, group: GroupComponent) -> String | Array<(value: Any, count: Number, data: Any) -> String> */
+        var groupHeaderPrint: dynamic /* ((value: Any, count: Number, data: Any, group: GroupComponent) -> String)? | Array<(value: Any, count: Number, data: Any) -> String>? */
             get() = definedExternally
             set(value) = definedExternally
-        var groupStartOpen: dynamic /* Boolean | (value: Any, count: Number, data: Any, group: GroupComponent) -> Boolean */
+        var groupStartOpen: dynamic /* Boolean? | ((value: Any, count: Number, data: Any, group: GroupComponent) -> Boolean)? */
             get() = definedExternally
             set(value) = definedExternally
-        var groupToggleElement: dynamic /* 'arrow' | 'header' | Boolean */
+        var groupToggleElement: dynamic /* "arrow" | "header" | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
         var groupClosedShowCalcs: Boolean?
@@ -513,11 +641,14 @@ open external class Tabulator {
         var groupTapHold: GroupEventCallback?
             get() = definedExternally
             set(value) = definedExternally
+        var groupUpdateOnCellEdit: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface Filter {
         var field: String
-        var type: String /* '=' | '!=' | 'like' | '<' | '>' | '<=' | '>=' | 'in' | 'regex' | 'starts' | 'ends' */
+        var type: String /* "=" | "!=" | "like" | "<" | ">" | "<=" | ">=" | "in" | "regex" | "starts" | "ends" */
         var value: Any
     }
 
@@ -534,7 +665,7 @@ open external class Tabulator {
         var initialFilter: Array<Filter>?
             get() = definedExternally
             set(value) = definedExternally
-        var initialHeaderFilter: Array<Any?>?
+        var initialHeaderFilter: Array<dynamic>?
             get() = definedExternally
             set(value) = definedExternally
         var dataFiltering: ((filters: Array<Filter>) -> Unit)?
@@ -559,11 +690,17 @@ open external class Tabulator {
 
     interface Sorter {
         var column: String
-        var dir: String /* 'asc' | 'desc' */
+        var dir: String /* "asc" | "desc" */
+    }
+
+    interface SorterFromTable {
+        var column: ColumnComponent
+        var field: String
+        var dir: String /* "asc" | "desc" */
     }
 
     interface OptionsData {
-        var index: dynamic /* Number | String */
+        var index: dynamic /* Number? | String? */
             get() = definedExternally
             set(value) = definedExternally
         var data: Array<Any>?
@@ -575,10 +712,10 @@ open external class Tabulator {
         var ajaxParams: Any?
             get() = definedExternally
             set(value) = definedExternally
-        var ajaxConfig: dynamic /* 'GET' | 'POST' | AjaxConfig */
+        var ajaxConfig: dynamic /* "GET" | "POST" | AjaxConfig? */
             get() = definedExternally
             set(value) = definedExternally
-        var ajaxContentType: dynamic /* 'form' | 'json' | AjaxContentType */
+        var ajaxContentType: dynamic /* "form" | "json" | AjaxContentType? */
             get() = definedExternally
             set(value) = definedExternally
         var ajaxURLGenerator: ((url: String, config: Any, params: Any) -> String)?
@@ -593,14 +730,16 @@ open external class Tabulator {
         var ajaxSorting: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var ajaxProgressiveLoad: String /* 'load' | 'scroll' */
-        var ajaxProgressiveLoadDelay: Number?
+        var progressiveLoad: String? /* "load" | "scroll" */
             get() = definedExternally
             set(value) = definedExternally
-        var ajaxProgressiveLoadScrollMargin: Number?
+        var progressiveLoadDelay: Number?
             get() = definedExternally
             set(value) = definedExternally
-        var ajaxLoader: dynamic /* Boolean | () -> Boolean */
+        var progressiveLoadScrollMargin: Number?
+            get() = definedExternally
+            set(value) = definedExternally
+        var ajaxLoader: dynamic /* Boolean? | (() -> Boolean)? */
             get() = definedExternally
             set(value) = definedExternally
         var ajaxLoaderLoading: String?
@@ -618,6 +757,21 @@ open external class Tabulator {
         var ajaxError: ((xhr: Any, textStatus: Any, errorThrown: Any) -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
+        var dataLoader: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var dataLoaderLoading: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var dataLoaderError: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var sortMode: String? /* "remote" | "local" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var filterMode: String? /* "remote" | "local" */
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface AjaxContentType {
@@ -626,7 +780,9 @@ open external class Tabulator {
     }
 
     interface AjaxConfig {
-        var method: String /* 'GET' | 'POST' */
+        var method: String? /* "GET" | "POST" */
+            get() = definedExternally
+            set(value) = definedExternally
         var headers: dynamic
             get() = definedExternally
             set(value) = definedExternally
@@ -642,20 +798,24 @@ open external class Tabulator {
         var rowFormatter: ((row: RowComponent) -> Any)?
             get() = definedExternally
             set(value) = definedExternally
-        var rowFormatterPrint: dynamic /* Boolean | (row: RowComponent) -> Any */
+        var rowFormatterPrint: dynamic /* Boolean? | ((row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var rowFormatterHtmlOutput: dynamic /* Boolean | (row: RowComponent) -> Any */
+        var rowFormatterHtmlOutput: dynamic /* Boolean? | ((row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var rowFormatterClipboard: dynamic /* Boolean | (row: RowComponent) -> Any */
+        var rowFormatterClipboard: dynamic /* Boolean? | ((row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var addRowPos: String /* 'bottom' | 'top' */
-        var selectable: dynamic /* Boolean | Number | 'highlight' */
+        var addRowPos: String? /* "bottom" | "top" */
             get() = definedExternally
             set(value) = definedExternally
-        var selectableRangeMode: String /* 'click' */
+        var selectable: dynamic /* Boolean? | Number? | "highlight" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var selectableRangeMode: String? /* "click" */
+            get() = definedExternally
+            set(value) = definedExternally
         var selectableRollingSelection: Boolean?
             get() = definedExternally
             set(value) = definedExternally
@@ -668,16 +828,16 @@ open external class Tabulator {
         var movableRows: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var movableRowsConnectedTables: dynamic /* String | Array<String> | HTMLElement | Array<HTMLElement> */
+        var movableRowsConnectedTables: dynamic /* String? | Array<String>? | HTMLElement? | Array<HTMLElement>? */
             get() = definedExternally
             set(value) = definedExternally
-        var movableRowsSender: dynamic /* Boolean | 'delete' | (fromRow: RowComponent, toRow: RowComponent, toTable: Tabulator) -> Any */
+        var movableRowsSender: dynamic /* Boolean? | "delete" | ((fromRow: RowComponent, toRow: RowComponent, toTable: Tabulator) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var movableRowsReceiver: dynamic /* 'insert' | 'add' | 'update' | 'replace' | (fromRow: RowComponent, toRow: RowComponent, fromTable: Tabulator) -> Any */
+        var movableRowsReceiver: dynamic /* "insert" | "add" | "update" | "replace" | ((fromRow: RowComponent, toRow: RowComponent, fromTable: Tabulator) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var movableRowsConnectedElements: dynamic /* String | HTMLElement */
+        var movableRowsConnectedElements: dynamic /* String? | HTMLElement? */
             get() = definedExternally
             set(value) = definedExternally
         var movableRowsElementDrop: ((e: MouseEvent, element: HTMLElement, row: RowComponent) -> Any)?
@@ -686,7 +846,9 @@ open external class Tabulator {
         var resizableRows: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var scrollToRowPosition: String /* 'top' | 'center' | 'bottom' | 'nearest' */
+        var scrollToRowPosition: String? /* "top" | "center" | "bottom" | "nearest" */
+            get() = definedExternally
+            set(value) = definedExternally
         var scrollToRowIfVisible: Boolean?
             get() = definedExternally
             set(value) = definedExternally
@@ -777,7 +939,7 @@ open external class Tabulator {
         var rowDeselected: RowChangedCallback?
             get() = definedExternally
             set(value) = definedExternally
-        var tabEndNewRow: dynamic /* Boolean | JSONRecord | (row: RowComponent) -> Any */
+        var tabEndNewRow: dynamic /* Boolean? | JSONRecord? | ((row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -789,11 +951,16 @@ open external class Tabulator {
         var autoColumns: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var layout: String /* 'fitData' | 'fitColumns' | 'fitDataFill' | 'fitDataStretch' | 'fitDataTable' */
+        var autoColumnsDefinitions: dynamic /* ((columnDefinitions: Array<ColumnDefinition>) -> Array<ColumnDefinition>)? | Array<ColumnDefinition>? | Record<String, ColumnDefinitionPartial>? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var layout: String? /* "fitData" | "fitColumns" | "fitDataFill" | "fitDataStretch" | "fitDataTable" */
+            get() = definedExternally
+            set(value) = definedExternally
         var layoutColumnsOnNewData: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var responsiveLayout: dynamic /* Boolean | 'hide' | 'collapse' */
+        var responsiveLayout: dynamic /* Boolean? | "hide" | "collapse" */
             get() = definedExternally
             set(value) = definedExternally
         var responsiveLayoutCollapseStartOpen: Boolean?
@@ -805,30 +972,22 @@ open external class Tabulator {
         var responsiveLayoutCollapseFormatter: ((data: Array<Any>) -> Any)?
             get() = definedExternally
             set(value) = definedExternally
-        var columnMinWidth: Number?
-            get() = definedExternally
-            set(value) = definedExternally
-        var resizableColumns: dynamic /* Boolean | 'header' | 'cell' */
-            get() = definedExternally
-            set(value) = definedExternally
         var movableColumns: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var tooltipsHeader: Boolean?
+        var columnHeaderVertAlign: String? /* "top" | "middle" | "bottom" */
             get() = definedExternally
             set(value) = definedExternally
-        var columnHeaderVertAlign: String /* 'top' | 'middle' | 'bottom' */
-        var headerFilterPlaceholder: String?
+        var scrollToColumnPosition: String? /* "left" | "center" | "middle" | "right" */
             get() = definedExternally
             set(value) = definedExternally
-        var scrollToColumnPosition: String /* 'left' | 'center' | 'middle' | 'right' */
         var scrollToColumnIfVisible: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var columnCalcs: dynamic /* Boolean | 'both' | 'table' | 'group' */
+        var columnCalcs: dynamic /* Boolean? | "both" | "table" | "group" */
             get() = definedExternally
             set(value) = definedExternally
-        var nestedFieldSeparator: dynamic /* String | Boolean */
+        var nestedFieldSeparator: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
         var columnHeaderSortMulti: Boolean?
@@ -855,7 +1014,10 @@ open external class Tabulator {
         var headerSort: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var headerSortTristate: Boolean?
+        var headerSortElement: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var columnDefaults: ColumnDefinition?
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -903,37 +1065,37 @@ open external class Tabulator {
         var cellEditCancelled: CellEditEventCallback?
             get() = definedExternally
             set(value) = definedExternally
-        var cellHozAlign: String /* 'left' | 'center' | 'right' */
-        var cellVertAlign: String /* 'top' | 'middle' | 'bottom' */
     }
 
     interface OptionsGeneral {
-        var height: dynamic /* String | Number | Boolean */
+        var height: dynamic /* String? | Number? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var maxHeight: dynamic /* String | Number */
+        var maxHeight: dynamic /* String? | Number? */
             get() = definedExternally
             set(value) = definedExternally
-        var minHeight: dynamic /* String | Number */
+        var minHeight: dynamic /* String? | Number? */
             get() = definedExternally
             set(value) = definedExternally
-        var virtualDom: Boolean?
+        var renderVertical: dynamic /* "virtual" | "basic" | Renderer? */
             get() = definedExternally
             set(value) = definedExternally
-        var virtualDomBuffer: dynamic /* Boolean | Number */
+        var renderHorizontal: dynamic /* "virtual" | "basic" | Renderer? */
             get() = definedExternally
             set(value) = definedExternally
-        var placeholder: dynamic /* String | HTMLElement */
+        var renderVerticalBuffer: dynamic /* Boolean? | Number? */
             get() = definedExternally
             set(value) = definedExternally
-        var footerElement: dynamic /* String | HTMLElement */
+        var placeholder: dynamic /* String? | HTMLElement? */
             get() = definedExternally
             set(value) = definedExternally
-        var tooltips: dynamic /* Boolean | (cell: CellComponent) -> String */
+        var footerElement: dynamic /* String? | HTMLElement? */
             get() = definedExternally
             set(value) = definedExternally
-        var tooltipGenerationMode: String /* 'load' | 'hover' */
-        var keybindings: dynamic /* Boolean | KeyBinding */
+        var tooltipGenerationMode: String? /* "load" | "hover" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var keybindings: dynamic /* Boolean? | KeyBinding? */
             get() = definedExternally
             set(value) = definedExternally
         var reactiveData: Boolean?
@@ -960,12 +1122,6 @@ open external class Tabulator {
         var htmlImported: EmptyCallback?
             get() = definedExternally
             set(value) = definedExternally
-        var dataLoading: ((data: Any) -> Unit)?
-            get() = definedExternally
-            set(value) = definedExternally
-        var dataLoaded: ((data: Any) -> Unit)?
-            get() = definedExternally
-            set(value) = definedExternally
         var dataChanged: ((data: Any) -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
@@ -987,11 +1143,22 @@ open external class Tabulator {
         var scrollHorizontal: ((left: Any) -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
-        var validationMode: String /* 'blocking' | 'highlight' | 'manual' */
+        var validationMode: String? /* "blocking" | "highlight" | "manual" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var textDirection: String? /* "auto" | "ltr" | "rtl" */
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface OptionsMenu {
-        var rowContextMenu: dynamic /* Array<dynamic /* MenuObject<RowComponent> | MenuSeparator */> | (component: RowComponent) -> dynamic */
+        var rowContextMenu: dynamic /* Array<dynamic /* MenuObject<RowComponent> | MenuSeparator */>? | ((component: RowComponent, e: MouseEvent) -> dynamic)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var rowClickMenu: dynamic /* Array<dynamic /* MenuObject<RowComponent> | MenuSeparator */>? | ((component: RowComponent, e: MouseEvent) -> dynamic)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var groupClickMenu: dynamic /* Array<dynamic /* MenuObject<GroupComponent> | MenuSeparator */>? | ((component: GroupComponent, e: MouseEvent) -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
         var groupContextMenu: Array<MenuObject<GroupComponent>>?
@@ -1003,8 +1170,13 @@ open external class Tabulator {
         var label: dynamic /* String | HTMLElement | (component: T) -> dynamic */
             get() = definedExternally
             set(value) = definedExternally
-        var action: (e: Any, component: T) -> Any
-        var disabled: dynamic /* Boolean | (component: T) -> Boolean */
+        var action: ((e: Any, component: T) -> Any)?
+            get() = definedExternally
+            set(value) = definedExternally
+        var disabled: dynamic /* Boolean? | ((component: T) -> Boolean)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var menu: Array<MenuObject<T>>?
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -1016,7 +1188,7 @@ open external class Tabulator {
     }
 
     interface DownloadOptions : DownloadCSV, DownloadXLXS, DownloadPDF, DownloadHTML {
-        override var documentProcessing: ((doc: Any) -> Any)?
+        override var documentProcessing: ((input: Any) -> Any)?
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -1046,7 +1218,9 @@ open external class Tabulator {
     }
 
     interface DownloadPDF {
-        var orientation: String /* 'portrait' | 'landscape' */
+        var orientation: String? /* "portrait" | "landscape" */
+            get() = definedExternally
+            set(value) = definedExternally
         var title: String?
             get() = definedExternally
             set(value) = definedExternally
@@ -1059,7 +1233,7 @@ open external class Tabulator {
         var jsPDF: Any?
             get() = definedExternally
             set(value) = definedExternally
-        var autoTable: dynamic /* Any | (doc: Any) -> Any */
+        var autoTable: dynamic /* Any? | ((doc: Any) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var documentProcessing: ((doc: Any) -> Any)?
@@ -1077,7 +1251,9 @@ open external class Tabulator {
         var downloadConfig: AddditionalExportOptions?
             get() = definedExternally
             set(value) = definedExternally
-        var downloadRowRange: String /* 'visible' | 'active' | 'selected' | 'all' */
+        var downloadRowRange: String? /* "visible" | "active" | "selected" | "all" */
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface OptionsHTML {
@@ -1093,19 +1269,19 @@ open external class Tabulator {
         var printStyled: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var printRowRange: dynamic /* 'visible' | 'active' | 'selected' | 'all' | () -> Array<RowComponent> */
+        var printRowRange: dynamic /* "visible" | "active" | "selected" | "all" | (() -> Array<RowComponent>)? */
             get() = definedExternally
             set(value) = definedExternally
-        var printHeader: dynamic /* String | HTMLElement | () -> dynamic */
+        var printHeader: dynamic /* String? | HTMLElement? | (() -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
-        var printFooter: dynamic /* String | HTMLElement | () -> dynamic */
+        var printFooter: dynamic /* String? | HTMLElement? | (() -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
         var printFormatter: ((tableHolderElement: Any, tableElement: Any) -> Any)?
             get() = definedExternally
             set(value) = definedExternally
-        var groupHeaderDownload: dynamic /* (value: Any, count: Number, data: Any, group: GroupComponent) -> String | Array<(value: Any, count: Number, data: Any) -> String> */
+        var groupHeaderDownload: dynamic /* ((value: Any, count: Number, data: Any, group: GroupComponent) -> String)? | Array<(value: Any, count: Number, data: Any) -> String>? */
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -1132,7 +1308,7 @@ open external class Tabulator {
     }
 
     interface OptionsLocale {
-        var locale: dynamic /* Boolean | String */
+        var locale: dynamic /* Boolean? | String? */
             get() = definedExternally
             set(value) = definedExternally
         var langs: Any?
@@ -1147,10 +1323,10 @@ open external class Tabulator {
         var history: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var historyUndo: ((action: String /* 'cellEdit' | 'rowAdd' | 'rowDelete' | 'rowMoved' */, component: dynamic /* CellComponent | RowComponent */, data: Any) -> Unit)?
+        var historyUndo: ((action: String? /* "cellEdit" | "rowAdd" | "rowDelete" | "rowMoved" */, component: dynamic /* CellComponent | RowComponent */, data: Any) -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
-        var historyRedo: ((action: String /* 'cellEdit' | 'rowAdd' | 'rowDelete' | 'rowMoved' */, component: dynamic /* CellComponent | RowComponent */, data: Any) -> Unit)?
+        var historyRedo: ((action: String? /* "cellEdit" | "rowAdd" | "rowDelete" | "rowMoved" */, component: dynamic /* CellComponent | RowComponent */, data: Any) -> Unit)?
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -1163,14 +1339,36 @@ open external class Tabulator {
         var visible: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var width: dynamic /* Number | String */
+        var width: dynamic /* Number? | String? */
+            get() = definedExternally
+            set(value) = definedExternally
+    }
+
+    interface ColumnLayoutPartial {
+        var title: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var field: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var visible: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var width: dynamic /* Number? | String? */
             get() = definedExternally
             set(value) = definedExternally
     }
 
     interface ColumnDefinition : ColumnLayout, CellCallbacks {
-        var hozAlign: String /* 'left' | 'center' | 'right' */
-        var vertAlign: String /* 'top' | 'middle' | 'bottom' */
+        var hozAlign: String? /* "left" | "center" | "right" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerHozAlign: String? /* "left" | "center" | "right" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var vertAlign: String? /* "top" | "middle" | "bottom" */
+            get() = definedExternally
+            set(value) = definedExternally
         var minWidth: Number?
             get() = definedExternally
             set(value) = definedExternally
@@ -1180,7 +1378,7 @@ open external class Tabulator {
         var widthShrink: Number?
             get() = definedExternally
             set(value) = definedExternally
-        var resizable: Boolean?
+        var resizable: dynamic /* Boolean? | "header" | "cell" */
             get() = definedExternally
             set(value) = definedExternally
         var frozen: Boolean?
@@ -1189,7 +1387,7 @@ open external class Tabulator {
         var responsive: Number?
             get() = definedExternally
             set(value) = definedExternally
-        var tooltip: dynamic /* String | Boolean | (cell: CellComponent) -> String */
+        var tooltip: dynamic /* String? | Boolean? | ((cell: CellComponent) -> String)? */
             get() = definedExternally
             set(value) = definedExternally
         var cssClass: String?
@@ -1201,73 +1399,73 @@ open external class Tabulator {
         var hideInHtml: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var sorter: dynamic /* 'string' | 'number' | 'alphanum' | 'boolean' | 'exists' | 'date' | 'time' | 'datetime' | 'array' | (a: Any, b: Any, aRow: RowComponent, bRow: RowComponent, column: ColumnComponent, dir: String /* 'asc' | 'desc' */, sorterParams: Any) -> Number */
+        var sorter: dynamic /* "string" | "number" | "alphanum" | "boolean" | "exists" | "date" | "time" | "datetime" | "array" | ((a: Any, b: Any, aRow: RowComponent, bRow: RowComponent, column: ColumnComponent, dir: String /* "asc" | "desc" */, sorterParams: Any) -> Number)? */
             get() = definedExternally
             set(value) = definedExternally
-        var sorterParams: dynamic /* ColumnDefinitionSorterParams | ColumnSorterParamLookupFunction */
+        var sorterParams: dynamic /* ColumnDefinitionSorterParams? | ColumnSorterParamLookupFunction? */
             get() = definedExternally
             set(value) = definedExternally
-        var formatter: dynamic /* 'plaintext' | 'textarea' | 'html' | 'money' | 'image' | 'datetime' | 'datetimediff' | 'link' | 'tickCross' | 'color' | 'star' | 'traffic' | 'progress' | 'lookup' | 'buttonTick' | 'buttonCross' | 'rownum' | 'handle' | 'rowSelection' | 'responsiveCollapse' | (cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic */
+        var formatter: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
-        var formatterParams: dynamic /* MoneyParams | ImageParams | LinkParams | DateTimeParams | DateTimeDifferenceParams | TickCrossParams | TrafficParams | StarRatingParams | JSONRecord | (cell: CellComponent) -> Any */
+        var formatterParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var variableHeight: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var editable: dynamic /* Boolean | (cell: CellComponent) -> Boolean */
+        var editable: dynamic /* Boolean? | ((cell: CellComponent) -> Boolean)? */
             get() = definedExternally
             set(value) = definedExternally
-        var editor: dynamic /* Boolean | 'input' | 'textarea' | 'number' | 'range' | 'tickCross' | 'star' | 'select' | 'autocomplete' | (cell: CellComponent, onRendered: EmptyCallback, success: ValueBooleanCallback, cancel: ValueVoidCallback, editorParams: Any) -> dynamic */
+        var editor: dynamic /* Boolean? | "input" | "textarea" | "number" | "range" | "tickCross" | "star" | "select" | "autocomplete" | ((cell: CellComponent, onRendered: EmptyCallback, success: ValueBooleanCallback, cancel: ValueVoidCallback, editorParams: Any) -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
-        var editorParams: dynamic /* NumberParams | CheckboxParams | SelectParams | AutoCompleteParams | InputParams | TextAreaParams | (cell: CellComponent) -> Any */
+        var editorParams: dynamic /* NumberParams? | CheckboxParams? | SelectParams? | AutoCompleteParams? | InputParams? | TextAreaParams? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var validator: dynamic /* 'required' | 'unique' | 'integer' | 'float' | 'numeric' | 'string' | Array<String /* 'required' | 'unique' | 'integer' | 'float' | 'numeric' | 'string' */> | Validator | Array<Validator> | String */
+        var validator: dynamic /* "required" | "unique" | "integer" | "float" | "numeric" | "string" | Array<String /* "required" | "unique" | "integer" | "float" | "numeric" | "string" */>? | Validator? | Array<Validator>? | String? */
             get() = definedExternally
             set(value) = definedExternally
         var mutator: CustomMutator?
             get() = definedExternally
             set(value) = definedExternally
-        var mutatorParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'edit' */, cell: CellComponent) -> Any */
+        var mutatorParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "edit" */, cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var mutatorData: CustomMutator?
             get() = definedExternally
             set(value) = definedExternally
-        var mutatorDataParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'edit' */, cell: CellComponent) -> Any */
+        var mutatorDataParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "edit" */, cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var mutatorEdit: CustomMutator?
             get() = definedExternally
             set(value) = definedExternally
-        var mutatorEditParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'edit' */, cell: CellComponent) -> Any */
+        var mutatorEditParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "edit" */, cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var mutatorClipboard: CustomMutator?
             get() = definedExternally
             set(value) = definedExternally
-        var mutatorClipboardParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'edit' */, cell: CellComponent) -> Any */
+        var mutatorClipboardParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "edit" */, cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var accessor: CustomAccessor?
             get() = definedExternally
             set(value) = definedExternally
-        var accessorParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'download' | 'clipboard' */, column: ColumnComponent) -> Any */
+        var accessorParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var accessorDownload: CustomAccessor?
             get() = definedExternally
             set(value) = definedExternally
-        var accessorDownloadParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'download' | 'clipboard' */, column: ColumnComponent) -> Any */
+        var accessorDownloadParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var accessorClipboard: CustomAccessor?
             get() = definedExternally
             set(value) = definedExternally
-        var accessorClipboardParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'download' | 'clipboard' */, column: ColumnComponent) -> Any */
+        var accessorClipboardParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var download: Boolean?
@@ -1276,34 +1474,36 @@ open external class Tabulator {
         var titleDownload: String?
             get() = definedExternally
             set(value) = definedExternally
-        var topCalc: dynamic /* 'avg' | 'max' | 'min' | 'sum' | 'concat' | 'count' | (values: Array<Any>, data: Array<Any>, calcParams: Any) -> Any */
+        var topCalc: dynamic /* "avg" | "max" | "min" | "sum" | "concat" | "count" | ((values: Array<Any>, data: Array<Any>, calcParams: Any) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var topCalcParams: ColumnCalcParams?
             get() = definedExternally
             set(value) = definedExternally
-        var topCalcFormatter: dynamic /* 'plaintext' | 'textarea' | 'html' | 'money' | 'image' | 'datetime' | 'datetimediff' | 'link' | 'tickCross' | 'color' | 'star' | 'traffic' | 'progress' | 'lookup' | 'buttonTick' | 'buttonCross' | 'rownum' | 'handle' | 'rowSelection' | 'responsiveCollapse' | (cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic */
+        var topCalcFormatter: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
-        var topCalcFormatterParams: dynamic /* MoneyParams | ImageParams | LinkParams | DateTimeParams | DateTimeDifferenceParams | TickCrossParams | TrafficParams | StarRatingParams | JSONRecord | (cell: CellComponent) -> Any */
+        var topCalcFormatterParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var bottomCalc: dynamic /* 'avg' | 'max' | 'min' | 'sum' | 'concat' | 'count' | (values: Array<Any>, data: Array<Any>, calcParams: Any) -> Any */
+        var bottomCalc: dynamic /* "avg" | "max" | "min" | "sum" | "concat" | "count" | ((values: Array<Any>, data: Array<Any>, calcParams: Any) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var bottomCalcParams: ColumnCalcParams?
             get() = definedExternally
             set(value) = definedExternally
-        var bottomCalcFormatter: dynamic /* 'plaintext' | 'textarea' | 'html' | 'money' | 'image' | 'datetime' | 'datetimediff' | 'link' | 'tickCross' | 'color' | 'star' | 'traffic' | 'progress' | 'lookup' | 'buttonTick' | 'buttonCross' | 'rownum' | 'handle' | 'rowSelection' | 'responsiveCollapse' | (cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic */
+        var bottomCalcFormatter: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
-        var bottomCalcFormatterParams: dynamic /* MoneyParams | ImageParams | LinkParams | DateTimeParams | DateTimeDifferenceParams | TickCrossParams | TrafficParams | StarRatingParams | JSONRecord | (cell: CellComponent) -> Any */
+        var bottomCalcFormatterParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var headerSort: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var headerSortStartingDir: String /* 'asc' | 'desc' */
+        var headerSortStartingDir: String? /* "asc" | "desc" */
+            get() = definedExternally
+            set(value) = definedExternally
         var headerSortTristate: Boolean?
             get() = definedExternally
             set(value) = definedExternally
@@ -1325,25 +1525,25 @@ open external class Tabulator {
         var headerTapHold: ColumnEventCallback?
             get() = definedExternally
             set(value) = definedExternally
-        var headerTooltip: dynamic /* Boolean | String | (column: ColumnComponent) -> String */
+        var headerTooltip: dynamic /* Boolean? | String? | ((column: ColumnComponent) -> String)? */
             get() = definedExternally
             set(value) = definedExternally
-        var headerVertical: dynamic /* Boolean | 'flip' */
+        var headerVertical: dynamic /* Boolean? | "flip" */
             get() = definedExternally
             set(value) = definedExternally
         var editableTitle: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var titleFormatter: dynamic /* 'plaintext' | 'textarea' | 'html' | 'money' | 'image' | 'datetime' | 'datetimediff' | 'link' | 'tickCross' | 'color' | 'star' | 'traffic' | 'progress' | 'lookup' | 'buttonTick' | 'buttonCross' | 'rownum' | 'handle' | 'rowSelection' | 'responsiveCollapse' | (cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic */
+        var titleFormatter: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
-        var titleFormatterParams: dynamic /* MoneyParams | ImageParams | LinkParams | DateTimeParams | DateTimeDifferenceParams | TickCrossParams | TrafficParams | StarRatingParams | JSONRecord | (cell: CellComponent) -> Any */
+        var titleFormatterParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var headerFilter: dynamic /* Boolean | 'input' | 'textarea' | 'number' | 'range' | 'tickCross' | 'star' | 'select' | 'autocomplete' | (cell: CellComponent, onRendered: EmptyCallback, success: ValueBooleanCallback, cancel: ValueVoidCallback, editorParams: Any) -> dynamic */
+        var headerFilter: dynamic /* Boolean? | "input" | "textarea" | "number" | "range" | "tickCross" | "star" | "select" | "autocomplete" | ((cell: CellComponent, onRendered: EmptyCallback, success: ValueBooleanCallback, cancel: ValueVoidCallback, editorParams: Any) -> dynamic)? */
             get() = definedExternally
             set(value) = definedExternally
-        var headerFilterParams: dynamic /* NumberParams | CheckboxParams | SelectParams | AutoCompleteParams | InputParams | TextAreaParams | (cell: CellComponent) -> Any */
+        var headerFilterParams: dynamic /* NumberParams? | CheckboxParams? | SelectParams? | AutoCompleteParams? | InputParams? | TextAreaParams? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var headerFilterPlaceholder: String?
@@ -1352,7 +1552,7 @@ open external class Tabulator {
         var headerFilterEmptyCheck: ValueBooleanCallback?
             get() = definedExternally
             set(value) = definedExternally
-        var headerFilterFunc: dynamic /* '=' | '!=' | 'like' | '<' | '>' | '<=' | '>=' | 'in' | 'regex' | 'starts' | 'ends' | (headerValue: Any, rowValue: Any, rowdata: Any, filterparams: Any) -> Boolean */
+        var headerFilterFunc: dynamic /* "=" | "!=" | "like" | "<" | ">" | "<=" | ">=" | "in" | "regex" | "starts" | "ends" | ((headerValue: Any, rowValue: Any, rowdata: Any, filterparams: Any) -> Boolean)? */
             get() = definedExternally
             set(value) = definedExternally
         var headerFilterFuncParams: Any?
@@ -1379,34 +1579,37 @@ open external class Tabulator {
         var contextMenu: Array<dynamic /* MenuObject<CellComponent> | MenuSeparator */>?
             get() = definedExternally
             set(value) = definedExternally
-        var formatterClipboard: dynamic /* 'plaintext' | 'textarea' | 'html' | 'money' | 'image' | 'datetime' | 'datetimediff' | 'link' | 'tickCross' | 'color' | 'star' | 'traffic' | 'progress' | 'lookup' | 'buttonTick' | 'buttonCross' | 'rownum' | 'handle' | 'rowSelection' | 'responsiveCollapse' | (cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic | Boolean */
+        var clickMenu: Array<dynamic /* MenuObject<CellComponent> | MenuSeparator */>?
             get() = definedExternally
             set(value) = definedExternally
-        var formatterClipboardParams: dynamic /* MoneyParams | ImageParams | LinkParams | DateTimeParams | DateTimeDifferenceParams | TickCrossParams | TrafficParams | StarRatingParams | JSONRecord | (cell: CellComponent) -> Any */
+        var formatterClipboard: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var formatterPrint: dynamic /* 'plaintext' | 'textarea' | 'html' | 'money' | 'image' | 'datetime' | 'datetimediff' | 'link' | 'tickCross' | 'color' | 'star' | 'traffic' | 'progress' | 'lookup' | 'buttonTick' | 'buttonCross' | 'rownum' | 'handle' | 'rowSelection' | 'responsiveCollapse' | (cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic | Boolean */
+        var formatterClipboardParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var formatterPrintParams: dynamic /* MoneyParams | ImageParams | LinkParams | DateTimeParams | DateTimeDifferenceParams | TickCrossParams | TrafficParams | StarRatingParams | JSONRecord | (cell: CellComponent) -> Any */
+        var formatterPrint: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? | Boolean? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatterPrintParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var accessorPrint: CustomAccessor?
             get() = definedExternally
             set(value) = definedExternally
-        var accessorPrintParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'download' | 'clipboard' */, column: ColumnComponent) -> Any */
+        var accessorPrintParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var accessorHtmlOutput: CustomAccessor?
             get() = definedExternally
             set(value) = definedExternally
-        var accessorHtmlOutputParams: dynamic /* Any | (value: Any, data: Any, type: String /* 'data' | 'download' | 'clipboard' */, column: ColumnComponent) -> Any */
+        var accessorHtmlOutputParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
-        var formatterHtmlOutput: dynamic /* 'plaintext' | 'textarea' | 'html' | 'money' | 'image' | 'datetime' | 'datetimediff' | 'link' | 'tickCross' | 'color' | 'star' | 'traffic' | 'progress' | 'lookup' | 'buttonTick' | 'buttonCross' | 'rownum' | 'handle' | 'rowSelection' | 'responsiveCollapse' | (cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic | Boolean */
+        var formatterHtmlOutput: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var formatterHtmlOutputParams: dynamic /* MoneyParams | ImageParams | LinkParams | DateTimeParams | DateTimeDifferenceParams | TickCrossParams | TrafficParams | StarRatingParams | JSONRecord | (cell: CellComponent) -> Any */
+        var formatterHtmlOutputParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
             get() = definedExternally
             set(value) = definedExternally
         var titleClipboard: String?
@@ -1416,6 +1619,276 @@ open external class Tabulator {
             get() = definedExternally
             set(value) = definedExternally
         var titlePrint: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var maxWidth: dynamic /* Number? | Boolean? */
+            get() = definedExternally
+            set(value) = definedExternally
+    }
+
+    interface ColumnDefinitionPartial : ColumnLayoutPartial, CellCallbacksPartial {
+        var hozAlign: String? /* "left" | "center" | "right" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerHozAlign: String? /* "left" | "center" | "right" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var vertAlign: String? /* "top" | "middle" | "bottom" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var minWidth: Number?
+            get() = definedExternally
+            set(value) = definedExternally
+        var widthGrow: Number?
+            get() = definedExternally
+            set(value) = definedExternally
+        var widthShrink: Number?
+            get() = definedExternally
+            set(value) = definedExternally
+        var resizable: dynamic /* Boolean? | "header" | "cell" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var frozen: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var responsive: Number?
+            get() = definedExternally
+            set(value) = definedExternally
+        var tooltip: dynamic /* String? | Boolean? | ((cell: CellComponent) -> String)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var cssClass: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var rowHandle: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var hideInHtml: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var sorter: dynamic /* "string" | "number" | "alphanum" | "boolean" | "exists" | "date" | "time" | "datetime" | "array" | ((a: Any, b: Any, aRow: RowComponent, bRow: RowComponent, column: ColumnComponent, dir: String /* "asc" | "desc" */, sorterParams: Any) -> Number)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var sorterParams: dynamic /* ColumnDefinitionSorterParams? | ColumnSorterParamLookupFunction? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatter: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatterParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var variableHeight: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var editable: dynamic /* Boolean? | ((cell: CellComponent) -> Boolean)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var editor: dynamic /* Boolean? | "input" | "textarea" | "number" | "range" | "tickCross" | "star" | "select" | "autocomplete" | ((cell: CellComponent, onRendered: EmptyCallback, success: ValueBooleanCallback, cancel: ValueVoidCallback, editorParams: Any) -> dynamic)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var editorParams: dynamic /* NumberParams? | CheckboxParams? | SelectParams? | AutoCompleteParams? | InputParams? | TextAreaParams? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var validator: dynamic /* "required" | "unique" | "integer" | "float" | "numeric" | "string" | Array<String /* "required" | "unique" | "integer" | "float" | "numeric" | "string" */>? | Validator? | Array<Validator>? | String? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var mutator: CustomMutator?
+            get() = definedExternally
+            set(value) = definedExternally
+        var mutatorParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "edit" */, cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var mutatorData: CustomMutator?
+            get() = definedExternally
+            set(value) = definedExternally
+        var mutatorDataParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "edit" */, cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var mutatorEdit: CustomMutator?
+            get() = definedExternally
+            set(value) = definedExternally
+        var mutatorEditParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "edit" */, cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var mutatorClipboard: CustomMutator?
+            get() = definedExternally
+            set(value) = definedExternally
+        var mutatorClipboardParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "edit" */, cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessor: CustomAccessor?
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorDownload: CustomAccessor?
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorDownloadParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorClipboard: CustomAccessor?
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorClipboardParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var download: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var titleDownload: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var topCalc: dynamic /* "avg" | "max" | "min" | "sum" | "concat" | "count" | ((values: Array<Any>, data: Array<Any>, calcParams: Any) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var topCalcParams: ColumnCalcParams?
+            get() = definedExternally
+            set(value) = definedExternally
+        var topCalcFormatter: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var topCalcFormatterParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var bottomCalc: dynamic /* "avg" | "max" | "min" | "sum" | "concat" | "count" | ((values: Array<Any>, data: Array<Any>, calcParams: Any) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var bottomCalcParams: ColumnCalcParams?
+            get() = definedExternally
+            set(value) = definedExternally
+        var bottomCalcFormatter: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var bottomCalcFormatterParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerSort: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerSortStartingDir: String? /* "asc" | "desc" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerSortTristate: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerClick: ColumnEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerDblClick: ColumnEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerContext: ColumnEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerTap: ColumnEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerDblTap: ColumnEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerTapHold: ColumnEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerTooltip: dynamic /* Boolean? | String? | ((column: ColumnComponent) -> String)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerVertical: dynamic /* Boolean? | "flip" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var editableTitle: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var titleFormatter: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var titleFormatterParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerFilter: dynamic /* Boolean? | "input" | "textarea" | "number" | "range" | "tickCross" | "star" | "select" | "autocomplete" | ((cell: CellComponent, onRendered: EmptyCallback, success: ValueBooleanCallback, cancel: ValueVoidCallback, editorParams: Any) -> dynamic)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerFilterParams: dynamic /* NumberParams? | CheckboxParams? | SelectParams? | AutoCompleteParams? | InputParams? | TextAreaParams? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerFilterPlaceholder: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerFilterEmptyCheck: ValueBooleanCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerFilterFunc: dynamic /* "=" | "!=" | "like" | "<" | ">" | "<=" | ">=" | "in" | "regex" | "starts" | "ends" | ((headerValue: Any, rowValue: Any, rowdata: Any, filterparams: Any) -> Boolean)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerFilterFuncParams: Any?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerFilterLiveFilter: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var htmlOutput: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var clipboard: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var columns: Array<ColumnDefinition>?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerMenu: Array<dynamic /* MenuObject<ColumnComponent> | MenuSeparator */>?
+            get() = definedExternally
+            set(value) = definedExternally
+        var headerContextMenu: Array<dynamic /* MenuObject<ColumnComponent> | MenuSeparator */>?
+            get() = definedExternally
+            set(value) = definedExternally
+        var contextMenu: Array<dynamic /* MenuObject<CellComponent> | MenuSeparator */>?
+            get() = definedExternally
+            set(value) = definedExternally
+        var clickMenu: Array<dynamic /* MenuObject<CellComponent> | MenuSeparator */>?
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatterClipboard: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? | Boolean? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatterClipboardParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatterPrint: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? | Boolean? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatterPrintParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorPrint: CustomAccessor?
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorPrintParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorHtmlOutput: CustomAccessor?
+            get() = definedExternally
+            set(value) = definedExternally
+        var accessorHtmlOutputParams: dynamic /* Any? | ((value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, column: ColumnComponent, row: RowComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatterHtmlOutput: dynamic /* "plaintext" | "textarea" | "html" | "money" | "image" | "datetime" | "datetimediff" | "link" | "tickCross" | "color" | "star" | "traffic" | "progress" | "lookup" | "buttonTick" | "buttonCross" | "rownum" | "handle" | "rowSelection" | "responsiveCollapse" | ((cell: CellComponent, formatterParams: Any, onRendered: EmptyCallback) -> dynamic)? | Boolean? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var formatterHtmlOutputParams: dynamic /* MoneyParams? | ImageParams? | LinkParams? | DateTimeParams? | DateTimeDifferenceParams? | TickCrossParams? | TrafficParams? | ProgressBarParams? | StarRatingParams? | RowSelectionParams? | JSONRecord? | ((cell: CellComponent) -> Any)? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var titleClipboard: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var titleHtmlOutput: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var titlePrint: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var maxWidth: dynamic /* Number? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -1465,15 +1938,64 @@ open external class Tabulator {
             set(value) = definedExternally
     }
 
+    interface CellCallbacksPartial {
+        var cellClick: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellDblClick: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellContext: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellTap: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellDblTap: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellTapHold: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellMouseEnter: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellMouseLeave: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellMouseOver: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellMouseOut: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellMouseMove: CellEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellEditing: CellEditEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellEdited: CellEditEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+        var cellEditCancelled: CellEditEventCallback?
+            get() = definedExternally
+            set(value) = definedExternally
+    }
+
     interface ColumnDefinitionSorterParams {
         var format: String?
             get() = definedExternally
             set(value) = definedExternally
-        var locale: dynamic /* String | Boolean */
+        var locale: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var alignEmptyValues: String /* 'top' | 'bottom' */
-        var type: String /* 'length' | 'sum' | 'max' | 'min' | 'avg' */
+        var alignEmptyValues: String? /* "top" | "bottom" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var type: String? /* "length" | "sum" | "max" | "min" | "avg" */
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface MoneyParams {
@@ -1489,7 +2011,7 @@ open external class Tabulator {
         var symbolAfter: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var precision: dynamic /* Boolean | Number */
+        var precision: dynamic /* Boolean? | Number? */
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -1501,13 +2023,19 @@ open external class Tabulator {
         var width: String?
             get() = definedExternally
             set(value) = definedExternally
+        var urlPrefix: String?
+            get() = definedExternally
+            set(value) = definedExternally
+        var urlSuffix: String?
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface LinkParams {
         var labelField: String?
             get() = definedExternally
             set(value) = definedExternally
-        var label: dynamic /* String | (cell: CellComponent) -> String */
+        var label: dynamic /* String? | ((cell: CellComponent) -> String)? */
             get() = definedExternally
             set(value) = definedExternally
         var urlPrefix: String?
@@ -1516,7 +2044,7 @@ open external class Tabulator {
         var urlField: String?
             get() = definedExternally
             set(value) = definedExternally
-        var url: String?
+        var url: dynamic /* String? | ((cell: CellComponent) -> String)? */
             get() = definedExternally
             set(value) = definedExternally
         var target: String?
@@ -1534,7 +2062,7 @@ open external class Tabulator {
         var outputFormat: String?
             get() = definedExternally
             set(value) = definedExternally
-        var invalidPlaceholder: dynamic /* Boolean | String | Number | ValueStringCallback */
+        var invalidPlaceholder: dynamic /* Boolean? | String? | Number? | ValueStringCallback? */
             get() = definedExternally
             set(value) = definedExternally
         var timezone: String?
@@ -1549,7 +2077,9 @@ open external class Tabulator {
         var humanize: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var unit: String /* 'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds' */
+        var unit: String? /* "years" | "months" | "weeks" | "days" | "hours" | "minutes" | "seconds" */
+            get() = definedExternally
+            set(value) = definedExternally
         var suffix: Boolean?
             get() = definedExternally
             set(value) = definedExternally
@@ -1562,10 +2092,10 @@ open external class Tabulator {
         var allowTruthy: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var tickElement: dynamic /* Boolean | String */
+        var tickElement: dynamic /* Boolean? | String? */
             get() = definedExternally
             set(value) = definedExternally
-        var crossElement: dynamic /* Boolean | String */
+        var crossElement: dynamic /* Boolean? | String? */
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -1577,23 +2107,31 @@ open external class Tabulator {
         var max: Number?
             get() = definedExternally
             set(value) = definedExternally
-        var color: dynamic /* String | Array<Any> | ValueStringCallback */
+        var color: dynamic /* String? | Array<Any>? | ValueStringCallback? */
             get() = definedExternally
             set(value) = definedExternally
     }
 
     interface ProgressBarParams : TrafficParams {
-        var legend: dynamic /* String | Boolean | ValueStringCallback */
+        var legend: dynamic /* String? | Boolean? | ValueStringCallback? */
             get() = definedExternally
             set(value) = definedExternally
-        var legendColor: dynamic /* String | Array<Any> | ValueStringCallback */
+        var legendColor: dynamic /* String? | Array<Any>? | ValueStringCallback? */
             get() = definedExternally
             set(value) = definedExternally
-        var legendAlign: String /* 'center' | 'left' | 'right' | 'justify' */
+        var legendAlign: String? /* "center" | "left" | "right" | "justify" */
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface StarRatingParams {
         var stars: Number?
+            get() = definedExternally
+            set(value) = definedExternally
+    }
+
+    interface RowSelectionParams {
+        var rowRange: String? /* "visible" | "active" | "selected" | "all" */
             get() = definedExternally
             set(value) = definedExternally
     }
@@ -1629,7 +2167,9 @@ open external class Tabulator {
         var step: Number?
             get() = definedExternally
             set(value) = definedExternally
-        var verticalNavigation: String /* 'editor' | 'table' */
+        var verticalNavigation: String? /* "editor" | "table" */
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface InputParams : SharedEditorParams {
@@ -1639,7 +2179,9 @@ open external class Tabulator {
     }
 
     interface TextAreaParams : SharedEditorParams {
-        var verticalNavigation: String /* 'editor' | 'table' | 'hybrid' */
+        var verticalNavigation: String? /* "editor" | "table" | "hybrid" */
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface CheckboxParams : SharedEditorParams {
@@ -1655,7 +2197,9 @@ open external class Tabulator {
         var defaultValue: String?
             get() = definedExternally
             set(value) = definedExternally
-        var sortValuesList: String /* 'asc' | 'desc' */
+        var sortValuesList: String? /* "asc" | "desc" */
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface SelectParams : SharedEditorParams, SharedSelectAutoCompleteEditorParams {
@@ -1665,15 +2209,17 @@ open external class Tabulator {
         var listItemFormatter: ((value: String, text: String) -> String)?
             get() = definedExternally
             set(value) = definedExternally
-        var verticalNavigation: String /* 'editor' | 'table' | 'hybrid' */
-        var multiselect: dynamic /* Boolean | Number */
+        var verticalNavigation: String? /* "editor" | "table" | "hybrid" */
+            get() = definedExternally
+            set(value) = definedExternally
+        var multiselect: dynamic /* Boolean? | Number? */
             get() = definedExternally
             set(value) = definedExternally
     }
 
     interface SelectParamsGroup {
         var label: String
-        var value: dynamic /* String | Number | Boolean */
+        var value: dynamic /* String? | Number? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
         var options: Array<SelectLabelValue>?
@@ -1710,17 +2256,19 @@ open external class Tabulator {
         var showListOnEmpty: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        var verticalNavigation: String /* 'editor' | 'table' | 'hybrid' */
-        var searchingPlaceholder: dynamic /* String | HTMLElement */
+        var verticalNavigation: String? /* "editor" | "table" | "hybrid" */
             get() = definedExternally
             set(value) = definedExternally
-        var emptyPlaceholder: dynamic /* String | HTMLElement */
+        var searchingPlaceholder: dynamic /* String? | HTMLElement? */
+            get() = definedExternally
+            set(value) = definedExternally
+        var emptyPlaceholder: dynamic /* String? | HTMLElement? */
             get() = definedExternally
             set(value) = definedExternally
     }
 
     interface Validator {
-        var type: dynamic /* 'required' | 'unique' | 'integer' | 'float' | 'numeric' | 'string' | (cell: CellComponent, value: Any, parameters: Any) -> Boolean */
+        var type: dynamic /* "required" | "unique" | "integer" | "float" | "numeric" | "string" | (cell: CellComponent, value: Any, parameters: Any) -> Boolean */
             get() = definedExternally
             set(value) = definedExternally
         var parameters: Any?
@@ -1729,64 +2277,58 @@ open external class Tabulator {
     }
 
     interface KeyBinding {
-        var navPrev: dynamic /* String | Boolean */
+        var navPrev: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var navNext: dynamic /* String | Boolean */
+        var navNext: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var navLeft: dynamic /* String | Boolean */
+        var navLeft: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var navRight: dynamic /* String | Boolean */
+        var navRight: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var navUp: dynamic /* String | Boolean */
+        var navUp: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var navDown: dynamic /* String | Boolean */
+        var navDown: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var undo: dynamic /* String | Boolean */
+        var undo: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var redo: dynamic /* String | Boolean */
+        var redo: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var scrollPageUp: dynamic /* String | Boolean */
+        var scrollPageUp: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var scrollPageDown: dynamic /* String | Boolean */
+        var scrollPageDown: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var scrollToStart: dynamic /* String | Boolean */
+        var scrollToStart: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var scrollToEnd: dynamic /* String | Boolean */
+        var scrollToEnd: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
-        var copyToClipboard: dynamic /* String | Boolean */
+        var copyToClipboard: dynamic /* String? | Boolean? */
             get() = definedExternally
             set(value) = definedExternally
     }
 
-    interface CellNavigation {
-        var prev: () -> Boolean
-        var next: () -> Boolean
-        var left: () -> Boolean
-        var right: () -> Boolean
-        var up: () -> Unit
-        var down: () -> Unit
-    }
-
-    interface RowComponent {
+    interface CalculationComponent {
         var getData: () -> Any
         var getElement: () -> HTMLElement
         var getTable: () -> Tabulator
-        var getNextRow: () -> dynamic
-        var getPrevRow: () -> dynamic
         var getCells: () -> Array<CellComponent>
         var getCell: (column: dynamic /* ColumnComponent | HTMLElement | String */) -> CellComponent
+    }
+
+    interface RowComponent : CalculationComponent {
+        var getNextRow: () -> dynamic
+        var getPrevRow: () -> dynamic
         var getIndex: () -> Any
         var getPosition: (filteredPosition: Boolean) -> Number
         var getGroup: () -> GroupComponent
@@ -1858,6 +2400,8 @@ open external class Tabulator {
         var getValue: () -> Any?
         var getOldValue: () -> Any?
         var restoreOldValue: () -> Any?
+        var getInitialValue: () -> Any?
+        var restoreInitialValue: () -> Any?
         var getElement: () -> HTMLElement
         var getTable: () -> Tabulator
         var getRow: () -> RowComponent
@@ -1868,13 +2412,100 @@ open external class Tabulator {
         var checkHeight: () -> Unit
         var edit: (ignoreEditable: Boolean) -> Unit
         var cancelEdit: () -> Unit
-        var nav: () -> CellNavigation
+        var navigatePrev: () -> Boolean
+        var navigateNext: () -> Boolean
+        var navigateLeft: () -> Boolean
+        var navigateRight: () -> Boolean
+        var navigateUp: () -> Unit
+        var navigateDown: () -> Unit
         var isEdited: () -> Boolean
         var clearEdited: () -> Unit
         var isValid: () -> Boolean
         var clearValidation: () -> Unit
         var validate: () -> Boolean
-        var getInitialValue: () -> Any?
-        var restoreInitialValue: () -> Any?
+    }
+
+    companion object {
+        var defaultOptions: Options
+        var extendModule: (name: String, property: String, values: Any) -> Unit
+        var findTable: (query: String) -> Array<Tabulator>
+        var registerModule: (module: Module) -> Unit
+        var bindModules: (__0: Any) -> Unit
     }
 }
+
+open external class Module(table: Tabulator) {
+    companion object {
+        var moduleName: String
+    }
+}
+
+open external class AccessorModule
+
+open external class AjaxModule
+
+open external class ClipboardModule
+
+open external class ColumnCalcsModule
+
+open external class DataTreeModule
+
+open external class DownloadModule
+
+open external class EditModule
+
+open external class ExportModule
+
+open external class FilterModule
+
+open external class FormatModule
+
+open external class FrozenColumnsModule
+
+open external class FrozenRowsModule
+
+open external class GroupRowsModule
+
+open external class HistoryModule
+
+open external class HtmlTableImportModule
+
+open external class InteractionModule
+
+open external class KeybindingsModule
+
+open external class MenuModule
+
+open external class MoveColumnsModule
+
+open external class MoveRowsModule
+
+open external class MutatorModule
+
+open external class PageModule
+
+open external class PersistenceModule
+
+open external class PrintModule
+
+open external class PseudoRow
+
+open external class ReactiveDataModule
+
+open external class Renderer
+
+open external class ResizeColumnsModule
+
+open external class ResizeRowsModule
+
+open external class ResizeTableModule
+
+open external class ResponsiveLayoutModule
+
+open external class SelectRowModule
+
+open external class SortModule
+
+open external class TabulatorFull
+
+open external class ValidateModule

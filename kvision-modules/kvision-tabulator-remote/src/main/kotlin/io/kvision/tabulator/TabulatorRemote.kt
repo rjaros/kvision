@@ -84,15 +84,15 @@ open class TabulatorRemote<T : Any, E : Any>(
             val size = if (params.size != null) "" + params.size else null
 
             @Suppress("UnsafeCastFromDynamic")
-            val filters = if (params.filters != null) {
-                kotlin.js.JSON.stringify(params.filters)
+            val filters = if (params.filter != null) {
+                kotlin.js.JSON.stringify(params.filter)
             } else {
                 null
             }
 
             @Suppress("UnsafeCastFromDynamic")
-            val sorters = if (params.sorters != null) {
-                kotlin.js.JSON.stringify(params.sorters)
+            val sorters = if (params.sort != null) {
+                kotlin.js.JSON.stringify(params.sort)
             } else {
                 null
             }

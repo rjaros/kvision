@@ -21,13 +21,13 @@
  */
 package io.kvision.tabulator
 
-import io.kvision.snabbdom.VNode
 import io.kvision.TabulatorModule
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.i18n.I18n
 import io.kvision.panel.Root
+import io.kvision.snabbdom.VNode
 import io.kvision.state.ObservableList
 import io.kvision.state.ObservableState
 import io.kvision.types.DateSerializer
@@ -42,6 +42,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.events.Event
 import kotlin.js.Date
 import kotlin.reflect.KClass
 import io.kvision.tabulator.js.Tabulator as JsTabulator
@@ -111,6 +112,7 @@ open class Tabulator<T : Any>(
      * Native Tabulator object.
      */
     var jsTabulator: JsTabulator? = null
+    private var jsTabulatorInitialized = false
 
     private var pageSize: Number? = null
     private var currentPage: Number? = null
@@ -157,90 +159,6 @@ open class Tabulator<T : Any>(
                 }
             }
         }
-        if (options.rowClick == null) {
-            options.rowClick = { _, row ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("rowClickTabulator", obj { detail = row })
-            }
-        }
-        if (options.rowDblClick == null) {
-            options.rowDblClick = { _, row ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("rowDblClickTabulator", obj { detail = row })
-            }
-        }
-        if (options.rowSelectionChanged == null) {
-            options.rowSelectionChanged = { _, rows ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("rowSelectionChangedTabulator", obj { detail = rows })
-            }
-        }
-        if (options.rowSelected == null) {
-            options.rowSelected = { row ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("rowSelectedTabulator", obj { detail = row })
-            }
-        }
-        if (options.rowDeselected == null) {
-            options.rowDeselected = { row ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("rowDeselectedTabulator", obj { detail = row })
-            }
-        }
-        if (options.cellClick == null) {
-            options.cellClick = { _, cell ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("cellClickTabulator", obj { detail = cell })
-            }
-        }
-        if (options.cellDblClick == null) {
-            options.cellDblClick = { _, cell ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("cellDblClickTabulator", obj { detail = cell })
-            }
-        }
-        if (options.cellEditing == null) {
-            options.cellEditing = { cell ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("cellEditingTabulator", obj { detail = cell })
-            }
-        }
-        if (options.cellEdited == null) {
-            options.cellEdited = { cell ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("cellEditedTabulator", obj { detail = cell })
-            }
-        }
-        if (options.cellEditCancelled == null) {
-            options.cellEditCancelled = { cell ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("cellEditCancelledTabulator", obj { detail = cell })
-            }
-        }
-        if (options.dataLoading == null) {
-            options.dataLoading = { data ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("dataLoadingTabulator", obj { detail = data })
-            }
-        }
-        if (options.dataLoaded == null) {
-            options.dataLoaded = { data ->
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("dataLoadedTabulator", obj { detail = data })
-            }
-        }
-        if (options.dataChanged == null) {
-            options.dataChanged = { data ->
-                val fixedData = fixData(data)!!
-                @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })
-                if (dataUpdateOnEdit && this.data is MutableList<T>) {
-                    window.setTimeout({
-                        this.data.syncWithList(fixedData)
-                    }, 0)
-                }
-            }
-        }
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -262,12 +180,110 @@ open class Tabulator<T : Any>(
                 jsTabulator?.setPageSize(pageSize ?: 0)
                 jsTabulator?.setPage(currentPage)
             }
+            val allColumns = options.columns?.let { c -> c + c.mapNotNull { it.columns }.flatten() }
+            allColumns?.find { it.editorComponentFunction != null }?.let {
+                jsTabulator?.on("cellEditCancelled") { cell: JsTabulator.CellComponent ->
+                    window.setTimeout({
+                        try {
+                            cell.getTable().redraw(true)
+                        } catch (e: Throwable) {
+                            console.log("Table redraw failed. Probably it's not visible anymore.")
+                        }
+                    }, 0)
+                }
+            }
+            jsTabulator?.on("rowClick") { e: Event, row: dynamic ->
+                if (!e.defaultPrevented) {
+                    @Suppress("UnsafeCastFromDynamic")
+                    if (this.dispatchEvent("rowClickTabulator", obj { detail = row }) != true) e.preventDefault()
+                }
+            }
+            jsTabulator?.on("rowDblClick") { e: Event, row: dynamic ->
+                if (!e.defaultPrevented) {
+                    @Suppress("UnsafeCastFromDynamic")
+                    if (this.dispatchEvent("rowDblClickTabulator", obj { detail = row }) != true) e.preventDefault()
+                }
+            }
+            jsTabulator?.on("rowSelectionChanged") { e: Event, rows: dynamic ->
+                if (!e.defaultPrevented) {
+                    @Suppress("UnsafeCastFromDynamic")
+                    if (this.dispatchEvent(
+                            "rowSelectionChangedTabulator",
+                            obj { detail = rows }) != true
+                    ) e.preventDefault()
+                }
+            }
+            jsTabulator?.on("rowSelected") { row: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("rowSelectedTabulator", obj { detail = row })
+            }
+            jsTabulator?.on("rowDeselected") { row: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("rowDeselectedTabulator", obj { detail = row })
+            }
+            jsTabulator?.on("cellClick") { e: Event, cell: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
+                if (this.dispatchEvent("cellClickTabulator", obj {
+                        detail = cell
+                        cancelable = true
+                    }) != true) e.preventDefault()
+
+            }
+            jsTabulator?.on("cellDblClick") { e: Event, cell: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
+                if (this.dispatchEvent("cellDblClickTabulator", obj {
+                        detail = cell
+                        cancelable = true
+                    }) != true) e.preventDefault()
+            }
+            jsTabulator?.on("cellEditing") { cell: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("cellEditingTabulator", obj { detail = cell })
+            }
+            jsTabulator?.on("cellEdited") { cell: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("cellEditedTabulator", obj { detail = cell })
+            }
+            jsTabulator?.on("cellEditCancelled") { cell: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("cellEditCancelledTabulator", obj { detail = cell })
+            }
+            jsTabulator?.on("dataLoading") { data: dynamic ->
+                if (!data) {
+                    val emptyList = emptyList<T>()
+                    @Suppress("UnsafeCastFromDynamic")
+                    this.dispatchEvent("dataLoadingTabulator", obj { detail = emptyList })
+                } else {
+                    val fixedData = fixData(data.unsafeCast<Array<T>>().toList())!!
+                    @Suppress("UnsafeCastFromDynamic")
+                    this.dispatchEvent("dataLoadingTabulator", obj { detail = fixedData })
+                }
+            }
+            jsTabulator?.on("dataLoaded") { data: Array<T> ->
+                val fixedData = fixData(data.toList())!!
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("dataLoadedTabulator", obj { detail = fixedData })
+            }
+            jsTabulator?.on("dataChanged") { data: Array<T> ->
+                val fixedData = fixData(data.toList())!!
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })
+                if (dataUpdateOnEdit && this.data is MutableList<T>) {
+                    window.setTimeout({
+                        this.data.syncWithList(fixedData)
+                    }, 0)
+                }
+            }
+            jsTabulator?.on("tableBuilt") {
+                jsTabulatorInitialized = true
+            }
         }
     }
 
     override fun render(): VNode {
         if (lastLanguage != null && lastLanguage != I18n.language) {
             jsTabulator?.destroy()
+            jsTabulatorInitialized = false
             customRoots.forEach { it.dispose() }
             customRoots.clear()
             createJsTabulator()
@@ -286,6 +302,7 @@ open class Tabulator<T : Any>(
             currentPage = page as Number
         }
         jsTabulator?.destroy()
+        jsTabulatorInitialized = false
         customRoots.forEach { it.dispose() }
         customRoots.clear()
         jsTabulator = null
@@ -301,7 +318,7 @@ open class Tabulator<T : Any>(
         if ((getElement()?.unsafeCast<Element>()?.querySelectorAll(".tabulator-editing")?.length ?: 0) > 0) {
             this.removeCustomEditors()
         }
-        jsTabulator?.replaceData(jsData, null, null)
+        if (jsTabulatorInitialized) jsTabulator?.replaceData(jsData, null, null)
     }
 
     /**
@@ -540,7 +557,7 @@ open class Tabulator<T : Any>(
                     @Suppress("UnsafeCastFromDynamic")
                     it(fixData(data as T))
                 }
-            }, null, null)
+            }, null, null, null)
         }
     }
 
