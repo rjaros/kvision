@@ -5,8 +5,7 @@ plugins {
     id("maven-publish")
     id("signing")
     id("de.marcphilipp.nexus-publish")
-    val dokkaVersion: String by System.getProperties()
-    id("org.jetbrains.dokka") version dokkaVersion
+    id("org.jetbrains.dokka")
 }
 
 allprojects {
