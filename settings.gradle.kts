@@ -24,6 +24,7 @@ include(
     "kvision-modules:kvision-bootstrap-upload",
     "kvision-modules:kvision-onsenui",
     "kvision-modules:kvision-chart",
+    "kvision-modules:kvision-chart2",
     "kvision-modules:kvision-cordova",
     "kvision-modules:kvision-datacontainer",
     "kvision-modules:kvision-electron",

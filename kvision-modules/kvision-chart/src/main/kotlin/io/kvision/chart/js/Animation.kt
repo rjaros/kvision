@@ -19,20 +19,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-/**
- * Initializer for KVision Bootstrap chart module.
- */
-object ChartModule : ModuleInitializer {
+package io.kvision.chart.js
 
-    private val chartjs = require("chart.js/auto").default
+open external class Animation(cfg: AnyObject, target: AnyObject, prop: String, to: Any = definedExternally) {
+    open fun active(): Boolean
+    open fun update(cfg: AnyObject, to: Any, date: Number)
+    open fun cancel()
+    open fun tick(date: Number)
+}
 
-    @Suppress("UnsafeCastFromDynamic")
-    fun getConstructor(): Any {
-        return chartjs
-    }
+external interface AnimationEvent {
+    var chart: Chart
+    var numSteps: Number
+    var initial: Boolean
+    var currentStep: Number
+}
 
-    override fun initialize() {
-    }
+open external class Animator {
+    open fun listen(chart: Chart, event: String /* "complete" | "progress" */, cb: (event: AnimationEvent) -> Unit)
+    open fun add(chart: Chart, items: Array<Animation>)
+    open fun has(chart: Chart): Boolean
+    open fun start(chart: Chart)
+    open fun running(chart: Chart): Boolean
+    open fun stop(chart: Chart)
+    open fun remove(chart: Chart): Boolean
+}
+
+open external class Animations(chart: Chart, animations: AnyObject) {
+    open fun configure(animations: AnyObject)
+    open fun update(target: AnyObject, values: AnyObject): Boolean?
 }

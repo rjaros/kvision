@@ -19,20 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-/**
- * Initializer for KVision Bootstrap chart module.
- */
-object ChartModule : ModuleInitializer {
+package io.kvision.chart.js
 
-    private val chartjs = require("chart.js/auto").default
-
-    @Suppress("UnsafeCastFromDynamic")
-    fun getConstructor(): Any {
-        return chartjs
-    }
-
-    override fun initialize() {
-    }
+external interface Element {
+    var x: Number
+    var y: Number
+    var active: Boolean
+    var options: AnyObject
+    fun tooltipPosition(useFinalPosition: Boolean = definedExternally): Point
+    fun hasValue(): Boolean
+    fun <P : Array<Any>> getProps(props: P, final: Boolean = definedExternally): Any
 }

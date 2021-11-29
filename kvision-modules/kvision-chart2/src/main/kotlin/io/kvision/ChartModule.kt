@@ -24,15 +24,10 @@ package io.kvision
 /**
  * Initializer for KVision Bootstrap chart module.
  */
+@Deprecated("Use kvision-chart module instead")
 object ChartModule : ModuleInitializer {
 
-    private val chartjs = require("chart.js/auto").default
-
-    @Suppress("UnsafeCastFromDynamic")
-    fun getConstructor(): Any {
-        return chartjs
-    }
-
     override fun initialize() {
+        require("chart.js/dist/Chart.bundle.js")
     }
 }

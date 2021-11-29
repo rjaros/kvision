@@ -19,25 +19,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.chart
 
-import io.kvision.ChartModule
-import io.kvision.chart.js.ChartConfiguration
+import io.kvision.snabbdom.VNode
+import io.kvision.chart.js.Chart.ChartConfiguration
+import io.kvision.chart.js.Chart.PluginServiceGlobalRegistration
 import io.kvision.core.Container
 import io.kvision.core.Widget
-import io.kvision.snabbdom.VNode
-
-/**
- * Chart update modes.
- */
-enum class UpdateMode(internal val mode: String) {
-    ACTIVE("active"),
-    HIDE("hide"),
-    RESET("reset"),
-    RESIZE("resize"),
-    SHOW("show"),
-    NONE("none")
-}
+import io.kvision.ChartModule
+import io.kvision.chart.js.Chart as JsChart
 
 /**
  * Chart component.
@@ -49,6 +41,7 @@ enum class UpdateMode(internal val mode: String) {
  * @param className CSS class names
  * @param init an initializer extension function
  */
+@Deprecated("Use kvision-chart module instead")
 open class Chart(
     configuration: Configuration,
     chartWidth: Int? = null,
@@ -99,9 +92,11 @@ open class Chart(
 
     /**
      * Renders the chart.
+     * @param duration animation duration
+     * @param lazy if true, the animation can be interrupted by other animations
      */
-    open fun renderChart() {
-        chartCanvas.renderChart()
+    open fun render(duration: Int? = null, lazy: Boolean = false) {
+        chartCanvas.render(duration, lazy)
     }
 
     /**
@@ -128,8 +123,8 @@ open class Chart(
     /**
      * Updates the chart.
      */
-    open fun update(updateMode: UpdateMode? = null) {
-        chartCanvas.update(updateMode)
+    open fun update() {
+        chartCanvas.update()
     }
 
     /**
@@ -145,11 +140,11 @@ open class Chart(
         }
 
         fun registerPlugin(plugin: dynamic) {
-            ChartModule.getConstructor().asDynamic().register(plugin)
+            JsChart.plugins.register(plugin.unsafeCast<PluginServiceGlobalRegistration>())
         }
 
         fun unregisterPlugin(plugin: dynamic) {
-            ChartModule.getConstructor().asDynamic().unregister(plugin)
+            JsChart.plugins.unregister(plugin.unsafeCast<PluginServiceGlobalRegistration>())
         }
     }
 }
@@ -159,6 +154,7 @@ open class Chart(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use kvision-chart module instead")
 fun Container.chart(
     configuration: Configuration,
     chartWidth: Int? = null,

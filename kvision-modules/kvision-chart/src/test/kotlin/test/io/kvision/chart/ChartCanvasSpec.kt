@@ -46,7 +46,7 @@ class ChartCanvasSpec : DomSpec {
             root.add(chart)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<canvas width=\"0\" height=\"0\" class=\"chartjs-render-monitor\" style=\"display: block; width: 0px; height: 0px;\"></canvas>",
+                "<canvas height=\"0\" style=\"display: block; box-sizing: border-box; height: 0px; width: 0px;\" width=\"0\"></canvas>",
                 element?.innerHTML,
                 "Should render correct responsive chart canvas"
             )
@@ -68,7 +68,7 @@ class ChartCanvasSpec : DomSpec {
             root.add(chart)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<canvas width=\"300\" height=\"600\" style=\"display: block;\"></canvas>",
+                "<canvas width=\"300\" height=\"600\" style=\"display: block; box-sizing: border-box; height: 600px; width: 300px;\"></canvas>",
                 element?.innerHTML,
                 "Should render correct not responsive chart canvas"
             )
