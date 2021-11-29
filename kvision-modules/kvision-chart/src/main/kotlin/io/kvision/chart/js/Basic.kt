@@ -19,20 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-/**
- * Initializer for KVision Bootstrap chart module.
- */
-object ChartModule : ModuleInitializer {
+@file:Suppress("UNUSED_TYPEALIAS_PARAMETER")
 
-    private val chartjs = require("chart.js/auto").default
+package io.kvision.chart.js
 
-    @Suppress("UnsafeCastFromDynamic")
-    fun getConstructor(): Any {
-        return chartjs
-    }
+import io.kvision.utils.Object
 
-    override fun initialize() {
-    }
-}
+typealias Record<T, V> = Object
+
+typealias AnyObject = Record<String, Any>
+
+typealias EmptyObject = Record<String, Any>

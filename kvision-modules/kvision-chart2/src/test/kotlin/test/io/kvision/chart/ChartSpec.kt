@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package test.io.kvision.chart
 
 import io.kvision.chart.Chart
@@ -50,7 +52,7 @@ class ChartSpec : DomSpec {
             root.add(chart)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div style=\"width: 300px; height: 600px;\"><canvas height=\"0\" style=\"display: block; box-sizing: border-box; height: 0px; width: 0px;\" width=\"0\"></canvas></div>",
+                "<div style=\"width: 300px; height: 600px;\"><canvas height=\"0\" class=\"chartjs-render-monitor\" width=\"0\" style=\"display: block; width: 0px; height: 0px;\"></canvas></div>",
                 element?.innerHTML,
                 "Should render correct responsive chart"
             )
@@ -71,7 +73,7 @@ class ChartSpec : DomSpec {
             root.add(chart)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><canvas width=\"300\" height=\"600\" style=\"display: block; box-sizing: border-box; height: 600px; width: 300px;\"></canvas></canvas></div>",
+                "<div><canvas width=\"300\" height=\"600\" style=\"display: block;\"></canvas></div>",
                 element?.innerHTML,
                 "Should render correct not responsive chart"
             )

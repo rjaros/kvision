@@ -21,38 +21,34 @@
  */
 package test.io.kvision.chart
 
-import io.kvision.chart.Chart
+import io.kvision.chart.ChartCanvas
 import io.kvision.chart.ChartType
 import io.kvision.chart.Configuration
 import io.kvision.chart.DataSets
 import io.kvision.chart.ChartOptions
 import io.kvision.panel.Root
-import io.kvision.utils.px
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 
-class ChartSpec : DomSpec {
+class ChartCanvasSpec : DomSpec {
 
     @Test
     fun renderResponsive() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val chart = Chart(
-                Configuration(
+            val chart = ChartCanvas(
+                configuration = Configuration(
                     ChartType.SCATTER,
                     listOf(DataSets(label = "Chart", data = listOf(0, 1)))
                 )
-            ).apply {
-                width = 300.px
-                height = 600.px
-            }
+            )
             root.add(chart)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div style=\"width: 300px; height: 600px;\"><canvas height=\"0\" style=\"display: block; box-sizing: border-box; height: 0px; width: 0px;\" width=\"0\"></canvas></div>",
+                "<canvas width=\"0\" height=\"0\" class=\"chartjs-render-monitor\" style=\"display: block; width: 0px; height: 0px;\"></canvas>",
                 element?.innerHTML,
-                "Should render correct responsive chart"
+                "Should render correct responsive chart canvas"
             )
         }
     }
@@ -61,21 +57,21 @@ class ChartSpec : DomSpec {
     fun renderNotResponsive() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val chart = Chart(
-                Configuration(
+            val chart = ChartCanvas(
+                300, 600,
+                configuration = Configuration(
                     ChartType.SCATTER,
                     listOf(DataSets(label = "Chart", data = listOf(0, 1))),
                     options = ChartOptions(responsive = false)
-                ), 300, 600
+                )
             )
             root.add(chart)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div><canvas width=\"300\" height=\"600\" style=\"display: block; box-sizing: border-box; height: 600px; width: 300px;\"></canvas></canvas></div>",
+                "<canvas width=\"300\" height=\"600\" style=\"display: block;\"></canvas>",
                 element?.innerHTML,
-                "Should render correct not responsive chart"
+                "Should render correct not responsive chart canvas"
             )
         }
     }
-
 }

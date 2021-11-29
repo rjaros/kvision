@@ -23,10 +23,10 @@
 
 package io.kvision.chart
 
-import org.w3c.dom.events.MouseEvent
+import io.kvision.chart.js.*
 import io.kvision.chart.js.Chart
 import io.kvision.core.Color
-import io.kvision.core.FontStyle
+import io.kvision.i18n.I18n
 import io.kvision.utils.obj
 
 
@@ -36,7 +36,6 @@ import io.kvision.utils.obj
 enum class ChartType(internal val type: String) {
     LINE("line"),
     BAR("bar"),
-    HORIZONTALBAR("horizontalBar"),
     RADAR("radar"),
     DOUGHNUT("doughnut"),
     PIE("pie"),
@@ -101,7 +100,8 @@ enum class Position(internal val position: String) {
     TOP("top"),
     LEFT("left"),
     RIGHT("right"),
-    BOTTOM("bottom")
+    BOTTOM("bottom"),
+    CENTER("center")
 }
 
 /**
@@ -144,6 +144,7 @@ enum class ScalesType(internal val type: String) {
     LINEAR("linear"),
     LOGARITHMIC("logarithmic"),
     TIME("time"),
+    TIMESERIES("timeseries"),
     RADIALLINEAR("radialLinear")
 }
 
@@ -184,11 +185,98 @@ enum class TooltipAlign(internal val mode: String) {
 }
 
 /**
- * Chart hover options.
+ * Legend item align options.
  */
-data class HoverOptions(
+enum class LegendLabelAlign(internal val mode: String) {
+    CENTER("center"),
+    LEFT("left"),
+    RIGHT("right")
+}
+
+/**
+ * Title align options.
+ */
+enum class TitleAlign(internal val mode: String) {
+    CENTER("center"),
+    LEFT("left"),
+    RIGHT("right")
+}
+
+/**
+ * Legend text direction options.
+ */
+enum class TextDirection(internal val mode: String) {
+    LTR("ltr"),
+    RTL("rtl")
+}
+
+/**
+ * Chart bar border skip modes.
+ */
+enum class SkipMode(internal val mode: String) {
+    TOP("top"),
+    LEFT("left"),
+    RIGHT("right"),
+    BOTTOM("bottom"),
+    START("start"),
+    END("end"),
+    MIDDLE("middle"),
+}
+
+/**
+ * Border align modes.
+ */
+enum class BorderAlign(internal val mode: String) {
+    CENTER("center"),
+    INNER("inner")
+}
+
+/**
+ * Tick cross align modes.
+ */
+enum class CrossAlign(internal val mode: String) {
+    CENTER("center"),
+    NEAR("near"),
+    FAR("far")
+}
+
+/**
+ * Scales bounds modes.
+ */
+enum class ScaleBounds(internal val mode: String) {
+    DATA("data"),
+    TICKS("ticks")
+}
+
+/**
+ * Chart font options.
+ */
+data class ChartFont(
+    val family: String? = null,
+    val size: Number? = null,
+    val style: String? = null,
+    val weight: String? = null,
+    val lineHeight: Number? = null
+)
+
+/**
+ * An extension function to convert configuration class to JS object.
+ */
+fun ChartFont.toJs(): dynamic {
+    return obj {
+        if (family != null) this.family = family
+        if (size != null) this.size = size
+        if (style != null) this.style = style
+        if (weight != null) this.weight = weight
+        if (lineHeight != null) this.lineHeight = lineHeight
+    }
+}
+
+/**
+ * Chart interactions options.
+ */
+data class InteractionOptions(
     val mode: InteractionMode = InteractionMode.NEAREST,
-    val animationDuration: Int = 400,
     val intersect: Boolean = true,
     val axis: String = "x"
 )
@@ -196,10 +284,9 @@ data class HoverOptions(
 /**
  * An extension function to convert configuration class to JS object.
  */
-fun HoverOptions.toJs(): dynamic {
+fun InteractionOptions.toJs(): dynamic {
     return obj {
         this.mode = mode.mode
-        this.animationDuration = animationDuration
         this.intersect = intersect
         this.axis = axis
     }
@@ -211,17 +298,22 @@ fun HoverOptions.toJs(): dynamic {
 data class AnimationOptions(
     val duration: Int = 1000,
     var easing: Eeasing = Eeasing.EASEOUTQUART,
-    val onProgress: ((obj: Chart.ChartAnimationObject) -> Unit)? = null,
-    val onComplete: ((obj: Chart.ChartAnimationObject) -> Unit)? = null
+    val delay: Number? = null,
+    val loop: Boolean? = null,
+    val onProgress: ((obj: AnimationEvent) -> Unit)? = null,
+    val onComplete: ((obj: AnimationEvent) -> Unit)? = null,
+    val disabled: Boolean? = null
 )
 
 /**
  * An extension function to convert configuration class to JS object.
  */
 fun AnimationOptions.toJs(): dynamic {
-    return obj {
+    return if (this.disabled == true) false else obj {
         this.duration = duration
         this.easing = easing.mode
+        if (delay != null) this.delay = delay
+        if (loop != null) this.loop = loop
         if (onProgress != null) this.onProgress = onProgress
         if (onComplete != null) this.onComplete = onComplete
     }
@@ -252,14 +344,15 @@ fun LayoutPaddingObject.toJs(): dynamic {
 /**
  * Chart layout options.
  */
-data class LayoutOptions(val padding: LayoutPaddingObject)
+data class LayoutOptions(val autoPadding: Boolean = true, val padding: LayoutPaddingObject? = null)
 
 /**
  * An extension function to convert configuration class to JS object.
  */
 fun LayoutOptions.toJs(): dynamic {
     return obj {
-        this.padding = padding.toJs()
+        this.autoPadding = autoPadding
+        if (padding != null) this.padding = padding.toJs()
     }
 }
 
@@ -268,14 +361,16 @@ fun LayoutOptions.toJs(): dynamic {
  */
 data class LegendLabelOptions(
     val boxWidth: Int = 40,
-    val fontSize: Int = 12,
-    val fontStyle: FontStyle? = null,
-    val fontColor: Color? = null,
-    val fontFamily: String? = null,
+    val boxHeight: Int? = null,
+    val color: Color? = null,
+    val font: ChartFont? = null,
     val padding: Int = 10,
-    val generateLabels: ((chart: Any) -> Any)? = null,
-    val filter: ((legendItem: Chart.ChartLegendLabelItem, data: Chart.ChartData) -> Any)? = null,
-    val usePointStyle: Boolean = false
+    val generateLabels: ((chart: Any) -> Array<LegendItem>)? = null,
+    val filter: ((legendItem: LegendItem, data: ChartData) -> Boolean)? = null,
+    val sort: ((a: LegendItem, b: LegendItem, data: ChartData) -> Number)? = null,
+    val usePointStyle: Boolean = false,
+    val pointStyle: PointStyle? = null,
+    val textAlign: LegendLabelAlign? = null
 )
 
 /**
@@ -284,14 +379,40 @@ data class LegendLabelOptions(
 fun LegendLabelOptions.toJs(): dynamic {
     return obj {
         this.boxWidth = boxWidth
-        this.fontSize = fontSize
-        if (fontStyle != null) this.fontStyle = fontStyle.name
-        if (fontColor != null) this.fontColor = fontColor.asString()
-        if (fontFamily != null) this.fontFamily = fontFamily
+        if (boxHeight != null) this.boxHeight = boxHeight
+        if (color != null) this.color = color.asString()
+        if (font != null) this.font = font.toJs()
         this.padding = padding
         if (generateLabels != null) this.generateLabels = generateLabels
         if (filter != null) this.filter = filter
+        if (sort != null) this.sort = sort
         this.usePointStyle = usePointStyle
+        if (pointStyle != null) this.pointStyle = pointStyle.style
+        if (textAlign != null) this.textAlign = textAlign.mode
+    }
+}
+
+/**
+ * Chart legend title options.
+ */
+data class LegendTitleOptions(
+    val display: Boolean? = null,
+    val color: Color? = null,
+    val font: ChartFont? = null,
+    val padding: Int? = null,
+    val text: String? = null
+)
+
+/**
+ * An extension function to convert configuration class to JS object.
+ */
+fun LegendTitleOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
+    return obj {
+        if (display != null) this.display = display
+        if (color != null) this.color = color.asString()
+        if (font != null) this.font = font.toJs()
+        if (padding != null) this.padding = padding
+        if (text != null) this.text = i18nTranslator(text)
     }
 }
 
@@ -301,28 +422,38 @@ fun LegendLabelOptions.toJs(): dynamic {
 data class LegendOptions(
     val display: Boolean = true,
     val position: Position = Position.TOP,
-    val fullWidth: Boolean = true,
-    val reverse: Boolean = false,
-    val onClick: ((event: MouseEvent, legendItem: Chart.ChartLegendLabelItem) -> Unit)? = null,
-    val onHover: ((event: MouseEvent, legendItem: Chart.ChartLegendLabelItem) -> Unit)? = null,
-    val labels: LegendLabelOptions? = null,
     val align: LegendAlign? = null,
-    val onLeave: ((event: MouseEvent, legendItem: Chart.ChartLegendLabelItem) -> Unit)? = null
+    val maxHeight: Int? = null,
+    val maxWidth: Int? = null,
+    val fullSize: Boolean = true,
+    val reverse: Boolean = false,
+    val labels: LegendLabelOptions? = null,
+    val rtl: Boolean? = null,
+    val textDirection: TextDirection? = null,
+    val title: LegendTitleOptions? = null,
+    val onClick: ((event: ChartEvent, legendItem: LegendItem, legend: LegendElement) -> Unit)? = null,
+    val onHover: ((event: ChartEvent, legendItem: LegendItem, legend: LegendElement) -> Unit)? = null,
+    val onLeave: ((event: ChartEvent, legendItem: LegendItem, legend: LegendElement) -> Unit)? = null
 )
 
 /**
  * An extension function to convert configuration class to JS object.
  */
-fun LegendOptions.toJs(): dynamic {
+fun LegendOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
     return obj {
         this.display = display
         this.position = position.position
-        this.fullWidth = fullWidth
+        if (align != null) this.align = align.mode
+        if (maxHeight != null) this.maxHeight = maxHeight
+        if (maxWidth != null) this.maxWidth = maxWidth
+        this.fullSize = fullSize
         this.reverse = reverse
+        if (labels != null) this.labels = labels.toJs()
+        if (rtl != null) this.rtl = rtl
+        if (textDirection != null) this.textDirection = textDirection.mode
+        if (title != null) this.title = title.toJs(i18nTranslator)
         if (onClick != null) this.onClick = onClick
         if (onHover != null) this.onHover = onHover
-        if (labels != null) this.labels = labels.toJs()
-        if (align != null) this.align = align.mode
         if (onLeave != null) this.onLeave = onLeave
     }
 }
@@ -331,16 +462,14 @@ fun LegendOptions.toJs(): dynamic {
  * Chart title options.
  */
 data class TitleOptions(
+    val align: TitleAlign? = null,
     val display: Boolean = false,
     val position: Position = Position.TOP,
-    val fontSize: Int = 12,
-    val fontStyle: FontStyle? = null,
-    val fontColor: Color? = null,
-    val fontFamily: String? = null,
+    val color: Color? = null,
+    val font: ChartFont? = null,
     val padding: Int = 10,
-    val lineHeight: String? = null,
+    val fullSize: Boolean? = null,
     val text: List<String>? = null,
-    val fullWidth: Boolean? = null
 )
 
 /**
@@ -365,19 +494,19 @@ fun TitleOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
  * Chart tooltips callbacks.
  */
 data class TooltipCallback(
-    val beforeTitle: ((item: Array<Chart.ChartTooltipItem>, data: Chart.ChartData) -> dynamic)? = null,
-    val title: ((item: Array<Chart.ChartTooltipItem>, data: Chart.ChartData) -> dynamic)? = null,
-    val afterTitle: ((item: Array<Chart.ChartTooltipItem>, data: Chart.ChartData) -> dynamic)? = null,
-    val beforeBody: ((item: Array<Chart.ChartTooltipItem>, data: Chart.ChartData) -> dynamic)? = null,
-    val beforeLabel: ((tooltipItem: Chart.ChartTooltipItem, data: Chart.ChartData) -> dynamic)? = null,
-    val label: ((tooltipItem: Chart.ChartTooltipItem, data: Chart.ChartData) -> dynamic)? = null,
-    val labelColor: ((tooltipItem: Chart.ChartTooltipItem, chart: Chart) -> Chart.ChartTooltipLabelColor)? = null,
-    val labelTextColor: ((tooltipItem: Chart.ChartTooltipItem, chart: Chart) -> String)? = null,
-    val afterLabel: ((tooltipItem: Chart.ChartTooltipItem, data: Chart.ChartData) -> dynamic)? = null,
-    val afterBody: ((item: Array<Chart.ChartTooltipItem>, data: Chart.ChartData) -> dynamic)? = null,
-    val beforeFooter: ((item: Array<Chart.ChartTooltipItem>, data: Chart.ChartData) -> dynamic)? = null,
-    val footer: ((item: Array<Chart.ChartTooltipItem>, data: Chart.ChartData) -> dynamic)? = null,
-    val afterFooter: ((item: Array<Chart.ChartTooltipItem>, data: Chart.ChartData) -> dynamic)? = null
+    val beforeTitle: ((item: Array<TooltipItem>) -> dynamic)? = null,
+    val title: ((item: Array<TooltipItem>) -> dynamic)? = null,
+    val afterTitle: ((item: Array<TooltipItem>) -> dynamic)? = null,
+    val beforeBody: ((item: Array<TooltipItem>) -> dynamic)? = null,
+    val beforeLabel: ((tooltipItem: TooltipItem) -> dynamic)? = null,
+    val label: ((tooltipItem: TooltipItem) -> dynamic)? = null,
+    val labelColor: ((tooltipItem: TooltipItem, chart: Chart) -> TooltipLabelStyle)? = null,
+    val labelTextColor: ((tooltipItem: TooltipItem, chart: Chart) -> String)? = null,
+    val afterLabel: ((tooltipItem: TooltipItem) -> dynamic)? = null,
+    val afterBody: ((item: Array<TooltipItem>) -> dynamic)? = null,
+    val beforeFooter: ((item: Array<TooltipItem>) -> dynamic)? = null,
+    val footer: ((item: Array<TooltipItem>) -> dynamic)? = null,
+    val afterFooter: ((item: Array<TooltipItem>) -> dynamic)? = null
 )
 
 /**
@@ -407,43 +536,44 @@ fun TooltipCallback.toJs(): dynamic {
  */
 data class TooltipOptions(
     val enabled: Boolean = true,
-    val custom: ((a: Any) -> Unit)? = null,
-    val mode: InteractionMode = InteractionMode.NEAREST,
-    val intersect: Boolean = true,
-    val position: TooltipPosition = TooltipPosition.AVERAGE,
+    val external: ((ctx: TooltipContext) -> Unit)? = null,
+    val mode: InteractionMode? = null,
+    val intersect: Boolean? = null,
+    val position: TooltipPosition? = null,
     val callbacks: TooltipCallback? = null,
-    val filter: ((item: Chart.ChartTooltipItem, data: Chart.ChartData) -> Boolean)? = null,
-    val itemSort: ((itemA: Chart.ChartTooltipItem, itemB: Chart.ChartTooltipItem) -> Number)? = null,
+    val filter: ((e: TooltipItem, index: Number, array: Array<TooltipItem>, data: ChartData) -> Boolean)? = null,
+    val itemSort: ((a: TooltipItem, b: TooltipItem, data: ChartData) -> Number)? = null,
     val backgroundColor: Color? = null,
-    val titleFontSize: Int = 12,
-    val titleFontStyle: FontStyle? = null,
-    val titleFontColor: Color? = null,
-    val titleFontFamily: String? = null,
-    val titleSpacing: Int = 2,
-    val titleMarginBottom: Int = 6,
-    val bodyFontSize: Int = 12,
-    val bodyFontStyle: FontStyle? = null,
-    val bodyFontColor: Color? = null,
-    val bodyFontFamily: String? = null,
-    val bodySpacing: Int = 2,
-    val footerFontSize: Int = 12,
-    val footerFontStyle: FontStyle? = null,
-    val footerFontColor: Color? = null,
-    val footerFontFamily: String? = null,
-    val footerSpacing: Int = 2,
-    val footerMarginTop: Int = 6,
-    val xPadding: Int = 6,
-    val yPadding: Int = 6,
-    val caretPadding: Int = 2,
-    val caretSize: Int = 5,
-    val cornerRadius: Int = 6,
-    val multiKeyBackground: Color? = null,
-    val displayColors: Boolean = true,
-    val borderColor: Color? = null,
-    val borderWidth: Int = 0,
+    val titleColor: Color? = null,
+    val titleFont: ChartFont? = null,
     val titleAlign: TooltipAlign? = null,
+    val titleSpacing: Int? = null,
+    val titleMarginBottom: Int? = null,
+    val bodyColor: Color? = null,
+    val bodyFont: ChartFont? = null,
     val bodyAlign: TooltipAlign? = null,
-    val footerAlign: TooltipAlign? = null
+    val bodySpacing: Int? = null,
+    val footerColor: Color? = null,
+    val footerFont: ChartFont? = null,
+    val footerAlign: TooltipAlign? = null,
+    val footerSpacing: Int? = null,
+    val footerMarginTop: Int? = null,
+    val padding: LayoutPaddingObject? = null,
+    val caretPadding: Int? = null,
+    val caretSize: Int? = null,
+    val cornerRadius: Int? = null,
+    val multiKeyBackground: Color? = null,
+    val displayColors: Boolean? = null,
+    val boxWidth: Int? = null,
+    val boxHeight: Int? = null,
+    val boxPadding: Number? = null,
+    val usePointStyle: Boolean? = null,
+    val borderColor: Color? = null,
+    val borderWidth: Int? = null,
+    val rtl: Boolean? = null,
+    val textDirection: TextDirection? = null,
+    val xAlign: TooltipAlign? = null,
+    val yAlign: TooltipAlign? = null
 )
 
 /**
@@ -453,43 +583,44 @@ data class TooltipOptions(
 fun TooltipOptions.toJs(): dynamic {
     return obj {
         this.enabled = enabled
-        if (custom != null) this.custom = custom
-        this.mode = mode.mode
-        this.intersect = intersect
-        this.position = position.mode
+        if (external != null) this.external = external
+        if (mode != null) this.mode = mode.mode
+        if (intersect != null) this.intersect = intersect
+        if (position != null) this.position = position.mode
         if (callbacks != null) this.callbacks = callbacks.toJs()
         if (filter != null) this.filter = filter
         if (itemSort != null) this.itemSort = itemSort
         if (backgroundColor != null) this.backgroundColor = backgroundColor.asString()
-        this.titleFontSize = titleFontSize
-        if (titleFontStyle != null) this.titleFontStyle = titleFontStyle.name
-        if (titleFontColor != null) this.titleFontColor = titleFontColor.asString()
-        if (titleFontFamily != null) this.titleFontFamily = titleFontFamily
-        this.titleSpacing = titleSpacing
-        this.titleMarginBottom = titleMarginBottom
-        this.bodyFontSize = bodyFontSize
-        if (bodyFontStyle != null) this.bodyFontStyle = bodyFontStyle.name
-        if (bodyFontColor != null) this.bodyFontColor = bodyFontColor.asString()
-        if (bodyFontFamily != null) this.bodyFontFamily = bodyFontFamily
-        this.bodySpacing = bodySpacing
-        this.footerFontSize = footerFontSize
-        if (footerFontStyle != null) this.footerFontStyle = footerFontStyle.name
-        if (footerFontColor != null) this.footerFontColor = footerFontColor.asString()
-        if (footerFontFamily != null) this.footerFontFamily = footerFontFamily
-        this.footerSpacing = footerSpacing
-        this.footerMarginTop = footerMarginTop
-        this.xPadding = xPadding
-        this.yPadding = yPadding
-        this.caretPadding = caretPadding
-        this.caretSize = caretSize
-        this.cornerRadius = cornerRadius
-        if (multiKeyBackground != null) this.multiKeyBackground = multiKeyBackground.asString()
-        this.displayColors = displayColors
-        if (borderColor != null) this.borderColor = borderColor.asString()
-        this.borderWidth = borderWidth
+        if (titleColor != null) this.titleColor = titleColor.asString()
+        if (titleFont != null) this.titleFont = titleFont.toJs()
         if (titleAlign != null) this.titleAlign = titleAlign.mode
+        if (titleSpacing != null) this.titleSpacing = titleSpacing
+        if (titleMarginBottom != null) this.titleMarginBottom = titleMarginBottom
+        if (bodyColor != null) this.bodyColor = bodyColor.asString()
+        if (bodyFont != null) this.bodyFont = bodyFont.toJs()
         if (bodyAlign != null) this.bodyAlign = bodyAlign.mode
+        if (bodySpacing != null) this.bodySpacing = bodySpacing
+        if (footerColor != null) this.footerColor = footerColor.asString()
+        if (footerFont != null) this.footerFont = footerFont.toJs()
         if (footerAlign != null) this.footerAlign = footerAlign.mode
+        if (footerSpacing != null) this.footerSpacing = footerSpacing
+        if (footerMarginTop != null) this.footerMarginTop = footerMarginTop
+        if (padding != null) this.padding = padding.toJs()
+        if (caretPadding != null) this.caretPadding = caretPadding
+        if (caretSize != null) this.caretSize = caretSize
+        if (cornerRadius != null) this.cornerRadius = cornerRadius
+        if (multiKeyBackground != null) this.multiKeyBackground = multiKeyBackground.asString()
+        if (displayColors != null) this.displayColors = displayColors
+        if (boxWidth != null) this.boxWidth = boxWidth
+        if (boxHeight != null) this.boxHeight = boxHeight
+        if (boxPadding != null) this.boxPadding = boxPadding
+        if (usePointStyle != null) this.usePointStyle = usePointStyle
+        if (borderColor != null) this.borderColor = borderColor.asString()
+        if (borderWidth != null) this.borderWidth = borderWidth
+        if (rtl != null) this.rtl = rtl
+        if (textDirection != null) this.textDirection = textDirection.mode
+        if (xAlign != null) this.xAlign = xAlign
+        if (yAlign != null) this.yAlign = yAlign
     }
 }
 
@@ -528,17 +659,17 @@ fun PointOptions.toJs(): dynamic {
  */
 data class LineOptions(
     val cubicInterpolationMode: InterpolationMode = InterpolationMode.DEFAULT,
-    val tension: Double = 0.2,
+    val tension: Double? = null,
     val backgroundColor: Color? = null,
-    val borderWidth: Int = 1,
+    val borderWidth: Int? = null,
     val borderColor: Color? = null,
     val borderCapStyle: LineCap? = null,
     val borderDash: List<Any>? = null,
-    val borderDashOffset: Int = 0,
+    val borderDashOffset: Number? = null,
     val borderJoinStyle: LineJoin? = null,
-    val capBezierPoints: Boolean = true,
-    val fill: Boolean = true,
-    val stepped: Boolean = false
+    val capBezierPoints: Boolean? = null,
+    val fill: Boolean? = null,
+    val stepped: Boolean? = null
 )
 
 /**
@@ -547,17 +678,17 @@ data class LineOptions(
 fun LineOptions.toJs(): dynamic {
     return obj {
         this.cubicInterpolationMode = cubicInterpolationMode.mode
-        this.tension = tension
+        if (tension != null) this.tension = tension
         if (backgroundColor != null) this.backgroundColor = backgroundColor.asString()
-        this.borderWidth = borderWidth
+        if (borderWidth != null) this.borderWidth = borderWidth
         if (borderColor != null) this.borderColor = borderColor.asString()
         if (borderCapStyle != null) this.borderCapStyle = borderCapStyle.mode
         if (borderDash != null) this.borderDash = borderDash.toTypedArray()
-        this.borderDashOffset = borderDashOffset
+        if (borderDashOffset != null) this.borderDashOffset = borderDashOffset
         if (borderJoinStyle != null) this.borderJoinStyle = borderJoinStyle.mode
-        this.capBezierPoints = capBezierPoints
-        this.fill = fill
-        this.stepped = stepped
+        if (capBezierPoints != null) this.capBezierPoints = capBezierPoints
+        if (fill != null) this.fill = fill
+        if (stepped != null) this.stepped = stepped
     }
 }
 
@@ -565,9 +696,11 @@ fun LineOptions.toJs(): dynamic {
  * Chart arc options.
  */
 data class ArcOptions(
+    val angle: Number? = null,
     val backgroundColor: Color? = null,
+    val borderAlign: TitleAlign? = null,
     val borderColor: Color? = null,
-    val borderWidth: Int = 2
+    val borderWidth: Int? = null
 )
 
 /**
@@ -575,31 +708,39 @@ data class ArcOptions(
  */
 fun ArcOptions.toJs(): dynamic {
     return obj {
+        if (angle != null) this.angle = angle
         if (backgroundColor != null) this.backgroundColor = backgroundColor.asString()
+        if (borderAlign != null) this.borderAlign = borderAlign.mode
         if (borderColor != null) this.borderColor = borderColor.asString()
-        this.borderWidth = borderWidth
+        if (borderWidth != null) this.borderWidth = borderWidth
     }
 }
 
 /**
- * Chart rectangle options.
+ * Chart bar options.
  */
-data class RectangleOptions(
+data class BarOptions(
     val backgroundColor: Color? = null,
     val borderColor: Color? = null,
-    val borderWidth: Int = 0,
-    val borderSkipped: Position = Position.BOTTOM
+    val borderWidth: Int? = null,
+    val borderSkipped: SkipMode? = null,
+    val borderRadius: Number? = null,
+    val inflateAmount: Number? = null,
+    val pointStyle: PointStyle? = null
 )
 
 /**
  * An extension function to convert configuration class to JS object.
  */
-fun RectangleOptions.toJs(): dynamic {
+fun BarOptions.toJs(): dynamic {
     return obj {
         if (backgroundColor != null) this.backgroundColor = backgroundColor.asString()
         if (borderColor != null) this.borderColor = borderColor.asString()
-        this.borderWidth = borderWidth
-        this.borderSkipped = borderSkipped.position
+        if (borderWidth != null) this.borderWidth = borderWidth
+        if (borderSkipped != null) this.borderSkipped = borderSkipped.mode
+        if (borderRadius != null) this.borderRadius = borderRadius
+        if (inflateAmount != null) this.inflateAmount = inflateAmount
+        if (pointStyle != null) this.pointStyle = pointStyle.style
     }
 }
 
@@ -610,7 +751,7 @@ data class ElementsOptions(
     val point: PointOptions? = null,
     val line: LineOptions? = null,
     val arc: ArcOptions? = null,
-    val rectangle: RectangleOptions? = null
+    val bar: BarOptions? = null
 )
 
 /**
@@ -621,7 +762,7 @@ fun ElementsOptions.toJs(): dynamic {
         if (point != null) this.point = point.toJs()
         if (line != null) this.line = line.toJs()
         if (arc != null) this.arc = arc.toJs()
-        if (rectangle != null) this.rectangle = rectangle.toJs()
+        if (bar != null) this.bar = bar.toJs()
     }
 }
 
@@ -631,18 +772,20 @@ fun ElementsOptions.toJs(): dynamic {
 data class GridLineOptions(
     val display: Boolean = true,
     val color: Color? = null,
-    val borderDash: List<Int>? = null,
-    val borderDashOffset: Int = 0,
-    val lineWidth: Int = 1,
-    val drawBorder: Boolean = true,
-    val drawOnChartArea: Boolean = true,
-    val drawTicks: Boolean = true,
-    val tickMarkLength: Int = 10,
-    val zeroLineWidth: Int = 1,
-    val zeroLineColor: Color? = null,
-    val zeroLineBorderDash: List<Int>? = null,
-    val zeroLineBorderDashOffset: Int = 0,
-    val offsetGridLines: Boolean = false,
+    val borderColor: Color? = null,
+    val borderWidth: Int? = null,
+    val borderDash: List<Number>? = null,
+    val borderDashOffset: Number? = null,
+    val lineWidth: Int? = null,
+    val drawBorder: Boolean? = null,
+    val drawOnChartArea: Boolean? = null,
+    val drawTicks: Boolean? = null,
+    val offset: Boolean? = null,
+    val tickLength: Number? = null,
+    val tickWidth: Number? = null,
+    val tickColor: Color? = null,
+    val tickBorderDash: List<Number>? = null,
+    val tickBorderDashOffset: Number? = null,
     val circular: Boolean? = null,
     val z: Number? = null
 )
@@ -654,18 +797,20 @@ fun GridLineOptions.toJs(): dynamic {
     return obj {
         this.display = display
         if (color != null) this.color = color.asString()
+        if (borderColor != null) this.borderColor = borderColor.asString()
+        if (borderWidth != null) this.borderWidth = borderWidth
         if (borderDash != null) this.borderDash = borderDash.toTypedArray()
-        this.borderDashOffset = borderDashOffset
-        this.lineWidth = lineWidth
-        this.drawBorder = drawBorder
-        this.drawOnChartArea = drawOnChartArea
-        this.drawTicks = drawTicks
-        this.tickMarkLength = tickMarkLength
-        this.zeroLineWidth = zeroLineWidth
-        if (zeroLineColor != null) this.zeroLineColor = zeroLineColor.asString()
-        if (zeroLineBorderDash != null) this.zeroLineBorderDash = zeroLineBorderDash.toTypedArray()
-        this.zeroLineBorderDashOffset = zeroLineBorderDashOffset
-        this.offsetGridLines = offsetGridLines
+        if (borderDashOffset != null) this.borderDashOffset = borderDashOffset
+        if (lineWidth != null) this.lineWidth = lineWidth
+        if (drawBorder != null) this.drawBorder = drawBorder
+        if (drawOnChartArea != null) this.drawOnChartArea = drawOnChartArea
+        if (drawTicks != null) this.drawTicks = drawTicks
+        if (offset != null) this.offset = offset
+        if (tickLength != null) this.tickLength = tickLength
+        if (tickWidth != null) this.tickWidth = tickWidth
+        if (tickColor != null) this.tickColor = tickColor.asString()
+        if (tickBorderDash != null) this.tickBorderDash = tickBorderDash.toTypedArray()
+        if (tickBorderDashOffset != null) this.tickBorderDashOffset = tickBorderDashOffset
         if (circular != null) this.circular = circular
         if (z != null) this.z = z
     }
@@ -675,14 +820,12 @@ fun GridLineOptions.toJs(): dynamic {
  * Chart scale title options.
  */
 data class ScaleTitleOptions(
-    val display: Boolean = false,
-    val labelString: String? = null,
-    val fontSize: Int = 12,
-    val fontStyle: FontStyle? = null,
-    val fontColor: Color? = null,
-    val fontFamily: String? = null,
-    val lineHeight: Number? = null,
-    val padding: Number? = null
+    val display: Boolean? = null,
+    val color: Color? = null,
+    val font: ChartFont? = null,
+    val padding: LayoutPaddingObject? = null,
+    val align: TitleAlign? = null,
+    val text: String? = null
 )
 
 /**
@@ -690,14 +833,12 @@ data class ScaleTitleOptions(
  */
 fun ScaleTitleOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
     return obj {
-        this.display = display
-        if (labelString != null) this.labelString = i18nTranslator(labelString)
-        this.fontSize = fontSize
-        if (fontStyle != null) this.fontStyle = fontStyle.name
-        if (fontColor != null) this.fontColor = fontColor.asString()
-        if (fontFamily != null) this.fontFamily = fontFamily
-        if (lineHeight != null) this.lineHeight = lineHeight
-        if (padding != null) this.padding = padding
+        if (display != null) this.display = display
+        if (color != null) this.color = color.asString()
+        if (font != null) this.font = font.toJs()
+        if (padding != null) this.padding = padding.toJs()
+        if (align != null) this.align = align.mode
+        if (text != null) this.text = i18nTranslator(text)
     }
 }
 
@@ -707,16 +848,32 @@ fun ScaleTitleOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
 data class TickOptions(
     val callback: ((value: Any, index: Any, values: Any) -> dynamic)? = null,
     val display: Boolean = true,
-    val fontSize: Int = 12,
-    val fontStyle: FontStyle? = null,
-    val fontColor: Color? = null,
-    val fontFamily: String? = null,
-    val reverse: Boolean = false,
-    val minor: dynamic = null,
+    val backdropColor: Color? = null,
+    val backdropPadding: LayoutPaddingObject? = null,
+    val color: Color? = null,
+    val font: ChartFont? = null,
     val major: dynamic = null,
-    val lineHeight: Number? = null,
     val padding: Number? = null,
-    val z: Number? = null
+    val showLabelBackdrop: Boolean? = null,
+    val textStrokeColor: Color? = null,
+    val textStrokeWidth: Number? = null,
+    val z: Number? = null,
+    val align: TitleAlign? = null,
+    val crossAlign: CrossAlign? = null,
+    val sampleSize: Number? = null,
+    val autoSkip: Boolean? = null,
+    val autoSkipPadding: Number? = null,
+    val includeBounds: Boolean? = null,
+    val labelOffset: Number? = null,
+    val maxRotation: Number? = null,
+    val minRotation: Number? = null,
+    val mirror: Boolean? = null,
+    val count: Number? = null,
+    val format: dynamic = null,
+    val maxTicksLimit: Int? = null,
+    val precision: Number? = null,
+    val stepSize: Number? = null,
+    val source: dynamic = null
 )
 
 /**
@@ -726,16 +883,31 @@ fun TickOptions.toJs(): dynamic {
     return obj {
         if (callback != null) this.callback = callback
         this.display = display
-        this.fontSize = fontSize
-        if (fontStyle != null) this.fontStyle = fontStyle.name
-        if (fontColor != null) this.fontColor = fontColor.asString()
-        if (fontFamily != null) this.fontFamily = fontFamily
-        this.reverse = reverse
-        if (minor != null) this.minor = minor
+        if (backdropColor != null) this.backdropColor = backdropColor.asString()
+        if (backdropPadding != null) this.backdropPadding = backdropPadding.toJs()
+        if (color != null) this.color = color.asString()
+        if (font != null) this.font = font.toJs()
         if (major != null) this.major = major
-        if (lineHeight != null) this.lineHeight = lineHeight
         if (padding != null) this.padding = padding
-        if (z != null) this.z = z
+        if (showLabelBackdrop != null) this.showLabelBackdrop = showLabelBackdrop
+        if (textStrokeColor != null) this.textStrokeColor = textStrokeColor.asString()
+        if (textStrokeWidth != null) this.textStrokeWidth = textStrokeWidth
+        if (align != null) this.align = align.mode
+        if (crossAlign != null) this.crossAlign = crossAlign.mode
+        if (sampleSize != null) this.sampleSize = sampleSize
+        if (autoSkip != null) this.autoSkip = autoSkip
+        if (autoSkipPadding != null) this.autoSkipPadding = autoSkipPadding
+        if (includeBounds != null) this.includeBounds = includeBounds
+        if (labelOffset != null) this.labelOffset = labelOffset
+        if (maxRotation != null) this.maxRotation = maxRotation
+        if (minRotation != null) this.minRotation = minRotation
+        if (mirror != null) this.mirror = mirror
+        if (count != null) this.count = count
+        if (format != null) this.format = format
+        if (maxTicksLimit != null) this.maxTicksLimit = maxTicksLimit
+        if (precision != null) this.precision = precision
+        if (stepSize != null) this.stepSize = stepSize
+        if (source != null) this.source = source
     }
 }
 
@@ -744,13 +916,34 @@ fun TickOptions.toJs(): dynamic {
  */
 data class ChartScales(
     val type: ScalesType? = null,
-    val display: Boolean = true,
-    val position: Position? = null,
-    val gridLines: GridLineOptions? = null,
-    val scaleLabel: ScaleTitleOptions? = null,
+    val alignToPixels: Boolean? = null,
+    val backgroundColor: Color? = null,
+    val display: Boolean? = null,
+    val grid: GridLineOptions? = null,
+    val min: dynamic = null,
+    val max: dynamic = null,
+    val reverse: Boolean? = null,
+    val stacked: Boolean? = null,
+    val suggestedMax: Number? = null,
+    val suggestedMin: Number? = null,
     val ticks: TickOptions? = null,
-    val xAxes: List<dynamic>? = null,
-    val yAxes: List<dynamic>? = null
+    val weight: Number? = null,
+    val bounds: ScaleBounds? = null,
+    val position: Position? = null,
+    val stack: String? = null,
+    val stackWeight: Number? = null,
+    val axis: String? = null,
+    val offset: Boolean? = null,
+    val title: ScaleTitleOptions? = null,
+    val labels: List<String>? = null,
+    val beginAtZero: Boolean? = null,
+    val grace: dynamic = null,
+    val adapters: dynamic = null,
+    val time: dynamic = null,
+    val animate: Boolean? = null,
+    val angleLines: dynamic = null,
+    val pointLabels: dynamic = null,
+    val startAngle: Number? = null
 )
 
 /**
@@ -759,13 +952,57 @@ data class ChartScales(
 fun ChartScales.toJs(i18nTranslator: (String) -> (String)): dynamic {
     return obj {
         if (type != null) this.type = type.type
-        this.display = display
-        if (position != null) this.position = position.position
-        if (gridLines != null) this.gridLines = gridLines.toJs()
-        if (scaleLabel != null) this.scaleLabel = scaleLabel.toJs(i18nTranslator)
+        if (alignToPixels != null) this.alignToPixels = alignToPixels
+        if (backgroundColor != null) this.backgroundColor = backgroundColor.asString()
+        if (display != null) this.display = display
+        if (grid != null) this.grid = grid.toJs()
+        if (min != null) this.min = min
+        if (max != null) this.max = max
+        if (reverse != null) this.reverse = reverse
+        if (stacked != null) this.stacked = stacked
+        if (suggestedMax != null) this.suggestedMax = suggestedMax
+        if (suggestedMin != null) this.suggestedMin = suggestedMin
         if (ticks != null) this.ticks = ticks.toJs()
-        if (xAxes != null) this.xAxes = xAxes.toTypedArray()
-        if (yAxes != null) this.yAxes = yAxes.toTypedArray()
+        if (weight != null) this.weight = max
+        if (bounds != null) this.bounds = bounds.mode
+        if (position != null) this.position = position.position
+        if (stack != null) this.stack = stack
+        if (stackWeight != null) this.stackWeight = stackWeight
+        if (axis != null) this.axis = axis
+        if (offset != null) this.offset = offset
+        if (title != null) this.title = title.toJs(i18nTranslator)
+        if (labels != null) this.labels = labels.map { i18nTranslator(it) }.toTypedArray()
+        if (beginAtZero != null) this.beginAtZero = beginAtZero
+        if (grace != null) this.grace = grace
+        if (adapters != null) this.adapters = adapters
+        if (time != null) this.time = time
+        if (animate != null) this.animate = animate
+        if (angleLines != null) this.angleLines = angleLines
+        if (pointLabels != null) this.pointLabels = pointLabels
+        if (startAngle != null) this.startAngle = startAngle
+    }
+}
+
+/**
+ * Built-in plugins options.
+ */
+data class PluginsOptions(
+    val legend: LegendOptions? = null,
+    val title: TitleOptions? = null,
+    val subtitle: TitleOptions? = null,
+    val tooltip: TooltipOptions? = null,
+)
+
+/**
+ * An extension function to convert configuration class to JS object.
+ */
+@Suppress("ComplexMethod")
+fun PluginsOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
+    return obj {
+        if (legend != null) this.legend = legend.toJs(i18nTranslator)
+        if (title != null) this.title = title.toJs(i18nTranslator)
+        if (subtitle != null) this.subtitle = subtitle.toJs(i18nTranslator)
+        if (tooltip != null) this.tooltip = tooltip.toJs()
     }
 }
 
@@ -774,30 +1011,31 @@ fun ChartScales.toJs(i18nTranslator: (String) -> (String)): dynamic {
  */
 data class ChartOptions(
     val responsive: Boolean = true,
-    val responsiveAnimationDuration: Int = 0,
-    val aspectRatio: Int = 2,
+    val aspectRatio: Number? = null,
     val maintainAspectRatio: Boolean = true,
-    val onResize: ((chart: Chart, newSize: Chart.ChartSize) -> Unit)? = null,
-    val devicePixelRatio: Int? = null,
-    val hover: HoverOptions? = null,
+    val onResize: ((chart: Chart, newSize: ChartSize) -> Unit)? = null,
+    val resizeDelay: Int? = null,
+    val devicePixelRatio: Number? = null,
+    val locale: String? = null,
+    val interaction: InteractionOptions? = null,
+    val hover: InteractionOptions? = null,
     val events: List<String>? = null,
-    val onHover: ((chart: Chart, event: MouseEvent, activeElements: Array<Any>) -> Any)? = null,
-    val onClick: ((event: MouseEvent, activeElements: Array<Any>) -> Any)? = null,
+    val onHover: ((event: ChartEvent, elements: Array<ActiveElement>, chart: Chart) -> Any)? = null,
+    val onClick: ((event: ChartEvent, elements: Array<ActiveElement>, chart: Chart) -> Any)? = null,
     val animation: AnimationOptions? = null,
+    val animations: dynamic = null,
+    val transitions: dynamic = null,
     val layout: LayoutOptions? = null,
-    val legend: LegendOptions? = null,
-    val legendCallback: ((chart: Chart) -> String)? = null,
-    val title: TitleOptions? = null,
-    val tooltips: TooltipOptions? = null,
     val elements: ElementsOptions? = null,
-    val scales: ChartScales? = null,
-    val showLines: Boolean? = null,
+    val scales: Map<String, ChartScales>? = null,
+    val scalesDynamic: dynamic = null,
+    val showLine: Boolean? = null,
     val spanGaps: Boolean? = null,
     val cutoutPercentage: Int? = null,
     val circumference: Double? = null,
     val rotation: Double? = null,
-    val plugins: dynamic = null,
-    val scale: dynamic = null
+    val plugins: PluginsOptions? = null,
+    val pluginsDynamic: dynamic = null
 )
 
 /**
@@ -805,32 +1043,62 @@ data class ChartOptions(
  */
 @Suppress("ComplexMethod")
 fun ChartOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
+    val scalesTmp = if (scalesDynamic != null) {
+        if (scales == null) {
+            scalesDynamic
+        } else {
+            val s = js("{}")
+            scales.forEach {
+                s[it.key] = it.value.toJs(i18nTranslator)
+            }
+            js("Object").assign(scalesDynamic, s)
+        }
+    } else if (scales != null) {
+        val s = js("{}")
+        scales.forEach {
+            s[it.key] = it.value.toJs(i18nTranslator)
+        }
+        s
+    } else null
+    val pluginsTmp = if (pluginsDynamic != null) {
+        if (plugins == null) {
+            pluginsDynamic
+        } else {
+            js("Object").assign(pluginsDynamic, plugins.toJs(i18nTranslator))
+        }
+    } else {
+        plugins?.toJs(i18nTranslator)
+    }
     return obj {
         this.responsive = responsive
         this.responsiveAnimationDuration = responsiveAnimationDuration
-        this.aspectRatio = aspectRatio
+        if (aspectRatio != null) this.aspectRatio = aspectRatio
         this.maintainAspectRatio = maintainAspectRatio
         if (onResize != null) this.onResize = onResize
+        if (resizeDelay != null) this.resizeDelay = resizeDelay
         if (devicePixelRatio != null) this.devicePixelRatio = devicePixelRatio
+        this.locale = locale ?: I18n.language
+        if (interaction != null) this.interaction = interaction.toJs()
         if (hover != null) this.hover = hover.toJs()
         if (events != null) this.events = events.toTypedArray()
         if (onHover != null) this.onHover = onHover
         if (onClick != null) this.onClick = onClick
         if (animation != null) this.animation = animation.toJs()
+        if (animations != null) this.animations = animations
+        if (transitions != null) this.transitions = transitions
         if (layout != null) this.layout = layout.toJs()
-        if (legend != null) this.legend = legend.toJs()
-        if (legendCallback != null) this.legendCallback = legendCallback
-        if (title != null) this.title = title.toJs(i18nTranslator)
-        if (tooltips != null) this.tooltips = tooltips.toJs()
         if (elements != null) this.elements = elements.toJs()
-        if (scales != null) this.scales = scales.toJs(i18nTranslator)
-        if (showLines != null) this.showLines = showLines
+        if (scalesTmp != null) {
+            this.scales = scalesTmp
+        }
+        if (showLine != null) this.showLine = showLine
         if (spanGaps != null) this.spanGaps = spanGaps
         if (cutoutPercentage != null) this.cutoutPercentage = cutoutPercentage
         if (circumference != null) this.circumference = circumference
         if (rotation != null) this.rotation = rotation
-        if (plugins != null) this.plugins = plugins
-        if (scale != null) this.scale = scale
+        if (pluginsTmp != null) {
+            this.plugins = pluginsTmp
+        }
     }
 }
 
@@ -842,50 +1110,63 @@ data class DataSets(
     val backgroundColor: List<Color>? = null,
     val borderWidth: List<Int>? = null,
     val borderColor: List<Color>? = null,
-    val borderCapStyle: List<LineCap>? = null,
+    val borderCapStyle: LineCap? = null,
     val borderDash: List<Int>? = null,
-    val borderDashOffset: Int? = null,
-    val borderJoinStyle: List<LineJoin>? = null,
+    val borderDashOffset: Number? = null,
+    val borderJoinStyle: LineJoin? = null,
     val borderSkipped: List<Position>? = null,
+    val clip: dynamic = null,
     val data: List<dynamic>? = null,
     val fill: Boolean? = null,
     val hoverBackgroundColor: List<Color>? = null,
     val hoverBorderColor: List<Color>? = null,
     val hoverBorderWidth: List<Int>? = null,
+    val hoverBorderCapStyle: LineCap? = null,
+    val hoverBorderDash: List<Int>? = null,
+    val hoverBorderDashOffset: Number? = null,
+    val hoverBorderJoinStyle: LineJoin? = null,
+    val indexAxis: String? = null,
     val label: String? = null,
-    val lineTension: Number? = null,
-    val steppedLine: Boolean? = null,
+    val order: Number? = null,
     val pointBorderColor: List<Color>? = null,
     val pointBackgroundColor: List<Color>? = null,
     val pointBorderWidth: List<Int>? = null,
-    val pointRadius: List<Int>? = null,
-    val pointHoverRadius: List<Int>? = null,
-    val pointHitRadius: List<Int>? = null,
+    val pointRadius: List<Number>? = null,
+    val pointHoverRadius: List<Number>? = null,
+    val pointHitRadius: List<Number>? = null,
     val pointHoverBackgroundColor: List<Color>? = null,
     val pointHoverBorderColor: List<Color>? = null,
     val pointHoverBorderWidth: List<Int>? = null,
+    val pointRotation: List<Number>? = null,
     val pointStyle: List<PointStyle>? = null,
+    val segment: dynamic = null,
+    val showLine: Boolean? = null,
+    val spanGaps: Boolean? = null,
+    val stack: String? = null,
+    val stepped: Boolean? = null,
+    val tension: Number? = null,
     val xAxisID: String? = null,
     val yAxisID: String? = null,
-    val type: ChartType? = null,
-    val hidden: Boolean? = null,
-    val hideInLegendAndTooltip: Boolean? = null,
-    val showLine: Boolean? = null,
-    val stack: String? = null,
-    val spanGaps: Boolean? = null,
+    val base: Number? = null,
     val barPercentage: Number? = null,
     val barThickness: dynamic = null,
-    val borderAlign: dynamic = null,
+    val borderRadius: List<Number>? = null,
     val categoryPercentage: Number? = null,
-    val hitRadius: List<Int>? = null,
-    val hoverRadius: Number? = null,
+    val grouped: Boolean? = null,
+    val hoverBorderRadius: List<Number>? = null,
+    val inflateAmount: List<Number>? = null,
     val maxBarThickness: Number? = null,
     val minBarLegth: Number? = null,
-    val order: Number? = null,
-    val pointRotation: List<Int>? = null,
-    val radius: List<Int>? = null,
-    val rotation: List<Int>? = null,
-    val weight: Number? = null
+    val skipNull: Boolean? = null,
+    val circumference: Number? = null,
+    val offset: List<Number>? = null,
+    val rotation: Number? = null,
+    val spacing: Number? = null,
+    val weight: Number? = null,
+    val hitRadius: List<Number>? = null,
+    val hoverRadius: List<Number>? = null,
+    val radius: List<Number>? = null,
+    val borderAlign: BorderAlign? = null
 )
 
 /**
@@ -899,14 +1180,13 @@ fun DataSets.toJs(i18nTranslator: (String) -> (String)): dynamic {
             backgroundColor.map { it.asString() }.toTypedArray().checkSingleValue()
         if (borderWidth != null) this.borderWidth = borderWidth.toTypedArray().checkSingleValue()
         if (borderColor != null) this.borderColor = borderColor.map { it.asString() }.toTypedArray().checkSingleValue()
-        if (borderCapStyle != null) this.borderCapStyle =
-            borderCapStyle.map { it.mode }.toTypedArray().checkSingleValue()
+        if (borderCapStyle != null) this.borderCapStyle = borderCapStyle.mode
         if (borderDash != null) this.borderDash = borderDash.toTypedArray()
         if (borderDashOffset != null) this.borderDashOffset = borderDashOffset
-        if (borderJoinStyle != null) this.borderJoinStyle =
-            borderJoinStyle.map { it.mode }.toTypedArray().checkSingleValue()
+        if (borderJoinStyle != null) this.borderJoinStyle = borderJoinStyle.mode
         if (borderSkipped != null) this.borderSkipped =
             borderSkipped.map { it.position }.toTypedArray().checkSingleValue()
+        if (clip != null) this.clip = clip
         if (data != null) this.data = data.toTypedArray()
         if (fill != null) this.fill = fill
         if (hoverBackgroundColor != null) this.hoverBackgroundColor =
@@ -914,9 +1194,13 @@ fun DataSets.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (hoverBorderColor != null) this.hoverBorderColor =
             hoverBorderColor.map { it.asString() }.toTypedArray().checkSingleValue()
         if (hoverBorderWidth != null) this.hoverBorderWidth = hoverBorderWidth.toTypedArray().checkSingleValue()
+        if (hoverBorderCapStyle != null) this.hoverBorderCapStyle = hoverBorderCapStyle.mode
+        if (hoverBorderDash != null) this.hoverBorderDash = hoverBorderDash.toTypedArray()
+        if (hoverBorderDashOffset != null) this.hoverBorderDashOffset = hoverBorderDashOffset
+        if (hoverBorderJoinStyle != null) this.hoverBorderJoinStyle = hoverBorderJoinStyle.mode
+        if (indexAxis != null) this.indexAxis = indexAxis
         if (label != null) this.label = i18nTranslator(label)
-        if (lineTension != null) this.lineTension = lineTension
-        if (steppedLine != null) this.steppedLine = steppedLine
+        if (order != null) this.order = order
         if (pointBorderColor != null) this.pointBorderColor =
             pointBorderColor.map { it.asString() }.toTypedArray().checkSingleValue()
         if (pointBackgroundColor != null) this.pointBackgroundColor =
@@ -931,28 +1215,36 @@ fun DataSets.toJs(i18nTranslator: (String) -> (String)): dynamic {
             pointHoverBorderColor.map { it.asString() }.toTypedArray().checkSingleValue()
         if (pointHoverBorderWidth != null) this.pointHoverBorderWidth =
             pointHoverBorderWidth.toTypedArray().checkSingleValue()
+        if (pointRotation != null) this.pointRotation = pointRotation.toTypedArray().checkSingleValue()
         if (pointStyle != null) this.pointStyle = pointStyle.map { it.style }.toTypedArray().checkSingleValue()
+        if (segment != null) this.segment = segment
+        if (showLine != null) this.showLine = showLine
+        if (spanGaps != null) this.spanGaps = spanGaps
+        if (stack != null) this.stack = stack
+        if (stepped != null) this.stepped = stepped
+        if (tension != null) this.tension = tension
         if (xAxisID != null) this.xAxisID = xAxisID
         if (yAxisID != null) this.yAxisID = yAxisID
-        if (type != null) this.type = type.type
-        if (hidden != null) this.hidden = hidden
-        if (hideInLegendAndTooltip != null) this.hideInLegendAndTooltip = hideInLegendAndTooltip
-        if (showLine != null) this.showLine = showLine
-        if (stack != null) this.stack = stack
-        if (spanGaps != null) this.spanGaps = spanGaps
+        if (base != null) this.base = base
         if (barPercentage != null) this.barPercentage = barPercentage
         if (barThickness != null) this.barThickness = barThickness
-        if (borderAlign != null) this.borderAlign = borderAlign
+        if (borderRadius != null) this.borderRadius = borderRadius.toTypedArray().checkSingleValue()
         if (categoryPercentage != null) this.categoryPercentage = categoryPercentage
-        if (hitRadius != null) this.hitRadius = hitRadius.toTypedArray().checkSingleValue()
-        if (hoverRadius != null) this.hoverRadius = hoverRadius
+        if (grouped != null) this.grouped = grouped
+        if (hoverBorderRadius != null) this.hoverBorderRadius = hoverBorderRadius.toTypedArray().checkSingleValue()
+        if (inflateAmount != null) this.inflateAmount = inflateAmount.toTypedArray().checkSingleValue()
         if (maxBarThickness != null) this.maxBarThickness = maxBarThickness
         if (minBarLegth != null) this.minBarLegth = minBarLegth
-        if (order != null) this.order = order
-        if (pointRotation != null) this.pointRotation = pointRotation.toTypedArray().checkSingleValue()
-        if (radius != null) this.radius = radius.toTypedArray().checkSingleValue()
-        if (rotation != null) this.rotation = rotation.toTypedArray().checkSingleValue()
+        if (skipNull != null) this.skipNull = skipNull
+        if (circumference != null) this.circumference = circumference
+        if (offset != null) this.offset = offset.toTypedArray().checkSingleValue()
+        if (rotation != null) this.rotation = rotation
+        if (spacing != null) this.spacing = spacing
         if (weight != null) this.weight = weight
+        if (hitRadius != null) this.hitRadius = hitRadius.toTypedArray().checkSingleValue()
+        if (hoverRadius != null) this.hoverRadius = hoverRadius
+        if (radius != null) this.radius = radius.toTypedArray().checkSingleValue()
+        if (borderAlign != null) this.borderAlign = borderAlign
     }
 }
 
@@ -971,7 +1263,7 @@ data class Configuration(
  * An extension function to convert configuration class to JS object.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-fun Configuration.toJs(i18nTranslator: (String) -> (String)): Chart.ChartConfiguration {
+fun Configuration.toJs(i18nTranslator: (String) -> (String)): ChartConfiguration {
     return obj {
         this.type = type.type
         this.data = obj {
@@ -983,7 +1275,7 @@ fun Configuration.toJs(i18nTranslator: (String) -> (String)): Chart.ChartConfigu
         }
         if (options != null) this.options = options.toJs(i18nTranslator)
         if (plugins != null) this.plugins = plugins.toTypedArray()
-    } as Chart.ChartConfiguration
+    } as ChartConfiguration
 }
 
 private fun Array<dynamic>.checkSingleValue(): dynamic {

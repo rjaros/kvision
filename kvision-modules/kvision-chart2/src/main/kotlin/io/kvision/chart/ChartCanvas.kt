@@ -19,14 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.chart
 
+import io.kvision.snabbdom.VNode
 import io.kvision.ChartModule
-import io.kvision.chart.js.ChartConfiguration
+import io.kvision.chart.js.Chart.ChartConfiguration
 import io.kvision.html.Canvas
 import io.kvision.i18n.I18n
-import io.kvision.snabbdom.VNode
-import io.kvision.utils.createInstance
 import io.kvision.chart.js.Chart as JsChart
 
 internal class ChartCanvas(
@@ -64,8 +65,7 @@ internal class ChartCanvas(
 
     override fun afterInsert(node: VNode) {
         jsChart =
-            ChartModule.getConstructor()
-                .createInstance(this.context2D, configuration.toJs(this::translate))
+            JsChart(this.context2D, configuration.toJs(this::translate))
     }
 
     override fun afterDestroy() {
@@ -81,8 +81,8 @@ internal class ChartCanvas(
         jsChart?.reset()
     }
 
-    fun renderChart() {
-        jsChart?.render()
+    fun render(duration: Int? = null, lazy: Boolean = false) {
+        jsChart?.render(duration, lazy)
     }
 
     fun stop() {
@@ -97,8 +97,8 @@ internal class ChartCanvas(
         jsChart?.clear()
     }
 
-    fun update(updateMode: UpdateMode? = null) {
-        jsChart?.update(updateMode ?: undefined)
+    fun update() {
+        jsChart?.update()
     }
 
     fun toBase64Image(): String? {

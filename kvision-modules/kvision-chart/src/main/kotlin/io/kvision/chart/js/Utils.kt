@@ -19,20 +19,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-/**
- * Initializer for KVision Bootstrap chart module.
- */
-object ChartModule : ModuleInitializer {
+@file:Suppress("UNUSED_TYPEALIAS_PARAMETER")
 
-    private val chartjs = require("chart.js/auto").default
+package io.kvision.chart.js
 
-    @Suppress("UnsafeCastFromDynamic")
-    fun getConstructor(): Any {
-        return chartjs
-    }
+typealias DeepPartial<T> = Any
 
-    override fun initialize() {
-    }
-}
+typealias _DeepPartialArray<T> = Array<DeepPartial<T>>
+
+typealias _DeepPartialObject<T> = Any
+
+typealias DistributiveArray<T> = Any
+
+typealias UnionToIntersection<U> = Any
