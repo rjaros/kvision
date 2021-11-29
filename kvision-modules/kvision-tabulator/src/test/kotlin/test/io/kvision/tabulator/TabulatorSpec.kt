@@ -33,7 +33,7 @@ import kotlin.test.Test
 class TabulatorSpec : DomSpec {
 
     @Test
-    fun render() = runAsync { resolve, reject ->
+    fun render() = runAsync { resolve, _ ->
         val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
         val element = document.getElementById("test")
 
