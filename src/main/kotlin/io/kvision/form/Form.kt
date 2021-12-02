@@ -28,6 +28,7 @@ import io.kvision.types.toDateF
 import io.kvision.types.toStringF
 import io.kvision.utils.JSON
 import io.kvision.utils.JSON.toObj
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.modules.SerializersModule
@@ -71,9 +72,11 @@ class Form<K : Any>(
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
 
+    @OptIn(ExperimentalSerializationApi::class)
     private val Json = serializer?.let {
         kotlinx.serialization.json.Json {
             encodeDefaults = true
+            explicitNulls = false
             serializersModule = SerializersModule {
                 contextual(Date::class, DateSerializer)
                 customSerializers?.forEach { (kclass, serializer) ->
