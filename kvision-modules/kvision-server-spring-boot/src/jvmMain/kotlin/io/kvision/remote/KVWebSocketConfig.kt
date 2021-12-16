@@ -35,6 +35,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactor.asFlux
 import kotlinx.coroutines.reactor.asMono
+import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.beans.factory.config.BeanDefinition
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
@@ -91,7 +92,7 @@ class KVWebSocketHandler(
                         requestChannel,
                         responseChannel
                     )
-                    session.close()
+                    session.close().awaitSingle()
                 }
             }
         }.asMono(EmptyCoroutineContext).then()
