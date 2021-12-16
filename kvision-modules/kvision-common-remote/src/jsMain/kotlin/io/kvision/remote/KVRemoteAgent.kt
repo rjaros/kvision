@@ -65,7 +65,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                    Serialization.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -86,7 +86,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                    Serialization.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -109,7 +109,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                    Serialization.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -131,7 +131,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                    Serialization.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -155,7 +155,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                    Serialization.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -178,7 +178,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                    Serialization.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -203,7 +203,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                    Serialization.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -227,7 +227,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                    Serialization.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -253,7 +253,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                    Serialization.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -282,7 +282,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                    Serialization.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -316,7 +316,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                    Serialization.nonstrict.decodeFromString(RET::class.serializer(), it)
                 }
             }
         }.asDeferred().await()
@@ -349,7 +349,7 @@ open class KVRemoteAgent<T : Any>(
                     @Suppress("UNCHECKED_CAST")
                     tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                 } catch (t: NotEnumTypeException) {
-                    JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                    Serialization.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                 }
             }
         }.asDeferred().await()
@@ -386,7 +386,7 @@ open class KVRemoteAgent<T : Any>(
                         @Suppress("UNCHECKED_CAST")
                         tryDeserializeEnum(RET::class as KClass<Any>, it) as RET
                     } catch (t: NotEnumTypeException) {
-                        JSON.nonstrict.decodeFromString(RET::class.serializer(), it)
+                        Serialization.nonstrict.decodeFromString(RET::class.serializer(), it)
                     }
                 }
             }.asDeferred().await()
@@ -422,7 +422,7 @@ open class KVRemoteAgent<T : Any>(
                         @Suppress("UNCHECKED_CAST")
                         tryDeserializeEnumList(RET::class as KClass<Any>, it) as List<RET>
                     } catch (t: NotEnumTypeException) {
-                        JSON.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
+                        Serialization.nonstrict.decodeFromString(ListSerializer(RET::class.serializer()), it)
                     }
                 }
             }.asDeferred().await()
@@ -450,7 +450,7 @@ open class KVRemoteAgent<T : Any>(
                 val requestJob = launch {
                     for (par1 in requestChannel) {
                         val param = serializeNotNull(par1)
-                        val str = JSON.plain.encodeToString(
+                        val str = Serialization.plain.encodeToString(
                             JsonRpcRequest(
                                 0,
                                 url,
@@ -467,7 +467,7 @@ open class KVRemoteAgent<T : Any>(
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
+                        val data = JSON.parse<dynamic>(str).result ?: ""
                         val par2 = try {
                             @Suppress("UnsafeCastFromDynamic")
                             deserialize(data, PAR2::class.js.name)
@@ -477,7 +477,7 @@ open class KVRemoteAgent<T : Any>(
                                 tryDeserializeEnum(PAR2::class as KClass<Any>, data) as PAR2
                             } catch (t: NotEnumTypeException) {
                                 @Suppress("UnsafeCastFromDynamic")
-                                JSON.nonstrict.decodeFromString(PAR2::class.serializer(), data)
+                                Serialization.nonstrict.decodeFromString(PAR2::class.serializer(), data)
                             }
                         }
                         responseChannel.send(par2)
@@ -527,7 +527,7 @@ open class KVRemoteAgent<T : Any>(
                 val requestJob = launch {
                     for (par1 in requestChannel) {
                         val param = serializeNotNull(par1)
-                        val str = JSON.plain.encodeToString(
+                        val str = Serialization.plain.encodeToString(
                             JsonRpcRequest(
                                 0,
                                 url,
@@ -544,7 +544,7 @@ open class KVRemoteAgent<T : Any>(
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
+                        val data = JSON.parse<dynamic>(str).result ?: ""
                         val par2 = try {
                             @Suppress("UnsafeCastFromDynamic")
                             deserializeList(data, PAR2::class.js.name)
@@ -554,7 +554,7 @@ open class KVRemoteAgent<T : Any>(
                                 tryDeserializeEnumList(PAR2::class as KClass<Any>, data) as List<PAR2>
                             } catch (t: NotEnumTypeException) {
                                 @Suppress("UnsafeCastFromDynamic")
-                                JSON.nonstrict.decodeFromString(ListSerializer(PAR2::class.serializer()), data)
+                                Serialization.nonstrict.decodeFromString(ListSerializer(PAR2::class.serializer()), data)
                             }
                         }
                         responseChannel.send(par2)

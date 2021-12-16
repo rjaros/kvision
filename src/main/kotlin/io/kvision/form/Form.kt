@@ -26,18 +26,18 @@ import io.kvision.types.DateSerializer
 import io.kvision.types.KFile
 import io.kvision.types.toDateF
 import io.kvision.types.toStringF
-import io.kvision.utils.JSON
-import io.kvision.utils.JSON.toObj
+import io.kvision.utils.Serialization
+import io.kvision.utils.Serialization.toObj
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.overwriteWith
 import kotlinx.serialization.serializer
 import kotlin.js.Date
 import kotlin.js.Json
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty1
-import kotlin.js.JSON as NativeJSON
 
 /**
  * Internal data class containing form field parameters.
@@ -73,16 +73,18 @@ class Form<K : Any>(
     internal var validator: ((Form<K>) -> Boolean?)? = null
 
     @OptIn(ExperimentalSerializationApi::class)
-    private val Json = serializer?.let {
-        kotlinx.serialization.json.Json {
+    private val JsonInstance = serializer?.let {
+        kotlinx.serialization.json.Json(
+            from = (Serialization.customConfiguration ?: kotlinx.serialization.json.Json.Default)
+        ) {
             encodeDefaults = true
             explicitNulls = false
-            serializersModule = SerializersModule {
+            serializersModule = serializersModule.overwriteWith(SerializersModule {
                 contextual(Date::class, DateSerializer)
                 customSerializers?.forEach { (kclass, serializer) ->
                     contextual(kclass.unsafeCast<KClass<Any>>(), serializer.unsafeCast<KSerializer<Any>>())
                 }
-            }
+            })
         }
     }
 
@@ -103,12 +105,12 @@ class Form<K : Any>(
                     }
                     if (v != null) json[key] = v
                 }
-                Json!!.decodeFromString(serializer, NativeJSON.stringify(json))
+                JsonInstance!!.decodeFromString(serializer, JSON.stringify(json))
             }
         }
         jsonFactory = serializer?.let {
             {
-                NativeJSON.parse(Json!!.encodeToString(serializer, it))
+                JSON.parse(JsonInstance!!.encodeToString(serializer, it))
             }
         }
     }
@@ -290,9 +292,9 @@ class Form<K : Any>(
                 when (val formField = fields[key]) {
                     is DateFormControl -> formField.value = (jsonValue.unsafeCast<String>()).toDateF()
                     is KFilesFormControl -> {
-                        formField.value = JSON.plain.decodeFromString(
+                        formField.value = Serialization.plain.decodeFromString(
                             ListSerializer(KFile.serializer()),
-                            kotlin.js.JSON.stringify(jsonValue)
+                            JSON.stringify(jsonValue)
                         )
                     }
                     else -> {
@@ -333,14 +335,14 @@ class Form<K : Any>(
      */
     fun getDataJson(): Json {
         return if (serializer != null) {
-            NativeJSON.parse(
-                Json!!.encodeToString(
+            JSON.parse(
+                JsonInstance!!.encodeToString(
                     serializer,
                     getData()
                 )
             )
         } else {
-            NativeJSON.parse("{}")
+            JSON.parse("{}")
         }
     }
 

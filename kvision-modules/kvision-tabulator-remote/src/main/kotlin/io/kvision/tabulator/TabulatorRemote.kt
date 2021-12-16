@@ -29,7 +29,7 @@ import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteData
 import io.kvision.remote.RemoteFilter
 import io.kvision.remote.RemoteSorter
-import io.kvision.utils.JSON
+import io.kvision.utils.Serialization
 import kotlinx.browser.window
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
@@ -85,24 +85,24 @@ open class TabulatorRemote<T : Any, E : Any>(
 
             @Suppress("UnsafeCastFromDynamic")
             val filters = if (params.filter != null) {
-                kotlin.js.JSON.stringify(params.filter)
+                JSON.stringify(params.filter)
             } else {
                 null
             }
 
             @Suppress("UnsafeCastFromDynamic")
             val sorters = if (params.sort != null) {
-                kotlin.js.JSON.stringify(params.sort)
+                JSON.stringify(params.sort)
             } else {
                 null
             }
-            val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
+            val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
 
             @Suppress("UnsafeCastFromDynamic")
-            val data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
+            val data = Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
             callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name))
                 .then { r: dynamic ->
-                    val result = kotlin.js.JSON.parse<dynamic>(r.result.unsafeCast<String>())
+                    val result = JSON.parse<dynamic>(r.result.unsafeCast<String>())
                     @Suppress("UnsafeCastFromDynamic")
                     if (page != null) {
                         if (result.data == undefined) {

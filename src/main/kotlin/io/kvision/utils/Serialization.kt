@@ -21,24 +21,24 @@
  */
 package io.kvision.utils
 
+import io.kvision.types.DateSerializer
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.serializersModuleOf
 import kotlinx.serialization.serializer
-import io.kvision.types.DateSerializer
 import kotlin.js.Date
 
 /**
- * JSON utility functions
+ * JSON serialization utility functions
  */
-object JSON {
+object Serialization {
 
     val plain = Json { serializersModule = serializersModuleOf(Date::class, DateSerializer) }
 
-    val nonstrict = Json {
-        ignoreUnknownKeys = true
-        serializersModule = serializersModuleOf(Date::class, DateSerializer)
-    }
+    /**
+     * Custom JSON configuration for the application.
+     */
+    var customConfiguration: Json? = null
 
     /**
      * An extension function to convert Serializable object to JS dynamic object
@@ -52,6 +52,6 @@ object JSON {
      * @param serializer a serializer for T
      */
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return kotlin.js.JSON.parse(plain.encodeToString(serializer, this))
+        return JSON.parse(plain.encodeToString(serializer, this))
     }
 }

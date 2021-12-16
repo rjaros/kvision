@@ -21,15 +21,19 @@
  */
 package io.kvision.rest
 
+import io.kvision.types.DateSerializer
+import io.kvision.utils.Serialization
 import kotlinx.browser.window
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.overwriteWith
 import kotlinx.serialization.serializer
 import org.w3c.dom.url.URLSearchParams
 import org.w3c.fetch.RequestInit
 import org.w3c.fetch.Response
+import kotlin.js.Date
 import kotlin.js.Promise
 
 internal external fun delete(p: dynamic): Boolean
@@ -224,11 +228,15 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
 
     protected val restClientConfig = RestClientConfig().apply(block)
 
-    protected val Json = Json {
+    protected val JsonInstance = Json(from = (Serialization.customConfiguration ?: Json {
         ignoreUnknownKeys = true
         isLenient = true
         encodeDefaults = true
-        restClientConfig.serializersModule?.let { serializersModule = it }
+    })) {
+        serializersModule = SerializersModule {
+            contextual(Date::class, DateSerializer)
+            restClientConfig.serializersModule?.let { this.include(it) }
+        }.overwriteWith(serializersModule)
     }
 
     /**
@@ -250,7 +258,7 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
             requestInit.body = when (restRequestConfig.contentType) {
                 "application/json" -> {
                     if (restRequestConfig.serializer != null) {
-                        Json.encodeToString(restRequestConfig.serializer!!, restRequestConfig.data!!)
+                        JsonInstance.encodeToString(restRequestConfig.serializer!!, restRequestConfig.data!!)
                     } else {
                         JSON.stringify(restRequestConfig.data!!)
                     }
@@ -306,7 +314,7 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
                             response.body
                         }
                         val result = if (restRequestConfig.deserializer != null) {
-                            Json.decodeFromString(restRequestConfig.deserializer!!, JSON.stringify(transformed))
+                            JsonInstance.decodeFromString(restRequestConfig.deserializer!!, JSON.stringify(transformed))
                         } else {
                             transformed
                         }
@@ -327,7 +335,10 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
                                 it
                             }
                             val result = if (restRequestConfig.deserializer != null) {
-                                Json.decodeFromString(restRequestConfig.deserializer!!, JSON.stringify(transformed))
+                                JsonInstance.decodeFromString(
+                                    restRequestConfig.deserializer!!,
+                                    JSON.stringify(transformed)
+                                )
                             } else {
                                 transformed
                             }
@@ -373,7 +384,7 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
      * @param serializer a serializer for T
      */
     protected fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return JSON.parse(Json.encodeToString(serializer, this))
+        return JSON.parse(JsonInstance.encodeToString(serializer, this))
     }
 
     /**

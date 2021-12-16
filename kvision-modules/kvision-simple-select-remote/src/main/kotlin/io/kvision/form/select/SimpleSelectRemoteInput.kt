@@ -27,7 +27,7 @@ import io.kvision.remote.HttpMethod
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.SimpleRemoteOption
-import io.kvision.utils.JSON
+import io.kvision.utils.Serialization
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -67,14 +67,14 @@ open class SimpleSelectRemoteInput<T : Any>(
         val (url, _) = serviceManager.requireCall(function)
         scope.launch {
             val callAgent = CallAgent()
-            val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
+            val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
             val values = callAgent.remoteCall(
                 url,
-                JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(state))),
+                Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(state))),
                 HttpMethod.POST
             ).await()
             options =
-                JSON.plain.decodeFromString(ListSerializer(SimpleRemoteOption.serializer()), values.result as String)
+                Serialization.plain.decodeFromString(ListSerializer(SimpleRemoteOption.serializer()), values.result as String)
                     .map {
                         it.value to (it.text ?: it.value)
                     }

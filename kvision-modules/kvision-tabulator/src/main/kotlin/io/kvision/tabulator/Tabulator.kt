@@ -31,6 +31,7 @@ import io.kvision.snabbdom.VNode
 import io.kvision.state.ObservableList
 import io.kvision.state.ObservableState
 import io.kvision.types.DateSerializer
+import io.kvision.utils.Serialization
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
 import io.kvision.utils.syncWithList
@@ -40,6 +41,7 @@ import kotlinx.browser.window
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.overwriteWith
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
@@ -94,13 +96,14 @@ open class Tabulator<T : Any>(
     protected val module: SerializersModule? = null
 ) : Widget(className) {
 
-    protected val jsonHelper = if (serializer != null) Json {
+    protected val jsonHelper = if (serializer != null) Json(from = (Serialization.customConfiguration ?: Json {
         ignoreUnknownKeys = true
         isLenient = true
+    })) {
         serializersModule = SerializersModule {
             contextual(Date::class, DateSerializer)
             module?.let { this.include(it) }
-        }
+        }.overwriteWith(serializersModule)
     } else null
 
     /**

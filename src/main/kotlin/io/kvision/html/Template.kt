@@ -24,7 +24,7 @@ package io.kvision.html
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.serializer
 import io.kvision.i18n.I18n
-import io.kvision.utils.JSON.toObj
+import io.kvision.utils.Serialization.toObj
 
 /**
  * Handlebars templates helper interface.

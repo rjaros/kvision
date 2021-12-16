@@ -30,7 +30,6 @@ import org.w3c.fetch.INCLUDE
 import org.w3c.fetch.RequestCredentials
 import org.w3c.fetch.RequestInit
 import kotlin.js.Promise
-import kotlin.js.JSON as NativeJSON
 
 /**
  * HTTP status unauthorized (401).
@@ -79,7 +78,7 @@ open class CallAgent {
         val fetchUrl = if (method == HttpMethod.GET) {
             urlAddr + "?" + URLSearchParams(obj { id = jsonRpcRequest.id }).toString()
         } else {
-            requestInit.body = JSON.plain.encodeToString(jsonRpcRequest)
+            requestInit.body = Serialization.plain.encodeToString(jsonRpcRequest)
             urlAddr
         }
         requestInit.headers = js("{}")
@@ -143,7 +142,7 @@ open class CallAgent {
             urlAddr + "?" + URLSearchParams(data).toString()
         } else {
             requestInit.body = when (contentType) {
-                "application/json" -> if (data is String) data else NativeJSON.stringify(data)
+                "application/json" -> if (data is String) data else JSON.stringify(data)
                 "application/x-www-form-urlencoded" -> URLSearchParams(data).toString()
                 else -> data
             }

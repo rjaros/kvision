@@ -29,7 +29,7 @@ import io.kvision.remote.HttpMethod
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteOption
-import io.kvision.utils.JSON
+import io.kvision.utils.Serialization
 import io.kvision.utils.obj
 import kotlinx.browser.window
 import kotlinx.coroutines.CoroutineScope
@@ -91,7 +91,7 @@ open class SelectRemoteInput<T : Any>(
                 url = urlPrefix + url.drop(1),
                 preprocessData = {
                     @Suppress("UnsafeCastFromDynamic")
-                    JSON.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), it.result as String).map {
+                    Serialization.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), it.result as String).map {
                         obj {
                             this.value = it.value
                             if (it.text != null) this.text = it.text
@@ -110,10 +110,10 @@ open class SelectRemoteInput<T : Any>(
                 beforeSend = { xhr, b ->
                     ajaxOptions?.beforeSend?.invoke(xhr, b)
                     @Suppress("UnsafeCastFromDynamic")
-                    val q = kotlin.js.JSON.stringify(decodeURIComponent(b.asDynamic().data.substring(2)))
-                    val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
-                    val svalue = kotlin.js.JSON.stringify(this.value)
-                    b.data = JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(q, svalue, state)))
+                    val q = JSON.stringify(decodeURIComponent(b.asDynamic().data.substring(2)))
+                    val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
+                    val svalue = JSON.stringify(this.value)
+                    b.data = Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(q, svalue, state)))
                     true
                 },
                 httpType = HttpType.valueOf(method.name),
@@ -123,13 +123,13 @@ open class SelectRemoteInput<T : Any>(
         } else {
             scope.launch {
                 val callAgent = CallAgent()
-                val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
+                val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
                 val values = callAgent.remoteCall(
                     url,
-                    JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, null, state))),
+                    Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, null, state))),
                     HttpMethod.POST
                 ).await()
-                JSON.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), values.result as String)
+                Serialization.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), values.result as String)
                     .forEach {
                         add(
                             SelectOption(
@@ -165,14 +165,14 @@ open class SelectRemoteInput<T : Any>(
                 scope.launch {
                     val labels = labelsCache.getOrPut(it) {
                         val callAgent = CallAgent()
-                        val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
-                        val svalue = kotlin.js.JSON.stringify(it)
+                        val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
+                        val svalue = JSON.stringify(it)
                         val initials = callAgent.remoteCall(
                             url,
-                            JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, svalue, state))),
+                            Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(null, svalue, state))),
                             HttpMethod.POST
                         ).await()
-                        JSON.plain.decodeFromString(
+                        Serialization.plain.decodeFromString(
                             ListSerializer(RemoteOption.serializer()),
                             initials.result as String
                         ).mapNotNull {

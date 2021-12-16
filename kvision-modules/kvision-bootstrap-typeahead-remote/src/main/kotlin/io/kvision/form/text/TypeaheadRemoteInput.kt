@@ -24,7 +24,7 @@ package io.kvision.form.text
 import io.kvision.core.Container
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
-import io.kvision.utils.JSON
+import io.kvision.utils.Serialization
 import kotlinx.browser.window
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.builtins.ListSerializer
@@ -69,12 +69,12 @@ open class TypeaheadRemoteInput<T : Any>(
         this.taAjaxOptions = tempAjaxOptions.copy(
             url = urlPrefix + url.drop(1),
             preprocessQuery = { query ->
-                val squery = kotlin.js.JSON.stringify(query)
-                val state = stateFunction?.invoke()?.let { kotlin.js.JSON.stringify(it) }
-                JSON.plain.encodeToString(JsonRpcRequest(0, url, listOf(squery, state)))
+                val squery = JSON.stringify(query)
+                val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
+                Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(squery, state)))
             },
             preprocessData = {
-                JSON.plain.decodeFromString(ListSerializer(String.serializer()), it.result.unsafeCast<String>())
+                Serialization.plain.decodeFromString(ListSerializer(String.serializer()), it.result.unsafeCast<String>())
                     .toTypedArray()
             },
             httpType = HttpType.valueOf(method.name)

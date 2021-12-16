@@ -21,11 +21,11 @@
  */
 package io.kvision.remote
 
+import io.kvision.types.JsonDateSerializer
 import kotlinx.browser.window
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.serializersModuleOf
-import io.kvision.types.JsonDateSerializer
 import kotlin.js.Date
 
 /**
@@ -43,7 +43,7 @@ fun obj(init: dynamic.() -> Unit): dynamic {
 /**
  * JSON utility functions
  */
-object JSON {
+object Serialization {
 
     val plain = Json { serializersModule = serializersModuleOf(Date::class, JsonDateSerializer) }
 
@@ -57,7 +57,7 @@ object JSON {
      * @param serializer a serializer for T
      */
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return kotlin.js.JSON.parse(plain.encodeToString(serializer, this))
+        return JSON.parse(plain.encodeToString(serializer, this))
     }
 }
 

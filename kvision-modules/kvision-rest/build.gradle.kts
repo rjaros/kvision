@@ -13,6 +13,7 @@ kotlin {
 }
 
 dependencies {
+    api(rootProject)
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
