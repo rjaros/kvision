@@ -85,7 +85,7 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 }
                 rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
                     versions.webpackDevServer.version = "4.6.0"
-                    versions.webpack.version = "5.64.4"
+                    versions.webpack.version = "5.65.0"
                     versions.webpackCli.version = "4.9.1"
                 }
                 rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
@@ -118,7 +118,7 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 }
                 rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
                     versions.webpackDevServer.version = "4.6.0"
-                    versions.webpack.version = "5.64.4"
+                    versions.webpack.version = "5.65.0"
                     versions.webpackCli.version = "4.9.1"
                 }
                 rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
