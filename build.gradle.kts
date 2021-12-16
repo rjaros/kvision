@@ -25,6 +25,12 @@ val snabbdomKotlinVersion: String by project
 // Custom Properties
 val webDir = file("src/main/web")
 
+rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
+        lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+    }
+}
+
 kotlin {
     kotlinJsTargets()
 }

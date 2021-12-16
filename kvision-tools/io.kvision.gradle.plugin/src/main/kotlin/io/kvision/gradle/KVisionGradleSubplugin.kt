@@ -88,6 +88,9 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                     versions.webpack.version = "5.64.4"
                     versions.webpackCli.version = "4.9.1"
                 }
+                rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
+                    lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+                }
             }
         }
         plugins.withId("org.jetbrains.kotlin.multiplatform") {
@@ -117,6 +120,9 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                     versions.webpackDevServer.version = "4.6.0"
                     versions.webpack.version = "5.64.4"
                     versions.webpackCli.version = "4.9.1"
+                }
+                rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
+                    lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
                 }
             }
         }
