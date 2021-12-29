@@ -8,15 +8,29 @@ plugins {
 
 val coroutinesVersion: String by project
 
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("leaflet", "^1.7.1"))
+    implementation(kotlin("stdlib-js"))
+
+    implementation(npm("leaflet", "^1.7.1", false))
+    implementation(npm("@types/leaflet", "1.7.7", false))  // experimenting - remove later
+
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
+    testImplementation(project(":kvision-modules:kvision-jquery"))  // experimenting - remove later
+
+    // experimenting - remove later
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+
+    val kotestVersion : String by project
+    testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+    testImplementation("io.kotest:kotest-assertions-core")
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

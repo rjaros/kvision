@@ -21,6 +21,9 @@
  */
 package io.kvision
 
+import externals.leaflet.layer.tile.TileLayer
+import externals.leaflet.layer.tile.TileLayerOptions
+import io.kvision.maps.BaseTileLayer
 import io.kvision.utils.delete
 import io.kvision.utils.obj
 
@@ -43,5 +46,14 @@ object MapsModule : ModuleInitializer {
 
     override fun initialize() {
         require("leaflet/dist/leaflet.css")
+    }
+
+    // TODO move to more suitable location
+    fun createTileLayer(base: BaseTileLayer): TileLayer<*> {
+        val tileLayer = TileLayer<TileLayerOptions>(
+            urlTemplate = base.url
+        )
+        tileLayer.options.attribution = base.attribution
+        return tileLayer
     }
 }

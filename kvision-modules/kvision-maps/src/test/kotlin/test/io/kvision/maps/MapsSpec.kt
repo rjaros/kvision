@@ -22,56 +22,196 @@
  */
 package test.io.kvision.maps
 
-import io.kvision.maps.BaseLayerProvider
-import io.kvision.maps.CRS
-import io.kvision.maps.LatLng
-import io.kvision.maps.LatLngBounds
+import externals.leaflet.control.Layers
+import externals.leaflet.geo.CRS
+import externals.leaflet.geo.LatLng
+import externals.leaflet.geo.LatLngBounds
+import externals.leaflet.layer.overlay.SVGOverlay
+import io.kotest.matchers.shouldBe
+import io.kvision.MapsModule
+import io.kvision.maps.BaseTileLayer
 import io.kvision.maps.Maps
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
-import io.kvision.utils.px
 import io.kvision.test.DomSpec
-import kotlinx.browser.document
+import io.kvision.utils.px
 import kotlin.test.Test
 import kotlin.test.assertTrue
+import kotlinx.browser.document
+
+// TODO tidy up
 
 class MapsSpec : DomSpec {
 
     @Test
-    fun renderSvg() {
-        run {
-            val svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-            svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg")
-            svgElement.setAttribute("viewBox", "0 0 200 200")
-            val svgString =
-                "<rect width=\"200\" height=\"200\"></rect><rect x=\"75\" y=\"23\" width=\"50\" height=\"50\" style=\"fill:red\"></rect><rect x=\"75\" y=\"123\" width=\"50\" height=\"50\" style=\"fill:#0013ff\"></rect>"
-            svgElement.innerHTML = svgString
-            val bounds = LatLngBounds(
-                LatLng(0, 0),
-                LatLng(0.1, 0.1)
-            )
+    fun renderSvg(): Unit = run {
 
-            val root = Root("test", containerType = ContainerType.FIXED)
-            val map = Maps(
-                0,
-                0,
-                11,
-                baseLayerProvider = BaseLayerProvider.EMPTY,
-                crs = CRS.Simple
-            )
-                .apply {
-                    width = 300.px
-                    height = 600.px
+        val svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+        svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+        svgElement.setAttribute("viewBox", "0 0 200 200")
+        val svgString = listOf(
+            """ <rect width="200" height="200"></rect>                                   """,
+            """ <rect x="75" y="23" width="50" height="50" style="fill:red"></rect>      """,
+            """ <rect x="75" y="123" width="50" height="50" style="fill:#0013ff"></rect> """,
+        ).joinToString("") { it.trim() }
+        svgElement.innerHTML = svgString
+
+        val bounds = LatLngBounds(
+            LatLng(0, 0),
+            LatLng(0.1, 0.1)
+        )
+
+        val root = Root("test", containerType = ContainerType.FIXED)
+        val map = Maps(
+//            0,
+//            0,
+//            11,
+//            baseTileLayer = BaseTileLayer.EMPTY,
+//            crs = CRS.Simple
+        )
+            .apply {
+                width = 300.px
+                height = 600.px
+                configureMap {
+                    setView(LatLng(0, 0), 11)
+                    options.crs = CRS.Simple
+                    addLayer(SVGOverlay(svgElement, bounds))
                 }
-            map.svgOverlay(svgElement, bounds)
-            root.add(map)
-            val element = document.getElementById("test")!!
-            assertTrue(
-                element.innerHTML.contains(svgString),
-                "Must contain svg xml passed in"
-            )
-        }
+            }
+//        map.svgOverlay(svgElement, bounds)
+        root.add(map)
+
+        val element = document.getElementById("test")!!
+        assertTrue(
+            element.innerHTML.contains(svgString),
+            "Must contain svg xml passed in"
+        )
     }
+
+    @Test
+    fun addMapToRoot() = run {
+        // TODO fix test
+
+        val root = Root("test", containerType = ContainerType.FIXED)
+
+        val map = Maps(
+//            55,
+//            33,
+//            11,
+//            baseTileLayer = BaseTileLayer.EMPTY,
+//            crs = CRS.Simple
+        ) {
+            width = 300.px
+            height = 600.px
+
+            configureMap {
+                setView(LatLng(55, 33), 11)
+                options.crs = CRS.Simple
+
+                val layers = Layers(
+                    baseLayers = BaseTileLayer.defaultLayers.map { base ->
+                        MapsModule.createTileLayer(base)
+                    }.toTypedArray()
+                )
+                layers.options.position = "topleft"
+                layers.addTo(this)
+            }
+        }
+        root.add(map)
+        val element = document.getElementById("test")!!
+
+        val expectedHtml: String = """
+            <div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 300px; height: 600px; position: relative;">
+              <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+                <div class="leaflet-pane leaflet-tile-pane">
+                  <div class="leaflet-layer " style="z-index: 1;">
+                    <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);">
+                      <img alt="" role="presentation" src="" class="leaflet-tile" style="width: 256px; height: 256px; transform: translate3d(-188px, -199px, 0px);">
+                    </div>
+                  </div>
+                </div>
+                <div class="leaflet-pane leaflet-shadow-pane"></div>
+                <div class="leaflet-pane leaflet-overlay-pane"></div>
+                <div class="leaflet-pane leaflet-marker-pane"></div>
+                <div class="leaflet-pane leaflet-tooltip-pane"></div>
+                <div class="leaflet-pane leaflet-popup-pane"></div>
+                <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(310204px, 165831px, 0px) scale(1024);"></div>
+              </div>
+              <div class="leaflet-control-container">
+                <div class="leaflet-top leaflet-left">
+                  <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+                    <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a>
+                    <a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">−</a>
+                  </div>
+                  <div class="leaflet-control-layers leaflet-control" aria-haspopup="true">
+                    <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
+                    <section class="leaflet-control-layers-list">
+                      <div class="leaflet-control-layers-base">
+                        <label>
+                          <div>
+                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_62">
+                            <span> Empty</span>
+                          </div>
+                        </label>
+                        <label>
+                          <div>
+                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_62">
+                            <span> OpenStreetMap</span>
+                          </div>
+                        </label>
+                        <label>
+                          <div>
+                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_62">
+                            <span> Esri.WorldImagery</span>
+                          </div>
+                        </label>
+                        <label>
+                          <div>
+                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_62">
+                            <span> Esri.WorldTopoMap</span>
+                          </div>
+                        </label>
+                        <label>
+                          <div>
+                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_62">
+                            <span> MtbMap</span>
+                          </div>
+                        </label>
+                        <label>
+                          <div>
+                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_62">
+                            <span> CartoDB.Voyager</span>
+                          </div>
+                        </label>
+                        <label>
+                          <div>
+                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_62">
+                            <span> Hike Bike</span>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="leaflet-control-layers-separator" style="display: none;"></div>
+                      <div class="leaflet-control-layers-overlays"></div>
+                    </section>
+                  </div>
+                </div>
+                <div class="leaflet-top leaflet-right"></div>
+                <div class="leaflet-bottom leaflet-left"></div>
+                <div class="leaflet-bottom leaflet-right">
+                  <div class="leaflet-control-attribution leaflet-control">
+                    <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            """.trimIndent()
+
+        val expectedHtmlMinified: String = expectedHtml.split("\n").joinToString("") { it.trim() }
+
+        element.innerHTML.replace(">", ">\n") shouldBe expectedHtmlMinified.replace(">", ">\n")
+
+    }
+
 
 /*    @Test
     fun renderImage() {

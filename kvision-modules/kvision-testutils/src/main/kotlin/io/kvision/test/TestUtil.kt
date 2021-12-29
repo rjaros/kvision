@@ -27,13 +27,14 @@ import io.kvision.jquery.get
 import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
 import io.kvision.panel.Root
+import kotlin.js.Promise
+import kotlin.test.assertContains
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import kotlinx.browser.document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.w3c.dom.asList
-import kotlin.js.Promise
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 interface TestSpec {
     fun beforeTest()
@@ -73,7 +74,7 @@ interface DomSpec : TestSpec {
 
     override fun beforeTest() {
         val fixture = "<div style=\"display: none\" id=\"pretest\">" +
-                "<div id=\"${getTestId()}\"></div></div>"
+            "<div id=\"${getTestId()}\"></div></div>"
         document.body?.insertAdjacentHTML("afterbegin", fixture)
     }
 
@@ -94,6 +95,16 @@ interface DomSpec : TestSpec {
             } else {
                 assertEquals(expected, actual, message)
             }
+        } else {
+            assertEquals(expected, actual, message)
+        }
+    }
+
+    // TODO experimenting - remove if not used
+    fun assertContainsHtml(expected: String?, actual: String?, message: String?, ignoreCase : Boolean = false) {
+        if (expected != null && actual != null) {
+            val act = jQuery(actual).normalizeClassListRecursive()
+            assertContains(act.html(), expected, ignoreCase, message)
         } else {
             assertEquals(expected, actual, message)
         }
