@@ -22,8 +22,6 @@
  */
 package io.kvision.maps
 
-import io.kvision.utils.obj
-
 // TODO replace with external defs
 
 //data class LatLng(val lat: Number, val lng: Number)

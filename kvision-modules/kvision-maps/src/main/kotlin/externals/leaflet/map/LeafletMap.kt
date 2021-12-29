@@ -1,5 +1,6 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
+
 package externals.leaflet.map
 
 import externals.leaflet.control.Attribution
@@ -10,16 +11,16 @@ import externals.leaflet.control.Zoom
 import externals.leaflet.control.ZoomOptions
 import externals.leaflet.control.ZoomPanOptions
 import externals.leaflet.events.Evented
-import externals.leaflet.geometry.Bounds
 import externals.leaflet.geo.LatLng
 import externals.leaflet.geo.LatLngBounds
+import externals.leaflet.geometry.Bounds
 import externals.leaflet.geometry.Point
 import externals.leaflet.layer.Layer
-import externals.leaflet.layer.vector.Path
 import externals.leaflet.layer.overlay.Popup
 import externals.leaflet.layer.overlay.PopupOptions
 import externals.leaflet.layer.overlay.Tooltip
 import externals.leaflet.layer.overlay.TooltipOptions
+import externals.leaflet.layer.vector.Path
 import externals.leaflet.layer.vector.Renderer
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent

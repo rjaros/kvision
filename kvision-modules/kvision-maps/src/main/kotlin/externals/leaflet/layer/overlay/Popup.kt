@@ -1,9 +1,10 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
+
 package externals.leaflet.layer.overlay
 
-import externals.leaflet.map.LeafletMap
 import externals.leaflet.layer.Layer
+import externals.leaflet.map.LeafletMap
 
 open external class Popup(
     options: PopupOptions = definedExternally,

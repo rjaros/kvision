@@ -102,7 +102,6 @@ open class Maps(
 //}
 
 
-
 //
 //    private fun buildBaseLayerList(): dynamic {
 //        val obj = {}.asDynamic()

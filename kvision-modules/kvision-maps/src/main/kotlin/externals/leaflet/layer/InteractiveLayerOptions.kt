@@ -1,5 +1,6 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
+
 package externals.leaflet.layer
 
 external interface InteractiveLayerOptions : LayerOptions {

@@ -1,5 +1,6 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
+
 package externals.leaflet.geometry
 
 open external class Bounds {

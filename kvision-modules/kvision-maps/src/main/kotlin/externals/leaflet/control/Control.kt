@@ -1,9 +1,10 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
+
 package externals.leaflet.control
 
-import externals.leaflet.core.Class
 import externals.leaflet.PositionsUnion
+import externals.leaflet.core.Class
 import externals.leaflet.map.LeafletMap
 import org.w3c.dom.HTMLElement
 

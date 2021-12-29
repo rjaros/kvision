@@ -1,8 +1,7 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
-package externals.leaflet.layer.overlay
 
-import externals.leaflet.layer.overlay.DivOverlayOptions
+package externals.leaflet.layer.overlay
 
 external interface PopupOptions : DivOverlayOptions {
     var maxWidth: Number?

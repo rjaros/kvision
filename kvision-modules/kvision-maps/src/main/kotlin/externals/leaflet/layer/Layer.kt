@@ -1,16 +1,17 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
+
 package externals.leaflet.layer
 
-import externals.leaflet.layer.overlay.Popup
-import externals.leaflet.map.LeafletMap
 import externals.leaflet.events.Evented
 import externals.leaflet.events.LeafletEventHandlerFn
 import externals.leaflet.geo.LatLng
+import externals.leaflet.layer.overlay.Popup
 import externals.leaflet.layer.overlay.PopupOptions
-import externals.leaflet.layer.overlay.TooltipOptions
 import externals.leaflet.layer.overlay.Tooltip
-import org.w3c.dom.*
+import externals.leaflet.layer.overlay.TooltipOptions
+import externals.leaflet.map.LeafletMap
+import org.w3c.dom.HTMLElement
 
 open external class Layer(options: LayerOptions = definedExternally) : Evented {
     open fun addTo(map: LeafletMap): Layer /* this */

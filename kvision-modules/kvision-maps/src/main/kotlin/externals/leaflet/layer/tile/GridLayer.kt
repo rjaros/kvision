@@ -5,7 +5,7 @@
 package externals.leaflet.layer.tile
 
 import externals.leaflet.DoneCallback
-import externals.leaflet.geo.*
+import externals.leaflet.geo.Coords
 import externals.leaflet.geometry.Point
 import externals.leaflet.layer.Layer
 import org.w3c.dom.HTMLElement

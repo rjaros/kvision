@@ -1,5 +1,6 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
+
 package externals.leaflet.layer.overlay
 
 import externals.leaflet.geo.LatLngBounds
@@ -9,6 +10,7 @@ import org.w3c.dom.HTMLImageElement
 open external class ImageOverlay : Layer {
     constructor(imageUrl: String, bounds: LatLngBounds, options: ImageOverlayOptions = definedExternally)
     constructor(imageUrl: String, bounds: LatLngBounds)
+
     open fun setOpacity(opacity: Number): ImageOverlay /* this */
     open fun bringToFront(): ImageOverlay /* this */
     open fun bringToBack(): ImageOverlay /* this */

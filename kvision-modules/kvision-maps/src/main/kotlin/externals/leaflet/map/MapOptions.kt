@@ -1,12 +1,13 @@
- @file:JsModule("leaflet")
+@file:JsModule("leaflet")
 @file:JsNonModule
+
 package externals.leaflet.map
 
 import externals.leaflet.geo.CRS
-import externals.leaflet.layer.vector.Renderer
 import externals.leaflet.geo.LatLng
 import externals.leaflet.geo.LatLngBounds
 import externals.leaflet.layer.Layer
+import externals.leaflet.layer.vector.Renderer
 
 external interface MapOptions {
     var preferCanvas: Boolean?
