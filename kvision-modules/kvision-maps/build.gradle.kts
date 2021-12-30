@@ -18,7 +18,9 @@ dependencies {
     implementation(kotlin("stdlib-js"))
 
     implementation(npm("leaflet", "^1.7.1", false))
-    implementation(npm("@types/leaflet", "1.7.7", false))  // experimenting - remove later
+    implementation(npm("@types/leaflet", "^1.7.7", false)) {
+        because("Kotlin/JS interop... I think?")
+    }
 
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
