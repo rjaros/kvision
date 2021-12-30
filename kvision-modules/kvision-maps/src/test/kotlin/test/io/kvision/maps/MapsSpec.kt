@@ -65,14 +65,14 @@ class MapsSpec : DomSpec {
 
         val root = Root("test", containerType = ContainerType.FIXED)
         val map = Maps {
-                width = 300.px
-                height = 600.px
-                configureMap {
-                    setView(LatLng(0, 0), 11)
-                    options.crs = CRS.Simple
-                    addLayer(SVGOverlay(svgElement, bounds))
-                }
+            width = 300.px
+            height = 600.px
+            configureMap {
+                setView(LatLng(0, 0), 11)
+                options.crs = CRS.Simple
+                addLayer(SVGOverlay(svgElement, bounds))
             }
+        }
         root.add(map)
 
         val element = document.getElementById("test")!!
@@ -96,14 +96,11 @@ class MapsSpec : DomSpec {
                 setView(LatLng(55, 33), 11)
                 options.crs = CRS.Simple
 
-
-//                val baseLayer = MapsModule.createTileLayer("")
-//                baseLayer.addTo(this)
+                MapsModule.convertTileLayer(BaseTileLayer.EMPTY)
+                    .addTo(this)
 
                 val featureGroup = FeatureGroup<Any>()
                 featureGroup.addTo(this)
-
-                addTileLayer("")
 
                 val layers = MapsModule.createLayers(
                     baseLayers = BaseTileLayer.defaultLayers
@@ -111,7 +108,10 @@ class MapsSpec : DomSpec {
                     position = "topleft"
                 }
                 layers.addTo(this)
-//                addControl(layers)
+
+                if (featureGroup.getBounds().isValid()) {
+                    fitBounds(featureGroup.getBounds())
+                }
             }
         }
         root.add(map)
@@ -205,8 +205,39 @@ class MapsSpec : DomSpec {
 
         val expectedHtmlMinified: String = expectedHtml.split("\n").joinToString("") { it.trim() }
 
+        // split up the HTML so it's easier to compare
         element.innerHTML.replace(">", ">\n") shouldBe expectedHtmlMinified.replace(">", ">\n")
+        // TODO make the assert less hacky. Is there a pretty-print HTML somewhere?
 
+    }
+
+    @Test
+    fun addPolyLine(): Unit = run {
+        // it doesn't look like Polyline adds points correctly...
+
+        val root = Root("test", containerType = ContainerType.FIXED)
+        val map = Maps {
+            width = 300.px
+            height = 600.px
+            configureMap {
+                setView(LatLng(0, 0), 11)
+                options.crs = CRS.Simple
+                addPolyline(
+                    listOf(
+                        LatLng(55, 2),
+                        LatLng(65, 2),
+                        LatLng(65, 20),
+                        LatLng(55, 20),
+                    )
+                ) {
+                    noClip = true
+                }
+            }
+        }
+        root.add(map)
+
+        val element = document.getElementById("test")!!
+        element.innerHTML shouldBe "asdasdad"
     }
 
 

@@ -21,11 +21,17 @@
  */
 package io.kvision
 
+import externals.geojson.LineString
 import externals.leaflet.control.Layers
 import externals.leaflet.control.LayersObject
 import externals.leaflet.control.LayersOptions
 import externals.leaflet.control.set
+import externals.leaflet.geo.LatLng
+import externals.leaflet.layer.marker.Icon
 import externals.leaflet.layer.tile.TileLayer
+import externals.leaflet.layer.tile.TileLayerOptions
+import externals.leaflet.layer.vector.Polyline
+import externals.leaflet.layer.vector.PolylineOptions
 import io.kvision.maps.BaseTileLayer
 import io.kvision.utils.delete
 import io.kvision.utils.obj
@@ -38,6 +44,20 @@ object MapsModule : ModuleInitializer {
     internal val leaflet = require("leaflet")
 
     init {
+        setDefaultIcon()
+    }
+
+    private fun setDefaultIcon() {
+
+        // this doesn't work :(
+
+        Icon.Default(obj<Icon.DefaultIconOptions> {
+            imagePath = ""
+            iconRetinaUrl = "leaflet/dist/images/marker-icon-2x.png"
+            iconUrl = "leaflet/dist/images/marker-icon.png"
+            shadowUrl = "leaflet/dist/images/marker-shadow.png"
+        })
+
         leaflet.Icon.Default.imagePath = ""
         delete(leaflet.Icon.Default.prototype._getIconUrl)
         leaflet.Icon.Default.mergeOptions(obj {
@@ -53,15 +73,15 @@ object MapsModule : ModuleInitializer {
     //
     fun createTileLayer(
         urlTemplate: String,
-        configure: TileLayer.() -> Unit = {}
+        configure: TileLayerOptions.() -> Unit = {}
     ): TileLayer =
         TileLayer(
             urlTemplate = urlTemplate,
-            options = js("{}"),
-        ).apply(configure)
+            options = obj<TileLayerOptions>(configure),
+        )
 
     // TODO move to more suitable location
-    private fun convertTileLayer(base: BaseTileLayer): TileLayer {
+    fun convertTileLayer(base: BaseTileLayer): TileLayer {
         val tileLayer = TileLayer(
             urlTemplate = base.url,
             options = js("{}"),
@@ -76,7 +96,7 @@ object MapsModule : ModuleInitializer {
         return tileLayer
     }
 
-    fun createLayerObject(tileLayers: Collection<BaseTileLayer>): LayersObject {
+    fun createLayersObject(tileLayers: Collection<BaseTileLayer>): LayersObject {
 //        return tileLayers.associate { it.label to createTileLayer(it) }.toMutableMap()
 
         return tileLayers
@@ -91,14 +111,24 @@ object MapsModule : ModuleInitializer {
 
     fun createLayers(
         baseLayers: Collection<BaseTileLayer> = emptyList(),
-        overlays: LayersObject = createLayerObject(emptyList()),
-        configure: LayersOptions.() -> Unit = {}
+        overlays: LayersObject = createLayersObject(emptyList()),
+        configure: LayersOptions.() -> Unit = {},
     ): Layers {
         val layers = Layers(
-            baseLayers = createLayerObject(baseLayers),
-            options = js("{}"),
+            baseLayers = createLayersObject(baseLayers),
+            options = obj<LayersOptions>(configure),
         )
-        layers.options.configure()
+//        layers.options.configure()
         return layers
+    }
+
+    fun createPolyline(
+        latLngs: Collection<LatLng>,
+        configure: PolylineOptions.() -> Unit = {},
+    ): Polyline<LineString, Any> {
+        return Polyline(
+            latLngs.toTypedArray(),
+            options = obj<PolylineOptions>(configure),
+        )
     }
 }

@@ -22,7 +22,9 @@
  */
 package io.kvision.maps
 
-import externals.leaflet.layer.tile.TileLayer
+import externals.leaflet.geo.LatLng
+import externals.leaflet.layer.tile.TileLayerOptions
+import externals.leaflet.layer.vector.PolylineOptions
 import externals.leaflet.map.LeafletMap
 import io.kvision.MapsModule
 import io.kvision.core.Container
@@ -57,7 +59,7 @@ open class Maps(
     /** Create a native map instance. */
     override fun afterInsert(node: VNode) {
         val thisElement: HTMLElement = requireNotNull(this.getElement() as? HTMLElement) {
-            "$this - Unable to get Widget element"
+            "$this - Unable to get HTMLElement"
         }
 
         leafletMap = LeafletMap(thisElement)
@@ -66,99 +68,22 @@ open class Maps(
 
     fun addTileLayer(
         urlTemplate: String,
-        configure: TileLayer.() -> Unit = {}
+        configure: TileLayerOptions.() -> Unit = {}
     ) {
         MapsModule
-            .createTileLayer(urlTemplate = urlTemplate)
-            .apply(configure)
+            .createTileLayer(urlTemplate = urlTemplate, configure)
             .addTo(leafletMap)
     }
 
+    fun addPolyline(
+        latLngs: Collection<LatLng>,
+        configure: PolylineOptions.() -> Unit = {},
+    ) {
+        MapsModule
+            .createPolyline(latLngs, configure)
+            .addTo(leafletMap)
+    }
 
-//    (this.getElement() as? HTMLElement)?.let {
-//        map = L.map(it)
-//        val center = arrayOf(lat, lng)
-//        map.setView(center, zoom)
-//
-//        val tileLayer = buildTileLayer(baseLayerProvider)
-//        tileLayer.addTo(map)
-//
-//        if (showMarker) {
-//            addMarker(LatLng(lat, lng))
-//        }
-//        featureGroup.addTo(map)
-//        if (showLayersList) {
-//            val baseLayers = buildBaseLayerList()
-//            val mapInfo = { }.asDynamic()
-//            mapInfo["position"] = Position.TOP_LEFT.position
-//            L.control.layers(baseLayers, null, mapInfo).addTo(map)
-//            fitAllMarkers()
-//        }
-//    }
-//}
-
-
-//
-//    private fun buildBaseLayerList(): dynamic {
-//        val obj = {}.asDynamic()
-//        BaseTileLayer.defaultLayers.forEach {
-//            obj[it.label] = buildTileLayer(it)
-//        }
-//        return obj
-//    }
-//
-//    private fun buildTileLayer(baseTileLayer: BaseTileLayer): dynamic {
-//        val obj = {}.asDynamic()
-//        obj["attribution"] = baseTileLayer.attribution
-//        return L.tileLayer(baseTileLayer.url, obj)
-//    }
-//
-//    /**
-//     * Adds an image overlay.
-//     * @param url an image url
-//     * @param bounds a rectangle bounds
-//     * @param options an overlay options
-//     */
-//    fun imageOverlay(url: String, bounds: LatLngBounds, options: ImageOverlayOptions? = null) {
-//        val overlay = L.imageOverlay(url, bounds.toArray(), options?.toJs())
-//        if (map != null) {
-//            overlay.addTo(map)
-//        }
-//        mapObjects.add(overlay)
-//    }
-//
-//    /**
-//     * Adds a SVG overlay.
-//     * @param svgElement a SVG element
-//     * @param bounds a rectangle bounds
-//     * @param options an overlay options
-//     */
-//    fun svgOverlay(svgElement: Element, bounds: LatLngBounds, options: ImageOverlayOptions? = null) {
-//        val overlay = L.svgOverlay(svgElement, bounds.toArray(), options?.toJs())
-//        if (map != null) {
-//            overlay.addTo(map)
-//        }
-//        mapObjects.add(overlay)
-//    }
-//
-//    /**
-//     * Adds a marker.
-//     * @param latLng marker coordinates
-//     * @param htmlPopup a popup HTML content
-//     */
-//    fun addMarker(latLng: LatLng, htmlPopup: String? = null) {
-//        val marker = L.marker(latLng.toArray()).addTo(featureGroup)
-//        if (htmlPopup != null) marker.bindPopup(htmlPopup)
-//        if (map != null)
-//            fitAllMarkers()
-//    }
-//
-
-    //    private fun fitAllMarkers() {
-//        if (featureGroup.getBounds().isValid())
-//            leafletMap.fitBounds(featureGroup.getBounds())
-//    }
-//
     override fun afterDestroy() {
         if (this::leafletMap.isInitialized) {
             leafletMap.remove()

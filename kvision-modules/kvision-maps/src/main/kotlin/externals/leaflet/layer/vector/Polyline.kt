@@ -8,7 +8,13 @@ import externals.leaflet.geo.LatLng
 import externals.leaflet.geo.LatLngBounds
 import externals.leaflet.geometry.Point
 
+// TODO split off a MultiPolyline that has a generic constraint on geojson.MultiLineString
 
+/**
+ * A class for drawing polyline overlays on a map. Extends [Path].
+ *
+ * See [`https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/layer/vector/Polyline.js`](https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/layer/vector/Polyline.js)
+ */
 open external class Polyline<T, P: Any> : Path {
     constructor(latlngs: Array<LatLng /* LatLng | LatLngLiteral | JsTuple<Number, Number> */>, options: PolylineOptions = definedExternally)
 //    constructor(latlngs: Array<Any /* LatLng | LatLngLiteral | JsTuple<Number, Number> */>)

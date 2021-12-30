@@ -3,6 +3,8 @@
 
 package externals.leaflet.layer
 
+import externals.geojson.*
+
 /**
  * Used to group several layers and handle them as one.
  * If you add it to the map, any layers added or removed from the group will be
@@ -13,7 +15,8 @@ open external class LayerGroup<P : Any>(
     options: LayerOptions = definedExternally
 ) : Layer {
     /**
-     * Returns a GeoJSON representation of the layer group (as a GeoJSON GeometryCollection, GeoJSONFeatureCollection or Multipoint).
+     * Returns a GeoJSON representation of the layer group (as a GeoJSON [GeometryCollection],
+     * [Feature<MultiPoint>][Feature] or [GeometryCollection]).
      */
     open fun toGeoJSON(precision: Number = definedExternally): dynamic
     /* geojson.FeatureCollection<dynamic /* typealias GeometryObject = dynamic */, P> | geojson.Feature<geojson.MultiPoint, P> | geojson.GeometryCollection */
