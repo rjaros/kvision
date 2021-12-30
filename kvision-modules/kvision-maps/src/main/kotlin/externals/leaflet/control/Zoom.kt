@@ -3,6 +3,6 @@
 
 package externals.leaflet.control
 
-open external class Zoom(options: ZoomOptions = definedExternally) : Control<ZoomOptions> {
+open external class Zoom(options: ZoomOptions = definedExternally) : Control {
     override var options: ZoomOptions
 }

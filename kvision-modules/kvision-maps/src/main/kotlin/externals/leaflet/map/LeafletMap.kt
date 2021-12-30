@@ -26,7 +26,9 @@ import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent
 
 @JsName("Map")
+// rename the implemented class to `LeafletMap` to avoid name confusion with Kotlin's Map<K, V>
 open external class LeafletMap : Evented {
+
     constructor(element: String, options: MapOptions = definedExternally)
     constructor(element: String)
     constructor(element: HTMLElement, options: MapOptions = definedExternally)
@@ -45,9 +47,9 @@ open external class LeafletMap : Evented {
 
     open fun getRenderer(layer: Path): Renderer
     /** @return this */
-    open fun addControl(control: Control<*>): LeafletMap
+    open fun addControl(control: Control): LeafletMap
     /** @return this */
-    open fun removeControl(control: Control<*>): LeafletMap
+    open fun removeControl(control: Control): LeafletMap
     /** @return this */
     open fun addLayer(layer: Layer): LeafletMap
     /** @return this */

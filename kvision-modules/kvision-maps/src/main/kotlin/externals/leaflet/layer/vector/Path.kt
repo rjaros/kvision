@@ -14,5 +14,5 @@ open external class Path(options: LayerOptions = definedExternally) : Layer {
     open fun bringToFront(): Path /* this */
     open fun bringToBack(): Path /* this */
     open fun getElement(): Element?
-    open var options: PathOptions
+    open var options: dynamic // PathOptions
 }

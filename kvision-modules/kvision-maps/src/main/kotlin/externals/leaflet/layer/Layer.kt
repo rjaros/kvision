@@ -13,12 +13,20 @@ import externals.leaflet.layer.overlay.TooltipOptions
 import externals.leaflet.map.LeafletMap
 import org.w3c.dom.HTMLElement
 
-open external class Layer(options: LayerOptions = definedExternally) : Evented {
+abstract external class Layer(options: LayerOptions = definedExternally) : Evented {
+
+    open val getEvents: (() -> LeafletEventHandlerFn)?
+    open val getAttribution: (() -> String?)?
+    open val beforeAdd: ((map: LeafletMap) -> Layer)?
+    open var _map: LeafletMap
+
     open fun addTo(map: LeafletMap): Layer /* this */
     open fun addTo(map: LayerGroup<Any>): Layer /* this */
     open fun remove(): Layer /* this */
     open fun removeFrom(map: LeafletMap): Layer /* this */
+
     open fun getPane(name: String = definedExternally): HTMLElement?
+
     open fun bindPopup(content: (layer: Layer) -> Any, options: PopupOptions = definedExternally): Layer /* this */
 //    open fun bindPopup(content: (layer: Layer) -> Any): Layer /* this */
     open fun bindPopup(content: String, options: PopupOptions = definedExternally): Layer /* this */
@@ -37,6 +45,7 @@ open external class Layer(options: LayerOptions = definedExternally) : Evented {
     open fun setPopupContent(content: HTMLElement): Layer /* this */
     open fun setPopupContent(content: Popup): Layer /* this */
     open fun getPopup(): Popup?
+
     open fun bindTooltip(content: (layer: Layer) -> Any, options: TooltipOptions = definedExternally): Layer /* this */
 //    open fun bindTooltip(content: (layer: Layer) -> Any): Layer /* this */
     open fun bindTooltip(content: Tooltip, options: TooltipOptions = definedExternally): Layer /* this */
@@ -55,10 +64,7 @@ open external class Layer(options: LayerOptions = definedExternally) : Evented {
     open fun setTooltipContent(content: HTMLElement): Layer /* this */
     open fun setTooltipContent(content: Tooltip): Layer /* this */
     open fun getTooltip(): Tooltip?
+
     open fun onAdd(map: LeafletMap): Layer /* this */
     open fun onRemove(map: LeafletMap): Layer /* this */
-    open val getEvents: (() -> LeafletEventHandlerFn)?
-    open val getAttribution: (() -> String?)?
-    open val beforeAdd: ((map: LeafletMap) -> Layer)?
-    open var _map: LeafletMap
 }

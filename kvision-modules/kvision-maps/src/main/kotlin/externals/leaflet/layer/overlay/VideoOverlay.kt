@@ -13,22 +13,21 @@ open external class VideoOverlay : Layer {
         bounds: LatLngBounds,
         options: VideoOverlayOptions = definedExternally
     )
+//    constructor(video: String, bounds: LatLngBounds)
 
-    constructor(video: String, bounds: LatLngBounds)
     constructor(
         video: Array<String>,
         bounds: LatLngBounds,
         options: VideoOverlayOptions = definedExternally
     )
+//    constructor(video: Array<String>, bounds: LatLngBounds)
 
-    constructor(video: Array<String>, bounds: LatLngBounds)
     constructor(
         video: HTMLVideoElement,
         bounds: LatLngBounds,
         options: VideoOverlayOptions = definedExternally
     )
-
-    constructor(video: HTMLVideoElement, bounds: LatLngBounds)
+//    constructor(video: HTMLVideoElement, bounds: LatLngBounds)
 
     open fun setOpacity(opacity: Number): VideoOverlay /* this */
     open fun bringToFront(): VideoOverlay /* this */

@@ -2,11 +2,13 @@
 @file:JsNonModule
 
 package externals.leaflet.geo
-
+import externals.leaflet.core.Class
 import externals.leaflet.geometry.Bounds
 import externals.leaflet.geometry.Point
 
 /**
+ * ### Coordinate Reference System
+ *
  * Object that defines coordinate reference systems for projecting geographical points into pixel
  * (screen) coordinates and back (and to coordinates in other units for WMS services).
  *
@@ -21,6 +23,11 @@ import externals.leaflet.geometry.Point
  */
 //@Suppress("NESTED_CLASS_IN_EXTERNAL_INTERFACE")
 external class CRS {
+    var code: String?
+    var wrapLng: dynamic /* JsTuple<Number, Number> */
+    var wrapLat: dynamic /* JsTuple<Number, Number> */
+    var infinite: Boolean?
+
     fun latLngToPoint(latlng: LatLng, zoom: Number): Point
     fun pointToLatLng(point: Point, zoom: Number): LatLng
     fun project(latlng: LatLng): Point
@@ -30,10 +37,6 @@ external class CRS {
     fun getProjectedBounds(zoom: Number): Bounds
     fun distance(latlng1: LatLng, latlng2: LatLng): Number
     fun wrapLatLng(latlng: LatLng): LatLng
-    var code: String?
-    var wrapLng: dynamic /* JsTuple<Number, Number> */
-    var wrapLat: dynamic /* JsTuple<Number, Number> */
-    var infinite: Boolean?
 
     companion object {
         /**

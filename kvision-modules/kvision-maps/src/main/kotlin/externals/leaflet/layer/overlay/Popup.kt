@@ -9,7 +9,7 @@ import externals.leaflet.map.LeafletMap
 open external class Popup(
     options: PopupOptions = definedExternally,
     source: Layer = definedExternally
-) : DivOverlay<PopupOptions> {
+) : DivOverlay {
     open fun openOn(map: LeafletMap): Popup /* this */
     override var options: PopupOptions
 }

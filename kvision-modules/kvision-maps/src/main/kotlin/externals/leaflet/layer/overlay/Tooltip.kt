@@ -8,7 +8,9 @@ import externals.leaflet.layer.Layer
 open external class Tooltip(
     options: TooltipOptions = definedExternally,
     source: Layer = definedExternally
-) : DivOverlay<TooltipOptions> {
-    open fun setOpacity(param_val: Number)
+) : DivOverlay {
+
     override var options: TooltipOptions
+
+    open fun setOpacity(param_val: Number)
 }

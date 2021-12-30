@@ -5,6 +5,11 @@ package externals.leaflet.events
 
 import externals.leaflet.core.Class
 
+// TODO tidy up
+//      - check to make sure `context: Any = definedExternally` is an optional arg and so half these methods can be removed
+//      - each event handler is a sub-type of LeafletEventHandlerFn, so just have one type?
+//        And add a wrapper for this class so it works nicely in Kotlin, with an enum for event types
+
 //@formatter:off
 open external class Evented : Class {
 
@@ -40,33 +45,33 @@ open external class Evented : Class {
 
     open fun off(type: LeafletEventId,                                                                fn: LeafletEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
     open fun off(type: AnyEventId): Evented /* this */
-    open fun off(type: LeafletEventId,                                                                fn: LeafletEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: LeafletEventId,                                                                fn: LeafletEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: LeafletControlEventId,                                                         fn: LayersControlEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: LeafletControlEventId,                                                         fn: LayersControlEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: LeafletControlEventId,                                                         fn: LayersControlEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: LeafletLayerEventId,                                                             fn: LayerEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: LeafletLayerEventId,                                                             fn: LayerEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: LeafletLayerEventId,                                                             fn: LayerEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: String /* "resize" */,                                                         fn: ResizeEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: String /* "resize" */,                                                         fn: ResizeEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: String /* "resize" */,                                                         fn: ResizeEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: LeafletPopupEventId,                                                             fn: PopupEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: LeafletPopupEventId,                                                             fn: PopupEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: LeafletPopupEventId,                                                             fn: PopupEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: String /* "tooltipopen" | "tooltipclose" */,                                   fn: TooltipEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: String /* "tooltipopen" | "tooltipclose" */,                                   fn: TooltipEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: String /* "tooltipopen" | "tooltipclose" */,                                   fn: TooltipEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: String /* "locationerror" */,                                                  fn: ErrorEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: String /* "locationerror" */,                                                  fn: ErrorEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: String /* "locationerror" */,                                                  fn: ErrorEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: String /* "locationfound" */,                                                  fn: LocationEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: String /* "locationfound" */,                                                  fn: LocationEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: String /* "locationfound" */,                                                  fn: LocationEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: LeafletMouseEventId,                                                           fn: LeafletMouseEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: LeafletMouseEventId,                                                           fn: LeafletMouseEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: LeafletMouseEventId,                                                           fn: LeafletMouseEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: String /* "keypress" | "keydown" | "keyup" */,                                 fn: LeafletKeyboardEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: String /* "keypress" | "keydown" | "keyup" */,                                 fn: LeafletKeyboardEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: String /* "keypress" | "keydown" | "keyup" */,                                 fn: LeafletKeyboardEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: String /* "zoomanim" */,                                                       fn: ZoomAnimEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: String /* "zoomanim" */,                                                       fn: ZoomAnimEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: String /* "zoomanim" */,                                                       fn: ZoomAnimEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: String /* "dragend" */,                                                        fn: DragEndEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: String /* "dragend" */,                                                        fn: DragEndEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: String /* "dragend" */,                                                        fn: DragEndEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: LeafletTileEventId,                                                              fn: TileEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: LeafletTileEventId,                                                              fn: TileEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: LeafletTileEventId,                                                              fn: TileEventHandlerFn = definedExternally): Evented /* this */
     open fun off(type: String /* "tileerror" */,                                                      fn: TileErrorEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun off(type: String /* "tileerror" */,                                                      fn: TileErrorEventHandlerFn = definedExternally): Evented /* this */
+//    open fun off(type: String /* "tileerror" */,                                                      fn: TileErrorEventHandlerFn = definedExternally): Evented /* this */
     open fun off(eventMap: LeafletEventHandlerFnMap): Evented /* this */
     open fun off(): Evented /* this */
 
@@ -138,33 +143,33 @@ open external class Evented : Class {
 
     open fun removeEventListener(type: LeafletEventId,                                                fn: LeafletEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
     open fun removeEventListener(type: AnyEventId): Evented /* this */
-    open fun removeEventListener(type: LeafletEventId,                                                fn: LeafletEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: LeafletEventId,                                                fn: LeafletEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: LeafletControlEventId,                                         fn: LayersControlEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: LeafletControlEventId,                                         fn: LayersControlEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: LeafletControlEventId,                                         fn: LayersControlEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: LeafletLayerEventId,                                             fn: LayerEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: LeafletLayerEventId,                                             fn: LayerEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: LeafletLayerEventId,                                             fn: LayerEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: String /* "resize" */,                                         fn: ResizeEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: String /* "resize" */,                                         fn: ResizeEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: String /* "resize" */,                                         fn: ResizeEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: LeafletPopupEventId,                                             fn: PopupEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: LeafletPopupEventId,                                             fn: PopupEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: LeafletPopupEventId,                                             fn: PopupEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: String /* "tooltipopen" | "tooltipclose" */,                   fn: TooltipEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: String /* "tooltipopen" | "tooltipclose" */,                   fn: TooltipEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: String /* "tooltipopen" | "tooltipclose" */,                   fn: TooltipEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: String /* "locationerror" */,                                  fn: ErrorEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: String /* "locationerror" */,                                  fn: ErrorEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: String /* "locationerror" */,                                  fn: ErrorEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: String /* "locationfound" */,                                  fn: LocationEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: String /* "locationfound" */,                                  fn: LocationEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: String /* "locationfound" */,                                  fn: LocationEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: LeafletMouseEventId,                                           fn: LeafletMouseEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: LeafletMouseEventId,                                           fn: LeafletMouseEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: LeafletMouseEventId,                                           fn: LeafletMouseEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: String /* "keypress" | "keydown" | "keyup" */,                 fn: LeafletKeyboardEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: String /* "keypress" | "keydown" | "keyup" */,                 fn: LeafletKeyboardEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: String /* "keypress" | "keydown" | "keyup" */,                 fn: LeafletKeyboardEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: String /* "zoomanim" */,                                       fn: ZoomAnimEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: String /* "zoomanim" */,                                       fn: ZoomAnimEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: String /* "zoomanim" */,                                       fn: ZoomAnimEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: String /* "dragend" */,                                        fn: DragEndEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: String /* "dragend" */,                                        fn: DragEndEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: String /* "dragend" */,                                        fn: DragEndEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: LeafletTileEventId,                                              fn: TileEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: LeafletTileEventId,                                              fn: TileEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: LeafletTileEventId,                                              fn: TileEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(type: String /* "tileerror" */,                                      fn: TileErrorEventHandlerFn = definedExternally, context: Any = definedExternally): Evented /* this */
-    open fun removeEventListener(type: String /* "tileerror" */,                                      fn: TileErrorEventHandlerFn = definedExternally): Evented /* this */
+//    open fun removeEventListener(type: String /* "tileerror" */,                                      fn: TileErrorEventHandlerFn = definedExternally): Evented /* this */
     open fun removeEventListener(eventMap: LeafletEventHandlerFnMap): Evented /* this */
 
     open fun clearAllEventListeners(): Evented /* this */

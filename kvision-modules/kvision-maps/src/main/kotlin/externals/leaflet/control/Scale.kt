@@ -3,6 +3,6 @@
 
 package externals.leaflet.control
 
-open external class Scale(options: ScaleOptions = definedExternally) : Control<ScaleOptions> {
+open external class Scale(options: ScaleOptions = definedExternally) : Control {
     override var options: ScaleOptions
 }

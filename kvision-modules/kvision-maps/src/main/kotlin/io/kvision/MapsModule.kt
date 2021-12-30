@@ -21,8 +21,11 @@
  */
 package io.kvision
 
+import externals.leaflet.control.Layers
+import externals.leaflet.control.LayersObject
+import externals.leaflet.control.LayersOptions
+import externals.leaflet.control.set
 import externals.leaflet.layer.tile.TileLayer
-import externals.leaflet.layer.tile.TileLayerOptions
 import io.kvision.maps.BaseTileLayer
 import io.kvision.utils.delete
 import io.kvision.utils.obj
@@ -47,13 +50,55 @@ object MapsModule : ModuleInitializer {
     override fun initialize() {
         require("leaflet/dist/leaflet.css")
     }
+    //
+    fun createTileLayer(
+        urlTemplate: String,
+        configure: TileLayer.() -> Unit = {}
+    ): TileLayer =
+        TileLayer(
+            urlTemplate = urlTemplate,
+            options = js("{}"),
+        ).apply(configure)
 
     // TODO move to more suitable location
-    fun createTileLayer(base: BaseTileLayer): TileLayer<*> {
-        val tileLayer = TileLayer<TileLayerOptions>(
-            urlTemplate = base.url
+    private fun convertTileLayer(base: BaseTileLayer): TileLayer {
+        val tileLayer = TileLayer(
+            urlTemplate = base.url,
+            options = js("{}"),
         )
+//        println("\n-\n\ntileLayer: $tileLayer")
+//        println("\n-\n\ntileLayer.options: ${tileLayer.options}")
+//        println("\n-\n\ntileLayer.options.minZoom: ${tileLayer.options.minZoom}")
+//        println("\n-\n\ntileLayer.options.maxZoom: ${tileLayer.options.maxZoom}")
         tileLayer.options.attribution = base.attribution
+        tileLayer.options.id = base.label
+
         return tileLayer
+    }
+
+    fun createLayerObject(tileLayers: Collection<BaseTileLayer>): LayersObject {
+//        return tileLayers.associate { it.label to createTileLayer(it) }.toMutableMap()
+
+        return tileLayers
+            .associate { base -> base.label to convertTileLayer(base) }
+            .entries
+            .fold(object : LayersObject {}) { acc, (label, layer) ->
+                acc[label] = layer
+                acc
+            }
+
+    }
+
+    fun createLayers(
+        baseLayers: Collection<BaseTileLayer> = emptyList(),
+        overlays: LayersObject = createLayerObject(emptyList()),
+        configure: LayersOptions.() -> Unit = {}
+    ): Layers {
+        val layers = Layers(
+            baseLayers = createLayerObject(baseLayers),
+            options = js("{}"),
+        )
+        layers.options.configure()
+        return layers
     }
 }

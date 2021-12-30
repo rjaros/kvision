@@ -1,5 +1,6 @@
 @file:JsModule("leaflet")
 @file:JsNonModule
+@file:JsQualifier("Control")
 
 package externals.leaflet.control
 

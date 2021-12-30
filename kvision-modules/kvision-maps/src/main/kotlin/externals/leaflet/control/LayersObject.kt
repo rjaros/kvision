@@ -1,14 +1,11 @@
-// @file:JsModule("leaflet")
-//@file:JsNonModule
+@file:JsModule("leaflet")
+@file:JsNonModule
+@file:JsQualifier("Control")
+
+
 package externals.leaflet.control
 
 import externals.leaflet.layer.Layer
 
-//import externals.leaflet.layer.Layer
-
-typealias LayersObject = Array<Layer>
-
-//external interface LayersObject {
-//    operator fun get(name: String): Layer?
-//    operator fun set(name: String, value: Layer)
-//}
+//typealias LayersObject = MutableMap<String, Layer>
+external interface LayersObject

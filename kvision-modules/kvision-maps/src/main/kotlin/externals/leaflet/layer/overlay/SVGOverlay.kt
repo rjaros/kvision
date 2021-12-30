@@ -14,7 +14,7 @@ open external class SVGOverlay : Layer {
 //    constructor(svgImage: String, bounds: LatLngBounds)
 //    constructor(svgImage: SVGElement, bounds: LatLngBounds, options: ImageOverlayOptions = definedExternally)
 //    constructor(svgImage: SVGElement, bounds: LatLngBounds)
-    constructor(svgImage: Element, bounds: LatLngBounds, options: ImageOverlayOptions = definedExternally)
+    constructor(svgImage: SVGElement, bounds: LatLngBounds, options: ImageOverlayOptions = definedExternally)
 
     open fun setOpacity(opacity: Number): SVGOverlay /* this */
     open fun bringToFront(): SVGOverlay /* this */

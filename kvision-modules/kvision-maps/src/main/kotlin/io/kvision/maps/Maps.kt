@@ -22,7 +22,9 @@
  */
 package io.kvision.maps
 
+import externals.leaflet.layer.tile.TileLayer
 import externals.leaflet.map.LeafletMap
+import io.kvision.MapsModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.snabbdom.VNode
@@ -52,26 +54,8 @@ open class Maps(
         this.init()
     }
 
-    override fun afterInsert(node: VNode) {
-        createMaps()
-    }
-
-//    private var map: dynamic = null
-//    private val mapObjects = mutableListOf<dynamic>()
-//    private val featureGroup: dynamic = L.featureGroup()
-//
-//
-//    @Suppress("UnsafeCastFromDynamic")
-//    override fun afterInsert(node: VNode) {
-//        createMaps()
-//        mapObjects.forEach {
-//            it.addTo(map)
-//        }
-//    }
-//
     /** Create a native map instance. */
-//    @Suppress("UnsafeCastFromDynamic")
-    fun createMaps() {
+    override fun afterInsert(node: VNode) {
         val thisElement: HTMLElement = requireNotNull(this.getElement() as? HTMLElement) {
             "$this - Unable to get Widget element"
         }
@@ -79,6 +63,18 @@ open class Maps(
         leafletMap = LeafletMap(thisElement)
         leafletMap.mapConfigurer()
     }
+
+    fun addTileLayer(
+        urlTemplate: String,
+        configure: TileLayer.() -> Unit = {}
+    ) {
+        MapsModule
+            .createTileLayer(urlTemplate = urlTemplate)
+            .apply(configure)
+            .addTo(leafletMap)
+    }
+
+
 //    (this.getElement() as? HTMLElement)?.let {
 //        map = L.map(it)
 //        val center = arrayOf(lat, lng)
@@ -158,20 +154,22 @@ open class Maps(
 //    }
 //
 
-//    private fun fitAllMarkers() {
+    //    private fun fitAllMarkers() {
 //        if (featureGroup.getBounds().isValid())
 //            leafletMap.fitBounds(featureGroup.getBounds())
 //    }
 //
-//    override fun afterDestroy() {
-//        map?.remove()
-//    }
-//
-//    companion object {
-//        init {
-//            MapsModule.initialize()
-//        }
-//    }
+    override fun afterDestroy() {
+        if (this::leafletMap.isInitialized) {
+            leafletMap.remove()
+        }
+    }
+
+    companion object {
+        init {
+            MapsModule.initialize()
+        }
+    }
 }
 
 /**

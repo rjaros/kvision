@@ -1,11 +1,13 @@
 @file:JsModule("leaflet")
 @file:JsNonModule
+@file:JsQualifier("Control")
 
 package externals.leaflet.control
 
+
 open external class Attribution(
     options: AttributionOptions = definedExternally
-) : Control<AttributionOptions> {
+) : Control {
 
     override var options: AttributionOptions
 
@@ -13,4 +15,5 @@ open external class Attribution(
     open fun setPrefix(prefix: Boolean): Attribution /* this */
     open fun addAttribution(text: String): Attribution /* this */
     open fun removeAttribution(text: String): Attribution /* this */
+
 }

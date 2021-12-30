@@ -22,10 +22,10 @@
  */
 package test.io.kvision.maps
 
-import externals.leaflet.control.Layers
 import externals.leaflet.geo.CRS
 import externals.leaflet.geo.LatLng
 import externals.leaflet.geo.LatLngBounds
+import externals.leaflet.layer.FeatureGroup
 import externals.leaflet.layer.overlay.SVGOverlay
 import io.kotest.matchers.shouldBe
 import io.kvision.MapsModule
@@ -38,6 +38,7 @@ import io.kvision.utils.px
 import kotlin.test.Test
 import kotlin.test.assertTrue
 import kotlinx.browser.document
+import org.w3c.dom.svg.SVGElement
 
 // TODO tidy up
 
@@ -46,7 +47,8 @@ class MapsSpec : DomSpec {
     @Test
     fun renderSvg(): Unit = run {
 
-        val svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+        val svgElement: SVGElement = document
+            .createElementNS("http://www.w3.org/2000/svg", "svg") as SVGElement
         svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg")
         svgElement.setAttribute("viewBox", "0 0 200 200")
         val svgString = listOf(
@@ -62,14 +64,7 @@ class MapsSpec : DomSpec {
         )
 
         val root = Root("test", containerType = ContainerType.FIXED)
-        val map = Maps(
-//            0,
-//            0,
-//            11,
-//            baseTileLayer = BaseTileLayer.EMPTY,
-//            crs = CRS.Simple
-        )
-            .apply {
+        val map = Maps {
                 width = 300.px
                 height = 600.px
                 configureMap {
@@ -78,7 +73,6 @@ class MapsSpec : DomSpec {
                     addLayer(SVGOverlay(svgElement, bounds))
                 }
             }
-//        map.svgOverlay(svgElement, bounds)
         root.add(map)
 
         val element = document.getElementById("test")!!
@@ -94,13 +88,7 @@ class MapsSpec : DomSpec {
 
         val root = Root("test", containerType = ContainerType.FIXED)
 
-        val map = Maps(
-//            55,
-//            33,
-//            11,
-//            baseTileLayer = BaseTileLayer.EMPTY,
-//            crs = CRS.Simple
-        ) {
+        val map = Maps {
             width = 300.px
             height = 600.px
 
@@ -108,13 +96,22 @@ class MapsSpec : DomSpec {
                 setView(LatLng(55, 33), 11)
                 options.crs = CRS.Simple
 
-                val layers = Layers(
-                    baseLayers = BaseTileLayer.defaultLayers.map { base ->
-                        MapsModule.createTileLayer(base)
-                    }.toTypedArray()
-                )
-                layers.options.position = "topleft"
+
+//                val baseLayer = MapsModule.createTileLayer("")
+//                baseLayer.addTo(this)
+
+                val featureGroup = FeatureGroup<Any>()
+                featureGroup.addTo(this)
+
+                addTileLayer("")
+
+                val layers = MapsModule.createLayers(
+                    baseLayers = BaseTileLayer.defaultLayers
+                ) {
+                    position = "topleft"
+                }
                 layers.addTo(this)
+//                addControl(layers)
             }
         }
         root.add(map)
