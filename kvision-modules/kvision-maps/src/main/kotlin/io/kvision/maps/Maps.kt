@@ -75,15 +75,6 @@ open class Maps(
             .addTo(leafletMap)
     }
 
-    fun addPolyline(
-        latLngs: Collection<LatLng>,
-        configure: PolylineOptions.() -> Unit = {},
-    ) {
-        MapsModule
-            .createPolyline(latLngs, configure)
-            .addTo(leafletMap)
-    }
-
     override fun afterDestroy() {
         if (this::leafletMap.isInitialized) {
             leafletMap.remove()
@@ -100,7 +91,7 @@ open class Maps(
 /**
  * DSL builder extension function.
  *
- * It takes the same parameters as the constructor of the built component.
+ * It takes the same parameters as the constructor of the [Maps] component.
  */
 fun Container.maps(
     className: String? = null,

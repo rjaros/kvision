@@ -27,13 +27,11 @@ import externals.leaflet.control.LayersObject
 import externals.leaflet.control.LayersOptions
 import externals.leaflet.control.set
 import externals.leaflet.geo.LatLng
-import externals.leaflet.layer.marker.Icon
 import externals.leaflet.layer.tile.TileLayer
 import externals.leaflet.layer.tile.TileLayerOptions
 import externals.leaflet.layer.vector.Polyline
 import externals.leaflet.layer.vector.PolylineOptions
 import io.kvision.maps.BaseTileLayer
-import io.kvision.utils.delete
 import io.kvision.utils.obj
 
 /**
@@ -50,27 +48,27 @@ object MapsModule : ModuleInitializer {
     private fun setDefaultIcon() {
 
         // this doesn't work :(
-
-        Icon.Default(obj<Icon.DefaultIconOptions> {
-            imagePath = ""
-            iconRetinaUrl = "leaflet/dist/images/marker-icon-2x.png"
-            iconUrl = "leaflet/dist/images/marker-icon.png"
-            shadowUrl = "leaflet/dist/images/marker-shadow.png"
-        })
-
-        leaflet.Icon.Default.imagePath = ""
-        delete(leaflet.Icon.Default.prototype._getIconUrl)
-        leaflet.Icon.Default.mergeOptions(obj {
-            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png")
-            iconUrl = require("leaflet/dist/images/marker-icon.png")
-            shadowUrl = require("leaflet/dist/images/marker-shadow.png")
-        })
+//
+//        Icon.Default(obj<Icon.DefaultIconOptions> {
+//            imagePath = ""
+//            iconRetinaUrl = "leaflet/dist/images/marker-icon-2x.png"
+//            iconUrl = "leaflet/dist/images/marker-icon.png"
+//            shadowUrl = "leaflet/dist/images/marker-shadow.png"
+//        })
+//
+//        leaflet.Icon.Default.imagePath = ""
+//        delete(leaflet.Icon.Default.prototype._getIconUrl)
+//        leaflet.Icon.Default.mergeOptions(obj {
+//            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png")
+//            iconUrl = require("leaflet/dist/images/marker-icon.png")
+//            shadowUrl = require("leaflet/dist/images/marker-shadow.png")
+//        })
     }
 
     override fun initialize() {
         require("leaflet/dist/leaflet.css")
     }
-    //
+
     fun createTileLayer(
         urlTemplate: String,
         configure: TileLayerOptions.() -> Unit = {}
@@ -84,12 +82,7 @@ object MapsModule : ModuleInitializer {
     fun convertTileLayer(base: BaseTileLayer): TileLayer {
         val tileLayer = TileLayer(
             urlTemplate = base.url,
-            options = js("{}"),
         )
-//        println("\n-\n\ntileLayer: $tileLayer")
-//        println("\n-\n\ntileLayer.options: ${tileLayer.options}")
-//        println("\n-\n\ntileLayer.options.minZoom: ${tileLayer.options.minZoom}")
-//        println("\n-\n\ntileLayer.options.maxZoom: ${tileLayer.options.maxZoom}")
         tileLayer.options.attribution = base.attribution
         tileLayer.options.id = base.label
 
@@ -97,8 +90,6 @@ object MapsModule : ModuleInitializer {
     }
 
     fun createLayersObject(tileLayers: Collection<BaseTileLayer>): LayersObject {
-//        return tileLayers.associate { it.label to createTileLayer(it) }.toMutableMap()
-
         return tileLayers
             .associate { base -> base.label to convertTileLayer(base) }
             .entries
@@ -106,7 +97,6 @@ object MapsModule : ModuleInitializer {
                 acc[label] = layer
                 acc
             }
-
     }
 
     fun createLayers(
@@ -114,12 +104,11 @@ object MapsModule : ModuleInitializer {
         overlays: LayersObject = createLayersObject(emptyList()),
         configure: LayersOptions.() -> Unit = {},
     ): Layers {
-        val layers = Layers(
+        return Layers(
             baseLayers = createLayersObject(baseLayers),
+            overlays = overlays,
             options = obj<LayersOptions>(configure),
         )
-//        layers.options.configure()
-        return layers
     }
 
     fun createPolyline(
