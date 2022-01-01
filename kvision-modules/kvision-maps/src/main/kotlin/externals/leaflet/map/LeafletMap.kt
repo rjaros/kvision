@@ -97,7 +97,7 @@ open external class LeafletMap : Evented {
     open fun createPane(name: String, container: HTMLElement = definedExternally): HTMLElement
     open fun getPane(pane: String): HTMLElement?
     open fun getPane(pane: HTMLElement): HTMLElement?
-//    open fun getPanes(): `T$5` /* `T$5` & DefaultMapPanes */
+    open fun getPanes(): MapPanes
     open fun getContainer(): HTMLElement
     open fun whenReady(fn: () -> Unit, context: Any = definedExternally): LeafletMap
     open fun getCenter(): LatLng

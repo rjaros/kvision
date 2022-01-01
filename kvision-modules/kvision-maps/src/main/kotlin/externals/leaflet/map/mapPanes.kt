@@ -1,5 +1,5 @@
-@file:JsModule("leaflet")
-@file:JsNonModule
+//@file:JsModule("leaflet")
+//@file:JsNonModule
 
 package externals.leaflet.map
 
@@ -34,3 +34,14 @@ external interface DefaultMapPanes {
     /** Pane for [Popup]s. */
     var popupPane: HTMLElement
 }
+
+external interface HTMLElementsObject
+
+inline operator fun HTMLElementsObject.get(name: String): HTMLElement? =
+    asDynamic()[name] as HTMLElement?
+
+inline operator fun HTMLElementsObject.set(name: String, value: HTMLElement) {
+    asDynamic()[name] = value
+}
+
+external interface MapPanes : HTMLElementsObject, DefaultMapPanes
