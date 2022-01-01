@@ -35,8 +35,6 @@ dependencies {
     }
     implementation(npm("@types/geojson", "7946.0.8", false)) // unsure if this is necessary
 
-    implementation(enforcedPlatform(kotlinJsW("wrappers-bom", kotlinWrappersVersion))) // experimenting, probably remove this
-
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
     testImplementation(project(":kvision-modules:kvision-jquery"))  // experimenting - remove later
