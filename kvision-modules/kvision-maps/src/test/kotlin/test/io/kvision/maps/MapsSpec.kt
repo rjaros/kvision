@@ -38,6 +38,8 @@ import io.kvision.utils.px
 import kotlin.test.Test
 import kotlin.test.assertTrue
 import kotlinx.browser.document
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.svg.SVGElement
 
 // TODO tidy up
@@ -115,7 +117,7 @@ class MapsSpec : DomSpec {
             }
         }
         root.add(map)
-        val element = document.getElementById("test")!!
+        val element: HTMLElement = document.getElementById("test")!! as HTMLElement
 
         val expectedHtml: String = """
             <div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 300px; height: 600px; position: relative;">
@@ -213,7 +215,18 @@ class MapsSpec : DomSpec {
 
     @Test
     fun addPolyLine(): Unit = run {
-        // it doesn't look like Polyline adds points correctly...
+
+        val polyline = MapsModule
+            .createPolyline(
+                listOf(
+                    LatLng(55, 2),
+                    LatLng(65, 2),
+                    LatLng(65, 20),
+                    LatLng(55, 20),
+                )
+            ) {
+                noClip = true
+            }
 
         val root = Root("test", containerType = ContainerType.FIXED)
         val map = Maps {
@@ -222,24 +235,20 @@ class MapsSpec : DomSpec {
             configureMap {
                 setView(LatLng(0, 0), 11)
                 options.crs = CRS.Simple
-                addPolyline(
-                    listOf(
-                        LatLng(55, 2),
-                        LatLng(65, 2),
-                        LatLng(65, 20),
-                        LatLng(55, 20),
-                    )
-                ) {
-                    noClip = true
-                }
+
+                addLayer(polyline)
+
+                // must focus the map on the lines, so they are visible
+                fitBounds(polyline.getBounds())
             }
         }
+
         root.add(map)
 
-        val element = document.getElementById("test")!!
+        val element: Element = document.getElementById("test")!!
+
         element.innerHTML shouldBe "asdasdad"
     }
-
 
 /*    @Test
     fun renderImage() {
