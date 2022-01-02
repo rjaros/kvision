@@ -6,7 +6,7 @@ package externals.leaflet.layer.marker
 import externals.leaflet.layer.Layer
 import org.w3c.dom.HTMLElement
 
-
+/** Represents an icon to provide when creating a marker. */
 open external class Icon(options: BaseIconOptions) : Layer {
 
     open var options: dynamic // BaseIconOptions

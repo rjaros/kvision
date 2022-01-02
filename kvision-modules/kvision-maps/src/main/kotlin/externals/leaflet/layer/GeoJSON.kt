@@ -4,24 +4,31 @@
 package externals.leaflet.layer
 
 import externals.geojson.Feature
+import externals.geojson.GeoJsonGeometry
 import externals.geojson.GeoJsonObject
 import externals.leaflet.geo.LatLng
 import externals.leaflet.layer.vector.PathOptions
 
-open external class GeoJSON<P: Any>(
+/**
+ * Represents a GeoJSON object or an array of GeoJSON objects.
+ * Allows you to parse GeoJSON data and display it on the map.
+ */
+open external class GeoJSON(
     geojson: GeoJsonObject = definedExternally,
-    options: GeoJSONOptions<P> = definedExternally
-) : FeatureGroup<P> {
-    open fun addData(data: GeoJsonObject): GeoJSON<P> /* this */
-    open fun resetStyle(layer: Layer = definedExternally): GeoJSON<P> /* this */
-    override fun setStyle(style: PathOptions): GeoJSON<P> /* this */
-    open fun setStyle(style: StyleFunction<P>): GeoJSON<P> /* this */
-    open var options: GeoJSONOptions<P>
+    options: GeoJSONOptions = definedExternally
+) : FeatureGroup {
+
+    open var options: GeoJSONOptions
+
+    open fun addData(data: GeoJsonObject): GeoJSON /* this */
+    open fun resetStyle(layer: Layer = definedExternally): GeoJSON /* this */
+    override fun setStyle(style: PathOptions): GeoJSON /* this */
+    open fun setStyle(style: StyleFunction): GeoJSON /* this */
 
     companion object {
-        fun <P> geometryToLayer(
-            featureData: Feature<dynamic /* typealias GeometryObject = dynamic */, P>,
-            options: GeoJSONOptions<P> = definedExternally
+        fun geometryToLayer(
+            featureData: Feature<GeoJsonGeometry, *>,
+            options: GeoJSONOptions = definedExternally
         ): Layer
 
         fun coordsToLatLng(coords: Any /* JsTuple<Number, Number> */): LatLng
@@ -38,7 +45,7 @@ open external class GeoJSON<P: Any>(
             closed: Boolean = definedExternally
         ): Array<Any>
 
-        fun <P> asFeature(geojson: Feature<dynamic /* typealias GeometryObject = dynamic */, P>): Feature<dynamic /* typealias GeometryObject = dynamic */, P>
-        fun <P> asFeature(geojson: dynamic /* typealias GeometryObject = dynamic */): Feature<dynamic /* typealias GeometryObject = dynamic */, P>
+        fun asFeature(geojson: Feature<GeoJsonGeometry, *>): Feature<GeoJsonGeometry, *>
+        fun asFeature(geojson: GeoJsonGeometry): Feature<GeoJsonGeometry, *>
     }
 }

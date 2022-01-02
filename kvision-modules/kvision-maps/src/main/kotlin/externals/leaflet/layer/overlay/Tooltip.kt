@@ -6,8 +6,8 @@ package externals.leaflet.layer.overlay
 import externals.leaflet.layer.Layer
 
 open external class Tooltip(
+    source: Layer = definedExternally,
     options: TooltipOptions = definedExternally,
-    source: Layer = definedExternally
 ) : DivOverlay {
 
     override var options: TooltipOptions

@@ -23,18 +23,50 @@
 package io.kvision.maps
 
 import externals.geojson.LineString
+import externals.leaflet.control.Attribution
+import externals.leaflet.control.AttributionOptions
 import externals.leaflet.control.Layers
 import externals.leaflet.control.LayersObject
 import externals.leaflet.control.LayersOptions
+import externals.leaflet.control.Scale
+import externals.leaflet.control.ScaleOptions
+import externals.leaflet.control.Zoom
+import externals.leaflet.control.ZoomOptions
 import externals.leaflet.control.set
 import externals.leaflet.geo.LatLng
 import externals.leaflet.geo.LatLngBounds
+import externals.leaflet.layer.FeatureGroup
+import externals.leaflet.layer.Layer
+import externals.leaflet.layer.LayerOptions
+import externals.leaflet.layer.marker.BaseIconOptions
+import externals.leaflet.layer.marker.DivIcon
+import externals.leaflet.layer.marker.DivIconOptions
+import externals.leaflet.layer.marker.Icon
+import externals.leaflet.layer.marker.Marker
+import externals.leaflet.layer.marker.MarkerOptions
+import externals.leaflet.layer.overlay.DivOverlay
+import externals.leaflet.layer.overlay.DivOverlayOptions
 import externals.leaflet.layer.overlay.ImageOverlay
 import externals.leaflet.layer.overlay.ImageOverlayOptions
+import externals.leaflet.layer.overlay.Popup
+import externals.leaflet.layer.overlay.PopupOptions
+import externals.leaflet.layer.overlay.Tooltip
+import externals.leaflet.layer.overlay.TooltipOptions
+import externals.leaflet.layer.tile.GridLayer
+import externals.leaflet.layer.tile.GridLayerOptions
 import externals.leaflet.layer.tile.TileLayer
 import externals.leaflet.layer.tile.TileLayerOptions
+import externals.leaflet.layer.tile.WMS
+import externals.leaflet.layer.tile.WMSOptions
+import externals.leaflet.layer.vector.Canvas
+import externals.leaflet.layer.vector.Circle
+import externals.leaflet.layer.vector.CircleMarker
+import externals.leaflet.layer.vector.CircleMarkerOptions
 import externals.leaflet.layer.vector.Polyline
 import externals.leaflet.layer.vector.PolylineOptions
+import externals.leaflet.layer.vector.Rectangle
+import externals.leaflet.layer.vector.RendererOptions
+import externals.leaflet.layer.vector.SVG
 import externals.leaflet.map.LeafletMap
 import io.kvision.MapsModule
 import io.kvision.core.Container
@@ -42,8 +74,6 @@ import io.kvision.core.Widget
 import io.kvision.snabbdom.VNode
 import io.kvision.utils.obj
 import org.w3c.dom.HTMLElement
-
-// TODO tidy this up
 
 /**
  * Maps component.
@@ -160,6 +190,94 @@ open class Maps(
             bounds = bounds,
             options = obj<ImageOverlayOptions>(configure),
         )
+
+        fun createAttribution(
+            configure: AttributionOptions.() -> Unit = {},
+        ) = Attribution(options = obj<AttributionOptions>(configure))
+
+        fun createScale(
+            configure: ScaleOptions.() -> Unit = {},
+        ) = Scale(options = obj<ScaleOptions>(configure))
+
+        fun createZoom(
+            configure: ZoomOptions.() -> Unit = {},
+        ) = Zoom(options = obj<ZoomOptions>(configure))
+
+        fun createDivIcon(
+            configure: DivIconOptions.() -> Unit = {},
+        ) = DivIcon(options = obj<DivIconOptions>(configure))
+
+        fun createIcon(
+            configure: BaseIconOptions.() -> Unit = {},
+        ) = Icon(options = obj<BaseIconOptions>(configure))
+
+        fun createMarker(
+            latlng: LatLng,
+            configure: MarkerOptions.() -> Unit = {},
+        ) = Marker(latlng, options = obj<MarkerOptions>(configure))
+
+        fun createDivOverlay(
+            source: Layer,
+            configure: DivOverlayOptions.() -> Unit = {},
+        ) = DivOverlay(source = source, options = obj<DivOverlayOptions>(configure))
+
+        fun createPopup(
+            source: Layer,
+            configure: PopupOptions.() -> Unit = {},
+        ) = Popup(source = source, options = obj<PopupOptions>(configure))
+
+        fun createTooltip(
+            source: Layer,
+            configure: TooltipOptions.() -> Unit = {},
+        ) = Tooltip(source = source, options = obj<TooltipOptions>(configure))
+
+        fun createVideoOverlay(
+            source: Layer,
+            configure: TooltipOptions.() -> Unit = {},
+        ) = Tooltip(source = source, options = obj<TooltipOptions>(configure))
+
+        fun createGridLayer(
+            configure: GridLayerOptions.() -> Unit = {},
+        ) = GridLayer(options = obj<GridLayerOptions>(configure))
+
+        fun createWMS(
+            baseUrl: String,
+            configure: WMSOptions.() -> Unit = {},
+        ) = WMS(baseUrl = baseUrl, options = obj<WMSOptions>(configure))
+
+        fun createCanvas(
+            configure: RendererOptions.() -> Unit = {},
+        ) = Canvas(options = obj<RendererOptions>(configure))
+
+        fun createCircleMarker(
+            latlng: LatLng,
+            configure: CircleMarkerOptions.() -> Unit = {},
+        ) = CircleMarker(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
+
+        fun createCircle(
+            latlng: LatLng,
+            configure: CircleMarkerOptions.() -> Unit = {},
+        ) = Circle(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
+
+        fun createPolygon(
+            latlng: LatLng,
+            configure: CircleMarkerOptions.() -> Unit = {},
+        ) = Circle(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
+
+        fun createRectangle(
+            latLngBounds: LatLngBounds,
+            configure: PolylineOptions.() -> Unit = {},
+        ) = Rectangle(latLngBounds = latLngBounds, options = obj<PolylineOptions>(configure))
+
+        fun createSVG(
+            latLngBounds: LatLngBounds,
+            configure: RendererOptions.() -> Unit = {},
+        ) = SVG(options = obj<RendererOptions>(configure))
+
+        fun createFeatureGroup(
+            layers: Array<Layer>,
+            configure: LayerOptions.() -> Unit = {},
+        ) = FeatureGroup(layers = layers, options = obj<RendererOptions>(configure))
 
     }
 

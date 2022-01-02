@@ -21,20 +21,16 @@ abstract external class Layer(options: LayerOptions = definedExternally) : Event
     open var _map: LeafletMap
 
     open fun addTo(map: LeafletMap): Layer /* this */
-    open fun addTo(map: LayerGroup<Any>): Layer /* this */
+    open fun addTo(map: LayerGroup): Layer /* this */
     open fun remove(): Layer /* this */
     open fun removeFrom(map: LeafletMap): Layer /* this */
 
     open fun getPane(name: String = definedExternally): HTMLElement?
 
     open fun bindPopup(content: (layer: Layer) -> Any, options: PopupOptions = definedExternally): Layer /* this */
-//    open fun bindPopup(content: (layer: Layer) -> Any): Layer /* this */
     open fun bindPopup(content: String, options: PopupOptions = definedExternally): Layer /* this */
-//    open fun bindPopup(content: String): Layer /* this */
     open fun bindPopup(content: HTMLElement, options: PopupOptions = definedExternally): Layer /* this */
-//    open fun bindPopup(content: HTMLElement): Layer /* this */
     open fun bindPopup(content: Popup, options: PopupOptions = definedExternally): Layer /* this */
-//    open fun bindPopup(content: Popup): Layer /* this */
     open fun unbindPopup(): Layer /* this */
     open fun openPopup(latlng: LatLng = definedExternally): Layer /* this */
     open fun openPopup(): Layer /* this */
@@ -47,13 +43,9 @@ abstract external class Layer(options: LayerOptions = definedExternally) : Event
     open fun getPopup(): Popup?
 
     open fun bindTooltip(content: (layer: Layer) -> Any, options: TooltipOptions = definedExternally): Layer /* this */
-//    open fun bindTooltip(content: (layer: Layer) -> Any): Layer /* this */
     open fun bindTooltip(content: Tooltip, options: TooltipOptions = definedExternally): Layer /* this */
-//    open fun bindTooltip(content: Tooltip): Layer /* this */
     open fun bindTooltip(content: String, options: TooltipOptions = definedExternally): Layer /* this */
-//    open fun bindTooltip(content: String): Layer /* this */
     open fun bindTooltip(content: HTMLElement, options: TooltipOptions = definedExternally): Layer /* this */
-//    open fun bindTooltip(content: HTMLElement): Layer /* this */
     open fun unbindTooltip(): Layer /* this */
     open fun openTooltip(latlng: LatLng = definedExternally): Layer /* this */
     open fun openTooltip(): Layer /* this */

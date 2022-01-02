@@ -6,22 +6,17 @@ package externals.leaflet.layer.vector
 import externals.geojson.Feature
 import externals.leaflet.geo.LatLng
 
-open external class CircleMarker<P> : Path {
-    constructor(latlng: LatLng, options: CircleMarkerOptions = definedExternally)
-    constructor(latlng: LatLng)
-//    constructor(latlng: LatLngLiteral, options: CircleMarkerOptions = definedExternally)
-//    constructor(latlng: LatLngLiteral)
-//    constructor(latlng: Any, options: CircleMarkerOptions = definedExternally)
-//    constructor(latlng: Any)
+open external class CircleMarker(
+    latlng: LatLng,
+    options: CircleMarkerOptions = definedExternally,
+) : Path {
 
     override var options: CircleMarkerOptions
-    open var feature: Feature<externals.geojson.Point, P>?
+    open var feature: Feature<externals.geojson.Point, *>?
 
-    open fun toGeoJSON(precision: Number = definedExternally): Feature<externals.geojson.Point, P>
-    open fun setLatLng(latLng: LatLng): CircleMarker<P> /* this */
-//    open fun setLatLng(latLng: LatLngLiteral): CircleMarker<P> /* this */
-//    open fun setLatLng(latLng: Any /* JsTuple<Number, Number> */): CircleMarker<P> /* this */
+    open fun toGeoJSON(precision: Number = definedExternally): Feature<externals.geojson.Point, *>
+    open fun setLatLng(latLng: LatLng): CircleMarker /* this */
     open fun getLatLng(): LatLng
-    open fun setRadius(radius: Number): CircleMarker<P> /* this */
+    open fun setRadius(radius: Number): CircleMarker /* this */
     open fun getRadius(): Number
 }

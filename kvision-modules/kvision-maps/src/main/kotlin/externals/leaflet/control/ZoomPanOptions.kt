@@ -5,6 +5,4 @@ package externals.leaflet.control
 
 import externals.leaflet.map.PanOptions
 
-external interface ZoomPanOptions : ZoomOptions, PanOptions {
-    override var animate: Boolean?
-}
+external interface ZoomPanOptions : ZoomOptions, PanOptions

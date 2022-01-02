@@ -16,7 +16,10 @@ import externals.leaflet.geometry.Point
  * See [`https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/layer/vector/Polyline.js`](https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/layer/vector/Polyline.js)
  */
 open external class Polyline<T, P: Any> : Path {
+    /** Create a polyline from an array of [LatLng] points */
     constructor(latlngs: Array<LatLng /* LatLng | LatLngLiteral | JsTuple<Number, Number> */>, options: PolylineOptions = definedExternally)
+
+    /** @param[latlngs] pass a multi-dimensional array to represent a [MultiPolyline] shape */
     constructor(latlngs: Array<Array<LatLng /* LatLng | LatLngLiteral | JsTuple<Number, Number> */>>, options: PolylineOptions = definedExternally)
 
     open var feature: Feature<T, P>?

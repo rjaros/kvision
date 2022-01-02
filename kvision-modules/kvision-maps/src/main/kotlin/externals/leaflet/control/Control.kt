@@ -8,7 +8,7 @@ import externals.leaflet.core.Class
 import externals.leaflet.map.LeafletMap
 import org.w3c.dom.HTMLElement
 
-open external class Control(
+abstract external class Control(
     options: ControlOptions = definedExternally
 ) : Class {
     open fun getPosition(): PositionsUnion
