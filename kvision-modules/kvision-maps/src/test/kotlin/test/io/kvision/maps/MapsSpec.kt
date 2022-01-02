@@ -46,7 +46,6 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.svg.SVGElement
 
-// TODO tidy up
 
 class MapsSpec : DomSpec {
 
@@ -109,7 +108,7 @@ class MapsSpec : DomSpec {
                 convertTileLayer(BaseTileLayer.EMPTY)
                     .addTo(this)
 
-                val featureGroup = FeatureGroup<Any>()
+                val featureGroup = FeatureGroup()
                 featureGroup.addTo(this)
 
                 val layers = createLayers(
@@ -127,7 +126,121 @@ class MapsSpec : DomSpec {
         root.add(map)
         val element: HTMLElement = document.getElementById("test")!! as HTMLElement
 
-        val expectedHtml: String = """
+        assertEqualsHtml(element.innerHTML, fullMapHtml, "", normalizeHtml = true)
+    }
+
+    @Test
+    fun experimentingWithHtml2Canvas() = runSuspend {
+        val root = Root("test", containerType = ContainerType.FIXED)
+
+        val map = Maps {
+            width = 300.px
+            height = 600.px
+
+            initLeafletMap {
+                setView(LatLng(55, 33), 11)
+                options.crs = CRS.Simple
+            }
+        }
+        root.add(map)
+        val element: HTMLElement = document.getElementById("test")!! as HTMLElement
+
+        val canvas = ScreenshotUtil.capture(element) {
+            allowTaint = true
+            useCORS = true
+        }
+        val data = canvas.toDataURL("image/png")
+        println("\n\n---\n\ncanvas data\n\n---\n\n$data\n\n---\n\n")
+
+    }
+
+    @Test
+    fun addPolyLine(): Unit = run {
+
+        val polyline = createPolyline(
+            listOf(
+                LatLng(55, 2),
+                LatLng(65, 2),
+                LatLng(65, 20),
+                LatLng(55, 20),
+                LatLng(55, 2),
+            )
+        ) {
+            noClip = true
+        }
+
+        val root = Root("test", containerType = ContainerType.FIXED)
+        val map = Maps {
+            width = 300.px
+            height = 600.px
+            initLeafletMap {
+                setView(LatLng(0, 0), 11)
+                options.crs = CRS.Simple
+
+                addLayer(polyline)
+            }
+        }
+        root.add(map)
+
+        map {
+            // must focus the map on the lines, so they are visible
+            fitBounds(polyline.getBounds())
+        }
+
+        val element: Element = document.getElementById("test")!!
+
+        val expectedSvgLine =
+            """<path class="leaflet-interactive" stroke="#3388ff" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M-9 5L-9 -5L9 -5L9 5L-9 5">"""
+        assertContainsHtml(
+            expectedSvgLine,
+            element.innerHTML,
+            "actual HTML must a path"
+        )
+    }
+
+    @Test
+    fun testAddImageOverlay() = run {
+        //GIVEN
+        val imageUrl = "https://www.w3.org/Icons/SVG/svg-logo-h.svg"
+        val w3cLogoOverlay = createImageOverlay(
+            imageUrl,
+            LatLngBounds(
+                LatLng(0, 0),
+                LatLng(0.1, 0.1)
+            )
+        )
+
+        val map = Root("test", containerType = ContainerType.FIXED)
+            .maps {
+                width = 300.px
+                height = 600.px
+                initLeafletMap {
+                    setView(LatLng(0, 0), 11)
+                    options.crs = CRS.Simple
+                }
+            }
+
+        //WHEN
+        map {
+            w3cLogoOverlay.addTo(this)
+            w3cLogoOverlay.bringToFront()
+            fitBounds(w3cLogoOverlay.getBounds())
+        }
+
+        // THEN
+        val element = document.getElementById("test")!!
+
+        assertContainsHtml(
+            imageUrl,
+            element.innerHTML,
+            "actual HTML must contain w3c SVG logo URL"
+        )
+
+    }
+
+    companion object {
+        /** The entire Leaflet map HTML - used to verify that KVision creates it correctly */
+        private val fullMapHtml = """
             <div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 300px; height: 600px; position: relative;">
                 <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
                     <div class="leaflet-pane leaflet-tile-pane">
@@ -236,123 +349,5 @@ class MapsSpec : DomSpec {
             </div>
             """.trimIndent()
 
-        assertEqualsHtml(element.innerHTML, expectedHtml, "", normalizeHtml = true)
     }
-
-    @Test
-    fun experimentingWithHtml2Canvas() = runSuspend {
-        // TODO fix test
-
-        val root = Root("test", containerType = ContainerType.FIXED)
-
-        val map = Maps {
-            width = 300.px
-            height = 600.px
-
-            initLeafletMap {
-                setView(LatLng(55, 33), 11)
-                options.crs = CRS.Simple
-            }
-        }
-        root.add(map)
-        val element: HTMLElement = document.getElementById("test")!! as HTMLElement
-
-        val canvas = ScreenshotUtil.capture(element)
-        val data = canvas.toDataURL("image/png")
-        println("\n\n---\n\ncanvas data\n\n---\n\n$data\n\n---\n\n")
-
-    }
-
-    @Test
-    fun addPolyLine(): Unit = run {
-
-        val polyline = createPolyline(
-            listOf(
-                LatLng(55, 2),
-                LatLng(65, 2),
-                LatLng(65, 20),
-                LatLng(55, 20),
-                LatLng(55, 2),
-            )
-        ) {
-            noClip = true
-        }
-
-        val root = Root("test", containerType = ContainerType.FIXED)
-        val map = Maps {
-            width = 300.px
-            height = 600.px
-            initLeafletMap {
-                setView(LatLng(0, 0), 11)
-                options.crs = CRS.Simple
-
-                addLayer(polyline)
-            }
-        }
-        root.add(map)
-
-        map {
-            // must focus the map on the lines, so they are visible
-            fitBounds(polyline.getBounds())
-        }
-
-        val element: Element = document.getElementById("test")!!
-
-        val expectedSvgLine =
-            """<path class="leaflet-interactive" stroke="#3388ff" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M-9 5L-9 -5L9 -5L9 5L-9 5">"""
-        assertContainsHtml(
-            expectedSvgLine,
-            element.innerHTML,
-            "actual HTML must a path"
-        )
-    }
-
-    @Test
-    fun testAddImageOverlay() = run {
-        //GIVEN
-        val imageUrl = "https://www.w3.org/Icons/SVG/svg-logo-h.svg"
-        val w3cLogoOverlay = createImageOverlay(
-            imageUrl,
-            LatLngBounds(
-                LatLng(0, 0),
-                LatLng(0.1, 0.1)
-            )
-        )
-
-        val map = Root("test", containerType = ContainerType.FIXED)
-            .maps {
-                width = 300.px
-                height = 600.px
-                initLeafletMap {
-                    setView(LatLng(0, 0), 11)
-                    options.crs = CRS.Simple
-                }
-            }
-
-        //WHEN
-        map {
-            w3cLogoOverlay.addTo(this)
-            w3cLogoOverlay.bringToFront()
-            fitBounds(w3cLogoOverlay.getBounds())
-        }
-
-        // THEN
-        val expectedW3cLogoTitle =
-            "<title>SVG logo combined with the W3C logo, set horizontally</title>"
-        val element = document.getElementById("test")!!
-
-//        assertContainsHtml(
-//            expectedW3cLogoTitle,
-//            element.innerHTML,
-//            "actual HTML must contain w3c SVG logo"
-//        )
-
-        assertContainsHtml(
-            imageUrl,
-            element.innerHTML,
-            "actual HTML must contain w3c SVG logo URL"
-        )
-
-    }
-
 }
