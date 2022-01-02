@@ -22,22 +22,31 @@
  */
 package io.kvision.maps
 
+import externals.geojson.LineString
+import externals.leaflet.control.Layers
+import externals.leaflet.control.LayersObject
+import externals.leaflet.control.LayersOptions
+import externals.leaflet.control.set
 import externals.leaflet.geo.LatLng
+import externals.leaflet.geo.LatLngBounds
+import externals.leaflet.layer.overlay.ImageOverlay
+import externals.leaflet.layer.overlay.ImageOverlayOptions
+import externals.leaflet.layer.tile.TileLayer
 import externals.leaflet.layer.tile.TileLayerOptions
+import externals.leaflet.layer.vector.Polyline
 import externals.leaflet.layer.vector.PolylineOptions
 import externals.leaflet.map.LeafletMap
 import io.kvision.MapsModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.snabbdom.VNode
+import io.kvision.utils.obj
 import org.w3c.dom.HTMLElement
 
 // TODO tidy this up
 
 /**
  * Maps component.
- *
- * @constructor
  */
 open class Maps(
     className: String? = null,
@@ -46,9 +55,38 @@ open class Maps(
 
     private lateinit var leafletMap: LeafletMap
 
-    private var mapConfigurer: LeafletMap.() -> Unit = { }
-    fun configureMap(configure: LeafletMap.() -> Unit) {
-        mapConfigurer = configure
+    /** Configuration for [leafletMap], in case it has not yet been initialised. */
+    private var initLeafletMap: LeafletMap.() -> Any = { }
+
+    /**
+     * Apply some configuration to [Leaflet Map][LeafletMap].
+     *
+     * If [leafletMap] has been initialised and inserted into the DOM (as in, [afterInsert] has
+     * been invoked), then the configuration will be applied immediately.
+     *
+     * If not, then this configuration will be stored and applied in [afterInsert]
+     * (note: in these instances then invoking this method will overwrite previously stored
+     * configurations).
+     */
+    fun initLeafletMap(configure: LeafletMap.() -> Unit) {
+        if (this::leafletMap.isInitialized) {
+            leafletMap.configure()
+        } else {
+            initLeafletMap = configure
+        }
+    }
+
+    /**
+     * Perform some action with the initialised [LeafletMap] instance
+     *
+     * @throws IllegalArgumentException if [leafletMap] is not yet initialized - it must first be
+     * added as a component.
+     */
+    operator fun <T : Any?> invoke(block: LeafletMap.() -> T): T {
+        require(this::leafletMap.isInitialized) {
+            "LeafletMap is not initialised - the Maps widget must be added to the DOM"
+        }
+        return leafletMap.block()
     }
 
     init {
@@ -63,16 +101,7 @@ open class Maps(
         }
 
         leafletMap = LeafletMap(thisElement)
-        leafletMap.mapConfigurer()
-    }
-
-    fun addTileLayer(
-        urlTemplate: String,
-        configure: TileLayerOptions.() -> Unit = {}
-    ) {
-        MapsModule
-            .createTileLayer(urlTemplate = urlTemplate, configure)
-            .addTo(leafletMap)
+        leafletMap.initLeafletMap()
     }
 
     override fun afterDestroy() {
@@ -85,7 +114,56 @@ open class Maps(
         init {
             MapsModule.initialize()
         }
+
+        fun createPolyline(
+            latLngs: Collection<LatLng>,
+            configure: PolylineOptions.() -> Unit = {},
+        ): Polyline<LineString, Any> = Polyline(
+            latLngs.toTypedArray(),
+            options = obj<PolylineOptions>(configure),
+        )
+
+        fun createTileLayer(
+            urlTemplate: String,
+            configure: TileLayerOptions.() -> Unit = {}
+        ): TileLayer = TileLayer(
+            urlTemplate = urlTemplate,
+            options = obj<TileLayerOptions>(configure),
+        )
+
+        fun createLayersObject(tileLayers: Collection<BaseTileLayer>): LayersObject {
+            return tileLayers
+                .associate { base -> base.label to MapsModule.convertTileLayer(base) }
+                .entries
+                .fold(object : LayersObject {}) { acc, (label, layer) ->
+                    acc[label] = layer
+                    acc
+                }
+        }
+
+        fun createLayers(
+            baseLayers: Collection<BaseTileLayer> = emptyList(),
+            overlays: LayersObject = createLayersObject(emptyList()),
+            configure: LayersOptions.() -> Unit = {},
+        ): Layers = Layers(
+            baseLayers = createLayersObject(baseLayers),
+            overlays = overlays,
+            options = obj<LayersOptions>(configure),
+        )
+
+        fun createImageOverlay(
+            imageUrl: String,
+            bounds: LatLngBounds,
+            configure: ImageOverlayOptions.() -> Unit = {},
+        ): ImageOverlay = ImageOverlay(
+            imageUrl = imageUrl,
+            bounds = bounds,
+            options = obj<ImageOverlayOptions>(configure),
+        )
+
     }
+
+
 }
 
 /**

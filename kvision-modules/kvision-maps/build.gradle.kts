@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.util.prefixIfNot
-
 plugins {
     kotlin("js")
     id("maven-publish")
@@ -9,17 +7,20 @@ plugins {
 }
 
 val coroutinesVersion: String by project
+val kotlinxHtmlVersion: String by project
 
 
 kotlin {
     kotlinJsTargets()
+    sourceSets {
+        all {
+            languageSettings {
+                optIn("kotlin.RequiresOptIn")
+                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            }
+        }
+    }
 }
-
-val kotlinWrappersVersion = "0.0.1-pre.284-kotlin-1.6.10"
-fun kotlinJsW( // experimenting, probably remove this
-    target: String,
-    version: String? = null
-): String = "org.jetbrains.kotlin-wrappers:kotlin-$target" + (version?.prefixIfNot(":") ?: "")
 
 dependencies {
     api(rootProject)
@@ -34,6 +35,8 @@ dependencies {
         because("used by Leaflet for defining locations")
     }
     implementation(npm("@types/geojson", "7946.0.8", false)) // unsure if this is necessary
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-html:$kotlinxHtmlVersion")
 
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))

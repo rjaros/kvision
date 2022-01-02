@@ -21,18 +21,9 @@
  */
 package io.kvision
 
-import externals.geojson.LineString
-import externals.leaflet.control.Layers
-import externals.leaflet.control.LayersObject
-import externals.leaflet.control.LayersOptions
-import externals.leaflet.control.set
-import externals.leaflet.geo.LatLng
 import externals.leaflet.layer.tile.TileLayer
-import externals.leaflet.layer.tile.TileLayerOptions
-import externals.leaflet.layer.vector.Polyline
-import externals.leaflet.layer.vector.PolylineOptions
 import io.kvision.maps.BaseTileLayer
-import io.kvision.utils.obj
+import io.kvision.maps.Maps.Companion.createTileLayer
 
 /**
  * Initializer for KVision maps module.
@@ -69,18 +60,8 @@ object MapsModule : ModuleInitializer {
         require("leaflet/dist/leaflet.css")
     }
 
-    fun createTileLayer(
-        urlTemplate: String,
-        configure: TileLayerOptions.() -> Unit = {}
-    ): TileLayer =
-        TileLayer(
-            urlTemplate = urlTemplate,
-            options = obj<TileLayerOptions>(configure),
-        )
-
-    // TODO move to more suitable location
     fun convertTileLayer(base: BaseTileLayer): TileLayer {
-        val tileLayer = TileLayer(
+        val tileLayer = createTileLayer(
             urlTemplate = base.url,
         )
         tileLayer.options.attribution = base.attribution
@@ -89,35 +70,5 @@ object MapsModule : ModuleInitializer {
         return tileLayer
     }
 
-    fun createLayersObject(tileLayers: Collection<BaseTileLayer>): LayersObject {
-        return tileLayers
-            .associate { base -> base.label to convertTileLayer(base) }
-            .entries
-            .fold(object : LayersObject {}) { acc, (label, layer) ->
-                acc[label] = layer
-                acc
-            }
-    }
 
-    fun createLayers(
-        baseLayers: Collection<BaseTileLayer> = emptyList(),
-        overlays: LayersObject = createLayersObject(emptyList()),
-        configure: LayersOptions.() -> Unit = {},
-    ): Layers {
-        return Layers(
-            baseLayers = createLayersObject(baseLayers),
-            overlays = overlays,
-            options = obj<LayersOptions>(configure),
-        )
-    }
-
-    fun createPolyline(
-        latLngs: Collection<LatLng>,
-        configure: PolylineOptions.() -> Unit = {},
-    ): Polyline<LineString, Any> {
-        return Polyline(
-            latLngs.toTypedArray(),
-            options = obj<PolylineOptions>(configure),
-        )
-    }
 }
