@@ -21,17 +21,20 @@
  */
 package io.kvision.test
 
+import io.kotest.assertions.withClue
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldContainIgnoringCase
 import io.kvision.core.Widget
 import io.kvision.jquery.JQuery
 import io.kvision.jquery.get
 import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
 import io.kvision.panel.Root
+import io.kvision.test.Formatting.normalizeHtml
 import kotlin.js.Promise
-import kotlin.test.assertContains
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import kotlinx.browser.document
+import kotlinx.coroutines.test.runTest
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.w3c.dom.asList
@@ -42,6 +45,13 @@ interface TestSpec {
     fun afterTest()
 
     fun run(code: () -> Unit) {
+        beforeTest()
+        code()
+        afterTest()
+    }
+
+    /** Coroutine test, using [runTest] */
+    fun runSuspend(code: suspend () -> Unit) = runTest {
         beforeTest()
         code()
         afterTest()
@@ -85,29 +95,58 @@ interface DomSpec : TestSpec {
         Root.disposeAllRoots()
     }
 
-    fun assertEqualsHtml(expected: String?, actual: String?, message: String?) {
-        if (expected != null && actual != null) {
-            val exp = jQuery(expected).normalizeClassListRecursive()
-            val act = jQuery(actual).normalizeClassListRecursive()
-            val result = exp[0]?.isEqualNode(act[0])
-            if (result == true) {
-                assertTrue(result == true, message)
-            } else {
-                assertEquals(expected, actual, message)
+    fun assertEqualsHtml(
+        expected: String?,
+        actual: String?,
+        message: String? = null,
+        normalizeHtml: Boolean = false,
+    ) {
+        withClue(message) {
+            if (!areEqualNodes(expected, actual)) {
+                if (normalizeHtml) {
+                    normalizeHtml(actual) shouldBe normalizeHtml(expected)
+                } else {
+                    actual shouldBe expected
+                }
             }
-        } else {
-            assertEquals(expected, actual, message)
         }
     }
 
-    // TODO experimenting - remove if not used
-    fun assertContainsHtml(expected: String?, actual: String?, message: String?, ignoreCase : Boolean = false) {
-        if (expected != null && actual != null) {
-            val act = jQuery(actual).normalizeClassListRecursive()
-            assertContains(act.html(), expected, ignoreCase, message)
-        } else {
-            assertEquals(expected, actual, message)
+    fun assertContainsHtml(
+        expected: String,
+        actual: String?,
+        message: String? = null,
+        ignoreCase: Boolean = false
+    ) {
+        withClue(message) {
+            if (ignoreCase) {
+                normalizeHtml(actual) shouldContainIgnoringCase normalizeHtml(expected)
+            } else {
+                normalizeHtml(actual) shouldContain normalizeHtml(expected)
+            }
         }
+    }
+
+    companion object {
+
+        /**
+         * Compare the provided strings by [Node.isEqualNode]. The class lists are normalized using
+         * JQuery.
+         *
+         * @return `true` if [expected] and [actual] are equal. Returns `false` if either is null,
+         * blank, or [Node.isEqualNode] returns false.
+         * @see [normalizeClassListRecursive]
+         */
+        fun areEqualNodes(expected: String?, actual: String?): Boolean {
+            return if (expected.isNullOrBlank() || actual.isNullOrBlank()) {
+                false
+            } else {
+                val exp = jQuery(expected).normalizeClassListRecursive()
+                val act = jQuery(actual).normalizeClassListRecursive()
+                exp[0]?.isEqualNode(act[0]) == true
+            }
+        }
+
     }
 }
 
