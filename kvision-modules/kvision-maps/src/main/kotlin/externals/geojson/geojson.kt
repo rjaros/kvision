@@ -22,12 +22,14 @@ external interface MultiPoint : GeoJsonObject, GeoJsonGeometry {
     var coordinates: Array<Position>
 }
 
-external interface LineString : GeoJsonObject, GeoJsonGeometry {
+external interface LineStringMultiLineStringUnion
+
+external interface LineString : GeoJsonObject, GeoJsonGeometry, LineStringMultiLineStringUnion {
     //    override var type: String /* "LineString" */
     var coordinates: Array<Position>
 }
 
-external interface MultiLineString : GeoJsonObject, GeoJsonGeometry {
+external interface MultiLineString : GeoJsonObject, GeoJsonGeometry, LineStringMultiLineStringUnion {
     //    override var type: String /* "MultiLineString" */
     var coordinates: Array<Array<Position>>
 }
