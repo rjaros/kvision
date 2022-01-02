@@ -7,9 +7,12 @@ import externals.leaflet.geo.LatLngBounds
 import externals.leaflet.layer.Layer
 import org.w3c.dom.HTMLImageElement
 
-open external class ImageOverlay : Layer {
-    constructor(imageUrl: String, bounds: LatLngBounds, options: ImageOverlayOptions = definedExternally)
-    constructor(imageUrl: String, bounds: LatLngBounds)
+open external class ImageOverlay(
+    imageUrl: String,
+    bounds: LatLngBounds,
+    options: ImageOverlayOptions = definedExternally
+) : Layer {
+    open var options: ImageOverlayOptions
 
     open fun setOpacity(opacity: Number): ImageOverlay /* this */
     open fun bringToFront(): ImageOverlay /* this */
@@ -19,5 +22,4 @@ open external class ImageOverlay : Layer {
     open fun setZIndex(value: Number): ImageOverlay /* this */
     open fun getBounds(): LatLngBounds
     open fun getElement(): HTMLImageElement?
-    open var options: ImageOverlayOptions
 }
