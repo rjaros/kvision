@@ -5,9 +5,9 @@ package externals.leaflet.events
 
 import externals.leaflet.core.Class
 
-// TODO tidy up
-//      - each event handler is a sub-type of LeafletEventHandlerFn, so just have one type?
-//        And add a wrapper for this class so it works nicely in Kotlin, with an enum for event types
+// Note: this can be simplified
+//      - each event handler is a subtype of LeafletEventHandlerFn, so just have one type?
+//      - add a wrapper for this class, so it works nicely in Kotlin, with an enum for event types
 
 //@formatter:off
 open external class Evented : Class {
