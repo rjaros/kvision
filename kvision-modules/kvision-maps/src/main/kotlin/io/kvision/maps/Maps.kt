@@ -37,7 +37,7 @@ open class Maps(
     init: (Maps.() -> Unit) = {}
 ) : Widget(className) {
 
-    /** private backing field - use [leafletMap] or [leafletMap] for accessing */
+    /** private backing field - use [configureLeafletMap] or [leafletMap] for accessing */
     private lateinit var _leafletMap: LeafletMap
 
     /** @see [configureLeafletMap] */

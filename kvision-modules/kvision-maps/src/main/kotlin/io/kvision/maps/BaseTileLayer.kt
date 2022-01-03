@@ -5,8 +5,8 @@ package io.kvision.maps
  *
  * See
  *
- * * https://github.com/leaflet-extras/leaflet-providers/
- * * https://leaflet-extras.github.io/leaflet-providers/preview/
+ * * [`https://github.com/leaflet-extras/leaflet-providers/`](https://github.com/leaflet-extras/leaflet-providers/)
+ * * [`https://leaflet-extras.github.io/leaflet-providers/preview/`](https://leaflet-extras.github.io/leaflet-providers/preview/)
  *
  */
 data class BaseTileLayer(
