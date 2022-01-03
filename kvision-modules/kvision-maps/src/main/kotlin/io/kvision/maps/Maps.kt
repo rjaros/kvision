@@ -54,8 +54,6 @@ import externals.leaflet.layer.overlay.Popup
 import externals.leaflet.layer.overlay.Popup.PopupOptions
 import externals.leaflet.layer.overlay.Tooltip
 import externals.leaflet.layer.overlay.Tooltip.TooltipOptions
-import externals.leaflet.layer.tile.GridLayer
-import externals.leaflet.layer.tile.GridLayer.GridLayerOptions
 import externals.leaflet.layer.tile.TileLayer
 import externals.leaflet.layer.tile.TileLayer.TileLayerOptions
 import externals.leaflet.layer.tile.WMS

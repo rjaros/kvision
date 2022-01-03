@@ -21,7 +21,7 @@ import org.w3c.dom.HTMLElement
  *
  * [`https://leafletjs.com/reference.html#gridlayer`](https://leafletjs.com/reference.html#gridlayer)
  */
-abstract external class GridLayer<T: GridLayerOptions>(
+abstract external class GridLayer<T : GridLayerOptions>(
     options: T = definedExternally
 ) : Layer<T> {
 

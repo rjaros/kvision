@@ -10,7 +10,7 @@ import externals.leaflet.geo.LatLngBounds
 open external class Circle(
     latlng: LatLng,
     options: CircleMarkerOptions = definedExternally,
-) :
-    CircleMarker {
+) : CircleMarker {
+
     open fun getBounds(): LatLngBounds
 }
