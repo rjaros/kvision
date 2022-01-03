@@ -248,7 +248,7 @@ open external class LeafletMap : Evented {
      * @see panBy
      * @see panInsideBounds
      */
-      interface PanOptions {
+    interface PanOptions {
         var animate: Boolean?
         var duration: Number?
         var easeLinearity: Number?

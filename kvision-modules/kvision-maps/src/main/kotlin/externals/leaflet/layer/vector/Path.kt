@@ -23,7 +23,7 @@ abstract external class Path(
     open fun bringToBack(): Path /* this */
     open fun getElement(): Element?
 
-      interface PathOptions : InteractiveLayerOptions {
+    interface PathOptions : InteractiveLayerOptions {
         var stroke: Boolean?
         var color: String?
         var weight: Number?

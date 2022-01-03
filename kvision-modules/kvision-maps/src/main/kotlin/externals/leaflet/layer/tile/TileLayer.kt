@@ -7,7 +7,7 @@ import externals.leaflet.DoneCallback
 import externals.leaflet.geo.Coords
 import org.w3c.dom.HTMLElement
 
-open external class TileLayer (
+open external class TileLayer(
     urlTemplate: String,
     options: TileLayerOptions = definedExternally
 ) : GridLayer {
@@ -24,7 +24,7 @@ open external class TileLayer (
     open fun _abortLoading()
     open fun _getZoomForUrl(): Number
 
-      interface TileLayerOptions : GridLayerOptions {
+    interface TileLayerOptions : GridLayerOptions {
         var id: String?
         var accessToken: String?
         var subdomains: dynamic /* String? | Array<String>? */

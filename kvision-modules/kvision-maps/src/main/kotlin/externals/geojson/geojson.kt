@@ -45,7 +45,7 @@ external interface Point : GeoJsonObject, GeoJsonGeometry {
 /* ********************************************************************************************** */
 //<editor-fold desc="GeoJson objects with multiple coordinates">
 
-external interface GeoJsonCoordinatedGeometry: GeoJsonObject, GeoJsonGeometry {
+external interface GeoJsonCoordinatedGeometry : GeoJsonObject, GeoJsonGeometry {
     var coordinates: dynamic
 }
 
@@ -57,9 +57,11 @@ external interface GeoJsonSingleOrMultiPolygon : GeoJsonCoordinatedGeometry
 external interface GeoJson1DGeometry : GeoJsonCoordinatedGeometry {
     override var coordinates: Array<Position>
 }
+
 external interface GeoJson2DGeometry : GeoJsonCoordinatedGeometry {
     override var coordinates: Array<Array<Position>>
 }
+
 external interface GeoJson3DGeometry : GeoJsonCoordinatedGeometry {
     override var coordinates: Array<Array<Array<Position>>>
 }
@@ -71,7 +73,8 @@ external interface MultiPoint : GeoJson1DGeometry, GeoJsonObject
 external interface LineString : GeoJson1DGeometry, GeoJsonObject, GeoJsonSingleOrMultiLineString
 
 // type = MultiLineString
-external interface MultiLineString : GeoJson2DGeometry, GeoJsonObject, GeoJsonSingleOrMultiLineString
+external interface MultiLineString : GeoJson2DGeometry, GeoJsonObject,
+    GeoJsonSingleOrMultiLineString
 
 // type = Polygon
 external interface Polygon : GeoJson2DGeometry, GeoJsonObject, GeoJsonSingleOrMultiPolygon

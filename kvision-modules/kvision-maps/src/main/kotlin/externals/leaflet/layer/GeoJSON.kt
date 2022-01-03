@@ -19,7 +19,7 @@ open external class GeoJSON(
     options: GeoJSONOptions = definedExternally
 ) : FeatureGroup {
 
-    override  var options: GeoJSONOptions
+    override var options: GeoJSONOptions
 
     open fun addData(data: GeoJsonObject): GeoJSON /* this */
     open fun resetStyle(layer: Layer = definedExternally): GeoJSON /* this */

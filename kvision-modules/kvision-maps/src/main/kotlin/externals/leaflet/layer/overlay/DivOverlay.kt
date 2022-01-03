@@ -12,7 +12,7 @@ open external class DivOverlay(
     options: DivOverlayOptions = definedExternally,
     source: Layer = definedExternally
 ) : Layer {
-    override  var options: dynamic // DivOverlayOptions
+    override var options: dynamic // DivOverlayOptions
 
     open fun getLatLng(): LatLng?
     open fun setLatLng(latlng: LatLng): DivOverlay /* this */
@@ -26,7 +26,7 @@ open external class DivOverlay(
     open fun bringToFront(): DivOverlay /* this */
     open fun bringToBack(): DivOverlay /* this */
 
- interface DivOverlayOptions {
+    interface DivOverlayOptions {
         var offset: Point
         var zoomAnimation: Boolean?
         var className: String?

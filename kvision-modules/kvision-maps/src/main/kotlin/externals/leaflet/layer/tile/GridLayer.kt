@@ -29,7 +29,7 @@ open external class GridLayer(options: GridLayerOptions = definedExternally) : L
     open fun _wrapCoords(parameter: Coords): Coords
 
 
-      interface GridLayerOptions {
+    interface GridLayerOptions {
         var tileSize: dynamic /* Number? | Point? */
         var opacity: Number?
         var updateWhenIdle: Boolean?

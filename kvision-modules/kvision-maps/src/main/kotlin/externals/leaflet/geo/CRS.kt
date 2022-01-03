@@ -2,6 +2,7 @@
 @file:JsNonModule
 
 package externals.leaflet.geo
+
 import externals.leaflet.core.Class
 import externals.leaflet.geometry.Bounds
 import externals.leaflet.geometry.Point

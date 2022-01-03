@@ -16,7 +16,7 @@ open external class Attribution(
     open fun addAttribution(text: String): Attribution /* this */
     open fun removeAttribution(text: String): Attribution /* this */
 
-      interface AttributionOptions : ControlOptions {
+    interface AttributionOptions : ControlOptions {
         var prefix: dynamic /* String? | Boolean? */
     }
 

@@ -15,7 +15,8 @@ import externals.leaflet.geo.LatLng
  *
  * @param T [externals.geojson.Polygon] or [externals.geojson.MultiPolygon]
  */
-open external class Polygon<T: GeoJsonSingleOrMultiPolygon> : Polyline<GeoJsonSingleOrMultiLineString> {
+open external class Polygon<T : GeoJsonSingleOrMultiPolygon> :
+    Polyline<GeoJsonSingleOrMultiLineString> {
 
     /** Create a polygon from an array of LatLng points. */
     constructor(

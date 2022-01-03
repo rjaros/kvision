@@ -6,10 +6,10 @@ package externals.leaflet.layer.marker
 
 import externals.geojson.Feature
 import externals.geojson.Point
+import externals.leaflet.core.Handler
 import externals.leaflet.geo.LatLng
 import externals.leaflet.layer.InteractiveLayerOptions
 import externals.leaflet.layer.Layer
-import externals.leaflet.core.Handler
 import org.w3c.dom.HTMLElement
 
 

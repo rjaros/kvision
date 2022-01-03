@@ -3,7 +3,8 @@
 
 package externals.leaflet.layer
 
-import externals.geojson.*
+import externals.geojson.Feature
+import externals.geojson.GeometryCollection
 
 /**
  * Used to group several layers and handle them as one.

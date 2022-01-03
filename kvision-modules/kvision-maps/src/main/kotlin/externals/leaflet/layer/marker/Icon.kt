@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLElement
 /** Represents an icon to provide when creating a marker. */
 open external class Icon(options: IconOptions) : Layer {
 
-    override  var options: dynamic // IconOptions
+    override var options: dynamic // IconOptions
 
     open fun createIcon(oldIcon: HTMLElement = definedExternally): HTMLElement
     open fun createShadow(oldIcon: HTMLElement = definedExternally): HTMLElement
