@@ -1,3 +1,6 @@
+@file:JsModule("leaflet")
+@file:JsNonModule
+
 package externals.leaflet.dom
 
 import externals.leaflet.geometry.Point
@@ -7,13 +10,11 @@ import org.w3c.dom.HTMLElement
  * Utility functions to work with the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
  * tree, used by Leaflet internally.
  *
- * Most functions expecting or returning a HTMLElement also work for SVG elements. The only
+ * Most functions expecting or returning a [HTMLElement] also work for SVG elements. The only
  * difference is that classes refer to CSS classes in HTML and SVG classes in SVG.
  *
  * See [`https://leafletjs.com/reference.html#domutil`](https://leafletjs.com/reference.html#domutil)
  */
-@JsModule("leaflet")
-@JsNonModule
 external object DomUtil {
 
     /** Vendor-prefixed transform style name (e.g. 'webkitTransform' for WebKit). */
@@ -36,11 +37,11 @@ external object DomUtil {
      * @param className The class to set on the created element.
      * @param container The container to append the created element to.
      */
-    fun <T : HTMLElement> create(
-        tagName: T,
+    fun create(
+        tagName: String,
         className: String = definedExternally,
         container: HTMLElement = definedExternally
-    ): T
+    ): HTMLElement
 
     fun remove(el: HTMLElement)
     fun empty(el: HTMLElement)
