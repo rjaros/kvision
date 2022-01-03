@@ -35,10 +35,8 @@ import io.kvision.maps.maps
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
-import io.kvision.test.ScreenshotUtil
 import io.kvision.utils.px
 import kotlin.test.Test
-import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlinx.browser.document
 import org.w3c.dom.Element
