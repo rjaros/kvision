@@ -22,58 +22,12 @@
  */
 package io.kvision.maps
 
-import externals.geojson.LineString
-import externals.geojson.MultiLineString
-import externals.geojson.MultiPolygon
-import externals.leaflet.control.Attribution
-import externals.leaflet.control.Attribution.AttributionOptions
-import externals.leaflet.control.Control.LayersObject
-import externals.leaflet.control.Layers
-import externals.leaflet.control.Layers.LayersOptions
-import externals.leaflet.control.Scale
-import externals.leaflet.control.Scale.ScaleOptions
-import externals.leaflet.control.Zoom
-import externals.leaflet.control.Zoom.ZoomOptions
-import externals.leaflet.control.set
-import externals.leaflet.geo.LatLng
-import externals.leaflet.geo.LatLngBounds
-import externals.leaflet.layer.FeatureGroup
-import externals.leaflet.layer.Layer
-import externals.leaflet.layer.Layer.LayerOptions
-import externals.leaflet.layer.marker.DivIcon
-import externals.leaflet.layer.marker.DivIcon.DivIconOptions
-import externals.leaflet.layer.marker.Icon
-import externals.leaflet.layer.marker.Icon.IconOptions
-import externals.leaflet.layer.marker.Marker
-import externals.leaflet.layer.marker.Marker.MarkerOptions
-import externals.leaflet.layer.overlay.DivOverlay
-import externals.leaflet.layer.overlay.DivOverlay.DivOverlayOptions
-import externals.leaflet.layer.overlay.ImageOverlay
-import externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
-import externals.leaflet.layer.overlay.Popup
-import externals.leaflet.layer.overlay.Popup.PopupOptions
-import externals.leaflet.layer.overlay.Tooltip
-import externals.leaflet.layer.overlay.Tooltip.TooltipOptions
-import externals.leaflet.layer.tile.TileLayer
-import externals.leaflet.layer.tile.TileLayer.TileLayerOptions
-import externals.leaflet.layer.tile.WMS
-import externals.leaflet.layer.tile.WMS.WMSOptions
-import externals.leaflet.layer.vector.Canvas
-import externals.leaflet.layer.vector.Circle
-import externals.leaflet.layer.vector.CircleMarker
-import externals.leaflet.layer.vector.CircleMarker.CircleMarkerOptions
-import externals.leaflet.layer.vector.Polygon
-import externals.leaflet.layer.vector.Polyline
-import externals.leaflet.layer.vector.Polyline.PolylineOptions
-import externals.leaflet.layer.vector.Rectangle
-import externals.leaflet.layer.vector.Renderer.RendererOptions
-import externals.leaflet.layer.vector.SVG
 import externals.leaflet.map.LeafletMap
+import externals.leaflet.map.LeafletMap.LeafletMapOptions
 import io.kvision.MapsModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.snabbdom.VNode
-import io.kvision.utils.obj
 import org.w3c.dom.HTMLElement
 
 /**
@@ -84,45 +38,51 @@ open class Maps(
     init: (Maps.() -> Unit) = {}
 ) : Widget(className) {
 
-    private lateinit var leafletMap: LeafletMap
+    /** private backing field - use [leafletMap] or [leafletMap] for accessing */
+    private lateinit var _leafletMap: LeafletMap
 
-    /** Configuration for [leafletMap], in case it has not yet been initialised. */
-    private var initLeafletMap: LeafletMap.() -> Any = { }
-
-    /**
-     * Apply some configuration to [Leaflet Map][LeafletMap].
-     *
-     * If [leafletMap] has been initialised and inserted into the DOM (as in, [afterInsert] has
-     * been invoked), then the configuration will be applied immediately.
-     *
-     * If not, then this configuration will be stored and applied in [afterInsert]
-     * (note: in these instances then invoking this method will overwrite previously stored
-     * configurations).
-     */
-    fun initLeafletMap(configure: LeafletMap.() -> Unit) {
-        if (this::leafletMap.isInitialized) {
-            leafletMap.configure()
-        } else {
-            initLeafletMap = configure
-        }
-    }
-
-    /**
-     * Perform some action with the initialised [LeafletMap] instance
-     *
-     * @throws IllegalArgumentException if [leafletMap] is not yet initialized - it must first be
-     * added as a component.
-     */
-    operator fun <T : Any?> invoke(block: LeafletMap.() -> T): T {
-        require(this::leafletMap.isInitialized) {
-            "LeafletMap is not initialised - the Maps widget must be added to the DOM"
-        }
-        return leafletMap.block()
-    }
+    /** @see [configureLeafletMap] */
+    private var leafletMapConfigurer: LeafletMap.() -> Unit = { }
 
     init {
         useSnabbdomDistinctKey()
         this.init()
+    }
+
+    /**
+     * Apply some configuration to [Leaflet Map][LeafletMap].
+     *
+     * If [_leafletMap] has been initialised and inserted into the DOM (as in, [afterInsert] has
+     * been invoked), then the configuration will be applied immediately.
+     *
+     * If not, then this configuration will be stored and applied in [afterInsert]
+     *
+     * (note: invoking this method will overwrite previously stored
+     * configurations).
+     */
+    fun configureLeafletMap(configure: LeafletMap.() -> Unit) {
+        leafletMapConfigurer = configure
+        if (this::_leafletMap.isInitialized) {
+            _leafletMap.leafletMapConfigurer()
+        }
+    }
+
+    /**
+     * Perform an action with the [LeafletMap] instance.
+     *
+     * The [KVision Maps][Maps] Widget **must** first be added before the instance can be used.
+     *
+     * Use [configureLeafletMap] to define [LeafletMapOptions] that will be applied during
+     * initialisation.
+     *
+     * @throws IllegalArgumentException if the `LeafletMap` is not yet initialized - it must first
+     * be added as a component.
+     */
+    fun <T : Any?> leafletMap(action: LeafletMap.() -> T): T {
+        require(this::_leafletMap.isInitialized) {
+            "LeafletMap is not initialised - the KVision Maps widget must be added to the DOM"
+        }
+        return _leafletMap.action()
     }
 
     /** Create a native map instance. */
@@ -131,13 +91,13 @@ open class Maps(
             "$this - Unable to get HTMLElement"
         }
 
-        leafletMap = LeafletMap(thisElement)
-        leafletMap.initLeafletMap()
+        _leafletMap = L.map(thisElement)
+        _leafletMap.leafletMapConfigurer()
     }
 
     override fun afterDestroy() {
-        if (this::leafletMap.isInitialized) {
-            leafletMap.remove()
+        if (this::_leafletMap.isInitialized) {
+            _leafletMap.remove()
         }
     }
 
@@ -146,161 +106,8 @@ open class Maps(
             MapsModule.initialize()
         }
 
-        fun createPolyline(
-            latLngs: Collection<LatLng>,
-            configure: PolylineOptions.() -> Unit = {},
-        ): Polyline<LineString> = Polyline(
-            latLngs.toTypedArray(),
-            options = obj<PolylineOptions>(configure),
-        )
-
-        fun createMultiPolyline(
-            latLngs: Collection<Collection<LatLng>>,
-            configure: PolylineOptions.() -> Unit = {},
-        ): Polyline<MultiLineString> = Polyline(
-            latLngs.map { it.toTypedArray() }.toTypedArray(),
-            options = obj<PolylineOptions>(configure),
-        )
-
-        fun createTileLayer(
-            urlTemplate: String,
-            configure: TileLayerOptions.() -> Unit = {}
-        ): TileLayer<TileLayerOptions> = TileLayer(
-            urlTemplate = urlTemplate,
-            options = obj<TileLayerOptions>(configure),
-        )
-
-        fun createLayersObject(tileLayers: Collection<BaseTileLayer>): LayersObject {
-            return tileLayers
-                .associate { base -> base.label to MapsModule.convertTileLayer(base) }
-                .entries
-                .fold(object : LayersObject {}) { acc, (label, layer) ->
-                    acc[label] = layer
-                    acc
-                }
-        }
-
-        fun createLayers(
-            baseLayers: Collection<BaseTileLayer> = emptyList(),
-            overlays: LayersObject = createLayersObject(emptyList()),
-            configure: LayersOptions.() -> Unit = {},
-        ): Layers = Layers(
-            baseLayers = createLayersObject(baseLayers),
-            overlays = overlays,
-            options = obj<LayersOptions>(configure),
-        )
-
-        fun createImageOverlay(
-            imageUrl: String,
-            bounds: LatLngBounds,
-            configure: ImageOverlayOptions.() -> Unit = {},
-        ): ImageOverlay = ImageOverlay(
-            imageUrl = imageUrl,
-            bounds = bounds,
-            options = obj<ImageOverlayOptions>(configure),
-        )
-
-        fun createAttribution(
-            configure: AttributionOptions.() -> Unit = {},
-        ) = Attribution(options = obj<AttributionOptions>(configure))
-
-        fun createScale(
-            configure: ScaleOptions.() -> Unit = {},
-        ) = Scale(options = obj<ScaleOptions>(configure))
-
-        fun createZoom(
-            configure: ZoomOptions.() -> Unit = {},
-        ) = Zoom(options = obj<ZoomOptions>(configure))
-
-        fun createDivIcon(
-            configure: DivIconOptions.() -> Unit = {},
-        ) = DivIcon(options = obj<DivIconOptions>(configure))
-
-        fun createIcon(
-            configure: IconOptions.() -> Unit = {},
-        ): Icon<IconOptions> = Icon(options = obj<IconOptions>(configure))
-
-        fun createMarker(
-            latlng: LatLng,
-            configure: MarkerOptions.() -> Unit = {},
-        ): Marker = Marker(latlng, options = obj<MarkerOptions>(configure))
-
-        fun createDivOverlay(
-            source: Layer<*>,
-            configure: DivOverlayOptions.() -> Unit = {},
-        ): DivOverlay<DivOverlayOptions> =
-            DivOverlay(source = source, options = obj<DivOverlayOptions>(configure))
-
-        fun createPopup(
-            source: Layer<*>,
-            configure: PopupOptions.() -> Unit = {},
-        ) = Popup(source = source, options = obj<PopupOptions>(configure))
-
-        fun createTooltip(
-            source: Layer<*>,
-            configure: TooltipOptions.() -> Unit = {},
-        ) = Tooltip(source = source, options = obj<TooltipOptions>(configure))
-
-        fun createVideoOverlay(
-            source: Layer<*>,
-            configure: TooltipOptions.() -> Unit = {},
-        ) = Tooltip(source = source, options = obj<TooltipOptions>(configure))
-
-        fun createWMS(
-            baseUrl: String,
-            configure: WMSOptions.() -> Unit = {},
-        ) = WMS(baseUrl = baseUrl, options = obj<WMSOptions>(configure))
-
-        fun createCanvas(
-            configure: RendererOptions.() -> Unit = {},
-        ) = Canvas(options = obj<RendererOptions>(configure))
-
-        fun createCircleMarker(
-            latlng: LatLng,
-            configure: CircleMarkerOptions.() -> Unit = {},
-        ) = CircleMarker(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
-
-        fun createCircle(
-            latlng: LatLng,
-            configure: CircleMarkerOptions.() -> Unit = {},
-        ) = Circle(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
-
-        /** See [`https://leafletjs.com/reference.html#polygon`](https://leafletjs.com/reference.html#polygon) */
-        fun createPolygon(
-            latlngs: Collection<LatLng>,
-            configure: PolylineOptions.() -> Unit = {},
-        ): Polygon<externals.geojson.Polygon> =
-            Polygon(latlngs = latlngs.toTypedArray(), options = obj<PolylineOptions>(configure))
-
-        /** See [`https://leafletjs.com/reference.html#polygon`](https://leafletjs.com/reference.html#polygon) */
-        fun createMultiPolygon(
-            latlngs: Collection<Collection<Collection<LatLng>>>,
-            configure: PolylineOptions.() -> Unit = {},
-        ): Polygon<MultiPolygon> =
-            Polygon(
-                latlngs = latlngs
-                    .map {
-                        it.map(Collection<LatLng>::toTypedArray).toTypedArray()
-                    }
-                    .toTypedArray(),
-                options = obj<PolylineOptions>(configure)
-            )
-
-        fun createRectangle(
-            latLngBounds: LatLngBounds,
-            configure: PolylineOptions.() -> Unit = {},
-        ) = Rectangle(latLngBounds = latLngBounds, options = obj<PolylineOptions>(configure))
-
-        fun createSVG(
-            latLngBounds: LatLngBounds,
-            configure: RendererOptions.() -> Unit = {},
-        ) = SVG(options = obj<RendererOptions>(configure))
-
-        fun createFeatureGroup(
-            layers: Array<Layer<*>>,
-            configure: LayerOptions.() -> Unit = {},
-        ) = FeatureGroup(layers = layers, options = obj<LayerOptions>(configure))
-
+        /** Equivalent to Leaflet's `L` shortcut. */
+        val L: LeafletObjectFactory = LeafletObjectFactory
     }
 
 

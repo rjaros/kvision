@@ -30,9 +30,7 @@ import externals.leaflet.layer.overlay.SVGOverlay
 import io.kvision.MapsModule.convertTileLayer
 import io.kvision.maps.BaseTileLayer
 import io.kvision.maps.Maps
-import io.kvision.maps.Maps.Companion.createImageOverlay
-import io.kvision.maps.Maps.Companion.createLayers
-import io.kvision.maps.Maps.Companion.createPolyline
+import io.kvision.maps.Maps.Companion.L
 import io.kvision.maps.maps
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
@@ -40,6 +38,7 @@ import io.kvision.test.DomSpec
 import io.kvision.test.ScreenshotUtil
 import io.kvision.utils.px
 import kotlin.test.Test
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlinx.browser.document
 import org.w3c.dom.Element
@@ -53,7 +52,8 @@ class MapsSpec : DomSpec {
     fun renderSvg(): Unit = run {
 
         val svgElement: SVGElement = document
-            .createElementNS("http://www.w3.org/2000/svg", "svg") as SVGElement
+            .createElementNS("http://www.w3.org/2000/svg", "svg")
+            as SVGElement
         svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg")
         svgElement.setAttribute("viewBox", "0 0 200 200")
         val svgString = listOf(
@@ -72,7 +72,7 @@ class MapsSpec : DomSpec {
         val map = Maps {
             width = 300.px
             height = 600.px
-            initLeafletMap {
+            configureLeafletMap {
                 setView(LatLng(0, 0), 11)
                 options.crs = CRS.Simple
                 addLayer(SVGOverlay(svgElement, bounds))
@@ -101,7 +101,7 @@ class MapsSpec : DomSpec {
             width = 300.px
             height = 600.px
 
-            initLeafletMap {
+            configureLeafletMap {
                 setView(LatLng(55, 33), 11)
                 options.crs = CRS.Simple
 
@@ -111,7 +111,7 @@ class MapsSpec : DomSpec {
                 val featureGroup = FeatureGroup()
                 featureGroup.addTo(this)
 
-                val layers = createLayers(
+                val layers = L.layers(
                     baseLayers = BaseTileLayer.defaultLayers
                 ) {
                     position = "topleft"
@@ -137,13 +137,32 @@ class MapsSpec : DomSpec {
             width = 300.px
             height = 600.px
 
-            initLeafletMap {
+            configureLeafletMap {
                 setView(LatLng(55, 33), 11)
                 options.crs = CRS.Simple
             }
         }
         root.add(map)
-        val element: HTMLElement = document.getElementById("test")!! as HTMLElement
+//        val leafletContainer = DomUtil.get("leaflet-container")
+//        println("\n\n${leafletContainer?.innerHTML}\n\n")
+
+        val element: HTMLElement? =
+            document.getElementById("test")!! as HTMLElement
+//            document.querySelector(".leaflet-overlay-pane .leaflet-zoom-animated") as? HTMLElement?
+
+        println("\n\n${element?.innerHTML}\n\n")
+
+        assertNotNull(element)
+
+        /*
+
+const map = document.querySelector(".leaflet-overlay-pane .leaflet-zoom-animated") as HTMLElement;
+const coordinates = map.style.transform.split("(")[1].split(")")[0].split(",");
+map.style.top = -1 * parseInt(coordinates[1].replace("px", ""), 10) + "px";
+map.style.left = -1 * parseInt(coordinates[0].replace("px", ""), 10) + "px";
+         */
+        println("element.style.transform: ${element.style.transform}")
+
 
         val canvas = ScreenshotUtil.capture(element) {
             allowTaint = true
@@ -151,13 +170,12 @@ class MapsSpec : DomSpec {
         }
         val data = canvas.toDataURL("image/png")
         println("\n\n---\n\ncanvas data\n\n---\n\n$data\n\n---\n\n")
-
     }
 
     @Test
     fun addPolyLine(): Unit = run {
 
-        val polyline = createPolyline(
+        val polyline = L.polyline(
             listOf(
                 LatLng(55, 2),
                 LatLng(65, 2),
@@ -173,7 +191,7 @@ class MapsSpec : DomSpec {
         val map = Maps {
             width = 300.px
             height = 600.px
-            initLeafletMap {
+            configureLeafletMap {
                 setView(LatLng(0, 0), 11)
                 options.crs = CRS.Simple
 
@@ -182,10 +200,8 @@ class MapsSpec : DomSpec {
         }
         root.add(map)
 
-        map {
-            // must focus the map on the lines, so they are visible
-            fitBounds(polyline.getBounds())
-        }
+        // must focus the map on the lines, so they are visible
+        map.leafletMap { fitBounds(polyline.getBounds()) }
 
         val element: Element = document.getElementById("test")!!
 
@@ -202,7 +218,7 @@ class MapsSpec : DomSpec {
     fun testAddImageOverlay() = run {
         //GIVEN
         val imageUrl = "https://www.w3.org/Icons/SVG/svg-logo-h.svg"
-        val w3cLogoOverlay = createImageOverlay(
+        val w3cLogoOverlay = L.imageOverlay(
             imageUrl,
             LatLngBounds(
                 LatLng(0, 0),
@@ -214,14 +230,14 @@ class MapsSpec : DomSpec {
             .maps {
                 width = 300.px
                 height = 600.px
-                initLeafletMap {
+                configureLeafletMap {
                     setView(LatLng(0, 0), 11)
                     options.crs = CRS.Simple
                 }
             }
 
         //WHEN
-        map {
+        map.leafletMap {
             w3cLogoOverlay.addTo(this)
             w3cLogoOverlay.bringToFront()
             fitBounds(w3cLogoOverlay.getBounds())

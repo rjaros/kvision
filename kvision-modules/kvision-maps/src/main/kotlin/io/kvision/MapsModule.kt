@@ -21,9 +21,12 @@
  */
 package io.kvision
 
+import externals.leaflet.layer.marker.Icon
 import externals.leaflet.layer.tile.TileLayer
 import io.kvision.maps.BaseTileLayer
-import io.kvision.maps.Maps.Companion.createTileLayer
+import io.kvision.maps.LeafletObjectFactory
+import io.kvision.utils.delete
+import io.kvision.utils.obj
 
 /**
  * Initializer for KVision maps module.
@@ -38,21 +41,20 @@ object MapsModule : ModuleInitializer {
 
     private fun setDefaultIcon() {
 
-        // this doesn't work :(
-//
+        // I'm not sure if this works
+        leaflet.Icon.Default.imagePath = ""
+        delete(leaflet.Icon.Default.prototype._getIconUrl)
+        leaflet.Icon.Default.mergeOptions(obj<Icon.IconOptions> {
+            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png").unsafeCast<String>()
+            iconUrl = require("leaflet/dist/images/marker-icon.png").unsafeCast<String>()
+            shadowUrl = require("leaflet/dist/images/marker-shadow.png").unsafeCast<String>()
+        })
+
 //        Icon.Default(obj<Icon.DefaultIconOptions> {
 //            imagePath = ""
 //            iconRetinaUrl = "leaflet/dist/images/marker-icon-2x.png"
 //            iconUrl = "leaflet/dist/images/marker-icon.png"
 //            shadowUrl = "leaflet/dist/images/marker-shadow.png"
-//        })
-//
-//        leaflet.Icon.Default.imagePath = ""
-//        delete(leaflet.Icon.Default.prototype._getIconUrl)
-//        leaflet.Icon.Default.mergeOptions(obj {
-//            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png")
-//            iconUrl = require("leaflet/dist/images/marker-icon.png")
-//            shadowUrl = require("leaflet/dist/images/marker-shadow.png")
 //        })
     }
 
@@ -61,14 +63,14 @@ object MapsModule : ModuleInitializer {
     }
 
     fun convertTileLayer(base: BaseTileLayer): TileLayer<*> {
-        val tileLayer = createTileLayer(
-            urlTemplate = base.url,
-        )
-        tileLayer.options.attribution = base.attribution
-        tileLayer.options.id = base.label
+        val tileLayer = LeafletObjectFactory.tileLayer(
+            urlTemplate = base.url
+        ) {
+            attribution = base.attribution
+            id = base.label
+        }
 
         return tileLayer
     }
-
 
 }

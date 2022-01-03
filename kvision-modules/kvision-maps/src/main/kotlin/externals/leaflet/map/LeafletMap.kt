@@ -28,8 +28,8 @@ import org.w3c.dom.events.MouseEvent
 // rename the implemented class to `LeafletMap` to avoid name confusion with Kotlin's Map<K, V>
 open external class LeafletMap : Evented {
 
-    constructor(element: String, options: MapOptions = definedExternally)
-    constructor(element: HTMLElement, options: MapOptions = definedExternally)
+    constructor(element: String, options: LeafletMapOptions = definedExternally)
+    constructor(element: HTMLElement, options: LeafletMapOptions = definedExternally)
 
     open var attributionControl: Attribution
     open var boxZoom: Handler
@@ -40,7 +40,7 @@ open external class LeafletMap : Evented {
     open var tap: Handler?
     open var touchZoom: Handler
     open var zoomControl: Zoom
-    open var options: MapOptions
+    open var options: LeafletMapOptions
 
     open fun getRenderer(layer: Path<*>): Renderer
 
@@ -145,6 +145,7 @@ open external class LeafletMap : Evented {
      */
     open fun invalidateSize(options: ZoomPanOptions = definedExternally): LeafletMap
 
+    /** Stops the currently running [panTo] or [flyTo] animation, if any. */
     open fun stop(): LeafletMap
 
     open fun flyTo(
@@ -202,45 +203,45 @@ open external class LeafletMap : Evented {
 
 
     /** Constructor parameters for [LeafletMap] */
-    interface MapOptions {
-        var preferCanvas: Boolean?
+    interface LeafletMapOptions {
         var attributionControl: Boolean?
-        var zoomControl: Boolean?
-        var closePopupOnClick: Boolean?
-        var zoomSnap: Number?
-        var zoomDelta: Number?
-        var trackResize: Boolean?
+        var bounceAtZoomLimits: Boolean?
         var boxZoom: Boolean?
+        var center: LatLng?
+        var closePopupOnClick: Boolean?
+        var crs: CRS?
         var doubleClickZoom: dynamic /* Boolean? | "center" */
         var dragging: Boolean?
-        var crs: CRS?
-        var center: LatLng?
-        var zoom: Number?
-        var minZoom: Number?
-        var maxZoom: Number?
-        var layers: Array<Layer<*>>?
-        var maxBounds: LatLngBounds /* LatLngBounds? | LatLngBoundsLiteral? */
-        var renderer: Renderer?
+        var easeLinearity: Number?
         var fadeAnimation: Boolean?
-        var markerZoomAnimation: Boolean?
-        var transform3DLimit: Number?
-        var zoomAnimation: Boolean?
-        var zoomAnimationThreshold: Number?
         var inertia: Boolean?
         var inertiaDeceleration: Number?
         var inertiaMaxSpeed: Number?
-        var easeLinearity: Number?
-        var worldCopyJump: Boolean?
-        var maxBoundsViscosity: Number?
         var keyboard: Boolean?
         var keyboardPanDelta: Number?
+        var layers: Array<Layer<*>>?
+        var markerZoomAnimation: Boolean?
+        var maxBounds: LatLngBounds /* LatLngBounds? | LatLngBoundsLiteral? */
+        var maxBoundsViscosity: Number?
+        var maxZoom: Number?
+        var minZoom: Number?
+        var preferCanvas: Boolean?
+        var renderer: Renderer?
         var scrollWheelZoom: dynamic /* Boolean? | "center" */
-        var wheelDebounceTime: Number?
-        var wheelPxPerZoomLevel: Number?
         var tap: Boolean?
         var tapTolerance: Number?
         var touchZoom: dynamic /* Boolean? | "center" */
-        var bounceAtZoomLimits: Boolean?
+        var trackResize: Boolean?
+        var transform3DLimit: Number?
+        var wheelDebounceTime: Number?
+        var wheelPxPerZoomLevel: Number?
+        var worldCopyJump: Boolean?
+        var zoom: Number?
+        var zoomAnimation: Boolean?
+        var zoomAnimationThreshold: Number?
+        var zoomControl: Boolean?
+        var zoomDelta: Number?
+        var zoomSnap: Number?
     }
 
     /**
