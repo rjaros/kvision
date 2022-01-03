@@ -167,7 +167,7 @@ open class Maps(
         fun createTileLayer(
             urlTemplate: String,
             configure: TileLayerOptions.() -> Unit = {}
-        ): TileLayer = TileLayer(
+        ): TileLayer<TileLayerOptions> = TileLayer(
             urlTemplate = urlTemplate,
             options = obj<TileLayerOptions>(configure),
         )
@@ -220,36 +220,33 @@ open class Maps(
 
         fun createIcon(
             configure: IconOptions.() -> Unit = {},
-        ) = Icon(options = obj<IconOptions>(configure))
+        ): Icon<IconOptions> = Icon(options = obj<IconOptions>(configure))
 
         fun createMarker(
             latlng: LatLng,
             configure: MarkerOptions.() -> Unit = {},
-        ) = Marker(latlng, options = obj<MarkerOptions>(configure))
+        ): Marker = Marker(latlng, options = obj<MarkerOptions>(configure))
 
         fun createDivOverlay(
-            source: Layer,
+            source: Layer<*>,
             configure: DivOverlayOptions.() -> Unit = {},
-        ) = DivOverlay(source = source, options = obj<DivOverlayOptions>(configure))
+        ): DivOverlay<DivOverlayOptions> =
+            DivOverlay(source = source, options = obj<DivOverlayOptions>(configure))
 
         fun createPopup(
-            source: Layer,
+            source: Layer<*>,
             configure: PopupOptions.() -> Unit = {},
         ) = Popup(source = source, options = obj<PopupOptions>(configure))
 
         fun createTooltip(
-            source: Layer,
+            source: Layer<*>,
             configure: TooltipOptions.() -> Unit = {},
         ) = Tooltip(source = source, options = obj<TooltipOptions>(configure))
 
         fun createVideoOverlay(
-            source: Layer,
+            source: Layer<*>,
             configure: TooltipOptions.() -> Unit = {},
         ) = Tooltip(source = source, options = obj<TooltipOptions>(configure))
-
-        fun createGridLayer(
-            configure: GridLayerOptions.() -> Unit = {},
-        ) = GridLayer(options = obj<GridLayerOptions>(configure))
 
         fun createWMS(
             baseUrl: String,
@@ -302,9 +299,9 @@ open class Maps(
         ) = SVG(options = obj<RendererOptions>(configure))
 
         fun createFeatureGroup(
-            layers: Array<Layer>,
+            layers: Array<Layer<*>>,
             configure: LayerOptions.() -> Unit = {},
-        ) = FeatureGroup(layers = layers, options = obj<RendererOptions>(configure))
+        ) = FeatureGroup(layers = layers, options = obj<LayerOptions>(configure))
 
     }
 

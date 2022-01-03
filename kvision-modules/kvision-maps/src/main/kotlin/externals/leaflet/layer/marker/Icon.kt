@@ -8,9 +8,7 @@ import externals.leaflet.layer.Layer
 import org.w3c.dom.HTMLElement
 
 /** Represents an icon to provide when creating a marker. */
-open external class Icon(options: IconOptions) : Layer {
-
-    override var options: dynamic // IconOptions
+open external class Icon<T : Icon.IconOptions>(options: IconOptions) : Layer<T> {
 
     open fun createIcon(oldIcon: HTMLElement = definedExternally): HTMLElement
     open fun createShadow(oldIcon: HTMLElement = definedExternally): HTMLElement
@@ -19,9 +17,7 @@ open external class Icon(options: IconOptions) : Layer {
         var imagePath: String?
     }
 
-    open class Default(options: DefaultIconOptions = definedExternally) : Icon {
-
-        override var options: DefaultIconOptions
+    open class Default(options: DefaultIconOptions = definedExternally) : Icon<DefaultIconOptions> {
 
         companion object {
             var imagePath: String?

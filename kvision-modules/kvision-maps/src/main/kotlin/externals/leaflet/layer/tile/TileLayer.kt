@@ -5,17 +5,16 @@ package externals.leaflet.layer.tile
 
 import externals.leaflet.DoneCallback
 import externals.leaflet.geo.Coords
+import externals.leaflet.layer.tile.TileLayer.TileLayerOptions
 import org.w3c.dom.HTMLElement
 
-open external class TileLayer(
+open external class TileLayer<T : TileLayerOptions>(
     urlTemplate: String,
-    options: TileLayerOptions = definedExternally
-) : GridLayer {
-
-    override var options: dynamic // TileLayerOptions
+    options: T = definedExternally
+) : GridLayer<T> {
 
     /** @return this */
-    open fun setUrl(url: String, noRedraw: Boolean = definedExternally): TileLayer
+    open fun setUrl(url: String, noRedraw: Boolean = definedExternally): TileLayer<*>
 
     open fun getTileUrl(coords: Coords): String
 

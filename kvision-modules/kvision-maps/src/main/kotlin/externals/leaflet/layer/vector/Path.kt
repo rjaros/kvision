@@ -5,6 +5,7 @@ package externals.leaflet.layer.vector
 
 import externals.leaflet.layer.InteractiveLayerOptions
 import externals.leaflet.layer.Layer
+import externals.leaflet.layer.vector.Path.PathOptions
 import org.w3c.dom.Element
 
 
@@ -12,15 +13,14 @@ import org.w3c.dom.Element
  * An abstract class that contains options and constants shared between vector overlays
  * ([Polygon], [Polyline], [Circle]). Do not use it directly.
  */
-abstract external class Path(
-    options: LayerOptions = definedExternally
-) : Layer {
-    override var options: dynamic // PathOptions
+abstract external class Path<T : PathOptions>(
+    options: T = definedExternally
+) : Layer<T> {
 
-    open fun redraw(): Path /* this */
-    open fun setStyle(style: PathOptions): Path /* this */
-    open fun bringToFront(): Path /* this */
-    open fun bringToBack(): Path /* this */
+    open fun redraw(): Path<T> /* this */
+    open fun setStyle(style: PathOptions): Path<T> /* this */
+    open fun bringToFront(): Path<T> /* this */
+    open fun bringToBack(): Path<T> /* this */
     open fun getElement(): Element?
 
     interface PathOptions : InteractiveLayerOptions {

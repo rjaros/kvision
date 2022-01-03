@@ -50,7 +50,7 @@ external interface ErrorEvent : LeafletEvent {
 }
 
 external interface LayerEvent : LeafletEvent {
-    var layer: Layer
+    var layer: Layer<*>
 }
 
 external interface LayersControlEvent : LayerEvent {
@@ -72,7 +72,7 @@ external interface ResizeEvent : LeafletEvent {
 }
 
 external interface GeoJSONEvent : LeafletEvent {
-    var layer: Layer
+    var layer: Layer<*>
     var properties: Any
     var geometryType: String
     var id: String

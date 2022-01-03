@@ -7,9 +7,7 @@ package externals.leaflet.control
 
 open external class Attribution(
     options: AttributionOptions = definedExternally
-) : Control {
-
-    override var options: AttributionOptions
+) : Control<Attribution.AttributionOptions> {
 
     open fun setPrefix(prefix: String): Attribution /* this */
     open fun setPrefix(prefix: Boolean): Attribution /* this */

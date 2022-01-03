@@ -5,14 +5,13 @@ package externals.leaflet.layer.overlay
 
 import externals.leaflet.geometry.Point
 import externals.leaflet.layer.Layer
+import externals.leaflet.layer.overlay.Popup.PopupOptions
 import externals.leaflet.map.LeafletMap
 
 open external class Popup(
-    source: Layer = definedExternally,
+    source: Layer<*> = definedExternally,
     options: PopupOptions = definedExternally,
-) : DivOverlay {
-
-    override var options: PopupOptions
+) : DivOverlay<PopupOptions> {
 
     open fun openOn(map: LeafletMap): Popup /* this */
 

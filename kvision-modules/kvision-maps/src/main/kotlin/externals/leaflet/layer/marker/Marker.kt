@@ -16,9 +16,8 @@ import org.w3c.dom.HTMLElement
 open external class Marker(
     latlng: LatLng,
     options: MarkerOptions = definedExternally,
-) : Layer {
+) : Layer<Marker.MarkerOptions> {
 
-    override var options: MarkerOptions
     open var dragging: Handler?
     open var feature: Feature<Point>?
     open var _shadow: HTMLElement?
@@ -27,13 +26,13 @@ open external class Marker(
     open fun getLatLng(): LatLng
     open fun setLatLng(latlng: LatLng): Marker /* this */
     open fun setZIndexOffset(offset: Number): Marker /* this */
-    open fun getIcon(): Icon
+    open fun getIcon(): Icon<*>
     open fun setIcon(icon: DivIcon): Marker /* this */
     open fun setOpacity(opacity: Number): Marker /* this */
     open fun getElement(): HTMLElement?
 
     interface MarkerOptions : InteractiveLayerOptions {
-        var icon: Icon
+        var icon: Icon<*>
         var draggable: Boolean?
         var keyboard: Boolean?
         var title: String?

@@ -42,15 +42,15 @@ open external class LeafletMap : Evented {
     open var zoomControl: Zoom
     open var options: MapOptions
 
-    open fun getRenderer(layer: Path): Renderer
+    open fun getRenderer(layer: Path<*>): Renderer
 
-    open fun addControl(control: Control): LeafletMap
-    open fun removeControl(control: Control): LeafletMap
+    open fun addControl(control: Control<*>): LeafletMap
+    open fun removeControl(control: Control<*>): LeafletMap
 
-    open fun addLayer(layer: Layer): LeafletMap
-    open fun removeLayer(layer: Layer): LeafletMap
-    open fun hasLayer(layer: Layer): Boolean
-    open fun eachLayer(fn: (layer: Layer) -> Unit, context: Any = definedExternally): LeafletMap
+    open fun addLayer(layer: Layer<*>): LeafletMap
+    open fun removeLayer(layer: Layer<*>): LeafletMap
+    open fun hasLayer(layer: Layer<*>): Boolean
+    open fun eachLayer(fn: (layer: Layer<*>) -> Unit, context: Any = definedExternally): LeafletMap
 
     open fun openPopup(popup: Popup): LeafletMap
     open fun openPopup(
@@ -218,7 +218,7 @@ open external class LeafletMap : Evented {
         var zoom: Number?
         var minZoom: Number?
         var maxZoom: Number?
-        var layers: Array<Layer>?
+        var layers: Array<Layer<*>>?
         var maxBounds: LatLngBounds /* LatLngBounds? | LatLngBoundsLiteral? */
         var renderer: Renderer?
         var fadeAnimation: Boolean?

@@ -4,6 +4,7 @@
 package externals.leaflet.layer.vector
 
 import externals.leaflet.layer.Layer
+import externals.leaflet.layer.vector.Renderer.RendererOptions
 
 /**
  * Base class for vector renderer implementations ([SVG], [Canvas]). Handles the DOM container of
@@ -18,9 +19,7 @@ import externals.leaflet.layer.Layer
  */
 abstract external class Renderer(
     options: RendererOptions = definedExternally
-) : Layer {
-
-    override var options: RendererOptions
+) : Layer<RendererOptions> {
 
     interface RendererOptions : LayerOptions {
         var padding: Number?

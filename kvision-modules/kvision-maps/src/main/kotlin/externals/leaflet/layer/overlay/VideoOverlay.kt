@@ -8,7 +8,7 @@ import externals.leaflet.layer.Layer
 import externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.HTMLVideoElement
 
-open external class VideoOverlay : Layer {
+open external class VideoOverlay : Layer<VideoOverlay.VideoOverlayOptions> {
 
     constructor(
         video: String,
@@ -27,8 +27,6 @@ open external class VideoOverlay : Layer {
         bounds: LatLngBounds,
         options: VideoOverlayOptions = definedExternally
     )
-
-    override var options: VideoOverlayOptions
 
     open fun setOpacity(opacity: Number): VideoOverlay /* this */
     open fun bringToFront(): VideoOverlay /* this */

@@ -19,10 +19,8 @@ open external class GeoJSON(
     options: GeoJSONOptions = definedExternally
 ) : FeatureGroup {
 
-    override var options: GeoJSONOptions
-
     open fun addData(data: GeoJsonObject): GeoJSON /* this */
-    open fun resetStyle(layer: Layer = definedExternally): GeoJSON /* this */
+    open fun resetStyle(layer: Layer<*> = definedExternally): GeoJSON /* this */
     override fun setStyle(style: PathOptions): GeoJSON /* this */
     fun setStyle(style: StyleFunction): GeoJSON /* this */
 
@@ -30,16 +28,16 @@ open external class GeoJSON(
         fun geometryToLayer(
             featureData: Feature<GeoJsonGeometry>,
             options: GeoJSONOptions = definedExternally
-        ): Layer
+        ): Layer<*>
 
         fun coordsToLatLng(coords: Any /* JsTuple<Number, Number> */): LatLng
         fun coordsToLatLngs(
             coords: Array<Any>,
             levelsDeep: Number = definedExternally,
-            coordsToLatLng: (coords: Any /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */) -> LatLng = definedExternally
+            coordsToLatLng: (coords: Array<Number> /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */) -> LatLng = definedExternally
         ): Array<Any>
 
-        fun latLngToCoords(latlng: LatLng): dynamic /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */
+        fun latLngToCoords(latlng: LatLng): Array<Number> /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */
         fun latLngsToCoords(
             latlngs: Array<Any>,
             levelsDeep: Number = definedExternally,
@@ -51,11 +49,30 @@ open external class GeoJSON(
     }
 
     interface GeoJSONOptions : InteractiveLayerOptions {
-        val pointToLayer: ((geoJsonPoint: Feature<Point>, latlng: LatLng) -> Layer)?
-        var style: dynamic /* PathOptions? | StyleFunction<P>? */
-        val onEachFeature: ((feature: Feature<GeoJsonGeometry>, layer: Layer) -> Unit)?
+
+        /**
+         * A Function defining how GeoJSON points spawn Leaflet layers. It is internally called
+         * when data is added, passing the GeoJSON [Feature<Point>][externals.geojson.Feature]
+         * and its [LatLng].
+         *
+         * The default is to spawn a default Marker:
+         */
+        val pointToLayer: ((geoJsonPoint: Feature<Point>, latlng: LatLng) -> Layer<*>)?
+        /**
+         * 	A Function defining the [PathOptions] for styling GeoJSON lines and polygons, called
+         * 	internally when data is added.
+         *
+         * 	The default value is to not override any defaults:
+         */
+        var style: StyleFunction /* PathOptions? | StyleFunction<P>? */
+        val onEachFeature: ((feature: Feature<GeoJsonGeometry>, layer: Layer<*>) -> Unit)?
         val filter: ((geoJsonFeature: Feature<GeoJsonGeometry>) -> Boolean)?
-        val coordsToLatLng: ((coords: Any /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */) -> LatLng)?
+        /**
+         * A Function that will be used for converting GeoJSON coordinates to [LatLng]s.
+         *
+         * The default is [GeoJSON.Companion.coordsToLatLng].
+         */
+        val coordsToLatLng: ((coords: Array<Number> /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */) -> LatLng)?
         var markersInheritOptions: Boolean?
     }
 

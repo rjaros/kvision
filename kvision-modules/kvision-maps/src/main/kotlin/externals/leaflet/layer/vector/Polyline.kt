@@ -17,7 +17,7 @@ import externals.leaflet.geometry.Point
  *
  * @param T [externals.geojson.LineString] or [externals.geojson.MultiLineString]
  */
-open external class Polyline<T : GeoJsonSingleOrMultiLineString> : Path {
+open external class Polyline<T : GeoJsonSingleOrMultiLineString> : Path<Polyline.PolylineOptions> {
 
     /** Create a polyline from an array of [LatLng] points */
     constructor(
@@ -32,7 +32,6 @@ open external class Polyline<T : GeoJsonSingleOrMultiLineString> : Path {
     )
 
     open var feature: Feature<GeoJsonCoordinatedGeometry>?
-    override var options: PolylineOptions
 
     open fun toGeoJSON(precision: Number = definedExternally): Feature<T>
 

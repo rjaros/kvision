@@ -17,10 +17,10 @@ external interface InternalTiles {
 }
 
 /** Native getter for [InternalTiles] */
-inline operator fun InternalTiles.get(name: String): Layer? =
-    asDynamic()[name] as Layer?
+inline operator fun InternalTiles.get(name: String): Layer<*>? =
+    asDynamic()[name] as Layer<*>?
 
 /** Native setter for [InternalTiles] */
-inline operator fun InternalTiles.set(name: String, value: Layer) {
+inline operator fun InternalTiles.set(name: String, value: Layer<*>) {
     asDynamic()[name] = value
 }

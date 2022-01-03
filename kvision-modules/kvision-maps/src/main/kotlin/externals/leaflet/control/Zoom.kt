@@ -3,8 +3,9 @@
 
 package externals.leaflet.control
 
-open external class Zoom(options: ZoomOptions = definedExternally) : Control {
-    override var options: ZoomOptions
+import externals.leaflet.control.Zoom.ZoomOptions
+
+open external class Zoom(options: ZoomOptions = definedExternally) : Control<ZoomOptions> {
 
     interface ZoomOptions : ControlOptions {
         var zoomInText: String?

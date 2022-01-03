@@ -9,9 +9,8 @@ import externals.leaflet.geo.LatLng
 open external class CircleMarker(
     latlng: LatLng,
     options: CircleMarkerOptions = definedExternally,
-) : Path {
+) : Path<CircleMarker.CircleMarkerOptions> {
 
-    override var options: CircleMarkerOptions
     open var feature: Feature<externals.geojson.Point>?
 
     open fun toGeoJSON(precision: Number = definedExternally): Feature<externals.geojson.Point>

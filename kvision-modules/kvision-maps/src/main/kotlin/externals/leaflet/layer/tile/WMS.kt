@@ -9,14 +9,11 @@ import externals.leaflet.geo.CRS
 open external class WMS(
     baseUrl: String,
     options: WMSOptions,
-) : TileLayer {
-
-    override var options: WMSOptions
+) : TileLayer<WMS.WMSOptions> {
 
     open fun setParams(params: WMSParams, noRedraw: Boolean = definedExternally): WMS /* this */
     open var wmsParams: WMSParams
 
-    /** @see WMS.options */
     interface WMSOptions : TileLayerOptions {
         var layers: String?
         var styles: String?

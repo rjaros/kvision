@@ -60,7 +60,7 @@ object MapsModule : ModuleInitializer {
         require("leaflet/dist/leaflet.css")
     }
 
-    fun convertTileLayer(base: BaseTileLayer): TileLayer {
+    fun convertTileLayer(base: BaseTileLayer): TileLayer<*> {
         val tileLayer = createTileLayer(
             urlTemplate = base.url,
         )

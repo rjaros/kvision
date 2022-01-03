@@ -4,6 +4,7 @@
 
 package externals.leaflet.control
 
+import externals.leaflet.control.Layers.LayersOptions
 import externals.leaflet.layer.Layer
 
 /**
@@ -20,13 +21,11 @@ open external class Layers(
     baseLayers: LayersObject = definedExternally,
     overlays: LayersObject = definedExternally,
     options: LayersOptions = definedExternally
-) : Control {
+) : Control<LayersOptions> {
 
-    override var options: LayersOptions
-
-    open fun addBaseLayer(layer: Layer, name: String): Layers /* this */
-    open fun addOverlay(layer: Layer, name: String): Layers /* this */
-    open fun removeLayer(layer: Layer): Layers /* this */
+    open fun addBaseLayer(layer: Layer<*>, name: String): Layers /* this */
+    open fun addOverlay(layer: Layer<*>, name: String): Layers /* this */
+    open fun removeLayer(layer: Layer<*>): Layers /* this */
     open fun expand(): Layers /* this */
     open fun collapse(): Layers /* this */
 
@@ -36,7 +35,7 @@ open external class Layers(
      *
      * See: [`https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/control/Control.Layers.js`](https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/control/Control.Layers.js)
      *
-     * @see [LayersObject]
+     * @see [Control.LayersObject]
      */
     interface LayersOptions : ControlOptions {
 
@@ -73,7 +72,7 @@ open external class Layers(
          *
          * By default, it sorts layers alphabetically by their name.
          */
-        var sortFunction: ((layerA: Layer, layerB: Layer, nameA: String, nameB: String) -> Number)?
+        var sortFunction: ((layerA: Layer<*>, layerB: Layer<*>, nameA: String, nameB: String) -> Number)?
     }
 
 }

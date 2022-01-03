@@ -9,7 +9,7 @@ import externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.svg.SVGElement
 
 // Note: SVGOverlay doesn't extend ImageOverlay because SVGOverlay.getElement returns SVGElement
-open external class SVGOverlay : Layer {
+open external class SVGOverlay : Layer<ImageOverlayOptions> {
 
     constructor(
         svgImage: String,
@@ -22,8 +22,6 @@ open external class SVGOverlay : Layer {
         bounds: LatLngBounds,
         options: ImageOverlayOptions = definedExternally
     )
-
-    override var options: ImageOverlayOptions
 
     open fun setOpacity(opacity: Number): SVGOverlay /* this */
     open fun bringToFront(): SVGOverlay /* this */

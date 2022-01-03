@@ -6,14 +6,14 @@ package externals.leaflet.layer.overlay
 import externals.leaflet.geo.LatLngBounds
 import externals.leaflet.layer.InteractiveLayerOptions
 import externals.leaflet.layer.Layer
+import externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.HTMLImageElement
 
 open external class ImageOverlay(
     imageUrl: String,
     bounds: LatLngBounds,
     options: ImageOverlayOptions = definedExternally
-) : Layer {
-    override var options: ImageOverlayOptions
+) : Layer<ImageOverlayOptions> {
 
     open fun setOpacity(opacity: Number): ImageOverlay /* this */
     open fun bringToFront(): ImageOverlay /* this */
