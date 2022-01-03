@@ -124,52 +124,9 @@ class MapsSpec : DomSpec {
             }
         }
         root.add(map)
-        val element: HTMLElement = document.getElementById("test")!! as HTMLElement
+        val element: HTMLElement = document.getElementById("test") as HTMLElement
 
         assertEqualsHtml(element.innerHTML, fullMapHtml, "", normalizeHtml = true)
-    }
-
-    @Test
-    fun experimentingWithHtml2Canvas() = runSuspend {
-        val root = Root("test", containerType = ContainerType.FIXED)
-
-        val map = Maps {
-            width = 300.px
-            height = 600.px
-
-            configureLeafletMap {
-                setView(LatLng(55, 33), 11)
-                options.crs = CRS.Simple
-            }
-        }
-        root.add(map)
-//        val leafletContainer = DomUtil.get("leaflet-container")
-//        println("\n\n${leafletContainer?.innerHTML}\n\n")
-
-        val element: HTMLElement? =
-            document.getElementById("test")!! as HTMLElement
-//            document.querySelector(".leaflet-overlay-pane .leaflet-zoom-animated") as? HTMLElement?
-
-        println("\n\n${element?.innerHTML}\n\n")
-
-        assertNotNull(element)
-
-        /*
-
-const map = document.querySelector(".leaflet-overlay-pane .leaflet-zoom-animated") as HTMLElement;
-const coordinates = map.style.transform.split("(")[1].split(")")[0].split(",");
-map.style.top = -1 * parseInt(coordinates[1].replace("px", ""), 10) + "px";
-map.style.left = -1 * parseInt(coordinates[0].replace("px", ""), 10) + "px";
-         */
-        println("element.style.transform: ${element.style.transform}")
-
-
-        val canvas = ScreenshotUtil.capture(element) {
-            allowTaint = true
-            useCORS = true
-        }
-        val data = canvas.toDataURL("image/png")
-        println("\n\n---\n\ncanvas data\n\n---\n\n$data\n\n---\n\n")
     }
 
     @Test

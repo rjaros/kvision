@@ -7,8 +7,6 @@ plugins {
 }
 
 val jqueryKotlinVersion: String by project
-val coroutinesVersion: String by project
-val kotlinxHtmlVersion: String by project
 val kotestVersion: String by project
 
 kotlin {
@@ -28,15 +26,6 @@ dependencies {
     api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
     api(rootProject)
     api(kotlin("test-js"))
-
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
-
-    testImplementation("org.jetbrains.kotlinx:kotlinx-html:$kotlinxHtmlVersion")
-
-    implementation(npm("html2canvas", "1.3.4")) {
-        because("take 'screenshots' of webpages")
-    }
 
     implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
     implementation("io.kotest:kotest-assertions-core") {

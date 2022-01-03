@@ -34,7 +34,6 @@ import io.kvision.panel.Root
 import io.kvision.test.Formatting.normalizeHtml
 import kotlin.js.Promise
 import kotlinx.browser.document
-import kotlinx.coroutines.test.runTest
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.w3c.dom.asList
@@ -45,13 +44,6 @@ interface TestSpec {
     fun afterTest()
 
     fun run(code: () -> Unit) {
-        beforeTest()
-        code()
-        afterTest()
-    }
-
-    /** Coroutine test, using [runTest] */
-    fun runSuspend(code: suspend () -> Unit) = runTest {
         beforeTest()
         code()
         afterTest()
