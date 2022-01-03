@@ -23,7 +23,6 @@
 package io.kvision.maps
 
 import externals.leaflet.map.LeafletMap
-import externals.leaflet.map.LeafletMap.LeafletMapOptions
 import io.kvision.MapsModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
@@ -52,10 +51,11 @@ open class Maps(
     /**
      * Apply some configuration to [Leaflet Map][LeafletMap].
      *
-     * If [_leafletMap] has been initialised and inserted into the DOM (as in, [afterInsert] has
-     * been invoked), then the configuration will be applied immediately.
+     * It is **safe** to use this method before the [KVision Maps][Maps] Widget
+     * is initialised, and is added to a parent element.
      *
-     * If not, then this configuration will be stored and applied in [afterInsert]
+     * If the widget is initialised, then this configuration will be applied immediately.
+     * If not, then the configuration will be stored and applied during initialisation.
      *
      * (note: invoking this method will overwrite previously stored
      * configurations).
@@ -70,10 +70,8 @@ open class Maps(
     /**
      * Perform an action with the [LeafletMap] instance.
      *
-     * The [KVision Maps][Maps] Widget **must** first be added before the instance can be used.
-     *
-     * Use [configureLeafletMap] to define [LeafletMapOptions] that will be applied during
-     * initialisation.
+     * It is **unsafe** to use this method before the [KVision Maps][Maps] Widget
+     * is initialised, and is added to a parent element. Instead, use [configureLeafletMap].
      *
      * @throws IllegalArgumentException if the `LeafletMap` is not yet initialized - it must first
      * be added as a component.
@@ -110,7 +108,6 @@ open class Maps(
         val L: LeafletObjectFactory = LeafletObjectFactory
     }
 
-
 }
 
 /**
@@ -120,7 +117,7 @@ open class Maps(
  */
 fun Container.maps(
     className: String? = null,
-    init: (Maps.() -> Unit) = { }
+    init: (Maps.() -> Unit) = {}
 ): Maps {
     val maps = Maps(className, init)
     this.add(maps)
