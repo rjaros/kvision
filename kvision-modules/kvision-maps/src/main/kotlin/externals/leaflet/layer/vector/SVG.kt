@@ -16,7 +16,7 @@ open external class SVG(options: RendererOptions = definedExternally) : Renderer
          * instructions.
          */
         fun pointsToPath(
-            rings: Array<Point /* Point | JsTuple<Number, Number> */>,
+            rings: Array<Point>,
             closed: Boolean
         ): String
     }

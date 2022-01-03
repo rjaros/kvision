@@ -10,4 +10,12 @@ package externals.leaflet.control
  */
 open external class Scale(options: ScaleOptions = definedExternally) : Control {
     override var options: ScaleOptions
+    
+    interface ScaleOptions : ControlOptions {
+        var maxWidth: Number?
+        var metric: Boolean?
+        var imperial: Boolean?
+        var updateWhenIdle: Boolean?
+    }
+
 }

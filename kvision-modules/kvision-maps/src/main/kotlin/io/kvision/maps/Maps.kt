@@ -23,49 +23,52 @@
 package io.kvision.maps
 
 import externals.geojson.LineString
+import externals.geojson.MultiLineString
+import externals.geojson.MultiPolygon
 import externals.leaflet.control.Attribution
-import externals.leaflet.control.AttributionOptions
+import externals.leaflet.control.Attribution.AttributionOptions
+import externals.leaflet.control.Control.LayersObject
 import externals.leaflet.control.Layers
-import externals.leaflet.control.LayersObject
-import externals.leaflet.control.LayersOptions
+import externals.leaflet.control.Layers.LayersOptions
 import externals.leaflet.control.Scale
-import externals.leaflet.control.ScaleOptions
+import externals.leaflet.control.Scale.ScaleOptions
 import externals.leaflet.control.Zoom
-import externals.leaflet.control.ZoomOptions
+import externals.leaflet.control.Zoom.ZoomOptions
 import externals.leaflet.control.set
 import externals.leaflet.geo.LatLng
 import externals.leaflet.geo.LatLngBounds
 import externals.leaflet.layer.FeatureGroup
 import externals.leaflet.layer.Layer
-import externals.leaflet.layer.LayerOptions
-import externals.leaflet.layer.marker.BaseIconOptions
+import externals.leaflet.layer.Layer.LayerOptions
 import externals.leaflet.layer.marker.DivIcon
-import externals.leaflet.layer.marker.DivIconOptions
+import externals.leaflet.layer.marker.DivIcon.DivIconOptions
 import externals.leaflet.layer.marker.Icon
+import externals.leaflet.layer.marker.Icon.IconOptions
 import externals.leaflet.layer.marker.Marker
-import externals.leaflet.layer.marker.MarkerOptions
+import externals.leaflet.layer.marker.Marker.MarkerOptions
 import externals.leaflet.layer.overlay.DivOverlay
-import externals.leaflet.layer.overlay.DivOverlayOptions
+import externals.leaflet.layer.overlay.DivOverlay.DivOverlayOptions
 import externals.leaflet.layer.overlay.ImageOverlay
-import externals.leaflet.layer.overlay.ImageOverlayOptions
+import externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import externals.leaflet.layer.overlay.Popup
-import externals.leaflet.layer.overlay.PopupOptions
+import externals.leaflet.layer.overlay.Popup.PopupOptions
 import externals.leaflet.layer.overlay.Tooltip
-import externals.leaflet.layer.overlay.TooltipOptions
+import externals.leaflet.layer.overlay.Tooltip.TooltipOptions
 import externals.leaflet.layer.tile.GridLayer
-import externals.leaflet.layer.tile.GridLayerOptions
+import externals.leaflet.layer.tile.GridLayer.GridLayerOptions
 import externals.leaflet.layer.tile.TileLayer
-import externals.leaflet.layer.tile.TileLayerOptions
+import externals.leaflet.layer.tile.TileLayer.TileLayerOptions
 import externals.leaflet.layer.tile.WMS
-import externals.leaflet.layer.tile.WMSOptions
+import externals.leaflet.layer.tile.WMS.WMSOptions
 import externals.leaflet.layer.vector.Canvas
 import externals.leaflet.layer.vector.Circle
 import externals.leaflet.layer.vector.CircleMarker
-import externals.leaflet.layer.vector.CircleMarkerOptions
+import externals.leaflet.layer.vector.CircleMarker.CircleMarkerOptions
+import externals.leaflet.layer.vector.Polygon
 import externals.leaflet.layer.vector.Polyline
-import externals.leaflet.layer.vector.PolylineOptions
+import externals.leaflet.layer.vector.Polyline.PolylineOptions
 import externals.leaflet.layer.vector.Rectangle
-import externals.leaflet.layer.vector.RendererOptions
+import externals.leaflet.layer.vector.Renderer.RendererOptions
 import externals.leaflet.layer.vector.SVG
 import externals.leaflet.map.LeafletMap
 import io.kvision.MapsModule
@@ -148,8 +151,16 @@ open class Maps(
         fun createPolyline(
             latLngs: Collection<LatLng>,
             configure: PolylineOptions.() -> Unit = {},
-        ): Polyline<LineString, Any> = Polyline(
+        ): Polyline<LineString> = Polyline(
             latLngs.toTypedArray(),
+            options = obj<PolylineOptions>(configure),
+        )
+
+        fun createMultiPolyline(
+            latLngs: Collection<Collection<LatLng>>,
+            configure: PolylineOptions.() -> Unit = {},
+        ): Polyline<MultiLineString> = Polyline(
+            latLngs.map { it.toTypedArray() }.toTypedArray(),
             options = obj<PolylineOptions>(configure),
         )
 
@@ -208,8 +219,8 @@ open class Maps(
         ) = DivIcon(options = obj<DivIconOptions>(configure))
 
         fun createIcon(
-            configure: BaseIconOptions.() -> Unit = {},
-        ) = Icon(options = obj<BaseIconOptions>(configure))
+            configure: IconOptions.() -> Unit = {},
+        ) = Icon(options = obj<IconOptions>(configure))
 
         fun createMarker(
             latlng: LatLng,
@@ -259,10 +270,26 @@ open class Maps(
             configure: CircleMarkerOptions.() -> Unit = {},
         ) = Circle(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
 
+        /** See [`https://leafletjs.com/reference.html#polygon`](https://leafletjs.com/reference.html#polygon) */
         fun createPolygon(
-            latlng: LatLng,
-            configure: CircleMarkerOptions.() -> Unit = {},
-        ) = Circle(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
+            latlngs: Collection<LatLng>,
+            configure: PolylineOptions.() -> Unit = {},
+        ): Polygon<externals.geojson.Polygon> =
+            Polygon(latlngs = latlngs.toTypedArray(), options = obj<PolylineOptions>(configure))
+
+        /** See [`https://leafletjs.com/reference.html#polygon`](https://leafletjs.com/reference.html#polygon) */
+        fun createMultiPolygon(
+            latlngs: Collection<Collection<Collection<LatLng>>>,
+            configure: PolylineOptions.() -> Unit = {},
+        ): Polygon<MultiPolygon> =
+            Polygon(
+                latlngs = latlngs
+                    .map {
+                        it.map(Collection<LatLng>::toTypedArray).toTypedArray()
+                    }
+                    .toTypedArray(),
+                options = obj<PolylineOptions>(configure)
+            )
 
         fun createRectangle(
             latLngBounds: LatLngBounds,

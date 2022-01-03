@@ -3,7 +3,7 @@
 
 package externals.leaflet.layer
 
-external interface InteractiveLayerOptions : LayerOptions {
+external interface InteractiveLayerOptions : Layer.LayerOptions {
     var interactive: Boolean?
     var bubblingMouseEvents: Boolean?
 }

@@ -12,7 +12,7 @@ open external class TileLayer (
     options: TileLayerOptions = definedExternally
 ) : GridLayer {
 
-    open var options: dynamic // TileLayerOptions
+    override var options: dynamic // TileLayerOptions
 
     /** @return this */
     open fun setUrl(url: String, noRedraw: Boolean = definedExternally): TileLayer
@@ -23,5 +23,17 @@ open external class TileLayer (
     open fun _tileOnError(done: DoneCallback, tile: HTMLElement, e: Error)
     open fun _abortLoading()
     open fun _getZoomForUrl(): Number
+
+      interface TileLayerOptions : GridLayerOptions {
+        var id: String?
+        var accessToken: String?
+        var subdomains: dynamic /* String? | Array<String>? */
+        var errorTileUrl: String?
+        var zoomOffset: Number?
+        var tms: Boolean?
+        var zoomReverse: Boolean?
+        var detectRetina: Boolean?
+        var crossOrigin: dynamic /* Boolean? | String? */
+    }
 
 }

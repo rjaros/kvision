@@ -7,6 +7,9 @@ open external class Bounds {
     constructor()
     constructor(topLeft: Point, bottomRight: Point)
 
+    open var min: Point?
+    open var max: Point?
+
     open fun extend(point: Point): Bounds /* this */
     open fun getCenter(round: Boolean = definedExternally): Point
     open fun getBottomLeft(): Point
@@ -19,6 +22,4 @@ open external class Bounds {
     open fun intersects(otherBounds: Bounds): Boolean
     open fun overlaps(otherBounds: Bounds): Boolean
     open fun isValid(): Boolean
-    open var min: Point?
-    open var max: Point?
 }

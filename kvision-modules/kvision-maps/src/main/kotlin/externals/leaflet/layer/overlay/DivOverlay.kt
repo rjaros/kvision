@@ -4,6 +4,7 @@
 package externals.leaflet.layer.overlay
 
 import externals.leaflet.geo.LatLng
+import externals.leaflet.geometry.Point
 import externals.leaflet.layer.Layer
 import org.w3c.dom.HTMLElement
 
@@ -11,7 +12,7 @@ open external class DivOverlay(
     options: DivOverlayOptions = definedExternally,
     source: Layer = definedExternally
 ) : Layer {
-    open var options: dynamic // DivOverlayOptions
+    override  var options: dynamic // DivOverlayOptions
 
     open fun getLatLng(): LatLng?
     open fun setLatLng(latlng: LatLng): DivOverlay /* this */
@@ -24,4 +25,12 @@ open external class DivOverlay(
     open fun isOpen(): Boolean
     open fun bringToFront(): DivOverlay /* this */
     open fun bringToBack(): DivOverlay /* this */
+
+ interface DivOverlayOptions {
+        var offset: Point
+        var zoomAnimation: Boolean?
+        var className: String?
+        var pane: String?
+    }
+
 }

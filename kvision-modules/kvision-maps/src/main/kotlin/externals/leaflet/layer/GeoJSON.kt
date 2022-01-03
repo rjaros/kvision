@@ -6,8 +6,9 @@ package externals.leaflet.layer
 import externals.geojson.Feature
 import externals.geojson.GeoJsonGeometry
 import externals.geojson.GeoJsonObject
+import externals.geojson.Point
 import externals.leaflet.geo.LatLng
-import externals.leaflet.layer.vector.PathOptions
+import externals.leaflet.layer.vector.Path.PathOptions
 
 /**
  * Represents a GeoJSON object or an array of GeoJSON objects.
@@ -18,16 +19,16 @@ open external class GeoJSON(
     options: GeoJSONOptions = definedExternally
 ) : FeatureGroup {
 
-    open var options: GeoJSONOptions
+    override  var options: GeoJSONOptions
 
     open fun addData(data: GeoJsonObject): GeoJSON /* this */
     open fun resetStyle(layer: Layer = definedExternally): GeoJSON /* this */
     override fun setStyle(style: PathOptions): GeoJSON /* this */
-    open fun setStyle(style: StyleFunction): GeoJSON /* this */
+    fun setStyle(style: StyleFunction): GeoJSON /* this */
 
     companion object {
         fun geometryToLayer(
-            featureData: Feature<GeoJsonGeometry, *>,
+            featureData: Feature<GeoJsonGeometry>,
             options: GeoJSONOptions = definedExternally
         ): Layer
 
@@ -45,7 +46,17 @@ open external class GeoJSON(
             closed: Boolean = definedExternally
         ): Array<Any>
 
-        fun asFeature(geojson: Feature<GeoJsonGeometry, *>): Feature<GeoJsonGeometry, *>
-        fun asFeature(geojson: GeoJsonGeometry): Feature<GeoJsonGeometry, *>
+        fun asFeature(geojson: Feature<GeoJsonGeometry>): Feature<GeoJsonGeometry>
+        fun asFeature(geojson: GeoJsonGeometry): Feature<GeoJsonGeometry>
     }
+
+    interface GeoJSONOptions : InteractiveLayerOptions {
+        val pointToLayer: ((geoJsonPoint: Feature<Point>, latlng: LatLng) -> Layer)?
+        var style: dynamic /* PathOptions? | StyleFunction<P>? */
+        val onEachFeature: ((feature: Feature<GeoJsonGeometry>, layer: Layer) -> Unit)?
+        val filter: ((geoJsonFeature: Feature<GeoJsonGeometry>) -> Boolean)?
+        val coordsToLatLng: ((coords: Any /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */) -> LatLng)?
+        var markersInheritOptions: Boolean?
+    }
+
 }

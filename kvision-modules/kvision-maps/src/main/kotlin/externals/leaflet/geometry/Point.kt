@@ -8,6 +8,9 @@ open external class Point(
     y: Number,
     round: Boolean? = definedExternally
 ) {
+    var x: Number
+    var y: Number
+
     fun clone(): Point
     /** non-destructive, returns a new point */
     fun add(otherPoint: Point): Point
@@ -21,6 +24,4 @@ open external class Point(
     fun ceil(): Point
     fun distanceTo(otherPoint: Point): Number
     fun contains(otherPoint: Point): Boolean
-    var x: Number
-    var y: Number
 }

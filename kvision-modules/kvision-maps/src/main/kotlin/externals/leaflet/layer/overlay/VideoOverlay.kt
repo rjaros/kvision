@@ -5,6 +5,7 @@ package externals.leaflet.layer.overlay
 
 import externals.leaflet.geo.LatLngBounds
 import externals.leaflet.layer.Layer
+import externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.HTMLVideoElement
 
 open external class VideoOverlay : Layer {
@@ -27,7 +28,7 @@ open external class VideoOverlay : Layer {
         options: VideoOverlayOptions = definedExternally
     )
 
-    open var options: VideoOverlayOptions
+    override var options: VideoOverlayOptions
 
     open fun setOpacity(opacity: Number): VideoOverlay /* this */
     open fun bringToFront(): VideoOverlay /* this */
@@ -36,5 +37,12 @@ open external class VideoOverlay : Layer {
     open fun setBounds(bounds: LatLngBounds): VideoOverlay /* this */
     open fun getBounds(): LatLngBounds
     open fun getElement(): HTMLVideoElement?
+
+    interface VideoOverlayOptions : ImageOverlayOptions {
+        var autoplay: Boolean?
+        var loop: Boolean?
+        var keepAspectRatio: Boolean?
+        var muted: Boolean?
+    }
 
 }

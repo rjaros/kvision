@@ -7,13 +7,15 @@ import externals.leaflet.events.Evented
 import externals.leaflet.events.LeafletEventHandlerFn
 import externals.leaflet.geo.LatLng
 import externals.leaflet.layer.overlay.Popup
-import externals.leaflet.layer.overlay.PopupOptions
+import externals.leaflet.layer.overlay.Popup.PopupOptions
 import externals.leaflet.layer.overlay.Tooltip
-import externals.leaflet.layer.overlay.TooltipOptions
+import externals.leaflet.layer.overlay.Tooltip.TooltipOptions
 import externals.leaflet.map.LeafletMap
 import org.w3c.dom.HTMLElement
 
 abstract external class Layer(options: LayerOptions = definedExternally) : Evented {
+
+    open var options: dynamic // LayerOptions
 
     open val getEvents: (() -> LeafletEventHandlerFn)?
     open val getAttribution: (() -> String?)?
@@ -59,4 +61,11 @@ abstract external class Layer(options: LayerOptions = definedExternally) : Event
 
     open fun onAdd(map: LeafletMap): Layer /* this */
     open fun onRemove(map: LeafletMap): Layer /* this */
+
+
+ interface LayerOptions {
+        var pane: String?
+        var attribution: String?
+    }
+
 }

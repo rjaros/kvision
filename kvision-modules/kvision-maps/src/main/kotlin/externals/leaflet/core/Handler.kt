@@ -1,9 +1,9 @@
 @file:JsModule("leaflet")
 @file:JsNonModule
 
-package externals.leaflet.map
+package externals.leaflet.core
 
-import externals.leaflet.core.Class
+import externals.leaflet.map.LeafletMap
 
 open external class Handler(map: LeafletMap) : Class {
     open fun enable(): Handler /* this */

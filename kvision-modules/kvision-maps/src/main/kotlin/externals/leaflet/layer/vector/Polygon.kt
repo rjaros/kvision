@@ -3,6 +3,8 @@
 
 package externals.leaflet.layer.vector
 
+import externals.geojson.GeoJsonSingleOrMultiLineString
+import externals.geojson.GeoJsonSingleOrMultiPolygon
 import externals.leaflet.geo.LatLng
 
 /**
@@ -10,13 +12,14 @@ import externals.leaflet.geo.LatLng
  *
  * Note that points you pass when creating a polygon shouldn't have an additional last point equal
  * to the first one — it's better to filter out such points.
+ *
+ * @param T [externals.geojson.Polygon] or [externals.geojson.MultiPolygon]
  */
-open external class Polygon
-    : Polyline<dynamic /* geojson.Polygon | geojson.MultiPolygon */, Any> {
+open external class Polygon<T: GeoJsonSingleOrMultiPolygon> : Polyline<GeoJsonSingleOrMultiLineString> {
 
     /** Create a polygon from an array of LatLng points. */
     constructor(
-        latlngs: Array<LatLng /* LatLng | LatLngLiteral | JsTuple<Number, Number> */>,
+        latlngs: Array<LatLng>,
         options: PolylineOptions = definedExternally
     )
 
@@ -25,7 +28,7 @@ open external class Polygon
      * outer shape and the other arrays representing holes in the outer shape.
      */
     constructor(
-        latlngs: Array<Array<LatLng /* LatLng | LatLngLiteral | JsTuple<Number, Number> */>>,
+        latlngs: Array<Array<LatLng>>,
         options: PolylineOptions = definedExternally
     )
 
@@ -33,7 +36,7 @@ open external class Polygon
      * @param[latlngs] a multi-dimensional array to represent a MultiPolygon shape.
      */
     constructor(
-        latlngs: Array<Array<Array<LatLng /* LatLng | LatLngLiteral | JsTuple<Number, Number> */>>>,
+        latlngs: Array<Array<Array<LatLng>>>,
         options: PolylineOptions = definedExternally
     )
 

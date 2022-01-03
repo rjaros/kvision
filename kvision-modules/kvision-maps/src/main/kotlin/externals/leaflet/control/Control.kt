@@ -1,13 +1,14 @@
-@file:JsModule("leaflet")
-@file:JsNonModule
-
 package externals.leaflet.control
 
 import externals.leaflet.PositionsUnion
+import externals.leaflet.control.Control.LayersObject
 import externals.leaflet.core.Class
+import externals.leaflet.layer.Layer
 import externals.leaflet.map.LeafletMap
 import org.w3c.dom.HTMLElement
 
+@JsModule("leaflet")
+@JsNonModule
 abstract external class Control(
     options: ControlOptions = definedExternally
 ) : Class {
@@ -20,7 +21,28 @@ abstract external class Control(
     open val onRemove: ((map: LeafletMap) -> Unit)?
     open var options: dynamic // ControlOptions
 
+    interface ControlOptions {
+        var position: PositionsUnion
+    }
+
+    /**
+     * Object literal with layer names as keys and [Layer] objects as values.
+     *
+     * @see [set]
+     * @see [get]
+     */
+    interface LayersObject
+
 //    companion object {
 //        fun <T : Any?> extend(props: T): Any /* Any & Any */
 //    }
+}
+
+/** Native getter for [LayersObject] */
+inline operator fun LayersObject.get(name: String): Layer? =
+    asDynamic()[name] as Layer?
+
+/** Native setter for [LayersObject] */
+inline operator fun LayersObject.set(name: String, value: Layer) {
+    asDynamic()[name] = value
 }

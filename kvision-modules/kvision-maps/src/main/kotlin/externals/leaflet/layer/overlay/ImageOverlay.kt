@@ -4,6 +4,7 @@
 package externals.leaflet.layer.overlay
 
 import externals.leaflet.geo.LatLngBounds
+import externals.leaflet.layer.InteractiveLayerOptions
 import externals.leaflet.layer.Layer
 import org.w3c.dom.HTMLImageElement
 
@@ -12,7 +13,7 @@ open external class ImageOverlay(
     bounds: LatLngBounds,
     options: ImageOverlayOptions = definedExternally
 ) : Layer {
-    open var options: ImageOverlayOptions
+    override var options: ImageOverlayOptions
 
     open fun setOpacity(opacity: Number): ImageOverlay /* this */
     open fun bringToFront(): ImageOverlay /* this */
@@ -22,4 +23,22 @@ open external class ImageOverlay(
     open fun setZIndex(value: Number): ImageOverlay /* this */
     open fun getBounds(): LatLngBounds
     open fun getElement(): HTMLImageElement?
+
+    interface ImageOverlayOptions : InteractiveLayerOptions {
+        var opacity: Number?
+        var alt: String?
+        /**
+         * Whether the crossOrigin attribute will be added to the image. If a String is provided, the
+         * image will have its `crossOrigin` attribute set to the String provided. This is needed if
+         * you want to access image pixel data.
+         *
+         * Refer to [CORS Settings](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)
+         * for valid String values.
+         */
+        var crossOrigin: dynamic /* Boolean? | String? */
+        var errorOverlayUrl: String?
+        var zIndex: Number?
+        var className: String?
+    }
+
 }

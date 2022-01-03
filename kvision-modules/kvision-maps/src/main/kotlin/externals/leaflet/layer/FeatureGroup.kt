@@ -4,7 +4,7 @@
 package externals.leaflet.layer
 
 import externals.leaflet.geo.LatLngBounds
-import externals.leaflet.layer.vector.PathOptions
+import externals.leaflet.layer.vector.Path.PathOptions
 
 open external class FeatureGroup(
     layers: Array<Layer> = definedExternally,

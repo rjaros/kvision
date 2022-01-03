@@ -19,5 +19,12 @@ import externals.leaflet.layer.Layer
 abstract external class Renderer(
     options: RendererOptions = definedExternally
 ) : Layer {
-    open var options: RendererOptions
+
+    override var options: RendererOptions
+
+    interface RendererOptions : LayerOptions {
+        var padding: Number?
+        var tolerance: Number?
+    }
+
 }
