@@ -25,21 +25,22 @@ package io.kvision.react
 import io.kvision.core.Container
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
+import io.kvision.utils.obj
 import kotlinx.browser.document
 import org.w3c.dom.HTMLElement
+import react.ChildrenBuilder
+import react.FC
 import react.PropsWithChildren
-import react.RBuilder
 import react.StateSetter
 import react.createRef
-import react.dom.div
-import react.fc
+import react.dom.html.ReactHTML.div
 import react.useEffect
 import react.useState
 
 /**
  * A helper functional component used by KVision React.
  */
-fun <S> reactWrapper(builder: RBuilder.(refresh: StateSetter<S>) -> Unit) = fc<PropsWithChildren> {
+fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit) = FC<PropsWithChildren> {
     @Suppress("UnsafeCastFromDynamic")
     val state = useState<S> { js("{}") }
     builder(state.component2())
@@ -48,7 +49,7 @@ fun <S> reactWrapper(builder: RBuilder.(refresh: StateSetter<S>) -> Unit) = fc<P
 /**
  * A helper functional component which allows to use KVision components as React children.
  */
-fun kvisionWrapper(builder: Container.() -> Unit) = fc<PropsWithChildren> {
+fun kvisionWrapper(builder: Container.() -> Unit) = FC<PropsWithChildren> {
     val elRef = createRef<HTMLElement>()
     useEffect {
         var root: Root? = null
@@ -72,4 +73,4 @@ fun kvisionWrapper(builder: Container.() -> Unit) = fc<PropsWithChildren> {
 /**
  * An extension function to simplify kvisionWrapper usage.
  */
-fun RBuilder.kv(builder: Container.() -> Unit) = child(kvisionWrapper(builder))
+fun ChildrenBuilder.kv(builder: Container.() -> Unit) = child(kvisionWrapper(builder), obj {})
