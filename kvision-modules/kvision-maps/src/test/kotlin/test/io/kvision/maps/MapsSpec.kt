@@ -103,7 +103,7 @@ class MapsSpec : DomSpec {
                 setView(LatLng(55, 33), 11)
                 options.crs = CRS.Simple
 
-                convertTileLayer(BaseTileLayer.EMPTY)
+                convertTileLayer(BaseTileLayer.Empty)
                     .addTo(this)
 
                 val featureGroup = FeatureGroup()
