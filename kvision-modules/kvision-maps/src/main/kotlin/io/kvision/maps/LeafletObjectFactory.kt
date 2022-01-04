@@ -126,19 +126,19 @@ object LeafletObjectFactory {
 
     fun attribution(
         configure: AttributionOptions.() -> Unit = {},
-    ) = Attribution(options = obj<AttributionOptions>(configure))
+    ): Attribution = Attribution(options = obj<AttributionOptions>(configure))
 
     fun scale(
         configure: ScaleOptions.() -> Unit = {},
-    ) = Scale(options = obj<ScaleOptions>(configure))
+    ): Scale = Scale(options = obj<ScaleOptions>(configure))
 
     fun zoom(
         configure: ZoomOptions.() -> Unit = {},
-    ) = Zoom(options = obj<ZoomOptions>(configure))
+    ): Zoom = Zoom(options = obj<ZoomOptions>(configure))
 
     fun divIcon(
         configure: DivIconOptions.() -> Unit = {},
-    ) = DivIcon(options = obj<DivIconOptions>(configure))
+    ): DivIcon = DivIcon(options = obj<DivIconOptions>(configure))
 
     fun icon(
         configure: IconOptions.() -> Unit = {},
@@ -158,36 +158,36 @@ object LeafletObjectFactory {
     fun popup(
         source: Layer<*>,
         configure: PopupOptions.() -> Unit = {},
-    ) = Popup(source = source, options = obj<PopupOptions>(configure))
+    ): Popup = Popup(source = source, options = obj<PopupOptions>(configure))
 
     fun tooltip(
         source: Layer<*>,
         configure: TooltipOptions.() -> Unit = {},
-    ) = Tooltip(source = source, options = obj<TooltipOptions>(configure))
+    ): Tooltip = Tooltip(source = source, options = obj<TooltipOptions>(configure))
 
     fun videoOverlay(
         source: Layer<*>,
         configure: TooltipOptions.() -> Unit = {},
-    ) = Tooltip(source = source, options = obj<TooltipOptions>(configure))
+    ): Tooltip = Tooltip(source = source, options = obj<TooltipOptions>(configure))
 
-    fun wMS(
+    fun wms(
         baseUrl: String,
         configure: WMSOptions.() -> Unit = {},
-    ) = WMS(baseUrl = baseUrl, options = obj<WMSOptions>(configure))
+    ): WMS = WMS(baseUrl = baseUrl, options = obj<WMSOptions>(configure))
 
     fun canvas(
         configure: RendererOptions.() -> Unit = {},
-    ) = Canvas(options = obj<RendererOptions>(configure))
+    ): Canvas = Canvas(options = obj<RendererOptions>(configure))
 
     fun circleMarker(
         latlng: LatLng,
         configure: CircleMarkerOptions.() -> Unit = {},
-    ) = CircleMarker(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
+    ): CircleMarker = CircleMarker(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
 
     fun circle(
         latlng: LatLng,
         configure: CircleMarkerOptions.() -> Unit = {},
-    ) = Circle(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
+    ): Circle = Circle(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
 
     /** See [`https://leafletjs.com/reference.html#polygon`](https://leafletjs.com/reference.html#polygon) */
     fun polygon(
@@ -216,16 +216,23 @@ object LeafletObjectFactory {
     fun rectangle(
         latLngBounds: LatLngBounds,
         configure: PolylineOptions.() -> Unit = {},
-    ) = Rectangle(latLngBounds = latLngBounds, options = obj<PolylineOptions>(configure))
+    ): Rectangle = Rectangle(latLngBounds = latLngBounds, options = obj<PolylineOptions>(configure))
 
-    fun sVG(
+    fun svg(
         latLngBounds: LatLngBounds,
         configure: RendererOptions.() -> Unit = {},
-    ) = SVG(options = obj<RendererOptions>(configure))
+    ): SVG = SVG(options = obj<RendererOptions>(configure))
 
     fun featureGroup(
         layers: Array<Layer<*>>,
         configure: LayerOptions.() -> Unit = {},
-    ) = FeatureGroup(layers = layers, options = obj<LayerOptions>(configure))
+    ) : FeatureGroup = FeatureGroup(layers = layers, options = obj<LayerOptions>(configure))
+
+    fun latLng(
+        latitude: Number,
+        longitude: Number,
+        altitude: Number,
+    ) : LatLng = LatLng(latitude, longitude, altitude)
+
 
 }
