@@ -107,9 +107,7 @@ class MapsSpec : DomSpec {
                 val featureGroup = FeatureGroup()
                 featureGroup.addTo(this)
 
-                val layers = L.layers(
-                    baseLayers = DefaultTileLayers.baseLayers
-                ) {
+                val layers = L.layers(baseLayers = DefaultTileLayers.baseLayers) {
                     position = "topleft"
                 }
                 layers.addTo(this)
@@ -122,7 +120,12 @@ class MapsSpec : DomSpec {
         root.add(map)
         val element: HTMLElement = document.getElementById("test") as HTMLElement
 
-        assertEqualsHtml(element.innerHTML, fullMapHtml, "", normalizeHtml = true)
+        assertEqualsHtml(
+            expected = fullMapHtml,
+            actual = element.innerHTML,
+            "expect full map HTML is added to test element",
+            normalizeHtml = true
+        )
     }
 
     @Test
@@ -214,20 +217,20 @@ class MapsSpec : DomSpec {
                 <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
                     <div class="leaflet-pane leaflet-tile-pane">
                         <div class="leaflet-layer " style="z-index: 1;">
-                            <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(242620px, 278471px, 0px) scale(1);">
-                                <img alt="" role="presentation" src="" class="leaflet-tile" style="width: 256px; height: 256px; transform: translate3d(-242876px, -278727px, 0px);">
-                                <img alt="" role="presentation" src="" class="leaflet-tile" style="width: 256px; height: 256px; transform: translate3d(-242620px, -278727px, 0px);">
-                                <img alt="" role="presentation" src="" class="leaflet-tile" style="width: 256px; height: 256px; transform: translate3d(-242876px, -278471px, 0px);">
-                                <img alt="" role="presentation" src="" class="leaflet-tile" style="width: 256px; height: 256px; transform: translate3d(-242620px, -278471px, 0px);">
-                            </div>
                         </div>
                     </div>
-                    <div class="leaflet-pane leaflet-shadow-pane"></div>
-                    <div class="leaflet-pane leaflet-overlay-pane"></div>
-                    <div class="leaflet-pane leaflet-marker-pane"></div>
-                    <div class="leaflet-pane leaflet-tooltip-pane"></div>
-                    <div class="leaflet-pane leaflet-popup-pane"></div>
-                    <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(310204px, 165831px, 0px) scale(1024);"></div>
+                    <div class="leaflet-pane leaflet-shadow-pane">
+                    </div>
+                    <div class="leaflet-pane leaflet-overlay-pane">
+                    </div>
+                    <div class="leaflet-pane leaflet-marker-pane">
+                    </div>
+                    <div class="leaflet-pane leaflet-tooltip-pane">
+                    </div>
+                    <div class="leaflet-pane leaflet-popup-pane">
+                    </div>
+                    <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(310204px, 165831px, 0px) scale(1024);">
+                    </div>
                 </div>
                 <div class="leaflet-control-container">
                     <div class="leaflet-top leaflet-left">
@@ -240,73 +243,64 @@ class MapsSpec : DomSpec {
                             </a>
                         </div>
                         <div class="leaflet-control-layers leaflet-control" aria-haspopup="true">
-                            <a class="leaflet-control-layers-toggle" href="#" title="Layers"> </a>
+                            <a class="leaflet-control-layers-toggle" href="#" title="Layers">
+                            </a>
                             <section class="leaflet-control-layers-list">
                                 <div class="leaflet-control-layers-base">
                                     <label>
                                         <div>
-                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_48">
-                                            <span>
-                                                Empty
-                                            </span>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_40" checked="checked" disabled="">
+                                            <span>Empty</span>
                                         </div>
                                     </label>
                                     <label>
                                         <div>
-                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_48">
-                                            <span>
-                                                OpenStreetMap
-                                            </span>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_40">
+                                            <span>Esri.WorldImagery</span>
                                         </div>
                                     </label>
                                     <label>
                                         <div>
-                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_48">
-                                            <span>
-                                                Esri.WorldImagery
-                                            </span>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_40">
+                                            <span>Esri.WorldTopoMap</span>
                                         </div>
                                     </label>
                                     <label>
                                         <div>
-                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_48">
-                                            <span>
-                                                Esri.WorldTopoMap
-                                            </span>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_40">
+                                            <span>OpenStreetMap</span>
                                         </div>
                                     </label>
                                     <label>
                                         <div>
-                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_48">
-                                            <span>
-                                                MtbMap
-                                            </span>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_40">
+                                            <span>MtbMap</span>
                                         </div>
                                     </label>
                                     <label>
                                         <div>
-                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_48">
-                                            <span>
-                                                CartoDB.Voyager
-                                            </span>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_40">
+                                            <span>CartoDB.Voyager</span>
                                         </div>
                                     </label>
                                     <label>
                                         <div>
-                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_48">
-                                            <span>
-                                                Hike Bike
-                                            </span>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_40">
+                                            <span>Hike &amp; Bike Map</span>
                                         </div>
                                     </label>
                                 </div>
-                                <div class="leaflet-control-layers-separator" style="display: none;"></div>
-                                <div class="leaflet-control-layers-overlays"></div>
+                                <div class="leaflet-control-layers-separator" style="display: none;">
+                                </div>
+                                <div class="leaflet-control-layers-overlays">
+                                </div>
                             </section>
                         </div>
                     </div>
-                    <div class="leaflet-top leaflet-right"></div>
-                    <div class="leaflet-bottom leaflet-left"></div>
+                    <div class="leaflet-top leaflet-right">
+                    </div>
+                    <div class="leaflet-bottom leaflet-left">
+                    </div>
                     <div class="leaflet-bottom leaflet-right">
                         <div class="leaflet-control-attribution leaflet-control">
                             <a href="https://leafletjs.com" title="A JS library for interactive maps">
