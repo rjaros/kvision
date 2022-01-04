@@ -261,6 +261,12 @@ object LeafletObjectFactory {
         altitude: Number,
     ): LatLng = LatLng(latitude, longitude, altitude)
 
+    fun latLng(latLng: Pair<Number, Number>, altitude: Number? = null): LatLng =
+        when (altitude) {
+            null -> LatLng(latLng.first, latLng.second)
+            else -> LatLng(latLng.first, latLng.second, altitude)
+        }
+
     fun latLngBounds(
         southWest: LatLng,
         northEast: LatLng,
