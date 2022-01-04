@@ -11,7 +11,7 @@ import org.w3c.dom.HTMLElement
 
 open external class DivOverlay<T : DivOverlayOptions>(
     options: DivOverlayOptions = definedExternally,
-    source: Layer<*> = definedExternally
+    source: Layer<*> = definedExternally,
 ) : Layer<Layer.LayerOptions> {
 
     open fun getLatLng(): LatLng?

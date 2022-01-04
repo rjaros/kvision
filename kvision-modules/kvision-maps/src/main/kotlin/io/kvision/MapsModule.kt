@@ -22,9 +22,6 @@
 package io.kvision
 
 import externals.leaflet.layer.marker.Icon
-import externals.leaflet.layer.tile.TileLayer
-import io.kvision.maps.BaseTileLayer
-import io.kvision.maps.LeafletObjectFactory
 import io.kvision.utils.delete
 import io.kvision.utils.obj
 
@@ -60,17 +57,6 @@ object MapsModule : ModuleInitializer {
 
     override fun initialize() {
         require("leaflet/dist/leaflet.css")
-    }
-
-    fun convertTileLayer(base: BaseTileLayer): TileLayer<*> {
-        val tileLayer = LeafletObjectFactory.tileLayer(
-            urlTemplate = base.url
-        ) {
-            attribution = base.attribution
-            id = base.label
-        }
-
-        return tileLayer
     }
 
 }

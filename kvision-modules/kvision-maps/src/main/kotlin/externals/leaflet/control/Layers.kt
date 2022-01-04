@@ -23,10 +23,15 @@ open external class Layers(
     options: LayersOptions = definedExternally
 ) : Control<LayersOptions> {
 
+    /** Adds a base layer (radio button entry) with the given name to the control. */
     open fun addBaseLayer(layer: Layer<*>, name: String): Layers /* this */
+    /** Adds an overlay (checkbox entry) with the given name to the control. */
     open fun addOverlay(layer: Layer<*>, name: String): Layers /* this */
+    /** Remove the given layer from the control. */
     open fun removeLayer(layer: Layer<*>): Layers /* this */
+    /** Expand the control container if collapsed. */
     open fun expand(): Layers /* this */
+    /** Collapse the control container if expanded. */
     open fun collapse(): Layers /* this */
 
     /**

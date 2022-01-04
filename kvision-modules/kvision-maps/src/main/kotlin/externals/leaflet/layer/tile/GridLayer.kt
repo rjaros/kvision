@@ -53,9 +53,21 @@ abstract external class GridLayer<T : GridLayerOptions>(
         var updateInterval: Number?
         var zIndex: Number?
         var bounds: LatLngBounds?
+        /** The minimum zoom level down to which this layer will be displayed (inclusive). */
         var minZoom: Number?
+        /** The maximum zoom level up to which this layer will be displayed (inclusive). */
         var maxZoom: Number?
+        /**
+         * 	Maximum zoom number the tile source has available. If it is specified, the tiles on
+         * 	all zoom levels higher than maxNativeZoom will be loaded from maxNativeZoom level and
+         * 	auto-scaled.
+         */
         var maxNativeZoom: Number?
+        /**
+         * 	Minimum zoom number the tile source has available. If it is specified, the tiles on
+         * 	all zoom levels lower than minNativeZoom will be loaded from minNativeZoom level and
+         * 	auto-scaled.
+         */
         var minNativeZoom: Number?
         var noWrap: Boolean?
         var className: String?

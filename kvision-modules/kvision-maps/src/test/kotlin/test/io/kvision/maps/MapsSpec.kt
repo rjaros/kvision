@@ -27,8 +27,7 @@ import externals.leaflet.geo.LatLng
 import externals.leaflet.geo.LatLngBounds
 import externals.leaflet.layer.FeatureGroup
 import externals.leaflet.layer.overlay.SVGOverlay
-import io.kvision.MapsModule.convertTileLayer
-import io.kvision.maps.BaseTileLayer
+import io.kvision.maps.DefaultTileLayers
 import io.kvision.maps.Maps
 import io.kvision.maps.Maps.Companion.L
 import io.kvision.maps.maps
@@ -103,14 +102,13 @@ class MapsSpec : DomSpec {
                 setView(LatLng(55, 33), 11)
                 options.crs = CRS.Simple
 
-                convertTileLayer(BaseTileLayer.Empty)
-                    .addTo(this)
+                DefaultTileLayers.Empty.addTo(this)
 
                 val featureGroup = FeatureGroup()
                 featureGroup.addTo(this)
 
                 val layers = L.layers(
-                    baseLayers = BaseTileLayer.defaultLayers
+                    baseLayers = DefaultTileLayers.baseLayers
                 ) {
                     position = "topleft"
                 }

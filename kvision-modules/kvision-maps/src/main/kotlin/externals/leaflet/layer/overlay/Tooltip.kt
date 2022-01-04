@@ -9,7 +9,7 @@ import externals.leaflet.layer.overlay.Tooltip.TooltipOptions
 
 open external class Tooltip(
     source: Layer<*> = definedExternally,
-    options: TooltipOptions = definedExternally,
+    options: TooltipOptions? = definedExternally,
 ) : DivOverlay<TooltipOptions> {
 
     open fun setOpacity(param_val: Number)

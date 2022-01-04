@@ -33,6 +33,8 @@ import externals.leaflet.layer.overlay.Popup
 import externals.leaflet.layer.overlay.Popup.PopupOptions
 import externals.leaflet.layer.overlay.Tooltip
 import externals.leaflet.layer.overlay.Tooltip.TooltipOptions
+import externals.leaflet.layer.overlay.VideoOverlay
+import externals.leaflet.layer.overlay.VideoOverlay.VideoOverlayOptions
 import externals.leaflet.layer.tile.TileLayer
 import externals.leaflet.layer.tile.TileLayer.TileLayerOptions
 import externals.leaflet.layer.tile.WMS
@@ -48,9 +50,9 @@ import externals.leaflet.layer.vector.Renderer.RendererOptions
 import externals.leaflet.layer.vector.SVG
 import externals.leaflet.map.LeafletMap
 import externals.leaflet.map.LeafletMap.LeafletMapOptions
-import io.kvision.MapsModule
 import io.kvision.utils.obj
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLVideoElement
 
 /**
  * Leaflet constructors.
@@ -94,25 +96,27 @@ object LeafletObjectFactory {
         options = obj<TileLayerOptions>(configure),
     )
 
-    fun layersObject(tileLayers: Collection<BaseTileLayer>): LayersObject {
-        return tileLayers
-            .associate { base -> base.label to MapsModule.convertTileLayer(base) }
-            .entries
-            .fold(obj<LayersObject> {}) { acc, (label, layer) ->
-                acc[label] = layer
-                acc
-            }
-    }
-
     fun layers(
-        baseLayers: Collection<BaseTileLayer> = emptyList(),
-        overlays: LayersObject = layersObject(emptyList()),
+        baseLayers: LayersObject = layersObject(emptyMap()),
+        overlays: LayersObject = layersObject(emptyMap()),
         configure: LayersOptions.() -> Unit = {},
     ): Layers = Layers(
-        baseLayers = layersObject(baseLayers),
+        baseLayers = baseLayers,
         overlays = overlays,
         options = obj<LayersOptions>(configure),
     )
+
+    /**
+     * @param[tileLayers] Map display names to tile layers. The names can contain HTML, which
+     * allows you to add additional styling to the items.
+     */
+    fun layersObject(tileLayers: Map<String, TileLayer<*>>): LayersObject =
+        tileLayers
+            .entries
+            .fold(obj<LayersObject> {}) { acc, (name, layer) ->
+                acc[name] = layer
+                acc
+            }
 
     fun imageOverlay(
         imageUrl: String,
@@ -161,14 +165,33 @@ object LeafletObjectFactory {
     ): Popup = Popup(source = source, options = obj<PopupOptions>(configure))
 
     fun tooltip(
-        source: Layer<*>,
+        source: Layer<*>? = null,
         configure: TooltipOptions.() -> Unit = {},
-    ): Tooltip = Tooltip(source = source, options = obj<TooltipOptions>(configure))
+    ): Tooltip = when (source) {
+        null -> Tooltip(options = obj<TooltipOptions>(configure))
+        else -> Tooltip(options = obj<TooltipOptions>(configure), source = source)
+    }
 
     fun videoOverlay(
-        source: Layer<*>,
-        configure: TooltipOptions.() -> Unit = {},
-    ): Tooltip = Tooltip(source = source, options = obj<TooltipOptions>(configure))
+        video: String,
+        bounds: LatLngBounds,
+        configure: VideoOverlayOptions.() -> Unit = {},
+    ): VideoOverlay =
+        VideoOverlay(video = video, bounds = bounds, options = obj<VideoOverlayOptions>(configure))
+
+    fun videoOverlay(
+        video: Array<String>,
+        bounds: LatLngBounds,
+        configure: VideoOverlayOptions.() -> Unit = {},
+    ): VideoOverlay =
+        VideoOverlay(video = video, bounds = bounds, options = obj<VideoOverlayOptions>(configure))
+
+    fun videoOverlay(
+        video: HTMLVideoElement,
+        bounds: LatLngBounds,
+        configure: VideoOverlayOptions.() -> Unit = {},
+    ): VideoOverlay =
+        VideoOverlay(video = video, bounds = bounds, options = obj<VideoOverlayOptions>(configure))
 
     fun wms(
         baseUrl: String,
@@ -219,20 +242,32 @@ object LeafletObjectFactory {
     ): Rectangle = Rectangle(latLngBounds = latLngBounds, options = obj<PolylineOptions>(configure))
 
     fun svg(
-        latLngBounds: LatLngBounds,
         configure: RendererOptions.() -> Unit = {},
     ): SVG = SVG(options = obj<RendererOptions>(configure))
 
     fun featureGroup(
         layers: Array<Layer<*>>,
         configure: LayerOptions.() -> Unit = {},
-    ) : FeatureGroup = FeatureGroup(layers = layers, options = obj<LayerOptions>(configure))
+    ): FeatureGroup = FeatureGroup(layers = layers, options = obj<LayerOptions>(configure))
+
+    fun latLng(
+        latitude: Number,
+        longitude: Number
+    ): LatLng = LatLng(latitude, longitude)
 
     fun latLng(
         latitude: Number,
         longitude: Number,
         altitude: Number,
-    ) : LatLng = LatLng(latitude, longitude, altitude)
+    ): LatLng = LatLng(latitude, longitude, altitude)
 
+    fun latLngBounds(
+        southWest: LatLng,
+        northEast: LatLng,
+    ): LatLngBounds = LatLngBounds(southWest, northEast)
+
+    fun latLngBounds(
+        southWestToNorthEast: Pair<LatLng, LatLng>,
+    ): LatLngBounds = latLngBounds(southWestToNorthEast.first, southWestToNorthEast.second)
 
 }
