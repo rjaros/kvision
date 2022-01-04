@@ -141,12 +141,13 @@ open class Tabulator<T : Any>(
                         item = ""
                         items = ""
                     }
-                    ajax = obj {
+                    this.data = obj {
                         loading = "..."
                         error = "!!!"
                     }
                     pagination = obj {
                         page_size = "↕"
+                        page_title = "#"
                         first = "<<"
                         first_title = "<<"
                         last = ">>"
@@ -155,6 +156,7 @@ open class Tabulator<T : Any>(
                         prev_title = "<"
                         next = ">"
                         next_title = ">"
+                        all = "*"
                     }
                     headerFilters = obj {
                         default = "..."
@@ -207,14 +209,9 @@ open class Tabulator<T : Any>(
                     if (this.dispatchEvent("rowDblClickTabulator", obj { detail = row }) != true) e.preventDefault()
                 }
             }
-            jsTabulator?.on("rowSelectionChanged") { e: Event, rows: dynamic ->
-                if (!e.defaultPrevented) {
-                    @Suppress("UnsafeCastFromDynamic")
-                    if (this.dispatchEvent(
-                            "rowSelectionChangedTabulator",
-                            obj { detail = rows }) != true
-                    ) e.preventDefault()
-                }
+            jsTabulator?.on("rowSelectionChanged") { _: dynamic, rows: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("rowSelectionChangedTabulator", obj { detail = rows })
             }
             jsTabulator?.on("rowSelected") { row: dynamic ->
                 @Suppress("UnsafeCastFromDynamic")
