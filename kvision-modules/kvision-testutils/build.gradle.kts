@@ -11,15 +11,6 @@ val kotestVersion: String by project
 
 kotlin {
     kotlinJsTargets()
-
-    sourceSets {
-        all {
-            languageSettings {
-                optIn("kotlin.RequiresOptIn")
-                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
-            }
-        }
-    }
 }
 
 dependencies {
