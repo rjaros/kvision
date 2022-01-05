@@ -6,20 +6,10 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-val coroutinesVersion: String by project
-val kotlinxHtmlVersion: String by project
-
+val kotestVersion: String by project
 
 kotlin {
     kotlinJsTargets()
-    sourceSets {
-        all {
-            languageSettings {
-                optIn("kotlin.RequiresOptIn")
-                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
-            }
-        }
-    }
 }
 
 dependencies {
@@ -36,11 +26,6 @@ dependencies {
 
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
-
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
-
-    val kotestVersion: String by project
     testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))
     testImplementation("io.kotest:kotest-assertions-core")
 }

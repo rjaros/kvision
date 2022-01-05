@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2020-present Jörg Rade
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,8 +38,6 @@ object MapsModule : ModuleInitializer {
     }
 
     private fun setDefaultIcon() {
-
-        // I'm not sure if this works
         leaflet.Icon.Default.imagePath = ""
         delete(leaflet.Icon.Default.prototype._getIconUrl)
         leaflet.Icon.Default.mergeOptions(obj<Icon.IconOptions> {
@@ -46,13 +45,6 @@ object MapsModule : ModuleInitializer {
             iconUrl = require("leaflet/dist/images/marker-icon.png").unsafeCast<String>()
             shadowUrl = require("leaflet/dist/images/marker-shadow.png").unsafeCast<String>()
         })
-
-//        Icon.Default(obj<Icon.DefaultIconOptions> {
-//            imagePath = ""
-//            iconRetinaUrl = "leaflet/dist/images/marker-icon-2x.png"
-//            iconUrl = "leaflet/dist/images/marker-icon.png"
-//            shadowUrl = "leaflet/dist/images/marker-shadow.png"
-//        })
     }
 
     override fun initialize() {
