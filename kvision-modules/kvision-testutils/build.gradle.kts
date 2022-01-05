@@ -7,15 +7,30 @@ plugins {
 }
 
 val jqueryKotlinVersion: String by project
+val kotestVersion: String by project
 
 kotlin {
     kotlinJsTargets()
+
+    sourceSets {
+        all {
+            languageSettings {
+                optIn("kotlin.RequiresOptIn")
+                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            }
+        }
+    }
 }
 
 dependencies {
     api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
     api(rootProject)
-    implementation(kotlin("test-js"))
+    api(kotlin("test-js"))
+
+    implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+    implementation("io.kotest:kotest-assertions-core") {
+        because("improved test assertions")
+    }
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

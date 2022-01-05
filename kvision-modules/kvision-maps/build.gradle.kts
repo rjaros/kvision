@@ -7,16 +7,42 @@ plugins {
 }
 
 val coroutinesVersion: String by project
+val kotlinxHtmlVersion: String by project
+
 
 kotlin {
     kotlinJsTargets()
+    sourceSets {
+        all {
+            languageSettings {
+                optIn("kotlin.RequiresOptIn")
+                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            }
+        }
+    }
 }
 
 dependencies {
     api(rootProject)
+    implementation(kotlin("stdlib-js"))
+
     implementation(npm("leaflet", "^1.7.1"))
+    implementation(npm("@types/leaflet", "^1.7.7"))
+
+    implementation(npm("geojson", "^0.5.0")) {
+        because("used by Leaflet for defining locations")
+    }
+    implementation(npm("@types/geojson", "7946.0.8"))
+
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+
+    val kotestVersion: String by project
+    testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+    testImplementation("io.kotest:kotest-assertions-core")
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

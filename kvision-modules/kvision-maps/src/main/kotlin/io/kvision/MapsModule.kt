@@ -21,6 +21,7 @@
  */
 package io.kvision
 
+import externals.leaflet.layer.marker.Icon
 import io.kvision.utils.delete
 import io.kvision.utils.obj
 
@@ -32,16 +33,30 @@ object MapsModule : ModuleInitializer {
     internal val leaflet = require("leaflet")
 
     init {
+        setDefaultIcon()
+    }
+
+    private fun setDefaultIcon() {
+
+        // I'm not sure if this works
         leaflet.Icon.Default.imagePath = ""
         delete(leaflet.Icon.Default.prototype._getIconUrl)
-        leaflet.Icon.Default.mergeOptions(obj {
-            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png")
-            iconUrl = require("leaflet/dist/images/marker-icon.png")
-            shadowUrl = require("leaflet/dist/images/marker-shadow.png")
+        leaflet.Icon.Default.mergeOptions(obj<Icon.IconOptions> {
+            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png").unsafeCast<String>()
+            iconUrl = require("leaflet/dist/images/marker-icon.png").unsafeCast<String>()
+            shadowUrl = require("leaflet/dist/images/marker-shadow.png").unsafeCast<String>()
         })
+
+//        Icon.Default(obj<Icon.DefaultIconOptions> {
+//            imagePath = ""
+//            iconRetinaUrl = "leaflet/dist/images/marker-icon-2x.png"
+//            iconUrl = "leaflet/dist/images/marker-icon.png"
+//            shadowUrl = "leaflet/dist/images/marker-shadow.png"
+//        })
     }
 
     override fun initialize() {
         require("leaflet/dist/leaflet.css")
     }
+
 }
