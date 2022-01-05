@@ -36,7 +36,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.KSerializer
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
-import org.junit.Assert.assertEquals
+import org.testng.Assert.assertEquals
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.DataProvider
 import org.testng.annotations.Test

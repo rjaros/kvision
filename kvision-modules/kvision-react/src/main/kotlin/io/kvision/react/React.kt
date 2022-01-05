@@ -22,14 +22,15 @@
 
 package io.kvision.react
 
-import io.kvision.snabbdom.VNode
 import io.kvision.ReactModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.snabbdom.VNode
 import io.kvision.state.ObservableState
 import org.w3c.dom.HTMLElement
-import react.RBuilder
+import react.ChildrenBuilder
 import react.StateSetter
+import react.createElement
 import react.dom.render as ReactRender
 
 /**
@@ -41,7 +42,7 @@ import react.dom.render as ReactRender
 class React<S>(
     state: S,
     className: String? = null,
-    private val builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
+    private val builder: ChildrenBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
 ) : Widget(className), ObservableState<S> {
 
     private val observers = mutableListOf<(S) -> Unit>()
@@ -62,19 +63,19 @@ class React<S>(
     @Suppress("UnsafeCastFromDynamic")
     internal constructor(
         className: String? = null,
-        builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
+        builder: ChildrenBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
     ) : this(js("{}"), className, builder)
 
     override fun afterInsert(node: VNode) {
-        ReactRender(node.elm as HTMLElement, {}) {
-            child(reactWrapper<S> { refresh ->
-                refreshFunction = refresh
-                builder({ state }) { changeState: (S) -> S ->
-                    state = changeState(state)
-                    refresh(state)
-                }
-            })
+        val element = reactWrapper<S> { refresh ->
+            refreshFunction = refresh
+            builder({ state }) { changeState: (S) -> S ->
+                state = changeState(state)
+                refresh(state)
+            }
         }
+        ReactRender(createElement(element), container = node.elm as HTMLElement)
+
     }
 
     override fun afterDestroy() {
@@ -108,7 +109,7 @@ class React<S>(
 fun <S> Container.react(
     state: S,
     className: String? = null,
-    builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
+    builder: ChildrenBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
 ): React<S> {
     val react = React(state, className, builder)
     this.add(react)
@@ -123,7 +124,7 @@ fun <S> Container.react(
 fun <S> Container.reactBind(
     state: ObservableState<S>,
     className: String? = null,
-    builder: RBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
+    builder: ChildrenBuilder.(getState: () -> S, changeState: ((S) -> S) -> Unit) -> Unit
 ): React<S> {
     val react = React(state.getState(), className, builder)
     react.addBeforeDisposeHook(state.subscribe { react.state = it })
@@ -138,9 +139,9 @@ fun <S> Container.reactBind(
  */
 fun Container.react(
     className: String? = null,
-    builder: RBuilder.() -> Unit
+    builder: ChildrenBuilder.() -> Unit
 ): React<dynamic> {
-    val fullBuilder = fun RBuilder.(_: () -> dynamic, _: ((dynamic) -> dynamic) -> Unit) {
+    val fullBuilder = fun ChildrenBuilder.(_: () -> dynamic, _: ((dynamic) -> dynamic) -> Unit) {
         this.builder()
     }
     val react = React(className, fullBuilder)

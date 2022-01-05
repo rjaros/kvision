@@ -1,4 +1,5 @@
-.*/
+.gradle/
+.idea/
 build/
 *.iml
 /build-mvn.sh
