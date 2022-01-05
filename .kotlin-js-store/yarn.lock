@@ -63,12 +63,12 @@
     gettext-parser "2.0.0"
     gettext-to-messageformat "0.3.1"
 
-"@rjaros/snabbdom-virtualize@^1.0.0-beta.0":
-  version "1.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@rjaros/snabbdom-virtualize/-/snabbdom-virtualize-1.0.0-beta.0.tgz#b35f143d8772b3bdf1222784450f3a05a4403e6f"
-  integrity sha512-aIx4z9BDoTW0Tn1gIhnmv/NU5dYvlTjSJOKYSQvY0TX1WYMX9fQNQT37t1M2GEwqbQyBEffyhlEEfF100JCNGQ==
+"@rjaros/snabbdom-virtualize@^1.0.0-beta.4":
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@rjaros/snabbdom-virtualize/-/snabbdom-virtualize-1.0.0-beta.4.tgz#8ab395d379f8b8e7fdb330a97b0ec97414391671"
+  integrity sha512-Frpr5pdd+HHBLbkJ+RpxgtuwVq/6Uh6SkyO51AYiEL8P+kobkbn78sg4lsqC70Cnok44yBcueOjeY3xCXlgADg==
   dependencies:
-    html-parse-stringify2 "^2"
+    html-parse-stringify "^3"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -1448,12 +1448,12 @@ he@1.2.0:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-html-parse-stringify2@^2:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/html-parse-stringify2/-/html-parse-stringify2-2.0.1.tgz#dc5670b7292ca158b7bc916c9a6735ac8872834a"
-  integrity sha1-3FZwtyksoVi3vJFsmmc1rIhyg0o=
+html-parse-stringify@^3:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-3.0.1.tgz#dfc1017347ce9f77c8141a507f233040c59c55d2"
+  integrity sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==
   dependencies:
-    void-elements "^2.0.1"
+    void-elements "3.1.0"
 
 http-cache-semantics@^4.0.0:
   version "4.1.0"
@@ -2839,7 +2839,12 @@ vary@^1:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-void-elements@^2.0.0, void-elements@^2.0.1:
+void-elements@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
+  integrity sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
+
+void-elements@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
