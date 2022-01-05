@@ -48,7 +48,7 @@ dependencies {
     implementation(npm("snabbdom", "^3.1.0"))
     implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.0"))
     implementation(npm("split.js", "^1.6.4"))
-    implementation(npm("gettext.js", "^1.0.1"))
+    implementation(npm("@rjaros/gettext.js", "^1.1.1"))
     implementation(npm("gettext-extract", "^2.0.1"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
