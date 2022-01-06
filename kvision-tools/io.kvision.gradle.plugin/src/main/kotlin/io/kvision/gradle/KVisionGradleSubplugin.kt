@@ -163,7 +163,7 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 project.exec {
                     executable = getNodeJsBinaryExecutable(rootProject)
                     args(
-                        "${rootProject.buildDir}/js/node_modules/gettext.js/bin/po2json",
+                        "${rootProject.buildDir}/js/node_modules/@rjaros/gettext.js/bin/po2json",
                         it.absolutePath,
                         "${it.parent}/${it.nameWithoutExtension}.json"
                     )

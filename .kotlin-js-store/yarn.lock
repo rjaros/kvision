@@ -47,10 +47,10 @@
   dependencies:
     closure-compiler "^0.2.12"
 
-"@rjaros/gettext.js@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@rjaros/gettext.js/-/gettext.js-1.1.1.tgz#9300f52c6df8e796cafd8a518e0f3c396826be99"
-  integrity sha512-fwGw45IEqb69jR/9kniUHcAlrELKnqaEjSjcgHgLp7UFLBnisl4pSrsMWNQnDZGqpBUBBQ0rpphhe+kUtgOOoQ==
+"@rjaros/gettext.js@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@rjaros/gettext.js/-/gettext.js-1.1.2.tgz#a49957301a21538eae6a6fe551eb13f3e091de5d"
+  integrity sha512-753/oRg/MdMwCkzwSSyHt41EleLpeVh67w97ro2gEW8xdKE5eZTlGnXKycJop7R+F45HO9zrfkTFKtOBt086Rg==
   dependencies:
     "@rjaros/po2json" "1.0.0-beta-3"
 
