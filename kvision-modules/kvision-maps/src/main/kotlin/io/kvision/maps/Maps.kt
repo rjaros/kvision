@@ -22,7 +22,7 @@
  */
 package io.kvision.maps
 
-import externals.leaflet.map.LeafletMap
+import io.kvision.maps.externals.leaflet.map.LeafletMap
 import io.kvision.MapsModule
 import io.kvision.core.Container
 import io.kvision.core.Widget

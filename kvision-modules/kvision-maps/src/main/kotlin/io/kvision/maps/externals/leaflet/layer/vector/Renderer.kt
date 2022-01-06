@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
- * Copyright (c) 2020-present Jörg Rade
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +19,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-import io.kvision.maps.externals.leaflet.layer.marker.Icon
-import io.kvision.utils.delete
-import io.kvision.utils.obj
+@file:JsModule("leaflet")
+@file:JsNonModule
+
+package io.kvision.maps.externals.leaflet.layer.vector
+
+import io.kvision.maps.externals.leaflet.layer.Layer
+import io.kvision.maps.externals.leaflet.layer.vector.Renderer.RendererOptions
 
 /**
- * Initializer for KVision maps module.
+ * Base class for vector renderer implementations ([SVG], [Canvas]). Handles the DOM container of
+ * the renderer, its bounds, and its zoom animation.
+ *
+ * A [Renderer] works as an implicit layer group for all [Path]s - the renderer itself can be added
+ * or removed to the map. All paths use a renderer, which can be implicit (the map will decide
+ * the type of renderer and use it automatically) or explicit (using the renderer option of the
+ * path).
+ *
+ * Do not use this class directly, use [SVG] and [Canvas] instead.
  */
-object MapsModule : ModuleInitializer {
+abstract external class Renderer(
+    options: RendererOptions = definedExternally
+) : Layer<RendererOptions> {
 
-    internal val leaflet = require("leaflet")
-
-    init {
-        setDefaultIcon()
-    }
-
-    private fun setDefaultIcon() {
-        leaflet.Icon.Default.imagePath = ""
-        delete(leaflet.Icon.Default.prototype._getIconUrl)
-        leaflet.Icon.Default.mergeOptions(obj<Icon.IconOptions> {
-            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png").unsafeCast<String>()
-            iconUrl = require("leaflet/dist/images/marker-icon.png").unsafeCast<String>()
-            shadowUrl = require("leaflet/dist/images/marker-shadow.png").unsafeCast<String>()
-        })
-    }
-
-    override fun initialize() {
-        require("leaflet/dist/leaflet.css")
+    interface RendererOptions : LayerOptions {
+        var padding: Number?
+        var tolerance: Number?
     }
 
 }

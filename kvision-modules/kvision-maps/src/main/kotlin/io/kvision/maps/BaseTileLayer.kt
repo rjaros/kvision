@@ -22,7 +22,7 @@
 
 package io.kvision.maps
 
-import externals.leaflet.layer.tile.TileLayer
+import io.kvision.maps.externals.leaflet.layer.tile.TileLayer
 import io.kvision.maps.LeafletObjectFactory.tileLayer
 
 /**

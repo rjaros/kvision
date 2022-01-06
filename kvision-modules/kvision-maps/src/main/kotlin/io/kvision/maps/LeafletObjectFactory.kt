@@ -22,56 +22,56 @@
 
 package io.kvision.maps
 
-import externals.geojson.LineString
-import externals.geojson.MultiLineString
-import externals.geojson.MultiPolygon
-import externals.geojson.Polygon
-import externals.leaflet.control.Attribution
-import externals.leaflet.control.Attribution.AttributionOptions
-import externals.leaflet.control.Control.LayersObject
-import externals.leaflet.control.Layers
-import externals.leaflet.control.Layers.LayersOptions
-import externals.leaflet.control.Scale
-import externals.leaflet.control.Scale.ScaleOptions
-import externals.leaflet.control.Zoom
-import externals.leaflet.control.Zoom.ZoomOptions
-import externals.leaflet.control.set
-import externals.leaflet.geo.LatLng
-import externals.leaflet.geo.LatLngBounds
-import externals.leaflet.layer.FeatureGroup
-import externals.leaflet.layer.Layer
-import externals.leaflet.layer.Layer.LayerOptions
-import externals.leaflet.layer.marker.DivIcon
-import externals.leaflet.layer.marker.DivIcon.DivIconOptions
-import externals.leaflet.layer.marker.Icon
-import externals.leaflet.layer.marker.Icon.IconOptions
-import externals.leaflet.layer.marker.Marker
-import externals.leaflet.layer.marker.Marker.MarkerOptions
-import externals.leaflet.layer.overlay.DivOverlay
-import externals.leaflet.layer.overlay.DivOverlay.DivOverlayOptions
-import externals.leaflet.layer.overlay.ImageOverlay
-import externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
-import externals.leaflet.layer.overlay.Popup
-import externals.leaflet.layer.overlay.Popup.PopupOptions
-import externals.leaflet.layer.overlay.Tooltip
-import externals.leaflet.layer.overlay.Tooltip.TooltipOptions
-import externals.leaflet.layer.overlay.VideoOverlay
-import externals.leaflet.layer.overlay.VideoOverlay.VideoOverlayOptions
-import externals.leaflet.layer.tile.TileLayer
-import externals.leaflet.layer.tile.TileLayer.TileLayerOptions
-import externals.leaflet.layer.tile.WMS
-import externals.leaflet.layer.tile.WMS.WMSOptions
-import externals.leaflet.layer.vector.Canvas
-import externals.leaflet.layer.vector.Circle
-import externals.leaflet.layer.vector.CircleMarker
-import externals.leaflet.layer.vector.CircleMarker.CircleMarkerOptions
-import externals.leaflet.layer.vector.Polyline
-import externals.leaflet.layer.vector.Polyline.PolylineOptions
-import externals.leaflet.layer.vector.Rectangle
-import externals.leaflet.layer.vector.Renderer.RendererOptions
-import externals.leaflet.layer.vector.SVG
-import externals.leaflet.map.LeafletMap
-import externals.leaflet.map.LeafletMap.LeafletMapOptions
+import io.kvision.maps.externals.geojson.LineString
+import io.kvision.maps.externals.geojson.MultiLineString
+import io.kvision.maps.externals.geojson.MultiPolygon
+import io.kvision.maps.externals.geojson.Polygon
+import io.kvision.maps.externals.leaflet.control.Attribution
+import io.kvision.maps.externals.leaflet.control.Attribution.AttributionOptions
+import io.kvision.maps.externals.leaflet.control.Control.LayersObject
+import io.kvision.maps.externals.leaflet.control.Layers
+import io.kvision.maps.externals.leaflet.control.Layers.LayersOptions
+import io.kvision.maps.externals.leaflet.control.Scale
+import io.kvision.maps.externals.leaflet.control.Scale.ScaleOptions
+import io.kvision.maps.externals.leaflet.control.Zoom
+import io.kvision.maps.externals.leaflet.control.Zoom.ZoomOptions
+import io.kvision.maps.externals.leaflet.control.set
+import io.kvision.maps.externals.leaflet.geo.LatLng
+import io.kvision.maps.externals.leaflet.geo.LatLngBounds
+import io.kvision.maps.externals.leaflet.layer.FeatureGroup
+import io.kvision.maps.externals.leaflet.layer.Layer
+import io.kvision.maps.externals.leaflet.layer.Layer.LayerOptions
+import io.kvision.maps.externals.leaflet.layer.marker.DivIcon
+import io.kvision.maps.externals.leaflet.layer.marker.DivIcon.DivIconOptions
+import io.kvision.maps.externals.leaflet.layer.marker.Icon
+import io.kvision.maps.externals.leaflet.layer.marker.Icon.IconOptions
+import io.kvision.maps.externals.leaflet.layer.marker.Marker
+import io.kvision.maps.externals.leaflet.layer.marker.Marker.MarkerOptions
+import io.kvision.maps.externals.leaflet.layer.overlay.DivOverlay
+import io.kvision.maps.externals.leaflet.layer.overlay.DivOverlay.DivOverlayOptions
+import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay
+import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
+import io.kvision.maps.externals.leaflet.layer.overlay.Popup
+import io.kvision.maps.externals.leaflet.layer.overlay.Popup.PopupOptions
+import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip
+import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip.TooltipOptions
+import io.kvision.maps.externals.leaflet.layer.overlay.VideoOverlay
+import io.kvision.maps.externals.leaflet.layer.overlay.VideoOverlay.VideoOverlayOptions
+import io.kvision.maps.externals.leaflet.layer.tile.TileLayer
+import io.kvision.maps.externals.leaflet.layer.tile.TileLayer.TileLayerOptions
+import io.kvision.maps.externals.leaflet.layer.tile.WMS
+import io.kvision.maps.externals.leaflet.layer.tile.WMS.WMSOptions
+import io.kvision.maps.externals.leaflet.layer.vector.Canvas
+import io.kvision.maps.externals.leaflet.layer.vector.Circle
+import io.kvision.maps.externals.leaflet.layer.vector.CircleMarker
+import io.kvision.maps.externals.leaflet.layer.vector.CircleMarker.CircleMarkerOptions
+import io.kvision.maps.externals.leaflet.layer.vector.Polyline
+import io.kvision.maps.externals.leaflet.layer.vector.Polyline.PolylineOptions
+import io.kvision.maps.externals.leaflet.layer.vector.Rectangle
+import io.kvision.maps.externals.leaflet.layer.vector.Renderer.RendererOptions
+import io.kvision.maps.externals.leaflet.layer.vector.SVG
+import io.kvision.maps.externals.leaflet.map.LeafletMap
+import io.kvision.maps.externals.leaflet.map.LeafletMap.LeafletMapOptions
 import io.kvision.utils.obj
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLVideoElement
@@ -238,8 +238,8 @@ object LeafletObjectFactory {
     fun polygon(
         latlngs: Collection<LatLng>,
         configure: PolylineOptions.() -> Unit = {},
-    ): externals.leaflet.layer.vector.Polygon<Polygon> =
-        externals.leaflet.layer.vector.Polygon(
+    ): io.kvision.maps.externals.leaflet.layer.vector.Polygon<Polygon> =
+        io.kvision.maps.externals.leaflet.layer.vector.Polygon(
             latlngs = latlngs.toTypedArray(),
             options = obj<PolylineOptions>(configure)
         )
@@ -248,8 +248,8 @@ object LeafletObjectFactory {
     fun multiPolygon(
         latlngs: Collection<Collection<Collection<LatLng>>>,
         configure: PolylineOptions.() -> Unit = {},
-    ): externals.leaflet.layer.vector.Polygon<MultiPolygon> =
-        externals.leaflet.layer.vector.Polygon(
+    ): io.kvision.maps.externals.leaflet.layer.vector.Polygon<MultiPolygon> =
+        io.kvision.maps.externals.leaflet.layer.vector.Polygon(
             latlngs = latlngs
                 .map {
                     it.map(Collection<LatLng>::toTypedArray).toTypedArray()

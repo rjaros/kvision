@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
- * Copyright (c) 2020-present Jörg Rade
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-import io.kvision.maps.externals.leaflet.layer.marker.Icon
-import io.kvision.utils.delete
-import io.kvision.utils.obj
+@file:JsModule("leaflet")
+@file:JsNonModule
 
-/**
- * Initializer for KVision maps module.
- */
-object MapsModule : ModuleInitializer {
+package io.kvision.maps.externals.leaflet.layer.vector
 
-    internal val leaflet = require("leaflet")
+import io.kvision.maps.externals.geojson.Feature
+import io.kvision.maps.externals.leaflet.geo.LatLng
 
-    init {
-        setDefaultIcon()
-    }
+open external class CircleMarker(
+    latlng: LatLng,
+    options: CircleMarkerOptions = definedExternally,
+) : Path<CircleMarker.CircleMarkerOptions> {
 
-    private fun setDefaultIcon() {
-        leaflet.Icon.Default.imagePath = ""
-        delete(leaflet.Icon.Default.prototype._getIconUrl)
-        leaflet.Icon.Default.mergeOptions(obj<Icon.IconOptions> {
-            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png").unsafeCast<String>()
-            iconUrl = require("leaflet/dist/images/marker-icon.png").unsafeCast<String>()
-            shadowUrl = require("leaflet/dist/images/marker-shadow.png").unsafeCast<String>()
-        })
-    }
+    open var feature: Feature<io.kvision.maps.externals.geojson.Point>?
 
-    override fun initialize() {
-        require("leaflet/dist/leaflet.css")
+    open fun toGeoJSON(precision: Number = definedExternally): Feature<io.kvision.maps.externals.geojson.Point>
+    open fun setLatLng(latLng: LatLng): CircleMarker /* this */
+    open fun getLatLng(): LatLng
+    open fun setRadius(radius: Number): CircleMarker /* this */
+    open fun getRadius(): Number
+
+    interface CircleMarkerOptions : PathOptions {
+        var radius: Number?
     }
 
 }

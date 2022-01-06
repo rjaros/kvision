@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
- * Copyright (c) 2020-present Jörg Rade
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +19,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-import io.kvision.maps.externals.leaflet.layer.marker.Icon
-import io.kvision.utils.delete
-import io.kvision.utils.obj
+@file:JsModule("leaflet")
+@file:JsNonModule
+@file:JsQualifier("Control")
+
+package io.kvision.maps.externals.leaflet.control
+
+import io.kvision.maps.externals.leaflet.control.Scale.ScaleOptions
 
 /**
- * Initializer for KVision maps module.
+ * A simple scale control that shows the scale of the current center of screen in metric (m/km) and
+ * imperial (mi/ft) systems.
  */
-object MapsModule : ModuleInitializer {
+open external class Scale(options: ScaleOptions = definedExternally) : Control<ScaleOptions> {
 
-    internal val leaflet = require("leaflet")
-
-    init {
-        setDefaultIcon()
-    }
-
-    private fun setDefaultIcon() {
-        leaflet.Icon.Default.imagePath = ""
-        delete(leaflet.Icon.Default.prototype._getIconUrl)
-        leaflet.Icon.Default.mergeOptions(obj<Icon.IconOptions> {
-            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png").unsafeCast<String>()
-            iconUrl = require("leaflet/dist/images/marker-icon.png").unsafeCast<String>()
-            shadowUrl = require("leaflet/dist/images/marker-shadow.png").unsafeCast<String>()
-        })
-    }
-
-    override fun initialize() {
-        require("leaflet/dist/leaflet.css")
+    interface ScaleOptions : ControlOptions {
+        var maxWidth: Number?
+        var metric: Boolean?
+        var imperial: Boolean?
+        var updateWhenIdle: Boolean?
     }
 
 }

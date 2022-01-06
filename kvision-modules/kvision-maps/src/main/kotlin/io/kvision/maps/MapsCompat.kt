@@ -21,10 +21,10 @@
  */
 package io.kvision.maps
 
-import externals.leaflet.geo.CRS
-import externals.leaflet.geo.LatLng
-import externals.leaflet.layer.FeatureGroup
-import externals.leaflet.layer.tile.TileLayer
+import io.kvision.maps.externals.leaflet.geo.CRS
+import io.kvision.maps.externals.leaflet.geo.LatLng
+import io.kvision.maps.externals.leaflet.layer.FeatureGroup
+import io.kvision.maps.externals.leaflet.layer.tile.TileLayer
 import io.kvision.core.Container
 import io.kvision.maps.Maps.Companion.L
 

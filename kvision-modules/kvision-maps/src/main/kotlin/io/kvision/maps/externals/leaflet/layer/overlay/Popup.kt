@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
- * Copyright (c) 2020-present Jörg Rade
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +19,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision
 
-import io.kvision.maps.externals.leaflet.layer.marker.Icon
-import io.kvision.utils.delete
-import io.kvision.utils.obj
+@file:JsModule("leaflet")
+@file:JsNonModule
 
-/**
- * Initializer for KVision maps module.
- */
-object MapsModule : ModuleInitializer {
+package io.kvision.maps.externals.leaflet.layer.overlay
 
-    internal val leaflet = require("leaflet")
+import io.kvision.maps.externals.leaflet.geometry.Point
+import io.kvision.maps.externals.leaflet.layer.Layer
+import io.kvision.maps.externals.leaflet.layer.overlay.Popup.PopupOptions
+import io.kvision.maps.externals.leaflet.map.LeafletMap
 
-    init {
-        setDefaultIcon()
-    }
+open external class Popup(
+    source: Layer<*> = definedExternally,
+    options: PopupOptions = definedExternally,
+) : DivOverlay<PopupOptions> {
 
-    private fun setDefaultIcon() {
-        leaflet.Icon.Default.imagePath = ""
-        delete(leaflet.Icon.Default.prototype._getIconUrl)
-        leaflet.Icon.Default.mergeOptions(obj<Icon.IconOptions> {
-            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png").unsafeCast<String>()
-            iconUrl = require("leaflet/dist/images/marker-icon.png").unsafeCast<String>()
-            shadowUrl = require("leaflet/dist/images/marker-shadow.png").unsafeCast<String>()
-        })
-    }
+    open fun openOn(map: LeafletMap): Popup /* this */
 
-    override fun initialize() {
-        require("leaflet/dist/leaflet.css")
+    interface PopupOptions : DivOverlayOptions {
+        var maxWidth: Number?
+        var minWidth: Number?
+        var maxHeight: Number?
+        var keepInView: Boolean?
+        var closeButton: Boolean?
+        var autoPan: Boolean?
+        var autoPanPaddingTopLeft: Point
+        var autoPanPaddingBottomRight: Point
+        var autoPanPadding: Point
+        var autoClose: Boolean?
+        var closeOnClick: Boolean?
+        var closeOnEscapeKey: Boolean?
     }
 
 }
