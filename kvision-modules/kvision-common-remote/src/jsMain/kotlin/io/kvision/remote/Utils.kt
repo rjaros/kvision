@@ -57,9 +57,15 @@ object Serialization {
      * @param serializer a serializer for T
      */
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return JSON.parse(plain.encodeToString(serializer, this))
+        return kotlin.js.JSON.parse(plain.encodeToString(serializer, this))
     }
 }
+
+@Deprecated(
+    "Added for compatibility. Use Serialization object instead.",
+    replaceWith = ReplaceWith("Serialization", "io.kvision.remote.Serialization")
+)
+typealias JSON = Serialization
 
 /**
  * Creates a websocket URL from current window.location and given path.

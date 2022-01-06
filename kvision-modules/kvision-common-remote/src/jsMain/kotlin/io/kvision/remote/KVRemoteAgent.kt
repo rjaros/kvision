@@ -467,7 +467,7 @@ open class KVRemoteAgent<T : Any>(
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = JSON.parse<dynamic>(str).result ?: ""
+                        val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
                         val par2 = try {
                             @Suppress("UnsafeCastFromDynamic")
                             deserialize(data, PAR2::class.js.name)
@@ -544,7 +544,7 @@ open class KVRemoteAgent<T : Any>(
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = JSON.parse<dynamic>(str).result ?: ""
+                        val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
                         val par2 = try {
                             @Suppress("UnsafeCastFromDynamic")
                             deserializeList(data, PAR2::class.js.name)

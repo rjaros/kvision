@@ -142,7 +142,7 @@ open class CallAgent {
             urlAddr + "?" + URLSearchParams(data).toString()
         } else {
             requestInit.body = when (contentType) {
-                "application/json" -> if (data is String) data else JSON.stringify(data)
+                "application/json" -> if (data is String) data else kotlin.js.JSON.stringify(data)
                 "application/x-www-form-urlencoded" -> URLSearchParams(data).toString()
                 else -> data
             }
