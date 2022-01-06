@@ -21,7 +21,6 @@
  */
 package io.kvision.panel
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.Component
 import io.kvision.core.ResString
 import io.kvision.core.onClick
@@ -30,6 +29,7 @@ import io.kvision.html.Link
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.routing.RoutingManager
+import io.kvision.snabbdom.VNode
 import io.kvision.utils.obj
 
 /**
@@ -122,7 +122,14 @@ open class Tab(
     /**
      * A link component within the tab.
      */
-    val link = Link(label ?: "", "#", icon, image, className = "nav-link").apply {
+    val link = Link(
+        label ?: "",
+        "#",
+        icon,
+        image,
+        dataNavigo = if (route == null) false else null,
+        className = "nav-link"
+    ).apply {
         add(this@Tab.closeIcon)
     }
 
