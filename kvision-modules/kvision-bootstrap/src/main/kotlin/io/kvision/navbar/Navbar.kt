@@ -21,7 +21,6 @@
  */
 package io.kvision.navbar
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.BsBgColor
 import io.kvision.core.ClassSetBuilder
@@ -32,6 +31,7 @@ import io.kvision.html.Link
 import io.kvision.html.Span
 import io.kvision.html.span
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import io.kvision.utils.obj
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.Element
@@ -76,6 +76,7 @@ enum class NavbarExpand(override val className: String) : CssClass {
  * @param nColor the navbar color
  * @param bgColor the navbar background color
  * @param collapseOnClick the navbar is auto collapsed when the link is clicked
+ * @param dataNavigo the 'data-navigo' attribute for history API based JS routing
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -87,6 +88,7 @@ open class Navbar(
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
     collapseOnClick: Boolean = false,
+    dataNavigo: Boolean? = null,
     className: String? = null, init: (Navbar.() -> Unit)? = null
 ) : SimplePanel(className) {
 
@@ -114,6 +116,15 @@ open class Navbar(
         }
 
     /**
+     * The 'data-navigo' attribute for history API based JS routing.
+     */
+    var dataNavigo
+        get() = brandLink.dataNavigo
+        set(value) {
+            brandLink.dataNavigo = value
+        }
+
+    /**
      * The navbar type.
      */
     var type by refreshOnUpdate(type)
@@ -135,7 +146,7 @@ open class Navbar(
 
     private val idc = "kv_navbar_$counter"
 
-    private val brandLink = Link(label ?: "", link, className = "navbar-brand")
+    private val brandLink = Link(label ?: "", link, dataNavigo = dataNavigo, className = "navbar-brand")
     private val toggler = NavbarButton(idc)
     internal val container = SimplePanel("collapse navbar-collapse") {
         id = this@Navbar.idc
@@ -237,10 +248,11 @@ fun Container.navbar(
     nColor: NavbarColor = NavbarColor.LIGHT,
     bgColor: BsBgColor = BsBgColor.LIGHT,
     collapseOnClick: Boolean = false,
+    dataNavigo: Boolean? = null,
     className: String? = null,
     init: (Navbar.() -> Unit)? = null
 ): Navbar {
-    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, className, init)
+    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, dataNavigo, className, init)
     this.add(navbar)
     return navbar
 }

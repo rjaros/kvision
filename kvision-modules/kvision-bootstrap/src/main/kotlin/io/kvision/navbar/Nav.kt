@@ -77,12 +77,22 @@ fun Navbar.nav(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Nav.navLink(
-    label: String, url: String? = null, icon: String? = null, image: ResString? = null,
+    label: String, url: String? = null, icon: String? = null, image: ResString? = null, dataNavigo: Boolean? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
     val link =
-        Link(label, url, icon, image, null, true, null, (className?.let { "$it " } ?: "") + "nav-item nav-link", init)
+        Link(
+            label,
+            url,
+            icon,
+            image,
+            null,
+            true,
+            null,
+            dataNavigo,
+            (className?.let { "$it " } ?: "") + "nav-item nav-link",
+            init)
     this.add(link)
     return link
 }
@@ -102,7 +112,7 @@ fun Nav.navLinkDisabled(
             label,
             "javascript:void(0)",
             icon,
-            image, null, true, null,
+            image, null, true, null, null,
             (className?.let { "$it " } ?: "") + "nav-item nav-link disabled",
             init
         ).apply {

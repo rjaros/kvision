@@ -21,11 +21,11 @@
  */
 package io.kvision.html
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.ResString
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 
 /**
@@ -39,13 +39,14 @@ import org.w3c.dom.events.MouseEvent
  * @param separator a separator between label and icon/image (defaults to space)
  * @param labelFirst determines if the label is put before children elements (defaults to true)
  * @param target link target
+ * @param dataNavigo the 'data-navigo' attribute for history API based JS routing
  * @param className CSS class names
  * @param init an initializer extension function
  */
 @TagMarker
 open class Link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    separator: String? = null, labelFirst: Boolean = true, target: String? = null,
+    separator: String? = null, labelFirst: Boolean = true, target: String? = null, dataNavigo: Boolean? = null,
     className: String? = null, init: (Link.() -> Unit)? = null
 ) : SimplePanel(className) {
 
@@ -80,9 +81,14 @@ open class Link(
     var labelFirst by refreshOnUpdate(labelFirst)
 
     /**
-     * Link target
+     * Link target.
      */
     var target by refreshOnUpdate(target)
+
+    /**
+     * The 'data-navigo' attribute for history API based JS routing.
+     */
+    var dataNavigo by refreshOnUpdate(dataNavigo)
 
     init {
         @Suppress("LeakingThis")
@@ -106,6 +112,9 @@ open class Link(
         target?.let {
             attributeSetBuilder.add("target", it)
         }
+        dataNavigo?.let {
+            attributeSetBuilder.add("data-navigo", if (it) "data-navigo" else "false")
+        } ?: if (useDataNavigoForLinks) attributeSetBuilder.add("data-navigo")
     }
 
     /**
@@ -119,6 +128,10 @@ open class Link(
         }
         return this
     }
+
+    companion object {
+        var useDataNavigoForLinks: Boolean = false
+    }
 }
 
 /**
@@ -128,7 +141,7 @@ open class Link(
  */
 fun Container.link(
     label: String, url: String? = null, icon: String? = null, image: ResString? = null,
-    separator: String? = null, labelFirst: Boolean = true, target: String? = null,
+    separator: String? = null, labelFirst: Boolean = true, target: String? = null, dataNavigo: Boolean? = null,
     className: String? = null,
     init: (Link.() -> Unit)? = null
 ): Link {
@@ -141,6 +154,7 @@ fun Container.link(
             separator,
             labelFirst,
             target,
+            dataNavigo,
             className,
             init
         )
