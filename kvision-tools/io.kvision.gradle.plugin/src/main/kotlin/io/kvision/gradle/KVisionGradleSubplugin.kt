@@ -50,79 +50,91 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
     override fun apply(target: Project) = with(target) {
         plugins.withId("org.jetbrains.kotlin.js") {
             afterEvaluate {
-                tasks {
-                    create("generatePotFile", Exec::class) {
-                        dependsOn("compileKotlinJs")
-                        executable = getNodeJsBinaryExecutable(rootProject)
-                        args("${rootProject.buildDir}/js/node_modules/gettext-extract/bin/gettext-extract")
-                        val kotlin =
-                            this@with.extensions.getByName("kotlin") as org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
-                        inputs.files(kotlin.sourceSets["main"].kotlin.files)
-                        outputs.file("$projectDir/src/main/resources/i18n/messages.pot")
-                    }
-                    getByName("processResources", Copy::class) {
-                        dependsOn("compileKotlinJs")
-                        convertPOtoJSON(this@afterEvaluate, rootProject)
-                    }
-                    create("zip", Zip::class) {
-                        dependsOn("browserProductionWebpack")
-                        group = "package"
-                        destinationDirectory.set(file("$buildDir/libs"))
-                        val distribution =
-                            project.tasks.getByName(
-                                "browserProductionWebpack",
-                                KotlinWebpack::class
-                            ).destinationDirectory
-                        from(distribution) {
-                            include("*.*")
+                if (project.findProperty("io.kvision.plugin.enableGradleTasks") != "false") {
+                    tasks {
+                        create("generatePotFile", Exec::class) {
+                            dependsOn("compileKotlinJs")
+                            executable = getNodeJsBinaryExecutable(rootProject)
+                            args("${rootProject.buildDir}/js/node_modules/gettext-extract/bin/gettext-extract")
+                            val kotlin =
+                                this@with.extensions.getByName("kotlin") as org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
+                            inputs.files(kotlin.sourceSets["main"].kotlin.files)
+                            outputs.file("$projectDir/src/main/resources/i18n/messages.pot")
                         }
-                        val webDir = file("src/main/web")
-                        from(webDir)
-                        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-                        inputs.files(distribution, webDir)
-                        outputs.file(archiveFile)
+                        getByName("processResources", Copy::class) {
+                            dependsOn("compileKotlinJs")
+                            convertPOtoJSON(this@afterEvaluate, rootProject)
+                        }
+                        create("zip", Zip::class) {
+                            dependsOn("browserProductionWebpack")
+                            group = "package"
+                            destinationDirectory.set(file("$buildDir/libs"))
+                            val distribution =
+                                project.tasks.getByName(
+                                    "browserProductionWebpack",
+                                    KotlinWebpack::class
+                                ).destinationDirectory
+                            from(distribution) {
+                                include("*.*")
+                            }
+                            val webDir = file("src/main/web")
+                            from(webDir)
+                            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+                            inputs.files(distribution, webDir)
+                            outputs.file(archiveFile)
+                        }
                     }
                 }
-                rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-                    versions.webpackDevServer.version = "4.6.0"
-                    versions.webpack.version = "5.65.0"
-                    versions.webpackCli.version = "4.9.1"
+                if (rootProject.findProperty("io.kvision.plugin.enableWebpackVersions") != "false") {
+                    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+                        versions.webpackDevServer.version = "4.7.2"
+                        versions.webpack.version = "5.65.0"
+                        versions.webpackCli.version = "4.9.1"
+                    }
                 }
-                rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
-                    lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+                if (rootProject.findProperty("io.kvision.plugin.enableHiddenKotlinJsStore") != "false") {
+                    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
+                        lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+                    }
                 }
             }
         }
         plugins.withId("org.jetbrains.kotlin.multiplatform") {
             afterEvaluate {
-                tasks {
-                    create("generatePotFile", Exec::class) {
-                        dependsOn("compileKotlinFrontend")
-                        executable = getNodeJsBinaryExecutable(rootProject)
-                        args("${rootProject.buildDir}/js/node_modules/gettext-extract/bin/gettext-extract")
-                        val kotlin =
-                            this@with.extensions.getByName("kotlin") as org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-                        inputs.files(kotlin.sourceSets["frontendMain"].kotlin.files)
-                        outputs.file("$projectDir/src/frontendMain/resources/i18n/messages.pot")
-                    }
-                    getByName("frontendProcessResources", Copy::class) {
-                        dependsOn("compileKotlinFrontend")
-                        convertPOtoJSON(this@afterEvaluate, rootProject)
-                    }
-                    getByName("compileKotlinBackend") {
-                        dependsOn("compileKotlinMetadata")
-                    }
-                    getByName("compileKotlinFrontend") {
-                        dependsOn("compileKotlinMetadata")
+                if (project.findProperty("io.kvision.plugin.enableGradleTasks") != "false") {
+                    tasks {
+                        create("generatePotFile", Exec::class) {
+                            dependsOn("compileKotlinFrontend")
+                            executable = getNodeJsBinaryExecutable(rootProject)
+                            args("${rootProject.buildDir}/js/node_modules/gettext-extract/bin/gettext-extract")
+                            val kotlin =
+                                this@with.extensions.getByName("kotlin") as org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+                            inputs.files(kotlin.sourceSets["frontendMain"].kotlin.files)
+                            outputs.file("$projectDir/src/frontendMain/resources/i18n/messages.pot")
+                        }
+                        getByName("frontendProcessResources", Copy::class) {
+                            dependsOn("compileKotlinFrontend")
+                            convertPOtoJSON(this@afterEvaluate, rootProject)
+                        }
+                        getByName("compileKotlinBackend") {
+                            dependsOn("compileKotlinMetadata")
+                        }
+                        getByName("compileKotlinFrontend") {
+                            dependsOn("compileKotlinMetadata")
+                        }
                     }
                 }
-                rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-                    versions.webpackDevServer.version = "4.6.0"
-                    versions.webpack.version = "5.65.0"
-                    versions.webpackCli.version = "4.9.1"
+                if (rootProject.findProperty("io.kvision.plugin.enableWebpackVersions") != "false") {
+                    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+                        versions.webpackDevServer.version = "4.7.2"
+                        versions.webpack.version = "5.65.0"
+                        versions.webpackCli.version = "4.9.1"
+                    }
                 }
-                rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
-                    lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+                if (rootProject.findProperty("io.kvision.plugin.enableHiddenKotlinJsStore") != "false") {
+                    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
+                        lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+                    }
                 }
             }
         }
