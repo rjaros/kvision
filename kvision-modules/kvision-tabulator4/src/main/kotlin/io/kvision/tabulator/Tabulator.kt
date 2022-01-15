@@ -98,7 +98,7 @@ open class Tabulator<T : Any>(
     protected val module: SerializersModule? = null
 ) : Widget(className) {
 
-    protected val jsonHelper = if (serializer != null) Json(from = (Serialization.customConfiguration ?: Json {
+    protected open val jsonHelper = if (serializer != null) Json(from = (Serialization.customConfiguration ?: Json {
         ignoreUnknownKeys = true
         isLenient = true
     })) {
@@ -774,7 +774,7 @@ open class Tabulator<T : Any>(
         return if (jsonHelper == null || serializer == null) {
             toKotlinObj(data, kClass)
         } else {
-            jsonHelper.decodeFromString(serializer, JSON.stringify(data))
+            jsonHelper!!.decodeFromString(serializer, JSON.stringify(data))
         }
     }
 
@@ -782,7 +782,7 @@ open class Tabulator<T : Any>(
         val obj = if (jsonHelper == null || serializer == null) {
             toPlainObj(data)
         } else {
-            JSON.parse(jsonHelper.encodeToString(serializer, data))
+            JSON.parse(jsonHelper!!.encodeToString(serializer, data))
         }
         if (obj._children != null) {
             obj._children = obj._children.unsafeCast<Array<T>>().map { toPlainObjTabulator(it) }.toTypedArray()

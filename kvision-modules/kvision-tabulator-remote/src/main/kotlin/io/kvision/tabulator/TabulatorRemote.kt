@@ -34,7 +34,9 @@ import kotlinx.browser.window
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.overwriteWith
 import org.w3c.dom.get
 import kotlin.reflect.KClass
 
@@ -52,7 +54,7 @@ import kotlin.reflect.KClass
  * @param className CSS class names
  * @param kClass Kotlin class
  * @param serializer the serializer for type T
- * @param serializersModule optional serialization module with custom serializers
+ * @param module optional serialization module with custom serializers
  */
 @OptIn(ExperimentalSerializationApi::class)
 open class TabulatorRemote<T : Any, E : Any>(
@@ -64,8 +66,18 @@ open class TabulatorRemote<T : Any, E : Any>(
     className: String? = null,
     kClass: KClass<T>? = null,
     serializer: KSerializer<T>? = null,
-    serializersModule: SerializersModule? = null
-) : Tabulator<T>(null, false, options, types, className, kClass, serializer, serializersModule) {
+    module: SerializersModule? = null
+) : Tabulator<T>(null, false, options, types, className, kClass, serializer, module) {
+
+    override val jsonHelper = if (serializer != null) Json(from = (Serialization.customConfiguration ?: Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+    })) {
+        serializersModule = SerializersModule {
+            include(io.kvision.remote.Serialization.plain.serializersModule)
+            module?.let { this.include(it) }
+        }.overwriteWith(serializersModule)
+    } else null
 
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
@@ -99,7 +111,8 @@ open class TabulatorRemote<T : Any, E : Any>(
             val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
 
             @Suppress("UnsafeCastFromDynamic")
-            val data = Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
+            val data =
+                Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
             callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name))
                 .then { r: dynamic ->
                     val result = JSON.parse<dynamic>(r.result.unsafeCast<String>())
@@ -130,7 +143,7 @@ inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
     types: Set<TableType> = setOf(),
     className: String? = null,
     serializer: KSerializer<T>? = null,
-    serializersModule: SerializersModule? = null,
+    module: SerializersModule? = null,
     noinline init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
     val tabulatorRemote =
@@ -143,7 +156,7 @@ inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
             className,
             T::class,
             serializer,
-            serializersModule
+            module
         )
     init?.invoke(tabulatorRemote)
     this.add(tabulatorRemote)
