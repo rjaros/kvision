@@ -109,7 +109,7 @@ trix-toolbar .trix-button-group {
 }
 
 .tabulator.table-sm > :not(caption) > * > * {
-    padding: inherit;
+    padding: 0;
 }
 
 .input-group.date.is-invalid~.invalid-feedback {
