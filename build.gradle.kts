@@ -29,6 +29,12 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
     }
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
+        versions.webpackDevServer.version = "4.7.3"
+        versions.webpack.version = "5.66.0"
+        versions.webpackCli.version = "4.9.1"
+        versions.karma.version = "6.3.11"
+    }
 }
 
 kotlin {
@@ -40,15 +46,15 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-5.0.0.tgz"))
-    implementation(npm("kvision-assets", "^5.0.7"))
+    implementation(npm("kvision-assets", "^5.0.8"))
     implementation(npm("css-loader", "^6.5.1"))
     implementation(npm("style-loader", "^3.3.1"))
     implementation(npm("imports-loader", "^3.1.1"))
     implementation(npm("fecha", "^4.2.1"))
     implementation(npm("snabbdom", "^3.2.0"))
-    implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.4"))
-    implementation(npm("split.js", "^1.6.4"))
-    implementation(npm("@rjaros/gettext.js", "^1.1.2"))
+    implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.5"))
+    implementation(npm("split.js", "^1.6.5"))
+    implementation(npm("@rjaros/gettext.js", "^1.1.3"))
     implementation(npm("gettext-extract", "^2.0.1"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
