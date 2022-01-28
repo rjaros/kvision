@@ -100,7 +100,8 @@ enum class Formatter(internal val formatter: String) {
     BUTTONCROSS("buttonCross"),
     ROWNUM("rownum"),
     HANDLE("handle"),
-    ROWSELECTION("rowSelection")
+    ROWSELECTION("rowSelection"),
+    RESPONSIVECOLLAPSE("responsiveCollapse")
 }
 
 /**
