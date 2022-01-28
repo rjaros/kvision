@@ -32,6 +32,7 @@ import io.kvision.types.JsonZonedDateTimeSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.plus
 import kotlinx.serialization.serializer
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -41,7 +42,8 @@ import java.time.OffsetDateTime
 import java.time.OffsetTime
 import java.time.ZonedDateTime
 
-fun kotlinxObjectDeSerializer(): ObjectDeSerializer = KotlinxObjectDeSerializer
+fun kotlinxObjectDeSerializer(modules: List<SerializersModule> = emptyList()): ObjectDeSerializer =
+    KotlinxObjectDeSerializer(modules)
 
 val kvSerializersModule = SerializersModule {
     contextual(LocalDateTime::class, JsonLocalDateTimeSerializer)
@@ -53,11 +55,14 @@ val kvSerializersModule = SerializersModule {
     contextual(BigDecimal::class, JsonBigDecimalSerializer)
 }
 
-private object KotlinxObjectDeSerializer : ObjectDeSerializer {
-
-    val json = Json {
+private class KotlinxObjectDeSerializer(module: List<SerializersModule>) : ObjectDeSerializer {
+    override val json = Json {
         ignoreUnknownKeys = true
-        serializersModule = kvSerializersModule
+        serializersModule = SerializersModule {
+            module.forEach {
+                include(it)
+            }
+        } + kvSerializersModule
     }
 
     override fun <T> deserialize(str: String?, serializer: KSerializer<T>): T =
@@ -70,10 +75,10 @@ private object KotlinxObjectDeSerializer : ObjectDeSerializer {
 }
 
 inline fun <reified T> ObjectDeSerializer.deserialize(str: String?): T =
-    deserialize(str, kvSerializersModule.serializer())
+    deserialize(str, json.serializersModule.serializer())
 
 inline fun <reified T> ObjectDeSerializer.serializeNonNull(obj: T) =
-    serializeNonNullToString(obj, kvSerializersModule.serializer())
+    serializeNonNullToString(obj, json.serializersModule.serializer())
 
 inline fun <reified T> ObjectDeSerializer.serializeNullable(obj: T?) =
-    serializeNullableToString(obj, kvSerializersModule.serializer())
+    serializeNullableToString(obj, json.serializersModule.serializer())

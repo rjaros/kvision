@@ -21,10 +21,14 @@
  */
 package io.kvision.remote
 
+import kotlinx.serialization.modules.SerializersModule
 import kotlin.reflect.KClass
 
 /**
  * Multiplatform service manager.
  */
-actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KClass<T>) : KVServiceManagerJs<T>(),
+actual open class KVServiceManager<T : Any> actual constructor(
+    serviceClass: KClass<T>,
+    serializerModules: List<SerializersModule>,
+) : KVServiceManagerJs<T>(),
     KVServiceMgr<T>

@@ -25,6 +25,7 @@ package io.kvision.remote
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 
 /**
@@ -36,9 +37,10 @@ import kotlinx.serialization.serializer
  *
  */
 abstract class KVServiceBinder<T, RH, WH>(
+    val serializerModules: List<SerializersModule> = emptyList(),
 //  deSerializer has to public instead of protected because of https://youtrack.jetbrains.com/issue/KT-22625
-    val deSerializer: ObjectDeSerializer = kotlinxObjectDeSerializer(),
-    routeNameGenerator: NameGenerator? = null
+    val deSerializer: ObjectDeSerializer = kotlinxObjectDeSerializer(serializerModules),
+    routeNameGenerator: NameGenerator? = null,
 ) {
     @PublishedApi
     internal val generateRouteName: NameGenerator =

@@ -23,8 +23,11 @@
 package io.kvision.remote
 
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.Json
 
 interface ObjectDeSerializer {
+    val json: Json
+
     fun <T> deserialize(str: String?, serializer: KSerializer<T>): T
     fun <T> serializeNonNullToString(obj: T, serializer: KSerializer<T>): String
 

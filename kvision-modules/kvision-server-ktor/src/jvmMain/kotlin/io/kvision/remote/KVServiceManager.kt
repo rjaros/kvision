@@ -31,6 +31,7 @@ import io.ktor.websocket.*
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.modules.SerializersModule
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
@@ -41,8 +42,11 @@ typealias WebsocketHandler = suspend WebSocketServerSession.() -> Unit
 /**
  * Multiplatform service manager for Ktor.
  */
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
+actual open class KVServiceManager<T : Any> actual constructor(
+    val serviceClass: KClass<T>,
+    serializerModules: List<SerializersModule>,
+) : KVServiceMgr<T>,
+    KVServiceBinder<T, RequestHandler, WebsocketHandler>(serializerModules) {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)

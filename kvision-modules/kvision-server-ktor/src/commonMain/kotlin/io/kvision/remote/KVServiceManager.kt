@@ -24,12 +24,16 @@ package io.kvision.remote
 
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.serialization.modules.SerializersModule
 import kotlin.reflect.KClass
 
 /**
  * Multiplatform service manager.
  */
-expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) : KVServiceMgr<T> {
+expect open class KVServiceManager<T : Any>(
+    serviceClass: KClass<T>,
+    serializerModules: List<SerializersModule> = emptyList()
+) : KVServiceMgr<T> {
 
     /**
      * Binds a given route with a function of the receiver.
