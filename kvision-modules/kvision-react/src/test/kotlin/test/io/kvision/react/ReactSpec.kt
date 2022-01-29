@@ -26,7 +26,6 @@ import io.kvision.panel.Root
 import io.kvision.react.react
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
-import org.w3c.dom.HTMLInputElement
 import react.dom.html.ReactHTML.input
 import kotlin.test.Test
 
@@ -40,7 +39,7 @@ class ReactSpec : DomSpec {
                 input {
                     value = getState()
                     onChange = { e ->
-                        val target = e.target as HTMLInputElement
+                        val target = e.target
                         changeState {
                             target.value
                         }
