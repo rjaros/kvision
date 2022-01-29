@@ -249,25 +249,19 @@ open class Tabulator<T : Any>(
                 this.dispatchEvent("cellEditCancelledTabulator", obj { detail = cell })
             }
             jsTabulator?.on("dataLoading") { data: dynamic ->
-                if (!data) {
-                    val emptyList = emptyList<T>()
-                    @Suppress("UnsafeCastFromDynamic")
-                    this.dispatchEvent("dataLoadingTabulator", obj { detail = emptyList })
-                } else {
-                    val fixedData = fixData(data.unsafeCast<Array<T>>().toList())!!
-                    @Suppress("UnsafeCastFromDynamic")
-                    this.dispatchEvent("dataLoadingTabulator", obj { detail = fixedData })
-                }
+                val fixedData = if (data != undefined) fixData(data.unsafeCast<Array<T>>().toList())!! else emptyList()
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("dataLoadingTabulator", obj { detail = fixedData })
             }
             jsTabulator?.on("dataLoaded") { data: Array<T> ->
-                val fixedData = fixData(data.toList())!!
+                val fixedData = if (data != undefined) fixData(data.toList())!! else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataLoadedTabulator", obj { detail = fixedData })
             }
             jsTabulator?.on("dataChanged") { data: Array<T> ->
-                val fixedData = fixData(data.toList())!!
+                val fixedData = if (data != undefined) fixData(data.toList())!! else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })
+                this.dispatchEvent("dataEditedTabulator", obj { detail = detailData })
                 if (dataUpdateOnEdit && this.data is MutableList<T>) {
                     window.setTimeout({
                         this.data.syncWithList(fixedData)
