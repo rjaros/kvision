@@ -90,7 +90,8 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                         versions.webpackDevServer.version = "4.7.3"
                         versions.webpack.version = "5.66.0"
                         versions.webpackCli.version = "4.9.1"
-                        versions.karma.version = "6.3.11"
+                        versions.karma.version = "6.3.12"
+                        versions.mocha.version = "9.2.0"
                     }
                 }
                 if (rootProject.findProperty("io.kvision.plugin.enableHiddenKotlinJsStore") != "false") {
@@ -130,7 +131,8 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                         versions.webpackDevServer.version = "4.7.3"
                         versions.webpack.version = "5.66.0"
                         versions.webpackCli.version = "4.9.1"
-                        versions.karma.version = "6.3.11"
+                        versions.karma.version = "6.3.12"
+                        versions.mocha.version = "9.2.0"
                     }
                 }
                 if (rootProject.findProperty("io.kvision.plugin.enableHiddenKotlinJsStore") != "false") {
