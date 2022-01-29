@@ -21,6 +21,8 @@
  */
 package io.kvision.remote
 
+import kotlinx.serialization.modules.SerializersModule
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.beans.factory.config.BeanDefinition
 import org.springframework.context.ApplicationContext
@@ -35,6 +37,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.buildAndAwait
 import org.springframework.web.reactive.function.server.coRouter
 import org.springframework.web.reactive.function.server.router
+import javax.annotation.PostConstruct
 
 /**
  * Default Spring Boot routes
@@ -67,7 +70,15 @@ open class KVRouterConfiguration {
 @Component
 open class KVHandler(val services: List<KVServiceManager<*>>, val applicationContext: ApplicationContext) {
 
+    @Autowired(required = false)
+    val serializersModules: List<SerializersModule>? = null
+
     private val threadLocalRequest = ThreadLocal<ServerRequest>()
+
+    @PostConstruct
+    open fun init() {
+        services.forEach { it.deSerializer = kotlinxObjectDeSerializer(serializersModules) }
+    }
 
     @Bean
     @Scope(BeanDefinition.SCOPE_PROTOTYPE)

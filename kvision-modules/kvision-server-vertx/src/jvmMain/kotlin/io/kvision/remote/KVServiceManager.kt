@@ -37,6 +37,7 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.modules.SerializersModule
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
@@ -59,9 +60,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
-        serializer: KSerializer<RET>
-    ): RequestHandler =
-        { ctx ->
+        serializerFactory: () -> KSerializer<RET>
+    ): RequestHandler {
+        val serializer by lazy { serializerFactory() }
+        return { ctx ->
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.request().getParam("id").toInt(), "", listOf())
             } else {
@@ -89,13 +91,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 ctx.response().putHeader("Content-Type", "application/json").end(Json.encode(response))
             }
         }
+    }
 
     override fun <REQ, RES> createWebsocketHandler(
         function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
-        requestSerializer: KSerializer<REQ>,
-        responseSerializer: KSerializer<RES>,
-    ): WebsocketHandler =
-        { injector, ws ->
+        requestSerializerFactory: () -> KSerializer<REQ>,
+        responseSerializerFactory: () -> KSerializer<RES>,
+    ): WebsocketHandler {
+        val requestSerializer by lazy { requestSerializerFactory() }
+        val responseSerializer by lazy { responseSerializerFactory() }
+        return { injector, ws ->
             val incoming = Channel<String>()
             val outgoing = Channel<String>()
             val service = injector.getInstance(serviceClass.java)
@@ -139,13 +144,17 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
         }
+    }
 }
 
 /**
  * A function to generate routes based on definitions from the service manager.
  */
 @Suppress("unused")
-fun <T : Any> Vertx.applyRoutes(router: Router, serviceManager: KVServiceManager<T>) {
+fun <T : Any> Vertx.applyRoutes(
+    router: Router, serviceManager: KVServiceManager<T>, serializersModules: List<SerializersModule>? = null
+) {
+    serviceManager.deSerializer = kotlinxObjectDeSerializer(serializersModules)
     serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
         try {
             io.vertx.core.http.HttpMethod.valueOf(method.name)

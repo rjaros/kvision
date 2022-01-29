@@ -36,8 +36,6 @@ import kotlinx.serialization.serializer
  *
  */
 abstract class KVServiceBinder<T, RH, WH>(
-//  deSerializer has to public instead of protected because of https://youtrack.jetbrains.com/issue/KT-22625
-    val deSerializer: ObjectDeSerializer = kotlinxObjectDeSerializer(),
     routeNameGenerator: NameGenerator? = null
 ) {
     @PublishedApi
@@ -46,16 +44,19 @@ abstract class KVServiceBinder<T, RH, WH>(
     val routeMapRegistry = createRouteMapRegistry<RH>()
     val webSocketRequests: MutableMap<String, WH> = HashMap()
 
+    //  deSerializer has to public instead of protected because of https://youtrack.jetbrains.com/issue/KT-22625
+    lateinit var deSerializer: ObjectDeSerializer
+
     abstract fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
-        serializer: KSerializer<RET>
+        serializerFactory: () -> KSerializer<RET>
     ): RH
 
     abstract fun <REQ, RES> createWebsocketHandler(
         function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
-        requestSerializer: KSerializer<REQ>,
-        responseSerializer: KSerializer<RES>
+        requestSerializerFactory: () -> KSerializer<REQ>,
+        responseSerializerFactory: () -> KSerializer<RES>
     ): WH
 
     /**
@@ -71,7 +72,7 @@ abstract class KVServiceBinder<T, RH, WH>(
         routeMapRegistry.addRoute(
             method,
             "/kv/${route ?: generateRouteName()}",
-            createRequestHandler(method, function, kvSerializersModule.serializer())
+            createRequestHandler(method, function) { deSerializer.serializersModule.serializer() }
         )
     }
 
@@ -232,11 +233,11 @@ abstract class KVServiceBinder<T, RH, WH>(
     fun <REQ, RES> bindWebsocket(
         route: String? = null,
         function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
-        requestSerializer: KSerializer<REQ>,
-        responseSerializer: KSerializer<RES>,
+        requestSerializerFactory: () -> KSerializer<REQ>,
+        responseSerializerFactory: () -> KSerializer<RES>,
     ) {
         webSocketRequests["/kvws/${route ?: generateRouteName()}"] =
-            createWebsocketHandler(function, requestSerializer, responseSerializer)
+            createWebsocketHandler(function, requestSerializerFactory, responseSerializerFactory)
     }
 
     /**
@@ -249,7 +250,11 @@ abstract class KVServiceBinder<T, RH, WH>(
     inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String? = null
-    ) = bindWebsocket(route, function, kvSerializersModule.serializer(), kvSerializersModule.serializer())
+    ) = bindWebsocket(
+        route,
+        function,
+        { deSerializer.serializersModule.serializer() },
+        { deSerializer.serializersModule.serializer() })
 
     /**
      * Deserialize the parameter of type [T] from [txt]

@@ -22,43 +22,18 @@
  */
 package io.kvision.remote
 
-import io.kvision.types.JsonBigDecimalSerializer
-import io.kvision.types.JsonLocalDateSerializer
-import io.kvision.types.JsonLocalDateTimeSerializer
-import io.kvision.types.JsonLocalTimeSerializer
-import io.kvision.types.JsonOffsetDateTimeSerializer
-import io.kvision.types.JsonOffsetTimeSerializer
-import io.kvision.types.JsonZonedDateTimeSerializer
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.OffsetDateTime
-import java.time.OffsetTime
-import java.time.ZonedDateTime
 
-fun kotlinxObjectDeSerializer(): ObjectDeSerializer = KotlinxObjectDeSerializer
+fun kotlinxObjectDeSerializer(serializersModules: List<SerializersModule>? = null): ObjectDeSerializer =
+    KotlinxObjectDeSerializer(serializersModules)
 
-val kvSerializersModule = SerializersModule {
-    contextual(LocalDateTime::class, JsonLocalDateTimeSerializer)
-    contextual(LocalDate::class, JsonLocalDateSerializer)
-    contextual(LocalTime::class, JsonLocalTimeSerializer)
-    contextual(OffsetDateTime::class, JsonOffsetDateTimeSerializer)
-    contextual(OffsetTime::class, JsonOffsetTimeSerializer)
-    contextual(ZonedDateTime::class, JsonZonedDateTimeSerializer)
-    contextual(BigDecimal::class, JsonBigDecimalSerializer)
-}
+private class KotlinxObjectDeSerializer(serializersModules: List<SerializersModule>? = null) : ObjectDeSerializer {
 
-private object KotlinxObjectDeSerializer : ObjectDeSerializer {
+    val json = RemoteSerialization.getJson(serializersModules)
 
-    val json = Json {
-        ignoreUnknownKeys = true
-        serializersModule = kvSerializersModule
-    }
+    override val serializersModule = json.serializersModule
 
     override fun <T> deserialize(str: String?, serializer: KSerializer<T>): T =
         @Suppress("UNCHECKED_CAST")
@@ -70,10 +45,10 @@ private object KotlinxObjectDeSerializer : ObjectDeSerializer {
 }
 
 inline fun <reified T> ObjectDeSerializer.deserialize(str: String?): T =
-    deserialize(str, kvSerializersModule.serializer())
+    deserialize(str, serializersModule.serializer())
 
 inline fun <reified T> ObjectDeSerializer.serializeNonNull(obj: T) =
-    serializeNonNullToString(obj, kvSerializersModule.serializer())
+    serializeNonNullToString(obj, serializersModule.serializer())
 
 inline fun <reified T> ObjectDeSerializer.serializeNullable(obj: T?) =
-    serializeNullableToString(obj, kvSerializersModule.serializer())
+    serializeNullableToString(obj, serializersModule.serializer())

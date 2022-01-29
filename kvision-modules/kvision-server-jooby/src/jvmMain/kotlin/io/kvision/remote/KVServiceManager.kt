@@ -38,6 +38,7 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.modules.SerializersModule
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
@@ -60,9 +61,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
-        serializer: KSerializer<RET>
-    ): RequestHandler =
-        {
+        serializerFactory: () -> KSerializer<RET>
+    ): RequestHandler {
+        val serializer by lazy { serializerFactory() }
+        return {
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.query("id").intValue(), "", listOf())
             } else {
@@ -86,13 +88,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 )
             }
         }
+    }
 
     override fun <REQ, RES> createWebsocketHandler(
         function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
-        requestSerializer: KSerializer<REQ>,
-        responseSerializer: KSerializer<RES>,
-    ): WebsocketHandler =
-        { ctx, configurer ->
+        requestSerializerFactory: () -> KSerializer<REQ>,
+        responseSerializerFactory: () -> KSerializer<RES>,
+    ): WebsocketHandler {
+        val requestSerializer by lazy { requestSerializerFactory() }
+        val responseSerializer by lazy { responseSerializerFactory() }
+        return { ctx, configurer ->
             val injector = ctx.require(Injector::class.java).createChildInjector(ContextModule(ctx))
             val service = injector.getInstance(serviceClass.java)
             val incoming = Channel<String>()
@@ -130,12 +135,17 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
         }
+    }
 }
 
 /**
  * A function to generate routes based on definitions from the service manager.
  */
-fun <T : Any> CoroutineRouter.applyRoutes(serviceManager: KVServiceManager<T>) {
+fun <T : Any> CoroutineRouter.applyRoutes(
+    serviceManager: KVServiceManager<T>,
+    serializersModules: List<SerializersModule>? = null
+) {
+    serviceManager.deSerializer = kotlinxObjectDeSerializer(serializersModules)
     serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
         when (method) {
             HttpMethod.GET -> get(path, handler)
@@ -153,8 +163,10 @@ fun <T : Any> CoroutineRouter.applyRoutes(serviceManager: KVServiceManager<T>) {
 /**
  * A function to generate routes based on definitions from the service manager.
  */
-fun <T : Any> Kooby.applyRoutes(serviceManager: KVServiceManager<T>) {
+fun <T : Any> Kooby.applyRoutes(
+    serviceManager: KVServiceManager<T>, serializersModules: List<SerializersModule>? = null
+) {
     coroutine {
-        applyRoutes(serviceManager)
+        applyRoutes(serviceManager, serializersModules)
     }
 }

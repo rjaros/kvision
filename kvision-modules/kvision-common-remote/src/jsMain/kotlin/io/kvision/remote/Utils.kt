@@ -21,12 +21,7 @@
  */
 package io.kvision.remote
 
-import io.kvision.types.JsonDateSerializer
 import kotlinx.browser.window
-import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.modules.serializersModuleOf
-import kotlin.js.Date
 
 /**
  * JavaScript Object type
@@ -40,32 +35,14 @@ fun obj(init: dynamic.() -> Unit): dynamic {
     return (Object()).apply(init)
 }
 
+internal data class LegacyTest(val test: Boolean = true)
+
 /**
- * JSON utility functions
+ * A helper property to test whether current compiler is running in legacy mode.
  */
-object Serialization {
-
-    val plain = Json { serializersModule = serializersModuleOf(Date::class, JsonDateSerializer) }
-
-    val nonstrict = Json {
-        ignoreUnknownKeys = true
-        serializersModule = serializersModuleOf(Date::class, JsonDateSerializer)
-    }
-
-    /**
-     * An extension function to convert Serializable object to JS dynamic object
-     * @param serializer a serializer for T
-     */
-    fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return kotlin.js.JSON.parse(plain.encodeToString(serializer, this))
-    }
+val isLegacyBackend by lazy {
+    LegacyTest().asDynamic()["test"] == true
 }
-
-@Deprecated(
-    "Added for compatibility. Use Serialization object instead.",
-    replaceWith = ReplaceWith("Serialization", "io.kvision.remote.Serialization")
-)
-typealias JSON = Serialization
 
 /**
  * Creates a websocket URL from current window.location and given path.

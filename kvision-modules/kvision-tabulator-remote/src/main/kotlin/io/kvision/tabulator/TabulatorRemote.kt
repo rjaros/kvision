@@ -28,6 +28,7 @@ import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteData
 import io.kvision.remote.RemoteFilter
+import io.kvision.remote.RemoteSerialization
 import io.kvision.remote.RemoteSorter
 import io.kvision.utils.Serialization
 import kotlinx.browser.window
@@ -69,12 +70,14 @@ open class TabulatorRemote<T : Any, E : Any>(
     module: SerializersModule? = null
 ) : Tabulator<T>(null, false, options, types, className, kClass, serializer, module) {
 
-    override val jsonHelper = if (serializer != null) Json(from = (Serialization.customConfiguration ?: Json {
-        ignoreUnknownKeys = true
-        isLenient = true
-    })) {
+    override val jsonHelper = if (serializer != null) Json(
+        from = (RemoteSerialization.customConfiguration ?: Serialization.customConfiguration ?: Json {
+            ignoreUnknownKeys = true
+            isLenient = true
+        })
+    ) {
         serializersModule = SerializersModule {
-            include(io.kvision.remote.Serialization.plain.serializersModule)
+            include(RemoteSerialization.plain.serializersModule)
             module?.let { this.include(it) }
         }.overwriteWith(serializersModule)
     } else null

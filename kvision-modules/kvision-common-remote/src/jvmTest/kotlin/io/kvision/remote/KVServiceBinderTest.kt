@@ -94,6 +94,7 @@ class KVServiceBinderTest {
     @BeforeMethod
     fun setUp() {
         serviceBinder = KVServiceBinderImpl()
+        serviceBinder.deSerializer = kotlinxObjectDeSerializer()
     }
 
     @Test(dataProvider = "provide_binder_args_expectedArgs")
@@ -214,7 +215,7 @@ private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, Websocket
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend Any.(params: List<String?>) -> RET,
-        serializer: KSerializer<RET>
+        serializerFactory: () -> KSerializer<RET>
     ): RouteHandler =
         { runBlocking { function.invoke(HANDLER_THIS, it) } }
 
@@ -222,8 +223,8 @@ private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, Websocket
     @Suppress("UNCHECKED_CAST")
     override fun <REQ, RES> createWebsocketHandler(
         function: suspend Any.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
-        requestSerializer: KSerializer<REQ>,
-        responseSerializer: KSerializer<RES>,
+        requestSerializerFactory: () -> KSerializer<REQ>,
+        responseSerializerFactory: () -> KSerializer<RES>,
     ): WebsocketHandler {
         return { receiveChannel, sendChannel ->
             runBlocking {

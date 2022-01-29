@@ -37,6 +37,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.modules.SerializersModule
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
@@ -61,9 +62,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
-        serializer: KSerializer<RET>
-    ): RequestHandler =
-        { ctx ->
+        serializerFactory: () -> KSerializer<RET>
+    ): RequestHandler {
+        val serializer by lazy { serializerFactory() }
+        return { ctx ->
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.queryParamAsClass<Int>("id").get(), "", listOf())
             } else {
@@ -90,13 +92,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             }
             ctx.future(future)
         }
+    }
 
     override fun <REQ, RES> createWebsocketHandler(
         function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
-        requestSerializer: KSerializer<REQ>,
-        responseSerializer: KSerializer<RES>,
-    ): WebsocketHandler =
-        { ws ->
+        requestSerializerFactory: () -> KSerializer<REQ>,
+        responseSerializerFactory: () -> KSerializer<RES>,
+    ): WebsocketHandler {
+        val requestSerializer by lazy { requestSerializerFactory() }
+        val responseSerializer by lazy { responseSerializerFactory() }
+        return { ws ->
             ws.onConnect { ctx ->
                 val incoming = Channel<String>()
                 val outgoing = Channel<String>()
@@ -139,12 +144,18 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 }
             }
         }
+    }
 }
 
 /**
  * A function to generate routes based on definitions from the service manager.
  */
-fun <T : Any> Javalin.applyRoutes(serviceManager: KVServiceManager<T>, roles: Set<RouteRole> = setOf()) {
+fun <T : Any> Javalin.applyRoutes(
+    serviceManager: KVServiceManager<T>,
+    roles: Set<RouteRole> = setOf(),
+    serializersModules: List<SerializersModule>? = null
+) {
+    serviceManager.deSerializer = kotlinxObjectDeSerializer(serializersModules)
     serviceManager.routeMapRegistry.asSequence().forEach { (method, path, handler) ->
         when (method) {
             HttpMethod.GET -> get(path, handler, *roles.toTypedArray())

@@ -155,11 +155,12 @@ class KVProcessor : AbstractProcessor() {
                         appendLine()
                         appendLine("import org.w3c.fetch.RequestInit")
                         appendLine("import io.kvision.remote.KVRemoteAgent")
+                        appendLine("import kotlinx.serialization.modules.SerializersModule")
                         getTypes(cl.methods()).sorted().forEach {
                             appendLine("import $it")
                         }
                         appendLine()
-                        appendLine("actual class $baseName(requestFilter: (RequestInit.() -> Unit)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, requestFilter) {")
+                        appendLine("actual class $baseName(serializersModules: List<SerializersModule>? = null, requestFilter: (RequestInit.() -> Unit)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, serializersModules, requestFilter) {")
                         cl.methods().forEach {
                             val name = it.name
                             val params = it.allParameters.drop(1)

@@ -22,7 +22,9 @@
 
 package io.kvision.remote
 
+import kotlinx.serialization.modules.SerializersModule
+
 /**
  * A wrapper class for declaring a list of KVision Service Managers as a dependency.
  */
-data class KVManagers(val services: List<KVServiceManager<*>>)
+data class KVManagers(val services: List<KVServiceManager<*>>, val serializersModules: List<SerializersModule>? = null)

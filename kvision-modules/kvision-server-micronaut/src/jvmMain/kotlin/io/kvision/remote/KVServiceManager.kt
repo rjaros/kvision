@@ -52,9 +52,10 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
-        serializer: KSerializer<RET>
-    ): RequestHandler =
-        { req, tlReq, ctx ->
+        serializerFactory: () -> KSerializer<RET>
+    ): RequestHandler {
+        val serializer by lazy { serializerFactory() }
+        return { req, tlReq, ctx ->
             tlReq.set(req)
             val service = ctx.getBean(serviceClass.java)
             tlReq.remove()
@@ -88,13 +89,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 )
             )
         }
+    }
 
     override fun <REQ, RES> createWebsocketHandler(
         function: suspend T.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,
-        requestSerializer: KSerializer<REQ>,
-        responseSerializer: KSerializer<RES>,
-    ): WebsocketHandler =
-        { webSocketSession, tlWsSession, ctx, incoming, outgoing ->
+        requestSerializerFactory: () -> KSerializer<REQ>,
+        responseSerializerFactory: () -> KSerializer<RES>,
+    ): WebsocketHandler {
+        val requestSerializer by lazy { requestSerializerFactory() }
+        val responseSerializer by lazy { responseSerializerFactory() }
+        return { webSocketSession, tlWsSession, ctx, incoming, outgoing ->
             tlWsSession.set(webSocketSession)
             val service = ctx.getBean(serviceClass.java)
             tlWsSession.remove()
@@ -109,4 +113,5 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 function = function
             )
         }
+    }
 }

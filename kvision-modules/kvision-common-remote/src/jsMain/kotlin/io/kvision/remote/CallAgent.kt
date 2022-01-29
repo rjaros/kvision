@@ -78,7 +78,7 @@ open class CallAgent {
         val fetchUrl = if (method == HttpMethod.GET) {
             urlAddr + "?" + URLSearchParams(obj { id = jsonRpcRequest.id }).toString()
         } else {
-            requestInit.body = Serialization.plain.encodeToString(jsonRpcRequest)
+            requestInit.body = RemoteSerialization.plain.encodeToString(jsonRpcRequest)
             urlAddr
         }
         requestInit.headers = js("{}")

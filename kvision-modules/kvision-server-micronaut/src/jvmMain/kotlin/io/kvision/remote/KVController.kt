@@ -33,6 +33,7 @@ import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.annotation.Put
 import jakarta.inject.Inject
+import javax.annotation.PostConstruct
 
 /**
  * Controller for handling automatic routes.
@@ -45,6 +46,13 @@ open class KVController {
 
     @Inject
     lateinit var applicationContext: ApplicationContext
+
+    @PostConstruct
+    fun init() {
+        kvManagers.services.forEach {
+            it.deSerializer = kotlinxObjectDeSerializer(kvManagers.serializersModules)
+        }
+    }
 
     @Get("{/path:kv/.*}")
     suspend fun get(@PathVariable path: String?, request: HttpRequest<*>): HttpResponse<String> =

@@ -31,6 +31,7 @@ import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.BodyHandler
 import io.vertx.ext.web.handler.StaticHandler
+import kotlinx.serialization.modules.SerializersModule
 
 const val KV_INJECTOR_KEY = "io.kvision.injector.key"
 
@@ -68,8 +69,9 @@ fun Vertx.kvisionInit(
     router: Router,
     server: HttpServer,
     wsServiceManagers: List<KVServiceManager<*>> = emptyList(),
+    serializersModules: List<SerializersModule>? = null,
     vararg modules: Module
-) = kvisionInit(true, router, server, wsServiceManagers, *modules)
+) = kvisionInit(true, router, server, wsServiceManagers, serializersModules, *modules)
 
 /**
  * Initialization function for Vert.x server with support for WebSockets.
@@ -80,6 +82,7 @@ fun Vertx.kvisionInit(
     router: Router,
     server: HttpServer,
     wsServiceManagers: List<KVServiceManager<*>> = emptyList(),
+    serializersModules: List<SerializersModule>? = null,
     vararg modules: Module
 ): Injector {
     if (initStaticResources) router.initStaticResources()
@@ -95,6 +98,7 @@ fun Vertx.kvisionInit(
     }
     wsServiceManagers.forEach { serviceManager ->
         if (serviceManager.webSocketRequests.isNotEmpty()) {
+            serviceManager.deSerializer = kotlinxObjectDeSerializer(serializersModules)
             server.webSocketHandler { webSocket ->
                 serviceManager.webSocketRequests[webSocket.path()]?.let {
                     it(injector, webSocket)

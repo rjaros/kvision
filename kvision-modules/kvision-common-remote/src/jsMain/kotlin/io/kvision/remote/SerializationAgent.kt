@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
- * Copyright (c) 2020 Yannik Hampe
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,16 +21,19 @@
  */
 package io.kvision.remote
 
-import kotlinx.serialization.KSerializer
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
 
-interface ObjectDeSerializer {
-    val serializersModule: SerializersModule
+class SerializationAgent(serializersModules: List<SerializersModule>? = null) {
 
-    fun <T> deserialize(str: String?, serializer: KSerializer<T>): T
-    fun <T> serializeNonNullToString(obj: T, serializer: KSerializer<T>): String
+    val json = RemoteSerialization.getJson(serializersModules)
 
-    fun <T> serializeNullableToString(obj: T?, serializer: KSerializer<T>): String? =
-        if (obj == null) null
-        else serializeNonNullToString(obj, serializer)
+    inline fun <reified PAR> serialize(value: PAR): String {
+        return json.encodeToString(value)
+    }
+
+    inline fun <reified PAR : Any> deserialize(value: String): PAR {
+        return json.decodeFromString(value)
+    }
 }

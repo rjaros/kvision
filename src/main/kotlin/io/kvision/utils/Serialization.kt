@@ -52,7 +52,7 @@ object Serialization {
      * @param serializer a serializer for T
      */
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return kotlin.js.JSON.parse(plain.encodeToString(serializer, this))
+        return kotlin.js.JSON.parse((customConfiguration ?: plain).encodeToString(serializer, this))
     }
 }
 

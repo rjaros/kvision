@@ -34,6 +34,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
+import javax.annotation.PostConstruct
 
 /**
  * Micronaut WebSocket handler.
@@ -48,6 +49,13 @@ class KVServerWebSocket {
 
     @Inject
     lateinit var applicationContext: ApplicationContext
+
+    @PostConstruct
+    fun init() {
+        kvManagers.services.forEach {
+            it.deSerializer = kotlinxObjectDeSerializer(kvManagers.serializersModules)
+        }
+    }
 
     @OnOpen
     suspend fun onOpen(path: String, session: WebSocketSession) {
