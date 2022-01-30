@@ -30,8 +30,13 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.SerializationStrategy
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.serializer
 import org.w3c.dom.get
 import org.w3c.fetch.RequestInit
 
@@ -42,44 +47,29 @@ import org.w3c.fetch.RequestInit
 @Suppress("LargeClass", "TooManyFunctions")
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
-    val serializersModules: List<SerializersModule>? = null,
+    serializersModules: List<SerializersModule>? = null,
     val requestFilter: (RequestInit.() -> Unit)? = null
 ) {
 
     val callAgent = CallAgent()
-    val serializationAgent by lazy { SerializationAgent(serializersModules) }
-    val serializationAgentLegacy by lazy { SerializationAgentLegacy(serializersModules) }
+    val json = RemoteSerialization.getJson(serializersModules)
 
-    inline fun <reified PAR> serialize(par: PAR): String? {
-        return if (isLegacyBackend) {
-            serializationAgentLegacy.serialize(par)
-        } else {
-            serializationAgent.serialize(par)
-        }
+    inline fun <reified PAR> serialize(value: PAR): String {
+        return json.encodeToString(value)
     }
 
-    inline fun <reified PAR : Any> serializeNotNull(par: PAR): String {
-        return if (isLegacyBackend) {
-            serializationAgentLegacy.serializeNotNull(par)
-        } else {
-            serializationAgent.serialize(par)
-        }
+    // Workaround for KT-41282 on legacy compiler
+    inline fun <reified PAR> serialize(serializer: SerializationStrategy<PAR>, value: PAR): String {
+        return json.encodeToString(serializer, value)
     }
 
     inline fun <reified PAR : Any> deserialize(value: String): PAR {
-        return if (isLegacyBackend) {
-            serializationAgentLegacy.deserialize(value)
-        } else {
-            serializationAgent.deserialize(value)
-        }
+        return json.decodeFromString(value)
     }
 
-    inline fun <reified PAR : Any> deserializeList(value: String): List<PAR> {
-        return if (isLegacyBackend) {
-            serializationAgentLegacy.deserializeList(value)
-        } else {
-            serializationAgent.deserialize(value)
-        }
+    // Workaround for KT-41282 on legacy compiler
+    inline fun <reified PAR : Any> deserialize(serializer: DeserializationStrategy<PAR>, value: String): PAR {
+        return json.decodeFromString(serializer, value)
     }
 
     /**
@@ -87,9 +77,9 @@ open class KVRemoteAgent<T : Any>(
      */
     suspend inline fun <reified RET : Any, T> call(noinline function: suspend T.() -> RET): RET {
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, method = method, requestFilter = requestFilter).then {
-            deserialize<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, method = method, requestFilter = requestFilter).await()
+        return deserialize(result)
+
     }
 
     /**
@@ -99,9 +89,8 @@ open class KVRemoteAgent<T : Any>(
         noinline function: suspend T.() -> List<RET>
     ): List<RET> {
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, method = method, requestFilter = requestFilter).then {
-            deserializeList<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, method = method, requestFilter = requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -112,9 +101,8 @@ open class KVRemoteAgent<T : Any>(
     ): RET {
         val data = serialize(p)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data), method, requestFilter).then {
-            deserialize<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -125,9 +113,8 @@ open class KVRemoteAgent<T : Any>(
     ): List<RET> {
         val data = serialize(p)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data), method, requestFilter).then {
-            deserializeList<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -139,9 +126,8 @@ open class KVRemoteAgent<T : Any>(
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2), method, requestFilter).then {
-            deserialize<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data1, data2), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -153,9 +139,8 @@ open class KVRemoteAgent<T : Any>(
         val data1 = serialize(p1)
         val data2 = serialize(p2)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2), method, requestFilter).then {
-            deserializeList<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data1, data2), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -168,9 +153,8 @@ open class KVRemoteAgent<T : Any>(
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, requestFilter).then {
-            deserialize<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -183,9 +167,8 @@ open class KVRemoteAgent<T : Any>(
         val data2 = serialize(p2)
         val data3 = serialize(p3)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, requestFilter).then {
-            deserializeList<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data1, data2, data3), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -199,9 +182,8 @@ open class KVRemoteAgent<T : Any>(
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, requestFilter).then {
-            deserialize<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -219,9 +201,8 @@ open class KVRemoteAgent<T : Any>(
         val data3 = serialize(p3)
         val data4 = serialize(p4)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, requestFilter).then {
-            deserializeList<RET>(it)
-        }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -243,9 +224,9 @@ open class KVRemoteAgent<T : Any>(
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, requestFilter).then {
-            deserialize<RET>(it)
-        }.await()
+        val result =
+            callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -267,9 +248,9 @@ open class KVRemoteAgent<T : Any>(
         val data4 = serialize(p4)
         val data5 = serialize(p5)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, requestFilter).then {
-            deserializeList<RET>(it)
-        }.await()
+        val result =
+            callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5), method, requestFilter).await()
+        return deserialize(result)
     }
 
     /**
@@ -293,10 +274,9 @@ open class KVRemoteAgent<T : Any>(
         val data5 = serialize(p5)
         val data6 = serialize(p6)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, requestFilter)
-            .then {
-                deserialize<RET>(it)
-            }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, requestFilter)
+            .await()
+        return deserialize(result)
     }
 
     /**
@@ -320,10 +300,9 @@ open class KVRemoteAgent<T : Any>(
         val data5 = serialize(p5)
         val data6 = serialize(p6)
         val (url, method) = serviceManager.requireCall(function)
-        return callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, requestFilter)
-            .then {
-                deserializeList<RET>(it)
-            }.await()
+        val result = callAgent.jsonRpcCall(url, listOf(data1, data2, data3, data4, data5, data6), method, requestFilter)
+            .await()
+        return deserialize(result)
     }
 
     /**
@@ -337,6 +316,8 @@ open class KVRemoteAgent<T : Any>(
         val kvUrlPrefix = window["kv_remote_url_prefix"]
         val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
         val (url, _) = serviceManager.requireCall(function)
+        val serializerPAR1 = serializer<PAR1>()
+        val serializerPAR2 = serializer<PAR2>()
         val socket = Socket()
         val requestChannel = Channel<PAR1>()
         val responseChannel = Channel<PAR2>()
@@ -347,7 +328,7 @@ open class KVRemoteAgent<T : Any>(
                 lateinit var handlerJob: Job
                 val requestJob = launch {
                     for (par1 in requestChannel) {
-                        val param = serializeNotNull(par1)
+                        val param = serialize(serializerPAR1, par1)
                         val str = RemoteSerialization.plain.encodeToString(
                             JsonRpcRequest(
                                 0,
@@ -366,7 +347,7 @@ open class KVRemoteAgent<T : Any>(
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
                         val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
-                        val par2 = deserialize<PAR2>(data)
+                        val par2 = deserialize(serializerPAR2, data)
                         responseChannel.send(par2)
                     }
                     requestJob.cancel()
@@ -403,6 +384,8 @@ open class KVRemoteAgent<T : Any>(
         val kvUrlPrefix = window["kv_remote_url_prefix"]
         val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
         val (url, _) = serviceManager.requireCall(function)
+        val serializerPAR1 = serializer<PAR1>()
+        val serializerPAR2 = serializer<PAR2>()
         val socket = Socket()
         val requestChannel = Channel<PAR1>()
         val responseChannel = Channel<List<PAR2>>()
@@ -413,7 +396,7 @@ open class KVRemoteAgent<T : Any>(
                 lateinit var handlerJob: Job
                 val requestJob = launch {
                     for (par1 in requestChannel) {
-                        val param = serializeNotNull(par1)
+                        val param = serialize(serializerPAR1, par1)
                         val str = RemoteSerialization.plain.encodeToString(
                             JsonRpcRequest(
                                 0,
@@ -432,7 +415,7 @@ open class KVRemoteAgent<T : Any>(
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
                         val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
-                        val par2 = deserialize<List<PAR2>>(data)
+                        val par2 = deserialize(ListSerializer(serializerPAR2), data)
                         responseChannel.send(par2)
                     }
                     requestJob.cancel()

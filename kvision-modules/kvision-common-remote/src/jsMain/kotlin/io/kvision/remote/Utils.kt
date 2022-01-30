@@ -35,15 +35,6 @@ fun obj(init: dynamic.() -> Unit): dynamic {
     return (Object()).apply(init)
 }
 
-internal data class LegacyTest(val test: Boolean = true)
-
-/**
- * A helper property to test whether current compiler is running in legacy mode.
- */
-val isLegacyBackend by lazy {
-    LegacyTest().asDynamic()["test"] == true
-}
-
 /**
  * Creates a websocket URL from current window.location and given path.
  */
