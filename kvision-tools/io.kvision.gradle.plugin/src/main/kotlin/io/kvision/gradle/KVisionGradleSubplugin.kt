@@ -53,6 +53,8 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 if (project.findProperty("io.kvision.plugin.enableGradleTasks") != "false") {
                     tasks {
                         create("generatePotFile", Exec::class) {
+                            group = "KVision"
+                            description = "Generates pot file for translations"
                             dependsOn("compileKotlinJs")
                             executable = getNodeJsBinaryExecutable(rootProject)
                             args("${rootProject.buildDir}/js/node_modules/gettext-extract/bin/gettext-extract")
@@ -68,6 +70,7 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                         create("zip", Zip::class) {
                             dependsOn("browserProductionWebpack")
                             group = "package"
+                            description = "Builds ZIP archive with the application"
                             destinationDirectory.set(file("$buildDir/libs"))
                             val distribution =
                                 project.tasks.getByName(
@@ -106,6 +109,8 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 if (project.findProperty("io.kvision.plugin.enableGradleTasks") != "false") {
                     tasks {
                         create("generatePotFile", Exec::class) {
+                            group = "KVision"
+                            description = "Generates pot file for translations"
                             dependsOn("compileKotlinFrontend")
                             executable = getNodeJsBinaryExecutable(rootProject)
                             args("${rootProject.buildDir}/js/node_modules/gettext-extract/bin/gettext-extract")
@@ -122,6 +127,11 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                             dependsOn("compileKotlinMetadata")
                         }
                         getByName("compileKotlinFrontend") {
+                            dependsOn("compileKotlinMetadata")
+                        }
+                        create("generateKVisionSources") {
+                            group = "KVision"
+                            description = "Generates KVision sources for fullstack interfaces"
                             dependsOn("compileKotlinMetadata")
                         }
                     }
