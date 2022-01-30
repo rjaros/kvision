@@ -26,7 +26,6 @@ import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.utils.Serialization
 import kotlinx.browser.window
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encodeToString
@@ -48,7 +47,6 @@ import org.w3c.dom.get
  * @param className CSS class names
  * @param init an initializer extension function
  */
-@OptIn(ExperimentalSerializationApi::class)
 open class TypeaheadRemoteInput<T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
@@ -74,7 +72,10 @@ open class TypeaheadRemoteInput<T : Any>(
                 Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(squery, state)))
             },
             preprocessData = {
-                Serialization.plain.decodeFromString(ListSerializer(String.serializer()), it.result.unsafeCast<String>())
+                Serialization.plain.decodeFromString(
+                    ListSerializer(String.serializer()),
+                    it.result.unsafeCast<String>()
+                )
                     .toTypedArray()
             },
             httpType = HttpType.valueOf(method.name)

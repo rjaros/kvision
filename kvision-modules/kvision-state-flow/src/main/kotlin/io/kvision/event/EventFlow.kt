@@ -23,7 +23,6 @@ package io.kvision.event
 
 import io.kvision.core.Widget
 import io.kvision.core.onEvent
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -32,7 +31,6 @@ import org.w3c.dom.events.Event
 /**
  * Extension property returning Flow<Pair<Widget, Event>> for a given event
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline fun <reified T : Widget> T.eventFlow(event: String): Flow<Pair<T, Event>> = callbackFlow {
     val id = onEvent {
         this.asDynamic()[event] = { e: Event ->
@@ -47,7 +45,6 @@ inline fun <reified T : Widget> T.eventFlow(event: String): Flow<Pair<T, Event>>
 /**
  * Extension property returning Flow<Widget> for a click event.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.clickFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {
@@ -63,7 +60,6 @@ inline val <reified T : Widget> T.clickFlow: Flow<T>
 /**
  * Extension property returning Flow<Widget> for an input event.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.inputFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {
@@ -79,7 +75,6 @@ inline val <reified T : Widget> T.inputFlow: Flow<T>
 /**
  * Extension property returning Flow<Widget> for a change event.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 inline val <reified T : Widget> T.changeFlow: Flow<T>
     get() = callbackFlow {
         val id = onEvent {

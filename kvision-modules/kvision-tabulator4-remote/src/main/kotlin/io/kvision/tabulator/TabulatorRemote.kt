@@ -34,7 +34,6 @@ import io.kvision.remote.RemoteSerialization
 import io.kvision.remote.RemoteSorter
 import io.kvision.utils.Serialization
 import kotlinx.browser.window
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -59,7 +58,6 @@ import kotlin.reflect.KClass
  * @param serializer the serializer for type T
  * @param module optional serialization module with custom serializers
  */
-@OptIn(ExperimentalSerializationApi::class)
 @Deprecated("Use kvision-tabulator-remote module instead")
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceMgr<E>,

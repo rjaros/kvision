@@ -37,7 +37,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
@@ -58,7 +57,6 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param className CSS class names
  * @param init an initializer extension function
  */
-@OptIn(ExperimentalSerializationApi::class)
 open class SelectRemoteInput<T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
@@ -91,20 +89,21 @@ open class SelectRemoteInput<T : Any>(
                 url = urlPrefix + url.drop(1),
                 preprocessData = {
                     @Suppress("UnsafeCastFromDynamic")
-                    Serialization.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), it.result as String).map {
-                        obj {
-                            this.value = it.value
-                            if (it.text != null) this.text = it.text
-                            if (it.className != null) this.`class` = it.className
-                            if (it.disabled) this.disabled = true
-                            if (it.divider) this.divider = true
-                            this.data = obj {
-                                if (it.subtext != null) this.subtext = it.subtext
-                                if (it.icon != null) this.icon = it.icon
-                                if (it.content != null) this.content = it.content
+                    Serialization.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), it.result as String)
+                        .map {
+                            obj {
+                                this.value = it.value
+                                if (it.text != null) this.text = it.text
+                                if (it.className != null) this.`class` = it.className
+                                if (it.disabled) this.disabled = true
+                                if (it.divider) this.divider = true
+                                this.data = obj {
+                                    if (it.subtext != null) this.subtext = it.subtext
+                                    if (it.icon != null) this.icon = it.icon
+                                    if (it.content != null) this.content = it.content
+                                }
                             }
-                        }
-                    }.toTypedArray()
+                        }.toTypedArray()
                 },
                 data = data,
                 beforeSend = { xhr, b ->

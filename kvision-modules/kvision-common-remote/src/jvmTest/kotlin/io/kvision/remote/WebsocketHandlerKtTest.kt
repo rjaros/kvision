@@ -140,15 +140,14 @@ class WebsocketHandlerKtTest {
 
     private fun handleWebsocketConnection(scope: CoroutineScope) {
         scope.launch {
-            handleWebsocketConnection<DummyService, String, String>(
+            handleWebsocketConnection(
                 deSerializer,
                 rawClientToServer,
                 rawServerToClient,
                 String.serializer(),
                 String.serializer(),
-                service,
-                { receiveChannel, sendChannel -> service.serviceMethod(receiveChannel, sendChannel) }
-            )
+                service
+            ) { receiveChannel, sendChannel -> service.serviceMethod(receiveChannel, sendChannel) }
         }
     }
 

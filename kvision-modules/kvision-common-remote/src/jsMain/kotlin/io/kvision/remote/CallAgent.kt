@@ -22,7 +22,6 @@
 package io.kvision.remote
 
 import kotlinx.browser.window
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import org.w3c.dom.url.URLSearchParams
@@ -62,7 +61,6 @@ open class CallAgent {
      * @param requestFilter a request filtering function
      * @return a promise of the result
      */
-    @OptIn(ExperimentalSerializationApi::class)
     @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
     fun jsonRpcCall(
         url: String,
