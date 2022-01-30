@@ -249,7 +249,11 @@ open class Tabulator<T : Any>(
                 this.dispatchEvent("cellEditCancelledTabulator", obj { detail = cell })
             }
             jsTabulator?.on("dataLoading") { data: dynamic ->
-                val fixedData = if (data != undefined) fixData(data.unsafeCast<Array<T>>().toList())!! else emptyList()
+                val fixedData = if (!data) {
+                    emptyList()
+                } else {
+                    fixData(data.unsafeCast<Array<T>>().toList())!!
+                }
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataLoadingTabulator", obj { detail = fixedData })
             }
