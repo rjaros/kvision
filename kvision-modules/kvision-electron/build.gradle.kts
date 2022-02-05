@@ -27,7 +27,8 @@ kotlin {
 dependencies {
     api(rootProject)
     api("org.jetbrains.kotlinx:kotlinx-nodejs:$nodeJsVersion")
-    implementation(npm("electron", "^16.0.7"))
+    implementation(npm("electron", "^17.0.0"))
+    implementation(npm("@electron/remote", "^2.0.4"))
     testImplementation(kotlin("test-js"))
 }
 

@@ -76,7 +76,6 @@ external interface CommonInterface {
     var powerMonitor: PowerMonitor
     var powerSaveBlocker: PowerSaveBlocker
     var protocol: Protocol
-    var remote: Remote
     var screen: Screen
     var session: Any
     var shell: Shell
@@ -141,8 +140,6 @@ external var powerMonitor: PowerMonitor
 external var powerSaveBlocker: PowerSaveBlocker
 
 external var protocol: Protocol
-
-external var remote: Remote
 
 external var screen: Screen
 
