@@ -111,7 +111,7 @@ open class Window(
         }
 
     /**
-     * Window content height.
+     * Window content overflow.
      */
     var contentOverflow
         get() = content.overflow
