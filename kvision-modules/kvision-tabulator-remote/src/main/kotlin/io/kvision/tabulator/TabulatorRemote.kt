@@ -123,6 +123,8 @@ open class TabulatorRemote<T : Any, E : Any>(
                             result.data = js("[]")
                         }
                         result
+                    } else if (result.data == undefined) {
+                        js("[]")
                     } else {
                         result.data
                     }
