@@ -142,6 +142,20 @@ abstract class StyledComponent {
     }
 
     /**
+     * CSS overflow-x of the current component.
+     */
+    open var overflowX: Overflow? by refreshOnUpdate {
+        setStyleProperty("overflow-x", it?.overflow)
+    }
+
+    /**
+     * CSS overflow-y of the current component.
+     */
+    open var overflowY: Overflow? by refreshOnUpdate {
+        setStyleProperty("overflow-y", it?.overflow)
+    }
+
+    /**
      * CSS overflow-wrap of the current component.
      */
     open var overflowWrap: OverflowWrap? by refreshOnUpdate {
