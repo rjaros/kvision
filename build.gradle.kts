@@ -52,7 +52,7 @@ dependencies {
     implementation(npm("style-loader", "^3.3.1"))
     implementation(npm("imports-loader", "^3.1.1"))
     implementation(npm("fecha", "^4.2.1"))
-    implementation(npm("snabbdom", "^3.2.0"))
+    implementation(npm("snabbdom", "^3.3.1"))
     implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.5"))
     implementation(npm("split.js", "^1.6.5"))
     implementation(npm("@rjaros/gettext.js", "^1.1.3"))

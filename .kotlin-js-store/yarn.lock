@@ -30,6 +30,11 @@
     global-agent "^3.0.0"
     global-tunnel-ng "^2.7.1"
 
+"@electron/remote@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@electron/remote/-/remote-2.0.4.tgz#c3dae436aed79d1b8adcefc5a4963c06750ad5d8"
+  integrity sha512-8m2P/d2RH986PmMW5lKygbPEjEYJ7RgCe37Y8DQ1wujKMH6VjmLIB+Y+DP2SA611svCZc58TRSd8FraGvcfGZw==
+
 "@fortawesome/fontawesome-free@^5.15.4":
   version "5.15.4"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.4.tgz#ecda5712b61ac852c760d8b3c79c96adca5554e5"
@@ -912,10 +917,10 @@ electron-to-chromium@^1.4.17:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.56.tgz#f660fd2c6739b341d8922fe3a441a5a2804911a1"
   integrity sha512-0k/S0FQqRRpJbX7YUjwCcLZ8D42RqGKtaiq90adXBOYgTIWwLA/g3toO8k9yEpqU8iC4QyaWYYWSTBIna8WV4g==
 
-electron@^16.0.7:
-  version "16.0.8"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-16.0.8.tgz#7ebd3e23c4883c239f53d8b7af1100f455ac8a02"
-  integrity sha512-znTVkl8LaGcPNdfc6SRr+6LYg2GtSCKXln/nW/PC+urBfAFnOYIuDock8QyGVFfzr5PuAa+g8YQQAboHV77D7g==
+electron@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-17.0.0.tgz#60f00f3e3c657020e807a519700213943468b4d1"
+  integrity sha512-3UXcBQMwbMWdPvGHaSdPMluHrd+/bc+K143MyvE5zVZ+S1XCHt4sau7dj6svJHns5llN0YG/c6h/vRfadIp8Zg==
   dependencies:
     "@electron/get" "^1.13.0"
     "@types/node" "^14.6.2"
@@ -2488,7 +2493,7 @@ signal-exit@^3.0.3:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.6.tgz#24e630c4b0f03fea446a2bd299e62b4a6ca8d0af"
   integrity sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==
 
-snabbdom@^3.2.0:
+snabbdom@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/snabbdom/-/snabbdom-3.3.1.tgz#a2fb9a1c85cc19d6dc11c4c5e4c78cbbbaafff1f"
   integrity sha512-FR9u20dCkktPd+qbedqwYNjMXzYhizhqlKTQzYZimLNeCJY0/5qgs0DtLVSmzIEL1bN3Dyb9sQpiHGCxUjyLnQ==
@@ -2661,10 +2666,10 @@ tabulator-tables@^4.9.3:
   resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-4.9.3.tgz#89ea8f9bffc11ba9a789369b5165ac82da26f4f0"
   integrity sha512-iwwQqAEGGxlgrBpcmJJvMJrfjGLcCXOB3AOb/DGkXqBy1YKoYA36hIl7qXGp6Jo8dSkzFAlDT6pKLZgyhs9OnQ==
 
-tabulator-tables@^5.0.10:
-  version "5.0.10"
-  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.0.10.tgz#03f1f66740cde65a3fdd3ad0838c8ec925c669ab"
-  integrity sha512-pqIZkO8oGDI0eVWrhmLNgn6yGQvRSDAZRwI+weTYHeAgMtFXkRBgkmPTaM5cIAta5xrMqu4/PuUNNotRnRZ9rg==
+tabulator-tables@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.1.0.tgz#bb647f6ba3e63fb22b07397d0813c58e47d52c01"
+  integrity sha512-R7/pjfsTGaxaXvYUWhMe0L6HhkaguOCisBi5pMfdrKhOM0XTV/shc0yZ7+YBkOHSEteaQV0jaC6ylfabykmgRA==
 
 tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
