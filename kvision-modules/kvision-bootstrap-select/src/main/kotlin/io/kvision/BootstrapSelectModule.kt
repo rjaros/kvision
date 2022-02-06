@@ -39,8 +39,8 @@ object BootstrapSelectModule : ModuleInitializer {
     internal const val KVNULL = "#kvnull"
 
     override fun initialize() {
-        require("bootstrap-select/dist/css/bootstrap-select.min.css")
-        require("bootstrap-select")
+        require("@rjaros/bootstrap-select/dist/css/bootstrap-select.min.css")
+        require("@rjaros/bootstrap-select")
         require("kvision-assets/js/locales/bootstrap-select/bootstrap-select-i18n.min.js")
         require("ajax-bootstrap-select/dist/css/ajax-bootstrap-select.min.css")
         require("ajax-bootstrap-select")

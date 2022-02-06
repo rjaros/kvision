@@ -13,7 +13,7 @@ kotlin {
 dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-jquery"))
-    implementation(npm("bootstrap-select", "^1.14.0-beta2"))
+    implementation(npm("@rjaros/bootstrap-select", "^1.14.0-beta3"))
     implementation(npm("ajax-bootstrap-select", "^1.4.5"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))

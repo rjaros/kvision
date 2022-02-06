@@ -50,6 +50,11 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.2.tgz#830beaec4b4091a9e9398ac50f865ddea52186b9"
   integrity sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==
 
+"@rjaros/bootstrap-select@^1.14.0-beta3":
+  version "1.14.0-beta3"
+  resolved "https://registry.yarnpkg.com/@rjaros/bootstrap-select/-/bootstrap-select-1.14.0-beta3.tgz#64d5a7aee8d6ec8d615a2e7cc4c893ce43189f81"
+  integrity sha512-Taaier2J5Uhkm2xquWAoaOpIfndEOocaVnmvxVyUkPPVjwuK0sq1e7YignfN4xAQlfklPb2nR/p9JSvPMn/cKA==
+
 "@rjaros/gettext.js@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@rjaros/gettext.js/-/gettext.js-1.1.3.tgz#8d1109f4a6f8e0c4dadba26281c7fe83de8ab18f"
@@ -468,11 +473,6 @@ bootstrap-icons@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/bootstrap-icons/-/bootstrap-icons-1.7.2.tgz#4024e081e2c850602552e1fed6451e682d09322a"
   integrity sha512-NiR2PqC73AQOPdVSu6GJfnk+hN2z6powcistXk1JgPnKuoV2FSdSl26w931Oz9HYbKCcKUSB6ncZTYJAYJl3QQ==
-
-bootstrap-select@^1.14.0-beta2:
-  version "1.14.0-beta2"
-  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.14.0-beta2.tgz#3abc9f778435238669f70d0af3615d0198ec4291"
-  integrity sha512-Q63QUbConUwA+/Te7tCJcv0nE3SI/J+rNI5A1mdX1KxP6lW0pFQy+4KVP6VwgZEcwkoPfrwjvAo6WT7fdl+Sdg==
 
 bootstrap-touchspin@^4.3.0:
   version "4.3.0"
