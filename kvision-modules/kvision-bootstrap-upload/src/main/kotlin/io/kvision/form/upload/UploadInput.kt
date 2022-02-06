@@ -466,3 +466,13 @@ suspend fun <K : Any> FormPanel<K>.getContent(
     val content = control.getNativeFile(kFile)?.getContent()
     return kFile.copy(content = content)
 }
+
+/**
+ * Returns file with the content read.
+ * @param kFile object identifying the file
+ * @return KFile object
+ */
+suspend fun UploadInput.getFileWithContent(kFile: KFile): KFile {
+    val content = this.getNativeFile(kFile)?.getContent()
+    return kFile.copy(content = content)
+}

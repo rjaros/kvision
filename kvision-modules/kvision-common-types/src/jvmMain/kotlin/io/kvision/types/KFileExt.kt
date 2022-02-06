@@ -21,26 +21,30 @@
  */
 package io.kvision.types
 
-import kotlinx.serialization.Serializable
+import java.io.InputStream
+import java.util.*
 
 /**
- * A serializable class for a fullstack File type.
+ *  Decode the byte array from the data uri string contained in the KFile object.
  */
-@Serializable
-data class KFile(
-    val name: String,
-    val size: Int,
-    val content: String? = null
-)
+val KFile.byteArray: ByteArray?
+    get() = base64Encoded?.let { Base64.getDecoder().decode(it) }
 
 /**
- *  Decode the content-type from the data uri string contained in the KFile object.
+ *  Decode the input stream from the data uri string contained in the KFile object.
  */
-val KFile.contentType: String?
-    get() = content?.split(",", limit = 2)?.get(0)?.drop(5)?.split(";")?.get(0)
+val KFile.inputStream: InputStream?
+    get() = byteArray?.inputStream()
 
 /**
- *  Decode the Base64 encoded content from the data uri string contained in the KFile object.
+ *  Decode the content from the data uri string contained in the KFile object.
  */
-val KFile.base64Encoded: String?
-    get() = content?.split(",", limit = 2)?.getOrNull(1)
+fun KFile.decoded(): Pair<String?, ByteArray?> {
+    return content?.split(",", limit = 2)?.let {
+        if (it.size == 2) {
+            val contentType = it[0].drop(5).split(";")[0]
+            val byteArray = Base64.getDecoder().decode(it[1])
+            contentType to byteArray
+        } else null
+    } ?: Pair(null, null)
+}

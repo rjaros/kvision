@@ -21,12 +21,12 @@
  */
 package io.kvision.utils
 
-import kotlinx.coroutines.suspendCancellableCoroutine
-import org.w3c.files.File
-import org.w3c.files.FileReader
 import io.kvision.form.Form
 import io.kvision.form.FormPanel
 import io.kvision.form.KFilesFormControl
+import kotlinx.coroutines.suspendCancellableCoroutine
+import org.w3c.files.File
+import org.w3c.files.FileReader
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 

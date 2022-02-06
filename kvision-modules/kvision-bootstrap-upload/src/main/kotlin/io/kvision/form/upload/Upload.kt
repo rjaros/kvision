@@ -368,3 +368,12 @@ fun Container.upload(
     this.add(upload)
     return upload
 }
+
+/**
+ * Returns file with the content read.
+ * @param kFile object identifying the file
+ * @return KFile object
+ */
+suspend fun Upload.getFileWithContent(kFile: KFile): KFile {
+    return this.input.getFileWithContent(kFile)
+}
