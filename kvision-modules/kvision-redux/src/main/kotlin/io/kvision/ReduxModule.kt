@@ -23,7 +23,7 @@
 package io.kvision
 
 import io.kvision.utils.obj
-import kotlinext.js.Object
+import kotlinx.js.Object
 import kotlinext.js.assign
 import kotlinx.browser.window
 import redux.Action
