@@ -22,10 +22,10 @@
  */
 package io.kvision.maps
 
-import io.kvision.maps.externals.leaflet.map.LeafletMap
 import io.kvision.MapsModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.maps.externals.leaflet.map.LeafletMap
 import io.kvision.snabbdom.VNode
 import org.w3c.dom.HTMLElement
 
@@ -38,7 +38,7 @@ open class Maps(
 ) : Widget(className) {
 
     /** private backing field - use [configureLeafletMap] or [leafletMap] for accessing */
-    private lateinit var _leafletMap: LeafletMap
+    private var _leafletMap: LeafletMap? = null
 
     /** @see [configureLeafletMap] */
     private var leafletMapConfigurer: LeafletMap.() -> Unit = { }
@@ -62,9 +62,7 @@ open class Maps(
      */
     fun configureLeafletMap(configure: LeafletMap.() -> Unit) {
         leafletMapConfigurer = configure
-        if (this::_leafletMap.isInitialized) {
-            _leafletMap.leafletMapConfigurer()
-        }
+        _leafletMap?.leafletMapConfigurer()
     }
 
     /**
@@ -77,10 +75,10 @@ open class Maps(
      * be added as a component.
      */
     fun <T : Any?> leafletMap(action: LeafletMap.() -> T): T {
-        require(this::_leafletMap.isInitialized) {
+        require(_leafletMap != null) {
             "LeafletMap is not initialised - the KVision Maps widget must be added to the DOM"
         }
-        return _leafletMap.action()
+        return _leafletMap!!.action()
     }
 
     /** Create a native map instance. */
@@ -90,12 +88,13 @@ open class Maps(
         }
 
         _leafletMap = L.map(thisElement)
-        _leafletMap.leafletMapConfigurer()
+        _leafletMap!!.leafletMapConfigurer()
     }
 
     override fun afterDestroy() {
-        if (this::_leafletMap.isInitialized) {
-            _leafletMap.remove()
+        if (_leafletMap != null) {
+            _leafletMap!!.remove()
+            _leafletMap = null
         }
     }
 
