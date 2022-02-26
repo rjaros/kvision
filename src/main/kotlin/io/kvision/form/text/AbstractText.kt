@@ -55,7 +55,7 @@ abstract class AbstractText(
     override var value
         get() = input.value
         set(value) {
-            input.value = value
+            input.value = value?.ifEmpty { null }
         }
 
     /**

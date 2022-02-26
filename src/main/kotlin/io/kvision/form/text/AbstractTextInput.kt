@@ -57,7 +57,13 @@ abstract class AbstractTextInput(
     /**
      * Text input value.
      */
-    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value: String? by refreshOnUpdate(value?.ifEmpty { null }) {
+        if (it == "") {
+            this.value = null
+        } else {
+            refreshState(); observers.forEach { ob -> ob(it) }
+        }
+    }
 
     /**
      * The value attribute of the generated HTML input element.
