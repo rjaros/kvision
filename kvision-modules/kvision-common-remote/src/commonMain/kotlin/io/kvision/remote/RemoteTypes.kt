@@ -66,7 +66,7 @@ data class SimpleRemoteOption(
 
 @Serializable
 @Suppress("ConstructorParameterNaming")
-data class RemoteData<T>(val data: List<T> = listOf(), val last_page: Int = 0)
+data class RemoteData<T>(val data: List<T> = listOf(), val last_page: Int = 0, val last_row: Int? = null)
 
 @Serializable
 data class RemoteFilter(val field: String, val type: String, val value: String?)

@@ -282,6 +282,24 @@ enum class RenderType(internal val type: String) {
 }
 
 /**
+ * Import formats.
+ */
+enum class ImportFormat(internal val type: String) {
+    JSON("json"),
+    CSV("csv")
+}
+
+/**
+ * Import readers.
+ */
+enum class ImportReader(internal val type: String) {
+    TEXT("text"),
+    BUFFER("buffer"),
+    BINARY("binary"),
+    URL("url")
+}
+
+/**
  * Download config options.
  */
 data class DownloadConfig(
@@ -420,6 +438,7 @@ data class ColumnDefinition<T : Any>(
     val mutatorClipboardParams: dynamic = null,
     val mutator: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorParams: dynamic = null,
+    val maxInitialWidth: Int? = null,
 )
 
 internal object EditorRoot {
@@ -623,6 +642,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (mutatorClipboardParams != null) this.mutatorClipboardParams = mutatorClipboardParams
         if (mutator != null) this.mutator = mutator
         if (mutatorParams != null) this.mutatorParams = mutatorParams
+        if (maxInitialWidth != null) this.maxInitialWidth = maxInitialWidth
     } as Tabulator.ColumnDefinition
 }
 
@@ -742,7 +762,13 @@ data class TabulatorOptions<T : Any>(
     val renderHorizontal: RenderType? = null,
     val columnDefaults: ColumnDefinition<T>? = null,
     val sortMode: SortMode? = null,
-    val filterMode: FilterMode? = null
+    val filterMode: FilterMode? = null,
+    val importFormat: ImportFormat? = null,
+    val importReader: ImportReader? = null,
+    val dataLoaderErrorTimeout: Int? = null,
+    val menuContainer: dynamic = null,
+    val paginationCounter: dynamic = null,
+    val paginationCounterElement: dynamic = null,
 )
 
 /**
@@ -875,5 +901,11 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (renderVerticalBuffer != null) this.renderVerticalBuffer = renderVerticalBuffer
         if (renderHorizontal != null) this.renderHorizontal = renderHorizontal.type
         if (columnDefaults != null) this.columnDefaults = columnDefaults.toJs(tabulator, i18nTranslator, kClass)
+        if (importFormat != null) this.importFormat = importFormat.type
+        if (importReader != null) this.importReader = importReader.type
+        if (dataLoaderErrorTimeout != null) this.dataLoaderErrorTimeout = dataLoaderErrorTimeout
+        if (menuContainer != null) this.menuContainer = menuContainer
+        if (paginationCounter != null) this.paginationCounter = paginationCounter
+        if (paginationCounterElement != null) this.paginationCounterElement = paginationCounterElement
     } as Tabulator.Options
 }

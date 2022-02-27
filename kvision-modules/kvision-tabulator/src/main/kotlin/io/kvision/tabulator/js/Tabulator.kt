@@ -184,7 +184,7 @@ open external class Tabulator {
         definedExternally
 
     open fun destroy(): Unit = definedExternally
-    open fun setDataFromLocalFile(extensions: String): Unit = definedExternally
+    open fun import(importer: dynamic, extensions: String): Unit = definedExternally
     open fun setData(data: Any?, params: Any?, config: Any?): Promise<Unit> = definedExternally
     open fun clearData(): Unit = definedExternally
     open fun getData(activeOnly: String? /* 'active' | 'visible' */): Array<Any> = definedExternally
@@ -2353,6 +2353,7 @@ open external class Tabulator {
         var addTreeChild: (rowData: Any, position: Boolean, existingRow: RowComponent) -> Unit
         var validate: () -> dynamic
         var isFrozen: () -> Boolean
+        var isTreeExpanded: () -> Boolean
     }
 
     interface GroupComponent {

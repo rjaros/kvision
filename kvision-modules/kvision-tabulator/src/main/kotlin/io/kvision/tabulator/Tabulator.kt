@@ -157,6 +157,12 @@ open class Tabulator<T : Any>(
                         next = ">"
                         next_title = ">"
                         all = "*"
+                        counter = obj {
+                            showing = ""
+                            of = "/"
+                            rows = ""
+                            pages = ""
+                        }
                     }
                     headerFilters = obj {
                         default = "..."
