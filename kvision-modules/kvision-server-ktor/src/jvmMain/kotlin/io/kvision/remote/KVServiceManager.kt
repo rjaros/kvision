@@ -31,6 +31,7 @@ import io.ktor.websocket.*
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -78,12 +79,16 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     )
                 )
             } catch (e: Exception) {
-                if (e !is ServiceException) LOG.error(e.message, e)
+                if (e !is ServiceException && e !is AbstractServiceException) LOG.error(e.message, e)
+                val exceptionJson = if (e is AbstractServiceException) {
+                    RemoteSerialization.getJson().encodeToString(e)
+                } else null
                 call.respond(
                     JsonRpcResponse(
                         id = jsonRpcRequest.id,
                         error = e.message ?: "Error",
-                        exceptionType = e.javaClass.canonicalName
+                        exceptionType = e.javaClass.canonicalName,
+                        exceptionJson = exceptionJson
                     )
                 )
             }

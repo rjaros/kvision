@@ -38,6 +38,7 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -81,10 +82,14 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             } catch (e: IllegalParameterCountException) {
                 JsonRpcResponse(id = jsonRpcRequest.id, error = "Invalid parameters")
             } catch (e: Exception) {
-                if (e !is ServiceException) LOG.error(e.message, e)
+                if (e !is ServiceException && e !is AbstractServiceException) LOG.error(e.message, e)
+                val exceptionJson = if (e is AbstractServiceException) {
+                    RemoteSerialization.getJson().encodeToString(e)
+                } else null
                 JsonRpcResponse(
                     id = jsonRpcRequest.id, error = e.message ?: "Error",
-                    exceptionType = e.javaClass.canonicalName
+                    exceptionType = e.javaClass.canonicalName,
+                    exceptionJson = exceptionJson
                 )
             }
         }

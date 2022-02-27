@@ -41,6 +41,9 @@ enum class HttpMethod {
     }
 }
 
+@Serializable
+abstract class AbstractServiceException: Exception("AbstractServiceException")
+
 class ServiceException(message: String) : Exception(message)
 
 @Serializable

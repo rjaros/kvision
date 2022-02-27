@@ -22,6 +22,7 @@
 package io.kvision.remote
 
 import kotlinx.browser.window
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import org.w3c.dom.url.URLSearchParams
@@ -92,6 +93,8 @@ open class CallAgent {
                             data.error != null -> {
                                 if (data.exceptionType == "io.kvision.remote.ServiceException") {
                                     reject(ServiceException(data.error.toString()))
+                                } else if (data.exceptionJson != null) {
+                                    reject(RemoteSerialization.getJson().decodeFromString<AbstractServiceException>(data.exceptionJson))
                                 } else {
                                     reject(Exception(data.error.toString()))
                                 }
