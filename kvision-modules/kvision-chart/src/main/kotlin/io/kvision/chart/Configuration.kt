@@ -1027,6 +1027,7 @@ data class ChartOptions(
     val transitions: dynamic = null,
     val layout: LayoutOptions? = null,
     val elements: ElementsOptions? = null,
+    val elementsDynamic: dynamic = null,
     val scales: Map<String, ChartScales>? = null,
     val scalesDynamic: dynamic = null,
     val showLine: Boolean? = null,
@@ -1035,7 +1036,8 @@ data class ChartOptions(
     val circumference: Double? = null,
     val rotation: Double? = null,
     val plugins: PluginsOptions? = null,
-    val pluginsDynamic: dynamic = null
+    val pluginsDynamic: dynamic = null,
+    val datasets: dynamic = null
 )
 
 /**
@@ -1043,6 +1045,15 @@ data class ChartOptions(
  */
 @Suppress("ComplexMethod")
 fun ChartOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
+    val elementsTmp = if (elementsDynamic != null) {
+        if (elements == null) {
+            elementsDynamic
+        } else {
+            js("Object").assign(elementsDynamic, elements.toJs())
+        }
+    } else {
+        elements?.toJs()
+    }
     val scalesTmp = if (scalesDynamic != null) {
         if (scales == null) {
             scalesDynamic
@@ -1087,18 +1098,15 @@ fun ChartOptions.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (animations != null) this.animations = animations
         if (transitions != null) this.transitions = transitions
         if (layout != null) this.layout = layout.toJs()
-        if (elements != null) this.elements = elements.toJs()
-        if (scalesTmp != null) {
-            this.scales = scalesTmp
-        }
+        if (elementsTmp != null) this.elements = elementsTmp
+        if (scalesTmp != null) this.scales = scalesTmp
         if (showLine != null) this.showLine = showLine
         if (spanGaps != null) this.spanGaps = spanGaps
         if (cutoutPercentage != null) this.cutoutPercentage = cutoutPercentage
         if (circumference != null) this.circumference = circumference
         if (rotation != null) this.rotation = rotation
-        if (pluginsTmp != null) {
-            this.plugins = pluginsTmp
-        }
+        if (pluginsTmp != null) this.plugins = pluginsTmp
+        if (datasets != null) this.datasets = datasets
     }
 }
 
@@ -1117,7 +1125,7 @@ data class DataSets(
     val borderSkipped: List<Position>? = null,
     val clip: dynamic = null,
     val data: List<dynamic>? = null,
-    val fill: Boolean? = null,
+    val fill: dynamic = null,
     val hoverBackgroundColor: List<Color>? = null,
     val hoverBorderColor: List<Color>? = null,
     val hoverBorderWidth: List<Int>? = null,
@@ -1165,8 +1173,10 @@ data class DataSets(
     val weight: Number? = null,
     val hitRadius: List<Number>? = null,
     val hoverRadius: List<Number>? = null,
-    val radius: List<Number>? = null,
-    val borderAlign: BorderAlign? = null
+    val radius: List<dynamic>? = null,
+    val borderAlign: BorderAlign? = null,
+    val cutout: dynamic = null,
+    val animation: dynamic = null
 )
 
 /**
@@ -1245,6 +1255,8 @@ fun DataSets.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (hoverRadius != null) this.hoverRadius = hoverRadius
         if (radius != null) this.radius = radius.toTypedArray().checkSingleValue()
         if (borderAlign != null) this.borderAlign = borderAlign
+        if (cutout != null) this.cutout = cutout
+        if (animation != null) this.animation = animation
     }
 }
 
@@ -1256,6 +1268,7 @@ data class Configuration(
     val dataSets: List<DataSets>,
     val labels: List<String>? = null,
     val options: ChartOptions? = null,
+    val optionsDynamic: dynamic = null,
     val plugins: List<dynamic>? = null
 )
 
@@ -1264,6 +1277,15 @@ data class Configuration(
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
 fun Configuration.toJs(i18nTranslator: (String) -> (String)): ChartConfiguration {
+    val optionsTmp = if (optionsDynamic != null) {
+        if (options == null) {
+            optionsDynamic
+        } else {
+            js("Object").assign(optionsDynamic, options.toJs(i18nTranslator))
+        }
+    } else {
+        options?.toJs(i18nTranslator)
+    }
     return obj {
         this.type = type.type
         this.data = obj {
@@ -1273,7 +1295,7 @@ fun Configuration.toJs(i18nTranslator: (String) -> (String)): ChartConfiguration
                 it.toJs(i18nTranslator)
             }.toTypedArray()
         }
-        if (options != null) this.options = options.toJs(i18nTranslator)
+        if (optionsTmp != null) this.options = optionsTmp
         if (plugins != null) this.plugins = plugins.toTypedArray()
     } as ChartConfiguration
 }
