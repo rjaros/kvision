@@ -16,8 +16,8 @@ dependencies {
     api(rootProject)
     api("org.jetbrains.kotlin-wrappers:kotlin-react:$kotlinReactVersion")
     api("org.jetbrains.kotlin-wrappers:kotlin-react-dom:$kotlinReactVersion")
-    implementation(npm("react", "^17.0.2"))
-    implementation(npm("react-dom", "^17.0.2"))
+    implementation(npm("react", "^18.0.0"))
+    implementation(npm("react-dom", "^18.0.0"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }
