@@ -101,7 +101,8 @@ enum class Position(internal val position: String) {
     LEFT("left"),
     RIGHT("right"),
     BOTTOM("bottom"),
-    CENTER("center")
+    CENTER("center"),
+    CHARTAREA("chartArea")
 }
 
 /**
