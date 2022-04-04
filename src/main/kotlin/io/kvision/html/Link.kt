@@ -114,7 +114,7 @@ open class Link(
         }
         dataNavigo?.let {
             attributeSetBuilder.add("data-navigo", if (it) "data-navigo" else "false")
-        } ?: if (useDataNavigoForLinks) attributeSetBuilder.add("data-navigo")
+        } ?: run { if (useDataNavigoForLinks) attributeSetBuilder.add("data-navigo") }
     }
 
     /**

@@ -52,11 +52,11 @@ import java.util.function.Function
  * Empty implementation of the ServerRequest interface
  */
 internal class KVServerRequest : ServerRequest {
-    override fun <T : Any?> body(extractor: BodyExtractor<T, in ServerHttpRequest>): T {
+    override fun <T : Any> body(extractor: BodyExtractor<T, in ServerHttpRequest>): T {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun <T : Any?> body(extractor: BodyExtractor<T, in ServerHttpRequest>, hints: MutableMap<String, Any>): T {
+    override fun <T : Any> body(extractor: BodyExtractor<T, in ServerHttpRequest>, hints: MutableMap<String, Any>): T {
         throw IllegalStateException("Empty implementation")
     }
 
