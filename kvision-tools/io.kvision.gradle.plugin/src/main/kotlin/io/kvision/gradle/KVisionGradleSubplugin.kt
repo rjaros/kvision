@@ -123,16 +123,18 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                             dependsOn("compileKotlinFrontend")
                             convertPOtoJSON(this@afterEvaluate, rootProject)
                         }
-                        getByName("compileKotlinBackend") {
-                            dependsOn("compileKotlinMetadata")
+                        if (project.findProperty("io.kvision.plugin.enableBackendTasks") != "false") {
+                            getByName("compileKotlinBackend") {
+                                dependsOn("compileCommonMainKotlinMetadata")
+                            }
                         }
                         getByName("compileKotlinFrontend") {
-                            dependsOn("compileKotlinMetadata")
+                            dependsOn("compileCommonMainKotlinMetadata")
                         }
                         create("generateKVisionSources") {
                             group = "KVision"
                             description = "Generates KVision sources for fullstack interfaces"
-                            dependsOn("compileKotlinMetadata")
+                            dependsOn("compileCommonMainKotlinMetadata")
                         }
                     }
                 }
