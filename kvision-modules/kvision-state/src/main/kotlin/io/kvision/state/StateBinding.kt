@@ -406,7 +406,7 @@ fun <S, T : GenericFormComponent<S>> T.bindTo(state: MutableState<S>): T {
  */
 fun <T : GenericFormComponent<String?>> T.bindTo(state: MutableState<String>): T {
     bindSync(state, false) {
-        if (value != it) value = it
+        if (value != it && !(value == null && it == "")) value = it
     }
     addBeforeDisposeHook(subscribe {
         state.setState(it ?: "")
