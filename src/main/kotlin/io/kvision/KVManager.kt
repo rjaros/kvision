@@ -65,13 +65,17 @@ object KVManager {
         return sdPatch(oldVNode, newVNode)
     }
 
+    private val virtualizeCache = mutableMapOf<String, VNode>()
+
     /**
      * @suppress
      * Internal function.
      */
     @Suppress("UnsafeCastFromDynamic")
     fun virtualize(html: String): VNode {
-        return sdVirtualize(html)
+        return virtualizeCache.getOrPut(html) {
+            sdVirtualize(html)
+        }
     }
 
     internal var panelsCompatibilityMode = false

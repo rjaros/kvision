@@ -48,6 +48,10 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
     )
 
     override fun apply(target: Project) = with(target) {
+        target.rootProject.extensions.extraProperties.set(
+            "nodeJsBinaryExecutable",
+            getNodeJsBinaryExecutable(rootProject)
+        )
         plugins.withId("org.jetbrains.kotlin.js") {
             afterEvaluate {
                 if (project.findProperty("io.kvision.plugin.enableGradleTasks") != "false") {
@@ -135,6 +139,27 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                             group = "KVision"
                             description = "Generates KVision sources for fullstack interfaces"
                             dependsOn("compileCommonMainKotlinMetadata")
+                        }
+                        if (project.findProperty("io.kvision.plugin.enableWorkerTasks") == "true") {
+                            create("workerBundle") {
+                                group = "KVision"
+                                description = "Builds and copies webworker bundle to the frontend static resources"
+                                dependsOn("workerBrowserProductionWebpack")
+                                inputs.dir("$projectDir/src/workerMain/kotlin")
+                                outputs.files("$buildDir/processedResources/frontend/main/worker.js")
+                                doLast {
+                                    exec {
+                                        executable = getNodeJsBinaryExecutable(rootProject)
+                                        workingDir =
+                                            file("${rootProject.buildDir}/js/packages/${rootProject.name}-worker")
+                                        args(
+                                            "${rootProject.buildDir}/js/node_modules/webpack/bin/webpack.js",
+                                            "--config",
+                                            "${rootProject.buildDir}/js/packages/${rootProject.name}-worker/webpack.config.js"
+                                        )
+                                    }
+                                }
+                            }
                         }
                     }
                 }

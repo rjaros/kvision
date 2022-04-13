@@ -35,7 +35,12 @@ open class ObservableValue<T>(value: T) : MutableState<T> {
      * The observed variable.
      */
     var value: T by Delegates.observable(value) { _, _, new ->
-        observers.forEach { it(new) }
+        val copy = observers.map { it }
+        copy.forEach {
+            if (observers.contains(it)) {
+                it(new)
+            }
+        }
     }
 
     override fun getState(): T {
