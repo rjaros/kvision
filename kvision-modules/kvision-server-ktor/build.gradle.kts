@@ -24,7 +24,6 @@ kotlin {
                 api(project(":kvision-modules:kvision-common-annotations"))
                 api(project(":kvision-modules:kvision-common-types"))
                 api(project(":kvision-modules:kvision-common-remote"))
-                api(project(":kvision-modules:kvision-common-remote"))
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
             }
@@ -37,9 +36,12 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:$serializationVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$coroutinesVersion")
                 api("io.ktor:ktor-server-core:$ktorVersion")
-                api("io.ktor:ktor-serialization:$ktorVersion")
-                api("io.ktor:ktor-websockets:$ktorVersion")
+                api("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+                api("io.ktor:ktor-server-websockets:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 api("com.google.inject:guice:$guiceVersion")
                 api("ch.qos.logback:logback-classic:$logbackVersion")
             }

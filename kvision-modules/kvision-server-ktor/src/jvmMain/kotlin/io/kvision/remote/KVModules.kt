@@ -25,12 +25,12 @@ import com.google.inject.AbstractModule
 import com.google.inject.Guice
 import com.google.inject.Injector
 import com.google.inject.Module
-import io.ktor.application.*
-import io.ktor.features.*
-import io.ktor.http.cio.websocket.*
-import io.ktor.http.content.*
-import io.ktor.routing.*
-import io.ktor.serialization.*
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.server.application.*
+import io.ktor.server.http.content.*
+import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.routing.*
+import io.ktor.server.websocket.*
 import io.ktor.util.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -74,7 +74,7 @@ fun Application.kvisionInit(initStaticResources: Boolean, json: Json, vararg mod
     @Suppress("SpreadOperator")
     val injector = Guice.createInjector(MainModule(this), *modules)
 
-    intercept(ApplicationCallPipeline.Features) {
+    intercept(ApplicationCallPipeline.Plugins) {
         call.attributes.put(injectorKey, injector.createChildInjector(CallModule(call)))
     }
     return injector
@@ -137,7 +137,6 @@ class DummyWebSocketServerSession : WebSocketServerSession {
     override val coroutineContext: CoroutineContext
         get() = throw UnsupportedOperationException()
 
-    @ExperimentalWebSocketExtensionApi
     override val extensions: List<WebSocketExtension<*>>
         get() = throw UnsupportedOperationException()
     override val incoming: ReceiveChannel<Frame>
@@ -159,6 +158,7 @@ class DummyWebSocketServerSession : WebSocketServerSession {
         throw UnsupportedOperationException()
     }
 
+    @Deprecated("Use cancel() instead.", replaceWith = ReplaceWith("cancel()", "kotlinx.coroutines.cancel"))
     override fun terminate() {
         throw UnsupportedOperationException()
     }
