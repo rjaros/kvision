@@ -66,19 +66,6 @@ open class BackButton(
         }
     }
 
-    override fun afterInsert(node: VNode) {
-        getElement()?.asDynamic()?.onClick = {
-            var component: Component? = this
-            while (component != null) {
-                component = component.parent
-                if (component is Navigator) {
-                    component.popPage()
-                    break
-                }
-            }
-        }
-    }
-
     /**
      * A convenient helper for easy setting onClick event handler.
      */

@@ -26,7 +26,7 @@ package io.kvision
  */
 object OnsenUIModule : ModuleInitializer {
 
-    internal val ons = require("onsenui")
+    internal val ons = require("onsenui/js/onsenui.js")
 
     override fun initialize() {
         require("onsenui/css/ionicons/css/ionicons.min.css")

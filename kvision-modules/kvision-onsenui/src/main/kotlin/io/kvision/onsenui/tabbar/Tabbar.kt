@@ -150,6 +150,20 @@ open class Tabbar(
     }
 
     @Suppress("UnsafeCastFromDynamic")
+    override fun afterCreate(node: VNode) {
+        val element = getElementD()
+        element.__CE_definition.disconnectedCallback = {
+            if (element._swiper && element._swiper.initialized) {
+                element._swiper.dispose()
+                element._swiper = null
+                element._tabbarBorder = null
+                element._tabsRect = emptyArray<dynamic>()
+            }
+            element._disconnectOnSwipe()
+        }
+    }
+
+    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback

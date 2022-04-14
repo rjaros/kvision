@@ -114,7 +114,7 @@ open class Tab(
         }
     }
 
-    override fun afterInsert(node: VNode) {
+    override fun afterCreate(node: VNode) {
         node.elm.asDynamic().pageLoader = (ons.PageLoader as Any).createInstance<Any>({ _: dynamic, done: dynamic ->
             if (content != null && content?.parent == null) this.parent?.add(content!!)
             if (content?.getElement() != null) {
