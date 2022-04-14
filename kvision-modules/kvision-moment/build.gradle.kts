@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("moment", "^2.29.1"))
+    implementation(npm("moment", "^2.29.2"))
     testImplementation(kotlin("test-js"))
 }
 

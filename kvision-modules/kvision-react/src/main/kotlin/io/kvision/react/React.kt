@@ -31,7 +31,8 @@ import org.w3c.dom.HTMLElement
 import react.ChildrenBuilder
 import react.StateSetter
 import react.createElement
-import react.dom.render as ReactRender
+import react.dom.client.Root
+import react.dom.client.createRoot
 
 /**
  * React component for KVision with support for state holder.
@@ -46,6 +47,7 @@ class React<S>(
 ) : Widget(className), ObservableState<S> {
 
     private val observers = mutableListOf<(S) -> Unit>()
+    private var root: Root? = null
 
     var state = state
         set(value) {
@@ -74,14 +76,13 @@ class React<S>(
                 refresh(state)
             }
         }
-        ReactRender(createElement(element), container = node.elm as HTMLElement)
-
+        root = createRoot(node.elm as HTMLElement).also {
+            it.render(createElement(element))
+        }
     }
 
     override fun afterDestroy() {
-        vnode?.elm?.let {
-            ReactModule.reactDom.unmountComponentAtNode(it)
-        }
+        root?.unmount()
     }
 
     override fun getState(): S = state

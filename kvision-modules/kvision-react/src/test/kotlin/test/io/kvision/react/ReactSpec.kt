@@ -26,15 +26,19 @@ import io.kvision.panel.Root
 import io.kvision.react.react
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
+import org.w3c.dom.HTMLInputElement
+import react.RefCallback
 import react.dom.html.ReactHTML.input
+import react.useRefCallback
 import kotlin.test.Test
 
 class ReactSpec : DomSpec {
 
     @Test
     fun react() {
-        run {
+        runAsync { resolve, _ ->
             val root = Root("test", containerType = ContainerType.FIXED)
+            var callback: RefCallback<HTMLInputElement>? = null
             val react = root.react("initial") { getState, changeState ->
                 input {
                     value = getState()
@@ -44,20 +48,24 @@ class ReactSpec : DomSpec {
                             target.value
                         }
                     }
+                    ref = callback
                 }
             }
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                "<div><input value=\"initial\"></div>",
-                element?.innerHTML,
-                "Should render React input component"
-            )
-            react.state = "changed"
-            assertEqualsHtml(
-                "<div><input value=\"changed\"></div>",
-                element?.innerHTML,
-                "Should render React input component with changed state"
-            )
+            callback = useRefCallback {
+                val element = document.getElementById("test")
+                assertEqualsHtml(
+                    "<div><input value=\"initial\"></div>",
+                    element?.innerHTML,
+                    "Should render React input component"
+                )
+                react.state = "changed"
+                assertEqualsHtml(
+                    "<div><input value=\"changed\"></div>",
+                    element?.innerHTML,
+                    "Should render React input component with changed state"
+                )
+                resolve()
+            }
         }
     }
 }
