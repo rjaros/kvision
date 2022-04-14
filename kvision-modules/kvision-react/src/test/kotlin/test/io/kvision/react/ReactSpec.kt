@@ -29,7 +29,6 @@ import kotlinx.browser.document
 import org.w3c.dom.HTMLInputElement
 import react.RefCallback
 import react.dom.html.ReactHTML.input
-import react.useRefCallback
 import kotlin.test.Test
 
 class ReactSpec : DomSpec {
@@ -51,7 +50,7 @@ class ReactSpec : DomSpec {
                     ref = callback
                 }
             }
-            callback = useRefCallback {
+            callback = RefCallback {
                 val element = document.getElementById("test")
                 assertEqualsHtml(
                     "<div><input value=\"initial\"></div>",
