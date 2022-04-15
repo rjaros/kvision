@@ -58,6 +58,7 @@ external interface BtOn : On {
     var dragSplitPanel: ((KvEvent) -> Unit)?
     var dragEndSplitPanel: ((KvEvent) -> Unit)?
     var updateModel: ((KvEvent) -> Unit)?
+    var resizeStartWindow: ((KvEvent) -> Unit)?
     var resizeWindow: ((KvEvent) -> Unit)?
     var closeWindow: ((KvEvent) -> Unit)?
     var maximizeWindow: ((KvEvent) -> Unit)?

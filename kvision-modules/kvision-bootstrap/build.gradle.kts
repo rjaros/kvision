@@ -15,7 +15,6 @@ dependencies {
     implementation(npm("@popperjs/core", "^2.11.4"))
     implementation(npm("bootstrap", "^5.1.3"))
     implementation(npm("awesome-bootstrap-checkbox", "^1.0.1"))
-    implementation(npm("element-resize-event", "^3.0.6"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
     testImplementation(project(":kvision-modules:kvision-jquery"))

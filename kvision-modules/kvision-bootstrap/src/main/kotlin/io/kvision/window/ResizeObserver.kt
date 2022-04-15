@@ -20,25 +20,33 @@
  * SOFTWARE.
  */
 
-package io.kvision
+package io.kvision.window
 
-import io.kvision.core.Bootstrap
-import kotlinx.browser.document
+import org.w3c.dom.Element
 
 /**
- * Initializer for Bootstrap module.
+ * Resize observer box size.
  */
-object BootstrapModule : ModuleInitializer {
+external class BoxSize {
+    val blockSize: Number
+    val inlineSize: Number
+}
 
-    internal val bootstrap: Bootstrap
+/**
+ * Resize observer entry.
+ */
+external class ResizeObserverEntry {
+    val target: Element
+    val borderBoxSize: Array<BoxSize>
+    val contentBoxSize: Array<BoxSize>
+    val devicePixelContentBoxSize: Array<BoxSize>
+}
 
-    init {
-        document.body?.setAttribute("data-bs-no-jquery", "true")
-        @Suppress("UnsafeCastFromDynamic")
-        bootstrap = require("bootstrap")
-    }
-
-    override fun initialize() {
-        require("awesome-bootstrap-checkbox")
-    }
+/**
+ * Native JavaScript resize observer.
+ */
+external class ResizeObserver(callback: (Array<ResizeObserverEntry>, ResizeObserver) -> Unit) {
+    fun observe(target: Element, options: dynamic = definedExternally)
+    fun unobserve(target: Element)
+    fun disconnect()
 }

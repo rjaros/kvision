@@ -21,8 +21,6 @@
  */
 package io.kvision.window
 
-import io.kvision.snabbdom.VNode
-import io.kvision.BootstrapModule
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssSize
@@ -35,14 +33,12 @@ import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.modal.CloseIcon
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import io.kvision.utils.height
 import io.kvision.utils.obj
-import io.kvision.utils.offsetHeight
 import io.kvision.utils.offsetLeft
 import io.kvision.utils.offsetTop
-import io.kvision.utils.offsetWidth
 import io.kvision.utils.px
-import io.kvision.utils.width
 import org.w3c.dom.Element
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
@@ -96,9 +92,9 @@ open class Window(
      * Window content width.
      */
     var contentWidth
-        get() = width
+        get() = content.width
         set(value) {
-            width = value
+            content.width = value
         }
 
     /**
@@ -179,6 +175,7 @@ open class Window(
      */
     protected val content = SimplePanel().apply {
         this.height = contentHeight
+        this.width = contentWidth
         this.overflow = Overflow.AUTO
     }
 
@@ -304,21 +301,25 @@ open class Window(
 
     private fun checkIsDraggable() {
         var isDrag: Boolean
+        var dragStartDispatched = false
         if (isDraggable) {
             header.setEventListener<SimplePanel> {
                 mousedown = { e ->
                     if (e.button.toInt() == 0) {
                         isDrag = true
-                        @Suppress("UnsafeCastFromDynamic")
-                        this@Window.dispatchEvent("dragStartWindow", obj {
-                            detail = e
-                        })
                         val dragStartX = this@Window.getElement()?.offsetLeft() ?: 0
                         val dragStartY = this@Window.getElement()?.offsetTop() ?: 0
                         val dragMouseX = e.pageX
                         val dragMouseY = e.pageY
                         val moveCallback = { me: Event ->
                             if (isDrag) {
+                                if (!dragStartDispatched) {
+                                    @Suppress("UnsafeCastFromDynamic")
+                                    this@Window.dispatchEvent("dragStartWindow", obj {
+                                        detail = me
+                                    })
+                                    dragStartDispatched = true
+                                }
                                 this@Window.left = (dragStartX + (me as MouseEvent).pageX - dragMouseX).toInt().px
                                 this@Window.top = (dragStartY + (me).pageY - dragMouseY).toInt().px
                             }
@@ -327,10 +328,13 @@ open class Window(
                         var upCallback: ((Event) -> Unit)? = null
                         upCallback = {
                             isDrag = false
-                            @Suppress("UnsafeCastFromDynamic")
-                            this@Window.dispatchEvent("dragEndWindow", obj {
-                                detail = e
-                            })
+                            if (dragStartDispatched) {
+                                @Suppress("UnsafeCastFromDynamic")
+                                this@Window.dispatchEvent("dragEndWindow", obj {
+                                    detail = e
+                                })
+                                dragStartDispatched = false
+                            }
                             kotlinx.browser.window.removeEventListener("mousemove", moveCallback)
                             kotlinx.browser.window.removeEventListener("mouseup", upCallback)
                         }
@@ -346,15 +350,16 @@ open class Window(
 
     private fun checkIsResizable() {
         checkResizablEventHandler()
+        val headerHeight = if (header.visible) WINDOW_HEADER_HEIGHT else 0
         if (isResizable) {
             resize = Resize.BOTH
             val intHeight = getElement()?.height() ?: 0
-            content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
+            content.height = (intHeight - headerHeight - WINDOW_CONTENT_MARGIN_BOTTOM).px
             content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
         } else {
             resize = Resize.NONE
             val intHeight = getElement()?.height() ?: 0
-            content.height = (intHeight - WINDOW_HEADER_HEIGHT).px
+            content.height = (intHeight - headerHeight).px
             content.marginBottom = 0.px
         }
     }
@@ -362,30 +367,57 @@ open class Window(
     @Suppress("UnsafeCastFromDynamic")
     private fun checkResizablEventHandler() {
         if (isResizable) {
-            if (!isResizeEvent) {
-                isResizeEvent = true
-                BootstrapModule.setResizeEvent(this) {
-                    val eid = getElement()?.unsafeCast<Element>()?.getAttribute("id")
-                    if (isResizable && eid == id) {
-                        val outerWidth = getElement()?.offsetWidth() ?: 0
-                        val outerHeight = getElement()?.offsetHeight() ?: 0
-                        val intWidth = getElement()?.width() ?: 0
-                        val intHeight = getElement()?.height() ?: 0
-                        content.width = (intWidth - 8).px
-                        content.height = (intHeight - WINDOW_HEADER_HEIGHT - WINDOW_CONTENT_MARGIN_BOTTOM).px
-                        width = outerWidth.px
-                        height = outerHeight.px
-                        this.dispatchEvent("resizeWindow", obj {
-                            detail = obj {
-                                this.width = outerWidth
-                                this.height = outerHeight
+            var resizeStartDispatched = false
+            var initialResizeEntry = true
+            var resizeTimeoutId: Int? = null
+            getElement()?.unsafeCast<Element>()?.let {
+                if (!isResizeEvent) {
+                    isResizeEvent = true
+                    resizeObserver.observe(it)
+                    resizeCallbacks[it] = { entry ->
+                        val borderSize = entry.borderBoxSize[0]
+                        val contentSize = entry.contentBoxSize[0]
+                        width = borderSize.inlineSize.toInt().px
+                        height = borderSize.blockSize.toInt().px
+                        val headerHeight = if (header.visible) WINDOW_HEADER_HEIGHT else 0
+                        contentWidth = contentSize.inlineSize.toInt().px
+                        contentHeight =
+                            (contentSize.blockSize.toInt() - headerHeight - WINDOW_CONTENT_MARGIN_BOTTOM).px
+                        if (initialResizeEntry) {
+                            initialResizeEntry = false
+                        } else {
+                            if (!resizeStartDispatched) {
+                                this.dispatchEvent("resizeStartWindow", obj {
+                                    detail = obj {
+                                        this.width = borderSize.inlineSize
+                                        this.height = borderSize.blockSize
+                                        this.resizeObserverEntry = entry
+                                    }
+                                })
+                                resizeStartDispatched = true
                             }
-                        })
+                            resizeTimeoutId?.let {
+                                kotlinx.browser.window.clearTimeout(it)
+                            }
+                            resizeTimeoutId = kotlinx.browser.window.setTimeout({
+                                this.dispatchEvent("resizeWindow", obj {
+                                    detail = obj {
+                                        this.width = borderSize.inlineSize
+                                        this.height = borderSize.blockSize
+                                        this.resizeObserverEntry = entry
+                                    }
+                                })
+                                resizeStartDispatched = false
+                            }, 200)
+                        }
                     }
                 }
             }
         } else if (isResizeEvent) {
-            BootstrapModule.clearResizeEvent(this)
+            getElement()?.unsafeCast<Element>()?.let {
+                resizeCallbacks.remove(it)
+                resizeObserver.unobserve(it)
+            }
             isResizeEvent = false
         }
     }
@@ -435,7 +467,10 @@ open class Window(
 
     override fun afterDestroy() {
         if (isResizeEvent) {
-            BootstrapModule.clearResizeEvent(this)
+            getElement()?.unsafeCast<Element>()?.let {
+                resizeCallbacks.remove(it)
+                resizeObserver.unobserve(it)
+            }
             isResizeEvent = false
         }
     }
@@ -469,6 +504,15 @@ open class Window(
     companion object {
         internal var counter = 0
         internal var zIndexCounter = DEFAULT_Z_INDEX
+
+        internal val resizeCallbacks = mutableMapOf<Element, (ResizeObserverEntry) -> Unit>()
+
+        internal val resizeObserver = ResizeObserver { entries, _ ->
+            entries.forEach {
+                resizeCallbacks[it.target]?.invoke(it)
+            }
+        }
+
     }
 }
 
