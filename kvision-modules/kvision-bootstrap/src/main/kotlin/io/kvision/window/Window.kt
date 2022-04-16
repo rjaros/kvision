@@ -284,6 +284,7 @@ open class Window(
         }
         @Suppress("LeakingThis")
         init?.invoke(this)
+        windows.add(this)
         counter++
     }
 
@@ -483,6 +484,13 @@ open class Window(
     }
 
     /**
+     * Returns true if the window is active (on front).
+     */
+    open fun isActive(): Boolean {
+        return getActiveWindow() == this
+    }
+
+    /**
      * Close the window.
      */
     open fun close() {
@@ -501,9 +509,15 @@ open class Window(
     open fun toggleMinimize() {
     }
 
+    override fun dispose() {
+        windows.remove(this)
+        super.dispose()
+    }
+
     companion object {
         internal var counter = 0
         internal var zIndexCounter = DEFAULT_Z_INDEX
+        internal val windows: MutableList<Window> = mutableListOf()
 
         internal val resizeCallbacks = mutableMapOf<Element, (ResizeObserverEntry) -> Unit>()
 
@@ -513,6 +527,12 @@ open class Window(
             }
         }
 
+        /**
+         * Get active window (a window on front).
+         */
+        fun getActiveWindow(): Window? {
+            return windows.filter { it.visible }.maxByOrNull { it.zIndex ?: 0 }
+        }
     }
 }
 
