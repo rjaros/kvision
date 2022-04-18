@@ -1,238 +1,243 @@
 {
-  "kvision": "5.9.0",
-  "kotlin": "1.6.20",
-  "serialization": "1.3.2",
-  "coroutines": "1.6.1",
-  "template-javalin": {
-  },
-  "template-jooby": {
-    "jooby": "2.13.0"
-  },
-  "template-ktor": {
-    "ktor": "2.0.0"
-  },
-  "template-micronaut": {
-    "micronaut": "3.4.2"
-  },
-  "template-spring-boot": {
-    "spring-boot": "2.6.6"
-  },
-  "template-vertx": {
-    "vertx-plugin": "1.3.0"
-  },
-  "modules": [
-    {
-      "name": "kvision-bootstrap",
-      "description": "Bootstrap based components",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapModule"
+    "kvision": "5.9.0",
+    "kotlin": "1.6.20",
+    "serialization": "1.3.2",
+    "coroutines": "1.6.1",
+    "template-javalin": {
     },
-    {
-      "name": "kvision-bootstrap-css",
-      "description": "Standard Bootstrap CSS styling",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapCssModule"
+    "template-jooby": {
+        "jooby": "2.13.0"
     },
-    {
-      "name": "kvision-bootstrap-select",
-      "description": "Bootstrap based advanced select form component",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapSelectModule"
+    "template-ktor": {
+        "ktor": "2.0.0"
     },
-    {
-      "name": "kvision-bootstrap-select-remote",
-      "description": "Fullstack version of the select form component",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapSelectModule"
+    "template-micronaut": {
+        "micronaut": "3.4.2"
     },
-    {
-      "name": "kvision-bootstrap-datetime",
-      "description": "Bootstrap based date and time picker form components",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapDatetimeModule"
+    "template-spring-boot": {
+        "spring-boot": "2.6.6"
     },
-    {
-      "name": "kvision-bootstrap-spinner",
-      "description": "Bootstrap based spinner form component",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapSpinnerModule"
+    "template-vertx": {
+        "vertx-plugin": "1.3.0"
     },
-    {
-      "name": "kvision-bootstrap-upload",
-      "description": "Bootstrap based upload form component",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapUploadModule"
-    },
-    {
-      "name": "kvision-bootstrap-typeahead",
-      "description": "Bootstrap based typeahead (autocomplete) form component",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapTypeaheadModule"
-    },
-    {
-      "name": "kvision-bootstrap-typeahead-remote",
-      "description": "Fullstack version of the typeahead (autocomplete) form component",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapTypeaheadModule"
-    },
-    {
-      "name": "kvision-bootstrap-dialog",
-      "description": "Bootstrap based Dialog form component",
-      "excludes": [
-        "kvision-onsenui"
-      ]
-    },
-    {
-      "name": "kvision-bootstrap-icons",
-      "description": "Bootstrap Icons support",
-      "excludes": [
-        "kvision-onsenui"
-      ],
-      "initializer": "BootstrapIconsModule"
-    },
-    {
-      "name": "kvision-fontawesome",
-      "description": "Font Awesome support",
-      "initializer": "FontAwesomeModule"
-    },
-    {
-      "name": "kvision-state",
-      "description": "State bindings and observable data structures"
-    },
-    {
-      "name": "kvision-state-flow",
-      "description": "Extensions for Kotlin coroutines Flow, StateFlow and SharedFlow"
-    },
-    {
-      "name": "kvision-rest",
-      "description": "Configurable REST/HTTP client"
-    },
-    {
-      "name": "kvision-jquery",
-      "description": "jQuery bindings, events and animations"
-    },
-    {
-      "name": "kvision-handlebars",
-      "description": "Handlebars.js templates support"
-    },
-    {
-      "name": "kvision-i18n",
-      "description": "Internationalization support"
-    },
-    {
-      "name": "kvision-richtext",
-      "description": "Rich text form component",
-      "initializer": "RichTextModule"
-    },
-    {
-      "name": "kvision-chart",
-      "description": "Chart component",
-      "initializer": "ChartModule"
-    },
-    {
-      "name": "kvision-datacontainer",
-      "description": "DataContainer component"
-    },
-    {
-      "name": "kvision-tabulator",
-      "description": "Tabulator component",
-      "initializer": "TabulatorModule"
-    },
-    {
-      "name": "kvision-tabulator-remote",
-      "description": "Fullstack version of the tabulator component",
-      "initializer": "TabulatorModule"
-    },
-    {
-      "name": "kvision-simple-select-remote",
-      "description": "Fullstack version of the simple select form component"
-    },
-    {
-      "name": "kvision-moment",
-      "description": "Kotlin language bindings for Moment.js library",
-      "initializer": "MomentModule"
-    },
-    {
-      "name": "kvision-pace",
-      "description": "Pace automatic page loader"
-    },
-    {
-      "name": "kvision-redux",
-      "description": "Redux state container",
-      "excludes": [
-        "kvision-redux-kotlin"
-      ]
-    },
-    {
-      "name": "kvision-redux-kotlin",
-      "description": "Redux Kotlin state container",
-      "excludes": [
-        "kvision-redux"
-      ]
-    },
-    {
-      "name": "kvision-maps",
-      "description": "Maps component, based on Leaflet library",
-      "initializer": "MapsModule"
-    },
-    {
-      "name": "kvision-toast",
-      "description": "Toast messages",
-      "initializer": "ToastModule"
-    },
-    {
-      "name": "kvision-print",
-      "description": "Printing support with Print.js library",
-      "initializer": "PrintModule"
-    },
-    {
-      "name": "kvision-routing-navigo",
-      "description": "Routing module based on Navigo 7 library",
-      "excludes": [
-        "kvision-routing-navigo-ng"
-      ]
-    },
-    {
-      "name": "kvision-routing-navigo-ng",
-      "description": "Routing module based on Navigo 8+ library",
-      "excludes": [
-        "kvision-routing-navigo"
-      ]
-    },
-    {
-      "name": "kvision-onsenui",
-      "description": "Onsen UI mobile web components",
-      "excludes": [
-        "kvision-bootstrap",
-        "kvision-bootstrap-css",
-        "kvision-bootstrap-select",
-        "kvision-bootstrap-select-remote",
-        "kvision-bootstrap-datetime",
-        "kvision-bootstrap-spinner",
-        "kvision-bootstrap-upload",
-        "kvision-bootstrap-typeahead",
-        "kvision-bootstrap-typeahead-remote",
-        "kvision-bootstrap-dialog"
-      ],
-      "initializer": "OnsenUIModule"
-    }
-  ]
+    "modules": [
+        {
+            "name": "kvision-bootstrap",
+            "description": "Bootstrap based components",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapModule"
+        },
+        {
+            "name": "kvision-bootstrap-css",
+            "description": "Standard Bootstrap CSS styling",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapCssModule"
+        },
+        {
+            "name": "kvision-bootstrap-select",
+            "description": "Bootstrap based advanced select form component",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapSelectModule"
+        },
+        {
+            "name": "kvision-bootstrap-select-remote",
+            "description": "Fullstack version of the select form component",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapSelectModule"
+        },
+        {
+            "name": "kvision-bootstrap-datetime",
+            "description": "Bootstrap based date and time picker form components",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapDatetimeModule"
+        },
+        {
+            "name": "kvision-bootstrap-spinner",
+            "description": "Bootstrap based spinner form component",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapSpinnerModule"
+        },
+        {
+            "name": "kvision-bootstrap-upload",
+            "description": "Bootstrap based upload form component",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapUploadModule"
+        },
+        {
+            "name": "kvision-bootstrap-typeahead",
+            "description": "Bootstrap based typeahead (autocomplete) form component",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapTypeaheadModule"
+        },
+        {
+            "name": "kvision-bootstrap-typeahead-remote",
+            "description": "Fullstack version of the typeahead (autocomplete) form component",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapTypeaheadModule"
+        },
+        {
+            "name": "kvision-bootstrap-dialog",
+            "description": "Bootstrap based Dialog form component",
+            "excludes": [
+                "kvision-onsenui"
+            ]
+        },
+        {
+            "name": "kvision-bootstrap-icons",
+            "description": "Bootstrap Icons support",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializer": "BootstrapIconsModule"
+        },
+        {
+            "name": "kvision-fontawesome",
+            "description": "Font Awesome support",
+            "initializer": "FontAwesomeModule"
+        },
+        {
+            "name": "kvision-state",
+            "description": "State bindings and observable data structures"
+        },
+        {
+            "name": "kvision-state-flow",
+            "description": "Extensions for Kotlin coroutines Flow, StateFlow and SharedFlow"
+        },
+        {
+            "name": "kvision-rest",
+            "description": "Configurable REST/HTTP client"
+        },
+        {
+            "name": "kvision-jquery",
+            "description": "jQuery bindings, events and animations"
+        },
+        {
+            "name": "kvision-handlebars",
+            "description": "Handlebars.js templates support"
+        },
+        {
+            "name": "kvision-i18n",
+            "description": "Internationalization support"
+        },
+        {
+            "name": "kvision-imask",
+            "description": "Text input mask support with Imask.js library",
+            "initializer": "ImaskModule"
+        },
+        {
+            "name": "kvision-richtext",
+            "description": "Rich text form component",
+            "initializer": "RichTextModule"
+        },
+        {
+            "name": "kvision-chart",
+            "description": "Chart component",
+            "initializer": "ChartModule"
+        },
+        {
+            "name": "kvision-datacontainer",
+            "description": "DataContainer component"
+        },
+        {
+            "name": "kvision-tabulator",
+            "description": "Tabulator component",
+            "initializer": "TabulatorModule"
+        },
+        {
+            "name": "kvision-tabulator-remote",
+            "description": "Fullstack version of the tabulator component",
+            "initializer": "TabulatorModule"
+        },
+        {
+            "name": "kvision-simple-select-remote",
+            "description": "Fullstack version of the simple select form component"
+        },
+        {
+            "name": "kvision-moment",
+            "description": "Kotlin language bindings for Moment.js library",
+            "initializer": "MomentModule"
+        },
+        {
+            "name": "kvision-pace",
+            "description": "Pace automatic page loader"
+        },
+        {
+            "name": "kvision-redux",
+            "description": "Redux state container",
+            "excludes": [
+                "kvision-redux-kotlin"
+            ]
+        },
+        {
+            "name": "kvision-redux-kotlin",
+            "description": "Redux Kotlin state container",
+            "excludes": [
+                "kvision-redux"
+            ]
+        },
+        {
+            "name": "kvision-maps",
+            "description": "Maps component, based on Leaflet library",
+            "initializer": "MapsModule"
+        },
+        {
+            "name": "kvision-toast",
+            "description": "Toast messages",
+            "initializer": "ToastModule"
+        },
+        {
+            "name": "kvision-print",
+            "description": "Printing support with Print.js library",
+            "initializer": "PrintModule"
+        },
+        {
+            "name": "kvision-routing-navigo",
+            "description": "Routing module based on Navigo 7 library",
+            "excludes": [
+                "kvision-routing-navigo-ng"
+            ]
+        },
+        {
+            "name": "kvision-routing-navigo-ng",
+            "description": "Routing module based on Navigo 8+ library",
+            "excludes": [
+                "kvision-routing-navigo"
+            ]
+        },
+        {
+            "name": "kvision-onsenui",
+            "description": "Onsen UI mobile web components",
+            "excludes": [
+                "kvision-bootstrap",
+                "kvision-bootstrap-css",
+                "kvision-bootstrap-select",
+                "kvision-bootstrap-select-remote",
+                "kvision-bootstrap-datetime",
+                "kvision-bootstrap-spinner",
+                "kvision-bootstrap-upload",
+                "kvision-bootstrap-typeahead",
+                "kvision-bootstrap-typeahead-remote",
+                "kvision-bootstrap-dialog"
+            ],
+            "initializer": "OnsenUIModule"
+        }
+    ]
 }

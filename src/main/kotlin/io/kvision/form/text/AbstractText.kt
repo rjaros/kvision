@@ -126,6 +126,15 @@ abstract class AbstractText(
         }
 
     /**
+     * The input mask options.
+     */
+    var maskOptions
+        get() = input.maskOptions
+        set(value) {
+            input.maskOptions = value
+        }
+
+    /**
      * @suppress
      * Internal property
      */

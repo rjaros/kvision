@@ -30,6 +30,7 @@ import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
+import org.w3c.dom.HTMLElement
 
 /**
  * Base class for basic text components.
@@ -113,6 +114,24 @@ abstract class AbstractTextInput(
      */
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
+    /**
+     * The input mask options.
+     */
+    open var maskOptions: MaskOptions? = null
+        set(value) {
+            if (field != null) {
+                uninstallMask()
+            }
+            field = value
+            installMask()
+            refreshState()
+        }
+
+    /**
+     * The input mask controller.
+     */
+    protected var mask: Mask? = null
+
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
         classSetBuilder.add(validationStatus)
@@ -146,7 +165,12 @@ abstract class AbstractTextInput(
     }
 
     override fun afterInsert(node: VNode) {
+        installMask()
         refreshState()
+    }
+
+    override fun afterDestroy() {
+        uninstallMask()
     }
 
     /**
@@ -154,9 +178,18 @@ abstract class AbstractTextInput(
      * Internal function
      */
     protected open fun refreshState() {
-        val v = getElementD()?.value?.unsafeCast<String>()
-        if (v != value && !(v.isNullOrEmpty() && value == null)) {
+        if (mask == null) {
+            val v = getElementD()?.value?.unsafeCast<String>()
+            if (v != value && !(v.isNullOrEmpty() && value == null)) {
+                getElementD()?.value = value
+            }
+        } else {
             getElementD()?.value = value
+            mask!!.refresh()
+            val v = mask?.getValue()?.ifEmpty { null }
+            if (this.value != v) {
+                this.value = v
+            }
         }
     }
 
@@ -165,12 +198,38 @@ abstract class AbstractTextInput(
      * Internal function
      */
     protected open fun changeValue() {
-        val v = getElementD()?.value?.unsafeCast<String>()
-        if (v != null && v != "") {
-            this.value = v
-        } else {
-            this.value = null
+        if (mask == null) {
+            val v = getElementD()?.value?.unsafeCast<String>()
+            if (v != null && v != "") {
+                this.value = v
+            } else {
+                this.value = null
+            }
         }
+    }
+
+    /**
+     * Install the input mask controller.
+     */
+    open fun installMask() {
+        if (getElement() != null && maskOptions != null) {
+            if (MaskManager.factory == null) throw IllegalStateException("Input mask module has not been initialized")
+            mask = MaskManager.factory!!.createMask(getElement().unsafeCast<HTMLElement>(), maskOptions!!)
+            mask!!.onChange {
+                val v = it?.ifEmpty { null }
+                if (this.value != v) {
+                    this.value = v
+                }
+            }
+        }
+    }
+
+    /**
+     * Uninstall the input mask controller.
+     */
+    open fun uninstallMask() {
+        mask?.destroy()
+        mask = null
     }
 
     override fun getState(): String? = value

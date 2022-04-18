@@ -105,6 +105,12 @@ open class TypeaheadInput(
      */
     var fitToElement by refreshOnUpdate(false) { refreshTypeahead() }
 
+    override var maskOptions: MaskOptions? = null
+        set(value) {
+            field = value
+            throw IllegalStateException("TypeaheadInput component doesn't support mask options")
+        }
+
     init {
         useSnabbdomDistinctKey()
         autocomplete = Autocomplete.OFF
@@ -115,11 +121,12 @@ open class TypeaheadInput(
     @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.typeahead(getSettingsObj())
-        refreshState()
+        super.afterInsert(node)
     }
 
     override fun afterDestroy() {
         getElementJQueryD()?.typeahead("destroy")
+        super.afterDestroy()
     }
 
     @Suppress("UnsafeCastFromDynamic")

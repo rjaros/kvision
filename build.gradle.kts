@@ -122,6 +122,7 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-fontawesome/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-handlebars/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-i18n/src/main/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-imask/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-jquery/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-maps/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-moment/src/main/kotlin"))

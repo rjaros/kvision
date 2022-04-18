@@ -43,6 +43,12 @@ open class RichTextInput(
     init: (RichTextInput.() -> Unit)? = null
 ) : AbstractTextInput(value, (className?.let { "$it " } ?: "") + "form-control trix-control") {
 
+    override var maskOptions: MaskOptions? = null
+        set(value) {
+            field = value
+            throw IllegalStateException("RichTextInput component doesn't support mask options")
+        }
+
     private var trixId: String? = null
 
     init {

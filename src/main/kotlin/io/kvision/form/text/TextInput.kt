@@ -21,11 +21,11 @@
  */
 package io.kvision.form.text
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.html.Autocomplete
+import io.kvision.snabbdom.VNode
 
 /**
  * Text input types.
