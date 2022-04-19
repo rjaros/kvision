@@ -65,7 +65,7 @@ object KVManager {
         return sdPatch(oldVNode, newVNode)
     }
 
-    private val virtualizeCache = mutableMapOf<String, VNode>()
+    private val virtualizeCache = js("{}")
 
     /**
      * @suppress
@@ -73,8 +73,13 @@ object KVManager {
      */
     @Suppress("UnsafeCastFromDynamic")
     fun virtualize(html: String): VNode {
-        return virtualizeCache.getOrPut(html) {
-            sdVirtualize(html)
+        val node = virtualizeCache[html]
+        return if (node != null) {
+            JSON.parse<dynamic>(JSON.stringify(node))
+        } else {
+            val newNode = sdVirtualize(html)
+            virtualizeCache[html] = newNode
+            newNode
         }
     }
 
