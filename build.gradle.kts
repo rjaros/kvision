@@ -61,6 +61,12 @@ dependencies {
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
+rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
+        resolution("async", "^2.6.4")
+    }
+}
+
 val sourcesJar by tasks.registering(Jar::class) {
     dependsOn("irGenerateExternalsIntegrated")
     archiveClassifier.set("sources")

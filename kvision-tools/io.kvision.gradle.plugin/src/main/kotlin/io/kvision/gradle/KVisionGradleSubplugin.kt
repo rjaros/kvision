@@ -32,6 +32,8 @@ import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByName
 import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
 import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
@@ -106,6 +108,13 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
                     }
                 }
+                if (rootProject.findProperty("io.kvision.plugin.enableSecureResolutions") != "false") {
+                    rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
+                        rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
+                            resolution("async", "^2.6.4")
+                        }
+                    }
+                }
             }
         }
         plugins.withId("org.jetbrains.kotlin.multiplatform") {
@@ -175,6 +184,13 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 if (rootProject.findProperty("io.kvision.plugin.enableHiddenKotlinJsStore") != "false") {
                     rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
                         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+                    }
+                }
+                if (rootProject.findProperty("io.kvision.plugin.enableSecureResolutions") != "false") {
+                    rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
+                        rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
+                            resolution("async", "^2.6.4")
+                        }
                     }
                 }
             }
