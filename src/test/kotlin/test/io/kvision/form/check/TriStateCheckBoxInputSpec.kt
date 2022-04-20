@@ -21,7 +21,7 @@
  */
 package test.io.kvision.form.check
 
-import io.kvision.form.check.CheckBoxInput
+import io.kvision.form.check.TriStateCheckBoxInput
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
@@ -29,39 +29,20 @@ import org.w3c.dom.HTMLInputElement
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class CheckBoxInputSpec : DomSpec {
+class TriStateCheckBoxInputSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val ci = CheckBoxInput(value = true).apply {
-                name = "name"
-                id = "idti"
-                disabled = true
-            }
-            root.add(ci)
-            val element = document.getElementById("test")
-            assertEqualsHtml(
-                "<input id=\"idti\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\">",
-                element?.innerHTML,
-                "Should render correct checkbox control"
-            )
-        }
-    }
-
-    @Test
-    fun renderIndetermined() {
-        run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val ci = CheckBoxInput {
+            val ci = TriStateCheckBoxInput {
                 indeterminate = true
             }
             root.add(ci)
             val element = document.getElementById("test")?.firstChild?.unsafeCast<HTMLInputElement>()
             assertTrue(
                 element!!.indeterminate,
-                "Should render checkbox in indetermined state"
+                "Should render tri-state checkbox in indetermined state"
             )
         }
     }

@@ -58,13 +58,8 @@ abstract class CheckInput(
     init {
         useSnabbdomDistinctKey()
         this.setInternalEventListener<CheckInput> {
-            click = {
-                val v = getElementD()?.checked?.unsafeCast<Boolean>()
-                self.value = (v == true)
-            }
             change = {
-                val v = getElementD()?.checked?.unsafeCast<Boolean>()
-                self.value = (v == true)
+                changeValue()
             }
         }
     }
@@ -148,6 +143,11 @@ abstract class CheckInput(
         if (this.value != v) {
             getElementD()?.checked = this.value
         }
+    }
+
+    protected open fun changeValue() {
+        val v = getElementD()?.checked?.unsafeCast<Boolean>()
+        this.value = (v == true)
     }
 
     /**

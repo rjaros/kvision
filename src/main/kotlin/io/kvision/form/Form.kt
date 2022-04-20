@@ -180,6 +180,24 @@ class Form<K : Any>(
     }
 
     /**
+     * Adds a nullable boolean control to the form.
+     * @param key key identifier of the control
+     * @param control the boolean form control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form
+     */
+    fun <C : TriStateFormControl> add(
+        key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): Form<K> {
+        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+    }
+
+    /**
      * Adds a number control to the form.
      * @param key key identifier of the control
      * @param control the number form control

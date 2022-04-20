@@ -334,6 +334,26 @@ open class FormPanel<K : Any>(
     }
 
     /**
+     * Adds a nullable boolean control to the form panel.
+     * @param key key identifier of the control
+     * @param control the boolean form control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param legend put this control inside a fieldset with given legend
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form panel
+     */
+    open fun <C : TriStateFormControl> add(
+        key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        legend: String? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): FormPanel<K> {
+        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+    }
+
+    /**
      * Adds a number control to the form panel.
      * @param key key identifier of the control
      * @param control the number form control
@@ -469,6 +489,25 @@ open class FormPanel<K : Any>(
      * @return the control itself
      */
     open fun <C : BoolFormControl> C.bind(
+        key: KProperty1<K, Boolean?>, required: Boolean = false, requiredMessage: String? = null,
+        layoutType: FormType? = null,
+        validatorMessage: ((C) -> String?)? = null,
+        validator: ((C) -> Boolean?)? = null
+    ): C {
+        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
+    }
+
+    /**
+     * Bind a nullable boolean control to the form panel.
+     * @param key key identifier of the control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param layoutType style control for given form layout
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return the control itself
+     */
+    open fun <C : TriStateFormControl> C.bind(
         key: KProperty1<K, Boolean?>, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,

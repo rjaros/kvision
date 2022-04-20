@@ -24,41 +24,35 @@ package io.kvision.form.check
 import io.kvision.core.Container
 
 /**
- * The basic input component rendered as HTML *input type="checkbox"*.
+ * The basic input component rendered as HTML *input type="checkbox"* with tri-state value.
  *
  * @constructor
  * @param value selection state
  * @param className CSS class names
  * @param init an initializer extension function
  */
-open class CheckBoxInput(
+open class TriStateCheckBoxInput(
     value: Boolean = false,
     className: String? = null,
-    init: (CheckBoxInput.() -> Unit)? = null
-) : CheckInput(CheckInputType.CHECKBOX, value, className) {
-
-    /**
-     * The indeterminate state of the checkbox input.
-     */
-    var indeterminate: Boolean by refreshOnUpdate(false) {
-        if (it) this.value = false
-        refreshState()
-        observers.forEach { ob -> ob(this.value) }
-    }
+    init: (TriStateCheckBoxInput.() -> Unit)? = null
+) : CheckBoxInput(value, className) {
 
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
-    override fun refreshState() {
-        super.refreshState()
-        getElementD()?.indeterminate = this.indeterminate
-    }
-
     override fun changeValue() {
-        this.indeterminate = false
-        super.changeValue()
+        if (this.value) {
+            this.value = false
+            this.indeterminate = false
+        } else if (!this.indeterminate) {
+            this.value = false
+            this.indeterminate = true
+        } else {
+            this.value = true
+            this.indeterminate = false
+        }
     }
 
 }
@@ -68,12 +62,12 @@ open class CheckBoxInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.checkBoxInput(
+fun Container.triStateCheckBoxInput(
     value: Boolean = false,
     className: String? = null,
-    init: (CheckBoxInput.() -> Unit)? = null
-): CheckBoxInput {
-    val checkBoxInput = CheckBoxInput(value, className, init)
-    this.add(checkBoxInput)
-    return checkBoxInput
+    init: (TriStateCheckBoxInput.() -> Unit)? = null
+): TriStateCheckBoxInput {
+    val triStateCheckBoxInput = TriStateCheckBoxInput(value, className, init)
+    this.add(triStateCheckBoxInput)
+    return triStateCheckBoxInput
 }

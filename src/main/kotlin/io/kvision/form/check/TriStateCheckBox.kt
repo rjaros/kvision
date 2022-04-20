@@ -23,13 +23,12 @@ package io.kvision.form.check
 
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
-import io.kvision.core.CssClass
 import io.kvision.core.Widget
-import io.kvision.form.BoolFormControl
 import io.kvision.form.FieldLabel
 import io.kvision.form.FieldLabelCheck
 import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
+import io.kvision.form.TriStateFormControl
 import io.kvision.html.span
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
@@ -37,18 +36,7 @@ import io.kvision.utils.SnOn
 import org.w3c.dom.events.MouseEvent
 
 /**
- * Checkbox style options.
- */
-enum class CheckBoxStyle(override val className: String) : CssClass {
-    PRIMARY("abc-checkbox-primary"),
-    SUCCESS("abc-checkbox-success"),
-    INFO("abc-checkbox-info"),
-    WARNING("abc-checkbox-warning"),
-    DANGER("abc-checkbox-danger"),
-}
-
-/**
- * The form field component rendered as HTML *input type="checkbox"*.
+ * The form field component rendered as HTML *input type="checkbox"* with tri-state value.
  *
  * @constructor
  * @param value selection state
@@ -57,19 +45,29 @@ enum class CheckBoxStyle(override val className: String) : CssClass {
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
-open class CheckBox(
-    value: Boolean = false, name: String? = null, label: String? = null,
+open class TriStateCheckBox(
+    value: Boolean? = null, name: String? = null, label: String? = null,
     rich: Boolean = false,
-    init: (CheckBox.() -> Unit)? = null
-) : SimplePanel("form-check"), BoolFormControl, MutableState<Boolean> {
+    init: (TriStateCheckBox.() -> Unit)? = null
+) : SimplePanel("form-check"), TriStateFormControl, MutableState<Boolean?> {
+
+    protected val observers = mutableListOf<(Boolean?) -> Unit>()
 
     /**
      * The selection state of the checkbox.
      */
-    override var value
-        get() = input.value
+    override var value: Boolean?
+        get() {
+            return if (input.indeterminate) null else input.value
+        }
         set(value) {
-            input.value = value
+            if (value == null) {
+                input.indeterminate = true
+                input.value = false
+            } else {
+                input.value = value
+                input.indeterminate = false
+            }
         }
 
     /**
@@ -122,20 +120,13 @@ open class CheckBox(
      */
     var switch by refreshOnUpdate(false)
 
-    /**
-     * The indeterminate state of the checkbox input.
-     */
-    var indeterminate
-        get() = input.indeterminate
-        set(value) {
-            input.indeterminate = value
+    private val idc = "kv_form_tristatecheckbox_$counter"
+    final override val input: TriStateCheckBoxInput =
+        TriStateCheckBoxInput(value ?: false, className = "form-check-input").apply {
+            this.id = this@TriStateCheckBox.idc
+            this.name = name
+            this.indeterminate = value == null
         }
-
-    private val idc = "kv_form_checkbox_$counter"
-    final override val input: CheckBoxInput = CheckBoxInput(value, className = "form-check-input").apply {
-        this.id = this@CheckBox.idc
-        this.name = name
-    }
     final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, className = "form-check-label") {
         span()
     }
@@ -189,8 +180,8 @@ open class CheckBox(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: CheckBox.(MouseEvent) -> Unit): CheckBox {
-        this.setEventListener<CheckBox> {
+    open fun onClick(handler: TriStateCheckBox.(MouseEvent) -> Unit): TriStateCheckBox {
+        this.setEventListener<TriStateCheckBox> {
             click = { e ->
                 self.handler(e)
             }
@@ -223,14 +214,20 @@ open class CheckBox(
         addCssClass("kv-mb-3")
     }
 
-    override fun getState(): Boolean = input.getState()
-
-    override fun subscribe(observer: (Boolean) -> Unit): () -> Unit {
-        return input.subscribe(observer)
+    override fun getState(): Boolean? {
+        return value
     }
 
-    override fun setState(state: Boolean) {
-        input.setState(state)
+    override fun subscribe(observer: (Boolean?) -> Unit): () -> Unit {
+        return input.subscribe {
+            if (!input.indeterminate || !input.value) {
+                observer(this.value)
+            }
+        }
+    }
+
+    override fun setState(state: Boolean?) {
+        value = state
     }
 
     companion object {
@@ -243,11 +240,11 @@ open class CheckBox(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.checkBox(
-    value: Boolean = false, name: String? = null, label: String? = null,
-    rich: Boolean = false, init: (CheckBox.() -> Unit)? = null
-): CheckBox {
-    val checkBox = CheckBox(value, name, label, rich, init)
-    this.add(checkBox)
-    return checkBox
+fun Container.triStateCheckBox(
+    value: Boolean? = null, name: String? = null, label: String? = null,
+    rich: Boolean = false, init: (TriStateCheckBox.() -> Unit)? = null
+): TriStateCheckBox {
+    val triStateCheckBox = TriStateCheckBox(value, name, label, rich, init)
+    this.add(triStateCheckBox)
+    return triStateCheckBox
 }

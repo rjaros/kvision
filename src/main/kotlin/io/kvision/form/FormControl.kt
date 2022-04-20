@@ -271,6 +271,15 @@ interface BoolFormControl : GenericNonNullableFormControl<Boolean> {
 }
 
 /**
+ * Base interface of a form control with a nullable boolean value.
+ */
+interface TriStateFormControl : GenericFormControl<Boolean> {
+    override fun setValue(v: Any?) {
+        value = v as? Boolean
+    }
+}
+
+/**
  * Base interface of a form control with a date value.
  */
 interface DateFormControl : GenericFormControl<Date> {

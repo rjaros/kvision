@@ -21,7 +21,8 @@
  */
 package test.io.kvision.form.check
 
-import io.kvision.form.check.CheckBoxInput
+import io.kvision.form.check.CheckBoxStyle
+import io.kvision.form.check.TriStateCheckBox
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
@@ -29,42 +30,32 @@ import org.w3c.dom.HTMLInputElement
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class CheckBoxInputSpec : DomSpec {
+class TriStateCheckBoxSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val ci = CheckBoxInput(value = true).apply {
+            val ci = TriStateCheckBox(value = null, label = "Label").apply {
                 name = "name"
-                id = "idti"
-                disabled = true
+                style = CheckBoxStyle.DANGER
+                circled = true
+                inline = true
             }
             root.add(ci)
             val element = document.getElementById("test")
+            val id = ci.input.id
             assertEqualsHtml(
-                "<input id=\"idti\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\">",
+                "<div class=\"form-check abc-checkbox abc-checkbox-danger abc-checkbox-circle form-check-inline\"><input class=\"form-check-input\" id=\"$id\" type=\"checkbox\" name=\"name\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
-                "Should render correct checkbox control"
+                "Should render correct tri-state checkbox form control"
             )
-        }
-    }
-
-    @Test
-    fun renderIndetermined() {
-        run {
-            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val ci = CheckBoxInput {
-                indeterminate = true
-            }
-            root.add(ci)
-            val element = document.getElementById("test")?.firstChild?.unsafeCast<HTMLInputElement>()
+            val input = element?.getElementsByTagName("input")?.item(0)?.unsafeCast<HTMLInputElement>()
             assertTrue(
-                element!!.indeterminate,
-                "Should render checkbox in indetermined state"
+                input!!.indeterminate,
+                "Should render tri-state checkbox in indetermined state"
             )
         }
     }
-
 
 }
