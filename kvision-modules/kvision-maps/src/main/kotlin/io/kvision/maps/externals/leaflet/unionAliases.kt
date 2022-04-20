@@ -23,8 +23,8 @@
 package io.kvision.maps.externals.leaflet
 
 
-/** "topleft" | "topright" | "bottomleft" | "bottomright" */
+/** `topleft` | `topright` | `bottomleft` | `bottomright` */
 typealias PositionsUnion = String
 
-/** "right" | "left" | "top" | "bottom" | "center" | "auto" */
+/** `right` | `left` | `top` | `bottom` | `center` | `auto` */
 typealias DirectionsUnion = String
