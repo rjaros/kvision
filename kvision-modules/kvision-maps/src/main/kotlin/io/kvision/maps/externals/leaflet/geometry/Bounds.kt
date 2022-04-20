@@ -25,6 +25,11 @@
 
 package io.kvision.maps.externals.leaflet.geometry
 
+/**
+ * Represents a rectangular area in pixel coordinates.
+ *
+ * https://leafletjs.com/SlavaUkraini/reference.html#bounds
+ */
 open external class Bounds {
     constructor()
     constructor(topLeft: Point, bottomRight: Point)
@@ -39,9 +44,8 @@ open external class Bounds {
     open fun getTopLeft(): Point
     open fun getTopRight(): Point
     open fun getSize(): Point
-    open fun contains(pointOrBounds: Bounds): Boolean
-    open fun contains(pointOrBounds: Point): Boolean
+    open fun contains(otherBounds: Bounds): Boolean
+    open fun contains(point: Point): Boolean
     open fun intersects(otherBounds: Bounds): Boolean
     open fun overlaps(otherBounds: Bounds): Boolean
-    open fun isValid(): Boolean
 }
