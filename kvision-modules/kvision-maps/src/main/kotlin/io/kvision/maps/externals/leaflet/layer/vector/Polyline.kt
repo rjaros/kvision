@@ -37,7 +37,7 @@ import io.kvision.maps.externals.leaflet.geometry.Point
  *
  * See [`https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/layer/vector/Polyline.js`](https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/layer/vector/Polyline.js)
  *
- * @param T [externals.geojson.LineString] or [externals.geojson.MultiLineString]
+ * @param T [io.kvision.maps.externals.geojson.LineString] or [io.kvision.maps.externals.geojson.MultiLineString]
  */
 open external class Polyline<T : GeoJsonSingleOrMultiLineString> : Path<Polyline.PolylineOptions> {
 

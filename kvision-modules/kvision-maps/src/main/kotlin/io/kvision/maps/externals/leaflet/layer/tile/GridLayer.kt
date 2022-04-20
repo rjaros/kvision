@@ -36,7 +36,7 @@ import org.w3c.dom.HTMLElement
 
 /**
  * Generic class for handling a tiled grid of HTML elements. This is the base class for all tile
- * layers and replaces [Canvas][externals.leaflet.layer.vector.Canvas].
+ * layers and replaces [Canvas][io.kvision.maps.externals.leaflet.layer.vector.Canvas].
  *
  * GridLayer can be extended to create a tiled grid of HTML elements like `<canvas>`, `<img>` or
  * `<div>`. GridLayer will handle creating and animating these DOM elements for you.

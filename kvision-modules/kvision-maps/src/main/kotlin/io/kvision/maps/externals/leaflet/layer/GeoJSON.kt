@@ -74,7 +74,7 @@ open external class GeoJSON(
 
         /**
          * A Function defining how GeoJSON points spawn Leaflet layers. It is internally called
-         * when data is added, passing the GeoJSON [Feature<Point>][externals.geojson.Feature]
+         * when data is added, passing the GeoJSON [Feature<Point>][io.kvision.maps.externals.geojson.Feature]
          * and its [LatLng].
          *
          * The default is to spawn a default Marker:

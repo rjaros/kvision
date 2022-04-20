@@ -34,7 +34,7 @@ import io.kvision.maps.externals.leaflet.geometry.Point
  *
  * Object that defines coordinate reference systems for projecting geographical points into pixel
  * (screen) coordinates and back (and to coordinates in other units for
- * [WMS][externals.leaflet.layer.tile.WMS] services).
+ * [WMS][io.kvision.maps.externals.leaflet.layer.tile.WMS] services).
  *
  * Leaflet defines the most usual CRSs by default. If you want to use a CRS not defined by default,
  * take a look at the [Proj4Leaflet plugin](https://github.com/kartena/Proj4Leaflet).
@@ -84,7 +84,7 @@ abstract external class CRS {
         /**
          * The most common [CRS] for online maps, used by almost all free and commercial tile
          * providers. Uses Spherical Mercator projection. Set in by default in Map's
-         * [`crs` option][externals.leaflet.map.LeafletMap.LeafletMapOptions.crs].
+         * [`crs` option][io.kvision.maps.externals.leaflet.map.LeafletMap.LeafletMapOptions.crs].
          */
         val EPSG3857: CRS
         /** A common CRS among GIS enthusiasts. Uses simple equirectangular projection. */
@@ -108,7 +108,7 @@ abstract external class CRS {
         /**
          * Object that defines coordinate reference systems for projecting geographical points
          * into pixel (screen) coordinates and back (and to coordinates in other units for
-         * [WMS][externals.leaflet.layer.tile.WMS] services).
+         * [WMS][io.kvision.maps.externals.leaflet.layer.tile.WMS] services).
          */
         val Base: CRS
 
