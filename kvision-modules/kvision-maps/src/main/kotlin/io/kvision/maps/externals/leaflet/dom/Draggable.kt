@@ -43,5 +43,13 @@ open external class Draggable(
     open fun enable()
     /** Disables the dragging ability */
     open fun disable()
-    open fun finishDrag()
+
+
+    interface DraggableOptions {
+        /**
+         * The max number of pixels a user can shift the mouse pointer during a click for it to be
+         * considered a valid click (as opposed to a mouse drag).
+         */
+        var clickTolerance: Int
+    }
 }
