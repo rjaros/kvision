@@ -46,6 +46,8 @@ import io.kvision.maps.externals.leaflet.geometry.Point
  * See: [`https://leafletjs.com/reference.html#crs-l-crs-base`](https://leafletjs.com/reference.html#crs-l-crs-base)
  */
 abstract external class CRS {
+
+    /** Standard code name of the CRS passed into WMS services (e.g. 'EPSG:3857') */
     var code: String?
 
     /**
