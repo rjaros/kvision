@@ -29,7 +29,11 @@ import io.kvision.maps.externals.leaflet.geometry.Point
 import io.kvision.maps.externals.leaflet.layer.Layer
 import org.w3c.dom.HTMLElement
 
-/** Represents an icon to provide when creating a marker. */
+/**
+ * Represents an icon to provide when creating a marker.
+ *
+ * https://leafletjs.com/SlavaUkraini/reference.html#icon
+ */
 open external class Icon<T : Icon.IconOptions>(options: IconOptions) : Layer<T> {
 
     open fun createIcon(oldIcon: HTMLElement = definedExternally): HTMLElement
@@ -47,17 +51,29 @@ open external class Icon<T : Icon.IconOptions>(options: IconOptions) : Layer<T> 
     }
 
     interface IconOptions : LayerOptions {
-        var iconUrl: String?
+        /** **(required)** The URL to the icon image (absolute or relative to your script path). */
+        var iconUrl: String
         var iconRetinaUrl: String?
-        var iconSize: Point
-        var iconAnchor: Point
+        var iconSize: Point?
+        var iconAnchor: Point?
         var popupAnchor: Point
         var tooltipAnchor: Point
         var shadowUrl: String?
         var shadowRetinaUrl: String?
-        var shadowSize: Point
-        var shadowAnchor: Point
+        /** Size of the shadow image in pixels. */
+        var shadowSize: Point?
+        /**
+         * The coordinates of the "tip" of the shadow (relative to its top left corner)
+         * (the same as [iconAnchor] if not specified).
+         */
+        var shadowAnchor: Point?
+        /** A custom class name to assign to both icon and shadow images. Empty by default. */
         var className: String?
+        /**
+         * Whether the crossOrigin attribute will be added to the tiles. If a String is provided,
+         * all tiles will have their crossOrigin attribute set to the String provided. This is needed if you want to access tile pixel data. Refer to CORS Settings for valid String values.
+         */
+        var crossOrigin: Any? /* String? | Boolean? */
     }
 
 }
