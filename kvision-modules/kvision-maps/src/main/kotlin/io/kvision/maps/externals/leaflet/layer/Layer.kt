@@ -36,21 +36,23 @@ import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip.TooltipOptions
 import io.kvision.maps.externals.leaflet.map.LeafletMap
 import org.w3c.dom.HTMLElement
 
+/**
+ * A set of methods from the Layer base class that all Leaflet layers use.
+ * Inherits all methods, options and events from [Evented].
+ */
 abstract external class Layer<T : LayerOptions>(
     options: T = definedExternally
 ) : Evented {
 
     open var options: T
 
-    open val getEvents: (() -> LeafletEventHandlerFn)?
-    open val getAttribution: (() -> String?)?
-    open val beforeAdd: ((map: LeafletMap) -> Layer<T>)?
-    open var _map: LeafletMap
-
     open fun addTo(map: LeafletMap): Layer<T> /* this */
     open fun addTo(map: LayerGroup): Layer<T> /* this */
     open fun remove(): Layer<T> /* this */
     open fun removeFrom(map: LeafletMap): Layer<T> /* this */
+    open fun getEvents(): LeafletEventHandlerFn?
+    open fun getAttribution(): String?
+    open fun beforeAdd(map: LeafletMap): Layer<T>? /* this */
 
     open fun getPane(name: String = definedExternally): HTMLElement?
 
@@ -120,7 +122,17 @@ abstract external class Layer<T : LayerOptions>(
     open fun onRemove(map: LeafletMap): Layer<T> /* this */
 
     interface LayerOptions {
+        /**
+         * By default, the layer will be added to the map's
+         * [overlay pane][io.kvision.maps.externals.leaflet.map.DefaultMapPanes.overlayPane].
+         * Overriding this option will cause the layer to be placed on another pane by default.
+         */
         var pane: String?
+        /**
+         * String to be shown in the attribution control, e.g. "© OpenStreetMap contributors".
+         * It describes the layer data and is often a legal obligation towards copyright holders
+         * and tile providers.
+         */
         var attribution: String?
     }
 
