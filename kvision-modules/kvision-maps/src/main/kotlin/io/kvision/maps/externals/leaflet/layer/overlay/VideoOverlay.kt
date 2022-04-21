@@ -25,12 +25,13 @@
 
 package io.kvision.maps.externals.leaflet.layer.overlay
 
+import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.HTMLVideoElement
 
-open external class VideoOverlay : Layer<VideoOverlay.VideoOverlayOptions> {
+open external class VideoOverlay : Layer<VideoOverlay.VideoOverlayOptions>, MediaOverlay {
 
     constructor(
         video: String,
@@ -50,13 +51,15 @@ open external class VideoOverlay : Layer<VideoOverlay.VideoOverlayOptions> {
         options: VideoOverlayOptions = definedExternally
     )
 
-    open fun setOpacity(opacity: Number): VideoOverlay /* this */
-    open fun bringToFront(): VideoOverlay /* this */
-    open fun bringToBack(): VideoOverlay /* this */
-    open fun setUrl(url: String): VideoOverlay /* this */
-    open fun setBounds(bounds: LatLngBounds): VideoOverlay /* this */
-    open fun getBounds(): LatLngBounds
-    open fun getElement(): HTMLVideoElement?
+    override fun setOpacity(opacity: Number): VideoOverlay /* this */
+    override fun bringToFront(): VideoOverlay /* this */
+    override fun bringToBack(): VideoOverlay /* this */
+    override fun setUrl(url: String): VideoOverlay /* this */
+    override fun setBounds(bounds: LatLngBounds): VideoOverlay /* this */
+    override fun setZIndex(value: Number): VideoOverlay /* this */
+    override fun getBounds(): LatLngBounds
+    override fun getCenter(): LatLng?
+    override fun getElement(): HTMLVideoElement?
 
     interface VideoOverlayOptions : ImageOverlayOptions {
         var autoplay: Boolean?
