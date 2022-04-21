@@ -25,12 +25,16 @@
 
 package io.kvision.maps.externals.leaflet.layer.overlay
 
+import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.layer.InteractiveLayerOptions
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.HTMLImageElement
 
+/**
+ * Used to load and display a single image over specific bounds of the map.
+ */
 open external class ImageOverlay(
     imageUrl: String,
     bounds: LatLngBounds,
@@ -45,6 +49,7 @@ open external class ImageOverlay(
     open fun setZIndex(value: Number): ImageOverlay /* this */
     open fun getBounds(): LatLngBounds
     open fun getElement(): HTMLImageElement?
+    open fun getCenter(): LatLng?
 
     interface ImageOverlayOptions : InteractiveLayerOptions {
         var opacity: Number?
