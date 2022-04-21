@@ -22,27 +22,33 @@
 
 package io.kvision.maps.externals.leaflet.layer.tile
 
-import io.kvision.maps.externals.leaflet.geo.Coords
-import io.kvision.maps.externals.leaflet.layer.Layer
-import kotlin.js.Date
-import org.w3c.dom.HTMLElement
+// I'm not sure why this file was here. I can't find a reference to it in
+// the Leaflet docs. I think maybe it came from the @types/leaflet package.
+// Maybe it's no longer needed?
+// TODO resolve purpose of InternalTiles. Re-enable if it's still useful, otherwise, delete
 
-@JsModule("leaflet")
-@JsNonModule
-external interface InternalTiles {
-    var active: Boolean?
-    var coords: Coords
-    var current: Boolean?
-    var el: HTMLElement
-    var loaded: Date?
-    var retain: Boolean?
-}
 
-/** Native getter for [InternalTiles] */
-inline operator fun InternalTiles.get(name: String): Layer<*>? =
-    asDynamic()[name] as Layer<*>?
-
-/** Native setter for [InternalTiles] */
-inline operator fun InternalTiles.set(name: String, value: Layer<*>) {
-    asDynamic()[name] = value
-}
+//import io.kvision.maps.externals.leaflet.geo.Coords
+//import io.kvision.maps.externals.leaflet.layer.Layer
+//import kotlin.js.Date
+//import org.w3c.dom.HTMLElement
+//
+//@JsModule("leaflet")
+//@JsNonModule
+//external interface InternalTiles {
+//    var active: Boolean?
+//    var coords: Coords
+//    var current: Boolean?
+//    var el: HTMLElement
+//    var loaded: Date?
+//    var retain: Boolean?
+//}
+//
+///** Native getter for [InternalTiles] */
+//inline operator fun InternalTiles.get(name: String): Layer<*>? =
+//    asDynamic()[name] as Layer<*>?
+//
+///** Native setter for [InternalTiles] */
+//inline operator fun InternalTiles.set(name: String, value: Layer<*>) {
+//    asDynamic()[name] = value
+//}

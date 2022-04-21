@@ -47,9 +47,6 @@ abstract external class GridLayer<T : GridLayerOptions>(
     options: T = definedExternally
 ) : Layer<T> {
 
-    open var _tiles: InternalTiles
-    open var _tileZoom: Number?
-
     open fun bringToFront(): GridLayer<*> /* this */
     open fun bringToBack(): GridLayer<*> /* this */
     open fun getContainer(): HTMLElement?
@@ -59,9 +56,6 @@ abstract external class GridLayer<T : GridLayerOptions>(
     open fun redraw(): GridLayer<*> /* this */
     open fun getTileSize(): Point
     open fun createTile(coords: Coords, done: DoneCallback): HTMLElement
-
-    open fun _tileCoordsToKey(coords: Coords): String
-    open fun _wrapCoords(parameter: Coords): Coords
 
     interface GridLayerOptions : LayerOptions {
         /**

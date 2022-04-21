@@ -28,13 +28,15 @@ package io.kvision.maps.externals.leaflet.layer.tile
 
 import io.kvision.maps.externals.leaflet.geo.CRS
 
+/**
+ * Used to display WMS services as tile layers on the map.
+ */
 open external class WMS(
     baseUrl: String,
     options: WMSOptions,
 ) : TileLayer<WMS.WMSOptions> {
 
     open fun setParams(params: WMSParams, noRedraw: Boolean = definedExternally): WMS /* this */
-    open var wmsParams: WMSParams
 
     interface WMSOptions : TileLayerOptions {
         var layers: String?
@@ -46,7 +48,6 @@ open external class WMS(
         var uppercase: Boolean?
     }
 
-    /** @see WMS.wmsParams */
     interface WMSParams {
         var format: String?
         var layers: String
