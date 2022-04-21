@@ -27,6 +27,7 @@ package io.kvision.maps.externals.leaflet.layer.overlay
 
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geometry.Point
+import io.kvision.maps.externals.leaflet.layer.InteractiveLayerOptions
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.DivOverlay.DivOverlayOptions
 import io.kvision.maps.externals.leaflet.map.LeafletMap
@@ -52,15 +53,11 @@ open external class DivOverlay<T : DivOverlayOptions>(
     open fun bringToFront(): DivOverlay<T> /* this */
     open fun bringToBack(): DivOverlay<T> /* this */
 
-    interface DivOverlayOptions {
-        /** If true, the popup/tooltip will listen to the mouse events. */
-        var interactive: Boolean?
+    interface DivOverlayOptions : InteractiveLayerOptions {
         /** The offset of the overlay position. */
         var offset: Point
         /** A custom CSS class name to assign to the overlay. */
         var className: String?
-        /** Map pane where the overlay will be added. */
-        var pane: String?
     }
 
 }

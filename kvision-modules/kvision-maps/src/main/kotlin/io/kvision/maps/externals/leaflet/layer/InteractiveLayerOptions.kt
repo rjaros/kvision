@@ -26,6 +26,7 @@
 package io.kvision.maps.externals.leaflet.layer
 
 external interface InteractiveLayerOptions : Layer.LayerOptions {
+    /** If true, the popup/tooltip will listen to the mouse events. */
     var interactive: Boolean?
     var bubblingMouseEvents: Boolean?
 }
