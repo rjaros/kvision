@@ -318,56 +318,54 @@ open class Window(
         var dragStartDispatched = false
         if (isDraggable) {
             fun processDragStart(e: Event) {
-                if (e is MouseEvent && e.button.toInt() == 0 || e is TouchEvent) {
-                    isDrag = true
-                    val dragStartX = this@Window.getElement()?.offsetLeft() ?: 0
-                    val dragStartY = this@Window.getElement()?.offsetTop() ?: 0
-                    val (dragMouseX, dragMouseY) = if (e is MouseEvent) {
-                        e.pageX.toInt() to e.pageY.toInt()
-                    } else {
-                        e.unsafeCast<TouchEvent>().touches[0]!!.pageX to e.unsafeCast<TouchEvent>().touches[0]!!.pageY
-                    }
-                    val moveCallback = { me: Event ->
-                        if (isDrag) {
-                            if (!dragStartDispatched) {
-                                @Suppress("UnsafeCastFromDynamic")
-                                this@Window.dispatchEvent("dragStartWindow", obj {
-                                    detail = me
-                                })
-                                dragStartDispatched = true
-                            }
-                            val (mouseX, mouseY) = if (me is MouseEvent) {
-                                me.pageX.toInt() to me.pageY.toInt()
-                            } else {
-                                me.unsafeCast<TouchEvent>().touches[0]!!.pageX to me.unsafeCast<TouchEvent>().touches[0]!!.pageY
-                            }
-                            this@Window.left = (dragStartX + mouseX - dragMouseX).px
-                            this@Window.top = (dragStartY + mouseY - dragMouseY).px
-                            if (me is TouchEvent) {
-                                me.preventDefault()
-                            }
-                        }
-                    }
-                    kotlinx.browser.window.addEventListener("mousemove", moveCallback)
-                    kotlinx.browser.window.addEventListener("touchmove", moveCallback, obj { passive = false })
-                    var upCallback: ((Event) -> Unit)? = null
-                    upCallback = {
-                        isDrag = false
-                        if (dragStartDispatched) {
-                            @Suppress("UnsafeCastFromDynamic")
-                            this@Window.dispatchEvent("dragEndWindow", obj {
-                                detail = e
-                            })
-                            dragStartDispatched = false
-                        }
-                        kotlinx.browser.window.removeEventListener("mousemove", moveCallback)
-                        kotlinx.browser.window.removeEventListener("touchmove", moveCallback)
-                        kotlinx.browser.window.removeEventListener("mouseup", upCallback)
-                        kotlinx.browser.window.removeEventListener("touchend", upCallback)
-                    }
-                    kotlinx.browser.window.addEventListener("mouseup", upCallback)
-                    kotlinx.browser.window.addEventListener("touchend", upCallback)
+                isDrag = true
+                val dragStartX = this@Window.getElement()?.offsetLeft() ?: 0
+                val dragStartY = this@Window.getElement()?.offsetTop() ?: 0
+                val (dragMouseX, dragMouseY) = if (e is MouseEvent) {
+                    e.pageX.toInt() to e.pageY.toInt()
+                } else {
+                    e.unsafeCast<TouchEvent>().touches[0]!!.pageX to e.unsafeCast<TouchEvent>().touches[0]!!.pageY
                 }
+                val moveCallback = { me: Event ->
+                    if (isDrag) {
+                        if (!dragStartDispatched) {
+                            @Suppress("UnsafeCastFromDynamic")
+                            this@Window.dispatchEvent("dragStartWindow", obj {
+                                detail = me
+                            })
+                            dragStartDispatched = true
+                        }
+                        val (mouseX, mouseY) = if (me is MouseEvent) {
+                            me.pageX.toInt() to me.pageY.toInt()
+                        } else {
+                            me.unsafeCast<TouchEvent>().touches[0]!!.pageX to me.unsafeCast<TouchEvent>().touches[0]!!.pageY
+                        }
+                        this@Window.left = (dragStartX + mouseX - dragMouseX).px
+                        this@Window.top = (dragStartY + mouseY - dragMouseY).px
+                        if (me !is MouseEvent) {
+                            me.preventDefault()
+                        }
+                    }
+                }
+                kotlinx.browser.window.addEventListener("mousemove", moveCallback)
+                kotlinx.browser.window.addEventListener("touchmove", moveCallback, obj { passive = false })
+                var upCallback: ((Event) -> Unit)? = null
+                upCallback = {
+                    isDrag = false
+                    if (dragStartDispatched) {
+                        @Suppress("UnsafeCastFromDynamic")
+                        this@Window.dispatchEvent("dragEndWindow", obj {
+                            detail = e
+                        })
+                        dragStartDispatched = false
+                    }
+                    kotlinx.browser.window.removeEventListener("mousemove", moveCallback)
+                    kotlinx.browser.window.removeEventListener("touchmove", moveCallback)
+                    kotlinx.browser.window.removeEventListener("mouseup", upCallback)
+                    kotlinx.browser.window.removeEventListener("touchend", upCallback)
+                }
+                kotlinx.browser.window.addEventListener("mouseup", upCallback)
+                kotlinx.browser.window.addEventListener("touchend", upCallback)
             }
 
             header.setEventListener<SimplePanel> {
