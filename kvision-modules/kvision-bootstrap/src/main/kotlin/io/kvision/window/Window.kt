@@ -46,8 +46,8 @@ import org.w3c.dom.events.MouseEvent
 import org.w3c.dom.get
 
 internal const val DEFAULT_Z_INDEX = 900
-internal const val WINDOW_HEADER_HEIGHT = 40
-internal const val WINDOW_CONTENT_MARGIN_BOTTOM = 11
+internal const val DEFAULT_WINDOW_HEADER_HEIGHT = 40
+internal const val DEFAULT_RESIZE_HANDLE_HEIGHT = 11
 
 /**
  * Floating window container.
@@ -214,6 +214,17 @@ open class Window(
         visible = (icon != null && icon != "")
     }
 
+    /**
+     * The height of the resize handle used as the bottom margin of the window content.
+     */
+    protected var resizeHandleHeight: Int = DEFAULT_RESIZE_HANDLE_HEIGHT
+        set(value) {
+            field = value
+            if (isResizable) {
+                content.marginBottom = value.px
+            }
+        }
+
     private var isResizeEvent = false
 
     init {
@@ -275,7 +286,7 @@ open class Window(
         if (isResizable) {
             @Suppress("LeakingThis")
             resize = Resize.BOTH
-            content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
+            content.marginBottom = resizeHandleHeight.px
         }
         @Suppress("LeakingThis")
         setEventListener<Window> {
@@ -375,15 +386,16 @@ open class Window(
 
     private fun checkIsResizable() {
         checkResizablEventHandler()
-        val headerHeight = if (header.visible) WINDOW_HEADER_HEIGHT else 0
+        val headerHeight =
+            if (header.visible) (header.height?.first?.toInt() ?: DEFAULT_WINDOW_HEADER_HEIGHT) else 0
         if (isResizable) {
             resize = Resize.BOTH
-            val intHeight = getElement()?.height() ?: 0
-            content.height = (intHeight - headerHeight - WINDOW_CONTENT_MARGIN_BOTTOM).px
-            content.marginBottom = WINDOW_CONTENT_MARGIN_BOTTOM.px
+            val intHeight = getElement()?.height() ?: 300
+            content.height = (intHeight - headerHeight - resizeHandleHeight).px
+            content.marginBottom = resizeHandleHeight.px
         } else {
             resize = Resize.NONE
-            val intHeight = getElement()?.height() ?: 0
+            val intHeight = getElement()?.height() ?: 300
             content.height = (intHeight - headerHeight).px
             content.marginBottom = 0.px
         }
@@ -404,10 +416,11 @@ open class Window(
                         val contentSize = entry.contentBoxSize[0]
                         width = borderSize.inlineSize.toInt().px
                         height = borderSize.blockSize.toInt().px
-                        val headerHeight = if (header.visible) WINDOW_HEADER_HEIGHT else 0
+                        val headerHeight =
+                            if (header.visible) (header.height?.first?.toInt() ?: DEFAULT_WINDOW_HEADER_HEIGHT) else 0
                         contentWidth = contentSize.inlineSize.toInt().px
                         contentHeight =
-                            (contentSize.blockSize.toInt() - headerHeight - WINDOW_CONTENT_MARGIN_BOTTOM).px
+                            (contentSize.blockSize.toInt() - headerHeight - resizeHandleHeight).px
                         if (initialResizeEntry) {
                             initialResizeEntry = false
                         } else {
