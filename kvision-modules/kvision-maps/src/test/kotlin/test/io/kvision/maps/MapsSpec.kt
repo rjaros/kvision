@@ -22,14 +22,14 @@
  */
 package test.io.kvision.maps
 
+import io.kvision.maps.DefaultTileLayers
+import io.kvision.maps.Maps
+import io.kvision.maps.Maps.Companion.L
 import io.kvision.maps.externals.leaflet.geo.CRS
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.layer.FeatureGroup
 import io.kvision.maps.externals.leaflet.layer.overlay.SVGOverlay
-import io.kvision.maps.DefaultTileLayers
-import io.kvision.maps.Maps
-import io.kvision.maps.Maps.Companion.L
 import io.kvision.maps.maps
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
