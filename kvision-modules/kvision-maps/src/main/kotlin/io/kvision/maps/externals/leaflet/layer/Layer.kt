@@ -136,4 +136,16 @@ abstract external class Layer<T : LayerOptions>(
         var attribution: String?
     }
 
+    /**
+     * Some [Layer]s can be made interactive - when the user interacts with such a layer, mouse
+     * events like `click` and `mouseover` can be handled. Use the
+     * [event handling methods](https://leafletjs.com/reference.html#evented-method) to handle
+     * these events.
+     */
+    interface InteractiveLayerOptions : LayerOptions {
+        /** If true, the popup/tooltip will listen to the mouse events. */
+        var interactive: Boolean?
+        var bubblingMouseEvents: Boolean?
+    }
+
 }
