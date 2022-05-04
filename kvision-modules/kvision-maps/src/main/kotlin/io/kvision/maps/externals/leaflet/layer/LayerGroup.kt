@@ -81,9 +81,9 @@ open external class LayerGroup(
     open fun getLayerId(layer: Layer<*>): Number
     /**
      * Type is one of:
-     * * `geojson.FeatureCollection<geojson.GeometryObject, P>`
-     * * `geojson.Feature<geojson.MultiPoint, P>`
-     * * `geojson.GeometryCollection`
+     * * [`FeatureCollection<geojson.GeometryObject, P>`][io.kvision.maps.externals.geojson.FeatureCollection]
+     * * [`Feature<geojson.MultiPoint, P>`][io.kvision.maps.externals.geojson.Feature]
+     * * [`GeometryCollection`][io.kvision.maps.externals.geojson.GeometryCollection]`
      * * `undefined`
      */
     open var feature: dynamic
