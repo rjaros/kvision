@@ -25,7 +25,6 @@
 
 package io.kvision.maps.externals.leaflet.layer.overlay
 
-import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
@@ -63,6 +62,7 @@ open external class VideoOverlay : Layer<VideoOverlay.VideoOverlayOptions>, Medi
         var autoplay: Boolean?
         var loop: Boolean?
         var keepAspectRatio: Boolean?
+        var playsInline: Boolean?
         var muted: Boolean?
     }
 
