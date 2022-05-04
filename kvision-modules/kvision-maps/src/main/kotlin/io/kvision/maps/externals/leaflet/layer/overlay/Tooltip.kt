@@ -25,6 +25,7 @@
 
 package io.kvision.maps.externals.leaflet.layer.overlay
 
+import io.kvision.maps.externals.leaflet.DirectionsUnion
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip.TooltipOptions
 
@@ -36,8 +37,14 @@ open external class Tooltip(
     open fun setOpacity(param_val: Number)
 
     interface TooltipOptions : DivOverlayOptions {
-        /** Direction where to open the tooltip. Possible values are: right, left, top, bottom, center, auto. auto will dynamically switch between right and left according to the tooltip position on the map. */
-        var direction: String?
+        /**
+         * Direction where to open the tooltip. Possible values are: `right`, `left`, `top`,
+         * `bottom`, `center`, `auto`.
+         *
+         * `auto` will dynamically switch between `right` and `left` according to the tooltip
+         * position on the map.
+         */
+        var direction: DirectionsUnion?
         /** Whether to open the tooltip permanently or only on mouseover. */
         var permanent: Boolean?
         /** If true, the tooltip will follow the mouse instead of being fixed at the feature center. */
