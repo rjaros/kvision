@@ -46,19 +46,48 @@ abstract external class Path<T : PathOptions>(
     open fun getElement(): Element?
 
     interface PathOptions : InteractiveLayerOptions {
+        /**
+         * Whether to draw stroke along the path. Set it to `false` to disable borders on polygons
+         * or circles.
+         */
         var stroke: Boolean?
+        /** Stroke color */
         var color: String?
+        /** Stroke width in pixels */
         var weight: Number?
+        /** Stroke opacity */
         var opacity: Number?
+        /** A string that defines shape to be used at the end of the stroke. */
         var lineCap: String? /* "butt" | "round" | "square" | "inherit" */
+        /** A string that defines shape to be used at the corners of the stroke.*/
         var lineJoin: String? /* "miter" | "round" | "bevel" | "inherit" */
+        /**
+         * A string that defines the stroke dash pattern. Doesn't work on Canvas-powered layers in
+         * some old browsers.
+         */
         var dashArray: dynamic /* String? | Array<Number>? */
+        /**
+         * A string that defines the distance into the dash pattern to start the dash. Doesn't
+         * work on Canvas-powered layers in some old browsers.
+         */
         var dashOffset: String?
+        /**
+         * Whether to fill the path with color. Set it to `false` to disable filling on polygons or
+         * circles.
+         */
         var fill: Boolean?
+        /** Fill color. Defaults to the value of the [color] option */
         var fillColor: String?
+        /** Fill opacity. */
         var fillOpacity: Number?
+        /** A string that defines how the inside of a shape is determined. */
         var fillRule: String? /* "nonzero" | "evenodd" | "inherit" */
-        var renderer: Renderer?
+        /**
+         * When `true`, a mouse event on this path will trigger the same event on the map
+         * (unless `L.DomEvent.stopPropagation` is used).
+         */
+        var renderer: Renderer<Renderer.RendererOptions>?
+        /** Custom class name set on an element. Only for SVG renderer. */
         var className: String?
     }
 

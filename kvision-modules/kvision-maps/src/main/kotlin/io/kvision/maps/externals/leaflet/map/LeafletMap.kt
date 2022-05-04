@@ -59,12 +59,12 @@ open external class LeafletMap : Evented {
     open var dragging: Handler
     open var keyboard: Handler
     open var scrollWheelZoom: Handler
-    open var tap: Handler?
+    open var tap: Handler
     open var touchZoom: Handler
     open var zoomControl: Zoom
     open var options: LeafletMapOptions
 
-    open fun getRenderer(layer: Path<*>): Renderer
+    open fun getRenderer(layer: Path<*>): Renderer<Renderer.RendererOptions>
 
     open fun addControl(control: Control<*>): LeafletMap
     open fun removeControl(control: Control<*>): LeafletMap
@@ -248,7 +248,7 @@ open external class LeafletMap : Evented {
         var maxZoom: Number?
         var minZoom: Number?
         var preferCanvas: Boolean?
-        var renderer: Renderer?
+        var renderer: Renderer<Renderer.RendererOptions>?
         var scrollWheelZoom: dynamic /* Boolean? | "center" */
         var tap: Boolean?
         var tapTolerance: Number?

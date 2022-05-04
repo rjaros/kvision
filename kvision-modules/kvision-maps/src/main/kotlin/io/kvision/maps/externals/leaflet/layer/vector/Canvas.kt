@@ -25,4 +25,18 @@
 
 package io.kvision.maps.externals.leaflet.layer.vector
 
-open external class Canvas(options: RendererOptions = definedExternally) : Renderer
+/**
+ * Allows vector layers to be displayed with `<canvas>`.
+ *
+ * Due to [technical limitations](https://caniuse.com/canvas), Canvas is not available in all web
+ * browsers, notably IE8, and overlapping geometries might not display properly in some edge cases.
+ */
+open external class Canvas(
+    options: CanvasOptions = definedExternally
+) : Renderer<Canvas.CanvasOptions> {
+
+    interface CanvasOptions : RendererOptions {
+        /** How much to extend the click tolerance around a path/object on the map. */
+        var tolerance: Number?
+    }
+}
