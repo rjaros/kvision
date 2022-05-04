@@ -27,7 +27,6 @@ package io.kvision.maps.externals.leaflet.layer.overlay
 
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geometry.Point
-import io.kvision.maps.externals.leaflet.layer.InteractiveLayerOptions
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.DivOverlay.DivOverlayOptions
 import io.kvision.maps.externals.leaflet.map.LeafletMap

@@ -25,7 +25,6 @@
 
 package io.kvision.maps.externals.leaflet.layer.overlay
 
-import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
@@ -52,8 +51,6 @@ open external class SVGOverlay : Layer<ImageOverlayOptions>, MediaOverlay {
     override fun setUrl(url: String): SVGOverlay /* this */
     override fun setBounds(bounds: LatLngBounds): SVGOverlay /* this */
     override fun setZIndex(value: Number): SVGOverlay /* this */
-    override fun getBounds(): LatLngBounds
-    override fun getCenter(): LatLng?
 
     override fun getElement(): SVGElement?
 }

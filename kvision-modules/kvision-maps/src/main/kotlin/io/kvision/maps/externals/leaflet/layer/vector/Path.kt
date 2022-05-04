@@ -25,7 +25,6 @@
 
 package io.kvision.maps.externals.leaflet.layer.vector
 
-import io.kvision.maps.externals.leaflet.layer.InteractiveLayerOptions
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.vector.Path.PathOptions
 import org.w3c.dom.Element

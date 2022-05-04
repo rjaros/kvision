@@ -57,8 +57,6 @@ open external class VideoOverlay : Layer<VideoOverlay.VideoOverlayOptions>, Medi
     override fun setUrl(url: String): VideoOverlay /* this */
     override fun setBounds(bounds: LatLngBounds): VideoOverlay /* this */
     override fun setZIndex(value: Number): VideoOverlay /* this */
-    override fun getBounds(): LatLngBounds
-    override fun getCenter(): LatLng?
     override fun getElement(): HTMLVideoElement?
 
     interface VideoOverlayOptions : ImageOverlayOptions {

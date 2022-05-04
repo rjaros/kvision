@@ -29,7 +29,6 @@ import io.kvision.maps.externals.geojson.Feature
 import io.kvision.maps.externals.geojson.Point
 import io.kvision.maps.externals.leaflet.core.Handler
 import io.kvision.maps.externals.leaflet.geo.LatLng
-import io.kvision.maps.externals.leaflet.layer.InteractiveLayerOptions
 import io.kvision.maps.externals.leaflet.layer.Layer
 import org.w3c.dom.HTMLElement
 

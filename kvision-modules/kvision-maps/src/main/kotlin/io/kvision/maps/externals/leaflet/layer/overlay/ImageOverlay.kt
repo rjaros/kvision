@@ -27,7 +27,6 @@ package io.kvision.maps.externals.leaflet.layer.overlay
 
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
-import io.kvision.maps.externals.leaflet.layer.InteractiveLayerOptions
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.HTMLImageElement
@@ -47,9 +46,9 @@ open external class ImageOverlay(
     override fun setUrl(url: String): ImageOverlay /* this */
     override fun setBounds(bounds: LatLngBounds): ImageOverlay /* this */
     override fun setZIndex(value: Number): ImageOverlay /* this */
-    override fun getBounds(): LatLngBounds
+    fun getBounds(): LatLngBounds
     override fun getElement(): HTMLImageElement?
-    override fun getCenter(): LatLng?
+    fun getCenter(): LatLng?
 
     interface ImageOverlayOptions : InteractiveLayerOptions {
         var opacity: Number?
