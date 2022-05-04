@@ -75,10 +75,9 @@ open class Maps(
      * be added as a component.
      */
     fun <T : Any?> leafletMap(action: LeafletMap.() -> T): T {
-        require(_leafletMap != null) {
+        return requireNotNull(_leafletMap) {
             "LeafletMap is not initialised - the KVision Maps widget must be added to the DOM"
-        }
-        return _leafletMap!!.action()
+        }.action()
     }
 
     /** Create a native map instance. */
