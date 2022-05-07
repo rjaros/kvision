@@ -56,9 +56,9 @@ open class CheckBoxInput(
         getElementD()?.indeterminate = this.indeterminate
     }
 
-    override fun changeValue() {
+    override fun changeValue(eventType: String) {
         this.indeterminate = false
-        super.changeValue()
+        super.changeValue(eventType)
     }
 
 }

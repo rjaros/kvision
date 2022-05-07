@@ -42,16 +42,18 @@ open class TriStateCheckBoxInput(
         init?.invoke(this)
     }
 
-    override fun changeValue() {
-        if (this.value) {
-            this.value = false
-            this.indeterminate = false
-        } else if (!this.indeterminate) {
-            this.value = false
-            this.indeterminate = true
-        } else {
-            this.value = true
-            this.indeterminate = false
+    override fun changeValue(eventType: String) {
+        if (eventType == "click") {
+            if (this.value) {
+                this.value = false
+                this.indeterminate = false
+            } else if (!this.indeterminate) {
+                this.value = false
+                this.indeterminate = true
+            } else {
+                this.value = true
+                this.indeterminate = false
+            }
         }
     }
 
