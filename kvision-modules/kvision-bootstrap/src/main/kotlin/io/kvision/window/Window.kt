@@ -228,6 +228,7 @@ open class Window(
     private var isResizeEvent = false
 
     init {
+        useSnabbdomDistinctKey()
         id = "kv_window_$counter"
         @Suppress("LeakingThis")
         position = Position.ABSOLUTE
@@ -388,13 +389,17 @@ open class Window(
             if (header.visible) (header.height?.first?.toInt() ?: DEFAULT_WINDOW_HEADER_HEIGHT) else 0
         if (isResizable) {
             resize = Resize.BOTH
-            val intHeight = getElement()?.height() ?: 300
-            content.height = (intHeight - headerHeight - resizeHandleHeight).px
+            val intHeight = getElement()?.height()
+            if (intHeight != null) {
+                content.height = (intHeight - headerHeight - resizeHandleHeight).px
+            }
             content.marginBottom = resizeHandleHeight.px
         } else {
             resize = Resize.NONE
-            val intHeight = getElement()?.height() ?: 300
-            content.height = (intHeight - headerHeight).px
+            val intHeight = getElement()?.height()
+            if (intHeight != null) {
+                content.height = (intHeight - headerHeight).px
+            }
             content.marginBottom = 0.px
         }
     }
