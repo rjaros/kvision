@@ -71,6 +71,14 @@ enum class RowRangeLookup(internal val set: String) {
 }
 
 /**
+ * Tabulator alert style options.
+ */
+enum class AlertStyle(internal val style: String) {
+    MSG("msg"),
+    ERROR("error"),
+}
+
+/**
  * Tabulator component.
  *
  * @constructor
@@ -753,6 +761,26 @@ open class Tabulator<T : Any>(
         positionTarget: String? = null
     ) {
         jsTabulator?.addColumn(columnDefinition, insertRightOfTarget, positionTarget)
+    }
+
+    /**
+     * Show an alert message.
+     * @param message alert message
+     * @param style alert message style
+     */
+    open fun alert(message: String, style: AlertStyle? = null) {
+        if (style != null) {
+            jsTabulator?.alert(message, style.style)
+        } else {
+            jsTabulator?.alert(message)
+        }
+    }
+
+    /**
+     * Clear an alert message.
+     */
+    open fun clearAlert() {
+        jsTabulator?.clearAlert()
     }
 
     internal fun removeCustomEditors() {

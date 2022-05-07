@@ -34,6 +34,6 @@ object TabulatorModule : ModuleInitializer {
     }
 
     override fun initialize() {
-        require("tabulator-tables/dist/css/tabulator_bootstrap4.min.css")
+        require("tabulator-tables/dist/css/tabulator_bootstrap5.min.css")
     }
 }

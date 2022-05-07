@@ -396,6 +396,9 @@ open external class Tabulator {
     open fun on(event: String, callback: Any): Unit = definedExternally
     open fun off(event: String, callback: Any): Unit = definedExternally
 
+    open fun alert(message: String, style: String = definedExternally): Unit = definedExternally
+    open fun clearAlert(): Unit = definedExternally
+
     interface Options : OptionsGeneral, OptionsMenu, OptionsHistory, OptionsLocale, OptionsDownload, OptionsColumns,
         OptionsRows, OptionsData, OptionsSorting, OptionsFiltering, OptionsRowGrouping, OptionsPagination,
         OptionsPersistentConfiguration, OptionsClipboard, OptionsDataTree, OptionsCell, OptionsDebug, OptionsHTML
@@ -2421,7 +2424,7 @@ open external class Tabulator {
         var navigateDown: () -> Unit
         var isEdited: () -> Boolean
         var clearEdited: () -> Unit
-        var isValid: () -> Boolean
+        var isValid: () -> dynamic
         var clearValidation: () -> Unit
         var validate: () -> Boolean
     }

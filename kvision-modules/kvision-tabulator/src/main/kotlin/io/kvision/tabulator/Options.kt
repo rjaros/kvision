@@ -40,6 +40,8 @@ import kotlin.reflect.KClass
 /**
  * Tooltip generation mode.
  */
+@Deprecated("This option is no longer used")
+@Suppress("DEPRECATION")
 enum class TooltipGenerationMode(internal val mode: String) {
     LOAD("load"),
     HOVER("hover")
@@ -114,8 +116,11 @@ enum class Editor(internal val editor: String) {
     RANGE("range"),
     TICK("tick"),
     STAR("star"),
-    SELECT("select"),
-    AUTOCOMPLETE("autocomplete")
+    @Deprecated("Use LIST editor instead", ReplaceWith("LIST"))
+    SELECT("list"),
+    LIST("list"),
+    @Deprecated("Use LIST editor instead", ReplaceWith("LIST"))
+    AUTOCOMPLETE("list")
 }
 
 /**
@@ -336,7 +341,7 @@ data class ColumnDefinition<T : Any>(
     val resizable: dynamic = null,
     val frozen: Boolean? = null,
     val responsive: Int? = null,
-    val tooltip: ((cell: Tabulator.CellComponent) -> String)? = null,
+    val tooltip: dynamic = null,
     val cssClass: String? = null,
     val rowHandle: Boolean? = null,
     val hideInHtml: Boolean? = null,
@@ -391,7 +396,7 @@ data class ColumnDefinition<T : Any>(
     val headerTap: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
     val headerDblTap: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
     val headerTapHold: ((e: dynamic, column: Tabulator.ColumnComponent) -> Unit)? = null,
-    val headerTooltip: ((column: Tabulator.ColumnComponent) -> String)? = null,
+    val headerTooltip: dynamic = null,
     val headerVertical: Boolean? = null,
     val editableTitle: Boolean? = null,
     val titleFormatter: Formatter? = null,
@@ -439,6 +444,13 @@ data class ColumnDefinition<T : Any>(
     val mutator: ((value: dynamic, data: dynamic, type: String, params: dynamic, cell: Tabulator.CellComponent) -> Any)? = null,
     val mutatorParams: dynamic = null,
     val maxInitialWidth: Int? = null,
+    val cellPopup: dynamic = null,
+    val headerPopup: dynamic = null,
+    val headerPopupIcon: dynamic = null,
+    val headerContextPopup: dynamic = null,
+    val clickPopup: dynamic = null,
+    val contextPopup: dynamic = null,
+    val headerMenuIcon: dynamic = null,
 )
 
 internal object EditorRoot {
@@ -520,14 +532,6 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         }
     }
 
-    val tmpTooltip = tooltip?.let {
-        { o: dynamic ->
-            if (o["_cell"] != undefined) {
-                it(o)
-            } else ""
-        }
-    }
-
     return obj {
         this.title = i18nTranslator(title)
         if (field != null) this.field = field
@@ -541,7 +545,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (resizable != null) this.resizable = resizable
         if (frozen != null) this.frozen = frozen
         if (responsive != null) this.responsive = responsive
-        if (tmpTooltip != null) this.tooltip = tmpTooltip
+        if (tooltip != null) this.tooltip = tooltip
         if (cssClass != null) this.cssClass = cssClass
         if (rowHandle != null) this.rowHandle = rowHandle
         if (hideInHtml != null) this.hideInHtml = hideInHtml
@@ -643,6 +647,13 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (mutator != null) this.mutator = mutator
         if (mutatorParams != null) this.mutatorParams = mutatorParams
         if (maxInitialWidth != null) this.maxInitialWidth = maxInitialWidth
+        if (cellPopup != null) this.cellPopup = cellPopup
+        if (headerPopup != null) this.headerPopup = headerPopup
+        if (headerPopupIcon != null) this.headerPopupIcon = headerPopupIcon
+        if (headerContextPopup != null) this.headerContextPopup = headerContextPopup
+        if (clickPopup != null) this.clickPopup = clickPopup
+        if (contextPopup != null) this.contextPopup = contextPopup
+        if (headerMenuIcon != null) this.headerMenuIcon = headerMenuIcon
     } as Tabulator.ColumnDefinition
 }
 
@@ -653,6 +664,7 @@ data class TabulatorOptions<T : Any>(
     val height: String? = null,
     val placeholder: String? = null,
     val footerElement: String? = null,
+    @Suppress("DEPRECATION") @Deprecated("This option is no longer used")
     val tooltipGenerationMode: TooltipGenerationMode? = null,
     val history: Boolean? = null,
     val keybindings: dynamic = null,
@@ -766,9 +778,13 @@ data class TabulatorOptions<T : Any>(
     val importFormat: ImportFormat? = null,
     val importReader: ImportReader? = null,
     val dataLoaderErrorTimeout: Int? = null,
-    val menuContainer: dynamic = null,
+    val popupContainer: dynamic = null,
     val paginationCounter: dynamic = null,
     val paginationCounterElement: dynamic = null,
+    val rowClickPopup: dynamic = null,
+    val rowContextPopup: dynamic = null,
+    val resizableColumnFit: Boolean? = null,
+    val rowHeight: Int? = null
 )
 
 /**
@@ -784,7 +800,6 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (height != null) this.height = height
         if (placeholder != null) this.placeholder = i18nTranslator(placeholder)
         if (footerElement != null) this.footerElement = i18nTranslator(footerElement)
-        if (tooltipGenerationMode != null) this.tooltipGenerationMode = tooltipGenerationMode.mode
         if (history != null) this.history = history
         if (keybindings != null) this.keybindings = keybindings
         if (downloadDataFormatter != null) this.downloadDataFormatter = downloadDataFormatter
@@ -904,8 +919,12 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (importFormat != null) this.importFormat = importFormat.type
         if (importReader != null) this.importReader = importReader.type
         if (dataLoaderErrorTimeout != null) this.dataLoaderErrorTimeout = dataLoaderErrorTimeout
-        if (menuContainer != null) this.menuContainer = menuContainer
+        if (popupContainer != null) this.popupContainer = popupContainer
         if (paginationCounter != null) this.paginationCounter = paginationCounter
         if (paginationCounterElement != null) this.paginationCounterElement = paginationCounterElement
+        if (rowClickPopup != null) this.rowClickPopup = rowClickPopup
+        if (rowContextPopup != null) this.rowContextPopup = rowContextPopup
+        if (resizableColumnFit != null) this.resizableColumnFit = resizableColumnFit
+        if (rowHeight != null) this.rowHeight = rowHeight
     } as Tabulator.Options
 }
