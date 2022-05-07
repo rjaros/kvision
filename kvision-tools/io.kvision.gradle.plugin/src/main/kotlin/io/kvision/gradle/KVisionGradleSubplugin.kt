@@ -96,11 +96,11 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 }
                 if (rootProject.findProperty("io.kvision.plugin.enableWebpackVersions") != "false") {
                     rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-                        versions.webpackDevServer.version = "4.8.1"
+                        versions.webpackDevServer.version = "4.9.0"
                         versions.webpack.version = "5.72.0"
                         versions.webpackCli.version = "4.9.2"
-                        versions.karma.version = "6.3.18"
-                        versions.mocha.version = "9.2.2"
+                        versions.karma.version = "6.3.19"
+                        versions.mocha.version = "10.0.0"
                     }
                 }
                 if (rootProject.findProperty("io.kvision.plugin.enableHiddenKotlinJsStore") != "false") {
@@ -174,11 +174,11 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 }
                 if (rootProject.findProperty("io.kvision.plugin.enableWebpackVersions") != "false") {
                     rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-                        versions.webpackDevServer.version = "4.8.1"
+                        versions.webpackDevServer.version = "4.9.0"
                         versions.webpack.version = "5.72.0"
                         versions.webpackCli.version = "4.9.2"
-                        versions.karma.version = "6.3.18"
-                        versions.mocha.version = "9.2.2"
+                        versions.karma.version = "6.3.19"
+                        versions.mocha.version = "10.0.0"
                     }
                 }
                 if (rootProject.findProperty("io.kvision.plugin.enableHiddenKotlinJsStore") != "false") {

@@ -30,11 +30,11 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
-        versions.webpackDevServer.version = "4.8.1"
+        versions.webpackDevServer.version = "4.9.0"
         versions.webpack.version = "5.72.0"
         versions.webpackCli.version = "4.9.2"
-        versions.karma.version = "6.3.18"
-        versions.mocha.version = "9.2.2"
+        versions.karma.version = "6.3.19"
+        versions.mocha.version = "10.0.0"
     }
 }
 
@@ -51,8 +51,8 @@ dependencies {
     implementation(npm("css-loader", "^6.7.1"))
     implementation(npm("style-loader", "^3.3.1"))
     implementation(npm("imports-loader", "^3.1.1"))
-    implementation(npm("fecha", "^4.2.1"))
-    implementation(npm("snabbdom", "^3.4.0"))
+    implementation(npm("fecha", "^4.2.3"))
+    implementation(npm("snabbdom", "^3.5.0"))
     implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.5"))
     implementation(npm("split.js", "^1.6.5"))
     implementation(npm("@rjaros/gettext.js", "^1.1.3"))
