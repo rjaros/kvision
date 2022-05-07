@@ -63,16 +63,7 @@ open external class TileLayer<T : TileLayerOptions>(
     /** @return this */
     open fun setUrl(url: String, noRedraw: Boolean = definedExternally): TileLayer<*>
 
-    open fun getTileUrl(coords: Coords): String
-
-    open fun _tileOnLoad(done: DoneCallback, tile: HTMLElement)
-    open fun _tileOnError(done: DoneCallback, tile: HTMLElement, e: Error)
-    open fun _abortLoading()
-    open fun _getZoomForUrl(): Number
-
     interface TileLayerOptions : GridLayerOptions {
-        var id: String?
-        var accessToken: String?
         /**
          * Subdomains of the tile service. Can be passed in the form of one string (where each
          * letter is a subdomain name) or an array of strings.
@@ -88,6 +79,7 @@ open external class TileLayer<T : TileLayerOptions>(
         var zoomReverse: Boolean?
         var detectRetina: Boolean?
         var crossOrigin: dynamic /* Boolean? | String? */
+        var referrerPolicy: dynamic /* Boolean? | String? */
     }
 
 }

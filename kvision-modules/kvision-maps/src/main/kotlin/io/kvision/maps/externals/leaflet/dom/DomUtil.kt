@@ -50,6 +50,10 @@ external object DomUtil {
     fun get(element: HTMLElement): HTMLElement?
     /** Get Element by its ID */
     fun get(element: String): HTMLElement?
+    /**
+     * Returns the value for a certain style attribute on an element, including computed values or
+     * values set through CSS.
+     */
     fun getStyle(el: HTMLElement, styleAttrib: String): String?
     /**
      * Creates an HTML element with `tagName`, sets its class to `className`, and optionally
@@ -89,6 +93,14 @@ external object DomUtil {
     fun enableTextSelection()
     fun disableImageDrag()
     fun enableImageDrag()
+    /**
+     * Makes the outline of the element `el` invisible. Used internally by Leaflet to prevent
+     * focusable elements from displaying an outline when the user performs a drag interaction on
+     * them.
+     */
     fun preventOutline(el: HTMLElement)
+    /**
+     * Cancels the effects of a previous [preventOutline].
+     */
     fun restoreOutline()
 }

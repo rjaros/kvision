@@ -27,10 +27,20 @@ package io.kvision.maps.externals.leaflet.core
 
 import io.kvision.maps.externals.leaflet.map.LeafletMap
 
+/**
+ * Abstract class for map interaction handlers
+ *
+ * https://leafletjs.com/reference.html#handler
+ */
 open external class Handler(map: LeafletMap) : Class {
+    /** Enables the handler */
     open fun enable(): Handler /* this */
+    /** Disables the handler */
     open fun disable(): Handler /* this */
+    /** Returns `true` if the handler is enabled */
     open fun enabled(): Boolean
+    /** Called when the handler is enabled, should add event hooks. */
     open val addHooks: (() -> Unit)?
+    /** Called when the handler is disabled, should remove the event hooks added previously. */
     open val removeHooks: (() -> Unit)?
 }

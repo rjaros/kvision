@@ -25,12 +25,29 @@
 
 package io.kvision.maps.externals.leaflet.core
 
-open external class Class {
+/**
+ * [`L.Class`](https://leafletjs.com/SlavaUkraini/reference.html#class)
+ * powers the OOP facilities of Leaflet and is used to create almost all the Leaflet classes
+ * documented.
+ *
+ * In addition to implementing a simple classical inheritance model, it introduces several special
+ * properties for convenient code organization — options, includes and statics.
+ */
+abstract external class Class {
+
     companion object {
-        fun extend(props: Any): Any /* Any & Any */
-        fun include(props: Any): Any /* Any & Any */
-        fun mergeOptions(props: Any): Any /* Any & Any */
-        fun addInitHook(initHookFn: () -> Unit): Any /* Any & Any */
-        fun addInitHook(methodName: String, vararg args: Any): Any /* Any & Any */
+        /**
+         * [Extends the current class](https://leafletjs.com/SlavaUkraini/reference.html#class-inheritance)
+         * given the properties to be included. Returns a Javascript function that is a class
+         * constructor (to be called with `new`).
+         */
+        fun extend(props: Any): Any
+        /** Includes a mixin into the current class. */
+        fun include(props: Any): Any
+        /** Merges options into the defaults of the class. */
+        fun mergeOptions(props: Any): Any
+        /** Adds a constructor hook to the class. */
+        fun addInitHook(initHookFn: () -> Unit): Any
+        fun addInitHook(methodName: String, vararg args: Any): Any
     }
 }

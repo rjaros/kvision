@@ -30,6 +30,7 @@ import io.kvision.maps.externals.geojson.GeoJsonGeometry
 import io.kvision.maps.externals.geojson.GeoJsonObject
 import io.kvision.maps.externals.geojson.Point
 import io.kvision.maps.externals.leaflet.geo.LatLng
+import io.kvision.maps.externals.leaflet.layer.vector.Path
 import io.kvision.maps.externals.leaflet.layer.vector.Path.PathOptions
 
 /**
@@ -52,14 +53,29 @@ open external class GeoJSON(
             options: GeoJSONOptions = definedExternally
         ): Layer<*>
 
-        fun coordsToLatLng(coords: Any /* JsTuple<Number, Number> */): LatLng
+        /**
+         * Creates a LatLng object from 2 numbers (longitude, latitude) used in GeoJSON for points.
+         */
+        fun coordsToLatLng(coords: Pair<Number, Number>): LatLng
+
+        /**
+         * Creates a LatLng object from 3 numbers (longitude, latitude, altitude) used in GeoJSON
+         * for points.
+         */
+        fun coordsToLatLng(coords: Triple<Number, Number, Number>): LatLng
+
         fun coordsToLatLngs(
             coords: Array<Any>,
             levelsDeep: Number = definedExternally,
-            coordsToLatLng: (coords: Array<Number> /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */) -> LatLng = definedExternally
+            coordsToLatLng: (coords: Pair<Number, Number>) -> LatLng = definedExternally
+        ): Array<Any>
+        fun coordsToLatLngs(
+            coords: Array<Any>,
+            levelsDeep: Number = definedExternally,
+            coordsToLatLng: (coords: Triple<Number, Number, Number>) -> LatLng = definedExternally
         ): Array<Any>
 
-        fun latLngToCoords(latlng: LatLng): Array<Number> /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */
+        fun latLngToCoords(latlng: LatLng): Array<Number>
         fun latLngsToCoords(
             latlngs: Array<Any>,
             levelsDeep: Number = definedExternally,
@@ -74,12 +90,13 @@ open external class GeoJSON(
 
         /**
          * A Function defining how GeoJSON points spawn Leaflet layers. It is internally called
-         * when data is added, passing the GeoJSON [Feature<Point>][externals.geojson.Feature]
+         * when data is added, passing the GeoJSON [Feature<Point>][io.kvision.maps.externals.geojson.Feature]
          * and its [LatLng].
          *
          * The default is to spawn a default Marker:
          */
-        val pointToLayer: ((geoJsonPoint: Feature<Point>, latlng: LatLng) -> Layer<*>)?
+        var pointToLayer: ((geoJsonPoint: Feature<Point>, latlng: LatLng) -> Layer<*>)?
+
         /**
          * 	A Function defining the [PathOptions] for styling GeoJSON lines and polygons, called
          * 	internally when data is added.
@@ -87,14 +104,18 @@ open external class GeoJSON(
          * 	The default value is to not override any defaults:
          */
         var style: StyleFunction /* PathOptions? | StyleFunction<P>? */
-        val onEachFeature: ((feature: Feature<GeoJsonGeometry>, layer: Layer<*>) -> Unit)?
-        val filter: ((geoJsonFeature: Feature<GeoJsonGeometry>) -> Boolean)?
+
+        var onEachFeature: ((feature: Feature<GeoJsonGeometry>, layer: Layer<*>) -> Unit)?
+
+        var filter: ((geoJsonFeature: Feature<GeoJsonGeometry>) -> Boolean)?
+
         /**
          * A Function that will be used for converting GeoJSON coordinates to [LatLng]s.
          *
          * The default is [GeoJSON.Companion.coordsToLatLng].
          */
-        val coordsToLatLng: ((coords: Array<Number> /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */) -> LatLng)?
+        var coordsToLatLng: ((coords: Array<Number> /* JsTuple<Number, Number> | JsTuple<Number, Number, Number> */) -> LatLng)?
+
         var markersInheritOptions: Boolean?
     }
 

@@ -27,6 +27,7 @@
 package io.kvision.maps.externals.leaflet.control
 
 import io.kvision.maps.externals.leaflet.control.Scale.ScaleOptions
+import io.kvision.maps.externals.leaflet.events.LeafletEventHandlerFnMap
 
 /**
  * A simple scale control that shows the scale of the current center of screen in metric (m/km) and
@@ -35,9 +36,19 @@ import io.kvision.maps.externals.leaflet.control.Scale.ScaleOptions
 open external class Scale(options: ScaleOptions = definedExternally) : Control<ScaleOptions> {
 
     interface ScaleOptions : ControlOptions {
+        /**
+         * Maximum width of the control in pixels. The width is set dynamically to show round
+         * values (e.g. 100, 200, 500).
+         */
         var maxWidth: Number?
+        /** Whether to show the metric scale line (m/km). */
         var metric: Boolean?
+        /** Whether to show the imperial scale line (mi/ft). */
         var imperial: Boolean?
+        /**
+         * If `true`, the control is updated on [LeafletEventHandlerFnMap.moveend], otherwise it's
+         * always up-to-date (updated on [LeafletEventHandlerFnMap.move]).
+         */
         var updateWhenIdle: Boolean?
     }
 

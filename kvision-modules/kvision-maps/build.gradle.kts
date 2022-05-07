@@ -16,8 +16,8 @@ dependencies {
     api(rootProject)
     implementation(kotlin("stdlib-js"))
 
-    implementation(npm("leaflet", "^1.7.1"))
-    implementation(npm("@types/leaflet", "^1.7.7"))
+    implementation(npm("leaflet", "^1.8.0"))
+//    implementation(npm("@types/leaflet", "^1.8.0"))
 
     implementation(npm("geojson", "^0.5.0")) {
         because("used by Leaflet for defining locations")

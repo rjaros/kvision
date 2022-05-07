@@ -34,7 +34,7 @@ import io.kvision.maps.externals.leaflet.control.Layers.LayersOptions
 import io.kvision.maps.externals.leaflet.control.Scale
 import io.kvision.maps.externals.leaflet.control.Scale.ScaleOptions
 import io.kvision.maps.externals.leaflet.control.Zoom
-import io.kvision.maps.externals.leaflet.control.Zoom.ZoomOptions
+import io.kvision.maps.externals.leaflet.control.Zoom.ZoomControlOptions
 import io.kvision.maps.externals.leaflet.control.set
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
@@ -159,8 +159,8 @@ object LeafletObjectFactory {
     ): Scale = Scale(options = obj<ScaleOptions>(configure))
 
     fun zoom(
-        configure: ZoomOptions.() -> Unit = {},
-    ): Zoom = Zoom(options = obj<ZoomOptions>(configure))
+        configure: ZoomControlOptions.() -> Unit = {},
+    ): Zoom = Zoom(options = obj<ZoomControlOptions>(configure))
 
     fun divIcon(
         configure: DivIconOptions.() -> Unit = {},
@@ -221,8 +221,8 @@ object LeafletObjectFactory {
     ): WMS = WMS(baseUrl = baseUrl, options = obj<WMSOptions>(configure))
 
     fun canvas(
-        configure: RendererOptions.() -> Unit = {},
-    ): Canvas = Canvas(options = obj<RendererOptions>(configure))
+        configure: Canvas.CanvasOptions.() -> Unit = {},
+    ): Canvas = Canvas(options = obj<Canvas.CanvasOptions>(configure))
 
     fun circleMarker(
         latlng: LatLng,

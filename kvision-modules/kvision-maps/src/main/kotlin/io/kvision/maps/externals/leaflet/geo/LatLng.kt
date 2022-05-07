@@ -36,16 +36,30 @@ open external class LatLng(
     altitude: Number = definedExternally
 ) {
 
+    /** Latitude in degrees */
     open var lat: Number
+    /** Longitude in degrees */
     open var lng: Number
+    /** Altitude in meters */
     open var alt: Number?
 
     open fun equals(otherLatLng: LatLng, maxMargin: Number = definedExternally): Boolean
+    @Suppress("CovariantEquals") // 'equals' is external, we can't change it, so the warning isn't useful
     open fun equals(otherLatLng: LatLng): Boolean
 
+    /**
+     * Returns the distance (in meters) to the given [LatLng] calculated using the
+     * [Spherical Law of Cosines](https://en.wikipedia.org/wiki/Spherical_law_of_cosines).
+     */
     open fun distanceTo(otherLatLng: LatLng): Number
-
+    /**
+     * Returns a new LatLng object with the longitude wrapped, so it's always between `-180` and
+     * `+180` degrees.
+     */
     open fun wrap(): LatLng
+    /**
+     * Returns a new [LatLngBounds] object in which each boundary is `sizeInMeters/2` meters apart
+     * from the [LatLng].
+     */
     open fun toBounds(sizeInMeters: Number): LatLngBounds
-    open fun clone(): LatLng
 }

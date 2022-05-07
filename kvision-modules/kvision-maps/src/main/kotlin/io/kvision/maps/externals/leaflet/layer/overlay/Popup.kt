@@ -30,26 +30,69 @@ import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.Popup.PopupOptions
 import io.kvision.maps.externals.leaflet.map.LeafletMap
 
+/**
+ * Used to open popups in certain places of the map. Use [LeafletMap.openPopup] to open popups
+ * while making sure that only one popup is open at one time (recommended for usability), or use
+ * [LeafletMap.addLayer] to open as many as you want.
+ *
+ * https://leafletjs.com/SlavaUkraini/reference.html#popup
+ */
 open external class Popup(
     source: Layer<*> = definedExternally,
     options: PopupOptions = definedExternally,
 ) : DivOverlay<PopupOptions> {
 
-    open fun openOn(map: LeafletMap): Popup /* this */
-
     interface PopupOptions : DivOverlayOptions {
+        /** Max width of the popup, in pixels.*/
         var maxWidth: Number?
+        /** Min width of the popup, in pixels.*/
         var minWidth: Number?
+        /**
+         * If set, creates a scrollable container of the given height inside a popup if its content
+         * exceeds it.
+         */
         var maxHeight: Number?
-        var keepInView: Boolean?
-        var closeButton: Boolean?
+        /**
+         * Set it to false if you don't want the map to do panning animation to fit the opened
+         * popup.
+         */
         var autoPan: Boolean?
-        var autoPanPaddingTopLeft: Point
-        var autoPanPaddingBottomRight: Point
-        var autoPanPadding: Point
+        /**
+         * The margin between the popup and the top left corner of the map view after
+         * auto-panning was performed.
+         */
+        var autoPanPaddingTopLeft: Point?
+        /**
+         * The margin between the popup and the bottom right corner of the map view after
+         * auto-panning was performed.
+         */
+        var autoPanPaddingBottomRight: Point?
+        /**
+         * Equivalent of setting both top left and bottom right auto-pan padding to the same value.
+         */
+        var autoPanPadding: Point?
+        /**
+         * Set it to true if you want to prevent users from panning the popup off of the screen
+         * while it is open.
+         * */
+        var keepInView: Boolean?
+        /** Controls the presence of a close button in the popup.*/
+        var closeButton: Boolean?
+        /**
+         * Set it to false if you want to override the default behavior of the popup closing when
+         * another popup is opened.
+         */
         var autoClose: Boolean?
-        var closeOnClick: Boolean?
+        /**
+         * Set it to `false` if you want to override the default behavior of the ESC key for
+         * closing of the popup.
+         */
         var closeOnEscapeKey: Boolean?
+        /**
+         * Set it if you want to override the default behavior of the popup closing when user
+         * clicks on the map. Defaults to the map's
+         * [`closePopupOnClick`][LeafletMap.LeafletMapOptions.closePopupOnClick] option.
+         */
+        var closeOnClick: Boolean?
     }
-
 }

@@ -61,7 +61,7 @@ external interface LeafletEventHandlerFnMap {
     // resize events
     var resize: ResizeEventHandlerFn?
 
-    // popup evetns
+    // popup events
     var popupopen: PopupEventHandlerFn?
     var popupclose: PopupEventHandlerFn?
 

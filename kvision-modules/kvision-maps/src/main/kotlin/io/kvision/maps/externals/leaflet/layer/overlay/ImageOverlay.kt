@@ -25,26 +25,30 @@
 
 package io.kvision.maps.externals.leaflet.layer.overlay
 
+import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
-import io.kvision.maps.externals.leaflet.layer.InteractiveLayerOptions
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.HTMLImageElement
 
+/**
+ * Used to load and display a single image over specific bounds of the map.
+ */
 open external class ImageOverlay(
     imageUrl: String,
     bounds: LatLngBounds,
     options: ImageOverlayOptions = definedExternally
-) : Layer<ImageOverlayOptions> {
+) : Layer<ImageOverlayOptions>, MediaOverlay {
 
-    open fun setOpacity(opacity: Number): ImageOverlay /* this */
-    open fun bringToFront(): ImageOverlay /* this */
-    open fun bringToBack(): ImageOverlay /* this */
-    open fun setUrl(url: String): ImageOverlay /* this */
-    open fun setBounds(bounds: LatLngBounds): ImageOverlay /* this */
-    open fun setZIndex(value: Number): ImageOverlay /* this */
-    open fun getBounds(): LatLngBounds
-    open fun getElement(): HTMLImageElement?
+    override fun setOpacity(opacity: Number): ImageOverlay /* this */
+    override fun bringToFront(): ImageOverlay /* this */
+    override fun bringToBack(): ImageOverlay /* this */
+    override fun setUrl(url: String): ImageOverlay /* this */
+    override fun setBounds(bounds: LatLngBounds): ImageOverlay /* this */
+    override fun setZIndex(value: Number): ImageOverlay /* this */
+    fun getBounds(): LatLngBounds
+    override fun getElement(): HTMLImageElement?
+    fun getCenter(): LatLng?
 
     interface ImageOverlayOptions : InteractiveLayerOptions {
         var opacity: Number?

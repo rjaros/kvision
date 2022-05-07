@@ -39,13 +39,12 @@ import io.kvision.maps.externals.leaflet.layer.vector.Renderer.RendererOptions
  *
  * Do not use this class directly, use [SVG] and [Canvas] instead.
  */
-abstract external class Renderer(
+abstract external class Renderer<T: RendererOptions>(
     options: RendererOptions = definedExternally
-) : Layer<RendererOptions> {
+) : Layer<T> {
 
     interface RendererOptions : LayerOptions {
         var padding: Number?
-        var tolerance: Number?
     }
 
 }

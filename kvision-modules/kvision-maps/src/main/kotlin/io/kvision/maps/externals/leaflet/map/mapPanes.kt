@@ -38,7 +38,7 @@ import io.kvision.maps.externals.leaflet.layer.vector.Polyline
 import org.w3c.dom.HTMLElement
 
 /**
- * See [`https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/map/Map.js#L1137`](https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/map/Map.js#L1137)
+ * See [`Map.js#L1124`](https://github.com/Leaflet/Leaflet/blob/v1.8.0/src/map/Map.js#L1124)
  */
 external interface DefaultMapPanes {
     /** Pane that contains all other map panes */

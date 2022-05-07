@@ -35,7 +35,7 @@ import io.kvision.maps.externals.leaflet.geo.LatLng
  * Note that points you pass when creating a polygon shouldn't have an additional last point equal
  * to the first one — it's better to filter out such points.
  *
- * @param T [externals.geojson.Polygon] or [externals.geojson.MultiPolygon]
+ * @param T [io.kvision.maps.externals.geojson.Polygon] or [io.kvision.maps.externals.geojson.MultiPolygon]
  */
 open external class Polygon<T : GeoJsonSingleOrMultiPolygon> :
     Polyline<GeoJsonSingleOrMultiLineString> {

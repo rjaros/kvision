@@ -26,6 +26,7 @@
 package io.kvision.maps.externals.leaflet.layer.vector
 
 import io.kvision.maps.externals.geojson.Feature
+import io.kvision.maps.externals.geojson.Point
 import io.kvision.maps.externals.leaflet.geo.LatLng
 
 open external class CircleMarker(
@@ -33,9 +34,9 @@ open external class CircleMarker(
     options: CircleMarkerOptions = definedExternally,
 ) : Path<CircleMarker.CircleMarkerOptions> {
 
-    open var feature: Feature<io.kvision.maps.externals.geojson.Point>?
+    open var feature: Feature<Point>?
 
-    open fun toGeoJSON(precision: Number = definedExternally): Feature<io.kvision.maps.externals.geojson.Point>
+    open fun toGeoJSON(precision: Number = definedExternally): Feature<Point>
     open fun setLatLng(latLng: LatLng): CircleMarker /* this */
     open fun getLatLng(): LatLng
     open fun setRadius(radius: Number): CircleMarker /* this */

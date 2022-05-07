@@ -28,6 +28,15 @@ package io.kvision.maps.externals.leaflet.layer
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.layer.vector.Path.PathOptions
 
+
+/**
+ * Extended [LayerGroup] that makes it easier to do the same thing to all its member layers:
+ *
+ * * [Layer.bindPopup] binds a popup to all the layers at once (likewise with [Layer.bindTooltip])
+ * * Events are propagated to the [FeatureGroup], so if the group has an event handler, it will
+ *   handle events from any of the layers. This includes mouse events and custom events.
+ * * Has `layeradd` and `layerremove` events
+ */
 open external class FeatureGroup(
     layers: Array<Layer<*>> = definedExternally,
     options: LayerOptions = definedExternally

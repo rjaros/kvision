@@ -26,6 +26,11 @@
 package io.kvision.maps.externals.leaflet.geo
 
 
+/**
+ * Represents a rectangular geographical area on a map.
+ *
+ * https://leafletjs.com/SlavaUkraini/reference.html#latlngbounds
+ */
 open external class LatLngBounds(southWest: LatLng, northEast: LatLng) {
 
     open fun extend(latLng: LatLng): LatLngBounds /* this */
@@ -44,13 +49,14 @@ open external class LatLngBounds(southWest: LatLng, northEast: LatLng) {
     open fun getEast(): Number
     open fun getNorth(): Number
 
-    open fun contains(otherBoundsOrLatLng: LatLngBounds): Boolean
-    open fun contains(otherBoundsOrLatLng: LatLng): Boolean
+    open fun contains(otherBounds: LatLngBounds): Boolean
+    open fun contains(latlng: LatLng): Boolean
     open fun intersects(otherBounds: LatLngBounds): Boolean
     open fun overlaps(otherBounds: LatLngBounds): Boolean
 
     open fun toBBoxString(): String
 
+    @Suppress("CovariantEquals") // 'equals' is external, we can't change it, so the warning isn't useful
     open fun equals(otherBounds: LatLngBounds): Boolean
     open fun isValid(): Boolean
 }

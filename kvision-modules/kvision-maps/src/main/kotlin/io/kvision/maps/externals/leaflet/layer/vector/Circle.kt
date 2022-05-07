@@ -29,6 +29,12 @@ import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 
 
+/**
+ * A class for drawing circle overlays on a map.
+ *
+ * It's an approximation and starts to diverge from a real circle closer to poles (due to
+ * projection distortion).
+ */
 open external class Circle(
     latlng: LatLng,
     options: CircleMarkerOptions = definedExternally,

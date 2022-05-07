@@ -29,6 +29,7 @@ import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geometry.Point
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.DivOverlay.DivOverlayOptions
+import io.kvision.maps.externals.leaflet.map.LeafletMap
 import org.w3c.dom.HTMLElement
 
 open external class DivOverlay<T : DivOverlayOptions>(
@@ -36,23 +37,26 @@ open external class DivOverlay<T : DivOverlayOptions>(
     source: Layer<*> = definedExternally,
 ) : Layer<Layer.LayerOptions> {
 
+    open fun openOn(map: LeafletMap)
+    open fun close()
+    open fun toggle(): DivOverlay<T>?
     open fun getLatLng(): LatLng?
     open fun setLatLng(latlng: LatLng): DivOverlay<T> /* this */
-    open fun getContent(): dynamic /* String? | HTMLElement? | ((source: Layer) -> dynamic)? */
+    open fun getContent(): dynamic /* String? | HTMLElement? */
     open fun setContent(htmlContent: (source: Layer<*>) -> Any): DivOverlay<T> /* this */
     open fun setContent(htmlContent: String): DivOverlay<T> /* this */
     open fun setContent(htmlContent: HTMLElement): DivOverlay<T> /* this */
-    open fun getElement(): HTMLElement?
+    open fun getElement(): dynamic /* String? | HTMLElement? */
     open fun update()
     open fun isOpen(): Boolean
     open fun bringToFront(): DivOverlay<T> /* this */
     open fun bringToBack(): DivOverlay<T> /* this */
 
-    interface DivOverlayOptions {
+    interface DivOverlayOptions : InteractiveLayerOptions {
+        /** The offset of the overlay position. */
         var offset: Point
-        var zoomAnimation: Boolean?
+        /** A custom CSS class name to assign to the overlay. */
         var className: String?
-        var pane: String?
     }
 
 }

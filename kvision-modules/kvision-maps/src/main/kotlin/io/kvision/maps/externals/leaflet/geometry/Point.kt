@@ -25,6 +25,11 @@
 
 package io.kvision.maps.externals.leaflet.geometry
 
+/**
+ * Represents a point with `x` and `y` coordinates in pixels.
+ *
+ * https://leafletjs.com/SlavaUkraini/reference.html#point
+ */
 open external class Point(
     x: Number,
     y: Number,
@@ -44,6 +49,9 @@ open external class Point(
     fun round(): Point
     fun floor(): Point
     fun ceil(): Point
+    fun trunc(): Point
     fun distanceTo(otherPoint: Point): Number
     fun contains(otherPoint: Point): Boolean
+    @Suppress("CovariantEquals") // 'equals' is external, we can't change it, so the warning isn't useful
+    fun equals(otherPoint: Point): Boolean
 }

@@ -25,14 +25,23 @@
 
 package io.kvision.maps.externals.leaflet.control
 
-import io.kvision.maps.externals.leaflet.control.Zoom.ZoomOptions
+import io.kvision.maps.externals.leaflet.control.Zoom.ZoomControlOptions
+import io.kvision.maps.externals.leaflet.map.LeafletMap
 
-open external class Zoom(options: ZoomOptions = definedExternally) : Control<ZoomOptions> {
+/**
+ * A basic zoom control with two buttons (zoom in and zoom out). It is put on the map by default
+ * unless you set its [LeafletMap.zoomControl] option to `false`.
+ */
+open external class Zoom(options: ZoomControlOptions = definedExternally) : Control<ZoomControlOptions> {
 
-    interface ZoomOptions : ControlOptions {
+    interface ZoomControlOptions : ControlOptions {
+        /** The text set on the 'zoom in' button. */
         var zoomInText: String?
+        /** The title  set on the 'zoom in' button. */
         var zoomInTitle: String?
+        /** The text set on the 'zoom out' button. */
         var zoomOutText: String?
+        /** The title set on the 'zoom out' button. */
         var zoomOutTitle: String?
     }
 

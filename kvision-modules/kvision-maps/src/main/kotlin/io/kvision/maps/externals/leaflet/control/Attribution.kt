@@ -31,13 +31,22 @@ open external class Attribution(
     options: AttributionOptions = definedExternally
 ) : Control<Attribution.AttributionOptions> {
 
+    /** The HTML text shown before the attributions. Pass `false` to disable. */
     open fun setPrefix(prefix: String): Attribution /* this */
+    /** The HTML text shown before the attributions. Pass `false` to disable. */
     open fun setPrefix(prefix: Boolean): Attribution /* this */
+    /** Adds an attribution text (e.g. `Vector data &copy; Mapbox`).*/
     open fun addAttribution(text: String): Attribution /* this */
+    /** Removes an attribution text. */
     open fun removeAttribution(text: String): Attribution /* this */
 
     interface AttributionOptions : ControlOptions {
-        var prefix: dynamic /* String? | Boolean? */
+        /**
+         * The HTML text shown before the attributions. Pass false to disable.
+         *
+         * Type: `String` or `false`
+         */
+        var prefix: dynamic
     }
 
 }
