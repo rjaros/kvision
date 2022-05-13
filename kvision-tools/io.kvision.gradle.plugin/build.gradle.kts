@@ -6,6 +6,8 @@ plugins {
     id("signing")
     id("de.marcphilipp.nexus-publish")
     id("org.jetbrains.dokka")
+
+    id("com.gradle.plugin-publish") version "0.21.0"
 }
 
 val kotlinVersion: String by System.getProperties()
@@ -14,11 +16,18 @@ val autoServiceVersion: String by project
 gradlePlugin {
     plugins {
         isAutomatedPublishing = false
-        create("simplePlugin") {
+        create("kvisionGradlePlugin") {
             id = "io.kvision"
-            implementationClass = "io.kvision.gradle.KVisionGradleSubplugin"
+//            implementationClass = "io.kvision.gradle.KVisionGradleSubplugin"
+            implementationClass = "io.kvision.gradle.KVisionPlugin"
         }
     }
+}
+
+pluginBundle {
+    website = kvisionProjectWebsite
+    vcsUrl = kvisionVcsUrl
+    tags = listOf("kvision", "kotlin", "kotlin-js", "kotlin-multiplatform")
 }
 
 java {
@@ -29,6 +38,8 @@ java {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     compileOnly(kotlin("gradle-plugin"))
+
+    testImplementation(gradleTestKit())
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
