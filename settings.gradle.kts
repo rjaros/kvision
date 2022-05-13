@@ -63,6 +63,3 @@ include(
     "kvision-tools:kvision-gradle-plugin",
     "kvision-assets",
 )
-
-
-project(":kvision-tools:kvision-gradle-plugin").projectDir = file("./kvision-tools/io.kvision.gradle.plugin")
