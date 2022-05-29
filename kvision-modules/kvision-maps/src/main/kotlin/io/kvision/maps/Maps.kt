@@ -33,8 +33,9 @@ import org.w3c.dom.HTMLElement
  * Maps component.
  */
 open class Maps(
+    private val optionsConfigure: (dynamic.() -> Unit)? = null,
     className: String? = null,
-    init: (Maps.() -> Unit) = {}
+    init: (Maps.() -> Unit)? = null
 ) : Widget(className) {
 
     /** private backing field - use [configureLeafletMap] or [leafletMap] for accessing */
@@ -45,7 +46,8 @@ open class Maps(
 
     init {
         useSnabbdomDistinctKey()
-        this.init()
+        @Suppress("LeakingThis")
+        init?.invoke(this)
     }
 
     /**
@@ -86,7 +88,7 @@ open class Maps(
             "$this - Unable to get HTMLElement"
         }
 
-        _leafletMap = L.map(thisElement)
+        _leafletMap = L.map(thisElement, optionsConfigure ?: { })
         _leafletMap!!.leafletMapConfigurer()
     }
 
@@ -114,10 +116,11 @@ open class Maps(
  * It takes the same parameters as the constructor of the [Maps] component.
  */
 fun Container.maps(
+    optionsConfigure: (dynamic.() -> Unit)? = null,
     className: String? = null,
-    init: (Maps.() -> Unit) = {}
+    init: (Maps.() -> Unit)? = null
 ): Maps {
-    val maps = Maps(className, init)
+    val maps = Maps(optionsConfigure, className, init)
     this.add(maps)
     return maps
 }
