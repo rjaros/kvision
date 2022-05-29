@@ -31,9 +31,9 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
         versions.webpackDevServer.version = "4.9.0"
-        versions.webpack.version = "5.72.0"
+        versions.webpack.version = "5.72.1"
         versions.webpackCli.version = "4.9.2"
-        versions.karma.version = "6.3.19"
+        versions.karma.version = "6.3.20"
         versions.mocha.version = "10.0.0"
     }
 }
@@ -59,12 +59,6 @@ dependencies {
     implementation(npm("gettext-extract", "^2.0.1"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
-}
-
-rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
-    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
-        resolution("async", "^2.6.4")
-    }
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
