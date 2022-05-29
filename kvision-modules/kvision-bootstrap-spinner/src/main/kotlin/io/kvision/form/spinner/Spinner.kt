@@ -272,6 +272,7 @@ open class Spinner(
 
     override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
         addCssClass("row")
+        addCssClass("kv-control-horiz")
         flabel.addCssClass("col-sm-${horizontalRatio.labels}")
         flabel.addCssClass("col-form-label")
         input.addSurroundingCssClass("col-sm-${horizontalRatio.fields}")
