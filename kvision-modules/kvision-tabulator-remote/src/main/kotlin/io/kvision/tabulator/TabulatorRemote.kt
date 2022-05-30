@@ -38,6 +38,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.overwriteWith
 import org.w3c.dom.get
+import org.w3c.fetch.RequestInit
 import kotlin.reflect.KClass
 
 /**
@@ -55,6 +56,7 @@ import kotlin.reflect.KClass
  * @param kClass Kotlin class
  * @param serializer the serializer for type T
  * @param module optional serialization module with custom serializers
+ * @param requestFilter a request filtering function
  */
 open class TabulatorRemote<T : Any, E : Any>(
     serviceManager: KVServiceMgr<E>,
@@ -65,7 +67,8 @@ open class TabulatorRemote<T : Any, E : Any>(
     className: String? = null,
     kClass: KClass<T>? = null,
     serializer: KSerializer<T>? = null,
-    module: SerializersModule? = null
+    module: SerializersModule? = null,
+    requestFilter: (suspend RequestInit.() -> Unit)? = null
 ) : Tabulator<T>(null, false, options, types, className, kClass, serializer, module) {
 
     override val jsonHelper = if (serializer != null) Json(
@@ -114,7 +117,7 @@ open class TabulatorRemote<T : Any, E : Any>(
             @Suppress("UnsafeCastFromDynamic")
             val data =
                 Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
-            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name))
+            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name), requestFilter = requestFilter)
                 .then { r: dynamic ->
                     val result = JSON.parse<dynamic>(r.result.unsafeCast<String>())
                     @Suppress("UnsafeCastFromDynamic")
@@ -147,6 +150,7 @@ inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
     className: String? = null,
     serializer: KSerializer<T>? = null,
     module: SerializersModule? = null,
+    noinline requestFilter: (suspend RequestInit.() -> Unit)? = null,
     noinline init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
     val tabulatorRemote =
@@ -159,7 +163,8 @@ inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
             className,
             T::class,
             serializer,
-            module
+            module,
+            requestFilter
         )
     init?.invoke(tabulatorRemote)
     this.add(tabulatorRemote)

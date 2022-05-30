@@ -22,6 +22,11 @@
 package io.kvision.remote
 
 import kotlinx.browser.window
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.promise
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
@@ -29,6 +34,7 @@ import org.w3c.dom.url.URLSearchParams
 import org.w3c.fetch.INCLUDE
 import org.w3c.fetch.RequestCredentials
 import org.w3c.fetch.RequestInit
+import kotlin.coroutines.resume
 import kotlin.js.Promise
 
 /**
@@ -50,6 +56,8 @@ enum class ResponseBodyType {
  */
 open class CallAgent {
 
+    private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+
     private val kvUrlPrefix = window["kv_remote_url_prefix"]
     private val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
     private var counter = 1
@@ -67,7 +75,7 @@ open class CallAgent {
         url: String,
         data: List<String?> = listOf(),
         method: HttpMethod = HttpMethod.POST,
-        requestFilter: (RequestInit.() -> Unit)? = null
+        requestFilter: (suspend RequestInit.() -> Unit)? = null
     ): Promise<String> {
         val requestInit = RequestInit()
         requestInit.method = method.name
@@ -83,35 +91,40 @@ open class CallAgent {
         requestInit.headers = js("{}")
         requestInit.headers["Content-Type"] = "application/json"
         requestInit.headers["X-Requested-With"] = "XMLHttpRequest"
-        requestFilter?.invoke(requestInit)
-        return Promise { resolve, reject ->
-            window.fetch(fetchUrl, requestInit).then { response ->
-                if (response.ok) {
-                    response.json().then { data: dynamic ->
-                        when {
-                            data.id != jsonRpcRequest.id -> reject(Exception("Invalid response ID"))
-                            data.error != null -> {
-                                if (data.exceptionType == "io.kvision.remote.ServiceException") {
-                                    reject(ServiceException(data.error.toString()))
-                                } else if (data.exceptionJson != null) {
-                                    reject(RemoteSerialization.getJson().decodeFromString<AbstractServiceException>(data.exceptionJson))
-                                } else {
-                                    reject(Exception(data.error.toString()))
+        return scope.promise {
+            requestFilter?.invoke(requestInit)
+            suspendCancellableCoroutine { cont ->
+                window.fetch(fetchUrl, requestInit).then { response ->
+                    if (response.ok) {
+                        response.json().then { data: dynamic ->
+                            when {
+                                data.id != jsonRpcRequest.id -> cont.cancel(Exception("Invalid response ID"))
+                                data.error != null -> {
+                                    if (data.exceptionType == "io.kvision.remote.ServiceException") {
+                                        cont.cancel(ServiceException(data.error.toString()))
+                                    } else if (data.exceptionJson != null) {
+                                        cont.cancel(
+                                            RemoteSerialization.getJson()
+                                                .decodeFromString<AbstractServiceException>(data.exceptionJson)
+                                        )
+                                    } else {
+                                        cont.cancel(Exception(data.error.toString()))
+                                    }
                                 }
+                                data.result != null -> cont.resume(data.result)
+                                else -> cont.cancel(Exception("Invalid response"))
                             }
-                            data.result != null -> resolve(data.result)
-                            else -> reject(Exception("Invalid response"))
+                        }
+                    } else {
+                        if (response.status.toInt() == HTTP_UNAUTHORIZED) {
+                            cont.cancel(SecurityException(response.statusText))
+                        } else {
+                            cont.cancel(Exception(response.statusText))
                         }
                     }
-                } else {
-                    if (response.status.toInt() == HTTP_UNAUTHORIZED) {
-                        reject(SecurityException(response.statusText))
-                    } else {
-                        reject(Exception(response.statusText))
-                    }
+                }.catch {
+                    cont.cancel(Exception(it.message))
                 }
-            }.catch {
-                reject(Exception(it.message))
             }
         }
     }
@@ -133,7 +146,7 @@ open class CallAgent {
         method: HttpMethod = HttpMethod.GET,
         contentType: String = "application/json",
         responseBodyType: ResponseBodyType = ResponseBodyType.JSON,
-        requestFilter: (RequestInit.() -> Unit)? = null
+        requestFilter: (suspend RequestInit.() -> Unit)? = null
     ): Promise<dynamic> {
         val requestInit = RequestInit()
         requestInit.method = method.name
@@ -152,24 +165,26 @@ open class CallAgent {
         requestInit.headers = js("{}")
         requestInit.headers["Content-Type"] = contentType
         requestInit.headers["X-Requested-With"] = "XMLHttpRequest"
-        requestFilter?.invoke(requestInit)
-        return Promise { resolve, reject ->
-            window.fetch(fetchUrl, requestInit).then { response ->
-                if (response.ok) {
-                    when (responseBodyType) {
-                        ResponseBodyType.JSON -> response.json().then { resolve(it) }
-                        ResponseBodyType.TEXT -> response.text().then { resolve(it) }
-                        ResponseBodyType.READABLE_STREAM -> resolve(response.body)
-                    }
-                } else {
-                    if (response.status.toInt() == HTTP_UNAUTHORIZED) {
-                        reject(SecurityException(response.statusText))
+        return scope.promise {
+            requestFilter?.invoke(requestInit)
+            suspendCancellableCoroutine { cont ->
+                window.fetch(fetchUrl, requestInit).then { response ->
+                    if (response.ok) {
+                        when (responseBodyType) {
+                            ResponseBodyType.JSON -> response.json().then { cont.resume(it) }
+                            ResponseBodyType.TEXT -> response.text().then { cont.resume(it) }
+                            ResponseBodyType.READABLE_STREAM -> cont.resume(response.body)
+                        }
                     } else {
-                        reject(Exception(response.statusText))
+                        if (response.status.toInt() == HTTP_UNAUTHORIZED) {
+                            cont.cancel(SecurityException(response.statusText))
+                        } else {
+                            cont.cancel(Exception(response.statusText))
+                        }
                     }
+                }.catch {
+                    cont.cancel(Exception(it.message))
                 }
-            }.catch {
-                reject(Exception(it.message))
             }
         }
     }
