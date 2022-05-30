@@ -151,6 +151,16 @@ open class SelectInput(
     var emptyOption by refreshOnUpdate(false) { setChildrenFromOptions() }
 
     /**
+     * The number of options to be show in the dropdown list.
+     */
+    var dropdownSize: Int? by refreshOnUpdate()
+
+    /**
+     * Always show all options in the dropdown list.
+     */
+    var dropdownShowAll by refreshOnUpdate(false)
+
+    /**
      * Determines if the field is disabled.
      */
     override var disabled by refreshOnUpdate(false) { refresh(); refreshSelectInput() }
@@ -377,6 +387,11 @@ open class SelectInput(
             }
             else -> {
             }
+        }
+        if (dropdownShowAll) {
+            attributeSetBuilder.add("data-size", "false")
+        } else if (dropdownSize != null && dropdownSize!! > 0) {
+            attributeSetBuilder.add("data-size", dropdownSize.toString())
         }
     }
 
