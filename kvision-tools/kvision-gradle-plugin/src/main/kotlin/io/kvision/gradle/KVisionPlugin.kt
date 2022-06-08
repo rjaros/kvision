@@ -46,7 +46,7 @@ abstract class KVisionPlugin : Plugin<Project> {
 
         with(KVPluginContext(project, kvExtension)) {
 
-            plugins.withType<KotlinJsPlugin>().configureEach {
+            plugins.withId("org.jetbrains.kotlin.js") {
                 configureJsProject()
 
                 afterEvaluate {
@@ -54,7 +54,7 @@ abstract class KVisionPlugin : Plugin<Project> {
                 }
             }
 
-            plugins.withType<KotlinMultiplatformPlugin>().configureEach {
+            plugins.withId("org.jetbrains.kotlin.multiplatform") {
                 configureMppProject()
 
                 afterEvaluate {
