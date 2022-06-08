@@ -35,11 +35,17 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+val kotestVersion: String by project
+
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    compileOnly(kotlin("gradle-plugin"))
+    implementation(kotlin("gradle-plugin"))
 
     testImplementation(gradleTestKit())
+
+    implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+    implementation("io.kotest:kotest-runner-junit5")
+    implementation("io.kotest:kotest-assertions-core")
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -69,3 +75,7 @@ publishing {
 setupSigning()
 setupPublication()
 setupDokka()
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+}
