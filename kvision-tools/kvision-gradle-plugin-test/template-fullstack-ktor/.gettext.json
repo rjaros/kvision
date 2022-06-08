@@ -1,0 +1,39 @@
+{
+  "js": {
+    "parsers": [
+      {
+        "expression": "tr",
+        "arguments": {
+          "text": 0
+        }
+      },
+      {
+        "expression": "ntr",
+        "arguments": {
+          "text": 0,
+          "textPlural": 1
+        }
+      },
+      {
+        "expression": "gettext",
+        "arguments": {
+          "text": 0
+        }
+      },
+      {
+        "expression": "ngettext",
+        "arguments": {
+          "text": 0,
+          "textPlural": 1
+        }
+      }
+    ],
+    "glob": {
+      "pattern": "src/**/*.kt"
+    }
+  },
+  "headers": {
+    "Language": ""
+  },
+  "output": "src/frontendMain/resources/i18n/messages.pot"
+}

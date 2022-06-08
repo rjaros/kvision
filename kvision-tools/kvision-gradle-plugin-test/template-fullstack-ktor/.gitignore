@@ -1,0 +1,8 @@
+.*/
+build/
+out/
+/refresh.sh
+*.imp
+*.ipr
+*.iws
+*.idea
