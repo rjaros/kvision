@@ -298,8 +298,9 @@ abstract class KVisionPlugin : Plugin<Project> {
             .flatMap { it.nodeJsSetupTaskProvider }
             .map { it.destination }
 
-        val isWindowsProvider = providers.systemProperty("os.name").map {
-            it.toLowerCase().contains("windows")
+
+        val isWindowsProvider = providers.provider {
+            OperatingSystem.current().isWindows
         }
 
         val nodeBinDirProvider = isWindowsProvider.zip(nodeDirProvider) { isWindows, nodeDir ->

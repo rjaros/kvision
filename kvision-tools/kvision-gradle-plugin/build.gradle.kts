@@ -8,6 +8,8 @@ plugins {
     id("org.jetbrains.dokka")
 
     id("com.gradle.plugin-publish") version "0.21.0"
+
+    idea
 }
 
 val kotlinVersion: String by System.getProperties()
@@ -78,4 +80,10 @@ setupDokka()
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+}
+
+idea {
+    module {
+        isDownloadSources = true
+    }
 }
