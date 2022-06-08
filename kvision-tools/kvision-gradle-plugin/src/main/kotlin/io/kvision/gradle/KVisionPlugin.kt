@@ -26,6 +26,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinMultiplatformPlugin
+import org.jetbrains.kotlin.gradle.targets.js.KotlinJsPlugin
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
@@ -44,7 +46,7 @@ abstract class KVisionPlugin : Plugin<Project> {
 
         with(KVPluginContext(project, kvExtension)) {
 
-            plugins.withId("org.jetbrains.kotlin.js") {
+            plugins.withType<KotlinJsPlugin>().configureEach {
                 configureJsProject()
 
                 afterEvaluate {
@@ -52,7 +54,7 @@ abstract class KVisionPlugin : Plugin<Project> {
                 }
             }
 
-            plugins.withId("org.jetbrains.kotlin.multiplatform") {
+            plugins.withType<KotlinMultiplatformPlugin>().configureEach {
                 configureMppProject()
 
                 afterEvaluate {
