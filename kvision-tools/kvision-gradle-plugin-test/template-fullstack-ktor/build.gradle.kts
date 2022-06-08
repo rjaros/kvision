@@ -126,71 +126,71 @@ kotlin {
         }
     }
 }
-
-afterEvaluate {
-    tasks {
-        create("frontendArchive", Jar::class).apply {
-            dependsOn("frontendBrowserProductionWebpack")
-            group = "package"
-            archiveAppendix.set("frontend")
-            val distribution =
-                project.tasks.getByName("frontendBrowserProductionWebpack", KotlinWebpack::class).destinationDirectory!!
-            from(distribution) {
-                include("*.*")
-            }
-            from(webDir)
-            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-            into("/assets")
-            inputs.files(distribution, webDir)
-            outputs.file(archiveFile)
-            manifest {
-                attributes(
-                    mapOf(
-                        "Implementation-Title" to rootProject.name,
-                        "Implementation-Group" to rootProject.group,
-                        "Implementation-Version" to rootProject.version,
-                        "Timestamp" to System.currentTimeMillis()
-                    )
-                )
-            }
-        }
-        getByName("backendProcessResources", Copy::class) {
-            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        }
-        getByName("backendJar").group = "package"
-        create("jar", Jar::class).apply {
-            dependsOn("frontendArchive", "backendJar")
-            group = "package"
-            manifest {
-                attributes(
-                    mapOf(
-                        "Implementation-Title" to rootProject.name,
-                        "Implementation-Group" to rootProject.group,
-                        "Implementation-Version" to rootProject.version,
-                        "Timestamp" to System.currentTimeMillis(),
-                        "Main-Class" to mainClassName
-                    )
-                )
-            }
-            val dependencies = configurations["backendRuntimeClasspath"].filter { it.name.endsWith(".jar") } +
-                    project.tasks["backendJar"].outputs.files +
-                    project.tasks["frontendArchive"].outputs.files
-            dependencies.forEach {
-                if (it.isDirectory) from(it) else from(zipTree(it))
-            }
-            exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA")
-            inputs.files(dependencies)
-            outputs.file(archiveFile)
-            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        }
-        create("backendRun", JavaExec::class) {
-            dependsOn("compileKotlinBackend")
-            group = "run"
-            main = mainClassName
-            classpath =
-                configurations["backendRuntimeClasspath"] + project.tasks["compileKotlinBackend"].outputs.files +
-                        project.tasks["backendProcessResources"].outputs.files
-            workingDir = buildDir
-        }
-    }
-}
+//
+//afterEvaluate {
+//    tasks {
+//        create("frontendArchive", Jar::class).apply {
+//            dependsOn("frontendBrowserProductionWebpack")
+//            group = "package"
+//            archiveAppendix.set("frontend")
+//            val distribution =
+//                project.tasks.getByName("frontendBrowserProductionWebpack", KotlinWebpack::class).destinationDirectory!!
+//            from(distribution) {
+//                include("*.*")
+//            }
+//            from(webDir)
+//            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//            into("/assets")
+//            inputs.files(distribution, webDir)
+//            outputs.file(archiveFile)
+//            manifest {
+//                attributes(
+//                    mapOf(
+//                        "Implementation-Title" to rootProject.name,
+//                        "Implementation-Group" to rootProject.group,
+//                        "Implementation-Version" to rootProject.version,
+//                        "Timestamp" to System.currentTimeMillis()
+//                    )
+//                )
+//            }
+//        }
+//        getByName("backendProcessResources", Copy::class) {
+//            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//        }
+//        getByName("backendJar").group = "package"
+//        create("jar", Jar::class).apply {
+//            dependsOn("frontendArchive", "backendJar")
+//            group = "package"
+//            manifest {
+//                attributes(
+//                    mapOf(
+//                        "Implementation-Title" to rootProject.name,
+//                        "Implementation-Group" to rootProject.group,
+//                        "Implementation-Version" to rootProject.version,
+//                        "Timestamp" to System.currentTimeMillis(),
+//                        "Main-Class" to mainClassName
+//                    )
+//                )
+//            }
+//            val dependencies = configurations["backendRuntimeClasspath"].filter { it.name.endsWith(".jar") } +
+//                    project.tasks["backendJar"].outputs.files +
+//                    project.tasks["frontendArchive"].outputs.files
+//            dependencies.forEach {
+//                if (it.isDirectory) from(it) else from(zipTree(it))
+//            }
+//            exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA")
+//            inputs.files(dependencies)
+//            outputs.file(archiveFile)
+//            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//        }
+//        create("backendRun", JavaExec::class) {
+//            dependsOn("compileKotlinBackend")
+//            group = "run"
+//            main = mainClassName
+//            classpath =
+//                configurations["backendRuntimeClasspath"] + project.tasks["compileKotlinBackend"].outputs.files +
+//                        project.tasks["backendProcessResources"].outputs.files
+//            workingDir = buildDir
+//        }
+//    }
+//}

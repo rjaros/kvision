@@ -72,46 +72,7 @@ class KVisionPluginTest : FunSpec({
 
     context("verify KVision plugin creates tasks") {
 
-        context("with applied with alongside Kotlin/JS plugin") {
-
-            test("groovy script") {
-
-                val projectDir: File = tempdir().apply {
-
-                    `settings gradle`(
-                        """
-                            rootProject.name = 'hello-world'
-                        """.trimIndent()
-                    )
-
-                    `build gradle`(
-                        """
-plugins {
-    id 'io.kvision'
-    id 'org.jetbrains.kotlin.multiplatform' version '1.6.21'
-}
-
-kotlin {
-    js {
-        browser { }
-        binaries.executable()
-    }
-}
-""".trimIndent()
-                    )
-                }
-
-                val result = GradleRunner.create()
-                    .withProjectDir(projectDir)
-                    .withPluginClasspath()
-                    .withArguments(":tasks")
-                    .build()
-
-                result.output shouldContain "BUILD SUCCESSFUL"
-                result.output shouldContain "generatePotFile"
-                result.output shouldContain "convertPoToJson"
-                result.output shouldContain "workerBundle"
-            }
+        context("applied with alongside Kotlin/JS plugin") {
 
             test("kotlin script") {
                 val projectDir: File = tempdir().apply {
@@ -123,55 +84,22 @@ kotlin {
                     )
 
                     `build gradle kts`(
-                        """
-                            plugins {
-                                id("io.kvision")
-                                kotlin("js") version "1.6.21"
-                            }
-                        """.trimIndent()
-                    )
-
-                }
-
-                val result = GradleRunner.create()
-                    .withProjectDir(projectDir)
-                    .withPluginClasspath()
-                    .withArguments(":tasks")
-                    .build()
-
-                result.output shouldContain "BUILD SUCCESSFUL"
-                result.output shouldContain "generatePotFile"
-                result.output shouldContain "convertPoToJson"
-                result.output shouldContain "workerBundle"
-            }
-        }
-        context("with applied with alongside Kotlin/MPP plugin") {
-
-            test("groovy script") {
-
-                val projectDir: File = tempdir().apply {
-
-                    `settings gradle`(
-                        """
-                            rootProject.name = 'hello-world'
-                        """.trimIndent()
-                    )
-
-                    `build gradle`(
-                        """
+"""
 plugins {
-    id 'io.kvision'
-    id 'org.jetbrains.kotlin.multiplatform' version '1.6.21'
+    id("io.kvision")
+    kotlin("js") version "1.6.21"
 }
 
 kotlin {
     js {
-        browser { }
-        binaries.executable()
+        // To build distributions for and run tests on browser or Node.js use one or both of:
+        browser()
+        nodejs()
     }
 }
-                        """.trimIndent()
+""".trimIndent()
                     )
+
                 }
 
                 val result = GradleRunner.create()
@@ -183,8 +111,11 @@ kotlin {
                 result.output shouldContain "BUILD SUCCESSFUL"
                 result.output shouldContain "generatePotFile"
                 result.output shouldContain "convertPoToJson"
-                result.output shouldContain "workerBundle"
+                result.output shouldContain "zip"
             }
+        }
+        context("with applied with alongside Kotlin/MPP plugin") {
+
 
             test("kotlin script") {
                 val projectDir: File = tempdir().apply {
@@ -283,8 +214,6 @@ kotlin {
         }
     }
 }
-
-
 """.trimIndent()
                     )
 
@@ -345,7 +274,7 @@ kotlin {
         fun File.`settings gradle`(@Language("groovy") contents: String): File =
             createFile("settings.gradle", contents)
 
-        fun File.`build gradle kts`(contents: String): File =
+        fun File.`build gradle kts`(@Language("kotlin") contents: String): File =
             createFile("build.gradle.kts", contents)
 
         fun File.`settings gradle kts`(@Language("kotlin") contents: String): File =

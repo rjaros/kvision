@@ -54,7 +54,7 @@ abstract class KVGeneratePotTask @Inject constructor(
         }
 
         logger.log(
-            if (execResult.isSuccess) LogLevel.INFO else LogLevel.ERROR,
+            if (execResult.isSuccess) LogLevel.LIFECYCLE else LogLevel.ERROR,
             "gettext-extract [exitcode:${execResult.exitValue}]\n${execResult.output}",
         )
 

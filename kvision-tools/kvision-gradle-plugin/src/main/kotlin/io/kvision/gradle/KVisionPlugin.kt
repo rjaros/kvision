@@ -3,6 +3,7 @@ package io.kvision.gradle
 import io.kvision.gradle.tasks.KVConvertPoTask
 import io.kvision.gradle.tasks.KVGeneratePotTask
 import io.kvision.gradle.tasks.KVWorkerBundleTask
+import javax.inject.Inject
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Plugin
@@ -13,17 +14,14 @@ import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
 import org.gradle.api.provider.Provider
+import org.gradle.api.provider.ProviderFactory
 import org.gradle.api.tasks.Copy
+import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Zip
 import org.gradle.internal.os.OperatingSystem
-import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.named
-import org.gradle.kotlin.dsl.register
-import org.gradle.kotlin.dsl.the
-import org.gradle.kotlin.dsl.withType
+import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
@@ -34,7 +32,9 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
-abstract class KVisionPlugin : Plugin<Project> {
+abstract class KVisionPlugin @Inject constructor(
+    private val providers: ProviderFactory
+) : Plugin<Project> {
 
     private val logger: Logger = Logging.getLogger(KVisionPlugin::class.java)
 
@@ -101,7 +101,7 @@ abstract class KVisionPlugin : Plugin<Project> {
         val kotlinJsExtension = extensions.getByType<KotlinJsProjectExtension>()
 
         registerGeneratePotFileTask {
-            dependsOn(tasks.compileKotlinJs)
+            dependsOn(tasks.all.compileKotlinJs)
 
             inputs.files(kotlinJsExtension.sourceSets.main.get().kotlin.files)
 
@@ -113,19 +113,19 @@ abstract class KVisionPlugin : Plugin<Project> {
         }
 
         registerConvertPoToJsonTask {
-            dependsOn(tasks.compileKotlinJs)
+            dependsOn(tasks.all.compileKotlinJs)
 
             sourceDirectory.set(
-                layout.dir(tasks.processResources.map { it.destinationDir })
+                layout.dir(tasks.provider.processResources.map { it.destinationDir })
             )
         }
 
         registerZipTask()
 
         afterEvaluate {
-            tasks.processResources.configure {
+            tasks.all.processResources.configureEach {
                 exclude("**/*.pot")
-                dependsOn(tasks.compileKotlinJs)
+                dependsOn(tasks.all.compileKotlinJs)
             }
         }
     }
@@ -138,7 +138,7 @@ abstract class KVisionPlugin : Plugin<Project> {
         val kotlinMppExtension = extensions.getByType<KotlinMultiplatformExtension>()
 
         registerGeneratePotFileTask {
-            dependsOn(tasks.compileKotlinFrontend)
+            dependsOn(tasks.all.compileKotlinFrontend)
             inputs.files(kotlinMppExtension.sourceSets.frontendMain.map { it.kotlin.files })
             potFile.set(
                 layout.projectDirectory.file(
@@ -148,19 +148,21 @@ abstract class KVisionPlugin : Plugin<Project> {
         }
 
         registerConvertPoToJsonTask {
-            dependsOn(tasks.compileKotlinFrontend)
+            dependsOn(tasks.all.compileKotlinFrontend)
             sourceDirectory.set(
-                layout.dir(tasks.frontendProcessResources.map { it.destinationDir })
+                layout.dir(
+                    tasks.provider.frontendProcessResources.map { it.destinationDir }
+                )
             )
         }
 
         registerWorkerBundleTask()
 
-        tasks.getByName("compileKotlinFrontend") {
+        tasks.all.compileKotlinFrontend.configureEach {
             dependsOn("compileCommonMainKotlinMetadata")
         }
         tasks.create("generateKVisionSources") {
-            group = "KVision"
+            group = KVISION_TASK_GROUP
             description = "Generates KVision sources for fullstack interfaces"
             dependsOn("compileCommonMainKotlinMetadata")
         }
@@ -192,7 +194,7 @@ abstract class KVisionPlugin : Plugin<Project> {
 
             enabled = kvExtension.enableGradleTasks.get()
 
-            dependsOn(tasks.compileKotlinJs)
+            dependsOn(tasks.all.compileKotlinJs)
 
             po2jsonBinDir.set(
                 rootNodeModulesDir.file("@rjaros/gettext.js/bin/po2json")
@@ -216,10 +218,10 @@ abstract class KVisionPlugin : Plugin<Project> {
 
             enabled = kvExtension.enableGradleTasks.get()
 
-            dependsOn(tasks.browserProductionWebpack)
+            dependsOn(tasks.all.browserProductionWebpack)
 
             destinationDirectory.set(layout.buildDirectory.dir("libs"))
-            from(tasks.browserProductionWebpack.map { it.destinationDirectory }) {
+            from(tasks.provider.browserProductionWebpack.map { it.destinationDirectory }) {
                 include("*.*")
             }
             from(webDir)
@@ -236,7 +238,7 @@ abstract class KVisionPlugin : Plugin<Project> {
         logger.lifecycle("registering KVWorkerBundleTask")
 
         tasks.register<KVWorkerBundleTask>("workerBundle") {
-            dependsOn(tasks.workerBrowserProductionWebpack)
+            dependsOn(tasks.all.workerBrowserProductionWebpack)
 
             enabled = kvExtension.enableWorkerTasks.get()
 
@@ -315,6 +317,65 @@ abstract class KVisionPlugin : Plugin<Project> {
     }
 
 
+    // task provider helpers - help make the script configurations shorter & more legible
+
+
+    private val TaskContainer.provider: TaskProviders get() = TaskProviders(this)
+
+    /** Lazy task provider. https://github.com/gradle/gradle/issues/16543 workaround */
+    private inner class TaskProviders(private val tasks: TaskContainer) {
+
+        val processResources: Provider<Copy>
+            get() = provider("processResources")
+
+        val compileKotlinFrontend: Provider<KotlinCompile<*>>
+            get() = provider("compileKotlinFrontend")
+
+        val compileKotlinJs: Provider<KotlinJsCompile>
+            get() = provider("compileKotlinJs")
+
+        val frontendProcessResources: Provider<Copy>
+            get() = provider("frontendProcessResources")
+
+        val browserProductionWebpack: Provider<KotlinWebpack>
+            get() = provider("browserProductionWebpack")
+
+        val workerBrowserProductionWebpack: Provider<Task>
+            get() = provider("workerBrowserProductionWebpack")
+
+        private inline fun <reified T : Task> provider(taskName: String): Provider<T> =
+            providers
+                .provider { taskName }
+                .flatMap { tasks.named<T>(it) }
+    }
+
+    private val TaskContainer.all: TaskCollections get() = TaskCollections(this)
+
+    private inner class TaskCollections(private val tasks: TaskContainer) {
+
+        val processResources: TaskCollection<Copy>
+            get() = collection("processResources")
+
+        val compileKotlinFrontend: TaskCollection<KotlinCompile<*>>
+            get() = collection("compileKotlinFrontend")
+
+        val compileKotlinJs: TaskCollection<KotlinJsCompile>
+            get() = collection("compileKotlinJs")
+
+        val frontendProcessResources: TaskCollection<Copy>
+            get() = collection("frontendProcessResources")
+
+        val browserProductionWebpack: TaskCollection<KotlinWebpack>
+            get() = collection("browserProductionWebpack")
+
+        val workerBrowserProductionWebpack: TaskCollection<Task>
+            get() = collection("workerBrowserProductionWebpack")
+
+
+        private inline fun <reified T : Task> collection(taskName: String): TaskCollection<T> =
+            tasks.withType<T>().matching { it.name == taskName }
+    }
+
     /**
      * Provider for the absolute path of the Node binary that Kotlin installs into the root project.
      *
@@ -348,6 +409,14 @@ abstract class KVisionPlugin : Plugin<Project> {
         }
     }
 
+    // source set provider helpers
+
+    private val NamedDomainObjectContainer<KotlinSourceSet>.main: NamedDomainObjectProvider<KotlinSourceSet>
+        get() = named("main")
+
+    private val NamedDomainObjectContainer<KotlinSourceSet>.frontendMain: NamedDomainObjectProvider<KotlinSourceSet>
+        get() = named("frontendMain")
+
 
     companion object {
 
@@ -364,34 +433,6 @@ abstract class KVisionPlugin : Plugin<Project> {
             rootProject.the<NodeJsRootExtension>().configure()
         }
 
-        // task provider helpers - help make the script configurations shorter & more legible
-
-        private val TaskContainer.compileKotlinFrontend: TaskProvider<KotlinCompile<*>>
-            get() = named<KotlinCompile<*>>("compileKotlinFrontend")
-
-        private val TaskContainer.compileKotlinJs: TaskProvider<KotlinJsCompile>
-            get() = named<KotlinJsCompile>("compileKotlinJs")
-
-        private val TaskContainer.processResources: TaskProvider<Copy>
-            get() = named<Copy>("processResources")
-
-        private val TaskContainer.frontendProcessResources: TaskProvider<Copy>
-            get() = named<Copy>("frontendProcessResources")
-
-        private val TaskContainer.browserProductionWebpack: TaskProvider<KotlinWebpack>
-            get() = named<KotlinWebpack>("browserProductionWebpack")
-
-        private val TaskContainer.workerBrowserProductionWebpack: TaskProvider<Task>
-            get() = named("workerBrowserProductionWebpack")
-
-        // source set provider helpers
-
-        private val NamedDomainObjectContainer<KotlinSourceSet>.main: NamedDomainObjectProvider<KotlinSourceSet>
-            get() = named("main")
-
-        private val NamedDomainObjectContainer<KotlinSourceSet>.frontendMain: NamedDomainObjectProvider<KotlinSourceSet>
-            get() = named("frontendMain")
-
 
         //
 
@@ -401,4 +442,5 @@ abstract class KVisionPlugin : Plugin<Project> {
                     rootProject.layout.buildDirectory.dir("js/node_modules/")
                 )
     }
+
 }
