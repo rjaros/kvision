@@ -10,11 +10,14 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.DuplicatesStrategy
+import org.gradle.api.logging.Logger
+import org.gradle.api.logging.Logging
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Zip
+import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.named
@@ -26,8 +29,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinMultiplatformPlugin
-import org.jetbrains.kotlin.gradle.targets.js.KotlinJsPlugin
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
@@ -35,12 +36,15 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 abstract class KVisionPlugin : Plugin<Project> {
 
+    private val logger: Logger = Logging.getLogger(KVisionPlugin::class.java)
+
 //    private val executor: ExecOperations
 //    private val fileOps: FileSystemOperations
 //    private val providers: ProviderFactory
 //    private val layout: ProjectLayout
 
     override fun apply(project: Project) = with(project) {
+        logger.lifecycle("Applying KVision plugin")
 
         val kvExtension = createKVisionExtension()
 
@@ -68,7 +72,7 @@ abstract class KVisionPlugin : Plugin<Project> {
     /**
      * Initialise the [KVisionExtension] on a [Project].
      *
-     * Additionally, set config that requires a [Project] instance.
+     * Additionally, set default values for properties that require a [Project] instance.
      */
     private fun Project.createKVisionExtension(): KVisionExtension {
         return extensions.create("kvision", KVisionExtension::class).apply {
@@ -82,7 +86,7 @@ abstract class KVisionPlugin : Plugin<Project> {
     /**
      * Helper class that provides both a Gradle [Project] and [KVisionExtension].
      *
-     * Useful for extension functions that configure a project.
+     * This makes it easier to break-up project configuration into extension functions.
      */
     private data class KVPluginContext(
         private val project: Project,
@@ -92,6 +96,7 @@ abstract class KVisionPlugin : Plugin<Project> {
 
     /** Configure a Kotlin JS project */
     private fun KVPluginContext.configureJsProject() {
+        logger.lifecycle("configuring Kotlin/JS plugin")
 
         val kotlinJsExtension = extensions.getByType<KotlinJsProjectExtension>()
 
@@ -128,6 +133,7 @@ abstract class KVisionPlugin : Plugin<Project> {
 
     /** Configure a Kotlin Multiplatform project */
     private fun KVPluginContext.configureMppProject() {
+        logger.lifecycle("configuring Kotlin/MP plugin")
 
         val kotlinMppExtension = extensions.getByType<KotlinMultiplatformExtension>()
 
@@ -163,6 +169,7 @@ abstract class KVisionPlugin : Plugin<Project> {
 
 
     private fun KVPluginContext.registerGeneratePotFileTask(configuration: KVGeneratePotTask.() -> Unit = {}) {
+        logger.lifecycle("registering KVGeneratePotTask")
         tasks.register<KVGeneratePotTask>("generatePotFile") {
             enabled = kvExtension.enableGradleTasks.get()
 
@@ -179,7 +186,8 @@ abstract class KVisionPlugin : Plugin<Project> {
     private fun KVPluginContext.registerConvertPoToJsonTask(
         configuration: KVConvertPoTask.() -> Unit = {}
     ): TaskProvider<KVConvertPoTask> {
-        return tasks.register<KVConvertPoTask>("convertPoToJsonTask") {
+        logger.lifecycle("registering KVConvertPoTask")
+        return tasks.register<KVConvertPoTask>("convertPoToJson") {
             group = KVISION_TASK_GROUP
 
             enabled = kvExtension.enableGradleTasks.get()
@@ -198,6 +206,8 @@ abstract class KVisionPlugin : Plugin<Project> {
 
 
     private fun KVPluginContext.registerZipTask(configuration: Zip.() -> Unit = {}) {
+        logger.lifecycle("registering KVision zip task")
+
         val webDir = layout.projectDirectory.dir("src/main/web")
 
         tasks.register<Zip>("zip") {
@@ -223,6 +233,8 @@ abstract class KVisionPlugin : Plugin<Project> {
 
     /** Requires Kotlin MPP project */
     private fun KVPluginContext.registerWorkerBundleTask() {
+        logger.lifecycle("registering KVWorkerBundleTask")
+
         tasks.register<KVWorkerBundleTask>("workerBundle") {
             dependsOn(tasks.workerBrowserProductionWebpack)
 
@@ -259,24 +271,44 @@ abstract class KVisionPlugin : Plugin<Project> {
 
 
     private fun KVPluginContext.configureNodeEcosystem() {
+        logger.lifecycle("configuring Node")
 
         rootProject.configureYarn {
             if (kvExtension.enableSecureResolutions.get()) {
-                resolution("async", kvExtension.versions.async.get())
+                val version = kvExtension.versions.async.get()
+                resolution("async", version)
+
+                val asyncVersion = resolutions.firstOrNull { it.path == "async" }?.let {
+                    "YarnResolution(${it.path}, ${it.includedVersions}, ${it.excludedVersions})"
+                }
+                logger.lifecycle("[configureNodeEcosystem.configureYarn] set async version: $asyncVersion")
             }
 
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
                 lockFileDirectory = kvExtension.kotlinJsStoreDirectory.get().asFile
+                logger.lifecycle("[configureNodeEcosystem.configureYarn] set lockFileDirectory: $lockFileDirectory")
             }
         }
 
         rootProject.configureNodeJs {
             if (kvExtension.enableWebpackVersions.get()) {
-                versions.webpackDevServer.version = kvExtension.versions.webpackDevServer.get()
-                versions.webpack.version = kvExtension.versions.webpack.get()
-                versions.webpackCli.version = kvExtension.versions.webpackCli.get()
-                versions.karma.version = kvExtension.versions.karma.get()
-                versions.mocha.version = kvExtension.versions.mocha.get()
+                versions.apply {
+
+                    webpackDevServer.version = kvExtension.versions.webpackDevServer.get()
+                    webpack.version = kvExtension.versions.webpack.get()
+                    webpackCli.version = kvExtension.versions.webpackCli.get()
+                    karma.version = kvExtension.versions.karma.get()
+                    mocha.version = kvExtension.versions.mocha.get()
+
+                    val versions = listOf(
+                        "webpackDevServer: ${webpackDevServer.version}",
+                        "         webpack: ${webpack.version}         ",
+                        "      webpackCli: ${webpackCli.version}      ",
+                        "           karma: ${karma.version}           ",
+                        "           mocha: ${mocha.version}           ",
+                    ).joinToString(", ") { it.trim() }
+                    logger.lifecycle("[configureNodeEcosystem.configureNodeJs] set webpack versions: $versions")
+                }
             }
         }
 
