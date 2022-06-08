@@ -29,7 +29,7 @@ internal fun ExecOperations.execCapture(
     return ExecCaptureResult(execResult, output)
 }
 
-data class ExecCaptureResult(
+internal data class ExecCaptureResult(
     private val result: ExecResult,
     val output: String,
 ) : ExecResult by result {
