@@ -38,18 +38,20 @@ abstract class KVGeneratePotTask @Inject constructor(
 
     @TaskAction
     fun generate() {
-        val potFile = potFile.asFile.get()
-        val getTextConfigJson = getTextConfigJson.asFile.orNull
+        val potFile: String = potFile.asFile.get().canonicalPath
+        val getTextConfigJson: String? = getTextConfigJson.asFile.orNull?.canonicalPath
+        val nodeJsBinary: String = nodeJsBinary.get()
+        val getTextExtractBin: String = getTextExtractBin.get().asFile.canonicalPath
 
         val execResult = executor.execCapture {
-            executable(nodeJsBinary.get())
+            executable(nodeJsBinary)
             args(
-                getTextExtractBin.get(),
-                "--output ${potFile.canonicalPath}",
+                getTextExtractBin,
+                "--output $potFile",
             )
 
             if (getTextConfigJson != null) {
-                args("--config ${getTextConfigJson.canonicalPath}")
+                args("--config $getTextConfigJson")
             }
         }
 

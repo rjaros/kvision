@@ -27,6 +27,9 @@ abstract class KVConvertPoTask @Inject constructor(
 
     @TaskAction
     fun convert() {
+        val po2jsonBinDir: String = po2jsonBinDir.get().asFile.canonicalPath
+        val nodeJsBinary: String = nodeJsBinary.get()
+
         sourceDirectory.asFileTree.filter {
             it.isFile && it.extension == "po"
         }.onEach { poFile ->
