@@ -11,8 +11,6 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.DuplicatesStrategy
-import org.gradle.api.logging.Logger
-import org.gradle.api.logging.Logging
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.ProviderFactory
 import org.gradle.api.tasks.Copy
@@ -21,7 +19,12 @@ import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Zip
 import org.gradle.internal.os.OperatingSystem
-import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.create
+import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.named
+import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
@@ -35,8 +38,6 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 abstract class KVisionPlugin @Inject constructor(
     private val providers: ProviderFactory
 ) : Plugin<Project> {
-
-    private val logger: Logger = Logging.getLogger(KVisionPlugin::class.java)
 
 //    private val executor: ExecOperations
 //    private val fileOps: FileSystemOperations
@@ -170,9 +171,11 @@ abstract class KVisionPlugin @Inject constructor(
     }
 
 
-    private fun KVPluginContext.registerGeneratePotFileTask(configuration: KVGeneratePotTask.() -> Unit = {}) {
+    private fun KVPluginContext.registerGeneratePotFileTask(
+        configuration: KVGeneratePotTask.() -> Unit = {}
+    ) {
         logger.lifecycle("registering KVGeneratePotTask")
-        tasks.register<KVGeneratePotTask>("generatePotFile") {
+        tasks.withType<KVGeneratePotTask>().configureEach {
             enabled = kvExtension.enableGradleTasks.get()
 
             nodeJsBinary.set(kvExtension.nodeBinaryPath)
@@ -182,6 +185,7 @@ abstract class KVisionPlugin @Inject constructor(
             )
             configuration()
         }
+        tasks.register<KVGeneratePotTask>("generatePotFile")
     }
 
 
@@ -189,9 +193,7 @@ abstract class KVisionPlugin @Inject constructor(
         configuration: KVConvertPoTask.() -> Unit = {}
     ): TaskProvider<KVConvertPoTask> {
         logger.lifecycle("registering KVConvertPoTask")
-        return tasks.register<KVConvertPoTask>("convertPoToJson") {
-            group = KVISION_TASK_GROUP
-
+        tasks.withType<KVConvertPoTask>().configureEach {
             enabled = kvExtension.enableGradleTasks.get()
 
             dependsOn(tasks.all.compileKotlinJs)
@@ -204,6 +206,7 @@ abstract class KVisionPlugin @Inject constructor(
 
             configuration()
         }
+        return tasks.register<KVConvertPoTask>("convertPoToJson")
     }
 
 
@@ -237,7 +240,7 @@ abstract class KVisionPlugin @Inject constructor(
     private fun KVPluginContext.registerWorkerBundleTask() {
         logger.lifecycle("registering KVWorkerBundleTask")
 
-        tasks.register<KVWorkerBundleTask>("workerBundle") {
+        tasks.withType<KVWorkerBundleTask>().configureEach {
             dependsOn(tasks.all.workerBrowserProductionWebpack)
 
             enabled = kvExtension.enableWorkerTasks.get()
@@ -269,6 +272,7 @@ abstract class KVisionPlugin @Inject constructor(
                 webpackConfigJs,
             )
         }
+        tasks.register<KVWorkerBundleTask>("workerBundle")
     }
 
 
@@ -322,7 +326,7 @@ abstract class KVisionPlugin @Inject constructor(
 
     private val TaskContainer.provider: TaskProviders get() = TaskProviders(this)
 
-    /** Lazy task provider. https://github.com/gradle/gradle/issues/16543 workaround */
+    /** Lazy task providers. Workaround for https://github.com/gradle/gradle/issues/16543 */
     private inner class TaskProviders(private val tasks: TaskContainer) {
 
         val processResources: Provider<Copy>
@@ -351,6 +355,7 @@ abstract class KVisionPlugin @Inject constructor(
 
     private val TaskContainer.all: TaskCollections get() = TaskCollections(this)
 
+    /** Lazy task collections */
     private inner class TaskCollections(private val tasks: TaskContainer) {
 
         val processResources: TaskCollection<Copy>
