@@ -45,7 +45,7 @@ abstract class KVisionPlugin @Inject constructor(
 //    private val layout: ProjectLayout
 
     override fun apply(project: Project) = with(project) {
-        logger.lifecycle("Applying KVision plugin")
+        logger.debug("Applying KVision plugin")
 
         val kvExtension = createKVisionExtension()
 
@@ -97,7 +97,7 @@ abstract class KVisionPlugin @Inject constructor(
 
     /** Configure a Kotlin JS project */
     private fun KVPluginContext.configureJsProject() {
-        logger.lifecycle("configuring Kotlin/JS plugin")
+        logger.debug("configuring Kotlin/JS plugin")
 
         val kotlinJsExtension = extensions.getByType<KotlinJsProjectExtension>()
 
@@ -134,7 +134,7 @@ abstract class KVisionPlugin @Inject constructor(
 
     /** Configure a Kotlin Multiplatform project */
     private fun KVPluginContext.configureMppProject() {
-        logger.lifecycle("configuring Kotlin/MP plugin")
+        logger.debug("configuring Kotlin/MP plugin")
 
         val kotlinMppExtension = extensions.getByType<KotlinMultiplatformExtension>()
 
@@ -174,7 +174,8 @@ abstract class KVisionPlugin @Inject constructor(
     private fun KVPluginContext.registerGeneratePotFileTask(
         configuration: KVGeneratePotTask.() -> Unit = {}
     ) {
-        logger.lifecycle("registering KVGeneratePotTask")
+        logger.debug("registering KVGeneratePotTask")
+
         tasks.withType<KVGeneratePotTask>().configureEach {
             enabled = kvExtension.enableGradleTasks.get()
 
@@ -192,7 +193,8 @@ abstract class KVisionPlugin @Inject constructor(
     private fun KVPluginContext.registerConvertPoToJsonTask(
         configuration: KVConvertPoTask.() -> Unit = {}
     ): TaskProvider<KVConvertPoTask> {
-        logger.lifecycle("registering KVConvertPoTask")
+        logger.debug("registering KVConvertPoTask")
+
         tasks.withType<KVConvertPoTask>().configureEach {
             enabled = kvExtension.enableGradleTasks.get()
 
@@ -211,7 +213,7 @@ abstract class KVisionPlugin @Inject constructor(
 
 
     private fun KVPluginContext.registerZipTask(configuration: Zip.() -> Unit = {}) {
-        logger.lifecycle("registering KVision zip task")
+        logger.debug("registering KVision zip task")
 
         val webDir = layout.projectDirectory.dir("src/main/web")
 
@@ -238,7 +240,7 @@ abstract class KVisionPlugin @Inject constructor(
 
     /** Requires Kotlin MPP project */
     private fun KVPluginContext.registerWorkerBundleTask() {
-        logger.lifecycle("registering KVWorkerBundleTask")
+        logger.debug("registering KVWorkerBundleTask")
 
         tasks.withType<KVWorkerBundleTask>().configureEach {
             dependsOn(tasks.all.workerBrowserProductionWebpack)
@@ -277,7 +279,7 @@ abstract class KVisionPlugin @Inject constructor(
 
 
     private fun KVPluginContext.configureNodeEcosystem() {
-        logger.lifecycle("configuring Node")
+        logger.info("configuring Node")
 
         rootProject.configureYarn {
             if (kvExtension.enableSecureResolutions.get()) {
@@ -287,12 +289,12 @@ abstract class KVisionPlugin @Inject constructor(
                 val asyncVersion = resolutions.firstOrNull { it.path == "async" }?.let {
                     "YarnResolution(${it.path}, ${it.includedVersions}, ${it.excludedVersions})"
                 }
-                logger.lifecycle("[configureNodeEcosystem.configureYarn] set async version: $asyncVersion")
+                logger.info("[configureNodeEcosystem.configureYarn] set async version: $asyncVersion")
             }
 
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
                 lockFileDirectory = kvExtension.kotlinJsStoreDirectory.get().asFile
-                logger.lifecycle("[configureNodeEcosystem.configureYarn] set lockFileDirectory: $lockFileDirectory")
+                logger.info("[configureNodeEcosystem.configureYarn] set lockFileDirectory: $lockFileDirectory")
             }
         }
 
@@ -313,20 +315,17 @@ abstract class KVisionPlugin @Inject constructor(
                         "           karma: ${karma.version}           ",
                         "           mocha: ${mocha.version}           ",
                     ).joinToString(", ") { it.trim() }
-                    logger.lifecycle("[configureNodeEcosystem.configureNodeJs] set webpack versions: $versions")
+                    logger.info("[configureNodeEcosystem.configureNodeJs] set webpack versions: $versions")
                 }
             }
         }
 
     }
 
-
-    // task provider helpers - help make the script configurations shorter & more legible
-
-
+    /** task provider helpers - help make the script configurations shorter & more legible */
     private val TaskContainer.provider: TaskProviders get() = TaskProviders(this)
 
-    /** Lazy task providers. Workaround for https://github.com/gradle/gradle/issues/16543 */
+    /** Lazy task providers */
     private inner class TaskProviders(private val tasks: TaskContainer) {
 
         val processResources: Provider<Copy>
@@ -347,6 +346,7 @@ abstract class KVisionPlugin @Inject constructor(
         val workerBrowserProductionWebpack: Provider<Task>
             get() = provider("workerBrowserProductionWebpack")
 
+        // Workaround for https://github.com/gradle/gradle/issues/16543
         private inline fun <reified T : Task> provider(taskName: String): Provider<T> =
             providers
                 .provider { taskName }
@@ -438,14 +438,10 @@ abstract class KVisionPlugin @Inject constructor(
             rootProject.the<NodeJsRootExtension>().configure()
         }
 
-
-        //
-
         private val Project.rootNodeModulesDir: DirectoryProperty
-            get() = objects.directoryProperty()
-                .convention(
-                    rootProject.layout.buildDirectory.dir("js/node_modules/")
-                )
+            get() = objects.directoryProperty().convention(
+                rootProject.layout.buildDirectory.dir("js/node_modules/")
+            )
     }
 
 }
