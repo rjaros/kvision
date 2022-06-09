@@ -6,44 +6,73 @@ import java.io.File
 import org.intellij.lang.annotations.Language
 
 
-class GradleKtsProjectDirBuilder(
-    private val projectDir : File
-) {
-    fun `build gradle kts`(@Language("kotlin") contents: String): File =
-        projectDir.createFile("build.gradle.kts", contents)
+class GradleKtsProjectDirBuilder {
 
-    fun `settings gradle kts`(@Language("kotlin") contents: String): File =
-        projectDir.createFile("settings.gradle.kts", contents)
+    @Language("kotlin")
+    private var settingsGradleKts: String = """
+        rootProject.name = "kvision-gradle-plugin-test"
+    """.trimIndent()
+
+    @Language("kotlin")
+    private var buildGradleKts: String = ""
+
+    fun `build gradle kts`(@Language("kotlin") contents: String) {
+        buildGradleKts = contents
+    }
+
+    fun `settings gradle kts`(@Language("kotlin") contents: String) {
+        settingsGradleKts = contents
+    }
+
+    companion object {
+
+        fun TestConfiguration.`gradle kts project`(
+            projectDir: File = tempdir(),
+            build: GradleKtsProjectDirBuilder.() -> Unit,
+        ): File {
+            val project = GradleKtsProjectDirBuilder().apply(build)
+
+            return projectDir.apply {
+                createFile("build.gradle.kts", project.buildGradleKts)
+                createFile("settings.gradle.kts", project.settingsGradleKts)
+            }
+        }
+    }
 }
 
 
-fun TestConfiguration.`gradle kts project`(
-    dir: File = tempdir(),
-    build: GradleKtsProjectDirBuilder.() -> Unit,
-): File {
-    GradleKtsProjectDirBuilder(dir).apply(build)
-    return dir
-}
+class GradleGroovyProjectDirBuilder {
 
+    @Language("groovy")
+    private var settingsGradle: String = """
+        rootProject.name = 'hello-world'
+    """.trimIndent()
 
-class GradleGroovyProjectDirBuilder(
-    private val projectDir : File
-) {
-    fun `build gradle`(@Language("groovy") contents: String): File =
-        projectDir. createFile("build.gradle", contents)
+    @Language("groovy")
+    private var buildGradle: String = ""
 
-    fun `settings gradle`(@Language("groovy") contents: String): File =
-        projectDir.createFile("settings.gradle", contents)
+    fun `build gradle`(@Language("groovy") contents: String) {
+        buildGradle = contents
+    }
 
-}
+    fun `settings gradle`(@Language("groovy") contents: String) {
+        settingsGradle = contents
+    }
 
+    companion object {
 
-fun TestConfiguration.`gradle groovy project`(
-    dir: File = tempdir(),
-    build: GradleGroovyProjectDirBuilder.() -> Unit,
-): File {
-    GradleGroovyProjectDirBuilder(dir).apply(build)
-    return dir
+        fun TestConfiguration.`gradle groovy project`(
+            projectDir: File = tempdir(),
+            build: GradleGroovyProjectDirBuilder.() -> Unit,
+        ): File {
+            val project = GradleGroovyProjectDirBuilder().apply(build)
+
+            return projectDir.apply {
+                createFile("build.gradle", project.buildGradle)
+                createFile("settings.gradle", project.settingsGradle)
+            }
+        }
+    }
 }
 
 

@@ -1,10 +1,9 @@
 package io.kvision.gradle
 
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.engine.spec.tempdir
 import io.kotest.matchers.string.shouldContain
-import io.kvision.gradle.util.`gradle groovy project`
-import io.kvision.gradle.util.`gradle kts project`
+import io.kvision.gradle.util.GradleGroovyProjectDirBuilder.Companion.`gradle groovy project`
+import io.kvision.gradle.util.GradleKtsProjectDirBuilder.Companion.`gradle kts project`
 import java.io.File
 import org.gradle.testkit.runner.GradleRunner
 
@@ -44,13 +43,6 @@ class KVisionPluginTest : FunSpec({
 
         test("kotlin script") {
             val projectDir: File = `gradle kts project` {
-
-                `settings gradle kts`(
-                    """
-                        rootProject.name = "kvision"
-                    """.trimIndent()
-                )
-
                 `build gradle kts`(
                     """
                         plugins {
@@ -74,13 +66,6 @@ class KVisionPluginTest : FunSpec({
         context("applied with alongside Kotlin/JS plugin") {
             val kvisionVersion = "5.10.1"
             val projectDir: File = `gradle kts project` {
-
-                `settings gradle kts`(
-                    """
-                        rootProject.name = "kvision"
-                    """.trimIndent()
-                )
-
                 `build gradle kts`(
                     """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -194,13 +179,7 @@ kotlin {
             test("kotlin script") {
                 val projectDir: File = `gradle kts project` {
 
-                    `settings gradle kts`(
-                        """
-                            rootProject.name = "kvision"
-                        """.trimIndent()
-                    )
-
-                    val kvisionVersion: String = "5.10.1"
+                    val kvisionVersion = "5.10.1"
                     `build gradle kts`(
                         """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
