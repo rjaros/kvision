@@ -1,5 +1,6 @@
 package io.kvision.gradle.tasks
 
+import io.kvision.gradle.KVisionPlugin
 import io.kvision.gradle.execCapture
 import javax.inject.Inject
 import org.gradle.api.DefaultTask
@@ -9,6 +10,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.SkipWhenEmpty
 import org.gradle.api.tasks.TaskAction
 import org.gradle.process.ExecOperations
 
@@ -17,6 +19,7 @@ abstract class KVConvertPoTask @Inject constructor(
 ) : DefaultTask(), KVisionTask {
 
     @get:InputDirectory
+    @get:SkipWhenEmpty
     abstract val sourceDirectory: DirectoryProperty
 
     @get:InputFile
@@ -24,6 +27,10 @@ abstract class KVConvertPoTask @Inject constructor(
 
     @get:Input
     abstract val nodeJsBinary: Property<String>
+
+    init {
+        group = KVisionPlugin.KVISION_TASK_GROUP
+    }
 
     @TaskAction
     fun convert() {
