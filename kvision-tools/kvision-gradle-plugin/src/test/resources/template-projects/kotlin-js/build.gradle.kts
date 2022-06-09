@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 plugins {
 //    val kotlinVersion: String by System.getProperties()
     val kotlinVersion = "1.6.21"
-    kotlin("plugin.serialization") version kotlinVersion
     kotlin("js") version kotlinVersion
 //    val kvisionVersion: String by System.getProperties()
 //    val kvisionVersion: String = "5.10.1"

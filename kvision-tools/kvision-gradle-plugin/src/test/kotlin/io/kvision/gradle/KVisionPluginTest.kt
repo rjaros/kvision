@@ -1,12 +1,12 @@
 package io.kvision.gradle
 
-import io.kotest.assertions.asClue
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.engine.spec.tempdir
 import io.kotest.matchers.string.shouldContain
+import io.kvision.gradle.util.`gradle groovy project`
+import io.kvision.gradle.util.`gradle kts project`
 import java.io.File
 import org.gradle.testkit.runner.GradleRunner
-import org.intellij.lang.annotations.Language
 
 
 class KVisionPluginTest : FunSpec({
@@ -17,7 +17,7 @@ class KVisionPluginTest : FunSpec({
 
         test("groovy script") {
 
-            val projectDir: File = tempdir().apply {
+            val projectDir: File = `gradle groovy project` {
 
                 `settings gradle`(
                     """
@@ -43,7 +43,7 @@ class KVisionPluginTest : FunSpec({
         }
 
         test("kotlin script") {
-            val projectDir: File = tempdir().apply {
+            val projectDir: File = `gradle kts project` {
 
                 `settings gradle kts`(
                     """
@@ -58,7 +58,6 @@ class KVisionPluginTest : FunSpec({
                         }
                     """.trimIndent()
                 )
-
             }
 
             val result = GradleRunner.create()
@@ -73,34 +72,77 @@ class KVisionPluginTest : FunSpec({
     context("verify KVision plugin creates tasks") {
 
         context("applied with alongside Kotlin/JS plugin") {
+            val kvisionVersion = "5.10.1"
+            val projectDir: File = `gradle kts project` {
 
-            test("kotlin script") {
-                val projectDir: File = tempdir().apply {
+                `settings gradle kts`(
+                    """
+                        rootProject.name = "kvision"
+                    """.trimIndent()
+                )
 
-                    `settings gradle kts`(
-                        """
-                            rootProject.name = "kvision"
-                        """.trimIndent()
-                    )
+                `build gradle kts`(
+                    """
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
-                    `build gradle kts`(
-                        """
 plugins {
     id("io.kvision")
     kotlin("js") version "1.6.21"
 }
 
+repositories {
+    mavenCentral()
+}
+
+val kotlinVersion: String = "1.6.21"
+val kvisionVersion: String = "5.10.1"
+
+val webDir = file("src/main/web")
+
 kotlin {
     js {
-        // To build distributions for and run tests on browser or Node.js use one or both of:
-        browser()
-        nodejs()
+        browser {
+            runTask {
+                outputFileName = "main.bundle.js"
+                sourceMaps = false
+                devServer = KotlinWebpackConfig.DevServer(
+                    open = false,
+                    port = 3000,
+                    proxy = mutableMapOf(
+                        "/kv/*" to "http://localhost:8080",
+                        "/kvws/*" to mapOf("target" to "ws://localhost:8080", "ws" to true)
+                    ),
+                    static = mutableListOf("${'$'}buildDir/processedResources/js/main")
+                )
+            }
+            webpackTask {
+                outputFileName = "main.bundle.js"
+            }
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                }
+            }
+        }
+        binaries.executable()
     }
+    sourceSets["main"].dependencies {
+        implementation("io.kvision:kvision:$kvisionVersion")
+        implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
+        implementation("io.kvision:kvision-bootstrap-css:$kvisionVersion")
+        implementation("io.kvision:kvision-i18n:$kvisionVersion")
+    }
+    sourceSets["test"].dependencies {
+        implementation(kotlin("test-js"))
+        implementation("io.kvision:kvision-testutils:$kvisionVersion")
+    }
+    sourceSets["main"].resources.srcDir(webDir)
 }
 """.trimIndent()
-                    )
+                )
+            }
 
-                }
+            test("expect listed tasks contain KVision tasks") {
 
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -109,16 +151,48 @@ kotlin {
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
+                result.output shouldContain "Kvision tasks"
                 result.output shouldContain "generatePotFile"
                 result.output shouldContain "convertPoToJson"
                 result.output shouldContain "zip"
+            }
+
+            test("expect generatePotFile task runs") {
+
+                val result = GradleRunner.create()
+                    .withProjectDir(projectDir)
+                    .withPluginClasspath()
+                    .withArguments(":generatePotFile")
+                    .build()
+
+                result.output shouldContain "BUILD SUCCESSFUL"
+            }
+            test("expect convertPoToJson task runs") {
+
+                val result = GradleRunner.create()
+                    .withProjectDir(projectDir)
+                    .withPluginClasspath()
+                    .withArguments(":convertPoToJson")
+                    .build()
+
+                result.output shouldContain "BUILD SUCCESSFUL"
+            }
+            test("expect zip task runs") {
+
+                val result = GradleRunner.create()
+                    .withProjectDir(projectDir)
+                    .withPluginClasspath()
+                    .withArguments(":zip")
+                    .build()
+
+                result.output shouldContain "BUILD SUCCESSFUL"
             }
         }
         context("with applied with alongside Kotlin/MPP plugin") {
 
 
             test("kotlin script") {
-                val projectDir: File = tempdir().apply {
+                val projectDir: File = `gradle kts project` {
 
                     `settings gradle kts`(
                         """
@@ -129,6 +203,8 @@ kotlin {
                     val kvisionVersion: String = "5.10.1"
                     `build gradle kts`(
                         """
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+
 plugins {
     id("io.kvision")
     kotlin("multiplatform") version "1.6.21"
@@ -216,7 +292,6 @@ kotlin {
 }
 """.trimIndent()
                     )
-
                 }
 
                 val result = GradleRunner.create()
@@ -226,6 +301,7 @@ kotlin {
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
+                result.output shouldContain "Kvision tasks"
                 result.output shouldContain "generatePotFile"
                 result.output shouldContain "convertPoToJson"
                 result.output shouldContain "workerBundle"
@@ -233,83 +309,4 @@ kotlin {
         }
     }
 
-    xcontext("verify templates") {
-
-        // note: templates are configured to use `includeBuild(...)` at the moment,
-        // so these tests won't work.
-
-        test("template") {
-            File("../kvision-gradle-plugin-test/template").canonicalFile.asClue { projectDir ->
-                val result = GradleRunner.create()
-                    .withProjectDir(projectDir)
-                    .withPluginClasspath()
-                    .withArguments(":tasks", "--stacktrace", "--info")
-                    .build()
-
-                result.output shouldContain "BUILD SUCCESSFUL"
-                result.output shouldContain "generatePotFile"
-                result.output shouldContain "convertPoToJson"
-                result.output shouldContain "workerBundle"
-            }
-        }
-
-        test("template-fullstack-ktor") {
-            File("../kvision-gradle-plugin-test/template-fullstack-ktor").canonicalFile.asClue { projectDir ->
-                val result = GradleRunner.create()
-                    .withProjectDir(projectDir)
-                    .withPluginClasspath()
-                    .withArguments(":tasks", "--stacktrace", "--info")
-                    .build()
-
-                result.output shouldContain "BUILD SUCCESSFUL"
-                result.output shouldContain "generatePotFile"
-                result.output shouldContain "convertPoToJson"
-                result.output shouldContain "workerBundle"
-            }
-        }
-    }
-}) {
-
-    companion object {
-
-        fun File.`build gradle`(@Language("groovy") contents: String): File =
-            createFile("build.gradle", contents)
-
-        fun File.`settings gradle`(@Language("groovy") contents: String): File =
-            createFile("settings.gradle", contents)
-
-        fun File.`build gradle kts`(@Language("kotlin") contents: String): File =
-            createFile("build.gradle.kts", contents)
-
-        fun File.`settings gradle kts`(@Language("kotlin") contents: String): File =
-            createFile("settings.gradle.kts", contents)
-
-        private fun File.createFile(filename: String, contents: String): File =
-            resolve(filename).apply {
-                createNewFile()
-                writeText(contents)
-            }
-    }
-}
-
-/*
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-
-plugins {
-    val kotlinVersion: String by System.getProperties()
-    kotlin("plugin.serialization") version kotlinVersion
-    kotlin("js") version kotlinVersion
-    val kvisionVersion: String by System.getProperties()
-    id("io.kvision") version kvisionVersion
-}
-
-version = "1.0.0-SNAPSHOT"
-group = "com.example"
-
-repositories {
-    mavenCentral()
-    jcenter()
-    mavenLocal()
-}
-
- */
+})
