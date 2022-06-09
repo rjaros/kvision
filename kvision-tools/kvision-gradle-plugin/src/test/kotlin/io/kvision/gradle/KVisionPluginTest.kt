@@ -142,7 +142,7 @@ kotlin {
                 result.output shouldContain "zip"
             }
 
-            test("expect generatePotFile task runs") {
+            test("expect generatePotFile task runs successfully") {
 
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -152,7 +152,7 @@ kotlin {
 
                 result.output shouldContain "BUILD SUCCESSFUL"
             }
-            test("expect convertPoToJson task runs") {
+            test("expect convertPoToJson task runs successfully") {
 
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -162,7 +162,7 @@ kotlin {
 
                 result.output shouldContain "BUILD SUCCESSFUL"
             }
-            test("expect zip task runs") {
+            test("expect zip task task runs successfully") {
 
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -287,5 +287,4 @@ kotlin {
             }
         }
     }
-
 })

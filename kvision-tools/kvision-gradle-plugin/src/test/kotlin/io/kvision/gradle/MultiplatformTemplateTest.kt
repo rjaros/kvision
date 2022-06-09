@@ -32,7 +32,7 @@ class MultiplatformTemplateTest : FunSpec({
             }
         }
 
-        test("verify generatePotFile task") {
+        test("verify generatePotFile task runs successfully") {
             templateProjectDir.asClue { projectDir ->
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -44,7 +44,7 @@ class MultiplatformTemplateTest : FunSpec({
             }
         }
 
-        test("verify convertPoToJson task") {
+        test("verify convertPoToJson task runs successfully") {
             templateProjectDir.asClue { projectDir ->
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -56,7 +56,7 @@ class MultiplatformTemplateTest : FunSpec({
             }
         }
 
-        test("verify workerBundle task") {
+        test("verify workerBundle task runs successfully") {
             templateProjectDir.asClue { projectDir ->
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
