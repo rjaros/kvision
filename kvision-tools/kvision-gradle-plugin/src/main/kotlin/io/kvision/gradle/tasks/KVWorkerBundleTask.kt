@@ -9,6 +9,7 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.SkipWhenEmpty
 
 abstract class KVWorkerBundleTask : Exec(), KVisionTask {
 
@@ -22,6 +23,7 @@ abstract class KVWorkerBundleTask : Exec(), KVisionTask {
     abstract val webpackConfigJs: RegularFileProperty
 
     @get:InputDirectory
+    @get:SkipWhenEmpty
     abstract val workerMainSrcDir: DirectoryProperty
 
     @get:OutputFile

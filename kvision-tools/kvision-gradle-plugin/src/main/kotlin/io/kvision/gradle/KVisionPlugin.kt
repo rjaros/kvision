@@ -261,9 +261,6 @@ abstract class KVisionPlugin @Inject constructor(
                 layout.buildDirectory.file("processedResources/frontend/main/worker.js")
             )
 
-            inputs.dir(workerMainSrcDir)
-            outputs.file(workerJsFile)
-
             executable(nodeJsBin)
             workingDir(
                 rootProject.layout.buildDirectory.dir("js/packages/${rootProject.name}-worker")
