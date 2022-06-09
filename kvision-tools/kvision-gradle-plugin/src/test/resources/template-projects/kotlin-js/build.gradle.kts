@@ -1,12 +1,14 @@
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
+// based on https://github.com/rjaros/kvision-examples/tree/master/template
+
 plugins {
-//    val kotlinVersion: String by System.getProperties()
-    val kotlinVersion = "1.6.21"
+    val kotlinVersion: String by System.getProperties()
     kotlin("js") version kotlinVersion
 //    val kvisionVersion: String by System.getProperties()
-//    val kvisionVersion: String = "5.10.1"
     id("io.kvision") // version kvisionVersion
+    // note: the KVision plugin version is removed because the plugin is loaded from the test
+    // class path, thanks to Gradle TestKit
 }
 
 version = "1.0.0-SNAPSHOT"
@@ -18,10 +20,8 @@ repositories {
 }
 
 // Versions
-//val kotlinVersion: String by System.getProperties()
-//val kvisionVersion: String by System.getProperties()
-val kotlinVersion: String = "1.6.21"
-val kvisionVersion: String = "5.10.1"
+val kotlinVersion: String by System.getProperties()
+val kvisionVersion: String by System.getProperties()
 
 val webDir = file("src/main/web")
 

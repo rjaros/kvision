@@ -1,11 +1,15 @@
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
+// based on https://github.com/rjaros/kvision-examples/tree/master/template-fullstack-ktor
+
 plugins {
     val kotlinVersion: String by System.getProperties()
     kotlin("multiplatform") version kotlinVersion
 //    val kvisionVersion: String by System.getProperties()
     id("io.kvision") // version kvisionVersion
+    // note: the KVision plugin version is removed because the plugin is loaded from the test
+    // class path, thanks to Gradle TestKit
 }
 
 version = "1.0.0-SNAPSHOT"
@@ -132,7 +136,10 @@ afterEvaluate {
             group = "package"
             archiveAppendix.set("frontend")
             val distribution =
-                project.tasks.getByName("frontendBrowserProductionWebpack", KotlinWebpack::class).destinationDirectory!!
+                project.tasks.getByName(
+                    "frontendBrowserProductionWebpack",
+                    KotlinWebpack::class
+                ).destinationDirectory!!
             from(distribution) {
                 include("*.*")
             }
@@ -170,9 +177,10 @@ afterEvaluate {
                     )
                 )
             }
-            val dependencies = configurations["backendRuntimeClasspath"].filter { it.name.endsWith(".jar") } +
-                project.tasks["backendJar"].outputs.files +
-                project.tasks["frontendArchive"].outputs.files
+            val dependencies =
+                configurations["backendRuntimeClasspath"].filter { it.name.endsWith(".jar") } +
+                    project.tasks["backendJar"].outputs.files +
+                    project.tasks["frontendArchive"].outputs.files
             dependencies.forEach {
                 if (it.isDirectory) from(it) else from(zipTree(it))
             }
