@@ -68,7 +68,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.request().getParam("id").toInt(), "", listOf())
             } else {
-                ctx.bodyAsJson.mapTo(JsonRpcRequest::class.java)
+                ctx.body().asJsonObject().mapTo(JsonRpcRequest::class.java)
             }
 
             val injector = ctx.get<Injector>(KV_INJECTOR_KEY)

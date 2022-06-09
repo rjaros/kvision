@@ -165,6 +165,26 @@ open class Select(
         }
 
     /**
+     * The number of options to be show in the dropdown list.
+     */
+    var dropdownSize
+        get() = input.dropdownSize
+        set(value) {
+            input.dropdownSize = value
+        }
+
+
+    /**
+     * Always show all options in the dropdown list.
+     */
+    var dropdownShowAll
+        get() = input.dropdownShowAll
+        set(value) {
+            input.dropdownShowAll = value
+        }
+
+
+    /**
      * Determines if the select is automatically focused.
      */
     var autofocus

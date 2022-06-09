@@ -46,7 +46,7 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
     override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
         groupId = "io.kvision",
         artifactId = "kvision-compiler-plugin",
-        version = "5.10.0"
+        version = "5.10.1"
     )
 
     override fun apply(target: Project) = with(target) {
@@ -96,10 +96,10 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 }
                 if (rootProject.findProperty("io.kvision.plugin.enableWebpackVersions") != "false") {
                     rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-                        versions.webpackDevServer.version = "4.9.0"
-                        versions.webpack.version = "5.72.0"
+                        versions.webpackDevServer.version = "4.9.1"
+                        versions.webpack.version = "5.73.0"
                         versions.webpackCli.version = "4.9.2"
-                        versions.karma.version = "6.3.19"
+                        versions.karma.version = "6.3.20"
                         versions.mocha.version = "10.0.0"
                     }
                 }
@@ -111,7 +111,6 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 if (rootProject.findProperty("io.kvision.plugin.enableSecureResolutions") != "false") {
                     rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
                         rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
-                            resolution("async", "^2.6.4")
                         }
                     }
                 }
@@ -174,10 +173,10 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 }
                 if (rootProject.findProperty("io.kvision.plugin.enableWebpackVersions") != "false") {
                     rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-                        versions.webpackDevServer.version = "4.9.0"
-                        versions.webpack.version = "5.72.0"
+                        versions.webpackDevServer.version = "4.9.1"
+                        versions.webpack.version = "5.73.0"
                         versions.webpackCli.version = "4.9.2"
-                        versions.karma.version = "6.3.19"
+                        versions.karma.version = "6.3.20"
                         versions.mocha.version = "10.0.0"
                     }
                 }
@@ -189,7 +188,6 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
                 if (rootProject.findProperty("io.kvision.plugin.enableSecureResolutions") != "false") {
                     rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
                         rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
-                            resolution("async", "^2.6.4")
                         }
                     }
                 }

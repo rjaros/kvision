@@ -299,6 +299,7 @@ open class GenericRadioGroup<T>(
 
     override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
         addCssClass("row")
+        addCssClass("kv-control-horiz")
         flabel.addCssClass("col-sm-${horizontalRatio.labels}")
         flabel.addCssClass("col-form-label")
         container.addCssClass("col-sm-${horizontalRatio.fields}")

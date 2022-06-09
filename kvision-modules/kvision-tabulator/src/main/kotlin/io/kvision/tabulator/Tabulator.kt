@@ -195,10 +195,6 @@ open class Tabulator<T : Any>(
             jsTabulator =
                 TabulatorModule.getConstructor()
                     .createInstance(it, options.toJs(this, this::translate, kClass))
-            if (currentPage != null) {
-                jsTabulator?.setPageSize(pageSize ?: 0)
-                jsTabulator?.setPage(currentPage)
-            }
             val allColumns = options.columns?.let { c -> c + c.mapNotNull { it.columns }.flatten() }
             allColumns?.find { it.editorComponentFunction != null }?.let {
                 jsTabulator?.on("cellEditCancelled") { cell: JsTabulator.CellComponent ->
@@ -287,6 +283,11 @@ open class Tabulator<T : Any>(
                 }
             }
             jsTabulator?.on("tableBuilt") {
+                if (currentPage != null) {
+                    jsTabulator?.setPageSize(pageSize ?: 0)
+                    jsTabulator?.setPage(currentPage)
+                }
+                applyFilter()
                 jsTabulatorInitialized = true
             }
         }

@@ -160,7 +160,7 @@ class KVProcessor : AbstractProcessor() {
                             appendLine("import $it")
                         }
                         appendLine()
-                        appendLine("actual class $baseName(serializersModules: List<SerializersModule>? = null, requestFilter: (RequestInit.() -> Unit)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, serializersModules, requestFilter) {")
+                        appendLine("actual class $baseName(serializersModules: List<SerializersModule>? = null, requestFilter: (suspend RequestInit.() -> Unit)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, serializersModules, requestFilter) {")
                         cl.methods().forEach {
                             val name = it.name
                             val params = it.allParameters.drop(1)

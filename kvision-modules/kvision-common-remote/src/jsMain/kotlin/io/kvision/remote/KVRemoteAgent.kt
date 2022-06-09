@@ -48,7 +48,7 @@ import org.w3c.fetch.RequestInit
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
     serializersModules: List<SerializersModule>? = null,
-    val requestFilter: (RequestInit.() -> Unit)? = null
+    val requestFilter: (suspend RequestInit.() -> Unit)? = null
 ) {
 
     val callAgent = CallAgent()

@@ -24,6 +24,7 @@ package io.kvision.remote
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.PersistenceConstructor
+import org.springframework.data.annotation.PersistenceCreator
 import org.springframework.data.annotation.Transient
 import org.springframework.data.annotation.Version
 import org.springframework.data.relational.core.mapping.Column
@@ -37,7 +38,10 @@ actual typealias Table = Table
 
 actual typealias Column = Column
 
+@Suppress("DEPRECATION")
 actual typealias PersistenceConstructor = PersistenceConstructor
+
+actual typealias PersistenceCreator = PersistenceCreator
 
 actual typealias Value = Value
 

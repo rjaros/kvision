@@ -24,6 +24,7 @@ package io.kvision.form
 import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
+import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.DomAttribute
 import io.kvision.form.FormPanel.Companion.create
@@ -271,6 +272,17 @@ open class FormPanel<K : Any>(
         }
         form.addInternal(key, control, required, requiredMessage, validatorMessage, validator)
         return this
+    }
+
+    override fun add(child: Component): SimplePanel {
+        if (child is FormControl) {
+            when (type) {
+                FormType.INLINE -> child.styleForInlineFormPanel()
+                FormType.HORIZONTAL -> child.styleForHorizontalFormPanel(horizRatio)
+                else -> child.styleForVerticalFormPanel()
+            }
+        }
+        return super.add(child)
     }
 
     /**
