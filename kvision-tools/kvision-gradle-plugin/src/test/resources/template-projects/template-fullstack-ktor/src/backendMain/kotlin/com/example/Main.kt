@@ -7,9 +7,7 @@ import io.kvision.remote.applyRoutes
 import io.kvision.remote.kvisionInit
 
 fun Application.main() {
-    install(Compression)
     routing {
-        applyRoutes(PingServiceManager)
     }
     kvisionInit()
 }

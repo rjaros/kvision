@@ -15,8 +15,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
 
-val AppScope = CoroutineScope(window.asCoroutineDispatcher())
-
 class App : Application() {
 
     override fun start(state: Map<String, Any>) {
@@ -29,13 +27,9 @@ class App : Application() {
             )
         val root = root("kvapp") {
         }
-        AppScope.launch {
-            val pingResult = Model.ping("Hello world from client!")
-            root.add(Span(pingResult))
-        }
     }
 }
 
 fun main() {
-    startApplication(::App, module.hot, BootstrapModule, BootstrapCssModule, CoreModule)
+    startApplication(::App, module.hot, CoreModule)
 }
