@@ -2,9 +2,12 @@ package io.kvision.gradle
 
 import io.kotest.assertions.asClue
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import java.io.File
 import org.gradle.testkit.runner.GradleRunner
+import org.gradle.testkit.runner.TaskOutcome
 
 
 class JsTemplateTest : FunSpec({
@@ -40,6 +43,10 @@ class JsTemplateTest : FunSpec({
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
+                result.task(":generatePotFile")
+                    .shouldNotBeNull()
+                    .outcome
+                    .shouldBe(TaskOutcome.SUCCESS)
             }
         }
 
@@ -52,6 +59,10 @@ class JsTemplateTest : FunSpec({
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
+                result.task(":convertPoToJson")
+                    .shouldNotBeNull()
+                    .outcome
+                    .shouldBe(TaskOutcome.SUCCESS)
             }
         }
 
@@ -64,6 +75,10 @@ class JsTemplateTest : FunSpec({
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
+                result.task(":zip")
+                    .shouldNotBeNull()
+                    .outcome
+                    .shouldBe(TaskOutcome.UP_TO_DATE)
             }
         }
     }
