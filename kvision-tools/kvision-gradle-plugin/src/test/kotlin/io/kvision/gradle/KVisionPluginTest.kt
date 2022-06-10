@@ -132,7 +132,7 @@ kotlin {
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":tasks")
+                    .withArguments(":tasks", "--info", "--stacktrace")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
@@ -147,7 +147,7 @@ kotlin {
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":generatePotFile")
+                    .withArguments(":generatePotFile", "--info", "--stacktrace")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
@@ -157,7 +157,7 @@ kotlin {
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":convertPoToJson")
+                    .withArguments(":convertPoToJson", "--info", "--stacktrace")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
@@ -167,7 +167,7 @@ kotlin {
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":zip")
+                    .withArguments(":zip", "--info", "--stacktrace")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
@@ -276,7 +276,7 @@ kotlin {
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":tasks")
+                    .withArguments(":tasks", "--info", "--stacktrace")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
