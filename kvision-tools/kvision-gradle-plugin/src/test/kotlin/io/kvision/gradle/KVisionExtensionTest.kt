@@ -1,10 +1,13 @@
 package io.kvision.gradle
 
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kvision.gradle.util.GradleKtsProjectDirBuilder.Companion.`gradle kts project`
 import java.io.File
 import org.gradle.testkit.runner.GradleRunner
+import org.gradle.testkit.runner.TaskOutcome
 
 
 class KVisionExtensionTest : FunSpec({
@@ -16,7 +19,6 @@ class KVisionExtensionTest : FunSpec({
             // quick smoke test
 
             val projectDir: File = `gradle kts project` {
-
                 `build gradle kts`(
                     """
 plugins {
@@ -41,119 +43,141 @@ kvision {
     async.set("1.2.3")
   }
 }
-
 """.trimIndent()
                 )
             }
-            val result = GradleRunner.create()
-                .withProjectDir(projectDir)
-                .withPluginClasspath()
-                .withArguments(":tasks")
-                .build()
 
-            result.output shouldContain "BUILD SUCCESSFUL"
+            test("can list tasks") {
+                val result = GradleRunner.create()
+                    .withProjectDir(projectDir)
+                    .withPluginClasspath()
+                    .withArguments(":tasks", "--info", "--stacktrace")
+                    .build()
+
+                result.output shouldContain "BUILD SUCCESSFUL"
+            }
         }
 
         context("applied with alongside Kotlin/JS plugin") {
-            val kvisionVersion = "5.10.1"
             val projectDir: File = `gradle kts project` {
-
-                `settings gradle kts`(
-                    """
-                        rootProject.name = "kvision"
-                    """.trimIndent()
-                )
-
                 `build gradle kts`(
                     """
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-
-plugins {
-    id("io.kvision")
-    kotlin("js") version "1.6.21"
-}
-
-repositories {
-    mavenCentral()
-}
-
-val kotlinVersion: String = "1.6.21"
-val kvisionVersion: String = "5.10.1"
-
-val webDir = file("src/main/web")
+$baseKotlinJsBuildGradleKts
 
 kvision {
-  enableGradleTasks.set(false)
-  enableWebpackVersions.set(false)
-  enableHiddenKotlinJsStore.set(false)
-  enableSecureResolutions.set(false)
-  enableBackendTasks.set(false)
-  enableWorkerTasks.set(false)
-  kotlinJsStoreDirectory.set(layout.projectDirectory.dir("another-directory"))
-
   versions {
-    webpackDevServer.set("1.2.3")
-    webpack.set("1.2.3")
-    webpackCli.set("1.2.3")
-    karma.set("1.2.3")
-    mocha.set("1.2.3")
-    async.set("1.2.3")
+    async.set("1.1.1")
+    karma.set("2.2.2")
+    mocha.set("3.3.3")
+    webpack.set("4.4.4")
+    webpackCli.set("5.5.5")
+    webpackDevServer.set("6.6.6")
   }
 }
 
-kotlin {
-    js {
-        browser {
-            runTask {
-                outputFileName = "main.bundle.js"
-                sourceMaps = false
-                devServer = KotlinWebpackConfig.DevServer(
-                    open = false,
-                    port = 3000,
-                    proxy = mutableMapOf(
-                        "/kv/*" to "http://localhost:8080",
-                        "/kvws/*" to mapOf("target" to "ws://localhost:8080", "ws" to true)
-                    ),
-                    static = mutableListOf("${'$'}buildDir/processedResources/js/main")
+tasks.register("printNodeJsVersions") {
+    doLast {
+        val versions = rootProject
+            .the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>()
+            .versions
+            .run {
+                listOf(
+                    webpackDevServer,
+                    webpack,
+                    webpackCli,
+                    karma,
+                    mocha,
                 )
             }
-            webpackTask {
-                outputFileName = "main.bundle.js"
+        logger.info(versions.joinToString("\n"))
+    }
+}
+
+tasks.register("printYarnVersions") {
+    doLast {
+        val versions = rootProject
+            .the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>()
+            .resolutions
+            .joinToString("\n") {
+                it.path + it.includedVersions + it.excludedVersions
             }
-            testTask {
-                useKarma {
-                    useChromeHeadless()
-                }
-            }
-        }
-        binaries.executable()
+        logger.info(versions)
     }
-    sourceSets["main"].dependencies {
-        implementation("io.kvision:kvision:$kvisionVersion")
-        implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
-        implementation("io.kvision:kvision-bootstrap-css:$kvisionVersion")
-        implementation("io.kvision:kvision-i18n:$kvisionVersion")
-    }
-    sourceSets["test"].dependencies {
-        implementation(kotlin("test-js"))
-        implementation("io.kvision:kvision-testutils:$kvisionVersion")
-    }
-    sourceSets["main"].resources.srcDir(webDir)
 }
 """.trimIndent()
                 )
             }
-            val result = GradleRunner.create()
-                .withProjectDir(projectDir)
-                .withPluginClasspath()
-                .withArguments(":tasks")
-                .build()
 
-            result.output shouldContain "BUILD SUCCESSFUL"
-            result.output shouldContain "Kvision tasks"
-            result.output shouldContain "generatePotFile"
-            result.output shouldContain "convertPoToJson"
-            result.output shouldContain "zip"
+            test("verify tasks can be listed") {
+                val result = GradleRunner.create()
+                    .withProjectDir(projectDir)
+                    .withPluginClasspath()
+                    .withArguments(":tasks", "--info", "--stacktrace")
+                    .build()
+
+                result.output shouldContain "BUILD SUCCESSFUL"
+                result.output shouldContain "Kvision tasks"
+                result.output shouldContain "generatePotFile"
+                result.output shouldContain "convertPoToJson"
+                result.output shouldContain "zip"
+
+                result.task(":tasks").shouldNotBeNull()
+                    .outcome
+                    .shouldBe(TaskOutcome.SUCCESS)
+            }
+
+            context("verify NodeJS versions are overridden") {
+
+                val result = GradleRunner.create()
+                    .withProjectDir(projectDir)
+                    .withPluginClasspath()
+                    .withArguments(":printNodeJsVersions", "--info", "--stacktrace")
+                    .build()
+
+                test("verify :printNodeJsVersions runs successfully") {
+                    result.output shouldContain "BUILD SUCCESSFUL"
+
+                    result.task(":printNodeJsVersions").shouldNotBeNull()
+                        .outcome
+                        .shouldBe(TaskOutcome.SUCCESS)
+                }
+
+                test("expect karma version is overridden") {
+                    result.output shouldContain "NpmPackageVersion(name=karma, version=2.2.2)"
+                }
+                test("expect mocha version is overridden") {
+                    result.output shouldContain "NpmPackageVersion(name=mocha, version=3.3.3)"
+                }
+                test("expect webpack version is overridden") {
+                    result.output shouldContain "NpmPackageVersion(name=webpack, version=4.4.4)"
+                }
+                test("expect webpack-cli version is overridden") {
+                    result.output shouldContain "NpmPackageVersion(name=webpack-cli, version=5.5.5)"
+                }
+                test("expect webpack-dev-server version is overridden") {
+                    result.output shouldContain "NpmPackageVersion(name=webpack-dev-server, version=6.6.6)"
+                }
+            }
+
+            context("verify Yarn versions are overridden") {
+
+                val result = GradleRunner.create()
+                    .withProjectDir(projectDir)
+                    .withPluginClasspath()
+                    .withArguments(":printYarnVersions", "--info", "--stacktrace")
+                    .build()
+
+                test("verify :printYarnVersions runs successfully") {
+                    result.output shouldContain "BUILD SUCCESSFUL"
+
+                    result.task(":printYarnVersions").shouldNotBeNull()
+                        .outcome
+                        .shouldBe(TaskOutcome.SUCCESS)
+                }
+                test("expect async version is overridden") {
+                    result.output shouldContain "async[1.1.1][]"
+                }
+            }
         }
 
         context("with applied with alongside Kotlin/MPP plugin") {
@@ -274,7 +298,7 @@ kotlin {
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":tasks")
+                    .withArguments(":tasks", "--info", "--stacktrace")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
@@ -282,8 +306,78 @@ kotlin {
                 result.output shouldContain "generatePotFile"
                 result.output shouldContain "convertPoToJson"
                 result.output shouldContain "workerBundle"
+
+                result.task(":tasks").shouldNotBeNull()
+                    .outcome
+                    .shouldBe(TaskOutcome.SUCCESS)
             }
         }
     }
 
-})
+}) {
+    companion object {
+
+        private val baseKotlinJsBuildGradleKts: String = run {
+            val kvisionVersion = "5.10.1"
+            //language=kotlin
+            """
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+
+plugins {
+    id("io.kvision")
+    kotlin("js") version "1.6.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+val kotlinVersion: String = "1.6.21"
+val kvisionVersion: String = "5.10.1"
+
+val webDir = file("src/main/web")
+
+kotlin {
+    js {
+        browser {
+            runTask {
+                outputFileName = "main.bundle.js"
+                sourceMaps = false
+                devServer = KotlinWebpackConfig.DevServer(
+                    open = false,
+                    port = 3000,
+                    proxy = mutableMapOf(
+                        "/kv/*" to "http://localhost:8080",
+                        "/kvws/*" to mapOf("target" to "ws://localhost:8080", "ws" to true)
+                    ),
+                    static = mutableListOf("${'$'}buildDir/processedResources/js/main")
+                )
+            }
+            webpackTask {
+                outputFileName = "main.bundle.js"
+            }
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                }
+            }
+        }
+        binaries.executable()
+    }
+    sourceSets["main"].dependencies {
+        implementation("io.kvision:kvision:$kvisionVersion")
+        implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
+        implementation("io.kvision:kvision-bootstrap-css:$kvisionVersion")
+        implementation("io.kvision:kvision-i18n:$kvisionVersion")
+    }
+    sourceSets["test"].dependencies {
+        implementation(kotlin("test-js"))
+        implementation("io.kvision:kvision-testutils:$kvisionVersion")
+    }
+    sourceSets["main"].resources.srcDir(webDir)
+}
+"""
+        }
+
+    }
+}
