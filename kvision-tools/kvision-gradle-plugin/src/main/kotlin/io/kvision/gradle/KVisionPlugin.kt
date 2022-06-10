@@ -283,8 +283,9 @@ abstract class KVisionPlugin @Inject constructor(
             logger.info("configuring Yarn")
             if (kvExtension.enableSecureResolutions.get()) {
 
-                val version = kvExtension.versions.async.get()
-                resolution("async", version)
+                kvExtension.versions.async.orNull?.let {
+                    resolution("async", it)
+                }
 
                 if (logger.isInfoEnabled) {
                     val asyncVersion = resolutions
@@ -307,11 +308,21 @@ abstract class KVisionPlugin @Inject constructor(
             if (kvExtension.enableWebpackVersions.get()) {
                 versions.apply {
 
-                    webpackDevServer.version = kvExtension.versions.webpackDevServer.get()
-                    webpack.version = kvExtension.versions.webpack.get()
-                    webpackCli.version = kvExtension.versions.webpackCli.get()
-                    karma.version = kvExtension.versions.karma.get()
-                    mocha.version = kvExtension.versions.mocha.get()
+                    kvExtension.versions.webpackDevServer.orNull?.let {
+                        webpackDevServer.version = it
+                    }
+                    kvExtension.versions.webpack.orNull?.let {
+                        webpack.version = it
+                    }
+                    kvExtension.versions.webpackCli.orNull?.let {
+                        webpackCli.version = it
+                    }
+                    kvExtension.versions.karma.orNull?.let {
+                        karma.version = it
+                    }
+                    kvExtension.versions.mocha.orNull?.let {
+                        mocha.version = it
+                    }
 
                     val versions = listOf(
                         "webpackDevServer: ${webpackDevServer.version}",

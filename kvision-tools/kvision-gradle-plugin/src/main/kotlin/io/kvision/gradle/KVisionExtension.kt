@@ -7,6 +7,7 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.ProviderFactory
 import org.gradle.api.tasks.Nested
+import org.gradle.api.tasks.Optional
 import org.gradle.kotlin.dsl.property
 
 
@@ -64,23 +65,29 @@ abstract class KVisionExtension @Inject constructor(
     abstract class Versions @Inject constructor(
         objects: ObjectFactory,
     ) {
+        @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
-        val webpackDevServer: Property<String> = objects.property<String>().convention("4.9.0")
+        val webpackDevServer: Property<String> = objects.property<String>().convention("4.9.1")
 
+        @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
-        val webpack: Property<String> = objects.property<String>().convention("5.72.0")
+        val webpack: Property<String> = objects.property<String>().convention("5.73.0")
 
+        @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
         val webpackCli: Property<String> = objects.property<String>().convention("4.9.2")
 
+        @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
-        val karma: Property<String> = objects.property<String>().convention("6.3.19")
+        val karma: Property<String> = objects.property<String>().convention("6.3.20")
 
+        @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
         val mocha: Property<String> = objects.property<String>().convention("10.0.0")
 
+        @get:Optional
         /** `async` version. Requires [KVisionExtension.enableSecureResolutions] to be true */
-        val async: Property<String> = objects.property<String>().convention("^2.6.4")
+        val async: Property<String> = objects.property()
     }
 
 }
