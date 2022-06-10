@@ -19,11 +19,11 @@ import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Zip
 import org.gradle.internal.os.OperatingSystem
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
-import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
@@ -32,7 +32,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 abstract class KVisionPlugin @Inject constructor(
@@ -167,10 +166,10 @@ abstract class KVisionPlugin @Inject constructor(
             description = "Generates KVision sources for fullstack interfaces"
             dependsOn("compileCommonMainKotlinMetadata")
         }
-
     }
 
 
+    /** Applied to both Kotlin JS and Kotlin Multiplatform project */
     private fun KVPluginContext.registerGeneratePotFileTask(
         configuration: KVGeneratePotTask.() -> Unit = {}
     ) {
@@ -190,6 +189,7 @@ abstract class KVisionPlugin @Inject constructor(
     }
 
 
+    /** Applied to both Kotlin JS and Kotlin Multiplatform project */
     private fun KVPluginContext.registerConvertPoToJsonTask(
         configuration: KVConvertPoTask.() -> Unit = {}
     ): TaskProvider<KVConvertPoTask> {
@@ -212,6 +212,7 @@ abstract class KVisionPlugin @Inject constructor(
     }
 
 
+    /** Requires Kotlin JS project */
     private fun KVPluginContext.registerZipTask(configuration: Zip.() -> Unit = {}) {
         logger.debug("registering KVision zip task")
 
@@ -278,15 +279,21 @@ abstract class KVisionPlugin @Inject constructor(
     private fun KVPluginContext.configureNodeEcosystem() {
         logger.info("configuring Node")
 
-        rootProject.configureYarn {
+        rootProject.extensions.configure<YarnRootExtension> {
+            logger.info("configuring Yarn")
             if (kvExtension.enableSecureResolutions.get()) {
+
                 val version = kvExtension.versions.async.get()
                 resolution("async", version)
 
-                val asyncVersion = resolutions.firstOrNull { it.path == "async" }?.let {
-                    "YarnResolution(${it.path}, ${it.includedVersions}, ${it.excludedVersions})"
+                if (logger.isInfoEnabled) {
+                    val asyncVersion = resolutions
+                        .firstOrNull { it.path == "async" }
+                        ?.let {
+                            "YarnResolution(${it.path}, ${it.includedVersions}, ${it.excludedVersions})"
+                        }
+                    logger.info("[configureNodeEcosystem.configureYarn] set async version: $asyncVersion")
                 }
-                logger.info("[configureNodeEcosystem.configureYarn] set async version: $asyncVersion")
             }
 
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
@@ -295,7 +302,8 @@ abstract class KVisionPlugin @Inject constructor(
             }
         }
 
-        rootProject.configureNodeJs {
+        rootProject.extensions.configure<NodeJsRootExtension> {
+            logger.info("configuring NodeJs")
             if (kvExtension.enableWebpackVersions.get()) {
                 versions.apply {
 
@@ -328,20 +336,12 @@ abstract class KVisionPlugin @Inject constructor(
         val processResources: Provider<Copy>
             get() = provider("processResources")
 
-        val compileKotlinFrontend: Provider<KotlinCompile<*>>
-            get() = provider("compileKotlinFrontend")
-
-        val compileKotlinJs: Provider<KotlinJsCompile>
-            get() = provider("compileKotlinJs")
-
         val frontendProcessResources: Provider<Copy>
             get() = provider("frontendProcessResources")
 
         val browserProductionWebpack: Provider<KotlinWebpack>
             get() = provider("browserProductionWebpack")
 
-        val workerBrowserProductionWebpack: Provider<Task>
-            get() = provider("workerBrowserProductionWebpack")
 
         // Workaround for https://github.com/gradle/gradle/issues/16543
         private inline fun <reified T : Task> provider(taskName: String): Provider<T> =
@@ -364,9 +364,6 @@ abstract class KVisionPlugin @Inject constructor(
         val compileKotlinJs: TaskCollection<KotlinJsCompile>
             get() = collection("compileKotlinJs")
 
-        val frontendProcessResources: TaskCollection<Copy>
-            get() = collection("frontendProcessResources")
-
         val browserProductionWebpack: TaskCollection<KotlinWebpack>
             get() = collection("browserProductionWebpack")
 
@@ -379,7 +376,8 @@ abstract class KVisionPlugin @Inject constructor(
     }
 
     /**
-     * Provider for the absolute path of the Node binary that Kotlin installs into the root project.
+     * [Provider] for the absolute path of the Node binary that the Kotlin plugin (JS or
+     * Multiplatform) installs into the root project.
      *
      * The current operating system is taken into account.
      */
@@ -402,12 +400,12 @@ abstract class KVisionPlugin @Inject constructor(
             if (isWindows) nodeDir else nodeDir.resolve("bin")
         }
 
-        val finalCommandProvider = nodeJsRootExtension.zip(isWindowsProvider) { ext, isWindows ->
+        val nodeExecutableProvider = nodeJsRootExtension.zip(isWindowsProvider) { ext, isWindows ->
             if (isWindows && ext.nodeCommand == "node") "node.exe" else ext.nodeCommand
         }
 
-        return finalCommandProvider.zip(nodeBinDirProvider) { finalCommand, nodeBinDir ->
-            nodeBinDir.resolve(finalCommand).absolutePath
+        return nodeExecutableProvider.zip(nodeBinDirProvider) { nodeExecutable, nodeBinDir ->
+            nodeBinDir.resolve(nodeExecutable).absolutePath
         }
     }
 
@@ -424,16 +422,6 @@ abstract class KVisionPlugin @Inject constructor(
 
         const val KVISION_TASK_GROUP = "kvision"
         const val PACKAGE_TASK_GROUP = "package"
-
-        private fun Project.configureYarn(configure: YarnRootExtension.() -> Unit) {
-            plugins.withType<YarnPlugin> {
-                rootProject.the<YarnRootExtension>().configure()
-            }
-        }
-
-        private fun Project.configureNodeJs(configure: NodeJsRootExtension.() -> Unit) {
-            rootProject.the<NodeJsRootExtension>().configure()
-        }
 
         private val Project.rootNodeModulesDir: DirectoryProperty
             get() = objects.directoryProperty().convention(
