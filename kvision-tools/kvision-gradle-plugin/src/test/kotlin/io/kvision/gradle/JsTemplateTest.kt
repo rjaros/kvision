@@ -39,7 +39,7 @@ class JsTemplateTest : FunSpec({
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":generatePotFile", "--stacktrace", "--info")
+                    .withArguments(":generatePotFile", "--stacktrace", "--info", "--rerun-tasks")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
@@ -55,7 +55,7 @@ class JsTemplateTest : FunSpec({
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":convertPoToJson", "--stacktrace", "--info")
+                    .withArguments(":convertPoToJson", "--stacktrace", "--info", "--rerun-tasks")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
@@ -71,14 +71,14 @@ class JsTemplateTest : FunSpec({
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
                     .withPluginClasspath()
-                    .withArguments(":zip", "--stacktrace", "--info")
+                    .withArguments(":zip", "--stacktrace", "--info", "--rerun-tasks")
                     .build()
 
                 result.output shouldContain "BUILD SUCCESSFUL"
                 result.task(":zip")
                     .shouldNotBeNull()
                     .outcome
-                    .shouldBe(TaskOutcome.UP_TO_DATE)
+                    .shouldBe(TaskOutcome.SUCCESS)
             }
         }
     }
