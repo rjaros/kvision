@@ -15,7 +15,6 @@ val autoServiceVersion: String by project
 
 gradlePlugin {
     plugins {
-        isAutomatedPublishing = false
         create("kvisionGradlePlugin") {
             id = "io.kvision"
             implementationClass = "io.kvision.gradle.KVisionGradleSubplugin"
