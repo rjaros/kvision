@@ -18,8 +18,8 @@ gradlePlugin {
         isAutomatedPublishing = false
         create("kvisionGradlePlugin") {
             id = "io.kvision"
-//            implementationClass = "io.kvision.gradle.KVisionGradleSubplugin"
-            implementationClass = "io.kvision.gradle.KVisionPlugin"
+            implementationClass = "io.kvision.gradle.KVisionGradleSubplugin"
+//            implementationClass = "io.kvision.gradle.KVisionPlugin"
         }
     }
 }
