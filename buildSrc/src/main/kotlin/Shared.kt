@@ -60,10 +60,13 @@ fun KotlinMultiplatformExtension.kotlinJvmTargets() {
     }
 }
 
+val kvisionProjectWebsite = "https://github.com/rjaros/kvision"
+val kvisionVcsUrl = "https://github.com/rjaros/kvision.git"
+
 fun MavenPom.defaultPom() {
     name.set("KVision")
     description.set("Object oriented web framework for Kotlin/JS")
-    url.set("https://github.com/rjaros/kvision")
+    url.set(kvisionProjectWebsite)
     licenses {
         license {
             name.set("MIT")
@@ -79,7 +82,7 @@ fun MavenPom.defaultPom() {
         }
     }
     scm {
-        url.set("https://github.com/rjaros/kvision.git")
+        url.set(kvisionVcsUrl)
         connection.set("scm:git:git://github.com/rjaros/kvision.git")
         developerConnection.set("scm:git:git://github.com/rjaros/kvision.git")
     }
