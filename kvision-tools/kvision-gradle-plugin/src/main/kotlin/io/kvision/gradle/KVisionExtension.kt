@@ -22,28 +22,25 @@ abstract class KVisionExtension @Inject constructor(
 ) {
 
     val enableGradleTasks: Property<Boolean> =
-        kvisionSystemProperty("enableGradleTasks")
+        kvisionGradleProperty("enableGradleTasks")
 
     val enableWebpackVersions: Property<Boolean> =
-        kvisionSystemProperty("enableWebpackVersions")
+        kvisionGradleProperty("enableWebpackVersions")
 
     val enableHiddenKotlinJsStore: Property<Boolean> =
-        kvisionSystemProperty("enableHiddenKotlinJsStore")
+        kvisionGradleProperty("enableHiddenKotlinJsStore")
 
     val enableSecureResolutions: Property<Boolean> =
-        kvisionSystemProperty("enableSecureResolutions")
-
-    val enableBackendTasks: Property<Boolean> =
-        kvisionSystemProperty("enableBackendTasks")
+        kvisionGradleProperty("enableSecureResolutions")
 
     val enableWorkerTasks: Property<Boolean> =
-        kvisionSystemProperty("enableWorkerTasks")
+        kvisionGradleProperty("enableWorkerTasks", false)
 
-    private fun kvisionSystemProperty(
+    private fun kvisionGradleProperty(
         property: String,
         default: Boolean = true,
     ): Property<Boolean> {
-        val convention = providers.systemProperty("io.kvision.plugin.$property")
+        val convention = providers.gradleProperty("io.kvision.plugin.$property")
             .map { it.toBoolean() }
             .orElse(default)
         return objects.property<Boolean>().convention(convention)
@@ -84,10 +81,6 @@ abstract class KVisionExtension @Inject constructor(
         @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
         val mocha: Property<String> = objects.property<String>().convention("10.0.0")
-
-        @get:Optional
-        /** `async` version. Requires [KVisionExtension.enableSecureResolutions] to be true */
-        val async: Property<String> = objects.property()
     }
 
 }

@@ -37,11 +37,6 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
         version = "5.10.1"
     )
 
-    override fun apply(target: Project) {
-        val kvisionPlugin = target.objects.newInstance(KVisionPlugin::class)
-        kvisionPlugin.apply(target)
-    }
-
     override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
         val project = kotlinCompilation.target.project
         return project.provider {
@@ -54,5 +49,10 @@ class KVisionGradleSubplugin : KotlinCompilerPluginSupportPlugin {
 
     override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean {
         return true
+    }
+
+    override fun apply(target: Project) = with(target) {
+        val kvisionPlugin = target.objects.newInstance(KVisionPlugin::class)
+        kvisionPlugin.apply(target)
     }
 }

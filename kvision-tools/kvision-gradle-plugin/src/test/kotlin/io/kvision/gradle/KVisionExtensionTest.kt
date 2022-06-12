@@ -30,7 +30,6 @@ kvision {
   enableWebpackVersions.set(false)
   enableHiddenKotlinJsStore.set(false)
   enableSecureResolutions.set(false)
-  enableBackendTasks.set(false)
   enableWorkerTasks.set(false)
   kotlinJsStoreDirectory.set(layout.projectDirectory.dir("another-directory"))
 
@@ -40,7 +39,6 @@ kvision {
     webpackCli.set("1.2.3")
     karma.set("1.2.3")
     mocha.set("1.2.3")
-    async.set("1.2.3")
   }
 }
 """.trimIndent()
@@ -66,7 +64,6 @@ $baseKotlinJsBuildGradleKts
 
 kvision {
   versions {
-    async.set("1.1.1")
     karma.set("2.2.2")
     mocha.set("3.3.3")
     webpack.set("4.4.4")
@@ -159,7 +156,7 @@ tasks.register("printYarnVersions") {
                 }
             }
 
-            context("verify Yarn versions are overridden") {
+/*            context("verify Yarn versions are overridden") {
 
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -177,7 +174,7 @@ tasks.register("printYarnVersions") {
                 test("expect async version is overridden") {
                     result.output shouldContain "async[1.1.1][]"
                 }
-            }
+            }*/
         }
 
         context("with applied with alongside Kotlin/MPP plugin") {
@@ -207,7 +204,6 @@ kvision {
   enableWebpackVersions.set(false)
   enableHiddenKotlinJsStore.set(false)
   enableSecureResolutions.set(false)
-  enableBackendTasks.set(false)
   enableWorkerTasks.set(false)
   kotlinJsStoreDirectory.set(layout.projectDirectory.dir("another-directory"))
 
@@ -217,7 +213,6 @@ kvision {
     webpackCli.set("1.2.3")
     karma.set("1.2.3")
     mocha.set("1.2.3")
-    async.set("1.2.3")
   }
 }
 

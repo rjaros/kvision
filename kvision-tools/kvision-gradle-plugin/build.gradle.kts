@@ -6,7 +6,6 @@ plugins {
     id("signing")
     id("de.marcphilipp.nexus-publish")
     id("org.jetbrains.dokka")
-
     id("com.gradle.plugin-publish") version "0.21.0"
 }
 
@@ -17,8 +16,11 @@ gradlePlugin {
     plugins {
         create("kvisionGradlePlugin") {
             id = "io.kvision"
-            implementationClass = "io.kvision.gradle.KVisionGradleSubplugin"
-//            implementationClass = "io.kvision.gradle.KVisionPlugin"
+            implementationClass = if (project.gradle.startParameter.taskNames.contains("check")) {
+                "io.kvision.gradle.KVisionPlugin"
+            } else {
+                "io.kvision.gradle.KVisionGradleSubplugin"
+            }
         }
     }
 }
@@ -42,9 +44,9 @@ dependencies {
 
     testImplementation(gradleTestKit())
 
-    implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
-    implementation("io.kotest:kotest-runner-junit5")
-    implementation("io.kotest:kotest-assertions-core")
+    testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+    testImplementation("io.kotest:kotest-runner-junit5")
+    testImplementation("io.kotest:kotest-assertions-core")
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -57,15 +59,12 @@ val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
     from("$buildDir/dokka/html")
 }
-
-publishing {
-    publications {
-        create<MavenPublication>("kotlin") {
-            from(components["kotlin"])
-            artifact(tasks["sourcesJar"])
-            if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
-            pom {
-                defaultPom()
+afterEvaluate {
+    publishing {
+        publications {
+            getByName<MavenPublication>("pluginMaven") {
+                artifact(tasks["sourcesJar"])
+                if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
             }
         }
     }
