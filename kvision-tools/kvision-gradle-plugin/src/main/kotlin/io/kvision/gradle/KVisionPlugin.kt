@@ -110,7 +110,7 @@ abstract class KVisionPlugin @Inject constructor(
             )
         }
 
-        registerConvertPoToJsonTask {
+        val convertPoToJsonTask = registerConvertPoToJsonTask {
             dependsOn(tasks.all.processResources)
             sourceDirectory.set(
                 layout.dir(tasks.provider.processResources.map { it.destinationDir })
@@ -121,12 +121,10 @@ abstract class KVisionPlugin @Inject constructor(
             dependsOn(tasks.all.browserProductionWebpack)
         }
 
-        afterEvaluate {
-            tasks.all.processResources.configureEach {
-                exclude("**/*.pot")
-                dependsOn(tasks.all.compileKotlinJs)
-                finalizedBy("convertPoToJson")
-            }
+        tasks.all.processResources.configureEach {
+            exclude("**/*.pot")
+            dependsOn(tasks.all.compileKotlinJs)
+            finalizedBy(convertPoToJsonTask)
         }
     }
 
@@ -147,7 +145,7 @@ abstract class KVisionPlugin @Inject constructor(
             )
         }
 
-        registerConvertPoToJsonTask {
+        val convertPoToJsonTask = registerConvertPoToJsonTask {
             dependsOn(tasks.all.frontendProcessResources)
             sourceDirectory.set(
                 layout.dir(
@@ -173,12 +171,10 @@ abstract class KVisionPlugin @Inject constructor(
             dependsOn("compileCommonMainKotlinMetadata")
         }
 
-        afterEvaluate {
-            tasks.all.frontendProcessResources.configureEach {
-                exclude("**/*.pot")
-                dependsOn(tasks.all.compileKotlinFrontend)
-                finalizedBy("convertPoToJson")
-            }
+        tasks.all.frontendProcessResources.configureEach {
+            exclude("**/*.pot")
+            dependsOn(tasks.all.compileKotlinFrontend)
+            finalizedBy(convertPoToJsonTask)
         }
     }
 
