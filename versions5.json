@@ -1,6 +1,6 @@
 {
-    "kvision": "5.10.1",
-    "kotlin": "1.6.21",
+    "kvision": "5.11.0",
+    "kotlin": "1.7.0",
     "serialization": "1.3.3",
     "coroutines": "1.6.1",
     "template-javalin": {
