@@ -126,6 +126,10 @@ abstract class KVisionPlugin @Inject constructor(
             exclude("**/*.pot")
             finalizedBy(convertPoToJsonTask)
         }
+
+        tasks.all.browserDevelopmentRun.configureEach {
+            dependsOn("developmentExecutableCompileSync")
+        }
     }
 
 
@@ -178,6 +182,11 @@ abstract class KVisionPlugin @Inject constructor(
             exclude("**/*.pot")
             finalizedBy(convertPoToJsonTask)
         }
+
+        tasks.all.frontendBrowserDevelopmentRun.configureEach {
+            dependsOn("frontendDevelopmentExecutableCompileSync")
+        }
+
     }
 
     /** Applied to both Kotlin JS and Kotlin Multiplatform project */
@@ -359,6 +368,11 @@ abstract class KVisionPlugin @Inject constructor(
         val workerBrowserProductionWebpack: TaskCollection<Task>
             get() = collection("workerBrowserProductionWebpack")
 
+        val browserDevelopmentRun: TaskCollection<Task>
+            get() = collection("browserDevelopmentRun")
+
+        val frontendBrowserDevelopmentRun: TaskCollection<Task>
+            get() = collection("frontendBrowserDevelopmentRun")
 
         private inline fun <reified T : Task> collection(taskName: String): TaskCollection<T> =
             tasks.withType<T>().matching { it.name == taskName }
