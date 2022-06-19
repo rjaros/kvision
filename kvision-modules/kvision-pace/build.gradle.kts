@@ -34,9 +34,6 @@ publishing {
             from(components["kotlin"])
             artifact(tasks["sourcesJar"])
             if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
-            pom {
-                defaultPom()
-            }
         }
     }
 }

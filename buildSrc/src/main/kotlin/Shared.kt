@@ -60,12 +60,14 @@ fun KotlinMultiplatformExtension.kotlinJvmTargets() {
     }
 }
 
+val kvisionProjectName = "KVision"
+val kvisionProjectDescription = "Object oriented web framework for Kotlin/JS"
 val kvisionProjectWebsite = "https://github.com/rjaros/kvision"
 val kvisionVcsUrl = "https://github.com/rjaros/kvision.git"
 
 fun MavenPom.defaultPom() {
-    name.set("KVision")
-    description.set("Object oriented web framework for Kotlin/JS")
+    name.set(kvisionProjectName)
+    description.set(kvisionProjectDescription)
     url.set(kvisionProjectWebsite)
     licenses {
         license {

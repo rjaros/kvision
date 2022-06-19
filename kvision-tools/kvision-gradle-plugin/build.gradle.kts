@@ -15,6 +15,8 @@ val autoServiceVersion: String by project
 gradlePlugin {
     plugins {
         create("kvisionGradlePlugin") {
+            displayName = kvisionProjectName
+            description = kvisionProjectDescription
             id = "io.kvision"
             implementationClass = if (project.gradle.startParameter.taskNames.contains("check")) {
                 "io.kvision.gradle.KVisionPlugin"
