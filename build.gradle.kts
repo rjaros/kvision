@@ -30,10 +30,10 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
-        versions.webpackDevServer.version = "4.9.1"
+        versions.webpackDevServer.version = "4.9.2"
         versions.webpack.version = "5.73.0"
-        versions.webpackCli.version = "4.9.2"
-        versions.karma.version = "6.3.20"
+        versions.webpackCli.version = "4.10.0"
+        versions.karma.version = "6.4.0"
         versions.mocha.version = "10.0.0"
     }
 }
