@@ -350,6 +350,7 @@ $dokka.location:io.kvision.chart.js/CoreChartOptions/resizeDelay/#/PointingToDec
 $dokka.location:io.kvision.chart.js/CoreChartOptions/responsive/#/PointingToDeclaration/kvision/io.kvision.chart.js/-core-chart-options/responsive.html
 $dokka.location:io.kvision.chart.js/CoreInteractionOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-core-interaction-options/index.html
 $dokka.location:io.kvision.chart.js/CoreInteractionOptions/axis/#/PointingToDeclaration/kvision/io.kvision.chart.js/-core-interaction-options/axis.html
+$dokka.location:io.kvision.chart.js/CoreInteractionOptions/includeInvisible/#/PointingToDeclaration/kvision/io.kvision.chart.js/-core-interaction-options/include-invisible.html
 $dokka.location:io.kvision.chart.js/CoreInteractionOptions/intersect/#/PointingToDeclaration/kvision/io.kvision.chart.js/-core-interaction-options/intersect.html
 $dokka.location:io.kvision.chart.js/CoreInteractionOptions/mode/#/PointingToDeclaration/kvision/io.kvision.chart.js/-core-interaction-options/mode.html
 $dokka.location:io.kvision.chart.js/CoreScaleOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-core-scale-options/index.html
@@ -404,6 +405,7 @@ $dokka.location:io.kvision.chart.js/DatasetController/reset/#/PointingToDeclarat
 $dokka.location:io.kvision.chart.js/DatasetController/resolveDataElementOptions/#kotlin.Number#kotlin.Any/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/resolve-data-element-options.html
 $dokka.location:io.kvision.chart.js/DatasetController/resolveDatasetElementOptions/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/resolve-dataset-element-options.html
 $dokka.location:io.kvision.chart.js/DatasetController/setHoverStyle/#io.kvision.chart.js.Element#kotlin.Number#kotlin.Number/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/set-hover-style.html
+$dokka.location:io.kvision.chart.js/DatasetController/supportsDecimation/#/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/supports-decimation.html
 $dokka.location:io.kvision.chart.js/DatasetController/update/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/update.html
 $dokka.location:io.kvision.chart.js/DatasetController/updateElement/#io.kvision.chart.js.Element#kotlin.Number?#io.kvision.utils.Object#kotlin.Any/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/update-element.html
 $dokka.location:io.kvision.chart.js/DatasetController/updateElements/#kotlin.Array[io.kvision.chart.js.Element]#kotlin.Number#kotlin.Number#kotlin.Any/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/update-elements.html
@@ -541,6 +543,7 @@ $dokka.location:io.kvision.chart.js/InteractionModeMap/x/#/PointingToDeclaration
 $dokka.location:io.kvision.chart.js/InteractionModeMap/y/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-mode-map/y.html
 $dokka.location:io.kvision.chart.js/InteractionOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-options/index.html
 $dokka.location:io.kvision.chart.js/InteractionOptions/axis/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-options/axis.html
+$dokka.location:io.kvision.chart.js/InteractionOptions/includeInvisible/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-options/include-invisible.html
 $dokka.location:io.kvision.chart.js/InteractionOptions/intersect/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-options/intersect.html
 $dokka.location:io.kvision.chart.js/LayoutItem///PointingToDeclaration/kvision/io.kvision.chart.js/-layout-item/index.html
 $dokka.location:io.kvision.chart.js/LayoutItem/beforeLayout/#/PointingToDeclaration/kvision/io.kvision.chart.js/-layout-item/before-layout.html
@@ -645,6 +648,7 @@ $dokka.location:io.kvision.chart.js/Plugin/afterDatasetDraw/#/PointingToDeclarat
 $dokka.location:io.kvision.chart.js/Plugin/afterDatasetUpdate/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-dataset-update.html
 $dokka.location:io.kvision.chart.js/Plugin/afterDatasetsDraw/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-datasets-draw.html
 $dokka.location:io.kvision.chart.js/Plugin/afterDatasetsUpdate/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-datasets-update.html
+$dokka.location:io.kvision.chart.js/Plugin/afterDestroy/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-destroy.html
 $dokka.location:io.kvision.chart.js/Plugin/afterDraw/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-draw.html
 $dokka.location:io.kvision.chart.js/Plugin/afterEvent/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-event.html
 $dokka.location:io.kvision.chart.js/Plugin/afterInit/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-init.html
@@ -657,6 +661,7 @@ $dokka.location:io.kvision.chart.js/Plugin/beforeDatasetDraw/#/PointingToDeclara
 $dokka.location:io.kvision.chart.js/Plugin/beforeDatasetUpdate/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/before-dataset-update.html
 $dokka.location:io.kvision.chart.js/Plugin/beforeDatasetsDraw/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/before-datasets-draw.html
 $dokka.location:io.kvision.chart.js/Plugin/beforeDatasetsUpdate/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/before-datasets-update.html
+$dokka.location:io.kvision.chart.js/Plugin/beforeDestroy/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/before-destroy.html
 $dokka.location:io.kvision.chart.js/Plugin/beforeDraw/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/before-draw.html
 $dokka.location:io.kvision.chart.js/Plugin/beforeElementsUpdate/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/before-elements-update.html
 $dokka.location:io.kvision.chart.js/Plugin/beforeEvent/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/before-event.html
@@ -692,6 +697,7 @@ $dokka.location:io.kvision.chart.js/PointElement__0///PointingToDeclaration/kvi
 $dokka.location:io.kvision.chart.js/PointHoverOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-point-hover-options/index.html
 $dokka.location:io.kvision.chart.js/PointHoverOptions/hoverRadius/#/PointingToDeclaration/kvision/io.kvision.chart.js/-point-hover-options/hover-radius.html
 $dokka.location:io.kvision.chart.js/PointOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-point-options/index.html
+$dokka.location:io.kvision.chart.js/PointOptions/drawActiveElementsOnTop/#/PointingToDeclaration/kvision/io.kvision.chart.js/-point-options/draw-active-elements-on-top.html
 $dokka.location:io.kvision.chart.js/PointOptions/hitRadius/#/PointingToDeclaration/kvision/io.kvision.chart.js/-point-options/hit-radius.html
 $dokka.location:io.kvision.chart.js/PointOptions/pointStyle/#/PointingToDeclaration/kvision/io.kvision.chart.js/-point-options/point-style.html
 $dokka.location:io.kvision.chart.js/PointOptions/radius/#/PointingToDeclaration/kvision/io.kvision.chart.js/-point-options/radius.html
@@ -1087,7 +1093,9 @@ $dokka.location:io.kvision.chart.js/T$87/lineWidth/#/PointingToDeclaration/kvis
 $dokka.location:io.kvision.chart.js/T$88///PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/index.html
 $dokka.location:io.kvision.chart.js/T$88/backdropColor/#/PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/backdrop-color.html
 $dokka.location:io.kvision.chart.js/T$88/backdropPadding/#/PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/backdrop-padding.html
+$dokka.location:io.kvision.chart.js/T$88/borderRadius/#/PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/border-radius.html
 $dokka.location:io.kvision.chart.js/T$88/callback/#/PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/callback.html
+$dokka.location:io.kvision.chart.js/T$88/centerPointLabels/#/PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/center-point-labels.html
 $dokka.location:io.kvision.chart.js/T$88/color/#/PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/color.html
 $dokka.location:io.kvision.chart.js/T$88/display/#/PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/display.html
 $dokka.location:io.kvision.chart.js/T$88/font/#/PointingToDeclaration/kvision/io.kvision.chart.js/-t$88/font.html
@@ -1284,11 +1292,12 @@ $dokka.location:io.kvision.chart/AnimationOptions/loop/#/PointingToDeclaration/
 $dokka.location:io.kvision.chart/AnimationOptions/onComplete/#/PointingToDeclaration/kvision/io.kvision.chart/-animation-options/on-complete.html
 $dokka.location:io.kvision.chart/AnimationOptions/onProgress/#/PointingToDeclaration/kvision/io.kvision.chart/-animation-options/on-progress.html
 $dokka.location:io.kvision.chart/ArcOptions///PointingToDeclaration/kvision/io.kvision.chart/-arc-options/index.html
-$dokka.location:io.kvision.chart/ArcOptions/ArcOptions/#kotlin.Number?#io.kvision.core.Color?#io.kvision.chart.TitleAlign?#io.kvision.core.Color?#kotlin.Int?/PointingToDeclaration/kvision/io.kvision.chart/-arc-options/-arc-options.html
+$dokka.location:io.kvision.chart/ArcOptions/ArcOptions/#kotlin.Number?#io.kvision.core.Color?#io.kvision.chart.TitleAlign?#io.kvision.core.Color?#kotlin.Int?#io.kvision.chart.LineJoin?/PointingToDeclaration/kvision/io.kvision.chart/-arc-options/-arc-options.html
 $dokka.location:io.kvision.chart/ArcOptions/angle/#/PointingToDeclaration/kvision/io.kvision.chart/-arc-options/angle.html
 $dokka.location:io.kvision.chart/ArcOptions/backgroundColor/#/PointingToDeclaration/kvision/io.kvision.chart/-arc-options/background-color.html
 $dokka.location:io.kvision.chart/ArcOptions/borderAlign/#/PointingToDeclaration/kvision/io.kvision.chart/-arc-options/border-align.html
 $dokka.location:io.kvision.chart/ArcOptions/borderColor/#/PointingToDeclaration/kvision/io.kvision.chart/-arc-options/border-color.html
+$dokka.location:io.kvision.chart/ArcOptions/borderJoinStyle/#/PointingToDeclaration/kvision/io.kvision.chart/-arc-options/border-join-style.html
 $dokka.location:io.kvision.chart/ArcOptions/borderWidth/#/PointingToDeclaration/kvision/io.kvision.chart/-arc-options/border-width.html
 $dokka.location:io.kvision.chart/BarOptions///PointingToDeclaration/kvision/io.kvision.chart/-bar-options/index.html
 $dokka.location:io.kvision.chart/BarOptions/BarOptions/#io.kvision.core.Color?#io.kvision.core.Color?#kotlin.Int?#io.kvision.chart.SkipMode?#kotlin.Number?#kotlin.Number?#io.kvision.chart.PointStyle?/PointingToDeclaration/kvision/io.kvision.chart/-bar-options/-bar-options.html
@@ -1407,7 +1416,7 @@ $dokka.location:io.kvision.chart/CrossAlign.FAR///PointingToDeclaration/{"org.je
 $dokka.location:io.kvision.chart/CrossAlign.NEAR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.chart/-cross-align/-n-e-a-r/index.html
 $dokka.location:io.kvision.chart/CrossAlign///PointingToDeclaration/kvision/io.kvision.chart/-cross-align/index.html
 $dokka.location:io.kvision.chart/DataSets///PointingToDeclaration/kvision/io.kvision.chart/-data-sets/index.html
-$dokka.location:io.kvision.chart/DataSets/DataSets/#io.kvision.chart.InterpolationMode?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[io.kvision.core.Color]?#io.kvision.chart.LineCap?#kotlin.collections.List[kotlin.Int]?#kotlin.Number?#io.kvision.chart.LineJoin?#kotlin.collections.List[io.kvision.chart.Position]?#kotlin.Any#kotlin.collections.List[kotlin.Any]?#kotlin.Any#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#io.kvision.chart.LineCap?#kotlin.collections.List[kotlin.Int]?#kotlin.Number?#io.kvision.chart.LineJoin?#kotlin.String?#kotlin.String?#kotlin.Number?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[io.kvision.chart.PointStyle]?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Boolean?#kotlin.Number?#kotlin.String?#kotlin.String?#kotlin.Number?#kotlin.Number?#kotlin.Any#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Boolean?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Number?#kotlin.Boolean?#kotlin.Number?#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Number?#kotlin.Number?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Any]?#io.kvision.chart.BorderAlign?#kotlin.Any#kotlin.Any/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/-data-sets.html
+$dokka.location:io.kvision.chart/DataSets/DataSets/#io.kvision.chart.InterpolationMode?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[io.kvision.core.Color]?#io.kvision.chart.LineCap?#kotlin.collections.List[kotlin.Int]?#kotlin.Number?#io.kvision.chart.LineJoin?#kotlin.collections.List[io.kvision.chart.Position]?#kotlin.Any#kotlin.collections.List[kotlin.Any]?#kotlin.Any#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#io.kvision.chart.LineCap?#kotlin.collections.List[kotlin.Int]?#kotlin.Number?#io.kvision.chart.LineJoin?#kotlin.String?#kotlin.String?#kotlin.Number?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[io.kvision.chart.PointStyle]?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Boolean?#kotlin.Number?#kotlin.String?#kotlin.String?#kotlin.Number?#kotlin.Number?#kotlin.Any#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Boolean?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Number?#kotlin.Boolean?#kotlin.Number?#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Number?#kotlin.Number?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Any]?#io.kvision.chart.BorderAlign?#kotlin.Any#kotlin.Any#kotlin.Boolean?/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/-data-sets.html
 $dokka.location:io.kvision.chart/DataSets/animation/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/animation.html
 $dokka.location:io.kvision.chart/DataSets/backgroundColor/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/background-color.html
 $dokka.location:io.kvision.chart/DataSets/barPercentage/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/bar-percentage.html
@@ -1428,6 +1437,7 @@ $dokka.location:io.kvision.chart/DataSets/clip/#/PointingToDeclaration/kvision/
 $dokka.location:io.kvision.chart/DataSets/cubicInterpolationMode/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/cubic-interpolation-mode.html
 $dokka.location:io.kvision.chart/DataSets/cutout/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/cutout.html
 $dokka.location:io.kvision.chart/DataSets/data/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/data.html
+$dokka.location:io.kvision.chart/DataSets/drawActiveElementsOnTop/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/draw-active-elements-on-top.html
 $dokka.location:io.kvision.chart/DataSets/fill/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/fill.html
 $dokka.location:io.kvision.chart/DataSets/grouped/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/grouped.html
 $dokka.location:io.kvision.chart/DataSets/hitRadius/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/hit-radius.html
@@ -1537,8 +1547,9 @@ $dokka.location:io.kvision.chart/InteractionMode.X///PointingToDeclaration/{"org
 $dokka.location:io.kvision.chart/InteractionMode.Y///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.chart/-interaction-mode/-y/index.html
 $dokka.location:io.kvision.chart/InteractionMode///PointingToDeclaration/kvision/io.kvision.chart/-interaction-mode/index.html
 $dokka.location:io.kvision.chart/InteractionOptions///PointingToDeclaration/kvision/io.kvision.chart/-interaction-options/index.html
-$dokka.location:io.kvision.chart/InteractionOptions/InteractionOptions/#io.kvision.chart.InteractionMode#kotlin.Boolean#kotlin.String/PointingToDeclaration/kvision/io.kvision.chart/-interaction-options/-interaction-options.html
+$dokka.location:io.kvision.chart/InteractionOptions/InteractionOptions/#io.kvision.chart.InteractionMode#kotlin.Boolean#kotlin.String#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.chart/-interaction-options/-interaction-options.html
 $dokka.location:io.kvision.chart/InteractionOptions/axis/#/PointingToDeclaration/kvision/io.kvision.chart/-interaction-options/axis.html
+$dokka.location:io.kvision.chart/InteractionOptions/includeInvisible/#/PointingToDeclaration/kvision/io.kvision.chart/-interaction-options/include-invisible.html
 $dokka.location:io.kvision.chart/InteractionOptions/intersect/#/PointingToDeclaration/kvision/io.kvision.chart/-interaction-options/intersect.html
 $dokka.location:io.kvision.chart/InteractionOptions/mode/#/PointingToDeclaration/kvision/io.kvision.chart/-interaction-options/mode.html
 $dokka.location:io.kvision.chart/InterpolationMode.DEFAULT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.chart/-interpolation-mode/-d-e-f-a-u-l-t/index.html
@@ -1714,6 +1725,7 @@ $dokka.location:io.kvision.chart/TickOptions/textStrokeColor/#/PointingToDeclara
 $dokka.location:io.kvision.chart/TickOptions/textStrokeWidth/#/PointingToDeclaration/kvision/io.kvision.chart/-tick-options/text-stroke-width.html
 $dokka.location:io.kvision.chart/TickOptions/z/#/PointingToDeclaration/kvision/io.kvision.chart/-tick-options/z.html
 $dokka.location:io.kvision.chart/TitleAlign.CENTER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.chart/-title-align/-c-e-n-t-e-r/index.html
+$dokka.location:io.kvision.chart/TitleAlign.INNER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.chart/-title-align/-i-n-n-e-r/index.html
 $dokka.location:io.kvision.chart/TitleAlign.LEFT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.chart/-title-align/-l-e-f-t/index.html
 $dokka.location:io.kvision.chart/TitleAlign.RIGHT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.chart/-title-align/-r-i-g-h-t/index.html
 $dokka.location:io.kvision.chart/TitleAlign///PointingToDeclaration/kvision/io.kvision.chart/-title-align/index.html
