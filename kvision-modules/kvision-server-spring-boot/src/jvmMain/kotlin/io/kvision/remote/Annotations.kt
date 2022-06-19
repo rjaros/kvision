@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.remote
 
 import org.springframework.beans.factory.annotation.Value
@@ -38,7 +40,6 @@ actual typealias Table = Table
 
 actual typealias Column = Column
 
-@Suppress("DEPRECATION")
 actual typealias PersistenceConstructor = PersistenceConstructor
 
 actual typealias PersistenceCreator = PersistenceCreator
