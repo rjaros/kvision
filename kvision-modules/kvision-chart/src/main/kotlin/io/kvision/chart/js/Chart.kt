@@ -378,6 +378,7 @@ open external class DatasetController(
     open var index: Number
     open var _cachedMeta: DeepPartial<Any> /* DeepPartial<Any> & ChartMetaCommon<TElement, TDatasetElement> */
     open var enableOptionSharing: Boolean
+    open var supportsDecimation: Boolean
     open fun linkScales()
     open fun getAllParsedValues(scale: Scale): Array<Number>
     open fun getLabelAndValue(index: Number): `T$11`
@@ -457,6 +458,9 @@ external interface InteractionOptions {
         get() = definedExternally
         set(value) = definedExternally
     var intersect: Boolean?
+        get() = definedExternally
+        set(value) = definedExternally
+    var includeInvisible: Boolean?
         get() = definedExternally
         set(value) = definedExternally
 }
@@ -587,6 +591,8 @@ external interface Plugin<O> : ExtendedPlugin__2<O> {
     val afterEvent: ((chart: Chart, args: `T$22`, options: O) -> Unit)?
     val resize: ((chart: Chart, args: `T$24`, options: O) -> Unit)?
     val destroy: ((chart: Chart, args: EmptyObject, options: O) -> Unit)?
+    val beforeDestroy: ((chart: Chart, args: EmptyObject, options: O) -> Unit)?
+    val afterDestroy: ((chart: Chart, args: EmptyObject, options: O) -> Unit)?
     val uninstall: ((chart: Chart, args: EmptyObject, options: O) -> Unit)?
 }
 
@@ -795,6 +801,7 @@ external interface CoreInteractionOptions {
     var mode: String /* "index" | "dataset" | "point" | "nearest" | "x" | "y" */
     var intersect: Boolean
     var axis: String /* "x" | "y" | "xy" */
+    var includeInvisible: Boolean
 }
 
 external interface `T$29`<TType> {
@@ -1046,6 +1053,7 @@ external interface PointOptions : CommonElementOptions {
         get() = definedExternally
         set(value) = definedExternally
     var rotation: Number
+    var drawActiveElementsOnTop: Boolean
 }
 
 external interface PointHoverOptions : CommonHoverOptions {
@@ -1769,6 +1777,9 @@ external interface `T$88` {
     var backdropPadding: dynamic /* Number | ChartArea | (ctx: ScriptableScalePointLabelContext, options: AnyObject) -> dynamic */
         get() = definedExternally
         set(value) = definedExternally
+    var borderRadius: dynamic
+        get() = definedExternally
+        set(value) = definedExternally
     var display: Boolean
     var color: dynamic /* String | CanvasGradient | CanvasPattern | (ctx: ScriptableScalePointLabelContext, options: AnyObject) -> dynamic */
         get() = definedExternally
@@ -1777,6 +1788,7 @@ external interface `T$88` {
         get() = definedExternally
         set(value) = definedExternally
     var callback: (label: String, index: Number) -> String
+    var centerPointLabels: Boolean
 }
 
 external interface `T$57` {

@@ -200,7 +200,8 @@ enum class LegendLabelAlign(internal val mode: String) {
 enum class TitleAlign(internal val mode: String) {
     CENTER("center"),
     LEFT("left"),
-    RIGHT("right")
+    RIGHT("right"),
+    INNER("inner")
 }
 
 /**
@@ -279,7 +280,8 @@ fun ChartFont.toJs(): dynamic {
 data class InteractionOptions(
     val mode: InteractionMode = InteractionMode.NEAREST,
     val intersect: Boolean = true,
-    val axis: String = "x"
+    val axis: String = "x",
+    val includeInvisible: Boolean = true
 )
 
 /**
@@ -290,6 +292,7 @@ fun InteractionOptions.toJs(): dynamic {
         this.mode = mode.mode
         this.intersect = intersect
         this.axis = axis
+        this.includeInvisible = includeInvisible
     }
 }
 
@@ -701,7 +704,8 @@ data class ArcOptions(
     val backgroundColor: Color? = null,
     val borderAlign: TitleAlign? = null,
     val borderColor: Color? = null,
-    val borderWidth: Int? = null
+    val borderWidth: Int? = null,
+    val borderJoinStyle: LineJoin? = null,
 )
 
 /**
@@ -714,6 +718,7 @@ fun ArcOptions.toJs(): dynamic {
         if (borderAlign != null) this.borderAlign = borderAlign.mode
         if (borderColor != null) this.borderColor = borderColor.asString()
         if (borderWidth != null) this.borderWidth = borderWidth
+        if (borderJoinStyle != null) this.borderJoinStyle = borderJoinStyle.mode
     }
 }
 
@@ -1177,7 +1182,8 @@ data class DataSets(
     val radius: List<dynamic>? = null,
     val borderAlign: BorderAlign? = null,
     val cutout: dynamic = null,
-    val animation: dynamic = null
+    val animation: dynamic = null,
+    val drawActiveElementsOnTop: Boolean? = null
 )
 
 /**
@@ -1258,6 +1264,7 @@ fun DataSets.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (borderAlign != null) this.borderAlign = borderAlign
         if (cutout != null) this.cutout = cutout
         if (animation != null) this.animation = animation
+        if (drawActiveElementsOnTop != null) this.drawActiveElementsOnTop = drawActiveElementsOnTop
     }
 }
 
