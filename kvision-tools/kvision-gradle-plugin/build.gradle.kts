@@ -18,11 +18,7 @@ gradlePlugin {
             displayName = kvisionProjectName
             description = kvisionProjectDescription
             id = "io.kvision"
-            implementationClass = if (project.gradle.startParameter.taskNames.contains("check")) {
-                "io.kvision.gradle.KVisionPlugin"
-            } else {
-                "io.kvision.gradle.KVisionGradleSubplugin"
-            }
+            implementationClass = "io.kvision.gradle.KVisionPlugin"
         }
     }
 }
@@ -43,6 +39,7 @@ val kotestVersion: String by project
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("gradle-plugin"))
+    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.7.0-1.0.6")
 
     testImplementation(gradleTestKit())
 

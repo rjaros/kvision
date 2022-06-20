@@ -6,7 +6,7 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-val mpaptRuntimeVersion: String by project
+val kspVersion: String by project
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -15,8 +15,8 @@ java {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("de.jensklingenberg:mpapt-runtime:$mpaptRuntimeVersion")
-    compileOnly("org.jetbrains.kotlin:kotlin-compiler-embeddable")
+    implementation(project(":kvision-modules:kvision-common-annotations"))
+    implementation("com.google.devtools.ksp:symbol-processing-api:$kspVersion")
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

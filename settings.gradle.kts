@@ -59,7 +59,7 @@ include(
     "kvision-modules:kvision-server-vertx",
     "kvision-modules:kvision-server-micronaut",
     "kvision-modules:kvision-testutils",
-    "kvision-tools:kvision-compiler-plugin",
     "kvision-tools:kvision-gradle-plugin",
+    "kvision-tools:kvision-ksp-processor",
     "kvision-assets",
 )

@@ -20,6 +20,7 @@ import org.gradle.api.tasks.bundling.Zip
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
@@ -137,6 +138,8 @@ abstract class KVisionPlugin @Inject constructor(
     private fun KVPluginContext.configureMppProject() {
         logger.debug("configuring Kotlin/MPP plugin")
 
+        plugins.apply("com.google.devtools.ksp")
+
         val kotlinMppExtension = extensions.getByType<KotlinMultiplatformExtension>()
 
         registerGeneratePotFileTask {
@@ -164,18 +167,18 @@ abstract class KVisionPlugin @Inject constructor(
         }
 
         tasks.all.compileKotlinFrontend.configureEach {
-            dependsOn("compileCommonMainKotlinMetadata")
+            dependsOn("kspCommonMainKotlinMetadata")
         }
 
         tasks.all.compileKotlinBackend.configureEach {
-            dependsOn("compileCommonMainKotlinMetadata")
+            dependsOn("kspCommonMainKotlinMetadata")
         }
 
         tasks.create("generateKVisionSources") {
             enabled = kvExtension.enableGradleTasks.get()
             group = KVISION_TASK_GROUP
             description = "Generates KVision sources for fullstack interfaces"
-            dependsOn("compileCommonMainKotlinMetadata")
+            dependsOn("kspCommonMainKotlinMetadata")
         }
 
         tasks.all.frontendProcessResources.configureEach {
@@ -185,6 +188,16 @@ abstract class KVisionPlugin @Inject constructor(
 
         tasks.all.frontendBrowserDevelopmentRun.configureEach {
             dependsOn("frontendDevelopmentExecutableCompileSync")
+        }
+
+        dependencies {
+            add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
+        }
+
+        afterEvaluate {
+            dependencies {
+                add("kspFrontend", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
+            }
         }
 
     }
