@@ -198,6 +198,8 @@ abstract class KVisionPlugin @Inject constructor(
             dependencies {
                 add("kspFrontend", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
             }
+            kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+            kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
         }
 
     }
