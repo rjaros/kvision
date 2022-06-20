@@ -101,14 +101,16 @@ abstract class KVisionPlugin @Inject constructor(
 
         val kotlinJsExtension = extensions.getByType<KotlinJsProjectExtension>()
 
-        registerGeneratePotFileTask {
-            dependsOn(tasks.all.compileKotlinJs)
-            inputs.files(kotlinJsExtension.sourceSets.main.get().kotlin.files)
-            potFile.set(
-                layout.projectDirectory.file(
-                    "src/main/resources/i18n/messages.pot"
+        if (kvExtension.enableGradleTasks.get()) {
+            registerGeneratePotFileTask {
+                dependsOn(tasks.all.compileKotlinJs)
+                inputs.files(kotlinJsExtension.sourceSets.main.get().kotlin.files)
+                potFile.set(
+                    layout.projectDirectory.file(
+                        "src/main/resources/i18n/messages.pot"
+                    )
                 )
-            )
+            }
         }
 
         val convertPoToJsonTask = registerConvertPoToJsonTask {
@@ -119,8 +121,10 @@ abstract class KVisionPlugin @Inject constructor(
             )
         }
 
-        registerZipTask {
-            dependsOn(tasks.all.browserProductionWebpack)
+        if (kvExtension.enableGradleTasks.get()) {
+            registerZipTask {
+                dependsOn(tasks.all.browserProductionWebpack)
+            }
         }
 
         tasks.all.processResources.configureEach {
@@ -138,18 +142,20 @@ abstract class KVisionPlugin @Inject constructor(
     private fun KVPluginContext.configureMppProject() {
         logger.debug("configuring Kotlin/MPP plugin")
 
-        plugins.apply("com.google.devtools.ksp")
+        if (kvExtension.enableKsp.get()) plugins.apply("com.google.devtools.ksp")
 
         val kotlinMppExtension = extensions.getByType<KotlinMultiplatformExtension>()
 
-        registerGeneratePotFileTask {
-            dependsOn(tasks.all.compileKotlinFrontend)
-            inputs.files(kotlinMppExtension.sourceSets.frontendMain.map { it.kotlin.files })
-            potFile.set(
-                layout.projectDirectory.file(
-                    "src/frontendMain/resources/i18n/messages.pot"
+        if (kvExtension.enableGradleTasks.get()) {
+            registerGeneratePotFileTask {
+                dependsOn(tasks.all.compileKotlinFrontend)
+                inputs.files(kotlinMppExtension.sourceSets.frontendMain.map { it.kotlin.files })
+                potFile.set(
+                    layout.projectDirectory.file(
+                        "src/frontendMain/resources/i18n/messages.pot"
+                    )
                 )
-            )
+            }
         }
 
         val convertPoToJsonTask = registerConvertPoToJsonTask {
@@ -162,23 +168,26 @@ abstract class KVisionPlugin @Inject constructor(
             )
         }
 
-        registerWorkerBundleTask {
-            dependsOn(tasks.all.workerBrowserProductionWebpack)
+        if (kvExtension.enableWorkerTasks.get()) {
+            registerWorkerBundleTask {
+                dependsOn(tasks.all.workerBrowserProductionWebpack)
+            }
         }
 
         tasks.all.compileKotlinFrontend.configureEach {
-            dependsOn("kspCommonMainKotlinMetadata")
+            if (kvExtension.enableKsp.get()) dependsOn("kspCommonMainKotlinMetadata")
         }
 
         tasks.all.compileKotlinBackend.configureEach {
-            dependsOn("kspCommonMainKotlinMetadata")
+            if (kvExtension.enableKsp.get()) dependsOn("kspCommonMainKotlinMetadata")
         }
 
-        tasks.create("generateKVisionSources") {
-            enabled = kvExtension.enableGradleTasks.get()
-            group = KVISION_TASK_GROUP
-            description = "Generates KVision sources for fullstack interfaces"
-            dependsOn("kspCommonMainKotlinMetadata")
+        if (kvExtension.enableGradleTasks.get() && kvExtension.enableKsp.get()) {
+            tasks.create("generateKVisionSources") {
+                group = KVISION_TASK_GROUP
+                description = "Generates KVision sources for fullstack interfaces"
+                dependsOn("kspCommonMainKotlinMetadata")
+            }
         }
 
         tasks.all.frontendProcessResources.configureEach {
@@ -190,24 +199,25 @@ abstract class KVisionPlugin @Inject constructor(
             dependsOn("frontendDevelopmentExecutableCompileSync")
         }
 
-        dependencies {
-            add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
-        }
-
-        afterEvaluate {
+        if (kvExtension.enableKsp.get()) {
             dependencies {
-                add("kspFrontend", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
+                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
             }
-            kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-            kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
 
             afterEvaluate {
-                tasks.getByName("kspKotlinFrontend") {
-                    dependsOn("kspCommonMainKotlinMetadata")
+                dependencies {
+                    add("kspFrontend", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
+                }
+                kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+                kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
+
+                afterEvaluate {
+                    tasks.all.kspKotlinFrontend.configureEach {
+                        dependsOn("kspCommonMainKotlinMetadata")
+                    }
                 }
             }
         }
-
     }
 
     /** Applied to both Kotlin JS and Kotlin Multiplatform project */
@@ -216,7 +226,6 @@ abstract class KVisionPlugin @Inject constructor(
     ) {
         logger.debug("registering KVGeneratePotTask")
         tasks.withType<KVGeneratePotTask>().configureEach {
-            enabled = kvExtension.enableGradleTasks.get()
             nodeJsBinary.set(kvExtension.nodeBinaryPath)
             getTextExtractBin.set(
                 rootNodeModulesDir.file("gettext-extract/bin/gettext-extract")
@@ -249,7 +258,6 @@ abstract class KVisionPlugin @Inject constructor(
         logger.debug("registering KVision zip task")
         val webDir = layout.projectDirectory.dir("src/main/web")
         tasks.register<Zip>("zip") {
-            enabled = kvExtension.enableGradleTasks.get()
             group = PACKAGE_TASK_GROUP
             description = "Builds ZIP archive with the application"
             destinationDirectory.set(layout.buildDirectory.dir("libs"))
@@ -266,7 +274,6 @@ abstract class KVisionPlugin @Inject constructor(
     private fun KVPluginContext.registerWorkerBundleTask(configuration: KVWorkerBundleTask.() -> Unit = {}) {
         logger.debug("registering KVWorkerBundleTask")
         tasks.withType<KVWorkerBundleTask>().configureEach {
-            enabled = kvExtension.enableWorkerTasks.get()
             nodeJsBin.set(nodeJsBinaryProvider())
             webpackJs.set(
                 rootNodeModulesDir.file("webpack/bin/webpack.js")
@@ -394,6 +401,9 @@ abstract class KVisionPlugin @Inject constructor(
 
         val frontendBrowserDevelopmentRun: TaskCollection<Task>
             get() = collection("frontendBrowserDevelopmentRun")
+
+        val kspKotlinFrontend: TaskCollection<Task>
+            get() = collection("kspKotlinFrontend")
 
         private inline fun <reified T : Task> collection(taskName: String): TaskCollection<T> =
             tasks.withType<T>().matching { it.name == taskName }

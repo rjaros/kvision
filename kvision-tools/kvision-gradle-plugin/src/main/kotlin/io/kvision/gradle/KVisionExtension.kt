@@ -36,6 +36,9 @@ abstract class KVisionExtension @Inject constructor(
     val enableWorkerTasks: Property<Boolean> =
         kvisionGradleProperty("enableWorkerTasks", false)
 
+    val enableKsp: Property<Boolean> =
+        kvisionGradleProperty("enableKsp")
+
     private fun kvisionGradleProperty(
         property: String,
         default: Boolean = true,
