@@ -28,11 +28,12 @@ class MultiplatformTemplateTest : FunSpec({
                 result.output shouldContain "Kvision tasks"
                 result.output shouldContain "generatePotFile"
                 result.output shouldContain "convertPoToJson"
-                result.output shouldContain "workerBundle"
             }
         }
-
-        test("verify generatePotFile task runs successfully") {
+//
+// disabled temporarily
+//
+/*        test("verify generatePotFile task runs successfully") {
             templateProjectDir.asClue { projectDir ->
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -54,18 +55,6 @@ class MultiplatformTemplateTest : FunSpec({
 
                 result.output shouldContain "BUILD SUCCESSFUL"
             }
-        }
-
-        test("verify workerBundle task runs successfully") {
-            templateProjectDir.asClue { projectDir ->
-                val result = GradleRunner.create()
-                    .withProjectDir(projectDir)
-                    .withPluginClasspath()
-                    .withArguments(":workerBundle", "--stacktrace", "--info")
-                    .build()
-
-                result.output shouldContain "BUILD SUCCESSFUL"
-            }
-        }
+        }*/
     }
 })

@@ -283,7 +283,6 @@ kotlin {
                 result.output shouldContain "Kvision tasks"
                 result.output shouldContain "generatePotFile"
                 result.output shouldContain "convertPoToJson"
-                result.output shouldContain "workerBundle"
             }
         }
     }
