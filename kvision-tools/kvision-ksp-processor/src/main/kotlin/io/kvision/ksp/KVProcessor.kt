@@ -26,7 +26,6 @@ import com.google.devtools.ksp.getAnnotationsByType
 import com.google.devtools.ksp.getDeclaredFunctions
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
-import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.ClassKind
@@ -176,7 +175,7 @@ class KVProcessor(
                                     getParameterList(
                                         params
                                     )
-                                }) = ${it.returnType.toString()}()"
+                                }) = ${it.returnType!!.resolve().let { getTypeString(it) }}()"
                             )
                             else -> appendLine(
                                 "    override suspend fun $name(${getParameterList(params)}) = call($iName::$name, ${
@@ -191,8 +190,8 @@ class KVProcessor(
                     }
                 } else {
                     appendLine("    override suspend fun $name(${getParameterList(params)}) {}")
-                    val type1 = params[0].type.toString().replace("ReceiveChannel", "SendChannel")
-                    val type2 = params[1].type.toString().replace("SendChannel", "ReceiveChannel")
+                    val type1 = getTypeString(params[0].type.resolve()).replace("ReceiveChannel", "SendChannel")
+                    val type2 = getTypeString(params[1].type.resolve()).replace("SendChannel", "ReceiveChannel")
                     appendLine("    suspend fun $name(handler: suspend ($type1, $type2) -> Unit) = webSocket($iName::$name, handler)")
                 }
             }
@@ -200,9 +199,20 @@ class KVProcessor(
         }.toString()
     }
 
+    private fun getTypeString(type: KSType): String {
+        val baseType = if (type.arguments.isEmpty()) {
+            type.declaration.simpleName.asString()
+        } else {
+            type.declaration.simpleName.asString() + type.arguments.joinToString(",", "<", ">") {
+                it.type?.let { getTypeString(it.resolve()) } ?: it.toString()
+            }
+        }
+        return if (type.isMarkedNullable) "$baseType?" else baseType
+    }
+
     private fun getParameterList(params: List<KSValueParameter>): String {
         return params.filter { it.name != null }.joinToString(", ") {
-            "${it.name!!.asString()}: ${it.type}"
+            "${it.name!!.asString()}: ${getTypeString(it.type.resolve())}"
         }
     }
 
