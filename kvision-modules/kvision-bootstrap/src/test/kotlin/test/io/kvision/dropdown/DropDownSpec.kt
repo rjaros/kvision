@@ -133,4 +133,38 @@ class DropDownSpec : DomSpec {
             assertTrue("Dropdown menu is visible after toggle") { visible2 }
         }
     }
+
+    @Test
+    fun renderDarkMenu() {
+        run {
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag", dark = true)
+            root.add(dd)
+            dd.toggle()
+            val element = document.getElementById("test")
+            val id = dd.buttonId()
+            assertEqualsHtml(
+                "<div class=\"dropdown\"><button class=\"dropdown-toggle btn btn-primary show\" id=\"$id\" role=\"button\" type=\"button\" data-bs-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\" href=\"javascript:void(0)\" data-bs-auto-close=\"true\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu dropdown-menu-dark show\" aria-labelledby=\"$id\" style=\"position: absolute; left: 0px; top: 0px; margin: 0px;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
+                element?.innerHTML?.replace("position: ;", "position: absolute;"),
+                "Should render dark mode drop down"
+            )
+        }
+    }
+
+    @Test
+    fun renderRightAlignedMenu() {
+        run {
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val dd = DropDown("Dropdown", listOf("abc" to "#!/x", "def" to "#!/y"), "flag", rightAligned = true)
+            root.add(dd)
+            dd.toggle()
+            val element = document.getElementById("test")
+            val id = dd.buttonId()
+            assertEqualsHtml(
+                "<div class=\"dropdown\"><button class=\"dropdown-toggle btn btn-primary show\" id=\"$id\" role=\"button\" type=\"button\" data-bs-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\" href=\"javascript:void(0)\" data-bs-auto-close=\"true\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu dropdown-menu-end show\" aria-labelledby=\"$id\" style=\"position: absolute; left: 0px; top: 0px; margin: 0px;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
+                element?.innerHTML?.replace("position: ;", "position: absolute;"),
+                "Should render right aligned drop down "
+            )
+        }
+    }
 }

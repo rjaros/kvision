@@ -21,8 +21,6 @@
  */
 package io.kvision.dropdown
 
-import io.kvision.snabbdom.VNode
-import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
@@ -30,10 +28,7 @@ import io.kvision.core.CssSize
 import io.kvision.core.DomAttribute
 import io.kvision.core.ResString
 import io.kvision.core.StringPair
-import io.kvision.html.Button
 import io.kvision.html.ButtonStyle
-import io.kvision.html.ButtonType
-import io.kvision.html.Div
 import io.kvision.html.Link
 import io.kvision.panel.SimplePanel
 import io.kvision.utils.obj
@@ -91,6 +86,7 @@ enum class AutoClose(override val attributeValue: String) : DomAttribute {
  * @param forNavbar determines if the component will be used in a navbar
  * @param forDropDown determines if the component will be used in a dropdown
  * @param dark use dark background
+ * @param rightAligned right align the dropdown menu
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -99,6 +95,7 @@ open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN, disabled: Boolean = false,
     val forNavbar: Boolean = false, val forDropDown: Boolean = false, dark: Boolean = false,
+    rightAligned: Boolean = false,
     className: String? = null, init: (DropDown.() -> Unit)? = null
 ) : SimplePanel(className) {
     /**
@@ -169,9 +166,18 @@ open class DropDown(
      * Use dark background for the dropdown.
      */
     var dark
-        get() = list.dark
+        get() = menu.dark
         set(value) {
-            list.dark = value
+            menu.dark = value
+        }
+
+    /**
+     * Right align the dropdown menu.
+     */
+    var rightAligned
+        get() = menu.rightAligned
+        set(value) {
+            menu.rightAligned = value
         }
 
     /**
@@ -205,7 +211,7 @@ open class DropDown(
 
     fun buttonId() = button.id
 
-    internal val list: DropDownDiv = DropDownDiv(idc, dark)
+    val menu: DropDownMenu = DropDownMenu(idc, dark, rightAligned)
 
     init {
         if (forDropDown) {
@@ -214,53 +220,53 @@ open class DropDown(
         }
         setChildrenFromElements()
         this.addPrivate(button)
-        this.addPrivate(list)
+        this.addPrivate(menu)
         counter++
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
     override fun add(child: Component): DropDown {
-        list.add(child)
+        menu.add(child)
         return this
     }
 
     override fun add(position: Int, child: Component): DropDown {
-        list.add(position, child)
+        menu.add(position, child)
         return this
     }
 
     override fun addAll(children: List<Component>): DropDown {
-        list.addAll(children)
+        menu.addAll(children)
         return this
     }
 
     override fun remove(child: Component): DropDown {
-        list.remove(child)
+        menu.remove(child)
         return this
     }
 
     override fun removeAt(position: Int): DropDown {
-        list.removeAt(position)
+        menu.removeAt(position)
         return this
     }
 
     override fun removeAll(): DropDown {
-        list.removeAll()
+        menu.removeAll()
         return this
     }
 
     override fun disposeAll(): DropDown {
-        list.disposeAll()
+        menu.disposeAll()
         return this
     }
 
     override fun getChildren(): List<Component> {
-        return list.getChildren()
+        return menu.getChildren()
     }
 
     private fun setChildrenFromElements() {
-        list.removeAll()
+        menu.removeAll()
         elements?.let { elems ->
             val c = elems.map {
                 when (it.second) {
@@ -275,7 +281,7 @@ open class DropDown(
                     else -> Link(it.first, it.second, className = "dropdown-item")
                 }
             }
-            list.addAll(c)
+            menu.addAll(c)
         }
     }
 
@@ -308,7 +314,7 @@ fun Container.dropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
     disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-    dark: Boolean = false, className: String? = null,
+    dark: Boolean = false, rightAligned: Boolean = false, className: String? = null,
     init: (DropDown.() -> Unit)? = null
 ): DropDown {
     val dropDown =
@@ -322,6 +328,7 @@ fun Container.dropDown(
             forNavbar,
             forDropDown,
             dark,
+            rightAligned,
             className,
             init
         )
@@ -340,7 +347,17 @@ fun DropDown.ddLink(
     init: (Link.() -> Unit)? = null
 ): Link {
     val link =
-        Link(label, url, icon, image, null, true, null, dataNavigo, (className?.let { "$it " } ?: "") + "dropdown-item", init)
+        Link(
+            label,
+            url,
+            icon,
+            image,
+            null,
+            true,
+            null,
+            dataNavigo,
+            (className?.let { "$it " } ?: "") + "dropdown-item",
+            init)
     this.add(link)
     return link
 }
@@ -356,7 +373,17 @@ fun ContextMenu.cmLink(
     init: (Link.() -> Unit)? = null
 ): Link {
     val link =
-        Link(label, url, icon, image, null, true, null, dataNavigo, (className?.let { "$it " } ?: "") + "dropdown-item", init)
+        Link(
+            label,
+            url,
+            icon,
+            image,
+            null,
+            true,
+            null,
+            dataNavigo,
+            (className?.let { "$it " } ?: "") + "dropdown-item",
+            init)
     this.add(link)
     return link
 }
@@ -407,104 +434,4 @@ fun ContextMenu.cmLinkDisabled(
     }
     this.add(link)
     return link
-}
-
-/**
- * A drop down button component.
- *
- * @constructor
- * @param id the id of the element
- * @param text the dropdown button text
- * @param icon the icon of the dropdown button
- * @param style the style of the dropdown button
- * @param disabled determines if the component is disabled on start
- * @param forNavbar determines if the component will be used in a navbar
- * @param forDropDown determines if the component will be used in a dropdown
- * @param autoClose the auto closing mode of the dropdown menu
- * @param className CSS class names
- */
-class DropDownButton(
-    id: String,
-    text: String,
-    icon: String? = null,
-    style: ButtonStyle = ButtonStyle.PRIMARY,
-    disabled: Boolean = false,
-    val forNavbar: Boolean = false,
-    val forDropDown: Boolean = false,
-    autoClose: AutoClose = AutoClose.TRUE,
-    className: String? = null
-) :
-    Button(text, icon, style, ButtonType.BUTTON, disabled, null, true, className) {
-
-    /**
-     * Whether to automatically close dropdown menu.
-     */
-    var autoClose by refreshOnUpdate(autoClose)
-
-    init {
-        this.id = id
-        if (!forNavbar && !forDropDown) this.role = "button"
-        setInternalEventListener<DropDownButton> {
-            click = { e ->
-                if (parent?.parent is ContextMenu) {
-                    e.asDynamic().dropDownCM = true
-                } else if (forDropDown) {
-                    e.stopPropagation()
-                }
-            }
-        }
-    }
-
-    override fun render(): VNode {
-        val text = createLabelWithIcon(text, icon, image)
-        return if (forNavbar || forDropDown) {
-            render("a", text)
-        } else {
-            render("button", text)
-        }
-    }
-
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        classSetBuilder.add("dropdown-toggle")
-        when {
-            forNavbar -> classSetBuilder.add("nav-link")
-            forDropDown -> classSetBuilder.run { super.buildClassSet(this); add("dropdown-item") }
-            else -> super.buildClassSet(classSetBuilder)
-        }
-    }
-
-    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributeSet(
-            if (forDropDown || forNavbar) {
-                object : AttributeSetBuilder {
-                    override fun add(name: String, value: String) {
-                        if (name != "type") attributeSetBuilder.add(name, value)
-                    }
-                }
-            } else {
-                attributeSetBuilder
-            }
-        )
-        attributeSetBuilder.add("data-bs-toggle", "dropdown")
-        attributeSetBuilder.add("aria-haspopup", "true")
-        attributeSetBuilder.add("aria-expanded", "false")
-        attributeSetBuilder.add("href", "javascript:void(0)")
-        attributeSetBuilder.add(autoClose)
-    }
-}
-
-internal class DropDownDiv(private val ariaId: String, dark: Boolean = false) : Div(
-    null, false, null, "dropdown-menu"
-) {
-    var dark by refreshOnUpdate(dark)
-
-    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
-        super.buildAttributeSet(attributeSetBuilder)
-        attributeSetBuilder.add("aria-labelledby", ariaId)
-    }
-
-    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
-        super.buildClassSet(classSetBuilder)
-        if (dark) classSetBuilder.add("dropdown-menu-dark")
-    }
 }
