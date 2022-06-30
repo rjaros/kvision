@@ -8,10 +8,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['ca'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'arxiu',
         filePlural: 'arxius',
         browseLabel: 'Examinar &hellip;',
@@ -19,27 +30,28 @@
         removeTitle: 'Treure arxius seleccionats',
         cancelLabel: 'Cancel',
         cancelTitle: 'Avortar la pujada en curs',
-        pauseLabel: 'Pause',
-        pauseTitle: 'Pause ongoing upload',
+        pauseLabel: 'Pausa',
+        pauseTitle: 'Pausar pujada actual',
         uploadLabel: 'Pujar arxiu',
         uploadTitle: 'Pujar arxius seleccionats',
         msgNo: 'No',
-        msgNoFilesSelected: '',
-        msgPaused: 'Paused',
+        msgNoFilesSelected: 'No has seleccionat cap arxiu',
+        msgPaused: 'Pausat',
         msgCancelled: 'cancel·lat',
-        msgPlaceholder: 'Select {files}...',
+        msgPlaceholder: 'Selecciona {files} ...',
         msgZoomModalHeading: 'Vista prèvia detallada',
-        msgFileRequired: 'You must select a file to upload.',
-        msgSizeTooSmall: 'File "{name}" (<b>{size} KB</b>) is too small and must be larger than <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'Arxiu "{name}" (<b>{size} KB</b>) excedeix la mida màxima permès de <b>{maxSize} KB</b>.',
+        msgFileRequired: 'Has de seleccionar un arxiu per pujar.',
+        msgSizeTooSmall: 'Arxiu "{name}" (<b>{size}</b>) es massa petit, ha de ser més gran de <b>{minSize}</b>.',
+        msgSizeTooLarge: 'Arxiu "{name}" (<b>{size}</b>) excedeix la mida màxima permès de <b>{maxSize}</b>.',
         msgFilesTooLess: 'Heu de seleccionar almenys <b>{n}</b> {files} a carregar.',
         msgFilesTooMany: 'El nombre d\'arxius seleccionats a carregar <b>({n})</b> excedeix el límit màxim permès de <b>{m}</b>.',
+        msgTotalFilesTooMany: 'Pots pujar un màxim de <b>{m}</b> arxius (<b>{n}</b> arxius seleccionats).',
         msgFileNotFound: 'Arxiu "{name}" no trobat.',
         msgFileSecured: 'No es pot accedir a l\'arxiu "{name}" perquè estarà sent usat per una altra aplicació o no tinguem permisos de lectura.',
         msgFileNotReadable: 'No es pot accedir a l\'arxiu "{name}".',
         msgFilePreviewAborted: 'Previsualització de l\'arxiu "{name}" cancel·lada.',
         msgFilePreviewError: 'S\'ha produït un error mentre es llegia el fitxer "{name}".',
-        msgInvalidFileName: 'Invalid or unsupported characters in file name "{name}".',
+        msgInvalidFileName: 'Caràcters invalids al nom de l\'arxiu "{name}".',
         msgInvalidFileType: 'Tipus de fitxer no vàlid per a "{name}". Només arxius "{types}" són permesos.',
         msgInvalidFileExtension: 'Extensió de fitxer no vàlid per a "{name}". Només arxius "{extensions}" són permesos.',
         msgFileTypes: {
@@ -53,28 +65,29 @@
             'object': 'object'
         },
         msgUploadAborted: 'La càrrega d\'arxius s\'ha cancel·lat',
-        msgUploadThreshold: 'Processing...',
-        msgUploadBegin: 'Initializing...',
-        msgUploadEnd: 'Done',
-        msgUploadResume: 'Resuming upload...',
-        msgUploadEmpty: 'No valid data available for upload.',
-        msgUploadError: 'Upload Error',
-        msgDeleteError: 'Delete Error',
+        msgUploadThreshold: 'Processant &hellip;',
+        msgUploadBegin: 'Inicialitzant &hellip;',
+        msgUploadEnd: 'Fet',
+        msgUploadResume: 'Continuant pujada &hellip;',
+        msgUploadEmpty: 'No hi han dades vàlides per la pujada.',
+        msgUploadError: 'Error al pujar',
+        msgDeleteError: 'Error al borrar',
         msgProgressError: 'Error',
         msgValidationError: 'Error de validació',
         msgLoading: 'Pujant fitxer {index} de {files} &hellip;',
         msgProgress: 'Pujant fitxer {index} de {files} - {name} - {percent}% completat.',
         msgSelected: '{n} {files} seleccionat(s)',
+        msgProcessing: 'Processing ...',
         msgFoldersNotAllowed: 'Arrossegueu i deixeu anar únicament arxius. Omesa(es) {n} carpeta(es).',
-        msgImageWidthSmall: 'L\'ample de la imatge "{name}" ha de ser almenys {size} px.',
-        msgImageHeightSmall: 'L\'alçada de la imatge "{name}" ha de ser almenys {size} px.',
-        msgImageWidthLarge: 'L\'ample de la imatge "{name}" no pot excedir de {size} px.',
-        msgImageHeightLarge: 'L\'alçada de la imatge "{name}" no pot excedir de {size} px.',
+        msgImageWidthSmall: 'L\'ample de la imatge "{name}" ha de ser almenys <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightSmall: 'L\'alçada de la imatge "{name}" ha de ser almenys <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageWidthLarge: 'L\'ample de la imatge "{name}" no pot excedir de <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightLarge: 'L\'alçada de la imatge "{name}" no pot excedir de <b>{size} px</b> (detected <b>{dimension} px</b>).',
         msgImageResizeError: 'No s\'ha pogut obtenir les dimensions d\'imatge per canviar la mida.',
         msgImageResizeException: 'Error en canviar la mida de la imatge.<pre>{errors}</pre>',
         msgAjaxError: 'Something went wrong with the {operation} operation. Please try again later!',
         msgAjaxProgressError: '{operation} failed',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -89,23 +102,25 @@
         fileActionSettings: {
             removeTitle: 'Eliminar arxiu',
             uploadTitle: 'Pujar arxiu',
-            uploadRetryTitle: 'Retry upload',
-            downloadTitle: 'Download file',
+            uploadRetryTitle: 'Tornar a pujar',
+            downloadTitle: 'Descarregar arxiu',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Veure detalls',
-            dragTitle: 'Move / Rearrange',
+            dragTitle: 'Moure / Ordenar',
             indicatorNewTitle: 'No pujat encara',
-            indicatorSuccessTitle: 'Subido',
-            indicatorErrorTitle: 'Pujar Error',
-            indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Pujant ...'
+            indicatorSuccessTitle: 'Pujat',
+            indicatorErrorTitle: 'Error al pujar',
+            indicatorPausedTitle: 'Pujada pausada',
+            indicatorLoadingTitle:  'Pujant &hellip;'
         },
         previewZoomButtonTitles: {
-            prev: 'View previous file',
-            next: 'View next file',
-            toggleheader: 'Toggle header',
-            fullscreen: 'Toggle full screen',
-            borderless: 'Toggle borderless mode',
-            close: 'Close detailed preview'
+            prev: 'Veure arxiu previ',
+            next: 'Veure arxiu següent',
+            rotate: 'Rotate 90 deg. clockwise',
+            toggleheader: 'Activar capçalera',
+            fullscreen: 'Activar pantalla completa',
+            borderless: 'Activar mode sense vora',
+            close: 'Tancar detalls'
         }
     };
-})(window.jQuery);
+}));

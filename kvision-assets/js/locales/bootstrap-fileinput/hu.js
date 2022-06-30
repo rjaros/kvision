@@ -8,40 +8,52 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['hu'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'fájl',
         filePlural: 'fájlok',
-        browseLabel: 'Tallóz &hellip;',
-        removeLabel: 'Eltávolít',
+        browseLabel: 'Tallózás&hellip;',
+        removeLabel: 'Eltávolítás',
         removeTitle: 'Kijelölt fájlok törlése',
         cancelLabel: 'Mégse',
         cancelTitle: 'Feltöltés megszakítása',
-        pauseLabel: 'Pause',
-        pauseTitle: 'Pause ongoing upload',
+        pauseLabel: 'Szünet',
+        pauseTitle: 'A folyamatban lévő feltöltés szüneteltetése',
         uploadLabel: 'Feltöltés',
         uploadTitle: 'Kijelölt fájlok feltöltése',
         msgNo: 'Nem',
         msgNoFilesSelected: 'Nincs fájl kiválasztva',
-        msgPaused: 'Paused',
+        msgPaused: 'Szünetel',
         msgCancelled: 'Megszakítva',
-        msgPlaceholder: 'Válasz {files}...',
+        msgPlaceholder: '{files} kiválasztása...',
         msgZoomModalHeading: 'Részletes Előnézet',
         msgFileRequired: 'Kötelező fájlt kiválasztani a feltöltéshez.',
-        msgSizeTooSmall: 'A fájl: "{name}" (<b>{size} KB</b>) mérete túl kicsi, nagyobbnak kell lennie, mint <b>{minSize} KB</b>.',
-        msgSizeTooLarge: '"{name}" fájl (<b>{size} KB</b>) mérete nagyobb a megengedettnél <b>{maxSize} KB</b>.',
-        msgFilesTooLess: 'Legalább <b>{n}</b> {files} ki kell választania a feltöltéshez.',
+        msgSizeTooSmall: '"{name}" fájl (<b>{size}</b>) mérete túl kicsi, nagyobbnak kell lennie, mint <b>{minSize}</b>.',
+        msgSizeTooLarge: '"{name}" fájl (<b>{size}</b>) mérete nagyobb a megengedettnél <b>{maxSize}</b>.',
+        msgFilesTooLess: 'Legalább <b>{n}</b> fájl kiválasztására van szükség a feltöltéshez.',
         msgFilesTooMany: 'A feltölteni kívánt fájlok száma <b>({n})</b> elérte a megengedett maximumot <b>{m}</b>.',
+        msgTotalFilesTooMany: 'Legfeljebb <b>{m}</b> fájlt tölthet fel (<b>{n}</b> fájl észlelve).',
         msgFileNotFound: '"{name}" fájl nem található!',
-        msgFileSecured: 'Biztonsági beállítások nem engedik olvasni a fájlt "{name}".',
+        msgFileSecured: 'Biztonsági beállítások nem engedik olvasni a fájlt: "{name}"',
         msgFileNotReadable: '"{name}" fájl nem olvasható.',
         msgFilePreviewAborted: '"{name}" fájl feltöltése megszakítva.',
-        msgFilePreviewError: 'Hiba lépett fel a "{name}" fájl olvasása közben.',
-        msgInvalidFileName: 'Hibás vagy nem támogatott karakterek a fájl nevében "{name}".',
-        msgInvalidFileType: 'Nem megengedett fájl "{name}". Csak a "{types}" fájl típusok támogatottak.',
-        msgInvalidFileExtension: 'Nem megengedett kiterjesztés / fájltípus "{name}". Csak a "{extensions}" kiterjesztés(ek) / fájltípus(ok) támogatottak.',
+        msgFilePreviewError: '"{name}" fájl olvasása közben hiba lépett fel.',
+        msgInvalidFileName: '"{name}" fájlnév hibás vagy nem támogatott karaktereket tartalmaz.',
+        msgInvalidFileType: '"{name}" fájl típusa nem megengedett. Csak a következő fájltípusok támogatottak: "{types}"',
+        msgInvalidFileExtension: '"{name}" fájl kiterjesztése nem megengedett. Csak a következő kiterjesztések támogatottak: "{extensions}"',
         msgFileTypes: {
             'image': 'image',
             'html': 'HTML',
@@ -53,31 +65,32 @@
             'object': 'object'
         },
         msgUploadAborted: 'A fájl feltöltés megszakítva',
-        msgUploadThreshold: 'Folyamatban...',
-        msgUploadBegin: 'Inicializálás...',
+        msgUploadThreshold: 'Feldolgozás&hellip;',
+        msgUploadBegin: 'Inicializálás &hellip;',
         msgUploadEnd: 'Kész',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Feltöltés folytatása &hellip;',
         msgUploadEmpty: 'Nincs érvényes adat a feltöltéshez.',
-        msgUploadError: 'Upload Error',
-        msgDeleteError: 'Delete Error',
-        msgProgressError: 'Error',
-        msgValidationError: 'Érvényesítés hiba',
-        msgLoading: '{index} / {files} töltése &hellip;',
-        msgProgress: 'Feltöltés: {index} / {files} - {name} - {percent}% kész.',
-        msgSelected: '{n} {files} kiválasztva.',
+        msgUploadError: 'Feltöltési hiba',
+        msgDeleteError: 'Törlési hiba',
+        msgProgressError: 'Hiba',
+        msgValidationError: 'Érvényesítési hiba',
+        msgLoading: '{index}. fájl töltése&hellip;',
+        msgProgress: '{index}. fájl töltése&hellip; - {name} - {percent}% kész.',
+        msgSelected: '{n} fájl kiválasztva',
+        msgProcessing: 'Processing ...',
         msgFoldersNotAllowed: 'Csak fájlokat húzzon ide! Kihagyva {n} könyvtár.',
-        msgImageWidthSmall: 'A kép szélességének "{name}" legalább {size} pixelnek kell lennie.',
-        msgImageHeightSmall: 'A kép magasságának "{name}" legalább {size} pixelnek kell lennie.',
-        msgImageWidthLarge: 'A kép szélessége "{name}" nem haladhatja meg a {size} pixelt.',
-        msgImageHeightLarge: 'A kép magassága "{name}" nem haladhatja meg a {size} pixelt.',
+        msgImageWidthSmall: '"{name}" kép szélességének legalább {size} pixelnek kell lennie.',
+        msgImageHeightSmall: '"{name}" kép magasságának legalább {size} pixelnek kell lennie.',
+        msgImageWidthLarge: '"{name}" kép szélessége nem haladhatja meg a {size} pixelt.',
+        msgImageHeightLarge: '"{name}" kép magassága nem haladhatja meg a {size} pixelt.',
         msgImageResizeError: 'Nem lehet megállapítani a kép méreteit az átméretezéshez.',
         msgImageResizeException: 'Hiba történt a méretezés közben.<pre>{errors}</pre>',
-        msgAjaxError: 'Hiba történt a művelet közben ({operation}). Kérjük, próbálja később!',
-        msgAjaxProgressError: 'Hiba! ({operation})',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
-        msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
-        msgPendingTime: '{time} remaining',
-        msgCalculatingTime: 'calculating time remaining',
+        msgAjaxError: 'Hiba történt a művelet közben ({operation}). Kérjük, próbálja újra később!',
+        msgAjaxProgressError: '{operation} sikertelen',
+        msgDuplicateFile: '"{name}" fájl azonos mérettel "{size}" már korábban kiválasztva. Az ismételt kiválasztás kihagyása.',
+        msgResumableUploadRetriesExceeded: '<b>{file}</b> fájl feltöltése megszakítva <b>{max}</b> próbálkozás után! Hiba részletei: <pre>{error}</pre>',
+        msgPendingTime: '{time} van hátra',
+        msgCalculatingTime: 'hátralévő idő kiszámítása',
         ajaxOperations: {
             deleteThumb: 'fájl törlés',
             uploadThumb: 'fájl feltöltés',
@@ -85,27 +98,29 @@
             uploadExtra: 'űrlap adat feltöltés'
         },
         dropZoneTitle: 'Húzzon ide fájlokat &hellip;',
-        dropZoneClickTitle: '<br>(vagy kattintson ide a {files} tallózásához...)',
+        dropZoneClickTitle: '<br>(vagy kattintson ide a {files} tallózásához &hellip;)',
         fileActionSettings: {
             removeTitle: 'A fájl eltávolítása',
-            uploadTitle: 'fájl feltöltése',
+            uploadTitle: 'Fájl feltöltése',
             uploadRetryTitle: 'Feltöltés újból',
             downloadTitle: 'Fájl letöltése',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Részletek megtekintése',
             dragTitle: 'Mozgatás / Átrendezés',
-            indicatorNewTitle: 'Nem feltöltött',
+            indicatorNewTitle: 'Még fel nem töltött',
             indicatorSuccessTitle: 'Feltöltött',
             indicatorErrorTitle: 'Feltöltés hiba',
-            indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Feltöltés ...'
+            indicatorPausedTitle: 'Feltöltés szüneteltetve',
+            indicatorLoadingTitle:  'Feltöltés &hellip;'
         },
         previewZoomButtonTitles: {
-            prev: 'Elöző fájl megnézése',
+            prev: 'Előző fájl megnézése',
             next: 'Következő fájl megnézése',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Fejléc mutatása',
             fullscreen: 'Teljes képernyős mód bekapcsolása',
             borderless: 'Keret nélküli ablak mód bekapcsolása',
             close: 'Részletes előnézet bezárása'
         }
     };
-})(window.jQuery);
+}));

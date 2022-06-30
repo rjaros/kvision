@@ -9,10 +9,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['id'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'berkas',
         filePlural: 'berkas',
         browseLabel: 'Pilih berkas &hellip;',
@@ -28,13 +39,14 @@
         msgNoFilesSelected: '',
         msgPaused: 'Paused',
         msgCancelled: 'Dibatalkan',
-        msgPlaceholder: 'Pilih {files}...',
+        msgPlaceholder: 'Pilih {files} ...',
         msgZoomModalHeading: 'Pratinjau terperinci',
         msgFileRequired: 'Anda harus memilih berkas untuk diunggah.',
-        msgSizeTooSmall: 'Berkas "{name}" (<b>{size} KB</b>) terlalu kecil dan harus lebih besar dari <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'Berkas "{name}" (<b>{size} KB</b>) melebihi ukuran unggah maksimal yaitu <b>{maxSize} KB</b>.',
+        msgSizeTooSmall: 'Berkas "{name}" (<b>{size}</b>) terlalu kecil dan harus lebih besar dari <b>{minSize}</b>.',
+        msgSizeTooLarge: 'Berkas "{name}" (<b>{size}</b>) melebihi ukuran unggah maksimal yaitu <b>{maxSize}</b>.',
         msgFilesTooLess: 'Anda harus memilih setidaknya <b>{n}</b> {files} untuk diunggah.',
         msgFilesTooMany: '<b>({n})</b> berkas yang dipilih untuk diunggah melebihi ukuran unggah maksimal yaitu <b>{m}</b>.',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'Berkas "{name}" tak ditemukan!',
         msgFileSecured: 'Sistem keamanan mencegah untuk membaca berkas "{name}".',
         msgFileNotReadable: 'Berkas "{name}" tak dapat dibaca.',
@@ -54,10 +66,10 @@
             'object': 'object'
         },
         msgUploadAborted: 'Proses Unggah berkas dibatalkan',
-        msgUploadThreshold: 'Memproses...',
-        msgUploadBegin: 'Menyiapkan...',
+        msgUploadThreshold: 'Memproses &hellip;',
+        msgUploadBegin: 'Menyiapkan &hellip;',
         msgUploadEnd: 'Selesai',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Resuming upload &hellip;',
         msgUploadEmpty: 'Tidak ada data valid yang tersedia untuk diunggah.',
         msgUploadError: 'Upload Error',
         msgDeleteError: 'Delete Error',
@@ -66,16 +78,17 @@
         msgLoading: 'Memuat {index} dari {files} berkas &hellip;',
         msgProgress: 'Memuat {index} dari {files} berkas - {name} - {percent}% selesai.',
         msgSelected: '{n} {files} dipilih',
+        msgProcessing: 'Processing ...',
         msgFoldersNotAllowed: 'Hanya tahan dan lepas file saja! {n} folder diabaikan.',
-        msgImageWidthSmall: 'Lebar dari gambar "{name}" harus sekurangnya {size} px.',
-        msgImageHeightSmall: 'Tinggi dari gambar "{name}" harus sekurangnya {size} px.',
-        msgImageWidthLarge: 'Lebar dari gambar "{name}" tak boleh melebihi {size} px.',
-        msgImageHeightLarge: 'Tinggi dari gambar "{name}" tak boleh melebihi {size} px.',
+        msgImageWidthSmall: 'Lebar dari gambar "{name}" harus sekurangnya <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightSmall: 'Tinggi dari gambar "{name}" harus sekurangnya <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageWidthLarge: 'Lebar dari gambar "{name}" tak boleh melebihi <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightLarge: 'Tinggi dari gambar "{name}" tak boleh melebihi <b>{size} px</b> (detected <b>{dimension} px</b>).',
         msgImageResizeError: 'Tidak dapat menentukan dimensi gambar untuk mengubah ukuran.',
         msgImageResizeException: 'Kesalahan saat mengubah ukuran gambar.<pre>{errors}</pre>',
         msgAjaxError: 'Terjadi kesalahan ketika melakukan operasi {operation}. Silahkan coba lagi nanti!',
         msgAjaxProgressError: '{operation} gagal',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -92,21 +105,23 @@
             uploadTitle: 'Unggah Berkas',
             uploadRetryTitle: 'Unggah Ulang',
             downloadTitle: 'Unduh Berkas',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Tampilkan Rincian',
             dragTitle: 'Pindah atau Atur Ulang',
             indicatorNewTitle: 'Belum diunggah',
             indicatorSuccessTitle: 'Sudah diunggah',
             indicatorErrorTitle: 'Kesalahan dalam mengungah',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Mengunggah ...'
+            indicatorLoadingTitle:  'Mengunggah &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'Lihat berkas sebelumnya',
             next: 'Lihat berkas selanjutnya',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Beralih ke tajuk',
             fullscreen: 'Beralih ke mode penuh',
             borderless: 'Beralih ke mode tanpa tepi',
             close: 'Tutup pratinjau terperinci'
         }
     };
-})(window.jQuery);
+}));

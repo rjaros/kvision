@@ -8,10 +8,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['cs'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'soubor',
         filePlural: 'soubory',
         browseLabel: 'Vybrat &hellip;',
@@ -19,21 +30,22 @@
         removeTitle: 'Vyčistit vybrané soubory',
         cancelLabel: 'Storno',
         cancelTitle: 'Přerušit  nahrávání',
-        pauseLabel: 'Pause',
-        pauseTitle: 'Pause ongoing upload',
+        pauseLabel: 'Pozastavit',
+        pauseTitle: 'Pozastavit probíhající nahrávání',
         uploadLabel: 'Nahrát',
         uploadTitle: 'Nahrát vybrané soubory',
         msgNo: 'Ne',
         msgNoFilesSelected: 'Nevybrány žádné soubory',
-        msgPaused: 'Paused',
+        msgPaused: 'Pozastavené',
         msgCancelled: 'Zrušeno',
-        msgPlaceholder: 'Vybrat {files}...',
+        msgPlaceholder: 'Vybrat {files} ...',
         msgZoomModalHeading: 'Detailní náhled',
         msgFileRequired: 'Musíte vybrat soubor, který chcete nahrát.',
-        msgSizeTooSmall: 'Soubor "{name}" (<b>{size} KB</b>) je příliš malý, musí mít velikost nejméně <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'Soubor "{name}" (<b>{size} KB</b>) je příliš velký, maximální povolená velikost <b>{maxSize} KB</b>.',
+        msgSizeTooSmall: 'Soubor "{name}" (<b>{size}</b>) je příliš malý, musí mít velikost nejméně <b>{minSize}</b>.',
+        msgSizeTooLarge: 'Soubor "{name}" (<b>{size}</b>) je příliš velký, maximální povolená velikost <b>{maxSize}</b>.',
         msgFilesTooLess: 'Musíte vybrat nejméně <b>{n}</b> {files} souborů.',
         msgFilesTooMany: 'Počet vybraných souborů <b>({n})</b> překročil maximální povolený limit <b>{m}</b>.',
+        msgTotalFilesTooMany: 'Můžete nahrát maximálně <b>{m}</b> souborů (bylo nalezeno <b>{n}</b> souborů).',
         msgFileNotFound: 'Soubor "{name}" nebyl nalezen!',
         msgFileSecured: 'Zabezpečení souboru znemožnilo číst soubor "{name}".',
         msgFileNotReadable: 'Soubor "{name}" není čitelný.',
@@ -53,31 +65,32 @@
             'object': 'object'
         },
         msgUploadAborted: 'Nahrávání souboru bylo přerušeno',
-        msgUploadThreshold: 'Zpracovávám...',
-        msgUploadBegin: 'Inicializujem...',
+        msgUploadThreshold: 'Zpracovávám &hellip;',
+        msgUploadBegin: 'Inicializujem &hellip;',
         msgUploadEnd: 'Hotovo',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Obnovuje se nahrávání &hellip;',
         msgUploadEmpty: 'Pro nahrávání nejsou k dispozici žádné platné údaje.',
-        msgUploadError: 'Upload Error',
-        msgDeleteError: 'Delete Error',
+        msgUploadError: 'Chyba při nahrávání',
+        msgDeleteError: 'Chyba při odstraňování',
         msgProgressError: 'Chyba',
         msgValidationError: 'Chyba ověření',
         msgLoading: 'Nahrávání souboru {index} z {files} &hellip;',
         msgProgress: 'Nahrávání souboru {index} z {files} - {name} - {percent}% dokončeno.',
         msgSelected: '{n} {files} vybráno',
+        msgProcessing: 'Zpracovávám ...',
         msgFoldersNotAllowed: 'Táhni a pusť pouze soubory! Vynechané {n} pustěné složk(y).',
-        msgImageWidthSmall: 'Šířka obrázku "{name}", musí být alespoň {size} px.',
-        msgImageHeightSmall: 'Výška obrázku "{name}", musí být alespoň {size} px.',
-        msgImageWidthLarge: 'Šířka obrázku "{name}" nesmí být větší než {size} px.',
-        msgImageHeightLarge: 'Výška obrázku "{name}" nesmí být větší než {size} px.',
+        msgImageWidthSmall: 'Šířka obrázku "{name}", musí být alespoň <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightSmall: 'Výška obrázku "{name}", musí být alespoň <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageWidthLarge: 'Šířka obrázku "{name}" nesmí být větší než <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightLarge: 'Výška obrázku "{name}" nesmí být větší než <b>{size} px</b> (detected <b>{dimension} px</b>).',
         msgImageResizeError: 'Nelze získat rozměry obrázku pro změnu velikosti.',
         msgImageResizeException: 'Chyba při změně velikosti obrázku.<pre>{errors}</pre>',
         msgAjaxError: 'Došlo k chybě v {operation}. Prosím zkuste to znovu později!',
         msgAjaxProgressError: '{operation} - neúspěšné',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
-        msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
-        msgPendingTime: '{time} remaining',
-        msgCalculatingTime: 'calculating time remaining',
+        msgDuplicateFile: 'Soubor "{name}" stejné velikosti "{size}" už byl vybrán dříve. Přeskočení duplicitního výběru.',
+        msgResumableUploadRetriesExceeded:  'Nahrávání bylo přerušeno po <b>{max}</b> opakováních souboru <b>{file}</b>! Detaily chyby: <pre>{error}</pre>',
+        msgPendingTime: '{time} zůstává',
+        msgCalculatingTime: 'výpočet zbývajícího času',
         ajaxOperations: {
             deleteThumb: 'odstranit soubor',
             uploadThumb: 'nahrát soubor',
@@ -91,21 +104,23 @@
             uploadTitle: 'Nahrát soubor',
             uploadRetryTitle: 'Opakovat nahrávání',
             downloadTitle: 'Stáhnout soubor',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Zobrazit podrobnosti',
             dragTitle: 'Posunout / Přeskládat',
             indicatorNewTitle: 'Ještě nenahrál',
             indicatorSuccessTitle: 'Nahraný',
             indicatorErrorTitle: 'Chyba nahrávání',
-            indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Nahrávání ...'
+            indicatorPausedTitle: 'Nahrávání bylo pozastaveno',
+            indicatorLoadingTitle:  'Nahrávání &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'Zobrazit předchozí soubor',
             next: 'Zobrazit následující soubor',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Přepnout záhlaví',
             fullscreen: 'Přepnout celoobrazovkové zobrazení',
             borderless: 'Přepnout bezrámečkové zobrazení',
             close: 'Zavřít detailní náhled'
         }
     };
-})(window.jQuery);
+}));

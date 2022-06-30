@@ -8,10 +8,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['sv'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'fil',
         filePlural: 'filer',
         browseLabel: 'Bläddra &hellip;',
@@ -27,13 +38,14 @@
         msgNoFilesSelected: 'Inga filer valda',
         msgPaused: 'Paused',
         msgCancelled: 'Avbruten',
-        msgPlaceholder: 'Select {files}...',
+        msgPlaceholder: 'Select {files} ...',
         msgZoomModalHeading: 'detaljerad förhandsgranskning',
         msgFileRequired: 'You must select a file to upload.',
-        msgSizeTooSmall: 'Filen "{name}" (<b>{size} KB</b>) är för liten och måste vara större än <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'File "{name}" (<b>{size} KB</b>) överstiger högsta tillåtna uppladdningsstorlek <b>{maxSize} KB</b>.',
+        msgSizeTooSmall: 'Filen "{name}" (<b>{size}</b>) är för liten och måste vara större än <b>{minSize}</b>.',
+        msgSizeTooLarge: 'File "{name}" (<b>{size}</b>) överstiger högsta tillåtna uppladdningsstorlek <b>{maxSize}</b>.',
         msgFilesTooLess: 'Du måste välja minst <b>{n}</b> {files} för att ladda upp.',
         msgFilesTooMany: 'Antal filer valda för uppladdning <b>({n})</b> överstiger högsta tillåtna gränsen <b>{m}</b>.',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'Filen "{name}" kunde inte hittas!',
         msgFileSecured: 'Säkerhetsbegränsningar förhindrar att läsa filen "{name}".',
         msgFileNotReadable: 'Filen "{name}" är inte läsbar.',
@@ -53,10 +65,10 @@
             'object': 'objekt'
         },
         msgUploadAborted: 'Filöverföringen avbröts',
-        msgUploadThreshold: 'Bearbetar...',
-        msgUploadBegin: 'Påbörjar...',
+        msgUploadThreshold: 'Bearbetar &hellip;',
+        msgUploadBegin: 'Påbörjar &hellip;',
         msgUploadEnd: 'Färdig',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Resuming upload &hellip;',
         msgUploadEmpty: 'Ingen giltig data tillgänglig för uppladdning.',
         msgUploadError: 'Upload Error',
         msgDeleteError: 'Delete Error',
@@ -74,7 +86,7 @@
         msgImageResizeException: 'Fel vid storleksändring av bilden.<pre>{errors}</pre>',
         msgAjaxError: 'Något gick fel med {operation} operationen. Försök igen senare!',
         msgAjaxProgressError: '{operation} misslyckades',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -90,21 +102,23 @@
             removeTitle: 'Ta bort fil',
             uploadTitle: 'Ladda upp fil',
             uploadRetryTitle: 'Retry upload',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Visa detaljer',
             dragTitle: 'Flytta / Ändra ordning',
             indicatorNewTitle: 'Inte uppladdat ännu',
             indicatorSuccessTitle: 'Uppladdad',
             indicatorErrorTitle: 'Uppladdningsfel',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Laddar upp...'
+            indicatorLoadingTitle:  'Laddar upp &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'Visa föregående fil',
             next: 'Visa nästa fil',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Rubrik',
             fullscreen: 'Fullskärm',
             borderless: 'Gränslös',
             close: 'Stäng detaljerad förhandsgranskning'
         }
     };
-})(window.jQuery);
+}));

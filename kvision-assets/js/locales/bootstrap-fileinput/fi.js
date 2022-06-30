@@ -8,10 +8,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales.fi = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'tiedosto',
         filePlural: 'tiedostot',
         browseLabel: 'Selaa &hellip;',
@@ -25,10 +36,11 @@
         uploadTitle: 'Lataa valitut tiedostot',
         msgNoFilesSelected: '',
         msgFileRequired: 'You must select a file to upload.',
-        msgSizeTooSmall: 'File "{name}" (<b>{size} KB</b>) is too small and must be larger than <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'Tiedosto "{name}" (<b>{size} Kt</b>) ylitt&auml;&auml; suurimman sallitun tiedoston koon, joka on <b>{maxSize} Kt</b>. Yrit&auml; uudelleen!',
+        msgSizeTooSmall: 'File "{name}" (<b>{size}</b>) is too small and must be larger than <b>{minSize}</b>.',
+        msgSizeTooLarge: 'Tiedosto "{name}" (<b>{size}</b>) ylitt&auml;&auml; suurimman sallitun tiedoston koon, joka on <b>{maxSize}</b>. Yrit&auml; uudelleen!',
         msgFilesTooLess: 'V&auml;hint&auml;&auml;n <b>{n}</b> {files} tiedostoa on valittava ladattavaksi. Ole hyv&auml; ja yrit&auml; uudelleen!',
         msgFilesTooMany: 'Valittujen tiedostojen lukum&auml;&auml;r&auml; <b>({n})</b> ylitt&auml;&auml; suurimman sallitun m&auml;&auml;r&auml;n <b>{m}</b>. Ole hyv&auml; ja yrit&auml; uudelleen!',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'Tiedostoa "{name}" ei l&ouml;ydy!',
         msgFileSecured: 'Tietoturvarajoitukset est&auml;v&auml;t tiedoston "{name}" lukemisen.',
         msgFileNotReadable: 'Tiedosto "{name}" ei ole luettavissa.',
@@ -47,10 +59,10 @@
             'pdf': 'PDF',
             'object': 'Olio'
         },
-        msgUploadThreshold: 'Käsitellään...',
-        msgUploadBegin: 'Initializing...',
+        msgUploadThreshold: 'Käsitellään &hellip;',
+        msgUploadBegin: 'Initializing &hellip;',
         msgUploadEnd: 'Done',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Resuming upload &hellip;',
         msgUploadEmpty: 'Ei ladattavaa dataa.',
         msgUploadError: 'Upload Error',
         msgDeleteError: 'Delete Error',
@@ -62,7 +74,7 @@
         msgFoldersNotAllowed: 'Raahaa ja pudota ainoastaan tiedostoja! Ohitettu {n} raahattua kansiota.',
         msgAjaxError: 'Something went wrong with the {operation} operation. Please try again later!',
         msgAjaxProgressError: '{operation} failed',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -79,17 +91,19 @@
             uploadTitle: 'Upload file',
             uploadRetryTitle: 'Retry upload',
             downloadTitle: 'Download file',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Yksityiskohdat',
             dragTitle: 'Siirrä / Järjestele',
             indicatorNewTitle: 'Ei ladattu',
             indicatorSuccessTitle: 'Ladattu',
             indicatorErrorTitle: 'Lataus epäonnistui',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Ladataan ...'
+            indicatorLoadingTitle:  'Ladataan &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'Seuraava tiedosto',
             next: 'Edellinen tiedosto',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Näytä otsikko',
             fullscreen: 'Kokonäytön tila',
             borderless: 'Rajaton tila',
@@ -98,4 +112,4 @@
     };
 
     $.extend($.fn.fileinput.defaults, $.fn.fileinputLocales.fi);
-})(window.jQuery);
+}));

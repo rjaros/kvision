@@ -1836,10 +1836,10 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kvision-assets@^5.0.8:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-5.0.8.tgz#f2220135a94b1330cb2ac8f1804b53f40a9bd711"
-  integrity sha512-umq47D8z2W7cTYR/6RtJ+048mlsi5X515tcM/PFgDcbaI82Pd9EHv2m9520SxmBH6AD04GTweWNyUcKlPx9oZQ==
+kvision-assets@^5.0.9:
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-5.0.9.tgz#6f305e4c085a4eab57897f6741c208121e9b035c"
+  integrity sha512-pMbKmlGbc6FYtJVPbH6oKXWFOp6O6Uljhi6KODs4AGuIiqZxhjXKXwMEhaaLzheuP5/bu0hNYWa4LGSwcvIOJQ==
 
 leaflet@^1.8.0:
   version "1.8.0"

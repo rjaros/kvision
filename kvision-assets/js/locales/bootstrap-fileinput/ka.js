@@ -9,10 +9,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['ka'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'ფაილი',
         filePlural: 'ფაილები',
         browseLabel: 'არჩევა &hellip;',
@@ -28,13 +39,14 @@
         msgNoFilesSelected: 'ფაილები არ არის არჩეული',
         msgPaused: 'Paused',
         msgCancelled: 'გაუქმებულია',
-        msgPlaceholder: 'აირჩიეთ {files}...',
+        msgPlaceholder: 'აირჩიეთ {files} ...',
         msgZoomModalHeading: 'დეტალურად ნახვა',
         msgFileRequired: 'ატვირთვისთვის აუცილებელია ფაილის არჩევა.',
-        msgSizeTooSmall: 'ფაილი "{name}" (<b>{size} KB</b>) არის ძალიან პატარა. მისი ზომა უნდა იყოს არანაკლებ <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'ფაილი "{name}" (<b>{size} KB</b>) აჭარბებს მაქსიმალურ დასაშვებ ზომას <b>{maxSize} KB</b>.',
+        msgSizeTooSmall: 'ფაილი "{name}" (<b>{size}</b>) არის ძალიან პატარა. მისი ზომა უნდა იყოს არანაკლებ <b>{minSize}</b>.',
+        msgSizeTooLarge: 'ფაილი "{name}" (<b>{size}</b>) აჭარბებს მაქსიმალურ დასაშვებ ზომას <b>{maxSize}</b>.',
         msgFilesTooLess: 'უნდა აირჩიოთ მინიმუმ <b>{n}</b> {file} ატვირთვისთვის.',
         msgFilesTooMany: 'არჩეული ფაილების რაოდენობა <b>({n})</b> აჭარბებს დასაშვებ ლიმიტს <b>{m}</b>.',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'ფაილი "{name}" არ მოიძებნა!',
         msgFileSecured: 'უსაფრთხოებით გამოწვეული შეზღუდვები კრძალავს ფაილის "{name}" წაკითხვას.',
         msgFileNotReadable: 'ფაილის "{name}" წაკითხვა შეუძლებელია.',
@@ -54,10 +66,10 @@
             'object': 'object'
         },
         msgUploadAborted: 'ფაილის ატვირთვა შეწყდა',
-        msgUploadThreshold: 'მუშავდება...',
-        msgUploadBegin: 'ინიციალიზაცია...',
+        msgUploadThreshold: 'მუშავდება &hellip;',
+        msgUploadBegin: 'ინიციალიზაცია &hellip;',
         msgUploadEnd: 'დასრულებულია',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Resuming upload &hellip;',
         msgUploadEmpty: 'ატვირთვისთვის დაუშვებელი მონაცემები.',
         msgUploadError: 'Upload Error',
         msgDeleteError: 'Delete Error',
@@ -66,16 +78,17 @@
         msgLoading: 'ატვირთვა {index} / {files} &hellip;',
         msgProgress: 'ფაილის ატვირთვა დასრულებულია {index} / {files} - {name} - {percent}%.',
         msgSelected: 'არჩეულია {n} {file}',
+        msgProcessing: 'Processing ...',
         msgFoldersNotAllowed: 'დაშვებულია მხოლოდ ფაილების გადმოთრევა! გამოტოვებულია {n} გადმოთრეული ფოლდერი.',
-        msgImageWidthSmall: 'სურათის "{name}" სიგანე უნდა იყოს არანაკლებ {size} px.',
-        msgImageHeightSmall: 'სურათის "{name}" სიმაღლე უნდა იყოს არანაკლებ {size} px.',
-        msgImageWidthLarge: 'სურათის "{name}" სიგანე არ უნდა აღემატებოდეს {size} px-ს.',
-        msgImageHeightLarge: 'სურათის "{name}" სიმაღლე არ უნდა აღემატებოდეს {size} px-ს.',
+        msgImageWidthSmall: 'სურათის "{name}" სიგანე უნდა იყოს არანაკლებ <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightSmall: 'სურათის "{name}" სიმაღლე უნდა იყოს არანაკლებ <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageWidthLarge: 'სურათის "{name}" სიგანე არ უნდა აღემატებოდეს <b>{size} px</b> (detected <b>{dimension} px</b>)-ს.',
+        msgImageHeightLarge: 'სურათის "{name}" სიმაღლე არ უნდა აღემატებოდეს <b>{size} px</b> (detected <b>{dimension} px</b>)-ს.',
         msgImageResizeError: 'ვერ მოხერხდა სურათის ზომის შეცვლისთვის საჭირო მონაცემების გარკვევა.',
         msgImageResizeException: 'შეცდომა სურათის ზომის შეცვლისას.<pre>{errors}</pre>',
         msgAjaxError: 'დაფიქსირდა შეცდომა ოპერაციის {operation} შესრულებისას. ცადეთ მოგვიანებით!',
         msgAjaxProgressError: 'ვერ მოხერხდა ოპერაციის {operation} შესრულება',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -92,21 +105,23 @@
             uploadTitle: 'ფაილის ატვირთვა',
             uploadRetryTitle: 'ატვირთვის გამეორება',
             downloadTitle: 'ფაილის ჩამოტვირთვა',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'დეტალურად ნახვა',
             dragTitle: 'გადაადგილება / მიმდევრობის შეცვლა',
             indicatorNewTitle: 'ჯერ არ ატვირთულა',
             indicatorSuccessTitle: 'ატვირთულია',
             indicatorErrorTitle: 'ატვირთვის შეცდომა',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'ატვირთვა ...'
+            indicatorLoadingTitle:  'ატვირთვა &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'წინა ფაილის ნახვა',
             next: 'შემდეგი ფაილის ნახვა',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'სათაურის დამალვა',
             fullscreen: 'მთელ ეკრანზე გაშლა',
             borderless: 'მთელ გვერდზე გაშლა',
             close: 'დახურვა'
         }
     };
-})(window.jQuery);
+}));

@@ -15,13 +15,24 @@
  *    \u3200-\u32ff : Enclosed CJK Letters and Months
  *    \uff00-\uffef : Halfwidth and Fullwidth Forms
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['ja'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'ファイル',
         filePlural: 'ファイル',
-        browseLabel: 'ファイルを選択&hellip;',
+        browseLabel: 'ファイルを選択 &hellip;',
         removeLabel: '削除',
         removeTitle: '選択したファイルを削除',
         cancelLabel: 'キャンセル',
@@ -34,13 +45,14 @@
         msgNoFilesSelected: 'ファイルが選択されていません',
         msgPaused: 'Paused',
         msgCancelled: 'キャンセル',
-        msgPlaceholder: 'Select {files}...',
+        msgPlaceholder: 'Select {files} ...',
         msgZoomModalHeading: 'プレビュー',
         msgFileRequired: 'ファイルを選択してください',
-        msgSizeTooSmall: 'ファイル"{name}" (<b>{size} KB</b>)はアップロード可能な下限容量<b>{minSize} KB</b>より小さいです',
-        msgSizeTooLarge: 'ファイル"{name}" (<b>{size} KB</b>)はアップロード可能な上限容量<b>{maxSize} KB</b>を超えています',
+        msgSizeTooSmall: 'ファイル"{name}" (<b>{size}</b>)はアップロード可能な下限容量<b>{minSize}</b>より小さいです',
+        msgSizeTooLarge: 'ファイル"{name}" (<b>{size}</b>)はアップロード可能な上限容量<b>{maxSize}</b>を超えています',
         msgFilesTooLess: '最低<b>{n}</b>個の{files}を選択してください',
         msgFilesTooMany: '選択したファイルの数<b>({n}個)</b>はアップロード可能な上限数<b>({m}個)</b>を超えています',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'ファイル"{name}"はありませんでした',
         msgFileSecured: 'ファイル"{name}"は読み取り権限がないため取得できません',
         msgFileNotReadable: 'ファイル"{name}"は読み込めません',
@@ -60,16 +72,16 @@
             'object': 'object'
         },
         msgUploadAborted: 'ファイルのアップロードが中止されました',
-        msgUploadThreshold: '処理中...',
-        msgUploadBegin: '初期化中...',
+        msgUploadThreshold: '処理中 &hellip;',
+        msgUploadBegin: '初期化中 &hellip;',
         msgUploadEnd: '完了',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Resuming upload &hellip;',
         msgUploadEmpty: 'アップロードに有効なデータがありません',
         msgUploadError: 'Upload Error',
         msgDeleteError: 'Delete Error',
         msgProgressError: 'エラー',
         msgValidationError: '検証エラー',
-        msgLoading: '{files}個中{index}個目のファイルを読み込み中&hellip;',
+        msgLoading: '{files}個中{index}個目のファイルを読み込み中 &hellip;',
         msgProgress: '{files}個中{index}個のファイルを読み込み中 - {name} - {percent}% 完了',
         msgSelected: '{n}個の{files}を選択',
         msgFoldersNotAllowed: 'ドラッグ&ドロップが可能なのはファイルのみです。{n}個のフォルダ－は無視されました',
@@ -81,7 +93,7 @@
         msgImageResizeException: '画像のリサイズ時にエラーが発生しました。<pre>{errors}</pre>',
         msgAjaxError: '{operation}実行中にエラーが発生しました。時間をおいてもう一度お試しください。',
         msgAjaxProgressError: '{operation} failed',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -91,7 +103,7 @@
             uploadBatch: '一括ファイルアップロード',
             uploadExtra: 'フォームデータアップロード'
         },
-        dropZoneTitle: 'ファイルをドラッグ&ドロップ&hellip;',
+        dropZoneTitle: 'ファイルをドラッグ&ドロップ &hellip;',
         dropZoneClickTitle: '<br>(または クリックして{files}を選択 )',
         slugCallback: function(text) {
             return text ? text.split(/(\\|\/)/g).pop().replace(/[^\w\u4e00-\u9fa5\u3040-\u309f\u30a0-\u30ff\u31f0-\u31ff\u3200-\u32ff\uff00-\uffef\-.\\\/ ]+/g, '') : '';
@@ -100,21 +112,23 @@
             removeTitle: 'ファイルを削除',
             uploadTitle: 'ファイルをアップロード',
             uploadRetryTitle: '再アップロード',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'プレビュー',
             dragTitle: '移動 / 再配置',
             indicatorNewTitle: 'まだアップロードされていません',
             indicatorSuccessTitle: 'アップロード済み',
             indicatorErrorTitle: 'アップロード失敗',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'アップロード中...'
+            indicatorLoadingTitle:  'アップロード中 &hellip;'
         },
         previewZoomButtonTitles: {
             prev: '前のファイルを表示',
             next: '次のファイルを表示',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'ファイル情報の表示/非表示',
             fullscreen: 'フルスクリーン表示の開始/終了',
             borderless: 'フルウィンドウ表示の開始/終了',
             close: 'プレビューを閉じる'
         }
     };
-})(window.jQuery);
+}));

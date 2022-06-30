@@ -9,10 +9,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['sl'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'datoteka',
         filePlural: 'datotek',
         browseLabel: 'Prebrskaj &hellip;',
@@ -28,11 +39,12 @@
         msgNoFilesSelected: 'Nobena datoteka ni izbrana',
         msgPaused: 'Paused',
         msgCancelled: 'Preklicano',
-        msgPlaceholder: 'Select {files}...',
+        msgPlaceholder: 'Select {files} ...',
         msgZoomModalHeading: 'Podroben predogled',
-        msgSizeTooLarge: 'Datoteka "{name}" (<b>{size} KB</b>) presega največjo dovoljeno velikost za nalaganje <b>{maxSize} KB</b>.',
+        msgSizeTooLarge: 'Datoteka "{name}" (<b>{size}</b>) presega največjo dovoljeno velikost za nalaganje <b>{maxSize}</b>.',
         msgFilesTooLess: 'Za nalaganje morate izbrati vsaj <b>{n}</b> {files}.',
         msgFilesTooMany: 'Število datotek, izbranih za nalaganje <b>({n})</b> je prekoračilo največjo dovoljeno število <b>{m}</b>.',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'Datoteka "{name}" ni bila najdena!',
         msgFileSecured: 'Zaradi varnostnih omejitev nisem mogel prebrati datoteko "{name}".',
         msgFileNotReadable: 'Datoteka "{name}" ni berljiva.',
@@ -51,10 +63,10 @@
             'object': 'object'
         },
         msgUploadAborted: 'Nalaganje datoteke je bilo preklicano',
-        msgUploadThreshold: 'Procesiram...',
-        msgUploadBegin: 'Initializing...',
+        msgUploadThreshold: 'Procesiram &hellip;',
+        msgUploadBegin: 'Initializing &hellip;',
         msgUploadEnd: 'Done',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Resuming upload &hellip;',
         msgUploadEmpty: 'No valid data available for upload.',
         msgUploadError: 'Upload Error',
         msgDeleteError: 'Delete Error',
@@ -64,15 +76,15 @@
         msgProgress: 'Nalaganje datoteke {index} od {files} - {name} - {percent}% dokončano.',
         msgSelected: '{n} {files} izbrano',
         msgFoldersNotAllowed: 'Povlecite in spustite samo datoteke! Izpuščenih je bilo {n} map.',
-        msgImageWidthSmall: 'Širina slike "{name}" mora biti vsaj {size} px.',
-        msgImageHeightSmall: 'Višina slike "{name}" mora biti vsaj {size} px.',
-        msgImageWidthLarge: 'Širina slike "{name}" ne sme preseči {size} px.',
-        msgImageHeightLarge: 'Višina slike "{name}" ne sme preseči {size} px.',
+        msgImageWidthSmall: 'Širina slike "{name}" mora biti vsaj <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightSmall: 'Višina slike "{name}" mora biti vsaj <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageWidthLarge: 'Širina slike "{name}" ne sme preseči <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightLarge: 'Višina slike "{name}" ne sme preseči <b>{size} px</b> (detected <b>{dimension} px</b>).',
         msgImageResizeError: 'Nisem mogel pridobiti dimenzij slike za spreminjanje velikosti.',
         msgImageResizeException: 'Napaka pri spreminjanju velikosti slike.<pre>{errors}</pre>',
         msgAjaxError: 'Something went wrong with the {operation} operation. Please try again later!',
         msgAjaxProgressError: '{operation} failed',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -89,21 +101,23 @@
             uploadTitle: 'Naloži datoteko',
             uploadRetryTitle: 'Retry upload',
             downloadTitle: 'Download file',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Poglej podrobnosti',
             dragTitle: 'Premaki / Razporedi',
             indicatorNewTitle: 'Še ni naloženo',
             indicatorSuccessTitle: 'Naloženo',
             indicatorErrorTitle: 'Napaka pri nalaganju',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Nalagam ...'
+            indicatorLoadingTitle:  'Nalagam &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'Poglej prejšno datoteko',
             next: 'Poglej naslednjo datoteko',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Preklopi glavo',
             fullscreen: 'Preklopi celozaslonski način',
             borderless: 'Preklopi način brez robov',
             close: 'Zapri predogled podrobnosti'
         }
     };
-})(window.jQuery);
+}));

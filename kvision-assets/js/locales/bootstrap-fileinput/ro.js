@@ -9,10 +9,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['ro'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'fișier',
         filePlural: 'fișiere',
         browseLabel: 'Răsfoiește &hellip;',
@@ -28,13 +39,14 @@
         msgNoFilesSelected: '',
         msgPaused: 'Paused',
         msgCancelled: 'Anulat',
-        msgPlaceholder: 'Select {files}...',
+        msgPlaceholder: 'Select {files} ...',
         msgZoomModalHeading: 'Previzualizare detaliată',
         msgFileRequired: 'You must select a file to upload.',
-        msgSizeTooSmall: 'File "{name}" (<b>{size} KB</b>) is too small and must be larger than <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'Fișierul "{name}" (<b>{size} KB</b>) depășește limita maximă de încărcare de <b>{maxSize} KB</b>.',
+        msgSizeTooSmall: 'File "{name}" (<b>{size}</b>) is too small and must be larger than <b>{minSize}</b>.',
+        msgSizeTooLarge: 'Fișierul "{name}" (<b>{size}</b>) depășește limita maximă de încărcare de <b>{maxSize}</b>.',
         msgFilesTooLess: 'Trebuie să selectezi cel puțin <b>{n}</b> {files} pentru a încărca.',
         msgFilesTooMany: 'Numărul fișierelor pentru încărcare <b>({n})</b> depășește limita maximă de <b>{m}</b>.',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'Fișierul "{name}" nu a fost găsit!',
         msgFileSecured: 'Restricții de securitate previn citirea fișierului "{name}".',
         msgFileNotReadable: 'Fișierul "{name}" nu se poate citi.',
@@ -54,10 +66,10 @@
             'object': 'object'
         },
         msgUploadAborted: 'Fișierul Încărcarea a fost întrerupt',
-        msgUploadThreshold: 'Processing...',
-        msgUploadBegin: 'Initializing...',
+        msgUploadThreshold: 'Processing &hellip;',
+        msgUploadBegin: 'Initializing &hellip;',
         msgUploadEnd: 'Done',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Resuming upload &hellip;',
         msgUploadEmpty: 'No valid data available for upload.',
         msgUploadError: 'Upload Error',
         msgDeleteError: 'Delete Error',
@@ -67,15 +79,15 @@
         msgProgress: 'Se încarcă fișierul {index} din {files} - {name} - {percent}% încărcat.',
         msgSelected: '{n} {files} încărcate',
         msgFoldersNotAllowed: 'Se poate doar trăgând fișierele! Se renunță la {n} dosar(e).',
-        msgImageWidthSmall: 'Lățimea de fișier de imagine "{name}" trebuie să fie de cel puțin {size} px.',
-        msgImageHeightSmall: 'Înălțimea fișier imagine "{name}" trebuie să fie de cel puțin {size} px.',
-        msgImageWidthLarge: 'Lățimea de fișier de imagine "{name}" nu poate depăși {size} px.',
-        msgImageHeightLarge: 'Înălțimea fișier imagine "{name}" nu poate depăși {size} px.',
+        msgImageWidthSmall: 'Lățimea de fișier de imagine "{name}" trebuie să fie de cel puțin <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightSmall: 'Înălțimea fișier imagine "{name}" trebuie să fie de cel puțin <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageWidthLarge: 'Lățimea de fișier de imagine "{name}" nu poate depăși <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightLarge: 'Înălțimea fișier imagine "{name}" nu poate depăși <b>{size} px</b> (detected <b>{dimension} px</b>).',
         msgImageResizeError: 'Nu a putut obține dimensiunile imaginii pentru a redimensiona.',
         msgImageResizeException: 'Eroare la redimensionarea imaginii.<pre>{errors}</pre>',
         msgAjaxError: 'Something went wrong with the {operation} operation. Please try again later!',
         msgAjaxProgressError: '{operation} failed',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -92,21 +104,23 @@
             uploadTitle: 'Incarca fisier',
             uploadRetryTitle: 'Retry upload',
             downloadTitle: 'Download file',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Vezi detalii',
             dragTitle: 'Move / Rearrange',
             indicatorNewTitle: 'Nu a încărcat încă',
             indicatorSuccessTitle: 'încărcat',
             indicatorErrorTitle: 'Încărcați eroare',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Se încarcă ...'
+            indicatorLoadingTitle:  'Se încarcă &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'View previous file',
             next: 'View next file',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Toggle header',
             fullscreen: 'Toggle full screen',
             borderless: 'Toggle borderless mode',
             close: 'Close detailed preview'
         }
     };
-})(window.jQuery);
+}));

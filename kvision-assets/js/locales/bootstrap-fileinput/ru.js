@@ -9,10 +9,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['ru'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'файл',
         filePlural: 'файлы',
         browseLabel: 'Выбрать &hellip;',
@@ -28,13 +39,14 @@
         msgNoFilesSelected: '',
         msgPaused: 'Приостановлено',
         msgCancelled: 'Отменено',
-        msgPlaceholder: 'Выбрать {files}...',
+        msgPlaceholder: 'Выбрать {files} ...',
         msgZoomModalHeading: 'Подробное превью',
         msgFileRequired: 'Необходимо выбрать файл для загрузки.',
-        msgSizeTooSmall: 'Файл "{name}" (<b>{size} KB</b>) имеет слишком маленький размер и должен быть больше <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'Файл "{name}" (<b>{size} KB</b>) превышает максимальный размер <b>{maxSize} KB</b>.',
+        msgSizeTooSmall: 'Файл "{name}" (<b>{size}</b>) имеет слишком маленький размер и должен быть больше <b>{minSize}</b>.',
+        msgSizeTooLarge: 'Файл "{name}" (<b>{size}</b>) превышает максимальный размер <b>{maxSize}</b>.',
         msgFilesTooLess: 'Вы должны выбрать как минимум <b>{n}</b> {files} для загрузки.',
         msgFilesTooMany: 'Количество выбранных файлов <b>({n})</b> превышает максимально допустимое количество <b>{m}</b>.',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'Файл "{name}" не найден!',
         msgFileSecured: 'Ограничения безопасности запрещают читать файл "{name}".',
         msgFileNotReadable: 'Файл "{name}" невозможно прочитать.',
@@ -54,10 +66,10 @@
             'object': 'object'
         },
         msgUploadAborted: 'Выгрузка файла прервана',
-        msgUploadThreshold: 'Обработка...',
-        msgUploadBegin: 'Инициализация...',
+        msgUploadThreshold: 'Обработка &hellip;',
+        msgUploadBegin: 'Инициализация &hellip;',
         msgUploadEnd: 'Готово',
-        msgUploadResume: 'Возобновление загрузки...',
+        msgUploadResume: 'Возобновление загрузки &hellip;',
         msgUploadEmpty: 'Недопустимые данные для загрузки',
         msgUploadError: 'Ошибка загрузки',
         msgDeleteError: 'Ошибка удаления',
@@ -66,16 +78,17 @@
         msgLoading: 'Загрузка файла {index} из {files} &hellip;',
         msgProgress: 'Загрузка файла {index} из {files} - {name} - {percent}% завершено.',
         msgSelected: 'Выбрано файлов: {n}',
+        msgProcessing: 'Processing ...',
         msgFoldersNotAllowed: 'Разрешено перетаскивание только файлов! Пропущено {n} папок.',
-        msgImageWidthSmall: 'Ширина изображения {name} должна быть не меньше {size} px.',
-        msgImageHeightSmall: 'Высота изображения {name} должна быть не меньше {size} px.',
-        msgImageWidthLarge: 'Ширина изображения "{name}" не может превышать {size} px.',
-        msgImageHeightLarge: 'Высота изображения "{name}" не может превышать {size} px.',
+        msgImageWidthSmall: 'Ширина изображения {name} должна быть не меньше <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightSmall: 'Высота изображения {name} должна быть не меньше <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageWidthLarge: 'Ширина изображения "{name}" не может превышать <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightLarge: 'Высота изображения "{name}" не может превышать <b>{size} px</b> (detected <b>{dimension} px</b>).',
         msgImageResizeError: 'Не удалось получить размеры изображения, чтобы изменить размер.',
         msgImageResizeException: 'Ошибка при изменении размера изображения.<pre>{errors}</pre>',
         msgAjaxError: 'Произошла ошибка при выполнении операции {operation}. Повторите попытку позже!',
         msgAjaxProgressError: 'Не удалось выполнить {operation}',
-        msgDuplicateFile: 'Файл "{name}" с размером "{size} KB" уже был выбран ранее. Пропуск повторяющегося выбора.',
+        msgDuplicateFile: 'Файл "{name}" с размером "{size}" уже был выбран ранее. Пропуск повторяющегося выбора.',
         msgResumableUploadRetriesExceeded: 'Загрузка прервана после <b>{max}</b> попыток для файла <b>{file}</b>! Информация об ошибке: <pre>{error}</pre>',
         msgPendingTime: '{time} осталось',
         msgCalculatingTime: 'расчет оставшегося времени',
@@ -92,21 +105,23 @@
             uploadTitle: 'Загрузить файл',
             uploadRetryTitle: 'Повторить загрузку',
             downloadTitle: 'Загрузить файл',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Посмотреть детали',
             dragTitle: 'Переместить / Изменить порядок',
             indicatorNewTitle: 'Еще не загружен',
             indicatorSuccessTitle: 'Загружен',
             indicatorErrorTitle: 'Ошибка загрузки',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Загрузка ...'
+            indicatorLoadingTitle:  'Загрузка &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'Посмотреть предыдущий файл',
             next: 'Посмотреть следующий файл',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Переключить заголовок',
             fullscreen: 'Переключить полноэкранный режим',
             borderless: 'Переключить режим без полей',
             close: 'Закрыть подробный предпросмотр'
         }
     };
-})(window.jQuery);
+}));

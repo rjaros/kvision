@@ -8,10 +8,21 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales['gl'] = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'arquivo',
         filePlural: 'arquivos',
         browseLabel: 'Examinar &hellip;',
@@ -27,13 +38,14 @@
         msgNoFilesSelected: 'Non hay arquivos seleccionados',
         msgPaused: 'Paused',
         msgCancelled: 'Cancelado',
-        msgPlaceholder: 'Seleccinar {files}...',
+        msgPlaceholder: 'Seleccinar {files} ...',
         msgZoomModalHeading: 'Vista previa detallada',
         msgFileRequired: 'Debes seleccionar un arquivo para subir.',
-        msgSizeTooSmall: 'O arquivo "{name}" (<b>{size} KB</b>) é demasiado pequeno e debe ser maior de <b>{minSize} KB</b>.',
-        msgSizeTooLarge: 'O arquivo "{name}" (<b>{size} KB</b>) excede o tamaño máximo permitido de <b>{maxSize} KB</b>.',
+        msgSizeTooSmall: 'O arquivo "{name}" (<b>{size}</b>) é demasiado pequeno e debe ser maior de <b>{minSize}</b>.',
+        msgSizeTooLarge: 'O arquivo "{name}" (<b>{size}</b>) excede o tamaño máximo permitido de <b>{maxSize}</b>.',
         msgFilesTooLess: 'Debe seleccionar ao menos <b>{n}</b> {files} a cargar.',
         msgFilesTooMany: 'O número de arquivos seleccionados a cargar <b>({n})</b> excede do límite máximo permitido de <b>{m}</b>.',
+        msgTotalFilesTooMany: 'You can upload a maximum of <b>{m}</b> files (<b>{n}</b> files detected).',
         msgFileNotFound: 'Arquivo "{name}" non encontrado.',
         msgFileSecured: 'Non é posible acceder ao arquivo "{name}" porque estará sendo usado por outra aplicación ou non teñamos permisos de lectura.',
         msgFileNotReadable: 'Non é posible acceder ao arquivo "{name}".',
@@ -53,10 +65,10 @@
             'object': 'object'
         },
         msgUploadAborted: 'A carga de arquivos cancelouse',
-        msgUploadThreshold: 'Procesando...',
-        msgUploadBegin: 'Inicializando...',
+        msgUploadThreshold: 'Procesando &hellip;',
+        msgUploadBegin: 'Inicializando &hellip;',
         msgUploadEnd: 'Feito',
-        msgUploadResume: 'Resuming upload...',
+        msgUploadResume: 'Resuming upload &hellip;',
         msgUploadEmpty: 'Non existen datos válidos para o envío.',
         msgUploadError: 'Upload Error',
         msgDeleteError: 'Delete Error',
@@ -65,16 +77,17 @@
         msgLoading: 'Subindo arquivo {index} de {files} &hellip;',
         msgProgress: 'Subindo arquivo {index} de {files} - {name} - {percent}% completado.',
         msgSelected: '{n} {files} seleccionado(s)',
+        msgProcessing: 'Processing ...',
         msgFoldersNotAllowed: 'Arrastra e solta unicamente arquivos. Omitida(s) {n} carpeta(s).',
-        msgImageWidthSmall: 'O ancho da imaxe "{name}" debe ser de ao menos {size} px.',
-        msgImageHeightSmall: 'A altura da imaxe "{name}" debe ser de ao menos {size} px.',
-        msgImageWidthLarge: 'O ancho da imaxe "{name}" non pode exceder de {size} px.',
-        msgImageHeightLarge: 'A altura da imaxe "{name}" non pode exceder de {size} px.',
+        msgImageWidthSmall: 'O ancho da imaxe "{name}" debe ser de ao menos <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightSmall: 'A altura da imaxe "{name}" debe ser de ao menos <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageWidthLarge: 'O ancho da imaxe "{name}" non pode exceder de <b>{size} px</b> (detected <b>{dimension} px</b>).',
+        msgImageHeightLarge: 'A altura da imaxe "{name}" non pode exceder de <b>{size} px</b> (detected <b>{dimension} px</b>).',
         msgImageResizeError: 'Non se puideron obter as dimensións da imaxe para cambiar o tamaño.',
         msgImageResizeException: 'Erro ao cambiar o tamaño da imaxe. <pre>{errors}</pre>',
         msgAjaxError: 'Algo foi mal ca operación {operation}. Por favor, inténtao de novo máis tarde.',
         msgAjaxProgressError: 'A operación {operation} fallou',
-        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgDuplicateFile: 'File "{name}" of same size "{size}" has already been selected earlier. Skipping duplicate selection.',
         msgResumableUploadRetriesExceeded:  'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
         msgPendingTime: '{time} remaining',
         msgCalculatingTime: 'calculating time remaining',
@@ -91,21 +104,23 @@
             uploadTitle: 'Subir arquivo',
             uploadRetryTitle: 'Reintentar a subida',
             downloadTitle: 'Descargar arquivo',
+            rotateTitle: 'Rotate 90 deg. clockwise',
             zoomTitle: 'Ver detalles',
             dragTitle: 'Mover / Reordenar',
             indicatorNewTitle: 'Non subido aínda',
             indicatorSuccessTitle: 'Subido',
             indicatorErrorTitle: 'Erro ao subir',
             indicatorPausedTitle: 'Upload Paused',
-            indicatorLoadingTitle:  'Subindo...'
+            indicatorLoadingTitle:  'Subindo &hellip;'
         },
         previewZoomButtonTitles: {
             prev: 'Ver arquivo anterior',
             next: 'Ver arquivo seguinte',
+            rotate: 'Rotate 90 deg. clockwise',
             toggleheader: 'Mostrar encabezado',
             fullscreen: 'Mostrar a pantalla completa',
             borderless: 'Activar o modo sen bordes',
             close: 'Cerrar vista detallada'
         }
     };
-})(window.jQuery);
+}));
