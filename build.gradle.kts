@@ -28,9 +28,10 @@ val webDir = file("src/main/web")
 rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+        resolution("got", "12.1.0")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
-        versions.webpackDevServer.version = "4.9.2"
+        versions.webpackDevServer.version = "4.9.3"
         versions.webpack.version = "5.73.0"
         versions.webpackCli.version = "4.10.0"
         versions.karma.version = "6.4.0"
@@ -52,7 +53,7 @@ dependencies {
     implementation(npm("style-loader", "^3.3.1"))
     implementation(npm("imports-loader", "^3.1.1"))
     implementation(npm("fecha", "^4.2.3"))
-    implementation(npm("snabbdom", "^3.5.0"))
+    implementation(npm("snabbdom", "^3.5.1"))
     implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.5"))
     implementation(npm("split.js", "^1.6.5"))
     implementation(npm("@rjaros/gettext.js", "^1.1.3"))
