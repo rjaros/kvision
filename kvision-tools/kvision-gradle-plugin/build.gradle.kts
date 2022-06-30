@@ -35,11 +35,12 @@ java {
 }
 
 val kotestVersion: String by project
+val kspVersion: String by project
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("gradle-plugin"))
-    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.7.0-1.0.6")
+    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:$kspVersion")
 
     testImplementation(gradleTestKit())
 
