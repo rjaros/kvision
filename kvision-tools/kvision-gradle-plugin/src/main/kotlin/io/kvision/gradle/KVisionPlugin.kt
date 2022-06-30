@@ -132,8 +132,10 @@ abstract class KVisionPlugin @Inject constructor(
             finalizedBy(convertPoToJsonTask)
         }
 
-        tasks.all.browserDevelopmentRun.configureEach {
-            dependsOn("developmentExecutableCompileSync")
+        if (kvExtension.irCompiler.get()) {
+            tasks.all.browserDevelopmentRun.configureEach {
+                dependsOn("developmentExecutableCompileSync")
+            }
         }
     }
 
@@ -195,18 +197,20 @@ abstract class KVisionPlugin @Inject constructor(
             finalizedBy(convertPoToJsonTask)
         }
 
-        tasks.all.frontendBrowserDevelopmentRun.configureEach {
-            dependsOn("frontendDevelopmentExecutableCompileSync")
+        if (kvExtension.irCompiler.get()) {
+            tasks.all.frontendBrowserDevelopmentRun.configureEach {
+                dependsOn("frontendDevelopmentExecutableCompileSync")
+            }
         }
 
         if (kvExtension.enableKsp.get()) {
             dependencies {
-                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.11.0")
+                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
             }
 
             afterEvaluate {
                 dependencies {
-                    add("kspFrontend", "io.kvision:kvision-ksp-processor:5.11.0")
+                    add("kspFrontend", "io.kvision:kvision-ksp-processor:5.11.1-SNAPSHOT")
                 }
                 kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                 kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")

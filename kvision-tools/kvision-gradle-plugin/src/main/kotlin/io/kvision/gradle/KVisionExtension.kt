@@ -39,6 +39,9 @@ abstract class KVisionExtension @Inject constructor(
     val enableKsp: Property<Boolean> =
         kvisionGradleProperty("enableKsp")
 
+    val irCompiler: Property<Boolean> = objects.property<Boolean>()
+        .convention(providers.gradleProperty("kotlin.js.compiler").orElse("legacy").map { it == "ir" })
+
     private fun kvisionGradleProperty(
         property: String,
         default: Boolean = true,
@@ -67,7 +70,7 @@ abstract class KVisionExtension @Inject constructor(
     ) {
         @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
-        val webpackDevServer: Property<String> = objects.property<String>().convention("4.9.2")
+        val webpackDevServer: Property<String> = objects.property<String>().convention("4.9.3")
 
         @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
