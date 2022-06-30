@@ -35,7 +35,7 @@ object BootstrapUploadModule : ModuleInitializer {
 
     override fun initialize() {
         require("bootstrap-fileinput/css/fileinput.min.css")
-        require("bootstrap-fileinput/themes/explorer-fas/theme.min.css")
+        require("bootstrap-fileinput/themes/explorer-fa6/theme.min.css")
         require("bootstrap-fileinput")
         require("kvision-assets/js/locales/bootstrap-fileinput/ar.js")
         require("kvision-assets/js/locales/bootstrap-fileinput/az.js")
@@ -73,7 +73,7 @@ object BootstrapUploadModule : ModuleInitializer {
         require("kvision-assets/js/locales/bootstrap-fileinput/uk.js")
         require("kvision-assets/js/locales/bootstrap-fileinput/vi.js")
         require("kvision-assets/js/locales/bootstrap-fileinput/zh.js")
-        require("bootstrap-fileinput/themes/explorer-fas/theme.js")
+        require("bootstrap-fileinput/themes/explorer-fa6/theme.js")
         require("bootstrap-fileinput/themes/bs5/theme.js")
     }
 }
