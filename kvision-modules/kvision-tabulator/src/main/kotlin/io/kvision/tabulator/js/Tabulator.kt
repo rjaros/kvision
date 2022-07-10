@@ -228,7 +228,7 @@ open external class Tabulator {
     open fun getRow(row: dynamic /* RowComponent | HTMLElement | String | Number | Array<Number> | Array<String> */): RowComponent =
         definedExternally
 
-    open fun getRowFromPosition(position: Number, activeOnly: Boolean): RowComponent = definedExternally
+    open fun getRowFromPosition(position: Number): RowComponent = definedExternally
     open fun deleteRow(index: dynamic /* RowComponent | HTMLElement | String | Number | Array<Number> | Array<String> | Array<dynamic /* RowComponent | HTMLElement | String | Number | Array<Number> | Array<String> */> */): Unit =
         definedExternally
 
@@ -262,9 +262,8 @@ open external class Tabulator {
 
     open fun getRows(activeOnly: String /* 'active' | 'visible' */): Array<RowComponent> = definedExternally
     open fun getRowPosition(
-        row: dynamic /* RowComponent | HTMLElement | String | Number | Array<Number> | Array<String> */,
-        activeOnly: Boolean
-    ): Number = definedExternally
+        row: dynamic /* RowComponent | HTMLElement | String | Number | Array<Number> | Array<String> */
+    ): dynamic = definedExternally
 
     open fun setColumns(definitions: Array<ColumnDefinition>): Unit = definedExternally
     open fun getColumns(includeColumnGroups: Boolean): Array<ColumnComponent> = definedExternally
@@ -1245,7 +1244,7 @@ open external class Tabulator {
     }
 
     interface OptionsDownload {
-        var downloadReady: ((fileContents: Any, blob: Any) -> Any)?
+        var downloadEncoder: ((fileContents: Any, mimeType: String) -> Any)?
             get() = definedExternally
             set(value) = definedExternally
         var downloadComplete: (() -> Unit)?
@@ -2333,7 +2332,7 @@ open external class Tabulator {
         var getNextRow: () -> dynamic
         var getPrevRow: () -> dynamic
         var getIndex: () -> Any
-        var getPosition: (filteredPosition: Boolean) -> Number
+        var getPosition: () -> dynamic
         var getGroup: () -> GroupComponent
         var delete: () -> Promise<Unit>
         var scrollTo: () -> Promise<Unit>

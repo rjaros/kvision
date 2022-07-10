@@ -13,7 +13,7 @@ kotlin {
 dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-state"))
-    implementation(npm("tabulator-tables", "^5.2.7"))
+    implementation(npm("tabulator-tables", "^5.3.0"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

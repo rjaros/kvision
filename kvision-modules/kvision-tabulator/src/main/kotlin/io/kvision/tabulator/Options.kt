@@ -120,7 +120,10 @@ enum class Editor(internal val editor: String) {
     SELECT("list"),
     LIST("list"),
     @Deprecated("Use LIST editor instead", ReplaceWith("LIST"))
-    AUTOCOMPLETE("list")
+    AUTOCOMPLETE("list"),
+    DATE("date"),
+    TIME("time"),
+    DATETIME("datetime"),
 }
 
 /**
@@ -291,7 +294,8 @@ enum class RenderType(internal val type: String) {
  */
 enum class ImportFormat(internal val type: String) {
     JSON("json"),
-    CSV("csv")
+    CSV("csv"),
+    ARRAY("array")
 }
 
 /**
@@ -377,7 +381,7 @@ data class ColumnDefinition<T : Any>(
     val validator: Validator? = null,
     val validatorFunction: dynamic = null,
     val validatorParams: String? = null,
-    val download: Boolean? = null,
+    val download: dynamic = null,
     val downloadTitle: String? = null,
     val topCalc: Calc? = null,
     val topCalcParams: dynamic = null,
@@ -409,8 +413,8 @@ data class ColumnDefinition<T : Any>(
     val headerFilterFuncCustom: ((headerValue: dynamic, rowValue: dynamic, rowData: dynamic, filterParams: dynamic) -> Boolean)? = null,
     val headerFilterFuncParams: dynamic = null,
     val headerFilterLiveFilter: Boolean? = null,
-    val htmlOutput: Boolean? = null,
-    val print: Boolean? = null,
+    val htmlOutput: dynamic = null,
+    val print: dynamic = null,
     val cellClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
     val cellDblClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
     val cellContext: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
@@ -766,7 +770,7 @@ data class TabulatorOptions<T : Any>(
     val textDirection: TextDirection? = null,
     val autoColumnsDefinitions: dynamic = null,
     val rowClickMenu: dynamic = null,
-    val headerSortElement: String? = null,
+    val headerSortElement: dynamic = null,
     val dataTreeFilter: Boolean? = null,
     val dataTreeSort: Boolean? = null,
     val renderVertical: RenderType? = null,
@@ -784,7 +788,9 @@ data class TabulatorOptions<T : Any>(
     val rowClickPopup: dynamic = null,
     val rowContextPopup: dynamic = null,
     val resizableColumnFit: Boolean? = null,
-    val rowHeight: Int? = null
+    val rowHeight: Int? = null,
+    val frozenRows: dynamic = null,
+    val frozenRowsField: String? = null
 )
 
 /**
@@ -926,5 +932,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (rowContextPopup != null) this.rowContextPopup = rowContextPopup
         if (resizableColumnFit != null) this.resizableColumnFit = resizableColumnFit
         if (rowHeight != null) this.rowHeight = rowHeight
+        if (frozenRows != null) this.frozenRows = frozenRows
+        if (frozenRowsField != null) this.frozenRowsField = frozenRowsField
     } as Tabulator.Options
 }
