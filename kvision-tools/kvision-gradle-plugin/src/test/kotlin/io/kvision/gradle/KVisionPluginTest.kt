@@ -72,15 +72,15 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     id("io.kvision")
-    kotlin("js") version "1.6.21"
+    kotlin("js") version "1.7.10"
 }
 
 repositories {
     mavenCentral()
 }
 
-val kotlinVersion: String = "1.6.21"
-val kvisionVersion: String = "5.10.1"
+val kotlinVersion: String = "1.7.10"
+val kvisionVersion: String = "5.12.0"
 
 val webDir = file("src/main/web")
 
@@ -179,14 +179,14 @@ kotlin {
             test("kotlin script") {
                 val projectDir: File = `gradle kts project` {
 
-                    val kvisionVersion = "5.10.1"
+                    val kvisionVersion = "5.12.0"
                     `build gradle kts`(
                         """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     id("io.kvision")
-    kotlin("multiplatform") version "1.6.21"
+    kotlin("multiplatform") version "1.7.10"
 }
 
 repositories {
@@ -196,7 +196,7 @@ repositories {
 version = "1.0.0-SNAPSHOT"
 group = "com.example"
 
-val kotlinVersion: String = "1.6.21"
+val kotlinVersion: String = "1.7.10"
 
 val webDir = file("src/frontendMain/web")
 

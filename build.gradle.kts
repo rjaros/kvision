@@ -51,7 +51,7 @@ dependencies {
     implementation(npm("kvision-assets", "^5.0.9"))
     implementation(npm("css-loader", "^6.7.1"))
     implementation(npm("style-loader", "^3.3.1"))
-    implementation(npm("imports-loader", "^3.1.1"))
+    implementation(npm("imports-loader", "^4.0.0"))
     implementation(npm("fecha", "^4.2.3"))
     implementation(npm("snabbdom", "^3.5.1"))
     implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.5"))
