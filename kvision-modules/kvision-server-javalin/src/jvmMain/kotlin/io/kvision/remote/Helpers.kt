@@ -120,6 +120,7 @@ internal class KVHttpServletRequest : HttpServletRequest {
         throw IllegalStateException("Empty implementation")
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override fun getRealPath(path: String?): String {
         throw IllegalStateException("Empty implementation")
     }
@@ -212,6 +213,7 @@ internal class KVHttpServletRequest : HttpServletRequest {
         throw IllegalStateException("Empty implementation")
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override fun isRequestedSessionIdFromUrl(): Boolean {
         throw IllegalStateException("Empty implementation")
     }
@@ -346,6 +348,7 @@ internal class KVHttpServletResponse : HttpServletResponse {
         throw IllegalStateException("Empty implementation")
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override fun encodeUrl(url: String?): String {
         throw IllegalStateException("Empty implementation")
     }
@@ -358,6 +361,7 @@ internal class KVHttpServletResponse : HttpServletResponse {
         throw IllegalStateException("Empty implementation")
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override fun encodeRedirectUrl(url: String?): String {
         throw IllegalStateException("Empty implementation")
     }
@@ -450,6 +454,7 @@ internal class KVHttpServletResponse : HttpServletResponse {
         throw IllegalStateException("Empty implementation")
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override fun setStatus(sc: Int, sm: String?) {
         throw IllegalStateException("Empty implementation")
     }
