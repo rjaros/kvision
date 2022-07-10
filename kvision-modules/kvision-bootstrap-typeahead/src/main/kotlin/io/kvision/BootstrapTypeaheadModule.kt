@@ -27,6 +27,6 @@ package io.kvision
 object BootstrapTypeaheadModule: ModuleInitializer {
 
     override fun initialize() {
-        require("eam_bootstrap-3-typeahead")
+        require("@universityofwarwick/bootstrap-3-typeahead")
     }
 }

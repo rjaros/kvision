@@ -13,7 +13,7 @@ kotlin {
 dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-jquery"))
-    implementation(npm("eam_bootstrap-3-typeahead", "^0.0.2"))
+    implementation(npm("@universityofwarwick/bootstrap-3-typeahead", "^4.1.0"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

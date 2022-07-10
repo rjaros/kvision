@@ -25,6 +25,7 @@ import io.kvision.form.text.Typeahead
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
+import org.w3c.dom.HTMLElement
 import kotlin.test.Test
 
 class TypeaheadSpec : DomSpec {
@@ -41,14 +42,15 @@ class TypeaheadSpec : DomSpec {
             root.add(ti)
             val element = document.getElementById("test")
             val id = ti.input.id
+            val ariaId = element?.childNodes?.item(0)?.unsafeCast<HTMLElement>()?.attributes?.getNamedItem("aria-owns")?.value
             assertEqualsHtml(
-                "<div class=\"form-group kv-mb-3\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"test\" autocomplete=\"off\"></div>",
+                "<div class=\"form-group kv-mb-3\" role=\"combobox\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-owns=\"$ariaId\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"test\" autocomplete=\"off\" aria-autocomplete=\"list\" aria-controls=\"$ariaId\"><ul class=\"typeahead dropdown-menu\" role=\"listbox\" aria-label=\"Search results\" id=\"$ariaId\" style=\"top: 0px; left: 0px; display: none;\"></ul><div class=\"sr-only\" role=\"status\" aria-live=\"polite\"></div></div>",
                 element?.innerHTML,
                 "Should render correct typeahead input form control"
             )
             ti.validatorError = "Validation Error"
             assertEqualsHtml(
-                "<div class=\"form-group kv-mb-3 text-danger\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"test\" autocomplete=\"off\"><div class=\"invalid-feedback\">Validation Error</div></div>",
+                "<div class=\"form-group kv-mb-3 text-danger\" role=\"combobox\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-owns=\"$ariaId\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control is-invalid\" id=\"$id\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"test\" autocomplete=\"off\" aria-autocomplete=\"list\" aria-controls=\"$ariaId\"><ul class=\"typeahead dropdown-menu\" role=\"listbox\" aria-label=\"Search results\" id=\"$ariaId\" style=\"top: 0px; left: 0px; display: none;\"></ul><div class=\"sr-only\" role=\"status\" aria-live=\"polite\"></div><div class=\"invalid-feedback\">Validation Error</div></div>",
                 element?.innerHTML,
                 "Should render correct typeahead input form control with validation error"
             )

@@ -26,6 +26,7 @@ import io.kvision.form.text.TypeaheadInput
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
+import org.w3c.dom.HTMLElement
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -43,8 +44,9 @@ class TypeaheadInputSpec : DomSpec {
             val value = si.getElementJQuery()?.`val`()
             assertEquals("test", value, "Should render typeahead input with correct value")
             val element = document.getElementById("test")
+            val ariaId = element?.childNodes?.item(0)?.unsafeCast<HTMLElement>()?.attributes?.getNamedItem("aria-controls")?.value
             assertEqualsHtml(
-                "<input class=\"form-control\" id=\"idti\" placeholder=\"place\" type=\"text\" value=\"test\" autocomplete=\"off\">",
+                "<input class=\"form-control\" id=\"idti\" placeholder=\"place\" type=\"text\" value=\"test\" autocomplete=\"off\" aria-autocomplete=\"list\" aria-controls=\"$ariaId\"><ul class=\"typeahead dropdown-menu\" role=\"listbox\" aria-label=\"Search results\" id=\"$ariaId\" style=\"top: 0px; left: 0px; display: none;\"></ul><div class=\"sr-only\" role=\"status\" aria-live=\"polite\"></div>",
                 element?.innerHTML,
                 "Should render correct input control"
             )
