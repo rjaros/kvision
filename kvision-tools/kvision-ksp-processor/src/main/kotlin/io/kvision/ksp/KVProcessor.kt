@@ -40,6 +40,7 @@ import io.kvision.annotations.KVBinding
 import io.kvision.annotations.KVBindingMethod
 import io.kvision.annotations.KVBindingRoute
 import io.kvision.annotations.KVService
+import java.io.File
 
 @OptIn(KspExperimental::class)
 class KVProcessor(
@@ -81,7 +82,7 @@ class KVProcessor(
     }
 
     private fun String.sourceSetBelow(startDirectoryName: String): String =
-        substringAfter("/$startDirectoryName/").substringBefore("/kotlin/").substringAfterLast('/')
+        substringAfter("${File.separator}$startDirectoryName${File.separator}").substringBefore("${File.separator}kotlin${File.separator}").substringAfterLast(File.separatorChar)
 
     private fun generateCommonCode(
         packageName: String,
