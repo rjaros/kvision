@@ -27,4 +27,5 @@ internal external object Bootstrap {
     val Tooltip: dynamic
     val Popover: dynamic
     val Modal: dynamic
+    val Toast: dynamic
 }
