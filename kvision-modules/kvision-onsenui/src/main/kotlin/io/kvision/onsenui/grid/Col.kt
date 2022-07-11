@@ -28,7 +28,6 @@ import io.kvision.html.Align
 import io.kvision.html.CustomTag
 import io.kvision.onsenui.GridVerticalAlign
 import io.kvision.utils.asString
-import io.kvision.utils.set
 
 /**
  * A column component.

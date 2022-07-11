@@ -26,7 +26,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
-import io.kvision.utils.set
 
 /**
  * An Onsen UI list title component.

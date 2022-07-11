@@ -22,9 +22,8 @@
 
 package io.kvision.onsenui.form
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.Container
-import io.kvision.utils.set
+import io.kvision.snabbdom.VNode
 
 /**
  * OnsenUI switch input component.

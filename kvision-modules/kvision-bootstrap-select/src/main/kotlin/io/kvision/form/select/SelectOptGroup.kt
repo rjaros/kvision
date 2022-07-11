@@ -21,11 +21,10 @@
  */
 package io.kvision.form.select
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.StringPair
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.set
+import io.kvision.snabbdom.VNode
 
 /**
  * The helper container for adding option groups to [Select].

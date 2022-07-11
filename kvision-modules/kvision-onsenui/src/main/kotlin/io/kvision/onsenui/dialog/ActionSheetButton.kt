@@ -22,11 +22,10 @@
 
 package io.kvision.onsenui.dialog
 
-import org.w3c.dom.events.MouseEvent
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
-import io.kvision.utils.set
+import org.w3c.dom.events.MouseEvent
 
 /**
  * An action sheet button component.

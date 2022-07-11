@@ -21,10 +21,9 @@
  */
 package io.kvision.form.select
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Widget
-import io.kvision.utils.set
+import io.kvision.snabbdom.VNode
 
 /**
  * The helper component for adding options to [Select] or [SelectOptGroup].

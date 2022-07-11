@@ -22,12 +22,11 @@
 
 package io.kvision.onsenui.grid
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.onsenui.GridVerticalAlign
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.set
+import io.kvision.snabbdom.VNode
 
 /**
  * A row component.
