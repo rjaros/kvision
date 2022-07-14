@@ -86,8 +86,21 @@ open class DropDownButton(
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         classSetBuilder.add("dropdown-toggle")
         when {
-            forNavbar -> classSetBuilder.add("nav-link")
-            forDropDown -> classSetBuilder.run { super.buildClassSet(this); add("dropdown-item") }
+            forNavbar -> classSetBuilder.run {
+                super.buildClassSet(object : ClassSetBuilder {
+                    override fun add(value: String) {
+                        if (value != "btn" && value != "btn-primary") classSetBuilder.add(value)
+                    }
+
+                    override fun addAll(values: Collection<String>) {
+                        classSetBuilder.addAll(values)
+                    }
+                }); add("nav-link")
+            }
+            forDropDown -> {
+                super.buildClassSet(classSetBuilder)
+                classSetBuilder.add("dropdown-item")
+            }
             else -> super.buildClassSet(classSetBuilder)
         }
     }
