@@ -115,13 +115,13 @@ class KVProcessor(
                 val (method, route) = if (kvBinding != null) {
                     val method = kvBinding.method.name
                     val route = kvBinding.route
-                    "Http$method" to route
+                    "HttpMethod.$method" to "\"$route\""
                 } else if (kvBindingMethod != null) {
                     val method = kvBindingMethod.method.name
-                    "Http$method" to null
+                    "HttpMethod.$method" to null
                 } else if (kvBindingRoute != null) {
                     val route = kvBindingRoute.route
-                    "HttpMethod.POST" to route
+                    "HttpMethod.POST" to "\"$route\""
                 } else {
                     "HttpMethod.POST" to null
                 }
