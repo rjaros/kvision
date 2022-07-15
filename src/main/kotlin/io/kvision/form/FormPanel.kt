@@ -21,7 +21,6 @@
  */
 package io.kvision.form
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
@@ -31,6 +30,7 @@ import io.kvision.form.FormPanel.Companion.create
 import io.kvision.html.Div
 import io.kvision.panel.FieldsetPanel
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import io.kvision.types.KFile
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
@@ -248,8 +248,19 @@ open class FormPanel<K : Any>(
         }
     }
 
-    protected open fun <C : FormControl> addInternal(
-        key: KProperty1<K, *>, control: C, required: Boolean = false, requiredMessage: String? = null,
+    /**
+     * Adds a form control to the form panel bound to a dynamic field type.
+     * @param key key identifier of the control
+     * @param control the form control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param legend put this control inside a fieldset with given legend
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form panel
+     */
+    open fun <C : FormControl> add(
+        key: String, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
@@ -270,7 +281,7 @@ open class FormPanel<K : Any>(
         } else {
             currentFieldset?.add(control)
         }
-        form.addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        form.add(key, control, required, requiredMessage, validatorMessage, validator)
         return this
     }
 
@@ -302,7 +313,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -322,7 +333,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -342,7 +353,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -362,7 +373,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -382,7 +393,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -402,7 +413,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -422,11 +433,11 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): FormPanel<K> {
-        return addInternal(key, control, required, requiredMessage, legend, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
-     * Bind a control to the form panel.
+     * Bind a control to the form panel with a dynamic key.
      * @param key key identifier of the control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
@@ -435,8 +446,8 @@ open class FormPanel<K : Any>(
      * @param validator optional validation function
      * @return the control itself
      */
-    protected open fun <C : FormControl> C.bindInternal(
-        key: KProperty1<K, *>, required: Boolean = false, requiredMessage: String? = null,
+    open fun <C : FormControl> C.bind(
+        key: String, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
@@ -447,7 +458,7 @@ open class FormPanel<K : Any>(
             else -> this.styleForVerticalFormPanel()
         }
         if (required) this.flabel.addCssClass("required-label")
-        form.addInternal(key, this, required, requiredMessage, validatorMessage, validator)
+        form.add(key, this, required, requiredMessage, validatorMessage, validator)
         return this
     }
 
@@ -467,7 +478,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -486,7 +497,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
 
@@ -506,7 +517,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -525,7 +536,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -544,7 +555,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -563,7 +574,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -582,7 +593,7 @@ open class FormPanel<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bindInternal(key, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
     }
 
     /**
@@ -591,6 +602,15 @@ open class FormPanel<K : Any>(
      * @return current form panel
      */
     open fun remove(key: KProperty1<K, *>): FormPanel<K> {
+        return remove(key.name)
+    }
+
+    /**
+     * Removes a control from the form panel with a dynamic key.
+     * @param key key identifier of the control
+     * @return current form panel
+     */
+    open fun remove(key: String): FormPanel<K> {
         form.getControl(key)?.let {
             val parent = it.parent
             if (parent is FieldsetPanel) {
@@ -615,6 +635,15 @@ open class FormPanel<K : Any>(
      * @return current form panel
      */
     open fun unbind(key: KProperty1<K, *>): FormPanel<K> {
+        return unbind(key.name)
+    }
+
+    /**
+     * Unbind a control from the form panel with a dynamic key.
+     * @param key key identifier of the control
+     * @return current form panel
+     */
+    open fun unbind(key: String): FormPanel<K> {
         form.remove(key)
         return this
     }
@@ -625,6 +654,15 @@ open class FormPanel<K : Any>(
      * @return selected control
      */
     open fun getControl(key: KProperty1<K, *>): FormControl? {
+        return getControl(key.name)
+    }
+
+    /**
+     * Returns a control of given dynamic key.
+     * @param key key identifier of the control
+     * @return selected control
+     */
+    open fun getControl(key: String): FormControl? {
         return form.getControl(key)
     }
 
@@ -633,7 +671,16 @@ open class FormPanel<K : Any>(
      * @param key key identifier of the control
      * @return value of the control
      */
-    operator fun <V>get(key: KProperty1<K, V>): V? {
+    operator fun <V> get(key: KProperty1<K, V>): V? {
+        return get(key.name)
+    }
+
+    /**
+     * Returns a value of the control of given dynamic key.
+     * @param key key identifier of the control
+     * @return value of the control
+     */
+    operator fun <V> get(key: String): V? {
         return getControl(key)?.getValue()?.unsafeCast<V>()
     }
 
@@ -791,10 +838,10 @@ fun Container.form(
     type: FormType? = null, condensed: Boolean = false,
     horizRatio: FormHorizontalRatio = FormHorizontalRatio.RATIO_2,
     className: String? = null,
-    init: (FormPanel<Any>.() -> Unit)? = null
-): FormPanel<Any> {
+    init: (FormPanel<Map<String, Any?>>.() -> Unit)? = null
+): FormPanel<Map<String, Any?>> {
     val formPanel =
-        FormPanel<Any>(
+        FormPanel<Map<String, Any?>>(
             method,
             action,
             enctype,

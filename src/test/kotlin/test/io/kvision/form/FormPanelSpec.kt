@@ -21,8 +21,13 @@
  */
 package test.io.kvision.form
 
+import io.kvision.form.Form
 import io.kvision.form.FormPanel
+import io.kvision.form.check.CheckBox
+import io.kvision.form.form
 import io.kvision.form.text.Text
+import io.kvision.panel.ContainerType
+import io.kvision.panel.Root
 import io.kvision.test.SimpleSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -133,6 +138,31 @@ class FormPanelSpec : SimpleSpec {
             formPanel.setData(DataForm2(s = "12345", d = "abc"))
             val valid3 = formPanel.validate()
             assertEquals(true, valid3, "Should be valid")
+        }
+    }
+
+    @Test
+    fun dynamicForm() {
+        run {
+            val root = Root("test", containerType = ContainerType.FIXED)
+            val form = root.form()
+            val data = mapOf("a" to "Test value", "b" to true, "c" to 5)
+            form.setData(data)
+            val result = form.getData()
+            assertEquals(data, result, "Dynamic FormPanel should return initial value without adding any control")
+            val textField = Text()
+            form.add("a", textField)
+            val check = CheckBox()
+            form.add("b", check)
+            form.setData(data)
+            val result2 = form.getData()
+            assertEquals(data, result2, "Dynamic FormPanel should return initial value after adding a control")
+            assertEquals(data["a"], textField.value, "Text field value should be set correctly")
+            assertEquals(data["b"], check.value, "CheckBox field value should be set correctly")
+            textField.value = "Test value 2"
+            check.value = false
+            val result3 = form.getData()
+            assertEquals(mapOf("a" to "Test value 2", "b" to false, "c" to 5), result3, "Dynamic FormPanel should return changed value")
         }
     }
 

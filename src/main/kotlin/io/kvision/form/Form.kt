@@ -115,13 +115,23 @@ class Form<K : Any>(
         }
     }
 
-    internal fun <C : FormControl> addInternal(
-        key: KProperty1<K, *>, control: C, required: Boolean = false, requiredMessage: String? = null,
+    /**
+     * Adds a form control to the form with a dynamic keys.
+     * @param key key identifier of the control
+     * @param control the form control
+     * @param required determines if the control is required
+     * @param requiredMessage optional required validation message
+     * @param validatorMessage optional function returning validation message
+     * @param validator optional validation function
+     * @return current form
+     */
+    fun <C : FormControl> add(
+        key: String, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        this.fields[key.name] = control
-        this.fieldsParams[key.name] = FieldParams(required, requiredMessage, validatorMessage, validator)
+        this.fields[key] = control
+        this.fieldsParams[key] = FieldParams(required, requiredMessage, validatorMessage, validator)
         return this
     }
 
@@ -140,7 +150,7 @@ class Form<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -158,7 +168,7 @@ class Form<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -176,7 +186,7 @@ class Form<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -194,7 +204,7 @@ class Form<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -212,7 +222,7 @@ class Form<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -230,7 +240,7 @@ class Form<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -248,7 +258,7 @@ class Form<K : Any>(
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): Form<K> {
-        return addInternal(key, control, required, requiredMessage, validatorMessage, validator)
+        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -262,6 +272,16 @@ class Form<K : Any>(
     }
 
     /**
+     * Removes a control from the form with a dynamic keys.
+     * @param key key identifier of the control
+     * @return current form
+     */
+    fun remove(key: String): Form<K> {
+        this.fields.remove(key)
+        return this
+    }
+
+    /**
      * Removes all controls from the form.
      * @return current form
      */
@@ -271,12 +291,21 @@ class Form<K : Any>(
     }
 
     /**
-     * Returns a control of given key.
+     * Returns a control with a given key.
      * @param key key identifier of the control
      * @return selected control
      */
     fun getControl(key: KProperty1<K, *>): FormControl? {
         return this.fields[key.name]
+    }
+
+    /**
+     * Returns a control with a given dynamic key.
+     * @param key key identifier of the control
+     * @return selected control
+     */
+    fun getControl(key: String): FormControl? {
+        return this.fields[key]
     }
 
     /**
@@ -288,11 +317,20 @@ class Form<K : Any>(
     }
 
     /**
-     * Returns a value of the control of given key.
+     * Returns a value of the control with a given key.
      * @param key key identifier of the control
      * @return value of the control
      */
     operator fun get(key: KProperty1<K, *>): Any? {
+        return getControl(key)?.getValue()
+    }
+
+    /**
+     * Returns a value of the control with a given dynamic key.
+     * @param key key identifier of the control
+     * @return value of the control
+     */
+    operator fun get(key: String): Any? {
         return getControl(key)?.getValue()
     }
 
@@ -302,32 +340,49 @@ class Form<K : Any>(
      */
     fun setData(model: K) {
         dataMap.clear()
-        val json = jsonFactory?.invoke(model) ?: throw IllegalStateException("Serializer not defined")
-        val keys = js("Object").keys(json).unsafeCast<Array<String>>()
-        for (key in keys) {
-            val jsonValue = json[key]
-            if (jsonValue != null) {
-                when (val formField = fields[key]) {
-                    is DateFormControl -> formField.value = (jsonValue.unsafeCast<String>()).toDateF()
-                    is KFilesFormControl -> {
-                        formField.value = Serialization.plain.decodeFromString(
-                            ListSerializer(KFile.serializer()),
-                            JSON.stringify(jsonValue)
-                        )
-                    }
-                    else -> {
-                        if (formField != null) {
-                            formField.setValue(jsonValue)
-                        } else {
-                            dataMap[key] = jsonValue
+        if (jsonFactory != null) {
+            val json = jsonFactory.invoke(model)
+            val keys = js("Object").keys(json).unsafeCast<Array<String>>()
+            for (key in keys) {
+                val jsonValue = json[key]
+                if (jsonValue != null) {
+                    when (val formField = fields[key]) {
+                        is DateFormControl -> formField.value = (jsonValue.unsafeCast<String>()).toDateF()
+                        is KFilesFormControl -> {
+                            formField.value = Serialization.plain.decodeFromString(
+                                ListSerializer(KFile.serializer()),
+                                JSON.stringify(jsonValue)
+                            )
+                        }
+                        else -> {
+                            if (formField != null) {
+                                formField.setValue(jsonValue)
+                            } else {
+                                dataMap[key] = jsonValue
+                            }
                         }
                     }
+                } else {
+                    fields[key]?.setValue(null)
                 }
-            } else {
-                fields[key]?.setValue(null)
             }
+            fields.forEach { if (!keys.contains(it.key)) it.value.setValue(null) }
+        } else {
+            val map = model.unsafeCast<Map<String, Any?>>()
+            map.forEach { (key, value) ->
+                if (value != null) {
+                    val formField = fields[key]
+                    if (formField != null) {
+                        formField.setValue(value)
+                    } else {
+                        dataMap[key] = value
+                    }
+                } else {
+                    fields[key]?.setValue(null)
+                }
+            }
+            fields.forEach { if (!map.contains(it.key)) it.value.setValue(null) }
         }
-        fields.forEach { if (!keys.contains(it.key)) it.value.setValue(null) }
     }
 
     /**
@@ -344,7 +399,7 @@ class Form<K : Any>(
      */
     fun getData(): K {
         val map = dataMap + fields.entries.associateBy({ it.key }, { it.value.getValue() })
-        return modelFactory?.invoke(map.withDefault { null }) ?: throw IllegalStateException("Serializer not defined")
+        return modelFactory?.invoke(map.withDefault { null }) ?: map.unsafeCast<K>()
     }
 
     /**
@@ -360,7 +415,7 @@ class Form<K : Any>(
                 )
             )
         } else {
-            JSON.parse("{}")
+            getData().unsafeCast<Map<String, Any?>>().asJson()
         }
     }
 
