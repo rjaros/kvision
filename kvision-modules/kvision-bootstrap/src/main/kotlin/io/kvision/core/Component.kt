@@ -21,7 +21,7 @@
  */
 package io.kvision.core
 
-enum class BsBorder(internal val className: String) {
+enum class BsBorder(override val className: String) : CssClass {
     BORDER("border"),
     BORDERTOP("border-top"),
     BORDERBOTTOM("border-bottom"),
@@ -55,7 +55,7 @@ fun Component.removeBsBorder(vararg bsBorder: BsBorder) {
     }
 }
 
-enum class BsRounded(internal val className: String) {
+enum class BsRounded(override val className: String) : CssClass {
     ROUNDED("rounded"),
     ROUNDEDTOP("rounded-top"),
     ROUNDEDBOTTOM("rounded-bottom"),
@@ -71,6 +71,8 @@ enum class BsRounded(internal val className: String) {
     ROUNDED1("rounded-1"),
     ROUNDED2("rounded-2"),
     ROUNDED3("rounded-3"),
+    ROUNDED4("rounded-4"),
+    ROUNDED5("rounded-5"),
 }
 
 fun Component.addBsRounded(vararg bsRounded: BsRounded) {
@@ -93,7 +95,7 @@ fun Component.removeBsClearfix() {
     this.removeCssClass("clearfix")
 }
 
-enum class BsColor(internal val className: String) {
+enum class BsColor(override val className: String) : CssClass {
     PRIMARY("text-primary"),
     SECONDARY("text-secondary"),
     SUCCESS("text-success"),
@@ -106,7 +108,15 @@ enum class BsColor(internal val className: String) {
     BODY("text-body"),
     MUTED("text-muted"),
     BLACK50("text-black-50"),
-    WHITE50("text-white-50")
+    WHITE50("text-white-50"),
+    PRIMARYBG("text-bg-primary"),
+    SECONDARYBG("text-bg-secondary"),
+    SUCCESSBG("text-bg-success"),
+    DANGERBG("text-bg-danger"),
+    WARNINGBG("text-bg-warning"),
+    INFOBG("text-bg-info"),
+    LIGHTBG("text-bg-light"),
+    DARKBG("text-bg-dark")
 }
 
 fun Component.addBsColor(bsColor: BsColor) {

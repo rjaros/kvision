@@ -55,7 +55,8 @@ enum class TableType(val type: String) {
     BORDERED("table-bordered"),
     BORDERLESS("table-borderless"),
     HOVER("table-hover"),
-    SMALL("table-sm")
+    SMALL("table-sm"),
+    STRIPEDCOLUMNS("table-striped-columns"),
 }
 
 /**
@@ -80,6 +81,7 @@ enum class ResponsiveType(val type: String) {
  * @param responsiveType determines if the table is responsive
  * @param tableColor table color variant
  * @param theadColor table header color variant
+ * @param tbodyDivider add table body group divider
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -87,7 +89,7 @@ enum class ResponsiveType(val type: String) {
 open class Table(
     headerNames: List<String>? = null,
     types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
-    tableColor: TableColor? = null, val theadColor: TableColor? = null,
+    tableColor: TableColor? = null, val theadColor: TableColor? = null, tbodyDivider: Boolean = false,
     className: String? = null, init: (Table.() -> Unit)? = null
 ) : SimplePanel((className?.let { "$it " } ?: "") + "table") {
 
@@ -116,12 +118,27 @@ open class Table(
      */
     var tableColor by refreshOnUpdate(tableColor)
 
+    /**
+     * Table body group divider.
+     */
+    var tbodyDivider
+        get() = tbody.hasCssClass("table-group-divider")
+        set(value) {
+            if (value) {
+                tbody.addCssClass("table-group-divider")
+            } else {
+                tbody.removeCssClass("table-group-divider")
+            }
+        }
+
     internal val theadRow = Tag(TAG.TR)
     private val thead = Tag(TAG.THEAD).apply {
         if (theadColor != null) addCssClass(theadColor.className)
         add(this@Table.theadRow)
     }
-    private val tbody = Tag(TAG.TBODY)
+    private val tbody = Tag(TAG.TBODY).apply {
+        if (tbodyDivider) addCssClass("table-group-divider")
+    }
 
     init {
         @Suppress("LeakingThis")
@@ -249,12 +266,12 @@ open class Table(
 fun Container.table(
     headerNames: List<String>? = null,
     types: Set<TableType> = setOf(), caption: String? = null, responsiveType: ResponsiveType? = null,
-    tableColor: TableColor? = null, theadColor: TableColor? = null,
+    tableColor: TableColor? = null, theadColor: TableColor? = null, tbodyDivider: Boolean = false,
     className: String? = null,
     init: (Table.() -> Unit)? = null
 ): Table {
     val table =
-        Table(headerNames, types, caption, responsiveType, tableColor, theadColor, className, init)
+        Table(headerNames, types, caption, responsiveType, tableColor, theadColor, tbodyDivider, className, init)
     this.add(table)
     return table
 }
