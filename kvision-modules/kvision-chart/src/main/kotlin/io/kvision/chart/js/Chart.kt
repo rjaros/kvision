@@ -957,6 +957,7 @@ external interface ArcBorderRadius {
 external interface ArcOptions : CommonElementOptions {
     var borderAlign: String /* "center" | "inner" */
     var offset: Number
+    var circular: Boolean
     var borderRadius: dynamic /* Number | ArcBorderRadius */
         get() = definedExternally
         set(value) = definedExternally

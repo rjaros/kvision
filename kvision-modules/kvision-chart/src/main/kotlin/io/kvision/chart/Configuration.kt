@@ -1183,7 +1183,8 @@ data class DataSets(
     val borderAlign: BorderAlign? = null,
     val cutout: dynamic = null,
     val animation: dynamic = null,
-    val drawActiveElementsOnTop: Boolean? = null
+    val drawActiveElementsOnTop: Boolean? = null,
+    val circular: Boolean? = null
 )
 
 /**
@@ -1265,6 +1266,7 @@ fun DataSets.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (cutout != null) this.cutout = cutout
         if (animation != null) this.animation = animation
         if (drawActiveElementsOnTop != null) this.drawActiveElementsOnTop = drawActiveElementsOnTop
+        if (circular != null) this.circular = circular
     }
 }
 
