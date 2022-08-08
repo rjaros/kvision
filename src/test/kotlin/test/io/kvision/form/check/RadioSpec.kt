@@ -21,8 +21,8 @@
  */
 package test.io.kvision.form.check
 
+import io.kvision.form.check.CheckStyle
 import io.kvision.form.check.Radio
-import io.kvision.form.check.RadioStyle
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
@@ -36,7 +36,7 @@ class RadioSpec : DomSpec {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
             val ci = Radio(value = true, label = "Label", extraValue = "abc").apply {
                 name = "name"
-                style = RadioStyle.DANGER
+                style = CheckStyle.DANGER
                 disabled = true
                 inline = true
             }
@@ -44,15 +44,15 @@ class RadioSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ci.input.id
             assertEqualsHtml(
-                "<div class=\"form-check abc-radio abc-radio-danger form-check-inline\"><input class=\"form-check-input\" id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check form-check-inline\"><input class=\"form-check-input kv-check-danger\" id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct radio button form control"
             )
-            ci.style = RadioStyle.INFO
+            ci.style = CheckStyle.INFO
             ci.squared = true
             ci.inline = false
             assertEqualsHtml(
-                "<div class=\"form-check abc-checkbox abc-checkbox-info\"><input class=\"form-check-input\" id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check\"><input class=\"form-check-input kv-check-info kv-radio-square\" id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct radio button form control"
             )

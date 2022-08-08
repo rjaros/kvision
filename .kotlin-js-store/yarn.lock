@@ -486,11 +486,6 @@ async@^3.2.2:
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.4.tgz#2d22e00f8cddeb5fde5dd33522b56d1cf569a81c"
   integrity sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==
 
-awesome-bootstrap-checkbox@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/awesome-bootstrap-checkbox/-/awesome-bootstrap-checkbox-1.0.1.tgz#dab10146b6001129ab0a0ec1e54bb77c6c30457a"
-  integrity sha512-rVJ3tPwpiRTWB/qV7ltMo5jQ24RbzH78DLesWY5M3oIP8uT0TO6KuWIfeLaP3bw2i388ci4H1zcoLkVIN+eIdA==
-
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -1816,10 +1811,10 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kvision-assets@^5.0.9:
-  version "5.0.9"
-  resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-5.0.9.tgz#6f305e4c085a4eab57897f6741c208121e9b035c"
-  integrity sha512-pMbKmlGbc6FYtJVPbH6oKXWFOp6O6Uljhi6KODs4AGuIiqZxhjXKXwMEhaaLzheuP5/bu0hNYWa4LGSwcvIOJQ==
+kvision-assets@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-6.0.0.tgz#de17ec942efd067fc180e7fab4e040c4e41bbe25"
+  integrity sha512-fjPGTMGiboRnXXwhQFVOsRdDaDFnBfAQBRGhbzjQUp5oJKUnPS303Pua0u5atQdYMXyN/u6fyH6TEHgQzM9Wog==
 
 leaflet@^1.8.0:
   version "1.8.0"

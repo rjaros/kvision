@@ -78,7 +78,7 @@ open class Window(
     className: String? = null,
     init: (Window.() -> Unit)? = null
 ) :
-    SimplePanel((className?.let { "$it " } ?: "") + "modal-content kv-window") {
+    SimplePanel((className?.let { "$it " } ?: "") + "modal modal-content kv-window") {
 
     /**
      * Window caption text.

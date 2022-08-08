@@ -21,6 +21,7 @@
  */
 package io.kvision.form.check
 
+import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 
 /**
@@ -46,9 +47,21 @@ open class CheckBoxInput(
         observers.forEach { ob -> ob(this.value) }
     }
 
+    /**
+     * Determines if the checkbox is rendered as a circle.
+     */
+    var circled by refreshOnUpdate(false)
+
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
+    }
+
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        if (circled) {
+            classSetBuilder.add("kv-checkbox-circle")
+        }
     }
 
     override fun refreshState() {

@@ -24,6 +24,7 @@ package io.kvision.form.check
 import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
+import io.kvision.core.CssClass
 import io.kvision.core.Widget
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
@@ -41,6 +42,20 @@ enum class CheckInputType(internal val type: String) {
 }
 
 /**
+ * The style (color) of the check input control.
+ */
+enum class CheckStyle(override val className: String): CssClass {
+    PRIMARY("kv-check-primary"),
+    SECONDARY("kv-check-secondary"),
+    SUCCESS("kv-check-success"),
+    DANGER("kv-check-danger"),
+    WARNING("kv-check-warning"),
+    INFO("kv-check-info"),
+    LIGHT("kv-check-light"),
+    DARK("kv-check-dark")
+}
+
+/**
  * The basic input component rendered as HTML *input type="checkbox"* or *input type="radio"*.
  *
  * @constructor
@@ -54,18 +69,6 @@ abstract class CheckInput(
 ) : Widget(className), GenericFormComponent<Boolean>, FormInput, MutableState<Boolean> {
 
     protected val observers = mutableListOf<(Boolean) -> Unit>()
-
-    init {
-        useSnabbdomDistinctKey()
-        this.setInternalEventListener<CheckInput> {
-            click = {
-                changeValue("click")
-            }
-            change = {
-                changeValue("change")
-            }
-        }
-    }
 
     /**
      * The selection state of the input.
@@ -84,6 +87,11 @@ abstract class CheckInput(
      * The type of the generated HTML input element.
      */
     var type by refreshOnUpdate(type)
+
+    /**
+     * The style of the check input control.
+     */
+    var style: CheckStyle? by refreshOnUpdate()
 
     /**
      * The name attribute of the generated HTML input element.
@@ -110,14 +118,28 @@ abstract class CheckInput(
      */
     override var validationStatus: ValidationStatus? by refreshOnUpdate()
 
+    init {
+        useSnabbdomDistinctKey()
+        this.setInternalEventListener<CheckInput> {
+            click = {
+                changeValue("click")
+            }
+            change = {
+                changeValue("change")
+            }
+        }
+    }
+
     override fun render(): VNode {
         return render("input")
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
+        classSetBuilder.add("form-check-input")
         classSetBuilder.add(validationStatus)
         classSetBuilder.add(size)
+        classSetBuilder.add(style)
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {

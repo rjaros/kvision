@@ -21,7 +21,7 @@
  */
 package test.io.kvision.form.check
 
-import io.kvision.form.check.CheckBoxStyle
+import io.kvision.form.check.CheckStyle
 import io.kvision.form.check.TriStateCheckBox
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
@@ -38,7 +38,7 @@ class TriStateCheckBoxSpec : DomSpec {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
             val ci = TriStateCheckBox(value = null, label = "Label").apply {
                 name = "name"
-                style = CheckBoxStyle.DANGER
+                style = CheckStyle.DANGER
                 circled = true
                 inline = true
             }
@@ -46,7 +46,7 @@ class TriStateCheckBoxSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ci.input.id
             assertEqualsHtml(
-                "<div class=\"form-check abc-checkbox abc-checkbox-danger abc-checkbox-circle form-check-inline\"><input class=\"form-check-input\" id=\"$id\" type=\"checkbox\" name=\"name\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check form-check-inline\"><input class=\"form-check-input kv-check-danger kv-checkbox-circle\" id=\"$id\" type=\"checkbox\" name=\"name\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct tri-state checkbox form control"
             )

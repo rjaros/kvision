@@ -43,7 +43,7 @@ class CheckBoxInputSpec : DomSpec {
             root.add(ci)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<input id=\"idti\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\">",
+                "<input class=\"form-check-input\" id=\"idti\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\">",
                 element?.innerHTML,
                 "Should render correct checkbox control"
             )

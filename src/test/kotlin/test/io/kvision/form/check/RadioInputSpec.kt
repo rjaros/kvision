@@ -41,7 +41,7 @@ class RadioInputSpec : DomSpec {
             root.add(ci)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<input id=\"idti\" type=\"radio\" checked=\"checked\" name=\"name\" value=\"abc\">",
+                "<input class=\"form-check-input\" id=\"idti\" type=\"radio\" checked=\"checked\" name=\"name\" value=\"abc\">",
                 element?.innerHTML,
                 "Should render correct radio button control"
             )

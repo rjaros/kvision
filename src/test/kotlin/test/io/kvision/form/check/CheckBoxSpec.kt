@@ -22,7 +22,7 @@
 package test.io.kvision.form.check
 
 import io.kvision.form.check.CheckBox
-import io.kvision.form.check.CheckBoxStyle
+import io.kvision.form.check.CheckStyle
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
@@ -36,7 +36,7 @@ class CheckBoxSpec : DomSpec {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
             val ci = CheckBox(value = true, label = "Label").apply {
                 name = "name"
-                style = CheckBoxStyle.DANGER
+                style = CheckStyle.DANGER
                 disabled = true
                 circled = true
                 inline = true
@@ -45,15 +45,15 @@ class CheckBoxSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ci.input.id
             assertEqualsHtml(
-                "<div class=\"form-check abc-checkbox abc-checkbox-danger abc-checkbox-circle form-check-inline\"><input class=\"form-check-input\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check form-check-inline\"><input class=\"form-check-input kv-check-danger kv-checkbox-circle\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct checkbox form control"
             )
-            ci.style = CheckBoxStyle.INFO
+            ci.style = CheckStyle.INFO
             ci.circled = false
             ci.inline = false
             assertEqualsHtml(
-                "<div class=\"form-check abc-checkbox abc-checkbox-info\"><input class=\"form-check-input\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check\"><input class=\"form-check-input kv-check-info\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct checkbox form control"
             )

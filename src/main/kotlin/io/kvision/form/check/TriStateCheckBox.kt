@@ -31,6 +31,7 @@ import io.kvision.form.InvalidFeedback
 import io.kvision.form.TriStateFormControl
 import io.kvision.html.span
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
 import org.w3c.dom.events.MouseEvent
@@ -103,12 +104,20 @@ open class TriStateCheckBox(
     /**
      * The style (one of Bootstrap standard colors) of the input.
      */
-    var style: CheckBoxStyle? by refreshOnUpdate()
+    var style
+        get() = input.style
+        set(value) {
+            input.style = value
+        }
 
     /**
      * Determines if the checkbox is rendered as a circle.
      */
-    var circled by refreshOnUpdate(false)
+    var circled
+        get() = input.circled
+        set(value) {
+            input.circled = value
+        }
 
     /**
      * Determines if the checkbox is rendered inline.
@@ -120,9 +129,19 @@ open class TriStateCheckBox(
      */
     var switch by refreshOnUpdate(false)
 
+    /**
+     * Render checkbox on the opposite side.
+     */
+    var reversed by refreshOnUpdate(false)
+
+    /**
+     * Render label as first child.
+     */
+    var labelFirst by refreshOnUpdate(false)
+
     private val idc = "kv_form_tristatecheckbox_$counter"
     final override val input: TriStateCheckBoxInput =
-        TriStateCheckBoxInput(value ?: false, className = "form-check-input").apply {
+        TriStateCheckBoxInput(value ?: false).apply {
             this.id = this@TriStateCheckBox.idc
             this.name = name
             this.indeterminate = value == null
@@ -135,12 +154,18 @@ open class TriStateCheckBox(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(input)
-        this.addPrivate(flabel)
-        this.addPrivate(invalidFeedback)
         counter++
         @Suppress("LeakingThis")
         init?.invoke(this)
+    }
+
+    override fun render(): VNode {
+        val childrenList = if (labelFirst)
+            listOf(flabel, input, invalidFeedback)
+        else
+            listOf(input, flabel, invalidFeedback)
+        val children = childrenList.mapNotNull { if (it.visible) it.renderVNode() else null }.toTypedArray()
+        return render("div", children)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -160,17 +185,14 @@ open class TriStateCheckBox(
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
-        if (!switch) {
-            classSetBuilder.add("abc-checkbox")
-        } else {
+        if (switch) {
             classSetBuilder.add("form-switch")
-        }
-        classSetBuilder.add(style)
-        if (circled) {
-            classSetBuilder.add("abc-checkbox-circle")
         }
         if (inline) {
             classSetBuilder.add("form-check-inline")
+        }
+        if (reversed) {
+            classSetBuilder.add("form-check-reverse")
         }
         if (validatorError != null) {
             classSetBuilder.add("text-danger")
@@ -198,11 +220,18 @@ open class TriStateCheckBox(
     }
 
     override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
-        addCssClass("form-group")
-        addCssClass("kv-mb-3")
-        addSurroundingCssClass("row")
-        addCssClass("offset-sm-${horizontalRatio.labels}")
-        addCssClass("col-sm-${horizontalRatio.fields}")
+        if (labelFirst) {
+            super.styleForHorizontalFormPanel(horizontalRatio)
+            addCssClass("form-group")
+            addCssClass("kv-mb-3")
+            removeCssClass("form-check")
+        } else {
+            addCssClass("form-group")
+            addCssClass("kv-mb-3")
+            addSurroundingCssClass("row")
+            addCssClass("offset-sm-${horizontalRatio.labels}")
+            addCssClass("col-sm-${horizontalRatio.fields}")
+        }
     }
 
     override fun styleForInlineFormPanel() {
@@ -212,6 +241,13 @@ open class TriStateCheckBox(
     override fun styleForVerticalFormPanel() {
         addCssClass("form-group")
         addCssClass("kv-mb-3")
+    }
+
+    override fun dispose() {
+        super.dispose()
+        input.dispose()
+        flabel.dispose()
+        invalidFeedback.dispose()
     }
 
     override fun getState(): Boolean? {

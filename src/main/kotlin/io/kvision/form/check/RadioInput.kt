@@ -21,6 +21,7 @@
  */
 package io.kvision.form.check
 
+import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 
 /**
@@ -37,9 +38,21 @@ open class RadioInput(
     init: (RadioInput.() -> Unit)? = null
 ) : CheckInput(CheckInputType.RADIO, value, className) {
 
+    /**
+     * Determines if the radio button is rendered as a square.
+     */
+    var squared by refreshOnUpdate(false)
+
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
+    }
+
+    override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
+        super.buildClassSet(classSetBuilder)
+        if (squared) {
+            classSetBuilder.add("kv-radio-square")
+        }
     }
 
 }

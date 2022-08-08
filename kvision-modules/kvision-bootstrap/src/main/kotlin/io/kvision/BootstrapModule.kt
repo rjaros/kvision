@@ -39,6 +39,5 @@ object BootstrapModule : ModuleInitializer {
     }
 
     override fun initialize() {
-        require("awesome-bootstrap-checkbox")
     }
 }

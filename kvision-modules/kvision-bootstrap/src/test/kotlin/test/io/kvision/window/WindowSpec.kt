@@ -41,7 +41,7 @@ class WindowSpec : DomSpec {
             val id = window.id
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<div class=\"modal-content kv-window\" id=\"$id\" style=\"position: absolute; overflow: hidden; width: auto; z-index: 901;\"><div class=\"modal-header\"><h5 class=\"modal-title\">Window title</h5><div class=\"kv-window-icons-container\"></div></div><div style=\"height: auto; width: auto; overflow: auto;\"></div></div>",
+                "<div class=\"modal modal-content kv-window\" id=\"$id\" style=\"position: absolute; overflow: hidden; width: auto; z-index: 901;\"><div class=\"modal-header\"><h5 class=\"modal-title\">Window title</h5><div class=\"kv-window-icons-container\"></div></div><div style=\"height: auto; width: auto; overflow: auto;\"></div></div>",
                 element?.innerHTML,
                 "Should render floating window"
             )

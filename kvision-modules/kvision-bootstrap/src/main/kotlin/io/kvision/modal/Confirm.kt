@@ -53,7 +53,7 @@ open class Confirm(
     cancelVisible: Boolean = false, yesTitle: String = "Yes", noTitle: String = "No", cancelTitle: String = "Cancel",
     private val noCallback: (() -> Unit)? = null,
     private val yesCallback: (() -> Unit)? = null
-) : Modal(caption, false, size, animation, centered, false) {
+) : Modal(caption, false, size, animation, centered, false, cancelVisible) {
     /**
      * Window content text.
      */

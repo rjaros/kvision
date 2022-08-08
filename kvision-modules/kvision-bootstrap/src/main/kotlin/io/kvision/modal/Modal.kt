@@ -21,7 +21,6 @@
  */
 package io.kvision.modal
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
@@ -36,6 +35,7 @@ import io.kvision.panel.Root
 import io.kvision.panel.Root.Companion.addModal
 import io.kvision.panel.Root.Companion.removeModal
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import io.kvision.utils.obj
 
 /**
