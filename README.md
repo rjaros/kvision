@@ -55,7 +55,6 @@ class App : Application() {
 - Integrates with a lot of libraries and components:
     - [Font awesome](https://fontawesome.com/)
     - [Bootstrap Select](https://github.com/silviomoreto/bootstrap-select) (with [AJAX](https://github.com/truckingsim/Ajax-Bootstrap-Select) extension)
-    - [Awesome Bootstrap Checkbox](https://github.com/flatlogic/awesome-bootstrap-checkbox)
     - [Trix editor](https://trix-editor.org/)
     - [Bootstrap Datetime picker](https://github.com/pingcheng/bootstrap4-datetimepicker)
     - [Bootstrap touchspin](https://github.com/istvan-ujjmeszaros/bootstrap-touchspin)
@@ -102,7 +101,7 @@ See also the complete frontend implementation of [RealWorld example application]
 
 The comprehensive [KVision guide](https://kvision.gitbook.io/kvision-guide/) is published on GitBook.
 
-The API documentation, generated with new Dokka 1.4, is available at [https://rjaros.github.io/kvision/index.html](https://rjaros.github.io/kvision/index.html).
+The API documentation, generated with new Dokka, is available at [https://rjaros.github.io/kvision/index.html](https://rjaros.github.io/kvision/index.html).
 
 You can also look at [KVision blog posts at dev.to](https://dev.to/t/kvision/latest) and you can talk with KVision
 users and developers on Kotlin Slack [#kvision](https://kotlinlang.slack.com/messages/kvision/) channel and on the [Discord server](https://discord.gg/SdsN3arN2w).

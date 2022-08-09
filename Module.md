@@ -12,7 +12,7 @@ Annotations for use with KVision compiler plugin.
 
 # Package io.kvision.core
 
-KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders, 
+KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders,
 backgrounds, fonts, text and position) and the main Widget class.
 
 # Package io.kvision.chart
@@ -86,7 +86,7 @@ Full-featured file upload component with drag & drop, preview and AJAX upload mo
 
 # Package io.kvision.html
 
-Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links, lists and iframe. 
+Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links, lists and iframe.
 Support for Handlebars.js templates is included.
 
 # Package io.kvision.i18n
@@ -108,6 +108,10 @@ A set of tools for parsing, validating, manipulating, and formatting dates based
 # Package io.kvision.navbar
 
 Bootstrap navbar components.
+
+# Package io.kvision.offcanvas
+
+Bootstrap offcanvas component.
 
 # Package io.kvision.onsenui
 
@@ -188,7 +192,7 @@ A set of components for creating multiplatform automatic JSON-RPC connectivity w
 
 # Package io.kvision.state
 
-Classes supporting the observer pattern, including the implementation of the observable list. 
+Classes supporting the observer pattern, including the implementation of the observable list.
 
 # Package io.kvision.tabulator
 
