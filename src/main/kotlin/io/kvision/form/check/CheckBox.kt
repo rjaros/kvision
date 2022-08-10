@@ -120,6 +120,7 @@ open class CheckBox(
     /**
      * Render as a switch.
      */
+    @Deprecated("Use Switch component from the Bootstrap module instead")
     var switch by refreshOnUpdate(false)
 
     /**
@@ -168,7 +169,6 @@ open class CheckBox(
         return render("div", children)
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         return input.setEventListener(block)
     }
@@ -185,6 +185,7 @@ open class CheckBox(
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
+        @Suppress("DEPRECATION")
         if (switch) {
             classSetBuilder.add("form-switch")
         }
