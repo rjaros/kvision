@@ -90,6 +90,7 @@ $dokka.location:io.kvision.chart.js/ArcHoverOptions/hoverOffset/#/PointingToDecl
 $dokka.location:io.kvision.chart.js/ArcOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-arc-options/index.html
 $dokka.location:io.kvision.chart.js/ArcOptions/borderAlign/#/PointingToDeclaration/kvision/io.kvision.chart.js/-arc-options/border-align.html
 $dokka.location:io.kvision.chart.js/ArcOptions/borderRadius/#/PointingToDeclaration/kvision/io.kvision.chart.js/-arc-options/border-radius.html
+$dokka.location:io.kvision.chart.js/ArcOptions/circular/#/PointingToDeclaration/kvision/io.kvision.chart.js/-arc-options/circular.html
 $dokka.location:io.kvision.chart.js/ArcOptions/offset/#/PointingToDeclaration/kvision/io.kvision.chart.js/-arc-options/offset.html
 $dokka.location:io.kvision.chart.js/ArcProps///PointingToDeclaration/kvision/io.kvision.chart.js/-arc-props/index.html
 $dokka.location:io.kvision.chart.js/ArcProps/circumference/#/PointingToDeclaration/kvision/io.kvision.chart.js/-arc-props/circumference.html
@@ -1416,7 +1417,7 @@ $dokka.location:io.kvision.chart/CrossAlign.FAR///PointingToDeclaration/{"org.je
 $dokka.location:io.kvision.chart/CrossAlign.NEAR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.chart/-cross-align/-n-e-a-r/index.html
 $dokka.location:io.kvision.chart/CrossAlign///PointingToDeclaration/kvision/io.kvision.chart/-cross-align/index.html
 $dokka.location:io.kvision.chart/DataSets///PointingToDeclaration/kvision/io.kvision.chart/-data-sets/index.html
-$dokka.location:io.kvision.chart/DataSets/DataSets/#io.kvision.chart.InterpolationMode?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[io.kvision.core.Color]?#io.kvision.chart.LineCap?#kotlin.collections.List[kotlin.Int]?#kotlin.Number?#io.kvision.chart.LineJoin?#kotlin.collections.List[io.kvision.chart.Position]?#kotlin.Any#kotlin.collections.List[kotlin.Any]?#kotlin.Any#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#io.kvision.chart.LineCap?#kotlin.collections.List[kotlin.Int]?#kotlin.Number?#io.kvision.chart.LineJoin?#kotlin.String?#kotlin.String?#kotlin.Number?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[io.kvision.chart.PointStyle]?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Boolean?#kotlin.Number?#kotlin.String?#kotlin.String?#kotlin.Number?#kotlin.Number?#kotlin.Any#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Boolean?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Number?#kotlin.Boolean?#kotlin.Number?#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Number?#kotlin.Number?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Any]?#io.kvision.chart.BorderAlign?#kotlin.Any#kotlin.Any#kotlin.Boolean?/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/-data-sets.html
+$dokka.location:io.kvision.chart/DataSets/DataSets/#io.kvision.chart.InterpolationMode?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[io.kvision.core.Color]?#io.kvision.chart.LineCap?#kotlin.collections.List[kotlin.Int]?#kotlin.Number?#io.kvision.chart.LineJoin?#kotlin.collections.List[io.kvision.chart.Position]?#kotlin.Any#kotlin.collections.List[kotlin.Any]?#kotlin.Any#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#io.kvision.chart.LineCap?#kotlin.collections.List[kotlin.Int]?#kotlin.Number?#io.kvision.chart.LineJoin?#kotlin.String?#kotlin.String?#kotlin.Number?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[io.kvision.core.Color]?#kotlin.collections.List[kotlin.Int]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[io.kvision.chart.PointStyle]?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Boolean?#kotlin.Number?#kotlin.String?#kotlin.String?#kotlin.Number?#kotlin.Number?#kotlin.Any#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Boolean?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Number?#kotlin.Boolean?#kotlin.Number?#kotlin.collections.List[kotlin.Number]?#kotlin.Number?#kotlin.Number?#kotlin.Number?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Number]?#kotlin.collections.List[kotlin.Any]?#io.kvision.chart.BorderAlign?#kotlin.Any#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/-data-sets.html
 $dokka.location:io.kvision.chart/DataSets/animation/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/animation.html
 $dokka.location:io.kvision.chart/DataSets/backgroundColor/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/background-color.html
 $dokka.location:io.kvision.chart/DataSets/barPercentage/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/bar-percentage.html
@@ -1432,6 +1433,7 @@ $dokka.location:io.kvision.chart/DataSets/borderRadius/#/PointingToDeclaration/
 $dokka.location:io.kvision.chart/DataSets/borderSkipped/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/border-skipped.html
 $dokka.location:io.kvision.chart/DataSets/borderWidth/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/border-width.html
 $dokka.location:io.kvision.chart/DataSets/categoryPercentage/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/category-percentage.html
+$dokka.location:io.kvision.chart/DataSets/circular/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/circular.html
 $dokka.location:io.kvision.chart/DataSets/circumference/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/circumference.html
 $dokka.location:io.kvision.chart/DataSets/clip/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/clip.html
 $dokka.location:io.kvision.chart/DataSets/cubicInterpolationMode/#/PointingToDeclaration/kvision/io.kvision.chart/-data-sets/cubic-interpolation-mode.html
@@ -2450,25 +2452,37 @@ $dokka.location:io.kvision.core/BsBorder.BORDERWARNING///PointingToDeclaration/{
 $dokka.location:io.kvision.core/BsBorder.BORDERWHITE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-border/-b-o-r-d-e-r-w-h-i-t-e/index.html
 $dokka.location:io.kvision.core/BsBorder.BORDER_0///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-border/-b-o-r-d-e-r_0/index.html
 $dokka.location:io.kvision.core/BsBorder///PointingToDeclaration/kvision/io.kvision.core/-bs-border/index.html
+$dokka.location:io.kvision.core/BsBorder/className/#/PointingToDeclaration/kvision/io.kvision.core/-bs-border/class-name.html
 $dokka.location:io.kvision.core/BsColor.BLACK50///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-b-l-a-c-k50/index.html
 $dokka.location:io.kvision.core/BsColor.BODY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-b-o-d-y/index.html
 $dokka.location:io.kvision.core/BsColor.DANGER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-d-a-n-g-e-r/index.html
+$dokka.location:io.kvision.core/BsColor.DANGERBG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-d-a-n-g-e-r-b-g/index.html
 $dokka.location:io.kvision.core/BsColor.DARK///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-d-a-r-k/index.html
+$dokka.location:io.kvision.core/BsColor.DARKBG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-d-a-r-k-b-g/index.html
 $dokka.location:io.kvision.core/BsColor.INFO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-i-n-f-o/index.html
+$dokka.location:io.kvision.core/BsColor.INFOBG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-i-n-f-o-b-g/index.html
 $dokka.location:io.kvision.core/BsColor.LIGHT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-l-i-g-h-t/index.html
+$dokka.location:io.kvision.core/BsColor.LIGHTBG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-l-i-g-h-t-b-g/index.html
 $dokka.location:io.kvision.core/BsColor.MUTED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-m-u-t-e-d/index.html
 $dokka.location:io.kvision.core/BsColor.PRIMARY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-p-r-i-m-a-r-y/index.html
+$dokka.location:io.kvision.core/BsColor.PRIMARYBG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-p-r-i-m-a-r-y-b-g/index.html
 $dokka.location:io.kvision.core/BsColor.SECONDARY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-s-e-c-o-n-d-a-r-y/index.html
+$dokka.location:io.kvision.core/BsColor.SECONDARYBG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-s-e-c-o-n-d-a-r-y-b-g/index.html
 $dokka.location:io.kvision.core/BsColor.SUCCESS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-s-u-c-c-e-s-s/index.html
+$dokka.location:io.kvision.core/BsColor.SUCCESSBG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-s-u-c-c-e-s-s-b-g/index.html
 $dokka.location:io.kvision.core/BsColor.WARNING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-w-a-r-n-i-n-g/index.html
+$dokka.location:io.kvision.core/BsColor.WARNINGBG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-w-a-r-n-i-n-g-b-g/index.html
 $dokka.location:io.kvision.core/BsColor.WHITE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-w-h-i-t-e/index.html
 $dokka.location:io.kvision.core/BsColor.WHITE50///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-color/-w-h-i-t-e50/index.html
 $dokka.location:io.kvision.core/BsColor///PointingToDeclaration/kvision/io.kvision.core/-bs-color/index.html
+$dokka.location:io.kvision.core/BsColor/className/#/PointingToDeclaration/kvision/io.kvision.core/-bs-color/class-name.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d/index.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDED0///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d0/index.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDED1///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d1/index.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDED2///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d2/index.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDED3///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d3/index.html
+$dokka.location:io.kvision.core/BsRounded.ROUNDED4///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d4/index.html
+$dokka.location:io.kvision.core/BsRounded.ROUNDED5///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d5/index.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDEDBOTTOM///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d-b-o-t-t-o-m/index.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDEDCIRCLE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d-c-i-r-c-l-e/index.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDEDLEFT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d-l-e-f-t/index.html
@@ -2478,6 +2492,7 @@ $dokka.location:io.kvision.core/BsRounded.ROUNDEDRIGHT///PointingToDeclaration/{
 $dokka.location:io.kvision.core/BsRounded.ROUNDEDSM///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d-s-m/index.html
 $dokka.location:io.kvision.core/BsRounded.ROUNDEDTOP///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-bs-rounded/-r-o-u-n-d-e-d-t-o-p/index.html
 $dokka.location:io.kvision.core/BsRounded///PointingToDeclaration/kvision/io.kvision.core/-bs-rounded/index.html
+$dokka.location:io.kvision.core/BsRounded/className/#/PointingToDeclaration/kvision/io.kvision.core/-bs-rounded/class-name.html
 $dokka.location:io.kvision.core/ClassSetBuilder///PointingToDeclaration/kvision/io.kvision.core/-class-set-builder/index.html
 $dokka.location:io.kvision.core/ClassSetBuilder/add/#io.kvision.core.CssClass?/PointingToDeclaration/kvision/io.kvision.core/-class-set-builder/add.html
 $dokka.location:io.kvision.core/ClassSetBuilder/add/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-class-set-builder/add.html
@@ -6291,6 +6306,8 @@ $dokka.location:io.kvision.form.check//radio/io.kvision.core.Container#kotlin.Bo
 $dokka.location:io.kvision.form.check//radioGroup/io.kvision.core.Container#kotlin.collections.List[[Error type: Unresolved type for Pair<String, String>][kotlin.String,kotlin.String]]?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.check.RadioGroup,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/radio-group.html
 $dokka.location:io.kvision.form.check//radioGroupInput/io.kvision.core.Container#kotlin.collections.List[[Error type: Unresolved type for Pair<String, String>][kotlin.String,kotlin.String]]?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.check.GenericRadioGroupInput[kotlin.String],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/radio-group-input.html
 $dokka.location:io.kvision.form.check//radioInput/io.kvision.core.Container#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.check.RadioInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/radio-input.html
+$dokka.location:io.kvision.form.check//switch/io.kvision.core.Container#kotlin.Boolean#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.check.Switch,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/switch.html
+$dokka.location:io.kvision.form.check//switchInput/io.kvision.core.Container#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.check.SwitchInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/switch-input.html
 $dokka.location:io.kvision.form.check//triStateCheckBox/io.kvision.core.Container#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.check.TriStateCheckBox,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/tri-state-check-box.html
 $dokka.location:io.kvision.form.check//triStateCheckBoxInput/io.kvision.core.Container#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.check.TriStateCheckBoxInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/tri-state-check-box-input.html
 $dokka.location:io.kvision.form.check/CheckBox.Companion///PointingToDeclaration/kvision/io.kvision.form.check/-check-box/-companion/index.html
@@ -6306,9 +6323,11 @@ $dokka.location:io.kvision.form.check/CheckBox/inline/#/PointingToDeclaration/k
 $dokka.location:io.kvision.form.check/CheckBox/input/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/input.html
 $dokka.location:io.kvision.form.check/CheckBox/invalidFeedback/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/invalid-feedback.html
 $dokka.location:io.kvision.form.check/CheckBox/label/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/label.html
+$dokka.location:io.kvision.form.check/CheckBox/labelFirst/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/label-first.html
 $dokka.location:io.kvision.form.check/CheckBox/onClick/#kotlin.Function2[io.kvision.form.check.CheckBox,[Error type: Unresolved type for MouseEvent],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/on-click.html
 $dokka.location:io.kvision.form.check/CheckBox/removeEventListener/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/remove-event-listener.html
 $dokka.location:io.kvision.form.check/CheckBox/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/remove-event-listeners.html
+$dokka.location:io.kvision.form.check/CheckBox/reversed/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/reversed.html
 $dokka.location:io.kvision.form.check/CheckBox/rich/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/rich.html
 $dokka.location:io.kvision.form.check/CheckBox/setEventListener/#kotlin.Function1[io.kvision.utils.SnOn[TypeParam(bounds=[io.kvision.core.Widget])],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/set-event-listener.html
 $dokka.location:io.kvision.form.check/CheckBox/setState/#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/set-state.html
@@ -6322,14 +6341,8 @@ $dokka.location:io.kvision.form.check/CheckBox/switch/#/PointingToDeclaration/k
 $dokka.location:io.kvision.form.check/CheckBox/value/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box/value.html
 $dokka.location:io.kvision.form.check/CheckBoxInput///PointingToDeclaration/kvision/io.kvision.form.check/-check-box-input/index.html
 $dokka.location:io.kvision.form.check/CheckBoxInput/CheckBoxInput/#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.check.CheckBoxInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/-check-box-input/-check-box-input.html
+$dokka.location:io.kvision.form.check/CheckBoxInput/circled/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box-input/circled.html
 $dokka.location:io.kvision.form.check/CheckBoxInput/indeterminate/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box-input/indeterminate.html
-$dokka.location:io.kvision.form.check/CheckBoxStyle.DANGER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-box-style/-d-a-n-g-e-r/index.html
-$dokka.location:io.kvision.form.check/CheckBoxStyle.INFO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-box-style/-i-n-f-o/index.html
-$dokka.location:io.kvision.form.check/CheckBoxStyle.PRIMARY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-box-style/-p-r-i-m-a-r-y/index.html
-$dokka.location:io.kvision.form.check/CheckBoxStyle.SUCCESS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-box-style/-s-u-c-c-e-s-s/index.html
-$dokka.location:io.kvision.form.check/CheckBoxStyle.WARNING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-box-style/-w-a-r-n-i-n-g/index.html
-$dokka.location:io.kvision.form.check/CheckBoxStyle///PointingToDeclaration/kvision/io.kvision.form.check/-check-box-style/index.html
-$dokka.location:io.kvision.form.check/CheckBoxStyle/className/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-box-style/class-name.html
 $dokka.location:io.kvision.form.check/CheckInput///PointingToDeclaration/kvision/io.kvision.form.check/-check-input/index.html
 $dokka.location:io.kvision.form.check/CheckInput/CheckInput/#io.kvision.form.check.CheckInputType#kotlin.Boolean#kotlin.String?/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/-check-input.html
 $dokka.location:io.kvision.form.check/CheckInput/disabled/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/disabled.html
@@ -6340,6 +6353,7 @@ $dokka.location:io.kvision.form.check/CheckInput/onClick/#kotlin.Function2[io.kv
 $dokka.location:io.kvision.form.check/CheckInput/setState/#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/set-state.html
 $dokka.location:io.kvision.form.check/CheckInput/size/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/size.html
 $dokka.location:io.kvision.form.check/CheckInput/startValue/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/start-value.html
+$dokka.location:io.kvision.form.check/CheckInput/style/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/style.html
 $dokka.location:io.kvision.form.check/CheckInput/subscribe/#kotlin.Function1[kotlin.Boolean,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/subscribe.html
 $dokka.location:io.kvision.form.check/CheckInput/type/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/type.html
 $dokka.location:io.kvision.form.check/CheckInput/validationStatus/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-input/validation-status.html
@@ -6347,6 +6361,16 @@ $dokka.location:io.kvision.form.check/CheckInput/value/#/PointingToDeclaration/
 $dokka.location:io.kvision.form.check/CheckInputType.CHECKBOX///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-input-type/-c-h-e-c-k-b-o-x/index.html
 $dokka.location:io.kvision.form.check/CheckInputType.RADIO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-input-type/-r-a-d-i-o/index.html
 $dokka.location:io.kvision.form.check/CheckInputType///PointingToDeclaration/kvision/io.kvision.form.check/-check-input-type/index.html
+$dokka.location:io.kvision.form.check/CheckStyle.DANGER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-style/-d-a-n-g-e-r/index.html
+$dokka.location:io.kvision.form.check/CheckStyle.DARK///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-style/-d-a-r-k/index.html
+$dokka.location:io.kvision.form.check/CheckStyle.INFO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-style/-i-n-f-o/index.html
+$dokka.location:io.kvision.form.check/CheckStyle.LIGHT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-style/-l-i-g-h-t/index.html
+$dokka.location:io.kvision.form.check/CheckStyle.PRIMARY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-style/-p-r-i-m-a-r-y/index.html
+$dokka.location:io.kvision.form.check/CheckStyle.SECONDARY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-style/-s-e-c-o-n-d-a-r-y/index.html
+$dokka.location:io.kvision.form.check/CheckStyle.SUCCESS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-style/-s-u-c-c-e-s-s/index.html
+$dokka.location:io.kvision.form.check/CheckStyle.WARNING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-check-style/-w-a-r-n-i-n-g/index.html
+$dokka.location:io.kvision.form.check/CheckStyle///PointingToDeclaration/kvision/io.kvision.form.check/-check-style/index.html
+$dokka.location:io.kvision.form.check/CheckStyle/className/#/PointingToDeclaration/kvision/io.kvision.form.check/-check-style/class-name.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup.Companion///PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/-companion/index.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup///PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/index.html
 $dokka.location:io.kvision.form.check/GenericRadioGroup/GenericRadioGroup/#kotlin.collections.List[[Error type: Unresolved type for Pair<T, String>][TypeParam(bounds=[kotlin.Any?]),kotlin.String]]?#TypeParam(bounds=[kotlin.Any?])?#kotlin.String?#kotlin.Boolean#kotlin.String?#kotlin.Boolean#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.String]#kotlin.Function1[kotlin.String,TypeParam(bounds=[kotlin.Any?])?]#kotlin.Function1[io.kvision.form.check.GenericRadioGroup[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/-generic-radio-group/-generic-radio-group.html
@@ -6410,9 +6434,11 @@ $dokka.location:io.kvision.form.check/Radio/inline/#/PointingToDeclaration/kvis
 $dokka.location:io.kvision.form.check/Radio/input/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio/input.html
 $dokka.location:io.kvision.form.check/Radio/invalidFeedback/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio/invalid-feedback.html
 $dokka.location:io.kvision.form.check/Radio/label/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio/label.html
+$dokka.location:io.kvision.form.check/Radio/labelFirst/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio/label-first.html
 $dokka.location:io.kvision.form.check/Radio/onClick/#kotlin.Function2[io.kvision.form.check.Radio,[Error type: Unresolved type for MouseEvent],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.check/-radio/on-click.html
 $dokka.location:io.kvision.form.check/Radio/removeEventListener/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.check/-radio/remove-event-listener.html
 $dokka.location:io.kvision.form.check/Radio/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio/remove-event-listeners.html
+$dokka.location:io.kvision.form.check/Radio/reversed/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio/reversed.html
 $dokka.location:io.kvision.form.check/Radio/rich/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio/rich.html
 $dokka.location:io.kvision.form.check/Radio/setEventListener/#kotlin.Function1[io.kvision.utils.SnOn[TypeParam(bounds=[io.kvision.core.Widget])],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.check/-radio/set-event-listener.html
 $dokka.location:io.kvision.form.check/Radio/setState/#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form.check/-radio/set-state.html
@@ -6431,13 +6457,11 @@ $dokka.location:io.kvision.form.check/RadioGroup/getValueAsString/#/PointingToDe
 $dokka.location:io.kvision.form.check/RadioGroup/setValue/#kotlin.Any?/PointingToDeclaration/kvision/io.kvision.form.check/-radio-group/set-value.html
 $dokka.location:io.kvision.form.check/RadioInput///PointingToDeclaration/kvision/io.kvision.form.check/-radio-input/index.html
 $dokka.location:io.kvision.form.check/RadioInput/RadioInput/#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.check.RadioInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/-radio-input/-radio-input.html
-$dokka.location:io.kvision.form.check/RadioStyle.DANGER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-radio-style/-d-a-n-g-e-r/index.html
-$dokka.location:io.kvision.form.check/RadioStyle.INFO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-radio-style/-i-n-f-o/index.html
-$dokka.location:io.kvision.form.check/RadioStyle.PRIMARY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-radio-style/-p-r-i-m-a-r-y/index.html
-$dokka.location:io.kvision.form.check/RadioStyle.SUCCESS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-radio-style/-s-u-c-c-e-s-s/index.html
-$dokka.location:io.kvision.form.check/RadioStyle.WARNING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.check/-radio-style/-w-a-r-n-i-n-g/index.html
-$dokka.location:io.kvision.form.check/RadioStyle///PointingToDeclaration/kvision/io.kvision.form.check/-radio-style/index.html
-$dokka.location:io.kvision.form.check/RadioStyle/className/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio-style/class-name.html
+$dokka.location:io.kvision.form.check/RadioInput/squared/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio-input/squared.html
+$dokka.location:io.kvision.form.check/Switch///PointingToDeclaration/kvision/io.kvision.form.check/-switch/index.html
+$dokka.location:io.kvision.form.check/Switch/Switch/#kotlin.Boolean#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.check.Switch,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/-switch/-switch.html
+$dokka.location:io.kvision.form.check/SwitchInput///PointingToDeclaration/kvision/io.kvision.form.check/-switch-input/index.html
+$dokka.location:io.kvision.form.check/SwitchInput/SwitchInput/#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.check.SwitchInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/-switch-input/-switch-input.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox.Companion///PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/-companion/index.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox///PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/index.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/TriStateCheckBox/#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.check.TriStateCheckBox,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/-tri-state-check-box.html
@@ -6450,9 +6474,11 @@ $dokka.location:io.kvision.form.check/TriStateCheckBox/inline/#/PointingToDeclar
 $dokka.location:io.kvision.form.check/TriStateCheckBox/input/#/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/input.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/invalidFeedback/#/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/invalid-feedback.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/label/#/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/label.html
+$dokka.location:io.kvision.form.check/TriStateCheckBox/labelFirst/#/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/label-first.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/onClick/#kotlin.Function2[io.kvision.form.check.TriStateCheckBox,[Error type: Unresolved type for MouseEvent],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/on-click.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/removeEventListener/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/remove-event-listener.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/remove-event-listeners.html
+$dokka.location:io.kvision.form.check/TriStateCheckBox/reversed/#/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/reversed.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/rich/#/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/rich.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/setEventListener/#kotlin.Function1[io.kvision.utils.SnOn[TypeParam(bounds=[io.kvision.core.Widget])],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/set-event-listener.html
 $dokka.location:io.kvision.form.check/TriStateCheckBox/setState/#kotlin.Boolean?/PointingToDeclaration/kvision/io.kvision.form.check/-tri-state-check-box/set-state.html
@@ -9215,6 +9241,44 @@ $dokka.location:io.kvision.navbar/NavbarType.FIXEDTOP///PointingToDeclaration/{"
 $dokka.location:io.kvision.navbar/NavbarType.STICKYTOP///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.navbar/-navbar-type/-s-t-i-c-k-y-t-o-p/index.html
 $dokka.location:io.kvision.navbar/NavbarType///PointingToDeclaration/kvision/io.kvision.navbar/-navbar-type/index.html
 $dokka.location:io.kvision.navbar/NavbarType/className/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar-type/class-name.html
+$dokka.location:io.kvision.offcanvas////PointingToDeclaration/kvision/io.kvision.offcanvas/index.html
+$dokka.location:io.kvision.offcanvas//offcanvas/io.kvision.core.Container#kotlin.String?#io.kvision.offcanvas.OffPlacement#kotlin.Boolean#kotlin.Boolean#io.kvision.offcanvas.OffResponsiveType?#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.offcanvas.Offcanvas,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.offcanvas/offcanvas.html
+$dokka.location:io.kvision.offcanvas/OffPlacement.BOTTOM///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-placement/-b-o-t-t-o-m/index.html
+$dokka.location:io.kvision.offcanvas/OffPlacement.END///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-placement/-e-n-d/index.html
+$dokka.location:io.kvision.offcanvas/OffPlacement.START///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-placement/-s-t-a-r-t/index.html
+$dokka.location:io.kvision.offcanvas/OffPlacement.TOP///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-placement/-t-o-p/index.html
+$dokka.location:io.kvision.offcanvas/OffPlacement///PointingToDeclaration/kvision/io.kvision.offcanvas/-off-placement/index.html
+$dokka.location:io.kvision.offcanvas/OffPlacement/className/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-off-placement/class-name.html
+$dokka.location:io.kvision.offcanvas/OffResponsiveType.RESPONSIVELG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-responsive-type/-r-e-s-p-o-n-s-i-v-e-l-g/index.html
+$dokka.location:io.kvision.offcanvas/OffResponsiveType.RESPONSIVEMD///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-responsive-type/-r-e-s-p-o-n-s-i-v-e-m-d/index.html
+$dokka.location:io.kvision.offcanvas/OffResponsiveType.RESPONSIVESM///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-responsive-type/-r-e-s-p-o-n-s-i-v-e-s-m/index.html
+$dokka.location:io.kvision.offcanvas/OffResponsiveType.RESPONSIVEXL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-responsive-type/-r-e-s-p-o-n-s-i-v-e-x-l/index.html
+$dokka.location:io.kvision.offcanvas/OffResponsiveType.RESPONSIVEXXL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.offcanvas/-off-responsive-type/-r-e-s-p-o-n-s-i-v-e-x-x-l/index.html
+$dokka.location:io.kvision.offcanvas/OffResponsiveType///PointingToDeclaration/kvision/io.kvision.offcanvas/-off-responsive-type/index.html
+$dokka.location:io.kvision.offcanvas/OffResponsiveType/className/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-off-responsive-type/class-name.html
+$dokka.location:io.kvision.offcanvas/Offcanvas.Companion///PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/-companion/index.html
+$dokka.location:io.kvision.offcanvas/Offcanvas///PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/index.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/Offcanvas/#kotlin.String?#io.kvision.offcanvas.OffPlacement#kotlin.Boolean#kotlin.Boolean#io.kvision.offcanvas.OffResponsiveType?#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.offcanvas.Offcanvas,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/-offcanvas.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/add.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/add.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/add-all.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/body/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/body.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/caption/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/caption.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/captionTag/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/caption-tag.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/closeButton/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/close-button.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/dark/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/dark.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/disposeAll/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/dispose-all.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/getChildren/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/get-children.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/headerTag/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/header-tag.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/hide/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/hide.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/hideBootstrap/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/hide-bootstrap.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/placement/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/placement.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/remove/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/remove.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/removeAll/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/remove-all.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/remove-at.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/responsiveType/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/responsive-type.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/showBootstrap/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/show-bootstrap.html
+$dokka.location:io.kvision.offcanvas/Offcanvas/toggle/#/PointingToDeclaration/kvision/io.kvision.offcanvas/-offcanvas/toggle.html
 $dokka.location:io.kvision.onsenui.carousel////PointingToDeclaration/kvision/io.kvision.onsenui.carousel/index.html
 $dokka.location:io.kvision.onsenui.carousel//carousel/io.kvision.core.Container#io.kvision.onsenui.carousel.CarouselDirection?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#kotlin.String?#kotlin.Function1[io.kvision.onsenui.carousel.Carousel,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/carousel.html
 $dokka.location:io.kvision.onsenui.carousel//carouselItem/io.kvision.onsenui.carousel.Carousel#kotlin.String?#kotlin.Boolean#io.kvision.html.Align?#kotlin.String?#kotlin.Function1[io.kvision.onsenui.carousel.CarouselItem,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.onsenui.carousel/carousel-item.html
@@ -11004,7 +11068,7 @@ $dokka.location:io.kvision.table//cell/io.kvision.table.Row#kotlin.String?#kotli
 $dokka.location:io.kvision.table//headerCell/io.kvision.table.Row#kotlin.String?#kotlin.Boolean#io.kvision.html.Align?#io.kvision.table.Scope?#kotlin.String?#kotlin.Function1[io.kvision.table.HeaderCell,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/header-cell.html
 $dokka.location:io.kvision.table//headerCell/io.kvision.table.Table#kotlin.String?#kotlin.Boolean#io.kvision.html.Align?#io.kvision.table.Scope?#kotlin.String?#kotlin.Function1[io.kvision.table.HeaderCell,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/header-cell.html
 $dokka.location:io.kvision.table//row/io.kvision.table.Table#kotlin.String?#kotlin.Function1[io.kvision.table.Row,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/row.html
-$dokka.location:io.kvision.table//table/io.kvision.core.Container#kotlin.collections.List[kotlin.String]?#kotlin.collections.Set[io.kvision.table.TableType]#kotlin.String?#io.kvision.table.ResponsiveType?#io.kvision.table.TableColor?#io.kvision.table.TableColor?#kotlin.String?#kotlin.Function1[io.kvision.table.Table,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/table.html
+$dokka.location:io.kvision.table//table/io.kvision.core.Container#kotlin.collections.List[kotlin.String]?#kotlin.collections.Set[io.kvision.table.TableType]#kotlin.String?#io.kvision.table.ResponsiveType?#io.kvision.table.TableColor?#io.kvision.table.TableColor?#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.table.Table,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/table.html
 $dokka.location:io.kvision.table//thcell/io.kvision.table.Row#kotlin.String?#kotlin.Boolean#io.kvision.html.Align?#kotlin.String?#kotlin.Function1[io.kvision.table.HeaderCell,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/thcell.html
 $dokka.location:io.kvision.table/Cell///PointingToDeclaration/kvision/io.kvision.table/-cell/index.html
 $dokka.location:io.kvision.table/Cell/Cell/#kotlin.String?#kotlin.Boolean#io.kvision.html.Align?#kotlin.String?#kotlin.Function1[io.kvision.table.Cell,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/-cell/-cell.html
@@ -11024,7 +11088,7 @@ $dokka.location:io.kvision.table/Scope.COL///PointingToDeclaration/{"org.jetbrai
 $dokka.location:io.kvision.table/Scope.ROW///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.table/-scope/-r-o-w/index.html
 $dokka.location:io.kvision.table/Scope///PointingToDeclaration/kvision/io.kvision.table/-scope/index.html
 $dokka.location:io.kvision.table/Table///PointingToDeclaration/kvision/io.kvision.table/-table/index.html
-$dokka.location:io.kvision.table/Table/Table/#kotlin.collections.List[kotlin.String]?#kotlin.collections.Set[io.kvision.table.TableType]#kotlin.String?#io.kvision.table.ResponsiveType?#io.kvision.table.TableColor?#io.kvision.table.TableColor?#kotlin.String?#kotlin.Function1[io.kvision.table.Table,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/-table/-table.html
+$dokka.location:io.kvision.table/Table/Table/#kotlin.collections.List[kotlin.String]?#kotlin.collections.Set[io.kvision.table.TableType]#kotlin.String?#io.kvision.table.ResponsiveType?#io.kvision.table.TableColor?#io.kvision.table.TableColor?#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.table.Table,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.table/-table/-table.html
 $dokka.location:io.kvision.table/Table/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.table/-table/add.html
 $dokka.location:io.kvision.table/Table/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.table/-table/add.html
 $dokka.location:io.kvision.table/Table/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.table/-table/add-all.html
@@ -11040,6 +11104,7 @@ $dokka.location:io.kvision.table/Table/removeHeaderCell/#io.kvision.table.Header
 $dokka.location:io.kvision.table/Table/removeHeaderCells/#/PointingToDeclaration/kvision/io.kvision.table/-table/remove-header-cells.html
 $dokka.location:io.kvision.table/Table/responsiveType/#/PointingToDeclaration/kvision/io.kvision.table/-table/responsive-type.html
 $dokka.location:io.kvision.table/Table/tableColor/#/PointingToDeclaration/kvision/io.kvision.table/-table/table-color.html
+$dokka.location:io.kvision.table/Table/tbodyDivider/#/PointingToDeclaration/kvision/io.kvision.table/-table/tbody-divider.html
 $dokka.location:io.kvision.table/Table/theadColor/#/PointingToDeclaration/kvision/io.kvision.table/-table/thead-color.html
 $dokka.location:io.kvision.table/Table/types/#/PointingToDeclaration/kvision/io.kvision.table/-table/types.html
 $dokka.location:io.kvision.table/TableColor.DANGER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.table/-table-color/-d-a-n-g-e-r/index.html
@@ -11057,6 +11122,7 @@ $dokka.location:io.kvision.table/TableType.BORDERLESS///PointingToDeclaration/{"
 $dokka.location:io.kvision.table/TableType.HOVER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.table/-table-type/-h-o-v-e-r/index.html
 $dokka.location:io.kvision.table/TableType.SMALL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.table/-table-type/-s-m-a-l-l/index.html
 $dokka.location:io.kvision.table/TableType.STRIPED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.table/-table-type/-s-t-r-i-p-e-d/index.html
+$dokka.location:io.kvision.table/TableType.STRIPEDCOLUMNS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.table/-table-type/-s-t-r-i-p-e-d-c-o-l-u-m-n-s/index.html
 $dokka.location:io.kvision.table/TableType///PointingToDeclaration/kvision/io.kvision.table/-table-type/index.html
 $dokka.location:io.kvision.table/TableType/type/#/PointingToDeclaration/kvision/io.kvision.table/-table-type/type.html
 $dokka.location:io.kvision.tabulator.js////PointingToDeclaration/kvision/io.kvision.tabulator.js/index.html
@@ -12982,6 +13048,7 @@ io.kvision.maps.externals.leaflet.map
 io.kvision.modal
 io.kvision.moment
 io.kvision.navbar
+io.kvision.offcanvas
 io.kvision.onsenui
 io.kvision.onsenui.carousel
 io.kvision.onsenui.control
