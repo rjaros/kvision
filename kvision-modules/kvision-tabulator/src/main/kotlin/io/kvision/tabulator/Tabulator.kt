@@ -275,7 +275,7 @@ open class Tabulator<T : Any>(
             jsTabulator?.on("dataChanged") { data: Array<T> ->
                 val fixedData = if (data != undefined) fixData(data.toList())!! else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
-                this.dispatchEvent("dataEditedTabulator", obj { detail = detailData })
+                this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })
                 if (dataUpdateOnEdit && this.data is MutableList<T>) {
                     window.setTimeout({
                         this.data.syncWithList(fixedData)
