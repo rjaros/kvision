@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("@popperjs/core", "^2.11.5"))
+    implementation(npm("@popperjs/core", "^2.11.6"))
     implementation(npm("bootstrap", "^5.2.0"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))

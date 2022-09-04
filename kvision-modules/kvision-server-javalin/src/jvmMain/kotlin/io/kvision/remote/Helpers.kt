@@ -23,475 +23,79 @@
 package io.kvision.remote
 
 import io.javalin.http.Context
+import io.javalin.http.HandlerType
+import io.javalin.http.HttpStatus
 import io.javalin.websocket.WsContext
+import jakarta.servlet.ServletOutputStream
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import org.eclipse.jetty.websocket.api.CloseStatus
 import org.eclipse.jetty.websocket.api.RemoteEndpoint
 import org.eclipse.jetty.websocket.api.Session
 import org.eclipse.jetty.websocket.api.SuspendToken
 import org.eclipse.jetty.websocket.api.UpgradeRequest
 import org.eclipse.jetty.websocket.api.UpgradeResponse
+import org.eclipse.jetty.websocket.api.WebSocketBehavior
 import org.eclipse.jetty.websocket.api.WebSocketPolicy
-import java.io.BufferedReader
-import java.io.PrintWriter
+import java.io.InputStream
 import java.net.InetSocketAddress
-import java.security.Principal
-import java.util.*
-import javax.servlet.AsyncContext
-import javax.servlet.DispatcherType
-import javax.servlet.RequestDispatcher
-import javax.servlet.ServletContext
-import javax.servlet.ServletInputStream
-import javax.servlet.ServletOutputStream
-import javax.servlet.ServletRequest
-import javax.servlet.ServletResponse
-import javax.servlet.http.Cookie
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
-import javax.servlet.http.HttpSession
-import javax.servlet.http.HttpUpgradeHandler
-import javax.servlet.http.Part
+import java.time.Duration
+import java.util.concurrent.CompletableFuture
+import java.util.function.Supplier
 
 /**
  * Empty subclass of the Context class
  */
-internal class KVContext : Context(KVHttpServletRequest(), KVHttpServletResponse())
-
-/**
- * Empty implementation of the HttpServletRequest interface
- */
-internal class KVHttpServletRequest : HttpServletRequest {
-    override fun isUserInRole(role: String?): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun startAsync(): AsyncContext {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun startAsync(servletRequest: ServletRequest?, servletResponse: ServletResponse?): AsyncContext {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getPathInfo(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getProtocol(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getCookies(): Array<Cookie> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getParameterMap(): MutableMap<String, Array<String>> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getRequestURL(): StringBuffer {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getAttributeNames(): Enumeration<String> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun setCharacterEncoding(env: String?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getParameterValues(name: String?): Array<String> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getRemoteAddr(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun isAsyncStarted(): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getContentLengthLong(): Long {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getLocales(): Enumeration<Locale> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun getRealPath(path: String?): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun login(username: String?, password: String?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getContextPath(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun isRequestedSessionIdValid(): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getServerPort(): Int {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getAttribute(name: String?): Any {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getDateHeader(name: String?): Long {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getRemoteHost(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getRequestedSessionId(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getServletPath(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getSession(create: Boolean): HttpSession {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getSession(): HttpSession {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getServerName(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getLocalAddr(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun isSecure(): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun <T : HttpUpgradeHandler?> upgrade(handlerClass: Class<T>?): T {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun isRequestedSessionIdFromCookie(): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getPart(name: String?): Part {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getRemoteUser(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getLocale(): Locale {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getMethod(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun isRequestedSessionIdFromURL(): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getLocalPort(): Int {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun isRequestedSessionIdFromUrl(): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getServletContext(): ServletContext {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getQueryString(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getDispatcherType(): DispatcherType {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getHeaders(name: String?): Enumeration<String> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getUserPrincipal(): Principal {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getParts(): MutableCollection<Part> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getReader(): BufferedReader {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getScheme(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun logout() {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getInputStream(): ServletInputStream {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getLocalName(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun isAsyncSupported(): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getAuthType(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getCharacterEncoding(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getParameterNames(): Enumeration<String> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun authenticate(response: HttpServletResponse?): Boolean {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun removeAttribute(name: String?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getPathTranslated(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getContentLength(): Int {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getHeader(name: String?): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getIntHeader(name: String?): Int {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun changeSessionId(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getContentType(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getAsyncContext(): AsyncContext {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getRequestURI(): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getRequestDispatcher(path: String?): RequestDispatcher {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getHeaderNames(): Enumeration<String> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun setAttribute(name: String?, o: Any?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getParameter(name: String?): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getRemotePort(): Int {
-        throw IllegalStateException("Empty implementation")
-    }
-
-}
-
-/**
- * Empty implementation of the HttpServletResponse interface
- */
-internal class KVHttpServletResponse : HttpServletResponse {
-    override fun encodeURL(url: String?): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun encodeUrl(url: String?): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun addIntHeader(name: String?, value: Int) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun addCookie(cookie: Cookie?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun encodeRedirectUrl(url: String?): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun flushBuffer() {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun encodeRedirectURL(url: String?): String {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun sendRedirect(location: String?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun setBufferSize(size: Int) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getLocale(): Locale {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun sendError(sc: Int, msg: String?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun sendError(sc: Int) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun setContentLengthLong(len: Long) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun setCharacterEncoding(charset: String?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun addDateHeader(name: String?, date: Long) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun setLocale(loc: Locale?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getHeaders(name: String?): MutableCollection<String> {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun addHeader(name: String?, value: String?) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun setContentLength(len: Int) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getBufferSize(): Int {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun resetBuffer() {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun reset() {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun setDateHeader(name: String?, date: Long) {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getStatus(): Int {
-        throw IllegalStateException("Empty implementation")
-    }
-
-    override fun getCharacterEncoding(): String {
+internal class KVContext : Context {
+    override fun <T> appAttribute(key: String): T {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun isCommitted(): Boolean {
+    override fun endpointHandlerPath(): String {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun setStatus(sc: Int) {
+    override fun future(future: Supplier<out CompletableFuture<*>>) {
         throw IllegalStateException("Empty implementation")
     }
 
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun setStatus(sc: Int, sm: String?) {
+    override fun handlerType(): HandlerType {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun getHeader(name: String?): String {
+    override fun matchedPath(): String {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun getContentType(): String {
+    override fun outputStream(): ServletOutputStream {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun getWriter(): PrintWriter {
+    override fun pathParam(key: String): String {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun containsHeader(name: String?): Boolean {
+    override fun pathParamMap(): Map<String, String> {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun setIntHeader(name: String?, value: Int) {
+    override fun redirect(location: String, status: HttpStatus) {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun getHeaderNames(): MutableCollection<String> {
+    override fun req(): HttpServletRequest {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun setHeader(name: String?, value: String?) {
+    override fun res(): HttpServletResponse {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun getOutputStream(): ServletOutputStream {
+    override fun result(): String? {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun setContentType(type: String?) {
+    override fun result(resultStream: InputStream): Context {
         throw IllegalStateException("Empty implementation")
     }
 
@@ -526,10 +130,6 @@ internal class KVSession : Session {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun setIdleTimeout(ms: Long) {
-        throw IllegalStateException("Empty implementation")
-    }
-
     override fun getPolicy(): WebSocketPolicy {
         throw IllegalStateException("Empty implementation")
     }
@@ -546,7 +146,63 @@ internal class KVSession : Session {
         throw IllegalStateException("Empty implementation")
     }
 
-    override fun getIdleTimeout(): Long {
+    override fun getBehavior(): WebSocketBehavior {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun getIdleTimeout(): Duration {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun getInputBufferSize(): Int {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun getOutputBufferSize(): Int {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun getMaxBinaryMessageSize(): Long {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun getMaxTextMessageSize(): Long {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun getMaxFrameSize(): Long {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun isAutoFragment(): Boolean {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun setIdleTimeout(duration: Duration?) {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun setInputBufferSize(size: Int) {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun setOutputBufferSize(size: Int) {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun setMaxBinaryMessageSize(size: Long) {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun setMaxTextMessageSize(size: Long) {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun setMaxFrameSize(maxFrameSize: Long) {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun setAutoFragment(autoFragment: Boolean) {
         throw IllegalStateException("Empty implementation")
     }
 

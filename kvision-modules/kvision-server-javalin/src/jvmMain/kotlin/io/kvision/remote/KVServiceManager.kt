@@ -23,8 +23,10 @@ package io.kvision.remote
 
 import com.google.inject.Injector
 import io.javalin.Javalin
-import io.javalin.core.security.RouteRole
+import io.javalin.security.RouteRole
 import io.javalin.http.Context
+import io.javalin.http.bodyAsClass
+import io.javalin.http.queryParamAsClass
 import io.javalin.websocket.WsConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -70,7 +72,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.queryParamAsClass<Int>("id").get(), "", listOf())
             } else {
-                ctx.bodyAsClass<JsonRpcRequest>()
+                ctx.bodyAsClass()
             }
             val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)
@@ -95,7 +97,7 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                     )
                 }
             }
-            ctx.future(future)
+            ctx.future { future.thenAccept { ctx.json(it) } }
         }
     }
 

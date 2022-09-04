@@ -49,11 +49,11 @@ private fun KotlinJsTargetDsl.kotlinJsTargets() {
     }
 }
 
-fun KotlinMultiplatformExtension.kotlinJvmTargets() {
+fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "1.8") {
     jvm {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = target
                 freeCompilerArgs = listOf("-Xjsr305=strict")
             }
         }
