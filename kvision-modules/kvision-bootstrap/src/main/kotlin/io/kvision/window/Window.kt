@@ -44,6 +44,7 @@ import org.w3c.dom.TouchEvent
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
 import org.w3c.dom.get
+import kotlin.math.roundToInt
 
 internal const val DEFAULT_Z_INDEX = 900
 internal const val DEFAULT_WINDOW_HEADER_HEIGHT = 40
@@ -323,7 +324,7 @@ open class Window(
                 val dragStartX = this@Window.getElement()?.offsetLeft() ?: 0
                 val dragStartY = this@Window.getElement()?.offsetTop() ?: 0
                 val (dragMouseX, dragMouseY) = if (e is MouseEvent) {
-                    e.pageX.toInt() to e.pageY.toInt()
+                    e.pageX.roundToInt() to e.pageY.roundToInt()
                 } else {
                     e.unsafeCast<TouchEvent>().touches[0]!!.pageX to e.unsafeCast<TouchEvent>().touches[0]!!.pageY
                 }
@@ -337,7 +338,7 @@ open class Window(
                             dragStartDispatched = true
                         }
                         val (mouseX, mouseY) = if (me is MouseEvent) {
-                            me.pageX.toInt() to me.pageY.toInt()
+                            me.pageX.roundToInt() to me.pageY.roundToInt()
                         } else {
                             me.unsafeCast<TouchEvent>().touches[0]!!.pageX to me.unsafeCast<TouchEvent>().touches[0]!!.pageY
                         }
@@ -386,7 +387,7 @@ open class Window(
     private fun checkIsResizable() {
         checkResizablEventHandler()
         val headerHeight =
-            if (header.visible) (header.height?.first?.toInt() ?: DEFAULT_WINDOW_HEADER_HEIGHT) else 0
+            if (header.visible) (header.height?.first?.toDouble()?.roundToInt() ?: DEFAULT_WINDOW_HEADER_HEIGHT) else 0
         if (isResizable) {
             resize = Resize.BOTH
             val intHeight = getElement()?.height()
@@ -417,13 +418,14 @@ open class Window(
                     resizeCallbacks[it] = { entry ->
                         val borderSize = entry.borderBoxSize[0]
                         val contentSize = entry.contentBoxSize[0]
-                        width = borderSize.inlineSize.toInt().px
-                        height = borderSize.blockSize.toInt().px
+                        width = borderSize.inlineSize.toDouble().roundToInt().px
+                        height = borderSize.blockSize.toDouble().roundToInt().px
                         val headerHeight =
-                            if (header.visible) (header.height?.first?.toInt() ?: DEFAULT_WINDOW_HEADER_HEIGHT) else 0
-                        contentWidth = contentSize.inlineSize.toInt().px
+                            if (header.visible) (header.height?.first?.toDouble()?.roundToInt()
+                                ?: DEFAULT_WINDOW_HEADER_HEIGHT) else 0
+                        contentWidth = contentSize.inlineSize.toDouble().roundToInt().px
                         contentHeight =
-                            (contentSize.blockSize.toInt() - headerHeight - resizeHandleHeight).px
+                            (contentSize.blockSize.toDouble().roundToInt() - headerHeight - resizeHandleHeight).px
                         if (initialResizeEntry) {
                             initialResizeEntry = false
                         } else {
