@@ -22,11 +22,11 @@
 
 package io.kvision.onsenui.form
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.form.text.TextInput
-import io.kvision.form.text.TextInputType
+import io.kvision.html.InputType
+import io.kvision.snabbdom.VNode
 
 /**
  * OnsenUI text input component.
@@ -41,7 +41,7 @@ import io.kvision.form.text.TextInputType
  * @param init an initializer extension function
  */
 open class OnsTextInput(
-    type: TextInputType = TextInputType.TEXT,
+    type: InputType = InputType.TEXT,
     value: String? = null,
     placeholder: String? = null,
     floatLabel: Boolean? = null,
@@ -72,7 +72,7 @@ open class OnsTextInput(
     }
 
     override fun render(): VNode {
-        return if (type == TextInputType.SEARCH) {
+        return if (type == InputType.SEARCH) {
             render("ons-search-input")
         } else {
             render("ons-input")
@@ -99,7 +99,7 @@ open class OnsTextInput(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.onsTextInput(
-    type: TextInputType = TextInputType.TEXT,
+    type: InputType = InputType.TEXT,
     value: String? = null,
     placeholder: String? = null,
     floatLabel: Boolean? = null,

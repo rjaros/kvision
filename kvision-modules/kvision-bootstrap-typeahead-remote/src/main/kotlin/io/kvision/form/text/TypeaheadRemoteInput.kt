@@ -22,6 +22,7 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
+import io.kvision.html.InputType
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.utils.Serialization
@@ -52,7 +53,7 @@ open class TypeaheadRemoteInput<T : Any>(
     function: suspend T.(String?, String?) -> List<String>,
     private val stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null,
     taAjaxOptions: TaAjaxOptions? = null,
     className: String? = null,
     init: (TypeaheadRemoteInput<T>.() -> Unit)? = null
@@ -95,7 +96,7 @@ fun <T : Any> Container.typeaheadRemoteInput(
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null,
     taAjaxOptions: TaAjaxOptions? = null,
     className: String? = null,
     init: (TypeaheadRemoteInput<T>.() -> Unit)? = null

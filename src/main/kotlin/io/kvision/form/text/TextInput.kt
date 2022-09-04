@@ -25,21 +25,11 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.html.Autocomplete
+import io.kvision.html.InputType
 import io.kvision.snabbdom.VNode
 
-/**
- * Text input types.
- */
-enum class TextInputType(internal val type: String) {
-    TEXT("text"),
-    PASSWORD("password"),
-    EMAIL("email"),
-    TEL("tel"),
-    COLOR("color"),
-    SEARCH("search"),
-    URL("url"),
-    HIDDEN("hidden")
-}
+@Deprecated("Use InputType instead", ReplaceWith("InputType", "io.kvision.html.InputType"))
+typealias TextInputType = InputType
 
 /**
  * Basic text component.
@@ -51,7 +41,7 @@ enum class TextInputType(internal val type: String) {
  * @param init an initializer extension function
  */
 open class TextInput(
-    type: TextInputType = TextInputType.TEXT,
+    type: InputType = InputType.TEXT,
     value: String? = null,
     className: String? = null,
     init: (TextInput.() -> Unit)? = null
@@ -79,7 +69,7 @@ open class TextInput(
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
-        if (type == TextInputType.COLOR) classSetBuilder.add("form-control-color")
+        if (type == InputType.COLOR) classSetBuilder.add("form-control-color")
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
@@ -100,7 +90,7 @@ open class TextInput(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.textInput(
-    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null,
     className: String? = null,
     init: (TextInput.() -> Unit)? = null
 ): TextInput {

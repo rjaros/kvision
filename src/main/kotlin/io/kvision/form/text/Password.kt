@@ -22,6 +22,7 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
+import io.kvision.html.InputType
 
 /**
  * Form field password component.
@@ -42,7 +43,7 @@ open class Password(
     floating: Boolean = false,
     init: (Password.() -> Unit)? = null
 ) : Text(
-    TextInputType.PASSWORD,
+    InputType.PASSWORD,
     value, name, label, rich, floating
 ) {
 

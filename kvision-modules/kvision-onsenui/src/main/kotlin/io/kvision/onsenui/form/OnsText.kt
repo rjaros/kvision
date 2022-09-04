@@ -24,7 +24,7 @@ package io.kvision.onsenui.form
 import io.kvision.core.Container
 import io.kvision.core.Display
 import io.kvision.form.text.AbstractText
-import io.kvision.form.text.TextInputType
+import io.kvision.html.InputType
 import io.kvision.onsenui.OnsenUi
 
 /**
@@ -42,7 +42,7 @@ import io.kvision.onsenui.OnsenUi
  * @param init an initializer extension function
  */
 open class OnsText(
-    type: TextInputType = TextInputType.TEXT,
+    type: InputType = InputType.TEXT,
     value: String? = null,
     placeholder: String? = null,
     floatLabel: Boolean? = null,
@@ -116,7 +116,7 @@ open class OnsText(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.onsText(
-    type: TextInputType = TextInputType.TEXT,
+    type: InputType = InputType.TEXT,
     value: String? = null,
     placeholder: String? = null,
     floatLabel: Boolean? = null,

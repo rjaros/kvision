@@ -22,6 +22,7 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
+import io.kvision.html.InputType
 import io.kvision.remote.KVServiceMgr
 
 /**
@@ -49,7 +50,7 @@ open class TypeaheadRemote<T : Any>(
     items: Int? = 8,
     minLength: Int = 1,
     delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT,
+    type: InputType = InputType.TEXT,
     value: String? = null,
     name: String? = null,
     label: String? = null,
@@ -165,7 +166,7 @@ fun <T : Any> Container.typeaheadRemote(
     items: Int? = 8,
     minLength: Int = 1,
     delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT,
+    type: InputType = InputType.TEXT,
     value: String? = null,
     name: String? = null,
     label: String? = null,

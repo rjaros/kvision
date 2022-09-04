@@ -21,7 +21,7 @@
  */
 package test.io.kvision.onsenui.form
 
-import io.kvision.form.text.TextInputType
+import io.kvision.html.InputType
 import io.kvision.onsenui.form.onsText
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
@@ -35,7 +35,7 @@ class OnsTextSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = ContainerType.FIXED)
-            val text = root.onsText(TextInputType.EMAIL, placeholder = "password", label = "Label") {
+            val text = root.onsText(InputType.EMAIL, placeholder = "password", label = "Label") {
                 this.autofocus = true
             }
             val id = text.input.inputId

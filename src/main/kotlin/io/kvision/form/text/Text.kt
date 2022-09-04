@@ -22,6 +22,7 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
+import io.kvision.html.InputType
 
 /**
  * Form field text component.
@@ -36,7 +37,7 @@ import io.kvision.core.Container
  * @param init an initializer extension function
  */
 open class Text(
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Text.() -> Unit)? = null
 ) : AbstractText(label, rich, floating) {
 
@@ -86,7 +87,7 @@ open class Text(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.text(
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Text.() -> Unit)? = null
 ): Text {
     val text = Text(type, value, name, label, rich, floating, init)

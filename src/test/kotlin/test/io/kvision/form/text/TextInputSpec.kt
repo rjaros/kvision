@@ -22,7 +22,7 @@
 package test.io.kvision.form.text
 
 import io.kvision.form.text.TextInput
-import io.kvision.form.text.TextInputType
+import io.kvision.html.InputType
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
@@ -34,7 +34,7 @@ class TextInputSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val ti = TextInput(type = TextInputType.PASSWORD, value = "abc").apply {
+            val ti = TextInput(type = InputType.PASSWORD, value = "abc").apply {
                 placeholder = "place"
                 name = "name"
                 maxlength = 15

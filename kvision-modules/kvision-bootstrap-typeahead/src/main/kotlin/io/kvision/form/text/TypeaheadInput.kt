@@ -26,6 +26,7 @@ import io.kvision.BootstrapTypeaheadModule
 import io.kvision.core.Container
 import io.kvision.core.getElementJQueryD
 import io.kvision.html.Autocomplete
+import io.kvision.html.InputType
 import io.kvision.jquery.JQueryXHR
 import io.kvision.jquery.jQuery
 import io.kvision.utils.obj
@@ -56,7 +57,7 @@ open class TypeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, className: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null, className: String? = null,
     init: (TypeaheadInput.() -> Unit)? = null
 ) : TextInput(type, value, className) {
 
@@ -212,7 +213,7 @@ fun Container.typeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null,
     className: String? = null,
     init: (TypeaheadInput.() -> Unit)? = null
 ): TypeaheadInput {

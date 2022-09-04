@@ -22,6 +22,7 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
+import io.kvision.html.InputType
 
 /**
  * Form field typeahead component.
@@ -45,7 +46,7 @@ open class Typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Typeahead.() -> Unit)? = null
 ) : AbstractText(label, rich, floating) {
 
@@ -180,7 +181,7 @@ fun Container.typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
     items: Int? = 8, minLength: Int = 1, delay: Int = 0,
-    type: TextInputType = TextInputType.TEXT, value: String? = null, name: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Typeahead.() -> Unit)? = null
 ): Typeahead {
     val typeahead =
