@@ -42,6 +42,8 @@ import io.kvision.annotations.KVBindingRoute
 import io.kvision.annotations.KVService
 import java.io.File
 
+data class NameDetails(val packageName: String, val baseName: String, val iName: String)
+
 @OptIn(KspExperimental::class)
 class KVProcessor(
     private val codeGenerator: CodeGenerator,
@@ -55,14 +57,14 @@ class KVProcessor(
             return emptyList()
         }
         isInitialInvocation = false
-
-        resolver.getSymbolsWithAnnotation(KVService::class.qualifiedName.orEmpty())
+        val services = mutableListOf<NameDetails>()
+        val deps = resolver.getSymbolsWithAnnotation(KVService::class.qualifiedName.orEmpty())
             .filterIsInstance<KSClassDeclaration>().filter(KSNode::validate)
             .filter { it.classKind == ClassKind.INTERFACE }
             .filter {
                 val name = it.simpleName.asString()
                 name.startsWith("I") && name.endsWith("Service")
-            }.forEach { classDeclaration ->
+            }.mapNotNull { classDeclaration ->
                 val packageName = classDeclaration.packageName.asString()
                 val baseName = classDeclaration.simpleName.asString().drop(1)
                 val iName = classDeclaration.simpleName.asString()
@@ -72,9 +74,24 @@ class KVProcessor(
                         "commonMain" -> {
                             it.write(generateCommonCode(packageName, baseName, iName, classDeclaration))
                         }
+
                         "frontendMain" -> {
                             it.write(generateFrontendCode(packageName, baseName, iName, classDeclaration))
                         }
+                    }
+                }
+                services.add(NameDetails(packageName, baseName, iName))
+                classDeclaration.containingFile
+            }.toList().toTypedArray()
+        codeGenerator.createNewFile(Dependencies(true, *deps), "io.kvision.remote", "GeneratedKVServiceManager")
+            .writer().use {
+                when (codeGenerator.generatedFile.first().toString().sourceSetBelow("ksp")) {
+                    "frontendMain" -> {
+                        it.write(generateFrontendCodeFunctions(services))
+                    }
+
+                    "backendMain" -> {
+                        it.write(generateBackendCodeFunctions(services))
                     }
                 }
             }
@@ -82,7 +99,8 @@ class KVProcessor(
     }
 
     private fun String.sourceSetBelow(startDirectoryName: String): String =
-        substringAfter("${File.separator}$startDirectoryName${File.separator}").substringBefore("${File.separator}kotlin${File.separator}").substringAfterLast(File.separatorChar)
+        substringAfter("${File.separator}$startDirectoryName${File.separator}").substringBefore("${File.separator}kotlin${File.separator}")
+            .substringAfterLast(File.separatorChar)
 
     private fun generateCommonCode(
         packageName: String,
@@ -103,6 +121,7 @@ class KVProcessor(
             appendLine()
             appendLine("object ${baseName}Manager : KVServiceManager<$baseName>($baseName::class) {")
             appendLine("    init {")
+            val wsMethods = mutableListOf<String>()
             ksClassDeclaration.getDeclaredFunctions().forEach {
                 val params = it.parameters
                 val wsMethod =
@@ -128,13 +147,17 @@ class KVProcessor(
                 when {
                     it.returnType.toString().startsWith("RemoteData") ->
                         appendLine("        bindTabulatorRemote($iName::${it.simpleName.asString()}, $route)")
+
                     wsMethod -> if (route == null) {
                         appendLine("        bind($iName::${it.simpleName.asString()}, null as String?)")
                     } else {
                         appendLine("        bind($iName::${it.simpleName.asString()}, $route)")
                     }
-                    else -> appendLine("        bind($iName::${it.simpleName.asString()}, $method, $route)")
+
+                    else -> if (!wsMethods.contains(it.simpleName.asString()))
+                        appendLine("        bind($iName::${it.simpleName.asString()}, $method, $route)")
                 }
+                if (wsMethod) wsMethods.add(it.simpleName.asString())
             }
             appendLine("    }")
             appendLine("}")
@@ -161,6 +184,10 @@ class KVProcessor(
             }
             appendLine()
             appendLine("actual class $baseName(serializersModules: List<SerializersModule>? = null, requestFilter: (suspend RequestInit.() -> Unit)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, serializersModules, requestFilter) {")
+            val methodsCounts = ksClassDeclaration.getDeclaredFunctions().map {
+                it.simpleName.asString()
+            }.groupBy { it }.map { it.key to it.value.size }.toMap()
+            val wsMethods = mutableListOf<String>()
             ksClassDeclaration.getDeclaredFunctions().forEach {
                 val name = it.simpleName.asString()
                 val params = it.parameters
@@ -169,34 +196,96 @@ class KVProcessor(
                         params.first().type.toString().startsWith("ReceiveChannel")
                     else false
                 if (!wsMethod) {
-                    if (params.isNotEmpty()) {
-                        when {
-                            it.returnType.toString().startsWith("RemoteData") -> appendLine(
-                                "    override suspend fun $name(${
-                                    getParameterList(
-                                        params
-                                    )
-                                }) = ${it.returnType!!.resolve().let { getTypeString(it) }}()"
-                            )
-                            else -> appendLine(
-                                "    override suspend fun $name(${getParameterList(params)}) = call($iName::$name, ${
-                                    getParameterNames(
-                                        params
-                                    )
-                                })"
-                            )
+                    if (!wsMethods.contains(name)) {
+                        if (params.isNotEmpty()) {
+                            when {
+                                it.returnType.toString().startsWith("RemoteData") -> appendLine(
+                                    "    override suspend fun $name(${
+                                        getParameterList(
+                                            params
+                                        )
+                                    }) = ${it.returnType!!.resolve().let { getTypeString(it) }}()"
+                                )
+
+                                else -> appendLine(
+                                    "    override suspend fun $name(${getParameterList(params)}) = call($iName::$name, ${
+                                        getParameterNames(
+                                            params
+                                        )
+                                    })"
+                                )
+                            }
+                        } else {
+                            appendLine("    override suspend fun $name() = call($iName::$name)")
                         }
-                    } else {
-                        appendLine("    override suspend fun $name() = call($iName::$name)")
                     }
                 } else {
                     appendLine("    override suspend fun $name(${getParameterList(params)}) {}")
                     val type1 = getTypeString(params[0].type.resolve()).replace("ReceiveChannel", "SendChannel")
                     val type2 = getTypeString(params[1].type.resolve()).replace("SendChannel", "ReceiveChannel")
-                    appendLine("    suspend fun $name(handler: suspend ($type1, $type2) -> Unit) = webSocket($iName::$name, handler)")
+                    val override = if ((methodsCounts[name] ?: 0) > 1) "override " else ""
+                    appendLine("    ${override}suspend fun $name(handler: suspend ($type1, $type2) -> Unit) = webSocket($iName::$name, handler)")
                 }
+                if (wsMethod) wsMethods.add(name)
             }
             appendLine("}")
+        }.toString()
+    }
+
+    private fun generateFrontendCodeFunctions(services: List<NameDetails>): String {
+        return StringBuilder().apply {
+            appendLine("//")
+            appendLine("// GENERATED by KVision")
+            appendLine("//")
+            appendLine("package io.kvision.remote")
+            appendLine()
+            appendLine("import org.w3c.fetch.RequestInit")
+            appendLine("import kotlinx.serialization.modules.SerializersModule")
+            appendLine()
+            appendLine("inline fun <reified T : Any> getService(serializersModules: List<SerializersModule>? = null, noinline requestFilter: (suspend RequestInit.() -> Unit)? = null): T = when (T::class) {")
+            services.forEach {
+                appendLine("    ${it.packageName}.${it.iName}::class -> ${it.packageName}.${it.baseName}(serializersModules, requestFilter) as T")
+            }
+            appendLine("    else -> throw IllegalArgumentException(\"Unknown service \${T::class}\")")
+            appendLine("}")
+            appendLine()
+        }.toString()
+    }
+
+    private fun generateBackendCodeFunctions(services: List<NameDetails>): String {
+        return StringBuilder().apply {
+            appendLine("//")
+            appendLine("// GENERATED by KVision")
+            appendLine("//")
+            appendLine("package io.kvision.remote")
+            appendLine()
+            appendLine("import kotlin.reflect.KClass")
+            appendLine()
+            appendLine("@Suppress(\"UNCHECKED_CAST\")")
+            appendLine("inline fun <reified T : Any> getServiceManager(): KVServiceManager<T> = when (T::class) {")
+            services.forEach {
+                appendLine("    ${it.packageName}.${it.iName}::class -> ${it.packageName}.${it.baseName}Manager as KVServiceManager<T>")
+            }
+            appendLine("    else -> throw IllegalArgumentException(\"Unknown service \${T::class}\")")
+            appendLine("}")
+            appendLine()
+            appendLine("fun getAllServiceManagers(): List<KVServiceManager<*>> = listOf(")
+            services.forEach {
+                appendLine("    ${it.packageName}.${it.baseName}Manager,")
+            }
+            appendLine(")")
+            appendLine()
+            appendLine("fun getServiceManagers(vararg kclass: KClass<*>): List<KVServiceManager<*>> {")
+            appendLine("    return kclass.map {")
+            appendLine("        when (it) {")
+            services.forEach {
+                appendLine("            ${it.packageName}.${it.iName}::class -> ${it.packageName}.${it.baseName}Manager")
+            }
+            appendLine("            else -> throw IllegalArgumentException(\"Unknown service \${it.simpleName}\")")
+            appendLine("        }")
+            appendLine("    }")
+            appendLine("}")
+            appendLine()
         }.toString()
     }
 

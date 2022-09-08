@@ -205,18 +205,23 @@ abstract class KVisionPlugin @Inject constructor(
 
         if (kvExtension.enableKsp.get()) {
             dependencies {
-                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.14.0")
+                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.15.0-SNAPSHOT")
             }
 
             afterEvaluate {
                 dependencies {
-                    add("kspFrontend", "io.kvision:kvision-ksp-processor:5.14.0")
+                    add("kspFrontend", "io.kvision:kvision-ksp-processor:5.15.0-SNAPSHOT")
+                    add("kspBackend", "io.kvision:kvision-ksp-processor:5.15.0-SNAPSHOT")
                 }
                 kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                 kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
+                kotlinMppExtension.sourceSets.getByName("backendMain").kotlin.srcDir("build/generated/ksp/backend/backendMain/kotlin")
 
                 afterEvaluate {
                     tasks.all.kspKotlinFrontend.configureEach {
+                        dependsOn("kspCommonMainKotlinMetadata")
+                    }
+                    tasks.all.kspKotlinBackend.configureEach {
                         dependsOn("kspCommonMainKotlinMetadata")
                     }
                 }
@@ -408,6 +413,9 @@ abstract class KVisionPlugin @Inject constructor(
 
         val kspKotlinFrontend: TaskCollection<Task>
             get() = collection("kspKotlinFrontend")
+
+        val kspKotlinBackend: TaskCollection<Task>
+            get() = collection("kspKotlinBackend")
 
         private inline fun <reified T : Task> collection(taskName: String): TaskCollection<T> =
             tasks.withType<T>().matching { it.name == taskName }
