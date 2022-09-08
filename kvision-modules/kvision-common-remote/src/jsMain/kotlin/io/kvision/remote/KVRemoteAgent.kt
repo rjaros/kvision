@@ -22,6 +22,7 @@
 package io.kvision.remote
 
 import kotlinx.browser.window
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.await
@@ -473,6 +474,8 @@ open class KVRemoteAgent<T : Any>(
     suspend fun exceptionHelper(block: suspend () -> Unit) {
         try {
             block()
+        } catch (e: CancellationException) {
+            console.log(e.message)
         } catch (e: Exception) {
             console.log(e)
         }
