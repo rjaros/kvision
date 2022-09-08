@@ -85,7 +85,7 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@popperjs/core@^2.11.5":
+"@popperjs/core@^2.11.6":
   version "2.11.6"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
@@ -2728,10 +2728,10 @@ tabulator-tables@^4.9.3:
   resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-4.9.3.tgz#89ea8f9bffc11ba9a789369b5165ac82da26f4f0"
   integrity sha512-iwwQqAEGGxlgrBpcmJJvMJrfjGLcCXOB3AOb/DGkXqBy1YKoYA36hIl7qXGp6Jo8dSkzFAlDT6pKLZgyhs9OnQ==
 
-tabulator-tables@^5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.3.2.tgz#4f17a09f4072334c88008a36600cf6c612b82ef7"
-  integrity sha512-gF2z76lSkkGET+WjJsAXeECnxvrvGzEF3eKWNB076j7f40qOuohDuwn90FfuyOGNMpEyJpGsyqCwsuSeXhUtMQ==
+tabulator-tables@^5.3.3:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.3.3.tgz#0c580c32d1d18e565c5d69c77ec3a9e424a329c6"
+  integrity sha512-XS4c6j+XnjGU/n1m93E+Ak92aE1Z/YwycPVhaNnVil94Sey6y1YjcQcDwThI8IAZfRse/CF865c0YCCe/DifCQ==
 
 tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
