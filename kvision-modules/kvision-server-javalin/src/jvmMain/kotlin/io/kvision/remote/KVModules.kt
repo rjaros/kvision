@@ -66,6 +66,7 @@ fun Javalin.kvisionInit(initStaticResources: Boolean = true, vararg modules: Mod
  */
 fun Javalin.initStaticResources() {
     cfg.staticFiles.add("/assets", Location.CLASSPATH)
+    cfg.pvt.resourceHandler?.init(mapOf("server" to this.cfg.pvt.server))
 }
 
 internal class MainModule(private val javalin: Javalin) : AbstractModule() {

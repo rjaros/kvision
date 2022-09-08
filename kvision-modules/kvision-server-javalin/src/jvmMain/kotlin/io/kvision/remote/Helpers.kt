@@ -99,6 +99,10 @@ internal class KVContext : Context {
         throw IllegalStateException("Empty implementation")
     }
 
+    override fun resultInputStream(): InputStream? {
+        throw IllegalStateException("Empty implementation")
+    }
+
 }
 
 /**
