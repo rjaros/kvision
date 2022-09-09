@@ -32,7 +32,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("moment-timezone", "0.5.35")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
-        versions.webpackDevServer.version = "4.10.1"
+        versions.webpackDevServer.version = "4.11.0"
         versions.webpack.version = "5.74.0"
         versions.webpackCli.version = "4.10.0"
         versions.karma.version = "6.4.0"
