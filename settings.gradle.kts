@@ -27,6 +27,7 @@ include(
     "kvision-modules:kvision-chart2",
     "kvision-modules:kvision-cordova",
     "kvision-modules:kvision-datacontainer",
+    "kvision-modules:kvision-datetime",
     "kvision-modules:kvision-electron",
     "kvision-modules:kvision-fontawesome",
     "kvision-modules:kvision-handlebars",
