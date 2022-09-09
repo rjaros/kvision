@@ -68,6 +68,7 @@ enum class ResponseBodyType {
 data class RestResponse<T>(val data: T, val textStatus: String, val response: Response)
 
 const val XHR_ERROR: Short = 0
+const val HTTP_NO_CONTENT: Short = 204
 const val HTTP_BAD_REQUEST: Short = 400
 const val HTTP_UNAUTHORIZED: Short = 401
 const val HTTP_FORBIDDEN: Short = 403
@@ -263,6 +264,7 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
                         JSON.stringify(restRequestConfig.data!!)
                     }
                 }
+
                 "application/x-www-form-urlencoded" -> {
                     val dataSer = if (restRequestConfig.serializer != null) {
                         restRequestConfig.data!!.toObj(restRequestConfig.serializer!!)
@@ -271,6 +273,7 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
                     }
                     URLSearchParams(removeNulls(dataSer)).toString()
                 }
+
                 else -> {
                     if (restRequestConfig.serializer != null) {
                         restRequestConfig.data!!.toObj(restRequestConfig.serializer!!)
@@ -307,32 +310,12 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
             window.fetch(fetchUrl, requestInit).then { response ->
                 if (response.ok) {
                     val statusText = response.statusText
-                    if (restRequestConfig.responseBodyType == ResponseBodyType.READABLE_STREAM) {
-                        val transformed = if (restRequestConfig.resultTransform != null) {
-                            restRequestConfig.resultTransform?.let { t -> t(response.body) }
-                        } else {
-                            response.body
-                        }
-                        val result = if (restRequestConfig.deserializer != null) {
-                            JsonInstance.decodeFromString(restRequestConfig.deserializer!!, JSON.stringify(transformed))
-                        } else {
-                            transformed
-                        }
-                        resolve(RestResponse(result, statusText, response))
-                    } else {
-                        val body = when (restRequestConfig.responseBodyType) {
-                            ResponseBodyType.JSON -> response.json()
-                            ResponseBodyType.TEXT -> response.text()
-                            ResponseBodyType.BLOB -> response.blob()
-                            ResponseBodyType.FORM_DATA -> response.formData()
-                            ResponseBodyType.ARRAY_BUFFER -> response.arrayBuffer()
-                            ResponseBodyType.READABLE_STREAM -> throw IllegalStateException() // not possible
-                        }
-                        body.then {
+                    if (response.status != HTTP_NO_CONTENT) {
+                        if (restRequestConfig.responseBodyType == ResponseBodyType.READABLE_STREAM) {
                             val transformed = if (restRequestConfig.resultTransform != null) {
-                                restRequestConfig.resultTransform?.let { t -> t(it) }
+                                restRequestConfig.resultTransform?.let { t -> t(response.body) }
                             } else {
-                                it
+                                response.body
                             }
                             val result = if (restRequestConfig.deserializer != null) {
                                 JsonInstance.decodeFromString(
@@ -342,18 +325,48 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
                             } else {
                                 transformed
                             }
+                            @Suppress("UnsafeCastFromDynamic")
                             resolve(RestResponse(result, statusText, response))
-                        }.catch {
-                            reject(
-                                RemoteRequestException.create(
-                                    XHR_ERROR,
-                                    fetchUrl,
-                                    restRequestConfig.method,
-                                    it.message ?: "Incorrect body type",
-                                    response
+                        } else {
+                            val body = when (restRequestConfig.responseBodyType) {
+                                ResponseBodyType.JSON -> response.json()
+                                ResponseBodyType.TEXT -> response.text()
+                                ResponseBodyType.BLOB -> response.blob()
+                                ResponseBodyType.FORM_DATA -> response.formData()
+                                ResponseBodyType.ARRAY_BUFFER -> response.arrayBuffer()
+                                ResponseBodyType.READABLE_STREAM -> throw IllegalStateException() // not possible
+                            }
+                            body.then {
+                                val transformed = if (restRequestConfig.resultTransform != null) {
+                                    restRequestConfig.resultTransform?.let { t -> t(it) }
+                                } else {
+                                    it
+                                }
+                                val result = if (restRequestConfig.deserializer != null) {
+                                    JsonInstance.decodeFromString(
+                                        restRequestConfig.deserializer!!,
+                                        JSON.stringify(transformed)
+                                    )
+                                } else {
+                                    transformed
+                                }
+                                @Suppress("UnsafeCastFromDynamic")
+                                resolve(RestResponse(result, statusText, response))
+                            }.catch {
+                                reject(
+                                    RemoteRequestException.create(
+                                        XHR_ERROR,
+                                        fetchUrl,
+                                        restRequestConfig.method,
+                                        it.message ?: "Incorrect body type",
+                                        response
+                                    )
                                 )
-                            )
+                            }
                         }
+                    } else {
+                        @Suppress("UnsafeCastFromDynamic")
+                        resolve(RestResponse("".asDynamic(), statusText, response))
                     }
                 } else {
                     reject(
