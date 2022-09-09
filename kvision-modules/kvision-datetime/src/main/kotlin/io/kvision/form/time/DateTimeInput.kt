@@ -38,7 +38,6 @@ import io.kvision.types.toDateF
 import io.kvision.types.toStringF
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
-import org.w3c.dom.HTMLElement
 import kotlin.js.Date
 
 internal const val DEFAULT_STEPPING = 1

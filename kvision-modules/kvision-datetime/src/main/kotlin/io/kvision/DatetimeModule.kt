@@ -23,8 +23,6 @@
 package io.kvision
 
 import io.kvision.utils.createInstance
-import io.kvision.utils.obj
-import kotlin.js.Date
 
 /**
  * Initializer for KVision datetime module.
@@ -38,10 +36,13 @@ object DatetimeModule : ModuleInitializer {
         tempusDominus = require("@eonasdan/tempus-dominus").default
         val customDateFormatPlugin = require("@eonasdan/tempus-dominus/dist/plugins/customDateFormat.js")
         var tdClasses: dynamic = null
-        fun test(a: dynamic, fields: dynamic, b: dynamic) {
+
+        @Suppress("UNUSED_PARAMETER")
+        fun tdClassesGetter(a: dynamic, fields: dynamic, b: dynamic) {
             tdClasses = fields
         }
-        tempusDominus.extend(::test)
+        tempusDominus.extend(::tdClassesGetter)
+        // workaround some bugs in tempus dominus custom date format plugin
         tdClasses.ErrorMessages = tdClasses.ErrorMessages.unsafeCast<Any>().createInstance<Any>()
         customDateFormatPlugin(null, tdClasses, tempusDominus)
         val oldParseInput = tdClasses.Dates.prototype.parseInput
