@@ -30,10 +30,8 @@ class MultiplatformTemplateTest : FunSpec({
                 result.output shouldContain "convertPoToJson"
             }
         }
-//
-// disabled temporarily
-//
-/*        test("verify generatePotFile task runs successfully") {
+
+        test("verify generatePotFile task runs successfully") {
             templateProjectDir.asClue { projectDir ->
                 val result = GradleRunner.create()
                     .withProjectDir(projectDir)
@@ -55,6 +53,6 @@ class MultiplatformTemplateTest : FunSpec({
 
                 result.output shouldContain "BUILD SUCCESSFUL"
             }
-        }*/
+        }
     }
 })

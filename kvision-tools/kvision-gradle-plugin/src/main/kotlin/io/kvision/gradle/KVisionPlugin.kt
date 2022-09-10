@@ -3,6 +3,7 @@ package io.kvision.gradle
 import io.kvision.gradle.tasks.KVConvertPoTask
 import io.kvision.gradle.tasks.KVGeneratePotTask
 import io.kvision.gradle.tasks.KVWorkerBundleTask
+import javax.inject.Inject
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Plugin
@@ -33,7 +34,6 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
-import javax.inject.Inject
 
 abstract class KVisionPlugin @Inject constructor(
     private val providers: ProviderFactory
@@ -80,6 +80,8 @@ abstract class KVisionPlugin @Inject constructor(
             nodeBinaryPath.convention(nodeJsBinaryProvider())
 
             kotlinJsStoreDirectory.convention(project.layout.projectDirectory.dir(".kotlin-js-store"))
+
+            generatedFrontendResources.convention(project.layout.buildDirectory.dir("generated/kvision/frontendResources"))
         }
     }
 
@@ -119,7 +121,7 @@ abstract class KVisionPlugin @Inject constructor(
                 layout.projectDirectory.dir("src/main/resources/i18n")
             )
             destinationDirectory.set(
-                layout.buildDirectory.dir("generated/resources/i18n")
+                kvExtension.generatedFrontendResources.dir("i18n")
             )
         }
 
@@ -141,7 +143,9 @@ abstract class KVisionPlugin @Inject constructor(
             }
         }
 
-        kotlinJsExtension.sourceSets.main.get().resources.srcDir(layout.buildDirectory.dir("generated/resources"))
+        kotlinJsExtension.sourceSets.main.configure {
+            resources.srcDir(kvExtension.generatedFrontendResources)
+        }
     }
 
 
@@ -171,7 +175,7 @@ abstract class KVisionPlugin @Inject constructor(
                 layout.projectDirectory.dir("src/frontendMain/resources/i18n")
             )
             destinationDirectory.set(
-                layout.buildDirectory.dir("generated/resources/i18n")
+                kvExtension.generatedFrontendResources.dir("i18n")
             )
         }
 
@@ -209,8 +213,8 @@ abstract class KVisionPlugin @Inject constructor(
             }
         }
 
-        afterEvaluate {
-            kotlinMppExtension.sourceSets.frontendMain.get().resources.srcDir(layout.buildDirectory.dir("generated/resources"))
+        kotlinMppExtension.sourceSets.matching { it.name == "frontendMain" }.configureEach {
+            resources.srcDir(kvExtension.generatedFrontendResources)
         }
 
         if (kvExtension.enableKsp.get()) {
