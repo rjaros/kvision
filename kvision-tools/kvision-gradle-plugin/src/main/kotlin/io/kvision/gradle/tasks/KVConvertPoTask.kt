@@ -9,6 +9,7 @@ import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.SkipWhenEmpty
 import org.gradle.api.tasks.TaskAction
@@ -28,6 +29,9 @@ abstract class KVConvertPoTask @Inject constructor(
     @get:Input
     abstract val nodeJsBinary: Property<String>
 
+    @get:OutputDirectory
+    abstract val destinationDirectory: DirectoryProperty
+
     init {
         group = KVisionPlugin.KVISION_TASK_GROUP
     }
@@ -45,7 +49,7 @@ abstract class KVConvertPoTask @Inject constructor(
                 args(
                     po2jsonBinDir,
                     poFile.absolutePath,
-                    "${poFile.parent}/${poFile.nameWithoutExtension}.json"
+                    "${destinationDirectory.get().asFile}/${poFile.nameWithoutExtension}.json"
                 )
                 logger.info("Converted ${poFile.name} to ${poFile.nameWithoutExtension}.json")
             }
@@ -54,8 +58,6 @@ abstract class KVConvertPoTask @Inject constructor(
                 logger.error(result.output)
                 result.rethrowFailure()
             }
-        }.forEach { poFile ->
-            poFile.delete()
         }
     }
 }

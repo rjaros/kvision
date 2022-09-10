@@ -115,9 +115,11 @@ abstract class KVisionPlugin @Inject constructor(
 
         val convertPoToJsonTask = registerConvertPoToJsonTask {
             dependsOn(tasks.all.compileKotlinJs)
-            dependsOn(tasks.all.processResources)
             sourceDirectory.set(
-                layout.dir(tasks.provider.processResources.map { it.destinationDir })
+                layout.projectDirectory.dir("src/main/resources/i18n")
+            )
+            destinationDirectory.set(
+                layout.buildDirectory.dir("generated/resources/i18n")
             )
         }
 
@@ -129,7 +131,8 @@ abstract class KVisionPlugin @Inject constructor(
 
         tasks.all.processResources.configureEach {
             exclude("**/*.pot")
-            finalizedBy(convertPoToJsonTask)
+            exclude("**/*.po")
+            dependsOn(convertPoToJsonTask)
         }
 
         if (kvExtension.irCompiler.get()) {
@@ -137,6 +140,8 @@ abstract class KVisionPlugin @Inject constructor(
                 dependsOn("developmentExecutableCompileSync")
             }
         }
+
+        kotlinJsExtension.sourceSets.main.get().resources.srcDir(layout.buildDirectory.dir("generated/resources"))
     }
 
 
@@ -162,11 +167,11 @@ abstract class KVisionPlugin @Inject constructor(
 
         val convertPoToJsonTask = registerConvertPoToJsonTask {
             dependsOn(tasks.all.compileKotlinFrontend)
-            dependsOn(tasks.all.frontendProcessResources)
             sourceDirectory.set(
-                layout.dir(
-                    tasks.provider.frontendProcessResources.map { it.destinationDir }
-                )
+                layout.projectDirectory.dir("src/frontendMain/resources/i18n")
+            )
+            destinationDirectory.set(
+                layout.buildDirectory.dir("generated/resources/i18n")
             )
         }
 
@@ -194,13 +199,18 @@ abstract class KVisionPlugin @Inject constructor(
 
         tasks.all.frontendProcessResources.configureEach {
             exclude("**/*.pot")
-            finalizedBy(convertPoToJsonTask)
+            exclude("**/*.po")
+            dependsOn(convertPoToJsonTask)
         }
 
         if (kvExtension.irCompiler.get()) {
             tasks.all.frontendBrowserDevelopmentRun.configureEach {
                 dependsOn("frontendDevelopmentExecutableCompileSync")
             }
+        }
+
+        afterEvaluate {
+            kotlinMppExtension.sourceSets.frontendMain.get().resources.srcDir(layout.buildDirectory.dir("generated/resources"))
         }
 
         if (kvExtension.enableKsp.get()) {
