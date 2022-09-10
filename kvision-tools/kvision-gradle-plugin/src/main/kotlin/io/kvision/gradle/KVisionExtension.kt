@@ -42,6 +42,9 @@ abstract class KVisionExtension @Inject constructor(
     val irCompiler: Property<Boolean> = objects.property<Boolean>()
         .convention(providers.gradleProperty("kotlin.js.compiler").orElse("legacy").map { it == "ir" })
 
+    /** The location of generated resources that will be included in the packaged frontend. */
+    abstract val generatedFrontendResources: DirectoryProperty
+
     private fun kvisionGradleProperty(
         property: String,
         default: Boolean = true,

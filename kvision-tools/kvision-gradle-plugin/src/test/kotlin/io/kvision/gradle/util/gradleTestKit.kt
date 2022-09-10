@@ -8,19 +8,19 @@ import org.intellij.lang.annotations.Language
 
 class GradleKtsProjectDirBuilder {
 
-    @Language("kotlin")
+    @Language("kts")
     private var settingsGradleKts: String = """
         rootProject.name = "kvision-gradle-plugin-test"
     """.trimIndent()
 
-    @Language("kotlin")
+    @Language("kts")
     private var buildGradleKts: String = ""
 
-    fun `build gradle kts`(@Language("kotlin") contents: String) {
+    fun `build gradle kts`(@Language("kts") contents: String) {
         buildGradleKts = contents
     }
 
-    fun `settings gradle kts`(@Language("kotlin") contents: String) {
+    fun `settings gradle kts`(@Language("kts") contents: String) {
         settingsGradleKts = contents
     }
 
