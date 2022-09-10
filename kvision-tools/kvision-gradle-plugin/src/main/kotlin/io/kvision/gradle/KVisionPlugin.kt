@@ -226,15 +226,13 @@ abstract class KVisionPlugin @Inject constructor(
                 kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                 kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
                 kotlinMppExtension.sourceSets.getByName("backendMain").kotlin.srcDir("build/generated/ksp/backend/backendMain/kotlin")
+            }
 
-                afterEvaluate {
-                    tasks.all.kspKotlinFrontend.configureEach {
-                        dependsOn("kspCommonMainKotlinMetadata")
-                    }
-                    tasks.all.kspKotlinBackend.configureEach {
-                        dependsOn("kspCommonMainKotlinMetadata")
-                    }
-                }
+            tasks.all.kspKotlinFrontend.configureEach {
+                dependsOn("kspCommonMainKotlinMetadata")
+            }
+            tasks.all.kspKotlinBackend.configureEach {
+                dependsOn("kspCommonMainKotlinMetadata")
             }
         }
     }
