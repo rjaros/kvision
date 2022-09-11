@@ -56,6 +56,7 @@ include(
     "kvision-modules:kvision-server-javalin",
     "kvision-modules:kvision-server-jooby",
     "kvision-modules:kvision-server-ktor",
+    "kvision-modules:kvision-server-ktor-koin",
     "kvision-modules:kvision-server-spring-boot",
     "kvision-modules:kvision-server-vertx",
     "kvision-modules:kvision-server-micronaut",
