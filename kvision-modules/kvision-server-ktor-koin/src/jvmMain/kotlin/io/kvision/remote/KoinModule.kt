@@ -24,17 +24,20 @@ package io.kvision.remote
 
 import io.ktor.server.application.*
 import io.ktor.server.websocket.*
+import org.koin.dsl.module
 
-/**
- * KVision component with access to the Ktor application call instance.
- */
-interface WithApplicationCall {
-    var call: ApplicationCall
-}
+internal object KoinModule {
+    internal val threadLocalApplicationCall = ThreadLocal<ApplicationCall>()
+    internal val threadLocalWebSocketServerSession = ThreadLocal<WebSocketServerSession>()
 
-/**
- * KVision component with access to the Ktor web socket server session.
- */
-interface WithWebSocketServerSession {
-    var webSocketSession: WebSocketServerSession
+    @Suppress("RemoveExplicitTypeArguments")
+    internal fun applicationModule(app: Application) = module {
+        single { app }
+        factory<ApplicationCall> {
+            threadLocalApplicationCall.get()
+        }
+        factory<WebSocketServerSession> {
+            threadLocalWebSocketServerSession.get()
+        }
+    }
 }

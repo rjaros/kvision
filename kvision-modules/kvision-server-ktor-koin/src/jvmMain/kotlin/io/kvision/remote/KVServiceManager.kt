@@ -58,13 +58,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ): RequestHandler {
         val serializer by lazy { serializerFactory() }
         return {
+            KoinModule.threadLocalApplicationCall.set(call)
             val service = call.getKoin().get<T>(serviceClass)
-            if (service is WithApplicationCall) {
-                service.call = call
-            }
-            if (service is WithWebSocketServerSession) {
-                service.webSocketSession = DummyWebSocketServerSession()
-            }
+            KoinModule.threadLocalApplicationCall.remove()
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(call.request.queryParameters["id"]?.toInt() ?: 0, "", listOf())
             } else {
@@ -110,13 +106,11 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val requestSerializer by lazy { requestSerializerFactory() }
         val responseSerializer by lazy { responseSerializerFactory() }
         return {
+            KoinModule.threadLocalApplicationCall.set(call)
+            KoinModule.threadLocalWebSocketServerSession.set(this)
             val service = call.getKoin().get<T>(serviceClass)
-            if (service is WithApplicationCall) {
-                service.call = call
-            }
-            if (service is WithWebSocketServerSession) {
-                service.webSocketSession = this
-            }
+            KoinModule.threadLocalApplicationCall.remove()
+            KoinModule.threadLocalWebSocketServerSession.remove()
             handleWebsocketConnection(
                 deSerializer = deSerializer,
                 rawIn = incoming,
