@@ -58,12 +58,9 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
     ): RequestHandler {
         val serializer by lazy { serializerFactory() }
         return {
-            val scopeId = call.attributes[scopeKey]
-            ScopeManager.applicationCalls[scopeId] = call
-            val scope = call.getKoin().getScope(scopeId)
-            ScopeManager.threadLocalScope.set(scope)
+            KoinModule.threadLocalApplicationCall.set(call)
             val service = call.getKoin().get<T>(serviceClass)
-            ScopeManager.threadLocalScope.remove()
+            KoinModule.threadLocalApplicationCall.remove()
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(call.request.queryParameters["id"]?.toInt() ?: 0, "", listOf())
             } else {
@@ -109,13 +106,11 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
         val requestSerializer by lazy { requestSerializerFactory() }
         val responseSerializer by lazy { responseSerializerFactory() }
         return {
-            val scopeId = call.attributes[scopeKey]
-            val scope = call.getKoin().getScope(scopeId)
-            ScopeManager.applicationCalls[scopeId] = call
-            ScopeManager.webSocketServerSessions[scopeId] = this
-            ScopeManager.threadLocalScope.set(scope)
+            KoinModule.threadLocalApplicationCall.set(call)
+            KoinModule.threadLocalWebSocketServerSession.set(this)
             val service = call.getKoin().get<T>(serviceClass)
-            ScopeManager.threadLocalScope.remove()
+            KoinModule.threadLocalApplicationCall.remove()
+            KoinModule.threadLocalWebSocketServerSession.remove()
             handleWebsocketConnection(
                 deSerializer = deSerializer,
                 rawIn = incoming,
@@ -127,7 +122,6 @@ actual open class KVServiceManager<T : Any> actual constructor(val serviceClass:
                 service = service,
                 function = function
             )
-            ScopeManager.webSocketServerSessions.remove(scopeId)
         }
     }
 }

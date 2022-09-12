@@ -29,10 +29,8 @@ import io.ktor.server.routing.*
 import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import org.koin.core.module.Module
-import org.koin.ktor.ext.getKoin
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
-import org.koin.mp.KoinPlatformTools
 
 private const val DEFAULT_INIT_STATIC_RESOURCES = true
 
@@ -71,21 +69,8 @@ fun Application.kvisionInit(initStaticResources: Boolean, json: Json, vararg mod
 
     install(Koin) {
         slf4jLogger()
-        modules(ScopeManager.applicationModule(this@kvisionInit), *modules)
+        modules(KoinModule.applicationModule(this@kvisionInit), *modules)
     }
-
-    intercept(ApplicationCallPipeline.Plugins) {
-        val scopeId = KoinPlatformTools.generateId()
-        this@kvisionInit.getKoin().createScope<ApplicationCall>(scopeId)
-        call.attributes.put(scopeKey, scopeId)
-    }
-
-    intercept(ApplicationCallPipeline.Fallback) {
-        val scopeId = call.attributes[scopeKey]
-        ScopeManager.applicationCalls.remove(scopeId)
-        this@kvisionInit.getKoin().getScope(scopeId).close()
-    }
-
 }
 
 /**
