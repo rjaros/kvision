@@ -26,16 +26,13 @@ import io.ktor.server.application.*
 import io.ktor.server.http.content.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
-import io.ktor.server.websocket.*
-import io.ktor.websocket.*
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.SendChannel
+import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import org.koin.core.module.Module
-import org.koin.dsl.module
+import org.koin.ktor.ext.getKoin
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
-import kotlin.coroutines.CoroutineContext
+import org.koin.mp.KoinPlatformTools
 
 private const val DEFAULT_INIT_STATIC_RESOURCES = true
 
@@ -58,6 +55,8 @@ fun Application.kvisionInit(json: Json, vararg modules: Module) =
 fun Application.kvisionInit(initStaticResources: Boolean, vararg modules: Module) =
     kvisionInit(initStaticResources, DefaultJson, *modules)
 
+internal val scopeKey = AttributeKey<String>("KoinScopeId")
+
 /**
  * Initialization function for Ktor server.
  * @param initStaticResources initialize default static resources
@@ -70,13 +69,21 @@ fun Application.kvisionInit(initStaticResources: Boolean, json: Json, vararg mod
 
     if (initStaticResources) initStaticResources()
 
-    val applicationModule = module {
-        single { this@kvisionInit }
-    }
-
     install(Koin) {
         slf4jLogger()
-        modules(applicationModule, *modules)
+        modules(ScopeManager.applicationModule(this@kvisionInit), *modules)
+    }
+
+    intercept(ApplicationCallPipeline.Plugins) {
+        val scopeId = KoinPlatformTools.generateId()
+        this@kvisionInit.getKoin().createScope<ApplicationCall>(scopeId)
+        call.attributes.put(scopeKey, scopeId)
+    }
+
+    intercept(ApplicationCallPipeline.Fallback) {
+        val scopeId = call.attributes[scopeKey]
+        ScopeManager.applicationCalls.remove(scopeId)
+        this@kvisionInit.getKoin().getScope(scopeId).close()
     }
 
 }
@@ -90,42 +97,5 @@ fun Application.initStaticResources() {
             resources("assets")
             defaultResource("assets/index.html")
         }
-    }
-}
-
-/**
- * @suppress internal class
- */
-@Suppress("UNUSED_PARAMETER", "OverridingDeprecatedMember")
-class DummyWebSocketServerSession : WebSocketServerSession {
-    override val call: ApplicationCall
-        get() = throw UnsupportedOperationException()
-    override val coroutineContext: CoroutineContext
-        get() = throw UnsupportedOperationException()
-
-    override val extensions: List<WebSocketExtension<*>>
-        get() = throw UnsupportedOperationException()
-    override val incoming: ReceiveChannel<Frame>
-        get() = throw UnsupportedOperationException()
-    override var masking: Boolean
-        get() = throw UnsupportedOperationException()
-        set(value) {
-            throw UnsupportedOperationException()
-        }
-    override var maxFrameSize: Long
-        get() = throw UnsupportedOperationException()
-        set(value) {
-            throw UnsupportedOperationException()
-        }
-    override val outgoing: SendChannel<Frame>
-        get() = throw UnsupportedOperationException()
-
-    override suspend fun flush() {
-        throw UnsupportedOperationException()
-    }
-
-    @Deprecated("Use cancel() instead.", replaceWith = ReplaceWith("cancel()", "kotlinx.coroutines.cancel"))
-    override fun terminate() {
-        throw UnsupportedOperationException()
     }
 }

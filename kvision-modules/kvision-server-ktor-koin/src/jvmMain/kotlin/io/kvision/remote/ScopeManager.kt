@@ -24,17 +24,33 @@ package io.kvision.remote
 
 import io.ktor.server.application.*
 import io.ktor.server.websocket.*
+import org.koin.core.component.KoinScopeComponent
+import org.koin.core.scope.Scope
+import org.koin.core.scope.ScopeID
+import org.koin.dsl.module
 
 /**
- * KVision component with access to the Ktor application call instance.
+ * Koin component with a custom scope managed by KVision.
  */
-interface WithApplicationCall {
-    var call: ApplicationCall
+open class KVScopeComponent : KoinScopeComponent {
+    override val scope: Scope = ScopeManager.threadLocalScope.get()
 }
 
-/**
- * KVision component with access to the Ktor web socket server session.
- */
-interface WithWebSocketServerSession {
-    var webSocketSession: WebSocketServerSession
+internal object ScopeManager {
+    internal val applicationCalls = mutableMapOf<ScopeID, ApplicationCall>()
+    internal val webSocketServerSessions = mutableMapOf<ScopeID, WebSocketServerSession>()
+    internal val threadLocalScope = ThreadLocal<Scope>()
+
+    @Suppress("RemoveExplicitTypeArguments")
+    internal fun applicationModule(app: Application) = module {
+        single { app }
+        scope<ApplicationCall> {
+            scoped<ApplicationCall> {
+                applicationCalls[this.id] ?: throw IllegalStateException("ApplicationCall not found in the scope")
+            }
+            scoped<WebSocketServerSession> {
+                webSocketServerSessions[this.id] ?: DummyWebSocketServerSession()
+            }
+        }
+    }
 }
