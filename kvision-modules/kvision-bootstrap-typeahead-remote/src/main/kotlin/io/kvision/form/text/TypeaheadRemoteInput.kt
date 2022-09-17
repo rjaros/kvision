@@ -48,7 +48,7 @@ import org.w3c.dom.get
  * @param className CSS class names
  * @param init an initializer extension function
  */
-open class TypeaheadRemoteInput<T : Any>(
+open class TypeaheadRemoteInput<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     private val stateFunction: (() -> String)? = null,

@@ -33,7 +33,7 @@ external interface Gettext {
 class DefaultI18nManager(translations: Map<String, dynamic>) : I18nManager {
 
     @Suppress("UnsafeCastFromDynamic")
-    private val i18n: Gettext = require("@rjaros/gettext.js").default()
+    private val i18n: Gettext = require("gettext.js").default()
 
     init {
         translations.forEach {

@@ -44,7 +44,7 @@ typealias WebsocketHandler = suspend (
 /**
  * Multiplatform service manager for Spring Boot.
  */
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
+actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) : KVServiceMgr<T>,
     KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
     companion object {

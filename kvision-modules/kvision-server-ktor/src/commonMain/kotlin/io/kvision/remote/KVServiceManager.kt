@@ -29,7 +29,7 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager.
  */
-expect open class KVServiceManager<T : Any>(serviceClass: KClass<T>) : KVServiceMgr<T> {
+expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVServiceMgr<T> {
 
     /**
      * Binds a given route with a function of the receiver.

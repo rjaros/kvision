@@ -25,7 +25,7 @@ package io.kvision.remote
 /**
  * Base interface for fullstack service manager.
  */
-interface KVServiceMgr<T : Any> {
+interface KVServiceMgr<out T : Any> {
     fun getCall(function: Function<*>): Pair<String, HttpMethod>? = null
     fun requireCall(function: Function<*>): Pair<String, HttpMethod> =
         getCall(function) ?: throw IllegalStateException("Function not specified!")

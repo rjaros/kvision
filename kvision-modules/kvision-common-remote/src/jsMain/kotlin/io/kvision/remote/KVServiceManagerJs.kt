@@ -9,7 +9,7 @@ internal fun getCallName(function: Function<*>) =
     if (function is KFunction<*>) function.name
     else function.toString().replace("\\s".toRegex(), "")
 
-open class KVServiceManagerJs<T: Any> : KVServiceMgr<T> {
+open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
     val calls: MutableMap<String, Pair<String, HttpMethod>> = mutableMapOf()
     var counter: Int = 0
 

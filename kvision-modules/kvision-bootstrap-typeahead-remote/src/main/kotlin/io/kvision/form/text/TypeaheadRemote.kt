@@ -43,7 +43,7 @@ import io.kvision.remote.KVServiceMgr
  * @param floating use floating label
  * @param init an initializer extension function
  */
-open class TypeaheadRemote<T : Any>(
+open class TypeaheadRemote<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     private val stateFunction: (() -> String)? = null,

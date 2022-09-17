@@ -51,7 +51,7 @@ import io.kvision.utils.SnOn
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-open class SimpleSelectRemote<T : Any>(
+open class SimpleSelectRemote<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?) -> List<SimpleRemoteOption>,
     stateFunction: (() -> String)? = null,

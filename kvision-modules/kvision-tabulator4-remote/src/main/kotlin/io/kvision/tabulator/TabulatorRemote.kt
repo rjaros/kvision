@@ -59,7 +59,7 @@ import kotlin.reflect.KClass
  * @param module optional serialization module with custom serializers
  */
 @Deprecated("Use kvision-tabulator-remote module instead")
-open class TabulatorRemote<T : Any, E : Any>(
+open class TabulatorRemote<T : Any, out E : Any>(
     serviceManager: KVServiceMgr<E>,
     function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
     stateFunction: (() -> String)? = null,

@@ -49,7 +49,7 @@ typealias WebsocketHandler = (Injector, ServerWebSocket) -> Unit
 /**
  * Multiplatform service manager for Vert.x.
  */
-actual open class KVServiceManager<T : Any> actual constructor(val serviceClass: KClass<T>) : KVServiceMgr<T>,
+actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) : KVServiceMgr<T>,
     KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
 
     companion object {

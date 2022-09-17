@@ -35,7 +35,7 @@ import kotlinx.serialization.serializer
  * @param WH the platform specific websocket handler
  *
  */
-abstract class KVServiceBinder<T, RH, WH>(
+abstract class KVServiceBinder<out T, RH, WH>(
     routeNameGenerator: NameGenerator? = null
 ) {
     @PublishedApi

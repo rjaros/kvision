@@ -57,7 +57,7 @@ external fun decodeURIComponent(encodedURI: String): String
  * @param className CSS class names
  * @param init an initializer extension function
  */
-open class SelectRemoteInput<T : Any>(
+open class SelectRemoteInput<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     private val stateFunction: (() -> String)? = null,

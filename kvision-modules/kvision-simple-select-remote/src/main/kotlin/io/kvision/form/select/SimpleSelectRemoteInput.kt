@@ -50,7 +50,7 @@ import kotlinx.serialization.encodeToString
  * @param className CSS class names
  * @param init an initializer extension function
  */
-open class SimpleSelectRemoteInput<T : Any>(
+open class SimpleSelectRemoteInput<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?) -> List<SimpleRemoteOption>,
     private val stateFunction: (() -> String)? = null,

@@ -26,5 +26,5 @@ import kotlin.reflect.KClass
 /**
  * Multiplatform service manager.
  */
-actual open class KVServiceManager<T : Any> actual constructor(serviceClass: KClass<T>) : KVServiceManagerJs<T>(),
+actual open class KVServiceManager<out T : Any> actual constructor(serviceClass: KClass<T>) : KVServiceManagerJs<T>(),
     KVServiceMgr<T>
