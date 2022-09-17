@@ -64,7 +64,7 @@ class KVisionPluginTest : FunSpec({
     context("verify KVision plugin creates tasks") {
 
         context("applied with alongside Kotlin/JS plugin") {
-            val kvisionVersion = "5.10.1"
+            val kvisionVersion = "5.15.2"
             val projectDir: File = `gradle kts project` {
                 `build gradle kts`(
                     """
@@ -80,7 +80,7 @@ repositories {
 }
 
 val kotlinVersion: String = "1.7.10"
-val kvisionVersion: String = "5.12.0"
+val kvisionVersion: String = "5.15.2"
 
 val webDir = file("src/main/web")
 
@@ -179,7 +179,7 @@ kotlin {
             test("kotlin script") {
                 val projectDir: File = `gradle kts project` {
 
-                    val kvisionVersion = "5.12.0"
+                    val kvisionVersion = "5.15.2"
                     `build gradle kts`(
                         """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig

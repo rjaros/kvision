@@ -180,7 +180,7 @@ tasks.register("printYarnVersions") {
         context("with applied with alongside Kotlin/MPP plugin") {
 
             val projectDir: File = `gradle kts project` {
-                val kvisionVersion = "5.12.0"
+                val kvisionVersion = "5.15.2"
                 `build gradle kts`(
                     """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -312,7 +312,7 @@ kotlin {
     companion object {
 
         private val baseKotlinJsBuildGradleKts: String = run {
-            val kvisionVersion = "5.12.0"
+            val kvisionVersion = "5.15.2"
             //language=kotlin
             """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -327,7 +327,7 @@ repositories {
 }
 
 val kotlinVersion: String = "1.7.10"
-val kvisionVersion: String = "5.12.0"
+val kvisionVersion: String = "5.15.2"
 
 val webDir = file("src/main/web")
 
