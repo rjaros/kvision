@@ -265,7 +265,7 @@ abstract class KVisionPlugin @Inject constructor(
         tasks.withType<KVConvertPoTask>().configureEach {
             enabled = kvExtension.enableGradleTasks.get()
             po2jsonBinDir.set(
-                rootNodeModulesDir.file("@rjaros/gettext.js/bin/po2json")
+                rootNodeModulesDir.file("gettext.js/bin/po2json")
             )
             nodeJsBinary.set(nodeJsBinaryProvider())
             configuration()

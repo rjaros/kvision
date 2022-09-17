@@ -29,7 +29,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
         resolution("got", "12.4.1")
-        resolution("moment-timezone", "0.5.35")
+        resolution("moment-timezone", "0.5.37")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
         versions.webpackDevServer.version = "4.11.0"
@@ -52,12 +52,12 @@ dependencies {
     implementation(npm("kvision-assets", "^6.0.0"))
     implementation(npm("css-loader", "^6.7.1"))
     implementation(npm("style-loader", "^3.3.1"))
-    implementation(npm("imports-loader", "^4.0.0"))
+    implementation(npm("imports-loader", "^4.0.1"))
     implementation(npm("fecha", "^4.2.3"))
     implementation(npm("snabbdom", "^3.5.1"))
     implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.5"))
     implementation(npm("split.js", "^1.6.5"))
-    implementation(npm("@rjaros/gettext.js", "^1.1.3"))
+    implementation(npm("gettext.js", "^1.2.0"))
     implementation(npm("gettext-extract", "^2.0.1"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
