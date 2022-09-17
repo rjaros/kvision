@@ -22,7 +22,6 @@
 
 package io.kvision.utils
 
-import kotlinx.browser.window
 import kotlin.reflect.KClass
 
 /**
@@ -115,4 +114,27 @@ fun <T : Any> toKotlinObj(data: dynamic, kClass: KClass<T>): T {
         }
         newT
     }
+}
+
+/**
+ * Helper function to deeply merge two JS objects.
+ */
+@Suppress("UnsafeCastFromDynamic")
+fun deepMerge(target: dynamic, source: dynamic): dynamic {
+    fun isObject(obj: dynamic): Boolean {
+        return obj != null && obj != undefined && jsTypeOf(obj) === "object"
+    }
+    if (!isObject(target) || !isObject(source)) return source
+    for (key in js("Object").keys(source)) {
+        val targetValue = target[key]
+        val sourceValue = source[key]
+        if (js("Array").isArray(targetValue) && js("Array").isArray(sourceValue)) {
+            target[key] = targetValue.concat(sourceValue)
+        } else if (isObject(targetValue) && isObject(sourceValue)) {
+            target[key] = deepMerge(js("Object").assign(js("{}"), targetValue), sourceValue)
+        } else {
+            target[key] = sourceValue
+        }
+    }
+    return target
 }

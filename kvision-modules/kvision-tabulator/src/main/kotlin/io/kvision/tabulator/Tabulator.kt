@@ -33,6 +33,7 @@ import io.kvision.state.ObservableState
 import io.kvision.types.DateSerializer
 import io.kvision.utils.Serialization
 import io.kvision.utils.createInstance
+import io.kvision.utils.deepMerge
 import io.kvision.utils.obj
 import io.kvision.utils.syncWithList
 import io.kvision.utils.toKotlinObj
@@ -142,41 +143,44 @@ open class Tabulator<T : Any>(
                 }
             }
         }
-        if (options.langs == null) {
-            options.langs = obj {
-                default = obj {
-                    groups = obj {
-                        item = ""
-                        items = ""
-                    }
-                    this.data = obj {
-                        loading = "..."
-                        error = "!!!"
-                    }
-                    pagination = obj {
-                        page_size = "↕"
-                        page_title = "#"
-                        first = "<<"
-                        first_title = "<<"
-                        last = ">>"
-                        last_title = ">>"
-                        prev = "<"
-                        prev_title = "<"
-                        next = ">"
-                        next_title = ">"
-                        all = "*"
-                        counter = obj {
-                            showing = ""
-                            of = "/"
-                            rows = ""
-                            pages = ""
-                        }
-                    }
-                    headerFilters = obj {
-                        default = "..."
+        val defaultLangs = obj {
+            default = obj {
+                groups = obj {
+                    item = ""
+                    items = ""
+                }
+                this.data = obj {
+                    loading = "..."
+                    error = "!!!"
+                }
+                pagination = obj {
+                    page_size = "↕"
+                    page_title = "#"
+                    first = "<<"
+                    first_title = "<<"
+                    last = ">>"
+                    last_title = ">>"
+                    prev = "<"
+                    prev_title = "<"
+                    next = ">"
+                    next_title = ">"
+                    all = "*"
+                    counter = obj {
+                        showing = ""
+                        of = "/"
+                        rows = ""
+                        pages = ""
                     }
                 }
+                headerFilters = obj {
+                    default = "..."
+                }
             }
+        }
+        if (options.langs == null) {
+            options.langs = defaultLangs
+        } else {
+            options.langs = deepMerge(defaultLangs, options.langs)
         }
     }
 
