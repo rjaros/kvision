@@ -12797,6 +12797,7 @@ $dokka.location:io.kvision.utils//auto/#/PointingToDeclaration/kvision/io.kvisi
 $dokka.location:io.kvision.utils//ch/kotlin.Number#/PointingToDeclaration/kvision/io.kvision.utils/ch.html
 $dokka.location:io.kvision.utils//cm/kotlin.Number#/PointingToDeclaration/kvision/io.kvision.utils/cm.html
 $dokka.location:io.kvision.utils//createInstance/kotlin.Any?#kotlin.Array[kotlin.Any]/PointingToDeclaration/kvision/io.kvision.utils/create-instance.html
+$dokka.location:io.kvision.utils//deepMerge/#kotlin.Any#kotlin.Any/PointingToDeclaration/kvision/io.kvision.utils/deep-merge.html
 $dokka.location:io.kvision.utils//delete/#kotlin.Any#kotlin.String/PointingToDeclaration/kvision/io.kvision.utils/delete.html
 $dokka.location:io.kvision.utils//delete/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.utils/delete.html
 $dokka.location:io.kvision.utils//em/kotlin.Number#/PointingToDeclaration/kvision/io.kvision.utils/em.html
