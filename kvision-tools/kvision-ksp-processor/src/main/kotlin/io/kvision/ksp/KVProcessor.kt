@@ -83,7 +83,7 @@ class KVProcessor(
                 services.add(NameDetails(packageName, baseName, iName))
                 classDeclaration.containingFile
             }.toList().toTypedArray()
-        codeGenerator.createNewFile(Dependencies(true, *deps), "io.kvision.remote", "KVServiceManager")
+        codeGenerator.createNewFile(Dependencies(true, *deps), "io.kvision.remote", "GeneratedKVServiceManager")
             .writer().use {
                 when (codeGenerator.generatedFile.first().toString().sourceSetBelow("ksp")) {
                     "commonMain" -> {
