@@ -33,7 +33,7 @@ object DatetimeModule : ModuleInitializer {
 
     init {
         require("@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css")
-        tempusDominus = require("@eonasdan/tempus-dominus").default
+        tempusDominus = require("@eonasdan/tempus-dominus")
         val customDateFormatPlugin = require("@eonasdan/tempus-dominus/dist/plugins/customDateFormat.js")
         var tdClasses: dynamic = null
 

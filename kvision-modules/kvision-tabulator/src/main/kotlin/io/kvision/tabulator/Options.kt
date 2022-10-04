@@ -309,6 +309,14 @@ enum class ImportReader(internal val type: String) {
 }
 
 /**
+ * Possible header sort click elements.
+ */
+enum class HeaderSortClickElement(internal val element: String) {
+    HEADER("header"),
+    ICON("icon")
+}
+
+/**
  * Download config options.
  */
 data class DownloadConfig(
@@ -455,6 +463,13 @@ data class ColumnDefinition<T : Any>(
     val clickPopup: dynamic = null,
     val contextPopup: dynamic = null,
     val headerMenuIcon: dynamic = null,
+    val headerWordWrap: Boolean? = null,
+    val dblClickPopup: dynamic = null,
+    val headerClickPopup: dynamic = null,
+    val headerDblClickPopup: dynamic = null,
+    val headerClickMenu: dynamic = null,
+    val headerDblClickMenu: dynamic = null,
+    val dblClickMenu: dynamic = null,
 )
 
 internal object EditorRoot {
@@ -658,6 +673,12 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (clickPopup != null) this.clickPopup = clickPopup
         if (contextPopup != null) this.contextPopup = contextPopup
         if (headerMenuIcon != null) this.headerMenuIcon = headerMenuIcon
+        if (headerWordWrap != null) this.headerWordWrap = headerWordWrap
+        if (headerClickPopup != null) this.headerClickPopup = headerClickPopup
+        if (headerDblClickPopup != null) this.headerDblClickPopup = headerDblClickPopup
+        if (headerClickMenu != null) this.headerClickMenu = headerClickMenu
+        if (headerDblClickMenu != null) this.headerDblClickMenu = headerDblClickMenu
+        if (dblClickMenu != null) this.dblClickMenu = dblClickMenu
     } as Tabulator.ColumnDefinition
 }
 
@@ -790,7 +811,10 @@ data class TabulatorOptions<T : Any>(
     val resizableColumnFit: Boolean? = null,
     val rowHeight: Int? = null,
     val frozenRows: dynamic = null,
-    val frozenRowsField: String? = null
+    val frozenRowsField: String? = null,
+    val headerSortClickElement: HeaderSortClickElement? = null,
+    val rowDblClickPopup: dynamic = null,
+    val rowDblClickMenu: dynamic = null,
 )
 
 /**
@@ -934,5 +958,8 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (rowHeight != null) this.rowHeight = rowHeight
         if (frozenRows != null) this.frozenRows = frozenRows
         if (frozenRowsField != null) this.frozenRowsField = frozenRowsField
+        if (headerSortClickElement != null) this.headerSortClickElement = headerSortClickElement.element
+        if (rowDblClickPopup != null) this.rowDblClickPopup = rowDblClickPopup
+        if (rowDblClickMenu != null) this.rowDblClickMenu = rowDblClickMenu
     } as Tabulator.Options
 }
