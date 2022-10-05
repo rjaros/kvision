@@ -40,9 +40,17 @@ import io.kvision.annotations.KVBinding
 import io.kvision.annotations.KVBindingMethod
 import io.kvision.annotations.KVBindingRoute
 import io.kvision.annotations.KVService
+import io.kvision.annotations.KVServiceException
 import java.io.File
 
-data class NameDetails(val packageName: String, val baseName: String, val iName: String)
+data class NameDetails(
+    val packageName: String,
+    val className: String,
+    val interfaceName: String,
+    val managerName: String
+)
+
+data class ExceptionNameDetails(val packageName: String, val className: String)
 
 @OptIn(KspExperimental::class)
 class KVProcessor(
@@ -61,26 +69,41 @@ class KVProcessor(
         val deps = resolver.getSymbolsWithAnnotation(KVService::class.qualifiedName.orEmpty())
             .filterIsInstance<KSClassDeclaration>().filter(KSNode::validate)
             .filter { it.classKind == ClassKind.INTERFACE }
-            .filter {
-                val name = it.simpleName.asString()
-                name.startsWith("I") && name.endsWith("Service")
-            }.mapNotNull { classDeclaration ->
+            .mapNotNull { classDeclaration ->
+                val interfaceName = classDeclaration.simpleName.asString()
+                val isOldConvention = interfaceName.startsWith("I") && interfaceName.endsWith("Service")
                 val packageName = classDeclaration.packageName.asString()
-                val baseName = classDeclaration.simpleName.asString().drop(1)
-                val iName = classDeclaration.simpleName.asString()
+                val className = if (isOldConvention) interfaceName.drop(1) else "${interfaceName}Impl"
+                val managerName = if (isOldConvention) "${className}Manager" else "${interfaceName}Manager"
                 val dependencies = classDeclaration.containingFile?.let { Dependencies(true, it) } ?: Dependencies(true)
-                codeGenerator.createNewFile(dependencies, packageName, baseName).writer().use {
+                codeGenerator.createNewFile(dependencies, packageName, className).writer().use {
                     when (codeGenerator.generatedFile.first().toString().sourceSetBelow("ksp")) {
                         "commonMain" -> {
-                            it.write(generateCommonCode(packageName, baseName, iName, classDeclaration))
+                            it.write(
+                                generateCommonCode(
+                                    packageName,
+                                    className,
+                                    interfaceName,
+                                    managerName,
+                                    classDeclaration
+                                )
+                            )
                         }
 
                         "frontendMain" -> {
-                            it.write(generateFrontendCode(packageName, baseName, iName, classDeclaration))
+                            it.write(
+                                generateFrontendCode(
+                                    packageName,
+                                    className,
+                                    interfaceName,
+                                    managerName,
+                                    classDeclaration
+                                )
+                            )
                         }
                     }
                 }
-                services.add(NameDetails(packageName, baseName, iName))
+                services.add(NameDetails(packageName, className, interfaceName, managerName))
                 classDeclaration.containingFile
             }.toList().toTypedArray()
         codeGenerator.createNewFile(Dependencies(true, *deps), "io.kvision.remote", "GeneratedKVServiceManager")
@@ -89,11 +112,35 @@ class KVProcessor(
                     "commonMain" -> {
                         it.write(generateCommonCodeFunctions(services))
                     }
+
                     "frontendMain" -> {
                         it.write(generateFrontendCodeFunctions(services))
                     }
                 }
             }
+        val exceptions = mutableListOf<ExceptionNameDetails>()
+        val depsExceptions = resolver.getSymbolsWithAnnotation(KVServiceException::class.qualifiedName.orEmpty())
+            .filterIsInstance<KSClassDeclaration>().filter(KSNode::validate)
+            .filter { it.classKind == ClassKind.CLASS }
+            .mapNotNull { classDeclaration ->
+                val className = classDeclaration.simpleName.asString()
+                val packageName = classDeclaration.packageName.asString()
+                exceptions.add(ExceptionNameDetails(packageName, className))
+                classDeclaration.containingFile
+            }.toList().toTypedArray()
+        if (exceptions.isNotEmpty()) {
+            codeGenerator.createNewFile(
+                Dependencies(true, *depsExceptions),
+                "io.kvision.remote",
+                "GeneratedKVServiceExceptions"
+            ).writer().use {
+                when (codeGenerator.generatedFile.first().toString().sourceSetBelow("ksp")) {
+                    "commonMain" -> {
+                        it.write(generateCommonCodeExceptions(exceptions))
+                    }
+                }
+            }
+        }
         return emptyList()
     }
 
@@ -103,8 +150,9 @@ class KVProcessor(
 
     private fun generateCommonCode(
         packageName: String,
-        baseName: String,
-        iName: String,
+        className: String,
+        interfaceName: String,
+        managerName: String,
         ksClassDeclaration: KSClassDeclaration
     ): String {
         return StringBuilder().apply {
@@ -115,11 +163,13 @@ class KVProcessor(
             appendLine()
             appendLine("import io.kvision.remote.HttpMethod")
             appendLine("import io.kvision.remote.KVServiceManager")
+            appendLine("import io.kvision.remote.registerKVisionServiceExceptions")
             appendLine()
-            appendLine("expect class $baseName : $iName")
+            appendLine("expect class $className : $interfaceName")
             appendLine()
-            appendLine("object ${baseName}Manager : KVServiceManager<$baseName>($baseName::class) {")
+            appendLine("object $managerName : KVServiceManager<$className>($className::class) {")
             appendLine("    init {")
+            appendLine("        registerKVisionServiceExceptions()")
             val wsMethods = mutableListOf<String>()
             ksClassDeclaration.getDeclaredFunctions().forEach {
                 val params = it.parameters
@@ -145,16 +195,16 @@ class KVProcessor(
                 }
                 when {
                     it.returnType.toString().startsWith("RemoteData") ->
-                        appendLine("        bindTabulatorRemote($iName::${it.simpleName.asString()}, $route)")
+                        appendLine("        bindTabulatorRemote($interfaceName::${it.simpleName.asString()}, $route)")
 
                     wsMethod -> if (route == null) {
-                        appendLine("        bind($iName::${it.simpleName.asString()}, null as String?)")
+                        appendLine("        bind($interfaceName::${it.simpleName.asString()}, null as String?)")
                     } else {
-                        appendLine("        bind($iName::${it.simpleName.asString()}, $route)")
+                        appendLine("        bind($interfaceName::${it.simpleName.asString()}, $route)")
                     }
 
                     else -> if (!wsMethods.contains(it.simpleName.asString()))
-                        appendLine("        bind($iName::${it.simpleName.asString()}, $method, $route)")
+                        appendLine("        bind($interfaceName::${it.simpleName.asString()}, $method, $route)")
                 }
                 if (wsMethod) wsMethods.add(it.simpleName.asString())
             }
@@ -165,8 +215,9 @@ class KVProcessor(
 
     private fun generateFrontendCode(
         packageName: String,
-        baseName: String,
-        iName: String,
+        className: String,
+        interfaceName: String,
+        managerName: String,
         ksClassDeclaration: KSClassDeclaration
     ): String {
         return StringBuilder().apply {
@@ -182,7 +233,7 @@ class KVProcessor(
                 appendLine("import $it")
             }
             appendLine()
-            appendLine("actual class $baseName(serializersModules: List<SerializersModule>? = null, requestFilter: (suspend RequestInit.() -> Unit)? = null) : $iName, KVRemoteAgent<$baseName>(${baseName}Manager, serializersModules, requestFilter) {")
+            appendLine("actual class $className(serializersModules: List<SerializersModule>? = null, requestFilter: (suspend RequestInit.() -> Unit)? = null) : $interfaceName, KVRemoteAgent<$className>($managerName, serializersModules, requestFilter) {")
             val methodsCounts = ksClassDeclaration.getDeclaredFunctions().map {
                 it.simpleName.asString()
             }.groupBy { it }.map { it.key to it.value.size }.toMap()
@@ -207,7 +258,7 @@ class KVProcessor(
                                 )
 
                                 else -> appendLine(
-                                    "    override suspend fun $name(${getParameterList(params)}) = call($iName::$name, ${
+                                    "    override suspend fun $name(${getParameterList(params)}) = call($interfaceName::$name, ${
                                         getParameterNames(
                                             params
                                         )
@@ -215,7 +266,7 @@ class KVProcessor(
                                 )
                             }
                         } else {
-                            appendLine("    override suspend fun $name() = call($iName::$name)")
+                            appendLine("    override suspend fun $name() = call($interfaceName::$name)")
                         }
                     }
                 } else {
@@ -223,7 +274,7 @@ class KVProcessor(
                     val type1 = getTypeString(params[0].type.resolve()).replace("ReceiveChannel", "SendChannel")
                     val type2 = getTypeString(params[1].type.resolve()).replace("SendChannel", "ReceiveChannel")
                     val override = if ((methodsCounts[name] ?: 0) > 1) "override " else ""
-                    appendLine("    ${override}suspend fun $name(handler: suspend ($type1, $type2) -> Unit) = webSocket($iName::$name, handler)")
+                    appendLine("    ${override}suspend fun $name(handler: suspend ($type1, $type2) -> Unit) = webSocket($interfaceName::$name, handler)")
                 }
                 if (wsMethod) wsMethods.add(name)
             }
@@ -243,14 +294,14 @@ class KVProcessor(
             appendLine("@Suppress(\"UNCHECKED_CAST\")")
             appendLine("inline fun <reified T : Any> getServiceManager(): KVServiceManager<T> = when (T::class) {")
             services.forEach {
-                appendLine("    ${it.packageName}.${it.iName}::class -> ${it.packageName}.${it.baseName}Manager as KVServiceManager<T>")
+                appendLine("    ${it.packageName}.${it.interfaceName}::class -> ${it.packageName}.${it.managerName} as KVServiceManager<T>")
             }
             appendLine("    else -> throw IllegalArgumentException(\"Unknown service \${T::class}\")")
             appendLine("}")
             appendLine()
             appendLine("fun getAllServiceManagers(): List<KVServiceManager<*>> = listOf(")
             services.forEach {
-                appendLine("    ${it.packageName}.${it.baseName}Manager,")
+                appendLine("    ${it.packageName}.${it.managerName},")
             }
             appendLine(")")
             appendLine()
@@ -258,7 +309,7 @@ class KVProcessor(
             appendLine("    return kclass.map {")
             appendLine("        when (it) {")
             services.forEach {
-                appendLine("            ${it.packageName}.${it.iName}::class -> ${it.packageName}.${it.baseName}Manager")
+                appendLine("            ${it.packageName}.${it.interfaceName}::class -> ${it.packageName}.${it.managerName}")
             }
             appendLine("            else -> throw IllegalArgumentException(\"Unknown service \${it.simpleName}\")")
             appendLine("        }")
@@ -280,9 +331,41 @@ class KVProcessor(
             appendLine()
             appendLine("inline fun <reified T : Any> getService(serializersModules: List<SerializersModule>? = null, noinline requestFilter: (suspend RequestInit.() -> Unit)? = null): T = when (T::class) {")
             services.forEach {
-                appendLine("    ${it.packageName}.${it.iName}::class -> ${it.packageName}.${it.baseName}(serializersModules, requestFilter) as T")
+                appendLine("    ${it.packageName}.${it.interfaceName}::class -> ${it.packageName}.${it.className}(serializersModules, requestFilter) as T")
             }
             appendLine("    else -> throw IllegalArgumentException(\"Unknown service \${T::class}\")")
+            appendLine("}")
+            appendLine()
+        }.toString()
+    }
+
+    private fun generateCommonCodeExceptions(services: List<ExceptionNameDetails>): String {
+        return StringBuilder().apply {
+            appendLine("//")
+            appendLine("// GENERATED by KVision")
+            appendLine("//")
+            appendLine("package io.kvision.remote")
+            appendLine()
+            appendLine("import kotlinx.serialization.json.Json")
+            appendLine("import kotlinx.serialization.modules.SerializersModule")
+            appendLine("import kotlinx.serialization.modules.polymorphic")
+            appendLine("import kotlinx.serialization.modules.subclass")
+            appendLine()
+            appendLine("private var registered = false")
+            appendLine()
+            appendLine("fun registerKVisionServiceExceptions() {")
+            appendLine("    if (!registered) {")
+            appendLine("        RemoteSerialization.customConfiguration = Json {")
+            appendLine("            serializersModule = SerializersModule {")
+            appendLine("                polymorphic(AbstractServiceException::class) {")
+            services.forEach {
+                appendLine("                    subclass(${it.packageName}.${it.className}::class)")
+            }
+            appendLine("                }")
+            appendLine("            }")
+            appendLine("        }")
+            appendLine("        registered = true")
+            appendLine("    }")
             appendLine("}")
             appendLine()
         }.toString()

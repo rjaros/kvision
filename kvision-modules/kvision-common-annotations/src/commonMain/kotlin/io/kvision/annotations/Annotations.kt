@@ -21,6 +21,9 @@
  */
 package io.kvision.annotations
 
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.MetaSerializable
+
 enum class Method {
     GET,
     POST,
@@ -40,3 +43,8 @@ annotation class KVBindingMethod(val method: Method)
 
 @Target(AnnotationTarget.FUNCTION)
 annotation class KVBindingRoute(val route: String)
+
+@OptIn(ExperimentalSerializationApi::class)
+@MetaSerializable
+@Target(AnnotationTarget.CLASS)
+annotation class KVServiceException
