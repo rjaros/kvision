@@ -38,6 +38,15 @@ enum class Direction(internal val dir: String) {
 }
 
 /**
+ * Split panel gutter alignment.
+ */
+enum class GutterAlign(internal val align: String) {
+    CENTER("center"),
+    START("start"),
+    END("end"),
+}
+
+/**
  * The container with draggable splitter.
  *
  * It is required to have exactly two children, for both sides of the splitter. Otherwise it will be
@@ -52,6 +61,41 @@ open class SplitPanel(
     private val direction: Direction = Direction.VERTICAL,
     className: String? = null, init: (SplitPanel.() -> Unit)? = null
 ) : SimplePanel((className?.let { "$it " } ?: "") + ("splitpanel-" + direction.dir)) {
+
+    /**
+     * The gutter size.
+     */
+    var gutterSize by refreshOnUpdate(9)
+
+    /**
+     * The gutter align.
+     */
+    var gutterAlign: GutterAlign? by refreshOnUpdate()
+
+    /**
+     * The minimum size.
+     */
+    var minSize by refreshOnUpdate(0)
+
+    /**
+     * The maximum size.
+     */
+    var maxSize: Int? by refreshOnUpdate()
+
+    /**
+     * Expand to minimum size.
+     */
+    var expandToMin: Boolean? by refreshOnUpdate()
+
+    /**
+     * The snap offset.
+     */
+    var snapOffset by refreshOnUpdate(0)
+
+    /**
+     * The drag interval.
+     */
+    var dragInterval: Int? by refreshOnUpdate()
 
     @Suppress("LeakingThis")
     internal val splitter = Splitter(this, direction)
@@ -105,14 +149,24 @@ open class SplitPanel(
                 this.gutter = {
                     splitter.getElement()
                 }
-                this.gutterSize = 9
-                this.minSize = 0
-                this.snapOffset = 0
+                this.gutterSize = gutterSize
+                if (gutterAlign != null) this.gutterAlign = gutterAlign?.align
+                this.minSize = minSize
+                if (maxSize != null) this.maxSize = maxSize
+                if (expandToMin != null) this.expandToMin = expandToMin
+                this.snapOffset = snapOffset
+                if (dragInterval != null) this.dragInterval = dragInterval
                 this.onDrag = { sizes: Array<Int> ->
                     val e = obj {
                         this.sizes = sizes
                     }
                     self.dispatchEvent("dragSplitPanel", obj { detail = e })
+                }
+                this.onDragStart = { sizes: Array<Int> ->
+                    val e = obj {
+                        this.sizes = sizes
+                    }
+                    self.dispatchEvent("dragStartSplitPanel", obj { detail = e })
                 }
                 this.onDragEnd = { sizes: Array<Int> ->
                     val e = obj {
@@ -129,6 +183,21 @@ open class SplitPanel(
                 }
             })
         }
+    }
+
+    /**
+     * Get split panel sizes.
+     */
+    open fun getSizes(): Array<Int>? {
+        @Suppress("UnsafeCastFromDynamic")
+        return splitJs?.getSizes()
+    }
+
+    /**
+     * Set split panel sizes.
+     */
+    open fun setSizes(sizes: Array<Int>) {
+        splitJs?.setSizes(sizes)
     }
 
     override fun afterDestroy() {

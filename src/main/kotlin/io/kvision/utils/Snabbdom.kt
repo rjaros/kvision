@@ -56,6 +56,7 @@ external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExt
  */
 external interface BtOn : On {
     var dragSplitPanel: ((KvEvent) -> Unit)?
+    var dragStartSplitPanel: ((KvEvent) -> Unit)?
     var dragEndSplitPanel: ((KvEvent) -> Unit)?
     var updateModel: ((KvEvent) -> Unit)?
     var resizeStartWindow: ((KvEvent) -> Unit)?
