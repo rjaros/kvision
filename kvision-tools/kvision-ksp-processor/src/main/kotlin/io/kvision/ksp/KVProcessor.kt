@@ -128,16 +128,14 @@ class KVProcessor(
                 exceptions.add(ExceptionNameDetails(packageName, className))
                 classDeclaration.containingFile
             }.toList().toTypedArray()
-        if (exceptions.isNotEmpty()) {
-            codeGenerator.createNewFile(
-                Dependencies(true, *depsExceptions),
-                "io.kvision.remote",
-                "GeneratedKVServiceExceptions"
-            ).writer().use {
-                when (codeGenerator.generatedFile.first().toString().sourceSetBelow("ksp")) {
-                    "commonMain" -> {
-                        it.write(generateCommonCodeExceptions(exceptions))
-                    }
+        codeGenerator.createNewFile(
+            Dependencies(true, *depsExceptions),
+            "io.kvision.remote",
+            "GeneratedKVServiceExceptions"
+        ).writer().use {
+            when (codeGenerator.generatedFile.first().toString().sourceSetBelow("ksp")) {
+                "commonMain" -> {
+                    it.write(generateCommonCodeExceptions(exceptions))
                 }
             }
         }
@@ -351,22 +349,26 @@ class KVProcessor(
             appendLine("import kotlinx.serialization.modules.polymorphic")
             appendLine("import kotlinx.serialization.modules.subclass")
             appendLine()
-            appendLine("private var registered = false")
-            appendLine()
-            appendLine("fun registerKVisionServiceExceptions() {")
-            appendLine("    if (!registered) {")
-            appendLine("        RemoteSerialization.customConfiguration = Json {")
-            appendLine("            serializersModule = SerializersModule {")
-            appendLine("                polymorphic(AbstractServiceException::class) {")
-            services.forEach {
-                appendLine("                    subclass(${it.packageName}.${it.className}::class)")
+            if (services.isNotEmpty()) {
+                appendLine("private var registered = false")
+                appendLine()
+                appendLine("fun registerKVisionServiceExceptions() {")
+                appendLine("    if (!registered) {")
+                appendLine("        RemoteSerialization.customConfiguration = Json {")
+                appendLine("            serializersModule = SerializersModule {")
+                appendLine("                polymorphic(AbstractServiceException::class) {")
+                services.forEach {
+                    appendLine("                    subclass(${it.packageName}.${it.className}::class)")
+                }
+                appendLine("                }")
+                appendLine("            }")
+                appendLine("        }")
+                appendLine("        registered = true")
+                appendLine("    }")
+                appendLine("}")
+            } else {
+                appendLine("fun registerKVisionServiceExceptions() {}")
             }
-            appendLine("                }")
-            appendLine("            }")
-            appendLine("        }")
-            appendLine("        registered = true")
-            appendLine("    }")
-            appendLine("}")
             appendLine()
         }.toString()
     }
