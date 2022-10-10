@@ -21,12 +21,12 @@
  */
 package test.io.kvision.react
 
+import dom.html.HTMLInputElement
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.react.react
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
-import org.w3c.dom.HTMLInputElement
 import react.RefCallback
 import react.dom.html.ReactHTML.input
 import kotlin.test.Test
