@@ -2669,10 +2669,10 @@ tabulator-tables@^4.9.3:
   resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-4.9.3.tgz#89ea8f9bffc11ba9a789369b5165ac82da26f4f0"
   integrity sha512-iwwQqAEGGxlgrBpcmJJvMJrfjGLcCXOB3AOb/DGkXqBy1YKoYA36hIl7qXGp6Jo8dSkzFAlDT6pKLZgyhs9OnQ==
 
-tabulator-tables@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.4.0.tgz#b24f793ff9eb8561fed8c1bc8ae406256ce6acbc"
-  integrity sha512-LPiA895CbKHvh1oIWJl42tukXYYH04t2xn2pkUYleGnGf5tDGFnwKszag9GVWGOe+jyDHKNdJ4tFkM9edL/fXw==
+tabulator-tables@^5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.4.1.tgz#42803417785ddbe051fc9622c609b2d0cf5aa2c7"
+  integrity sha512-OvnOQj8QRXkouraR6zrBAxoZSnQ32+WvFLOSwRd+rI8Dn749FRiR5vUF3AT7OvnYxXt0AZRGALcJNkSrdE6fWg==
 
 tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
