@@ -423,6 +423,12 @@ data class ColumnDefinition<T : Any>(
     val headerFilterLiveFilter: Boolean? = null,
     val htmlOutput: dynamic = null,
     val print: dynamic = null,
+    val formatterPrint: ((
+        cell: Tabulator.CellComponent,
+        formatterParams: dynamic,
+        onRendered: (callback: () -> Unit) -> Unit
+    ) -> dynamic)? = null,
+    val formatterPrintParams: dynamic = null,
     val cellClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
     val cellDblClick: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
     val cellContext: ((e: dynamic, cell: Tabulator.CellComponent) -> Unit)? = null,
@@ -627,6 +633,14 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (headerFilterLiveFilter != null) this.headerFilterLiveFilter = headerFilterLiveFilter
         if (htmlOutput != null) this.htmlOutput = htmlOutput
         if (print != null) this.print = print
+        if (formatterPrint != null) this.formatterPrint = formatterPrint else {
+            if (formatterComponentFunction != null) {
+                this.formatterPrint = { cell: Tabulator.CellComponent, _: dynamic, _: () -> Unit ->
+                    cell.getValue()
+                }
+            }
+        }
+        if (formatterPrintParams != null) this.formatterPrintParams = formatterPrintParams
         if (cellClick != null) this.cellClick = cellClick
         if (cellDblClick != null) this.cellDblClick = cellDblClick
         if (cellContext != null) this.cellContext = cellContext

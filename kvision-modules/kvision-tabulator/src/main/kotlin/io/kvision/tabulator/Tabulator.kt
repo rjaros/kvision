@@ -456,12 +456,12 @@ open class Tabulator<T : Any>(
     ): Unit? {
         return if (newTab) {
             jsTabulator?.downloadToTab("csv", fileName, obj {
-                this.delimiter = delimiter
+                this.delimiter = delimiter.toString()
                 this.bom = includeBOM
             }, dataSet.set)
         } else {
             jsTabulator?.download("csv", fileName, obj {
-                this.delimiter = delimiter
+                this.delimiter = delimiter.toString()
                 this.bom = includeBOM
             }, dataSet.set)
         }
@@ -814,7 +814,7 @@ open class Tabulator<T : Any>(
         }
     }
 
-    internal fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
+    fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
         if (data._children != null) {
             data._children =
                 data._children.unsafeCast<Array<dynamic>>().map { toKotlinObjTabulator(it, kClass) }.toTypedArray()
