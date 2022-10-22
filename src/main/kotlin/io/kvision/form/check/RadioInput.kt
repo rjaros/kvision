@@ -23,6 +23,10 @@ package io.kvision.form.check
 
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
+import io.kvision.utils.event
+import kotlinx.browser.document
+import org.w3c.dom.CustomEvent
+import org.w3c.dom.HTMLElement
 
 /**
  * The basic input component rendered as HTML *input type="radio"*.
@@ -44,6 +48,11 @@ open class RadioInput(
     var squared by refreshOnUpdate(false)
 
     init {
+        this.setInternalEventListener<RadioInput> {
+            event("deselect") {
+                if (self.value) self.value = false
+            }
+        }
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -55,6 +64,20 @@ open class RadioInput(
         }
     }
 
+    override fun changeValue(eventType: String) {
+        super.changeValue(eventType)
+        this.name?.let {
+            val elements = document.getElementsByName(it)
+            for (index in 0 until elements.length) {
+                val element = elements.item(index)!!
+                if (element.nodeName == "INPUT" && element != this.getElement()
+                    && element.unsafeCast<HTMLElement>().getAttribute("type") == "radio"
+                ) {
+                    element.dispatchEvent(CustomEvent("deselect"))
+                }
+            }
+        }
+    }
 }
 
 /**
