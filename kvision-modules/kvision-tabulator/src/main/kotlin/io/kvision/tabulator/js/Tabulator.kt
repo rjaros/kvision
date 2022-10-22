@@ -318,7 +318,7 @@ open external class Tabulator {
     open fun setSort(sortList: dynamic /* String | Array<Tabulator.Sorter> */, dir: String /* 'asc' | 'desc' */): Unit =
         definedExternally
 
-    open fun getSorters(): Unit = definedExternally
+    open fun getSorters(): Array<SorterFromTable> = definedExternally
     open fun clearSort(): Unit = definedExternally
     open fun setFilter(
         p1: dynamic /* String | Array<Tabulator.Filter> | Array<Any> | (data: Any, filterParams: Any):Boolean */,
