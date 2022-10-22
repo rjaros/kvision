@@ -28,7 +28,6 @@ import com.google.inject.Module
 import io.javalin.Javalin
 import io.javalin.http.Context
 import io.javalin.http.staticfiles.Location
-import io.javalin.jetty.JettyResourceHandler
 import io.javalin.websocket.WsContext
 
 const val KV_INJECTOR_KEY = "io.kvision.injector.key"
@@ -68,7 +67,6 @@ fun Javalin.kvisionInit(initStaticResources: Boolean = true, vararg modules: Mod
 fun Javalin.initStaticResources() {
     updateConfig {
         it.staticFiles.add("/assets", Location.CLASSPATH)
-        (it.pvt.resourceHandler as JettyResourceHandler).init(it.pvt.server!!)
     }
 }
 
