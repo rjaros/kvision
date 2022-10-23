@@ -89,7 +89,7 @@ abstract class KVisionExtension @Inject constructor(
 
         @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
-        val mocha: Property<String> = objects.property<String>().convention("10.0.0")
+        val mocha: Property<String> = objects.property<String>().convention("10.1.0")
     }
 
 }
