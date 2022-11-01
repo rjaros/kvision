@@ -23,14 +23,7 @@ repositories {
 val kotlinVersion: String by System.getProperties()
 val kvisionVersion: String by System.getProperties()
 val ktorVersion: String by project
-val exposedVersion: String by project
-val hikariVersion: String by project
-val h2Version: String by project
-val pgsqlVersion: String by project
-val kweryVersion: String by project
 val logbackVersion: String by project
-val commonsCodecVersion: String by project
-val jdbcNamedParametersVersion: String by project
 
 val webDir = file("src/frontendMain/web")
 val mainClassName = "io.ktor.server.netty.EngineMain"
@@ -94,13 +87,6 @@ kotlin {
                 implementation("io.ktor:ktor-server-auth:$ktorVersion")
                 implementation("io.ktor:ktor-server-compression:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:$logbackVersion")
-                implementation("com.h2database:h2:$h2Version")
-                implementation("org.jetbrains.exposed:exposed:$exposedVersion")
-                implementation("org.postgresql:postgresql:$pgsqlVersion")
-                implementation("com.zaxxer:HikariCP:$hikariVersion")
-                implementation("commons-codec:commons-codec:$commonsCodecVersion")
-                implementation("com.axiomalaska:jdbc-named-parameters:$jdbcNamedParametersVersion")
-                implementation("com.github.andrewoma.kwery:core:$kweryVersion")
             }
         }
         val backendTest by getting {
