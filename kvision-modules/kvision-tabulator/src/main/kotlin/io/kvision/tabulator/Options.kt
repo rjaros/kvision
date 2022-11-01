@@ -415,6 +415,11 @@ data class ColumnDefinition<T : Any>(
     val titleFormatterParams: dynamic = null,
     val headerFilter: Editor? = null,
     val headerFilterParams: dynamic = null,
+    val headerFilterCustom: ((
+        cell: Tabulator.CellComponent,
+        onRendered: (callback: () -> Unit) -> Unit,
+        success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, editorParams: dynamic
+    ) -> dynamic)? = null,
     val headerFilterPlaceholder: String? = null,
     val headerFilterEmptyCheck: ((value: Any) -> Boolean)? = null,
     val headerFilterFunc: Filter? = null,
@@ -620,7 +625,11 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (editableTitle != null) this.editableTitle = editableTitle
         if (titleFormatter != null) this.titleFormatter = titleFormatter.formatter
         if (titleFormatterParams != null) this.titleFormatterParams = titleFormatterParams
-        if (headerFilter != null) this.headerFilter = headerFilter.editor
+        if (headerFilterCustom != null) {
+            this.headerFilter = headerFilterCustom
+        } else if (headerFilter != null) {
+            this.headerFilter = headerFilter.editor
+        }
         if (headerFilterParams != null) this.headerFilterParams = headerFilterParams
         if (headerFilterPlaceholder != null) this.headerFilterPlaceholder = i18nTranslator(headerFilterPlaceholder)
         if (headerFilterEmptyCheck != null) this.headerFilterEmptyCheck = headerFilterEmptyCheck
