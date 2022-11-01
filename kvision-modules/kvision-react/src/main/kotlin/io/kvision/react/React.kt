@@ -69,7 +69,7 @@ class React<S>(
     ) : this(js("{}"), className, builder)
 
     override fun afterInsert(node: VNode) {
-        val element = reactWrapper<S> { refresh ->
+        val element = reactWrapper { refresh ->
             refreshFunction = refresh
             builder({ state }) { changeState: (S) -> S ->
                 state = changeState(state)

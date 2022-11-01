@@ -29,9 +29,8 @@ import io.kvision.utils.obj
 import kotlinx.browser.document
 import org.w3c.dom.HTMLElement
 import react.ChildrenBuilder
-import react.FC
-import react.PropsWithChildren
 import react.StateSetter
+import react.VFC
 import react.createRef
 import react.dom.html.ReactHTML.div
 import react.useEffect
@@ -40,7 +39,7 @@ import react.useState
 /**
  * A helper functional component used by KVision React.
  */
-fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit) = FC<PropsWithChildren> {
+fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit) = VFC {
     @Suppress("UnsafeCastFromDynamic")
     val state = useState<S> { js("{}") }
     builder(state.component2())
@@ -49,7 +48,7 @@ fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit)
 /**
  * A helper functional component which allows to use KVision components as React children.
  */
-fun kvisionWrapper(builder: Container.() -> Unit) = FC<PropsWithChildren> {
+fun kvisionWrapper(builder: Container.() -> Unit) = VFC {
     val elRef = createRef<HTMLElement>()
     useEffect {
         var root: Root? = null
