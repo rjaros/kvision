@@ -40,7 +40,7 @@ import redux.WrapperAction
  */
 object ReduxModule : ModuleInitializer {
 
-    private val redux = require("redux/dist/redux.js")
+    private val redux = require("redux")
     internal val reduxThunk = require("redux-thunk/dist/redux-thunk.js")
 
     @Suppress("UnsafeCastFromDynamic")
