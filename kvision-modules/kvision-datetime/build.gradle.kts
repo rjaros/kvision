@@ -14,7 +14,7 @@ kotlin {
 dependencies {
     api(rootProject)
     implementation(npm("@popperjs/core", "^2.11.6"))
-    implementation(npm("@eonasdan/tempus-dominus", "^6.2.4"))
+    implementation(npm("@eonasdan/tempus-dominus", "^6.2.6"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

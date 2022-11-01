@@ -357,12 +357,15 @@ open class DateTimeInput(
     }
 
     private fun initDateTimePicker() {
-        val language = I18n.language
-        val startOfTheWeek = if (language != "en") 1 else 0
         val calendarView = (format.contains("YYYY") || format.contains("MM") || format.contains("DD"))
         val clockView = (format.contains("HH") || format.contains("mm") || format.contains("ss"))
         val secondsView = format.contains("ss")
         val newFormat = format.replace("YYYY", "yyyy").replace("DD", "dd")
+        val language = I18n.language
+        val locale = DatetimeModule.locales[language] ?: js("{}")
+        locale["locale"] = language
+        locale["format"] = newFormat
+        val initialViewMode = viewMode ?: if (calendarView) ViewMode.CALENDAR else ViewMode.CLOCK
         dateTimePicker = getElement()?.let { element ->
             DatetimeModule.tempusDominus.TempusDominus.unsafeCast<Any>().createInstance<Any>(element, obj {
                 this.useCurrent = inline
@@ -382,11 +385,11 @@ open class DateTimeInput(
                     if (daysOfWeekDisabled.isNotEmpty()) this.daysOfWeekDisabled = daysOfWeekDisabled
                 }
                 this.display = obj {
-                    viewMode?.let { this.viewMode = it.mode }
+                    this.viewMode = initialViewMode.mode
                     toolbarPlacement?.let { this.toolbarPlacement = it.placement }
                     this.sideBySide = sideBySide
                     this.buttons = obj {
-                        this.clear = showClear
+                        this.clear = if (calendarView) showClear else false // disable clear button for clock view because of a bug
                         this.close = showClose
                         this.today = showToday
                     }
@@ -399,37 +402,7 @@ open class DateTimeInput(
                         this.seconds = secondsView
                     }
                 }
-                this.localization = obj {
-                    this.locale = language
-                    this.format = newFormat
-                    this.startOfTheWeek = startOfTheWeek
-                    this.today = ""
-                    this.clear = ""
-                    this.close = ""
-                    this.selectMonth = ""
-                    this.previousMonth = ""
-                    this.nextMonth = ""
-                    this.selectYear = ""
-                    this.previousYear = ""
-                    this.nextYear = ""
-                    this.selectDecade = ""
-                    this.previousDecade = ""
-                    this.nextDecade = ""
-                    this.previousCentury = ""
-                    this.nextCentury = ""
-                    this.pickHour = ""
-                    this.incrementHour = ""
-                    this.decrementHour = ""
-                    this.pickMinute = ""
-                    this.incrementMinute = ""
-                    this.decrementMinute = ""
-                    this.pickSecond = ""
-                    this.incrementSecond = ""
-                    this.decrementSecond = ""
-                    this.toggleMeridiem = ""
-                    this.selectTime = ""
-                    this.selectDate = ""
-                }
+                this.localization = locale
             })
         }
     }
