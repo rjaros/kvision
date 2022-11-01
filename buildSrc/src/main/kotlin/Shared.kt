@@ -16,7 +16,6 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
 fun Project.repositories() {
     repositories {
         mavenCentral()
-        jcenter()
         mavenLocal()
     }
 }

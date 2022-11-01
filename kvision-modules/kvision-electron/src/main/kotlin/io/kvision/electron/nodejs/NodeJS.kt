@@ -28,15 +28,18 @@
 
 package io.kvision.electron.nodejs
 
-import NodeModule
-import NodeRequire
-import org.khronos.webgl.Uint8Array
 import io.kvision.electron.electron.BlinkMemoryInfo
 import io.kvision.electron.electron.CPUUsage
 import io.kvision.electron.electron.HeapStatistics
 import io.kvision.electron.electron.IOCounters
 import io.kvision.electron.electron.ProcessMemoryInfo
 import io.kvision.electron.electron.SystemMemoryInfo
+import node.Dict
+import node.Module
+import node.RequireResolve
+import node.tty.ReadStream
+import node.tty.WriteStream
+import org.khronos.webgl.Uint8Array
 import kotlin.js.Console
 import kotlin.js.Promise
 
@@ -373,9 +376,9 @@ external interface Process : EventEmitter {
     var traceProcessWarnings: Boolean
     var type: String
     var windowsStore: Boolean
-    var stdout: tty.WriteStream
-    var stderr: tty.WriteStream
-    var stdin: tty.ReadStream
+    var stdout: WriteStream
+    var stderr: WriteStream
+    var stdin: ReadStream
     fun openStdin(): Socket
     var argv: Array<String>
     var argv0: String
@@ -419,7 +422,7 @@ external interface Process : EventEmitter {
     var title: String
     var arch: String
     var platform: String /* 'aix' | 'android' | 'darwin' | 'freebsd' | 'linux' | 'openbsd' | 'sunos' | 'win32' | 'cygwin' | 'netbsd' */
-    var mainModule: NodeModule?
+    var mainModule: Module?
         get() = definedExternally
         set(value) = definedExternally
 
@@ -445,11 +448,13 @@ external interface Process : EventEmitter {
     fun resourceUsage(): ResourceUsage
     fun addListener(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun addListener(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
-//    fun addListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
+
+    //    fun addListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun addListener(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
     fun addListener(event: String /* "uncaughtException" */, listener: UncaughtExceptionListener): Process /* this */
     fun addListener(event: String /* "unhandledRejection" */, listener: UnhandledRejectionListener): Process /* this */
-//    fun addListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
+
+    //    fun addListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun addListener(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun addListener(
         event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */,
@@ -457,7 +462,8 @@ external interface Process : EventEmitter {
     ): Process /* this */
 
     fun addListener(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
-//    fun addListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
+
+    //    fun addListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun addListener(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
     fun emit(event: String /* "beforeExit" | "exit" */, code: Number): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
@@ -481,11 +487,13 @@ external interface Process : EventEmitter {
     fun emit(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
     fun on(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun on(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
-//    fun on(event: String /* "exit" */, listener: ExitListener): Process /* this */
+
+    //    fun on(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun on(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
     fun on(event: String /* "uncaughtException" */, listener: UncaughtExceptionListener): Process /* this */
     fun on(event: String /* "unhandledRejection" */, listener: UnhandledRejectionListener): Process /* this */
-//    fun on(event: String /* "warning" */, listener: WarningListener): Process /* this */
+
+    //    fun on(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun on(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun on(
         event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */,
@@ -493,15 +501,18 @@ external interface Process : EventEmitter {
     ): Process /* this */
 
     fun on(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
-//    fun on(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
+
+    //    fun on(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun on(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
     fun once(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun once(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
-//    fun once(event: String /* "exit" */, listener: ExitListener): Process /* this */
+
+    //    fun once(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun once(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
     fun once(event: String /* "uncaughtException" */, listener: UncaughtExceptionListener): Process /* this */
     fun once(event: String /* "unhandledRejection" */, listener: UnhandledRejectionListener): Process /* this */
-//    fun once(event: String /* "warning" */, listener: WarningListener): Process /* this */
+
+    //    fun once(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun once(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun once(
         event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */,
@@ -509,11 +520,13 @@ external interface Process : EventEmitter {
     ): Process /* this */
 
     fun once(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
-//    fun once(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
+
+    //    fun once(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun once(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
     fun prependListener(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun prependListener(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
-//    fun prependListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
+
+    //    fun prependListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun prependListener(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
     fun prependListener(
         event: String /* "uncaughtException" */,
@@ -525,7 +538,7 @@ external interface Process : EventEmitter {
         listener: UnhandledRejectionListener
     ): Process /* this */
 
-//    fun prependListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
+    //    fun prependListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun prependListener(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun prependListener(
         event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */,
@@ -533,11 +546,13 @@ external interface Process : EventEmitter {
     ): Process /* this */
 
     fun prependListener(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
-//    fun prependListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
+
+    //    fun prependListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun prependListener(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
     fun prependOnceListener(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun prependOnceListener(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
-//    fun prependOnceListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
+
+    //    fun prependOnceListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun prependOnceListener(
         event: String /* "rejectionHandled" */,
         listener: RejectionHandledListener
@@ -553,7 +568,7 @@ external interface Process : EventEmitter {
         listener: UnhandledRejectionListener
     ): Process /* this */
 
-//    fun prependOnceListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
+    //    fun prependOnceListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun prependOnceListener(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun prependOnceListener(
         event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */,
@@ -561,7 +576,8 @@ external interface Process : EventEmitter {
     ): Process /* this */
 
     fun prependOnceListener(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
-//    fun prependOnceListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
+
+    //    fun prependOnceListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun prependOnceListener(
         event: String /* "multipleResolves" */,
         listener: MultipleResolveListener
@@ -659,28 +675,3 @@ external open class Timeout : Timer {
     override fun refresh(): Timeout /* this */
     override fun unref(): Timeout /* this */
 }
-
-external open class Module(id: String, parent: Module = definedExternally) {
-    open var exports: Any
-    open var require: dynamic
-    open var id: String
-    open var filename: String
-    open var loaded: Boolean
-    open var parent: Module?
-    open var children: Array<Module>
-    open var path: String
-    open var paths: Array<String>
-
-    companion object {
-        fun runMain()
-        fun wrap(code: String): String
-        fun createRequireFromPath(path: String): NodeRequire
-        fun createRequire(path: String): NodeRequire
-        var builtinModules: Array<String>
-        var Module: Any
-    }
-}
-
-external interface ReadStream : tty.ReadStream
-
-external interface WriteStream : tty.WriteStream

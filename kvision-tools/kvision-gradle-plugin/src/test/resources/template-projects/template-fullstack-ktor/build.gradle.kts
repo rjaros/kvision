@@ -17,7 +17,6 @@ group = "com.example"
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 // Versions

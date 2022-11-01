@@ -30,7 +30,6 @@
 
 package io.kvision.electron.electron
 
-import Buffer
 import org.khronos.webgl.Uint8Array
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.EventListener
@@ -38,6 +37,7 @@ import io.kvision.electron.GlobalEvent
 import io.kvision.electron.nodejs.EventEmitter
 import io.kvision.electron.nodejs.Process
 import io.kvision.electron.nodejs.ReadableStream
+import node.buffer.Buffer
 import kotlin.js.Date
 import kotlin.js.Promise
 

@@ -7,7 +7,7 @@ plugins {
 }
 
 // Versions
-val nodeJsVersion: String by project
+val kotlinNodeVersion: String by project
 
 kotlin {
     js {
@@ -26,8 +26,8 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    api("org.jetbrains.kotlinx:kotlinx-nodejs:$nodeJsVersion")
-    implementation(npm("electron", "^19.0.6"))
+    api("org.jetbrains.kotlin-wrappers:kotlin-node:$kotlinNodeVersion")
+    implementation(npm("electron", "^21.2.0"))
     implementation(npm("@electron/remote", "^2.0.8"))
     testImplementation(kotlin("test-js"))
 }
