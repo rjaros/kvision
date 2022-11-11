@@ -3,9 +3,9 @@
 
 
 "@babel/runtime@^7.9.2":
-  version "7.20.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.0.tgz#824a9ef325ffde6f78056059db3168c08785e24a"
-  integrity sha512-NDYdls71fTXoU8TZHfbBWg7DiZfNzClcKui/+kyi6ppD2L1qnWW3VV6CjtaBXSUGGhiTWJ6ereOIkUvenif66Q==
+  version "7.20.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.1.tgz#1148bb33ab252b165a06698fde7576092a78b4a9"
+  integrity sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==
   dependencies:
     regenerator-runtime "^0.13.10"
 
@@ -40,10 +40,10 @@
   resolved "https://registry.yarnpkg.com/@electron/remote/-/remote-2.0.8.tgz#85ff321f0490222993207106e2f720273bb1a5c3"
   integrity sha512-P10v3+iFCIvEPeYzTWWGwwHmqWnjoh8RYnbtZAb3RlQefy4guagzIwcWtfftABIfm6JJTNQf4WPSKWZOpLmHXw==
 
-"@eonasdan/tempus-dominus@^6.2.6":
-  version "6.2.6"
-  resolved "https://registry.yarnpkg.com/@eonasdan/tempus-dominus/-/tempus-dominus-6.2.6.tgz#f581c96c8ec59a0ad1c81d9d0354b7e337b5a393"
-  integrity sha512-tEwhPut4WZ88Zs7y1a1HRbQZ4kyu9mQpXdhLcn9bLSaDZnntZzY9r5lPdMSrZ1m2iDvL9CQS+Kv2hvvNvoSE5A==
+"@eonasdan/tempus-dominus@^6.2.7":
+  version "6.2.7"
+  resolved "https://registry.yarnpkg.com/@eonasdan/tempus-dominus/-/tempus-dominus-6.2.7.tgz#46e36950a77e32fe62f8fe8bb27fe68dd74d58c3"
+  integrity sha512-F2TRWkkgn4mrHX1m0sy2HU/fF6cMUM5kPtZJNHfV/ckcdq7Ooraldr6KiOHltGCec7/hv/aydwI6atLAMesNgQ==
   optionalDependencies:
     "@popperjs/core" "^2.10.1"
 
@@ -145,9 +145,9 @@
     "@types/estree" "*"
 
 "@types/eslint@*":
-  version "8.4.9"
-  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-8.4.9.tgz#f7371980148697f4b582b086630319b55324b5aa"
-  integrity sha512-jFCSo4wJzlHQLCpceUhUnXdrPuCNOjGFMQ8Eg6JXxlz3QaCKOb7eGi2cephQdM4XTYsNej69P9JDJ1zqNIbncQ==
+  version "8.4.10"
+  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-8.4.10.tgz#19731b9685c19ed1552da7052b6f668ed7eb64bb"
+  integrity sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==
   dependencies:
     "@types/estree" "*"
     "@types/json-schema" "*"
@@ -190,10 +190,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-5.1.2.tgz#07508b45797cb81ec3f273011b054cd0755eddca"
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
-"@types/node@*", "@types/node@>=10.0.0", "@types/node@^18.11.8":
-  version "18.11.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.8.tgz#16d222a58d4363a2a359656dd20b28414de5d265"
-  integrity sha512-uGwPWlE0Hj972KkHtCDVwZ8O39GmyjfMane1Z3GUBGGnkZ2USDq7SxLpVIiIHpweY9DS0QTDH0Nw7RNBsAAZ5A==
+"@types/node@*", "@types/node@>=10.0.0", "@types/node@^18.11.9":
+  version "18.11.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
+  integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
 
 "@types/node@^16.11.26":
   version "16.18.3"
@@ -606,9 +606,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001400:
-  version "1.0.30001429"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001429.tgz#70cdae959096756a85713b36dd9cb82e62325639"
-  integrity sha512-511ThLu1hF+5RRRt0zYCf2U2yRr9GPF6m5y90SBCWsvSoYoW7yAGlv/elyPaNfvGCkp6kj/KFZWU0BMA69Prsg==
+  version "1.0.30001431"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001431.tgz#e7c59bd1bc518fae03a4656be442ce6c4887a795"
+  integrity sha512-zBUoFU0ZcxpvSt9IU66dXVT/3ctO1cy4y9cscs1szkPlcWb6pasYM144GqrUygUbT+k7cmUCW61cvskjcv0enQ==
 
 chalk@^2.3.0:
   version "2.4.2"
@@ -927,9 +927,9 @@ electron-to-chromium@^1.4.251:
   integrity sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==
 
 electron@^21.2.0:
-  version "21.2.1"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-21.2.1.tgz#a6bbf4fee7ed985c739cc0d87fbef0ea4559da57"
-  integrity sha512-RLuFstGpHk1wtCRm9Kd+mhLjHZ5+m83+GQ/CsVl06OT7ikCT68yXMEgPmSkgmN5WjzlorsK6H5hIk9Sf6P/7Lg==
+  version "21.2.3"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-21.2.3.tgz#7bd190f57b154ab85c92a2e52e0329fd40cbc7b9"
+  integrity sha512-Wyj0ri3P8hnWEvX7+2Q1OtNzJI8Qn4V9J+aeypoXh+wtlX/fjfHxi4vZkos/XRncoIeYCeUZ5nhGjsOIQwSElQ==
   dependencies:
     "@electron/get" "^1.14.1"
     "@types/node" "^16.11.26"
@@ -1729,9 +1729,9 @@ karma@6.4.1:
     yargs "^16.1.1"
 
 keyv@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/keyv/-/keyv-4.5.0.tgz#dbce9ade79610b6e641a9a65f2f6499ba06b9bc6"
-  integrity sha512-2YvuMsA+jnFGtBareKqgANOEKe1mk3HKiXu2fRmAfyxG0MJAywNhi5ttWA3PMjl4NmpyjZNbFifR2vNjW1znfA==
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/keyv/-/keyv-4.5.2.tgz#0e310ce73bf7851ec702f2eaf46ec4e3805cce56"
+  integrity sha512-5MHbFaKn8cNSmVW7BYnijeAVlE4cYA/SVkifVgrh7yotnfhKmjuXpDKjrABLnT0SfHWV21P8ow07OGfRrNDg8g==
   dependencies:
     json-buffer "3.0.1"
 
@@ -2210,9 +2210,9 @@ postcss-value-parser@^4.1.0, postcss-value-parser@^4.2.0:
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
 postcss@^8.4.7:
-  version "8.4.18"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.18.tgz#6d50046ea7d3d66a85e0e782074e7203bc7fbca2"
-  integrity sha512-Wi8mWhncLJm11GATDaQKobXSNEYGUHeQLiQqDFG1qQ5UTDPTEvKw0Xt5NsTpktGTwLps3ByrWsBrG0rB8YQ9oA==
+  version "8.4.19"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.19.tgz#61178e2add236b17351897c8bcc0b4c8ecab56fc"
+  integrity sha512-h+pbPsyhlYj6N2ozBmHhHrs9DzGmbaarbLvWipMRO7RLS+v4onj26MPFXA5OBYFxyqYhUJK456SwDcY9H2/zsA==
   dependencies:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
@@ -2315,9 +2315,9 @@ rechoir@^0.7.0:
     resolve "^1.9.0"
 
 redux-thunk@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
-  integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.2.tgz#b9d05d11994b99f7a91ea223e8b04cf0afa5ef3b"
+  integrity sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==
 
 redux@^4.1.2:
   version "4.2.0"
@@ -2700,10 +2700,10 @@ toidentifier@1.0.1:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.1.tgz#3be34321a88a820ed1bd80dfaa33e479fbb8dd35"
   integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
 
-trix@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/trix/-/trix-1.3.1.tgz#ccce8d9e72bf0fe70c8c019ff558c70266f8d857"
-  integrity sha512-BbH6mb6gk+AV4f2as38mP6Ucc1LE3OD6XxkZnAgPIduWXYtvg2mI3cZhIZSLqmMh9OITEpOBCCk88IVmyjU7bA==
+trix@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.0.tgz#eaac6a8e3a3192f41675232c8dbf1ede2c8771cc"
+  integrity sha512-3ELqNcPi1bZDuyStX0c3PpxUgynL9Q4MJqywpGAl+EWqd0mbgdQprEJta/j4o21nUXekC2L+5XP7pISjLJEXcA==
 
 tunnel@^0.0.6:
   version "0.0.6"
@@ -2839,10 +2839,10 @@ webpack-sources@^3.2.3:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-webpack@5.74.0:
-  version "5.74.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.74.0.tgz#02a5dac19a17e0bb47093f2be67c695102a55980"
-  integrity sha512-A2InDwnhhGN4LYctJj6M1JEaGL7Luj6LOmyBHjcI8529cm5p6VXiTIW2sn6ffvEAKmveLzvu4jrihwXtPojlAA==
+webpack@5.75.0:
+  version "5.75.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.75.0.tgz#1e440468647b2505860e94c9ff3e44d5b582c152"
+  integrity sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^0.0.51"

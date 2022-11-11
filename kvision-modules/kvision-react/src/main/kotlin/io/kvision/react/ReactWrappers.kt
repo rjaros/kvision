@@ -22,12 +22,13 @@
 
 package io.kvision.react
 
+import browser.document
+import dom.html.HTMLDivElement
+import dom.html.HTMLElement
 import io.kvision.core.Container
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.utils.obj
-import kotlinx.browser.document
-import org.w3c.dom.HTMLElement
 import react.ChildrenBuilder
 import react.StateSetter
 import react.VFC
@@ -49,15 +50,14 @@ fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit)
  * A helper functional component which allows to use KVision components as React children.
  */
 fun kvisionWrapper(builder: Container.() -> Unit) = VFC {
-    val elRef = createRef<HTMLElement>()
+    val elRef = createRef<HTMLDivElement>()
     useEffect {
         var root: Root? = null
         var el: HTMLElement? = null
-        @Suppress("UNNECESSARY_SAFE_CALL")
         elRef.current?.let {
-            el = document.createElement("div") as HTMLElement
+            el = document.createElement("div")
             it.appendChild(el!!)
-            root = Root(el!!, ContainerType.NONE, false, init = builder)
+            root = Root(el!!.unsafeCast<org.w3c.dom.HTMLElement>(), ContainerType.NONE, false, init = builder)
         }
         cleanup {
             root?.dispose()

@@ -22,12 +22,12 @@
 
 package io.kvision.react
 
+import dom.Element
 import io.kvision.ReactModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.snabbdom.VNode
 import io.kvision.state.ObservableState
-import org.w3c.dom.HTMLElement
 import react.ChildrenBuilder
 import react.StateSetter
 import react.createElement
@@ -76,7 +76,7 @@ class React<S>(
                 refresh(state)
             }
         }
-        root = createRoot(node.elm as HTMLElement).also {
+        root = createRoot(node.elm.unsafeCast<Element>()).also {
             it.render(createElement(element))
         }
     }

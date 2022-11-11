@@ -31,24 +31,28 @@ import kotlinx.browser.window
 object RichTextModule : ModuleInitializer {
 
     init {
-        val trix = require("trix/dist/trix-core.js")
-        window.asDynamic().Trix = trix
-        trix.config.languages = obj {}
-        trix.config.languages["en"] = obj {}
+        val trix = require("trix/dist/trix.esm.js").default
+        val trixLocales = obj {}
+        trixLocales["en"] = obj {}
         for (key in js("Object").keys(trix.config.lang)) {
-            trix.config.languages["en"][key] = trix.config.lang[key]
+            trixLocales["en"][key] = trix.config.lang[key]
         }
         val orig = trix.config.toolbar.getDefaultHTML
         trix.config.toolbar.getDefaultHTML = {
-            val config = if (trix.config.languages[I18n.language] != undefined) {
-                trix.config.languages[I18n.language]
+            val config = if (trixLocales[I18n.language] != undefined) {
+                trixLocales[I18n.language]
             } else {
-                trix.config.languages["en"]
+                trixLocales["en"]
             }
             for (key in js("Object").keys(trix.config.lang)) {
                 trix.config.lang[key] = config[key]
             }
             orig()
+        }
+        window.asDynamic().Trix = obj {
+            config = obj {
+                languages = trixLocales
+            }
         }
         require("kvision-assets/js/locales/trix/trix.pl.js")
     }

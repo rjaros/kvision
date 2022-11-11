@@ -68,7 +68,6 @@ object DatetimeModule : ModuleInitializer {
         }
         tempusDominus.extend(::tdClassesGetter)
         // workaround some bugs in tempus dominus custom date format plugin
-        tdClasses.ErrorMessages = tdClasses.ErrorMessages.unsafeCast<Any>().createInstance<Any>()
         customDateFormatPlugin(null, tdClasses, tempusDominus)
         val oldParseInput = tdClasses.Dates.prototype.parseInput
         tdClasses.Dates.prototype.parseInput = { input: String ->
