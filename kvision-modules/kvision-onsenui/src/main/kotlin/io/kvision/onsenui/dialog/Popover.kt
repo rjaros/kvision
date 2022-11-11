@@ -113,7 +113,6 @@ open class Popover(
         return render("ons-popover", childrenVNodes())
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         if (onDeviceBackButtonCallback != null) {
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback

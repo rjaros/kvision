@@ -157,7 +157,6 @@ object Camera {
             if (isCameraActive && resumeEvent.pendingResult != null) {
                 window.localStorage.removeItem(CAMERA_ACTIVE_STORAGE_KEY)
                 if (resumeEvent.pendingResult.pluginStatus == CAMERA_STATUS_OK) {
-                    @Suppress("UnsafeCastFromDynamic")
                     resultCallback(Result.success(resumeEvent.pendingResult.result))
                 } else {
                     @Suppress("UnsafeCastFromDynamic")

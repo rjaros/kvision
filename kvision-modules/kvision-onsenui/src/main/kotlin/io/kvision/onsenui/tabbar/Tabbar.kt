@@ -175,7 +175,6 @@ open class Tabbar(
                 val styles = widget.getSnStyle()
                 val stylesList = mutableListOf<StringPair>()
                 for (key in js("Object").keys(styles)) {
-                    @Suppress("UnsafeCastFromDynamic")
                     stylesList.add(key.unsafeCast<String>() to styles[key])
                 }
                 val style = stylesList.joinToString(";") { (key, value) -> "$key: $value" }
@@ -200,7 +199,6 @@ open class Tabbar(
             val styles = widget.getSnStyle()
             val stylesList = mutableListOf<StringPair>()
             for (key in js("Object").keys(styles)) {
-                @Suppress("UnsafeCastFromDynamic")
                 stylesList.add(key.unsafeCast<String>() to styles[key])
             }
             val style = stylesList.joinToString(";") { (key, value) -> "$key: $value" }
@@ -229,7 +227,6 @@ open class Tabbar(
      * Shows or hides the tab bar.
      * @param visible whether the tab bar is visible
      */
-    @Suppress("UnsafeCastFromDynamic")
     open fun setTabbarVisibility(visible: Boolean) {
         getElement()?.asDynamic()?.setTabbarVisibility(visible)
     }

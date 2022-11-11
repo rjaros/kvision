@@ -113,7 +113,6 @@ open class PullHook(
         }
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         if (onActionCallback != null) {
             getElement()?.asDynamic()?.onAction = onActionCallback

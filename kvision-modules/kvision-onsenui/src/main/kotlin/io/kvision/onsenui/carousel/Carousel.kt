@@ -156,7 +156,6 @@ open class Carousel(
         return render("ons-carousel", arrayOf(swiperPanel.renderVNode()))
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         if (onSwipeCallback != null) {
             getElement()?.asDynamic()?.onSwipe = onSwipeCallback
@@ -303,7 +302,6 @@ open class Carousel(
     /**
      * Updates the layout of the carousel.
      */
-    @Suppress("UnsafeCastFromDynamic")
     open fun refreshCarousel() {
         getElement()?.asDynamic()?.refresh()
     }

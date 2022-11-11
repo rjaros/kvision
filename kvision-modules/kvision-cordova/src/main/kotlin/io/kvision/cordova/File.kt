@@ -138,7 +138,6 @@ object File {
      * Resolve given path to a file entry.
      * @param url file path
      */
-    @Suppress("UnsafeCastFromDynamic")
     suspend fun resolveLocalFileSystemURLForFile(url: String): Result<FileEntry, FileException> {
         return when (val result = resolveLocalFileSystemURL(url)) {
             is Result.Success -> {

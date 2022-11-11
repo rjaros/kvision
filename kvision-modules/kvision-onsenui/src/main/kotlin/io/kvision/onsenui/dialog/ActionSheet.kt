@@ -108,7 +108,6 @@ open class ActionSheet(
         return render("ons-action-sheet", childrenVNodes())
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         if (onDeviceBackButtonCallback != null) {
             getElement()?.asDynamic()?.onDeviceBackButton = onDeviceBackButtonCallback
