@@ -114,7 +114,6 @@ fun AjaxOptions.toJs(emptyOption: Boolean): dynamic {
                 this.value = KVNULL
                 this.text = ""
             })
-            @Suppress("UnsafeCastFromDynamic")
             ret.addAll((processedData as Array<dynamic>).asList())
             ret.toTypedArray()
         } else {

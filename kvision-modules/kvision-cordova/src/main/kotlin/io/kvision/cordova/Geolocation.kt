@@ -137,7 +137,6 @@ object Geolocation {
      * Clear the given watch.
      * @param watchId watch identifier returned from [watchPosition] function
      */
-    @Suppress("UnsafeCastFromDynamic")
     fun clearWatch(watchId: String) {
         if (window.navigator.asDynamic().geolocation != null) {
             window.navigator.asDynamic().geolocation.clearWatch(watchId)
@@ -244,7 +243,6 @@ object Locationservices {
      * Clear the given watch.
      * @param watchId watch identifier returned from [watchPosition] function
      */
-    @Suppress("UnsafeCastFromDynamic")
     fun clearWatch(watchId: String) {
         if (window.asDynamic().cordova.plugins.locationServices.geolocation != null) {
             window.asDynamic().cordova.plugins.locationServices.geolocation.clearWatch(watchId)

@@ -153,7 +153,6 @@ open class SimpleSelectInput(
                 } else {
                     getElementD().value
                 }
-                @Suppress("UnsafeCastFromDynamic")
                 self.value = calculateValue(v)
             }
         }

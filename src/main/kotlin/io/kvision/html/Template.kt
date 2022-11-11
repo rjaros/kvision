@@ -59,7 +59,6 @@ interface Template {
  * Extension function to set serializable object as a template data.
  */
 fun <K> Template.setData(obj: K, serializer: SerializationStrategy<K>) {
-    @Suppress("UnsafeCastFromDynamic")
     this.templateData = obj.toObj(serializer)
 }
 

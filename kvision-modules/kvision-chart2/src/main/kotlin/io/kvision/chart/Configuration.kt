@@ -977,7 +977,6 @@ fun Configuration.toJs(i18nTranslator: (String) -> (String)): Chart.ChartConfigu
         this.data = obj {
             if (labels != null) this.labels = labels.map(i18nTranslator).toTypedArray()
             this.datasets = dataSets.map {
-                @Suppress("UnsafeCastFromDynamic")
                 it.toJs(i18nTranslator)
             }.toTypedArray()
         }

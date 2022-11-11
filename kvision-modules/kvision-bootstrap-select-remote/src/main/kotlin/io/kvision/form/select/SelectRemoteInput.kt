@@ -88,7 +88,6 @@ open class SelectRemoteInput<out T : Any>(
             this.ajaxOptions = tempAjaxOptions.copy(
                 url = urlPrefix + url.drop(1),
                 preprocessData = {
-                    @Suppress("UnsafeCastFromDynamic")
                     Serialization.plain.decodeFromString(ListSerializer(RemoteOption.serializer()), it.result as String)
                         .map {
                             obj {
@@ -149,7 +148,6 @@ open class SelectRemoteInput<out T : Any>(
         init?.invoke(this)
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun refreshState() {
         value?.let {
             if (multiple) {

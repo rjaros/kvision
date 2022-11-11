@@ -66,7 +66,6 @@ object InAppBrowser {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 val ref = window.asDynamic().cordova.InAppBrowser.open(url, target, options)
-                @Suppress("UnsafeCastFromDynamic")
                 continuation.resume(ref)
             }
         }

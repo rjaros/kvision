@@ -119,7 +119,6 @@ open class TypeaheadInput(
         init?.invoke(this)
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.typeahead(getSettingsObj())
         super.afterInsert(node)

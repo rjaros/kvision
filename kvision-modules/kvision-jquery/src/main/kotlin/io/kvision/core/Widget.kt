@@ -207,7 +207,6 @@ fun Widget.animate(
     val stylesObj = widget.getSnStyle()
     val obj = js("{}")
     for (key in js("Object").keys(stylesObj)) {
-        @Suppress("UnsafeCastFromDynamic")
         obj[key.unsafeCast<String>().toCamelCase()] = stylesObj[key]
     }
     @Suppress("UnsafeCastFromDynamic")

@@ -93,20 +93,15 @@ open class TabulatorRemote<T : Any, out E : Any>(
 
         options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params ->
-            @Suppress("UnsafeCastFromDynamic")
             val page = if (params.page != null) "" + params.page else null
-
-            @Suppress("UnsafeCastFromDynamic")
             val size = if (params.size != null) "" + params.size else null
 
-            @Suppress("UnsafeCastFromDynamic")
             val filters = if (params.filter != null) {
                 JSON.stringify(params.filter)
             } else {
                 null
             }
 
-            @Suppress("UnsafeCastFromDynamic")
             val sorters = if (params.sort != null) {
                 JSON.stringify(params.sort)
             } else {
@@ -114,13 +109,11 @@ open class TabulatorRemote<T : Any, out E : Any>(
             }
             val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
 
-            @Suppress("UnsafeCastFromDynamic")
             val data =
                 Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
             callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name), requestFilter = requestFilter)
                 .then { r: dynamic ->
                     val result = JSON.parse<dynamic>(r.result.unsafeCast<String>())
-                    @Suppress("UnsafeCastFromDynamic")
                     if (page != null) {
                         if (result.data == undefined) {
                             result.data = js("[]")

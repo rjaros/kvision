@@ -264,7 +264,6 @@ internal class BootstrapToast(
         }
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         createBsInstance({ Toast }).show()
         this.getElement()?.addEventListener("hidden.bs.toast", { _ ->

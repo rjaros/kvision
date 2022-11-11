@@ -131,7 +131,6 @@ object StatusBar {
     /**
      * Returns if the status bar is visible.
      */
-    @Suppress("UnsafeCastFromDynamic")
     suspend fun isVisible(): Boolean {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {

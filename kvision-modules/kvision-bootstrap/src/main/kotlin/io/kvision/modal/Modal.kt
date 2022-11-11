@@ -259,7 +259,6 @@ open class Modal(
         }
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         createBsInstance({ Modal }, obj {
             keyboard = escape
@@ -292,7 +291,6 @@ open class Modal(
     /**
      * Show modal window with Bootstrap function.
      */
-    @Suppress("UnsafeCastFromDynamic")
     fun showBootstrap() {
         getBsInstance { Modal }?.show()
     }
@@ -300,7 +298,6 @@ open class Modal(
     /**
      * Hide modal window with Bootstrap function.
      */
-    @Suppress("UnsafeCastFromDynamic")
     fun hideBootstrap() {
         getBsInstance { Modal }?.hide()
     }

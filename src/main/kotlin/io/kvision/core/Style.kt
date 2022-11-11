@@ -133,7 +133,6 @@ open class Style(
         val styles = getSnStyle()
         val stylesList = mutableListOf<StringPair>()
         for (key in js("Object").keys(styles)) {
-            @Suppress("UnsafeCastFromDynamic")
             stylesList.add(key.unsafeCast<String>() to styles[key])
         }
         return "${getStyleDeclaration()} {\n" + stylesList.joinToString("\n") {

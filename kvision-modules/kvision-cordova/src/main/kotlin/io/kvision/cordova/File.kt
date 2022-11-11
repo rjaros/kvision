@@ -92,7 +92,6 @@ object File {
     suspend fun getSystemDirectories(): SystemDirs {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
-                @Suppress("UnsafeCastFromDynamic")
                 continuation.resume(window.asDynamic().cordova.file)
             }
         }
@@ -119,7 +118,6 @@ object File {
      * Resolve given path to a directory entry.
      * @param url directory path
      */
-    @Suppress("UnsafeCastFromDynamic")
     suspend fun resolveLocalFileSystemURLForDir(url: String): Result<DirectoryEntry, FileException> {
         return when (val result = resolveLocalFileSystemURL(url)) {
             is Result.Success -> {

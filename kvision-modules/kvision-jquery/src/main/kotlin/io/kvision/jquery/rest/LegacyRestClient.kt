@@ -179,7 +179,6 @@ open class LegacyRestClient(protected val module: SerializersModule? = null) {
             } else {
                 result
             }
-            @Suppress("UnsafeCastFromDynamic")
             JsonInstance.decodeFromString(deserializer, JSON.stringify(transformed))
         }
     }
@@ -244,7 +243,6 @@ open class LegacyRestClient(protected val module: SerializersModule? = null) {
             } else {
                 result
             }
-            @Suppress("UnsafeCastFromDynamic")
             JsonInstance.decodeFromString(deserializer, JSON.stringify(transformed))
         }
     }
@@ -461,7 +459,6 @@ open class LegacyRestClient(protected val module: SerializersModule? = null) {
                 result.data
             }
             Response(
-                @Suppress("UnsafeCastFromDynamic")
                 JsonInstance.decodeFromString(deserializer, JSON.stringify(transformed)),
                 result.textStatus, result.jqXHR
             )
@@ -529,7 +526,6 @@ open class LegacyRestClient(protected val module: SerializersModule? = null) {
                 result.data
             }
             Response(
-                @Suppress("UnsafeCastFromDynamic")
                 JsonInstance.decodeFromString(deserializer, JSON.stringify(transformed)),
                 result.textStatus, result.jqXHR
             )

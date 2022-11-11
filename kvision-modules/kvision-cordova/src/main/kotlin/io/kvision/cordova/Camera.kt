@@ -115,7 +115,6 @@ object Camera {
      * @param options camera options
      * @return a [Result] class containing the picture or the exception
      */
-    @Suppress("UnsafeCastFromDynamic")
     suspend fun getPicture(options: CameraOptions): Result<String, CameraException> {
         return suspendCoroutine { continuation ->
             getPicture(options) {
