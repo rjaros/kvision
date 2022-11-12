@@ -102,7 +102,7 @@ open class ListTag(
         val childrenElements = getChildren().filter { it.visible }
         val res = when (type) {
             ListType.UL, ListType.OL, ListType.UNSTYLED, ListType.INLINE -> childrenElements.map { v ->
-                if (v is Tag && v.type == TAG.LI /*|| v is DropDown && v.forNavbar*/) {
+                if ((v is Tag && (v.type == TAG.LI || v.type == TAG.OL || v.type == TAG.UL)) || v is ListTag) {
                     v.renderVNode()
                 } else {
                     if (type == ListType.INLINE) {
@@ -116,7 +116,7 @@ open class ListTag(
                 }
             }
             ListType.DL, ListType.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
-                if (v is Tag && v.type == TAG.LI /*|| v is DropDown && v.forNavbar*/) {
+                if (v is Tag && ((v.type == TAG.LI || v.type == TAG.OL || v.type == TAG.UL) || v is ListTag)) {
                     v.renderVNode()
                 } else {
                     h(if (index % 2 == 0) "dt" else "dd", arrayOf(v.renderVNode()))
