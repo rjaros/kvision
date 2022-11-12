@@ -66,11 +66,11 @@ Range input component.
 
 # Package io.kvision.form.select
 
-Contains a simple select component as well as a full-featured component with support for remote (AJAX) data source.
+Contains a simple select component as well as full-featured components with support for remote data sources.
 
 # Package io.kvision.form.spinner
 
-Spinner input component.
+Spinner input components.
 
 # Package io.kvision.form.text
 
