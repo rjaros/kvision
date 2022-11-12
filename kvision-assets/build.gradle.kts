@@ -14,7 +14,7 @@ npmPublishing {
                 }
             }
             packageJson {
-                version = "6.0.0"
+                version = "7.0.1"
                 description = "The assets for the KVision framework"
                 keywords = jsonArray("kvision", "kotlin")
                 homepage = "https://kvision.io"
