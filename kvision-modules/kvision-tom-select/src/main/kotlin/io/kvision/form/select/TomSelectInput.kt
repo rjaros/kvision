@@ -255,15 +255,15 @@ open class TomSelectInput(
         if (tomSelectJs != null) {
             if (multiple) {
                 if (value != null) {
-                    tomSelectJs?.setValue(value!!.split(",").toTypedArray())
+                    tomSelectJs?.setValue(value!!.split(",").toTypedArray(), true)
                 } else {
-                    tomSelectJs?.setValue(emptyArray<String>())
+                    tomSelectJs?.setValue(emptyArray<String>(), true)
                 }
             } else {
                 if (value != null) {
-                    tomSelectJs?.setValue(value)
+                    tomSelectJs?.setValue(value, true)
                 } else {
-                    tomSelectJs?.setValue("")
+                    tomSelectJs?.setValue("", true)
                 }
             }
         }
