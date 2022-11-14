@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.form.text
 
 import io.kvision.snabbdom.VNode
@@ -53,6 +55,7 @@ enum class ShowHintOnFocus {
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
+@Deprecated("Use TomTypeaheadInput instead from the kvision-tom-select module.")
 open class TypeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
@@ -208,6 +211,7 @@ open class TypeaheadInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use tomTypeaheadInput instead from the kvision-tom-select module.")
 fun Container.typeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,

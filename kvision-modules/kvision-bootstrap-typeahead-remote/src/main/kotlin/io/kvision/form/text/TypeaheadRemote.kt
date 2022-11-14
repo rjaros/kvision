@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.form.text
 
 import io.kvision.core.Container
@@ -43,6 +45,7 @@ import io.kvision.remote.KVServiceMgr
  * @param floating use floating label
  * @param init an initializer extension function
  */
+@Deprecated("Use TomTypeaheadRemote instead from the kvision-tom-select-remote module.")
 open class TypeaheadRemote<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
@@ -159,6 +162,7 @@ open class TypeaheadRemote<out T : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use tomTypeaheadRemote instead from the kvision-tom-select-remote module.")
 fun <T : Any> Container.typeaheadRemote(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,

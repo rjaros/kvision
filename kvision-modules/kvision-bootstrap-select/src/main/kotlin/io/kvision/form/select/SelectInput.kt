@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.form.select
 
 import io.kvision.snabbdom.VNode
@@ -70,6 +72,7 @@ enum class SelectDropdownAlign {
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
+@Deprecated("Use TomSelectInput instead from the kvision-tom-select module.")
 open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
@@ -497,6 +500,7 @@ open class SelectInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use tomSelectInput instead from the kvision-tom-select module.")
 fun Container.selectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,

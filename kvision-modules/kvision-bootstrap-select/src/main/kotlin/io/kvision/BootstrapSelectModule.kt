@@ -27,6 +27,7 @@ import kotlinx.browser.window
 /**
  * Initializer for KVision Bootstrap select module.
  */
+@Deprecated("Use TomSelectModule instead from the kvision-tom-select module.")
 object BootstrapSelectModule : ModuleInitializer {
     internal val jquery = require("jquery")
     internal val bootstrap = require("bootstrap")

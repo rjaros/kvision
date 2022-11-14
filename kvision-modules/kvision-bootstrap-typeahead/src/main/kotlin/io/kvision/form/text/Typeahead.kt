@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.form.text
 
 import io.kvision.core.Container
@@ -42,6 +44,7 @@ import io.kvision.html.InputType
  * @param floating use floating label
  * @param init an initializer extension function
  */
+@Deprecated("Use TomTypeahead instead from the kvision-tom-select module.")
 open class Typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
@@ -177,6 +180,7 @@ open class Typeahead(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use tomTypeahead instead from the kvision-tom-select module.")
 fun Container.typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,

@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.form.select
 
 import io.kvision.core.ClassSetBuilder
@@ -51,6 +53,7 @@ import io.kvision.utils.SnOn
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
+@Deprecated("Use TomSelectRemote instead from the kvision-tom-select-remote module.")
 open class SelectRemote<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
@@ -323,6 +326,7 @@ open class SelectRemote<out T : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use tomSelectRemote instead from the kvision-tom-select-remote module.")
 fun <T : Any> Container.selectRemote(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,

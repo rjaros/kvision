@@ -24,6 +24,7 @@ package io.kvision
 /**
  * Initializer for KVision Bootstrap typeahead module.
  */
+@Deprecated("Use TomSelectModule instead from the kvision-tom-select module.")
 object BootstrapTypeaheadModule: ModuleInitializer {
 
     override fun initialize() {

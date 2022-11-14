@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.form.select
 
 import io.kvision.core.ClassSetBuilder
@@ -50,6 +52,7 @@ import io.kvision.utils.SnOn
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
+@Deprecated("Use TomSelect instead from the kvision-tom-select module.")
 open class Select(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
@@ -362,6 +365,7 @@ open class Select(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use tomSelect instead from the kvision-tom-select module.")
 fun Container.select(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
