@@ -68,6 +68,7 @@ class Root : SimplePanel {
     private var asyncBuffer: MutableList<() -> Unit> = mutableListOf()
     private var asyncTimer: Int? = null
 
+    private var stylesCached: String? = null
     private val isFirstRoot = roots.isEmpty()
 
     /**
@@ -162,14 +163,19 @@ class Root : SimplePanel {
     private fun stylesVNodes(): Array<VNode> {
         return if (isFirstRoot) {
             if (Style.styles.isNotEmpty()) {
-                val groupByMediaQuery = Style.styles.groupBy { it.mediaQuery }
-                val stylesDesc = groupByMediaQuery.map { (media, styles) ->
-                    if (media == null) {
-                        styles.joinToString("\n") { it.generateStyle() }
-                    } else {
-                        "@media ($media) {\n" + styles.joinToString("\n") { it.generateStyle() } + "\n}"
-                    }
-                }.joinToString("\n\n")
+                val stylesDesc = if (stylesCached != null) {
+                    stylesCached!!
+                } else {
+                    val groupByMediaQuery = Style.styles.groupBy { it.mediaQuery }
+                    stylesCached = groupByMediaQuery.map { (media, styles) ->
+                        if (media == null) {
+                            styles.joinToString("\n") { it.generateStyle() }
+                        } else {
+                            "@media ($media) {\n" + styles.joinToString("\n") { it.generateStyle() } + "\n}"
+                        }
+                    }.joinToString("\n\n")
+                    stylesCached!!
+                }
                 arrayOf(h("style", arrayOf("\n$stylesDesc\n")))
             } else {
                 arrayOf()
@@ -238,6 +244,10 @@ class Root : SimplePanel {
             rootVnode = KVManager.patch(rootVnode!!, h("div"))
             rootVnode = KVManager.patch(rootVnode!!, renderVNode())
         }
+    }
+
+    internal fun clearStylesCache() {
+        stylesCached = null
     }
 
     override fun getRoot(): Root {

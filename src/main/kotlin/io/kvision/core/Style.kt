@@ -142,7 +142,10 @@ open class Style(
 
     override fun refresh(): Style {
         super.refresh()
-        Root.getFirstRoot()?.reRender()
+        Root.getFirstRoot()?.let {
+            it.clearStylesCache()
+            it.reRender()
+        }
         return this
     }
 
@@ -167,7 +170,6 @@ open class Style(
     }
 
     protected inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
-        @Suppress("UNCHECKED_CAST")
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]
             return if (value != null) {
