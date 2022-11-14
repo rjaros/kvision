@@ -142,6 +142,7 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-testutils/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-toast/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tom-select/src/main/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-tom-select-remote/src/main/kotlin"))
         }
         register("kvision-common") {
             includes.from("Module.md")

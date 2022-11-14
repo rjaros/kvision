@@ -24,47 +24,48 @@ package io.kvision.form.select
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
-import io.kvision.core.StringPair
 import io.kvision.core.Widget
 import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
+import io.kvision.remote.KVServiceMgr
+import io.kvision.remote.RemoteOption
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
+import org.w3c.fetch.RequestInit
 
 /**
- * The form field component for Tom Select control.
+ * The form field component for TomSelectRemote control.
  *
  * @constructor
- * @param options a static list of options
- * @param value text input value
+ * @param value selected value
+ * @param serviceManager fullstack service manager
+ * @param function fullstack service method returning the list of options
+ * @param stateFunction a function to generate the state object passed with the remote request
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param selectSize the number of visible options
  * @param tsOptions Tom Select options
  * @param tsCallbacks Tom Select callbacks
  * @param tsRenders Tom Select render functions
+ * @param preload preload all options from remote data source
+ * @param requestFilter a request filtering function
+ * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
-open class TomSelect(
-    options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-    multiple: Boolean = false, selectSize: Int? = null, tsOptions: TomSelectOptions? = null,
-    tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
-    label: String? = null, rich: Boolean = false, init: (TomSelect.() -> Unit)? = null
+open class TomSelectRemote<out T : Any>(
+    serviceManager: KVServiceMgr<T>,
+    function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
+    stateFunction: (() -> String)? = null,
+    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
+    tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
+    private val preload: Boolean = false, requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    name: String? = null, label: String? = null, rich: Boolean = false,
+    init: (TomSelectRemote<T>.() -> Unit)? = null
 ) : SimplePanel("form-group kv-mb-3"), StringFormControl, MutableState<String?> {
-
-    /**
-     * A list of options (value to label pairs) for the select control.
-     */
-    var options
-        get() = input.options
-        set(value) {
-            input.options = value
-        }
-
     /**
      * A value of the selected option.
      */
@@ -164,12 +165,12 @@ open class TomSelect(
             flabel.rich = value
         }
 
-    private val idc = "kv_form_TomSelect_$counter"
-    final override val input: TomSelectInput = TomSelectInput(
-        options, value, emptyOption, multiple, selectSize, tsOptions, tsCallbacks, tsRenders,
-        "form-control"
+    private val idc = "kv_form_TomSelectRemote_$counter"
+    final override val input: TomSelectRemoteInput<T> = TomSelectRemoteInput(
+        serviceManager, function, stateFunction, value, emptyOption, multiple, selectSize,
+        tsOptions, tsCallbacks, tsRenders, preload, requestFilter, "form-control"
     ).apply {
-        this.id = this@TomSelect.idc
+        this.id = this@TomSelectRemote.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
@@ -207,37 +208,37 @@ open class TomSelect(
         return this
     }
 
-    override fun add(child: Component): TomSelect {
+    override fun add(child: Component): TomSelectRemote<T> {
         input.add(child)
         return this
     }
 
-    override fun add(position: Int, child: Component): TomSelect {
+    override fun add(position: Int, child: Component): TomSelectRemote<T> {
         input.add(position, child)
         return this
     }
 
-    override fun addAll(children: List<Component>): TomSelect {
+    override fun addAll(children: List<Component>): TomSelectRemote<T> {
         input.addAll(children)
         return this
     }
 
-    override fun remove(child: Component): TomSelect {
+    override fun remove(child: Component): TomSelectRemote<T> {
         input.remove(child)
         return this
     }
 
-    override fun removeAt(position: Int): TomSelect {
+    override fun removeAt(position: Int): TomSelectRemote<T> {
         input.removeAt(position)
         return this
     }
 
-    override fun removeAll(): TomSelect {
+    override fun removeAll(): TomSelectRemote<T> {
         input.removeAll()
         return this
     }
 
-    override fun disposeAll(): TomSelect {
+    override fun disposeAll(): TomSelectRemote<T> {
         input.disposeAll()
         return this
     }
@@ -274,25 +275,20 @@ open class TomSelect(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.tomSelect(
-    options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-    multiple: Boolean = false, selectSize: Int? = null, tsOptions: TomSelectOptions? = null,
-    tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
-    label: String? = null, rich: Boolean = false, init: (TomSelect.() -> Unit)? = null
-): TomSelect {
-    val tomSelect = TomSelect(
-        options,
-        value,
-        emptyOption,
-        multiple,
-        selectSize,
-        tsOptions,
-        tsCallbacks,
-        tsRenders,
-        label,
-        rich,
-        init
-    )
-    this.add(tomSelect)
-    return tomSelect
+fun <T : Any> Container.tomSelectRemote(
+    serviceManager: KVServiceMgr<T>,
+    function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
+    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
+    tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
+    preload: Boolean = false, requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    name: String? = null, label: String? = null, rich: Boolean = false, init: (TomSelectRemote<T>.() -> Unit)? = null
+): TomSelectRemote<T> {
+    val tomSelectRemote =
+        TomSelectRemote(
+            serviceManager, function, stateFunction,
+            value, emptyOption, multiple, selectSize, tsOptions, tsCallbacks, tsRenders, preload, requestFilter,
+            name, label, rich, init
+        )
+    this.add(tomSelectRemote)
+    return tomSelectRemote
 }

@@ -222,7 +222,7 @@ open class TomSelectInput(
                 }.toTypedArray()
             }
             if (tsOptions != null) {
-                val optionsObj = tsOptions!!.toJs()
+                val optionsObj = tsOptions!!.toJs(emptyOption)
                 js("Object").assign(this, optionsObj)
             } else {
                 this.plugins = arrayOf("change_listener")
@@ -230,6 +230,20 @@ open class TomSelectInput(
             if (tsCallbacks != null) {
                 val callbackObj = tsCallbacks!!.toJs()
                 js("Object").assign(this, callbackObj)
+                if (tsCallbacks!!.load != null) {
+                    this.load = { query: String, callback: (dynamic) -> Unit ->
+                        tsCallbacks!!.load!!(query) { options ->
+                            if (emptyOption) {
+                                callback(arrayOf(obj {
+                                    this.value = ""
+                                    this.text = "\u00a0"
+                                }) + options)
+                            } else {
+                                callback(options)
+                            }
+                        }
+                    }
+                }
             }
             if (tsRenders != null) {
                 this.render = tsRenders!!.toJs()

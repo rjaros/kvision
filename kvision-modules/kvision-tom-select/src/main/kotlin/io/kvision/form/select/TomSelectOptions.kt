@@ -52,10 +52,11 @@ data class TomSelectOptions(
     val noActiveItems: Boolean? = null,
     val noBackspaceDelete: Boolean? = null,
     val removeButtonTitle: String? = null,
-    val restoreOnBackspace: Boolean? = null
+    val restoreOnBackspace: Boolean? = null,
+    val options: List<dynamic>? = null,
 )
 
-fun TomSelectOptions.toJs(): dynamic {
+fun TomSelectOptions.toJs(emptyOption: Boolean): dynamic {
     val createTemp: dynamic = if (createFun != null) {
         { input: String, callback: (dynamic) -> Unit ->
             createFun.invoke(input) {
@@ -125,5 +126,9 @@ fun TomSelectOptions.toJs(): dynamic {
         if (selectOnTab != null) this.selectOnTab = selectOnTab
         if (duplicates != null) this.duplicates = duplicates
         this.plugins = plugins
+        if (options != null) this.options = if (emptyOption) arrayOf(obj {
+            this.value = ""
+            this.text = "\u00a0"
+        }) + options.toTypedArray() else options.toTypedArray()
     }
 }

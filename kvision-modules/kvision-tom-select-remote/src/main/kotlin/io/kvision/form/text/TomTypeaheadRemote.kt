@@ -24,34 +24,35 @@ package io.kvision.form.text
 import io.kvision.core.Container
 import io.kvision.form.select.TomSelectCallbacks
 import io.kvision.html.InputType
+import io.kvision.remote.KVServiceMgr
+import org.w3c.fetch.RequestInit
 
 /**
- * Form field typeahead component based on Tom Select.
+ * The form field component for TomTypeaheadRemote control.
  *
  * @constructor
- * @param options a static list of options
+ * @param value selected value
+ * @param serviceManager fullstack service manager
+ * @param function fullstack service method returning the list of options
+ * @param stateFunction a function to generate the state object passed with the remote request
  * @param type text input type (default "text")
  * @param value text input value
  * @param tsCallbacks Tom Select callbacks
+ * @param requestFilter a request filtering function
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
-open class TomTypeahead(
-    options: List<String>? = null, type: InputType = InputType.TEXT, value: String? = null,
-    tsCallbacks: TomSelectCallbacks? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TomTypeahead.() -> Unit)? = null
+open class TomTypeaheadRemote<out T : Any>(
+    serviceManager: KVServiceMgr<T>,
+    function: suspend T.(String?, String?) -> List<String>,
+    stateFunction: (() -> String)? = null,
+    type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    name: String? = null, label: String? = null, rich: Boolean = false,
+    init: (TomTypeaheadRemote<T>.() -> Unit)? = null
 ) : AbstractText(label, rich, false) {
-
-    /**
-     * A static list of options for a typeahead control
-     */
-    var options
-        get() = input.options
-        set(value) {
-            input.options = value
-        }
 
     /**
      * Tom Select callbacks
@@ -80,11 +81,12 @@ open class TomTypeahead(
             input.autocomplete = value
         }
 
-    final override val input: TomTypeaheadInput =
-        TomTypeaheadInput(options, type, value, tsCallbacks).apply {
-            this.id = this@TomTypeahead.idc
-            this.name = name
-        }
+    final override val input: TomTypeaheadRemoteInput<T> = TomTypeaheadRemoteInput(
+        serviceManager, function, stateFunction, type, value, tsCallbacks, requestFilter
+    ).apply {
+        this.id = this@TomTypeaheadRemote.idc
+        this.name = name
+    }
 
     init {
         @Suppress("LeakingThis")
@@ -102,22 +104,20 @@ open class TomTypeahead(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.tomTypeahead(
-    options: List<String>? = null, type: InputType = InputType.TEXT, value: String? = null,
-    tsCallbacks: TomSelectCallbacks? = null, name: String? = null,
-    label: String? = null, rich: Boolean = false, init: (TomTypeahead.() -> Unit)? = null
-): TomTypeahead {
-    val tomTypeahead =
-        TomTypeahead(
-            options,
-            type,
-            value,
-            tsCallbacks,
-            name,
-            label,
-            rich,
-            init
+fun <T : Any> Container.tomTypeaheadRemote(
+    serviceManager: KVServiceMgr<T>,
+    function: suspend T.(String?, String?) -> List<String>,
+    stateFunction: (() -> String)? = null,
+    type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    name: String? = null, label: String? = null, rich: Boolean = false, init: (TomTypeaheadRemote<T>.() -> Unit)? = null
+): TomTypeaheadRemote<T> {
+    val tomTypeaheadRemote =
+        TomTypeaheadRemote(
+            serviceManager, function, stateFunction,
+            type, value, tsCallbacks, requestFilter,
+            name, label, rich, init
         )
-    this.add(tomTypeahead)
-    return tomTypeahead
+    this.add(tomTypeaheadRemote)
+    return tomTypeaheadRemote
 }

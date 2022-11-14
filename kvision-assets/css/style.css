@@ -827,3 +827,10 @@ label.required-label + ons-input > span.text-input__label::after {
     background-position: right calc(.375em + .1875rem) center;
     background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
+
+.kv-tom-select-remote-divider {
+    height: 0;
+    margin: .5rem 0;
+    overflow: hidden;
+    border-top: 1px solid #888888;
+}
