@@ -33,6 +33,7 @@ import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.SimpleRemoteOption
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
+import org.w3c.fetch.RequestInit
 
 /**
  * The form field component for SelectRemote control.
@@ -46,6 +47,7 @@ import io.kvision.utils.SnOn
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param selectSize the number of visible options
+ * @param requestFilter a request filtering function
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
@@ -60,6 +62,7 @@ open class SimpleSelectRemote<out T : Any>(
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
     label: String? = null,
     rich: Boolean = false,
     init: (SimpleSelectRemote<T>.() -> Unit)? = null
@@ -138,7 +141,7 @@ open class SimpleSelectRemote<out T : Any>(
 
     private val idc = "kv_form_SimpleSelectRemote_$counter"
     final override val input: SimpleSelectRemoteInput<T> = SimpleSelectRemoteInput(
-        serviceManager, function, stateFunction, value, emptyOption, multiple, selectSize,
+        serviceManager, function, stateFunction, value, emptyOption, multiple, selectSize, requestFilter,
         "form-control"
     ).apply {
         this.id = this@SimpleSelectRemote.idc
@@ -165,7 +168,6 @@ open class SimpleSelectRemote<out T : Any>(
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         return input.setEventListener(block)
     }
@@ -255,6 +257,7 @@ fun <T : Any> Container.simpleSelectRemote(
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
     label: String? = null, rich: Boolean = false, init: (SimpleSelectRemote<T>.() -> Unit)? = null
 ): SimpleSelectRemote<T> {
     val simpleSelectRemote =
@@ -267,6 +270,7 @@ fun <T : Any> Container.simpleSelectRemote(
             emptyOption,
             multiple,
             selectSize,
+            requestFilter,
             label,
             rich,
             init

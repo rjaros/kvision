@@ -35,6 +35,7 @@ import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
+import org.w3c.fetch.RequestInit
 
 /**
  * The SimpleSelect control connected to the fullstack service.
@@ -47,17 +48,19 @@ import kotlinx.serialization.encodeToString
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param selectSize the number of visible options
+ * @param requestFilter a request filtering function
  * @param className CSS class names
  * @param init an initializer extension function
  */
 open class SimpleSelectRemoteInput<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?) -> List<SimpleRemoteOption>,
-    private val stateFunction: (() -> String)? = null,
+    stateFunction: (() -> String)? = null,
     value: String? = null,
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
     className: String? = null,
     init: (SimpleSelectRemoteInput<T>.() -> Unit)? = null
 ) : SimpleSelectInput(null, value, emptyOption, multiple, selectSize, className) {
@@ -71,7 +74,7 @@ open class SimpleSelectRemoteInput<out T : Any>(
             val values = callAgent.remoteCall(
                 url,
                 Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(state))),
-                HttpMethod.POST
+                HttpMethod.POST, requestFilter = requestFilter
             ).await()
             options =
                 Serialization.plain.decodeFromString(ListSerializer(SimpleRemoteOption.serializer()), values.result as String)
@@ -97,6 +100,7 @@ fun <T : Any> Container.simpleSelectRemoteInput(
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
     className: String? = null,
     init: (SimpleSelectRemoteInput<T>.() -> Unit)? = null
 ): SimpleSelectRemoteInput<T> {
@@ -109,6 +113,7 @@ fun <T : Any> Container.simpleSelectRemoteInput(
             emptyOption,
             multiple,
             selectSize,
+            requestFilter,
             className,
             init
         )
