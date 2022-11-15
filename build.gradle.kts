@@ -49,7 +49,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-7.0.0.tgz"))
-    implementation(npm("kvision-assets", "^7.0.2"))
+    implementation(npm("kvision-assets", "^7.0.4"))
     implementation(npm("css-loader", "^6.7.1"))
     implementation(npm("style-loader", "^3.3.1"))
     implementation(npm("imports-loader", "^4.0.1"))
@@ -141,6 +141,7 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-tabulator-remote/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-testutils/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-toast/src/main/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-toastify/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tom-select/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tom-select-remote/src/main/kotlin"))
         }

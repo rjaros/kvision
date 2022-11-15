@@ -53,6 +53,7 @@ include(
     "kvision-modules:kvision-tabulator4",
     "kvision-modules:kvision-tabulator4-remote",
     "kvision-modules:kvision-toast",
+    "kvision-modules:kvision-toastify",
     "kvision-modules:kvision-tom-select",
     "kvision-modules:kvision-tom-select-remote",
     "kvision-modules:kvision-server-javalin",
