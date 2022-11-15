@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
 
 package io.kvision.toast
 
@@ -125,6 +126,7 @@ internal fun ToastOptions.toJs(): dynamic {
 /**
  * Toast component object.
  */
+@Deprecated("Use Toast object from the kvision-toastify module instead.")
 object Toast {
 
     init {

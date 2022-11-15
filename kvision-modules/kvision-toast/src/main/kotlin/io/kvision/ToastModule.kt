@@ -24,6 +24,7 @@ package io.kvision
 /**
  * Internal singleton object which initializes and configures KVision Toast module.
  */
+@Deprecated("Use ToastifyModule instead from the kvision-toastify module.")
 object ToastModule : ModuleInitializer {
 
     internal val toastr = require("toastr")
