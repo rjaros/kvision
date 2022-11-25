@@ -30,7 +30,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
         resolution("got", "12.5.3")
         resolution("moment-timezone", "0.5.39")
-        resolution("loader-utils", "1.4.1")
+        resolution("loader-utils", "1.4.2")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
         versions.webpackDevServer.version = "4.11.1"
