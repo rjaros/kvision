@@ -41,7 +41,7 @@ import io.kvision.chart.js.Chart as JsChart
  * @param className CSS class names
  * @param init an initializer extension function
  */
-@Deprecated("Use kvision-chart module instead")
+@Deprecated("Use kvision-chart module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class Chart(
     configuration: Configuration,
     chartWidth: Int? = null,
@@ -154,7 +154,7 @@ open class Chart(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use kvision-chart module instead")
+@Deprecated("Use kvision-chart module instead.  The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun Container.chart(
     configuration: Configuration,
     chartWidth: Int? = null,

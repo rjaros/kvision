@@ -45,7 +45,7 @@ import io.kvision.remote.KVServiceMgr
  * @param floating use floating label
  * @param init an initializer extension function
  */
-@Deprecated("Use TomTypeaheadRemote instead from the kvision-tom-select-remote module.")
+@Deprecated("Use TomTypeaheadRemote instead from the kvision-tom-select-remote module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class TypeaheadRemote<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
@@ -162,7 +162,7 @@ open class TypeaheadRemote<out T : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use tomTypeaheadRemote instead from the kvision-tom-select-remote module.")
+@Deprecated("Use tomTypeaheadRemote instead from the kvision-tom-select-remote module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun <T : Any> Container.typeaheadRemote(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,

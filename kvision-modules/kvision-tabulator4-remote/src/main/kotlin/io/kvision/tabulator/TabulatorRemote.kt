@@ -58,7 +58,7 @@ import kotlin.reflect.KClass
  * @param serializer the serializer for type T
  * @param module optional serialization module with custom serializers
  */
-@Deprecated("Use kvision-tabulator-remote module instead")
+@Deprecated("Use kvision-tabulator-remote module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class TabulatorRemote<T : Any, out E : Any>(
     serviceManager: KVServiceMgr<E>,
     function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
@@ -141,7 +141,7 @@ open class TabulatorRemote<T : Any, out E : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use kvision-tabulator-remote module instead")
+@Deprecated("Use kvision-tabulator-remote module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
     serviceManager: KVServiceMgr<E>,
     noinline function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,

@@ -25,6 +25,7 @@ package io.kvision
 /**
  * Initializer for KVision moment module.
  */
+@Deprecated("Moment.js library is a legacy project. Consider using alternatives. This module will be removed in KVision 6.")
 object MomentModule : ModuleInitializer {
     init {
         require("moment")

@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.data
 
 import io.kvision.snabbdom.VNode
@@ -52,6 +54,7 @@ enum class SorterType {
  * @param sorterType a sorting type selection function
  * @param init an initializer extension function
  */
+@Deprecated("Use kvision-state or kvision-state-flow modules instead. This module will be removed in KVision 6.")
 class DataContainer<M, C : Component, CONT : Container>(
     private val model: MutableList<M>,
     private val factory: Container.(M, Int, MutableList<M>) -> C,
@@ -218,6 +221,7 @@ fun <M, C : Component, CONT : Container> Container.dataContainer(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use kvision-state or kvision-state-flow modules instead. This module will be removed in KVision 6.")
 fun <M, C : Component> Container.dataContainer(
     model: MutableList<M>,
     factory: Container.(M, Int, MutableList<M>) -> C,

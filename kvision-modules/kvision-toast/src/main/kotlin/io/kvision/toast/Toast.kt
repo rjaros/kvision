@@ -126,7 +126,7 @@ internal fun ToastOptions.toJs(): dynamic {
 /**
  * Toast component object.
  */
-@Deprecated("Use Toast object from the kvision-toastify module instead.")
+@Deprecated("Use Toast object from the kvision-toastify module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 object Toast {
 
     init {

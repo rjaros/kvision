@@ -24,7 +24,7 @@ package io.kvision
 /**
  * Initializer for KVision Bootstrap chart module.
  */
-@Deprecated("Use kvision-chart module instead")
+@Deprecated("Use kvision-chart module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 object ChartModule : ModuleInitializer {
 
     override fun initialize() {

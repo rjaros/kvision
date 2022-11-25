@@ -24,7 +24,7 @@ package io.kvision
 /**
  * Initializer for KVision Tabulator module.
  */
-@Deprecated("Use kvision-tabulator module instead")
+@Deprecated("Use kvision-tabulator module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 object TabulatorModule : ModuleInitializer {
 
     private val tabulator = require("tabulator-tables/dist/js/tabulator.js")

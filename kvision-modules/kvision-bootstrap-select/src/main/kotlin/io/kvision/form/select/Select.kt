@@ -52,7 +52,7 @@ import io.kvision.utils.SnOn
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-@Deprecated("Use TomSelect instead from the kvision-tom-select module.")
+@Deprecated("Use TomSelect instead from the kvision-tom-select module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class Select(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,
@@ -365,7 +365,7 @@ open class Select(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use tomSelect instead from the kvision-tom-select module.")
+@Deprecated("Use tomSelect instead from the kvision-tom-select module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun Container.select(
     options: List<StringPair>? = null, value: String? = null, name: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null, label: String? = null,

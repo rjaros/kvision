@@ -27,6 +27,7 @@ import kotlin.js.Date
 @Suppress("unused", "TooManyFunctions")
 @JsNonModule
 @JsModule("moment")
+@Deprecated("Moment.js library is a legacy project. Consider using alternatives. This module will be removed in KVision 6.")
 open external class Moment {
     constructor(dateArray: Array<dynamic>)
     constructor(dateString: String, patter: String)

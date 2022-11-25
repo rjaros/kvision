@@ -55,7 +55,7 @@ enum class ShowHintOnFocus {
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-@Deprecated("Use TomTypeaheadInput instead from the kvision-tom-select module.")
+@Deprecated("Use TomTypeaheadInput instead from the kvision-tom-select module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class TypeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
@@ -211,7 +211,7 @@ open class TypeaheadInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use tomTypeaheadInput instead from the kvision-tom-select module.")
+@Deprecated("Use tomTypeaheadInput instead from the kvision-tom-select module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun Container.typeaheadInput(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,

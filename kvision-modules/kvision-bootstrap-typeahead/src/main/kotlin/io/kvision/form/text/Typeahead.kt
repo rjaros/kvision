@@ -44,7 +44,7 @@ import io.kvision.html.InputType
  * @param floating use floating label
  * @param init an initializer extension function
  */
-@Deprecated("Use TomTypeahead instead from the kvision-tom-select module.")
+@Deprecated("Use TomTypeahead instead from the kvision-tom-select module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class Typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,
@@ -180,7 +180,7 @@ open class Typeahead(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use tomTypeahead instead from the kvision-tom-select module.")
+@Deprecated("Use tomTypeahead instead from the kvision-tom-select module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun Container.typeahead(
     options: List<String>? = null, taAjaxOptions: TaAjaxOptions? = null,
     source: ((String, (Array<String>) -> Unit) -> Unit)? = null,

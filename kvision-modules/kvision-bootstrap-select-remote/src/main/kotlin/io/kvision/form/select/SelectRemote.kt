@@ -53,7 +53,7 @@ import io.kvision.utils.SnOn
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-@Deprecated("Use TomSelectRemote instead from the kvision-tom-select-remote module.")
+@Deprecated("Use TomSelectRemote instead from the kvision-tom-select-remote module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class SelectRemote<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
@@ -326,7 +326,7 @@ open class SelectRemote<out T : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use tomSelectRemote instead from the kvision-tom-select-remote module.")
+@Deprecated("Use tomSelectRemote instead from the kvision-tom-select-remote module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun <T : Any> Container.selectRemote(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,

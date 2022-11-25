@@ -72,7 +72,7 @@ enum class SelectDropdownAlign {
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-@Deprecated("Use TomSelectInput instead from the kvision-tom-select module.")
+@Deprecated("Use TomSelectInput instead from the kvision-tom-select module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class SelectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,
@@ -500,7 +500,7 @@ open class SelectInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use tomSelectInput instead from the kvision-tom-select module.")
+@Deprecated("Use tomSelectInput instead from the kvision-tom-select module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun Container.selectInput(
     options: List<StringPair>? = null, value: String? = null,
     multiple: Boolean = false, ajaxOptions: AjaxOptions? = null,

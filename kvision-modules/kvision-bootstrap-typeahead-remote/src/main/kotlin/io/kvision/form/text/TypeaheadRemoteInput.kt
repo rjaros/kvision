@@ -50,7 +50,7 @@ import org.w3c.dom.get
  * @param className CSS class names
  * @param init an initializer extension function
  */
-@Deprecated("Use TomTypeaheadRemoteInput instead from the kvision-tom-select-remote module.")
+@Deprecated("Use TomTypeaheadRemoteInput instead from the kvision-tom-select-remote module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class TypeaheadRemoteInput<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
@@ -94,7 +94,7 @@ open class TypeaheadRemoteInput<out T : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use tomTypeaheadRemoteInput instead from the kvision-tom-select-remote module.")
+@Deprecated("Use tomTypeaheadRemoteInput instead from the kvision-tom-select-remote module. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun <T : Any> Container.typeaheadRemoteInput(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,

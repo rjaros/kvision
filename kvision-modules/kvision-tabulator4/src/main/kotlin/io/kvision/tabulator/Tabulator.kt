@@ -86,7 +86,7 @@ enum class RowRangeLookup(internal val set: String) {
  * @param module optional serialization module with custom serializers
  */
 @Suppress("LargeClass", "TooManyFunctions")
-@Deprecated("Use kvision-tabulator module instead")
+@Deprecated("Use kvision-tabulator module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class Tabulator<T : Any>(
     protected val data: List<T>? = null,
     protected val dataUpdateOnEdit: Boolean = true,
@@ -857,7 +857,7 @@ open class Tabulator<T : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Deprecated("Use kvision-tabulator module instead")
+@Deprecated("Use kvision-tabulator module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 inline fun <reified T : Any> Container.tabulator(
     data: List<T>? = null,
     dataUpdateOnEdit: Boolean = true,
@@ -877,7 +877,7 @@ inline fun <reified T : Any> Container.tabulator(
 /**
  * DSL builder extension function for a general observable store.
  */
-@Deprecated("Use kvision-tabulator module instead")
+@Deprecated("Use kvision-tabulator module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 inline fun <reified T : Any, S : Any> Container.tabulator(
     store: ObservableState<S>,
     noinline dataFactory: (S) -> List<T>,
@@ -897,7 +897,7 @@ inline fun <reified T : Any, S : Any> Container.tabulator(
 /**
  * DSL builder extension function for dynamic data (send within options parameter).
  */
-@Deprecated("Use kvision-tabulator module instead")
+@Deprecated("Use kvision-tabulator module instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 inline fun <reified T : Any> Container.tabulator(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
