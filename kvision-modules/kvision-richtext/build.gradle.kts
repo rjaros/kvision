@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("trix", "^2.0.0"))
+    implementation(npm("trix", "^2.0.1"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

@@ -28,13 +28,14 @@ val webDir = file("src/main/web")
 rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
-        resolution("got", "12.5.2")
-        resolution("moment-timezone", "0.5.38")
+        resolution("got", "12.5.3")
+        resolution("moment-timezone", "0.5.39")
+        resolution("loader-utils", "1.4.1")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
         versions.webpackDevServer.version = "4.11.1"
         versions.webpack.version = "5.75.0"
-        versions.webpackCli.version = "4.10.0"
+        versions.webpackCli.version = "5.0.0"
         versions.karma.version = "6.4.1"
         versions.mocha.version = "10.1.0"
     }
@@ -50,7 +51,7 @@ dependencies {
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-7.0.0.tgz"))
     implementation(npm("kvision-assets", "^7.0.4"))
-    implementation(npm("css-loader", "^6.7.1"))
+    implementation(npm("css-loader", "^6.7.2"))
     implementation(npm("style-loader", "^3.3.1"))
     implementation(npm("imports-loader", "^4.0.1"))
     implementation(npm("fecha", "^4.2.3"))

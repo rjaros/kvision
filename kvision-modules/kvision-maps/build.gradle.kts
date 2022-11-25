@@ -16,13 +16,13 @@ dependencies {
     api(rootProject)
     implementation(kotlin("stdlib-js"))
 
-    implementation(npm("leaflet", "^1.9.2"))
+    implementation(npm("leaflet", "^1.9.3"))
 //    implementation(npm("@types/leaflet", "^1.8.0"))
 
     implementation(npm("geojson", "^0.5.0")) {
         because("used by Leaflet for defining locations")
     }
-    implementation(npm("@types/geojson", "7946.0.8"))
+    implementation(npm("@types/geojson", "7946.0.10"))
 
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))

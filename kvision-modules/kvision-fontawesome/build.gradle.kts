@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("@fortawesome/fontawesome-free", "^6.2.0"))
+    implementation(npm("@fortawesome/fontawesome-free", "^6.2.1"))
     testImplementation(kotlin("test-js"))
 }
 
