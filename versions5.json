@@ -38,30 +38,6 @@
             "initializer": "BootstrapCssModule"
         },
         {
-            "name": "kvision-bootstrap-select",
-            "description": "Bootstrap based advanced select form component",
-            "excludes": [
-                "kvision-onsenui"
-            ],
-            "initializer": "BootstrapSelectModule"
-        },
-        {
-            "name": "kvision-bootstrap-select-remote",
-            "description": "Fullstack version of the select form component",
-            "excludes": [
-                "kvision-onsenui"
-            ],
-            "initializer": "BootstrapSelectModule"
-        },
-        {
-            "name": "kvision-bootstrap-datetime",
-            "description": "Bootstrap based date and time picker form components",
-            "excludes": [
-                "kvision-onsenui"
-            ],
-            "initializer": "BootstrapDatetimeModule"
-        },
-        {
             "name": "kvision-bootstrap-spinner",
             "description": "Bootstrap based spinner form component",
             "excludes": [
@@ -78,22 +54,6 @@
             "initializer": "BootstrapUploadModule"
         },
         {
-            "name": "kvision-bootstrap-typeahead",
-            "description": "Bootstrap based typeahead (autocomplete) form component",
-            "excludes": [
-                "kvision-onsenui"
-            ],
-            "initializer": "BootstrapTypeaheadModule"
-        },
-        {
-            "name": "kvision-bootstrap-typeahead-remote",
-            "description": "Fullstack version of the typeahead (autocomplete) form component",
-            "excludes": [
-                "kvision-onsenui"
-            ],
-            "initializer": "BootstrapTypeaheadModule"
-        },
-        {
             "name": "kvision-bootstrap-dialog",
             "description": "Bootstrap based Dialog form component",
             "excludes": [
@@ -107,6 +67,16 @@
                 "kvision-onsenui"
             ],
             "initializer": "BootstrapIconsModule"
+        },
+        {
+            "name": "kvision-tom-select",
+            "description": "Advanced select and typeahead (autocomplete) form components",
+            "initializer": "TomSelectModule"
+        },
+        {
+            "name": "kvision-tom-select-remote",
+            "description": "Fullstack versions of the select and typeahead (autocomplete) form components",
+            "initializer": "TomSelectModule"
         },
         {
             "name": "kvision-datetime",
@@ -158,10 +128,6 @@
             "initializer": "ChartModule"
         },
         {
-            "name": "kvision-datacontainer",
-            "description": "DataContainer component"
-        },
-        {
             "name": "kvision-tabulator",
             "description": "Tabulator component",
             "initializer": "TabulatorModule"
@@ -174,11 +140,6 @@
         {
             "name": "kvision-simple-select-remote",
             "description": "Fullstack version of the simple select form component"
-        },
-        {
-            "name": "kvision-moment",
-            "description": "Kotlin language bindings for Moment.js library",
-            "initializer": "MomentModule"
         },
         {
             "name": "kvision-pace",
@@ -204,9 +165,9 @@
             "initializer": "MapsModule"
         },
         {
-            "name": "kvision-toast",
+            "name": "kvision-toastify",
             "description": "Toast messages",
-            "initializer": "ToastModule"
+            "initializer": "ToastifyModule"
         },
         {
             "name": "kvision-print",
@@ -233,13 +194,8 @@
             "excludes": [
                 "kvision-bootstrap",
                 "kvision-bootstrap-css",
-                "kvision-bootstrap-select",
-                "kvision-bootstrap-select-remote",
-                "kvision-bootstrap-datetime",
                 "kvision-bootstrap-spinner",
                 "kvision-bootstrap-upload",
-                "kvision-bootstrap-typeahead",
-                "kvision-bootstrap-typeahead-remote",
                 "kvision-bootstrap-dialog"
             ],
             "initializer": "OnsenUIModule"
