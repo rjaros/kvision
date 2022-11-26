@@ -54,12 +54,11 @@ class App : Application() {
 - Utilizes [Snabbdom](https://github.com/snabbdom/snabbdom) fast virtual DOM implementation.
 - Integrates with a lot of libraries and components:
     - [Font awesome](https://fontawesome.com/)
-    - [Bootstrap Select](https://github.com/silviomoreto/bootstrap-select) (with [AJAX](https://github.com/truckingsim/Ajax-Bootstrap-Select) extension)
+    - [Tom Select](https://tom-select.js.org/)
     - [Trix editor](https://trix-editor.org/)
     - [Tempus Dominus datetime picker](https://github.com/Eonasdan/tempus-dominus)
     - [Bootstrap touchspin](https://github.com/istvan-ujjmeszaros/bootstrap-touchspin)
     - [Bootstrap File Input](http://plugins.krajee.com/file-input)
-    - [Bootstrap Typeahead](https://github.com/UniversityOfWarwick/Bootstrap-3-Typeahead)
     - [Handlebars](http://handlebarsjs.com/)
     - [Chart.js](https://www.chartjs.org/)
     - [Tabulator](http://tabulator.info/)
@@ -69,7 +68,7 @@ class App : Application() {
     - [Moment.js](https://momentjs.com/)
     - [Pace](https://github.hubspot.com/pace/docs/welcome/)
     - [Leaflet](https://leafletjs.com/)
-    - [Toastr](https://codeseven.github.io/toastr/)
+    - [Toastify JS](https://apvarun.github.io/toastify-js/)
     - [Print.js](https://printjs.crabbly.com/)
     - [Imask.js](https://imask.js.org/)
 
