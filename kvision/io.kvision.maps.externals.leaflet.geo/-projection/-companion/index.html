@@ -6,10 +6,18 @@
     <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../../";</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../../../styles/style.css" rel="Stylesheet">
 <link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -21,6 +29,7 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
@@ -31,7 +40,7 @@ if(savedDarkMode === true){
             </a>
     </div>
     <div>
-5.17.0    </div>
+5.18.0    </div>
     <div class="pull-right d-flex">
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector js-like" data-active="" data-filter=":dokkaHtml/kvision">js</button>
@@ -46,12 +55,12 @@ if(savedDarkMode === true){
     </div>
     <div id="main">
 <div class="main-content" id="content" pageIds="kvision::io.kvision.maps.externals.leaflet.geo/Projection.Companion///PointingToDeclaration//978196697">
-  <div class="breadcrumbs"><a href="../../../../index.html">kvision</a><span class="delimiter">/</span><a href="../../index.html">io.kvision.maps.externals.leaflet.geo</a><span class="delimiter">/</span><a href="../index.html">Projection</a><span class="delimiter">/</span><a href="index.html">Companion</a></div>
+  <div class="breadcrumbs"><a href="../../../../index.html">kvision</a><span class="delimiter">/</span><a href="../../index.html">io.kvision.maps.externals.leaflet.geo</a><span class="delimiter">/</span><a href="../index.html">Projection</a><span class="delimiter">/</span><span class="current">Companion</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Companion</span></span></h1>
     <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>    </div>
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">Companion</a></div></div>    </div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Properties">Properties</button></div>
@@ -68,8 +77,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="892221680%2FProperties%2F978196697" anchor-label="LonLat" id="892221680%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-lon-lat.html">LonLat</a><span class="token operator">: </span><a href="../index.html">Projection</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="892221680%2FProperties%2F978196697" anchor-label="LonLat" id="892221680%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><p class="paragraph">Equirectangular, or Plate Carree projection — the most simple projection, mostly used by GIS enthusiasts. Directly maps <code class="lang-kotlin">x</code> as longitude, and <code class="lang-kotlin">y</code> as latitude. Also suitable for flat worlds, e.g. game maps. Used by the <a href="../../-c-r-s/-companion/-e-p-s-g3857.html">EPSG3857</a> and <a href="../../-c-r-s/-companion/-simple.html">Simple</a> CRS.</p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="892221680%2FProperties%2F978196697" anchor-label="LonLat" id="892221680%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-lon-lat.html">LonLat</a><span class="token operator">: </span><a href="../index.html">Projection</a></div><div class="brief "><a data-name="892221680%2FProperties%2F978196697" anchor-label="LonLat" id="892221680%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><p class="paragraph">Equirectangular, or Plate Carree projection — the most simple projection, mostly used by GIS enthusiasts. Directly maps <code class="lang-kotlin">x</code> as longitude, and <code class="lang-kotlin">y</code> as latitude. Also suitable for flat worlds, e.g. game maps. Used by the <a href="../../-c-r-s/-companion/-e-p-s-g3857.html">EPSG3857</a> and <a href="../../-c-r-s/-companion/-simple.html">Simple</a> CRS.</p></div></div>                </div>
               </div>
             </div>
           </div>
@@ -85,8 +94,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-169424571%2FProperties%2F978196697" anchor-label="Mercator" id="-169424571%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-mercator.html">Mercator</a><span class="token operator">: </span><a href="../index.html">Projection</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-169424571%2FProperties%2F978196697" anchor-label="Mercator" id="-169424571%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><p class="paragraph">Elliptical Mercator projection — more complex than Spherical Mercator. Assumes that Earth is an ellipsoid. Used by the <a href="../../-c-r-s/-companion/-e-p-s-g3857.html">EPSG3857</a> CRS.</p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-169424571%2FProperties%2F978196697" anchor-label="Mercator" id="-169424571%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-mercator.html">Mercator</a><span class="token operator">: </span><a href="../index.html">Projection</a></div><div class="brief "><a data-name="-169424571%2FProperties%2F978196697" anchor-label="Mercator" id="-169424571%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><p class="paragraph">Elliptical Mercator projection — more complex than Spherical Mercator. Assumes that Earth is an ellipsoid. Used by the <a href="../../-c-r-s/-companion/-e-p-s-g3857.html">EPSG3857</a> CRS.</p></div></div>                </div>
               </div>
             </div>
           </div>
@@ -102,8 +111,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1874198458%2FProperties%2F978196697" anchor-label="SphericalMercator" id="1874198458%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-spherical-mercator.html">SphericalMercator</a><span class="token operator">: </span><a href="../index.html">Projection</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1874198458%2FProperties%2F978196697" anchor-label="SphericalMercator" id="1874198458%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><p class="paragraph">Spherical Mercator projection — the most common projection for online maps, used by almost all free and commercial tile providers. Assumes that Earth is a sphere. Used by the <a href="../../-c-r-s/-companion/-e-p-s-g3857.html">EPSG3857</a> CRS.</p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1874198458%2FProperties%2F978196697" anchor-label="SphericalMercator" id="1874198458%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-spherical-mercator.html">SphericalMercator</a><span class="token operator">: </span><a href="../index.html">Projection</a></div><div class="brief "><a data-name="1874198458%2FProperties%2F978196697" anchor-label="SphericalMercator" id="1874198458%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><p class="paragraph">Spherical Mercator projection — the most common projection for online maps, used by almost all free and commercial tile providers. Assumes that Earth is a sphere. Used by the <a href="../../-c-r-s/-companion/-e-p-s-g3857.html">EPSG3857</a> CRS.</p></div></div>                </div>
               </div>
             </div>
           </div>

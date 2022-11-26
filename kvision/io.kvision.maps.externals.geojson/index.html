@@ -6,10 +6,18 @@
     <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../";</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../styles/style.css" rel="Stylesheet">
 <link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -21,6 +29,7 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
@@ -31,7 +40,7 @@ if(savedDarkMode === true){
             </a>
     </div>
     <div>
-5.17.0    </div>
+5.18.0    </div>
     <div class="pull-right d-flex">
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector js-like" data-active="" data-filter=":dokkaHtml/kvision">js</button>
@@ -46,9 +55,9 @@ if(savedDarkMode === true){
     </div>
     <div id="main">
 <div class="main-content" id="content" pageIds="kvision::io.kvision.maps.externals.geojson////PointingToDeclaration//978196697">
-  <div class="breadcrumbs"><a href="../../index.html">kvision</a><span class="delimiter">/</span><a href="index.html">io.kvision.maps.externals.geojson</a></div>
+  <div class="breadcrumbs"><a href="../../index.html">kvision</a><span class="delimiter">/</span><span class="current">io.kvision.maps.externals.geojson</span></div>
   <div class="cover ">
-    <h1 class="cover"><span>Package io.</span><wbr></wbr><span>kvision.</span><wbr></wbr><span>maps.</span><wbr></wbr><span>externals.</span><wbr></wbr><span>geojson</span></h1>
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button></div>
@@ -65,8 +74,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-b-box-type/index.html">BBoxType</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Bounding box</p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-b-box-type/index.html">BBoxType</a></div><div class="brief "><p class="paragraph">Bounding box</p></div></div>                </div>
               </div>
             </div>
           </div>
@@ -82,8 +91,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-feature/index.html">Feature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-feature/index.html">G</a><span class="token operator"> : </span><a href="-geo-json-geometry/index.html">GeoJsonGeometry</a><span class="token operator">?</span><span class="token operator">&gt;</span> : <a href="-geo-json-object/index.html">GeoJsonObject</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-feature/index.html">Feature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-feature/index.html">G</a><span class="token operator"> : </span><a href="-geo-json-geometry/index.html">GeoJsonGeometry</a><span class="token operator">?</span><span class="token operator">&gt;</span> : <a href="-geo-json-object/index.html">GeoJsonObject</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -99,8 +108,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-feature-collection/index.html">FeatureCollection</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-feature-collection/index.html">G</a><span class="token operator"> : </span><a href="-geo-json-geometry/index.html">GeoJsonGeometry</a><span class="token operator">?</span><span class="token operator">&gt;</span> : <a href="-geo-json-object/index.html">GeoJsonObject</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-feature-collection/index.html">FeatureCollection</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-feature-collection/index.html">G</a><span class="token operator"> : </span><a href="-geo-json-geometry/index.html">GeoJsonGeometry</a><span class="token operator">?</span><span class="token operator">&gt;</span> : <a href="-geo-json-object/index.html">GeoJsonObject</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -116,8 +125,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json1-d-geometry/index.html">GeoJson1DGeometry</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json1-d-geometry/index.html">GeoJson1DGeometry</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -133,8 +142,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json2-d-geometry/index.html">GeoJson2DGeometry</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json2-d-geometry/index.html">GeoJson2DGeometry</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -150,8 +159,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json3-d-geometry/index.html">GeoJson3DGeometry</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json3-d-geometry/index.html">GeoJson3DGeometry</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -167,8 +176,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a> : <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-geometry/index.html">GeoJsonGeometry</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a> : <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-geometry/index.html">GeoJsonGeometry</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -184,8 +193,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-geometry/index.html">GeoJsonGeometry</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/fbb677e41830566b714ab656ecfe656060391af2/types/geojson/index.d.ts#L79"><code class="lang-kotlin">https://github.com/DefinitelyTyped/DefinitelyTyped/blob/fbb677e41830566b714ab656ecfe656060391af2/types/geojson/index.d.ts#L79</code></a></p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-geometry/index.html">GeoJsonGeometry</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/fbb677e41830566b714ab656ecfe656060391af2/types/geojson/index.d.ts#L79"><code class="lang-kotlin">https://github.com/DefinitelyTyped/DefinitelyTyped/blob/fbb677e41830566b714ab656ecfe656060391af2/types/geojson/index.d.ts#L79</code></a></p></div></div>                </div>
               </div>
             </div>
           </div>
@@ -201,8 +210,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-object/index.html">GeoJsonObject</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">One of <a href="-point/index.html">Point</a>, <a href="-multi-point/index.html">MultiPoint</a>, <a href="-line-string/index.html">LineString</a>, <a href="-multi-line-string/index.html">MultiLineString</a>, <a href="-polygon/index.html">Polygon</a>, <a href="-multi-polygon/index.html">MultiPolygon</a>, <a href="-geometry-collection/index.html">GeometryCollection</a></p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-object/index.html">GeoJsonObject</a></div><div class="brief "><p class="paragraph">One of <a href="-point/index.html">Point</a>, <a href="-multi-point/index.html">MultiPoint</a>, <a href="-line-string/index.html">LineString</a>, <a href="-multi-line-string/index.html">MultiLineString</a>, <a href="-polygon/index.html">Polygon</a>, <a href="-multi-polygon/index.html">MultiPolygon</a>, <a href="-geometry-collection/index.html">GeometryCollection</a></p></div></div>                </div>
               </div>
             </div>
           </div>
@@ -218,8 +227,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-properties/index.html">GeoJsonProperties</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/41493aa535f573c0747a1e59c89fc941c6334e0d/types/geojson/index.d.ts#L145"><code class="lang-kotlin">https://github.com/DefinitelyTyped/DefinitelyTyped/blob/41493aa535f573c0747a1e59c89fc941c6334e0d/types/geojson/index.d.ts#L145</code></a></p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-properties/index.html">GeoJsonProperties</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/41493aa535f573c0747a1e59c89fc941c6334e0d/types/geojson/index.d.ts#L145"><code class="lang-kotlin">https://github.com/DefinitelyTyped/DefinitelyTyped/blob/41493aa535f573c0747a1e59c89fc941c6334e0d/types/geojson/index.d.ts#L145</code></a></p></div></div>                </div>
               </div>
             </div>
           </div>
@@ -235,8 +244,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-single-or-multi-line-string/index.html">GeoJsonSingleOrMultiLineString</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">One of <a href="-line-string/index.html">LineString</a> or <a href="-multi-line-string/index.html">MultiLineString</a></p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-single-or-multi-line-string/index.html">GeoJsonSingleOrMultiLineString</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a></div><div class="brief "><p class="paragraph">One of <a href="-line-string/index.html">LineString</a> or <a href="-multi-line-string/index.html">MultiLineString</a></p></div></div>                </div>
               </div>
             </div>
           </div>
@@ -252,8 +261,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-single-or-multi-polygon/index.html">GeoJsonSingleOrMultiPolygon</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">One of <a href="-polygon/index.html">Polygon</a> or <a href="-multi-polygon/index.html">MultiPolygon</a></p></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-json-single-or-multi-polygon/index.html">GeoJsonSingleOrMultiPolygon</a> : <a href="-geo-json-coordinated-geometry/index.html">GeoJsonCoordinatedGeometry</a></div><div class="brief "><p class="paragraph">One of <a href="-polygon/index.html">Polygon</a> or <a href="-multi-polygon/index.html">MultiPolygon</a></p></div></div>                </div>
               </div>
             </div>
           </div>
@@ -269,8 +278,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geometry-collection/index.html">GeometryCollection</a> : <a href="-geo-json-object/index.html">GeoJsonObject</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geometry-collection/index.html">GeometryCollection</a> : <a href="-geo-json-object/index.html">GeoJsonObject</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -286,8 +295,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-line-string/index.html">LineString</a> : <a href="-geo-json1-d-geometry/index.html">GeoJson1DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-single-or-multi-line-string/index.html">GeoJsonSingleOrMultiLineString</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-line-string/index.html">LineString</a> : <a href="-geo-json1-d-geometry/index.html">GeoJson1DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-single-or-multi-line-string/index.html">GeoJsonSingleOrMultiLineString</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -303,8 +312,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-multi-line-string/index.html">MultiLineString</a> : <a href="-geo-json2-d-geometry/index.html">GeoJson2DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-single-or-multi-line-string/index.html">GeoJsonSingleOrMultiLineString</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-multi-line-string/index.html">MultiLineString</a> : <a href="-geo-json2-d-geometry/index.html">GeoJson2DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-single-or-multi-line-string/index.html">GeoJsonSingleOrMultiLineString</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -320,8 +329,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-multi-point/index.html">MultiPoint</a> : <a href="-geo-json1-d-geometry/index.html">GeoJson1DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-multi-point/index.html">MultiPoint</a> : <a href="-geo-json1-d-geometry/index.html">GeoJson1DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -337,8 +346,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-multi-polygon/index.html">MultiPolygon</a> : <a href="-geo-json3-d-geometry/index.html">GeoJson3DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-single-or-multi-polygon/index.html">GeoJsonSingleOrMultiPolygon</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-multi-polygon/index.html">MultiPolygon</a> : <a href="-geo-json3-d-geometry/index.html">GeoJson3DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-single-or-multi-polygon/index.html">GeoJsonSingleOrMultiPolygon</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -354,8 +363,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-point/index.html">Point</a> : <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-geometry/index.html">GeoJsonGeometry</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-point/index.html">Point</a> : <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-geometry/index.html">GeoJsonGeometry</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -371,8 +380,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-polygon/index.html">Polygon</a> : <a href="-geo-json2-d-geometry/index.html">GeoJson2DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-single-or-multi-polygon/index.html">GeoJsonSingleOrMultiPolygon</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-polygon/index.html">Polygon</a> : <a href="-geo-json2-d-geometry/index.html">GeoJson2DGeometry</a>, <a href="-geo-json-object/index.html">GeoJsonObject</a>, <a href="-geo-json-single-or-multi-polygon/index.html">GeoJsonSingleOrMultiPolygon</a></div></div>                </div>
               </div>
             </div>
           </div>
@@ -388,8 +397,8 @@ if(savedDarkMode === true){
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark js-like" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#809338680%2FClasslikes%2F978196697">Position</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>                </div>
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#809338680%2FClasslikes%2F978196697">Position</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt;</span></div></div>                </div>
               </div>
             </div>
           </div>
