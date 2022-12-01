@@ -24,6 +24,7 @@ package io.kvision
 /**
  * Initializer for KVision Bootstrap spinner module.
  */
+@Deprecated("Use SimpleSpinner component instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 object BootstrapSpinnerModule : ModuleInitializer {
 
     override fun initialize() {

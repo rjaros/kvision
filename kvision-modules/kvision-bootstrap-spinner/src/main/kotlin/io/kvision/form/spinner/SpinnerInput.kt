@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.form.spinner
 
 import io.kvision.snabbdom.VNode
@@ -79,7 +81,7 @@ internal const val DEFAULT_STEP = 1
  * @param className CSS class names
  * @param init an initializer extension function
  */
-@Suppress("TooManyFunctions")
+@Deprecated("Use SimpleSpinnerInput instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class SpinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
@@ -383,6 +385,7 @@ open class SpinnerInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use SimpleSpinnerInput instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun Container.spinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, buttonsType: ButtonsType = ButtonsType.VERTICAL,
