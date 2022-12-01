@@ -180,14 +180,14 @@ tasks.register("printYarnVersions") {
         context("with applied with alongside Kotlin/MPP plugin") {
 
             val projectDir: File = `gradle kts project` {
-                val kvisionVersion = "5.16.1"
+                val kvisionVersion = "5.18.0"
                 `build gradle kts`(
                     """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     id("io.kvision")
-    kotlin("multiplatform") version "1.7.20"
+    kotlin("multiplatform") version "1.8.0-Beta"
 }
 
 repositories {
@@ -220,15 +220,15 @@ kotlin {
     jvm("backend") {
         compilations.all {
             java {
-                targetCompatibility = JavaVersion.VERSION_1_8
+                targetCompatibility = JavaVersion.VERSION_17
             }
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
                 freeCompilerArgs = listOf("-Xjsr305=strict")
             }
         }
     }
-    js("frontend") {
+    js("frontend", IR) {
         browser {
             runTask {
                 outputFileName = "main.bundle.js"
@@ -312,27 +312,27 @@ kotlin {
     companion object {
 
         private val baseKotlinJsBuildGradleKts: String = run {
-            val kvisionVersion = "5.15.2"
+            val kvisionVersion = "5.18.0"
             //language=kotlin
             """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     id("io.kvision")
-    kotlin("js") version "1.7.20"
+    kotlin("js") version "1.8.0-Beta"
 }
 
 repositories {
     mavenCentral()
 }
 
-val kotlinVersion: String = "1.7.20"
-val kvisionVersion: String = "5.16.1"
+val kotlinVersion: String = "1.8.0-Beta"
+val kvisionVersion: String = "5.18.0"
 
 val webDir = file("src/main/web")
 
 kotlin {
-    js {
+    js(IR) {
         browser {
             runTask {
                 outputFileName = "main.bundle.js"

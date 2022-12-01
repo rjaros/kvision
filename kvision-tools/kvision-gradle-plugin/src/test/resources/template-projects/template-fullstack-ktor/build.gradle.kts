@@ -32,7 +32,7 @@ kotlin {
     jvm("backend") {
         compilations.all {
             java {
-                targetCompatibility = JavaVersion.VERSION_1_8
+                targetCompatibility = JavaVersion.VERSION_17
             }
             kotlinOptions {
                 jvmTarget = "1.8"
@@ -40,7 +40,7 @@ kotlin {
             }
         }
     }
-    js("frontend") {
+    js("frontend", IR) {
         browser {
             runTask {
                 outputFileName = "main.bundle.js"
