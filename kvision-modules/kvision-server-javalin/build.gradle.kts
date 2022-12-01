@@ -18,7 +18,7 @@ val logbackVersion: String by project
 
 kotlin {
     kotlinJsTargets()
-    kotlinJvmTargets(target = "11")
+    kotlinJvmTargets()
     sourceSets {
         val commonMain by getting {
             dependencies {

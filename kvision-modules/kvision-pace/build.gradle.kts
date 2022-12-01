@@ -6,13 +6,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val paceProgressbarVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("pace-progressbar", "^1.0.9"))
+    implementation(npm("pace-progressbar", "^$paceProgressbarVersion"))
     testImplementation(kotlin("test-js"))
 }
 

@@ -6,6 +6,8 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val bootstrapTouchspinVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
@@ -13,7 +15,7 @@ kotlin {
 dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-jquery"))
-    implementation(npm("bootstrap-touchspin", "^4.3.0"))
+    implementation(npm("bootstrap-touchspin", "^$bootstrapTouchspinVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

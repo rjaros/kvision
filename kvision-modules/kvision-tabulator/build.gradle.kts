@@ -6,6 +6,8 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val tabulatorTablesVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
@@ -13,7 +15,7 @@ kotlin {
 dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-state"))
-    implementation(npm("tabulator-tables", "^5.4.2"))
+    implementation(npm("tabulator-tables", "^$tabulatorTablesVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

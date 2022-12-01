@@ -6,13 +6,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val bootstrapIconsVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("bootstrap-icons", "^1.10.0"))
+    implementation(npm("bootstrap-icons", "^$bootstrapIconsVersion"))
     testImplementation(kotlin("test-js"))
 }
 

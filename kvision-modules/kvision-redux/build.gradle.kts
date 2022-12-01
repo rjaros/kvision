@@ -7,6 +7,8 @@ plugins {
 }
 
 val kotlinReduxVersion: String by project
+val reduxVersion: String by project
+val reduxThunkVersion: String by project
 
 kotlin {
     kotlinJsTargets()
@@ -17,8 +19,8 @@ dependencies {
     api("org.jetbrains.kotlin-wrappers:kotlin-redux:$kotlinReduxVersion") {
         exclude("org.jetbrains.kotlinx", "kotlinx-html-js")
     }
-    implementation(npm("redux", "^4.1.2"))
-    implementation(npm("redux-thunk", "^2.4.1"))
+    implementation(npm("redux", "^$reduxVersion"))
+    implementation(npm("redux-thunk", "^$reduxThunkVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
     testImplementation(project(":kvision-modules:kvision-state"))

@@ -7,14 +7,17 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val popperjsCoreVersion: String by project
+val tempusDominusVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("@popperjs/core", "^2.11.6"))
-    implementation(npm("@eonasdan/tempus-dominus", "^6.2.7"))
+    implementation(npm("@popperjs/core", "^$popperjsCoreVersion"))
+    implementation(npm("@eonasdan/tempus-dominus", "^$tempusDominusVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

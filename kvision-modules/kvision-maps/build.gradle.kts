@@ -6,6 +6,9 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val leafletVersion: String by project
+val geojsonVersion: String by project
+val geojsonTypesVersion: String by project
 val kotestVersion: String by project
 
 kotlin {
@@ -15,15 +18,11 @@ kotlin {
 dependencies {
     api(rootProject)
     implementation(kotlin("stdlib-js"))
-
-    implementation(npm("leaflet", "^1.9.3"))
-//    implementation(npm("@types/leaflet", "^1.8.0"))
-
-    implementation(npm("geojson", "^0.5.0")) {
+    implementation(npm("leaflet", "^$leafletVersion"))
+    implementation(npm("geojson", "^$geojsonVersion")) {
         because("used by Leaflet for defining locations")
     }
-    implementation(npm("@types/geojson", "7946.0.10"))
-
+    implementation(npm("@types/geojson", "^$geojsonTypesVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
     testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))

@@ -6,14 +6,17 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val popperjsCoreVersion: String by project
+val bootstrapVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("@popperjs/core", "^2.11.6"))
-    implementation(npm("bootstrap", "^5.2.3"))
+    implementation(npm("@popperjs/core", "^$popperjsCoreVersion"))
+    implementation(npm("bootstrap", "^$bootstrapVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
     testImplementation(project(":kvision-modules:kvision-jquery"))

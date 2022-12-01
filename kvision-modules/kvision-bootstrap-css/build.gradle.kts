@@ -6,13 +6,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val bootstrapVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("bootstrap", "^5.2.3"))
+    implementation(npm("bootstrap", "^$bootstrapVersion"))
     testImplementation(kotlin("test-js"))
 }
 

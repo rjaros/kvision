@@ -7,6 +7,7 @@ plugins {
 }
 
 val kotlinReactVersion: String by project
+val reactVersion: String by project
 
 kotlin {
     kotlinJsTargets()
@@ -16,8 +17,8 @@ dependencies {
     api(rootProject)
     api("org.jetbrains.kotlin-wrappers:kotlin-react:$kotlinReactVersion")
     api("org.jetbrains.kotlin-wrappers:kotlin-react-dom:$kotlinReactVersion")
-    implementation(npm("react", "^18.2.0"))
-    implementation(npm("react-dom", "^18.2.0"))
+    implementation(npm("react", "^$reactVersion"))
+    implementation(npm("react-dom", "^$reactVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

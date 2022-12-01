@@ -15,7 +15,6 @@ kotlin {
 dependencies {
     api("io.kvision:jquery-kotlin:$jqueryKotlinVersion")
     api(rootProject)
-    implementation(npm("jquery", "^3.6.0"))
     testImplementation(kotlin("test-js"))
 }
 

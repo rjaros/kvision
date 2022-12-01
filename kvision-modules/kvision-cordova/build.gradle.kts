@@ -6,7 +6,6 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-// Versions
 val coroutinesVersion: String by project
 
 kotlin {

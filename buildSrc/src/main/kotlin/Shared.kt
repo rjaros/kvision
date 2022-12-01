@@ -48,7 +48,7 @@ private fun KotlinJsTargetDsl.kotlinJsTargets() {
     }
 }
 
-fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "1.8") {
+fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "17") {
     jvm {
         compilations.all {
             kotlinOptions {

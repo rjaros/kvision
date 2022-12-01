@@ -6,13 +6,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val trixVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("trix", "^2.0.1"))
+    implementation(npm("trix", "^$trixVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

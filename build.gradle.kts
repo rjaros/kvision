@@ -22,6 +22,17 @@ val serializationVersion: String by project
 val coroutinesVersion: String by project
 val snabbdomKotlinVersion: String by project
 
+val kvisionAssetsVersion: String by project
+val cssLoaderVersion: String by project
+val styleLoaderVersion: String by project
+val importsLoaderVersion: String by project
+val fechaVersion: String by project
+val snabbdomVersion: String by project
+val snabbdomVirtualizeVersion: String by project
+val splitjsVersion: String by project
+val gettextjsVersion: String by project
+val gettextExtractVersion: String by project
+
 // Custom Properties
 val webDir = file("src/main/web")
 
@@ -29,7 +40,6 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
         resolution("got", "12.5.3")
-        resolution("moment-timezone", "0.5.39")
         resolution("loader-utils", "1.4.2")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
@@ -49,17 +59,17 @@ dependencies {
     api(project(":kvision-modules:kvision-common-types"))
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
 //    for local development
-//    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-7.0.0.tgz"))
-    implementation(npm("kvision-assets", "^7.0.4"))
-    implementation(npm("css-loader", "^6.7.2"))
-    implementation(npm("style-loader", "^3.3.1"))
-    implementation(npm("imports-loader", "^4.0.1"))
-    implementation(npm("fecha", "^4.2.3"))
-    implementation(npm("snabbdom", "^3.5.1"))
-    implementation(npm("@rjaros/snabbdom-virtualize", "^1.0.0-beta.5"))
-    implementation(npm("split.js", "^1.6.5"))
-    implementation(npm("gettext.js", "^1.2.0"))
-    implementation(npm("gettext-extract", "^2.0.1"))
+//    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-8.0.0.tgz"))
+    implementation(npm("kvision-assets", "^$kvisionAssetsVersion"))
+    implementation(npm("css-loader", "^$cssLoaderVersion"))
+    implementation(npm("style-loader", "^$styleLoaderVersion"))
+    implementation(npm("imports-loader", "^$importsLoaderVersion"))
+    implementation(npm("fecha", "^$fechaVersion"))
+    implementation(npm("snabbdom", "^$snabbdomVersion"))
+    implementation(npm("@rjaros/snabbdom-virtualize", "^$snabbdomVirtualizeVersion"))
+    implementation(npm("split.js", "^$splitjsVersion"))
+    implementation(npm("gettext.js", "^$gettextjsVersion"))
+    implementation(npm("gettext-extract", "^$gettextExtractVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }
@@ -104,20 +114,14 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap-css/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap-datetime/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap-dialog/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap-icons/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap-select/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap-select-remote/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap-spinner/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap-typeahead/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap-typeahead-remote/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap-upload/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-chart/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-common-remote/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-common-types/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-cordova/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-datacontainer/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-datetime/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-electron/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-fontawesome/src/main/kotlin"))
@@ -126,7 +130,6 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-imask/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-jquery/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-maps/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-moment/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-onsenui/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-pace/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-react/src/main/kotlin"))
@@ -141,7 +144,6 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-tabulator/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tabulator-remote/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-testutils/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-toast/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-toastify/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tom-select/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-tom-select-remote/src/main/kotlin"))

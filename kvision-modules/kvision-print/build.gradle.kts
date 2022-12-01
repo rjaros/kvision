@@ -6,13 +6,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val printjsVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("print-js", "^1.6.0"))
+    implementation(npm("print-js", "^$printjsVersion"))
     testImplementation(kotlin("test-js"))
 }
 

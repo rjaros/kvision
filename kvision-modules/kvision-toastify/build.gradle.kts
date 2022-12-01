@@ -6,13 +6,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val toastifyjsVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("toastify-js", "^1.12.0"))
+    implementation(npm("toastify-js", "^$toastifyjsVersion"))
     testImplementation(kotlin("test-js"))
 }
 

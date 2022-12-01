@@ -6,8 +6,9 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-// Versions
 val kotlinNodeVersion: String by project
+val electronVersion: String by project
+val electronRemoteVersion: String by project
 
 kotlin {
     js {
@@ -27,8 +28,8 @@ kotlin {
 dependencies {
     api(rootProject)
     api("org.jetbrains.kotlin-wrappers:kotlin-node:$kotlinNodeVersion")
-    implementation(npm("electron", "^21.3.1"))
-    implementation(npm("@electron/remote", "^2.0.8"))
+    implementation(npm("electron", "^$electronVersion"))
+    implementation(npm("@electron/remote", "^$electronRemoteVersion"))
     testImplementation(kotlin("test-js"))
 }
 

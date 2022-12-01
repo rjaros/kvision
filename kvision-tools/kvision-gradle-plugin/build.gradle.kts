@@ -6,7 +6,8 @@ plugins {
     id("signing")
     id("de.marcphilipp.nexus-publish")
     id("org.jetbrains.dokka")
-    id("com.gradle.plugin-publish") version "0.21.0"
+    val gradlePluginPublishVersion: String by System.getProperties()
+    id("com.gradle.plugin-publish") version gradlePluginPublishVersion
 }
 
 val kotlinVersion: String by System.getProperties()
@@ -30,8 +31,8 @@ pluginBundle {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 val kotestVersion: String by project

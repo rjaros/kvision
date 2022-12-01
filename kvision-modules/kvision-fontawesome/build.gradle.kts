@@ -6,13 +6,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val fontawesomeFreeVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("@fortawesome/fontawesome-free", "^6.2.1"))
+    implementation(npm("@fortawesome/fontawesome-free", "^$fontawesomeFreeVersion"))
     testImplementation(kotlin("test-js"))
 }
 
