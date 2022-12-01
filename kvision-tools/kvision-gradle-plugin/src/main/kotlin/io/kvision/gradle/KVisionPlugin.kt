@@ -219,12 +219,12 @@ abstract class KVisionPlugin @Inject constructor(
 
         if (kvExtension.enableKsp.get()) {
             dependencies {
-                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.18.0")
+                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:5.18.1")
             }
 
             afterEvaluate {
                 dependencies {
-                    add("kspFrontend", "io.kvision:kvision-ksp-processor:5.18.0")
+                    add("kspFrontend", "io.kvision:kvision-ksp-processor:5.18.1")
                 }
                 kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                 kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
