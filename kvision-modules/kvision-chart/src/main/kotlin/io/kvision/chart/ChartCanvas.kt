@@ -26,7 +26,6 @@ import io.kvision.chart.js.ChartConfiguration
 import io.kvision.html.Canvas
 import io.kvision.i18n.I18n
 import io.kvision.snabbdom.VNode
-import io.kvision.utils.createInstance
 import io.kvision.chart.js.Chart as JsChart
 
 internal class ChartCanvas(
@@ -64,8 +63,7 @@ internal class ChartCanvas(
 
     override fun afterInsert(node: VNode) {
         jsChart =
-            ChartModule.getConstructor()
-                .createInstance(this.context2D, configuration.toJs(this::translate))
+            JsChart(this.context2D, configuration.toJs(this::translate))
     }
 
     override fun afterDestroy() {

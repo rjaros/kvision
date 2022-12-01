@@ -778,12 +778,7 @@ fun ElementsOptions.toJs(): dynamic {
 data class GridLineOptions(
     val display: Boolean = true,
     val color: Color? = null,
-    val borderColor: Color? = null,
-    val borderWidth: Int? = null,
-    val borderDash: List<Number>? = null,
-    val borderDashOffset: Number? = null,
     val lineWidth: Int? = null,
-    val drawBorder: Boolean? = null,
     val drawOnChartArea: Boolean? = null,
     val drawTicks: Boolean? = null,
     val offset: Boolean? = null,
@@ -803,12 +798,7 @@ fun GridLineOptions.toJs(): dynamic {
     return obj {
         this.display = display
         if (color != null) this.color = color.asString()
-        if (borderColor != null) this.borderColor = borderColor.asString()
-        if (borderWidth != null) this.borderWidth = borderWidth
-        if (borderDash != null) this.borderDash = borderDash.toTypedArray()
-        if (borderDashOffset != null) this.borderDashOffset = borderDashOffset
         if (lineWidth != null) this.lineWidth = lineWidth
-        if (drawBorder != null) this.drawBorder = drawBorder
         if (drawOnChartArea != null) this.drawOnChartArea = drawOnChartArea
         if (drawTicks != null) this.drawTicks = drawTicks
         if (offset != null) this.offset = offset
@@ -918,6 +908,30 @@ fun TickOptions.toJs(): dynamic {
 }
 
 /**
+ * Chart border options.
+ */
+data class BorderOptions(
+    val display: Boolean? = null,
+    val color: Color? = null,
+    val width: Int? = null,
+    val dash: List<Number>? = null,
+    val dashOffset: Number? = null,
+)
+
+/**
+ * An extension function to convert configuration class to JS object.
+ */
+fun BorderOptions.toJs(): dynamic {
+    return obj {
+        if (display != null) this.display = display
+        if (color != null) this.color = color.asString()
+        if (width != null) this.width = width
+        if (dash != null) this.dash = dash.toTypedArray()
+        if (dashOffset != null) this.dashOffset = dashOffset
+    }
+}
+
+/**
  * Chart scales.
  */
 data class ChartScales(
@@ -926,6 +940,7 @@ data class ChartScales(
     val backgroundColor: Color? = null,
     val display: Boolean? = null,
     val grid: GridLineOptions? = null,
+    val border: BorderOptions? = null,
     val min: dynamic = null,
     val max: dynamic = null,
     val reverse: Boolean? = null,
@@ -962,6 +977,7 @@ fun ChartScales.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (backgroundColor != null) this.backgroundColor = backgroundColor.asString()
         if (display != null) this.display = display
         if (grid != null) this.grid = grid.toJs()
+        if (border != null) this.border = border.toJs()
         if (min != null) this.min = min
         if (max != null) this.max = max
         if (reverse != null) this.reverse = reverse

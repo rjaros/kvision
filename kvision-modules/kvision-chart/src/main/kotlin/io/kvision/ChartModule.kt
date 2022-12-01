@@ -26,13 +26,6 @@ package io.kvision
  */
 object ChartModule : ModuleInitializer {
 
-    private val chartjs = require("chart.js/auto").default
-
-    @Suppress("UnsafeCastFromDynamic")
-    fun getConstructor(): Any {
-        return chartjs
-    }
-
     override fun initialize() {
     }
 }

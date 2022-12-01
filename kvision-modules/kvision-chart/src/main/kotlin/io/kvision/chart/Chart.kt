@@ -26,6 +26,7 @@ import io.kvision.chart.js.ChartConfiguration
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.snabbdom.VNode
+import io.kvision.chart.js.Chart as JsChart
 
 /**
  * Chart update modes.
@@ -145,11 +146,11 @@ open class Chart(
         }
 
         fun registerPlugin(plugin: dynamic) {
-            ChartModule.getConstructor().asDynamic().register(plugin)
+            JsChart.register(plugin)
         }
 
         fun unregisterPlugin(plugin: dynamic) {
-            ChartModule.getConstructor().asDynamic().unregister(plugin)
+            JsChart.unregister(plugin)
         }
     }
 }

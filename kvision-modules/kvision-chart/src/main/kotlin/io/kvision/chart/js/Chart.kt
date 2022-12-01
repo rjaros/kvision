@@ -5,9 +5,12 @@
     "CONFLICTING_OVERLOADS",
     "UNUSED_TYPEALIAS_PARAMETER"
 )
+@file:JsModule("chart.js/auto")
+@file:JsNonModule
 
 package io.kvision.chart.js
 
+import io.kvision.chart.BorderOptions
 import io.kvision.utils.NumberFormatOptions
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.CanvasRenderingContext2DSettings
@@ -32,10 +35,6 @@ external interface ScriptableLineSegmentContext {
     var p1DataIndex: Number
     var datasetIndex: Number
 }
-
-typealias ScriptableOptions<T, TContext> = Any
-
-typealias ScriptableAndArrayOptions<T, TContext> = Any
 
 external interface ParsingOptions {
     var parsing: dynamic /* `T$0` | Boolean */
@@ -110,14 +109,10 @@ external interface LineControllerChartOptions {
 
 external var LineController: ChartComponent /* ChartComponent & `T$3` */
 
-typealias ScatterControllerDatasetOptions = LineControllerDatasetOptions
-
 external interface ScatterDataPoint {
     var x: Number
     var y: Number
 }
-
-typealias ScatterControllerChartOptions = LineControllerChartOptions
 
 external var ScatterController: ChartComponent /* ChartComponent & `T$4` */
 
@@ -150,8 +145,6 @@ external interface DoughnutControllerChartOptions {
         set(value) = definedExternally
 }
 
-typealias DoughnutDataPoint = Number
-
 @Suppress("EXTERNAL_DELEGATION", "NESTED_CLASS_IN_EXTERNAL_INTERFACE")
 external interface DoughnutController : DatasetController {
     var innerRadius: Number
@@ -168,23 +161,11 @@ external interface DoughnutMetaExtensions {
     var total: Number
 }
 
-typealias PieControllerDatasetOptions = DoughnutControllerDatasetOptions
-
-typealias PieControllerChartOptions = DoughnutControllerChartOptions
-
-typealias PieAnimationOptions = DoughnutAnimationOptions
-
-typealias PieDataPoint = DoughnutDataPoint
-
-typealias PieMetaExtensions = DoughnutMetaExtensions
-
 external var PieController: ChartComponent /* ChartComponent & `T$6` */
 
 external interface PolarAreaControllerDatasetOptions : DoughnutControllerDatasetOptions {
     var angle: Number
 }
-
-typealias PolarAreaAnimationOptions = DoughnutAnimationOptions
 
 external interface PolarAreaControllerChartOptions {
     var startAngle: Number
@@ -210,8 +191,6 @@ external interface RadarControllerDatasetOptions : ControllerDatasetOptions,
         set(value) = definedExternally
     var showLine: Boolean
 }
-
-typealias RadarControllerChartOptions = LineControllerChartOptions
 
 external var RadarController: ChartComponent /* ChartComponent & `T$8` */
 
@@ -449,8 +428,6 @@ external interface Defaults :
     fun route(scope: String, name: String, targetScope: String, targetName: String)
 }
 
-typealias Overrides = Any
-
 external var defaults: Defaults
 
 external interface InteractionOptions {
@@ -470,8 +447,6 @@ external interface InteractionItem {
     var datasetIndex: Number
     var index: Number
 }
-
-typealias InteractionModeFunction = (chart: Chart, e: ChartEvent, options: InteractionOptions, useFinalPosition: Boolean) -> Array<InteractionItem>
 
 external interface InteractionModeMap {
     var index: InteractionModeFunction
@@ -590,7 +565,6 @@ external interface Plugin<O> : ExtendedPlugin__2<O> {
     val beforeEvent: ((chart: Chart, args: `T$21`, options: O) -> dynamic)?
     val afterEvent: ((chart: Chart, args: `T$22`, options: O) -> Unit)?
     val resize: ((chart: Chart, args: `T$24`, options: O) -> Unit)?
-    val destroy: ((chart: Chart, args: EmptyObject, options: O) -> Unit)?
     val beforeDestroy: ((chart: Chart, args: EmptyObject, options: O) -> Unit)?
     val afterDestroy: ((chart: Chart, args: EmptyObject, options: O) -> Unit)?
     val uninstall: ((chart: Chart, args: EmptyObject, options: O) -> Unit)?
@@ -1595,24 +1569,27 @@ external interface PluginChartOptions {
     var plugins: PluginOptionsByType
 }
 
+external interface BorderOptions {
+    var display: Boolean
+    var color: dynamic /* String | CanvasGradient | CanvasPattern */
+        get() = definedExternally
+        set(value) = definedExternally
+    var width: Number
+    var dash: Array<Number>
+    var dashOffset: dynamic /* Number | (ctx: ScriptableScaleContext, options: AnyObject) -> Number? */
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
 external interface GridLineOptions {
     var display: Boolean
-    var borderColor: dynamic /* String | CanvasGradient | CanvasPattern */
-        get() = definedExternally
-        set(value) = definedExternally
-    var borderWidth: Number
     var circular: Boolean
     var color: dynamic /* String | CanvasGradient | CanvasPattern | (ctx: ScriptableScaleContext, options: AnyObject) -> dynamic | Array<dynamic /* String | CanvasGradient | CanvasPattern */> */
-        get() = definedExternally
-        set(value) = definedExternally
-    var borderDash: Array<Number>
-    var borderDashOffset: dynamic /* Number | (ctx: ScriptableScaleContext, options: AnyObject) -> Number? */
         get() = definedExternally
         set(value) = definedExternally
     var lineWidth: dynamic /* Number | (ctx: ScriptableScaleContext, options: AnyObject) -> Number? | Array<Number> */
         get() = definedExternally
         set(value) = definedExternally
-    var drawBorder: Boolean
     var drawOnChartArea: Boolean
     var drawTicks: Boolean
     var tickBorderDash: Array<Number>
@@ -1692,6 +1669,7 @@ external interface CartesianScaleOptions : CoreScaleOptions {
     var max: Number
     var offset: Boolean
     var grid: GridLineOptions
+    var border: BorderOptions
     var title: `T$50`
     var stacked: dynamic /* Boolean? | "single" */
         get() = definedExternally
@@ -1964,17 +1942,9 @@ external interface ChartTypeRegistry {
     var radar: `T$74`
 }
 
-typealias ScaleOptions<TScale> = DeepPartial<Any>
-
-typealias DatasetChartOptions<TType> = Any
-
 external interface ScaleChartOptions {
     var scales: dynamic
 }
-
-typealias ChartOptions = DeepPartial<CoreChartOptions /* CoreChartOptions<TType> & ElementChartOptions<TType> & PluginChartOptions<TType> & DatasetChartOptions<TType> & ScaleChartOptions<TType> & dynamic */>
-
-typealias DefaultDataPoint<TType> = DistributiveArray<Any>
 
 external interface ChartDatasetProperties {
     var type: String?
