@@ -71,13 +71,15 @@ open class TomSelectRemoteInput<out T : Any>(
         val callAgent = CallAgent()
         val loadCallback: ((query: String, callback: (Array<dynamic>) -> Unit) -> Unit)? = if (!preload) {
             { query, callback ->
+                tomSelectJs?.clearOptions()
                 loadResults(callAgent, url, method, query, this.value, requestFilter, callback)
             }
         } else null
         this.tsCallbacks = tsCallbacks?.copy(load = loadCallback) ?: TomSelectCallbacks(load = loadCallback)
-        this.tsOptions = tsOptions?.copy(preload = preload, openOnFocus = preload) ?: TomSelectOptions(
+        this.tsOptions = tsOptions?.copy(preload = preload, openOnFocus = preload, searchField = emptyList()) ?: TomSelectOptions(
             preload = preload,
-            openOnFocus = preload
+            openOnFocus = preload,
+            searchField = emptyList()
         )
         this.tsRenders = tsRenders?.copy(option = ::renderOption, item = ::renderItem) ?: TomSelectRenders(
             option = ::renderOption,
