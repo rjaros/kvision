@@ -27,6 +27,7 @@ import org.springframework.core.ParameterizedTypeReference
 import org.springframework.core.io.buffer.DataBuffer
 import org.springframework.core.io.buffer.DataBufferFactory
 import org.springframework.http.HttpCookie
+import org.springframework.http.HttpMethod
 import org.springframework.http.codec.HttpMessageReader
 import org.springframework.http.codec.multipart.Part
 import org.springframework.http.server.reactive.ServerHttpRequest
@@ -120,6 +121,11 @@ internal class KVServerRequest : ServerRequest {
         throw IllegalStateException("Empty implementation")
     }
 
+    override fun method(): HttpMethod {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    @Deprecated("Deprecated in Java")
     override fun methodName(): String {
         throw IllegalStateException("Empty implementation")
     }

@@ -1,1 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.kvision.remote.KVRouterConfiguration,io.kvision.remote.KVHandler,io.kvision.remote.KVWebSocketConfig

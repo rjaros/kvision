@@ -37,7 +37,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.buildAndAwait
 import org.springframework.web.reactive.function.server.coRouter
 import org.springframework.web.reactive.function.server.router
-import javax.annotation.PostConstruct
+import jakarta.annotation.PostConstruct
 
 /**
  * Default Spring Boot routes
@@ -89,8 +89,8 @@ open class KVHandler(val services: List<KVServiceManager<*>>, val applicationCon
     open suspend fun handle(request: ServerRequest): ServerResponse {
 
         fun getHandler(): RequestHandler? {
-            val springMethod = request.method() ?: return null
-            val kvMethod = HttpMethod.fromStringOrNull(springMethod.name) ?: return null
+            val springMethod = request.method().name()
+            val kvMethod = HttpMethod.fromStringOrNull(springMethod) ?: return null
             val routeUrl = request.path()
             return services.asSequence()
                 .mapNotNull { it.routeMapRegistry.findHandler(kvMethod, routeUrl) }

@@ -57,8 +57,6 @@ fun getServerWebExchangeMatcher(vararg services: KVServiceManager<*>): Array<Ser
             if (paths.isEmpty()) {
                 null
             } else {
-                HttpMethod.resolve(method.name)?.let { springMethod ->
-                    ServerWebExchangeMatchers.pathMatchers(springMethod, *paths.toTypedArray())
-                }
+                ServerWebExchangeMatchers.pathMatchers(HttpMethod.valueOf(method.name), *paths.toTypedArray())
             }
         }.toList().toTypedArray()
