@@ -141,24 +141,12 @@ trix-toolbar .trix-button-group {
     padding-right: 0px;
 }
 
-.bootstrap-select .dropdown-toggle.btn-default:focus {
-    outline: none !important;
-}
-
-.bootstrap-select .dropdown-toggle::after {
-    margin-left: -1em !important;
-}
-
 .select-parent.text-danger > .invalid-feedback {
     display: block;
 }
 
 .select-parent.text-danger > div.form-control > button.form-control {
     border-color: var(--bs-danger, #dc3545);
-}
-
-.form-inline .bootstrap-select button.form-control {
-    min-width: 200px;
 }
 
 label:not(.form-check-label).required-label::after {
@@ -451,14 +439,6 @@ select.form-select, .tabulator-row .tabulator-cell.tabulator-editing select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
     background-position: right .75rem center;
     background-size: 16px 12px;
-}
-
-.is-invalid .bootstrap-select button.dropdown-toggle {
-    border: solid 1px var(--bs-danger, #dc3545);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
-    background-position: center right 2.25rem;
-    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
-    background-repeat: no-repeat;
 }
 
 select.form-select:invalid {
