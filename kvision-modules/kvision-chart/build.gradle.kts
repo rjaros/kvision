@@ -6,13 +6,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val chartjsVersion: String by project
+
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    implementation(npm("chart.js", "^3.9.1"))
+    implementation(npm("chart.js", "^$chartjsVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }
