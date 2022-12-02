@@ -159,28 +159,6 @@ label.form-check-label.required-label > span:last-child::after {
     color: var(--bs-danger, #dc3545);
 }
 
-.kv-spinner-btn-none .input-group-btn-vertical {
-    display: none;
-}
-
-.kv-spinner-btn-none .form-control {
-    border-radius: 4px !important;
-}
-
-.kv-spinner > span {
-    display: inline-block;
-    width: 100%;
-}
-
-.input-group.kv-spinner {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-.kv-spinner.is-invalid ~ .invalid-feedback {
-    display: block;
-}
-
 .kv-radiogroup-inline label.form-label {
     vertical-align: top;
     margin-right: .75rem;

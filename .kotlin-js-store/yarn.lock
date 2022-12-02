@@ -502,11 +502,6 @@ bootstrap-icons@^1.10.0:
   resolved "https://registry.yarnpkg.com/bootstrap-icons/-/bootstrap-icons-1.10.2.tgz#6a5729e0475e007ed82d752225645e4e6fec48d7"
   integrity sha512-PTPYadRn1AMGr+QTSxe4ZCc+Wzv9DGZxbi3lNse/dajqV31n2/wl/7NX78ZpkvFgRNmH4ogdIQPQmxAfhEV6nA==
 
-bootstrap-touchspin@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/bootstrap-touchspin/-/bootstrap-touchspin-4.3.0.tgz#a1dde0f12c331244fcb0e19f99c397f0f73f7793"
-  integrity sha512-jLynvVHYknc5c+90K0CTHzXADKxFGNCqD4u2N5MZwWuVNy2MovNRyKWGa/puuSebkdIFCqydVkziGWclhx3KKA==
-
 "bootstrap@>= 3.4.1", bootstrap@^5.2.3:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.3.tgz#54739f4414de121b9785c5da3c87b37ff008322b"
@@ -893,7 +888,7 @@ electron-to-chromium@^1.4.251:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.284.tgz#61046d1e4cab3a25238f6bf7413795270f125592"
   integrity sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==
 
-electron@^21.3.1:
+electron@^21.3.3:
   version "21.3.3"
   resolved "https://registry.yarnpkg.com/electron/-/electron-21.3.3.tgz#66ddb22c337d8182eeece8b3c256a751f8e5bf76"
   integrity sha512-2a9l8mUQlzXH/9WZrGYDJTyJOliLKbmEuCrQ8bfX1McAQOmI6PDQxfHV4qFUtyCDUp5SHrq5nuvg0c1pIkDBhg==
@@ -1709,10 +1704,10 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kvision-assets@^7.0.4:
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-7.0.4.tgz#59c62f38b15b44db10699305159be63828a5e645"
-  integrity sha512-DY2j6Wm3vaMWwBSjnhutOKZQA6pzOvL40hAkUUc52QkrRn4K2E7GHdWR1qGIR4/YyraWvzkVWasr6R4vg8l9mQ==
+kvision-assets@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-8.0.0.tgz#f1cfcbf0cb262e17a81bfebbdafc303acb0af834"
+  integrity sha512-V4wOpznz8BuqJoRyyo1c8XlfEvpiKIiyZsXMP53ZjHBTh/1iqhkb9i35qZE8WVWotfEUH7pn9IpIaIQsCai2Zw==
 
 leaflet@^1.9.3:
   version "1.9.3"
@@ -2039,7 +2034,7 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
-pace-progressbar@^1.0.9:
+pace-progressbar@^1.0.10:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/pace-progressbar/-/pace-progressbar-1.0.10.tgz#0474af36b091b157e0ac74e708bfc48b6913e575"
   integrity sha512-iaHL7mwzOcgctHJaPC5Hvs493l4gWc2x/oTnkz9vrB3XA1e8B/RZOGW9KFSZJIj3c6YQ7CXwKLGQcOl51pnEcQ==
@@ -2648,7 +2643,7 @@ tom-select@^2.2.2:
     "@orchidjs/sifter" "^1.0.3"
     "@orchidjs/unicode-variants" "^1.0.4"
 
-trix@^2.0.1:
+trix@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.2.tgz#0efb24fd3e047f209d13883abc2f2989e1c7d547"
   integrity sha512-AecwSri5xwptYiaYgk+nNQAlsAhv8R/u3+T06eB50LoZir4tsa6No4PRVQHj92X0WI/lXAO6JCu19AmFUhOQNw==

@@ -15,7 +15,6 @@ include(
     "kvision-modules:kvision-bootstrap-css",
     "kvision-modules:kvision-bootstrap-dialog",
     "kvision-modules:kvision-bootstrap-icons",
-    "kvision-modules:kvision-bootstrap-spinner",
     "kvision-modules:kvision-bootstrap-upload",
     "kvision-modules:kvision-onsenui",
     "kvision-modules:kvision-chart",
