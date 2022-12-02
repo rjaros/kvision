@@ -54,6 +54,13 @@ data class TomSelectOptions(
     val removeButtonTitle: String? = null,
     val restoreOnBackspace: Boolean? = null,
     val options: List<dynamic>? = null,
+    val dataAttr: String? = null,
+    val valueField: String? = null,
+    val labelField: String? = null,
+    val disabledField: String? = null,
+    val sortField: String? = null,
+    val searchField: List<String>? = null,
+    val searchConjunction: String? = null
 )
 
 fun TomSelectOptions.toJs(emptyOption: Boolean): dynamic {
@@ -130,5 +137,12 @@ fun TomSelectOptions.toJs(emptyOption: Boolean): dynamic {
             this.value = ""
             this.text = "\u00a0"
         }) + options.toTypedArray() else options.toTypedArray()
+        if (dataAttr != null) this.dataAttr = dataAttr
+        if (valueField != null) this.valueField = valueField
+        if (labelField != null) this.labelField = labelField
+        if (disabledField != null) this.disabledField = disabledField
+        if (sortField != null) this.sortField = sortField
+        if (searchField != null) this.searchField = searchField.toTypedArray()
+        if (searchConjunction != null) this.searchConjunction = searchConjunction
     }
 }

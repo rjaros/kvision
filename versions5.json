@@ -1,5 +1,5 @@
 {
-    "kvision": "5.18.0",
+    "kvision": "5.18.1",
     "kotlin": "1.7.21",
     "serialization": "1.4.1",
     "coroutines": "1.6.4",

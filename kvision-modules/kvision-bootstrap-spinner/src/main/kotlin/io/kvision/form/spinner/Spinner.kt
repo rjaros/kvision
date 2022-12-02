@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("DEPRECATION")
+
 package io.kvision.form.spinner
 
 import io.kvision.core.ClassSetBuilder
@@ -51,6 +53,7 @@ import io.kvision.utils.SnOn
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
+@Deprecated("Use SimpleSpinner instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 open class Spinner(
     value: Number? = null, name: String? = null, min: Number? = null, max: Number? = null, step: Number = DEFAULT_STEP,
     decimals: Int = 0, val buttonsType: ButtonsType = ButtonsType.VERTICAL,
@@ -300,6 +303,7 @@ open class Spinner(
  *
  * It takes the same parameters as the constructor of the built component.
  */
+@Deprecated("Use SimpleSpinner instead. The library that this component is based on is no longer maintained and this module will be removed in KVision 6.")
 fun Container.spinner(
     value: Number? = null,
     name: String? = null,
