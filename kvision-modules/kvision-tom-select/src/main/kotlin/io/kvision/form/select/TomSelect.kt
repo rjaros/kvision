@@ -171,6 +171,7 @@ open class TomSelect(
     ).apply {
         this.id = this@TomSelect.idc
         this.name = name
+        if (label != null) setAttribute("aria-label", label)
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }

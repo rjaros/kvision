@@ -41,7 +41,7 @@ fun TomSelectRenders.toJs(): dynamic {
         if (option != null) this.option = option
         if (item != null) this.item = item
         if (optionCreate != null) this.option_create = optionCreate
-        if (noResults != null) this.no_results = noResults
+        this.no_results = noResults
         if (notLoading != null) this.not_loading = notLoading
         if (optGroup != null) this.optgroup = optGroup
         if (optGroupHeader != null) this.optgroup_header = optGroupHeader

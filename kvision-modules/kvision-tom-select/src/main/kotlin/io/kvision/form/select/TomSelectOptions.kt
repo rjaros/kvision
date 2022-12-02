@@ -36,7 +36,7 @@ data class TomSelectOptions(
     val maxItems: Int? = null,
     val hideSelected: Boolean? = null,
     val closeAfterSelect: Boolean? = null,
-    val loadThrottle: Int? = null,
+    val loadThrottle: Int? = 300,
     val loadingClass: String? = null,
     val hidePlaceholder: Boolean? = null,
     val preload: Boolean? = null,
@@ -125,7 +125,7 @@ fun TomSelectOptions.toJs(emptyOption: Boolean): dynamic {
         if (maxItems != null) this.maxItems = maxItems
         if (hideSelected != null) this.hideSelected = hideSelected
         if (closeAfterSelect != null) this.closeAfterSelect = closeAfterSelect
-        if (loadThrottle != null) this.loadThrottle = loadThrottle
+        this.loadThrottle = loadThrottle
         if (loadingClass != null) this.loadingClass = loadingClass
         if (hidePlaceholder != null) this.hidePlaceholder = hidePlaceholder
         if (preload != null) this.preload = preload

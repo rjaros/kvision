@@ -204,9 +204,7 @@ open class TomSelectInput(
     protected open fun getSettingsObj(): dynamic {
         return obj {
             this.maxItems = if (!multiple) 1 else null
-            selectSize?.let {
-                this.maxOptions = it
-            }
+            this.maxOptions = selectSize
             this.allowEmptyOption = emptyOption
             if (options != null) {
                 val optionsWithEmpty = if (emptyOption) {
@@ -247,6 +245,10 @@ open class TomSelectInput(
             }
             if (tsRenders != null) {
                 this.render = tsRenders!!.toJs()
+            } else {
+                this.render = obj {
+                    no_results = null
+                }
             }
         }
     }

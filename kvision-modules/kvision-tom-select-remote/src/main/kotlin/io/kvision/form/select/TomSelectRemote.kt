@@ -172,6 +172,7 @@ open class TomSelectRemote<out T : Any>(
     ).apply {
         this.id = this@TomSelectRemote.idc
         this.name = name
+        if (label != null) setAttribute("aria-label", label)
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
