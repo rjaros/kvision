@@ -12,7 +12,6 @@ include(
     "kvision-modules:kvision-common-types",
     "kvision-modules:kvision-common-remote",
     "kvision-modules:kvision-bootstrap",
-    "kvision-modules:kvision-bootstrap-css",
     "kvision-modules:kvision-bootstrap-dialog",
     "kvision-modules:kvision-bootstrap-icons",
     "kvision-modules:kvision-bootstrap-upload",
