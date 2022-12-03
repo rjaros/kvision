@@ -723,6 +723,13 @@ abstract class StyledComponent {
     }
 
     /**
+     * List style of the current component.
+     */
+    open var listStyle: ListStyle? by refreshOnUpdate {
+        setStyleProperty("list-style", it?.asString())
+    }
+
+    /**
      * Returns CSS style attributes.
      */
     open fun getSnStyle(): dynamic {

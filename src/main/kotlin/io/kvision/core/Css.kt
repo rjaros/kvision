@@ -661,6 +661,49 @@ enum class GridAutoFlow(internal val flow: String) {
 }
 
 /**
+ * CSS list style type options.
+ */
+enum class ListStyleType(internal val type: String) {
+    DISC("disc"),
+    CIRCLE("circle"),
+    SQUARE("square"),
+    DECIMAL("decimal"),
+    CJKDECIMAL("cjk-decimal"),
+    DECIMALLEADINGZERO("decimal-leading-zero"),
+    LOWERROMAN("lower-roman"),
+    UPPERROMAN("upper-roman"),
+    LOWERGREEK("lower-greek"),
+    LOWERLATIN("lower-latin"),
+    UPPERALPHA("upper-alpha"),
+    LOWERALPHA("lower-alpha"),
+    UPPERLATIN("upper-latin"),
+    ARABICINDIC("arabic-indic"),
+    ARMENIAN("armenian"),
+    BENGALI("bengali"),
+    CAMBODIAN("cambodian"),
+    CJKIDEOGRAPHIC("cjk-ideographic"),
+    GEORGIAN("georgian"),
+    HEBREW("hebrew"),
+    HIRAGANA("hiragana"),
+    HIRAGANAIROHA("hiragana-iroha"),
+    JAPANESEFORMAL("japanese-formal"),
+    JAPANESEINFORMAL("japanese-informal"),
+    KATAKANA("katakana"),
+    KATAKANAIROHA("katakana-iroha"),
+    NONE("none"),
+    INITIAL("initial"),
+    INHERIT("inherit"),
+}
+
+/**
+ * CSS list style position options.
+ */
+enum class ListStylePosition(internal val position: String) {
+    INSIDE("inside"),
+    OUTSIDE("outside")
+}
+
+/**
  * Type-safe definition of CSS border.
  * @param width width of the border
  * @param style style of the border
@@ -775,13 +818,13 @@ class Background(
         val sX = sizeX?.asString()
         val sY = sizeY?.asString()
         return color?.asString().orEmpty() + " " + img.orEmpty() + " " + posX.orEmpty() + " " + posY.orEmpty() +
-                if (sX != null || sY != null || size != null) {
-                    (if (posX != null || posY != null) " / " else " 0px 0px / ") +
-                            sX.orEmpty() + " " + sY.orEmpty() + " " + (size?.size).orEmpty()
-                } else {
-                    ""
-                } + " " + (repeat?.repeat).orEmpty() + " " + (origin?.origin).orEmpty() + " " +
-                (clip?.clip).orEmpty() + " " + (attachment?.attachment).orEmpty()
+            if (sX != null || sY != null || size != null) {
+                (if (posX != null || posY != null) " / " else " 0px 0px / ") +
+                    sX.orEmpty() + " " + sY.orEmpty() + " " + (size?.size).orEmpty()
+            } else {
+                ""
+            } + " " + (repeat?.repeat).orEmpty() + " " + (origin?.origin).orEmpty() + " " +
+            (clip?.clip).orEmpty() + " " + (attachment?.attachment).orEmpty()
     }
 
     override fun toString() = asString()
@@ -800,8 +843,8 @@ class TextDecoration(
 
     internal fun asString(): String {
         return (line?.textDecorationLine).orEmpty() + " " +
-                (style?.textDecorationStyle).orEmpty() + " " +
-                color?.asString().orEmpty()
+            (style?.textDecorationStyle).orEmpty() + " " +
+            color?.asString().orEmpty()
     }
 
     override fun toString() = asString()
@@ -821,9 +864,9 @@ class TextShadow(
 
     internal fun asString(): String {
         return (hShadow?.asString()).orEmpty() + " " +
-                (vShadow?.asString()).orEmpty() + " " +
-                (blurRadius?.asString()).orEmpty() + " " +
-                color?.asString().orEmpty()
+            (vShadow?.asString()).orEmpty() + " " +
+            (blurRadius?.asString()).orEmpty() + " " +
+            color?.asString().orEmpty()
     }
 
     override fun toString() = asString()
@@ -846,10 +889,10 @@ class BoxShadow(
 
     internal fun asString(): String {
         return if (inset) "inset " else "" + (hOffset?.asString()).orEmpty() + " " +
-                (vOffset?.asString()).orEmpty() + " " +
-                (blurRadius?.asString()).orEmpty() + " " +
-                (spreadRadius?.asString()).orEmpty() + " " +
-                color?.asString().orEmpty()
+            (vOffset?.asString()).orEmpty() + " " +
+            (blurRadius?.asString()).orEmpty() + " " +
+            (spreadRadius?.asString()).orEmpty() + " " +
+            color?.asString().orEmpty()
     }
 
     override fun toString() = asString()
@@ -870,6 +913,28 @@ class Transition(
 ) {
     internal fun asString(): String {
         return "$property ${duration}s ${timingFunction ?: ""} ${delay?.let { it.toString() + "s" } ?: ""}"
+    }
+
+    override fun toString() = asString()
+}
+
+/**
+ * Type-safe definition of CSS list style.
+ * @param type list-item marker type
+ * @param position list-item marker position
+ * @param image list-item marker image
+ */
+class ListStyle(
+    private val type: ListStyleType? = null,
+    private val position: ListStylePosition? = null,
+    private val image: ResString? = null,
+) {
+
+    internal fun asString(): String {
+        val img = image?.let {
+            "url($image)"
+        }
+        return "${type?.type.orEmpty()} ${position?.position.orEmpty()} ${img.orEmpty()}"
     }
 
     override fun toString() = asString()
