@@ -161,9 +161,7 @@ enum class Align(override val className: String) : CssClass {
     LEFT("text-start"),
     CENTER("text-center"),
     RIGHT("text-end"),
-
-    @Deprecated("Usage is discouraged", ReplaceWith("LEFT"))
-    JUSTIFY("text-justify"),
+    WRAP("text-wrap"),
     NOWRAP("text-nowrap")
 }
 

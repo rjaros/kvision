@@ -51,12 +51,6 @@ enum class Direction(internal val direction: String) {
     DROPUP("dropup"),
     DROPSTART("dropstart"),
     DROPEND("dropend"),
-
-    @Deprecated("Use DROPSTART instead", ReplaceWith("DROPSTART"))
-    DROPLEFT("dropstart"),
-
-    @Deprecated("Use DROPEND instead", ReplaceWith("DROPEND"))
-    DROPRIGHT("dropend"),
 }
 
 /**

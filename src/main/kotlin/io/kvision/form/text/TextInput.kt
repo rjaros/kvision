@@ -28,9 +28,6 @@ import io.kvision.html.Autocomplete
 import io.kvision.html.InputType
 import io.kvision.snabbdom.VNode
 
-@Deprecated("Use InputType instead", ReplaceWith("InputType", "io.kvision.html.InputType"))
-typealias TextInputType = InputType
-
 /**
  * Basic text component.
  *

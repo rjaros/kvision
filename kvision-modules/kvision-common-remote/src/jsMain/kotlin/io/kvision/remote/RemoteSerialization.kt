@@ -74,15 +74,3 @@ actual object RemoteSerialization {
         }
     }
 }
-
-@Deprecated(
-    "Added for compatibility. Use RemoteSerialization object instead.",
-    replaceWith = ReplaceWith("RemoteSerialization", "io.kvision.remote.RemoteSerialization")
-)
-typealias JSON = RemoteSerialization
-
-@Deprecated(
-    "Added for compatibility. Use RemoteSerialization object instead.",
-    replaceWith = ReplaceWith("RemoteSerialization", "io.kvision.remote.RemoteSerialization")
-)
-typealias Serialization = RemoteSerialization

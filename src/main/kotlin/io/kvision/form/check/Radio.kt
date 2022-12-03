@@ -36,9 +36,6 @@ import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
 import org.w3c.dom.events.MouseEvent
 
-@Deprecated("Use CheckStyle instead", ReplaceWith("CheckStyle"))
-typealias RadioStyle = CheckStyle
-
 /**
  * The form field component rendered as HTML *input type="radio"*.
  *

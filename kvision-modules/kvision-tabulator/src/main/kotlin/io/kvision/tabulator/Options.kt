@@ -38,16 +38,6 @@ import kotlin.js.Promise
 import kotlin.reflect.KClass
 
 /**
- * Tooltip generation mode.
- */
-@Deprecated("This option is no longer used")
-@Suppress("DEPRECATION")
-enum class TooltipGenerationMode(internal val mode: String) {
-    LOAD("load"),
-    HOVER("hover")
-}
-
-/**
  * Column align.
  */
 enum class Align(internal val align: String) {
@@ -116,11 +106,7 @@ enum class Editor(internal val editor: String) {
     RANGE("range"),
     TICK("tick"),
     STAR("star"),
-    @Deprecated("Use LIST editor instead", ReplaceWith("LIST"))
-    SELECT("list"),
     LIST("list"),
-    @Deprecated("Use LIST editor instead", ReplaceWith("LIST"))
-    AUTOCOMPLETE("list"),
     DATE("date"),
     TIME("time"),
     DATETIME("datetime"),
@@ -712,8 +698,6 @@ data class TabulatorOptions<T : Any>(
     val height: String? = null,
     val placeholder: String? = null,
     val footerElement: String? = null,
-    @Suppress("DEPRECATION") @Deprecated("This option is no longer used")
-    val tooltipGenerationMode: TooltipGenerationMode? = null,
     val history: Boolean? = null,
     val keybindings: dynamic = null,
     val downloadDataFormatter: dynamic = null,

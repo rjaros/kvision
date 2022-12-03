@@ -36,9 +36,6 @@ import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
 import org.w3c.dom.events.MouseEvent
 
-@Deprecated("Use CheckStyle instead", ReplaceWith("CheckStyle"))
-typealias CheckBoxStyle = CheckStyle
-
 /**
  * The form field component rendered as HTML *input type="checkbox"*.
  *
@@ -118,12 +115,6 @@ open class CheckBox(
     var inline by refreshOnUpdate(false)
 
     /**
-     * Render as a switch.
-     */
-    @Deprecated("Use Switch component from the Bootstrap module instead")
-    var switch by refreshOnUpdate(false)
-
-    /**
      * Render checkbox on the opposite side.
      */
     var reversed by refreshOnUpdate(false)
@@ -185,10 +176,6 @@ open class CheckBox(
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
-        @Suppress("DEPRECATION")
-        if (switch) {
-            classSetBuilder.add("form-switch")
-        }
         if (inline) {
             classSetBuilder.add("form-check-inline")
         }

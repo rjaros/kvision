@@ -63,10 +63,6 @@ enum class BsRounded(override val className: String) : CssClass {
     ROUNDEDRIGHT("rounded-end"),
     ROUNDEDCIRCLE("rounded-circle"),
     ROUNDEDPILL("rounded-pill"),
-    @Deprecated("Use ROUNDED3 instead", ReplaceWith("ROUNDED3"))
-    ROUNDEDLG("rounded-3"),
-    @Deprecated("Use ROUNDED1 instead", ReplaceWith("ROUNDED1"))
-    ROUNDEDSM("rounded-1"),
     ROUNDED0("rounded-0"),
     ROUNDED1("rounded-1"),
     ROUNDED2("rounded-2"),

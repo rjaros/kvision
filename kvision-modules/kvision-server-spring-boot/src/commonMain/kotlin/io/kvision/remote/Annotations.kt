@@ -39,11 +39,6 @@ expect annotation class Column(val value: String)
 
 @OptIn(ExperimentalMultiplatform::class)
 @OptionalExpectation
-@Deprecated("Use PersistenceCreator instead", replaceWith = ReplaceWith("PersistenceCreator"))
-expect annotation class PersistenceConstructor()
-
-@OptIn(ExperimentalMultiplatform::class)
-@OptionalExpectation
 expect annotation class PersistenceCreator()
 
 @OptIn(ExperimentalMultiplatform::class)

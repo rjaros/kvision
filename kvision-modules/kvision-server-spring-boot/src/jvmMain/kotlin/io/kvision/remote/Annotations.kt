@@ -19,13 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-@file:Suppress("DEPRECATION")
 
 package io.kvision.remote
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.annotation.Id
-import org.springframework.data.annotation.PersistenceConstructor
 import org.springframework.data.annotation.PersistenceCreator
 import org.springframework.data.annotation.Transient
 import org.springframework.data.annotation.Version
@@ -39,8 +37,6 @@ actual typealias Transient = Transient
 actual typealias Table = Table
 
 actual typealias Column = Column
-
-actual typealias PersistenceConstructor = PersistenceConstructor
 
 actual typealias PersistenceCreator = PersistenceCreator
 

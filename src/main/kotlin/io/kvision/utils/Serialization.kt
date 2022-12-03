@@ -52,12 +52,6 @@ object Serialization {
      * @param serializer a serializer for T
      */
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return kotlin.js.JSON.parse((customConfiguration ?: plain).encodeToString(serializer, this))
+        return JSON.parse((customConfiguration ?: plain).encodeToString(serializer, this))
     }
 }
-
-@Deprecated(
-    "Added for compatibility. Use Serialization object instead.",
-    replaceWith = ReplaceWith("Serialization", "io.kvision.utils.Serialization")
-)
-typealias JSON = Serialization
