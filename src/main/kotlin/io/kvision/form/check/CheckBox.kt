@@ -188,8 +188,8 @@ open class CheckBox(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: CheckBox.(MouseEvent) -> Unit) {
-        this.setEventListener<CheckBox> {
+    open fun onClick(handler: CheckBox.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<CheckBox> {
             click = { e ->
                 self.handler(e)
             }

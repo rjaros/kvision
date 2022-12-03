@@ -75,8 +75,8 @@ open class AlertDialogButton(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: AlertDialogButton.(MouseEvent) -> Unit) {
-        this.setEventListener<AlertDialogButton> {
+    open fun onClick(handler: AlertDialogButton.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<AlertDialogButton> {
             click = { e ->
                 self.handler(e)
             }

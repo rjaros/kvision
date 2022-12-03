@@ -148,8 +148,8 @@ open class Fab(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: Fab.(MouseEvent) -> Unit) {
-        this.setEventListener<Fab> {
+    open fun onClick(handler: Fab.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<Fab> {
             click = { e ->
                 self.handler(e)
             }

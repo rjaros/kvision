@@ -179,8 +179,8 @@ abstract class CheckInput(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: CheckInput.(MouseEvent) -> Unit) {
-        this.setEventListener<CheckInput> {
+    open fun onClick(handler: CheckInput.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<CheckInput> {
             click = { e ->
                 self.handler(e)
             }

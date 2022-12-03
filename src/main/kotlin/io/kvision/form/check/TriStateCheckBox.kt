@@ -200,8 +200,8 @@ open class TriStateCheckBox(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: TriStateCheckBox.(MouseEvent) -> Unit) {
-        this.setEventListener<TriStateCheckBox> {
+    open fun onClick(handler: TriStateCheckBox.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<TriStateCheckBox> {
             click = { e ->
                 self.handler(e)
             }

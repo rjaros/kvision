@@ -101,8 +101,8 @@ open class ToolbarButton(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: ToolbarButton.(MouseEvent) -> Unit) {
-        this.setEventListener<ToolbarButton> {
+    open fun onClick(handler: ToolbarButton.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<ToolbarButton> {
             click = { e ->
                 self.handler(e)
             }

@@ -168,8 +168,8 @@ open class Button(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: Button.(MouseEvent) -> Unit) {
-        this.setEventListener<Button> {
+    open fun onClick(handler: Button.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<Button> {
             click = { e ->
                 self.handler(e)
             }

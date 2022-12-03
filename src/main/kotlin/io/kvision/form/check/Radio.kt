@@ -190,8 +190,8 @@ open class Radio(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: Radio.(MouseEvent) -> Unit) {
-        this.setEventListener<Radio> {
+    open fun onClick(handler: Radio.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<Radio> {
             click = { e ->
                 self.handler(e)
             }

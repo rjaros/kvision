@@ -75,8 +75,8 @@ open class ActionSheetButton(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: ActionSheetButton.(MouseEvent) -> Unit) {
-        this.setEventListener<ActionSheetButton> {
+    open fun onClick(handler: ActionSheetButton.(MouseEvent) -> Unit): Int {
+        return this.setEventListener<ActionSheetButton> {
             click = { e ->
                 self.handler(e)
             }
