@@ -257,14 +257,13 @@ open class FormPanel<K : Any>(
      * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form panel
      */
     open fun <C : FormControl> add(
         key: String, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): FormPanel<K> {
+    ) {
         when (type) {
             FormType.INLINE -> control.styleForInlineFormPanel()
             FormType.HORIZONTAL -> control.styleForHorizontalFormPanel(horizRatio)
@@ -282,10 +281,9 @@ open class FormPanel<K : Any>(
             currentFieldset?.add(control)
         }
         form.add(key, control, required, requiredMessage, validatorMessage, validator)
-        return this
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component) {
         if (child is FormControl) {
             when (type) {
                 FormType.INLINE -> child.styleForInlineFormPanel()
@@ -293,7 +291,7 @@ open class FormPanel<K : Any>(
                 else -> child.styleForVerticalFormPanel()
             }
         }
-        return super.add(child)
+        super.add(child)
     }
 
     /**
@@ -305,15 +303,14 @@ open class FormPanel<K : Any>(
      * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form panel
      */
     open fun <C : StringFormControl> add(
         key: KProperty1<K, String?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): FormPanel<K> {
-        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -325,15 +322,14 @@ open class FormPanel<K : Any>(
      * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form panel
      */
     open fun <C : StringFormControl> addCustom(
         key: KProperty1<K, Any?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): FormPanel<K> {
-        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -345,15 +341,14 @@ open class FormPanel<K : Any>(
      * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form panel
      */
     open fun <C : BoolFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): FormPanel<K> {
-        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -365,15 +360,14 @@ open class FormPanel<K : Any>(
      * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form panel
      */
     open fun <C : TriStateFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): FormPanel<K> {
-        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -385,15 +379,14 @@ open class FormPanel<K : Any>(
      * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form panel
      */
     open fun <C : NumberFormControl> add(
         key: KProperty1<K, Number?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): FormPanel<K> {
-        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -405,15 +398,14 @@ open class FormPanel<K : Any>(
      * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form panel
      */
     open fun <C : DateFormControl> add(
         key: KProperty1<K, Date?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): FormPanel<K> {
-        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -425,15 +417,14 @@ open class FormPanel<K : Any>(
      * @param legend put this control inside a fieldset with given legend
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form panel
      */
     open fun <C : KFilesFormControl> add(
         key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): FormPanel<K> {
-        return add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
     }
 
     /**
@@ -599,18 +590,16 @@ open class FormPanel<K : Any>(
     /**
      * Removes a control from the form panel.
      * @param key key identifier of the control
-     * @return current form panel
      */
-    open fun remove(key: KProperty1<K, *>): FormPanel<K> {
-        return remove(key.name)
+    open fun remove(key: KProperty1<K, *>) {
+        remove(key.name)
     }
 
     /**
      * Removes a control from the form panel with a dynamic key.
      * @param key key identifier of the control
-     * @return current form panel
      */
-    open fun remove(key: String): FormPanel<K> {
+    open fun remove(key: String) {
         form.getControl(key)?.let {
             val parent = it.parent
             if (parent is FieldsetPanel) {
@@ -620,32 +609,27 @@ open class FormPanel<K : Any>(
             }
         }
         form.remove(key)
-        return this
     }
 
-    override fun removeAll(): FormPanel<K> {
+    override fun removeAll() {
         super.removeAll()
         form.removeAll()
-        return this
     }
 
     /**
      * Unbind a control from the form panel.
      * @param key key identifier of the control
-     * @return current form panel
      */
-    open fun unbind(key: KProperty1<K, *>): FormPanel<K> {
-        return unbind(key.name)
+    open fun unbind(key: KProperty1<K, *>) {
+        unbind(key.name)
     }
 
     /**
      * Unbind a control from the form panel with a dynamic key.
      * @param key key identifier of the control
-     * @return current form panel
      */
-    open fun unbind(key: String): FormPanel<K> {
+    open fun unbind(key: String) {
         form.remove(key)
-        return this
     }
 
     /**

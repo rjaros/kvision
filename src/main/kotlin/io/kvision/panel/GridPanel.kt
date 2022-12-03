@@ -82,14 +82,13 @@ open class GridPanel(
      * @param justifySelf child self justification
      * @param alignSelf child self alignment
      * @param className CSS class names
-     * @return current container
      */
     @Suppress("LongParameterList")
     fun add(
         child: Component, columnStart: Int? = null, rowStart: Int? = null,
         columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
         alignSelf: AlignItems? = null, className: String? = null
-    ): GridPanel {
+    ) {
         val wrapper = if (!useWrappers) {
             child
         } else {
@@ -105,7 +104,6 @@ open class GridPanel(
             it.alignSelf = alignSelf
         }
         addInternal(wrapper)
-        return this
     }
 
     /**
@@ -120,14 +118,13 @@ open class GridPanel(
      * @param justifySelf child self justification
      * @param alignSelf child self alignment
      * @param className CSS class names
-     * @return current container
      */
     @Suppress("LongParameterList")
     fun add(
         position: Int, child: Component, columnStart: Int? = null, rowStart: Int? = null,
         columnEnd: String? = null, rowEnd: String? = null, area: String? = null, justifySelf: JustifyItems? = null,
         alignSelf: AlignItems? = null, className: String? = null
-    ): GridPanel {
+    ) {
         val wrapper = if (!useWrappers) {
             child
         } else {
@@ -143,7 +140,6 @@ open class GridPanel(
             it.alignSelf = alignSelf
         }
         addInternal(position, wrapper)
-        return this
     }
 
     /**
@@ -157,26 +153,25 @@ open class GridPanel(
         builder: Container.() -> Unit
     ) {
         object : Container by this@GridPanel {
-            override fun add(child: Component): Container {
-                return add(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, className)
+            override fun add(child: Component) {
+                add(child, columnStart, rowStart, columnEnd, rowEnd, area, justifySelf, alignSelf, className)
             }
         }.builder()
     }
 
-    override fun add(child: Component): GridPanel {
-        return add(child, null, null)
+    override fun add(child: Component) {
+        add(child, null, null)
     }
 
-    override fun add(position: Int, child: Component): GridPanel {
-        return add(position, child, null, null)
+    override fun add(position: Int, child: Component) {
+        add(position, child, null, null)
     }
 
-    override fun addAll(children: List<Component>): GridPanel {
+    override fun addAll(children: List<Component>) {
         children.forEach { add(it, null, null) }
-        return this
     }
 
-    override fun remove(child: Component): GridPanel {
+    override fun remove(child: Component) {
         if (children != null) {
             if (children!!.contains(child)) {
                 super.remove(child)
@@ -187,10 +182,9 @@ open class GridPanel(
                 }
             }
         }
-        return this
     }
 
-    override fun removeAll(): GridPanel {
+    override fun removeAll() {
         children?.map {
             it.clearParent()
             (it as? WidgetWrapper)?.dispose()
@@ -198,16 +192,15 @@ open class GridPanel(
         children?.clear()
         children = null
         refresh()
-        return this
     }
 
-    override fun disposeAll(): GridPanel {
+    override fun disposeAll() {
         children?.map {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
         }
-        return removeAll()
+        removeAll()
     }
 
     override fun dispose() {

@@ -164,14 +164,12 @@ open class CheckBox(
         return input.setEventListener(block)
     }
 
-    override fun removeEventListener(id: Int): Widget {
+    override fun removeEventListener(id: Int) {
         input.removeEventListener(id)
-        return this
     }
 
-    override fun removeEventListeners(): Widget {
+    override fun removeEventListeners() {
         input.removeEventListeners()
-        return this
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -190,13 +188,12 @@ open class CheckBox(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: CheckBox.(MouseEvent) -> Unit): CheckBox {
+    open fun onClick(handler: CheckBox.(MouseEvent) -> Unit) {
         this.setEventListener<CheckBox> {
             click = { e ->
                 self.handler(e)
             }
         }
-        return this
     }
 
     override fun focus() {

@@ -99,13 +99,12 @@ open class SpeedDialItem(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: SpeedDialItem.(MouseEvent) -> Unit): SpeedDialItem {
+    open fun onClick(handler: SpeedDialItem.(MouseEvent) -> Unit) {
         this.setEventListener<SpeedDialItem> {
             click = { e ->
                 self.handler(e)
             }
         }
-        return this
     }
 
     override fun dispose() {

@@ -146,13 +146,12 @@ open class OnsButton(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: OnsButton.(MouseEvent) -> Unit): OnsButton {
+    open fun onClick(handler: OnsButton.(MouseEvent) -> Unit) {
         this.setEventListener<OnsButton> {
             click = { e ->
                 self.handler(e)
             }
         }
-        return this
     }
 }
 

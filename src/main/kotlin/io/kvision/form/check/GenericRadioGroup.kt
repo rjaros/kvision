@@ -248,41 +248,34 @@ open class GenericRadioGroup<T>(
         }
     }
 
-    override fun add(child: Component): GenericRadioGroup<T> {
+    override fun add(child: Component) {
         configureChild(child)
         container.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): GenericRadioGroup<T> {
+    override fun add(position: Int, child: Component) {
         configureChild(child)
         container.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): GenericRadioGroup<T> {
+    override fun addAll(children: List<Component>) {
         children.forEach { add(it) }
-        return this
     }
 
-    override fun remove(child: Component): GenericRadioGroup<T> {
+    override fun remove(child: Component) {
         container.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): GenericRadioGroup<T> {
+    override fun removeAt(position: Int) {
         container.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): GenericRadioGroup<T> {
+    override fun removeAll() {
         container.removeAll()
-        return this
     }
 
-    override fun disposeAll(): GenericRadioGroup<T> {
+    override fun disposeAll() {
         container.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

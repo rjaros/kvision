@@ -170,7 +170,7 @@ open class OnsRadioGroupInput(
         }
     }
 
-    override fun add(child: Component): SimplePanel {
+    override fun add(child: Component) {
         if (child is OnsRadio) {
             child.eventTarget = this
             child.name = name
@@ -182,12 +182,10 @@ open class OnsRadioGroupInput(
             }
         }
         super.add(child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun addAll(children: List<Component>) {
         children.forEach { add(it) }
-        return this
     }
 
     override fun focus() {

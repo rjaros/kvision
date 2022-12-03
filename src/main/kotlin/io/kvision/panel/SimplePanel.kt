@@ -21,11 +21,11 @@
  */
 package io.kvision.panel
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.Style
 import io.kvision.core.Widget
+import io.kvision.snabbdom.VNode
 
 /**
  * Basic container class, rendered as a DIV element with all children directly within.
@@ -77,55 +77,49 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
     /**
      * Protected and final method to add given component to the current container as a private child (not removable).
      * @param child child component
-     * @return current container
      */
-    protected open fun addPrivate(child: Component): SimplePanel {
+    protected open fun addPrivate(child: Component) {
         if (privateChildren == null) privateChildren = mutableListOf()
         privateChildren!!.add(child)
         child.parent?.remove(child)
         child.parent = this
         refresh()
-        return this
     }
 
     /**
      * Protected method to add given component to the current container.
      * @param child child component
-     * @return current container
      */
-    protected open fun addInternal(child: Component): SimplePanel {
+    protected open fun addInternal(child: Component) {
         if (children == null) children = mutableListOf()
         children!!.add(child)
         child.parent?.remove(child)
         child.parent = this
         refresh()
-        return this
     }
 
     /**
      * Protected method to add given component to the current container at the given position.
      * @param position the position to insert child component
      * @param child child component
-     * @return current container
      */
-    protected open fun addInternal(position: Int, child: Component): SimplePanel {
+    protected open fun addInternal(position: Int, child: Component) {
         if (children == null) children = mutableListOf()
         children!!.add(position, child)
         child.parent?.remove(child)
         child.parent = this
         refresh()
-        return this
     }
 
-    override fun add(child: Component): SimplePanel {
-        return addInternal(child)
+    override fun add(child: Component) {
+        addInternal(child)
     }
 
-    override fun add(position: Int, child: Component): SimplePanel {
-        return addInternal(position, child)
+    override fun add(position: Int, child: Component) {
+        addInternal(position, child)
     }
 
-    override fun addAll(children: List<Component>): SimplePanel {
+    override fun addAll(children: List<Component>) {
         if (this.children == null) this.children = mutableListOf()
         this.children!!.addAll(children)
         children.map {
@@ -133,37 +127,33 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
             it.parent = this
         }
         refresh()
-        return this
     }
 
-    override fun remove(child: Component): SimplePanel {
+    override fun remove(child: Component) {
         if (children != null && children!!.remove(child)) {
             child.clearParent()
             refresh()
         }
-        return this
     }
 
-    override fun removeAt(position: Int): SimplePanel {
+    override fun removeAt(position: Int) {
         val child = children?.getOrNull(position)
         if (child != null) {
             children?.removeAt(position)
             child.clearParent()
             refresh()
         }
-        return this
     }
 
-    override fun removeAll(): SimplePanel {
+    override fun removeAll() {
         children?.map { it.clearParent() }
         children = null
         refresh()
-        return this
     }
 
-    override fun disposeAll(): Container {
+    override fun disposeAll() {
         children?.forEach { it.dispose() }
-        return removeAll()
+        removeAll()
     }
 
     override fun getChildren(): List<Component> {

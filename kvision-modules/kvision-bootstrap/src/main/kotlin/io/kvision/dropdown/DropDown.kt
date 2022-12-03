@@ -220,39 +220,32 @@ open class DropDown(
         init?.invoke(this)
     }
 
-    override fun add(child: Component): DropDown {
+    override fun add(child: Component) {
         menu.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): DropDown {
+    override fun add(position: Int, child: Component) {
         menu.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): DropDown {
+    override fun addAll(children: List<Component>) {
         menu.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): DropDown {
+    override fun remove(child: Component) {
         menu.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): DropDown {
+    override fun removeAt(position: Int) {
         menu.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): DropDown {
+    override fun removeAll() {
         menu.removeAll()
-        return this
     }
 
-    override fun disposeAll(): DropDown {
+    override fun disposeAll() {
         menu.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {
@@ -272,6 +265,7 @@ open class DropDown(
                             setAttribute("aria-disabled", "true")
                         }
                     }
+
                     else -> Link(it.first, it.second, className = "dropdown-item")
                 }
             }

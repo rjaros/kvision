@@ -39,9 +39,8 @@ internal fun Widget.getBsInstance(constructor: Bootstrap.() -> dynamic): dynamic
 /**
  * Enables tooltip for the current widget.
  * @param options tooltip options
- * @return current widget
  */
-fun Widget.enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
+fun Widget.enableTooltip(options: TooltipOptions = TooltipOptions()) {
     disablePopover()
     tooltipOptions = options
     createBsInstance(
@@ -65,45 +64,37 @@ fun Widget.enableTooltip(options: TooltipOptions = TooltipOptions()): Widget {
         }
         tooltipHooksActive = true
     }
-    return this
 }
 
 /**
  * Shows tooltip for the current widget.
- * @return current widget
  */
-fun Widget.showTooltip(): Widget {
+fun Widget.showTooltip() {
     if (tooltipOptions != null) getBsInstance { Tooltip }?.show()
-    return this
 }
 
 /**
  * Hides tooltip for the current widget.
- * @return current widget
  */
-fun Widget.hideTooltip(): Widget {
+fun Widget.hideTooltip() {
     if (tooltipOptions != null) getBsInstance { Tooltip }?.hide()
-    return this
 }
 
 /**
  * Disables tooltip for the current widget.
- * @return current widget
  */
-fun Widget.disableTooltip(): Widget {
+fun Widget.disableTooltip() {
     if (tooltipOptions != null) {
         tooltipOptions = null
         getBsInstance { Tooltip }?.dispose()
     }
-    return this
 }
 
 /**
  * Enables popover for the current widget.
  * @param options popover options
- * @return current widget
  */
-fun Widget.enablePopover(options: PopoverOptions = PopoverOptions()): Widget {
+fun Widget.enablePopover(options: PopoverOptions = PopoverOptions()) {
     disableTooltip()
     popoverOptions = options
     createBsInstance(
@@ -128,35 +119,28 @@ fun Widget.enablePopover(options: PopoverOptions = PopoverOptions()): Widget {
         }
         popoverHooksActive = true
     }
-    return this
 }
 
 /**
  * Shows popover for the current widget.
- * @return current widget
  */
-fun Widget.showPopover(): Widget {
+fun Widget.showPopover() {
     if (popoverOptions != null) getBsInstance { Popover }?.show()
-    return this
 }
 
 /**
  * Hides popover for the current widget.
- * @return current widget
  */
-fun Widget.hidePopover(): Widget {
+fun Widget.hidePopover() {
     if (popoverOptions != null) getBsInstance { Popover }?.hide()
-    return this
 }
 
 /**
  * Disables popover for the current widget.
- * @return current widget
  */
-fun Widget.disablePopover(): Widget {
+fun Widget.disablePopover() {
     if (popoverOptions != null) {
         popoverOptions = null
         getBsInstance { Popover }?.dispose()
     }
-    return this
 }

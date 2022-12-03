@@ -120,13 +120,12 @@ open class Link(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: Link.(MouseEvent) -> Unit): Link {
+    open fun onClick(handler: Link.(MouseEvent) -> Unit) {
         this.setEventListener<Link> {
             click = { e ->
                 self.handler(e)
             }
         }
-        return this
     }
 
     companion object {

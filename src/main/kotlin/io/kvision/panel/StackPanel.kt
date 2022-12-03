@@ -76,9 +76,8 @@ open class StackPanel(
      * Adds given component and bounds it's activation to a given route.
      * @param panel child component
      * @param route JavaScript route to activate given child
-     * @return current container
      */
-    open fun add(panel: Component, route: String): StackPanel {
+    open fun add(panel: Component, route: String) {
         add(panel)
         val currentIndex = counter++
         childrenMap[currentIndex] = panel
@@ -87,7 +86,6 @@ open class StackPanel(
                 activeChild = childrenMap[currentIndex]!!
             }.kvResolve()
         }, 0)
-        return this
     }
 
     /**
@@ -99,53 +97,47 @@ open class StackPanel(
         builder: Container.() -> Unit
     ) {
         object : Container by this@StackPanel {
-            override fun add(child: Component): Container {
-                return add(child, route)
+            override fun add(child: Component) {
+                add(child, route)
             }
         }.builder()
     }
 
-    override fun add(child: Component): StackPanel {
+    override fun add(child: Component) {
         super.add(child)
         if (activateLast) activeIndex = children!!.size - 1
         else if (activeIndex == -1) activeIndex = 0
-        return this
     }
 
-    override fun add(position: Int, child: Component): SimplePanel {
+    override fun add(position: Int, child: Component) {
         super.add(position, child)
         if (activateLast) activeIndex = children!!.size - 1
         else if (activeIndex == -1) activeIndex = 0
-        return this
     }
 
-    override fun addAll(children: List<Component>): StackPanel {
+    override fun addAll(children: List<Component>) {
         super.addAll(children)
         if (activateLast) activeIndex = this.children!!.size - 1
         else if (activeIndex == -1) activeIndex = 0
-        return this
     }
 
-    override fun remove(child: Component): StackPanel {
+    override fun remove(child: Component) {
         super.remove(child)
         childrenMap.filter { it.value == child }.keys.firstOrNull()?.let {
             childrenMap.remove(it)
         }
         if (children != null && activeIndex > children!!.size - 1) activeIndex = children!!.size - 1
-        return this
     }
 
-    override fun removeAt(position: Int): StackPanel {
+    override fun removeAt(position: Int) {
         val child = children?.getOrNull(position)
         if (child != null) remove(child)
-        return this
     }
 
-    override fun removeAll(): StackPanel {
+    override fun removeAll() {
         super.removeAll()
         childrenMap.clear()
         if (children != null && activeIndex > children!!.size - 1) activeIndex = children!!.size - 1
-        return this
     }
 
     companion object {

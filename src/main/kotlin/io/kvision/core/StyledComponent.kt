@@ -748,31 +748,27 @@ abstract class StyledComponent {
      * @param name the name of the style
      * @param value the value of the style
      */
-    fun setStyle(name: String, value: String): StyledComponent {
+    fun setStyle(name: String, value: String) {
         this.propertyStyles[name] = value
         refresh()
-        return this
     }
 
     /**
      * Removes the value of a custom CSS style.
      * @param name the name of the style
      */
-    fun removeStyle(name: String): StyledComponent {
+    fun removeStyle(name: String) {
         delete(this.propertyStyles, name)
         refresh()
-        return this
     }
 
     /**
      * @suppress
      * Internal function
      * Re-renders the current component.
-     * @return current component
      */
-    open fun refresh(): StyledComponent {
+    open fun refresh() {
         snStyleCache = null
-        return this
     }
 
     @Suppress("NOTHING_TO_INLINE")

@@ -160,30 +160,24 @@ open class Table(
     /**
      * Adds new header cell to the table.
      * @param cell header cell
-     * @return this table
      */
-    fun addHeaderCell(cell: HeaderCell): Table {
+    fun addHeaderCell(cell: HeaderCell) {
         theadRow.add(cell)
-        return this
     }
 
     /**
      * Removes given header cell from the table.
      * @param cell header cell
-     * @return this table
      */
-    fun removeHeaderCell(cell: HeaderCell): Table {
+    fun removeHeaderCell(cell: HeaderCell) {
         theadRow.remove(cell)
-        return this
     }
 
     /**
      * Removes all header cells from table.
-     * @return this table
      */
-    fun removeHeaderCells(): Table {
+    fun removeHeaderCells() {
         theadRow.removeAll()
-        return this
     }
 
     override fun render(): VNode {
@@ -212,39 +206,32 @@ open class Table(
         classSetBuilder.add(tableColor)
     }
 
-    override fun add(child: Component): Table {
+    override fun add(child: Component) {
         tbody.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): Table {
+    override fun add(position: Int, child: Component) {
         tbody.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): Table {
+    override fun addAll(children: List<Component>) {
         tbody.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): Table {
+    override fun remove(child: Component) {
         tbody.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): Table {
+    override fun removeAt(position: Int) {
         tbody.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): Table {
+    override fun removeAll() {
         tbody.removeAll()
-        return this
     }
 
-    override fun disposeAll(): Container {
+    override fun disposeAll() {
         tbody.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

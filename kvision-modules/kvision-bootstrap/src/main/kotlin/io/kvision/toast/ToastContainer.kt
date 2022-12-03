@@ -130,48 +130,40 @@ open class ToastContainer(
         )
     }
 
-    override fun add(child: Component): ToastContainer {
+    override fun add(child: Component) {
         bootstrapToastContainer.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): ToastContainer {
+    override fun add(position: Int, child: Component) {
         bootstrapToastContainer.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): ToastContainer {
+    override fun addAll(children: List<Component>) {
         bootstrapToastContainer.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): ToastContainer {
+    override fun remove(child: Component) {
         bootstrapToastContainer.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): ToastContainer {
+    override fun removeAt(position: Int) {
         bootstrapToastContainer.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): ToastContainer {
+    override fun removeAll() {
         bootstrapToastContainer.removeAll()
-        return this
     }
 
-    override fun disposeAll(): ToastContainer {
+    override fun disposeAll() {
         bootstrapToastContainer.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {
         return bootstrapToastContainer.getChildren()
     }
 
-    override fun clearParent(): Widget {
+    override fun clearParent() {
         this.parent = null
-        return this
     }
 
     override fun getRoot(): Root? {

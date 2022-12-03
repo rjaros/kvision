@@ -54,15 +54,14 @@ inline fun <reified T : Widget> T.onClickLaunch(
 inline fun <reified T : Button> T.onClickLaunch(
     coroutineScope: CoroutineScope = KVScope,
     noinline handler: suspend T.(MouseEvent) -> Unit
-): T {
-    this.setEventListener<T> {
+): Int {
+    return this.setEventListener<T> {
         click = { e ->
             coroutineScope.launch {
                 self.handler(e)
             }
         }
     }
-    return this
 }
 
 /**

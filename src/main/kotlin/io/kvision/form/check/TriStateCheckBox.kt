@@ -173,14 +173,12 @@ open class TriStateCheckBox(
         return input.setEventListener(block)
     }
 
-    override fun removeEventListener(id: Int): Widget {
+    override fun removeEventListener(id: Int) {
         input.removeEventListener(id)
-        return this
     }
 
-    override fun removeEventListeners(): Widget {
+    override fun removeEventListeners() {
         input.removeEventListeners()
-        return this
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -202,13 +200,12 @@ open class TriStateCheckBox(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: TriStateCheckBox.(MouseEvent) -> Unit): TriStateCheckBox {
+    open fun onClick(handler: TriStateCheckBox.(MouseEvent) -> Unit) {
         this.setEventListener<TriStateCheckBox> {
             click = { e ->
                 self.handler(e)
             }
         }
-        return this
     }
 
     override fun focus() {

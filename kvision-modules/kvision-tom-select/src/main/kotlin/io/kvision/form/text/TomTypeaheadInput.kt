@@ -175,10 +175,9 @@ open class TomTypeaheadInput(
         }
     }
 
-    override fun refresh(): Widget {
+    override fun refresh() {
         super.refresh()
         window.setTimeout({ refreshTomTypeahead() }, 0)
-        return this
     }
 }
 

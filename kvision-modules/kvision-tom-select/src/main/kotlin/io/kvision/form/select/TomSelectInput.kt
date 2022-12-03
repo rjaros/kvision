@@ -280,10 +280,9 @@ open class TomSelectInput(
         }
     }
 
-    override fun refresh(): Widget {
+    override fun refresh() {
         super.refresh()
         window.setTimeout({ refreshTomSelect() }, 0)
-        return this
     }
 
     override fun getState(): String? = value

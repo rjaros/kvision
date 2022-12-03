@@ -30,59 +30,51 @@ interface Container : Component {
     /**
      * Adds given component to the current container.
      * @param child child component
-     * @return current container
      */
-    fun add(child: Component): Container
+    fun add(child: Component)
 
     /**
      * Adds given component to the current container at the given position.
      * @param position the position to insert child component
      * @param child the child component
-     * @return current container
      */
-    fun add(position: Int, child: Component): Container
+    fun add(position: Int, child: Component)
 
     /**
      * Adds a list of components to the current container.
      * @param children list of child components
-     * @return current container
      */
-    fun addAll(children: List<Component>): Container
+    fun addAll(children: List<Component>)
 
     /**
      * Operator function for adding children in a DSL style.
      * @param children children components
-     * @return current container
      */
-    operator fun invoke(vararg children: Component): Container {
-        return addAll(children.asList())
+    operator fun invoke(vararg children: Component) {
+        addAll(children.asList())
     }
 
     /**
      * Removes given component from the current container.
      * @param child child component
-     * @return current container
      */
-    fun remove(child: Component): Container
+    fun remove(child: Component)
 
     /**
      * Removes child component from the current container at the given position.
      * @param position the position to be removed
-     * @return current container
      */
-    fun removeAt(position: Int): Container
+    fun removeAt(position: Int)
 
     /**
      * Removes all children from the current container.
-     * @return current container
      */
-    fun removeAll(): Container
+    fun removeAll()
 
     /**
      * Removes all children from the current container and disposes them.
-     * @return current container
      */
-    fun disposeAll(): Container
+    fun disposeAll()
 
     /**
      * Returns a list of children of the current container.

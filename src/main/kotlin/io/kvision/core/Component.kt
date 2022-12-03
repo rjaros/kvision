@@ -43,65 +43,56 @@ interface Component {
     /**
      * Adds given value to the set of CSS classes generated in html code of current component.
      * @param css CSS class name
-     * @return current component
      */
-    fun addCssClass(css: String): Component
+    fun addCssClass(css: String)
 
     /**
      * Adds given style object to the set of CSS classes generated in html code of current component.
      * @param css CSS style object
-     * @return current component
      */
-    fun addCssStyle(css: Style): Component
+    fun addCssStyle(css: Style)
 
     /**
      * Removes given value from the set of CSS classes generated in html code of current component.
      * @param css CSS class name
-     * @return current component
      */
-    fun removeCssClass(css: String): Component
+    fun removeCssClass(css: String)
 
     /**
      * Checks whether the given value is present in the set of CSS classes.
      * @param css CSS class name
-     * @return whether the value is preset
      */
     fun hasCssClass(css: String): Boolean
 
     /**
      * Removes given style object from the set of CSS classes generated in html code of current component.
      * @param css CSS style object
-     * @return current component
      */
-    fun removeCssStyle(css: Style): Component
+    fun removeCssStyle(css: Style)
 
     /**
      * Adds given value to the set of CSS classes generated in html code of parent component.
      * @param css CSS class name
-     * @return current component
      */
-    fun addSurroundingCssClass(css: String): Component
+    fun addSurroundingCssClass(css: String)
 
     /**
      * Adds given style object to the set of CSS classes generated in html code of parent component.
      * @param css CSS style object
-     * @return current component
      */
-    fun addSurroundingCssStyle(css: Style): Component
+    fun addSurroundingCssStyle(css: Style)
 
     /**
      * Removes given value from the set of CSS classes generated in html code of parent component.
      * @param css CSS class name
-     * @return current component
      */
-    fun removeSurroundingCssClass(css: String): Component
+    fun removeSurroundingCssClass(css: String)
 
     /**
      * Removes given style object from the set of CSS classes generated in html code of parent component.
      * @param css CSS style object
-     * @return current component
      */
-    fun removeSurroundingCssStyle(css: Style): Component
+    fun removeSurroundingCssStyle(css: Style)
 
     /**
      * Returns the value of an additional attribute.
@@ -115,13 +106,13 @@ interface Component {
      * @param name the name of the attribute
      * @param value the value of the attribute
      */
-    fun setAttribute(name: String, value: String): Component
+    fun setAttribute(name: String, value: String)
 
     /**
      * Removes the value of additional attribute.
      * @param name the name of the attribute
      */
-    fun removeAttribute(name: String): Component
+    fun removeAttribute(name: String)
 
     /**
      * @suppress
@@ -147,9 +138,8 @@ interface Component {
      * @suppress
      * Internal function.
      * Sets **parent** property of current component to null.
-     * @return current component
      */
-    fun clearParent(): Component
+    fun clearParent()
 
     /**
      * @suppress

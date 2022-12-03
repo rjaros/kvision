@@ -168,39 +168,32 @@ open class Offcanvas(
         }
     }
 
-    override fun add(child: Component): Offcanvas {
+    override fun add(child: Component) {
         body.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): Offcanvas {
+    override fun add(position: Int, child: Component) {
         body.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): Offcanvas {
+    override fun addAll(children: List<Component>) {
         body.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): Offcanvas {
+    override fun remove(child: Component) {
         body.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): Offcanvas {
+    override fun removeAt(position: Int) {
         body.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): Offcanvas {
+    override fun removeAll() {
         body.removeAll()
-        return this
     }
 
-    override fun disposeAll(): Offcanvas {
+    override fun disposeAll() {
         body.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {
@@ -233,9 +226,9 @@ open class Offcanvas(
         showBootstrap()
     }
 
-    override fun hide(): Widget {
+    override fun hide() {
         if (visible) hideBootstrap()
-        return super.hide()
+        super.hide()
     }
 
     /**

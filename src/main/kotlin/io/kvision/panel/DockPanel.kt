@@ -119,8 +119,8 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
      */
     open fun up(builder: Container.() -> Unit) {
         object : Container by this@DockPanel {
-            override fun add(child: Component): Container {
-                return add(child, Side.UP)
+            override fun add(child: Component) {
+                add(child, Side.UP)
             }
         }.builder()
     }
@@ -131,8 +131,8 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
      */
     open fun down(builder: Container.() -> Unit) {
         object : Container by this@DockPanel {
-            override fun add(child: Component): Container {
-                return add(child, Side.DOWN)
+            override fun add(child: Component) {
+                add(child, Side.DOWN)
             }
         }.builder()
     }
@@ -143,8 +143,8 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
      */
     open fun left(builder: Container.() -> Unit) {
         object : Container by this@DockPanel {
-            override fun add(child: Component): Container {
-                return add(child, Side.LEFT)
+            override fun add(child: Component) {
+                add(child, Side.LEFT)
             }
         }.builder()
     }
@@ -155,8 +155,8 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
      */
     open fun right(builder: Container.() -> Unit) {
         object : Container by this@DockPanel {
-            override fun add(child: Component): Container {
-                return add(child, Side.RIGHT)
+            override fun add(child: Component) {
+                add(child, Side.RIGHT)
             }
         }.builder()
     }
@@ -167,8 +167,8 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
      */
     open fun center(builder: Container.() -> Unit) {
         val tempPanel = object : Container by this@DockPanel {
-            override fun add(child: Component): Container {
-                return add(child, Side.CENTER)
+            override fun add(child: Component) {
+                add(child, Side.CENTER)
             }
         }
         tempPanel.builder()
@@ -178,10 +178,9 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
      * Adds a component to the dock container.
      * @param child child component
      * @param position position in the dock
-     * @return current container
      */
     @Suppress("MagicNumber", "ComplexMethod")
-    open fun add(child: Component, position: Side): DockPanel {
+    open fun add(child: Component, position: Side) {
         when (position) {
             Side.UP -> {
                 upComponent?.let { mainContainer.remove(it) }
@@ -209,38 +208,34 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
                 mainContainer.add(child, 3, basis = 0.perc)
             }
         }
-        return this
     }
 
-    override fun add(child: Component): DockPanel {
-        return this.add(child, Side.CENTER)
+    override fun add(child: Component) {
+        this.add(child, Side.CENTER)
     }
 
-    override fun add(position: Int, child: Component): DockPanel {
-        return this.add(child, Side.CENTER)
+    override fun add(position: Int, child: Component) {
+        this.add(child, Side.CENTER)
     }
 
-    override fun addAll(children: List<Component>): DockPanel {
+    override fun addAll(children: List<Component>) {
         children.forEach { this.add(it) }
-        return this
     }
 
-    override fun remove(child: Component): DockPanel {
+    override fun remove(child: Component) {
         if (child == leftComponent) removeAt(Side.LEFT)
         if (child == centerComponent) removeAt(Side.CENTER)
         if (child == rightComponent) removeAt(Side.RIGHT)
         if (child == upComponent) removeAt(Side.UP)
         if (child == downComponent) removeAt(Side.DOWN)
-        return this
     }
 
     /**
      * Removes child from given position in the dock.
      * @param position position in the dock
-     * @return current container
      */
     @Suppress("ComplexMethod")
-    open fun removeAt(position: Side): DockPanel {
+    open fun removeAt(position: Side) {
         when (position) {
             Side.UP -> {
                 upComponent?.let { mainContainer.remove(it) }
@@ -263,29 +258,27 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
                 downComponent = null
             }
         }
-        return this
     }
 
-    override fun removeAt(position: Int): DockPanel {
-        return removeAt(Side.CENTER)
+    override fun removeAt(position: Int) {
+        removeAt(Side.CENTER)
     }
 
-    override fun removeAll(): DockPanel {
+    override fun removeAll() {
         removeAt(Side.LEFT)
         removeAt(Side.CENTER)
         removeAt(Side.RIGHT)
         removeAt(Side.UP)
         removeAt(Side.DOWN)
-        return this
     }
 
-    override fun disposeAll(): Container {
+    override fun disposeAll() {
         leftComponent?.dispose()
         centerComponent?.dispose()
         rightComponent?.dispose()
         upComponent?.dispose()
         downComponent?.dispose()
-        return removeAll()
+        removeAll()
     }
 }
 

@@ -321,7 +321,8 @@ open class Navigator(
     open fun bringPageTop(index: Int, options: dynamic = undefined): Promise<Unit>? {
         return if (children != null && index >= 0 && index < children!!.size) {
             getElement()?.asDynamic()?.bringPageTop(index, options).then {
-                val page = children!!.removeAt(index).clearParent()
+                val page = children!!.removeAt(index)
+                page.clearParent()
                 (page as? Page)?.display = null
                 add(page)
             }

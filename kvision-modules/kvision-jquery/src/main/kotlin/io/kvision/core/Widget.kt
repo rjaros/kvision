@@ -38,13 +38,12 @@ enum class Easing(internal val easing: String) {
  * @param duration a duration of the animation
  * @param easing an easing function to use
  * @param complete a callback function called after the animation completes
- * @return current widget
  */
 fun Widget.showAnim(
     duration: Int = 400,
     easing: Easing = Easing.SWING,
     complete: (() -> Unit)? = null
-): Widget {
+) {
     this.display = Display.NONE
     this.visible = true
     val jq = getElementJQuery()
@@ -57,7 +56,6 @@ fun Widget.showAnim(
         this.display = null
         complete?.invoke()
     }
-    return this
 }
 
 /**
@@ -65,13 +63,12 @@ fun Widget.showAnim(
  * @param duration a duration of the animation
  * @param easing an easing function to use
  * @param complete a callback function called after the animation completes
- * @return current widget
  */
 fun Widget.hideAnim(
     duration: Int = 400,
     easing: Easing = Easing.SWING,
     complete: (() -> Unit)? = null
-): Widget {
+) {
     val jq = getElementJQuery()
     if (jq != null) {
         jq.hide(duration, easing.easing) {
@@ -82,7 +79,6 @@ fun Widget.hideAnim(
         this.visible = false
         complete?.invoke()
     }
-    return this
 }
 
 /**
@@ -90,13 +86,12 @@ fun Widget.hideAnim(
  * @param duration a duration of the animation
  * @param easing an easing function to use
  * @param complete a callback function called after the animation completes
- * @return current widget
  */
 fun Widget.slideDown(
     duration: Int = 400,
     easing: Easing = Easing.SWING,
     complete: (() -> Unit)? = null
-): Widget {
+) {
     this.display = Display.NONE
     this.visible = true
     val jq = getElementJQuery()
@@ -109,7 +104,6 @@ fun Widget.slideDown(
         this.display = null
         complete?.invoke()
     }
-    return this
 }
 
 /**
@@ -117,13 +111,12 @@ fun Widget.slideDown(
  * @param duration a duration of the animation
  * @param easing an easing function to use
  * @param complete a callback function called after the animation completes
- * @return current widget
  */
 fun Widget.slideUp(
     duration: Int = 400,
     easing: Easing = Easing.SWING,
     complete: (() -> Unit)? = null
-): Widget {
+) {
     val jq = getElementJQuery()
     if (jq != null) {
         jq.slideUp(duration, easing.easing) {
@@ -134,7 +127,6 @@ fun Widget.slideUp(
         this.visible = false
         complete?.invoke()
     }
-    return this
 }
 
 /**
@@ -142,13 +134,12 @@ fun Widget.slideUp(
  * @param duration a duration of the animation
  * @param easing an easing function to use
  * @param complete a callback function called after the animation completes
- * @return current widget
  */
 fun Widget.fadeIn(
     duration: Int = 400,
     easing: Easing = Easing.SWING,
     complete: (() -> Unit)? = null
-): Widget {
+) {
     this.display = Display.NONE
     this.visible = true
     val jq = getElementJQuery()
@@ -161,7 +152,6 @@ fun Widget.fadeIn(
         this.display = null
         complete?.invoke()
     }
-    return this
 }
 
 /**
@@ -169,13 +159,12 @@ fun Widget.fadeIn(
  * @param duration a duration of the animation
  * @param easing an easing function to use
  * @param complete a callback function called after the animation completes
- * @return current widget
  */
 fun Widget.fadeOut(
     duration: Int = 400,
     easing: Easing = Easing.SWING,
     complete: (() -> Unit)? = null
-): Widget {
+) {
     val jq = getElementJQuery()
     if (jq != null) {
         jq.fadeOut(duration, easing.easing) {
@@ -186,7 +175,6 @@ fun Widget.fadeOut(
         this.visible = false
         complete?.invoke()
     }
-    return this
 }
 
 /**

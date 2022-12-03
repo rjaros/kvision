@@ -239,7 +239,7 @@ class TabPanelSpec : DomSpec {
             root.add(tabs)
             tabs.removeTab(0)
             val label3 = Span("ghi")
-            tabs.add(Tab("GHI").add(label3))
+            tabs.add(Tab("GHI") { add(label3) })
             jQuery("#test a")[1]?.click()
             val element = document.getElementById("test")
             assertEqualsHtml(

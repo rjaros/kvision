@@ -172,49 +172,40 @@ open class SimpleSelectRemote<out T : Any>(
         return input.setEventListener(block)
     }
 
-    override fun removeEventListener(id: Int): Widget {
+    override fun removeEventListener(id: Int) {
         input.removeEventListener(id)
-        return this
     }
 
-    override fun removeEventListeners(): Widget {
+    override fun removeEventListeners() {
         input.removeEventListeners()
-        return this
     }
 
-    override fun add(child: Component): SimpleSelectRemote<T> {
+    override fun add(child: Component) {
         input.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): SimpleSelectRemote<T> {
+    override fun add(position: Int, child: Component) {
         input.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): SimpleSelectRemote<T> {
+    override fun addAll(children: List<Component>) {
         input.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): SimpleSelectRemote<T> {
+    override fun remove(child: Component) {
         input.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): SimpleSelectRemote<T> {
+    override fun removeAt(position: Int) {
         input.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): SimpleSelectRemote<T> {
+    override fun removeAll() {
         input.removeAll()
-        return this
     }
 
-    override fun disposeAll(): SimpleSelectRemote<T> {
+    override fun disposeAll() {
         input.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

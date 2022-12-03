@@ -52,13 +52,12 @@ open class CarouselItem(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: CarouselItem.(MouseEvent) -> Unit): CarouselItem {
+    open fun onClick(handler: CarouselItem.(MouseEvent) -> Unit) {
         this.setEventListener<CarouselItem> {
             click = { e ->
                 self.handler(e)
             }
         }
-        return this
     }
 }
 

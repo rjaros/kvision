@@ -102,39 +102,32 @@ open class AlertDialog(
         }
     }
 
-    override fun add(child: Component): AlertDialog {
+    override fun add(child: Component) {
         contentPanel.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): AlertDialog {
+    override fun add(position: Int, child: Component) {
         contentPanel.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): AlertDialog {
+    override fun addAll(children: List<Component>) {
         contentPanel.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): AlertDialog {
+    override fun remove(child: Component) {
         contentPanel.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): AlertDialog {
+    override fun removeAt(position: Int) {
         contentPanel.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): AlertDialog {
+    override fun removeAll() {
         contentPanel.removeAll()
-        return this
     }
 
-    override fun disposeAll(): AlertDialog {
+    override fun disposeAll() {
         contentPanel.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

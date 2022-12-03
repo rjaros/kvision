@@ -85,7 +85,6 @@ open class ResponsiveGridPanel(
      * @param size cell size (colspan)
      * @param offset cell offset
      * @param className additional css styles
-     * @return this container
      */
     open fun add(
         child: Component,
@@ -94,7 +93,7 @@ open class ResponsiveGridPanel(
         size: Int = 0,
         offset: Int = 0,
         className: String? = null
-    ): ResponsiveGridPanel {
+    ) {
         val cRow = maxOf(row, 1)
         val cCol = maxOf(col, 1)
         if (cRow > rows) rows = cRow
@@ -102,7 +101,6 @@ open class ResponsiveGridPanel(
         map.getOrPut(cRow) { mutableMapOf() }[cCol] = WidgetParam(child, size, offset, className)
         if (size > 0 || offset > 0) auto = false
         refreshRowContainers()
-        return this
     }
 
     /**
@@ -114,41 +112,37 @@ open class ResponsiveGridPanel(
         builder: Container.() -> Unit
     ) {
         object : Container by this@ResponsiveGridPanel {
-            override fun add(child: Component): Container {
-                return add(child, col, row, size, offset, className)
+            override fun add(child: Component) {
+                add(child, col, row, size, offset, className)
             }
         }.builder()
     }
 
-    override fun add(child: Component): ResponsiveGridPanel {
-        return this.add(child, this.cols, 0)
+    override fun add(child: Component) {
+        this.add(child, this.cols, 0)
     }
 
-    override fun addAll(children: List<Component>): ResponsiveGridPanel {
+    override fun addAll(children: List<Component>) {
         children.forEach { this.add(it) }
-        return this
     }
 
     @Suppress("NestedBlockDepth")
-    override fun remove(child: Component): ResponsiveGridPanel {
+    override fun remove(child: Component) {
         map.values.forEach { row ->
             row.filterValues { it.widget == child }
                 .forEach { (i, _) -> row.remove(i) }
         }
         refreshRowContainers()
-        return this
     }
 
     /**
      * Removes child component at given location (column, row).
      * @param col column number
      * @param row row number
-     * @return this container
      */
-    open fun removeAt(col: Int, row: Int): ResponsiveGridPanel {
+    open fun removeAt(col: Int, row: Int) {
         map[row]?.remove(col)
         refreshRowContainers()
-        return this
     }
 
     @Suppress("ComplexMethod", "NestedBlockDepth")

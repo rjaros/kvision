@@ -465,39 +465,32 @@ open class Window(
         }
     }
 
-    override fun add(child: Component): Window {
+    override fun add(child: Component) {
         content.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): Window {
+    override fun add(position: Int, child: Component) {
         content.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): Window {
+    override fun addAll(children: List<Component>) {
         content.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): Window {
+    override fun remove(child: Component) {
         content.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): Window {
+    override fun removeAt(position: Int) {
         content.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): Window {
+    override fun removeAll() {
         content.removeAll()
-        return this
     }
 
-    override fun disposeAll(): Window {
+    override fun disposeAll() {
         content.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

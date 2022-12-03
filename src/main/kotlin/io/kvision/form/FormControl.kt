@@ -163,9 +163,8 @@ interface FormControl : Component {
      * @suppress
      * Internal function
      * Re-renders the current component.
-     * @return current component
      */
-    fun refresh(): Component
+    fun refresh()
 
     /**
      * Validator error message.

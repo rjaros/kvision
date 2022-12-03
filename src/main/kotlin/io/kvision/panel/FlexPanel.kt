@@ -81,7 +81,7 @@ open class FlexPanel(
     fun add(
         child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
         basis: CssSize? = null, alignSelf: AlignItems? = null, className: String? = null
-    ): FlexPanel {
+    ) {
         val wrapper = if (!useWrappers) {
             child
         } else {
@@ -96,7 +96,6 @@ open class FlexPanel(
             it.alignSelf = alignSelf
         }
         addInternal(wrapper)
-        return this
     }
 
     /**
@@ -114,7 +113,7 @@ open class FlexPanel(
     fun add(
         position: Int, child: Component, order: Int? = null, grow: Int? = null, shrink: Int? = null,
         basis: CssSize? = null, alignSelf: AlignItems? = null, className: String? = null
-    ): FlexPanel {
+    ) {
         val wrapper = if (!useWrappers) {
             child
         } else {
@@ -129,7 +128,6 @@ open class FlexPanel(
             it.alignSelf = alignSelf
         }
         addInternal(position, wrapper)
-        return this
     }
 
     /**
@@ -142,8 +140,8 @@ open class FlexPanel(
         builder: Container.() -> Unit
     ) {
         object : Container by this@FlexPanel {
-            override fun add(child: Component): Container {
-                return add(child, order, grow, shrink, basis, alignSelf, className)
+            override fun add(child: Component) {
+                add(child, order, grow, shrink, basis, alignSelf, className)
             }
         }.builder()
     }
@@ -152,7 +150,7 @@ open class FlexPanel(
         getChildren().forEach { applySpacing(it.unsafeCast<Widget>()) }
     }
 
-    private fun applySpacing(wrapper: Widget): Widget {
+    private fun applySpacing(wrapper: Widget) {
         if (useWrappers) {
             wrapper.marginTop = null
             wrapper.marginRight = null
@@ -173,23 +171,21 @@ open class FlexPanel(
                 }
             }
         }
-        return wrapper
     }
 
-    override fun add(child: Component): FlexPanel {
-        return add(child, null)
+    override fun add(child: Component) {
+        add(child, null)
     }
 
-    override fun add(position: Int, child: Component): FlexPanel {
-        return add(position, child, null)
+    override fun add(position: Int, child: Component) {
+        add(position, child, null)
     }
 
-    override fun addAll(children: List<Component>): FlexPanel {
+    override fun addAll(children: List<Component>) {
         children.forEach { add(it, null) }
-        return this
     }
 
-    override fun remove(child: Component): FlexPanel {
+    override fun remove(child: Component) {
         if (children != null) {
             if (children!!.contains(child)) {
                 super.remove(child)
@@ -200,10 +196,9 @@ open class FlexPanel(
                 }
             }
         }
-        return this
     }
 
-    override fun removeAll(): FlexPanel {
+    override fun removeAll() {
         children?.map {
             it.clearParent()
             (it as? WidgetWrapper)?.dispose()
@@ -211,16 +206,15 @@ open class FlexPanel(
         children?.clear()
         children = null
         refresh()
-        return this
     }
 
-    override fun disposeAll(): FlexPanel {
+    override fun disposeAll() {
         children?.map {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
         }
-        return removeAll()
+        removeAll()
     }
 
     override fun dispose() {

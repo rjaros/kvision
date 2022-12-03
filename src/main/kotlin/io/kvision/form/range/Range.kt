@@ -176,14 +176,12 @@ open class Range(
         return input.setEventListener(block)
     }
 
-    override fun removeEventListener(id: Int): Widget {
+    override fun removeEventListener(id: Int) {
         input.removeEventListener(id)
-        return this
     }
 
-    override fun removeEventListeners(): Widget {
+    override fun removeEventListeners() {
         input.removeEventListeners()
-        return this
     }
 
     override fun getValueAsString(): String? {
@@ -193,17 +191,15 @@ open class Range(
     /**
      * Change value in plus.
      */
-    open fun stepUp(): Range {
+    open fun stepUp() {
         input.stepUp()
-        return this
     }
 
     /**
      * Change value in minus.
      */
-    open fun stepDown(): Range {
+    open fun stepDown() {
         input.stepDown()
-        return this
     }
 
     override fun focus() {

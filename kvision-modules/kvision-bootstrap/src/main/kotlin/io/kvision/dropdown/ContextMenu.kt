@@ -64,9 +64,8 @@ open class ContextMenu(
     /**
      * Positions and shows a context menu based on a mouse event.
      * @param mouseEvent mouse event
-     * @return current context menu
      */
-    open fun positionMenu(mouseEvent: MouseEvent): ContextMenu {
+    open fun positionMenu(mouseEvent: MouseEvent) {
         if (fixedPosition) {
             this.top = DEFAULT_FIXED_POS_Y.px
             this.left = DEFAULT_FIXED_POS_X.px
@@ -75,7 +74,6 @@ open class ContextMenu(
             this.left = mouseEvent.pageX.toInt().px
         }
         this.show()
-        return this
     }
 
     companion object {
@@ -87,16 +85,14 @@ open class ContextMenu(
 /**
  * Sets context menu for the current widget.
  * @param contextMenu a context menu
- * @return current widget
  */
-fun Widget.setContextMenu(contextMenu: ContextMenu): Widget {
+fun Widget.setContextMenu(contextMenu: ContextMenu) {
     this.setEventListener<Widget> {
         contextmenu = { e: MouseEvent ->
             e.preventDefault()
             contextMenu.positionMenu(e)
         }
     }
-    return this
 }
 
 /**

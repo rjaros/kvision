@@ -205,39 +205,32 @@ open class Carousel(
         }
     }
 
-    override fun add(child: Component): Carousel {
+    override fun add(child: Component) {
         swiperPanel.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): Carousel {
+    override fun add(position: Int, child: Component) {
         swiperPanel.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): Carousel {
+    override fun addAll(children: List<Component>) {
         swiperPanel.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): Carousel {
+    override fun remove(child: Component) {
         swiperPanel.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): Carousel {
+    override fun removeAt(position: Int) {
         swiperPanel.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): Carousel {
+    override fun removeAll() {
         swiperPanel.removeAll()
-        return this
     }
 
-    override fun disposeAll(): Carousel {
+    override fun disposeAll() {
         swiperPanel.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

@@ -221,14 +221,12 @@ open class OnsNumber(
         return input.setEventListener(block)
     }
 
-    override fun removeEventListener(id: Int): Widget {
+    override fun removeEventListener(id: Int) {
         input.removeEventListener(id)
-        return this
     }
 
-    override fun removeEventListeners(): Widget {
+    override fun removeEventListeners() {
         input.removeEventListeners()
-        return this
     }
 
     override fun getValueAsString(): String? {

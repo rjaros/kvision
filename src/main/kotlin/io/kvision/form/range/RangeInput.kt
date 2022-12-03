@@ -177,17 +177,15 @@ open class RangeInput(
     /**
      * Change value in plus.
      */
-    open fun stepUp(): RangeInput {
+    open fun stepUp() {
         (getElement() as? HTMLInputElement)?.stepUp()
-        return this
     }
 
     /**
      * Change value in minus.
      */
-    open fun stepDown(): RangeInput {
+    open fun stepDown() {
         (getElement() as? HTMLInputElement)?.stepDown()
-        return this
     }
 
     /**

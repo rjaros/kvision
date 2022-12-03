@@ -97,10 +97,9 @@ open class Alert(
         }
     }
 
-    override fun hide(): Widget {
+    override fun hide() {
         super.hide()
         this.callback?.invoke()
-        return this
     }
 
     companion object {

@@ -191,14 +191,12 @@ open class SimpleSpinner(
         return input.setEventListener(block)
     }
 
-    override fun removeEventListener(id: Int): Widget {
+    override fun removeEventListener(id: Int) {
         input.removeEventListener(id)
-        return this
     }
 
-    override fun removeEventListeners(): Widget {
+    override fun removeEventListeners() {
         input.removeEventListeners()
-        return this
     }
 
     override fun getValueAsString(): String? {
@@ -208,17 +206,15 @@ open class SimpleSpinner(
     /**
      * Change value in plus.
      */
-    open fun spinUp(): SimpleSpinner {
+    open fun spinUp() {
         input.spinUp()
-        return this
     }
 
     /**
      * Change value in minus.
      */
-    open fun spinDown(): SimpleSpinner {
+    open fun spinDown() {
         input.spinDown()
-        return this
     }
 
     override fun focus() {

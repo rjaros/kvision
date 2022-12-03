@@ -176,9 +176,8 @@ open class ActionSheet(
         getElement()?.asDynamic()?.onDeviceBackButton = undefined
     }
 
-    override fun clearParent(): Widget {
+    override fun clearParent() {
         this.parent = null
-        return this
     }
 
     override fun getRoot(): Root? {

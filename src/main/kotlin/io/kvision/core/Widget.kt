@@ -463,27 +463,23 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     /**
      * Removes event listener from current widget.
      * @param id the id of the handler returned by onEvent
-     * @return current widget
      */
-    open fun removeEventListener(id: Int): Widget {
+    open fun removeEventListener(id: Int) {
         listenersMap?.forEach { it.value.remove(id) }
         removeAllJQueryListeners()
         jqueryListenersMap?.forEach { it.value.remove(id) }
         bindAllJQueryListeners()
         refresh()
-        return this
     }
 
     /**
      * Removes all event listeners from current widget.
-     * @return current widget
      */
-    open fun removeEventListeners(): Widget {
+    open fun removeEventListeners() {
         listenersMap?.clear()
         removeAllJQueryListeners()
         jqueryListenersMap?.clear()
         refresh()
-        return this
     }
 
     /**
@@ -502,92 +498,81 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
 
     /**
      * Makes current widget visible.
-     * @return current widget
      */
-    open fun show(): Widget {
+    open fun show() {
         visible = true
-        return this
     }
 
     /**
      * Makes current widget invisible.
-     * @return current widget
      */
-    open fun hide(): Widget {
+    open fun hide() {
         visible = false
-        return this
     }
 
     /**
      * Toggles visibility of current widget.
-     * @return current widget
      */
-    open fun toggleVisible(): Widget {
-        return if (visible) hide() else show()
+    open fun toggleVisible() {
+        if (visible) hide() else show()
     }
 
-    override fun addCssClass(css: String): Widget {
+    override fun addCssClass(css: String) {
         if (classes == null) classes = className.mutableSet
         classes!!.add(css)
         refresh()
-        return this
     }
 
-    override fun removeCssClass(css: String): Widget {
+    override fun removeCssClass(css: String) {
         if (classes == null) classes = className.mutableSet
         classes!!.remove(css)
         refresh()
-        return this
     }
 
     override fun hasCssClass(css: String): Boolean = this.classes?.contains(css) ?: false
 
-    override fun addSurroundingCssClass(css: String): Widget {
+    override fun addSurroundingCssClass(css: String) {
         if (this.surroundingClasses == null) this.surroundingClasses = mutableSetOf()
         this.surroundingClasses!!.add(css)
         refresh()
-        return this
     }
 
-    override fun removeSurroundingCssClass(css: String): Widget {
+    override fun removeSurroundingCssClass(css: String) {
         if (this.surroundingClasses == null) this.surroundingClasses = mutableSetOf()
         this.surroundingClasses!!.remove(css)
         refresh()
-        return this
     }
 
-    override fun addCssStyle(css: Style): Widget {
-        return addCssClass(css.cssClassName)
+    override fun addCssStyle(css: Style) {
+        addCssClass(css.cssClassName)
     }
 
-    override fun removeCssStyle(css: Style): Widget {
-        return removeCssClass(css.cssClassName)
+    override fun removeCssStyle(css: Style) {
+        removeCssClass(css.cssClassName)
     }
 
-    override fun addSurroundingCssStyle(css: Style): Widget {
-        return addSurroundingCssClass(css.cssClassName)
+    override fun addSurroundingCssStyle(css: Style) {
+        addSurroundingCssClass(css.cssClassName)
     }
 
-    override fun removeSurroundingCssStyle(css: Style): Widget {
-        return removeSurroundingCssClass(css.cssClassName)
+    override fun removeSurroundingCssStyle(css: Style) {
+        removeSurroundingCssClass(css.cssClassName)
     }
 
     override fun getAttribute(name: String): String? {
         return this.attributes?.get(name)
     }
 
-    override fun setAttribute(name: String, value: String): Widget {
+    override fun setAttribute(name: String, value: String) {
         if (attributes == null) attributes = mutableMapOf()
         attributes!![name] = value
         refresh()
-        return this
     }
 
-    override fun removeAttribute(name: String): Widget {
+    override fun removeAttribute(name: String) {
         if (attributes == null) attributes = mutableMapOf()
         attributes!!.remove(name)
         refresh()
-        return this
     }
 
     override fun getElement(): Node? {
@@ -598,19 +583,17 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         return getElement()?.asDynamic()
     }
 
-    override fun clearParent(): Widget {
+    override fun clearParent() {
         this.parent = null
-        return this
     }
 
-    override fun refresh(): Widget {
+    override fun refresh() {
         super.refresh()
         snAttrsCache.clear()
         snClassCache.clear()
         snOnCache = null
         snHooksCache = null
         getRoot()?.reRender()
-        return this
     }
 
     /**

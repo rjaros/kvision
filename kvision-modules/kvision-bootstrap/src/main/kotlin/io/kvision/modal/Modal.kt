@@ -183,39 +183,32 @@ open class Modal(
         }
     }
 
-    override fun add(child: Component): Modal {
+    override fun add(child: Component) {
         body.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): Modal {
+    override fun add(position: Int, child: Component) {
         body.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): Modal {
+    override fun addAll(children: List<Component>) {
         body.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): Modal {
+    override fun remove(child: Component) {
         body.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): Modal {
+    override fun removeAt(position: Int) {
         body.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): Modal {
+    override fun removeAll() {
         body.removeAll()
-        return this
     }
 
-    override fun disposeAll(): Modal {
+    override fun disposeAll() {
         body.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {
@@ -225,30 +218,24 @@ open class Modal(
     /**
      * Adds given button to the bottom section of dialog window.
      * @param button a [Button] component
-     * @return this modal
      */
-    open fun addButton(button: Button): Modal {
+    open fun addButton(button: Button) {
         footer.add(button)
-        return this
     }
 
     /**
      * Removes given button from the bottom section of dialog window.
      * @param button a [Button] component
-     * @return this modal
      */
-    open fun removeButton(button: Button): Modal {
+    open fun removeButton(button: Button) {
         footer.remove(button)
-        return this
     }
 
     /**
      * Removes all buttons from the bottom section of dialog window.
-     * @return this modal
      */
-    open fun removeAllButtons(): Modal {
+    open fun removeAllButtons() {
         footer.removeAll()
-        return this
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
@@ -273,9 +260,9 @@ open class Modal(
         showBootstrap()
     }
 
-    override fun hide(): Widget {
+    override fun hide() {
         if (visible) hideBootstrap()
-        return super.hide()
+        super.hide()
     }
 
     /**
@@ -302,9 +289,8 @@ open class Modal(
         getBsInstance { Modal }?.hide()
     }
 
-    override fun clearParent(): Widget {
+    override fun clearParent() {
         this.parent = null
-        return this
     }
 
     override fun getRoot(): Root? {

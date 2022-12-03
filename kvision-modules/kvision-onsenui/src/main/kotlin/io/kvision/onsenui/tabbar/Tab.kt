@@ -128,13 +128,12 @@ open class Tab(
         }, { })
     }
 
-    override fun add(child: Component): Tab {
+    override fun add(child: Component) {
         if (child is Page || child is Navigator) {
             content = child.unsafeCast<Widget>()
         } else {
             super.add(child)
         }
-        return this
     }
 
     companion object {

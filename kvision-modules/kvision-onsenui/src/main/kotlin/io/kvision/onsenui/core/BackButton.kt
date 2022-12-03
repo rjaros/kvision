@@ -69,13 +69,12 @@ open class BackButton(
     /**
      * A convenient helper for easy setting onClick event handler.
      */
-    open fun onClick(handler: BackButton.(MouseEvent) -> Unit): BackButton {
+    open fun onClick(handler: BackButton.(MouseEvent) -> Unit) {
         this.setEventListener<BackButton> {
             click = { e ->
                 self.handler(e)
             }
         }
-        return this
     }
 }
 

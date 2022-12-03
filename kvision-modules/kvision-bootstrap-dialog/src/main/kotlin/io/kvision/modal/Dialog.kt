@@ -72,8 +72,8 @@ open class Dialog<R>(
         resultCallback?.invoke(result)
     }
 
-    override fun hide(): Widget {
+    override fun hide() {
         resultCallback?.invoke(null)
-        return super.hide()
+        super.hide()
     }
 }

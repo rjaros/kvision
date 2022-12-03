@@ -236,41 +236,34 @@ open class OnsRadioGroup(
         }
     }
 
-    override fun add(child: Component): OnsRadioGroup {
+    override fun add(child: Component) {
         configureChild(child)
         container.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): OnsRadioGroup {
+    override fun add(position: Int, child: Component) {
         configureChild(child)
         container.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): OnsRadioGroup {
+    override fun addAll(children: List<Component>) {
         children.forEach { add(it) }
-        return this
     }
 
-    override fun remove(child: Component): OnsRadioGroup {
+    override fun remove(child: Component) {
         container.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): OnsRadioGroup {
+    override fun removeAt(position: Int) {
         container.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): OnsRadioGroup {
+    override fun removeAll() {
         container.removeAll()
-        return this
     }
 
-    override fun disposeAll(): OnsRadioGroup {
+    override fun disposeAll() {
         container.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

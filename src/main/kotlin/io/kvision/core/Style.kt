@@ -140,13 +140,12 @@ open class Style(
         } + "\n}"
     }
 
-    override fun refresh(): Style {
+    override fun refresh() {
         super.refresh()
         Root.getFirstRoot()?.let {
             it.clearStylesCache()
             it.reRender()
         }
-        return this
     }
 
     @Suppress("NOTHING_TO_INLINE")

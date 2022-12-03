@@ -204,11 +204,10 @@ class Root : SimplePanel {
         }
     }
 
-    internal fun reRender(): Root {
+    internal fun reRender() {
         if (singleRenderers == 0 && !disableRendering && rootVnode != null) {
             rootVnode = KVManager.patch(rootVnode!!, renderVNode())
         }
-        return this
     }
 
     override fun <T> singleRender(block: () -> T): T {

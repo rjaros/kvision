@@ -182,39 +182,32 @@ open class OnsListItem(
         }
     }
 
-    override fun add(child: Component): OnsListItem {
+    override fun add(child: Component) {
         centerPanel.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): OnsListItem {
+    override fun add(position: Int, child: Component) {
         centerPanel.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): OnsListItem {
+    override fun addAll(children: List<Component>) {
         centerPanel.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): OnsListItem {
+    override fun remove(child: Component) {
         centerPanel.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): OnsListItem {
+    override fun removeAt(position: Int) {
         centerPanel.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): OnsListItem {
+    override fun removeAll() {
         centerPanel.removeAll()
-        return this
     }
 
-    override fun disposeAll(): OnsListItem {
+    override fun disposeAll() {
         centerPanel.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

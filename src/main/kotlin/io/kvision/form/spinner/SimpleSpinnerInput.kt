@@ -185,17 +185,15 @@ open class SimpleSpinnerInput(
     /**
      * Change value in plus.
      */
-    open fun spinUp(): SimpleSpinnerInput {
+    open fun spinUp() {
         (getElement() as? HTMLInputElement)?.stepUp()
-        return this
     }
 
     /**
      * Change value in minus.
      */
-    open fun spinDown(): SimpleSpinnerInput {
+    open fun spinDown() {
         (getElement() as? HTMLInputElement)?.stepDown()
-        return this
     }
 
     /**

@@ -182,39 +182,32 @@ open class Navbar(
         return render("nav", childrenVNodes())
     }
 
-    override fun add(child: Component): Navbar {
+    override fun add(child: Component) {
         container.add(child)
-        return this
     }
 
-    override fun add(position: Int, child: Component): Navbar {
+    override fun add(position: Int, child: Component) {
         container.add(position, child)
-        return this
     }
 
-    override fun addAll(children: List<Component>): Navbar {
+    override fun addAll(children: List<Component>) {
         container.addAll(children)
-        return this
     }
 
-    override fun remove(child: Component): Navbar {
+    override fun remove(child: Component) {
         container.remove(child)
-        return this
     }
 
-    override fun removeAt(position: Int): Navbar {
+    override fun removeAt(position: Int) {
         container.removeAt(position)
-        return this
     }
 
-    override fun removeAll(): Navbar {
+    override fun removeAll() {
         container.removeAll()
-        return this
     }
 
-    override fun disposeAll(): Navbar {
+    override fun disposeAll() {
         container.disposeAll()
-        return this
     }
 
     override fun getChildren(): List<Component> {

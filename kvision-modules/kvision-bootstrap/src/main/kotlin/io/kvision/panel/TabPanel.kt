@@ -179,12 +179,11 @@ open class TabPanel(
      * Removes tab at given index.
      * @param index the index of the tab
      */
-    open fun removeTab(index: Int): TabPanel {
+    open fun removeTab(index: Int) {
         getTab(index)?.let {
             removeTab(it)
             refresh()
         }
-        return this
     }
 
     /**
@@ -280,16 +279,14 @@ open class TabPanel(
         }
     }
 
-    override fun add(child: Component): TabPanel {
+    override fun add(child: Component) {
         addChild(child)
         refresh()
-        return this
     }
 
-    override fun add(position: Int, child: Component): TabPanel {
+    override fun add(position: Int, child: Component) {
         addChild(child, position)
         refresh()
-        return this
     }
 
     /**
@@ -300,24 +297,21 @@ open class TabPanel(
      * @param image image of the tab
      * @param closable determines if this tab is closable
      * @param route JavaScript route to activate given child
-     * @return current container
      */
     open fun addTab(
         title: String, panel: Component, icon: String? = null,
         image: ResString? = null, closable: Boolean = false, route: String? = null
-    ): TabPanel {
+    ) {
         addTab(Tab(title, panel, icon, image, closable, route))
         refresh()
-        return this
     }
 
-    override fun addAll(children: List<Component>): TabPanel {
+    override fun addAll(children: List<Component>) {
         children.forEach(::addChild)
         refresh()
-        return this
     }
 
-    override fun remove(child: Component): TabPanel {
+    override fun remove(child: Component) {
         if (child is Tab) {
             removeTab(child)
             refresh()
@@ -327,10 +321,9 @@ open class TabPanel(
                 refresh()
             }
         }
-        return this
     }
 
-    override fun removeAt(position: Int): TabPanel {
+    override fun removeAt(position: Int) {
         if (position >= 0 && position < tabs.size) {
             val tab = tabs.removeAt(position)
             tab.parent = null
@@ -342,18 +335,15 @@ open class TabPanel(
                 activeIndex = activeIndex
             }
         }
-        return this
     }
 
-    override fun removeAll(): TabPanel {
+    override fun removeAll() {
         tabs.forEach { removeTab(it) }
-        return this
     }
 
-    override fun disposeAll(): TabPanel {
+    override fun disposeAll() {
         tabs.forEach { it.dispose() }
         removeAll()
-        return this
     }
 
     /**

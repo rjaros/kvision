@@ -123,16 +123,14 @@ class Form<K : Any>(
      * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form
      */
     fun <C : FormControl> add(
         key: String, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): Form<K> {
+    ) {
         this.fields[key] = control
         this.fieldsParams[key] = FieldParams(required, requiredMessage, validatorMessage, validator)
-        return this
     }
 
     /**
@@ -143,14 +141,13 @@ class Form<K : Any>(
      * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form
      */
     fun <C : StringFormControl> add(
         key: KProperty1<K, String?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): Form<K> {
-        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -161,14 +158,13 @@ class Form<K : Any>(
      * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form
      */
     fun <C : StringFormControl> addCustom(
         key: KProperty1<K, Any?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): Form<K> {
-        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -179,14 +175,13 @@ class Form<K : Any>(
      * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form
      */
     fun <C : BoolFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): Form<K> {
-        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -197,14 +192,13 @@ class Form<K : Any>(
      * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form
      */
     fun <C : TriStateFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): Form<K> {
-        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -215,14 +209,13 @@ class Form<K : Any>(
      * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form
      */
     fun <C : NumberFormControl> add(
         key: KProperty1<K, Number?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): Form<K> {
-        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -233,14 +226,13 @@ class Form<K : Any>(
      * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form
      */
     fun <C : DateFormControl> add(
         key: KProperty1<K, Date?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): Form<K> {
-        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
@@ -251,43 +243,36 @@ class Form<K : Any>(
      * @param requiredMessage optional required validation message
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
-     * @return current form
      */
     fun <C : KFilesFormControl> add(
         key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
-    ): Form<K> {
-        return add(key.name, control, required, requiredMessage, validatorMessage, validator)
+    ) {
+        add(key.name, control, required, requiredMessage, validatorMessage, validator)
     }
 
     /**
      * Removes a control from the form.
      * @param key key identifier of the control
-     * @return current form
      */
-    fun remove(key: KProperty1<K, *>): Form<K> {
+    fun remove(key: KProperty1<K, *>) {
         this.fields.remove(key.name)
-        return this
     }
 
     /**
      * Removes a control from the form with a dynamic keys.
      * @param key key identifier of the control
-     * @return current form
      */
-    fun remove(key: String): Form<K> {
+    fun remove(key: String) {
         this.fields.remove(key)
-        return this
     }
 
     /**
      * Removes all controls from the form.
-     * @return current form
      */
-    fun removeAll(): Form<K> {
+    fun removeAll() {
         this.fields.clear()
-        return this
     }
 
     /**
