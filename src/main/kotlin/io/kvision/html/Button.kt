@@ -21,13 +21,13 @@
  */
 package io.kvision.html
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.CssClass
 import io.kvision.core.ResString
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import org.w3c.dom.events.MouseEvent
 
 /**
@@ -81,11 +81,12 @@ enum class ButtonType(internal val buttonType: String) {
  * @param separator a separator between label and icon/image (defaults to space)
  * @param labelFirst determines if the label is put before children elements (defaults to true)
  * @param className CSS class names
+ * @param init an initializer extension function
  */
 open class Button(
     text: String, icon: String? = null, style: ButtonStyle = ButtonStyle.PRIMARY, type: ButtonType = ButtonType.BUTTON,
     disabled: Boolean = false, separator: String? = null, labelFirst: Boolean = true,
-    className: String? = null
+    className: String? = null, init: (Button.() -> Unit)? = null
 ) : SimplePanel(className) {
 
     /**
@@ -137,6 +138,11 @@ open class Button(
      * Determines if the label is put before children elements.
      */
     var labelFirst by refreshOnUpdate(labelFirst)
+
+    init {
+        @Suppress("LeakingThis")
+        init?.invoke(this)
+    }
 
     override fun render(): VNode {
         val t = createLabelWithIcon(text, icon, image, separator)
@@ -193,9 +199,7 @@ fun Container.button(
     className: String? = null,
     init: (Button.() -> Unit)? = null
 ): Button {
-    val button = Button(text, icon, style, type, disabled, separator, labelFirst, className).apply {
-        init?.invoke(this)
-    }
+    val button = Button(text, icon, style, type, disabled, separator, labelFirst, className, init)
     this.add(button)
     return button
 }
