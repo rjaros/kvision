@@ -22,17 +22,10 @@
 package io.kvision
 
 /**
- * Initializer for KVision Tabulator module.
+ * Initializer for KVision Tabulator with Bulma CSS theme.
  */
-object TabulatorModule : ModuleInitializer {
-
-    private val tabulator = require("tabulator-tables").TabulatorFull
-
-    @Suppress("UnsafeCastFromDynamic")
-    fun getConstructor(): Any {
-        return tabulator
-    }
-
+object TabulatorCssBulmaModule : ModuleInitializer {
     override fun initialize() {
+        require("tabulator-tables/dist/css/tabulator_bulma.min.css")
     }
 }
