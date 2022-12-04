@@ -47,7 +47,7 @@ open class FlexPanel(
     alignItems: AlignItems? = null,
     alignContent: AlignContent? = null,
     spacing: Int? = null,
-    private val useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    private val useWrappers: Boolean = false,
     className: String? = null,
     init: (FlexPanel.() -> Unit)? = null
 ) : SimplePanel(className) {
@@ -236,7 +236,7 @@ fun Container.flexPanel(
     direction: FlexDirection? = null, wrap: FlexWrap? = null, justify: JustifyContent? = null,
     alignItems: AlignItems? = null, alignContent: AlignContent? = null,
     spacing: Int? = null,
-    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    useWrappers: Boolean = false,
     className: String? = null,
     init: (FlexPanel.() -> Unit)? = null
 ): FlexPanel {

@@ -50,7 +50,7 @@ open class GridPanel(
     templateColumns: String? = null, templateRows: String? = null, templateAreas: List<String>? = null,
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
-    alignContent: AlignContent? = null, private val useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    alignContent: AlignContent? = null, private val useWrappers: Boolean = false,
     className: String? = null, init: (GridPanel.() -> Unit)? = null
 ) : SimplePanel(className) {
 
@@ -224,7 +224,7 @@ fun Container.gridPanel(
     columnGap: Int? = null, rowGap: Int? = null, justifyItems: JustifyItems? = null,
     alignItems: AlignItems? = null, justifyContent: JustifyContent? = null,
     alignContent: AlignContent? = null,
-    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    useWrappers: Boolean = false,
     className: String? = null,
     init: (GridPanel.() -> Unit)? = null
 ): GridPanel {

@@ -45,7 +45,7 @@ open class HPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    useWrappers: Boolean = false,
     className: String? = null,
     init: (HPanel.() -> Unit)? = null
 ) : FlexPanel(null, wrap, justify, alignItems, null, spacing, useWrappers, className) {
@@ -65,7 +65,7 @@ fun Container.hPanel(
     justify: JustifyContent? = null,
     alignItems: AlignItems? = null,
     spacing: Int? = null,
-    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    useWrappers: Boolean = false,
     className: String? = null,
     init: (HPanel.() -> Unit)? = null
 ): HPanel {

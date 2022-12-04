@@ -42,7 +42,7 @@ import io.kvision.core.JustifyContent
  */
 open class VPanel(
     justify: JustifyContent? = null, alignItems: AlignItems? = null, spacing: Int? = null,
-    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    useWrappers: Boolean = false,
     className: String? = null, init: (VPanel.() -> Unit)? = null
 ) : FlexPanel(
     FlexDirection.COLUMN,
@@ -61,7 +61,7 @@ open class VPanel(
  */
 fun Container.vPanel(
     justify: JustifyContent? = null, alignItems: AlignItems? = null, spacing: Int? = null,
-    useWrappers: Boolean = KVManager.panelsCompatibilityMode,
+    useWrappers: Boolean = false,
     className: String? = null,
     init: (VPanel.() -> Unit)? = null
 ): VPanel {

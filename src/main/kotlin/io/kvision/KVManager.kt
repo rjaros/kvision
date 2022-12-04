@@ -82,6 +82,4 @@ object KVManager {
             newNode
         }
     }
-
-    internal var panelsCompatibilityMode = false
 }
