@@ -36,13 +36,12 @@ import io.kvision.utils.createInstance
 import io.kvision.utils.deepMerge
 import io.kvision.utils.obj
 import io.kvision.utils.syncWithList
-import io.kvision.utils.toKotlinObj
-import io.kvision.utils.toPlainObj
 import kotlinx.browser.window
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.overwriteWith
+import kotlinx.serialization.serializer
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
@@ -820,7 +819,7 @@ open class Tabulator<T : Any>(
                 data._children.unsafeCast<Array<dynamic>>().map { toKotlinObjTabulator(it, kClass) }.toTypedArray()
         }
         return if (jsonHelper == null || serializer == null) {
-            toKotlinObj(data, kClass)
+            throw IllegalStateException("The data class can't be deserialized. Please provide a serializer when creating the Tabulator instance.")
         } else {
             jsonHelper!!.decodeFromString(serializer, JSON.stringify(data))
         }
@@ -828,9 +827,9 @@ open class Tabulator<T : Any>(
 
     internal fun toPlainObjTabulator(data: T): T {
         val obj = if (jsonHelper == null || serializer == null) {
-            toPlainObj(data)
+            throw IllegalStateException("The data class can't be serialized. Please provide a serializer when creating the Tabulator instance.")
         } else {
-            JSON.parse(jsonHelper!!.encodeToString(serializer, data))
+            JSON.parse<dynamic>(jsonHelper!!.encodeToString(serializer, data))
         }
         if (obj._children != null) {
             obj._children = obj._children.unsafeCast<Array<T>>().map { toPlainObjTabulator(it) }.toTypedArray()
@@ -866,7 +865,7 @@ open class Tabulator<T : Any>(
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             className: String? = null,
-            serializer: KSerializer<T>? = null,
+            serializer: KSerializer<T> = serializer(),
             serializersModule: SerializersModule? = null,
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
@@ -885,7 +884,7 @@ open class Tabulator<T : Any>(
             options: TabulatorOptions<T> = TabulatorOptions(),
             types: Set<TableType> = setOf(),
             className: String? = null,
-            serializer: KSerializer<T>? = null,
+            serializer: KSerializer<T> = serializer(),
             serializersModule: SerializersModule? = null,
             noinline init: (Tabulator<T>.() -> Unit)? = null
         ): Tabulator<T> {
@@ -911,7 +910,7 @@ inline fun <reified T : Any> Container.tabulator(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     className: String? = null,
-    serializer: KSerializer<T>? = null,
+    serializer: KSerializer<T> = serializer(),
     serializersModule: SerializersModule? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
@@ -930,7 +929,7 @@ inline fun <reified T : Any, S : Any> Container.tabulator(
     options: TabulatorOptions<T> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     className: String? = null,
-    serializer: KSerializer<T>? = null,
+    serializer: KSerializer<T> = serializer(),
     serializersModule: SerializersModule? = null,
     noinline init: (Tabulator<T>.() -> Unit)? = null
 ): Tabulator<T> {
@@ -943,19 +942,18 @@ inline fun <reified T : Any, S : Any> Container.tabulator(
 /**
  * DSL builder extension function for dynamic data (send within options parameter).
  */
-inline fun <reified T : Any> Container.tabulator(
-    options: TabulatorOptions<T> = TabulatorOptions(),
+fun Container.tabulator(
+    options: TabulatorOptions<dynamic> = TabulatorOptions(),
     types: Set<TableType> = setOf(),
     className: String? = null,
-    noinline init: (Tabulator<T>.() -> Unit)? = null
-): Tabulator<T> {
+    init: (Tabulator<dynamic>.() -> Unit)? = null
+): Tabulator<dynamic> {
     val tabulator =
         Tabulator(
             dataUpdateOnEdit = false,
             options = options,
             types = types,
-            className = className,
-            kClass = T::class
+            className = className
         )
     init?.invoke(tabulator)
     this.add(tabulator)
