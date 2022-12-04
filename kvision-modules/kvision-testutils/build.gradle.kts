@@ -25,22 +25,15 @@ dependencies {
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
-    dependsOn("irGenerateExternalsIntegrated")
+    dependsOn("generateExternalsIntegrated")
     archiveClassifier.set("sources")
-    from(kotlin.sourceSets.test.get().kotlin)
+    from(kotlin.sourceSets.main.get().kotlin)
 }
 
-val testLegacyJar by tasks.registering(Jar::class) {
-    dependsOn("legacyTestClasses")
-    archiveClassifier.set("tests")
-    from(kotlin.js().compilations["test"].output.allOutputs)
-}
-
-val testIrJar by tasks.registering(Jar::class) {
-    dependsOn("irTestClasses")
-    archiveExtension.set("klib")
-    archiveClassifier.set("tests")
-    from(files("$buildDir/classes/kotlin/ir/test"))
+val javadocJar by tasks.registering(Jar::class) {
+    dependsOn("dokkaHtml")
+    archiveClassifier.set("javadoc")
+    from("$buildDir/dokka/html")
 }
 
 publishing {
@@ -48,15 +41,7 @@ publishing {
         create<MavenPublication>("kotlin") {
             from(components["kotlin"])
             artifact(tasks["sourcesJar"])
-            artifact(tasks["testLegacyJar"]) {
-                classifier = "tests"
-            }
-            artifact(tasks["testIrJar"]) {
-                classifier = "tests"
-            }
-            pom {
-                defaultPom()
-            }
+            if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
         }
     }
 }

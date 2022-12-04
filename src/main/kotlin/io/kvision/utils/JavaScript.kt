@@ -22,8 +22,6 @@
 
 package io.kvision.utils
 
-import kotlin.reflect.KClass
-
 /**
  * JavaScript Object type
  */
@@ -63,57 +61,6 @@ fun <T> Any?.createInstance(vararg args: dynamic): T {
     val jsClassConstructor = this
     val argsArray = (listOf<dynamic>(null) + args).toTypedArray()
     return js("new (Function.prototype.bind.apply(jsClassConstructor, argsArray))").unsafeCast<T>()
-}
-
-internal data class LegacyTest(val test: Boolean = true)
-
-/**
- * A helper property to test whether current compiler is running in legacy mode.
- */
-val isLegacyBackend by lazy {
-    LegacyTest().asDynamic()["test"] == true
-}
-
-/**
- * Helper function to enumerate properties of a data class for IR backend.
- */
-@Suppress("UnsafeCastFromDynamic")
-fun getAllPropertyNamesForIR(obj: Any): List<String> {
-    val prototype = js("Object").getPrototypeOf(obj)
-    val prototypeProps: Array<String> = js("Object").getOwnPropertyNames(prototype)
-    return prototypeProps.filter { it != "constructor" }.filterNot { prototype.propertyIsEnumerable(it) }.toList()
-}
-
-/**
- * Helper extension function to convert a data class to a plain JS object.
- */
-fun toPlainObj(data: Any): dynamic {
-    return if (isLegacyBackend) {
-        data
-    } else {
-        val properties = getAllPropertyNamesForIR(data)
-        val ret = js("{}")
-        properties.forEach {
-            ret[it] = data.asDynamic()[it]
-        }
-        ret
-    }
-}
-
-/**
- * Helper function to convert a plain JS object to a data class.
- */
-fun <T : Any> toKotlinObj(data: dynamic, kClass: KClass<T>): T {
-    val prototype = js("Object").getPrototypeOf(data)
-    return if (isLegacyBackend && prototype != null && prototype.constructor != undefined && prototype.constructor.name == kClass.simpleName) {
-        data.unsafeCast<T>()
-    } else {
-        val newT = kClass.js.createInstance<T>()
-        for (key in js("Object").keys(data)) {
-            newT.asDynamic()[key] = data[key]
-        }
-        newT
-    }
 }
 
 /**

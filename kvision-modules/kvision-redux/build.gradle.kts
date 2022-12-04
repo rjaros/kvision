@@ -27,7 +27,7 @@ dependencies {
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
-    dependsOn("irGenerateExternalsIntegrated")
+    dependsOn("generateExternalsIntegrated")
     archiveClassifier.set("sources")
     from(kotlin.sourceSets.main.get().kotlin)
 }

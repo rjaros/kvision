@@ -21,13 +21,13 @@ fun Project.repositories() {
 }
 
 fun KotlinJsProjectExtension.kotlinJsTargets() {
-    js {
+    js(IR) {
         kotlinJsTargets()
     }
 }
 
 fun KotlinMultiplatformExtension.kotlinJsTargets() {
-    js {
+    js(IR) {
         kotlinJsTargets()
     }
 }
@@ -36,7 +36,6 @@ private fun KotlinJsTargetDsl.kotlinJsTargets() {
     compilations.all {
         kotlinOptions {
             moduleKind = "umd"
-            sourceMap = project.hasProperty("SNAPSHOT")
         }
     }
     browser {

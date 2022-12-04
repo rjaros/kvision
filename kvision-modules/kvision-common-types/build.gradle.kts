@@ -37,11 +37,11 @@ val javadocJar by tasks.registering(Jar::class) {
 }
 
 val sourcesJar by tasks.named("sourcesJar") {
-    dependsOn("jsIrGenerateExternalsIntegrated")
+    dependsOn("jsGenerateExternalsIntegrated")
 }
 
 val jsSourcesJar by tasks.named("jsSourcesJar") {
-    dependsOn("jsIrGenerateExternalsIntegrated")
+    dependsOn("jsGenerateExternalsIntegrated")
 }
 
 publishing {
