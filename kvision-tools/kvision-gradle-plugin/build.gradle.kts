@@ -59,16 +59,7 @@ val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
     from("$buildDir/dokka/html")
-}
-afterEvaluate {
-    publishing {
-        publications {
-            getByName<MavenPublication>("pluginMaven") {
-                artifact(tasks["sourcesJar"])
-                if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
-            }
-        }
-    }
+    enabled = !hasProperty("SNAPSHOT")
 }
 
 setupSigning()

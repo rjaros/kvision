@@ -4,6 +4,7 @@ plugins {
 }
 
 npmPublish {
+    dry.set(System.getenv("NPM_AUTH_TOKEN") == null)
     readme.set(file("README.md"))
     packages {
         register("kvision-assets") {
