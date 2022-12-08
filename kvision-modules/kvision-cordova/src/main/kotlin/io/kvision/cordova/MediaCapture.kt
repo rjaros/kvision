@@ -118,13 +118,13 @@ object MediaCapture {
      * @param duration The maximum duration of an audio clip, in seconds.
      */
     @Suppress("UnsafeCastFromDynamic")
-    suspend fun captureAudio(limit: Number = 1, duration: Number? = null): Result<List<MediaFile>, CaptureException> {
+    suspend fun captureAudio(limit: Number = 1, duration: Number? = null): Result<List<MediaFile>> {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 window.navigator.asDynamic().device.capture.captureAudio({ result: Array<MediaFile> ->
                     continuation.resume(Result.success(result.asList()))
                 }, { err: CaptureError ->
-                    continuation.resume(Result.error(CaptureException(codeToEnum(err.code))))
+                    continuation.resume(Result.failure(CaptureException(codeToEnum(err.code))))
                 }, obj {
                     this.limit = limit
                     if (duration != null) this.duration = duration
@@ -138,13 +138,13 @@ object MediaCapture {
      * @param limit The maximum number of image files the user can capture in a single capture operation.
      */
     @Suppress("UnsafeCastFromDynamic")
-    suspend fun captureImage(limit: Number = 1): Result<List<MediaFile>, CaptureException> {
+    suspend fun captureImage(limit: Number = 1): Result<List<MediaFile>> {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 window.navigator.asDynamic().device.capture.captureImage({ result: Array<MediaFile> ->
                     continuation.resume(Result.success(result.asList()))
                 }, { err: CaptureError ->
-                    continuation.resume(Result.error(CaptureException(codeToEnum(err.code))))
+                    continuation.resume(Result.failure(CaptureException(codeToEnum(err.code))))
                 }, obj {
                     this.limit = limit
                 })
@@ -163,13 +163,13 @@ object MediaCapture {
         limit: Number = 1,
         duration: Number? = null,
         lowQuality: Boolean = false
-    ): Result<List<MediaFile>, CaptureException> {
+    ): Result<List<MediaFile>> {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 window.navigator.asDynamic().device.capture.captureVideo({ result: Array<MediaFile> ->
                     continuation.resume(Result.success(result.asList()))
                 }, { err: CaptureError ->
-                    continuation.resume(Result.error(CaptureException(codeToEnum(err.code))))
+                    continuation.resume(Result.failure(CaptureException(codeToEnum(err.code))))
                 }, obj {
                     this.limit = limit
                     if (duration != null) this.duration = duration
@@ -182,7 +182,7 @@ object MediaCapture {
     /**
      * Add listeners for pending capture Cordova events.
      */
-    fun addPendingCaptureListener(listener: (Result<List<MediaFile>, CaptureException>) -> Unit) {
+    fun addPendingCaptureListener(listener: (Result<List<MediaFile>>) -> Unit) {
         addDeviceReadyListener {
             document.addEventListener("pendingcaptureresult", { result ->
                 @Suppress("CAST_NEVER_SUCCEEDS")
@@ -190,7 +190,7 @@ object MediaCapture {
             }, false)
             document.addEventListener("pendingcaptureerror", { error ->
                 @Suppress("CAST_NEVER_SUCCEEDS")
-                listener(Result.error(CaptureException(codeToEnum((error as? CaptureError)?.code ?: 0))))
+                listener(Result.failure(CaptureException(codeToEnum((error as? CaptureError)?.code ?: 0))))
             }, false)
         }
     }

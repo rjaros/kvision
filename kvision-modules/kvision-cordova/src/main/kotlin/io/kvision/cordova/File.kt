@@ -26,14 +26,15 @@
 
 package io.kvision.cordova
 
+import io.kvision.utils.flatMap
+import io.kvision.utils.obj
+import kotlinx.browser.window
 import org.khronos.webgl.ArrayBuffer
 import org.khronos.webgl.Uint8Array
 import org.khronos.webgl.set
 import org.w3c.files.Blob
 import org.w3c.files.BlobPropertyBag
 import org.w3c.files.FileReader
-import io.kvision.utils.obj
-import kotlinx.browser.window
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -102,13 +103,13 @@ object File {
      * @param url directory path
      */
     @Suppress("UnsafeCastFromDynamic")
-    suspend fun resolveLocalFileSystemURL(url: String): Result<Entry, FileException> {
+    suspend fun resolveLocalFileSystemURL(url: String): Result<Entry> {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 window.asDynamic().resolveLocalFileSystemURL(url, { entry ->
                     continuation.resume(Result.success(entry))
                 }, { error ->
-                    continuation.resume(Result.error(FileException(error.code)))
+                    continuation.resume(Result.failure(FileException(error.code)))
                 })
             }
         }
@@ -118,19 +119,22 @@ object File {
      * Resolve given path to a directory entry.
      * @param url directory path
      */
-    suspend fun resolveLocalFileSystemURLForDir(url: String): Result<DirectoryEntry, FileException> {
-        return when (val result = resolveLocalFileSystemURL(url)) {
-            is Result.Success -> {
-                if (result.value.isDirectory) {
-                    result.map {
-                        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-                        it as DirectoryEntry
-                    }
-                } else {
-                    Result.error(FileException(TYPE_MISMATCH_ERR))
+    suspend fun resolveLocalFileSystemURLForDir(url: String): Result<DirectoryEntry> {
+        val result = resolveLocalFileSystemURL(url)
+        return if (result.isSuccess) {
+            if (result.getOrThrow().isDirectory) {
+                result.map {
+                    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+                    it as DirectoryEntry
                 }
+            } else {
+                Result.failure(FileException(TYPE_MISMATCH_ERR))
             }
-            is Result.Failure -> result
+        } else {
+            result.map {
+                @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+                it as DirectoryEntry
+            }
         }
     }
 
@@ -138,19 +142,22 @@ object File {
      * Resolve given path to a file entry.
      * @param url file path
      */
-    suspend fun resolveLocalFileSystemURLForFile(url: String): Result<FileEntry, FileException> {
-        return when (val result = resolveLocalFileSystemURL(url)) {
-            is Result.Success -> {
-                if (result.value.isFile) {
-                    result.map {
-                        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-                        it as FileEntry
-                    }
-                } else {
-                    Result.error(FileException(TYPE_MISMATCH_ERR))
+    suspend fun resolveLocalFileSystemURLForFile(url: String): Result<FileEntry> {
+        val result = resolveLocalFileSystemURL(url)
+        return if (result.isSuccess) {
+            if (result.getOrThrow().isFile) {
+                result.map {
+                    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+                    it as FileEntry
                 }
+            } else {
+                Result.failure(FileException(TYPE_MISMATCH_ERR))
             }
-            is Result.Failure -> result
+        } else {
+            result.map {
+                @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+                it as FileEntry
+            }
         }
     }
 
@@ -163,7 +170,7 @@ object File {
     suspend fun requestFileSystem(
         fileSystemType: FileSystemType,
         size: Long = 0
-    ): Result<FileSystem, FileException> {
+    ): Result<FileSystem> {
         return suspendCoroutine { continuation ->
             val type = when (fileSystemType) {
                 FileSystemType.TEMPORARY -> LocalFileSystem.TEMPORARY
@@ -173,7 +180,7 @@ object File {
                 window.asDynamic().requestFileSystem(type, size, { fs ->
                     continuation.resume(Result.success(fs))
                 }, { error ->
-                    continuation.resume(Result.error(FileException(error.code)))
+                    continuation.resume(Result.failure(FileException(error.code)))
                 })
             }
         }
@@ -195,14 +202,14 @@ object File {
 /**
  * Extension function to convert String to a directory entry.
  */
-suspend fun String.toDirectoryEntry(): Result<DirectoryEntry, FileException> {
+suspend fun String.toDirectoryEntry(): Result<DirectoryEntry> {
     return File.resolveLocalFileSystemURLForDir(this)
 }
 
 /**
  * Extension function to convert String to a file entry.
  */
-suspend fun String.toFileEntry(): Result<FileEntry, FileException> {
+suspend fun String.toFileEntry(): Result<FileEntry> {
     return File.resolveLocalFileSystemURLForFile(this)
 }
 
@@ -210,12 +217,12 @@ suspend fun String.toFileEntry(): Result<FileEntry, FileException> {
  * Get file or directory metadata.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun Entry.getMetadata(): Result<Metadata, FileException> {
+suspend fun Entry.getMetadata(): Result<Metadata> {
     return suspendCoroutine { continuation ->
         this.getMetadata({ metadata: Metadata ->
             continuation.resume(Result.success(metadata))
         } as MetadataCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -224,12 +231,12 @@ suspend fun Entry.getMetadata(): Result<Metadata, FileException> {
  * Get file or directory parent directory entry.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun Entry.getParent(): Result<DirectoryEntry, FileException> {
+suspend fun Entry.getParent(): Result<DirectoryEntry> {
     return suspendCoroutine { continuation ->
         this.getParent({ directoryEntry: DirectoryEntry ->
             continuation.resume(Result.success(directoryEntry))
         } as DirectoryEntryCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -238,12 +245,12 @@ suspend fun Entry.getParent(): Result<DirectoryEntry, FileException> {
  * Remove given file or directory.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun Entry.remove(): Result<Entry, FileException> {
+suspend fun Entry.remove(): Result<Entry> {
     return suspendCoroutine { continuation ->
         this.remove({
             continuation.resume(Result.success(this))
         } as VoidCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -254,12 +261,12 @@ suspend fun Entry.remove(): Result<Entry, FileException> {
  * @param newName new location name
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun Entry.moveTo(parent: DirectoryEntry, newName: String? = null): Result<Entry, FileException> {
+suspend fun Entry.moveTo(parent: DirectoryEntry, newName: String? = null): Result<Entry> {
     return suspendCoroutine { continuation ->
         this.moveTo(parent, newName, { entry: Entry ->
             continuation.resume(Result.success(entry))
         } as EntryCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -270,12 +277,12 @@ suspend fun Entry.moveTo(parent: DirectoryEntry, newName: String? = null): Resul
  * @param newName new location name
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun Entry.copyTo(parent: DirectoryEntry, newName: String? = null): Result<Entry, FileException> {
+suspend fun Entry.copyTo(parent: DirectoryEntry, newName: String? = null): Result<Entry> {
     return suspendCoroutine { continuation ->
         this.copyTo(parent, newName, { entry: Entry ->
             continuation.resume(Result.success(entry))
         } as EntryCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -284,12 +291,12 @@ suspend fun Entry.copyTo(parent: DirectoryEntry, newName: String? = null): Resul
  * Create a FileWriter object for a given file entry.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun FileEntry.createWriter(): Result<FileWriter, FileException> {
+suspend fun FileEntry.createWriter(): Result<FileWriter> {
     return suspendCoroutine { continuation ->
         this.createWriter({ fileWriter: FileWriter ->
             continuation.resume(Result.success(fileWriter))
         } as FileWriterCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -298,12 +305,12 @@ suspend fun FileEntry.createWriter(): Result<FileWriter, FileException> {
  * Get a File object for a given file entry.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun FileEntry.file(): Result<org.w3c.files.File, FileException> {
+suspend fun FileEntry.file(): Result<org.w3c.files.File> {
     return suspendCoroutine { continuation ->
         this.file({ file: org.w3c.files.File ->
             continuation.resume(Result.success(file))
         } as FileCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -319,7 +326,7 @@ suspend fun DirectoryEntry.getFile(
     path: String,
     create: Boolean = true,
     exclusive: Boolean = false
-): Result<FileEntry, FileException> {
+): Result<FileEntry> {
     return suspendCoroutine { continuation ->
         this.getFile(path, obj {
             this.create = create
@@ -327,7 +334,7 @@ suspend fun DirectoryEntry.getFile(
         }, { fileEntry: FileEntry ->
             continuation.resume(Result.success(fileEntry))
         } as FileEntryCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -343,7 +350,7 @@ suspend fun DirectoryEntry.getDirectory(
     path: String,
     create: Boolean = true,
     exclusive: Boolean = false
-): Result<DirectoryEntry, FileException> {
+): Result<DirectoryEntry> {
     return suspendCoroutine { continuation ->
         this.getDirectory(path, obj {
             this.create = create
@@ -351,7 +358,7 @@ suspend fun DirectoryEntry.getDirectory(
         }, { directoryEntry: DirectoryEntry ->
             continuation.resume(Result.success(directoryEntry))
         } as DirectoryEntryCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -360,12 +367,12 @@ suspend fun DirectoryEntry.getDirectory(
  * Remove given directory recursively.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun DirectoryEntry.removeRecursively(): Result<DirectoryEntry, FileException> {
+suspend fun DirectoryEntry.removeRecursively(): Result<DirectoryEntry> {
     return suspendCoroutine { continuation ->
         this.removeRecursively({
             continuation.resume(Result.success(this))
         } as VoidCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -374,12 +381,12 @@ suspend fun DirectoryEntry.removeRecursively(): Result<DirectoryEntry, FileExcep
  * List directory entries for a given DirectoryReader.
  */
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UnsafeCastFromDynamic")
-suspend fun DirectoryReader.readEntries(): Result<List<Entry>, FileException> {
+suspend fun DirectoryReader.readEntries(): Result<List<Entry>> {
     return suspendCoroutine { continuation ->
         this.readEntries({ entries: Array<Entry> ->
             continuation.resume(Result.success(entries.toList()))
         } as EntriesCallback, { error: dynamic ->
-            continuation.resume(Result.error(FileException(error.code)))
+            continuation.resume(Result.failure(FileException(error.code)))
         } as ErrorCallback)
     }
 }
@@ -387,7 +394,7 @@ suspend fun DirectoryReader.readEntries(): Result<List<Entry>, FileException> {
 /**
  * List directory entries for a given parent directory entry.
  */
-suspend fun DirectoryEntry.readEntries(): Result<List<Entry>, FileException> {
+suspend fun DirectoryEntry.readEntries(): Result<List<Entry>> {
     return this.createReader().readEntries()
 }
 
@@ -395,7 +402,7 @@ suspend fun DirectoryEntry.readEntries(): Result<List<Entry>, FileException> {
  * Read file content as a plain string.
  */
 @Suppress("UnsafeCastFromDynamic")
-suspend fun FileEntry.readAsText(): Result<String, FileException> {
+suspend fun FileEntry.readAsText(): Result<String> {
     return this.file().flatMap { file ->
         suspendCoroutine { continuation ->
             val reader = FileReader()
@@ -403,7 +410,7 @@ suspend fun FileEntry.readAsText(): Result<String, FileException> {
                 continuation.resume(Result.success(e.target.asDynamic().result))
             }
             reader.onerror = { error: dynamic ->
-                continuation.resume(Result.error(FileException(error.code)))
+                continuation.resume(Result.failure(FileException(error.code)))
             }
             reader.readAsText(file)
         }
@@ -414,7 +421,7 @@ suspend fun FileEntry.readAsText(): Result<String, FileException> {
  * Read file content as a data url.
  */
 @Suppress("UnsafeCastFromDynamic")
-suspend fun FileEntry.readAsDataURL(): Result<String, FileException> {
+suspend fun FileEntry.readAsDataURL(): Result<String> {
     return this.file().flatMap { file ->
         suspendCoroutine { continuation ->
             val reader = FileReader()
@@ -422,7 +429,7 @@ suspend fun FileEntry.readAsDataURL(): Result<String, FileException> {
                 continuation.resume(Result.success(e.target.asDynamic().result))
             }
             reader.onerror = { error: dynamic ->
-                continuation.resume(Result.error(FileException(error.code)))
+                continuation.resume(Result.failure(FileException(error.code)))
             }
             reader.readAsDataURL(file)
         }
@@ -433,7 +440,7 @@ suspend fun FileEntry.readAsDataURL(): Result<String, FileException> {
  * Read file content as an array buffer.
  */
 @Suppress("UnsafeCastFromDynamic")
-suspend fun FileEntry.readAsArrayBuffer(): Result<ArrayBuffer, FileException> {
+suspend fun FileEntry.readAsArrayBuffer(): Result<ArrayBuffer> {
     return this.file().flatMap { file ->
         suspendCoroutine { continuation ->
             val reader = FileReader()
@@ -441,10 +448,10 @@ suspend fun FileEntry.readAsArrayBuffer(): Result<ArrayBuffer, FileException> {
                 continuation.resume(Result.success(e.target.asDynamic().result))
             }
             reader.onerror = { error: dynamic ->
-                continuation.resume(Result.error(FileException(error.code)))
+                continuation.resume(Result.failure(FileException(error.code)))
             }
             reader.onabort = { _ ->
-                continuation.resume(Result.error(FileException(File.ABORT_ERR)))
+                continuation.resume(Result.failure(FileException(File.ABORT_ERR)))
             }
             reader.readAsArrayBuffer(file)
         }
@@ -456,17 +463,17 @@ suspend fun FileEntry.readAsArrayBuffer(): Result<ArrayBuffer, FileException> {
  * @param data a data Blob to be written.
  */
 @Suppress("UnsafeCastFromDynamic")
-suspend fun FileEntry.write(data: Blob): Result<FileEntry, FileException> {
+suspend fun FileEntry.write(data: Blob): Result<FileEntry> {
     return this.createWriter().flatMap { writer ->
         suspendCoroutine { continuation ->
             writer.onwriteend = {
                 continuation.resume(Result.success(this))
             }
             writer.onerror = { error: dynamic ->
-                continuation.resume(Result.error(FileException(error.code)))
+                continuation.resume(Result.failure(FileException(error.code)))
             }
             writer.onabort = { _ ->
-                continuation.resume(Result.error(FileException(File.ABORT_ERR)))
+                continuation.resume(Result.failure(FileException(File.ABORT_ERR)))
             }
             writer.write(data)
         }
@@ -477,7 +484,7 @@ suspend fun FileEntry.write(data: Blob): Result<FileEntry, FileException> {
  * Write file content from a plain string.
  * @param data a data string to be written.
  */
-suspend fun FileEntry.write(data: String): Result<FileEntry, FileException> {
+suspend fun FileEntry.write(data: String): Result<FileEntry> {
     return this.write(Blob(arrayOf(data)))
 }
 
@@ -485,7 +492,7 @@ suspend fun FileEntry.write(data: String): Result<FileEntry, FileException> {
  * Write file content from a data url.
  * @param dataUrl a data url to be written.
  */
-suspend fun FileEntry.writeDataUrL(dataUrl: String): Result<FileEntry, FileException> {
+suspend fun FileEntry.writeDataUrL(dataUrl: String): Result<FileEntry> {
     return this.write(File.dataURLtoBlob(dataUrl))
 }
 
@@ -493,7 +500,7 @@ suspend fun FileEntry.writeDataUrL(dataUrl: String): Result<FileEntry, FileExcep
  * Write file content from an array buffer.
  * @param data an array buffer to be written.
  */
-suspend fun FileEntry.write(data: ArrayBuffer): Result<FileEntry, FileException> {
+suspend fun FileEntry.write(data: ArrayBuffer): Result<FileEntry> {
     return this.write(data.toBlob())
 }
 
@@ -502,7 +509,7 @@ suspend fun FileEntry.write(data: ArrayBuffer): Result<FileEntry, FileException>
  * @param data a data Blob to be appended.
  */
 @Suppress("UnsafeCastFromDynamic")
-suspend fun FileEntry.append(data: Blob): Result<FileEntry, FileException> {
+suspend fun FileEntry.append(data: Blob): Result<FileEntry> {
     return this.createWriter().flatMap { writer ->
         try {
             writer.seek(writer.length)
@@ -514,10 +521,10 @@ suspend fun FileEntry.append(data: Blob): Result<FileEntry, FileException> {
                 continuation.resume(Result.success(this))
             }
             writer.onerror = { error: dynamic ->
-                continuation.resume(Result.error(FileException(error.code)))
+                continuation.resume(Result.failure(FileException(error.code)))
             }
             writer.onabort = { _ ->
-                continuation.resume(Result.error(FileException(File.ABORT_ERR)))
+                continuation.resume(Result.failure(FileException(File.ABORT_ERR)))
             }
             writer.write(data)
         }
@@ -528,7 +535,7 @@ suspend fun FileEntry.append(data: Blob): Result<FileEntry, FileException> {
  * Append file content from a plain string.
  * @param data a string to be appended.
  */
-suspend fun FileEntry.append(data: String): Result<FileEntry, FileException> {
+suspend fun FileEntry.append(data: String): Result<FileEntry> {
     return this.append(Blob(arrayOf(data)))
 }
 

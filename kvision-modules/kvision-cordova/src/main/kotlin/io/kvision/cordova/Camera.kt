@@ -115,7 +115,7 @@ object Camera {
      * @param options camera options
      * @return a [Result] class containing the picture or the exception
      */
-    suspend fun getPicture(options: CameraOptions): Result<String, CameraException> {
+    suspend fun getPicture(options: CameraOptions): Result<String> {
         return suspendCoroutine { continuation ->
             getPicture(options) {
                 continuation.resume(it)
@@ -132,7 +132,7 @@ object Camera {
      * @param resultCallback a callback function to get the [Result], containing the picture or the exception
      */
     @Suppress("UnsafeCastFromDynamic")
-    fun getPicture(options: CameraOptions, resultCallback: (Result<String, CameraException>) -> Unit) {
+    fun getPicture(options: CameraOptions, resultCallback: (Result<String>) -> Unit) {
         window.localStorage.setItem(CAMERA_ACTIVE_STORAGE_KEY, "true")
         addDeviceReadyListener {
             window.navigator.asDynamic().camera.getPicture({ image ->
@@ -140,7 +140,7 @@ object Camera {
                 resultCallback(Result.success(image))
             }, { message ->
                 window.localStorage.removeItem(CAMERA_ACTIVE_STORAGE_KEY)
-                resultCallback(Result.error(CameraException(message)))
+                resultCallback(Result.failure(CameraException(message)))
             }, options.toJs())
         }
     }
@@ -151,7 +151,7 @@ object Camera {
      *
      * @param resultCallback a callback function to get the [Result], containing the picture or the exception
      */
-    fun addCameraResultCallback(resultCallback: (Result<String, CameraException>) -> Unit) {
+    fun addCameraResultCallback(resultCallback: (Result<String>) -> Unit) {
         addResumeListener { resumeEvent ->
             val isCameraActive = window.localStorage.getItem(CAMERA_ACTIVE_STORAGE_KEY) == "true"
             if (isCameraActive && resumeEvent.pendingResult != null) {
@@ -160,7 +160,7 @@ object Camera {
                     resultCallback(Result.success(resumeEvent.pendingResult.result))
                 } else {
                     @Suppress("UnsafeCastFromDynamic")
-                    resultCallback(Result.error(CameraException(resumeEvent.pendingResult.result)))
+                    resultCallback(Result.failure(CameraException(resumeEvent.pendingResult.result)))
                 }
             }
         }
@@ -172,12 +172,12 @@ object Camera {
      * @param resultCallback an optional callback function to get the [Result] of the cleanup operation.
      */
     @Suppress("UnsafeCastFromDynamic")
-    fun cleanup(resultCallback: ((Result<String, CameraException>) -> Unit)? = null) {
+    fun cleanup(resultCallback: ((Result<String>) -> Unit)? = null) {
         addDeviceReadyListener {
             window.navigator.asDynamic().camera.cleanup({
                 resultCallback?.invoke(Result.success(CAMERA_STATUS_OK))
             }, { message ->
-                resultCallback?.invoke(Result.error(CameraException(message)))
+                resultCallback?.invoke(Result.failure(CameraException(message)))
             })
         }
     }

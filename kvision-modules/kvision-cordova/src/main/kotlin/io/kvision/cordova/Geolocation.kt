@@ -86,13 +86,13 @@ object Geolocation {
         enableHighAccuracy: Boolean = true,
         timeout: Number? = null,
         maximumAge: Number? = null
-    ): Result<Position, GeolocationException> {
+    ): Result<Position> {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 window.navigator.asDynamic().geolocation.getCurrentPosition({ position: Position ->
                     continuation.resume(Result.success(position))
                 }, { error ->
-                    continuation.resume(Result.error(GeolocationException(codeToEnum(error.code), error.message)))
+                    continuation.resume(Result.failure(GeolocationException(codeToEnum(error.code), error.message)))
                 }, obj {
                     this.enableHighAccuracy = enableHighAccuracy
                     if (timeout != null) this.timeout = timeout
@@ -115,14 +115,14 @@ object Geolocation {
         enableHighAccuracy: Boolean = true,
         timeout: Number? = null,
         maximumAge: Number? = null,
-        resultCallback: (Result<Position, GeolocationException>) -> Unit
+        resultCallback: (Result<Position>) -> Unit
     ): String? {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 val watchId = window.navigator.asDynamic().geolocation.watchPosition({ position: Position ->
                     resultCallback(Result.success(position))
                 }, { error ->
-                    resultCallback(Result.error(GeolocationException(codeToEnum(error.code), error.message)))
+                    resultCallback(Result.failure(GeolocationException(codeToEnum(error.code), error.message)))
                 }, obj {
                     this.enableHighAccuracy = enableHighAccuracy
                     if (timeout != null) this.timeout = timeout
@@ -177,22 +177,22 @@ object Locationservices {
         priority: Priority? = null,
         interval: Number? = null,
         fastInterval: Number? = null
-    ): Result<Position, GeolocationException> {
+    ): Result<Position> {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 window.asDynamic()
                     .cordova.plugins.locationServices.geolocation.getCurrentPosition({ position: Position ->
-                    continuation.resume(Result.success(position))
-                }, { error ->
-                    continuation.resume(Result.error(GeolocationException(codeToEnum(error.code), error.message)))
-                }, obj {
-                    this.enableHighAccuracy = enableHighAccuracy
-                    if (timeout != null) this.timeout = timeout
-                    if (maximumAge != null) this.maximumAge = maximumAge
-                    if (priority != null) this.priority = getJsPriority(priority)
-                    if (interval != null) this.interval = interval
-                    if (fastInterval != null) this.fastInterval = fastInterval
-                })
+                        continuation.resume(Result.success(position))
+                    }, { error ->
+                        continuation.resume(Result.failure(GeolocationException(codeToEnum(error.code), error.message)))
+                    }, obj {
+                        this.enableHighAccuracy = enableHighAccuracy
+                        if (timeout != null) this.timeout = timeout
+                        if (maximumAge != null) this.maximumAge = maximumAge
+                        if (priority != null) this.priority = getJsPriority(priority)
+                        if (interval != null) this.interval = interval
+                        if (fastInterval != null) this.fastInterval = fastInterval
+                    })
             }
         }
     }
@@ -216,24 +216,24 @@ object Locationservices {
         priority: Priority? = null,
         interval: Number? = null,
         fastInterval: Number? = null,
-        resultCallback: (Result<Position, GeolocationException>) -> Unit
+        resultCallback: (Result<Position>) -> Unit
     ): String? {
         return suspendCoroutine { continuation ->
             addDeviceReadyListener {
                 val watchId =
                     window.asDynamic()
                         .cordova.plugins.locationServices.geolocation.watchPosition({ position: Position ->
-                        resultCallback(Result.success(position))
-                    }, { error ->
-                        resultCallback(Result.error(GeolocationException(codeToEnum(error.code), error.message)))
-                    }, obj {
-                        this.enableHighAccuracy = enableHighAccuracy
-                        if (timeout != null) this.timeout = timeout
-                        if (maximumAge != null) this.maximumAge = maximumAge
-                        if (priority != null) this.priority = getJsPriority(priority)
-                        if (interval != null) this.interval = interval
-                        if (fastInterval != null) this.fastInterval = fastInterval
-                    })
+                            resultCallback(Result.success(position))
+                        }, { error ->
+                            resultCallback(Result.failure(GeolocationException(codeToEnum(error.code), error.message)))
+                        }, obj {
+                            this.enableHighAccuracy = enableHighAccuracy
+                            if (timeout != null) this.timeout = timeout
+                            if (maximumAge != null) this.maximumAge = maximumAge
+                            if (priority != null) this.priority = getJsPriority(priority)
+                            if (interval != null) this.interval = interval
+                            if (fastInterval != null) this.fastInterval = fastInterval
+                        })
                 continuation.resume(watchId)
             }
         }
