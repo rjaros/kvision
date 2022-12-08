@@ -358,13 +358,11 @@ class KVProcessor(
                 appendLine()
                 appendLine("fun registerKVisionServiceExceptions() {")
                 appendLine("    if (!registered) {")
-                appendLine("        RemoteSerialization.customConfiguration = Json {")
-                appendLine("            serializersModule = SerializersModule {")
-                appendLine("                polymorphic(AbstractServiceException::class) {")
+                appendLine("        RemoteSerialization.exceptionsSerializersModule =  SerializersModule {")
+                appendLine("            polymorphic(AbstractServiceException::class) {")
                 exceptions.forEach {
-                    appendLine("                    subclass(${it.packageName}.${it.className}::class)")
+                    appendLine("                subclass(${it.packageName}.${it.className}::class)")
                 }
-                appendLine("                }")
                 appendLine("            }")
                 appendLine("        }")
                 appendLine("        registered = true")
