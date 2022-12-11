@@ -20,6 +20,10 @@
  * SOFTWARE.
  */
 package io.kvision.utils
+
+/**
+ * Simple flatmap implementation for the [Result] type
+ */
 inline fun <T, R> Result<T>.flatMap(block: (T) -> (Result<R>)): Result<R> {
     return this.mapCatching {
         block(it).getOrThrow()
