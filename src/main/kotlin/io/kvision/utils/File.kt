@@ -19,11 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision.utils
 
-import io.kvision.form.Form
-import io.kvision.form.FormPanel
-import io.kvision.form.KFilesFormControl
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.w3c.files.File
 import org.w3c.files.FileReader
@@ -31,7 +29,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /**
- * Suspending extension function to get file content.
+ * Extension function to get file content.
  * @return file content
  */
 suspend fun File.getContent(): String = suspendCancellableCoroutine { cont ->
@@ -44,30 +42,4 @@ suspend fun File.getContent(): String = suspendCancellableCoroutine { cont ->
         cont.resumeWithException(Exception(e.type))
     }
     reader.readAsDataURL(this@getContent)
-}
-
-/**
- * Returns current data model with file content read for all KFiles controls.
- * @return data model
- */
-suspend fun <K : Any> Form<K>.getDataWithFileContent(): K {
-    val map = this.fields.entries.associateBy({ it.key }, {
-        val value = it.value
-        if (value is KFilesFormControl) {
-            value.getValue()?.map {
-                it.copy(content = value.getNativeFile(it)?.getContent())
-            }
-        } else {
-            value.getValue()
-        }
-    })
-    return this.modelFactory?.invoke(map.withDefault { null }) ?: throw IllegalStateException("Serializer not defined")
-}
-
-/**
- * Returns current data model with file content read for all KFiles controls.
- * @return data model
- */
-suspend fun <K : Any> FormPanel<K>.getDataWithFileContent(): K {
-    return this.form.getDataWithFileContent()
 }

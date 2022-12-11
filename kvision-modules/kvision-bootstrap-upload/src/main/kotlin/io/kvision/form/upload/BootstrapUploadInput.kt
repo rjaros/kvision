@@ -438,37 +438,6 @@ fun Container.bootstrapUploadInput(
 
 /**
  * Returns file with the content read.
- * @param key key identifier of the control
- * @param kFile object identifying the file
- * @return KFile object
- */
-suspend fun <K : Any> Form<K>.getContent(
-    key: KProperty1<K, List<KFile>?>,
-    kFile: KFile
-): KFile {
-    val control = getControl(key) as BootstrapUpload
-    val content = control.getNativeFile(kFile)?.getContent()
-    return kFile.copy(content = content)
-}
-
-
-/**
- * Returns file with the content read.
- * @param key key identifier of the control
- * @param kFile object identifying the file
- * @return KFile object
- */
-suspend fun <K : Any> FormPanel<K>.getContent(
-    key: KProperty1<K, List<KFile>?>,
-    kFile: KFile
-): KFile {
-    val control = getControl(key) as BootstrapUpload
-    val content = control.getNativeFile(kFile)?.getContent()
-    return kFile.copy(content = content)
-}
-
-/**
- * Returns file with the content read.
  * @param kFile object identifying the file
  * @return KFile object
  */

@@ -838,3 +838,11 @@ fun Container.form(
     this.add(formPanel)
     return formPanel
 }
+
+/**
+ * Returns current data model with file content read for all KFiles controls.
+ * @return data model
+ */
+suspend fun <K : Any> FormPanel<K>.getDataWithFileContent(): K {
+    return this.form.getDataWithFileContent()
+}

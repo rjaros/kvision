@@ -28,6 +28,7 @@ import io.kvision.types.toDateF
 import io.kvision.types.toStringF
 import io.kvision.utils.Serialization
 import io.kvision.utils.Serialization.toObj
+import io.kvision.utils.getContent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
@@ -485,4 +486,21 @@ fun Json.asMap(): Map<String, Any?> {
     @Suppress("UnsafeCastFromDynamic")
     for (key in js("Object").keys(this)) map[key] = this[key]
     return map
+}
+
+/**
+ * Returns current data model with file content read for all KFiles controls.
+ */
+suspend fun <K : Any> Form<K>.getDataWithFileContent(): K {
+    val map = this.fields.entries.associateBy({ it.key }, {
+        val value = it.value
+        if (value is KFilesFormControl) {
+            value.getValue()?.map {
+                it.copy(content = value.getNativeFile(it)?.getContent())
+            }
+        } else {
+            value.getValue()
+        }
+    })
+    return this.modelFactory?.invoke(map.withDefault { null }) ?: throw IllegalStateException("Serializer not defined")
 }
