@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     `kotlin-dsl`
     kotlin("jvm")
@@ -10,8 +12,11 @@ plugins {
     id("com.gradle.plugin-publish") version gradlePluginPublishVersion
 }
 
+val javaVersion: String by project
 val kotlinVersion: String by System.getProperties()
 val autoServiceVersion: String by project
+val kotestVersion: String by project
+val kspVersion: String by project
 
 gradlePlugin {
     plugins {
@@ -35,8 +40,10 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-val kotestVersion: String by project
-val kspVersion: String by project
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions.jvmTarget = javaVersion
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions.jvmTarget = javaVersion
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))

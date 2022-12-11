@@ -39,13 +39,11 @@ val webDir = file("src/main/web")
 rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
-        resolution("got", "12.5.3")
-        resolution("loader-utils", "1.4.2")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
         versions.webpackDevServer.version = "4.11.1"
         versions.webpack.version = "5.75.0"
-        versions.webpackCli.version = "5.0.0"
+        versions.webpackCli.version = "5.0.1"
         versions.karma.version = "6.4.1"
         versions.mocha.version = "10.1.0"
     }

@@ -81,7 +81,7 @@ abstract class KVisionExtension @Inject constructor(
 
         @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
-        val webpackCli: Property<String> = objects.property<String>().convention("5.0.0")
+        val webpackCli: Property<String> = objects.property<String>().convention("5.0.1")
 
         @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
