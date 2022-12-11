@@ -21,7 +21,6 @@
  */
 package io.kvision.core
 
-import io.kvision.html.Button
 import io.kvision.utils.event
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,23 +48,7 @@ inline fun <reified T : Widget> T.onClickLaunch(
 }
 
 /**
- * An extension function for defining on click suspending event handlers for Buttons.
- */
-inline fun <reified T : Button> T.onClickLaunch(
-    coroutineScope: CoroutineScope = KVScope,
-    noinline handler: suspend T.(MouseEvent) -> Unit
-): Int {
-    return this.setEventListener<T> {
-        click = { e ->
-            coroutineScope.launch {
-                self.handler(e)
-            }
-        }
-    }
-}
-
-/**
- * An extension function for defining on change suspending event handlers.
+ * An extension function for defining on input suspending event handlers.
  */
 inline fun <reified T : Widget> T.onInputLaunch(
     coroutineScope: CoroutineScope = KVScope,
