@@ -22,16 +22,15 @@
 
 package io.kvision.onsenui.dialog
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.Display
 import io.kvision.core.DomAttribute
-import io.kvision.core.Widget
 import io.kvision.onsenui.BackButtonEvent
 import io.kvision.panel.Root
 import io.kvision.panel.Root.Companion.addModal
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import kotlin.js.Promise
 
 enum class ToastAnimation(override val attributeValue: String) : DomAttribute {
