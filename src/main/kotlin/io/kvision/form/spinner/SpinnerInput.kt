@@ -46,9 +46,9 @@ internal const val SIMPLE_DEFAULT_STEP = 1
  * @param className CSS class names
  * @param init an initializer extension function
  */
-open class SimpleSpinnerInput(
+open class SpinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = SIMPLE_DEFAULT_STEP,
-    className: String? = null, init: (SimpleSpinnerInput.() -> Unit)? = null
+    className: String? = null, init: (SpinnerInput.() -> Unit)? = null
 ) : Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<Number?>, FormInput,
     MutableState<Number?> {
 
@@ -121,7 +121,7 @@ open class SimpleSpinnerInput(
 
     init {
         useSnabbdomDistinctKey()
-        this.setInternalEventListener<SimpleSpinnerInput> {
+        this.setInternalEventListener<SpinnerInput> {
             input = {
                 self.changeValue()
             }
@@ -247,12 +247,12 @@ open class SimpleSpinnerInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.simpleSpinnerInput(
+fun Container.spinnerInput(
     value: Number? = null, min: Number? = null, max: Number? = null, step: Number = SIMPLE_DEFAULT_STEP,
     className: String? = null,
-    init: (SimpleSpinnerInput.() -> Unit)? = null
-): SimpleSpinnerInput {
-    val simpleSpinnerInput = SimpleSpinnerInput(value, min, max, step, className, init)
-    this.add(simpleSpinnerInput)
-    return simpleSpinnerInput
+    init: (SpinnerInput.() -> Unit)? = null
+): SpinnerInput {
+    val spinnerInput = SpinnerInput(value, min, max, step, className, init)
+    this.add(spinnerInput)
+    return spinnerInput
 }

@@ -34,7 +34,7 @@ import io.kvision.utils.SnOn
 import org.w3c.files.File
 
 /**
- * The form field file upload component.
+ * The form field file upload component for Bootstrap.
  *
  * @constructor
  * @param uploadUrl the optional URL for the upload processing action
@@ -44,9 +44,9 @@ import org.w3c.files.File
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-open class Upload(
+open class BootstrapUpload(
     uploadUrl: String? = null, multiple: Boolean = false, label: String? = null,
-    rich: Boolean = false, init: (Upload.() -> Unit)? = null
+    rich: Boolean = false, init: (BootstrapUpload.() -> Unit)? = null
 ) : SimplePanel("form-group kv-mb-3"), KFilesFormControl, MutableState<List<KFile>?> {
 
     protected val observers = mutableListOf<(String?) -> Unit>()
@@ -233,9 +233,9 @@ open class Upload(
         }
 
     protected val idc = "kv_form_upload_$counter"
-    final override val input: UploadInput = UploadInput(uploadUrl, multiple)
+    final override val input: BootstrapUploadInput = BootstrapUploadInput(uploadUrl, multiple)
         .apply {
-            this.id = this@Upload.idc
+            this.id = this@BootstrapUpload.idc
             this.name = name
         }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
@@ -355,16 +355,16 @@ open class Upload(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.upload(
+fun Container.bootstrapUpload(
     uploadUrl: String? = null,
     multiple: Boolean = false,
     label: String? = null,
     rich: Boolean = false,
-    init: (Upload.() -> Unit)? = null
-): Upload {
-    val upload = Upload(uploadUrl, multiple, label, rich, init)
-    this.add(upload)
-    return upload
+    init: (BootstrapUpload.() -> Unit)? = null
+): BootstrapUpload {
+    val bootstrapUpload = BootstrapUpload(uploadUrl, multiple, label, rich, init)
+    this.add(bootstrapUpload)
+    return bootstrapUpload
 }
 
 /**
@@ -372,6 +372,6 @@ fun Container.upload(
  * @param kFile object identifying the file
  * @return KFile object
  */
-suspend fun Upload.getFileWithContent(kFile: KFile): KFile {
+suspend fun BootstrapUpload.getFileWithContent(kFile: KFile): KFile {
     return this.input.getFileWithContent(kFile)
 }

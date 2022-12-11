@@ -24,48 +24,49 @@ package io.kvision.form.select
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
-import io.kvision.core.StringPair
 import io.kvision.core.Widget
 import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
+import io.kvision.remote.KVServiceMgr
+import io.kvision.remote.SimpleRemoteOption
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
+import org.w3c.fetch.RequestInit
 
 /**
- * The form field component for SimpleSelect control.
+ * The form field component for SelectRemote control.
  *
  * @constructor
- * @param options an optional list of options (value to label pairs) for the select control
  * @param value selected value
+ * @param serviceManager fullstack service manager
+ * @param function fullstack service method returning the list of options
+ * @param stateFunction a function to generate the state object passed with the remote request
+ * @param name the name attribute of the generated HTML input element
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
  * @param selectSize the number of visible options
- * @param name the name attribute of the generated HTML input element
+ * @param requestFilter a request filtering function
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
- * @param floating use floating label
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-open class SimpleSelect(
-    options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
+open class SelectRemote<out T : Any>(
+    serviceManager: KVServiceMgr<T>,
+    function: suspend T.(String?) -> List<SimpleRemoteOption>,
+    stateFunction: (() -> String)? = null,
+    value: String? = null,
+    name: String? = null,
+    emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    name: String? = null, label: String? = null, rich: Boolean = false,
-    val floating: Boolean = false, init: (SimpleSelect.() -> Unit)? = null
-) : SimplePanel(if (floating) "form-floating kv-mb-3" else "form-group kv-mb-3"), StringFormControl, MutableState<String?> {
-
-    /**
-     * A list of options (value to label pairs) for the select control.
-     */
-    var options
-        get() = input.options
-        set(value) {
-            input.options = value
-        }
-
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (SelectRemote<T>.() -> Unit)? = null
+) : SimplePanel("form-group kv-mb-3"), StringFormControl, MutableState<String?> {
     /**
      * A value of the selected option.
      */
@@ -73,18 +74,6 @@ open class SimpleSelect(
         get() = input.value
         set(value) {
             input.value = value
-        }
-
-    /**
-     * The value of the selected child option.
-     *
-     * This value is placed directly in the generated HTML code, while the [value] property is dynamically
-     * bound to the select component.
-     */
-    var startValue
-        get() = input.startValue
-        set(value) {
-            input.startValue = value
         }
 
     /**
@@ -150,20 +139,12 @@ open class SimpleSelect(
             flabel.rich = value
         }
 
-    /**
-     * The index of currently selected option or -1 if none.
-     */
-    var selectedIndex
-        get() = input.selectedIndex
-        set(value) {
-            input.selectedIndex = value
-        }
-
-    private val idc = "kv_form_simpleselect_$counter"
-    final override val input: SimpleSelectInput = SimpleSelectInput(
-        options, value, emptyOption, multiple, selectSize
+    private val idc = "kv_form_SelectRemote_$counter"
+    final override val input: SelectRemoteInput<T> = SelectRemoteInput(
+        serviceManager, function, stateFunction, value, emptyOption, multiple, selectSize, requestFilter,
+        "form-control"
     ).apply {
-        this.id = this@SimpleSelect.idc
+        this.id = this@SelectRemote.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
@@ -172,13 +153,8 @@ open class SimpleSelect(
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        if (!floating) {
-            this.addPrivate(flabel)
-            this.addPrivate(input)
-        } else {
-            this.addPrivate(input)
-            this.addPrivate(flabel)
-        }
+        this.addPrivate(flabel)
+        this.addPrivate(input)
         this.addPrivate(invalidFeedback)
         counter++
         @Suppress("LeakingThis")
@@ -192,7 +168,6 @@ open class SimpleSelect(
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         return input.setEventListener(block)
     }
@@ -265,20 +240,32 @@ open class SimpleSelect(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.simpleSelect(
-    options: List<StringPair>? = null,
+fun <T : Any> Container.selectRemote(
+    serviceManager: KVServiceMgr<T>,
+    function: suspend T.(String?) -> List<SimpleRemoteOption>, stateFunction: (() -> String)? = null,
     value: String? = null,
+    name: String? = null,
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    name: String? = null,
-    label: String? = null,
-    rich: Boolean = false,
-    floating: Boolean = false,
-    init: (SimpleSelect.() -> Unit)? = null
-): SimpleSelect {
-    val simpleSelect =
-        SimpleSelect(options, value, emptyOption, multiple, selectSize, name, label, rich, floating, init)
-    this.add(simpleSelect)
-    return simpleSelect
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    label: String? = null, rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
+): SelectRemote<T> {
+    val selectRemote =
+        SelectRemote(
+            serviceManager,
+            function,
+            stateFunction,
+            value,
+            name,
+            emptyOption,
+            multiple,
+            selectSize,
+            requestFilter,
+            label,
+            rich,
+            init
+        )
+    this.add(selectRemote)
+    return selectRemote
 }

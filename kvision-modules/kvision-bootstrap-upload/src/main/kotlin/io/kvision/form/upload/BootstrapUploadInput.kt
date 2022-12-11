@@ -48,7 +48,7 @@ import kotlin.collections.set
 import kotlin.reflect.KProperty1
 
 /**
- * The file upload component.
+ * The file upload component for Bootstrap
  *
  * @constructor
  * @param uploadUrl the optional URL for the upload processing action
@@ -57,11 +57,11 @@ import kotlin.reflect.KProperty1
  * @param init an initializer extension function
  */
 @Suppress("TooManyFunctions")
-open class UploadInput(
+open class BootstrapUploadInput(
     uploadUrl: String? = null,
     multiple: Boolean = false,
     className: String? = null,
-    init: (UploadInput.() -> Unit)? = null
+    init: (BootstrapUploadInput.() -> Unit)? = null
 ) :
     Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<List<KFile>?>, FormInput,
     MutableState<List<KFile>?> {
@@ -88,117 +88,117 @@ open class UploadInput(
      * The optional URL for the upload processing action.
      * If not set the upload button action will default to form submission.
      */
-    var uploadUrl: String? by refreshOnUpdate(uploadUrl) { refreshUploadInput() }
+    var uploadUrl: String? by refreshOnUpdate(uploadUrl) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if multiple file upload is supported.
      */
-    var multiple: Boolean by refreshOnUpdate(multiple) { refresh(); refreshUploadInput() }
+    var multiple: Boolean by refreshOnUpdate(multiple) { refresh(); refreshBootstrapUploadInput() }
 
     /**
      * The extra data that will be passed as data to the AJAX server call via POST.
      */
-    var uploadExtraData: ((String, Int) -> dynamic)? by refreshOnUpdate { refreshUploadInput() }
+    var uploadExtraData: ((String, Int) -> dynamic)? by refreshOnUpdate { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the explorer theme is used.
      */
-    var explorerTheme: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+    var explorerTheme: Boolean by refreshOnUpdate(false) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the input selection is required.
      */
-    var required: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+    var required: Boolean by refreshOnUpdate(false) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the caption is shown.
      */
-    var showCaption: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var showCaption: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the preview is shown.
      */
-    var showPreview: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var showPreview: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the remove button is shown.
      */
-    var showRemove: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var showRemove: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the upload button is shown.
      */
-    var showUpload: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var showUpload: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the cancel button is shown.
      */
-    var showCancel: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var showCancel: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the file browse button is shown.
      */
-    var showBrowse: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var showBrowse: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the click on the preview zone opens file browse window.
      */
-    var browseOnZoneClick: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var browseOnZoneClick: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Determines if the iconic preview is prefered.
      */
-    var preferIconicPreview: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+    var preferIconicPreview: Boolean by refreshOnUpdate(false) { refreshBootstrapUploadInput() }
 
     /**
      * Allowed file types.
      */
-    var allowedFileTypes: Set<String>? by refreshOnUpdate { refreshUploadInput() }
+    var allowedFileTypes: Set<String>? by refreshOnUpdate { refreshBootstrapUploadInput() }
 
     /**
      * Allowed file extensions.
      */
-    var allowedFileExtensions: Set<String>? by refreshOnUpdate { refreshUploadInput() }
+    var allowedFileExtensions: Set<String>? by refreshOnUpdate { refreshBootstrapUploadInput() }
 
     /**
      * Determines if Drag&Drop zone is enabled.
      */
-    var dropZoneEnabled: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var dropZoneEnabled: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Whether to hide the preview content (image, pdf content, text content, etc.) within the thumbnail.
      */
-    var hideThumbnailContent: Boolean by refreshOnUpdate(false) { refreshUploadInput() }
+    var hideThumbnailContent: Boolean by refreshOnUpdate(false) { refreshBootstrapUploadInput() }
 
     /**
      * Whether to to display the file upload statistics.
      */
-    var showUploadStats: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var showUploadStats: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * Whether the batch upload of multiple files will be asynchronous/in parallel.
      */
-    var uploadAsync: Boolean by refreshOnUpdate(true) { refreshUploadInput() }
+    var uploadAsync: Boolean by refreshOnUpdate(true) { refreshBootstrapUploadInput() }
 
     /**
      * The maximum file size for upload in KB.
      */
-    var maxFileSize: Double? by refreshOnUpdate { refreshUploadInput() }
+    var maxFileSize: Double? by refreshOnUpdate { refreshBootstrapUploadInput() }
 
     /**
      * The minimum file size for upload in KB.
      */
-    var minFileSize: Double? by refreshOnUpdate { refreshUploadInput() }
+    var minFileSize: Double? by refreshOnUpdate { refreshBootstrapUploadInput() }
 
     /**
      * Additional ajax settings to pass to the plugin before submitting the ajax request for upload.
      */
-    var ajaxSettings: dynamic by refreshOnUpdate { refreshUploadInput() }
+    var ajaxSettings: dynamic by refreshOnUpdate { refreshBootstrapUploadInput() }
 
     /**
      * The placeholder for the upload control.
      */
-    var placeholder: String? by refreshOnUpdate { refreshUploadInput() }
+    var placeholder: String? by refreshOnUpdate { refreshBootstrapUploadInput() }
 
     /**
      * The name attribute of the generated HTML input element.
@@ -208,7 +208,7 @@ open class UploadInput(
     /**
      * Determines if the field is disabled.
      */
-    override var disabled by refreshOnUpdate(false) { refresh(); refreshUploadInput() }
+    override var disabled by refreshOnUpdate(false) { refresh(); refreshBootstrapUploadInput() }
 
     /**
      * The size of the input (currently not working)
@@ -284,7 +284,7 @@ open class UploadInput(
         getElementJQueryD()?.fileinput("destroy")
     }
 
-    private fun refreshUploadInput() {
+    private fun refreshBootstrapUploadInput() {
         getElementJQueryD()?.fileinput("refresh", getSettingsObj())
     }
 
@@ -425,15 +425,15 @@ open class UploadInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.uploadInput(
+fun Container.bootstrapUploadInput(
     uploadUrl: String? = null,
     multiple: Boolean = false,
     className: String? = null,
-    init: (UploadInput.() -> Unit)? = null
-): UploadInput {
-    val uploadInput = UploadInput(uploadUrl, multiple, className, init)
-    this.add(uploadInput)
-    return uploadInput
+    init: (BootstrapUploadInput.() -> Unit)? = null
+): BootstrapUploadInput {
+    val bootstrapUploadInput = BootstrapUploadInput(uploadUrl, multiple, className, init)
+    this.add(bootstrapUploadInput)
+    return bootstrapUploadInput
 }
 
 /**
@@ -446,7 +446,7 @@ suspend fun <K : Any> Form<K>.getContent(
     key: KProperty1<K, List<KFile>?>,
     kFile: KFile
 ): KFile {
-    val control = getControl(key) as Upload
+    val control = getControl(key) as BootstrapUpload
     val content = control.getNativeFile(kFile)?.getContent()
     return kFile.copy(content = content)
 }
@@ -462,7 +462,7 @@ suspend fun <K : Any> FormPanel<K>.getContent(
     key: KProperty1<K, List<KFile>?>,
     kFile: KFile
 ): KFile {
-    val control = getControl(key) as Upload
+    val control = getControl(key) as BootstrapUpload
     val content = control.getNativeFile(kFile)?.getContent()
     return kFile.copy(content = content)
 }
@@ -472,7 +472,7 @@ suspend fun <K : Any> FormPanel<K>.getContent(
  * @param kFile object identifying the file
  * @return KFile object
  */
-suspend fun UploadInput.getFileWithContent(kFile: KFile): KFile {
+suspend fun BootstrapUploadInput.getFileWithContent(kFile: KFile): KFile {
     val content = this.getNativeFile(kFile)?.getContent()
     return kFile.copy(content = content)
 }

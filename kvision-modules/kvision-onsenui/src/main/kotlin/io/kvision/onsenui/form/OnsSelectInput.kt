@@ -26,7 +26,7 @@ import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.StringPair
-import io.kvision.form.select.SimpleSelectInput
+import io.kvision.form.select.SelectInput
 import kotlinx.browser.window
 import org.w3c.dom.HTMLCollection
 import org.w3c.dom.NodeList
@@ -55,7 +55,7 @@ open class OnsSelectInput(
     selectId: String? = null,
     className: String? = null,
     init: (OnsSelectInput.() -> Unit)? = null
-) : SimpleSelectInput(
+) : SelectInput(
     options,
     value,
     emptyOption,

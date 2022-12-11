@@ -21,19 +21,19 @@
  */
 package test.io.kvision.form.spinner
 
-import io.kvision.form.spinner.SimpleSpinner
+import io.kvision.form.spinner.Spinner
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 
-class SimpleSpinnerSpec : DomSpec {
+class SpinnerSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val spinner = SimpleSpinner(12, "name", 10, 20, 2, "Label").apply {
+            val spinner = Spinner(12, "name", 10, 20, 2, "Label").apply {
                 id = "idri"
                 disabled = true
             }

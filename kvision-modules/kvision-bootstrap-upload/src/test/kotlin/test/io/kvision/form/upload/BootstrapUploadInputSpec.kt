@@ -19,31 +19,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.io.kvision.form.spinner
+package test.io.kvision.form.upload
 
-import io.kvision.form.spinner.SimpleSpinnerInput
+import io.kvision.form.upload.BootstrapUploadInput
+import io.kvision.jquery.get
+import io.kvision.jquery.invoke
+import io.kvision.jquery.jQuery
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 
-class SimpleSpinnerInputSpec : DomSpec {
+class BootstrapUploadInputSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val ri = SimpleSpinnerInput(12, 10, 20, 2).apply {
-                name = "name"
-                id = "idri"
-                disabled = true
+            val upi = BootstrapUploadInput(multiple = true).apply {
+                id = "idti"
             }
-            root.add(ri)
-            val element = document.getElementById("test")
+            root.add(upi)
+            val content = document.getElementById("test")?.let { jQuery(it).find("input.form-control")[1]?.outerHTML }
             assertEqualsHtml(
-                "<input class=\"form-control\" id=\"idri\" type=\"number\" value=\"12\" name=\"name\" min=\"10\" max=\"20\" step=\"2\" disabled=\"disabled\">",
-                element?.innerHTML,
-                "Should render correct simple spinner input control"
+                "<input class=\"form-control\" id=\"idti\" type=\"file\" multiple=\"true\">",
+                content,
+                "Should render correct file input control for multiple files"
+            )
+            upi.multiple = false
+            val content2 = document.getElementById("test")?.let { jQuery(it).find("input.form-control")[1]?.outerHTML }
+            assertEqualsHtml(
+                "<input class=\"form-control\" id=\"idti\" type=\"file\">",
+                content2,
+                "Should render correct file input control for single file"
             )
         }
     }

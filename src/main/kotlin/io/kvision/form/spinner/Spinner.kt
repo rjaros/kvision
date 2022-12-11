@@ -19,56 +19,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.form.select
+package io.kvision.form.spinner
 
 import io.kvision.core.ClassSetBuilder
-import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.form.FieldLabel
+import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
-import io.kvision.form.StringFormControl
+import io.kvision.form.NumberFormControl
 import io.kvision.panel.SimplePanel
-import io.kvision.remote.KVServiceMgr
-import io.kvision.remote.SimpleRemoteOption
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import org.w3c.fetch.RequestInit
 
 /**
- * The form field component for SelectRemote control.
+ * The form field component for the simple spinner control.
  *
  * @constructor
- * @param value selected value
- * @param serviceManager fullstack service manager
- * @param function fullstack service method returning the list of options
- * @param stateFunction a function to generate the state object passed with the remote request
+ * @param value spinner value
  * @param name the name attribute of the generated HTML input element
- * @param emptyOption determines if an empty option is automatically generated
- * @param multiple allows multiple value selection (multiple values are comma delimited)
- * @param selectSize the number of visible options
- * @param requestFilter a request filtering function
+ * @param min minimal value
+ * @param max maximal value
+ * @param step step value (default 1)
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
-@Suppress("TooManyFunctions")
-open class SimpleSelectRemote<out T : Any>(
-    serviceManager: KVServiceMgr<T>,
-    function: suspend T.(String?) -> List<SimpleRemoteOption>,
-    stateFunction: (() -> String)? = null,
-    value: String? = null,
+open class Spinner(
+    value: Number? = null,
     name: String? = null,
-    emptyOption: Boolean = false,
-    multiple: Boolean = false,
-    selectSize: Int? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    min: Number? = null,
+    max: Number? = null,
+    step: Number = SIMPLE_DEFAULT_STEP,
     label: String? = null,
     rich: Boolean = false,
-    init: (SimpleSelectRemote<T>.() -> Unit)? = null
-) : SimplePanel("form-group kv-mb-3"), StringFormControl, MutableState<String?> {
+    init: (Spinner.() -> Unit)? = null
+) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
+
     /**
-     * A value of the selected option.
+     * Spinner value.
      */
     override var value
         get() = input.value
@@ -77,43 +66,46 @@ open class SimpleSelectRemote<out T : Any>(
         }
 
     /**
-     * Determines if an empty option is automatically generated.
+     * The value attribute of the generated HTML input element.
+     *
+     * This value is placed directly in generated HTML code, while the [value] property is dynamically
+     * bound to the spinner input value.
      */
-    var emptyOption
-        get() = input.emptyOption
+    var startValue
+        get() = input.startValue
         set(value) {
-            input.emptyOption = value
+            input.startValue = value
         }
 
     /**
-     * Determines if multiple value selection is allowed.
+     * Minimal value.
      */
-    var multiple
-        get() = input.multiple
+    var min
+        get() = input.min
         set(value) {
-            input.multiple = value
+            input.min = value
         }
 
     /**
-     * The number of visible options.
+     * Maximal value.
      */
-    var selectSize
-        get() = input.selectSize
+    var max
+        get() = input.max
         set(value) {
-            input.selectSize = value
+            input.max = value
         }
 
     /**
-     * Determines if the select is automatically focused.
+     * Step value.
      */
-    var autofocus
-        get() = input.autofocus
+    var step
+        get() = input.step
         set(value) {
-            input.autofocus = value
+            input.step = value
         }
 
     /**
-     * The placeholder for the select control.
+     * The placeholder for the spinner input.
      */
     var placeholder
         get() = input.placeholder
@@ -122,7 +114,25 @@ open class SimpleSelectRemote<out T : Any>(
         }
 
     /**
-     * The label text bound to the select element.
+     * Determines if the spinner is automatically focused.
+     */
+    var autofocus
+        get() = input.autofocus
+        set(value) {
+            input.autofocus = value
+        }
+
+    /**
+     * Determines if the spinner is read-only.
+     */
+    var readonly
+        get() = input.readonly
+        set(value) {
+            input.readonly = value
+        }
+
+    /**
+     * The label text bound to the spinner input element.
      */
     var label
         get() = flabel.content
@@ -139,14 +149,23 @@ open class SimpleSelectRemote<out T : Any>(
             flabel.rich = value
         }
 
-    private val idc = "kv_form_SimpleSelectRemote_$counter"
-    final override val input: SimpleSelectRemoteInput<T> = SimpleSelectRemoteInput(
-        serviceManager, function, stateFunction, value, emptyOption, multiple, selectSize, requestFilter,
-        "form-control"
-    ).apply {
-        this.id = this@SimpleSelectRemote.idc
-        this.name = name
-    }
+    override var validatorError: String?
+        get() = super.validatorError
+        set(value) {
+            super.validatorError = value
+            if (value != null) {
+                input.addSurroundingCssClass("is-invalid")
+            } else {
+                input.removeSurroundingCssClass("is-invalid")
+            }
+        }
+
+    protected val idc = "kv_form_simple_spinner_$counter"
+    final override val input: SpinnerInput =
+        SpinnerInput(value, min, max, step).apply {
+            this.id = this@Spinner.idc
+            this.name = name
+        }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
@@ -180,36 +199,22 @@ open class SimpleSelectRemote<out T : Any>(
         input.removeEventListeners()
     }
 
-    override fun add(child: Component) {
-        input.add(child)
+    override fun getValueAsString(): String? {
+        return input.getValueAsString()
     }
 
-    override fun add(position: Int, child: Component) {
-        input.add(position, child)
+    /**
+     * Change value in plus.
+     */
+    open fun spinUp() {
+        input.spinUp()
     }
 
-    override fun addAll(children: List<Component>) {
-        input.addAll(children)
-    }
-
-    override fun remove(child: Component) {
-        input.remove(child)
-    }
-
-    override fun removeAt(position: Int) {
-        input.removeAt(position)
-    }
-
-    override fun removeAll() {
-        input.removeAll()
-    }
-
-    override fun disposeAll() {
-        input.disposeAll()
-    }
-
-    override fun getChildren(): List<Component> {
-        return input.getChildren()
+    /**
+     * Change value in minus.
+     */
+    open fun spinDown() {
+        input.spinDown()
     }
 
     override fun focus() {
@@ -220,13 +225,23 @@ open class SimpleSelectRemote<out T : Any>(
         input.blur()
     }
 
-    override fun getState(): String? = input.getState()
+    override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
+        addCssClass("row")
+        addCssClass("kv-control-horiz")
+        flabel.addCssClass("col-sm-${horizontalRatio.labels}")
+        flabel.addCssClass("col-form-label")
+        input.addSurroundingCssClass("col-sm-${horizontalRatio.fields}")
+        invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
+        invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
+    }
 
-    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
+    override fun getState(): Number? = input.getState()
+
+    override fun subscribe(observer: (Number?) -> Unit): () -> Unit {
         return input.subscribe(observer)
     }
 
-    override fun setState(state: String?) {
+    override fun setState(state: Number?) {
         input.setState(state)
     }
 
@@ -240,32 +255,27 @@ open class SimpleSelectRemote<out T : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun <T : Any> Container.simpleSelectRemote(
-    serviceManager: KVServiceMgr<T>,
-    function: suspend T.(String?) -> List<SimpleRemoteOption>, stateFunction: (() -> String)? = null,
-    value: String? = null,
+fun Container.spinner(
+    value: Number? = null,
     name: String? = null,
-    emptyOption: Boolean = false,
-    multiple: Boolean = false,
-    selectSize: Int? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
-    label: String? = null, rich: Boolean = false, init: (SimpleSelectRemote<T>.() -> Unit)? = null
-): SimpleSelectRemote<T> {
-    val simpleSelectRemote =
-        SimpleSelectRemote(
-            serviceManager,
-            function,
-            stateFunction,
+    min: Number? = null,
+    max: Number? = null,
+    step: Number = SIMPLE_DEFAULT_STEP,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (Spinner.() -> Unit)? = null
+): Spinner {
+    val spinner =
+        Spinner(
             value,
             name,
-            emptyOption,
-            multiple,
-            selectSize,
-            requestFilter,
+            min,
+            max,
+            step,
             label,
             rich,
             init
         )
-    this.add(simpleSelectRemote)
-    return simpleSelectRemote
+    this.add(spinner)
+    return spinner
 }

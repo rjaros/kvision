@@ -51,11 +51,11 @@ internal const val KVNULL = "#kvnull"
  * @param className CSS class names
  * @param init an initializer extension function
  */
-open class SimpleSelectInput(
+open class SelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    className: String? = null, init: (SimpleSelectInput.() -> Unit)? = null
+    className: String? = null, init: (SelectInput.() -> Unit)? = null
 ) : SimplePanel((className?.let { "$it " } ?: "") + "form-select"), GenericFormComponent<String?>, FormInput,
     MutableState<String?> {
 
@@ -145,7 +145,7 @@ open class SimpleSelectInput(
     init {
         useSnabbdomDistinctKey()
         setChildrenFromOptions()
-        this.setInternalEventListener<SimpleSelectInput> {
+        this.setInternalEventListener<SelectInput> {
             change = {
                 val v: Any? = if (multiple) {
                     getElementD()?.selectedOptions?.unsafeCast<HTMLCollection>()?.asList()?.map { it.asDynamic().value }
@@ -300,15 +300,15 @@ open class SimpleSelectInput(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.simpleSelectInput(
+fun Container.selectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
     className: String? = null,
-    init: (SimpleSelectInput.() -> Unit)? = null
-): SimpleSelectInput {
-    val simpleSelectInput =
-        SimpleSelectInput(
+    init: (SelectInput.() -> Unit)? = null
+): SelectInput {
+    val selectInput =
+        SelectInput(
             options,
             value,
             emptyOption,
@@ -316,6 +316,6 @@ fun Container.simpleSelectInput(
             selectSize,
             className, init
         )
-    this.add(simpleSelectInput)
-    return simpleSelectInput
+    this.add(selectInput)
+    return selectInput
 }

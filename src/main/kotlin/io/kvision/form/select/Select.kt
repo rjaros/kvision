@@ -19,45 +19,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.form.spinner
+package io.kvision.form.select
 
 import io.kvision.core.ClassSetBuilder
+import io.kvision.core.Component
 import io.kvision.core.Container
+import io.kvision.core.StringPair
 import io.kvision.core.Widget
 import io.kvision.form.FieldLabel
-import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.InvalidFeedback
-import io.kvision.form.NumberFormControl
+import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
 
 /**
- * The form field component for the simple spinner control.
+ * The form field component for Select control.
  *
  * @constructor
- * @param value spinner value
+ * @param options an optional list of options (value to label pairs) for the select control
+ * @param value selected value
+ * @param emptyOption determines if an empty option is automatically generated
+ * @param multiple allows multiple value selection (multiple values are comma delimited)
+ * @param selectSize the number of visible options
  * @param name the name attribute of the generated HTML input element
- * @param min minimal value
- * @param max maximal value
- * @param step step value (default 1)
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param floating use floating label
  * @param init an initializer extension function
  */
-open class SimpleSpinner(
-    value: Number? = null,
-    name: String? = null,
-    min: Number? = null,
-    max: Number? = null,
-    step: Number = SIMPLE_DEFAULT_STEP,
-    label: String? = null,
-    rich: Boolean = false,
-    init: (SimpleSpinner.() -> Unit)? = null
-) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
+@Suppress("TooManyFunctions")
+open class Select(
+    options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
+    name: String? = null, label: String? = null, rich: Boolean = false,
+    val floating: Boolean = false, init: (Select.() -> Unit)? = null
+) : SimplePanel(if (floating) "form-floating kv-mb-3" else "form-group kv-mb-3"), StringFormControl, MutableState<String?> {
 
     /**
-     * Spinner value.
+     * A list of options (value to label pairs) for the select control.
+     */
+    var options
+        get() = input.options
+        set(value) {
+            input.options = value
+        }
+
+    /**
+     * A value of the selected option.
      */
     override var value
         get() = input.value
@@ -66,10 +76,10 @@ open class SimpleSpinner(
         }
 
     /**
-     * The value attribute of the generated HTML input element.
+     * The value of the selected child option.
      *
-     * This value is placed directly in generated HTML code, while the [value] property is dynamically
-     * bound to the spinner input value.
+     * This value is placed directly in the generated HTML code, while the [value] property is dynamically
+     * bound to the select component.
      */
     var startValue
         get() = input.startValue
@@ -78,43 +88,34 @@ open class SimpleSpinner(
         }
 
     /**
-     * Minimal value.
+     * Determines if an empty option is automatically generated.
      */
-    var min
-        get() = input.min
+    var emptyOption
+        get() = input.emptyOption
         set(value) {
-            input.min = value
+            input.emptyOption = value
         }
 
     /**
-     * Maximal value.
+     * Determines if multiple value selection is allowed.
      */
-    var max
-        get() = input.max
+    var multiple
+        get() = input.multiple
         set(value) {
-            input.max = value
+            input.multiple = value
         }
 
     /**
-     * Step value.
+     * The number of visible options.
      */
-    var step
-        get() = input.step
+    var selectSize
+        get() = input.selectSize
         set(value) {
-            input.step = value
+            input.selectSize = value
         }
 
     /**
-     * The placeholder for the spinner input.
-     */
-    var placeholder
-        get() = input.placeholder
-        set(value) {
-            input.placeholder = value
-        }
-
-    /**
-     * Determines if the spinner is automatically focused.
+     * Determines if the select is automatically focused.
      */
     var autofocus
         get() = input.autofocus
@@ -123,16 +124,16 @@ open class SimpleSpinner(
         }
 
     /**
-     * Determines if the spinner is read-only.
+     * The placeholder for the select control.
      */
-    var readonly
-        get() = input.readonly
+    var placeholder
+        get() = input.placeholder
         set(value) {
-            input.readonly = value
+            input.placeholder = value
         }
 
     /**
-     * The label text bound to the spinner input element.
+     * The label text bound to the select element.
      */
     var label
         get() = flabel.content
@@ -149,31 +150,35 @@ open class SimpleSpinner(
             flabel.rich = value
         }
 
-    override var validatorError: String?
-        get() = super.validatorError
+    /**
+     * The index of currently selected option or -1 if none.
+     */
+    var selectedIndex
+        get() = input.selectedIndex
         set(value) {
-            super.validatorError = value
-            if (value != null) {
-                input.addSurroundingCssClass("is-invalid")
-            } else {
-                input.removeSurroundingCssClass("is-invalid")
-            }
+            input.selectedIndex = value
         }
 
-    protected val idc = "kv_form_simple_spinner_$counter"
-    final override val input: SimpleSpinnerInput =
-        SimpleSpinnerInput(value, min, max, step).apply {
-            this.id = this@SimpleSpinner.idc
-            this.name = name
-        }
+    private val idc = "kv_form_simpleselect_$counter"
+    final override val input: SelectInput = SelectInput(
+        options, value, emptyOption, multiple, selectSize
+    ).apply {
+        this.id = this@Select.idc
+        this.name = name
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
         @Suppress("LeakingThis")
         input.eventTarget = this
-        this.addPrivate(flabel)
-        this.addPrivate(input)
+        if (!floating) {
+            this.addPrivate(flabel)
+            this.addPrivate(input)
+        } else {
+            this.addPrivate(input)
+            this.addPrivate(flabel)
+        }
         this.addPrivate(invalidFeedback)
         counter++
         @Suppress("LeakingThis")
@@ -187,6 +192,7 @@ open class SimpleSpinner(
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         return input.setEventListener(block)
     }
@@ -199,22 +205,36 @@ open class SimpleSpinner(
         input.removeEventListeners()
     }
 
-    override fun getValueAsString(): String? {
-        return input.getValueAsString()
+    override fun add(child: Component) {
+        input.add(child)
     }
 
-    /**
-     * Change value in plus.
-     */
-    open fun spinUp() {
-        input.spinUp()
+    override fun add(position: Int, child: Component) {
+        input.add(position, child)
     }
 
-    /**
-     * Change value in minus.
-     */
-    open fun spinDown() {
-        input.spinDown()
+    override fun addAll(children: List<Component>) {
+        input.addAll(children)
+    }
+
+    override fun remove(child: Component) {
+        input.remove(child)
+    }
+
+    override fun removeAt(position: Int) {
+        input.removeAt(position)
+    }
+
+    override fun removeAll() {
+        input.removeAll()
+    }
+
+    override fun disposeAll() {
+        input.disposeAll()
+    }
+
+    override fun getChildren(): List<Component> {
+        return input.getChildren()
     }
 
     override fun focus() {
@@ -225,23 +245,13 @@ open class SimpleSpinner(
         input.blur()
     }
 
-    override fun styleForHorizontalFormPanel(horizontalRatio: FormHorizontalRatio) {
-        addCssClass("row")
-        addCssClass("kv-control-horiz")
-        flabel.addCssClass("col-sm-${horizontalRatio.labels}")
-        flabel.addCssClass("col-form-label")
-        input.addSurroundingCssClass("col-sm-${horizontalRatio.fields}")
-        invalidFeedback.addCssClass("offset-sm-${horizontalRatio.labels}")
-        invalidFeedback.addCssClass("col-sm-${horizontalRatio.fields}")
-    }
+    override fun getState(): String? = input.getState()
 
-    override fun getState(): Number? = input.getState()
-
-    override fun subscribe(observer: (Number?) -> Unit): () -> Unit {
+    override fun subscribe(observer: (String?) -> Unit): () -> Unit {
         return input.subscribe(observer)
     }
 
-    override fun setState(state: Number?) {
+    override fun setState(state: String?) {
         input.setState(state)
     }
 
@@ -255,27 +265,20 @@ open class SimpleSpinner(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.simpleSpinner(
-    value: Number? = null,
+fun Container.select(
+    options: List<StringPair>? = null,
+    value: String? = null,
+    emptyOption: Boolean = false,
+    multiple: Boolean = false,
+    selectSize: Int? = null,
     name: String? = null,
-    min: Number? = null,
-    max: Number? = null,
-    step: Number = SIMPLE_DEFAULT_STEP,
     label: String? = null,
     rich: Boolean = false,
-    init: (SimpleSpinner.() -> Unit)? = null
-): SimpleSpinner {
-    val simpleSpinner =
-        SimpleSpinner(
-            value,
-            name,
-            min,
-            max,
-            step,
-            label,
-            rich,
-            init
-        )
-    this.add(simpleSpinner)
-    return simpleSpinner
+    floating: Boolean = false,
+    init: (Select.() -> Unit)? = null
+): Select {
+    val select =
+        Select(options, value, emptyOption, multiple, selectSize, name, label, rich, floating, init)
+    this.add(select)
+    return select
 }

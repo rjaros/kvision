@@ -21,40 +21,62 @@
  */
 package test.io.kvision.form.upload
 
-import io.kvision.form.upload.UploadInput
+import io.kvision.form.Form
+import io.kvision.form.upload.BootstrapUpload
 import io.kvision.jquery.get
 import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
+import io.kvision.types.KFile
 import kotlinx.browser.document
-import kotlin.test.Ignore
+import kotlinx.serialization.Serializable
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
-class UploadInputSpec : DomSpec {
+@Serializable
+data class DataForm(
+    val a: List<KFile>? = null
+)
+
+class BootstrapUploadSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val upi = UploadInput(multiple = true).apply {
-                id = "idti"
-            }
+            val upi = BootstrapUpload(multiple = true)
+            val id = upi.input.id
             root.add(upi)
             val content = document.getElementById("test")?.let { jQuery(it).find("input.form-control")[1]?.outerHTML }
             assertEqualsHtml(
-                "<input class=\"form-control\" id=\"idti\" type=\"file\" multiple=\"true\">",
+                "<input class=\"form-control\" id=\"$id\" type=\"file\" multiple=\"true\">",
                 content,
                 "Should render correct file input control for multiple files"
             )
             upi.multiple = false
             val content2 = document.getElementById("test")?.let { jQuery(it).find("input.form-control")[1]?.outerHTML }
             assertEqualsHtml(
-                "<input class=\"form-control\" id=\"idti\" type=\"file\">",
+                "<input class=\"form-control\" id=\"$id\" type=\"file\">",
                 content2,
                 "Should render correct file input control for single file"
             )
         }
     }
 
+    @Test
+    fun workInForm() {
+        run {
+            val form = Form.create<DataForm>()
+            val data = DataForm(a = listOf(KFile("file", 5)))
+            form.setData(data)
+            val result = form.getData()
+            assertEquals(listOf(KFile("file", 5)), result.a, "Form should return initial value without any control")
+            val uploadField = BootstrapUpload()
+            form.add(DataForm::a, uploadField)
+            form.setData(data)
+            val result2 = form.getData()
+            assertEquals(listOf(KFile("file", 5)), result2.a, "Form should return initial value with upload control")
+        }
+    }
 }

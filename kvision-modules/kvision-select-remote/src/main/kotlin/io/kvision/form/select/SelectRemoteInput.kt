@@ -38,7 +38,7 @@ import kotlinx.serialization.encodeToString
 import org.w3c.fetch.RequestInit
 
 /**
- * The SimpleSelect control connected to the fullstack service.
+ * The Select control connected to the fullstack service.
  *
  * @constructor
  * @param value selected value
@@ -52,7 +52,7 @@ import org.w3c.fetch.RequestInit
  * @param className CSS class names
  * @param init an initializer extension function
  */
-open class SimpleSelectRemoteInput<out T : Any>(
+open class SelectRemoteInput<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?) -> List<SimpleRemoteOption>,
     stateFunction: (() -> String)? = null,
@@ -62,8 +62,8 @@ open class SimpleSelectRemoteInput<out T : Any>(
     selectSize: Int? = null,
     requestFilter: (suspend RequestInit.() -> Unit)? = null,
     className: String? = null,
-    init: (SimpleSelectRemoteInput<T>.() -> Unit)? = null
-) : SimpleSelectInput(null, value, emptyOption, multiple, selectSize, className) {
+    init: (SelectRemoteInput<T>.() -> Unit)? = null
+) : SelectInput(null, value, emptyOption, multiple, selectSize, className) {
     private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
     init {
@@ -92,7 +92,7 @@ open class SimpleSelectRemoteInput<out T : Any>(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun <T : Any> Container.simpleSelectRemoteInput(
+fun <T : Any> Container.selectRemoteInput(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?) -> List<SimpleRemoteOption>,
     stateFunction: (() -> String)? = null,
@@ -102,10 +102,10 @@ fun <T : Any> Container.simpleSelectRemoteInput(
     selectSize: Int? = null,
     requestFilter: (suspend RequestInit.() -> Unit)? = null,
     className: String? = null,
-    init: (SimpleSelectRemoteInput<T>.() -> Unit)? = null
-): SimpleSelectRemoteInput<T> {
-    val simpleSelectRemoteInput =
-        SimpleSelectRemoteInput(
+    init: (SelectRemoteInput<T>.() -> Unit)? = null
+): SelectRemoteInput<T> {
+    val selectRemoteInput =
+        SelectRemoteInput(
             serviceManager,
             function,
             stateFunction,
@@ -117,6 +117,6 @@ fun <T : Any> Container.simpleSelectRemoteInput(
             className,
             init
         )
-    this.add(simpleSelectRemoteInput)
-    return simpleSelectRemoteInput
+    this.add(selectRemoteInput)
+    return selectRemoteInput
 }

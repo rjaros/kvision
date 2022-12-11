@@ -21,39 +21,29 @@
  */
 package test.io.kvision.form.select
 
-import io.kvision.form.select.SimpleSelect
+import io.kvision.form.select.SelectInput
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 
-class SimpleSelectSpec : DomSpec {
+class SelectInputSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val select =
-                SimpleSelect(
-                    listOf("test1" to "Test 1", "test2" to "Test 2"),
-                    "test1",
-                    true,
-                    false,
-                    null,
-                    "select",
-                    "Label"
-                ).apply {
-                    name = "name"
-                    id = "idti"
-                    disabled = true
-                }
-            root.add(select)
+            val si = SelectInput(listOf("test1" to "Test 1", "test2" to "Test 2"), "test1", true).apply {
+                name = "name"
+                id = "idti"
+                disabled = true
+            }
+            root.add(si)
             val element = document.getElementById("test")
-            val id = select.input.id
             assertEqualsHtml(
-                "<div class=\"form-group kv-mb-3\" id=\"idti\"><label class=\"form-label\" for=\"$id\">Label</label><select class=\"form-select\" id=\"$id\" name=\"name\" disabled=\"disabled\"><option value=\"#kvnull\"></option><option value=\"test1\" selected=\"selected\">Test 1</option><option value=\"test2\">Test 2</option></select></div>",
+                "<select class=\"form-select\" id=\"idti\" name=\"name\" disabled=\"disabled\"><option value=\"#kvnull\"></option><option value=\"test1\" selected=\"selected\">Test 1</option><option value=\"test2\">Test 2</option></select>",
                 element?.innerHTML,
-                "Should render correct simple select form control"
+                "Should render correct simple select input control"
             )
         }
     }
