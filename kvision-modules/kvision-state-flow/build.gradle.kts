@@ -7,7 +7,6 @@ plugins {
 }
 
 // Versions
-val coroutinesVersion: String by project
 val diffVersion: String by project
 
 kotlin {
@@ -16,7 +15,6 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     implementation("io.github.petertrr:kotlin-multiplatform-diff-js:$diffVersion")
     testImplementation(kotlin("test-js"))
 }

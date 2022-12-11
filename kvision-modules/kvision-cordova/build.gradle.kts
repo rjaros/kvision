@@ -6,15 +6,12 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-val coroutinesVersion: String by project
-
 kotlin {
     kotlinJsTargets()
 }
 
 dependencies {
     api(rootProject)
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     testImplementation(kotlin("test-js"))
 }
 

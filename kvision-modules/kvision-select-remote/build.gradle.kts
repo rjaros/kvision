@@ -6,9 +6,6 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-// Versions
-val coroutinesVersion: String by project
-
 kotlin {
     kotlinJsTargets()
 }
@@ -16,7 +13,6 @@ kotlin {
 dependencies {
     api(rootProject)
     api(project(":kvision-modules:kvision-common-remote"))
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     testImplementation(kotlin("test-js"))
 }
 

@@ -7,7 +7,6 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-val coroutinesVersion: String by project
 val bootstrapFileinputVersion: String by project
 
 kotlin {
@@ -18,7 +17,6 @@ dependencies {
     api(project(":kvision-modules:kvision-common-types"))
     api(project(":kvision-modules:kvision-jquery"))
     api(rootProject)
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     implementation(npm("bootstrap-fileinput", "^$bootstrapFileinputVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))

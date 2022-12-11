@@ -55,6 +55,7 @@ kotlin {
 
 dependencies {
     api(project(":kvision-modules:kvision-common-types"))
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
 //    for local development
 //    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-8.0.0.tgz"))
