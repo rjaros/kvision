@@ -232,7 +232,7 @@ open class BootstrapUpload(
             flabel.rich = value
         }
 
-    protected val idc = "kv_form_upload_$counter"
+    protected val idc = "kv_form_bootstrap_upload_$counter"
     final override val input: BootstrapUploadInput = BootstrapUploadInput(uploadUrl, multiple)
         .apply {
             this.id = this@BootstrapUpload.idc

@@ -159,7 +159,7 @@ open class Select(
             input.selectedIndex = value
         }
 
-    private val idc = "kv_form_simpleselect_$counter"
+    private val idc = "kv_form_select_$counter"
     final override val input: SelectInput = SelectInput(
         options, value, emptyOption, multiple, selectSize
     ).apply {

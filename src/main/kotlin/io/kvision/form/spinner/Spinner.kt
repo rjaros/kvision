@@ -160,7 +160,7 @@ open class Spinner(
             }
         }
 
-    protected val idc = "kv_form_simple_spinner_$counter"
+    protected val idc = "kv_form_spinner_$counter"
     final override val input: SpinnerInput =
         SpinnerInput(value, min, max, step).apply {
             this.id = this@Spinner.idc
