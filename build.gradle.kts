@@ -111,7 +111,6 @@ tasks.dokkaHtml.configure {
             reportUndocumented.set(false)
             sourceRoots.from(file("src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap/src/main/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap-dialog/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap-icons/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-bootstrap-upload/src/main/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-chart/src/main/kotlin"))

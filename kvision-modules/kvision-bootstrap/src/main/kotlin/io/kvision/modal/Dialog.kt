@@ -21,7 +21,6 @@
  */
 package io.kvision.modal
 
-import io.kvision.core.Widget
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
