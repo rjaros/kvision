@@ -45,8 +45,7 @@ object Camera {
      */
     enum class DestinationType {
         DATA_URL,
-        FILE_URI,
-        NATIVE_URI
+        FILE_URI
     }
 
     /**
@@ -186,7 +185,6 @@ object Camera {
 internal fun Camera.DestinationType.toJs(): dynamic = when (this) {
     Camera.DestinationType.DATA_URL -> js("Camera.DestinationType.DATA_URL")
     Camera.DestinationType.FILE_URI -> js("Camera.DestinationType.FILE_URI")
-    Camera.DestinationType.NATIVE_URI -> js("Camera.DestinationType.NATIVE_URI")
 }
 
 internal fun Camera.EncodingType.toJs(): dynamic = when (this) {
