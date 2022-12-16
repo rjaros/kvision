@@ -25,7 +25,7 @@ package io.kvision.onsenui.form
 import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.Container
-import io.kvision.form.range.RangeInput
+import io.kvision.form.number.RangeInput
 
 /**
  * OnsenUI range input component.

@@ -19,31 +19,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.io.kvision.form.range
+package test.io.kvision.form.number
 
-import io.kvision.form.range.Range
+import io.kvision.form.number.Spinner
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
 import kotlin.test.Test
 
-class RangeSpec : DomSpec {
+class SpinnerSpec : DomSpec {
 
     @Test
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val range = Range(12, "name", 10, 20, 2, "Label").apply {
+            val spinner = Spinner(12, "name", 10, 20, 2, "Label").apply {
                 id = "idri"
                 disabled = true
             }
-            root.add(range)
+            root.add(spinner)
             val element = document.getElementById("test")
-            val id = range.input.id
+            val id = spinner.input.id
             assertEqualsHtml(
-                "<div class=\"form-group kv-mb-3\" id=\"idri\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-range\" id=\"$id\" type=\"range\" value=\"12\" name=\"name\" min=\"10\" max=\"20\" step=\"2\" disabled=\"disabled\"></div>",
+                "<div class=\"form-group kv-mb-3\" id=\"idri\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"number\" value=\"12\" name=\"name\" min=\"10\" max=\"20\" step=\"2\" disabled=\"disabled\"></div>",
                 element?.innerHTML,
-                "Should render correct range form control"
+                "Should render correct spinner form control"
             )
         }
     }

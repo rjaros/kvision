@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.form.spinner
+package io.kvision.form.number
 
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -33,31 +33,25 @@ import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
 
 /**
- * The form field component for the simple spinner control.
+ * The form field component for range input control.
  *
  * @constructor
- * @param value spinner value
+ * @param value range input value
  * @param name the name attribute of the generated HTML input element
- * @param min minimal value
- * @param max maximal value
+ * @param min minimal value (default 0)
+ * @param max maximal value (default 100)
  * @param step step value (default 1)
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
-open class Spinner(
-    value: Number? = null,
-    name: String? = null,
-    min: Number? = null,
-    max: Number? = null,
-    step: Number = SIMPLE_DEFAULT_STEP,
-    label: String? = null,
-    rich: Boolean = false,
-    init: (Spinner.() -> Unit)? = null
+open class Range(
+    value: Number? = null, name: String? = null, min: Number = 0, max: Number = 100, step: Number = RANGE_DEFAULT_STEP,
+    label: String? = null, rich: Boolean = false, init: (Range.() -> Unit)? = null
 ) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
-     * Spinner value.
+     * Range input value.
      */
     override var value
         get() = input.value
@@ -69,7 +63,7 @@ open class Spinner(
      * The value attribute of the generated HTML input element.
      *
      * This value is placed directly in generated HTML code, while the [value] property is dynamically
-     * bound to the spinner input value.
+     * bound to the range input value.
      */
     var startValue
         get() = input.startValue
@@ -105,16 +99,7 @@ open class Spinner(
         }
 
     /**
-     * The placeholder for the spinner input.
-     */
-    var placeholder
-        get() = input.placeholder
-        set(value) {
-            input.placeholder = value
-        }
-
-    /**
-     * Determines if the spinner is automatically focused.
+     * Determines if the text input is automatically focused.
      */
     var autofocus
         get() = input.autofocus
@@ -123,7 +108,7 @@ open class Spinner(
         }
 
     /**
-     * Determines if the spinner is read-only.
+     * Determines if the range input is read-only.
      */
     var readonly
         get() = input.readonly
@@ -132,7 +117,7 @@ open class Spinner(
         }
 
     /**
-     * The label text bound to the spinner input element.
+     * The label text bound to the range input element.
      */
     var label
         get() = flabel.content
@@ -160,12 +145,11 @@ open class Spinner(
             }
         }
 
-    protected val idc = "kv_form_spinner_$counter"
-    final override val input: SpinnerInput =
-        SpinnerInput(value, min, max, step).apply {
-            this.id = this@Spinner.idc
-            this.name = name
-        }
+    protected val idc = "kv_form_range_$counter"
+    final override val input: RangeInput = RangeInput(value, min, max, step).apply {
+        this.id = this@Range.idc
+        this.name = name
+    }
     final override val flabel: FieldLabel = FieldLabel(idc, label, rich, "form-label")
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
@@ -187,6 +171,7 @@ open class Spinner(
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         return input.setEventListener(block)
     }
@@ -206,15 +191,15 @@ open class Spinner(
     /**
      * Change value in plus.
      */
-    open fun spinUp() {
-        input.spinUp()
+    open fun stepUp() {
+        input.stepUp()
     }
 
     /**
      * Change value in minus.
      */
-    open fun spinDown() {
-        input.spinDown()
+    open fun stepDown() {
+        input.stepDown()
     }
 
     override fun focus() {
@@ -255,27 +240,17 @@ open class Spinner(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-fun Container.spinner(
+fun Container.range(
     value: Number? = null,
     name: String? = null,
-    min: Number? = null,
-    max: Number? = null,
-    step: Number = SIMPLE_DEFAULT_STEP,
+    min: Number = 0,
+    max: Number = 100,
+    step: Number = RANGE_DEFAULT_STEP,
     label: String? = null,
     rich: Boolean = false,
-    init: (Spinner.() -> Unit)? = null
-): Spinner {
-    val spinner =
-        Spinner(
-            value,
-            name,
-            min,
-            max,
-            step,
-            label,
-            rich,
-            init
-        )
-    this.add(spinner)
-    return spinner
+    init: (Range.() -> Unit)? = null
+): Range {
+    val range = Range(value, name, min, max, step, label, rich, init)
+    this.add(range)
+    return range
 }

@@ -60,17 +60,13 @@ validation.
 
 Checkbox, radiobutton and radiobutton group components.
 
-# Package io.kvision.form.range
+# Package io.kvision.form.number
 
-Range input component.
+Numeric input components including range selection and spinner.
 
 # Package io.kvision.form.select
 
 Contains a simple select component as well as full-featured components with support for remote data sources.
-
-# Package io.kvision.form.spinner
-
-Spinner input components.
 
 # Package io.kvision.form.text
 

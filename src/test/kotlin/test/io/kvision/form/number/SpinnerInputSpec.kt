@@ -19,9 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package test.io.kvision.form.spinner
+package test.io.kvision.form.number
 
-import io.kvision.form.spinner.SpinnerInput
+import io.kvision.form.number.SpinnerInput
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document
@@ -43,7 +43,7 @@ class SpinnerInputSpec : DomSpec {
             assertEqualsHtml(
                 "<input class=\"form-control\" id=\"idri\" type=\"number\" value=\"12\" name=\"name\" min=\"10\" max=\"20\" step=\"2\" disabled=\"disabled\">",
                 element?.innerHTML,
-                "Should render correct simple spinner input control"
+                "Should render correct spinner input control"
             )
         }
     }

@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.form.spinner
+package io.kvision.form.number
 
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
@@ -33,13 +33,13 @@ import io.kvision.snabbdom.VNode
 import io.kvision.state.MutableState
 import org.w3c.dom.HTMLInputElement
 
-internal const val SIMPLE_DEFAULT_STEP = 1
+internal const val SPINNER_DEFAULT_STEP = 1
 
 /**
- * Simple spinner input component.
+ * Spinner input component.
  *
  * @constructor
- * @param value range input value
+ * @param value spinner input value
  * @param min minimal value
  * @param max maximal value
  * @param step step value (default 1)
@@ -47,7 +47,7 @@ internal const val SIMPLE_DEFAULT_STEP = 1
  * @param init an initializer extension function
  */
 open class SpinnerInput(
-    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = SIMPLE_DEFAULT_STEP,
+    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = SPINNER_DEFAULT_STEP,
     className: String? = null, init: (SpinnerInput.() -> Unit)? = null
 ) : Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<Number?>, FormInput,
     MutableState<Number?> {
@@ -55,17 +55,15 @@ open class SpinnerInput(
     protected val observers = mutableListOf<(Number?) -> Unit>()
 
     /**
-     * Range input value.
+     * Spinner input value.
      */
-    override var value by refreshOnUpdate(
-        value ?: min
-    ) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
 
     /**
      * The value attribute of the generated HTML input element.
      *
      * This value is placed directly in generated HTML code, while the [value] property is dynamically
-     * bound to the range input value.
+     * bound to the spinner input value.
      */
     var startValue by refreshOnUpdate(value) { this.value = it; refresh() }
 
@@ -100,12 +98,12 @@ open class SpinnerInput(
     override var disabled by refreshOnUpdate(false)
 
     /**
-     * Determines if the range input is automatically focused.
+     * Determines if the spinner input is automatically focused.
      */
     var autofocus: Boolean? by refreshOnUpdate()
 
     /**
-     * Determines if the range input is read-only.
+     * Determines if the spinner input is read-only.
      */
     var readonly: Boolean? by refreshOnUpdate()
 
@@ -123,6 +121,9 @@ open class SpinnerInput(
         useSnabbdomDistinctKey()
         this.setInternalEventListener<SpinnerInput> {
             input = {
+                self.changeValue()
+            }
+            blur = {
                 self.changeValue()
             }
         }
@@ -152,8 +153,12 @@ open class SpinnerInput(
         name?.let {
             attributeSetBuilder.add("name", it)
         }
-        attributeSetBuilder.add("min", "$min")
-        attributeSetBuilder.add("max", "$max")
+        min?.let {
+            attributeSetBuilder.add("min", "$min")
+        }
+        max?.let {
+            attributeSetBuilder.add("max", "$max")
+        }
         attributeSetBuilder.add("step", "$step")
         autofocus?.let {
             if (it) {
@@ -201,10 +206,7 @@ open class SpinnerInput(
      * Internal function
      */
     protected open fun refreshState() {
-        value?.let {
-            getElementD()?.value = it
-        }
-        if (value == null) value = min
+        getElementD()?.value = value ?: ""
     }
 
     /**
@@ -248,7 +250,7 @@ open class SpinnerInput(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.spinnerInput(
-    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = SIMPLE_DEFAULT_STEP,
+    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = SPINNER_DEFAULT_STEP,
     className: String? = null,
     init: (SpinnerInput.() -> Unit)? = null
 ): SpinnerInput {

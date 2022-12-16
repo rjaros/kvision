@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.form.range
+package io.kvision.form.number
 
 import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
@@ -33,7 +33,7 @@ import io.kvision.form.ValidationStatus
 import io.kvision.state.MutableState
 import org.w3c.dom.HTMLInputElement
 
-internal const val DEFAULT_STEP = 1
+internal const val RANGE_DEFAULT_STEP = 1
 
 /**
  * Range input component.
@@ -47,7 +47,7 @@ internal const val DEFAULT_STEP = 1
  * @param init an initializer extension function
  */
 open class RangeInput(
-    value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
+    value: Number? = null, min: Number = 0, max: Number = 100, step: Number = RANGE_DEFAULT_STEP,
     className: String? = null, init: (RangeInput.() -> Unit)? = null
 ) : Widget((className?.let { "$it " } ?: "") + "form-range"), GenericFormComponent<Number?>, FormInput,
     MutableState<Number?> {
@@ -234,7 +234,7 @@ open class RangeInput(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.rangeInput(
-    value: Number? = null, min: Number = 0, max: Number = 100, step: Number = DEFAULT_STEP,
+    value: Number? = null, min: Number = 0, max: Number = 100, step: Number = RANGE_DEFAULT_STEP,
     className: String? = null,
     init: (RangeInput.() -> Unit)? = null
 ): RangeInput {
