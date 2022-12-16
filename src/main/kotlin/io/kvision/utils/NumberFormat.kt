@@ -23,6 +23,9 @@
 
 package io.kvision.utils
 
+import kotlin.math.floor
+import kotlin.math.pow
+
 external object Intl {
     class NumberFormat(locales: String = definedExternally, options: NumberFormatOptions = definedExternally) {
         constructor(locales: Nothing?, options: NumberFormatOptions = definedExternally)
@@ -128,3 +131,11 @@ fun numberFormat(optionsBuilder: NumberFormatOptions.() -> Unit): Intl.NumberFor
 
 fun numberFormat(locales: String, optionsBuilder: NumberFormatOptions.() -> Unit): Intl.NumberFormat =
     Intl.NumberFormat(locales, Any().unsafeCast<NumberFormatOptions>().apply(optionsBuilder))
+
+/**
+ * Formats a number to fixed decimal digits without rounding.
+ */
+fun Number.toFixedNoRound(precision: Int): String {
+    val factor = 10.0.pow(precision)
+    return (floor(this.toDouble() * factor) / factor).toString()
+}
