@@ -29,7 +29,7 @@ kvision {
   enableGradleTasks.set(false)
   enableWebpackVersions.set(false)
   enableHiddenKotlinJsStore.set(false)
-  enableSecureResolutions.set(false)
+  enableResolutions.set(false)
   enableWorkerTasks.set(false)
   kotlinJsStoreDirectory.set(layout.projectDirectory.dir("another-directory"))
 
@@ -203,7 +203,7 @@ kvision {
   enableGradleTasks.set(false)
   enableWebpackVersions.set(false)
   enableHiddenKotlinJsStore.set(false)
-  enableSecureResolutions.set(false)
+  enableResolutions.set(false)
   enableWorkerTasks.set(false)
   kotlinJsStoreDirectory.set(layout.projectDirectory.dir("another-directory"))
 

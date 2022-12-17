@@ -322,8 +322,8 @@ abstract class KVisionPlugin @Inject constructor(
 
         rootProject.extensions.configure<YarnRootExtension> {
             logger.info("configuring Yarn")
-            if (kvExtension.enableSecureResolutions.get()) {
-                // Not implemented
+            if (kvExtension.enableResolutions.get()) {
+                resolution("chart.js", "4.0.1")
             }
 
             if (kvExtension.enableHiddenKotlinJsStore.get()) {

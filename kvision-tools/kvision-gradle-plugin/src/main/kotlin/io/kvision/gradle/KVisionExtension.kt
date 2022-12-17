@@ -30,8 +30,8 @@ abstract class KVisionExtension @Inject constructor(
     val enableHiddenKotlinJsStore: Property<Boolean> =
         kvisionGradleProperty("enableHiddenKotlinJsStore")
 
-    val enableSecureResolutions: Property<Boolean> =
-        kvisionGradleProperty("enableSecureResolutions")
+    val enableResolutions: Property<Boolean> =
+        kvisionGradleProperty("enableResolutions")
 
     val enableWorkerTasks: Property<Boolean> =
         kvisionGradleProperty("enableWorkerTasks", false)
