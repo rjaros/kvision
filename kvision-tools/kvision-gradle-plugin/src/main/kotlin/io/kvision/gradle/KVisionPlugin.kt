@@ -323,7 +323,7 @@ abstract class KVisionPlugin @Inject constructor(
         rootProject.extensions.configure<YarnRootExtension> {
             logger.info("configuring Yarn")
             if (kvExtension.enableResolutions.get()) {
-                resolution("chart.js", "4.0.1")
+                // No forced resolutions at the moment
             }
 
             if (kvExtension.enableHiddenKotlinJsStore.get()) {

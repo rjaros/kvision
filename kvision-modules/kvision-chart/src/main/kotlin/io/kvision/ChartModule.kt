@@ -22,10 +22,12 @@
 package io.kvision
 
 /**
- * Initializer for KVision Bootstrap chart module.
+ * Initializer for KVision chart module.
  */
 object ChartModule : ModuleInitializer {
 
     override fun initialize() {
+        // Workaround CommonJS problems with Chart.js 4
+        js("import('chart.js/auto')")
     }
 }
