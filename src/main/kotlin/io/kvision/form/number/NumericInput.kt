@@ -151,6 +151,7 @@ open class NumericInput(
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "text")
+        attributeSetBuilder.add("maxlength", "14")
         val decimalSeparatorRegex = if (decimalSeparator == ".") "\\." else decimalSeparator
         val pattern = if (decimals > 0) {
             "^-?(\\d+($decimalSeparatorRegex\\d{1,$decimals})?)\$"
