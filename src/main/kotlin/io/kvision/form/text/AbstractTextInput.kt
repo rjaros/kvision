@@ -46,15 +46,6 @@ abstract class AbstractTextInput(
 
     protected val observers = mutableListOf<(String?) -> Unit>()
 
-    init {
-        useSnabbdomDistinctKey()
-        this.setInternalEventListener<AbstractTextInput> {
-            input = {
-                self.changeValue()
-            }
-        }
-    }
-
     /**
      * Text input value.
      */
@@ -131,6 +122,15 @@ abstract class AbstractTextInput(
      * The input mask controller.
      */
     protected var mask: Mask? = null
+
+    init {
+        useSnabbdomDistinctKey()
+        this.setInternalEventListener<AbstractTextInput> {
+            input = {
+                self.changeValue()
+            }
+        }
+    }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
