@@ -21,10 +21,11 @@
  */
 package io.kvision.html
 
-import io.kvision.snabbdom.VNode
 import io.kvision.KVManager
 import io.kvision.core.Container
 import io.kvision.core.Widget
+import io.kvision.snabbdom.VNode
+import org.w3c.dom.HTMLElement
 
 /**
  * Simple component for rendering text DOM node.
@@ -53,6 +54,10 @@ open class TextNode(
     init {
         @Suppress("LeakingThis")
         init?.invoke(this)
+    }
+
+    override fun getElement(): HTMLElement? {
+        return null
     }
 
     @Suppress("UnsafeCastFromDynamic")

@@ -194,7 +194,7 @@ open class Tabulator<T : Any>(
      * Creates internal JS Tabulator object
      */
     protected open fun createJsTabulator() {
-        (this.getElement() as? HTMLElement)?.let {
+        this.getElement()?.let {
             jsTabulator =
                 TabulatorModule.getConstructor()
                     .createInstance(it, options.toJs(this, this::translate, kClass))

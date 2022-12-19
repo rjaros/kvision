@@ -34,7 +34,7 @@ import io.kvision.snabbdom.h
 import io.kvision.utils.*
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.DragEvent
-import org.w3c.dom.Node
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent
 import kotlin.reflect.KProperty
 
@@ -575,8 +575,8 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         refresh()
     }
 
-    override fun getElement(): Node? {
-        return this.vnode?.elm
+    override fun getElement(): HTMLElement? {
+        return this.vnode?.elm?.unsafeCast<HTMLElement>()
     }
 
     override fun getElementD(): dynamic {

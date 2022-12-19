@@ -84,7 +84,7 @@ open class Maps(
 
     /** Create a native map instance. */
     override fun afterInsert(node: VNode) {
-        val thisElement: HTMLElement = requireNotNull(this.getElement() as? HTMLElement) {
+        val thisElement: HTMLElement = requireNotNull(this.getElement()) {
             "$this - Unable to get HTMLElement"
         }
 

@@ -21,9 +21,9 @@
  */
 package io.kvision.core
 
-import io.kvision.snabbdom.VNode
 import io.kvision.panel.Root
-import org.w3c.dom.Node
+import io.kvision.snabbdom.VNode
+import org.w3c.dom.HTMLElement
 
 /**
  * Base interface for all components.
@@ -126,7 +126,7 @@ interface Component {
      * Returns DOM element bound to the current component.
      * @return DOM element
      */
-    fun getElement(): Node?
+    fun getElement(): HTMLElement?
 
     /**
      * Returns DOM element bound to the current component as a *dynamic* type.
