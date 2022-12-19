@@ -57,6 +57,19 @@ object I18n : I18nManager {
             '.'
         }
     }
+
+    fun detectThousandsSeparator(): Char? {
+        return try {
+            val thousand = (1000).asDynamic().toLocaleString(language).unsafeCast<String>()
+            if (thousand.length == 5) {
+                thousand[1]
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            null
+        }
+    }
 }
 
 /**
