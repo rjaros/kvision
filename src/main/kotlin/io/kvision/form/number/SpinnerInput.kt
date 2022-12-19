@@ -47,7 +47,7 @@ internal const val SPINNER_DEFAULT_STEP = 1
  * @param init an initializer extension function
  */
 open class SpinnerInput(
-    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = SPINNER_DEFAULT_STEP,
+    value: Number? = null, min: Long? = null, max: Long? = null, step: Int = SPINNER_DEFAULT_STEP,
     className: String? = null, init: (SpinnerInput.() -> Unit)? = null
 ) : Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<Number?>, FormInput,
     MutableState<Number?> {
@@ -57,7 +57,7 @@ open class SpinnerInput(
     /**
      * Spinner input value.
      */
-    override var value by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(it) } }
+    override var value: Number? by refreshOnUpdate(value) { refreshState(); observers.forEach { ob -> ob(this.value) } }
 
     /**
      * The value attribute of the generated HTML input element.
@@ -119,7 +119,15 @@ open class SpinnerInput(
 
     init {
         useSnabbdomDistinctKey()
+        val numberRegex = Regex("\\d")
         this.setInternalEventListener<SpinnerInput> {
+            keydown = {
+                val fieldValue = it.currentTarget.unsafeCast<HTMLInputElement>().value
+                if (!(it.key.length > 1 || it.ctrlKey ||
+                        (it.key == "-" && fieldValue.isEmpty() && (self.min == null || self.min!! < 0)) ||
+                        (numberRegex.matches(it.key) && fieldValue.dropWhile { it == '-' }.length < 18))
+                ) it.preventDefault()
+            }
             input = {
                 self.changeValue()
             }
@@ -206,7 +214,8 @@ open class SpinnerInput(
      * Internal function
      */
     protected open fun refreshState() {
-        getElementD()?.value = value ?: ""
+        getElementD()?.value = value?.toLong() ?: ""
+        changeValue()
     }
 
     /**
@@ -216,10 +225,10 @@ open class SpinnerInput(
     protected open fun changeValue() {
         val v = getElementD()?.value?.unsafeCast<String>()
         if (v != null && v != "") {
-            val newValue = v.toDoubleOrNull()?.let {
-                if (min != null && it < (min?.toDouble() ?: 0.0))
+            val newValue = v.toLongOrNull()?.let {
+                if (min != null && it < (min ?: 0))
                     min
-                else if (max != null && it > (max?.toDouble() ?: 0.0))
+                else if (max != null && it > (max ?: 0))
                     max
                 else it
             }
@@ -250,7 +259,7 @@ open class SpinnerInput(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.spinnerInput(
-    value: Number? = null, min: Number? = null, max: Number? = null, step: Number = SPINNER_DEFAULT_STEP,
+    value: Number? = null, min: Long? = null, max: Long? = null, step: Int = SPINNER_DEFAULT_STEP,
     className: String? = null,
     init: (SpinnerInput.() -> Unit)? = null
 ): SpinnerInput {
