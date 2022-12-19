@@ -53,14 +53,14 @@ open class Numeric(
     min: Number? = null,
     max: Number? = null,
     decimals: Int = 2,
-    decimalSeparator: String = I18n.detectDecimalSeparator(),
+    decimalSeparator: Char = I18n.detectDecimalSeparator(),
     label: String? = null,
     rich: Boolean = false,
     init: (Numeric.() -> Unit)? = null
 ) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
-     * Spinner value.
+     * Numeric value.
      */
     override var value
         get() = input.value
@@ -255,7 +255,7 @@ open class Numeric(
  */
 fun Container.numeric(
     value: Number? = null, name: String? = null, min: Number? = null, max: Number? = null,
-    decimals: Int = 2, decimalSeparator: String = I18n.detectDecimalSeparator(),
+    decimals: Int = 2, decimalSeparator: Char = I18n.detectDecimalSeparator(),
     label: String? = null, rich: Boolean = false,
     init: (Numeric.() -> Unit)? = null
 ): Numeric {

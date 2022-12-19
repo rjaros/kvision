@@ -49,7 +49,7 @@ import io.kvision.utils.toFixedNoRound
  */
 open class NumericInput(
     value: Number? = null, min: Number? = null, max: Number? = null, decimals: Int = 2,
-    decimalSeparator: String = I18n.detectDecimalSeparator(),
+    decimalSeparator: Char = I18n.detectDecimalSeparator(),
     className: String? = null, init: (NumericInput.() -> Unit)? = null
 ) : Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<Number?>, FormInput,
     MutableState<Number?> {
@@ -152,7 +152,7 @@ open class NumericInput(
         super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("type", "text")
         attributeSetBuilder.add("maxlength", "14")
-        val decimalSeparatorRegex = if (decimalSeparator == ".") "\\." else decimalSeparator
+        val decimalSeparatorRegex = if (decimalSeparator == '.') "\\." else decimalSeparator.toString()
         val pattern = if (decimals > 0) {
             "^-?(\\d+($decimalSeparatorRegex\\d{1,$decimals})?)\$"
         } else {
@@ -200,7 +200,7 @@ open class NumericInput(
      * Internal function
      */
     protected open fun refreshState() {
-        getElementD()?.value = value?.toString()?.replace(".", decimalSeparator) ?: ""
+        getElementD()?.value = value?.toString()?.replace('.', decimalSeparator) ?: ""
     }
 
     /**
@@ -210,7 +210,7 @@ open class NumericInput(
     protected open fun changeValue() {
         val v = getElementD()?.value?.unsafeCast<String>()
         if (v != null && v != "") {
-            val newValue = v.replace(decimalSeparator, ".").toDoubleOrNull()?.let {
+            val newValue = v.replace(decimalSeparator, '.').toDoubleOrNull()?.let {
                 if (min != null && it < (min?.toDouble() ?: 0.0))
                     min
                 else if (max != null && it > (max?.toDouble() ?: 0.0))
@@ -262,7 +262,7 @@ open class NumericInput(
  */
 fun Container.numericInput(
     value: Number? = null, min: Number? = null, max: Number? = null,
-    decimals: Int = 2, decimalSeparator: String = I18n.detectDecimalSeparator(),
+    decimals: Int = 2, decimalSeparator: Char = I18n.detectDecimalSeparator(),
     className: String? = null,
     init: (NumericInput.() -> Unit)? = null
 ): NumericInput {
