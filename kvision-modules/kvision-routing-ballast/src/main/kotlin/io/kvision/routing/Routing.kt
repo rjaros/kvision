@@ -101,14 +101,10 @@ open class Routing(
             root: String? = null,
             useHash: Boolean = true,
             notFoundHandler: ((String) -> Any)? = null,
-        ) {
+        ): Routing {
             RoutingManager.routerFactory = BallastRouterFactory(root, useHash, notFoundHandler)
             RoutingManager.routerFactory.initRouter()
+            return RoutingManager.routerFactory.getRouter().unsafeCast<Routing>()
         }
     }
 }
-
-/**
- * Default Ballast JavaScript router.
- */
-lateinit var routing: Routing

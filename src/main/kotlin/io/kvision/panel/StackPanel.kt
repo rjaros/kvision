@@ -81,11 +81,9 @@ open class StackPanel(
         add(panel)
         val currentIndex = counter++
         childrenMap[currentIndex] = panel
-        window.setTimeout({
-            RoutingManager.getRouter().kvOn(route) { _ ->
-                activeChild = childrenMap[currentIndex]!!
-            }.kvResolve()
-        }, 0)
+        RoutingManager.getRouter().kvOn(route) { _ ->
+            activeChild = childrenMap[currentIndex]!!
+        }
     }
 
     /**

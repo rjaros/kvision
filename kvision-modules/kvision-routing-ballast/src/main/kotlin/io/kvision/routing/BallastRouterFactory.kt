@@ -34,20 +34,20 @@ class BallastRouterFactory(
     val notFoundHandler: ((String) -> Any)? = null,
 ) : RouterFactory {
 
-    private var routingInitialized = false
+    private var routing: KVRouter? = null
 
     override fun getRouter(): KVRouter {
-        return routing
+        return routing ?: throw IllegalStateException("Routing not initialized")
     }
 
     override fun initRouter() {
-        if (!routingInitialized) {
+        if (routing == null) {
             routing = Routing(root, useHash, notFoundHandler)
-            routingInitialized = true
         }
     }
 
     override fun shutdownRouter() {
-        routing.kvDestroy()
+        routing?.kvDestroy()
+        routing = null
     }
 }

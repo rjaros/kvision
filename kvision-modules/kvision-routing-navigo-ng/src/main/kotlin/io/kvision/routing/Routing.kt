@@ -112,9 +112,10 @@ open class Routing(
             strategy: Strategy = Strategy.ONE,
             noMatchWarning: Boolean = false,
             linksSelector: String? = null
-        ) {
+        ): Routing {
             RoutingManager.routerFactory = NavigoRouterFactory(root, useHash, strategy, noMatchWarning, linksSelector)
-            routing = Routing(root, useHash, strategy, noMatchWarning, linksSelector)
+            RoutingManager.initRouter()
+            return RoutingManager.getRouter().unsafeCast<Routing>()
         }
     }
 }
@@ -135,20 +136,20 @@ class NavigoRouterFactory(
     val linksSelector: String? = null
 ) : RouterFactory {
 
+    private var routing: Routing? = null
+
     override fun getRouter(): KVRouter {
-        return routing
+        return routing ?: throw IllegalStateException("Routing not initialized")
     }
 
     override fun initRouter() {
-        routing = Routing(root, useHash, strategy, noMatchWarning, linksSelector)
+        if (routing == null) {
+            routing = Routing(root, useHash, strategy, noMatchWarning, linksSelector)
+        }
     }
 
     override fun shutdownRouter() {
-        routing.destroy()
+        routing?.destroy()
+        routing = null
     }
 }
-
-/**
- * Default Navigo 8+ JavaScript router.
- */
-lateinit var routing: Routing

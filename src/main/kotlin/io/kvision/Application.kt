@@ -79,6 +79,7 @@ fun startApplication(
         val application = builder()
         @Suppress("UnsafeCastFromDynamic")
         application.start(state?.appState ?: emptyMap())
+        RoutingManager.getRouter().kvResolve()
         return application
     }
 

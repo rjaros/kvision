@@ -242,9 +242,6 @@ open class TabPanel(
                 }
             }
         }
-        if (tab.route != null) {
-            RoutingManager.getRouter().kvResolve()
-        }
     }
 
     /**
