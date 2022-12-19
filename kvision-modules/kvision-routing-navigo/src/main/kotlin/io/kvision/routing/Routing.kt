@@ -33,7 +33,7 @@ import io.kvision.navigo.Navigo
 open class Routing(
     root: String? = null,
     useHash: Boolean = true,
-    hash: String = "#!"
+    hash: String = "#"
 ) : Navigo(root, useHash, hash), KVRouter {
 
     override fun kvNavigate(route: String) {
@@ -67,7 +67,7 @@ open class Routing(
         fun init(
             root: String? = null,
             useHash: Boolean = true,
-            hash: String = "#!"
+            hash: String = "#"
         ) {
             RoutingManager.routerFactory = NavigoRouterFactory(root, useHash, hash)
             routing = Routing(root, useHash, hash).also { it.resolve() }
@@ -84,7 +84,7 @@ open class Routing(
 class NavigoRouterFactory(
     val root: String? = null,
     val useHash: Boolean = true,
-    val hash: String = "#!"
+    val hash: String = "#"
 ) : RouterFactory {
 
     override fun getRouter(): KVRouter {
