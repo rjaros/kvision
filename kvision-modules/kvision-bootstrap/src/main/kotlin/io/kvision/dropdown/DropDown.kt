@@ -81,6 +81,8 @@ enum class AutoClose(override val attributeValue: String) : DomAttribute {
  * @param forDropDown determines if the component will be used in a dropdown
  * @param dark use dark background
  * @param rightAligned right align the dropdown menu
+ * @param autoClose the auto closing mode of the dropdown menu
+ * @param arrowVisible show button arrow
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -89,7 +91,7 @@ open class DropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN, disabled: Boolean = false,
     val forNavbar: Boolean = false, val forDropDown: Boolean = false, dark: Boolean = false,
-    rightAligned: Boolean = false,
+    rightAligned: Boolean = false, autoClose: AutoClose = AutoClose.TRUE, arrowVisible: Boolean = true,
     className: String? = null, init: (DropDown.() -> Unit)? = null
 ) : SimplePanel(className) {
     /**
@@ -189,6 +191,15 @@ open class DropDown(
         }
 
     /**
+     * Show button arrow.
+     */
+    var arrowVisible
+        get() = button.arrowVisible
+        set(value) {
+            button.arrowVisible = value
+        }
+
+    /**
      * Width of the dropdown button.
      */
     override var width: CssSize?
@@ -200,7 +211,7 @@ open class DropDown(
 
     private val idc = "kv_dropdown_$counter"
     val button: DropDownButton = DropDownButton(
-        idc, text, icon, style, disabled, forNavbar, forDropDown
+        idc, text, icon, style, disabled, forNavbar, forDropDown, autoClose, arrowVisible
     )
 
     fun buttonId() = button.id
@@ -302,7 +313,9 @@ fun Container.dropDown(
     text: String, elements: List<StringPair>? = null, icon: String? = null,
     style: ButtonStyle = ButtonStyle.PRIMARY, direction: Direction = Direction.DROPDOWN,
     disabled: Boolean = false, forNavbar: Boolean = false, forDropDown: Boolean = false,
-    dark: Boolean = false, rightAligned: Boolean = false, className: String? = null,
+    dark: Boolean = false, rightAligned: Boolean = false,
+    autoClose: AutoClose = AutoClose.TRUE, arrowVisible: Boolean = true,
+    className: String? = null,
     init: (DropDown.() -> Unit)? = null
 ): DropDown {
     val dropDown =
@@ -317,6 +330,8 @@ fun Container.dropDown(
             forDropDown,
             dark,
             rightAligned,
+            autoClose,
+            arrowVisible,
             className,
             init
         )

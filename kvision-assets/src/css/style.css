@@ -583,64 +583,6 @@ select.form-select:invalid {
     border-color: var(--bs-primary, #0d6efd);
 }
 
-/*!
- * bootstrap-vertical-tabs - v1.2.2
- * https://dbtek.github.io/bootstrap-vertical-tabs
- * 2016-12-02
- * Copyright (c) 2016 İsmail Demirbilek
- * License: MIT
- */
-.nav-tabs.tabs-left, .nav-tabs.tabs-right {
-    border-bottom: none;
-    padding-top: 2px;
-}
-
-.nav-tabs.tabs-left {
-    border-right: 1px solid #dee2e6;
-}
-
-.nav-tabs.tabs-right {
-    border-left: 1px solid #dee2e6;
-}
-
-.nav-tabs.tabs-left > li.nav-item, .nav-tabs.tabs-right > li.nav-item {
-    float: none;
-    margin-bottom: 2px;
-}
-
-.nav-tabs.tabs-left > li.nav-item {
-    margin-right: -1px;
-}
-
-.nav-tabs.tabs-right > li.nav-item {
-    margin-left: -1px;
-}
-
-.nav-tabs.tabs-left > li.nav-item > a.nav-link.active,
-.nav-tabs.tabs-left > li.nav-item > a.nav-link.active:hover,
-.nav-tabs.tabs-left > li.nav-item > a.nav-link.active:focus {
-    border-bottom-color: #dee2e6;
-    border-right-color: transparent;
-}
-
-.nav-tabs.tabs-right > li.nav-item > a.nav-link.active,
-.nav-tabs.tabs-right > li.nav-item > a.nav-link.active:hover,
-.nav-tabs.tabs-right > li.nav-item > a.nav-link.active:focus {
-    border-bottom: 1px solid #dee2e6;
-    border-left-color: transparent;
-}
-
-.nav-tabs.tabs-left > li.nav-item > a.nav-link {
-    border-radius: 4px 0 0 4px;
-    margin-right: 0;
-    display: block;
-}
-
-.nav-tabs.tabs-right > li.nav-item > a.nav-link {
-    border-radius: 0 4px 4px 0;
-    margin-right: 0;
-}
-
 .kv-focus {
     border-radius: 0.25rem;
     outline-width: 0px;
@@ -836,4 +778,66 @@ label.required-label + ons-input > span.text-input__label::after {
 .kv-toastify-dark {
     color: #fff !important;
     background-color: rgba(33,37,41) !important;
+}
+
+.dropdown-toggle.kv-dropdown-no-arrow::after {
+    content: none;
+}
+
+/*!
+ * bootstrap-vertical-tabs - v1.2.2
+ * https://dbtek.github.io/bootstrap-vertical-tabs
+ * 2016-12-02
+ * Copyright (c) 2016 İsmail Demirbilek
+ * License: MIT
+ */
+.nav-tabs.tabs-left, .nav-tabs.tabs-right {
+    border-bottom: none;
+    padding-top: 2px;
+}
+
+.nav-tabs.tabs-left {
+    border-right: 1px solid #dee2e6;
+}
+
+.nav-tabs.tabs-right {
+    border-left: 1px solid #dee2e6;
+}
+
+.nav-tabs.tabs-left > li.nav-item, .nav-tabs.tabs-right > li.nav-item {
+    float: none;
+    margin-bottom: 2px;
+}
+
+.nav-tabs.tabs-left > li.nav-item {
+    margin-right: -1px;
+}
+
+.nav-tabs.tabs-right > li.nav-item {
+    margin-left: -1px;
+}
+
+.nav-tabs.tabs-left > li.nav-item > a.nav-link.active,
+.nav-tabs.tabs-left > li.nav-item > a.nav-link.active:hover,
+.nav-tabs.tabs-left > li.nav-item > a.nav-link.active:focus {
+    border-bottom-color: #dee2e6;
+    border-right-color: transparent;
+}
+
+.nav-tabs.tabs-right > li.nav-item > a.nav-link.active,
+.nav-tabs.tabs-right > li.nav-item > a.nav-link.active:hover,
+.nav-tabs.tabs-right > li.nav-item > a.nav-link.active:focus {
+    border-bottom: 1px solid #dee2e6;
+    border-left-color: transparent;
+}
+
+.nav-tabs.tabs-left > li.nav-item > a.nav-link {
+    border-radius: 4px 0 0 4px;
+    margin-right: 0;
+    display: block;
+}
+
+.nav-tabs.tabs-right > li.nav-item > a.nav-link {
+    border-radius: 0 4px 4px 0;
+    margin-right: 0;
 }

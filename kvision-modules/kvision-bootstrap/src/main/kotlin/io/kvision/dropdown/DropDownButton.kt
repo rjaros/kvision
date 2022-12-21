@@ -51,6 +51,7 @@ open class DropDownButton(
     val forNavbar: Boolean = false,
     val forDropDown: Boolean = false,
     autoClose: AutoClose = AutoClose.TRUE,
+    arrowVisible: Boolean = false,
     className: String? = null
 ) :
     Button(text, icon, style, ButtonType.BUTTON, disabled, null, true, className) {
@@ -59,6 +60,11 @@ open class DropDownButton(
      * Whether to automatically close dropdown menu.
      */
     var autoClose by refreshOnUpdate(autoClose)
+
+    /**
+     * Show button arrow.
+     */
+    var arrowVisible by refreshOnUpdate(arrowVisible)
 
     init {
         this.id = id
@@ -103,6 +109,7 @@ open class DropDownButton(
             }
             else -> super.buildClassSet(classSetBuilder)
         }
+        if (!arrowVisible) classSetBuilder.add("kv-dropdown-no-arrow")
     }
 
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
