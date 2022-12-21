@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     `kotlin-dsl`
     kotlin("jvm")
@@ -35,15 +33,11 @@ pluginBundle {
     tags = listOf("kvision", "kotlin", "kotlin-js", "kotlin-multiplatform")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(javaVersion))
+    }
 }
-
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions.jvmTarget = javaVersion
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions.jvmTarget = javaVersion
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))

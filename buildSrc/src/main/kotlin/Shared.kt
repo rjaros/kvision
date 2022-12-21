@@ -3,6 +3,7 @@ import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.named
@@ -48,10 +49,12 @@ private fun KotlinJsTargetDsl.kotlinJsTargets() {
 }
 
 fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "17") {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(target))
+    }
     jvm {
         compilations.all {
             kotlinOptions {
-                jvmTarget = target
                 freeCompilerArgs = listOf("-Xjsr305=strict")
             }
         }
