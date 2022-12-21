@@ -389,7 +389,7 @@ open class DateTimeInput(
                     toolbarPlacement?.let { this.toolbarPlacement = it.placement }
                     this.sideBySide = sideBySide
                     this.buttons = obj {
-                        this.clear = if (calendarView) showClear else false // disable clear button for clock view because of a bug
+                        this.clear = showClear
                         this.close = showClose
                         this.today = showToday
                     }
