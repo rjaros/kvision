@@ -47,7 +47,7 @@ internal const val SPINNER_DEFAULT_STEP = 1
  * @param init an initializer extension function
  */
 open class SpinnerInput(
-    value: Number? = null, min: Long? = null, max: Long? = null, step: Int = SPINNER_DEFAULT_STEP,
+    value: Number? = null, min: Int? = null, max: Int? = null, step: Int = SPINNER_DEFAULT_STEP,
     className: String? = null, init: (SpinnerInput.() -> Unit)? = null
 ) : Widget((className?.let { "$it " } ?: "") + "form-control"), GenericFormComponent<Number?>, FormInput,
     MutableState<Number?> {
@@ -125,7 +125,7 @@ open class SpinnerInput(
                 val fieldValue = it.currentTarget.unsafeCast<HTMLInputElement>().value
                 if (!(it.key.length > 1 || it.ctrlKey ||
                         (it.key == "-" && fieldValue.isEmpty() && (self.min == null || self.min!! < 0)) ||
-                        (numberRegex.matches(it.key) && fieldValue.dropWhile { it == '-' }.length < 18))
+                        (numberRegex.matches(it.key) && fieldValue.dropWhile { it == '-' }.length < 9))
                 ) it.preventDefault()
             }
             input = {
@@ -214,7 +214,7 @@ open class SpinnerInput(
      * Internal function
      */
     protected open fun refreshState() {
-        getElementD()?.value = value?.toLong() ?: ""
+        getElementD()?.value = value?.toInt() ?: ""
         changeValue()
     }
 
@@ -225,7 +225,7 @@ open class SpinnerInput(
     protected open fun changeValue() {
         val v = getElementD()?.value?.unsafeCast<String>()
         if (v != null && v != "") {
-            val newValue = v.toLongOrNull()?.let {
+            val newValue = v.toIntOrNull()?.let {
                 if (min != null && it < (min ?: 0))
                     min
                 else if (max != null && it > (max ?: 0))
@@ -259,7 +259,7 @@ open class SpinnerInput(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.spinnerInput(
-    value: Number? = null, min: Long? = null, max: Long? = null, step: Int = SPINNER_DEFAULT_STEP,
+    value: Number? = null, min: Int? = null, max: Int? = null, step: Int = SPINNER_DEFAULT_STEP,
     className: String? = null,
     init: (SpinnerInput.() -> Unit)? = null
 ): SpinnerInput {

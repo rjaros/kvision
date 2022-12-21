@@ -48,8 +48,8 @@ import io.kvision.utils.SnOn
 open class Spinner(
     value: Number? = null,
     name: String? = null,
-    min: Long? = null,
-    max: Long? = null,
+    min: Int? = null,
+    max: Int? = null,
     step: Int = SPINNER_DEFAULT_STEP,
     label: String? = null,
     rich: Boolean = false,
@@ -258,8 +258,8 @@ open class Spinner(
 fun Container.spinner(
     value: Number? = null,
     name: String? = null,
-    min: Long? = null,
-    max: Long? = null,
+    min: Int? = null,
+    max: Int? = null,
     step: Int = SPINNER_DEFAULT_STEP,
     label: String? = null,
     rich: Boolean = false,
