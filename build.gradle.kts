@@ -45,7 +45,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         versions.webpack.version = "5.75.0"
         versions.webpackCli.version = "5.0.1"
         versions.karma.version = "6.4.1"
-        versions.mocha.version = "10.1.0"
+        versions.mocha.version = "10.2.0"
     }
 }
 
