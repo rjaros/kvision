@@ -3,9 +3,9 @@
 
 
 "@babel/runtime@^7.9.2":
-  version "7.20.6"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.6.tgz#facf4879bfed9b5326326273a64220f099b0fce3"
-  integrity sha512-Q+8MqP7TiHMWzSfwiJwXCjyf4GYA4Dgw3emg/7xmwsdLJOZUp+nMqcOwOzzYheuM1rhDu8FSj2l0aoMygEuXuA==
+  version "7.20.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.7.tgz#fcb41a5a70550e04a7b708037c7c32f7f356d8fd"
+  integrity sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==
   dependencies:
     regenerator-runtime "^0.13.11"
 
@@ -39,10 +39,10 @@
   resolved "https://registry.yarnpkg.com/@electron/remote/-/remote-2.0.9.tgz#092ff085407bc907f45b89a72c36faa773ccf2d9"
   integrity sha512-LR0W0ID6WAKHaSs0x5LX9aiG+5pFBNAJL6eQAJfGkCuZPUa6nZz+czZLdlTDETG45CgF/0raSvCtYOYUpr6c+A==
 
-"@eonasdan/tempus-dominus@^6.2.9":
-  version "6.2.9"
-  resolved "https://registry.yarnpkg.com/@eonasdan/tempus-dominus/-/tempus-dominus-6.2.9.tgz#70c8bd9e21a90bc08824828c59a5d3a528ca0c91"
-  integrity sha512-Um5YK7xHgZHvEoMHlz/FQ11XaTtNnpxOFW+TDPjgi8wNkZv9s2EYajQXIK2kviqbX5bTgGRBnKi1Vax6O8MH3g==
+"@eonasdan/tempus-dominus@^6.2.10":
+  version "6.2.10"
+  resolved "https://registry.yarnpkg.com/@eonasdan/tempus-dominus/-/tempus-dominus-6.2.10.tgz#c971b20594608a426421e5e163affb740d6e9166"
+  integrity sha512-JxbCRxfYRNQRt8P26X/UBuMfFrgz5ve4cnT4mx5cpuaWdBDkzwc8QhELXAspOsCPEZ84wkGBqhliKZr5BCnJlg==
 
 "@fortawesome/fontawesome-free@^6.2.1":
   version "6.2.1"
@@ -619,9 +619,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001400:
-  version "1.0.30001439"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001439.tgz#ab7371faeb4adff4b74dad1718a6fd122e45d9cb"
-  integrity sha512-1MgUzEkoMO6gKfXflStpYgZDlFM7M/ck/bgfVCACO5vnAf0fXoNVHdWtqGU+MYca+4bL9Z5bpOVmR33cWW9G2A==
+  version "1.0.30001441"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001441.tgz#987437b266260b640a23cd18fbddb509d7f69f3e"
+  integrity sha512-OyxRR4Vof59I3yGWXws6i908EtGbMzVUi3ganaZQHmydk1iwDhRnvaPG2WaR0KcqrDFKrxVZHULT396LEPhXfg==
 
 chalk@^2.3.0:
   version "2.4.2"
@@ -1708,10 +1708,10 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kvision-assets@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-8.0.1.tgz#a685ca88db3d7c4af48d2534e0a8b19dfe7447b5"
-  integrity sha512-dV0lg+khBtqK+BW0M/PdXRZ1MIcXs8f6fiKeBF2GKF/CxKig4hdpjkvqkRf8J/CYh/fOEal/OcsyXM9K/cVsFQ==
+kvision-assets@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-8.0.2.tgz#99807f63f11808b61c2c27e225b9a06f8cc370b0"
+  integrity sha512-7EmWNlBTPO8cHHLbStKTOKMYwxodA6LnLl9ZdHZqawEcAVv4/Bn90Nt5M2ZEaoGJnmq4JeOE+rbbPQ0Q093IRg==
 
 leaflet@^1.9.3:
   version "1.9.3"
@@ -2629,10 +2629,10 @@ tom-select@^2.2.2:
     "@orchidjs/sifter" "^1.0.3"
     "@orchidjs/unicode-variants" "^1.0.4"
 
-trix@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.3.tgz#6c60a2cdb62d36a8d67642a698695e72939e92bf"
-  integrity sha512-QIz71n75odwftH+YMg/oYPYsU7C+MwcEpWcQJDYKlnQ2Gu27zeXFTKbeTW2+UI4tHgQ2TlMiNpbqXLvJqcTzAg==
+trix@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.4.tgz#37ec8092e5d561462cee1d96cc402aa5c5f8c04e"
+  integrity sha512-WOMKqwCVti0i3RVaDrMnrEZWs6XMpFoCfUvFCZNd15KndAy6MsYQscizxEpFiCLUlo+rXMkueK0ldRDo5xpVJA==
 
 type-fest@^0.13.1:
   version "0.13.1"
