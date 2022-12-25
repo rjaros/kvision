@@ -30,15 +30,16 @@ import io.kvision.core.Container
  * @constructor
  * @param value selection state
  * @param name the name of the input element
+ * @param labelFirst render the label as the first child
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
 open class Switch(
-    value: Boolean = false, name: String? = null, label: String? = null,
-    rich: Boolean = false,
+    value: Boolean = false, name: String? = null, labelFirst: Boolean = false,
+    label: String? = null, rich: Boolean = false,
     init: (Switch.() -> Unit)? = null
-) : CheckBox(value, name, label, rich) {
+) : CheckBox(value, name, labelFirst, label, rich) {
 
     init {
         @Suppress("LeakingThis")
@@ -57,10 +58,10 @@ open class Switch(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.switch(
-    value: Boolean = false, name: String? = null, label: String? = null,
-    rich: Boolean = false, init: (Switch.() -> Unit)? = null
+    value: Boolean = false, name: String? = null, labelFirst: Boolean = false,
+    label: String? = null, rich: Boolean = false, init: (Switch.() -> Unit)? = null
 ): Switch {
-    val switch = Switch(value, name, label, rich, init)
+    val switch = Switch(value, name, labelFirst, label, rich, init)
     this.add(switch)
     return switch
 }
