@@ -142,6 +142,8 @@ class PaceOptions(
             this.document = false
             this.eventLag = false
             this.startOnPageLoad = false
+            this.restartOnPushState = false
+            this.restartOnRequestAfter = false
         }
     }
 }
@@ -156,7 +158,7 @@ class Pace {
         }
 
         fun setOptions(options: PaceOptions) {
-            window["Pace"].options = options.paceOptionsJs
+            window.asDynamic().paceOptions = options.paceOptionsJs
         }
 
         fun on(event: Event, handler: (() -> Unit)? = null, context: List<dynamic>? = null): dynamic {
