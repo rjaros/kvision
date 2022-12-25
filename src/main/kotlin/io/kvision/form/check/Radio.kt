@@ -43,13 +43,14 @@ import org.w3c.dom.events.MouseEvent
  * @param value selection state
  * @param extraValue the additional String value used for the radio button group
  * @param name the name attribute of the generated HTML input element
+ * @param labelFirst render the label as the first child
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
 open class Radio(
-    value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
-    rich: Boolean = false, init: (Radio.() -> Unit)? = null
+    value: Boolean = false, extraValue: String? = null, name: String? = null, labelFirst: Boolean = false,
+    label: String? = null, rich: Boolean = false, init: (Radio.() -> Unit)? = null
 ) : SimplePanel("form-check"), BoolFormControl, MutableState<Boolean> {
 
     /**
@@ -131,7 +132,7 @@ open class Radio(
     /**
      * Render label as first child.
      */
-    var labelFirst by refreshOnUpdate(false)
+    var labelFirst by refreshOnUpdate(labelFirst)
 
     private val idc = "kv_form_radio_$counter"
     final override val input: RadioInput = RadioInput(value).apply {
@@ -258,10 +259,10 @@ open class Radio(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.radio(
-    value: Boolean = false, extraValue: String? = null, name: String? = null, label: String? = null,
-    rich: Boolean = false, init: (Radio.() -> Unit)? = null
+    value: Boolean = false, extraValue: String? = null, name: String? = null, labelFirst: Boolean = false,
+    label: String? = null, rich: Boolean = false, init: (Radio.() -> Unit)? = null
 ): Radio {
-    val radio = Radio(value, extraValue, name, label, rich, init)
+    val radio = Radio(value, extraValue, name, labelFirst, label, rich, init)
     this.add(radio)
     return radio
 }

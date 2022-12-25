@@ -42,13 +42,14 @@ import org.w3c.dom.events.MouseEvent
  * @constructor
  * @param value selection state
  * @param name the name of the input element
+ * @param labelFirst render the label as the first child
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
 open class TriStateCheckBox(
-    value: Boolean? = null, name: String? = null, label: String? = null,
-    rich: Boolean = false,
+    value: Boolean? = null, name: String? = null, labelFirst: Boolean = false,
+    label: String? = null, rich: Boolean = false,
     init: (TriStateCheckBox.() -> Unit)? = null
 ) : SimplePanel("form-check"), TriStateFormControl, MutableState<Boolean?> {
 
@@ -137,7 +138,7 @@ open class TriStateCheckBox(
     /**
      * Render label as first child.
      */
-    var labelFirst by refreshOnUpdate(false)
+    var labelFirst by refreshOnUpdate(labelFirst)
 
     private val idc = "kv_form_tristatecheckbox_$counter"
     final override val input: TriStateCheckBoxInput =
@@ -274,10 +275,10 @@ open class TriStateCheckBox(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.triStateCheckBox(
-    value: Boolean? = null, name: String? = null, label: String? = null,
-    rich: Boolean = false, init: (TriStateCheckBox.() -> Unit)? = null
+    value: Boolean? = null, name: String? = null, labelFirst: Boolean = false,
+    label: String? = null, rich: Boolean = false, init: (TriStateCheckBox.() -> Unit)? = null
 ): TriStateCheckBox {
-    val triStateCheckBox = TriStateCheckBox(value, name, label, rich, init)
+    val triStateCheckBox = TriStateCheckBox(value, name, labelFirst, label, rich, init)
     this.add(triStateCheckBox)
     return triStateCheckBox
 }

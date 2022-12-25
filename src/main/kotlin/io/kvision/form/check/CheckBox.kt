@@ -42,13 +42,14 @@ import org.w3c.dom.events.MouseEvent
  * @constructor
  * @param value selection state
  * @param name the name of the input element
+ * @param labelFirst render the label as the first child
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
 open class CheckBox(
-    value: Boolean = false, name: String? = null, label: String? = null,
-    rich: Boolean = false,
+    value: Boolean = false, name: String? = null, labelFirst: Boolean = false,
+    label: String? = null, rich: Boolean = false,
     init: (CheckBox.() -> Unit)? = null
 ) : SimplePanel("form-check"), BoolFormControl, MutableState<Boolean> {
 
@@ -122,7 +123,7 @@ open class CheckBox(
     /**
      * Render label as first child.
      */
-    var labelFirst by refreshOnUpdate(false)
+    var labelFirst by refreshOnUpdate(labelFirst)
 
     /**
      * The indeterminate state of the checkbox input.
@@ -256,10 +257,10 @@ open class CheckBox(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.checkBox(
-    value: Boolean = false, name: String? = null, label: String? = null,
+    value: Boolean = false, name: String? = null, labelFirst: Boolean = false, label: String? = null,
     rich: Boolean = false, init: (CheckBox.() -> Unit)? = null
 ): CheckBox {
-    val checkBox = CheckBox(value, name, label, rich, init)
+    val checkBox = CheckBox(value, name, labelFirst, label, rich, init)
     this.add(checkBox)
     return checkBox
 }
