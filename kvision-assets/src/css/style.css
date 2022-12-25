@@ -784,6 +784,14 @@ label.required-label + ons-input > span.text-input__label::after {
     content: none;
 }
 
+.btn-group-xsm > .btn, .btn-xsm {
+    --bs-btn-padding-y: 0.1rem;
+    --bs-btn-padding-x: 0.4rem;
+    --bs-btn-font-size: 0.8rem;
+    --bs-btn-border-radius: 0.25rem;
+    padding-top: 3px;
+}
+
 /*!
  * bootstrap-vertical-tabs - v1.2.2
  * https://dbtek.github.io/bootstrap-vertical-tabs

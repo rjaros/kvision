@@ -58,7 +58,8 @@ enum class ButtonStyle(override val className: String) : CssClass {
  */
 enum class ButtonSize(override val className: String) : CssClass {
     LARGE("btn-lg"),
-    SMALL("btn-sm")
+    SMALL("btn-sm"),
+    XSMALL("btn-xsm")
 }
 
 /**

@@ -32,7 +32,8 @@ import io.kvision.utils.px
  */
 enum class ButtonGroupSize(override val className: String) : CssClass {
     LARGE("btn-group-lg"),
-    SMALL("btn-group-sm")
+    SMALL("btn-group-sm"),
+    XSMALL("btn-group-xsm")
 }
 
 /**
