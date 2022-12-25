@@ -223,18 +223,20 @@ open class SpinnerInput(
      * Internal function
      */
     protected open fun changeValue() {
-        val v = getElementD()?.value?.unsafeCast<String>()
-        if (v != null && v != "") {
-            val newValue = v.toIntOrNull()?.let {
-                if (min != null && it < (min ?: 0))
-                    min
-                else if (max != null && it > (max ?: 0))
-                    max
-                else it
+        if (getElement() != null) {
+            val v = getElementD()?.value?.unsafeCast<String>()
+            if (v != null && v != "") {
+                val newValue = v.toIntOrNull()?.let {
+                    if (min != null && it < (min ?: 0))
+                        min
+                    else if (max != null && it > (max ?: 0))
+                        max
+                    else it
+                }
+                if (this.value != newValue) this.value = newValue
+            } else {
+                this.value = null
             }
-            if (this.value != newValue) this.value = newValue
-        } else {
-            this.value = null
         }
     }
 
