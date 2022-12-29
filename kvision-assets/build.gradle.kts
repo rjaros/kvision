@@ -3,40 +3,36 @@ plugins {
     id("dev.petuska.npm.publish") version npmPublishVersion
 }
 
-npmPublishing {
-    publications {
-        publication(project.name) {
-            main = "index.js"
-            readme = file("README.md")
+npmPublish {
+    packages {
+        register(project.name) {
+            readme.set(file("README.md"))
             files {
-                from(projectDir) {
-                    include("css/**", "img/**", "js/**", "index.js")
-                }
+                from(projectDir.resolve("src"))
             }
             packageJson {
-                version = "7.0.4"
-                description = "The assets for the KVision framework"
-                keywords = jsonArray("kvision", "kotlin")
-                homepage = "https://kvision.io"
-                license = "MIT"
+                main.set("index.js")
+                version.set("7.0.4")
+                description.set("The assets for the KVision framework")
+                keywords.addAll("kvision", "kotlin")
+                homepage.set("https://kvision.io")
+                license.set("MIT")
                 repository {
-                    type = "git"
-                    url = "git+https://github.com/rjaros/kvision.git"
+                    type.set("git")
+                    url.set("git+https://github.com/rjaros/kvision.git")
                 }
                 author {
-                    name = "Robert Jaros"
+                    name.set("Robert Jaros")
                 }
                 bugs {
-                    url = "https://github.com/rjaros/kvision/issues"
+                    url.set("https://github.com/rjaros/kvision/issues")
                 }
             }
-
-            repositories {
-                repository("npmjs") {
-                    registry = uri("https://registry.npmjs.org")
-                    authToken = System.getenv("NPM_AUTH_TOKEN")
-                }
-            }
+        }
+    }
+    registries {
+        npmjs {
+            authToken.set(System.getenv("NPM_AUTH_TOKEN"))
         }
     }
 }
