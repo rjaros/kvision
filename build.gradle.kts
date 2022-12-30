@@ -69,6 +69,7 @@ dependencies {
     implementation(npm("split.js", "^$splitjsVersion"))
     implementation(npm("gettext.js", "^$gettextjsVersion"))
     implementation(npm("gettext-extract", "^$gettextExtractVersion"))
+    implementation(devNpm("karma-junit-reporter", "2.0.1"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

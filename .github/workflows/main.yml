@@ -32,3 +32,10 @@ jobs:
       - name: Run all tests
         run: ./gradlew check
 
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Karma JUnit Tests
+          path: build/reports/junit/*.xml
+          reporter: java-junit
