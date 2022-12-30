@@ -35,7 +35,6 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
                 api("io.javalin:javalin:$javalinVersion")

@@ -36,8 +36,6 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk7"))
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
                 api(project.dependencies.platform("io.micronaut:micronaut-bom:$micronautVersion"))

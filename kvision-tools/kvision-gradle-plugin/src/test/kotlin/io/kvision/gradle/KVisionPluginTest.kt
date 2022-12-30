@@ -244,7 +244,6 @@ kotlin {
         }
         val backendMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
             }
         }
         val backendTest by getting {

@@ -16,7 +16,6 @@ kotlin {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     implementation(project(":kvision-modules:kvision-common-annotations"))
     implementation("com.google.devtools.ksp:symbol-processing-api:$kspVersion")
 }

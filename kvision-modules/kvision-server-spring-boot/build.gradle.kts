@@ -34,8 +34,6 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk7"))
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutinesVersion")
                 api("org.springframework.boot:spring-boot-starter:$springBootVersion")

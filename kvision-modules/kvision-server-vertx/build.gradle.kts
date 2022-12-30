@@ -35,7 +35,6 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
                 api("io.vertx:vertx-web:$vertxVersion")
                 api("io.vertx:vertx-lang-kotlin:$vertxVersion")
